@@ -32,6 +32,11 @@ full 100 turns** (`hasStalled` returns false while plants exist).
   randomly.** If target is unreachable, routes to the reachable cell with min Manhattan
   distance to it (this parks you next to the unwalkable shack).
 - With speed 1 you advance exactly one cell/turn along a shortest path.
+- GOTCHA: a troll **spawns on its shack cell** (`Unit` ctor sets cell = shack), and the
+  shack is NOT walkable. `getDistances` seeds the *source* cell at distance 0 regardless
+  of walkability and only gates *expansion* on walkable neighbours — so BFS from a troll
+  sitting on the shack still works. A bot that filters non-walkable source cells will see
+  "no reachable cells" on turn 1, output WAIT, and stay frozen on the shack forever.
 
 ## Move conflict resolution (`MoveTask.apply`) — per player only
 - Collisions are resolved **within each player's own units** separately. Two of YOUR

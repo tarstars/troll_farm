@@ -80,6 +80,16 @@ def test_camps_when_standing_on_chosen_unripe_tree():
     assert choose_action(state) == "WAIT"
 
 
+def test_moves_off_shack_on_spawn_toward_reachable_tree():
+    # Trolls spawn ON the (unwalkable) shack cell; the bot must still route out.
+    walkable = full_grid(4, 1, blocked=[(0, 0)])
+    troll = Troll(id=0, x=0, y=0, movement_speed=1, carry_capacity=1,
+                  harvest_power=1, carried=0)  # standing on the shack
+    tree = Tree(type="PLUM", x=2, y=0, size=4, health=4, fruits=2, cooldown=5)
+    state = State(walkable=walkable, my_shack=(0, 0), trees=[tree], my_troll=troll)
+    assert choose_action(state) == "MOVE 0 2 0"
+
+
 def test_waits_when_no_trees_reachable():
     walkable = full_grid(4, 4, blocked=[(0, 0)])
     troll = Troll(id=0, x=2, y=2, movement_speed=1, carry_capacity=1,

@@ -42,12 +42,14 @@ def bfs_distances(walkable, sources):
 
     `walkable` is a set of (x, y) cells; `sources` an iterable of (x, y).
     Returns {(x, y): distance}; unreachable cells are absent. Mirrors
-    Board.getDistances (4-neighbourhood, only walkable cells traversable).
+    Board.getDistances: each source is seeded at distance 0 *regardless of
+    walkability* (a troll spawns on its non-walkable shack), and only walkable
+    neighbours are traversable.
     """
     dist = {}
     queue = deque()
     for cell in sources:
-        if cell in walkable and cell not in dist:
+        if cell not in dist:
             dist[cell] = 0
             queue.append(cell)
     while queue:
