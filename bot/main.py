@@ -353,17 +353,19 @@ def main():
     """Game loop: read the map once, then act every turn."""
     width, height = (int(v) for v in input().split())
     grid_lines = [input() for _ in range(height)]
-    walkable, my_shack, _opp_shack = parse_grid(grid_lines)
+    walkable, my_shack, opp_shack = parse_grid(grid_lines)
 
     def line_reader():
         while True:
             yield input()
 
     lines = line_reader()
+    turn = 0
     try:
         while True:
-            state = parse_turn(lines, walkable, my_shack)
-            print(choose_action(state), flush=True)
+            turn += 1
+            state = parse_turn(lines, walkable, my_shack, opp_shack, turn)
+            print(";".join(decide(state, PARAMS)), flush=True)
     except EOFError:
         pass
 
