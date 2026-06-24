@@ -156,48 +156,52 @@ def _ticks_until_ripe(tree, min_offset):
     return None
 
 
-def choose_action(state):
-    """Pick this turn's command for our troll."""
-    troll = state.my_troll
-
-    # Carrying: bank it. DROP if next to shack, else walk toward shack.
-    if troll.carried >= troll.carry_capacity:
-        if _is_adjacent(troll.pos, state.my_shack):
-            return f"DROP {troll.id}"
-        return f"MOVE {troll.id} {state.my_shack[0]} {state.my_shack[1]}"
-
-    # Empty-handed: if standing on a tree that has fruit, grab it now.
-    for tree in state.trees:
-        if tree.pos == troll.pos and tree.fruits > 0:
-            return f"HARVEST {troll.id}"
-
-    # Otherwise pick the tree with the cheapest round trip:
-    #   walk to tree + wait for it to ripen + carry back to the shack.
-    walkable = state.walkable
-    tdist = bfs_distances(walkable, [troll.pos])
-    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in walkable]
-    sdist = bfs_distances(walkable, shack_adj)
-
+def best_tree(state, troll, reserved, dist_t, return_dist, params):
+    best = None
     best_key = None
-    best_target = None
     for tree in state.trees:
-        if tree.pos not in tdist or tree.pos not in sdist:
-            continue  # unreachable, or can't get back to the shack
-        walk = tdist[tree.pos]
+        if tree.pos in reserved:
+            continue
+        if tree.pos not in dist_t or tree.pos not in return_dist:
+            continue
+        walk = dist_t[tree.pos]
         ripe = _ticks_until_ripe(tree, walk)
         if ripe is None:
             continue
-        cost = ripe + sdist[tree.pos]  # turns to hold a fruit + turns to bank it
-        key = (cost, walk)             # tie-break: nearer tree
+        key = (ripe + return_dist[tree.pos], walk)
         if best_key is None or key < best_key:
             best_key = key
-            best_target = tree
+            best = tree
+    return best
 
-    if best_target is None:
-        return "WAIT"
-    if best_target.pos == troll.pos:
-        return "WAIT"  # camping a not-yet-ripe target
-    return f"MOVE {troll.id} {best_target.x} {best_target.y}"
+
+def _bank_command(troll, state):
+    if _is_adjacent(troll.pos, state.my_shack):
+        return f"DROP {troll.id}"
+    return f"MOVE {troll.id} {state.my_shack[0]} {state.my_shack[1]}"
+
+
+def gather_command(state, troll, reserved, dist_t, return_dist, params):
+    # 1. Opportunistic harvest: standing on a fruited tree with room.
+    if troll.free_capacity > 0:
+        for tree in state.trees:
+            if tree.pos == troll.pos and tree.fruits > 0:
+                return f"HARVEST {troll.id}", tree.pos
+
+    target = best_tree(state, troll, reserved, dist_t, return_dist, params)
+
+    # 2. Carrying: bank unless a worthwhile top-up tree is within radius.
+    if troll.total_carried > 0:
+        if (troll.free_capacity == 0 or target is None
+                or dist_t.get(target.pos, 1 << 30) > params["topup_radius"]):
+            return _bank_command(troll, state), None
+
+    # 3. Head for the target tree (or wait/camp).
+    if target is None:
+        return "WAIT", None
+    if target.pos == troll.pos:
+        return "WAIT", None  # camping a not-yet-ripe target
+    return f"MOVE {troll.id} {target.x} {target.y}", target.pos
 
 
 def parse_grid(grid_lines):
