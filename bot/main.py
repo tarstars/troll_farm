@@ -12,6 +12,11 @@ PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
 MAX_SIZE = 4
 MAX_FRUITS = 3
 
+# Item constants for multi-troll data model
+ITEM_NAMES = ["PLUM", "LEMON", "APPLE", "BANANA", "IRON", "WOOD"]
+ITEM_INDEX = {name: i for i, name in enumerate(ITEM_NAMES)}
+TOTAL_TURNS = 300
+
 
 def predict_fruits(plant_type, size, fruits, cooldown, ticks):
     """Fruit count after `ticks` referee ticks, mirroring Plant.tick (no water).
@@ -70,11 +75,19 @@ class Troll:
     movement_speed: int
     carry_capacity: int
     harvest_power: int
-    carried: int  # total items currently carried
+    carry: list  # counts per item index (length 6)
 
     @property
     def pos(self):
         return (self.x, self.y)
+
+    @property
+    def total_carried(self):
+        return sum(self.carry)
+
+    @property
+    def free_capacity(self):
+        return self.carry_capacity - self.total_carried
 
 
 @dataclass
@@ -94,10 +107,15 @@ class Tree:
 
 @dataclass
 class State:
-    walkable: set          # GRASS cells incl. tree cells; shack is NOT walkable
-    my_shack: tuple        # (x, y)
+    walkable: set
+    my_shack: tuple
+    opp_shack: tuple
+    my_inventory: list   # counts per item index (length 6)
+    opp_inventory: list
     trees: list
-    my_troll: Troll
+    my_trolls: list
+    opp_trolls: list
+    turn: int
 
 
 def _is_adjacent(a, b):
