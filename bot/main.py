@@ -207,7 +207,9 @@ def gather_command(state, troll, reserved, dist_t, return_dist, params):
 PARAMS = {
     "topup_radius": 4,        # keep gathering across trees within this many steps
     "max_trolls": 5,          # cap on own troll count
-    "train_specs": [(2, 3, 3, 0)],   # preferred (ms, cc, hp, chop), most-wanted first
+    # (ms, cc, hp, chop), most-wanted first; the last is a guaranteed-affordable
+    # fallback (cost n+1 each) so training reliably fires from the 2..10 starting hand.
+    "train_specs": [(2, 2, 2, 0), (1, 1, 1, 0)],
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": False,   # orchard off until tuned (Plan 2)

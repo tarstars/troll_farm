@@ -1,4 +1,4 @@
-from bot.main import training_cost, training_command, State, Troll, Tree
+from bot.main import training_cost, training_command, State, Troll, Tree, PARAMS
 
 
 def test_training_cost_matches_statement_example():
@@ -56,3 +56,26 @@ def test_score_reserve_blocks_overspending():
     st = _state(1, [troll], [2, 2, 2, 3, 0, 0])
     assert training_command(st, _params(score_reserve=5)) is None
     assert training_command(st, _params(score_reserve=3)) == "TRAIN 1 1 1 0"
+
+
+def _default_state(inv, turn=2):
+    # one troll, OFF the shack so training is not blocked by an occupied shack
+    troll = Troll(0, 1, 0, 1, 1, 1, [0] * 6)
+    return State(walkable={(1, 0), (2, 0)}, my_shack=(0, 0), opp_shack=(15, 7),
+                 my_inventory=inv, opp_inventory=[0] * 6, trees=[],
+                 my_trolls=[troll], opp_trolls=[], turn=turn)
+
+
+def test_default_params_train_from_typical_starting_inventory():
+    # Regression: the shipped PARAMS must actually train from a realistic
+    # league-2 starting hand (each fruit is 2..10). The old single expensive
+    # spec (2,3,3,0) needed 5/10/10 and almost never fired.
+    cmd = training_command(_default_state([4, 4, 4, 4, 0, 0]), PARAMS)
+    assert cmd is not None and cmd.startswith("TRAIN ")
+
+
+def test_default_params_train_from_minimum_starting_inventory():
+    # Even the worst-case minimum hand (2 of each) must be able to train,
+    # via a guaranteed-affordable fallback spec.
+    cmd = training_command(_default_state([2, 2, 2, 2, 0, 0]), PARAMS)
+    assert cmd is not None and cmd.startswith("TRAIN ")
