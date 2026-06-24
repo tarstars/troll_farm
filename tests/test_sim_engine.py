@@ -145,3 +145,32 @@ def test_step_ignores_msg_and_wait_and_advances_turn():
     g = from_ascii(["0....1"])
     step(g, ["MSG hi", "WAIT"], ["WAIT"])
     assert g.turn == 2
+
+
+from sim.engine import apply_chop, apply_mine
+from bot.main import ITEM_INDEX as _II
+
+
+def test_apply_chop_fells_tree_and_collects_wood_eq_size():
+    g = from_ascii(["0....1"])
+    g.units = [SimUnit(0, 0, 1, 0, 1, 4, 0, 3, [0]*6)]      # chop 3, cc 4
+    g.plants = [SimPlant("PLUM", 1, 0, 4, 3, 0, 5)]         # size 4, health 3
+    apply_chop(g, [0])
+    assert g.plants == []                                   # 3 - 3 = 0 -> dead
+    assert g.units[0].carry[_II["WOOD"]] == 4               # wood == size
+
+
+def test_apply_chop_only_damages_a_healthy_tree():
+    g = from_ascii(["0....1"])
+    g.units = [SimUnit(0, 0, 1, 0, 1, 4, 0, 2, [0]*6)]      # chop 2
+    g.plants = [SimPlant("PLUM", 1, 0, 4, 10, 0, 5)]        # health 10
+    apply_chop(g, [0])
+    assert g.plants[0].health == 8 and g.units[0].carry[_II["WOOD"]] == 0
+
+
+def test_apply_mine_gains_iron_when_adjacent():
+    g = from_ascii(["0....1", "......"])
+    g.iron = {(1, 1)}
+    g.units = [SimUnit(0, 0, 1, 0, 1, 5, 0, 3, [0]*6)]      # chop 3 -> up to 3 iron
+    apply_mine(g, [0])
+    assert g.units[0].carry[_II["IRON"]] == 3

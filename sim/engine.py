@@ -2,24 +2,34 @@ from bot.main import (PLANT_COOLDOWN, MAX_SIZE, MAX_FRUITS, ITEM_INDEX,
                       ITEM_NAMES, training_cost, bfs_distances)
 from sim.state import SimUnit, SimPlant
 
+WATER_BOOST = {"PLUM": 5, "LEMON": 5, "APPLE": 7, "BANANA": 2}
+WOOD_POINTS = 4
+
+
+def _growth_cd(game, p):
+    cd = PLANT_COOLDOWN[p.type]
+    if any(abs(p.x - wx) + abs(p.y - wy) == 1 for wx, wy in game.water):
+        cd -= WATER_BOOST[p.type]
+    return cd
+
 
 def tick_plants(game):
-    base = PLANT_COOLDOWN
     for p in game.plants:
         if p.cooldown > 0:
             p.cooldown -= 1
         if p.cooldown == 0 and p.health > 0:
             if p.size < MAX_SIZE:
                 p.size += 1
-                p.cooldown = base[p.type]
+                p.cooldown = _growth_cd(game, p)
             elif p.fruits < MAX_FRUITS:
                 p.fruits += 1
-                p.cooldown = base[p.type]
+                p.cooldown = _growth_cd(game, p)
 
 
 def recompute_scores(game):
     for p in (0, 1):
-        game.scores[p] = sum(game.inventories[p][0:4])
+        inv = game.inventories[p]
+        game.scores[p] = sum(inv[0:4]) + WOOD_POINTS * inv[ITEM_INDEX["WOOD"]]
 
 
 def _manhattan(a, b):
@@ -192,8 +202,48 @@ def apply_train(game, player, talents):
     game.next_id += 1
 
 
+def apply_chop(game, unit_ids):
+    by_id = {u.id: u for u in game.units}
+    cells = {}
+    for uid in unit_ids:
+        u = by_id.get(uid)
+        if u is None or u.chop == 0:
+            continue
+        plant = _plant_at(game, u.pos)
+        if plant is not None:
+            cells.setdefault(u.pos, []).append(u)
+    dead = []
+    for cell, choppers in cells.items():
+        plant = _plant_at(game, cell)
+        for u in choppers:
+            plant.health = max(plant.health - u.chop, 0)
+        if plant.health <= 0:
+            remaining = plant.size
+            i = 0
+            while i < plant.size and remaining > 0:   # last wood can duplicate
+                for u in choppers:
+                    if u.free > 0:
+                        u.carry[ITEM_INDEX["WOOD"]] += 1
+                        remaining -= 1
+                i += 1
+            dead.append(plant)
+    game.plants = [p for p in game.plants if p not in dead]
+
+
+def apply_mine(game, unit_ids):
+    by_id = {u.id: u for u in game.units}
+    for uid in unit_ids:
+        u = by_id.get(uid)
+        if u is None or u.chop == 0 or u.free <= 0:
+            continue
+        if any(abs(u.x - ix) + abs(u.y - iy) == 1 for ix, iy in game.iron):
+            for _ in range(min(u.chop, u.free)):
+                u.carry[ITEM_INDEX["IRON"]] += 1
+
+
 def _parse(cmds):
-    moves, harvests, plants, picks, drops, trains = {}, [], [], [], [], []
+    p = {"move": {}, "harvest": [], "plant": [], "chop": [], "pick": [],
+         "train": [], "drop": [], "mine": []}
     used = set()
     for raw in cmds:
         parts = raw.strip().split()
@@ -203,41 +253,43 @@ def _parse(cmds):
         if verb in ("MSG", "WAIT"):
             continue
         if verb == "TRAIN":
-            trains.append((int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4])))
+            p["train"].append((int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4])))
             continue
         uid = int(parts[1])
         if uid in used:
             continue
         used.add(uid)
         if verb == "MOVE":
-            moves[uid] = (int(parts[2]), int(parts[3]))
+            p["move"][uid] = (int(parts[2]), int(parts[3]))
         elif verb == "HARVEST":
-            harvests.append(uid)
+            p["harvest"].append(uid)
         elif verb == "DROP":
-            drops.append(uid)
+            p["drop"].append(uid)
+        elif verb == "CHOP":
+            p["chop"].append(uid)
+        elif verb == "MINE":
+            p["mine"].append(uid)
         elif verb == "PLANT":
-            plants.append((uid, parts[2].upper()))
+            p["plant"].append((uid, parts[2].upper()))
         elif verb == "PICK":
-            picks.append((uid, parts[2].upper()))
-    return moves, harvests, plants, picks, drops, trains
+            p["pick"].append((uid, parts[2].upper()))
+    return p
 
 
 def step(game, cmds0, cmds1):
-    parsed = [_parse(cmds0), _parse(cmds1)]
-    # MOVE (priority 1) — both players resolved together, per-player internally
-    apply_moves(game, {**parsed[0][0], **parsed[1][0]})
-    # HARVEST (2)
-    apply_harvest(game, parsed[0][1] + parsed[1][1])
-    # PLANT (3)
-    apply_plant(game, parsed[0][2] + parsed[1][2])
-    # PICK (5)
-    apply_pick(game, parsed[0][3] + parsed[1][3])
-    # TRAIN (6)
-    for player in (0, 1):
-        for talents in parsed[player][5]:
+    a, b = _parse(cmds0), _parse(cmds1)
+    # Referee priority order: MOVE 1, HARVEST 2, PLANT 3, CHOP 4, PICK 5,
+    # TRAIN 6, DROP 7, MINE 8 — then plants tick, scores recompute, turn++.
+    apply_moves(game, {**a["move"], **b["move"]})
+    apply_harvest(game, a["harvest"] + b["harvest"])
+    apply_plant(game, a["plant"] + b["plant"])
+    apply_chop(game, a["chop"] + b["chop"])
+    apply_pick(game, a["pick"] + b["pick"])
+    for player, parsed in ((0, a), (1, b)):
+        for talents in parsed["train"]:
             apply_train(game, player, talents)
-    # DROP (7)
-    apply_drop(game, parsed[0][4] + parsed[1][4])
+    apply_drop(game, a["drop"] + b["drop"])
+    apply_mine(game, a["mine"] + b["mine"])
     tick_plants(game)
     recompute_scores(game)
     game.turn += 1

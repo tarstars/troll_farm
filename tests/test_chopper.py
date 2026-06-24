@@ -64,3 +64,22 @@ def test_decide_routes_chopper_to_chop():
            iron=frozenset({(5, 0)}))
     p = dict(PARAMS); p["plant_enabled"] = False
     assert "CHOP 0" in decide(s, p)
+
+
+def test_chop1_starting_troll_does_not_block_real_chopper_training():
+    # Bronze's starting troll has chopPower 1; it must NOT count as the chopper
+    # (>=2), so we still train a real chopper instead of useless chop-1 trolls.
+    starter = Troll(0, 1, 0, 1, 1, 1, [0]*6, chop_power=1)
+    s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [starter],
+           iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0])
+    cmd = training_command(s, PARAMS)
+    assert cmd is not None and cmd.split()[-1] != "0"   # trains chop>0
+
+
+def test_chopper_stops_mining_once_iron_target_met():
+    w = grid(8, 2, blocked=[(0, 0), (2, 1)])
+    ch = Troll(0, 2, 0, 1, 3, 0, [0]*6, chop_power=2)
+    s = st(w, (0, 0), (7, 1), [Tree("PLUM", 5, 0, 4, 12, 0, 5)], [ch],
+           iron=frozenset({(2, 1)}), inv=[0, 0, 0, 0, 99, 0])   # iron already banked
+    cmd, _ = chop_command(s, ch, set(), bfs_distances(w, [(2, 0)]), PARAMS)
+    assert not cmd.startswith("MINE")    # enough iron -> go chop, don't keep mining

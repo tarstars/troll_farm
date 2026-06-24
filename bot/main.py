@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.6.0"
+VERSION = "0.6.1"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -238,8 +238,11 @@ def chop_command(state, troll, reserved, dist_t, params):
     """A chopper (chop_power>0): mine iron when next to it, fell trees near the
     enemy camp for wood, and carry the wood home. Returns (command, reserved_pos).
     """
-    # Mine iron opportunistically (sustains training, which costs iron in Bronze).
-    if troll.free_capacity > 0:
+    # Mine iron when next to it, but only until we have enough banked to fund
+    # training -- otherwise a chopper that spawns by iron mines forever and never
+    # chops. Iron still being carried counts toward the target.
+    iron_have = state.my_inventory[ITEM_INDEX["IRON"]] + troll.carry[ITEM_INDEX["IRON"]]
+    if troll.free_capacity > 0 and iron_have < params.get("iron_target", 18):
         for cell in state.iron_cells:
             if _is_adjacent(troll.pos, cell):
                 return f"MINE {troll.id}", None
@@ -271,8 +274,9 @@ PARAMS = {
     "train_specs": [(2, 2, 2, 0), (1, 1, 1, 0)],
     # Bronze: chopper troll (ms, cc, hp, chop). Trained once when we have none,
     # most-wanted first with affordable fallbacks. Works near the enemy camp.
-    "chopper_specs": [(2, 3, 0, 2), (1, 2, 0, 2), (1, 1, 0, 1)],
+    "chopper_specs": [(2, 4, 0, 3), (1, 3, 0, 2), (1, 2, 0, 2)],
     "max_choppers": 1,
+    "iron_target": 18,      # chopper mines iron until this much is banked, then chops
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": True,    # build a small near-shack orchard
@@ -327,7 +331,7 @@ def training_command(state, params):
     league3 = bool(state.iron_cells)        # iron terrain => Bronze (iron is charged)
     pay_idx = (0, 1, 2, 4) if league3 else (0, 1, 2)
     # In Bronze, train a chopper first (once) so we can fell trees for wood.
-    choppers = sum(1 for t in state.my_trolls if t.chop_power > 0)
+    choppers = sum(1 for t in state.my_trolls if t.chop_power >= 2)
     specs = []
     if league3 and choppers < params.get("max_choppers", 0):
         specs += list(params["chopper_specs"])
@@ -353,7 +357,7 @@ def decide(state, params):
     # trees near the ENEMY camp for 4-pt wood, denying the opponent their close
     # trees without touching our own fruit sources.
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
-        if troll.chop_power > 0:
+        if troll.chop_power >= 2:
             dist_t = bfs_distances(walkable, [troll.pos])
             cmd, reserved_pos = chop_command(state, troll, reserved, dist_t, params)
             if reserved_pos is not None:
