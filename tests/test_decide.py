@@ -107,3 +107,37 @@ def test_planting_disabled_returns_nothing():
                my_inventory=[0, 0, 0, 5, 0, 0], opp_inventory=[0]*6,
                trees=[], my_trolls=[troll], opp_trolls=[], turn=1)
     assert planting_commands(st, gather_only(), set()) == []
+
+
+def _orchard_state(near_tree_cells, my_trolls, turn=5):
+    w = {(x, y) for x in range(6) for y in range(6)} - {(0, 0)}
+    trees = [Tree("BANANA", c[0], c[1], 0, 6, 0, 6) for c in near_tree_cells]
+    return State(walkable=w, my_shack=(0, 0), opp_shack=(15, 7),
+                 my_inventory=[0, 0, 0, 5, 0, 0], opp_inventory=[0]*6,
+                 trees=trees, my_trolls=my_trolls, opp_trolls=[], turn=turn)
+
+
+def _plant_on():
+    p = dict(PARAMS)
+    p["plant_enabled"] = True
+    p["max_trolls"] = 0          # isolate planting from training
+    return p
+
+
+def test_does_not_plant_when_near_trees_reach_capacity():
+    # one troll, three banana trees already next to the shack -> cap is
+    # min(max_orchard, trolls) = 1, already met: the troll banks its carried
+    # seed instead of planting a fourth tree.
+    planter = Troll(0, 1, 1, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # carries a seed
+    st = _orchard_state([(0, 1), (1, 0), (0, 2)], [planter])
+    cmds = decide(st, _plant_on())
+    assert not any(c.startswith(("PLANT", "PICK")) for c in cmds)
+
+
+def test_plants_when_trolls_outnumber_near_trees():
+    # 3 trolls, only 1 near tree -> cap min(3,3)=3 > 1, so we still plant.
+    planter = Troll(0, 1, 1, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # carries a seed
+    busy = [Troll(1, 4, 4, 1, 1, 1, [0]*6), Troll(2, 5, 5, 1, 1, 1, [0]*6)]
+    st = _orchard_state([(0, 1)], [planter] + busy)
+    cmds = decide(st, _plant_on())
+    assert any(c.startswith("PLANT") for c in cmds)

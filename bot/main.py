@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.5.0"
+VERSION = "0.5.1"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -261,7 +261,8 @@ PARAMS = {
     "plant_enabled": True,    # build a small near-shack orchard
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # auto: decide() fills nearest empty cells via orchard_targets
-    "max_orchard": 3,
+    "max_orchard": 3,         # hard ceiling on near-shack orchard trees
+    "orchard_radius": 3,      # trees within this BFS distance of the shack count as "near"
 }
 
 
@@ -288,7 +289,7 @@ def planting_commands(state, params, used_ids):
     # target cells still needing a tree
     open_cells = [c for c in params["orchard_cells"]
                   if c in state.walkable and c not in tree_cells]
-    if not open_cells or len(tree_cells & set(params["orchard_cells"])) >= params["max_orchard"]:
+    if not open_cells:
         return []
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
         if troll.id in used_ids:
@@ -366,14 +367,20 @@ def decide(state, params):
     commands_by_id = {}
     used_ids = set()
 
-    # Orchard planting claims one troll, using dynamically chosen target cells.
+    # Orchard planting claims one troll, but only while near-shack trees stay
+    # below capacity: never tend more trees than trolls to harvest them.
     if params.get("plant_enabled"):
-        pparams = dict(params)
-        pparams["orchard_cells"] = orchard_targets(state, params)
-        for c in planting_commands(state, pparams, used_ids):
-            tid = int(c.split()[1])
-            used_ids.add(tid)
-            commands_by_id[tid] = c
+        cap = min(params["max_orchard"], len(state.my_trolls))
+        radius = params.get("orchard_radius", 3)
+        near_trees = sum(1 for t in state.trees
+                         if return_dist.get(t.pos, 1 << 30) <= radius)
+        if near_trees < cap:
+            pparams = dict(params)
+            pparams["orchard_cells"] = orchard_targets(state, params)
+            for c in planting_commands(state, pparams, used_ids):
+                tid = int(c.split()[1])
+                used_ids.add(tid)
+                commands_by_id[tid] = c
 
     # Gathering for the remaining trolls, with tree reservations.
     reserved = set()
