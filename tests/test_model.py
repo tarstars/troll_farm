@@ -1,4 +1,4 @@
-from bot.main import Troll, Tree, State, ITEM_INDEX, TOTAL_TURNS
+from bot.main import Troll, State, ITEM_INDEX, TOTAL_TURNS
 
 
 def test_troll_carry_totals_and_free_capacity():

@@ -34,9 +34,6 @@ def test_empty_returns_wait():
     assert cmds == ["WAIT"]
 
 
-from bot.main import planting_commands
-
-
 def plant_params(cells):
     p = dict(PARAMS)
     p["plant_enabled"] = True

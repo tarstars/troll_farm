@@ -141,7 +141,7 @@ def _ortho_neighbors(cell):
     return [(x + dx, y + dy) for dx, dy in _NEIGHBORS]
 
 
-# How far ahead to look for a tree to become ripe (game lasts 100 turns in Wood).
+# How far ahead to look for a tree to become ripe (league-2 game is 300 turns, 120 is a generous look-ahead).
 RIPEN_HORIZON = 120
 
 
@@ -217,10 +217,6 @@ PARAMS = {
 }
 
 
-def _occupied_cells(state):
-    return {t.pos for t in state.my_trolls} | {t.pos for t in state.opp_trolls}
-
-
 def planting_commands(state, params, used_ids):
     if not params.get("plant_enabled") or not params.get("orchard_cells"):
         return []
@@ -266,7 +262,7 @@ def training_command(state, params):
     for spec in params["train_specs"]:
         cost = training_cost(n, spec)
         if all(state.my_inventory[i] >= cost[i] for i in range(6)):
-            if banked - sum(cost) >= params["score_reserve"]:
+            if banked - sum(cost[:4]) >= params["score_reserve"]:
                 return f"TRAIN {spec[0]} {spec[1]} {spec[2]} {spec[3]}"
     return None
 
