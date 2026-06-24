@@ -6,10 +6,10 @@ CodinGame arena:
     Manhattan targeting with no ripeness prediction, so it is materially weaker
     than the arena boss and cannot punish our bot's mistakes.
   * next_cell breaks equidistant ties deterministically (smallest (x,y)) while the
-    referee is random, and the bot's own landing_cell uses the same deterministic
-    rule -- so the random-tie-break move "deadlock" seen in the arena cannot arise
-    in this sim.
-Strengthen the boss and add a randomized tie-break mode before trusting the number.
+    referee is random, so own-troll movement/blocking is only loosely validated
+    here; the random-tie-break move "deadlock" seen in the arena cannot arise in
+    this deterministic sim.
+Strengthen the boss and add a seedable random tie-break mode before trusting the number.
 """
 
 import argparse

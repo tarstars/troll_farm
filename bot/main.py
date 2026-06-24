@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.5.1"
+VERSION = "0.5.2"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -145,48 +145,6 @@ def _ortho_neighbors(cell):
     return [(x + dx, y + dy) for dx, dy in _NEIGHBORS]
 
 
-def bfs_within(walkable, start, max_steps):
-    """Cells reachable from `start` in <= max_steps steps -> {cell: steps}.
-
-    `start` is seeded at 0 regardless of walkability (a troll may sit on its
-    non-walkable shack); expansion only enters walkable cells.
-    """
-    dist = {start: 0}
-    frontier = [start]
-    for _ in range(max_steps):
-        nxt = []
-        for c in frontier:
-            for nb in _ortho_neighbors(c):
-                if nb in walkable and nb not in dist:
-                    dist[nb] = dist[c] + 1
-                    nxt.append(nb)
-        frontier = nxt
-        if not frontier:
-            break
-    return dist
-
-
-def landing_cell(walkable, start, goal_dist, speed, claimed):
-    """Where a troll should end up this turn: the reachable (<= speed) cell that
-    minimises distance to the goal, skipping cells already `claimed` by other
-    own trolls. Falls back to staying put when nothing better is free.
-    """
-    reach = bfs_within(walkable, start, speed)
-    best = start
-    best_key = (goal_dist.get(start, 1 << 30), 0, start)
-    for cell, steps in reach.items():
-        if cell != start and cell in claimed:
-            continue
-        gd = goal_dist.get(cell)
-        if gd is None:
-            continue
-        key = (gd, steps, cell)
-        if key < best_key:
-            best_key = key
-            best = cell
-    return best
-
-
 # How far ahead to look for a tree to become ripe (league-2 game is 300 turns, 120 is a generous look-ahead).
 RIPEN_HORIZON = 120
 
@@ -214,7 +172,11 @@ def best_tree(state, troll, reserved, dist_t, return_dist, params):
         ripe = _ticks_until_ripe(tree, walk)
         if ripe is None:
             continue
-        key = (ripe + return_dist[tree.pos], walk)
+        # Prefer trees that already have fruit on arrival (wait == 0) over
+        # camping an unripe one: idling on a slow tree wastes turns another
+        # fruited tree could fill. Tie-break by round trip, then nearness.
+        wait = ripe - walk
+        key = (wait, ripe + return_dist[tree.pos], walk)
         if best_key is None or key < best_key:
             best_key = key
             best = tree
@@ -330,35 +292,6 @@ def training_command(state, params):
     return None
 
 
-def resolve_moves(state, commands_by_id, return_dist):
-    """Rewrite each MOVE to an explicit next-step cell so that no two of our
-    trolls land on the same cell this turn (the engine would otherwise block
-    one of them and waste its turn). Non-MOVE commands keep the troll in place.
-    """
-    walkable = state.walkable
-    troll_by_id = {t.id: t for t in state.my_trolls}
-    out = {}
-    movers = []
-    claimed = set()
-    for tid, cmd in commands_by_id.items():
-        parts = cmd.split()
-        if parts[0] == "MOVE":
-            movers.append((tid, (int(parts[2]), int(parts[3]))))
-        else:
-            out[tid] = cmd
-            if tid in troll_by_id:
-                claimed.add(troll_by_id[tid].pos)
-    for tid, target in sorted(movers):
-        troll = troll_by_id[tid]
-        goal_dist = (return_dist if target == state.my_shack
-                     else bfs_distances(walkable, [target]))
-        land = landing_cell(walkable, troll.pos, goal_dist,
-                            troll.movement_speed, claimed)
-        claimed.add(land)
-        out[tid] = f"MOVE {tid} {land[0]} {land[1]}"
-    return out
-
-
 def decide(state, params):
     walkable = state.walkable
     shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in walkable]
@@ -394,12 +327,22 @@ def decide(state, params):
             reserved.add(reserved_pos)
         commands_by_id[troll.id] = cmd
 
-    # Resolve own-troll collisions, then assemble the turn's output.
-    resolved = resolve_moves(state, commands_by_id, return_dist)
+    # Spread banking trolls across distinct shack-adjacent drop cells so they
+    # don't funnel onto one cell and block each other. Tree-bound trolls already
+    # have distinct targets via reservations. We emit FINAL targets and let the
+    # referee step the trolls -- this avoids the earlier next-step "landing"
+    # logic that could wedge a troll forever under the referee's random tie-break.
+    sx, sy = state.my_shack
+    bankers = sorted(tid for tid, c in commands_by_id.items()
+                     if c == f"MOVE {tid} {sx} {sy}")
+    for i, tid in enumerate(bankers):
+        cell = shack_adj[i % len(shack_adj)] if shack_adj else state.my_shack
+        commands_by_id[tid] = f"MOVE {tid} {cell[0]} {cell[1]}"
+
     commands = []
     if state.turn == 1:
         commands.append(f"MSG v{VERSION}")
-    commands.extend(resolved[tid] for tid in sorted(resolved))
+    commands.extend(commands_by_id[tid] for tid in sorted(commands_by_id))
 
     train = training_command(state, params)
     if train is not None:
