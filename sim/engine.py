@@ -101,3 +101,89 @@ def apply_moves(game, intents):
                 resolve_blocking = True
                 progress = True
     _ = by_id  # (kept for readability; not otherwise needed)
+
+
+def _plant_at(game, cell):
+    for p in game.plants:
+        if p.pos == cell:
+            return p
+    return None
+
+
+def _near_shack(game, unit):
+    sx, sy = game.shacks[unit.player]
+    return abs(unit.x - sx) + abs(unit.y - sy) <= 1
+
+
+def apply_harvest(game, unit_ids):
+    by_id = {u.id: u for u in game.units}
+    cells = {}
+    for uid in unit_ids:
+        u = by_id.get(uid)
+        if u is None:
+            continue
+        plant = _plant_at(game, u.pos)
+        if plant is not None and plant.fruits > 0:
+            cells.setdefault(u.pos, []).append(u)
+    for cell, trolls in cells.items():
+        plant = _plant_at(game, cell)
+        idx = ITEM_INDEX[plant.type]
+        for i in range(1, MAX_FRUITS + 1):
+            if plant.fruits == 0:
+                break
+            for u in trolls:
+                if u.hp >= i and u.total < u.cc:
+                    u.carry[idx] += 1
+                    if plant.fruits > 0:
+                        plant.fruits -= 1
+
+
+def apply_drop(game, unit_ids):
+    by_id = {u.id: u for u in game.units}
+    for uid in unit_ids:
+        u = by_id.get(uid)
+        if u is None or not _near_shack(game, u):
+            continue
+        for i in range(6):
+            game.inventories[u.player][i] += u.carry[i]
+            u.carry[i] = 0
+
+
+def apply_pick(game, picks):
+    by_id = {u.id: u for u in game.units}
+    for uid, type_name in picks:
+        u = by_id.get(uid)
+        if u is None or not _near_shack(game, u) or u.free <= 0:
+            continue
+        idx = ITEM_INDEX[type_name]
+        if game.inventories[u.player][idx] > 0:
+            game.inventories[u.player][idx] -= 1
+            u.carry[idx] += 1
+
+
+def apply_plant(game, plants):
+    by_id = {u.id: u for u in game.units}
+    for uid, type_name in plants:
+        u = by_id.get(uid)
+        if u is None or u.pos not in game.walkable or _plant_at(game, u.pos):
+            continue
+        idx = ITEM_INDEX[type_name]
+        if u.carry[idx] > 0:
+            u.carry[idx] -= 1
+            game.plants.append(SimPlant(type_name, u.x, u.y, 0, 6, 0, 6))
+
+
+def apply_train(game, player, talents):
+    n = sum(1 for u in game.units if u.player == player)
+    cost = training_cost(n, talents)
+    inv = game.inventories[player]
+    if any(inv[i] < cost[i] for i in range(6)):
+        return
+    if any(u.pos == game.shacks[player] for u in game.units):
+        return
+    for i in range(6):
+        inv[i] -= cost[i]
+    sx, sy = game.shacks[player]
+    game.units.append(SimUnit(game.next_id, player, sx, sy,
+                             talents[0], talents[1], talents[2], talents[3], [0]*6))
+    game.next_id += 1
