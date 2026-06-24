@@ -214,6 +214,24 @@ PARAMS = {
 }
 
 
+def training_command(state, params):
+    """Return a TRAIN command string if conditions allow, else None."""
+    n = len(state.my_trolls)
+    if n >= params["max_trolls"]:
+        return None
+    if TOTAL_TURNS - state.turn <= params["min_turns_left_to_train"]:
+        return None
+    if any(t.pos == state.my_shack for t in state.my_trolls):
+        return None  # shack cell occupied; TRAIN would be rejected
+    banked = sum(state.my_inventory[:4])
+    for spec in params["train_specs"]:
+        cost = training_cost(n, spec)
+        if all(state.my_inventory[i] >= cost[i] for i in range(6)):
+            if banked - sum(cost) >= params["score_reserve"]:
+                return f"TRAIN {spec[0]} {spec[1]} {spec[2]} {spec[3]}"
+    return None
+
+
 def decide(state, params):
     commands = []
     shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
@@ -226,6 +244,9 @@ def decide(state, params):
         if reserved_pos is not None:
             reserved.add(reserved_pos)
         commands.append(cmd)
+    train = training_command(state, params)
+    if train is not None:
+        commands.append(train)
     if not commands:
         commands = ["WAIT"]
     return commands
