@@ -15,34 +15,27 @@ def test_parse_grid_marks_grass_walkable_and_locates_shacks():
     assert len(walkable) == 4 * 3 - 2
 
 
-def test_parse_turn_builds_state_with_trees_and_my_troll():
-    walkable = {(x, y) for x in range(4) for y in range(3)} - {(0, 1)}
+def test_parse_turn_collects_all_trolls_and_inventories():
+    walkable = {(x, y) for x in range(16) for y in range(8)} - {(5, 3), (10, 4)}
     lines = [
-        "0 0 0 0 0 0",            # my inventory
-        "0 0 0 0 0 0",            # opponent inventory
-        "1",                       # tree count
-        "PLUM 2 0 4 4 2 5",        # type x y size health fruits cooldown
-        "2",                       # troll count
-        "0 0 1 1 1 1 1 0 0 0 0 0 0 0",   # my troll id0 at (1,1), carrying nothing
-        "9 1 3 2 1 1 1 0 0 1 0 0 0 0",   # opponent troll (player 1), ignored
+        "2 3 4 5 0 0",                      # my inventory
+        "1 1 1 1 0 0",                      # opponent inventory
+        "1",                                 # tree count
+        "PLUM 6 1 4 4 2 5",
+        "3",                                 # troll count
+        "0 0 5 3 1 1 1 0 0 0 0 0 0 0",       # my troll, on my shack
+        "2 0 6 1 2 4 3 0 1 0 1 0 0 0",       # my troll, carrying plum+apple=2
+        "1 1 10 4 1 1 1 0 0 0 0 0 0 0",      # opponent troll
     ]
-    state = parse_turn(iter(lines), walkable, my_shack=(0, 1))
-    assert state.my_shack == (0, 1)
-    assert state.trees == [Tree("PLUM", 2, 0, 4, 4, 2, 5)]
-    assert state.my_troll.id == 0
-    assert state.my_troll.pos == (1, 1)
-    assert state.my_troll.carry_capacity == 1
-    assert state.my_troll.carried == 0
-
-
-def test_parse_turn_sums_carried_items():
-    walkable = {(x, y) for x in range(4) for y in range(3)}
-    lines = [
-        "0 0 0 0 0 0",
-        "0 0 0 0 0 0",
-        "0",
-        "1",
-        "0 0 1 1 1 2 1 0 1 0 1 0 0 0",   # carries plum=1, apple=1 -> total 2
-    ]
-    state = parse_turn(iter(lines), walkable, my_shack=(0, 1))
-    assert state.my_troll.carried == 2
+    state = parse_turn(iter(lines), walkable, my_shack=(5, 3),
+                       opp_shack=(10, 4), turn=7)
+    assert state.turn == 7
+    assert state.my_inventory == [2, 3, 4, 5, 0, 0]
+    assert state.opp_inventory == [1, 1, 1, 1, 0, 0]
+    assert [t.id for t in state.my_trolls] == [0, 2]
+    assert [t.id for t in state.opp_trolls] == [1]
+    second = state.my_trolls[1]
+    assert second.carry == [1, 0, 1, 0, 0, 0]
+    assert second.total_carried == 2
+    assert second.carry_capacity == 4
+    assert state.trees == [Tree("PLUM", 6, 1, 4, 4, 2, 5)]

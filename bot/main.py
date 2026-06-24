@@ -206,10 +206,10 @@ def parse_grid(grid_lines):
     return walkable, my_shack, opp_shack
 
 
-def parse_turn(lines, walkable, my_shack):
+def parse_turn(lines, walkable, my_shack, opp_shack, turn):
     """Build a State for this turn from an iterator of input lines."""
-    next(lines)  # my inventory (not needed for the Wood heuristic)
-    next(lines)  # opponent inventory
+    my_inventory = [int(v) for v in next(lines).split()]
+    opp_inventory = [int(v) for v in next(lines).split()]
     tree_count = int(next(lines))
     trees = []
     for _ in range(tree_count):
@@ -217,15 +217,21 @@ def parse_turn(lines, walkable, my_shack):
         trees.append(Tree(t[0], int(t[1]), int(t[2]), int(t[3]),
                           int(t[4]), int(t[5]), int(t[6])))
     troll_count = int(next(lines))
-    my_troll = None
+    my_trolls = []
+    opp_trolls = []
     for _ in range(troll_count):
         f = [int(v) for v in next(lines).split()]
-        if f[1] == 0:  # player 0 == us
-            my_troll = Troll(id=f[0], x=f[2], y=f[3], movement_speed=f[4],
-                             carry_capacity=f[5], harvest_power=f[6],
-                             carried=sum(f[8:14]))
-    return State(walkable=walkable, my_shack=my_shack, trees=trees,
-                 my_troll=my_troll)
+        troll = Troll(id=f[0], x=f[2], y=f[3], movement_speed=f[4],
+                      carry_capacity=f[5], harvest_power=f[6],
+                      carry=f[8:14])
+        if f[1] == 0:
+            my_trolls.append(troll)
+        else:
+            opp_trolls.append(troll)
+    return State(walkable=walkable, my_shack=my_shack, opp_shack=opp_shack,
+                 my_inventory=my_inventory, opp_inventory=opp_inventory,
+                 trees=trees, my_trolls=my_trolls, opp_trolls=opp_trolls,
+                 turn=turn)
 
 
 def main():
