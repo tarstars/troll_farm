@@ -204,6 +204,33 @@ def gather_command(state, troll, reserved, dist_t, return_dist, params):
     return f"MOVE {troll.id} {target.x} {target.y}", target.pos
 
 
+PARAMS = {
+    "topup_radius": 4,        # keep gathering across trees within this many steps
+    "max_trolls": 5,          # cap on own troll count
+    "train_specs": [(2, 3, 3, 0)],   # preferred (ms, cc, hp, chop), most-wanted first
+    "min_turns_left_to_train": 25,   # stop training near the end
+    "score_reserve": 0,       # min banked total to keep after a train
+    "plant_enabled": False,   # orchard off until tuned (Plan 2)
+}
+
+
+def decide(state, params):
+    commands = []
+    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
+    return_dist = bfs_distances(state.walkable, shack_adj)
+    reserved = set()
+    for troll in sorted(state.my_trolls, key=lambda t: t.id):
+        dist_t = bfs_distances(state.walkable, [troll.pos])
+        cmd, reserved_pos = gather_command(state, troll, reserved, dist_t,
+                                           return_dist, params)
+        if reserved_pos is not None:
+            reserved.add(reserved_pos)
+        commands.append(cmd)
+    if not commands:
+        commands = ["WAIT"]
+    return commands
+
+
 def parse_grid(grid_lines):
     """Parse the initial map. Returns (walkable_set, my_shack, opp_shack).
 
