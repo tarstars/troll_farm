@@ -177,11 +177,14 @@ def apply_train(game, player, talents):
     n = sum(1 for u in game.units if u.player == player)
     cost = training_cost(n, talents)
     inv = game.inventories[player]
-    if any(inv[i] < cost[i] for i in range(6)):
+    # IRON (slot 4) is only charged in Bronze (iron terrain present), mirroring
+    # the referee's `if league >= 3` guard.
+    pay = (0, 1, 2, 3, 4, 5) if game.iron else (0, 1, 2, 3, 5)
+    if any(inv[i] < cost[i] for i in pay):
         return
     if any(u.pos == game.shacks[player] for u in game.units):
         return
-    for i in range(6):
+    for i in pay:
         inv[i] -= cost[i]
     sx, sy = game.shacks[player]
     game.units.append(SimUnit(game.next_id, player, sx, sy,

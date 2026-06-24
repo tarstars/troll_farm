@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -53,12 +53,16 @@ class GameState:
     scores: list
     turn: int
     next_id: int
+    iron: set = field(default_factory=set)    # IRON terrain cells
+    water: set = field(default_factory=set)   # WATER terrain cells
 
 
 def from_ascii(rows, talents=(1, 1, 1, 0)):
     width = len(rows[0])
     height = len(rows)
     walkable = set()
+    iron = set()
+    water = set()
     shacks = [None, None]
     for y, row in enumerate(rows):
         for x, ch in enumerate(row):
@@ -66,6 +70,10 @@ def from_ascii(rows, talents=(1, 1, 1, 0)):
                 shacks[0] = (x, y)
             elif ch == "1":
                 shacks[1] = (x, y)
+            elif ch == "+":
+                iron.add((x, y))
+            elif ch == "~":
+                water.add((x, y))
             else:
                 walkable.add((x, y))
     units = []
@@ -75,4 +83,5 @@ def from_ascii(rows, talents=(1, 1, 1, 0)):
                              talents[2], talents[3], [0] * 6))
     return GameState(width=width, height=height, walkable=walkable, shacks=shacks,
                      inventories=[[0] * 6, [0] * 6], units=units, plants=[],
-                     scores=[0, 0], turn=1, next_id=len(units))
+                     scores=[0, 0], turn=1, next_id=len(units),
+                     iron=iron, water=water)

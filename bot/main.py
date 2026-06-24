@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.5.4"
+VERSION = "0.6.0"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -128,14 +128,16 @@ class State:
 def training_cost(n, talents):
     """Per-item resource cost to TRAIN a troll with `talents` given `n` own trolls.
 
-    PLUM<-movementSpeed, LEMON<-carryCapacity, APPLE<-harvestPower; cost = n + stat².
-    chopPower (talents[3]) costs IRON only in league 3+, so 0 here.
+    PLUM<-movementSpeed, LEMON<-carryCapacity, APPLE<-harvestPower,
+    IRON<-chopPower; cost = n + stat². (In Bronze every troll costs n+chop² IRON;
+    callers ignore the IRON slot in pre-Bronze leagues where iron isn't charged.)
     """
-    ms, cc, hp, _chop = talents
+    ms, cc, hp, chop = talents
     cost = [0, 0, 0, 0, 0, 0]
     cost[ITEM_INDEX["PLUM"]] = n + ms * ms
     cost[ITEM_INDEX["LEMON"]] = n + cc * cc
     cost[ITEM_INDEX["APPLE"]] = n + hp * hp
+    cost[ITEM_INDEX["IRON"]] = n + chop * chop
     return cost
 
 
@@ -215,12 +217,62 @@ def gather_command(state, troll, reserved, dist_t, return_dist, params):
     return f"MOVE {troll.id} {target.x} {target.y}", target.pos
 
 
+def _best_chop_target(state, troll, reserved, dist_t):
+    """Tree for a chopper to fell: nearest the ENEMY shack first (deny them
+    fruit + collect 4-pt wood), then nearest us, then biggest. None if none."""
+    best = None
+    best_key = None
+    ox, oy = state.opp_shack
+    for tree in state.trees:
+        if tree.pos in reserved or tree.pos not in dist_t:
+            continue
+        d_enemy = abs(tree.x - ox) + abs(tree.y - oy)
+        key = (d_enemy, dist_t[tree.pos], -tree.size)
+        if best_key is None or key < best_key:
+            best_key = key
+            best = tree
+    return best
+
+
+def chop_command(state, troll, reserved, dist_t, params):
+    """A chopper (chop_power>0): mine iron when next to it, fell trees near the
+    enemy camp for wood, and carry the wood home. Returns (command, reserved_pos).
+    """
+    # Mine iron opportunistically (sustains training, which costs iron in Bronze).
+    if troll.free_capacity > 0:
+        for cell in state.iron_cells:
+            if _is_adjacent(troll.pos, cell):
+                return f"MINE {troll.id}", None
+
+    target = _best_chop_target(state, troll, reserved, dist_t)
+
+    # Carry resources home when full or out of chop targets.
+    if troll.total_carried > 0 and (troll.free_capacity == 0 or target is None):
+        if _is_adjacent(troll.pos, state.my_shack):
+            return f"DROP {troll.id}", None
+        return f"MOVE {troll.id} {state.my_shack[0]} {state.my_shack[1]}", None
+
+    # Standing on a tree -> chop it.
+    for tree in state.trees:
+        if tree.pos == troll.pos:
+            return f"CHOP {troll.id}", tree.pos
+
+    if target is None:
+        # nothing to chop yet: advance toward the enemy camp to find trees.
+        return f"MOVE {troll.id} {state.opp_shack[0]} {state.opp_shack[1]}", None
+    return f"MOVE {troll.id} {target.x} {target.y}", target.pos
+
+
 PARAMS = {
     "topup_radius": 4,        # keep gathering across trees within this many steps
     "max_trolls": 5,          # cap on own troll count
     # (ms, cc, hp, chop), most-wanted first; the last is a guaranteed-affordable
     # fallback (cost n+1 each) so training reliably fires from the 2..10 starting hand.
     "train_specs": [(2, 2, 2, 0), (1, 1, 1, 0)],
+    # Bronze: chopper troll (ms, cc, hp, chop). Trained once when we have none,
+    # most-wanted first with affordable fallbacks. Works near the enemy camp.
+    "chopper_specs": [(2, 3, 0, 2), (1, 2, 0, 2), (1, 1, 0, 1)],
+    "max_choppers": 1,
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": True,    # build a small near-shack orchard
@@ -272,9 +324,17 @@ def training_command(state, params):
     if any(t.pos == state.my_shack for t in state.my_trolls):
         return None  # shack cell occupied; TRAIN would be rejected
     banked = sum(state.my_inventory[:4])
-    for spec in params["train_specs"]:
+    league3 = bool(state.iron_cells)        # iron terrain => Bronze (iron is charged)
+    pay_idx = (0, 1, 2, 4) if league3 else (0, 1, 2)
+    # In Bronze, train a chopper first (once) so we can fell trees for wood.
+    choppers = sum(1 for t in state.my_trolls if t.chop_power > 0)
+    specs = []
+    if league3 and choppers < params.get("max_choppers", 0):
+        specs += list(params["chopper_specs"])
+    specs += list(params["train_specs"])
+    for spec in specs:
         cost = training_cost(n, spec)
-        if all(state.my_inventory[i] >= cost[i] for i in range(6)):
+        if all(state.my_inventory[i] >= cost[i] for i in pay_idx):
             if banked - sum(cost[:4]) >= params["score_reserve"]:
                 return f"TRAIN {spec[0]} {spec[1]} {spec[2]} {spec[3]}"
     return None
@@ -287,6 +347,19 @@ def decide(state, params):
 
     commands_by_id = {}
     used_ids = set()
+    reserved = set()   # shared tree reservations (choppers + gatherers)
+
+    # Choppers (chop_power > 0) act first: mine iron when next to it and fell
+    # trees near the ENEMY camp for 4-pt wood, denying the opponent their close
+    # trees without touching our own fruit sources.
+    for troll in sorted(state.my_trolls, key=lambda t: t.id):
+        if troll.chop_power > 0:
+            dist_t = bfs_distances(walkable, [troll.pos])
+            cmd, reserved_pos = chop_command(state, troll, reserved, dist_t, params)
+            if reserved_pos is not None:
+                reserved.add(reserved_pos)
+            commands_by_id[troll.id] = cmd
+            used_ids.add(troll.id)
 
     # Orchard planting claims one troll. The orchard is a small fixed FOOTPRINT
     # -- the nearest `max_orchard` walkable cells to the shack. We plant on the
@@ -306,8 +379,7 @@ def decide(state, params):
                 used_ids.add(tid)
                 commands_by_id[tid] = c
 
-    # Gathering for the remaining trolls, with tree reservations.
-    reserved = set()
+    # Gathering for the remaining (non-chopper) trolls, sharing the reservations.
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
         if troll.id in used_ids:
             continue
