@@ -1,7 +1,7 @@
 from sim.state import GameState, SimPlant, SimUnit, from_ascii
 from sim.engine import (tick_plants, recompute_scores, next_cell, apply_moves,
                         apply_harvest, apply_drop, apply_pick, apply_plant,
-                        apply_train)
+                        apply_train, step)
 
 
 def test_tick_plants_grows_then_produces():
@@ -125,3 +125,23 @@ def test_train_blocked_when_shack_occupied():
     g.inventories[0] = [5, 5, 5, 5, 0, 0]
     apply_train(g, 0, (1, 1, 1, 0))
     assert len(g.units) == 2                  # no new unit
+
+
+def test_step_moves_then_harvests_in_priority_order():
+    # Brief had "0....." but from_ascii requires both shacks; fixed to "0....1"
+    g = from_ascii(["0....1"])
+    g.units = [SimUnit(0, 0, 1, 0, 1, 1, 1, 0, [0]*6)]
+    g.plants = [SimPlant("PLUM", 2, 0, 4, 4, 3, 5)]
+    # turn 1: move onto the tree (can't harvest same turn)
+    step(g, ["MOVE 0 2 0"], [])
+    assert g.units[0].pos == (2, 0) and g.turn == 2
+    # turn 2: harvest it
+    step(g, ["HARVEST 0"], [])
+    assert g.units[0].carry[0] == 1
+
+
+def test_step_ignores_msg_and_wait_and_advances_turn():
+    # Brief had "0....." but from_ascii requires both shacks; fixed to "0....1"
+    g = from_ascii(["0....1"])
+    step(g, ["MSG hi", "WAIT"], ["WAIT"])
+    assert g.turn == 2

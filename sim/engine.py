@@ -187,3 +187,54 @@ def apply_train(game, player, talents):
     game.units.append(SimUnit(game.next_id, player, sx, sy,
                              talents[0], talents[1], talents[2], talents[3], [0]*6))
     game.next_id += 1
+
+
+def _parse(cmds):
+    moves, harvests, plants, picks, drops, trains = {}, [], [], [], [], []
+    used = set()
+    for raw in cmds:
+        parts = raw.strip().split()
+        if not parts:
+            continue
+        verb = parts[0].upper()
+        if verb in ("MSG", "WAIT"):
+            continue
+        if verb == "TRAIN":
+            trains.append((int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4])))
+            continue
+        uid = int(parts[1])
+        if uid in used:
+            continue
+        used.add(uid)
+        if verb == "MOVE":
+            moves[uid] = (int(parts[2]), int(parts[3]))
+        elif verb == "HARVEST":
+            harvests.append(uid)
+        elif verb == "DROP":
+            drops.append(uid)
+        elif verb == "PLANT":
+            plants.append((uid, parts[2].upper()))
+        elif verb == "PICK":
+            picks.append((uid, parts[2].upper()))
+    return moves, harvests, plants, picks, drops, trains
+
+
+def step(game, cmds0, cmds1):
+    parsed = [_parse(cmds0), _parse(cmds1)]
+    # MOVE (priority 1) — both players resolved together, per-player internally
+    apply_moves(game, {**parsed[0][0], **parsed[1][0]})
+    # HARVEST (2)
+    apply_harvest(game, parsed[0][1] + parsed[1][1])
+    # PLANT (3)
+    apply_plant(game, parsed[0][2] + parsed[1][2])
+    # PICK (5)
+    apply_pick(game, parsed[0][3] + parsed[1][3])
+    # TRAIN (6)
+    for player in (0, 1):
+        for talents in parsed[player][5]:
+            apply_train(game, player, talents)
+    # DROP (7)
+    apply_drop(game, parsed[0][4] + parsed[1][4])
+    tick_plants(game)
+    recompute_scores(game)
+    game.turn += 1
