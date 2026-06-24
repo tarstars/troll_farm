@@ -118,6 +118,20 @@ class State:
     turn: int
 
 
+def training_cost(n, talents):
+    """Per-item resource cost to TRAIN a troll with `talents` given `n` own trolls.
+
+    PLUM<-movementSpeed, LEMON<-carryCapacity, APPLE<-harvestPower; cost = n + stat².
+    chopPower (talents[3]) costs IRON only in league 3+, so 0 here.
+    """
+    ms, cc, hp, _chop = talents
+    cost = [0, 0, 0, 0, 0, 0]
+    cost[ITEM_INDEX["PLUM"]] = n + ms * ms
+    cost[ITEM_INDEX["LEMON"]] = n + cc * cc
+    cost[ITEM_INDEX["APPLE"]] = n + hp * hp
+    return cost
+
+
 def _is_adjacent(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
