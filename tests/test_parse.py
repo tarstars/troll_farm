@@ -39,3 +39,14 @@ def test_parse_turn_collects_all_trolls_and_inventories():
     assert second.total_carried == 2
     assert second.carry_capacity == 4
     assert state.trees == [Tree("PLUM", 6, 1, 4, 4, 2, 5)]
+
+
+def test_parse_grid_only_grass_is_walkable():
+    # Bronze adds terrain: '~' water, '#' rock, '+' iron are NOT walkable.
+    walkable, my_shack, opp_shack = parse_grid([".~#+", "0..1"])
+    assert (0, 0) in walkable          # grass
+    assert (1, 0) not in walkable      # water
+    assert (2, 0) not in walkable      # rock
+    assert (3, 0) not in walkable      # iron
+    assert my_shack == (0, 1) and opp_shack == (3, 1)
+    assert walkable == {(0, 0), (1, 1), (2, 1)}

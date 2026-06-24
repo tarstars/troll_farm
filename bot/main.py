@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.5.2"
+VERSION = "0.5.3"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -356,8 +356,8 @@ def decide(state, params):
 def parse_grid(grid_lines):
     """Parse the initial map. Returns (walkable_set, my_shack, opp_shack).
 
-    Cell (x, y) is column x of row y. '.' = walkable grass; '0'/'1' = shacks
-    (not walkable). Tree/iron/etc. terrain appears in later leagues.
+    Cell (x, y) is column x of row y. '.' = walkable grass; '0'/'1' = shacks.
+    Only GRASS is walkable — water '~', rock '#', iron '+' and shacks are not.
     """
     walkable = set()
     my_shack = None
@@ -368,7 +368,7 @@ def parse_grid(grid_lines):
                 my_shack = (x, y)
             elif ch == "1":
                 opp_shack = (x, y)
-            else:
+            elif ch == ".":
                 walkable.add((x, y))
     return walkable, my_shack, opp_shack
 
