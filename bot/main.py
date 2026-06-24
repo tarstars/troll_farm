@@ -211,7 +211,46 @@ PARAMS = {
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": False,   # orchard off until tuned (Plan 2)
+    "plant_type": "BANANA",
+    "orchard_cells": [],      # empty => planting effectively off until tuned
+    "max_orchard": 4,
 }
+
+
+def _occupied_cells(state):
+    return {t.pos for t in state.my_trolls} | {t.pos for t in state.opp_trolls}
+
+
+def planting_commands(state, params, used_ids):
+    if not params.get("plant_enabled") or not params.get("orchard_cells"):
+        return []
+    seed = params["plant_type"]
+    seed_idx = ITEM_INDEX[seed]
+    tree_cells = {t.pos for t in state.trees}
+    # target cells still needing a tree
+    open_cells = [c for c in params["orchard_cells"]
+                  if c in state.walkable and c not in tree_cells]
+    if not open_cells or len(tree_cells & set(params["orchard_cells"])) >= params["max_orchard"]:
+        return []
+    for troll in sorted(state.my_trolls, key=lambda t: t.id):
+        if troll.id in used_ids:
+            continue
+        carrying_seed = troll.carry[seed_idx] > 0
+        if not carrying_seed and troll.total_carried > 0:
+            continue  # busy carrying real fruit; let it gather/bank
+        if carrying_seed:
+            if troll.pos in open_cells:
+                return [f"PLANT {troll.id} {seed}"]
+            dist = bfs_distances(state.walkable, [troll.pos])
+            reachable = [c for c in open_cells if c in dist]
+            if reachable:
+                tgt = min(reachable, key=lambda c: dist[c])
+                return [f"MOVE {troll.id} {tgt[0]} {tgt[1]}"]
+            return []
+        # need a seed: pick one if we have it banked and we're at the shack
+        if state.my_inventory[seed_idx] > 0 and _is_adjacent(troll.pos, state.my_shack):
+            return [f"PICK {troll.id} {seed}"]
+    return []
 
 
 def training_command(state, params):
@@ -234,19 +273,29 @@ def training_command(state, params):
 
 def decide(state, params):
     commands = []
+    used_ids = set()
+    plant_cmds = planting_commands(state, params, used_ids)
+    for c in plant_cmds:
+        used_ids.add(int(c.split()[1]))
+    commands.extend(plant_cmds)
+
     shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
     return_dist = bfs_distances(state.walkable, shack_adj)
     reserved = set()
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
+        if troll.id in used_ids:
+            continue
         dist_t = bfs_distances(state.walkable, [troll.pos])
         cmd, reserved_pos = gather_command(state, troll, reserved, dist_t,
                                            return_dist, params)
         if reserved_pos is not None:
             reserved.add(reserved_pos)
         commands.append(cmd)
+
     train = training_command(state, params)
     if train is not None:
         commands.append(train)
+
     if not commands:
         commands = ["WAIT"]
     return commands

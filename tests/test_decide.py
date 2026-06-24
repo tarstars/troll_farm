@@ -1,4 +1,4 @@
-from bot.main import decide, State, Troll, Tree, PARAMS
+from bot.main import decide, planting_commands, State, Troll, Tree, PARAMS
 
 
 def grid(w, h, blocked=()):
@@ -32,3 +32,44 @@ def test_empty_returns_wait():
     w = grid(4, 4, blocked=[(0, 0)])
     cmds = decide(base(w, [], []), gather_only())
     assert cmds == ["WAIT"]
+
+
+from bot.main import planting_commands
+
+
+def plant_params(cells):
+    p = dict(PARAMS)
+    p["plant_enabled"] = True
+    p["plant_type"] = "BANANA"
+    p["orchard_cells"] = cells
+    p["max_orchard"] = 4
+    return p
+
+
+def test_picks_a_seed_when_idle_at_shack_and_orchard_wanted():
+    w = grid(4, 4, blocked=[(0, 0)])
+    troll = Troll(0, 0, 1, 1, 1, 1, [0]*6)      # empty, adjacent to shack
+    st = State(walkable=w, my_shack=(0, 0), opp_shack=(15, 7),
+               my_inventory=[0, 0, 0, 5, 0, 0], opp_inventory=[0]*6,
+               trees=[], my_trolls=[troll], opp_trolls=[], turn=1)
+    cmds = planting_commands(st, plant_params([(1, 1)]), set())
+    assert cmds == ["PICK 0 BANANA"]
+
+
+def test_plants_seed_on_target_cell():
+    w = grid(4, 4, blocked=[(0, 0)])
+    troll = Troll(0, 1, 1, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # carries a banana seed
+    st = State(walkable=w, my_shack=(0, 0), opp_shack=(15, 7),
+               my_inventory=[0]*6, opp_inventory=[0]*6, trees=[],
+               my_trolls=[troll], opp_trolls=[], turn=1)
+    cmds = planting_commands(st, plant_params([(1, 1)]), set())
+    assert cmds == ["PLANT 0 BANANA"]
+
+
+def test_planting_disabled_returns_nothing():
+    w = grid(4, 4, blocked=[(0, 0)])
+    troll = Troll(0, 0, 1, 1, 1, 1, [0]*6)
+    st = State(walkable=w, my_shack=(0, 0), opp_shack=(15, 7),
+               my_inventory=[0, 0, 0, 5, 0, 0], opp_inventory=[0]*6,
+               trees=[], my_trolls=[troll], opp_trolls=[], turn=1)
+    assert planting_commands(st, gather_only(), set()) == []
