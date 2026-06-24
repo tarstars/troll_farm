@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.5.3"
+VERSION = "0.5.4"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -222,24 +222,9 @@ PARAMS = {
     "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": True,    # build a small near-shack orchard
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
-    "orchard_cells": [],      # auto: decide() fills nearest empty cells via orchard_targets
-    "max_orchard": 3,         # hard ceiling on near-shack orchard trees
-    "orchard_radius": 3,      # trees within this BFS distance of the shack count as "near"
+    "orchard_cells": [],      # filled by decide() with the empty footprint cells
+    "max_orchard": 3,         # orchard footprint size (nearest cells to the shack)
 }
-
-
-def orchard_targets(state, params):
-    """The nearest empty grass cells to our shack, for a near-shack orchard.
-
-    Cells already holding a tree are skipped; returns at most `max_orchard`
-    cells, closest first.
-    """
-    tree_cells = {t.pos for t in state.trees}
-    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
-    dist = bfs_distances(state.walkable, shack_adj)
-    cands = [c for c in dist if c not in tree_cells]
-    cands.sort(key=lambda c: (dist[c], c))
-    return cands[:params["max_orchard"]]
 
 
 def planting_commands(state, params, used_ids):
@@ -300,16 +285,19 @@ def decide(state, params):
     commands_by_id = {}
     used_ids = set()
 
-    # Orchard planting claims one troll, but only while near-shack trees stay
-    # below capacity: never tend more trees than trolls to harvest them.
+    # Orchard planting claims one troll. The orchard is a small fixed FOOTPRINT
+    # -- the nearest `max_orchard` walkable cells to the shack. We plant on the
+    # empty ones until the footprint is full of trees. Counting only trees in the
+    # footprint (not a broad radius) keeps planting bounded yet reliably active,
+    # even when the map already scattered trees elsewhere near the shack.
     if params.get("plant_enabled"):
-        cap = min(params["max_orchard"], len(state.my_trolls))
-        radius = params.get("orchard_radius", 3)
-        near_trees = sum(1 for t in state.trees
-                         if return_dist.get(t.pos, 1 << 30) <= radius)
-        if near_trees < cap:
+        tree_cells = {t.pos for t in state.trees}
+        footprint = sorted(return_dist, key=lambda c: (return_dist[c], c))
+        footprint = footprint[:params["max_orchard"]]
+        empty_slots = [c for c in footprint if c not in tree_cells]
+        if empty_slots:
             pparams = dict(params)
-            pparams["orchard_cells"] = orchard_targets(state, params)
+            pparams["orchard_cells"] = empty_slots
             for c in planting_commands(state, pparams, used_ids):
                 tid = int(c.split()[1])
                 used_ids.add(tid)

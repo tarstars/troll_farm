@@ -124,20 +124,20 @@ def _plant_on():
     return p
 
 
-def test_does_not_plant_when_near_trees_reach_capacity():
-    # one troll, three banana trees already next to the shack -> cap is
-    # min(max_orchard, trolls) = 1, already met: the troll banks its carried
-    # seed instead of planting a fourth tree.
+def test_does_not_plant_when_footprint_is_full():
+    # the nearest cells to the shack already hold trees -> orchard footprint is
+    # full, so the seed-carrying troll banks instead of planting.
     planter = Troll(0, 1, 1, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # carries a seed
     st = _orchard_state([(0, 1), (1, 0), (0, 2)], [planter])
     cmds = decide(st, _plant_on())
     assert not any(c.startswith(("PLANT", "PICK")) for c in cmds)
 
 
-def test_plants_when_trolls_outnumber_near_trees():
-    # 3 trolls, only 1 near tree -> cap min(3,3)=3 > 1, so we still plant.
-    planter = Troll(0, 1, 1, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # carries a seed
-    busy = [Troll(1, 4, 4, 1, 1, 1, [0]*6), Troll(2, 5, 5, 1, 1, 1, [0]*6)]
-    st = _orchard_state([(0, 1)], [planter] + busy)
+def test_plants_on_empty_footprint_slot_despite_other_near_trees():
+    # one nearest cell has a tree but the footprint still has empty slots; a
+    # seed-carrying troll standing on an empty slot plants there. (Pre-existing
+    # trees elsewhere no longer block planting, which was the v0.5.3 bug.)
+    planter = Troll(0, 1, 0, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # seed, on (1,0)
+    st = _orchard_state([(0, 1)], [planter])
     cmds = decide(st, _plant_on())
     assert any(c.startswith("PLANT") for c in cmds)
