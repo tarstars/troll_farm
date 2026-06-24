@@ -1,4 +1,4 @@
-"""CodinGame Spring Challenge 2026 - Troll Farm bot (Wood league).
+"""CodinGame Spring Challenge 2026 - Troll Farm bot.
 
 Single-file submission: paste this whole file into the CodinGame IDE.
 Pure logic lives at module level so it can be unit-tested; the game loop runs
@@ -6,6 +6,10 @@ only under `if __name__ == "__main__"`.
 """
 from collections import deque
 from dataclasses import dataclass
+
+# Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
+# running build is identifiable in the replay.
+VERSION = "0.5.0"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -141,6 +145,48 @@ def _ortho_neighbors(cell):
     return [(x + dx, y + dy) for dx, dy in _NEIGHBORS]
 
 
+def bfs_within(walkable, start, max_steps):
+    """Cells reachable from `start` in <= max_steps steps -> {cell: steps}.
+
+    `start` is seeded at 0 regardless of walkability (a troll may sit on its
+    non-walkable shack); expansion only enters walkable cells.
+    """
+    dist = {start: 0}
+    frontier = [start]
+    for _ in range(max_steps):
+        nxt = []
+        for c in frontier:
+            for nb in _ortho_neighbors(c):
+                if nb in walkable and nb not in dist:
+                    dist[nb] = dist[c] + 1
+                    nxt.append(nb)
+        frontier = nxt
+        if not frontier:
+            break
+    return dist
+
+
+def landing_cell(walkable, start, goal_dist, speed, claimed):
+    """Where a troll should end up this turn: the reachable (<= speed) cell that
+    minimises distance to the goal, skipping cells already `claimed` by other
+    own trolls. Falls back to staying put when nothing better is free.
+    """
+    reach = bfs_within(walkable, start, speed)
+    best = start
+    best_key = (goal_dist.get(start, 1 << 30), 0, start)
+    for cell, steps in reach.items():
+        if cell != start and cell in claimed:
+            continue
+        gd = goal_dist.get(cell)
+        if gd is None:
+            continue
+        key = (gd, steps, cell)
+        if key < best_key:
+            best_key = key
+            best = cell
+    return best
+
+
 # How far ahead to look for a tree to become ripe (league-2 game is 300 turns, 120 is a generous look-ahead).
 RIPEN_HORIZON = 120
 
@@ -212,11 +258,25 @@ PARAMS = {
     "train_specs": [(2, 2, 2, 0), (1, 1, 1, 0)],
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
-    "plant_enabled": False,   # orchard off until tuned (Plan 2)
-    "plant_type": "BANANA",
-    "orchard_cells": [],      # empty => planting effectively off until tuned
-    "max_orchard": 4,
+    "plant_enabled": True,    # build a small near-shack orchard
+    "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
+    "orchard_cells": [],      # auto: decide() fills nearest empty cells via orchard_targets
+    "max_orchard": 3,
 }
+
+
+def orchard_targets(state, params):
+    """The nearest empty grass cells to our shack, for a near-shack orchard.
+
+    Cells already holding a tree are skipped; returns at most `max_orchard`
+    cells, closest first.
+    """
+    tree_cells = {t.pos for t in state.trees}
+    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
+    dist = bfs_distances(state.walkable, shack_adj)
+    cands = [c for c in dist if c not in tree_cells]
+    cands.sort(key=lambda c: (dist[c], c))
+    return cands[:params["max_orchard"]]
 
 
 def planting_commands(state, params, used_ids):
@@ -269,26 +329,70 @@ def training_command(state, params):
     return None
 
 
-def decide(state, params):
-    commands = []
-    used_ids = set()
-    plant_cmds = planting_commands(state, params, used_ids)
-    for c in plant_cmds:
-        used_ids.add(int(c.split()[1]))
-    commands.extend(plant_cmds)
+def resolve_moves(state, commands_by_id, return_dist):
+    """Rewrite each MOVE to an explicit next-step cell so that no two of our
+    trolls land on the same cell this turn (the engine would otherwise block
+    one of them and waste its turn). Non-MOVE commands keep the troll in place.
+    """
+    walkable = state.walkable
+    troll_by_id = {t.id: t for t in state.my_trolls}
+    out = {}
+    movers = []
+    claimed = set()
+    for tid, cmd in commands_by_id.items():
+        parts = cmd.split()
+        if parts[0] == "MOVE":
+            movers.append((tid, (int(parts[2]), int(parts[3]))))
+        else:
+            out[tid] = cmd
+            if tid in troll_by_id:
+                claimed.add(troll_by_id[tid].pos)
+    for tid, target in sorted(movers):
+        troll = troll_by_id[tid]
+        goal_dist = (return_dist if target == state.my_shack
+                     else bfs_distances(walkable, [target]))
+        land = landing_cell(walkable, troll.pos, goal_dist,
+                            troll.movement_speed, claimed)
+        claimed.add(land)
+        out[tid] = f"MOVE {tid} {land[0]} {land[1]}"
+    return out
 
-    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
-    return_dist = bfs_distances(state.walkable, shack_adj)
+
+def decide(state, params):
+    walkable = state.walkable
+    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in walkable]
+    return_dist = bfs_distances(walkable, shack_adj)
+
+    commands_by_id = {}
+    used_ids = set()
+
+    # Orchard planting claims one troll, using dynamically chosen target cells.
+    if params.get("plant_enabled"):
+        pparams = dict(params)
+        pparams["orchard_cells"] = orchard_targets(state, params)
+        for c in planting_commands(state, pparams, used_ids):
+            tid = int(c.split()[1])
+            used_ids.add(tid)
+            commands_by_id[tid] = c
+
+    # Gathering for the remaining trolls, with tree reservations.
     reserved = set()
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
         if troll.id in used_ids:
             continue
-        dist_t = bfs_distances(state.walkable, [troll.pos])
+        dist_t = bfs_distances(walkable, [troll.pos])
         cmd, reserved_pos = gather_command(state, troll, reserved, dist_t,
                                            return_dist, params)
         if reserved_pos is not None:
             reserved.add(reserved_pos)
-        commands.append(cmd)
+        commands_by_id[troll.id] = cmd
+
+    # Resolve own-troll collisions, then assemble the turn's output.
+    resolved = resolve_moves(state, commands_by_id, return_dist)
+    commands = []
+    if state.turn == 1:
+        commands.append(f"MSG v{VERSION}")
+    commands.extend(resolved[tid] for tid in sorted(resolved))
 
     train = training_command(state, params)
     if train is not None:
