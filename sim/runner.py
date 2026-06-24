@@ -1,3 +1,17 @@
+"""Offline harness: play our bot vs the league-2 boss and measure win-rate.
+
+FIDELITY WARNING — the win-rate here is NOT yet a trustworthy proxy for the real
+CodinGame arena:
+  * The boss port (sim/boss.py) omits the real boss's PLANT behaviour and uses
+    Manhattan targeting with no ripeness prediction, so it is materially weaker
+    than the arena boss and cannot punish our bot's mistakes.
+  * next_cell breaks equidistant ties deterministically (smallest (x,y)) while the
+    referee is random, and the bot's own landing_cell uses the same deterministic
+    rule -- so the random-tie-break move "deadlock" seen in the arena cannot arise
+    in this sim.
+Strengthen the boss and add a randomized tie-break mode before trusting the number.
+"""
+
 import argparse
 from bot.main import decide, PARAMS
 from sim.engine import step, recompute_scores

@@ -48,7 +48,7 @@ def generate(seed):
                 base = PLANT_COOLDOWN[ftype]
                 ticks = rnd.randint(1, base * (MAX_SIZE + MAX_FRUITS))
                 for cpos in (cell, mirror):
-                    p = SimPlant(ftype, cpos[0], cpos[1], 0, 6, 0, base)
+                    p = SimPlant(ftype, cpos[0], cpos[1], 0, 6, 0, 0)
                     plants.append(p)
                 # age both identically
                 tmp = GameState(WIDTH, HEIGHT, walkable, [s0, s1], [inv0, inv1],

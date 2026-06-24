@@ -170,7 +170,7 @@ def apply_plant(game, plants):
         idx = ITEM_INDEX[type_name]
         if u.carry[idx] > 0:
             u.carry[idx] -= 1
-            game.plants.append(SimPlant(type_name, u.x, u.y, 0, 6, 0, 6))
+            game.plants.append(SimPlant(type_name, u.x, u.y, 0, 6, 0, 0))
 
 
 def apply_train(game, player, talents):
