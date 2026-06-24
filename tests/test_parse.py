@@ -5,7 +5,7 @@ from bot.main import parse_grid, parse_turn, Tree
 def test_parse_grid_marks_grass_walkable_and_locates_shacks():
     # char at column x of row y is cell (x, y). '.' grass, '0' my shack, '1' opp.
     grid_lines = ["....", "0..1", "...."]
-    walkable, my_shack, opp_shack = parse_grid(grid_lines)
+    walkable, my_shack, opp_shack, _iron, _water = parse_grid(grid_lines)
     assert my_shack == (0, 1)
     assert opp_shack == (3, 1)
     assert (0, 1) not in walkable   # shack cells are not walkable
@@ -41,12 +41,14 @@ def test_parse_turn_collects_all_trolls_and_inventories():
     assert state.trees == [Tree("PLUM", 6, 1, 4, 4, 2, 5)]
 
 
-def test_parse_grid_only_grass_is_walkable():
+def test_parse_grid_only_grass_is_walkable_and_extracts_terrain():
     # Bronze adds terrain: '~' water, '#' rock, '+' iron are NOT walkable.
-    walkable, my_shack, opp_shack = parse_grid([".~#+", "0..1"])
+    walkable, my_shack, opp_shack, iron, water = parse_grid([".~#+", "0..1"])
     assert (0, 0) in walkable          # grass
     assert (1, 0) not in walkable      # water
     assert (2, 0) not in walkable      # rock
     assert (3, 0) not in walkable      # iron
     assert my_shack == (0, 1) and opp_shack == (3, 1)
     assert walkable == {(0, 0), (1, 1), (2, 1)}
+    assert iron == frozenset({(3, 0)})     # '+' cells extracted
+    assert water == frozenset({(1, 0)})    # '~' cells extracted

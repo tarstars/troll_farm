@@ -80,6 +80,7 @@ class Troll:
     carry_capacity: int
     harvest_power: int
     carry: list  # counts per item index (length 6)
+    chop_power: int = 0
 
     @property
     def pos(self):
@@ -120,6 +121,8 @@ class State:
     my_trolls: list
     opp_trolls: list
     turn: int
+    iron_cells: frozenset = frozenset()    # IRON terrain cells (mine from adjacent)
+    water_cells: frozenset = frozenset()   # WATER cells (trees nearby grow faster)
 
 
 def training_cost(n, talents):
@@ -342,12 +345,15 @@ def decide(state, params):
 
 
 def parse_grid(grid_lines):
-    """Parse the initial map. Returns (walkable_set, my_shack, opp_shack).
+    """Parse the initial map. Returns (walkable, my_shack, opp_shack, iron, water).
 
-    Cell (x, y) is column x of row y. '.' = walkable grass; '0'/'1' = shacks.
-    Only GRASS is walkable — water '~', rock '#', iron '+' and shacks are not.
+    Cell (x, y) is column x of row y. '.' grass (walkable), '0'/'1' shacks,
+    '~' water, '#' rock, '+' iron. Only GRASS is walkable; iron and water cells
+    are returned separately (Bronze: mine iron, trees fruit faster near water).
     """
     walkable = set()
+    iron = set()
+    water = set()
     my_shack = None
     opp_shack = None
     for y, line in enumerate(grid_lines):
@@ -358,10 +364,15 @@ def parse_grid(grid_lines):
                 opp_shack = (x, y)
             elif ch == ".":
                 walkable.add((x, y))
-    return walkable, my_shack, opp_shack
+            elif ch == "+":
+                iron.add((x, y))
+            elif ch == "~":
+                water.add((x, y))
+    return walkable, my_shack, opp_shack, frozenset(iron), frozenset(water)
 
 
-def parse_turn(lines, walkable, my_shack, opp_shack, turn):
+def parse_turn(lines, walkable, my_shack, opp_shack, turn,
+               iron_cells=frozenset(), water_cells=frozenset()):
     """Build a State for this turn from an iterator of input lines."""
     my_inventory = [int(v) for v in next(lines).split()]
     opp_inventory = [int(v) for v in next(lines).split()]
@@ -378,7 +389,7 @@ def parse_turn(lines, walkable, my_shack, opp_shack, turn):
         f = [int(v) for v in next(lines).split()]
         troll = Troll(id=f[0], x=f[2], y=f[3], movement_speed=f[4],
                       carry_capacity=f[5], harvest_power=f[6],
-                      carry=f[8:14])
+                      carry=f[8:14], chop_power=f[7])
         if f[1] == 0:
             my_trolls.append(troll)
         else:
@@ -386,14 +397,14 @@ def parse_turn(lines, walkable, my_shack, opp_shack, turn):
     return State(walkable=walkable, my_shack=my_shack, opp_shack=opp_shack,
                  my_inventory=my_inventory, opp_inventory=opp_inventory,
                  trees=trees, my_trolls=my_trolls, opp_trolls=opp_trolls,
-                 turn=turn)
+                 turn=turn, iron_cells=iron_cells, water_cells=water_cells)
 
 
 def main():
     """Game loop: read the map once, then act every turn."""
     width, height = (int(v) for v in input().split())
     grid_lines = [input() for _ in range(height)]
-    walkable, my_shack, opp_shack = parse_grid(grid_lines)
+    walkable, my_shack, opp_shack, iron_cells, water_cells = parse_grid(grid_lines)
 
     def line_reader():
         while True:
@@ -404,7 +415,8 @@ def main():
     try:
         while True:
             turn += 1
-            state = parse_turn(lines, walkable, my_shack, opp_shack, turn)
+            state = parse_turn(lines, walkable, my_shack, opp_shack, turn,
+                               iron_cells, water_cells)
             print(";".join(decide(state, PARAMS)), flush=True)
     except EOFError:
         pass
