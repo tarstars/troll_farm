@@ -365,6 +365,7 @@ def _ticks_until_ripe(tree, min_offset):
 def best_tree(state, troll, reserved, dist_t, return_dist, params):
     best = None
     best_key = None
+    gather_types = params.get("gather_types", [])   # fruit types the plan funds
     for tree in state.trees:
         if tree.pos in reserved:
             continue
@@ -374,10 +375,9 @@ def best_tree(state, troll, reserved, dist_t, return_dist, params):
         ripe = _ticks_until_ripe(tree, walk)
         if ripe is None:
             continue
-        # Prefer trees that already have fruit on arrival (wait == 0) over
-        # camping an unripe one: idling on a slow tree wastes turns another
-        # fruited tree could fill. Tie-break by round trip, then nearness.
-        gather_types = params.get("gather_types", [])
+        # Prefer the plan's funded fruit types, then trees already fruited on
+        # arrival (wait == 0) over camping an unripe one (idling wastes turns
+        # another fruited tree could fill). Tie-break by round trip, then nearness.
         ti = ITEM_INDEX[tree.type]
         short = 0 if ti in gather_types else 1
         wait = ripe - walk
@@ -471,7 +471,6 @@ PARAMS = {
     "max_trolls": 5,          # cap on own troll count
     "iron_target": 18,      # chopper mines iron until this much is banked, then chops
     "min_turns_left_to_train": 25,   # stop training near the end
-    "score_reserve": 0,       # min banked total to keep after a train
     "plant_enabled": True,    # build a small near-shack orchard (gated by plan.plant)
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # filled by decide() with the empty footprint cells
