@@ -28,8 +28,9 @@ def test_unreachable_tree_excluded_and_iron_distance():
     st = State(walkable=walkable, my_shack=(0, 0), opp_shack=(5, 5),
                my_inventory=[0]*6, opp_inventory=[0]*6, trees=trees,
                my_trolls=[], opp_trolls=[], turn=1,
-               iron_cells=frozenset({(3, 1)}))   # approached from (3,0), dist 3
+               iron_cells=frozenset({(3, 1)}))   # approached from (3,0)
     r = estimate_rates(st)
     assert r.fruit_supply[ITEM_INDEX["LEMON"]] == 0.0   # (9,9) unreachable
-    assert r.iron_dist == 3
+    # doorstep (1,0) seeded at 0 -> (3,0) is 2 steps away
+    assert r.iron_dist == 2
     assert _has_iron(r) is True

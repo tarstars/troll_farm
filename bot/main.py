@@ -167,16 +167,18 @@ def _effective_cooldown(state, tree):
 
 
 def estimate_rates(state):
-    dist = bfs_distances(state.walkable, [state.my_shack])
+    # Distances from the shack's walkable doorstep (a troll banks from a
+    # shack-adjacent cell), matching how decide()/best_tree compute return_dist.
+    shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in state.walkable]
+    dist = bfs_distances(state.walkable, shack_adj)
     supply = [0.0, 0.0, 0.0, 0.0]
     dsum = size_sum = health_sum = 0.0
     n = 0
     for t in state.trees:
         if t.pos not in dist:
             continue
-        ti = ITEM_INDEX[t.type]
-        if ti <= 3:
-            supply[ti] += 1.0 / _effective_cooldown(state, t)
+        if t.type in WATER_BOOST:            # fruit tree (the only tree types)
+            supply[ITEM_INDEX[t.type]] += 1.0 / _effective_cooldown(state, t)
         dsum += dist[t.pos]
         size_sum += max(t.size, 1)
         health_sum += max(t.health, 1)
