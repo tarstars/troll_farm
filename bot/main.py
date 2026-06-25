@@ -141,6 +141,58 @@ def training_cost(n, talents):
     return cost
 
 
+WATER_BOOST = {"PLUM": 5, "LEMON": 5, "APPLE": 7, "BANANA": 2}
+WOOD_POINTS = 4
+INF = float("inf")
+
+
+@dataclass
+class Rates:
+    fruit_supply: list        # length 4: fruits/turn per fruit type
+    mean_dist: float          # mean shack->reachable-tree distance (steps)
+    mean_tree_size: float     # mean reachable tree size (wood/tree proxy)
+    mean_tree_health: float   # mean reachable tree health (fell-time proxy)
+    iron_dist: float          # steps to nearest iron approach cell, else INF
+
+
+def _has_iron(rates):
+    return rates.iron_dist != INF
+
+
+def _effective_cooldown(state, tree):
+    cd = PLANT_COOLDOWN[tree.type]
+    if any(_is_adjacent(tree.pos, w) for w in state.water_cells):
+        cd -= WATER_BOOST[tree.type]
+    return max(cd, 1)
+
+
+def estimate_rates(state):
+    dist = bfs_distances(state.walkable, [state.my_shack])
+    supply = [0.0, 0.0, 0.0, 0.0]
+    dsum = size_sum = health_sum = 0.0
+    n = 0
+    for t in state.trees:
+        if t.pos not in dist:
+            continue
+        ti = ITEM_INDEX[t.type]
+        if ti <= 3:
+            supply[ti] += 1.0 / _effective_cooldown(state, t)
+        dsum += dist[t.pos]
+        size_sum += max(t.size, 1)
+        health_sum += max(t.health, 1)
+        n += 1
+    mean_dist = dsum / n if n else 4.0
+    mean_size = size_sum / n if n else 1.0
+    mean_health = health_sum / n if n else 6.0
+    iron_dist = INF
+    if state.iron_cells:
+        cands = [dist[a] for c in state.iron_cells
+                 for a in _ortho_neighbors(c) if a in dist]
+        if cands:
+            iron_dist = min(cands)
+    return Rates(supply, mean_dist, mean_size, mean_health, iron_dist)
+
+
 def _is_adjacent(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
