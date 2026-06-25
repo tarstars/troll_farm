@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.6.1"
+VERSION = "0.7.0"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -377,8 +377,11 @@ def best_tree(state, troll, reserved, dist_t, return_dist, params):
         # Prefer trees that already have fruit on arrival (wait == 0) over
         # camping an unripe one: idling on a slow tree wastes turns another
         # fruited tree could fill. Tie-break by round trip, then nearness.
+        gather_types = params.get("gather_types", [])
+        ti = ITEM_INDEX[tree.type]
+        short = 0 if ti in gather_types else 1
         wait = ripe - walk
-        key = (wait, ripe + return_dist[tree.pos], walk)
+        key = (short, wait, ripe + return_dist[tree.pos], walk)
         if best_key is None or key < best_key:
             best_key = key
             best = tree
@@ -466,17 +469,10 @@ def chop_command(state, troll, reserved, dist_t, params):
 PARAMS = {
     "topup_radius": 4,        # keep gathering across trees within this many steps
     "max_trolls": 5,          # cap on own troll count
-    # (ms, cc, hp, chop), most-wanted first; the last is a guaranteed-affordable
-    # fallback (cost n+1 each) so training reliably fires from the 2..10 starting hand.
-    "train_specs": [(2, 2, 2, 0), (1, 1, 1, 0)],
-    # Bronze: chopper troll (ms, cc, hp, chop). Trained once when we have none,
-    # most-wanted first with affordable fallbacks. Works near the enemy camp.
-    "chopper_specs": [(2, 4, 0, 3), (1, 3, 0, 2), (1, 2, 0, 2)],
-    "max_choppers": 1,
     "iron_target": 18,      # chopper mines iron until this much is banked, then chops
     "min_turns_left_to_train": 25,   # stop training near the end
     "score_reserve": 0,       # min banked total to keep after a train
-    "plant_enabled": True,    # build a small near-shack orchard
+    "plant_enabled": True,    # build a small near-shack orchard (gated by plan.plant)
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # filled by decide() with the empty footprint cells
     "max_orchard": 3,         # orchard footprint size (nearest cells to the shack)
@@ -515,36 +511,15 @@ def planting_commands(state, params, used_ids):
     return []
 
 
-def training_command(state, params):
-    """Return a TRAIN command string if conditions allow, else None."""
-    n = len(state.my_trolls)
-    if n >= params["max_trolls"]:
-        return None
-    if TOTAL_TURNS - state.turn <= params["min_turns_left_to_train"]:
-        return None
-    if any(t.pos == state.my_shack for t in state.my_trolls):
-        return None  # shack cell occupied; TRAIN would be rejected
-    banked = sum(state.my_inventory[:4])
-    league3 = bool(state.iron_cells)        # iron terrain => Bronze (iron is charged)
-    pay_idx = (0, 1, 2, 4) if league3 else (0, 1, 2)
-    # In Bronze, train a chopper first (once) so we can fell trees for wood.
-    choppers = sum(1 for t in state.my_trolls if t.chop_power >= 2)
-    specs = []
-    if league3 and choppers < params.get("max_choppers", 0):
-        specs += list(params["chopper_specs"])
-    specs += list(params["train_specs"])
-    for spec in specs:
-        cost = training_cost(n, spec)
-        if all(state.my_inventory[i] >= cost[i] for i in pay_idx):
-            if banked - sum(cost[:4]) >= params["score_reserve"]:
-                return f"TRAIN {spec[0]} {spec[1]} {spec[2]} {spec[3]}"
-    return None
-
 
 def decide(state, params):
     walkable = state.walkable
     shack_adj = [n for n in _ortho_neighbors(state.my_shack) if n in walkable]
     return_dist = bfs_distances(walkable, shack_adj)
+
+    plan = search_policy(state, params)
+    params = dict(params)
+    params["gather_types"] = plan.gather_types
 
     commands_by_id = {}
     used_ids = set()
@@ -567,7 +542,7 @@ def decide(state, params):
     # empty ones until the footprint is full of trees. Counting only trees in the
     # footprint (not a broad radius) keeps planting bounded yet reliably active,
     # even when the map already scattered trees elsewhere near the shack.
-    if params.get("plant_enabled"):
+    if params.get("plant_enabled") and plan.plant is not None:
         tree_cells = {t.pos for t in state.trees}
         footprint = sorted(return_dist, key=lambda c: (return_dist[c], c))
         footprint = footprint[:params["max_orchard"]]
@@ -608,18 +583,12 @@ def decide(state, params):
         commands.append(f"MSG v{VERSION}")
     commands.extend(commands_by_id[tid] for tid in sorted(commands_by_id))
 
-    if params.get("forced_policy") is not None:
-        plan = search_policy(state, params)
-        if (plan.train is not None
-                and TOTAL_TURNS - state.turn > params["min_turns_left_to_train"]
-                and not any(t.pos == state.my_shack for t in state.my_trolls)
-                and len(state.my_trolls) < params["max_trolls"]):
-            commands.append(f"TRAIN {plan.train[0]} {plan.train[1]} "
-                            f"{plan.train[2]} {plan.train[3]}")
-    else:
-        train = training_command(state, params)
-        if train is not None:
-            commands.append(train)
+    if (plan.train is not None
+            and TOTAL_TURNS - state.turn > params["min_turns_left_to_train"]
+            and not any(t.pos == state.my_shack for t in state.my_trolls)
+            and len(state.my_trolls) < params["max_trolls"]):
+        commands.append(f"TRAIN {plan.train[0]} {plan.train[1]} "
+                        f"{plan.train[2]} {plan.train[3]}")
 
     if not commands:
         commands = ["WAIT"]

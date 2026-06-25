@@ -59,7 +59,11 @@ def test_empty_returns_wait():
     assert cmds == ["WAIT"]
 
 
-def test_decide_plants_when_enabled_and_troll_idle_at_shack():
+def test_decide_does_not_plant_without_plan_plant():
+    # v0.7.0: planting via decide() is gated on plan.plant is not None.
+    # The default planner returns plant=None, so no PICK/PLANT is emitted even
+    # when plant_enabled=True. Use planting_commands() directly to test the
+    # planting logic in isolation (see test_picks_a_seed_when_idle_at_shack_and_orchard_wanted).
     w = grid(6, 6, blocked=[(0, 0)])
     troll = Troll(0, 0, 1, 1, 1, 1, [0]*6)      # empty, adjacent to shack
     st = State(walkable=w, my_shack=(0, 0), opp_shack=(15, 7),
@@ -68,7 +72,8 @@ def test_decide_plants_when_enabled_and_troll_idle_at_shack():
     p = dict(PARAMS)
     p["plant_enabled"] = True
     p["max_trolls"] = 0          # isolate planting from training
-    assert "PICK 0 BANANA" in decide(st, p)
+    cmds = decide(st, p)
+    assert not any(c.startswith(("PICK", "PLANT")) for c in cmds)
 
 
 def plant_params(cells):
@@ -133,11 +138,11 @@ def test_does_not_plant_when_footprint_is_full():
     assert not any(c.startswith(("PLANT", "PICK")) for c in cmds)
 
 
-def test_plants_on_empty_footprint_slot_despite_other_near_trees():
-    # one nearest cell has a tree but the footprint still has empty slots; a
-    # seed-carrying troll standing on an empty slot plants there. (Pre-existing
-    # trees elsewhere no longer block planting, which was the v0.5.3 bug.)
+def test_no_plant_from_decide_without_plan_plant():
+    # v0.7.0: decide() gates planting on plan.plant is not None; the default
+    # planner returns plant=None, so PLANT is never emitted even with plant_enabled.
+    # The planting_commands() logic itself is tested directly above.
     planter = Troll(0, 1, 0, 1, 1, 1, [0, 0, 0, 1, 0, 0])   # seed, on (1,0)
     st = _orchard_state([(0, 1)], [planter])
     cmds = decide(st, _plant_on())
-    assert any(c.startswith("PLANT") for c in cmds)
+    assert not any(c.startswith("PLANT") for c in cmds)

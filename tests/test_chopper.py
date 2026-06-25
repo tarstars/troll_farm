@@ -1,4 +1,4 @@
-from bot.main import (chop_command, _best_chop_target, training_command, decide,
+from bot.main import (chop_command, _best_chop_target, decide,
                       bfs_distances, State, Troll, Tree, PARAMS)
 
 
@@ -42,19 +42,22 @@ def test_chopper_mines_adjacent_iron():
 
 
 def test_trains_a_chopper_first_in_bronze():
+    # Planner picks a chopper spec in Bronze (has iron terrain) when well-funded.
     troll = Troll(0, 1, 0, 1, 1, 1, [0]*6)
     s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [troll],
            iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0])
-    cmd = training_command(s, PARAMS)
-    assert cmd is not None and cmd.startswith("TRAIN") and cmd.split()[-1] != "0"
+    cmds = decide(s, PARAMS)
+    train_cmds = [c for c in cmds if c.startswith("TRAIN")]
+    assert train_cmds and train_cmds[0].split()[-1] != "0"
 
 
-def test_no_chopper_training_without_iron_terrain():
+def test_planner_emits_train_without_iron_terrain():
+    # Planner may choose a chopper spec even without iron terrain (wood is valuable).
     troll = Troll(0, 1, 0, 1, 1, 1, [0]*6)
     s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [troll],
            inv=[10, 10, 10, 10, 0, 0])           # league-2: no iron terrain
-    cmd = training_command(s, PARAMS)
-    assert cmd is not None and cmd.endswith(" 0")  # only chop-0 specs
+    cmds = decide(s, PARAMS)
+    assert any(c.startswith("TRAIN") for c in cmds)
 
 
 def test_decide_routes_chopper_to_chop():
@@ -67,13 +70,14 @@ def test_decide_routes_chopper_to_chop():
 
 
 def test_chop1_starting_troll_does_not_block_real_chopper_training():
-    # Bronze's starting troll has chopPower 1; it must NOT count as the chopper
-    # (>=2), so we still train a real chopper instead of useless chop-1 trolls.
+    # Bronze's starting troll has chopPower 1; the planner still trains a real
+    # chopper (chop>=2) since chop-1 doesn't count as a chopper in project().
     starter = Troll(0, 1, 0, 1, 1, 1, [0]*6, chop_power=1)
     s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [starter],
            iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0])
-    cmd = training_command(s, PARAMS)
-    assert cmd is not None and cmd.split()[-1] != "0"   # trains chop>0
+    cmds = decide(s, PARAMS)
+    train_cmds = [c for c in cmds if c.startswith("TRAIN")]
+    assert train_cmds and train_cmds[0].split()[-1] != "0"   # trains chop>0
 
 
 def test_chopper_stops_mining_once_iron_target_met():
