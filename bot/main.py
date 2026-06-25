@@ -220,6 +220,68 @@ def chopper_iron_rate(rates, stats):
     return iron_per_trip / (travel + 1.0)
 
 
+ROLE_CHOP = "C"
+ROLE_GATH = "G"
+RAMP_DELAY_CAP = 8
+
+
+def _role_of(stats):
+    return ROLE_CHOP if stats[3] >= 2 else ROLE_GATH
+
+
+def _stats_of(troll):
+    return (troll.movement_speed, troll.carry_capacity,
+            troll.harvest_power, troll.chop_power)
+
+
+def project(state, policy, rates):
+    banked = [float(v) for v in state.my_inventory]
+    roster = [(_role_of(_stats_of(t)), _stats_of(t)) for t in state.my_trolls]
+    pending = []                         # (ready_at, role, stats)
+    bi = 0
+    ramp = min(int(rates.mean_dist) + 1, RAMP_DELAY_CAP)
+    iron_i = ITEM_INDEX["IRON"]
+    wood_i = ITEM_INDEX["WOOD"]
+    pay = (0, 1, 2, 4) if _has_iron(rates) else (0, 1, 2)
+    for t in range(state.turn, TOTAL_TURNS + 1):
+        for p in [p for p in pending if p[0] <= t]:
+            roster.append((p[1], p[2]))
+            pending.remove(p)
+        n_now = len(roster) + len(pending)
+        need = [0.0] * 6
+        if bi < len(policy):
+            cost = training_cost(n_now, policy[bi])
+            for i in range(6):
+                need[i] = max(cost[i] - banked[i], 0.0)
+        # gatherers: needed fruit types first, then highest supply for score
+        remaining = sum(gatherer_rate(rates, s) for (r, s) in roster if r == ROLE_GATH)
+        for i in sorted(range(4), key=lambda j: (-need[j], -rates.fruit_supply[j])):
+            if remaining <= 0:
+                break
+            take = remaining
+            banked[i] += take
+            remaining = 0
+            break
+        # choppers: mine while the next investment still needs iron, else chop
+        for (r, s) in roster:
+            if r != ROLE_CHOP:
+                continue
+            if need[iron_i] > 0:
+                banked[iron_i] += chopper_iron_rate(rates, s)
+            else:
+                banked[wood_i] += chopper_wood_rate(rates, s)
+        # investment (earliest-affordable)
+        if bi < len(policy):
+            spec = policy[bi]
+            cost = training_cost(n_now, spec)
+            if all(banked[i] >= cost[i] for i in pay):
+                for i in pay:
+                    banked[i] -= cost[i]
+                pending.append((t + ramp, _role_of(spec), spec))
+                bi += 1
+    return sum(banked[0:4]) + WOOD_POINTS * banked[wood_i]
+
+
 def _is_adjacent(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
