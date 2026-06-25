@@ -253,6 +253,13 @@ def project(state, policy, rates):
             cost = training_cost(n_now, policy[bi])
             for i in range(6):
                 need[i] = max(cost[i] - banked[i], 0.0)
+        # If iron is needed but no choppers exist (and none are incoming), iron can
+        # never be mined: suppress iron-based need so gatherers aren't misdirected
+        # toward an unachievable spec and return spuriously different FP totals.
+        has_choppers = (any(rr == ROLE_CHOP for rr, _ in roster)
+                        or any(rr == ROLE_CHOP for _, rr, _ in pending))
+        if need[iron_i] > 0 and not has_choppers:
+            need = [0.0] * 6
         # gatherers: needed fruit types first, then highest supply for score
         remaining = sum(gatherer_rate(rates, s) for (r, s) in roster if r == ROLE_GATH)
         for i in sorted(range(4), key=lambda j: (-need[j], -rates.fruit_supply[j])):
@@ -601,9 +608,18 @@ def decide(state, params):
         commands.append(f"MSG v{VERSION}")
     commands.extend(commands_by_id[tid] for tid in sorted(commands_by_id))
 
-    train = training_command(state, params)
-    if train is not None:
-        commands.append(train)
+    if params.get("forced_policy") is not None:
+        plan = search_policy(state, params)
+        if (plan.train is not None
+                and TOTAL_TURNS - state.turn > params["min_turns_left_to_train"]
+                and not any(t.pos == state.my_shack for t in state.my_trolls)
+                and len(state.my_trolls) < params["max_trolls"]):
+            commands.append(f"TRAIN {plan.train[0]} {plan.train[1]} "
+                            f"{plan.train[2]} {plan.train[3]}")
+    else:
+        train = training_command(state, params)
+        if train is not None:
+            commands.append(train)
 
     if not commands:
         commands = ["WAIT"]
