@@ -258,10 +258,9 @@ def project(state, policy, rates):
         for i in sorted(range(4), key=lambda j: (-need[j], -rates.fruit_supply[j])):
             if remaining <= 0:
                 break
-            take = remaining
+            take = min(remaining, rates.fruit_supply[i])
             banked[i] += take
-            remaining = 0
-            break
+            remaining -= take
         # choppers: mine while the next investment still needs iron, else chop
         for (r, s) in roster:
             if r != ROLE_CHOP:

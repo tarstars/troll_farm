@@ -3,10 +3,16 @@ from bot.main import (State, Troll, Rates, project, INF, ITEM_INDEX,
 
 
 def _state(inv, trolls, turn=1, iron=frozenset()):
+    # Several trees across types so total fruit supply exceeds one gatherer's
+    # throughput -> a 2nd gatherer collects more (the supply cap is real, so a
+    # single-tree map would make extra gatherers useless; see test below).
     walkable = {(x, 0) for x in range(6)}
     return State(walkable=walkable, my_shack=(0, 0), opp_shack=(5, 5),
                  my_inventory=list(inv), opp_inventory=[0]*6,
-                 trees=[Tree("PLUM", 3, 0, 1, 6, 0, 0)],
+                 trees=[Tree("PLUM", 2, 0, 1, 6, 0, 0),
+                        Tree("LEMON", 3, 0, 1, 6, 0, 0),
+                        Tree("APPLE", 4, 0, 1, 6, 0, 0),
+                        Tree("BANANA", 5, 0, 1, 6, 0, 0)],
                  my_trolls=list(trolls), opp_trolls=[], turn=turn, iron_cells=iron)
 
 
