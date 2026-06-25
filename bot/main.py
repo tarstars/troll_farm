@@ -281,6 +281,56 @@ def project(state, policy, rates):
     return sum(banked[0:4]) + WOOD_POINTS * banked[wood_i]
 
 
+GATHERER_SPECS = [(1, 1, 1, 0), (1, 2, 1, 0), (2, 2, 2, 0)]
+CHOPPER_SPECS = [(1, 3, 0, 2), (2, 4, 0, 3), (2, 4, 0, 4)]
+
+
+@dataclass
+class Plan:
+    train: tuple        # spec to TRAIN now, or None
+    gather_types: list  # ordered fruit-type indices to prioritize
+    plant: str          # plant type name, or None
+
+
+def candidate_policies():
+    cands = [[]]
+    for g in GATHERER_SPECS:
+        cands.append([g])
+        cands.append([g, g])
+    for c in CHOPPER_SPECS:
+        cands.append([c])
+        for g in GATHERER_SPECS:
+            cands.append([c, g])
+            cands.append([c, g, g])
+    return cands
+
+
+def _plan_from_policy(state, policy):
+    n = len(state.my_trolls)
+    league3 = bool(state.iron_cells)
+    pay = (0, 1, 2, 4) if league3 else (0, 1, 2)
+    if not policy:
+        return Plan(None, [], None)
+    first = policy[0]
+    cost = training_cost(n, first)
+    affordable = all(state.my_inventory[i] >= cost[i] for i in pay)
+    gather_types = sorted((i for i in range(4) if state.my_inventory[i] < cost[i]),
+                          key=lambda i: state.my_inventory[i] - cost[i])
+    return Plan(first if affordable else None, gather_types, None)
+
+
+def search_policy(state, params=None):
+    if params and params.get("forced_policy") is not None:
+        return _plan_from_policy(state, params["forced_policy"])
+    rates = estimate_rates(state)
+    best, best_score = [], None
+    for pol in candidate_policies():
+        s = project(state, pol, rates)
+        if best_score is None or s > best_score:
+            best_score, best = s, pol
+    return _plan_from_policy(state, best)
+
+
 def _is_adjacent(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
