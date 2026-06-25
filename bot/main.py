@@ -195,6 +195,31 @@ def estimate_rates(state):
     return Rates(supply, mean_dist, mean_size, mean_health, iron_dist)
 
 
+def gatherer_rate(rates, stats):
+    ms, cc, hp, chop = stats
+    cycle = 2.0 * rates.mean_dist / max(ms, 1) + 1.0
+    return cc / cycle
+
+
+def chopper_wood_rate(rates, stats):
+    ms, cc, hp, chop = stats
+    if chop <= 0:
+        return 0.0
+    fell = max(1.0, -(-rates.mean_tree_health // chop))   # ceil division
+    travel = 2.0 * rates.mean_dist / max(ms, 1)
+    wood_per_trip = min(cc, rates.mean_tree_size)
+    return wood_per_trip / (fell + travel + 1.0)
+
+
+def chopper_iron_rate(rates, stats):
+    ms, cc, hp, chop = stats
+    if chop <= 0 or not _has_iron(rates):
+        return 0.0
+    travel = 2.0 * rates.iron_dist / max(ms, 1)
+    iron_per_trip = min(cc, chop)
+    return iron_per_trip / (travel + 1.0)
+
+
 def _is_adjacent(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
