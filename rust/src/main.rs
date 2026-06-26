@@ -1,6 +1,6 @@
-/// CodinGame Spring Challenge 2026 - Troll Farm bot (Rust port of Python v0.7.1)
-///
-/// Single-file submission. stdlib only.
+#![allow(dead_code, unused)]
+// CodinGame Spring Challenge 2026 - Troll Farm bot (Rust port of Python v0.7.1)
+// Single-file submission. stdlib only.
 
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::io::{self, BufRead, Write};
@@ -747,8 +747,8 @@ fn decide(state: &State) -> Vec<String> {
     // collect banker troll ids: those whose command is "MOVE <id> sx sy"
     let mut bankers: Vec<i32> = commands_by_id
         .iter()
-        .filter(|(&tid, cmd)| cmd.as_str() == format!("MOVE {} {} {}", tid, sx, sy).as_str())
-        .map(|(&tid, _)| tid)
+        .filter(|(tid, cmd)| cmd.as_str() == format!("MOVE {} {} {}", tid, sx, sy).as_str())
+        .map(|(tid, _)| *tid)
         .collect();
     bankers.sort();
     for (i, &tid) in bankers.iter().enumerate() {
@@ -894,8 +894,10 @@ fn parse_turn(
         }
     }
 
-    let my_inv: [i32; 6] = my_inventory.try_into().unwrap();
-    let opp_inv: [i32; 6] = opp_inventory.try_into().unwrap();
+    let my_inv: [i32; 6] = [my_inventory[0], my_inventory[1], my_inventory[2],
+                            my_inventory[3], my_inventory[4], my_inventory[5]];
+    let opp_inv: [i32; 6] = [opp_inventory[0], opp_inventory[1], opp_inventory[2],
+                             opp_inventory[3], opp_inventory[4], opp_inventory[5]];
 
     Some(State {
         walkable: walkable.clone(),
