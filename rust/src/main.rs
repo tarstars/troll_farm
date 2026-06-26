@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.7.1";
+const VERSION: &str = "0.7.2";
 const TOTAL_TURNS: i32 = 300;
 
 // Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
@@ -68,6 +68,7 @@ struct Params {
     opening_turns: i32,
     opening_max_trolls: usize,
     opening_spec: (i32, i32, i32, i32),
+    opening_chopper_specs: &'static [(i32, i32, i32, i32)],
     plant_enabled: bool,
     max_orchard: usize,
 }
@@ -80,6 +81,7 @@ const PARAMS: Params = Params {
     opening_turns: 30,
     opening_max_trolls: 3,
     opening_spec: (1, 1, 1, 0),
+    opening_chopper_specs: &[(1, 2, 0, 2), (1, 1, 0, 2)],
     plant_enabled: true,
     max_orchard: 3,
 };
@@ -771,15 +773,30 @@ fn decide(state: &State) -> Vec<String> {
         commands.push(commands_by_id[&tid].clone());
     }
 
-    // Opening tempo floor
+    // Opening tempo floor: build a CHOPPER first (wood is the dominant economy),
+    // then top up with cheap gatherers. forced_policy is never set in the real bot.
     let mut train_spec = plan.train;
     let n = state.my_trolls.len();
-    // forced_policy is never set in real bot
     if state.turn <= PARAMS.opening_turns && n < PARAMS.opening_max_trolls {
-        let spec = PARAMS.opening_spec;
-        let cost = training_cost(n as i32, spec);
         let pay: &[usize] = if !state.iron_cells.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
-        if pay.iter().all(|&i| state.my_inventory[i] >= cost[i]) {
+        let affordable = |spec: (i32, i32, i32, i32)| {
+            let cost = training_cost(n as i32, spec);
+            pay.iter().all(|&i| state.my_inventory[i] >= cost[i])
+        };
+        let have_chopper = state.my_trolls.iter().any(|t| t.chop_power >= 2);
+        let mut chosen: Option<(i32, i32, i32, i32)> = None;
+        if !have_chopper && !state.iron_cells.is_empty() {
+            for &spec in PARAMS.opening_chopper_specs {
+                if affordable(spec) {
+                    chosen = Some(spec);
+                    break;
+                }
+            }
+        }
+        if chosen.is_none() && affordable(PARAMS.opening_spec) {
+            chosen = Some(PARAMS.opening_spec);
+        }
+        if let Some(spec) = chosen {
             train_spec = Some(spec);
         }
     }
