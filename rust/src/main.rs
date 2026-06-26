@@ -1,0 +1,954 @@
+/// CodinGame Spring Challenge 2026 - Troll Farm bot (Rust port of Python v0.7.1)
+///
+/// Single-file submission. stdlib only.
+
+use std::collections::{HashMap, HashSet, VecDeque};
+use std::io::{self, BufRead, Write};
+
+// ── constants ───────────────────────────────────────────────────────────────
+
+const VERSION: &str = "0.7.1";
+const TOTAL_TURNS: i32 = 300;
+
+// Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
+const PLUM: usize = 0;
+const LEMON: usize = 1;
+const APPLE: usize = 2;
+const BANANA: usize = 3;
+const IRON: usize = 4;
+const WOOD: usize = 5;
+
+fn item_index(name: &str) -> usize {
+    match name {
+        "PLUM" => PLUM,
+        "LEMON" => LEMON,
+        "APPLE" => APPLE,
+        "BANANA" => BANANA,
+        "IRON" => IRON,
+        "WOOD" => WOOD,
+        _ => panic!("unknown item: {}", name),
+    }
+}
+
+// Base growth cooldown per tree type
+fn plant_cooldown(t: &str) -> i32 {
+    match t {
+        "PLUM" => 8,
+        "LEMON" => 8,
+        "APPLE" => 9,
+        "BANANA" => 6,
+        _ => panic!("unknown plant: {}", t),
+    }
+}
+
+fn water_boost(t: &str) -> i32 {
+    match t {
+        "PLUM" => 5,
+        "LEMON" => 5,
+        "APPLE" => 7,
+        "BANANA" => 2,
+        _ => panic!("unknown plant for water_boost: {}", t),
+    }
+}
+
+const MAX_SIZE: i32 = 4;
+const MAX_FRUITS: i32 = 3;
+const WOOD_POINTS: f64 = 4.0;
+const INF: f64 = f64::INFINITY;
+const RIPEN_HORIZON: i32 = 120;
+const RAMP_DELAY_CAP: i32 = 8;
+
+// ── PARAMS ──────────────────────────────────────────────────────────────────
+
+struct Params {
+    topup_radius: i32,
+    max_trolls: usize,
+    iron_target: i32,
+    min_turns_left_to_train: i32,
+    opening_turns: i32,
+    opening_max_trolls: usize,
+    opening_spec: (i32, i32, i32, i32),
+    plant_enabled: bool,
+    max_orchard: usize,
+}
+
+const PARAMS: Params = Params {
+    topup_radius: 4,
+    max_trolls: 5,
+    iron_target: 18,
+    min_turns_left_to_train: 25,
+    opening_turns: 30,
+    opening_max_trolls: 3,
+    opening_spec: (1, 1, 1, 0),
+    plant_enabled: true,
+    max_orchard: 3,
+};
+
+// GATHERER_SPECS / CHOPPER_SPECS
+const GATHERER_SPECS: [(i32, i32, i32, i32); 3] = [
+    (1, 1, 1, 0),
+    (1, 2, 1, 0),
+    (2, 2, 2, 0),
+];
+const CHOPPER_SPECS: [(i32, i32, i32, i32); 3] = [
+    (1, 3, 0, 2),
+    (2, 4, 0, 3),
+    (2, 4, 0, 4),
+];
+
+// ── data structures ─────────────────────────────────────────────────────────
+
+type Cell = (i32, i32);
+
+#[derive(Clone)]
+struct Troll {
+    id: i32,
+    x: i32,
+    y: i32,
+    movement_speed: i32,
+    carry_capacity: i32,
+    harvest_power: i32,
+    chop_power: i32,
+    carry: [i32; 6],
+}
+
+impl Troll {
+    fn pos(&self) -> Cell {
+        (self.x, self.y)
+    }
+    fn total_carried(&self) -> i32 {
+        self.carry.iter().sum()
+    }
+    fn free_capacity(&self) -> i32 {
+        self.carry_capacity - self.total_carried()
+    }
+    fn stats(&self) -> (i32, i32, i32, i32) {
+        (self.movement_speed, self.carry_capacity, self.harvest_power, self.chop_power)
+    }
+}
+
+#[derive(Clone)]
+struct Tree {
+    tree_type: String, // "PLUM","LEMON","APPLE","BANANA"
+    x: i32,
+    y: i32,
+    size: i32,
+    health: i32,
+    fruits: i32,
+    cooldown: i32,
+}
+
+impl Tree {
+    fn pos(&self) -> Cell {
+        (self.x, self.y)
+    }
+}
+
+struct State {
+    walkable: HashSet<Cell>,
+    my_shack: Cell,
+    opp_shack: Cell,
+    my_inventory: [i32; 6],
+    opp_inventory: [i32; 6],
+    trees: Vec<Tree>,
+    my_trolls: Vec<Troll>,
+    opp_trolls: Vec<Troll>,
+    turn: i32,
+    iron_cells: HashSet<Cell>,
+    water_cells: HashSet<Cell>,
+}
+
+// ── geometry helpers ─────────────────────────────────────────────────────────
+
+const NEIGHBORS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+
+fn ortho_neighbors(cell: Cell) -> [Cell; 4] {
+    let (x, y) = cell;
+    [(x, y + 1), (x + 1, y), (x, y - 1), (x - 1, y)]
+}
+
+fn is_adjacent(a: Cell, b: Cell) -> bool {
+    (a.0 - b.0).abs() + (a.1 - b.1).abs() == 1
+}
+
+// ── BFS ─────────────────────────────────────────────────────────────────────
+
+fn bfs_distances(walkable: &HashSet<Cell>, sources: &[Cell]) -> HashMap<Cell, i32> {
+    let mut dist: HashMap<Cell, i32> = HashMap::new();
+    let mut queue: VecDeque<Cell> = VecDeque::new();
+    for &cell in sources {
+        if !dist.contains_key(&cell) {
+            dist.insert(cell, 0);
+            queue.push_back(cell);
+        }
+    }
+    while let Some((x, y)) = queue.pop_front() {
+        let d = dist[&(x, y)];
+        for &(dx, dy) in &NEIGHBORS {
+            let n = (x + dx, y + dy);
+            if walkable.contains(&n) && !dist.contains_key(&n) {
+                dist.insert(n, d + 1);
+                queue.push_back(n);
+            }
+        }
+    }
+    dist
+}
+
+// ── plant simulation ─────────────────────────────────────────────────────────
+
+fn predict_fruits(plant_type: &str, mut size: i32, mut fruits: i32, mut cooldown: i32, ticks: i32) -> i32 {
+    let base = plant_cooldown(plant_type);
+    for _ in 0..ticks {
+        if cooldown > 0 {
+            cooldown -= 1;
+        }
+        if cooldown == 0 {
+            if size < MAX_SIZE {
+                size += 1;
+                cooldown = base;
+            } else if fruits < MAX_FRUITS {
+                fruits += 1;
+                cooldown = base;
+            }
+        }
+    }
+    fruits
+}
+
+fn ticks_until_ripe(tree: &Tree, min_offset: i32) -> Option<i32> {
+    for offset in min_offset..=RIPEN_HORIZON {
+        if predict_fruits(&tree.tree_type, tree.size, tree.fruits, tree.cooldown, offset) > 0 {
+            return Some(offset);
+        }
+    }
+    None
+}
+
+// ── training cost ────────────────────────────────────────────────────────────
+
+fn training_cost(n: i32, talents: (i32, i32, i32, i32)) -> [i32; 6] {
+    let (ms, cc, hp, chop) = talents;
+    let mut cost = [0i32; 6];
+    cost[PLUM] = n + ms * ms;
+    cost[LEMON] = n + cc * cc;
+    cost[APPLE] = n + hp * hp;
+    cost[IRON] = n + chop * chop;
+    cost
+}
+
+// ── Rates ────────────────────────────────────────────────────────────────────
+
+struct Rates {
+    fruit_supply: [f64; 4],
+    mean_dist: f64,
+    mean_tree_size: f64,
+    mean_tree_health: f64,
+    iron_dist: f64,
+}
+
+fn effective_cooldown(state: &State, tree: &Tree) -> i32 {
+    let mut cd = plant_cooldown(&tree.tree_type);
+    let (tx, ty) = tree.pos();
+    let near_water = state.water_cells.iter().any(|&(wx, wy)| {
+        (tx - wx).abs() + (ty - wy).abs() == 1
+    });
+    if near_water {
+        cd -= water_boost(&tree.tree_type);
+    }
+    cd.max(1)
+}
+
+fn estimate_rates(state: &State) -> Rates {
+    let shack_adj: Vec<Cell> = ortho_neighbors(state.my_shack)
+        .iter()
+        .filter(|n| state.walkable.contains(n))
+        .copied()
+        .collect();
+    let dist = bfs_distances(&state.walkable, &shack_adj);
+
+    let mut supply = [0.0f64; 4];
+    let mut dsum = 0.0f64;
+    let mut size_sum = 0.0f64;
+    let mut health_sum = 0.0f64;
+    let mut n = 0usize;
+
+    for t in &state.trees {
+        if !dist.contains_key(&t.pos()) {
+            continue;
+        }
+        // fruit tree check: PLUM/LEMON/APPLE/BANANA all have water_boost
+        let idx = item_index(&t.tree_type);
+        if idx < 4 {
+            supply[idx] += 1.0 / effective_cooldown(state, t) as f64;
+        }
+        dsum += dist[&t.pos()] as f64;
+        size_sum += t.size.max(1) as f64;
+        health_sum += t.health.max(1) as f64;
+        n += 1;
+    }
+
+    let mean_dist = if n > 0 { dsum / n as f64 } else { 4.0 };
+    let mean_size = if n > 0 { size_sum / n as f64 } else { 1.0 };
+    let mean_health = if n > 0 { health_sum / n as f64 } else { 6.0 };
+
+    let iron_dist = if state.iron_cells.is_empty() {
+        INF
+    } else {
+        let mut best = INF;
+        for &ic in &state.iron_cells {
+            for nb in ortho_neighbors(ic) {
+                if let Some(&d) = dist.get(&nb) {
+                    if (d as f64) < best {
+                        best = d as f64;
+                    }
+                }
+            }
+        }
+        best
+    };
+
+    Rates {
+        fruit_supply: supply,
+        mean_dist,
+        mean_tree_size: mean_size,
+        mean_tree_health: mean_health,
+        iron_dist,
+    }
+}
+
+fn has_iron(rates: &Rates) -> bool {
+    rates.iron_dist != INF
+}
+
+// ── rate functions ───────────────────────────────────────────────────────────
+
+fn gatherer_rate(rates: &Rates, stats: (i32, i32, i32, i32)) -> f64 {
+    let (ms, cc, _hp, _chop) = stats;
+    let cycle = 2.0 * rates.mean_dist / (ms.max(1) as f64) + 1.0;
+    cc as f64 / cycle
+}
+
+fn chopper_wood_rate(rates: &Rates, stats: (i32, i32, i32, i32)) -> f64 {
+    let (ms, cc, _hp, chop) = stats;
+    if chop <= 0 {
+        return 0.0;
+    }
+    // Python: fell = max(1.0, -(-mean_tree_health // chop))
+    // Python floor division: -(-h // c) is ceil(h/c) for positive values
+    let fell = (rates.mean_tree_health / chop as f64).ceil().max(1.0);
+    let travel = 2.0 * rates.mean_dist / (ms.max(1) as f64);
+    let wood_per_trip = (cc as f64).min(rates.mean_tree_size);
+    wood_per_trip / (fell + travel + 1.0)
+}
+
+fn chopper_iron_rate(rates: &Rates, stats: (i32, i32, i32, i32)) -> f64 {
+    let (ms, cc, _hp, chop) = stats;
+    if chop <= 0 || !has_iron(rates) {
+        return 0.0;
+    }
+    let travel = 2.0 * rates.iron_dist / (ms.max(1) as f64);
+    let iron_per_trip = (cc as f64).min(chop as f64);
+    iron_per_trip / (travel + 1.0)
+}
+
+// ── role ─────────────────────────────────────────────────────────────────────
+
+const ROLE_CHOP: u8 = 0;
+const ROLE_GATH: u8 = 1;
+
+fn role_of(stats: (i32, i32, i32, i32)) -> u8 {
+    if stats.3 >= 2 { ROLE_CHOP } else { ROLE_GATH }
+}
+
+// ── project ──────────────────────────────────────────────────────────────────
+
+fn project(state: &State, policy: &[(i32, i32, i32, i32)], rates: &Rates) -> f64 {
+    let mut banked: [f64; 6] = [
+        state.my_inventory[0] as f64,
+        state.my_inventory[1] as f64,
+        state.my_inventory[2] as f64,
+        state.my_inventory[3] as f64,
+        state.my_inventory[4] as f64,
+        state.my_inventory[5] as f64,
+    ];
+    // roster: (role, stats)
+    let mut roster: Vec<(u8, (i32, i32, i32, i32))> = state.my_trolls
+        .iter()
+        .map(|t| (role_of(t.stats()), t.stats()))
+        .collect();
+    // pending: (ready_at, role, stats)
+    let mut pending: Vec<(i32, u8, (i32, i32, i32, i32))> = Vec::new();
+    let mut bi = 0usize;
+    let ramp = ((rates.mean_dist as i32) + 1).min(RAMP_DELAY_CAP);
+
+    // pay indices: iron index included only if has_iron
+    let pay: &[usize] = if has_iron(rates) { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+
+    for t in state.turn..=TOTAL_TURNS {
+        // mature pending trolls
+        let matured: Vec<_> = pending.iter().filter(|p| p.0 <= t).cloned().collect();
+        for m in &matured {
+            roster.push((m.1, m.2));
+        }
+        pending.retain(|p| p.0 > t);
+
+        let n_now = (roster.len() + pending.len()) as i32;
+
+        let mut need = [0.0f64; 6];
+        if bi < policy.len() {
+            let cost = training_cost(n_now, policy[bi]);
+            for i in 0..6 {
+                need[i] = (cost[i] as f64 - banked[i]).max(0.0);
+            }
+        }
+        // suppress iron need if no choppers
+        let has_choppers = roster.iter().any(|(r, _)| *r == ROLE_CHOP)
+            || pending.iter().any(|(_, r, _)| *r == ROLE_CHOP);
+        if need[IRON] > 0.0 && !has_choppers {
+            need = [0.0; 6];
+        }
+
+        // gatherers: allocate supply to needed types first, then highest supply
+        let mut remaining: f64 = roster.iter()
+            .filter(|(r, _)| *r == ROLE_GATH)
+            .map(|(_, s)| gatherer_rate(rates, *s))
+            .sum();
+
+        // sort fruit indices by (-need[j], -supply[j])
+        let mut fruit_order: [usize; 4] = [0, 1, 2, 3];
+        fruit_order.sort_by(|&a, &b| {
+            let ka = (-need[a], -rates.fruit_supply[a]);
+            let kb = (-need[b], -rates.fruit_supply[b]);
+            ka.partial_cmp(&kb).unwrap()
+        });
+        for i in fruit_order {
+            if remaining <= 0.0 {
+                break;
+            }
+            let take = remaining.min(rates.fruit_supply[i]);
+            banked[i] += take;
+            remaining -= take;
+        }
+
+        // choppers
+        for &(r, s) in &roster {
+            if r != ROLE_CHOP {
+                continue;
+            }
+            if need[IRON] > 0.0 {
+                banked[IRON] += chopper_iron_rate(rates, s);
+            } else {
+                banked[WOOD] += chopper_wood_rate(rates, s);
+            }
+        }
+
+        // investment
+        if bi < policy.len() {
+            let spec = policy[bi];
+            let cost = training_cost(n_now, spec);
+            if pay.iter().all(|&i| banked[i] >= cost[i] as f64) {
+                for &i in pay {
+                    banked[i] -= cost[i] as f64;
+                }
+                pending.push((t + ramp, role_of(spec), spec));
+                bi += 1;
+            }
+        }
+    }
+
+    banked[0] + banked[1] + banked[2] + banked[3] + WOOD_POINTS * banked[WOOD]
+}
+
+// ── candidate policies ───────────────────────────────────────────────────────
+
+fn candidate_policies() -> Vec<Vec<(i32, i32, i32, i32)>> {
+    let mut cands: Vec<Vec<(i32, i32, i32, i32)>> = Vec::new();
+    cands.push(vec![]);
+    for &g in &GATHERER_SPECS {
+        cands.push(vec![g]);
+        cands.push(vec![g, g]);
+    }
+    for &c in &CHOPPER_SPECS {
+        cands.push(vec![c]);
+        for &g in &GATHERER_SPECS {
+            cands.push(vec![c, g]);
+            cands.push(vec![c, g, g]);
+        }
+    }
+    cands
+}
+
+// ── Plan ─────────────────────────────────────────────────────────────────────
+
+struct Plan {
+    train: Option<(i32, i32, i32, i32)>,
+    gather_types: Vec<usize>,
+}
+
+fn plan_from_policy(state: &State, policy: &[(i32, i32, i32, i32)]) -> Plan {
+    let n = state.my_trolls.len() as i32;
+    let league3 = !state.iron_cells.is_empty();
+    let pay: &[usize] = if league3 { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+    if policy.is_empty() {
+        return Plan { train: None, gather_types: vec![] };
+    }
+    let first = policy[0];
+    let cost = training_cost(n, first);
+    let affordable = pay.iter().all(|&i| state.my_inventory[i] >= cost[i]);
+
+    // gather_types: fruit indices where we're short, sorted by (inventory[i] - cost[i]) ascending
+    let mut gather_types: Vec<usize> = (0..4)
+        .filter(|&i| state.my_inventory[i] < cost[i])
+        .collect();
+    gather_types.sort_by_key(|&i| state.my_inventory[i] - cost[i]);
+
+    Plan {
+        train: if affordable { Some(first) } else { None },
+        gather_types,
+    }
+}
+
+fn search_policy(state: &State) -> Plan {
+    let rates = estimate_rates(state);
+    let mut best_score: Option<f64> = None;
+    let mut best_pol: Vec<(i32, i32, i32, i32)> = vec![];
+    for pol in candidate_policies() {
+        let s = project(state, &pol, &rates);
+        if best_score.is_none() || s > best_score.unwrap() {
+            best_score = Some(s);
+            best_pol = pol;
+        }
+    }
+    plan_from_policy(state, &best_pol)
+}
+
+// ── best_tree ────────────────────────────────────────────────────────────────
+
+fn best_tree<'a>(
+    state: &'a State,
+    reserved: &HashSet<Cell>,
+    dist_t: &HashMap<Cell, i32>,
+    return_dist: &HashMap<Cell, i32>,
+    gather_types: &[usize],
+) -> Option<&'a Tree> {
+    let mut best: Option<&Tree> = None;
+    let mut best_key: Option<(i32, i32, i32, i32)> = None;
+
+    for tree in &state.trees {
+        let pos = tree.pos();
+        if reserved.contains(&pos) {
+            continue;
+        }
+        if !dist_t.contains_key(&pos) || !return_dist.contains_key(&pos) {
+            continue;
+        }
+        let walk = dist_t[&pos];
+        let ripe = match ticks_until_ripe(tree, walk) {
+            Some(r) => r,
+            None => continue,
+        };
+        let ti = item_index(&tree.tree_type);
+        let short = if gather_types.contains(&ti) { 0i32 } else { 1i32 };
+        let wait = ripe - walk;
+        let key = (short, wait, ripe + return_dist[&pos], walk);
+        if best_key.is_none() || key < best_key.unwrap() {
+            best_key = Some(key);
+            best = Some(tree);
+        }
+    }
+    best
+}
+
+// ── gather_command ────────────────────────────────────────────────────────────
+
+fn bank_command(troll: &Troll, state: &State) -> String {
+    if is_adjacent(troll.pos(), state.my_shack) {
+        format!("DROP {}", troll.id)
+    } else {
+        format!("MOVE {} {} {}", troll.id, state.my_shack.0, state.my_shack.1)
+    }
+}
+
+fn gather_command(
+    state: &State,
+    troll: &Troll,
+    reserved: &HashSet<Cell>,
+    dist_t: &HashMap<Cell, i32>,
+    return_dist: &HashMap<Cell, i32>,
+    gather_types: &[usize],
+    topup_radius: i32,
+) -> (String, Option<Cell>) {
+    // 1. Opportunistic harvest
+    if troll.free_capacity() > 0 {
+        for tree in &state.trees {
+            if tree.pos() == troll.pos() && tree.fruits > 0 {
+                return (format!("HARVEST {}", troll.id), Some(tree.pos()));
+            }
+        }
+    }
+
+    let target = best_tree(state, reserved, dist_t, return_dist, gather_types);
+
+    // 2. Carrying: bank unless worthwhile top-up nearby
+    if troll.total_carried() > 0 {
+        if troll.free_capacity() == 0
+            || target.is_none()
+            || *dist_t.get(&target.unwrap().pos()).unwrap_or(&(1 << 30)) > topup_radius
+        {
+            return (bank_command(troll, state), None);
+        }
+    }
+
+    // 3. Head for target
+    match target {
+        None => ("WAIT".to_string(), None),
+        Some(t) => {
+            if t.pos() == troll.pos() {
+                ("WAIT".to_string(), None)
+            } else {
+                (format!("MOVE {} {} {}", troll.id, t.x, t.y), Some(t.pos()))
+            }
+        }
+    }
+}
+
+// ── chop_command ──────────────────────────────────────────────────────────────
+
+fn best_chop_target<'a>(
+    state: &'a State,
+    reserved: &HashSet<Cell>,
+    dist_t: &HashMap<Cell, i32>,
+) -> Option<&'a Tree> {
+    let mut best: Option<&Tree> = None;
+    let mut best_key: Option<(i32, i32, i32)> = None;
+    let (ox, oy) = state.opp_shack;
+    for tree in &state.trees {
+        let pos = tree.pos();
+        if reserved.contains(&pos) || !dist_t.contains_key(&pos) {
+            continue;
+        }
+        let d_enemy = (tree.x - ox).abs() + (tree.y - oy).abs();
+        let key = (d_enemy, dist_t[&pos], -tree.size);
+        if best_key.is_none() || key < best_key.unwrap() {
+            best_key = Some(key);
+            best = Some(tree);
+        }
+    }
+    best
+}
+
+fn chop_command(
+    state: &State,
+    troll: &Troll,
+    reserved: &HashSet<Cell>,
+    dist_t: &HashMap<Cell, i32>,
+    iron_target: i32,
+) -> (String, Option<Cell>) {
+    // Mine iron when adjacent, but only until iron_target banked
+    let iron_have = state.my_inventory[IRON] + troll.carry[IRON];
+    if troll.free_capacity() > 0 && iron_have < iron_target {
+        for &ic in &state.iron_cells {
+            if is_adjacent(troll.pos(), ic) {
+                return (format!("MINE {}", troll.id), None);
+            }
+        }
+    }
+
+    let target = best_chop_target(state, reserved, dist_t);
+
+    // Carry home when full or no target
+    if troll.total_carried() > 0 && (troll.free_capacity() == 0 || target.is_none()) {
+        if is_adjacent(troll.pos(), state.my_shack) {
+            return (format!("DROP {}", troll.id), None);
+        }
+        return (
+            format!("MOVE {} {} {}", troll.id, state.my_shack.0, state.my_shack.1),
+            None,
+        );
+    }
+
+    // Standing on a tree -> chop it
+    for tree in &state.trees {
+        if tree.pos() == troll.pos() {
+            return (format!("CHOP {}", troll.id), Some(tree.pos()));
+        }
+    }
+
+    match target {
+        None => (
+            format!("MOVE {} {} {}", troll.id, state.opp_shack.0, state.opp_shack.1),
+            None,
+        ),
+        Some(t) => (format!("MOVE {} {} {}", troll.id, t.x, t.y), Some(t.pos())),
+    }
+}
+
+// ── decide ────────────────────────────────────────────────────────────────────
+
+fn decide(state: &State) -> Vec<String> {
+    let shack_adj: Vec<Cell> = ortho_neighbors(state.my_shack)
+        .iter()
+        .filter(|n| state.walkable.contains(n))
+        .copied()
+        .collect();
+    let return_dist = bfs_distances(&state.walkable, &shack_adj);
+
+    let plan = search_policy(state);
+
+    let mut commands_by_id: HashMap<i32, String> = HashMap::new();
+    let mut used_ids: HashSet<i32> = HashSet::new();
+    let mut reserved: HashSet<Cell> = HashSet::new();
+
+    // Choppers first (chop_power >= 2)
+    let mut my_trolls_sorted = state.my_trolls.clone();
+    my_trolls_sorted.sort_by_key(|t| t.id);
+
+    for troll in &my_trolls_sorted {
+        if troll.chop_power >= 2 {
+            let dist_t = bfs_distances(&state.walkable, &[troll.pos()]);
+            let (cmd, res) = chop_command(state, troll, &reserved, &dist_t, PARAMS.iron_target);
+            if let Some(pos) = res {
+                reserved.insert(pos);
+            }
+            commands_by_id.insert(troll.id, cmd);
+            used_ids.insert(troll.id);
+        }
+    }
+
+    // Orchard planting (gated on plan.plant which is always None in v0.7.1)
+    // plan.plant is always None (planting_commands is only called when plan.plant is Some)
+    // So this block never executes — matching Python behavior where plan.plant == None
+
+    // Gathering for remaining trolls
+    for troll in &my_trolls_sorted {
+        if used_ids.contains(&troll.id) {
+            continue;
+        }
+        let dist_t = bfs_distances(&state.walkable, &[troll.pos()]);
+        let (cmd, res) = gather_command(
+            state,
+            troll,
+            &reserved,
+            &dist_t,
+            &return_dist,
+            &plan.gather_types,
+            PARAMS.topup_radius,
+        );
+        if let Some(pos) = res {
+            reserved.insert(pos);
+        }
+        commands_by_id.insert(troll.id, cmd);
+    }
+
+    // Spread banking trolls across shack-adjacent cells
+    let (sx, sy) = state.my_shack;
+    let move_to_shack = format!("MOVE {{}} {} {}", sx, sy);
+    // collect banker troll ids: those whose command is "MOVE <id> sx sy"
+    let mut bankers: Vec<i32> = commands_by_id
+        .iter()
+        .filter(|(&tid, cmd)| cmd.as_str() == format!("MOVE {} {} {}", tid, sx, sy).as_str())
+        .map(|(&tid, _)| tid)
+        .collect();
+    bankers.sort();
+    for (i, &tid) in bankers.iter().enumerate() {
+        let cell = if shack_adj.is_empty() {
+            state.my_shack
+        } else {
+            shack_adj[i % shack_adj.len()]
+        };
+        commands_by_id.insert(tid, format!("MOVE {} {} {}", tid, cell.0, cell.1));
+    }
+    drop(move_to_shack);
+
+    let mut commands: Vec<String> = Vec::new();
+    if state.turn == 1 {
+        commands.push(format!("MSG v{}", VERSION));
+    }
+    let mut sorted_ids: Vec<i32> = commands_by_id.keys().copied().collect();
+    sorted_ids.sort();
+    for tid in sorted_ids {
+        commands.push(commands_by_id[&tid].clone());
+    }
+
+    // Opening tempo floor
+    let mut train_spec = plan.train;
+    let n = state.my_trolls.len();
+    // forced_policy is never set in real bot
+    if state.turn <= PARAMS.opening_turns && n < PARAMS.opening_max_trolls {
+        let spec = PARAMS.opening_spec;
+        let cost = training_cost(n as i32, spec);
+        let pay: &[usize] = if !state.iron_cells.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+        if pay.iter().all(|&i| state.my_inventory[i] >= cost[i]) {
+            train_spec = Some(spec);
+        }
+    }
+
+    if let Some(spec) = train_spec {
+        if TOTAL_TURNS - state.turn > PARAMS.min_turns_left_to_train
+            && !state.my_trolls.iter().any(|t| t.pos() == state.my_shack)
+            && n < PARAMS.max_trolls
+        {
+            commands.push(format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3));
+        }
+    }
+
+    if commands.is_empty() {
+        commands.push("WAIT".to_string());
+    }
+    commands
+}
+
+// ── I/O parsing ───────────────────────────────────────────────────────────────
+
+fn parse_grid(grid_lines: &[String]) -> (HashSet<Cell>, Cell, Cell, HashSet<Cell>, HashSet<Cell>) {
+    let mut walkable = HashSet::new();
+    let mut iron = HashSet::new();
+    let mut water = HashSet::new();
+    let mut my_shack = (0i32, 0i32);
+    let mut opp_shack = (0i32, 0i32);
+    for (y, line) in grid_lines.iter().enumerate() {
+        for (x, ch) in line.chars().enumerate() {
+            let cell = (x as i32, y as i32);
+            match ch {
+                '0' => my_shack = cell,
+                '1' => opp_shack = cell,
+                '.' => { walkable.insert(cell); }
+                '+' => { iron.insert(cell); }
+                '~' => { water.insert(cell); }
+                _ => {} // '#' and others are rocks
+            }
+        }
+    }
+    (walkable, my_shack, opp_shack, iron, water)
+}
+
+fn read_line(reader: &mut impl BufRead) -> Option<String> {
+    let mut s = String::new();
+    match reader.read_line(&mut s) {
+        Ok(0) => None,
+        Ok(_) => Some(s.trim_end_matches('\n').trim_end_matches('\r').to_string()),
+        Err(_) => None,
+    }
+}
+
+fn parse_turn(
+    reader: &mut impl BufRead,
+    walkable: &HashSet<Cell>,
+    my_shack: Cell,
+    opp_shack: Cell,
+    turn: i32,
+    iron_cells: &HashSet<Cell>,
+    water_cells: &HashSet<Cell>,
+) -> Option<State> {
+    let inv0_line = read_line(reader)?;
+    let my_inventory: Vec<i32> = inv0_line.split_whitespace()
+        .map(|v| v.parse().unwrap())
+        .collect();
+    let inv1_line = read_line(reader)?;
+    let opp_inventory: Vec<i32> = inv1_line.split_whitespace()
+        .map(|v| v.parse().unwrap())
+        .collect();
+
+    let tree_count_line = read_line(reader)?;
+    let tree_count: usize = tree_count_line.trim().parse().unwrap();
+    let mut trees = Vec::with_capacity(tree_count);
+    for _ in 0..tree_count {
+        let line = read_line(reader)?;
+        let parts: Vec<&str> = line.split_whitespace().collect();
+        trees.push(Tree {
+            tree_type: parts[0].to_string(),
+            x: parts[1].parse().unwrap(),
+            y: parts[2].parse().unwrap(),
+            size: parts[3].parse().unwrap(),
+            health: parts[4].parse().unwrap(),
+            fruits: parts[5].parse().unwrap(),
+            cooldown: parts[6].parse().unwrap(),
+        });
+    }
+
+    let troll_count_line = read_line(reader)?;
+    let troll_count: usize = troll_count_line.trim().parse().unwrap();
+    let mut my_trolls = Vec::new();
+    let mut opp_trolls = Vec::new();
+    for _ in 0..troll_count {
+        let line = read_line(reader)?;
+        let f: Vec<i32> = line.split_whitespace()
+            .map(|v| v.parse().unwrap())
+            .collect();
+        // id player x y ms cc hp chop carry[6]
+        let troll = Troll {
+            id: f[0],
+            x: f[2],
+            y: f[3],
+            movement_speed: f[4],
+            carry_capacity: f[5],
+            harvest_power: f[6],
+            chop_power: f[7],
+            carry: [f[8], f[9], f[10], f[11], f[12], f[13]],
+        };
+        if f[1] == 0 {
+            my_trolls.push(troll);
+        } else {
+            opp_trolls.push(troll);
+        }
+    }
+
+    let my_inv: [i32; 6] = my_inventory.try_into().unwrap();
+    let opp_inv: [i32; 6] = opp_inventory.try_into().unwrap();
+
+    Some(State {
+        walkable: walkable.clone(),
+        my_shack,
+        opp_shack,
+        my_inventory: my_inv,
+        opp_inventory: opp_inv,
+        trees,
+        my_trolls,
+        opp_trolls,
+        turn,
+        iron_cells: iron_cells.clone(),
+        water_cells: water_cells.clone(),
+    })
+}
+
+// ── main ──────────────────────────────────────────────────────────────────────
+
+fn main() {
+    let stdin = io::stdin();
+    let stdout = io::stdout();
+    let mut reader = io::BufReader::new(stdin.lock());
+    let mut out = io::BufWriter::new(stdout.lock());
+
+    // Read header: width height
+    let header = match read_line(&mut reader) {
+        Some(s) => s,
+        None => return,
+    };
+    let mut hw = header.split_whitespace();
+    let _width: i32 = hw.next().unwrap().parse().unwrap();
+    let height: i32 = hw.next().unwrap().parse().unwrap();
+
+    let mut grid_lines = Vec::with_capacity(height as usize);
+    for _ in 0..height {
+        match read_line(&mut reader) {
+            Some(line) => grid_lines.push(line),
+            None => return,
+        }
+    }
+
+    let (walkable, my_shack, opp_shack, iron_cells, water_cells) = parse_grid(&grid_lines);
+
+    let mut turn = 0i32;
+    loop {
+        turn += 1;
+        match parse_turn(&mut reader, &walkable, my_shack, opp_shack, turn, &iron_cells, &water_cells) {
+            None => break,
+            Some(state) => {
+                let cmds = decide(&state);
+                writeln!(out, "{}", cmds.join(";")).unwrap();
+                out.flush().unwrap();
+            }
+        }
+    }
+}
