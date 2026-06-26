@@ -27,3 +27,19 @@ def test_no_planting_command_by_default():
 def test_late_game_emits_no_train():
     cmds = decide(_bronze_state([30, 30, 30, 0, 30, 0], turn=296), PARAMS)
     assert not any(c.startswith("TRAIN") for c in cmds)
+
+
+def test_opening_trains_cheap_gatherer_immediately():
+    # Turn 1 with a cheap-gatherer-affordable hand: the opening floor trains
+    # (1,1,1,0) from the start, overriding whatever the planner prefers.
+    cmds = decide(_bronze_state([5, 5, 5, 0, 5, 0]), PARAMS)
+    assert "TRAIN 1 1 1 0" in cmds
+
+
+def test_opening_floor_skipped_under_forced_policy():
+    # The correlation gate forces a build order; the opening floor must NOT
+    # override it, or the sim would stop following the forced policy.
+    p = dict(PARAMS)
+    p["forced_policy"] = [(1, 3, 0, 2)]      # expensive chopper, unaffordable now
+    cmds = decide(_bronze_state([5, 5, 5, 0, 5, 0]), p)
+    assert not any(c == "TRAIN 1 1 1 0" for c in cmds)

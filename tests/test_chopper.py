@@ -6,10 +6,11 @@ def grid(w, h, blocked=()):
     return {(x, y) for x in range(w) for y in range(h)} - set(blocked)
 
 
-def st(walkable, my_shack, opp_shack, trees, my_trolls, iron=frozenset(), inv=None):
+def st(walkable, my_shack, opp_shack, trees, my_trolls, iron=frozenset(), inv=None,
+       turn=5):
     return State(walkable=walkable, my_shack=my_shack, opp_shack=opp_shack,
                  my_inventory=inv if inv is not None else [0]*6, opp_inventory=[0]*6,
-                 trees=trees, my_trolls=my_trolls, opp_trolls=[], turn=5, iron_cells=iron)
+                 trees=trees, my_trolls=my_trolls, opp_trolls=[], turn=turn, iron_cells=iron)
 
 
 def test_chopper_chops_tree_underfoot():
@@ -41,11 +42,12 @@ def test_chopper_mines_adjacent_iron():
     assert chop_command(s, ch, set(), {(2, 0): 0}, PARAMS)[0] == "MINE 0"
 
 
-def test_trains_a_chopper_first_in_bronze():
-    # Planner picks a chopper spec in Bronze (has iron terrain) when well-funded.
+def test_trains_a_chopper_after_opening_in_bronze():
+    # Past the opening floor (turn>opening_turns), the planner picks a chopper
+    # spec in Bronze (has iron terrain) when well-funded -- wood scores 4 pts.
     troll = Troll(0, 1, 0, 1, 1, 1, [0]*6)
     s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [troll],
-           iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0])
+           iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0], turn=40)
     cmds = decide(s, PARAMS)
     train_cmds = [c for c in cmds if c.startswith("TRAIN")]
     assert train_cmds and train_cmds[0].split()[-1] != "0"
@@ -70,11 +72,12 @@ def test_decide_routes_chopper_to_chop():
 
 
 def test_chop1_starting_troll_does_not_block_real_chopper_training():
-    # Bronze's starting troll has chopPower 1; the planner still trains a real
-    # chopper (chop>=2) since chop-1 doesn't count as a chopper in project().
+    # Bronze's starting troll has chopPower 1; past the opening floor the planner
+    # still trains a real chopper (chop>=2) since chop-1 doesn't count as a chopper
+    # in project().
     starter = Troll(0, 1, 0, 1, 1, 1, [0]*6, chop_power=1)
     s = st(grid(8, 2, blocked=[(0, 0)]), (0, 0), (7, 1), [], [starter],
-           iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0])
+           iron=frozenset({(3, 1)}), inv=[10, 10, 10, 10, 10, 0], turn=40)
     cmds = decide(s, PARAMS)
     train_cmds = [c for c in cmds if c.startswith("TRAIN")]
     assert train_cmds and train_cmds[0].split()[-1] != "0"   # trains chop>0

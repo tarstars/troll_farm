@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.7.0"
+VERSION = "0.7.1"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -471,6 +471,11 @@ PARAMS = {
     "max_trolls": 5,          # cap on own troll count
     "iron_target": 18,      # chopper mines iron until this much is banked, then chops
     "min_turns_left_to_train": 25,   # stop training near the end
+    # Opening tempo floor (overrides the planner early): train a cheap gatherer
+    # ASAP from the starting hand to expand before the window closes.
+    "opening_turns": 30,
+    "opening_max_trolls": 3,
+    "opening_spec": (1, 1, 1, 0),
     "plant_enabled": True,    # build a small near-shack orchard (gated by plan.plant)
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # filled by decide() with the empty footprint cells
@@ -582,12 +587,29 @@ def decide(state, params):
         commands.append(f"MSG v{VERSION}")
     commands.extend(commands_by_id[tid] for tid in sorted(commands_by_id))
 
-    if (plan.train is not None
+    # Opening tempo floor: the planner values the chopper's wood economics and
+    # skips the early cheap-expansion window that wins games (v0.7.0 trained once,
+    # late, vs the opponent's 3 trolls -- see docs/plays/v070_vasiliev_loss_analysis.md).
+    # So in the opening, if a cheap gatherer is affordable from banked resources
+    # right now, train it; otherwise defer to the planner. Skipped under
+    # forced_policy so the correlation gate still follows its forced build order.
+    train_spec = plan.train
+    n = len(state.my_trolls)
+    if (params.get("forced_policy") is None
+            and state.turn <= params["opening_turns"]
+            and n < params["opening_max_trolls"]):
+        spec = params["opening_spec"]
+        cost = training_cost(n, spec)
+        pay = (0, 1, 2, 4) if state.iron_cells else (0, 1, 2)
+        if all(state.my_inventory[i] >= cost[i] for i in pay):
+            train_spec = spec
+
+    if (train_spec is not None
             and TOTAL_TURNS - state.turn > params["min_turns_left_to_train"]
             and not any(t.pos == state.my_shack for t in state.my_trolls)
             and len(state.my_trolls) < params["max_trolls"]):
-        commands.append(f"TRAIN {plan.train[0]} {plan.train[1]} "
-                        f"{plan.train[2]} {plan.train[3]}")
+        commands.append(f"TRAIN {train_spec[0]} {train_spec[1]} "
+                        f"{train_spec[2]} {train_spec[3]}")
 
     if not commands:
         commands = ["WAIT"]
