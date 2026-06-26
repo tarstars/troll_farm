@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.7.1"
+VERSION = "0.7.2"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -476,6 +476,9 @@ PARAMS = {
     "opening_turns": 30,
     "opening_max_trolls": 3,
     "opening_spec": (1, 1, 1, 0),
+    # Build a chopper first in the opening (wood is the dominant economy); cc=2
+    # carries a fuller tree, cc=1 is the cheapest fallback to start chopping ASAP.
+    "opening_chopper_specs": [(1, 2, 0, 2), (1, 1, 0, 2)],
     "plant_enabled": True,    # build a small near-shack orchard (gated by plan.plant)
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # filled by decide() with the empty footprint cells
@@ -587,22 +590,35 @@ def decide(state, params):
         commands.append(f"MSG v{VERSION}")
     commands.extend(commands_by_id[tid] for tid in sorted(commands_by_id))
 
-    # Opening tempo floor: the planner values the chopper's wood economics and
-    # skips the early cheap-expansion window that wins games (v0.7.0 trained once,
-    # late, vs the opponent's 3 trolls -- see docs/plays/v070_vasiliev_loss_analysis.md).
-    # So in the opening, if a cheap gatherer is affordable from banked resources
-    # right now, train it; otherwise defer to the planner. Skipped under
-    # forced_policy so the correlation gate still follows its forced build order.
+    # Opening tempo floor: win the early window the planner mis-times. Wood (CHOP)
+    # is the dominant economy (4 pts each) and every strong opponent builds a
+    # chopper EARLY, so PRIORITISE a cheap chopper first; once we have one, top up
+    # with cheap gatherers for board presence. v0.7.1 lost by training only
+    # gatherers (4 trolls, 0 chops) to an opponent's 1 chopper (150 chops) -- see
+    # docs/plays/v071_nochop note. Skipped under forced_policy so the correlation
+    # gate still follows its forced build order.
     train_spec = plan.train
     n = len(state.my_trolls)
     if (params.get("forced_policy") is None
             and state.turn <= params["opening_turns"]
             and n < params["opening_max_trolls"]):
-        spec = params["opening_spec"]
-        cost = training_cost(n, spec)
         pay = (0, 1, 2, 4) if state.iron_cells else (0, 1, 2)
-        if all(state.my_inventory[i] >= cost[i] for i in pay):
-            train_spec = spec
+
+        def _affordable(spec):
+            cost = training_cost(n, spec)
+            return all(state.my_inventory[i] >= cost[i] for i in pay)
+
+        have_chopper = any(t.chop_power >= 2 for t in state.my_trolls)
+        chosen = None
+        if not have_chopper and state.iron_cells:    # Bronze: get a chopper first
+            for spec in params["opening_chopper_specs"]:
+                if _affordable(spec):
+                    chosen = spec
+                    break
+        if chosen is None and _affordable(params["opening_spec"]):
+            chosen = params["opening_spec"]           # else a cheap gatherer
+        if chosen is not None:
+            train_spec = chosen
 
     if (train_spec is not None
             and TOTAL_TURNS - state.turn > params["min_turns_left_to_train"]

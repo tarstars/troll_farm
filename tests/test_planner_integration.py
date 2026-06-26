@@ -29,10 +29,18 @@ def test_late_game_emits_no_train():
     assert not any(c.startswith("TRAIN") for c in cmds)
 
 
-def test_opening_trains_cheap_gatherer_immediately():
-    # Turn 1 with a cheap-gatherer-affordable hand: the opening floor trains
-    # (1,1,1,0) from the start, overriding whatever the planner prefers.
+def test_opening_trains_chopper_first_in_bronze():
+    # Wood is the dominant economy, so the opening floor builds a CHOPPER first
+    # (chop>0) when iron terrain is present and one is affordable now.
     cmds = decide(_bronze_state([5, 5, 5, 0, 5, 0]), PARAMS)
+    train = [c for c in cmds if c.startswith("TRAIN")]
+    assert train and train[0].split()[-1] != "0"   # chop > 0
+
+
+def test_opening_falls_back_to_gatherer_when_chopper_unaffordable():
+    # Some iron (>=1 for a gatherer) but < the chopper's IRON cost (5): the
+    # opening trains the cheap gatherer instead of stalling.
+    cmds = decide(_bronze_state([5, 5, 5, 0, 2, 0]), PARAMS)
     assert "TRAIN 1 1 1 0" in cmds
 
 
