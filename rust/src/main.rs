@@ -9,6 +9,10 @@ use std::io::{self, BufRead, Write};
 
 const VERSION: &str = "0.7.5";
 const TOTAL_TURNS: i32 = 300;
+// Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
+// to stderr (captured in the replay) so we can replay a real game through the sim
+// and compare turn-by-turn. Off by default (no effect on play or stdout parity).
+const DEBUG: bool = false;
 
 // Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
 const PLUM: usize = 0;
@@ -1075,6 +1079,47 @@ fn parse_turn(
 
 // ── main ──────────────────────────────────────────────────────────────────────
 
+/// Echo per-turn state to stderr for sim validation (gated by DEBUG). At turn 1
+/// it logs the map + full initial trees/trolls (to reconstruct the start); every
+/// turn it logs a compact digest (both inventories + all troll positions) so a
+/// captured game can be replayed through the sim and compared turn-by-turn.
+fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
+    if !DEBUG {
+        return;
+    }
+    if state.turn == 1 {
+        eprintln!("@TFMAP {} {}", width, height);
+        for l in grid {
+            eprintln!("@TFMAP {}", l.trim_end());
+        }
+        for t in &state.trees {
+            eprintln!(
+                "@TFI P {} {} {} {} {} {} {}",
+                t.tree_type, t.x, t.y, t.size, t.health, t.fruits, t.cooldown
+            );
+        }
+        for (pl, list) in [(0, &state.my_trolls), (1, &state.opp_trolls)] {
+            for u in list {
+                eprintln!(
+                    "@TFI U {} {} {} {} {} {} {} {} {} {} {} {} {} {}",
+                    u.id, pl, u.x, u.y, u.movement_speed, u.carry_capacity,
+                    u.harvest_power, u.chop_power, u.carry[0], u.carry[1],
+                    u.carry[2], u.carry[3], u.carry[4], u.carry[5]
+                );
+            }
+        }
+    }
+    let join = |a: &[i32; 6]| a.iter().map(|v| v.to_string()).collect::<Vec<_>>().join(",");
+    let mut us = String::new();
+    for u in &state.my_trolls {
+        us.push_str(&format!("{},0,{},{};", u.id, u.x, u.y));
+    }
+    for u in &state.opp_trolls {
+        us.push_str(&format!("{},1,{},{};", u.id, u.x, u.y));
+    }
+    eprintln!("@TFD {} {} {} {}", state.turn, join(&state.my_inventory), join(&state.opp_inventory), us);
+}
+
 fn main() {
     let stdin = io::stdin();
     let stdout = io::stdout();
@@ -1087,7 +1132,7 @@ fn main() {
         None => return,
     };
     let mut hw = header.split_whitespace();
-    let _width: i32 = hw.next().unwrap().parse().unwrap();
+    let width: i32 = hw.next().unwrap().parse().unwrap();
     let height: i32 = hw.next().unwrap().parse().unwrap();
 
     let mut grid_lines = Vec::with_capacity(height as usize);
@@ -1106,6 +1151,7 @@ fn main() {
         match parse_turn(&mut reader, &walkable, my_shack, opp_shack, turn, &iron_cells, &water_cells) {
             None => break,
             Some(state) => {
+                debug_log(&state, &grid_lines, width, height);
                 let cmds = decide(&state);
                 writeln!(out, "{}", cmds.join(";")).unwrap();
                 out.flush().unwrap();
