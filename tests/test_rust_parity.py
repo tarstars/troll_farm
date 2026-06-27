@@ -34,8 +34,12 @@ def test_rust_has_no_nested_reference_patterns():
     for i, line in enumerate(src.splitlines(), 1):
         if line.lstrip().startswith("//"):
             continue
-        for m in re.finditer(r"\|\s*\(([^|)]*)\)", line):   # the closure's tuple pattern
-            if re.search(r"&[a-z_]", m.group(1)):
+        # Inspect each closure's PARAMETER list (between its two pipes). The unsafe
+        # shape is a tuple destructure containing `&ident` (e.g. `|(c, &d)|`); a
+        # top-level `|&x|` has no `(` in its params and is fine.
+        for m in re.finditer(r"\|([^|]*)\|", line):
+            params = m.group(1)
+            if "(" in params and re.search(r"&[a-z_]", params):
                 bad.append((i, line.strip()))
     assert not bad, (
         "nested `&` reference pattern(s) -- CG rustc rejects these; bind without "
