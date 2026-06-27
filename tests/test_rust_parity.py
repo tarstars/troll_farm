@@ -22,6 +22,27 @@ def _load_parity():
     return module
 
 
+def test_rust_has_no_nested_reference_patterns():
+    """CG's rustc rejects explicit `&x` reference patterns nested in a tuple
+    destructure under a `&Item`-taking closure (filter/find/any/...). Our local
+    rustc 1.75 accepts them, so the edition compile-checks miss it -- this has
+    broken the CG paste twice. Guard with a source scan: flag `|( ... &ident ... )`.
+    """
+    import re
+    src = (_RUST_DIR / "src" / "main.rs").read_text()
+    bad = []
+    for i, line in enumerate(src.splitlines(), 1):
+        if line.lstrip().startswith("//"):
+            continue
+        for m in re.finditer(r"\|\s*\(([^|)]*)\)", line):   # the closure's tuple pattern
+            if re.search(r"&[a-z_]", m.group(1)):
+                bad.append((i, line.strip()))
+    assert not bad, (
+        "nested `&` reference pattern(s) -- CG rustc rejects these; bind without "
+        "`&` and deref in the body:\n" + "\n".join(f"  L{n}: {t}" for n, t in bad)
+    )
+
+
 @pytest.mark.skipif(shutil.which("cargo") is None, reason="cargo/rustc not installed")
 def test_rust_bot_matches_python_bot():
     build = subprocess.run(

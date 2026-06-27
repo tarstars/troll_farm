@@ -226,8 +226,8 @@ fn next_cell(walkable: &HashSet<Cell>, current: Cell, target: Cell, speed: i32) 
     };
     let in_range: Vec<Cell> = src
         .iter()
-        .filter(|(c, &d)| d <= speed && tdist.contains_key(c))
-        .map(|(&c, _)| c)
+        .filter(|x| *x.1 <= speed && tdist.contains_key(x.0))
+        .map(|x| *x.0)
         .collect();
     if in_range.is_empty() {
         return current;
@@ -262,7 +262,7 @@ fn deconflict_collisions(
     let stationary: HashSet<Cell> = pos
         .iter()
         .filter(|(id, _)| !move_intents.contains_key(id))
-        .map(|(_, &c)| c)
+        .map(|x| *x.1)
         .collect();
     let mut freq: HashMap<Cell, i32> = HashMap::new();
     for &nc in nexts.values() {
@@ -270,8 +270,8 @@ fn deconflict_collisions(
     }
     let colliding: Vec<i32> = nexts
         .iter()
-        .filter(|(_, &nc)| freq[&nc] > 1 || stationary.contains(&nc))
-        .map(|(&tid, _)| tid)
+        .filter(|x| freq[x.1] > 1 || stationary.contains(x.1))
+        .map(|x| *x.0)
         .collect();
     if colliding.is_empty() {
         return overrides;
