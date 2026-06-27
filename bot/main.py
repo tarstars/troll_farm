@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.7.2"
+VERSION = "0.7.3"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -532,11 +532,21 @@ def decide(state, params):
     used_ids = set()
     reserved = set()   # shared tree reservations (choppers + gatherers)
 
-    # Choppers (chop_power > 0) act first: mine iron when next to it and fell
-    # trees near the ENEMY camp for 4-pt wood, denying the opponent their close
-    # trees without touching our own fruit sources.
+    # Choppers act first: mine iron when next to it and fell trees near the ENEMY
+    # camp for 4-pt wood. A dedicated chopper has chop_power>=2, BUT if we have
+    # none yet, bootstrap the wood/iron economy with our best chop>=1 troll (the
+    # starting troll): it mines iron to fund a real chopper and fells trees for
+    # wood -- how strong opponents open. Without this, low-iron maps DEADLOCK (a
+    # chop-2 chopper needs n+4 iron we can't mine without a chopper). Once a real
+    # chopper exists, the chop-1 troll reverts to gathering.
+    has_real_chopper = any(t.chop_power >= 2 for t in state.my_trolls)
+    bootstrap_id = None
+    if not has_real_chopper and state.iron_cells and params.get("forced_policy") is None:
+        c1 = [t for t in state.my_trolls if t.chop_power >= 1]
+        if c1:
+            bootstrap_id = max(c1, key=lambda t: (t.chop_power, t.carry_capacity, -t.id)).id
     for troll in sorted(state.my_trolls, key=lambda t: t.id):
-        if troll.chop_power >= 2:
+        if troll.chop_power >= 2 or troll.id == bootstrap_id:
             dist_t = bfs_distances(walkable, [troll.pos])
             cmd, reserved_pos = chop_command(state, troll, reserved, dist_t, params)
             if reserved_pos is not None:
