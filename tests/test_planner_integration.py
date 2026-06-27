@@ -44,6 +44,25 @@ def test_opening_falls_back_to_gatherer_when_chopper_unaffordable():
     assert "TRAIN 1 1 1 0" in cmds
 
 
+def test_commands_only_reference_owned_troll_ids():
+    # Seated as player 1, the input relabels ownership (player=0 if yours) but
+    # troll IDs are ABSOLUTE -- so our troll can have id 1, not 0. decide() must
+    # command our real id and never a hardcoded 0 (the "you don't own troll 0"
+    # arena error came from running the empty CG stub, but guard the bot anyway).
+    walkable = {(x, 0) for x in range(8)} | {(x, 1) for x in range(8)}
+    troll = Troll(id=1, x=1, y=1, movement_speed=1, carry_capacity=1,
+                  harvest_power=1, carry=[0]*6, chop_power=1)   # our only troll, id 1
+    s = State(walkable=walkable, my_shack=(0, 0), opp_shack=(7, 0),
+              my_inventory=[5, 5, 5, 0, 5, 0], opp_inventory=[0]*6,
+              trees=[Tree("PLUM", 3, 1, 1, 6, 0, 0)], my_trolls=[troll],
+              opp_trolls=[], turn=3, iron_cells=frozenset({(2, 0)}))
+    owned = {"1"}
+    for c in decide(s, PARAMS):
+        p = c.split()
+        if p and p[0] in ("MOVE", "HARVEST", "CHOP", "MINE", "DROP", "PICK", "PLANT"):
+            assert p[1] in owned, f"commanded a troll we do not own: {c!r}"
+
+
 def test_opening_floor_skipped_under_forced_policy():
     # The correlation gate forces a build order; the opening floor must NOT
     # override it, or the sim would stop following the forced policy.

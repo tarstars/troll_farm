@@ -90,3 +90,25 @@ def test_chopper_stops_mining_once_iron_target_met():
            iron=frozenset({(2, 1)}), inv=[0, 0, 0, 0, 99, 0])   # iron already banked
     cmd, _ = chop_command(s, ch, set(), bfs_distances(w, [(2, 0)]), PARAMS)
     assert not cmd.startswith("MINE")    # enough iron -> go chop, don't keep mining
+
+
+def test_chop1_starter_bootstraps_mining_when_no_real_chopper():
+    # v0.7.3: with NO chop>=2 troll and iron present, the starter (chop 1) is
+    # routed to chop_command and MINES adjacent iron -- breaking the low-iron
+    # deadlock (a chop-2 chopper needs n+4 iron we couldn't otherwise mine).
+    starter = Troll(0, 2, 0, 1, 1, 1, [0]*6, chop_power=1)   # at (2,0), iron at (2,1)
+    w = grid(8, 2, blocked=[(0, 0), (2, 1)])
+    s = st(w, (0, 0), (7, 1), [], [starter], iron=frozenset({(2, 1)}),
+           inv=[5, 5, 5, 0, 0, 0])
+    assert "MINE 0" in decide(s, PARAMS)
+
+
+def test_chop1_starter_reverts_to_gathering_once_real_chopper_exists():
+    # Once a chop>=2 chopper exists, the chop-1 troll stops bootstrapping (no MINE
+    # from it) and goes back to gathering.
+    starter = Troll(0, 2, 0, 1, 1, 1, [0]*6, chop_power=1)   # adjacent to iron (2,1)
+    chopper = Troll(3, 6, 1, 1, 3, 0, [0]*6, chop_power=2)
+    w = grid(8, 2, blocked=[(0, 0), (2, 1)])
+    s = st(w, (0, 0), (7, 1), [Tree("PLUM", 4, 0, 1, 6, 0, 0)], [starter, chopper],
+           iron=frozenset({(2, 1)}), inv=[5, 5, 5, 0, 0, 0])
+    assert "MINE 0" not in decide(s, PARAMS)   # troll 0 gathers, doesn't bootstrap
