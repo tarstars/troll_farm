@@ -130,16 +130,23 @@ def _clean(b):
 
 
 def validate_html(path):
-    data = open(path, encoding="utf-8", errors="replace").read()
+    data = _html.unescape(open(path, encoding="utf-8", errors="replace").read())
+    # Commands: accept the DOM-dump format (subframe.stdout <pre>) OR the
+    # plain-text frames export ("Standard Output Stream:" ... until next marker).
     stdout = [_clean(b) for b in re.findall(r'subframe\.stdout[^"]*">(.*?)</pre>', data, re.S)]
-    stderr = [_clean(b) for b in re.findall(r'subframe\.stderr[^"]*">(.*?)</pre>', data, re.S)]
-    # which interleaved side is us? the one whose stdout carries our MSG
+    if not stdout:
+        stdout = [_clean(b) for b in re.findall(
+            r'Standard Output Stream:\s*(.*?)\s*(?=Standard (?:Output|Error) Stream:|Game Summary:|\Z)',
+            re.sub(r"<[^>]+>", " ", data), re.S)]
+        stdout = ["; ".join(t for t in f.replace(";", "; ").split() if not t.isdigit())
+                  for f in stdout]
     msg = next((i for i, f in enumerate(stdout) if "MSG v0.7" in f), 0)
     us, opp = stdout[msg % 2::2], stdout[(msg % 2) ^ 1::2]
     cmds0 = [[c.strip() for c in f.split(";") if c.strip()] for f in us]
     cmds1 = [[c.strip() for c in f.split(";") if c.strip()] for f in opp]
 
-    tf = " ".join(stderr)
+    # @TF debug lines: grab them wherever they sit (stderr <pre> or plain text).
+    tf = " ".join(m for m in re.findall(r'@TF[A-Z]* [^<\n@]*', re.sub(r"<[^>]+>", " ", data)))
     maplines = [l for l in re.findall(r'@TFMAP ([^@]*)', tf)]
     map_lines = [maplines[0].strip()] + [m.strip() for m in maplines[1:]]
     trees = [tuple([p[0]] + [int(v) for v in p[1:]])
