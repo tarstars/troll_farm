@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.7.2";
+const VERSION: &str = "0.7.3";
 const TOTAL_TURNS: i32 = 300;
 
 // Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
@@ -702,12 +702,24 @@ fn decide(state: &State) -> Vec<String> {
     let mut used_ids: HashSet<i32> = HashSet::new();
     let mut reserved: HashSet<Cell> = HashSet::new();
 
-    // Choppers first (chop_power >= 2)
+    // Choppers first. Dedicated chopper = chop_power>=2; if none yet, bootstrap
+    // the wood/iron economy with our best chop>=1 troll (mine iron + chop to fund
+    // a real chopper). Reverts to gathering once a real chopper exists.
     let mut my_trolls_sorted = state.my_trolls.clone();
     my_trolls_sorted.sort_by_key(|t| t.id);
 
+    let has_real_chopper = my_trolls_sorted.iter().any(|t| t.chop_power >= 2);
+    let mut bootstrap_id: Option<i32> = None;
+    if !has_real_chopper && !state.iron_cells.is_empty() {
+        bootstrap_id = my_trolls_sorted
+            .iter()
+            .filter(|t| t.chop_power >= 1)
+            .max_by_key(|t| (t.chop_power, t.carry_capacity, -t.id))
+            .map(|t| t.id);
+    }
+
     for troll in &my_trolls_sorted {
-        if troll.chop_power >= 2 {
+        if troll.chop_power >= 2 || Some(troll.id) == bootstrap_id {
             let dist_t = bfs_distances(&state.walkable, &[troll.pos()]);
             let (cmd, res) = chop_command(state, troll, &reserved, &dist_t, PARAMS.iron_target);
             if let Some(pos) = res {
