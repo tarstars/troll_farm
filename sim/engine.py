@@ -51,6 +51,10 @@ def next_cell(walkable, current, target, speed):
 
     in_range = [c for c, d in source_dist.items() if d <= speed and c in target_dist]
     best = min(target_dist[c] for c in in_range)
+    # The referee picks the in-range cell with the smallest BFS distance to the
+    # target and breaks ties RANDOMLY (mechanics.md). We can't reproduce the
+    # referee's RNG, so we tie-break deterministically (lexicographic) -- this only
+    # affects ms>=2 trolls' exact path on ties, never the economy (validated).
     return min(c for c in in_range if target_dist[c] == best)
 
 

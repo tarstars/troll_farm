@@ -135,11 +135,14 @@ def validate_html(path):
     # plain-text frames export ("Standard Output Stream:" ... until next marker).
     stdout = [_clean(b) for b in re.findall(r'subframe\.stdout[^"]*">(.*?)</pre>', data, re.S)]
     if not stdout:
-        stdout = [_clean(b) for b in re.findall(
-            r'Standard Output Stream:\s*(.*?)\s*(?=Standard (?:Output|Error) Stream:|Game Summary:|\Z)',
-            re.sub(r"<[^>]+>", " ", data), re.S)]
-        stdout = ["; ".join(t for t in f.replace(";", "; ").split() if not t.isdigit())
-                  for f in stdout]
+        stdout = []
+        for b in re.findall(
+                r'Standard Output Stream:\s*(.*?)\s*(?=Standard (?:Output|Error) Stream:|Game Summary:|\Z)',
+                re.sub(r"<[^>]+>", " ", data), re.S):
+            # the block holds the ;-separated command line + standalone digit
+            # lines (turn / max-turn); keep the command line(s) intact.
+            lines = [l.strip() for l in b.splitlines() if l.strip() and not l.strip().isdigit()]
+            stdout.append(" ".join(lines))
     msg = next((i for i, f in enumerate(stdout) if "MSG v0.7" in f), 0)
     us, opp = stdout[msg % 2::2], stdout[(msg % 2) ^ 1::2]
     cmds0 = [[c.strip() for c in f.split(";") if c.strip()] for f in us]
