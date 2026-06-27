@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.7.3"
+VERSION = "0.7.4"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -347,6 +347,32 @@ def _ortho_neighbors(cell):
     return [(x + dx, y + dy) for dx, dy in _NEIGHBORS]
 
 
+def _manhattan(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
+def _next_cell(walkable, current, target, speed):
+    """The cell the referee steps a troll to, moving up to `speed` along the
+    shortest path toward `target` (mirrors sim.engine.next_cell). Used to PREDICT
+    collisions so we can deconflict only the trolls that would actually jam."""
+    src = bfs_distances(walkable, [current])
+    if target in src and src[target] <= speed:
+        return target
+    if target not in src:
+        if not src:
+            return current
+        best = min(_manhattan(target, c) for c in src)
+        goals = [c for c in src if _manhattan(target, c) == best]
+        tdist = bfs_distances(walkable, goals)
+    else:
+        tdist = bfs_distances(walkable, [target])
+    in_range = [c for c, d in src.items() if d <= speed and c in tdist]
+    if not in_range:
+        return current
+    best = min(tdist[c] for c in in_range)
+    return min(c for c in in_range if tdist[c] == best)
+
+
 # How far ahead to look for a tree to become ripe (league-2 game is 300 turns, 120 is a generous look-ahead).
 RIPEN_HORIZON = 120
 
@@ -518,6 +544,51 @@ def planting_commands(state, params, used_ids):
     return []
 
 
+def deconflict_collisions(state, move_intents):
+    """Resolve ONLY predicted same-cell collisions. `move_intents` is
+    {troll_id: final_target}. We compute each mover's referee next-cell; a troll
+    "collides" if its next-cell is also another mover's next-cell or is occupied
+    by a stationary teammate. Non-colliding movers are left untouched (full-speed
+    final target). Each colliding troll is reassigned a distinct free neighbour
+    that gets it closest to its target (or stays) -- so its worst case is the
+    baseline block, never worse. Returns {troll_id: next_cell} for colliders only.
+
+    This is the surgical replacement for the naive whole-fleet 1-step rewrite that
+    halved throughput: only the ~4% of moves that actually jam are changed.
+    """
+    if not move_intents:
+        return {}
+    pos = {u.id: u.pos for u in state.my_trolls}
+    spd = {u.id: u.movement_speed for u in state.my_trolls}
+    nexts = {tid: _next_cell(state.walkable, pos[tid], tgt, spd[tid])
+             for tid, tgt in move_intents.items()}
+    stationary = {pos[i] for i in pos if i not in move_intents}
+    freq = {}
+    for nc in nexts.values():
+        freq[nc] = freq.get(nc, 0) + 1
+    colliding = [tid for tid, nc in nexts.items()
+                 if freq[nc] > 1 or nc in stationary]
+    if not colliding:
+        return {}
+    # reserve where the untouched movers go, and stationary teammates
+    claimed = set(stationary)
+    for tid, nc in nexts.items():
+        if tid not in colliding:
+            claimed.add(nc)
+    overrides = {}
+    # closest-to-target (Manhattan) wins its step; others reroute or yield
+    for tid in sorted(colliding,
+                      key=lambda i: (_manhattan(pos[i], move_intents[i]), i)):
+        cur = pos[tid]
+        tdist = bfs_distances(state.walkable, [move_intents[tid]])
+        cands = [c for c in _ortho_neighbors(cur)
+                 if c in state.walkable and c not in claimed]
+        cands.append(cur)
+        best = min(cands, key=lambda c: tdist.get(c, 1 << 30))
+        claimed.add(best)
+        overrides[tid] = best
+    return overrides
+
 
 def decide(state, params):
     walkable = state.walkable
@@ -594,6 +665,20 @@ def decide(state, params):
     for i, tid in enumerate(bankers):
         cell = shack_adj[i % len(shack_adj)] if shack_adj else state.my_shack
         commands_by_id[tid] = f"MOVE {tid} {cell[0]} {cell[1]}"
+
+    # Surgically deconflict only the trolls that would collide this step (keeps
+    # everyone else on full-speed final targets). Skipped under forced_policy so
+    # the projector-correlation gate keeps its baseline movement.
+    if params.get("forced_policy") is None:
+        posmap = {u.id: u.pos for u in state.my_trolls}
+        move_intents = {}
+        for tid, c in commands_by_id.items():
+            p = c.split()
+            if p and p[0] == "MOVE":
+                move_intents[tid] = (int(p[2]), int(p[3]))
+        for tid, cell in deconflict_collisions(state, move_intents).items():
+            commands_by_id[tid] = (f"MOVE {tid} {cell[0]} {cell[1]}"
+                                   if cell != posmap[tid] else "WAIT")
 
     commands = []
     if state.turn == 1:

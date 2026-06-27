@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.7.3";
+const VERSION: &str = "0.7.4";
 const TOTAL_TURNS: i32 = 300;
 
 // Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
@@ -195,6 +195,113 @@ fn bfs_distances(walkable: &HashSet<Cell>, sources: &[Cell]) -> HashMap<Cell, i3
         }
     }
     dist
+}
+
+fn manhattan(a: Cell, b: Cell) -> i32 {
+    (a.0 - b.0).abs() + (a.1 - b.1).abs()
+}
+
+// The cell the referee steps a troll to (mirrors sim.engine.next_cell); used to
+// PREDICT collisions for surgical movement deconfliction.
+fn next_cell(walkable: &HashSet<Cell>, current: Cell, target: Cell, speed: i32) -> Cell {
+    let src = bfs_distances(walkable, &[current]);
+    if let Some(&d) = src.get(&target) {
+        if d <= speed {
+            return target;
+        }
+    }
+    let tdist = if !src.contains_key(&target) {
+        if src.is_empty() {
+            return current;
+        }
+        let best = src.keys().map(|&c| manhattan(target, c)).min().unwrap();
+        let goals: Vec<Cell> = src
+            .keys()
+            .filter(|&&c| manhattan(target, c) == best)
+            .copied()
+            .collect();
+        bfs_distances(walkable, &goals)
+    } else {
+        bfs_distances(walkable, &[target])
+    };
+    let in_range: Vec<Cell> = src
+        .iter()
+        .filter(|(c, &d)| d <= speed && tdist.contains_key(c))
+        .map(|(&c, _)| c)
+        .collect();
+    if in_range.is_empty() {
+        return current;
+    }
+    let best = in_range.iter().map(|c| tdist[c]).min().unwrap();
+    in_range
+        .iter()
+        .filter(|c| tdist[*c] == best)
+        .copied()
+        .min()
+        .unwrap()
+}
+
+// Resolve ONLY predicted same-cell collisions: a mover collides if its referee
+// next-cell coincides with another mover's or a stationary teammate's. Returns
+// {id: next_cell} for colliders only; non-colliders keep their full-speed target.
+fn deconflict_collisions(
+    state: &State,
+    move_intents: &HashMap<i32, Cell>,
+) -> HashMap<i32, Cell> {
+    let mut overrides: HashMap<i32, Cell> = HashMap::new();
+    if move_intents.is_empty() {
+        return overrides;
+    }
+    let pos: HashMap<i32, Cell> = state.my_trolls.iter().map(|u| (u.id, u.pos())).collect();
+    let spd: HashMap<i32, i32> =
+        state.my_trolls.iter().map(|u| (u.id, u.movement_speed)).collect();
+    let mut nexts: HashMap<i32, Cell> = HashMap::new();
+    for (&tid, &tgt) in move_intents {
+        nexts.insert(tid, next_cell(&state.walkable, pos[&tid], tgt, spd[&tid]));
+    }
+    let stationary: HashSet<Cell> = pos
+        .iter()
+        .filter(|(id, _)| !move_intents.contains_key(id))
+        .map(|(_, &c)| c)
+        .collect();
+    let mut freq: HashMap<Cell, i32> = HashMap::new();
+    for &nc in nexts.values() {
+        *freq.entry(nc).or_insert(0) += 1;
+    }
+    let colliding: Vec<i32> = nexts
+        .iter()
+        .filter(|(_, &nc)| freq[&nc] > 1 || stationary.contains(&nc))
+        .map(|(&tid, _)| tid)
+        .collect();
+    if colliding.is_empty() {
+        return overrides;
+    }
+    let mut claimed: HashSet<Cell> = stationary.clone();
+    for (&tid, &nc) in &nexts {
+        if !colliding.contains(&tid) {
+            claimed.insert(nc);
+        }
+    }
+    let mut order = colliding.clone();
+    order.sort_by_key(|&tid| (manhattan(pos[&tid], move_intents[&tid]), tid));
+    let big = 1i32 << 30;
+    for tid in order {
+        let cur = pos[&tid];
+        let tdist = bfs_distances(&state.walkable, &[move_intents[&tid]]);
+        let mut cands: Vec<Cell> = ortho_neighbors(cur)
+            .iter()
+            .filter(|c| state.walkable.contains(c) && !claimed.contains(c))
+            .copied()
+            .collect();
+        cands.push(cur);
+        let best = *cands
+            .iter()
+            .min_by_key(|c| *tdist.get(c).unwrap_or(&big))
+            .unwrap();
+        claimed.insert(best);
+        overrides.insert(tid, best);
+    }
+    overrides
 }
 
 // ── plant simulation ─────────────────────────────────────────────────────────
@@ -774,6 +881,29 @@ fn decide(state: &State) -> Vec<String> {
         commands_by_id.insert(tid, format!("MOVE {} {} {}", tid, cell.0, cell.1));
     }
     drop(move_to_shack);
+
+    // Surgically deconflict only the trolls that would collide this step.
+    {
+        let posmap: HashMap<i32, Cell> =
+            state.my_trolls.iter().map(|u| (u.id, u.pos())).collect();
+        let mut move_intents: HashMap<i32, Cell> = HashMap::new();
+        for (&tid, c) in &commands_by_id {
+            let parts: Vec<&str> = c.split_whitespace().collect();
+            if parts.first() == Some(&"MOVE") {
+                let x: i32 = parts[2].parse().unwrap();
+                let y: i32 = parts[3].parse().unwrap();
+                move_intents.insert(tid, (x, y));
+            }
+        }
+        for (tid, cell) in deconflict_collisions(state, &move_intents) {
+            let cmd = if posmap.get(&tid) != Some(&cell) {
+                format!("MOVE {} {} {}", tid, cell.0, cell.1)
+            } else {
+                "WAIT".to_string()
+            };
+            commands_by_id.insert(tid, cmd);
+        }
+    }
 
     let mut commands: Vec<String> = Vec::new();
     if state.turn == 1 {
