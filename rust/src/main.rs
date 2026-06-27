@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.7.4";
+const VERSION: &str = "0.7.5";
 const TOTAL_TURNS: i32 = 300;
 
 // Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
@@ -81,7 +81,7 @@ const PARAMS: Params = Params {
     opening_turns: 30,
     opening_max_trolls: 3,
     opening_spec: (1, 1, 1, 0),
-    opening_chopper_specs: &[(1, 2, 0, 2), (1, 1, 0, 2)],
+    opening_chopper_specs: &[(2, 2, 1, 2), (2, 2, 0, 2), (2, 1, 0, 2), (1, 2, 0, 2), (1, 1, 0, 2)],
     plant_enabled: true,
     max_orchard: 3,
 };

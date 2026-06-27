@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Bump on each submitted change; emitted as `MSG v<VERSION>` on turn 1 so the
 # running build is identifiable in the replay.
-VERSION = "0.7.4"
+VERSION = "0.7.5"
 
 # Base growth cooldown per tree type (referee Constants.PLANT_COOLDOWN, no water in Wood).
 PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
@@ -502,9 +502,14 @@ PARAMS = {
     "opening_turns": 30,
     "opening_max_trolls": 3,
     "opening_spec": (1, 1, 1, 0),
-    # Build a chopper first in the opening (wood is the dominant economy); cc=2
-    # carries a fuller tree, cc=1 is the cheapest fallback to start chopping ASAP.
-    "opening_chopper_specs": [(1, 2, 0, 2), (1, 1, 0, 2)],
+    # Build the strongest affordable chopper FIRST in the opening (wood is the
+    # dominant economy). Prefer a FAST chopper (ms>=2 travels 2-3x faster, cc>=2
+    # hauls a fuller tree) bought from plentiful STARTING resources -- ms costs
+    # PLUM (ms^2), which is the scarcest fruit, so a fast chopper is unaffordable
+    # later (v0.7.4 lost to boss4's ms2-3/cc4 choppers while we ran ms1/cc2). The
+    # loop picks the first AFFORDABLE spec, so list strongest->cheapest fallback.
+    "opening_chopper_specs": [(2, 2, 1, 2), (2, 2, 0, 2), (2, 1, 0, 2),
+                              (1, 2, 0, 2), (1, 1, 0, 2)],
     "plant_enabled": True,    # build a small near-shack orchard (gated by plan.plant)
     "plant_type": "BANANA",   # fastest cooldown (6) -> matures soonest
     "orchard_cells": [],      # filled by decide() with the empty footprint cells
