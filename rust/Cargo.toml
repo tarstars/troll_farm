@@ -3,6 +3,14 @@ name = "troll_farm_bot"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "troll_farm"
+path = "src/lib.rs"
+
 [[bin]]
 name = "bot"
 path = "src/main.rs"
+
+[[bin]]
+name = "tournament"
+path = "src/bin/tournament.rs"
