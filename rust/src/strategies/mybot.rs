@@ -119,7 +119,11 @@ impl Strategy for MyBot {
         } else {
             envi("MYBOT_NCHOP", N_CHOPPERS)
         };
-        let want_chopper = (my.iter().filter(|u| u.chop >= 2).count() as i32) < nchop;
+        // MB_CHOP_MIN_N: build cheap GATHERERS first (fast fruit+iron economy), and
+        // only start wanting a chopper once we have this many trolls -- delaying wood
+        // for a stronger early economy (user hypothesis: gather early, chop late).
+        let want_chopper = (my.iter().filter(|u| u.chop >= 2).count() as i32) < nchop
+            && n >= envi("MB_CHOP_MIN_N", 1);
         let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
             && afford(inv, &training_cost(n, chop_spec), have_iron)
         {
@@ -170,7 +174,7 @@ impl Strategy for MyBot {
                 mem.remove(&u.id);
                 if manh(u.pos(), shack) == 1 {
                     let on_tree = game.plants.iter().any(|p| p.pos() == u.pos());
-                    if !is_chopper && !on_tree && orchard < MAX_ORCHARD && u.carry[PLUM] > 0
+                    if !is_chopper && !on_tree && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize && u.carry[PLUM] > 0
                         && game.walkable.contains(&u.pos())
                     {
                         cmd_by_id.insert(u.id, format!("PLANT {} PLUM", u.id));

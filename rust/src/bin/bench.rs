@@ -1,12 +1,12 @@
 //! Focused head-to-head benchmark: strategy A vs strategy B over N seeds, both
 //! seatings, on the same bronze maps. Prints win rate + avg margin and (optionally)
-//! the losing seeds so we can diagnose the maps we drop. Much faster than the full
-//! round-robin when we only care about one matchup (planner vs boss4).
+//! the losing seeds so we can diagnose the maps we drop.
+//!
+//! PARALLEL: the seed loop is embarrassingly parallel, so we split seeds across all
+//! CPU cores (std::thread::scope). Each thread builds its OWN strategy instances
+//! (strategies hold RefCell target-memory, which is !Sync -- never shared).
 //!
 //! Usage: bench [A] [B] [seeds] [--losses]
-//!   A, B   strategy names (default: planner boss4)
-//!   seeds  number of map seeds (default 300); each played from BOTH sides
-//!   --losses  print the seed list where A lost / drew as A-seat and B-seat
 use troll_farm::game::engine::step;
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::{roster, Strategy};
@@ -28,6 +28,16 @@ fn find<'a>(bots: &'a [Box<dyn Strategy>], name: &str) -> &'a dyn Strategy {
         .as_ref()
 }
 
+#[derive(Default)]
+struct Acc {
+    a_wins: i64,
+    b_wins: i64,
+    draws: i64,
+    margin: i64,
+    games: i64,
+    losses: Vec<(u64, char, i32, i32)>, // seed, seat, a_score, b_score
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let a_name = args.get(1).cloned().unwrap_or_else(|| "planner".into());
@@ -35,61 +45,85 @@ fn main() {
     let seeds: u64 = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(300);
     let show_losses = args.iter().any(|a| a == "--losses");
 
-    let bots = roster();
-    let a = find(&bots, &a_name);
-    let b = find(&bots, &b_name);
-
-    let mut a_wins = 0i64;
-    let mut b_wins = 0i64;
-    let mut draws = 0i64;
-    let mut margin = 0i64; // sum of (A - B) over all games
-    let mut games = 0i64;
-    let mut loss_seeds: Vec<(u64, char, i32, i32)> = Vec::new(); // seed, seat, a_score, b_score
+    let nthreads = std::thread::available_parallelism()
+        .map(|n| n.get() as u64)
+        .unwrap_or(4)
+        .clamp(1, seeds.max(1));
+    let chunk = (seeds + nthreads - 1) / nthreads;
 
     let t0 = std::time::Instant::now();
-    for s in 0..seeds {
-        // A as player 0
-        let (sa, sb) = play(a, b, s);
-        games += 1;
-        margin += (sa - sb) as i64;
-        if sa > sb {
-            a_wins += 1;
-        } else if sb > sa {
-            b_wins += 1;
-            loss_seeds.push((s, '0', sa, sb));
-        } else {
-            draws += 1;
-            loss_seeds.push((s, '0', sa, sb));
-        }
-        // A as player 1
-        let (sb2, sa2) = play(b, a, s);
-        games += 1;
-        margin += (sa2 - sb2) as i64;
-        if sa2 > sb2 {
-            a_wins += 1;
-        } else if sb2 > sa2 {
-            b_wins += 1;
-            loss_seeds.push((s, '1', sa2, sb2));
-        } else {
-            draws += 1;
-            loss_seeds.push((s, '1', sa2, sb2));
-        }
-    }
+    let parts: Vec<Acc> = std::thread::scope(|scope| {
+        let handles: Vec<_> = (0..nthreads)
+            .map(|t| {
+                let a_name = a_name.clone();
+                let b_name = b_name.clone();
+                scope.spawn(move || {
+                    let bots = roster();
+                    let a = find(&bots, &a_name);
+                    let b = find(&bots, &b_name);
+                    let lo = t * chunk;
+                    let hi = ((t + 1) * chunk).min(seeds);
+                    let mut acc = Acc::default();
+                    for s in lo..hi {
+                        // A as player 0
+                        let (sa, sb) = play(a, b, s);
+                        acc.games += 1;
+                        acc.margin += (sa - sb) as i64;
+                        if sa > sb {
+                            acc.a_wins += 1;
+                        } else if sb > sa {
+                            acc.b_wins += 1;
+                            acc.losses.push((s, '0', sa, sb));
+                        } else {
+                            acc.draws += 1;
+                            acc.losses.push((s, '0', sa, sb));
+                        }
+                        // A as player 1
+                        let (sb2, sa2) = play(b, a, s);
+                        acc.games += 1;
+                        acc.margin += (sa2 - sb2) as i64;
+                        if sa2 > sb2 {
+                            acc.a_wins += 1;
+                        } else if sb2 > sa2 {
+                            acc.b_wins += 1;
+                            acc.losses.push((s, '1', sa2, sb2));
+                        } else {
+                            acc.draws += 1;
+                            acc.losses.push((s, '1', sa2, sb2));
+                        }
+                    }
+                    acc
+                })
+            })
+            .collect();
+        handles.into_iter().map(|h| h.join().unwrap()).collect()
+    });
 
-    let wr = 100.0 * a_wins as f64 / games as f64;
-    let am = margin as f64 / games as f64;
+    let mut tot = Acc::default();
+    for p in parts {
+        tot.a_wins += p.a_wins;
+        tot.b_wins += p.b_wins;
+        tot.draws += p.draws;
+        tot.margin += p.margin;
+        tot.games += p.games;
+        tot.losses.extend(p.losses);
+    }
+    tot.losses.sort();
+
+    let wr = 100.0 * tot.a_wins as f64 / tot.games as f64;
+    let am = tot.margin as f64 / tot.games as f64;
     println!(
-        "{} vs {} | {} games ({} seeds x2 seats) in {:.2}s",
-        a_name, b_name, games, seeds, t0.elapsed().as_secs_f64()
+        "{} vs {} | {} games ({} seeds x2 seats, {} threads) in {:.2}s",
+        a_name, b_name, tot.games, seeds, nthreads, t0.elapsed().as_secs_f64()
     );
     println!(
         "{}: {} wins ({:.1}%)  |  {}: {} wins  |  draws: {}  |  avg margin (A-B): {:+.1}",
-        a_name, a_wins, wr, b_name, b_wins, draws, am
+        a_name, tot.a_wins, wr, b_name, tot.b_wins, tot.draws, am
     );
 
     if show_losses {
-        println!("\n{} non-wins ({} seeds, seat = A's player index):", a_name, loss_seeds.len());
-        for (s, seat, asc, bsc) in &loss_seeds {
+        println!("\n{} non-wins ({} seeds, seat = A's player index):", a_name, tot.losses.len());
+        for (s, seat, asc, bsc) in &tot.losses {
             println!("  seed {:>4} seat {}  A={:>3} B={:>3}  (margin {:+})", s, seat, asc, bsc, asc - bsc);
         }
     }
