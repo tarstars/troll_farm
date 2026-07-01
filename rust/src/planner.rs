@@ -1,9 +1,9 @@
 #![allow(dead_code, unused)]
-// CodinGame Spring Challenge 2026 - Troll Farm bot (Rust port of Python v0.7.1)
-// Single-file submission. stdlib only.
+//! Pure planner logic mirrored from the CG submission (src/main.rs, v0.7.5), with
+//! the stdin/stdout I/O stripped, exposed as a lib module so the local tournament
+//! can rank our REAL bot against the other strategies. Keep in sync with main.rs.
 
 use std::collections::{HashMap, HashSet, VecDeque};
-use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
@@ -104,18 +104,18 @@ const CHOPPER_SPECS: [(i32, i32, i32, i32); 3] = [
 
 // ── data structures ─────────────────────────────────────────────────────────
 
-type Cell = (i32, i32);
+pub type Cell = (i32, i32);
 
 #[derive(Clone)]
-struct Troll {
-    id: i32,
-    x: i32,
-    y: i32,
-    movement_speed: i32,
-    carry_capacity: i32,
-    harvest_power: i32,
-    chop_power: i32,
-    carry: [i32; 6],
+pub struct Troll {
+    pub id: i32,
+    pub x: i32,
+    pub y: i32,
+    pub movement_speed: i32,
+    pub carry_capacity: i32,
+    pub harvest_power: i32,
+    pub chop_power: i32,
+    pub carry: [i32; 6],
 }
 
 impl Troll {
@@ -134,14 +134,14 @@ impl Troll {
 }
 
 #[derive(Clone)]
-struct Tree {
-    tree_type: String, // "PLUM","LEMON","APPLE","BANANA"
-    x: i32,
-    y: i32,
-    size: i32,
-    health: i32,
-    fruits: i32,
-    cooldown: i32,
+pub struct Tree {
+    pub tree_type: String, // "PLUM","LEMON","APPLE","BANANA"
+    pub x: i32,
+    pub y: i32,
+    pub size: i32,
+    pub health: i32,
+    pub fruits: i32,
+    pub cooldown: i32,
 }
 
 impl Tree {
@@ -150,18 +150,18 @@ impl Tree {
     }
 }
 
-struct State {
-    walkable: HashSet<Cell>,
-    my_shack: Cell,
-    opp_shack: Cell,
-    my_inventory: [i32; 6],
-    opp_inventory: [i32; 6],
-    trees: Vec<Tree>,
-    my_trolls: Vec<Troll>,
-    opp_trolls: Vec<Troll>,
-    turn: i32,
-    iron_cells: HashSet<Cell>,
-    water_cells: HashSet<Cell>,
+pub struct State {
+    pub walkable: HashSet<Cell>,
+    pub my_shack: Cell,
+    pub opp_shack: Cell,
+    pub my_inventory: [i32; 6],
+    pub opp_inventory: [i32; 6],
+    pub trees: Vec<Tree>,
+    pub my_trolls: Vec<Troll>,
+    pub opp_trolls: Vec<Troll>,
+    pub turn: i32,
+    pub iron_cells: HashSet<Cell>,
+    pub water_cells: HashSet<Cell>,
 }
 
 // ── geometry helpers ─────────────────────────────────────────────────────────
@@ -644,7 +644,7 @@ fn best_chop_target<'a>(
         // tree is reasonably close, yet our own travel distance (dist_t) can still
         // tip us to a closer tree rather than trekking the whole map diagonal for one
         // far tree -- which tanked chop throughput on far-apart-shack maps. Measured
-        // best of {pure denial, denial+reach, this} across the whole field (v0.8.0).
+        // best of {pure denial, denial+reach, this} across the whole field.
         let key = (2 * d_enemy + dist_t[&pos], d_enemy, -tree.size);
         if best_key.is_none() || key < best_key.unwrap() {
             best_key = Some(key);
@@ -705,7 +705,7 @@ fn chop_command(
 
 // ── decide ────────────────────────────────────────────────────────────────────
 
-fn decide(state: &State) -> Vec<String> {
+pub fn decide(state: &State) -> Vec<String> {
     let shack_adj: Vec<Cell> = ortho_neighbors(state.my_shack)
         .iter()
         .filter(|n| state.walkable.contains(n))
@@ -854,7 +854,7 @@ fn decide(state: &State) -> Vec<String> {
     // collisions ourselves wedged whole clusters in tight terrain pockets -- e.g.
     // 3 trolls boxed by water/iron next to the shack thrashed for ~290 turns,
     // scoring 19 instead of 112. Letting the referee disperse them fixed those
-    // collapses and improved margin across the whole field (measured, v0.8.0).
+    // collapses and improved margin across the whole field (measured).
 
     let mut commands: Vec<String> = Vec::new();
     if state.turn == 1 {
@@ -907,202 +907,4 @@ fn decide(state: &State) -> Vec<String> {
         commands.push("WAIT".to_string());
     }
     commands
-}
-
-// ── I/O parsing ───────────────────────────────────────────────────────────────
-
-fn parse_grid(grid_lines: &[String]) -> (HashSet<Cell>, Cell, Cell, HashSet<Cell>, HashSet<Cell>) {
-    let mut walkable = HashSet::new();
-    let mut iron = HashSet::new();
-    let mut water = HashSet::new();
-    let mut my_shack = (0i32, 0i32);
-    let mut opp_shack = (0i32, 0i32);
-    for (y, line) in grid_lines.iter().enumerate() {
-        for (x, ch) in line.chars().enumerate() {
-            let cell = (x as i32, y as i32);
-            match ch {
-                '0' => my_shack = cell,
-                '1' => opp_shack = cell,
-                '.' => { walkable.insert(cell); }
-                '+' => { iron.insert(cell); }
-                '~' => { water.insert(cell); }
-                _ => {} // '#' and others are rocks
-            }
-        }
-    }
-    (walkable, my_shack, opp_shack, iron, water)
-}
-
-fn read_line(reader: &mut impl BufRead) -> Option<String> {
-    let mut s = String::new();
-    match reader.read_line(&mut s) {
-        Ok(0) => None,
-        Ok(_) => Some(s.trim_end_matches('\n').trim_end_matches('\r').to_string()),
-        Err(_) => None,
-    }
-}
-
-fn parse_turn(
-    reader: &mut impl BufRead,
-    walkable: &HashSet<Cell>,
-    my_shack: Cell,
-    opp_shack: Cell,
-    turn: i32,
-    iron_cells: &HashSet<Cell>,
-    water_cells: &HashSet<Cell>,
-) -> Option<State> {
-    let inv0_line = read_line(reader)?;
-    let my_inventory: Vec<i32> = inv0_line.split_whitespace()
-        .map(|v| v.parse().unwrap())
-        .collect();
-    let inv1_line = read_line(reader)?;
-    let opp_inventory: Vec<i32> = inv1_line.split_whitespace()
-        .map(|v| v.parse().unwrap())
-        .collect();
-
-    let tree_count_line = read_line(reader)?;
-    let tree_count: usize = tree_count_line.trim().parse().unwrap();
-    let mut trees = Vec::with_capacity(tree_count);
-    for _ in 0..tree_count {
-        let line = read_line(reader)?;
-        let parts: Vec<&str> = line.split_whitespace().collect();
-        trees.push(Tree {
-            tree_type: parts[0].to_string(),
-            x: parts[1].parse().unwrap(),
-            y: parts[2].parse().unwrap(),
-            size: parts[3].parse().unwrap(),
-            health: parts[4].parse().unwrap(),
-            fruits: parts[5].parse().unwrap(),
-            cooldown: parts[6].parse().unwrap(),
-        });
-    }
-
-    let troll_count_line = read_line(reader)?;
-    let troll_count: usize = troll_count_line.trim().parse().unwrap();
-    let mut my_trolls = Vec::new();
-    let mut opp_trolls = Vec::new();
-    for _ in 0..troll_count {
-        let line = read_line(reader)?;
-        let f: Vec<i32> = line.split_whitespace()
-            .map(|v| v.parse().unwrap())
-            .collect();
-        // id player x y ms cc hp chop carry[6]
-        let troll = Troll {
-            id: f[0],
-            x: f[2],
-            y: f[3],
-            movement_speed: f[4],
-            carry_capacity: f[5],
-            harvest_power: f[6],
-            chop_power: f[7],
-            carry: [f[8], f[9], f[10], f[11], f[12], f[13]],
-        };
-        if f[1] == 0 {
-            my_trolls.push(troll);
-        } else {
-            opp_trolls.push(troll);
-        }
-    }
-
-    let my_inv: [i32; 6] = [my_inventory[0], my_inventory[1], my_inventory[2],
-                            my_inventory[3], my_inventory[4], my_inventory[5]];
-    let opp_inv: [i32; 6] = [opp_inventory[0], opp_inventory[1], opp_inventory[2],
-                             opp_inventory[3], opp_inventory[4], opp_inventory[5]];
-
-    Some(State {
-        walkable: walkable.clone(),
-        my_shack,
-        opp_shack,
-        my_inventory: my_inv,
-        opp_inventory: opp_inv,
-        trees,
-        my_trolls,
-        opp_trolls,
-        turn,
-        iron_cells: iron_cells.clone(),
-        water_cells: water_cells.clone(),
-    })
-}
-
-// ── main ──────────────────────────────────────────────────────────────────────
-
-/// Echo per-turn state to stderr for sim validation (gated by DEBUG). At turn 1
-/// it logs the map + full initial trees/trolls (to reconstruct the start); every
-/// turn it logs a compact digest (both inventories + all troll positions) so a
-/// captured game can be replayed through the sim and compared turn-by-turn.
-fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
-    if !DEBUG {
-        return;
-    }
-    if state.turn == 1 {
-        eprintln!("@TFMAP {} {}", width, height);
-        for l in grid {
-            eprintln!("@TFMAP {}", l.trim_end());
-        }
-        for t in &state.trees {
-            eprintln!(
-                "@TFI P {} {} {} {} {} {} {}",
-                t.tree_type, t.x, t.y, t.size, t.health, t.fruits, t.cooldown
-            );
-        }
-        for (pl, list) in [(0, &state.my_trolls), (1, &state.opp_trolls)] {
-            for u in list {
-                eprintln!(
-                    "@TFI U {} {} {} {} {} {} {} {} {} {} {} {} {} {}",
-                    u.id, pl, u.x, u.y, u.movement_speed, u.carry_capacity,
-                    u.harvest_power, u.chop_power, u.carry[0], u.carry[1],
-                    u.carry[2], u.carry[3], u.carry[4], u.carry[5]
-                );
-            }
-        }
-    }
-    let join = |a: &[i32; 6]| a.iter().map(|v| v.to_string()).collect::<Vec<_>>().join(",");
-    let mut us = String::new();
-    for u in &state.my_trolls {
-        us.push_str(&format!("{},0,{},{};", u.id, u.x, u.y));
-    }
-    for u in &state.opp_trolls {
-        us.push_str(&format!("{},1,{},{};", u.id, u.x, u.y));
-    }
-    eprintln!("@TFD {} {} {} {}", state.turn, join(&state.my_inventory), join(&state.opp_inventory), us);
-}
-
-fn main() {
-    let stdin = io::stdin();
-    let stdout = io::stdout();
-    let mut reader = io::BufReader::new(stdin.lock());
-    let mut out = io::BufWriter::new(stdout.lock());
-
-    // Read header: width height
-    let header = match read_line(&mut reader) {
-        Some(s) => s,
-        None => return,
-    };
-    let mut hw = header.split_whitespace();
-    let width: i32 = hw.next().unwrap().parse().unwrap();
-    let height: i32 = hw.next().unwrap().parse().unwrap();
-
-    let mut grid_lines = Vec::with_capacity(height as usize);
-    for _ in 0..height {
-        match read_line(&mut reader) {
-            Some(line) => grid_lines.push(line),
-            None => return,
-        }
-    }
-
-    let (walkable, my_shack, opp_shack, iron_cells, water_cells) = parse_grid(&grid_lines);
-
-    let mut turn = 0i32;
-    loop {
-        turn += 1;
-        match parse_turn(&mut reader, &walkable, my_shack, opp_shack, turn, &iron_cells, &water_cells) {
-            None => break,
-            Some(state) => {
-                debug_log(&state, &grid_lines, width, height);
-                let cmds = decide(&state);
-                writeln!(out, "{}", cmds.join(";")).unwrap();
-                out.flush().unwrap();
-            }
-        }
-    }
 }

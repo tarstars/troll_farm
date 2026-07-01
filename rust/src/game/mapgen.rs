@@ -1,9 +1,14 @@
 use std::collections::HashSet;
 use super::state::{Cell, GameState, Plant, Unit};
-use super::engine::{bfs_distances, tick_plants, plant_cooldown, MAX_SIZE, MAX_FRUITS, IRON};
+use super::engine::{bfs_distances, tick_plants, plant_cooldown, tree_health, MAX_SIZE, MAX_FRUITS, IRON};
 
-const WIDTH: i32 = 16;
-const HEIGHT: i32 = 8;
+// Match the real Bronze arena: 20x10 grids, sparse trees (~5 pairs = ~10 trees,
+// density ~0.05/cell). The old 16x8 with 1-3 pairs/type (~16 trees, ~0.13/cell)
+// was 3x too tree-dense, which structurally over-rewarded sustained fruit
+// harvesting (renewable) over one-shot chopping (destructive) -- biasing the
+// local ladder against every chop strategy. See docs/mechanics.md.
+const WIDTH: i32 = 20;
+const HEIGHT: i32 = 10;
 
 const FRUITS: [&str; 4] = ["PLUM", "LEMON", "APPLE", "BANANA"];
 
@@ -120,9 +125,13 @@ pub fn generate_bronze(seed: u64) -> GameState {
     used.insert(s1);
 
     for &ftype in &FRUITS {
-        let count = rnd.randint(1, 3);
+        let count = rnd.randint(1, 2);
         for _ in 0..count {
-            let free: Vec<Cell> = walkable.iter().filter(|c| !used.contains(*c)).copied().collect();
+            // Sort before the seeded RNG picks: HashSet iteration order is randomized
+            // per process, so without this the SAME seed produces DIFFERENT maps on
+            // every run -- making every tournament/diag measurement irreproducible.
+            let mut free: Vec<Cell> = walkable.iter().filter(|c| !used.contains(*c)).copied().collect();
+            free.sort_unstable();
             if free.is_empty() {
                 break;
             }
@@ -138,9 +147,13 @@ pub fn generate_bronze(seed: u64) -> GameState {
             let ticks = rnd.randint(1, base * (MAX_SIZE + MAX_FRUITS));
 
             // Age the pair identically
+            // Start at size 0 / base health; tick_plants ages each pair, growing
+            // size and bumping health by the type's slope, so they finish at the
+            // real `health = base + slope*size`.
+            let h0 = tree_health(ftype, 0);
             let pair: Vec<Plant> = vec![
-                Plant { plant_type: ftype.to_string(), x: cell.0, y: cell.1, size: 0, health: 6, fruits: 0, cooldown: 0 },
-                Plant { plant_type: ftype.to_string(), x: mc.0, y: mc.1, size: 0, health: 6, fruits: 0, cooldown: 0 },
+                Plant { plant_type: ftype.to_string(), x: cell.0, y: cell.1, size: 0, health: h0, fruits: 0, cooldown: 0 },
+                Plant { plant_type: ftype.to_string(), x: mc.0, y: mc.1, size: 0, health: h0, fruits: 0, cooldown: 0 },
             ];
             // Simulate tick_plants on these two plants alone (no water adjustment)
             // using a temporary minimal game state
@@ -210,6 +223,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
     };
 
     let mut candidates: Vec<Cell> = walkable.iter().filter(|c| !blocked.contains(*c)).copied().collect();
+    candidates.sort_unstable(); // determinism: fix HashSet order before the seeded shuffle
     rnd2.shuffle(&mut candidates);
 
     // Place 2 pairs of iron cells

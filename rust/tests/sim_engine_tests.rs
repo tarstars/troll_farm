@@ -6,7 +6,7 @@ use troll_farm::game::state::{from_ascii, GameState, Plant, Unit};
 use troll_farm::game::engine::{
     apply_chop, apply_drop, apply_harvest, apply_mine,
     apply_train, apply_moves, next_cell, recompute_scores, step, tick_plants,
-    WOOD, IRON,
+    tree_health, WOOD, IRON,
 };
 use troll_farm::game::mapgen::generate_bronze;
 use std::collections::HashMap;
@@ -28,6 +28,68 @@ fn two_unit_state() -> GameState {
     ];
     g.next_id = 2;
     g
+}
+
+// ── tree health fidelity (real arena formula) ──────────────────────────────────
+
+#[test]
+fn test_tree_health_matches_real_arena_observations() {
+    // Every (type, size, health) ever observed in a real referee replay must
+    // round-trip through tree_health (health = base + slope*size).
+    let obs = [
+        ("PLUM", 1, 6), ("PLUM", 2, 8), ("PLUM", 3, 10), ("PLUM", 4, 12),
+        ("LEMON", 2, 8), ("LEMON", 4, 12),
+        ("APPLE", 1, 11), ("APPLE", 3, 17),
+        ("BANANA", 3, 5), ("BANANA", 4, 6),
+    ];
+    for (t, size, want) in obs {
+        assert_eq!(tree_health(t, size), want, "{} size {} should be {} health", t, size, want);
+    }
+}
+
+#[test]
+fn test_mapgen_is_realistic_size_and_tree_density() {
+    // Real Bronze arena maps are 20x10 with ~10 trees (density ~0.05/cell).
+    // Guard against silently regressing to the old dense 16x8 maps that
+    // over-rewarded gathering. Also every generated tree must carry the real
+    // health for its type+size (no hardcoded 6).
+    for seed in 0..40u64 {
+        let g = generate_bronze(seed);
+        assert_eq!((g.width, g.height), (20, 10), "seed {} wrong dims", seed);
+        let density = g.plants.len() as f64 / (g.width * g.height) as f64;
+        assert!(density < 0.12, "seed {}: {} trees too dense ({:.3}/cell)", seed, g.plants.len(), density);
+        for p in &g.plants {
+            assert_eq!(p.health, tree_health(&p.plant_type, p.size),
+                "seed {}: {} size {} has health {} (want {})",
+                seed, p.plant_type, p.size, p.health, tree_health(&p.plant_type, p.size));
+        }
+    }
+}
+
+#[test]
+fn test_generate_bronze_is_deterministic_across_processes() {
+    // generate_bronze must NOT depend on HashSet iteration order (randomized per
+    // process). Before the fix it built candidate-cell lists by iterating
+    // `walkable` directly, so the seeded RNG picked different cells each run and
+    // every tournament/diag measurement was irreproducible. This golden signature
+    // for seed 0 is stable run-to-run; if it drifts, determinism regressed (or the
+    // mapgen algorithm changed deliberately -- then update this string).
+    let g = generate_bronze(0);
+    let mut plants: Vec<String> = g
+        .plants
+        .iter()
+        .map(|p| format!("{}@{},{}:s{}h{}", p.plant_type, p.x, p.y, p.size, p.health))
+        .collect();
+    plants.sort();
+    let sig = format!(
+        "{}x{} {:?} iron{} water{} | {}",
+        g.width, g.height, g.shacks, g.iron.len(), g.water.len(), plants.join(" ")
+    );
+    let expected = "20x10 [(5, 0), (14, 9)] iron4 water6 | \
+APPLE@12,2:s4h20 APPLE@15,4:s4h20 APPLE@4,5:s4h20 APPLE@7,7:s4h20 \
+BANANA@12,3:s1h3 BANANA@7,6:s1h3 LEMON@16,4:s2h8 LEMON@3,5:s2h8 \
+PLUM@14,0:s4h12 PLUM@17,2:s4h12 PLUM@2,7:s4h12 PLUM@5,9:s4h12";
+    assert_eq!(sig, expected, "generate_bronze(0) drifted -- determinism regressed?");
 }
 
 // ── tick_plants ───────────────────────────────────────────────────────────────
@@ -313,15 +375,15 @@ fn test_from_ascii_iron_and_water() {
 fn test_generate_bronze_valid_symmetric_map() {
     let g = generate_bronze(0);
 
-    // Dimensions
-    assert_eq!(g.width, 16);
-    assert_eq!(g.height, 8);
+    // Dimensions (real Bronze arena: 20x10)
+    assert_eq!(g.width, 20);
+    assert_eq!(g.height, 10);
 
     // Two distinct shacks mirrored
     let s0 = g.shacks[0];
     let s1 = g.shacks[1];
     assert_ne!(s0, s1);
-    assert_eq!((15 - s0.0, 7 - s0.1), s1);  // mirror check
+    assert_eq!((19 - s0.0, 9 - s0.1), s1);  // mirror check
 
     // Two starting units with chop=1
     assert_eq!(g.units.len(), 2);
@@ -338,11 +400,11 @@ fn test_generate_bronze_valid_symmetric_map() {
 
     // Iron and water are mirrored pairs
     for &ic in &g.iron {
-        let m = (15 - ic.0, 7 - ic.1);
+        let m = (19 - ic.0, 9 - ic.1);
         assert!(g.iron.contains(&m), "iron cell {:?} should have mirror {:?}", ic, m);
     }
     for &wc in &g.water {
-        let m = (15 - wc.0, 7 - wc.1);
+        let m = (19 - wc.0, 9 - wc.1);
         assert!(g.water.contains(&m), "water cell {:?} should have mirror {:?}", wc, m);
     }
 
@@ -352,7 +414,7 @@ fn test_generate_bronze_valid_symmetric_map() {
 
     // Plants are mirrored
     for p in &g.plants {
-        let m = (15 - p.x, 7 - p.y);
+        let m = (19 - p.x, 9 - p.y);
         assert!(
             g.plants.iter().any(|q| q.pos() == m && q.plant_type == p.plant_type),
             "plant at {:?} should have mirror", p.pos()

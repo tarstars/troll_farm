@@ -26,6 +26,8 @@ fn main() {
     let mut wins = vec![0i64; n];
     let mut games = vec![0i64; n];
     let mut margin = vec![0i64; n];
+    // h2h[i][j] = games i won against j (summed over both seatings).
+    let mut h2h = vec![vec![0i64; n]; n];
 
     let t0 = std::time::Instant::now();
     for i in 0..n {
@@ -41,8 +43,10 @@ fn main() {
                 margin[j] += (sj - si) as i64;
                 if si > sj {
                     wins[i] += 1;
+                    h2h[i][j] += 1;
                 } else if sj > si {
                     wins[j] += 1;
+                    h2h[j][i] += 1;
                 }
             }
         }
@@ -65,5 +69,27 @@ fn main() {
             "{:<4}{:<12}{:>7}{:>7}{:>8.0}%{:>12.1}",
             rank + 1, bots[i].name(), wins[i], games[i], wr, am
         );
+    }
+
+    // Head-to-head matrix: cell = row's win% over column (out of 2*seeds direct
+    // games). This is the honest pairwise signal -- aggregate winrate is diluted
+    // by how each bot fares against the weakest field members.
+    let pair_games = (2 * seeds) as f64;
+    println!("\nHead-to-head win% (row vs column):");
+    print!("{:<12}", "");
+    for &j in &order {
+        print!("{:>9.6}", bots[j].name());
+    }
+    println!();
+    for &i in &order {
+        print!("{:<12}", bots[i].name());
+        for &j in &order {
+            if i == j {
+                print!("{:>9}", "-");
+            } else {
+                print!("{:>8.0}%", 100.0 * h2h[i][j] as f64 / pair_games);
+            }
+        }
+        println!();
     }
 }

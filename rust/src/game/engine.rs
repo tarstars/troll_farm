@@ -46,6 +46,25 @@ pub fn water_boost(t: &str) -> i32 {
     }
 }
 
+/// `(base, slope)` for a tree type's health: `health = base + slope*size`.
+/// Reverse-engineered from real arena replays (10 observations, perfect fit):
+/// PLUM s1..4 → 6,8,10,12 ; LEMON s2,s4 → 8,12 ; APPLE s1,s3 → 11,17 ;
+/// BANANA s3,s4 → 5,6. Health only matters for chopping (chops-to-fell).
+pub fn tree_health_params(t: &str) -> (i32, i32) {
+    match t {
+        "PLUM" | "LEMON" => (4, 2),
+        "APPLE" => (8, 3),
+        "BANANA" => (2, 1),
+        _ => panic!("unknown plant for tree_health: {}", t),
+    }
+}
+
+/// Full health of an untouched tree of the given type and size.
+pub fn tree_health(t: &str, size: i32) -> i32 {
+    let (base, slope) = tree_health_params(t);
+    base + slope * size
+}
+
 // ── BFS ──────────────────────────────────────────────────────────────────────
 
 const NEIGHBORS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
@@ -131,6 +150,9 @@ pub fn tick_plants(game: &mut GameState) {
         if p.cooldown == 0 && p.health > 0 {
             if p.size < MAX_SIZE {
                 p.size += 1;
+                // Growing a size adds health (real trees: health = base + slope*size).
+                // Adding the slope preserves any chop damage already taken.
+                p.health += tree_health_params(&p.plant_type).1;
                 // Can't call growth_cd with &mut p and &game simultaneously.
                 // Compute inline.
                 let mut cd = plant_cooldown(&p.plant_type);
@@ -436,7 +458,7 @@ pub fn apply_plant(game: &mut GameState, plants: &[(i32, String)]) {
             x: pos.0,
             y: pos.1,
             size: 0,
-            health: 6,
+            health: tree_health(type_name, 0),
             fruits: 0,
             cooldown: 0,
         });

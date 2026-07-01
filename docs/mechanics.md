@@ -63,7 +63,13 @@ full 100 turns** (`hasStalled` returns false while plants exist).
   A full tree idles at cooldown 0; harvesting it makes the next tick regenerate 1 fruit
   immediately, then normal cooldowns resume.
 - Initial trees are randomly "aged" 1..cd*(4+3) ticks, so they start in varied states.
-- Health only matters for chopping (league 3+); ignore in Wood.
+- Health only matters for chopping (league 3+); ignore in Wood. Full health scales
+  with size per type: **`health = base + slope*size`** — PLUM/LEMON `(4,2)`, APPLE
+  `(8,3)`, BANANA `(2,1)` (reverse-engineered, 10/10 real-replay observations:
+  PLUM s1-4=6,8,10,12; LEMON s2,s4=8,12; APPLE s1,s3=11,17; BANANA s3,s4=5,6). So a
+  big APPLE (≤20 hp) is ~3× tankier to chop than a BANANA (≤6). The Rust sim mapgen
+  and engine model this (`engine::tree_health`); a flat health=6 over-rewarded
+  chopping and inverted the local ladder.
 
 ## Scoring & turn flow (`Player.recomputeScore`, `Referee.gameTurn`)
 - Score = PLUM+LEMON+APPLE+BANANA in shack inventory (+4×WOOD, irrelevant in Wood).

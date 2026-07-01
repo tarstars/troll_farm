@@ -645,7 +645,10 @@ fn best_chop_target<'a>(
         // tip us to a closer tree rather than trekking the whole map diagonal for one
         // far tree -- which tanked chop throughput on far-apart-shack maps. Measured
         // best of {pure denial, denial+reach, this} across the whole field (v0.8.0).
-        let key = (2 * d_enemy + dist_t[&pos], d_enemy, -tree.size);
+        // v0.8.4: subtract a fruit bonus so we preferentially fell Boss 4's FRUITED
+        // trees -- denying its imminent harvest. Enemy-side trees we'd never reach to
+        // harvest ourselves, so this is pure denial + wood at no cost to our economy.
+        let key = (2 * d_enemy + dist_t[&pos] - 2 * tree.fruits, d_enemy, -tree.size);
         if best_key.is_none() || key < best_key.unwrap() {
             best_key = Some(key);
             best = Some(tree);

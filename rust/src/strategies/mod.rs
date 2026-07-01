@@ -5,6 +5,10 @@ use crate::game::state::GameState;
 pub mod gatherer;
 pub mod chopper;
 pub mod harvester;
+pub mod balanced;
+pub mod orchard;
+pub mod boss4;
+pub mod planner_strategy;
 
 pub trait Strategy {
     fn name(&self) -> &str;
@@ -48,8 +52,12 @@ pub fn nearest_plant(
 /// All strategies entered in the tournament.
 pub fn roster() -> Vec<Box<dyn Strategy>> {
     vec![
+        Box::new(planner_strategy::Planner),
         Box::new(gatherer::Gatherer),
+        Box::new(orchard::Orchard),
+        Box::new(boss4::Boss4),
         Box::new(chopper::Chopper),
         Box::new(harvester::Harvester),
+        Box::new(balanced::Balanced),
     ]
 }
