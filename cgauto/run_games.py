@@ -57,7 +57,13 @@ with sync_playwright() as pw:
                    for m in re.finditer(r'(\d+)\s*/\s*(\d+)', b))
     bb=page.evaluate("""()=>{const e=document.querySelector('.cg-player-sandbox')||document.querySelector('.cg-ide-player');
         if(!e)return null; const r=e.getBoundingClientRect(); return [Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)];}""")
-    print("viewer bbox:", bb, flush=True)
+    # Fallback to the known-good viewer rect if the element renders degenerate (height 0),
+    # otherwise the skip-to-end click lands at the wrong y and every read is mid-replay.
+    if (not bb) or bb[3] < 100 or bb[2] < 100:
+        bb=[101,43,752,470]
+        print("viewer bbox degenerate -> fallback", bb, flush=True)
+    else:
+        print("viewer bbox:", bb, flush=True)
     def play_one():
         page.get_by_text("PLAY MY CODE", exact=False).first.click()
         for _ in range(70):                       # wait for the log to CLEAR (computing)
