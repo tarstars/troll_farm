@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.3-cheapchop";
+const VERSION: &str = "1.0.4-nowedge";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -871,7 +871,16 @@ fn decide(state: &State) -> Vec<String> {
                         cmd_by_id.insert(t.id, format!("DROP {}", t.id));
                     }
                 } else {
-                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, shack.0, shack.1));
+                    // Head to the NEAREST walkable shack-adjacent DROP cell (not the shack
+                    // center). A full troll standing ON the shack cell (e.g. the starter
+                    // after mining turn-1 iron on maps with iron beside the shack) would
+                    // otherwise MOVE to its own cell forever and wedge the whole game.
+                    let drop_cell = ortho_neighbors(shack)
+                        .into_iter()
+                        .filter(|c| state.walkable.contains(c))
+                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                        .unwrap_or(shack);
+                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, drop_cell.0, drop_cell.1));
                 }
                 continue;
             }

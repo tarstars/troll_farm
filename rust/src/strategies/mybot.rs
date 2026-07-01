@@ -205,7 +205,16 @@ impl Strategy for MyBot {
                         cmd_by_id.insert(u.id, format!("DROP {}", u.id));
                     }
                 } else {
-                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, shack.0, shack.1));
+                    // Head to the NEAREST walkable shack-adjacent DROP cell (not the shack
+                    // center). Critical: a full troll standing ON the shack cell (e.g. the
+                    // starter after mining turn-1 iron) would otherwise MOVE to its own cell
+                    // forever and wedge the whole game (100% idle, stuck at 1 troll).
+                    let drop_cell = ortho(shack)
+                        .into_iter()
+                        .filter(|c| game.walkable.contains(c))
+                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                        .unwrap_or(shack);
+                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
                 }
                 continue;
             }
