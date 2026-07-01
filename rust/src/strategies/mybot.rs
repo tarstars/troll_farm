@@ -220,8 +220,8 @@ impl Strategy for MyBot {
                 // shack. Fall back to nearest ripe fruit so an idle chopper still banks
                 // points (late game, when few trees remain).
                 let opp = game.shacks[1 - player];
-                let dw = envi("MYBOT_DW", 1);
-                let wt = envi("MYBOT_WT", 3);
+                let dw = envi("MYBOT_DW", 3);
+                let wt = envi("MYBOT_WT", 0);
                 iron_cell
                     .or_else(|| {
                         game.plants

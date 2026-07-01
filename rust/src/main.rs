@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.0-woodrace";
+const VERSION: &str = "1.0.1-denialrace";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -762,8 +762,12 @@ const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1
 const MB_MAX_TROLLS: usize = 4;
 const MB_MAX_ORCHARD: usize = 2;
 const MB_MIN_TURNS_LEFT: i32 = 20;
-const MB_DENIAL_W: i32 = 1;
-const MB_SIZE_W: i32 = 3;
+// Denial-heavy chopper targeting (swept 2026-07-01 in the faithful sim): DW=3, WT=0
+// lifts the bot from 67.6% -> 78.0% vs silver_boss. Our cheap fast choppers win the
+// race to the BOSS's trees and starve its wood+fruit; biasing hard toward the enemy
+// shack (and dropping the tree-size preference) is decisively better than balanced.
+const MB_DENIAL_W: i32 = 3;
+const MB_SIZE_W: i32 = 0;
 
 thread_local! {
     // Sticky per-harvester target memory (reset at turn 1). Persists across turns
