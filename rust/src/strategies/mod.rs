@@ -10,6 +10,7 @@ pub mod orchard;
 pub mod boss4;
 pub mod boss_real;
 pub mod planner_strategy;
+pub mod search_bot;
 
 pub trait Strategy {
     fn name(&self) -> &str;
@@ -53,6 +54,7 @@ pub fn nearest_plant(
 /// All strategies entered in the tournament.
 pub fn roster() -> Vec<Box<dyn Strategy>> {
     vec![
+        Box::new(search_bot::SearchBot),
         Box::new(planner_strategy::Planner),
         Box::new(gatherer::Gatherer),
         Box::new(orchard::Orchard),

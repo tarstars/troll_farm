@@ -26,3 +26,7 @@ path = "src/bin/probe.rs"
 [[bin]]
 name = "curve"
 path = "src/bin/curve.rs"
+
+[[bin]]
+name = "search_time"
+path = "src/bin/search_time.rs"
