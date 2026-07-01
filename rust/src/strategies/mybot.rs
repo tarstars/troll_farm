@@ -27,7 +27,7 @@ const MAX_ORCHARD: usize = 2; // base plum orchard size
 // (ms2) choppers that win the race to contested trees, and harvesters that grab the
 // NEAREST ripe fruit for max throughput (greedy expansion already funds training, so
 // we don't need scarce-resource-first harvesting).
-const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 1, 2);
+const CHOPPER_SPEC: (i32, i32, i32, i32) = (1, 2, 0, 2);
 const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const HARVESTER: (i32, i32, i32, i32) = (1, 2, 2, 0);
@@ -174,10 +174,33 @@ impl Strategy for MyBot {
                 mem.remove(&u.id);
                 if manh(u.pos(), shack) == 1 {
                     let on_tree = game.plants.iter().any(|p| p.pos() == u.pos());
-                    if !is_chopper && !on_tree && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize && u.carry[PLUM] > 0
-                        && game.walkable.contains(&u.pos())
+                    let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= 3).count();
+                    let plum_orchard =
+                        orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize && u.carry[PLUM] > 0;
+                    // FRUIT->WOOD conversion (MB_WOODFARM): plant a seed on this empty base
+                    // cell so it grows and the chopper later fells it for wood (1pt fruit ->
+                    // up to 4*size pts). Prefer BANANA -- it can't fund training, so it's
+                    // pure surplus. Only in a mid-game window so the tree has time to grow.
+                    let woodfarm = envi("MB_WOODFARM", 1) == 1
+                        && game.turn >= envi("MB_WF_START", 20)
+                        && game.turn <= envi("MB_WF_END", 280)
+                        && base_trees < envi("MB_WF_MAX", 6) as usize;
+                    if !is_chopper && !on_tree && game.walkable.contains(&u.pos())
+                        && (plum_orchard || woodfarm)
                     {
-                        cmd_by_id.insert(u.id, format!("PLANT {} PLUM", u.id));
+                        let ty = if plum_orchard {
+                            "PLUM"
+                        } else if u.carry[3] > 0 {
+                            "BANANA"
+                        } else {
+                            match (0..4).filter(|&i| u.carry[i] > 0).max_by_key(|&i| u.carry[i]) {
+                                Some(0) => "PLUM",
+                                Some(1) => "LEMON",
+                                Some(2) => "APPLE",
+                                _ => "BANANA",
+                            }
+                        };
+                        cmd_by_id.insert(u.id, format!("PLANT {} {}", u.id, ty));
                     } else {
                         cmd_by_id.insert(u.id, format!("DROP {}", u.id));
                     }

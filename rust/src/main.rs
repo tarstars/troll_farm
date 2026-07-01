@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.1-denialrace";
+const VERSION: &str = "1.0.3-cheapchop";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -756,7 +756,10 @@ fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
 //     plum orchard; everyone banks when full.
 // The boss is a similar wood/denial bot; our edge is faster (ms2) choppers that win
 // the race to contested trees + higher fruit throughput (nearest-ripe harvesting).
-const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 1, 2);
+// Cheap pure chopper (ms1, cc2, hp0, chop2): swept best vs silver_boss at 87% (vs the
+// old ms2 (2,2,1,2) at 81%). cc2 = 2 wood/fell is essential; dropping ms+hp saves plum
+// +apple for a stronger economy while still winning the denial race (DW=3) + woodfarm.
+const MB_CHOPPER: (i32, i32, i32, i32) = (1, 2, 0, 2);
 const MB_NCHOPPERS: i32 = 2;
 const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const MB_MAX_TROLLS: usize = 4;
@@ -839,15 +842,31 @@ fn decide(state: &State) -> Vec<String> {
             let is_chop = is_chopper(t);
             let d = bfs_distances(&state.walkable, &[t.pos()]);
 
-            // Full -> home; harvester seeds the base plum orchard, else drops.
+            // Full -> home; harvester seeds the base plum orchard, then does FRUIT->WOOD
+            // conversion (plant surplus fruit -- prefer BANANA, which has no training
+            // value -- near base in a mid-game window so it grows and the chopper fells
+            // it for wood: 1pt fruit -> up to 4*size pts). Else drops.
             if t.free_capacity() == 0 {
                 mem.remove(&t.id);
                 if is_adjacent(t.pos(), shack) {
                     let on_tree = state.trees.iter().any(|p| p.pos() == t.pos());
-                    if !is_chop && !on_tree && orchard < MB_MAX_ORCHARD && t.carry[PLUM] > 0
-                        && state.walkable.contains(&t.pos())
-                    {
-                        cmd_by_id.insert(t.id, format!("PLANT {} PLUM", t.id));
+                    let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= 3).count();
+                    let plum_orchard = orchard < MB_MAX_ORCHARD && t.carry[PLUM] > 0;
+                    let woodfarm = state.turn >= 20 && state.turn <= 280 && base_trees < 6;
+                    if !is_chop && !on_tree && state.walkable.contains(&t.pos()) && (plum_orchard || woodfarm) {
+                        let ty = if plum_orchard {
+                            "PLUM"
+                        } else if t.carry[BANANA] > 0 {
+                            "BANANA"
+                        } else {
+                            match (0..4).filter(|&i| t.carry[i] > 0).max_by_key(|&i| t.carry[i]) {
+                                Some(0) => "PLUM",
+                                Some(1) => "LEMON",
+                                Some(2) => "APPLE",
+                                _ => "BANANA",
+                            }
+                        };
+                        cmd_by_id.insert(t.id, format!("PLANT {} {}", t.id, ty));
                     } else {
                         cmd_by_id.insert(t.id, format!("DROP {}", t.id));
                     }
