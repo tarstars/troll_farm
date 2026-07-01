@@ -9,6 +9,9 @@ pub mod balanced;
 pub mod orchard;
 pub mod boss4;
 pub mod boss_real;
+pub mod silver_boss;
+pub mod mybot;
+pub mod search_bot;
 pub mod planner_strategy;
 
 pub trait Strategy {
@@ -61,5 +64,8 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(chopper::Chopper),
         Box::new(harvester::Harvester),
         Box::new(balanced::Balanced),
+        Box::new(search_bot::SearchBot),
+        Box::new(silver_boss::SilverBoss::new()),
+        Box::new(mybot::MyBot::new()),
     ]
 }

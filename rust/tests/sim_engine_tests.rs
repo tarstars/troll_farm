@@ -49,15 +49,18 @@ fn test_tree_health_matches_real_arena_observations() {
 
 #[test]
 fn test_mapgen_is_realistic_size_and_tree_density() {
-    // Real Bronze arena maps are 20x10 with ~10 trees (density ~0.05/cell).
-    // Guard against silently regressing to the old dense 16x8 maps that
-    // over-rewarded gathering. Also every generated tree must carry the real
-    // health for its type+size (no hardcoded 6).
+    // Silver-calibrated maps: height 8..=11, width = 2*height, ~18 trees. Guard
+    // against regressing to the old sparse 20x10 / ~10-tree maps that under-rewarded
+    // wood/chopping. Also every generated tree must carry the real health for its
+    // type+size (no hardcoded 6).
+    use troll_farm::game::mapgen::dims_for_seed;
     for seed in 0..40u64 {
         let g = generate_bronze(seed);
-        assert_eq!((g.width, g.height), (20, 10), "seed {} wrong dims", seed);
-        let density = g.plants.len() as f64 / (g.width * g.height) as f64;
-        assert!(density < 0.12, "seed {}: {} trees too dense ({:.3}/cell)", seed, g.plants.len(), density);
+        let (w, h) = dims_for_seed(seed);
+        assert_eq!((g.width, g.height), (w, h), "seed {} wrong dims", seed);
+        assert!((8..=11).contains(&h) && w == 2 * h, "seed {}: dims {}x{} out of Silver range", seed, w, h);
+        assert!(g.plants.len() >= 10 && g.plants.len() <= 30,
+            "seed {}: {} trees outside Silver density (~18)", seed, g.plants.len());
         for p in &g.plants {
             assert_eq!(p.health, tree_health(&p.plant_type, p.size),
                 "seed {}: {} size {} has health {} (want {})",
@@ -85,10 +88,11 @@ fn test_generate_bronze_is_deterministic_across_processes() {
         "{}x{} {:?} iron{} water{} | {}",
         g.width, g.height, g.shacks, g.iron.len(), g.water.len(), plants.join(" ")
     );
-    let expected = "20x10 [(5, 0), (14, 9)] iron4 water6 | \
-APPLE@12,2:s4h20 APPLE@15,4:s4h20 APPLE@4,5:s4h20 APPLE@7,7:s4h20 \
-BANANA@12,3:s1h3 BANANA@7,6:s1h3 LEMON@16,4:s2h8 LEMON@3,5:s2h8 \
-PLUM@14,0:s4h12 PLUM@17,2:s4h12 PLUM@2,7:s4h12 PLUM@5,9:s4h12";
+    let expected = "22x11 [(1, 10), (20, 0)] iron4 water6 | \
+APPLE@12,3:s4h20 APPLE@13,1:s4h20 APPLE@14,8:s1h11 APPLE@7,2:s1h11 APPLE@8,9:s4h20 APPLE@9,7:s4h20 \
+BANANA@14,10:s4h6 BANANA@18,3:s4h6 BANANA@3,7:s4h6 BANANA@7,0:s4h6 \
+LEMON@0,5:s1h6 LEMON@16,3:s4h12 LEMON@17,9:s3h10 LEMON@21,5:s1h6 LEMON@4,1:s3h10 LEMON@5,7:s4h12 \
+PLUM@0,10:s4h12 PLUM@12,8:s4h12 PLUM@12,9:s4h12 PLUM@21,0:s4h12 PLUM@9,1:s4h12 PLUM@9,2:s4h12";
     assert_eq!(sig, expected, "generate_bronze(0) drifted -- determinism regressed?");
 }
 
@@ -374,16 +378,17 @@ fn test_from_ascii_iron_and_water() {
 #[test]
 fn test_generate_bronze_valid_symmetric_map() {
     let g = generate_bronze(0);
+    let (w, h) = (g.width, g.height);
+    let mir = |c: (i32, i32)| (w - 1 - c.0, h - 1 - c.1);
 
-    // Dimensions (real Bronze arena: 20x10)
-    assert_eq!(g.width, 20);
-    assert_eq!(g.height, 10);
+    // Dimensions (Silver-calibrated: seed 0 -> 22x11 = height 11, width 2*height)
+    assert_eq!((g.width, g.height), (22, 11));
 
     // Two distinct shacks mirrored
     let s0 = g.shacks[0];
     let s1 = g.shacks[1];
     assert_ne!(s0, s1);
-    assert_eq!((19 - s0.0, 9 - s0.1), s1);  // mirror check
+    assert_eq!(mir(s0), s1);  // mirror check
 
     // Two starting units with chop=1
     assert_eq!(g.units.len(), 2);
@@ -400,11 +405,11 @@ fn test_generate_bronze_valid_symmetric_map() {
 
     // Iron and water are mirrored pairs
     for &ic in &g.iron {
-        let m = (19 - ic.0, 9 - ic.1);
+        let m = mir(ic);
         assert!(g.iron.contains(&m), "iron cell {:?} should have mirror {:?}", ic, m);
     }
     for &wc in &g.water {
-        let m = (19 - wc.0, 9 - wc.1);
+        let m = mir(wc);
         assert!(g.water.contains(&m), "water cell {:?} should have mirror {:?}", wc, m);
     }
 
@@ -414,7 +419,7 @@ fn test_generate_bronze_valid_symmetric_map() {
 
     // Plants are mirrored
     for p in &g.plants {
-        let m = (19 - p.x, 9 - p.y);
+        let m = mir(p.pos());
         assert!(
             g.plants.iter().any(|q| q.pos() == m && q.plant_type == p.plant_type),
             "plant at {:?} should have mirror", p.pos()

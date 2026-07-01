@@ -2,19 +2,19 @@ use std::collections::HashSet;
 use super::state::{Cell, GameState, Plant, Unit};
 use super::engine::{bfs_distances, tick_plants, plant_cooldown, tree_health, MAX_SIZE, MAX_FRUITS, IRON};
 
-// Match the real Bronze arena: 20x10 grids, sparse trees (~5 pairs = ~10 trees,
-// density ~0.05/cell). The old 16x8 with 1-3 pairs/type (~16 trees, ~0.13/cell)
-// was 3x too tree-dense, which structurally over-rewarded sustained fruit
-// harvesting (renewable) over one-shot chopping (destructive) -- biasing the
-// local ladder against every chop strategy. See docs/mechanics.md.
-const WIDTH: i32 = 20;
-const HEIGHT: i32 = 10;
+// Calibrated to the real SILVER arena (not the old sparse Bronze). Real maps:
+// height 8-11, width = 2*height (~16x8 .. 22x11), ~18 fruit trees, iron + water
+// present. The old fixed 20x10 / ~10-tree map was ~2x too tree-sparse, which
+// structurally under-rewarded sustained fruit harvesting and let every bot beat
+// the modelled boss. We now vary the map size per seed and place ~18 trees so the
+// sim reproduces real magnitudes (a chopper-heavy wood bot scoring 150-250).
+// See docs/mechanics.md and memory/silver-pivot.md.
 
 const FRUITS: [&str; 4] = ["PLUM", "LEMON", "APPLE", "BANANA"];
 
-// Density knobs (env, for Silver-fidelity calibration; the real arena is far denser
-// than the old sparse Bronze maps). TREE_LO/TREE_HI = pairs-per-fruit-type range;
-// WATER_PAIRS / IRON_PAIRS = terrain pairs. Defaults reproduce the old sparse map.
+// Density knobs (env, for calibration). TREE_LO/TREE_HI = pairs-per-fruit-type
+// range (4 types * pairs * 2 sides). WATER_PAIRS / IRON_PAIRS = terrain pairs.
+// Defaults reproduce the calibrated Silver density (~18 trees).
 fn envi(name: &str, default: i32) -> i32 {
     std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
 }
@@ -64,10 +64,6 @@ impl Rng {
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 
-fn mirror(cell: Cell) -> Cell {
-    (WIDTH - 1 - cell.0, HEIGHT - 1 - cell.1)
-}
-
 /// Check that all walkable cells are reachable from shack-adjacent walkable cells.
 fn all_reachable(walkable: &HashSet<Cell>, shack: Cell) -> bool {
     let sources: Vec<Cell> = [
@@ -89,25 +85,38 @@ fn all_reachable(walkable: &HashSet<Cell>, shack: Cell) -> bool {
     walkable.iter().all(|c| dist.contains_key(c))
 }
 
-// ── generate (Bronze-like base map) ─────────────────────────────────────────
+/// Map dimensions for a seed: height in [8,11], width = 2*height (real Silver).
+/// Deterministic and independent of the main map RNG stream.
+pub fn dims_for_seed(seed: u64) -> (i32, i32) {
+    // A small dedicated mix so size doesn't correlate trivially with layout.
+    let mut z = seed.wrapping_add(0x243f6a8885a308d3);
+    z = (z ^ (z >> 33)).wrapping_mul(0xff51afd7ed558ccd);
+    z = (z ^ (z >> 33)).wrapping_mul(0xc4ceb9fe1a85ec53);
+    let h = 8 + (z % 4) as i32; // 8..=11
+    (2 * h, h)
+}
 
-/// Generate a valid symmetric Bronze map.
+// ── generate (Silver-calibrated map) ─────────────────────────────────────────
+
+/// Generate a valid symmetric Silver-league map.
 /// The Rust RNG differs from Python's random module so maps will differ,
 /// but structural properties are identical.
 pub fn generate_bronze(seed: u64) -> GameState {
+    let (width, height) = dims_for_seed(seed);
+    let mirror = move |cell: Cell| (width - 1 - cell.0, height - 1 - cell.1);
     let mut rnd = Rng::new(seed);
 
     // ── step 1: pick shacks (mirror-symmetric) ──────────────────────────────
     let (s0, s1) = loop {
-        let x = rnd.randrange(WIDTH / 2);
-        let y = rnd.randrange(HEIGHT);
+        let x = rnd.randrange(width / 2);
+        let y = rnd.randrange(height);
         let s0: Cell = (x, y);
         let s1 = mirror(s0);
         if s0 == s1 {
             continue;
         }
         // Build initial walkable (all cells except shacks)
-        let mut w: HashSet<Cell> = (0..WIDTH).flat_map(|x| (0..HEIGHT).map(move |y| (x, y))).collect();
+        let mut w: HashSet<Cell> = (0..width).flat_map(|x| (0..height).map(move |y| (x, y))).collect();
         w.remove(&s0);
         w.remove(&s1);
         if all_reachable(&w, s0) {
@@ -115,8 +124,8 @@ pub fn generate_bronze(seed: u64) -> GameState {
         }
     };
 
-    let mut walkable: HashSet<Cell> = (0..WIDTH)
-        .flat_map(|x| (0..HEIGHT).map(move |y| (x, y)))
+    let mut walkable: HashSet<Cell> = (0..width)
+        .flat_map(|x| (0..height).map(move |y| (x, y)))
         .collect();
     walkable.remove(&s0);
     walkable.remove(&s1);
@@ -131,7 +140,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
     used.insert(s0);
     used.insert(s1);
 
-    let (tree_lo, tree_hi) = (envi("TREE_LO", 1), envi("TREE_HI", 2));
+    let (tree_lo, tree_hi) = (envi("TREE_LO", 2), envi("TREE_HI", 3));
     for &ftype in &FRUITS {
         let count = rnd.randint(tree_lo, tree_hi);
         for _ in 0..count {
@@ -167,8 +176,8 @@ pub fn generate_bronze(seed: u64) -> GameState {
             // using a temporary minimal game state
             let tmp_walkable: HashSet<Cell> = walkable.iter().copied().collect();
             let mut tmp = GameState {
-                width: WIDTH,
-                height: HEIGHT,
+                width,
+                height,
                 walkable: tmp_walkable,
                 shacks: [s0, s1],
                 inventories: [inv0, inv1],
@@ -192,8 +201,8 @@ pub fn generate_bronze(seed: u64) -> GameState {
     if plants.iter().all(|p| p.fruits == 0) && !plants.is_empty() {
         let tmp_walkable: HashSet<Cell> = walkable.iter().copied().collect();
         let mut tmp = GameState {
-            width: WIDTH,
-            height: HEIGHT,
+            width,
+            height,
             walkable: tmp_walkable,
             shacks: [s0, s1],
             inventories: [inv0, inv1],
@@ -214,7 +223,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
         plants = tmp.plants;
     }
 
-    // ── step 4: add iron/water cells (Bronze additions) ─────────────────────
+    // ── step 4: add iron/water cells ─────────────────────────────────────────
     let mut rnd2 = Rng::new(seed.wrapping_mul(2654435761) % (1u64 << 32));
 
     let mut iron: HashSet<Cell> = HashSet::new();
@@ -234,7 +243,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
     candidates.sort_unstable(); // determinism: fix HashSet order before the seeded shuffle
     rnd2.shuffle(&mut candidates);
 
-    // Place 2 pairs of iron cells
+    // Place iron cell pairs
     let mut placed = 0;
     let mut ci = 0;
     while placed < envi("IRON_PAIRS", 2) as usize && ci < candidates.len() {
@@ -257,7 +266,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
         placed += 1;
     }
 
-    // Place 3 pairs of water cells
+    // Place water cell pairs
     let mut placed = 0;
     while placed < envi("WATER_PAIRS", 3) as usize && ci < candidates.len() {
         let c = candidates[ci];
@@ -286,15 +295,15 @@ pub fn generate_bronze(seed: u64) -> GameState {
     inv0_final[IRON] = iron_start;
     inv1_final[IRON] = iron_start;
 
-    // ── step 6: create units with chop=1 (Bronze) ───────────────────────────
+    // ── step 6: create starting units (starter troll per player) ─────────────
     let units = vec![
         Unit { id: 0, player: 0, x: s0.0, y: s0.1, ms: 1, cc: 1, hp: 1, chop: 1, carry: [0; 6] },
         Unit { id: 1, player: 1, x: s1.0, y: s1.1, ms: 1, cc: 1, hp: 1, chop: 1, carry: [0; 6] },
     ];
 
     GameState {
-        width: WIDTH,
-        height: HEIGHT,
+        width,
+        height,
         walkable,
         shacks: [s0, s1],
         inventories: [inv0_final, inv1_final],
