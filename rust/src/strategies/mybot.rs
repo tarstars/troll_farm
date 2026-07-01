@@ -27,7 +27,7 @@ const MAX_ORCHARD: usize = 2; // base plum orchard size
 // (ms2) choppers that win the race to contested trees, and harvesters that grab the
 // NEAREST ripe fruit for max throughput (greedy expansion already funds training, so
 // we don't need scarce-resource-first harvesting).
-const CHOPPER_SPEC: (i32, i32, i32, i32) = (1, 2, 0, 2);
+const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 1, 2);
 const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const HARVESTER: (i32, i32, i32, i32) = (1, 2, 2, 0);
@@ -181,7 +181,7 @@ impl Strategy for MyBot {
                     // cell so it grows and the chopper later fells it for wood (1pt fruit ->
                     // up to 4*size pts). Prefer BANANA -- it can't fund training, so it's
                     // pure surplus. Only in a mid-game window so the tree has time to grow.
-                    let woodfarm = envi("MB_WOODFARM", 1) == 1
+                    let woodfarm = envi("MB_WOODFARM", 0) == 1
                         && game.turn >= envi("MB_WF_START", 20)
                         && game.turn <= envi("MB_WF_END", 280)
                         && base_trees < envi("MB_WF_MAX", 6) as usize;

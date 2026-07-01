@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.4-nowedge";
+const VERSION: &str = "1.0.5-safe";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -759,7 +759,7 @@ fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
 // Cheap pure chopper (ms1, cc2, hp0, chop2): swept best vs silver_boss at 87% (vs the
 // old ms2 (2,2,1,2) at 81%). cc2 = 2 wood/fell is essential; dropping ms+hp saves plum
 // +apple for a stronger economy while still winning the denial race (DW=3) + woodfarm.
-const MB_CHOPPER: (i32, i32, i32, i32) = (1, 2, 0, 2);
+const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 1, 2);
 const MB_NCHOPPERS: i32 = 2;
 const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const MB_MAX_TROLLS: usize = 4;
@@ -852,7 +852,10 @@ fn decide(state: &State) -> Vec<String> {
                     let on_tree = state.trees.iter().any(|p| p.pos() == t.pos());
                     let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= 3).count();
                     let plum_orchard = orchard < MB_MAX_ORCHARD && t.carry[PLUM] > 0;
-                    let woodfarm = state.turn >= 20 && state.turn <= 280 && base_trees < 6;
+                    // Woodfarm DISABLED: it + the cheap ms1 chopper overfit the silver_boss
+                    // MODEL (v1.0.4 = 90.5% sim but only 2/6 vs the REAL Boss 4). Keep only
+                    // the robust denial tuning + the wedge bug-fix (= validated v1.0.1 + fix).
+                    let woodfarm = false && base_trees < 6;
                     if !is_chop && !on_tree && state.walkable.contains(&t.pos()) && (plum_orchard || woodfarm) {
                         let ty = if plum_orchard {
                             "PLUM"
