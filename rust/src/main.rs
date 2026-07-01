@@ -7,8 +7,13 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.8.3";
+const VERSION: &str = "0.9.7";
 const TOTAL_TURNS: i32 = 300;
+// NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
+// dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
+// wins on WOOD (a cc4 chopper fells trees for 4 wood = 16pts; ~184 of its 283 pts were
+// wood), so we now train big choppers and chop the nearest tree (fruit grabbed as bonus).
+const NO_CHOP: bool = true;
 // Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
 // to stderr (captured in the replay) so we can replay a real game through the sim
 // and compare turn-by-turn. Off by default (no effect on play or stdout parity).
@@ -479,11 +484,13 @@ fn candidate_policies() -> Vec<Vec<(i32, i32, i32, i32)>> {
         cands.push(vec![g]);
         cands.push(vec![g, g]);
     }
-    for &c in &CHOPPER_SPECS {
-        cands.push(vec![c]);
-        for &g in &GATHERER_SPECS {
-            cands.push(vec![c, g]);
-            cands.push(vec![c, g, g]);
+    if !NO_CHOP {
+        for &c in &CHOPPER_SPECS {
+            cands.push(vec![c]);
+            for &g in &GATHERER_SPECS {
+                cands.push(vec![c, g]);
+                cands.push(vec![c, g, g]);
+            }
         }
     }
     cands
@@ -639,13 +646,14 @@ fn best_chop_target<'a>(
             continue;
         }
         let d_enemy = (tree.x - ox).abs() + (tree.y - oy).abs();
-        // Denial-dominant but trek-aware: 2x weight on enemy-distance keeps denial
-        // (chopping the foe's nearby trees to starve their fruit) decisive when that
-        // tree is reasonably close, yet our own travel distance (dist_t) can still
-        // tip us to a closer tree rather than trekking the whole map diagonal for one
-        // far tree -- which tanked chop throughput on far-apart-shack maps. Measured
-        // best of {pure denial, denial+reach, this} across the whole field (v0.8.0).
-        let key = (2 * d_enemy + dist_t[&pos], d_enemy, -tree.size);
+        // Denial-dominant but trek-aware: 1x weight on enemy-distance keeps denial
+        // (chopping the foe's nearby trees to starve their fruit) present, yet our own
+        // travel distance (dist_t) keeps chop throughput high (trekking the map diagonal
+        // for a far tree tanked throughput on far-apart-shack maps). The -6*fruits term
+        // is FRUIT-DENIAL: preferentially fell the foe's FRUITED trees, destroying its
+        // harvest (1pt each) while banking wood. Swept vs boss4 (v0.8.5): W=1,FB=6 gives
+        // 76.8% / +9.9 margin, up from W=2,FB=0's 73.7% -- best win-rate*margin balance.
+        let key = (1 * d_enemy + dist_t[&pos] - 6 * tree.fruits, d_enemy, -tree.size);
         if best_key.is_none() || key < best_key.unwrap() {
             best_key = Some(key);
             best = Some(tree);
@@ -705,7 +713,253 @@ fn chop_command(
 
 // ── decide ────────────────────────────────────────────────────────────────────
 
+// ── VERSATILE POWER-TROLL strategy (v0.9.x) ──────────────────────────────────
+// The real Boss 4 trains versatile power-trolls (ms1,cc2,hp3,chop3) that harvest
+// fast AND chop, and it INVESTS its resources; it scores ~250. Our old bots trained
+// weak (1,1,1,0) gatherers and hoarded apple/iron, scoring ~86. This strategy:
+//   - saves toward and trains the STRONGEST affordable power-troll (mine iron for it);
+//   - each troll HARVESTs the fruited tree it targets (primary income), and CHOPs a
+//     tree only when no fruit is reachable (wood is 4pt/unit -- a fallback, not scorch);
+//   - banks when full; spreads over shack drop cells.
+// WOOD dominates scoring (4pt/unit; a cc4 chopper fells a tree for up to 4 wood = 16
+// pts). The real Boss 4 wins with a (2,4,2,2) powerhouse chopper (184 of its 283 pts
+// were wood). So we train big CHOPPERS (high cc + chop, some hp to grab fruit too),
+// strongest affordable first, and each troll chops the nearest tree (harvesting its
+// fruit first when present). Trees regrow, so chopping is sustainable, not scorch.
+// One STRONG chopper (wood engine, like the boss's (2,4,2,2)); cc>=3 only, so we don't
+// settle for a weak cc2 chopper -- we save until a real one is affordable.
+const CHOPPER_BUILD: [(i32, i32, i32, i32); 4] =
+    [(2, 4, 2, 2), (2, 4, 0, 3), (1, 3, 1, 2), (1, 3, 0, 2)];
+// HARVESTERS: hp-focused, cc2, no chop (so they never fell trees -> map is preserved).
+const HARVEST_SPECS: [(i32, i32, i32, i32); 5] =
+    [(2, 2, 3, 0), (1, 2, 3, 0), (1, 2, 2, 0), (1, 2, 1, 0), (1, 1, 1, 0)];
+const MAX_POWER_TROLLS: usize = 6;
+
+fn afford_cost(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
+    inv[PLUM] >= cost[PLUM]
+        && inv[LEMON] >= cost[LEMON]
+        && inv[APPLE] >= cost[APPLE]
+        && inv[IRON] >= cost[IRON]
+}
+fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
+    inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE]
+}
+
 fn decide(state: &State) -> Vec<String> {
+    let shack = state.my_shack;
+    let shack_adj: Vec<Cell> = ortho_neighbors(shack)
+        .iter()
+        .filter(|n| state.walkable.contains(n))
+        .copied()
+        .collect();
+
+    let mut my: Vec<Troll> = state.my_trolls.clone();
+    my.sort_by_key(|t| t.id);
+    let n = my.len() as i32;
+
+    // Composition (mirrors the boss): starter + 1 harvester for early income, then
+    // SAVE for ONE strong (2,4,2,2)-class chopper (cc>=3, chop>=2 -- the wood engine
+    // that wins games; the boss's cc4 chopper made 156 of its pts). Only after we own
+    // that do we add more harvesters. While saving, if no strong chopper is affordable
+    // we simply don't train (accumulate lemon+iron) rather than waste resources on weak
+    // trolls -- that dilution is why we kept losing the wood race.
+    let have_strong = my.iter().any(|t| t.chop_power >= 2 && t.carry_capacity >= 3);
+    let build_list: &[(i32, i32, i32, i32)] = if have_strong {
+        &HARVEST_SPECS
+    } else if n < 2 {
+        &HARVEST_SPECS
+    } else {
+        &CHOPPER_BUILD
+    };
+    let trainable: Option<(i32, i32, i32, i32)> = build_list
+        .iter()
+        .copied()
+        .find(|&s| afford_cost(&state.my_inventory, &training_cost(n, s)));
+    let iron_goal: Option<(i32, i32, i32, i32)> = build_list
+        .iter()
+        .copied()
+        .find(|&s| afford_fruit_only(&state.my_inventory, &training_cost(n, s)));
+    let need_iron = match iron_goal {
+        Some(s) => state.my_inventory[IRON] < training_cost(n, s)[IRON],
+        None => false,
+    };
+
+    let mut commands: Vec<String> = Vec::new();
+    if state.turn == 1 {
+        commands.push(format!("MSG v{}", VERSION));
+    }
+
+    let mut reserved: HashSet<Cell> = HashSet::new();
+    let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
+
+    // MIXED roles: exactly ONE dedicated chopper (the strongest chop>=2 troll) fells
+    // trees for wood; everyone else HARVESTS fruit and never chops. This sustains the
+    // tree population (chopping with every troll scorched the map -- the game ends at
+    // 0 trees and we lost 58-168), while still banking the high-value wood the boss
+    // wins on. Fruit-grabbing on a tree is allowed for all (free points).
+    let chopper_id: Option<i32> = my
+        .iter()
+        .filter(|t| t.chop_power >= 2)
+        .max_by_key(|t| (t.chop_power, t.carry_capacity, -t.id))
+        .map(|t| t.id);
+
+    for troll in &my {
+        let is_chopper = Some(troll.id) == chopper_id;
+        // 1. Full -> bank.
+        if troll.free_capacity() == 0 {
+            cmd_by_id.insert(troll.id, bank_command(troll, state));
+            continue;
+        }
+        // 2. On a tree: the dedicated chopper FELLS it (wood is the win condition -- if
+        //    it harvested the regrowing fruit instead it would never fell the tree and
+        //    make 0 wood, which is exactly why we kept losing). Harvesters take the fruit.
+        if let Some(tree) = state.trees.iter().find(|t| t.pos() == troll.pos()) {
+            if is_chopper && troll.chop_power > 0 {
+                cmd_by_id.insert(troll.id, format!("CHOP {}", troll.id));
+                reserved.insert(tree.pos());
+                continue;
+            }
+            if tree.fruits > 0 && troll.harvest_power > 0 {
+                cmd_by_id.insert(troll.id, format!("HARVEST {}", troll.id));
+                reserved.insert(tree.pos());
+                continue;
+            }
+        }
+        // 3. Mine iron if we're saving for a train and adjacent to iron.
+        if need_iron && troll.chop_power > 0 {
+            if state.iron_cells.iter().any(|ic| is_adjacent(troll.pos(), *ic)) {
+                cmd_by_id.insert(troll.id, format!("MINE {}", troll.id));
+                continue;
+            }
+        }
+        // 4. Head for the nearest reachable FRUITED tree (harvest income). If none,
+        //    fall back to the nearest reachable tree to CHOP (wood), or to iron if we
+        //    need it, else bank what we carry.
+        let dist = bfs_distances(&state.walkable, &[troll.pos()]);
+        let nearest = |fruited: bool| -> Option<(i32, Cell)> {
+            state
+                .trees
+                .iter()
+                .filter(|t| !fruited || t.fruits > 0)
+                .filter(|t| !reserved.contains(&t.pos()))
+                .filter_map(|t| dist.get(&t.pos()).map(|&d| (d, t.pos())))
+                .min()
+        };
+        // The dedicated chopper heads for the NEAREST tree (any) to fell it. Harvesters
+        // head for the nearest FRUITED tree, PREFERRING the training resource we're
+        // shortest on (plum/lemon/apple) -- otherwise we starve a resource (usually
+        // APPLE, needed for harvestPower) and can't train past 2 trolls. Fall back to
+        // any fruited tree, then any tree (never chop -> trees live).
+        let need_idx = (0..3usize).min_by_key(|&i| state.my_inventory[i]).unwrap();
+        let need_ty = ["PLUM", "LEMON", "APPLE"][need_idx];
+        let nearest_typed = |ty: &str| -> Option<(i32, Cell)> {
+            state
+                .trees
+                .iter()
+                .filter(|t| t.fruits > 0 && t.tree_type == ty && !reserved.contains(&t.pos()))
+                .filter_map(|t| dist.get(&t.pos()).map(|&d| (d, t.pos())))
+                .min()
+        };
+        let target = if is_chopper {
+            nearest(false)
+        } else {
+            nearest_typed(need_ty)
+                .or_else(|| nearest(true))
+                .or_else(|| nearest(false))
+        };
+        // If we need iron and there's a reachable iron cell, a chopper may go mine.
+        let iron_target: Option<(i32, Cell)> = if need_iron && troll.chop_power > 0 {
+            state
+                .iron_cells
+                .iter()
+                .flat_map(|ic| ortho_neighbors(*ic))
+                .filter(|c| state.walkable.contains(c))
+                .filter_map(|c| dist.get(&c).map(|&d| (d, c)))
+                .min()
+        } else {
+            None
+        };
+
+        // When we're saving for the chopper and short on iron, a chop-capable troll
+        // PRIORITIZES mining (go straight to iron) -- otherwise the lone miner stays
+        // harvesting and we stall 1 iron short of the big chopper, hoarding fruit
+        // (observed: 105-109 loss, iron 5 vs the 6 needed). Iron need self-limits (once
+        // banked enough, need_iron flips off and we return to fruit).
+        let go: Option<Cell> = match (target, iron_target) {
+            (_, Some((_, ci))) => Some(ci),
+            (Some((_, c)), None) => Some(c),
+            (None, None) => None,
+        };
+        match go {
+            Some(c) => {
+                reserved.insert(c);
+                cmd_by_id.insert(troll.id, format!("MOVE {} {} {}", troll.id, c.0, c.1));
+            }
+            None => {
+                if troll.total_carried() > 0 {
+                    cmd_by_id.insert(troll.id, bank_command(troll, state));
+                } else {
+                    cmd_by_id.insert(troll.id, format!("WAIT"));
+                }
+            }
+        }
+    }
+
+    // Spread bankers over free shack-adjacent drop cells (reuse the wedge-free logic:
+    // nearest reachable free cell per banker).
+    let (sx, sy) = shack;
+    let mut bankers: Vec<i32> = cmd_by_id
+        .iter()
+        .filter(|(tid, cmd)| cmd.as_str() == format!("MOVE {} {} {}", tid, sx, sy).as_str())
+        .map(|(tid, _)| *tid)
+        .collect();
+    bankers.sort();
+    if !bankers.is_empty() {
+        let banker_set: HashSet<i32> = bankers.iter().copied().collect();
+        let blocked: HashSet<Cell> = my
+            .iter()
+            .filter(|u| !banker_set.contains(&u.id))
+            .map(|u| u.pos())
+            .collect();
+        let mut used: HashSet<Cell> = HashSet::new();
+        for &tid in &bankers {
+            let from = my.iter().find(|u| u.id == tid).map(|u| u.pos()).unwrap_or(shack);
+            let d = bfs_distances(&state.walkable, &[from]);
+            let cell = shack_adj
+                .iter()
+                .filter(|c| !blocked.contains(c) && !used.contains(c))
+                .min_by_key(|c| *d.get(*c).unwrap_or(&(1 << 30)))
+                .copied()
+                .unwrap_or(shack);
+            used.insert(cell);
+            cmd_by_id.insert(tid, format!("MOVE {} {} {}", tid, cell.0, cell.1));
+        }
+    }
+
+    let mut ids: Vec<i32> = cmd_by_id.keys().copied().collect();
+    ids.sort();
+    for id in ids {
+        commands.push(cmd_by_id[&id].clone());
+    }
+
+    // Train the strongest affordable power-troll -- invest, don't hoard. Requires a
+    // free shack (a troll spawns on it) and enough turns left to pay off.
+    if let Some(spec) = trainable {
+        if (n as usize) < MAX_POWER_TROLLS
+            && TOTAL_TURNS - state.turn > PARAMS.min_turns_left_to_train
+            && !my.iter().any(|t| t.pos() == shack)
+        {
+            commands.push(format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3));
+        }
+    }
+
+    if commands.is_empty() {
+        commands.push("WAIT".to_string());
+    }
+    commands
+}
+
+fn decide_old(state: &State) -> Vec<String> {
     let shack_adj: Vec<Cell> = ortho_neighbors(state.my_shack)
         .iter()
         .filter(|n| state.walkable.contains(n))
@@ -732,7 +986,7 @@ fn decide(state: &State) -> Vec<String> {
     // strands us at 2 trolls (iron-short of the 3rd) and REGRESSED the arena 3 -> 48
     // (v0.8.2). The starter's early trek doubles as mining/denial; keep it.
     let mut bootstrap_id: Option<i32> = None;
-    if !has_real_chopper && !state.iron_cells.is_empty() {
+    if !NO_CHOP && !has_real_chopper && !state.iron_cells.is_empty() {
         bootstrap_id = my_trolls_sorted
             .iter()
             .filter(|t| t.chop_power >= 1)
@@ -751,7 +1005,8 @@ fn decide(state: &State) -> Vec<String> {
             && c[LEMON] <= state.my_inventory[LEMON]
             && c[APPLE] <= state.my_inventory[APPLE]
     };
-    let next_spec: Option<(i32, i32, i32, i32)> = if !has_real_chopper
+    let next_spec: Option<(i32, i32, i32, i32)> = if !NO_CHOP
+        && !has_real_chopper
         && !state.iron_cells.is_empty()
         && my_trolls_sorted.len() < PARAMS.opening_max_trolls
         && state.turn <= PARAMS.opening_turns
@@ -839,11 +1094,28 @@ fn decide(state: &State) -> Vec<String> {
             .filter(|u| !banker_set.contains(&u.id) && stays_put(u.id, u.pos()))
             .map(|u| u.pos())
             .collect();
-        // Free (unblocked) shack-adjacent cells first; stable keeps the original order.
-        let mut cells: Vec<Cell> = shack_adj.clone();
-        cells.sort_by_key(|c| blocked.contains(c));
-        for (i, &tid) in bankers.iter().enumerate() {
-            let cell = if cells.is_empty() { state.my_shack } else { cells[i % cells.len()] };
+        // Assign each banker its NEAREST reachable free drop cell (BFS from the
+        // banker's own position). The old fixed-order pick could hand a banker a
+        // shack-adjacent cell reachable only THROUGH a teammate camping the near
+        // approach, wedging it one step short of the shack for the rest of the game
+        // (undelivered cargo = lost points; a dead scorched-earth endgame made this
+        // permanent). Nearest-reachable routes it to a cell it can actually reach.
+        let mut used: HashSet<Cell> = HashSet::new();
+        for &tid in &bankers {
+            let from = state
+                .my_trolls
+                .iter()
+                .find(|u| u.id == tid)
+                .map(|u| u.pos())
+                .unwrap_or(state.my_shack);
+            let d = bfs_distances(&state.walkable, &[from]);
+            let cell = shack_adj
+                .iter()
+                .filter(|c| !blocked.contains(c) && !used.contains(c))
+                .min_by_key(|c| *d.get(*c).unwrap_or(&(1 << 30)))
+                .copied()
+                .unwrap_or(state.my_shack);
+            used.insert(cell);
             commands_by_id.insert(tid, format!("MOVE {} {} {}", tid, cell.0, cell.1));
         }
     }
@@ -878,7 +1150,7 @@ fn decide(state: &State) -> Vec<String> {
         };
         let have_chopper = state.my_trolls.iter().any(|t| t.chop_power >= 2);
         let mut chosen: Option<(i32, i32, i32, i32)> = None;
-        if !have_chopper && !state.iron_cells.is_empty() {
+        if !NO_CHOP && !have_chopper && !state.iron_cells.is_empty() {
             for &spec in PARAMS.opening_chopper_specs {
                 if affordable(spec) {
                     chosen = Some(spec);
@@ -1065,6 +1337,27 @@ fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
         us.push_str(&format!("{},1,{},{};", u.id, u.x, u.y));
     }
     eprintln!("@TFD {} {} {} {}", state.turn, join(&state.my_inventory), join(&state.opp_inventory), us);
+
+    // Compact per-turn SUMMARY (printed LAST so it's the console line that survives
+    // truncation): both scores, tree count, and OPPONENT troll stats -- so we can read
+    // the real Boss 4's composition (fruit vs wood) and troll build from one screenshot.
+    let score = |inv: &[i32; 6]| inv[0] + inv[1] + inv[2] + inv[3] + 4 * inv[5];
+    let opp_builds: Vec<String> = state
+        .opp_trolls
+        .iter()
+        .map(|u| format!("{}:{}.{}.{}.{}", u.id, u.movement_speed, u.carry_capacity, u.harvest_power, u.chop_power))
+        .collect();
+    let my_builds: Vec<String> = state
+        .my_trolls
+        .iter()
+        .map(|u| format!("{}:{}.{}.{}.{}", u.id, u.movement_speed, u.carry_capacity, u.harvest_power, u.chop_power))
+        .collect();
+    eprintln!(
+        "@TFSUM t={} me={} opp={} trees={} myinv=[{}] oppinv=[{}] mybuilds={} oppbuilds={}",
+        state.turn, score(&state.my_inventory), score(&state.opp_inventory), state.trees.len(),
+        join(&state.my_inventory), join(&state.opp_inventory),
+        my_builds.join(","), opp_builds.join(",")
+    );
 }
 
 fn main() {

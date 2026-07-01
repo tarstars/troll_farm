@@ -12,6 +12,13 @@ const HEIGHT: i32 = 10;
 
 const FRUITS: [&str; 4] = ["PLUM", "LEMON", "APPLE", "BANANA"];
 
+// Density knobs (env, for Silver-fidelity calibration; the real arena is far denser
+// than the old sparse Bronze maps). TREE_LO/TREE_HI = pairs-per-fruit-type range;
+// WATER_PAIRS / IRON_PAIRS = terrain pairs. Defaults reproduce the old sparse map.
+fn envi(name: &str, default: i32) -> i32 {
+    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
+}
+
 // ── SplitMix64 PRNG ──────────────────────────────────────────────────────────
 
 struct Rng(u64);
@@ -124,8 +131,9 @@ pub fn generate_bronze(seed: u64) -> GameState {
     used.insert(s0);
     used.insert(s1);
 
+    let (tree_lo, tree_hi) = (envi("TREE_LO", 1), envi("TREE_HI", 2));
     for &ftype in &FRUITS {
-        let count = rnd.randint(1, 2);
+        let count = rnd.randint(tree_lo, tree_hi);
         for _ in 0..count {
             // Sort before the seeded RNG picks: HashSet iteration order is randomized
             // per process, so without this the SAME seed produces DIFFERENT maps on
@@ -229,7 +237,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
     // Place 2 pairs of iron cells
     let mut placed = 0;
     let mut ci = 0;
-    while placed < 2 && ci < candidates.len() {
+    while placed < envi("IRON_PAIRS", 2) as usize && ci < candidates.len() {
         let c = candidates[ci];
         ci += 1;
         let m = mirror(c);
@@ -251,7 +259,7 @@ pub fn generate_bronze(seed: u64) -> GameState {
 
     // Place 3 pairs of water cells
     let mut placed = 0;
-    while placed < 3 && ci < candidates.len() {
+    while placed < envi("WATER_PAIRS", 3) as usize && ci < candidates.len() {
         let c = candidates[ci];
         ci += 1;
         let m = mirror(c);

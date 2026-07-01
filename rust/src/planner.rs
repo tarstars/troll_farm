@@ -7,8 +7,15 @@ use std::collections::{HashMap, HashSet, VecDeque};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.8.3";
+const VERSION: &str = "0.9.0";
 const TOTAL_TURNS: i32 = 300;
+// PURE HARVESTER mode. The real arena Boss 4 (config/level2/Boss.cs) is a 2-troll
+// SUSTAINABLE FARMER that never chops -- it out-harvests a scorch-earth chopper over
+// 300 turns (we lost 89-222 while chopping). Against a replanter, denial is self-
+// defeating: it starves our own renewable fruit economy for a one-time wood payout.
+// So NO_CHOP disables all chopping/mining/chopper-training -- the bot becomes a
+// many-harvester farmer (BFS + ripeness routing) that out-farms the boss's 2 gatherers.
+const NO_CHOP: bool = true;
 // Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
 // to stderr (captured in the replay) so we can replay a real game through the sim
 // and compare turn-by-turn. Off by default (no effect on play or stdout parity).
@@ -479,11 +486,13 @@ fn candidate_policies() -> Vec<Vec<(i32, i32, i32, i32)>> {
         cands.push(vec![g]);
         cands.push(vec![g, g]);
     }
-    for &c in &CHOPPER_SPECS {
-        cands.push(vec![c]);
-        for &g in &GATHERER_SPECS {
-            cands.push(vec![c, g]);
-            cands.push(vec![c, g, g]);
+    if !NO_CHOP {
+        for &c in &CHOPPER_SPECS {
+            cands.push(vec![c]);
+            for &g in &GATHERER_SPECS {
+                cands.push(vec![c, g]);
+                cands.push(vec![c, g, g]);
+            }
         }
     }
     cands
@@ -625,6 +634,12 @@ fn gather_command(
 
 // ── chop_command ──────────────────────────────────────────────────────────────
 
+// Experiment knob: read an i32 from env with a default (planner.rs only, for
+// sweeping; winners get baked into a const and mirrored to main.rs).
+fn envi(name: &str, default: i32) -> i32 {
+    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
+}
+
 fn best_chop_target<'a>(
     state: &'a State,
     reserved: &HashSet<Cell>,
@@ -633,19 +648,21 @@ fn best_chop_target<'a>(
     let mut best: Option<&Tree> = None;
     let mut best_key: Option<(i32, i32, i32)> = None;
     let (ox, oy) = state.opp_shack;
+    let w = envi("DENIAL_W", 1); // weight on enemy-distance (denial dominance)
+    let fb = envi("FRUIT_DENIAL", 6); // bonus for chopping fruited enemy trees
     for tree in &state.trees {
         let pos = tree.pos();
         if reserved.contains(&pos) || !dist_t.contains_key(&pos) {
             continue;
         }
         let d_enemy = (tree.x - ox).abs() + (tree.y - oy).abs();
-        // Denial-dominant but trek-aware: 2x weight on enemy-distance keeps denial
+        // Denial-dominant but trek-aware: weight on enemy-distance keeps denial
         // (chopping the foe's nearby trees to starve their fruit) decisive when that
         // tree is reasonably close, yet our own travel distance (dist_t) can still
         // tip us to a closer tree rather than trekking the whole map diagonal for one
         // far tree -- which tanked chop throughput on far-apart-shack maps. Measured
         // best of {pure denial, denial+reach, this} across the whole field.
-        let key = (2 * d_enemy + dist_t[&pos], d_enemy, -tree.size);
+        let key = (w * d_enemy + dist_t[&pos] - fb * tree.fruits, d_enemy, -tree.size);
         if best_key.is_none() || key < best_key.unwrap() {
             best_key = Some(key);
             best = Some(tree);
@@ -732,7 +749,7 @@ pub fn decide(state: &State) -> Vec<String> {
     // strands us at 2 trolls (iron-short of the 3rd) and REGRESSED the arena 3 -> 48
     // (v0.8.2). The starter's early trek doubles as mining/denial; keep it.
     let mut bootstrap_id: Option<i32> = None;
-    if !has_real_chopper && !state.iron_cells.is_empty() {
+    if !NO_CHOP && !has_real_chopper && !state.iron_cells.is_empty() {
         bootstrap_id = my_trolls_sorted
             .iter()
             .filter(|t| t.chop_power >= 1)
@@ -751,10 +768,11 @@ pub fn decide(state: &State) -> Vec<String> {
             && c[LEMON] <= state.my_inventory[LEMON]
             && c[APPLE] <= state.my_inventory[APPLE]
     };
-    let next_spec: Option<(i32, i32, i32, i32)> = if !has_real_chopper
+    let next_spec: Option<(i32, i32, i32, i32)> = if !NO_CHOP
+        && !has_real_chopper
         && !state.iron_cells.is_empty()
-        && my_trolls_sorted.len() < PARAMS.opening_max_trolls
-        && state.turn <= PARAMS.opening_turns
+        && my_trolls_sorted.len() < (envi("OPEN_MAX", 3) as usize)
+        && state.turn <= envi("OPEN_TURNS", 30)
     {
         // Opening: strongest chopper whose fruit we can already cover (iron via mining).
         PARAMS.opening_chopper_specs.iter().copied().find(|s| afford_fruit(*s))
@@ -839,11 +857,28 @@ pub fn decide(state: &State) -> Vec<String> {
             .filter(|u| !banker_set.contains(&u.id) && stays_put(u.id, u.pos()))
             .map(|u| u.pos())
             .collect();
-        // Free (unblocked) shack-adjacent cells first; stable keeps the original order.
-        let mut cells: Vec<Cell> = shack_adj.clone();
-        cells.sort_by_key(|c| blocked.contains(c));
-        for (i, &tid) in bankers.iter().enumerate() {
-            let cell = if cells.is_empty() { state.my_shack } else { cells[i % cells.len()] };
+        // Assign each banker its NEAREST reachable free drop cell (BFS from the
+        // banker's own position). The old fixed-order pick could hand a banker a
+        // shack-adjacent cell reachable only THROUGH a teammate camping the near
+        // approach, wedging it one step short of the shack for the rest of the game
+        // (undelivered cargo = lost points; a dead scorched-earth endgame made this
+        // permanent). Nearest-reachable routes it to a cell it can actually reach.
+        let mut used: HashSet<Cell> = HashSet::new();
+        for &tid in &bankers {
+            let from = state
+                .my_trolls
+                .iter()
+                .find(|u| u.id == tid)
+                .map(|u| u.pos())
+                .unwrap_or(state.my_shack);
+            let d = bfs_distances(&state.walkable, &[from]);
+            let cell = shack_adj
+                .iter()
+                .filter(|c| !blocked.contains(c) && !used.contains(c))
+                .min_by_key(|c| *d.get(*c).unwrap_or(&(1 << 30)))
+                .copied()
+                .unwrap_or(state.my_shack);
+            used.insert(cell);
             commands_by_id.insert(tid, format!("MOVE {} {} {}", tid, cell.0, cell.1));
         }
     }
@@ -870,7 +905,7 @@ pub fn decide(state: &State) -> Vec<String> {
     // then top up with cheap gatherers. forced_policy is never set in the real bot.
     let mut train_spec = plan.train;
     let n = state.my_trolls.len();
-    if state.turn <= PARAMS.opening_turns && n < PARAMS.opening_max_trolls {
+    if state.turn <= envi("OPEN_TURNS", 30) && n < (envi("OPEN_MAX", 3) as usize) {
         let pay: &[usize] = if !state.iron_cells.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
         let affordable = |spec: (i32, i32, i32, i32)| {
             let cost = training_cost(n as i32, spec);
@@ -878,7 +913,7 @@ pub fn decide(state: &State) -> Vec<String> {
         };
         let have_chopper = state.my_trolls.iter().any(|t| t.chop_power >= 2);
         let mut chosen: Option<(i32, i32, i32, i32)> = None;
-        if !have_chopper && !state.iron_cells.is_empty() {
+        if !NO_CHOP && !have_chopper && !state.iron_cells.is_empty() {
             for &spec in PARAMS.opening_chopper_specs {
                 if affordable(spec) {
                     chosen = Some(spec);
@@ -897,7 +932,7 @@ pub fn decide(state: &State) -> Vec<String> {
     if let Some(spec) = train_spec {
         if TOTAL_TURNS - state.turn > PARAMS.min_turns_left_to_train
             && !state.my_trolls.iter().any(|t| t.pos() == state.my_shack)
-            && n < PARAMS.max_trolls
+            && n < (envi("MAX_TROLLS", 5) as usize)
         {
             commands.push(format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3));
         }

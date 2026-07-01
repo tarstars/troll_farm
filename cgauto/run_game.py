@@ -48,6 +48,12 @@ with sync_playwright() as pw:
         if tf and tf==prev: break
         prev=tf
 
+    # scrub the replay to the END so the console shows the FINAL turns' @TFSUM
+    bb=page.evaluate("""()=>{const e=document.querySelector('.cg-player-sandbox')||document.querySelector('.cg-ide-player');
+        if(!e)return null; const r=e.getBoundingClientRect(); return [Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)];}""")
+    if bb: page.mouse.click(bb[0]+154, bb[1]+bb[3]-18)
+    time.sleep(14)
+
     body=page.evaluate("document.body.innerText")
     tf=[l for l in body.splitlines() if l.startswith("@TF")]
     res=re.findall(r'(1ST|2ND|VICTORY|DEFEAT|Won|Lost|Score|Rank)[^\n]{0,45}', body, re.I)
