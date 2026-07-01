@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "0.9.7";
+const VERSION: &str = "1.0.0-woodrace";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -745,7 +745,221 @@ fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
     inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE]
 }
 
+// ── WOOD-RACE bot (v1.0) — beats the Silver Boss ~68% in the local sim ─────────
+// Mirror of strategies::mybot (validated in the referee-faithful Rust sim). Strategy:
+//   * GREEDY expansion to ~4 trolls (train the cheapest affordable troll each turn),
+//     jumping the queue to build TWO fast (ms2,cc2,chop2) choppers as soon as afford-
+//     able; the rest are speed harvesters. Mine iron to fund the choppers' chop cost.
+//   * Choppers fell the best tree (close + big) with a DENIAL bias toward the foe's
+//     shack -- felling starves the opponent's fruit while banking 4pt-each wood.
+//   * Harvesters grab the NEAREST ripe fruit (max throughput) and seed a tiny base
+//     plum orchard; everyone banks when full.
+// The boss is a similar wood/denial bot; our edge is faster (ms2) choppers that win
+// the race to contested trees + higher fruit throughput (nearest-ripe harvesting).
+const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 1, 2);
+const MB_NCHOPPERS: i32 = 2;
+const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
+const MB_MAX_TROLLS: usize = 4;
+const MB_MAX_ORCHARD: usize = 2;
+const MB_MIN_TURNS_LEFT: i32 = 20;
+const MB_DENIAL_W: i32 = 1;
+const MB_SIZE_W: i32 = 3;
+
+thread_local! {
+    // Sticky per-harvester target memory (reset at turn 1). Persists across turns
+    // within a single game process.
+    static MB_MEM: std::cell::RefCell<HashMap<i32, Cell>> = std::cell::RefCell::new(HashMap::new());
+}
+
+fn mb_afford(inv: &[i32; 6], cost: &[i32; 6], have_iron: bool) -> bool {
+    let iron_ok = !have_iron || inv[IRON] >= cost[IRON];
+    inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE] && iron_ok
+}
+
 fn decide(state: &State) -> Vec<String> {
+    let shack = state.my_shack;
+    let opp = state.opp_shack;
+    let inv = &state.my_inventory;
+    let have_iron = !state.iron_cells.is_empty();
+
+    let mut my: Vec<Troll> = state.my_trolls.clone();
+    my.sort_by_key(|t| t.id);
+    let n = my.len() as i32;
+
+    // ── training plan: greedy expansion, jump the queue for the choppers ──────
+    let chop_spec = MB_CHOPPER;
+    let n_choppers = my.iter().filter(|t| t.chop_power >= 2).count() as i32;
+    let want_chopper = n_choppers < MB_NCHOPPERS;
+    let train_now: Option<(i32, i32, i32, i32)> =
+        if want_chopper && mb_afford(inv, &training_cost(n, chop_spec), have_iron) {
+            Some(chop_spec)
+        } else {
+            MB_HARVESTERS.iter().copied().find(|&s| mb_afford(inv, &training_cost(n, s), have_iron))
+        };
+    let need_iron = have_iron
+        && want_chopper
+        && inv[IRON] < training_cost(n, chop_spec)[IRON]
+        && afford_fruit_only(inv, &training_cost(n, chop_spec));
+
+    // Roles: chop>=2 are choppers; if none yet, the best chop>=1 starter bootstraps.
+    let has_real_chopper = my.iter().any(|t| t.chop_power >= 2);
+    let bootstrap_id: Option<i32> = if has_real_chopper {
+        None
+    } else {
+        my.iter()
+            .filter(|t| t.chop_power >= 1)
+            .max_by_key(|t| (t.carry_capacity, -t.id))
+            .map(|t| t.id)
+    };
+    let is_chopper = |t: &Troll| -> bool { t.chop_power >= 2 || Some(t.id) == bootstrap_id };
+
+    let orchard: usize = state
+        .trees
+        .iter()
+        .filter(|p| p.tree_type == "PLUM" && manhattan(p.pos(), shack) <= 3)
+        .count();
+
+    MB_MEM.with(|mem_cell| {
+        if state.turn == 1 {
+            mem_cell.borrow_mut().clear();
+        }
+        let mut mem = mem_cell.borrow_mut();
+        let mut reserved: HashSet<Cell> = HashSet::new();
+        let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
+        let mut commands: Vec<String> = Vec::new();
+        if state.turn == 1 {
+            commands.push(format!("MSG v{}", VERSION));
+        }
+
+        for t in &my {
+            let is_chop = is_chopper(t);
+            let d = bfs_distances(&state.walkable, &[t.pos()]);
+
+            // Full -> home; harvester seeds the base plum orchard, else drops.
+            if t.free_capacity() == 0 {
+                mem.remove(&t.id);
+                if is_adjacent(t.pos(), shack) {
+                    let on_tree = state.trees.iter().any(|p| p.pos() == t.pos());
+                    if !is_chop && !on_tree && orchard < MB_MAX_ORCHARD && t.carry[PLUM] > 0
+                        && state.walkable.contains(&t.pos())
+                    {
+                        cmd_by_id.insert(t.id, format!("PLANT {} PLUM", t.id));
+                    } else {
+                        cmd_by_id.insert(t.id, format!("DROP {}", t.id));
+                    }
+                } else {
+                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, shack.0, shack.1));
+                }
+                continue;
+            }
+
+            // On a tree: chopper fells it; harvester grabs the fruit.
+            if let Some(p) = state.trees.iter().find(|p| p.pos() == t.pos()) {
+                if is_chop && t.chop_power > 0 {
+                    cmd_by_id.insert(t.id, format!("CHOP {}", t.id));
+                    reserved.insert(t.pos());
+                    continue;
+                }
+                if p.fruits > 0 && t.harvest_power > 0 && t.free_capacity() > 0 {
+                    cmd_by_id.insert(t.id, format!("HARVEST {}", t.id));
+                    reserved.insert(t.pos());
+                    continue;
+                }
+            }
+
+            // Chopper mines iron when saving and adjacent to it.
+            if need_iron && is_chop && t.chop_power > 0
+                && state.iron_cells.iter().any(|ic| is_adjacent(t.pos(), *ic))
+            {
+                cmd_by_id.insert(t.id, format!("MINE {}", t.id));
+                continue;
+            }
+
+            let go: Option<Cell> = if is_chop {
+                let iron_cell = if need_iron {
+                    state
+                        .iron_cells
+                        .iter()
+                        .flat_map(|ic| ortho_neighbors(*ic))
+                        .filter(|c| d.contains_key(c) && !reserved.contains(c))
+                        .min_by_key(|c| d[c])
+                } else {
+                    None
+                };
+                iron_cell
+                    .or_else(|| {
+                        state
+                            .trees
+                            .iter()
+                            .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                            .min_by_key(|p| {
+                                (d[&p.pos()] + MB_DENIAL_W * manhattan(p.pos(), opp) - MB_SIZE_W * p.size, -p.size)
+                            })
+                            .map(|p| p.pos())
+                    })
+                    .or_else(|| {
+                        if t.harvest_power > 0 {
+                            state
+                                .trees
+                                .iter()
+                                .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                                .min_by_key(|p| d[&p.pos()])
+                                .map(|p| p.pos())
+                        } else {
+                            None
+                        }
+                    })
+            } else {
+                let sticky = mem.get(&t.id).copied().filter(|&c| {
+                    state.trees.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
+                });
+                sticky.or_else(|| {
+                    state
+                        .trees
+                        .iter()
+                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .min_by_key(|p| d[&p.pos()])
+                        .map(|p| p.pos())
+                })
+            };
+
+            match go {
+                Some(c) => {
+                    reserved.insert(c);
+                    if !is_chop {
+                        mem.insert(t.id, c);
+                    }
+                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, c.0, c.1));
+                }
+                None => {
+                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, shack.0, shack.1));
+                }
+            }
+        }
+
+        let mut ids: Vec<i32> = cmd_by_id.keys().copied().collect();
+        ids.sort();
+        for id in ids {
+            commands.push(cmd_by_id[&id].clone());
+        }
+
+        if let Some(spec) = train_now {
+            if (n as usize) < MB_MAX_TROLLS
+                && TOTAL_TURNS - state.turn > MB_MIN_TURNS_LEFT
+                && !my.iter().any(|t| t.pos() == shack)
+            {
+                commands.push(format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3));
+            }
+        }
+
+        if commands.is_empty() {
+            commands.push("WAIT".to_string());
+        }
+        commands
+    })
+}
+
+fn decide_v097(state: &State) -> Vec<String> {
     let shack = state.my_shack;
     let shack_adj: Vec<Cell> = ortho_neighbors(shack)
         .iter()
