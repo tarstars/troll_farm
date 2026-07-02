@@ -30,3 +30,7 @@ path = "src/bin/curve.rs"
 [[bin]]
 name = "search_time"
 path = "src/bin/search_time.rs"
+
+[[bin]]
+name = "mapstat"
+path = "src/bin/mapstat.rs"

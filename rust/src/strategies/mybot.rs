@@ -131,11 +131,32 @@ impl Strategy for MyBot {
         } else {
             HARVESTERS.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
         };
-        // Mine iron only while we still lack a chopper and its fruit is (nearly) covered.
-        let need_iron = have_iron
-            && want_chopper
-            && inv[IRON] < training_cost(n, chop_spec)[IRON]
-            && afford_fruit(inv, &training_cost(n, chop_spec));
+        // Mine iron whenever it's the binding constraint for the NEXT troll we'd train
+        // (chopper if wanted, else cheapest harvester whose fruit we can already cover).
+        // Old code only mined for the chopper, so after building it we stopped mining and
+        // got IRON-GATED at 2-3 trolls on low-iron maps (a systematic both-seat blowout).
+        // MB_MINE_ALL=0 restores the old chopper-only behavior for A/B.
+        let need_iron = if envi("MB_MINE_ALL", 0) == 1 {
+            let next = if want_chopper {
+                Some(chop_spec)
+            } else {
+                HARVESTERS.iter().copied().find(|&s| afford_fruit(inv, &training_cost(n, s)))
+            };
+            have_iron
+                && (n as usize) < envi("MYBOT_MAX", MAX_TROLLS as i32) as usize
+                && match next {
+                    Some(s) => {
+                        afford_fruit(inv, &training_cost(n, s))
+                            && inv[IRON] < training_cost(n, s)[IRON]
+                    }
+                    None => false,
+                }
+        } else {
+            have_iron
+                && want_chopper
+                && inv[IRON] < training_cost(n, chop_spec)[IRON]
+                && afford_fruit(inv, &training_cost(n, chop_spec))
+        };
 
         // Roles: every chop>=2 troll is a chopper (fells wood). If none exists yet, the
         // starter (chop>=1, best cc) bootstraps the wood/iron economy.
