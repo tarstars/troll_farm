@@ -9,26 +9,27 @@ Authoritative project state + everything a fresh agent needs. Read this first, t
 ════════════════════════════════════════════════════════════════════════
 - **Goal (user, 2026-07-02): advance to the GOLD league** = rank **above "Boss 4"** in
   the ranked arena.
-- **Live arena bot (submitted 2026-07-02 ~10:20): `v1.0.6-tempo`** — real-validated
-  **5W/3L (62%)** vs Boss 4 (bbox-good batch + 300/300 screenshot, tass 221–116), then
-  submitted. Prior v1.0.1 had slid to **rank 134/682** (was 42/681 a day before — the
-  field improves fast). Watch the new rank converge on the LEADERBOARD.
-- **THE BAR (measured via public leaderboard API, see log):** tass score ~15;
-  top-of-Silver ~20–24; **Boss 4 ranks ABOVE Silver's #1** ⇒ promotion ≈ be the best
-  bot in Silver. Head-to-head 60-66% vs the boss is NOT sufficient — the rating gap is
-  earned vs the whole field.
-- **Working tree `rust/src/main.rs`:** `v1.0.6-tempo` = v1.0.5-safe + endgame banking +
-  `(2,2,0,2)` chopper + ripeness anticipation + water-adjacent orchard placement — each
-  validated on BOTH boss models (§5a). Compiles standalone, committed.
+- **Live arena bot (submitted 2026-07-02 ~13:05): `v1.0.8-woodprinter`** — real-validated
+  5W/3L (62%) vs Boss 4, converged band **rank ~50-70/682, score ~16.4-17.5** (day
+  started at 134/15.05; v1.0.6 was live 10:20-13:05 and peaked 48-55). Real score
+  density transferred: arena avg 152 (v1.0.6) -> 164 (v1.0.8).
+- **THE BAR (measured via public leaderboard API, see log):** top-of-Silver ~21-24;
+  **Boss 4 ranks ABOVE Silver's #1** ⇒ promotion ≈ be the best bot in Silver.
+  Head-to-head 60-66% vs the boss is NOT sufficient — the rating is earned vs the field.
+- **⚠️ v1.0.9-mower NEVER SUBMITTED:** best-ever on BOTH models (64.3/87.5) but 2W/6L
+  (25%) REAL — the second spec-change inversion (after v1.0.4). RULE: troll-spec /
+  training changes require a REAL batch before becoming defaults.
+- **Working tree `rust/src/main.rs`:** == v1.0.8-woodprinter (v1.0.5 + endgame banking +
+  `(2,2,0,2)` chopper + ripeness anticipation + water orchard + woodfarm + banana
+  printer; v1.0.9 mower code present but inert). Compiles standalone, committed.
 - **NEW (this session): `scriptboss`** — a model of the REAL Boss 4 script (from a real
   DEBUG dump), structurally different from `silver_boss`. See §5a. The old "ceiling
   ~66–70%, essentially reached" claim was MODEL-specific: loss decomposition vs scriptboss
   shows 30% both-seat (systematic → in-principle fixable) + 18% one-seat, vs 15/15 on
   silver_boss. Obvious knobs are exhausted, but the ceiling story is softer than §8 claims.
 
-Ready-to-submit files: **`cgauto/submissions/`** (`v1.0.6-tempo.rs` ⭐ pending real
-validation, `v1.0.5-safe.rs` = fallback, `v1.0.1-denialrace.rs` = live, `v1.0.4` = overfit
-trap) + its README.
+Ready-to-submit files: **`cgauto/submissions/`** (v1.0.8 = live ⭐, v1.0.9 = quarantined,
+older = history) + its README.
 
 ════════════════════════════════════════════════════════════════════════
 ## 2. THE GAME (Silver league)  — see docs/mechanics.md + referee source
@@ -41,7 +42,7 @@ Referee: https://github.com/eulerscheZahl/Troll-Farm (open source).
 - **Boss 4** = a MIXED **WOOD-race** bot, ~3 trolls, incl. one dominant `(ms2,cc4,hp2,chop2)` chopper; harvests fruit, plants a base plum orchard, mines iron; scores ~150–283. (NOT the weak `level2/Boss.cs` farmer — that was a red herring; `strategies/boss_real.rs` models that wrong boss, ignore it. The faithful one is `strategies/silver_boss.rs`.)
 
 ════════════════════════════════════════════════════════════════════════
-## 3. OUR BOT — v1.0.6-tempo (working tree; v1.0.1 is live in arena)
+## 3. OUR BOT — v1.0.8-woodprinter (working tree == live arena bot)
 ════════════════════════════════════════════════════════════════════════
 v1.0.6-tempo = everything below PLUS (all both-model-validated, see §5a):
 - **Endgame banking:** any troll carrying anything returns + DROPs before t=300
