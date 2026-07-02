@@ -265,7 +265,11 @@ impl Strategy for SchedBot {
                     if u.carry[BANANA] > 0 {
                         let t = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
                         cands.push((print_v / t, ti, Task::Print(sp)));
-                    } else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
+                    } else if manh(u.pos(), shack) == 1
+                        && u.free() > 0
+                        && inv[BANANA] > 0
+                        && !my.iter().any(|o| o.id != u.id && o.carry[BANANA] > 0)
+                    {
                         cands.push((print_v / 2.0, ti, Task::PickSeed));
                     }
                 }
@@ -394,6 +398,11 @@ impl Strategy for SchedBot {
                         .plants
                         .iter()
                         .filter(|p| d.contains_key(&p.pos()))
+                        // never contest a cell already assigned this turn or occupied
+                        // by an own troll: two movers on one target block each other
+                        // FOREVER (arena 61-180: 3-troll jam on the one water spot).
+                        .filter(|p| !taken.contains(&p.pos()))
+                        .filter(|p| !my.iter().any(|o| o.id != u.id && o.pos() == p.pos()))
                         .filter_map(|p| {
                             let mut cd = plant_cooldown(&p.plant_type);
                             if game.water.iter().any(|w| manh(*w, p.pos()) == 1) {
