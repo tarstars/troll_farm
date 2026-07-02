@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.9-mower";
+const VERSION: &str = "1.0.8-woodprinter";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -769,7 +769,7 @@ const MB_NCHOPPERS: i32 = 2;
 // sustain 0.30 wood/turn vs our 0.07; fellers must live AT the farm, and the
 // denial choppers can't. Both-model win at 1000 seeds: scriptboss 63.0->64.3%
 // (margin +25.8->+31.6), silverboss 85.1->87.5% (+51.4->+54.1); wood 90->105.
-const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)];
+const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const MB_MAX_TROLLS: usize = 4;
 const MB_MAX_ORCHARD: usize = 2;
 const MB_MIN_TURNS_LEFT: i32 = 20;

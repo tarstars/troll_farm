@@ -159,7 +159,7 @@ impl Strategy for MyBot {
         // can also FELL the base farm's young bananas (the tender behavior applies to
         // any chop1+hp>=2 troll). Decoded blueprint: aRi sustains 0.30 wood/turn vs
         // our 0.07 — the printer needs fellers AT HOME, and denial choppers can't be.
-        let harvesters: [(i32, i32, i32, i32); 3] = if envi("MB_HARV_CHOP", 1) == 1 {
+        let harvesters: [(i32, i32, i32, i32); 3] = if envi("MB_HARV_CHOP", 0) == 1 {
             [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)]
         } else {
             HARVESTERS

@@ -107,6 +107,19 @@ cc2 extracts min(size,2) => fell at size 2, zero waste, ~8 pts/cycle forever.
 | v1.0.7 = woodfarm ALONE on | 62.1 (+24.8) | 84.1 (+43.9) | KEEP (v1.0.4's flop was the coupled cheap chopper) |
 | v1.0.8 = + banana PICK+replant printer | 60.8 (+22.5) @2000s | 84.0 (+49.8) | KEEP: +11 avg score (156->167, wood 90) = field currency |
 | v1.0.8 CORRECTED baseline (MB_TIE desync healed: benches ran tie=2, shipped main.rs = tie=0) | **63.0 (+25.8)** | **85.1 (+51.4)** | true numbers; best on both models |
+
+### v1.0.9-mower: THE SECOND SIM-REALITY INVERSION (critical lesson, 2026-07-02 ~13:00)
+chop1 harvesters ("mowers", +n+1 iron each) that fell the base farm = the best numbers
+ever on BOTH models (scriptboss 64.3 +31.6, silverboss 87.5 +54.1, wood 105)... and
+**2W/6L = 25% on REAL CG** (bbox-good batch). v1.0.9 NOT submitted; defaults reverted.
+PATTERN across both inversions (v1.0.4 cheap chopper 90.5/33, v1.0.9 mower 64+87/25):
+**TRAINING-SPEC / economy changes are the repeat offender** — they interact with map
+economy calibration (starting inventory, iron availability/distribution) where the sim
+diverges from reality. The both-models rule catches boss-BEHAVIOR overfit only.
+REFINED RULE: behavior changes (targeting, banking, planting) may ship after both-model
+checks; ANY troll-spec/training change requires a REAL batch before merging to defaults.
+Real record this session: v1.0.6 5W/3L (62%) submitted; v1.0.8 5W/3L (62%) submitted
+~13:05 (replacing v1.0.6); v1.0.9 2W/6L quarantined behind MB_HARV_CHOP=0.
 | MB_FARMW chopper farm-affinity 8/16/32 | 59.8/57.6/50.2 | 83/81.6/75.8 | DEAD-END (denial is load-bearing; farm gets felled opportunistically) |
 | MB_MIXORCH plum+lemon+apple orchard | flat, trolls 2.44 | flat | DEAD-END (chicken-and-egg: never CARRY the starved type) |
 | MB_TIE=2 scarcity tie-break | -2.7pp | -1.2pp | DEAD-END loose; MB_TIE=0 (exact ties only) neutral -> kept |
