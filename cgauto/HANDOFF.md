@@ -8,9 +8,11 @@ Authoritative project state + everything a fresh agent needs. Read this first, t
 ## 1. GOAL & CURRENT STATE
 ════════════════════════════════════════════════════════════════════════
 - **Goal:** promote **Silver → Gold** by ranking **above "Boss 4"** in the ranked arena.
+  (The user's session goal was phrased "defeat Boss 4 on all maps" — see §8: 100% is PROVEN
+  unreachable; the actionable version is "rank above Boss 4" / maximize win rate.)
 - **Live arena bot:** `v1.0.1-denialrace` — **rank 42/681** (up from ~49), ~**66% vs Boss 4** (4W/2L, confirmed final-frame).
-- **Best safe bot (working tree `rust/src/main.rs`):** `v1.0.5-safe` = v1.0.1 + a wedge **bug-fix**. Compiles, committed (`e71c080`). **NOT yet resubmitted** (recommended next action — free, low-risk upgrade).
-- **"Defeat Boss 4 on ALL maps" (100%) is NOT achievable.** The real Boss 4 is a well-tuned wood-race bot; on a faithful matchup some maps it just wins (better position / near-symmetric coin-flips). Heuristic ceiling ≈ **66–70% real / rank low-40s**, essentially reached.
+- **Best safe bot (working tree `rust/src/main.rs`):** `v1.0.5-safe` = v1.0.1 + a wedge **bug-fix**. Compiles, committed. **NOT yet resubmitted** (recommended next action — free, low-risk upgrade). User said they may submit it themselves (`cgauto/submissions/v1.0.5-safe.rs`).
+- **"Defeat Boss 4 on ALL maps" (100%) is NOT achievable** — proven, see §8. Heuristic ceiling ≈ **66–70% real / rank low-40s**, essentially reached.
 
 Ready-to-submit files: **`cgauto/submissions/`** (`v1.0.5-safe.rs` ⭐, `v1.0.1-denialrace.rs` = live, `v1.0.4-woodfarm-cheapchop.rs` = overfit trap) + its README.
 
@@ -83,3 +85,37 @@ A **wood-race** bot that beats the boss by out-denying + out-farming it:
 4. **Do NOT** re-optimize purely against `silver_boss` past ~78% — it overfits.
 
 GIT: on branch `session-2026-07-01`. All work committed. HEAD = `e71c080` (v1.0.5-safe). Older versions recoverable via `git log`.
+
+════════════════════════════════════════════════════════════════════════
+## 8. CEILING ANALYSIS (2026-07-02) — why 100% ("all maps") is unreachable
+════════════════════════════════════════════════════════════════════════
+Measured facts (all reproducible with the parallel `bench`):
+1. **Maps are point-symmetric: NO map bias, NO seat bias.** Self-play (identical strategy
+   vs itself, 500 seeds x2 seats): silverboss 47.9%/47.9%/4% draws, mybot 46.3/46.2/8%,
+   gatherer 44.9/44.9/10% — margin ≈ 0. So no map is unfair by design.
+2. **BUT symmetric ≠ drawable.** Identical/mirror play draws only ~4–10%; ~90%+ of games
+   are decisive. The engine breaks symmetry during play (absolute-coordinate targeting,
+   ordering, shared-resource resolution; the REAL referee also breaks movement ties with
+   RNG). ⇒ a guaranteed-draw strategy does not exist; guaranteed-win on every map is
+   impossible. Even copying the boss exactly loses ~48% of games to it.
+3. **Loss decomposition vs silver_boss** (400 seeds, `bench mybot silverboss 400 --losses`):
+   ~15% of seeds = ONE-seat losses (coin-flip variance); ~15% = BOTH-seat systematic
+   losses (often blowouts −40..−89).
+4. **The systematic losses = the denial↔economy Pareto tradeoff.** On those maps we get
+   out-ramped (mybot ~2.6 trolls vs boss ~3.4) because DW=3 choppers trek to deny instead
+   of gathering. DW=3 is the measured overall peak; softening it loses more maps than it
+   converts. They have NO separable coarse map feature (`mapstat`: loss maps shackdist
+   12.4 vs 14.1 overall; trees/water/iron identical) ⇒ map-feature adaptivity can't work.
+
+**DEAD-ENDS — all tested; do NOT retry** (each documented in code comments + git):
+- `MYBOT_ADAPT` (chopper count by shack distance): no gain.
+- `MB_MINE_ALL` (mine iron for any next troll): no-op — we are NOT iron-gated.
+- `MB_ADAPT_ECON` (in-game switch to economy when behind on trolls): WORSE 77%→65% —
+  "fewer trolls than boss" is our NORMAL winning state; the trigger kills the denial edge.
+- Higher troll cap (MAX 5/6/7), gatherers-first (`MB_CHOP_MIN_N`≥2): worse or flat.
+- Cheap-chopper `(1,2,0,2)` + woodfarm: 90.5% SIM but 33% REAL (overfit, §4/§5).
+New tool: `rust/src/bin/mapstat.rs` (per-seed map features: shackdist/trees/water/iron).
+
+**Conclusion:** ~66% real (~77% vs the sim model) / rank ~42 is the heuristic ceiling.
+Progress beyond it = climbing the arena ladder (submit v1.0.5-safe; possibly careful
+real-CG A/B of woodfarm ALONE), not chasing 100% vs Boss 4.
