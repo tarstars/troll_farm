@@ -96,11 +96,11 @@ impl Strategy for BossV3 {
         let big_cost = training_cost(2, BIG_SPEC); // trained as the 3rd troll (n=2)
 
         // ── the fixed build order: (1,1,1,2) as 2nd troll, (2,4,2,2) as 3rd, then stop
-        // v3 (top-band decode): TWO cheap utils at t1-2, then TWO power-choppers.
-        let n_big = my.iter().filter(|u| u.cc >= 4 && u.chop >= 2).count();
+        // v3 (measured): TWO cheap utils at t1-2, then ONE (2,4,2,2). The arena
+        // "double TRAIN" is a same-turn repeat; only one spawns (shack occupied).
         let train_now: Option<(i32, i32, i32, i32)> = if n <= 2 {
             afford(inv, &training_cost(n, UTIL_SPEC), have_iron).then_some(UTIL_SPEC)
-        } else if n_big < 2 {
+        } else if !big_alive {
             afford(inv, &training_cost(n, BIG_SPEC), have_iron).then_some(BIG_SPEC)
         } else {
             None
@@ -214,7 +214,11 @@ impl Strategy for BossV3 {
                 game.plants
                     .iter()
                     .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                    .min_by_key(|p| (d[&p.pos()] + manh(p.pos(), opp) - 3 * p.size, -p.size))
+                    // measured: the cc4 works ITS OWN HALF (avg dist 5.1 from its
+                    // shack), felling big trees nearby — not deep denial raids.
+                    .min_by_key(|p| {
+                        (d[&p.pos()] + manh(p.pos(), shack) / 2 - 3 * p.size, -p.size)
+                    })
                     .map(|p| p.pos())
                     .or_else(|| {
                         game.plants

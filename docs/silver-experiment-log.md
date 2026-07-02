@@ -164,6 +164,18 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### Boss model v3 postmortem (~03:00) + composition CORRECTION
+CORRECTION: the boss's "double (2,4,2,2)" is ONE cc4 + a same-turn failed repeat
+(shack occupied). Real composition: starter + TWO local utils (specs vary) + ONE
+(2,4,2,2). Trajectory decode (122-279 game): utils avg dist 2.9-3.4 from its shack;
+the cc4 avg 5.1 — it works ITS OWN HALF (big-first), not deep raids. CHOP actions
+produce NO summary lines (why fells were invisible in earlier decodes).
+v3-as-built stays far too weak (schedbot 95%, v3 wood=0.0: its cc4 NEVER trains
+in-sim — our campers raze its baby lemon orchard instantly, while vs our SAME
+arena agents the real spike lands ~60% of games). The unmodeled piece is the real
+boss's lemon-economy resilience (orchard micro/replant cadence/map supply). Parked:
+tuning vs a model that can't reach its kill condition would only re-teach denial.
+
 ### Night wrap (~02:20): four agents at the bar's edge; morning window queued
 v1.1.7 lemon-choke ARENA-FALSIFIED within one cycle (boss 3W3L unchanged; a spike
 still landed t93; far-lemon chasing cost our own economy — mode #3 again). Reverted:
