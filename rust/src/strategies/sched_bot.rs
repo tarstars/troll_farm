@@ -175,7 +175,7 @@ impl Strategy for SchedBot {
                 // CLEAR-WHEN-AHEAD: leading big late -> fell our OWN half first
                 // (kill the farm before the enemy cc4 eats it; if all trees die the
                 // game ends early while we lead).
-                let clearing = envi("SB_CLEAR", 1) == 1
+                let clearing = envi("SB_CLEAR", 0) == 1
                     && turns_rem <= envi("SB_CLEAR_T", 60)
                     && game.scores[player] - game.scores[1 - player] >= envi("SB_CLEAR_LEAD", 40);
                 let need_free = envi("SB_FELL_FREE", 0) == 1
