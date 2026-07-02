@@ -179,6 +179,16 @@ proximity. Also note: my submit loop's triple-fire bug earlier (~18:43-18:59) ca
 from trusting submit.py's exit code under pipefail — verify submissions via the
 leaderboard agentId instead.
 
+### Evening treadmill (22:00-23:00): same code, different field
+Anchor-ladder theory tested and REJECTED: identical v1.1.2 resubmissions converged at
+17.8 then ~16.4-17.0 (120-battle placements) regardless of starting anchor, vs 22.6 in
+the afternoon. Conclusion: the FIELD hardened during peak evening submission hours —
+the arena is a treadmill; afternoon's rank 2-3 was real but the median opponent
+improved under us within ~4 hours. Same-code resubmissions gain nothing; only bot
+improvements move true standing. Next engineering targets stand: razor 1-2-pt endgame
+losses; logiqub/Glandouille-tier engines (250-430 pts, replays decodable); precise
+raid-response (fell-event-triggered, not proximity).
+
 ### v1.0.8 live arena decode (~14:20, first 34 placement battles)
 12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
 271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
