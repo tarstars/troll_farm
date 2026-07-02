@@ -9,10 +9,17 @@ Authoritative project state + everything a fresh agent needs. Read this first, t
 ════════════════════════════════════════════════════════════════════════
 - **Goal (user, 2026-07-02): advance to the GOLD league** = rank **above "Boss 4"** in
   the ranked arena.
-- **Live arena bot:** `v1.0.1-denialrace` — **rank 42/681** (up from ~49), ~**66% vs Boss 4** (4W/2L, confirmed final-frame).
+- **Live arena bot (submitted 2026-07-02 ~10:20): `v1.0.6-tempo`** — real-validated
+  **5W/3L (62%)** vs Boss 4 (bbox-good batch + 300/300 screenshot, tass 221–116), then
+  submitted. Prior v1.0.1 had slid to **rank 134/682** (was 42/681 a day before — the
+  field improves fast). Watch the new rank converge on the LEADERBOARD.
+- **THE BAR (measured via public leaderboard API, see log):** tass score ~15;
+  top-of-Silver ~20–24; **Boss 4 ranks ABOVE Silver's #1** ⇒ promotion ≈ be the best
+  bot in Silver. Head-to-head 60-66% vs the boss is NOT sufficient — the rating gap is
+  earned vs the whole field.
 - **Working tree `rust/src/main.rs`:** `v1.0.6-tempo` = v1.0.5-safe + endgame banking +
-  `(2,2,0,2)` chopper + ripeness anticipation — each validated on BOTH boss models (§5a).
-  Compiles standalone, committed. Real-CG batch pending/in-progress (throttle permitting).
+  `(2,2,0,2)` chopper + ripeness anticipation + water-adjacent orchard placement — each
+  validated on BOTH boss models (§5a). Compiles standalone, committed.
 - **NEW (this session): `scriptboss`** — a model of the REAL Boss 4 script (from a real
   DEBUG dump), structurally different from `silver_boss`. See §5a. The old "ceiling
   ~66–70%, essentially reached" claim was MODEL-specific: loss decomposition vs scriptboss
@@ -116,10 +123,10 @@ Neither model alone is the real boss; together they bracket it. This replaces th
 ════════════════════════════════════════════════════════════════════════
 ## 7. NEXT STEPS (if continuing)
 ════════════════════════════════════════════════════════════════════════
-1. **Real-CG validate `v1.0.6-tempo`** (8+ confirmed-final-frame games, `run_games.py`),
-   then **submit it** (`submit.py cgauto/submissions/v1.0.6-tempo.rs`); fallback =
-   `v1.0.5-safe`. Confirm rank via LEADERBOARD. (A batch was launched 2026-07-02 but CG
-   was load-throttling hard; use a patient outer retry loop, waits of ~5–10 min.)
+1. DONE 2026-07-02: v1.0.6-tempo real-validated (5W/3L) and SUBMITTED. Next: confirm the
+   converged rank (LEADERBOARD or the API in the log). Throttle tip: if `.monaco-editor`
+   times out repeatedly, `pkill -f "cgauto/profile"` (stale Playwright chromium instances
+   holding the profile were the actual blocker once; after killing them the IDE loaded).
 2. The systematic-loss pool vs `scriptboss` is 30% of seeds (both-seat). Traced causes so
    far: (a) plum-corner maps → stuck at 2 trolls with big useless fruit bank (deficit-chase
    cure tested = net-negative; maybe try PLANTing the missing type instead), (b) the raw
@@ -128,8 +135,10 @@ Neither model alone is the real boss; together they bracket it. This replaces th
    + half fell time), search bot rebuilt against BOTH models.
 3. **The both-models rule (§5a) replaces "don't tune past 78%"** — any change must hold
    on silver_boss AND scriptboss.
-4. Remember the arena is not only Boss 4: rank depends on the whole Silver field. If rank
-   stalls above-boss-but-not-promoted, look at losses vs other players (review.py).
+4. **The real fight is the FIELD, not the boss** (see §1 THE BAR): to reach the boss's
+   rating you must out-perform ~everyone in Silver. Study losses vs top-Silver players
+   (LAST BATTLES / review.py), not only vs Boss 4. Their bots differ from both boss
+   models — consider adding a third sparring model from observed top-player behavior.
 
 GIT: on branch `session-2026-07-01`. HEAD = v1.0.6-tempo + scriptboss (see git log).
 Older versions recoverable via `git log`; submissions/ has the frozen artifacts.

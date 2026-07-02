@@ -91,6 +91,21 @@ going forward: accept a change only if it helps (or holds) on BOTH boss models.
 Field sanity (300s): mybot vs planner 87.5 / gatherer 92.3 / balanced 93.7 / chopper 97.8.
 Cumulative v1.0.5 -> v1.0.6-tempo FINAL (2000 seeds): scriptboss ~59.8->61.2% (margin
 +13.7->+21.3), silverboss 77.6->80.8% (+24.0->+33.1).
+
+### REAL-CG validation + submission (2026-07-02 ~10:20)
+- v1.0.6-tempo real batch: **5W/3L = 62%** vs Boss 4, bbox [101,43,752,470] (known-good),
+  lastgame.png spot-checked at 300/300 showing tass 221 — Boss 4 116 (a historically high
+  score for us). No overfit collapse (v1.0.4 test was 33% here). Statistically level with
+  v1.0.1's 4W/2L=66%; both local models say v1.0.6 is stronger.
+- **SUBMITTED v1.0.6-tempo to the arena** (submit.png: editor shows 1.0.6-tempo, battles
+  IN PROGRESS). Live bot had slid to rank 134/682 (was 42/681 a day earlier) — the field
+  improves fast; holding rank requires continuous iteration.
+- **LADDER REALITY (public leaderboard API + submit-page ranking):** tass score 15.05;
+  top-of-Silver ~20-24; **Boss 4 ranks ABOVE the #1 Silver player** — promotion = be
+  effectively the best in Silver. Beating Boss 4 ~60-66% head-to-head is necessary-ish
+  but NOT sufficient; the rating gap (15 -> >24) is vs the whole field. API:
+  POST /services/Leaderboards/getFilteredPuzzleLeaderboard
+  ["spring-challenge-2026-troll-farm", null, "global", {...}] (public, no auth).
 Loss decomposition vs scriptboss (400 seeds): 30% both-seat + 18% one-seat (vs 15/15 on
 silverboss) — the systematic pool is BIGGER vs the real script, so the "~66% ceiling"
 claim was model-specific; headroom exists but the obvious knobs are exhausted.
