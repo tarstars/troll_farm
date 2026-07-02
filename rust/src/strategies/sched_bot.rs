@@ -9,7 +9,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{plant_cooldown, training_cost, water_boost, BANANA, IRON, PLUM};
+use crate::game::engine::{plant_cooldown, training_cost, water_boost, APPLE, BANANA, IRON, PLUM};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -75,9 +75,9 @@ enum Task {
     Fell(Cell),
     Harvest(Cell),
     Mine(Cell),   // iron-adjacent cell to stand on
-    Print(Cell),  // base cell to plant a carried banana on
+    Print(Cell, usize), // base cell + fruit index to plant (species follows the spot)
     Orchard(Cell), // water-adjacent base cell to plant a carried PLUM on (+3pp feature)
-    PickSeed,     // pick a banana at the shack
+    PickSeed(usize), // pick this fruit index at the shack for the next crop
 }
 
 impl Strategy for SchedBot {
@@ -252,10 +252,12 @@ impl Strategy for SchedBot {
             // Suppress the printer while an enemy chopper is raiding our base:
             // planting into a raid feeds the raider 2 wood per seedling and the
             // fell->replant churn starves training (real arena boss loss 119-176).
-            let base_raided = game
-                .units
-                .iter()
-                .any(|e| e.player as usize != player && e.chop >= 2 && manh(e.pos(), shack) <= base_r + 2);
+            // (raid gate ARENA-FALSIFIED: rank 51 vs v1.1.2's rank 2-3 — field
+            // choppers roam our half constantly, printer sat silenced; default OFF)
+            let base_raided = envi("SB_RAIDGATE", 0) == 1
+                && game.units.iter().any(|e| {
+                    e.player as usize != player && e.chop >= 2 && manh(e.pos(), shack) <= base_r + 2
+                });
             if window && base_trees < wf_cap && !is_chop_role && !base_raided {
                 let spot = game
                     .walkable
@@ -269,15 +271,36 @@ impl Strategy for SchedBot {
                     })
                     .copied();
                 if let Some(sp) = spot {
-                    if u.carry[BANANA] > 0 {
+                    // Species follows the spot (decoded from logiqub's 308-pt crop
+                    // system): near water APPLE grows a size per 2 ticks and PLUM per
+                    // 3 (vs banana 4+), and both are tankier against theft; off water
+                    // banana (cd 6) stays best. Plum/apple are training currency, so
+                    // only spend them above a reserve.
+                    let wet = game.water.iter().any(|w| manh(*w, sp) == 1);
+                    let reserve = envi("SB_CROP_RES", 8);
+                    let species: usize = if wet && envi("SB_CROPS", 1) == 1 {
+                        if inv[APPLE] >= reserve || u.carry[APPLE] > 0 {
+                            APPLE
+                        } else if inv[PLUM] >= reserve || u.carry[PLUM] > 0 {
+                            PLUM
+                        } else {
+                            BANANA
+                        }
+                    } else {
+                        BANANA
+                    };
+                    let carrying = u.carry[species] > 0;
+                    if carrying {
                         let t = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
-                        cands.push((print_v / t, ti, Task::Print(sp)));
+                        cands.push((print_v / t, ti, Task::Print(sp, species)));
                     } else if manh(u.pos(), shack) == 1
                         && u.free() > 0
-                        && inv[BANANA] > 0
-                        && !my.iter().any(|o| o.id != u.id && o.carry[BANANA] > 0)
+                        && inv[species] > 0
+                        && !my.iter().any(|o| {
+                            o.id != u.id && (o.carry[BANANA] > 0 || o.carry[species] > 0)
+                        })
                     {
-                        cands.push((print_v / 2.0, ti, Task::PickSeed));
+                        cands.push((print_v / 2.0, ti, Task::PickSeed(species)));
                     }
                 }
             }
@@ -292,7 +315,7 @@ impl Strategy for SchedBot {
             let mem = self.mem.borrow();
             for c in cands.iter_mut() {
                 let cell = match &c.2 {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x)
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x, _)
                     | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };
@@ -312,7 +335,7 @@ impl Strategy for SchedBot {
                 continue;
             }
             let cell = match &task {
-                Task::Fell(c) | Task::Harvest(c) | Task::Mine(c) | Task::Print(c)
+                Task::Fell(c) | Task::Harvest(c) | Task::Mine(c) | Task::Print(c, _)
                 | Task::Orchard(c) => Some(*c),
                 _ => None,
             };
@@ -329,7 +352,7 @@ impl Strategy for SchedBot {
             let mut mem = self.mem.borrow_mut();
             for (ti, task) in &assigned {
                 let cell = match task {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x)
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x, _)
                     | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };
@@ -383,9 +406,10 @@ impl Strategy for SchedBot {
                         go_move(*c)
                     }
                 }
-                Some(Task::Print(c)) => {
+                Some(Task::Print(c, sp)) => {
                     if u.pos() == *c {
-                        format!("PLANT {} BANANA", u.id)
+                        let ty = ["PLUM", "LEMON", "APPLE", "BANANA"][*sp];
+                        format!("PLANT {} {}", u.id, ty)
                     } else {
                         go_move(*c)
                     }
@@ -397,7 +421,10 @@ impl Strategy for SchedBot {
                         go_move(*c)
                     }
                 }
-                Some(Task::PickSeed) => format!("PICK {} BANANA", u.id),
+                Some(Task::PickSeed(sp)) => {
+                    let ty = ["PLUM", "LEMON", "APPLE", "BANANA"][*sp];
+                    format!("PICK {} {}", u.id, ty)
+                }
                 None => {
                     // idle: pre-position at the soonest-ripening tree (anticipation),
                     // else park near base (never on the shack cell).
