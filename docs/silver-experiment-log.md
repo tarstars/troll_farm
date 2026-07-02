@@ -139,6 +139,17 @@ incumbent head-to-head; silverboss (synthetic) disagrees by -6. ALL behavior-lev
 changes (specs untouched) — but the v1.0.9 lesson says REAL batch before submit:
 loop running (>=5W of 8 to replace v1.0.8; incumbent holds ties).
 
+### v1.1.x ARENA BREAKTHROUGH (~15:00-17:30)
+v1.1.0-sched: real batch 5W/3L (62%) -> submitted (auto-loop). Battle decode found a
+PICK<->DROP LIVELOCK (no-plant-spot maps: cc1 starter picked+banked a banana for 130
+turns; arena loss 21-148). v1.1.1 = livelock fix (all 3 implementations) + LATE_FREE=80
+time-phased extraction gate: schedbot script 83.7 (margin +75.7!), silver 79.7 (+42.1).
+Submitted ~16:45. Arena decode: 18W/12L (60%), avg 151 vs 128 (+23 margin, no more
+catastrophes). **CONVERGED: RANK 18/681, SCORE 19.38** (day path: 134 -> ~50-70 -> 18).
+Top-5 Silver: 23.4/21.9/20.7/20.7/20.4 — the promotion bar is ~4 points away.
+THE WORKING RECIPE: decode own arena losses via HTTP -> find the leak -> fix ->
+both-model bench -> real batch (specs only) -> submit -> converge -> repeat.
+
 ### v1.0.8 live arena decode (~14:20, first 34 placement battles)
 12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
 271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
