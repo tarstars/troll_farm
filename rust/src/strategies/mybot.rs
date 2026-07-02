@@ -442,7 +442,7 @@ impl Strategy for MyBot {
             // On a tree: chopper fells it (wood engine); harvester grabs the fruit.
             // The TENDER (chop1+hp2 hybrid) fells fruitless base-farm trees at size>=2
             // (banana health 2+s: 4 chops at chop1) and harvests like anyone else.
-            let is_tender = u.chop == 1 && u.hp >= 2;
+            let is_tender = u.chop == 1 && u.hp >= 2; // (starter-mow variant tested: 46.7/65.6 — starter IS the early economy)
             if let Some(p) = game.plants.iter().find(|p| p.pos() == u.pos()) {
                 if is_chopper && u.chop > 0 {
                     cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
