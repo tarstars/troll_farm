@@ -107,6 +107,11 @@ fn main() {
             println!("t{:<3} s{:<3} n{} | {}", t + 1, g.scores[who], nw, cw.join("; "));
         }
         step(&mut g, &c0, &c1);
+        // Real referee: game ends when no plants remain.
+        if g.plants.is_empty() {
+            println!("t{:<3} GAME END: no plants remain", t + 2);
+            break;
+        }
     }
     println!("WAITs by phase: early(1-100)={} mid(101-200)={} late(201-300)={}",
              phase_wait[0], phase_wait[1], phase_wait[2]);

@@ -49,6 +49,10 @@ fn play(a: &dyn Strategy, b: &dyn Strategy, seed: u64) -> GameState {
         let c0 = a.decide(&g, 0);
         let c1 = b.decide(&g, 1);
         step(&mut g, &c0, &c1);
+        // Real referee: game ends when no plants remain.
+        if g.plants.is_empty() {
+            break;
+        }
     }
     recompute_scores(&mut g);
     g

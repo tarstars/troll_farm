@@ -85,8 +85,12 @@ going forward: accept a change only if it helps (or holds) on BOTH boss models.
 | MB_LEMONW lemon-biased denial (600s) | -1.2pp @ lw2 | flat | DEAD-END (DW=3 already covers base lemons) |
 | DW re-sweep vs scriptboss | 0:27.6 1:49.6 2:59.9 3:61.2 4:60.6 5:60.2 | (3 was peak) | DW=3 RE-CONFIRMED on both |
 | NCHOP 1/2/3, cc3/cc4 specs | all within noise / clearly worse | same | keep NCHOP=2, cc2 |
-Cumulative v1.0.5 -> v1.0.6-tempo: scriptboss 58.9->61.1%, silverboss 77.6->78.4%,
-margins +13.7->+18.3 / +24.0->+27.0.
+| water-adjacent ORCHARD placement (plum cd 8->3 near water; route carrier to spot) | +2.0pp, margin +17.9->+21.8 | +3.0pp, +26.8->+33.6 | KEEP — biggest single win |
+| MYBOT_MAX 4/5/6 + DW 2/3/4 re-sweep after the economy buff (600s) | flat | flat | defaults stay (MAX=4, DW=3) |
+| pair-chopping idea | — | — | IMPOSSIBLE: referee allows 1 troll per team per cell |
+Field sanity (300s): mybot vs planner 87.5 / gatherer 92.3 / balanced 93.7 / chopper 97.8.
+Cumulative v1.0.5 -> v1.0.6-tempo FINAL (2000 seeds): scriptboss ~59.8->61.2% (margin
++13.7->+21.3), silverboss 77.6->80.8% (+24.0->+33.1).
 Loss decomposition vs scriptboss (400 seeds): 30% both-seat + 18% one-seat (vs 15/15 on
 silverboss) — the systematic pool is BIGGER vs the real script, so the "~66% ceiling"
 claim was model-specific; headroom exists but the obvious knobs are exhausted.

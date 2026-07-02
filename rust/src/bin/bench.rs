@@ -17,6 +17,11 @@ fn play(p0: &dyn Strategy, p1: &dyn Strategy, seed: u64) -> (i32, i32) {
         let c0 = p0.decide(&g, 0);
         let c1 = p1.decide(&g, 1);
         step(&mut g, &c0, &c1);
+        // Real referee (hasStalled): the game ENDS as soon as no plants exist —
+        // un-banked carries never score. Matters for scorched-earth endgames.
+        if g.plants.is_empty() {
+            break;
+        }
     }
     (g.scores[0], g.scores[1])
 }
