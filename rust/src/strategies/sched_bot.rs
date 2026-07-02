@@ -163,7 +163,10 @@ impl Strategy for SchedBot {
                 let pos = p.pos();
                 let Some(&dd) = d.get(&pos) else { continue };
                 // FELL: wood now + denial uplift; costs travel + chop turns (+ bank later, half-charged)
-                if is_chop_role && u.chop > 0 {
+                // SB_FELL_FREE=1: only offer fells with extraction capacity (forces
+                // fell->bank cycles). Default 0 = camper allowed (full choppers keep
+                // denying at zero yield when home is far — the anti-script sauce).
+                if is_chop_role && u.chop > 0 && (envi("SB_FELL_FREE", 0) == 0 || u.free() > 0) {
                     let chop_t = ((p.health + u.chop - 1) / u.chop) as f64;
                     let wood = p.size.min(u.free()) as f64 * 4.0;
                     let den = den_w * (1.0 - manh(pos, opp) as f64 / span);
