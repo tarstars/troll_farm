@@ -302,6 +302,10 @@ impl Strategy for MyBot {
                 && game.turn >= envi("MB_WF_START", 20)
                 && game.turn <= envi("MB_WF_END", 280)
                 && base_trees_now < envi("MB_WF_MAX", 6) as usize
+                // the plum ORCHARD outranks the banana printer: don't burn the trip
+                // when this troll carries a plum and an orchard slot is open
+                && !(u.carry[PLUM] > 0
+                    && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize)
             {
                 // Carrying a banana: route to a base cell (water-adjacent first) and plant.
                 if u.carry[BANANA] > 0 {

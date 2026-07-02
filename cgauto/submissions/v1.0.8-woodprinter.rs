@@ -884,7 +884,10 @@ fn decide(state: &State) -> Vec<String> {
             {
                 let base_trees_now =
                     state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= 3).count();
-                if !is_chop && state.turn >= 20 && state.turn <= 280 && base_trees_now < 6 {
+                if !is_chop && state.turn >= 20 && state.turn <= 280 && base_trees_now < 6
+                    // the plum ORCHARD outranks the banana printer
+                    && !(t.carry[PLUM] > 0 && orchard < MB_MAX_ORCHARD)
+                {
                     if t.carry[BANANA] > 0 {
                         let free_base = |water: bool| {
                             state
