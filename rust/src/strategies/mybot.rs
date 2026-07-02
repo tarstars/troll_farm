@@ -105,6 +105,17 @@ impl Strategy for MyBot {
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
+        // IN-GAME ADAPTATION (MB_ADAPT_ECON) — TESTED, WORSE (77%->65%); default OFF.
+        // Idea: when behind on troll count past the opening, switch choppers to local
+        // felling (dw=0) to recover the ramp. It backfires because "fewer trolls than the
+        // boss" is our NORMAL winning state (we win via denial with fewer trolls), so the
+        // trigger fires on maps we'd win and kills the denial edge. Kept as a documented
+        // dead-end so it isn't retried. DW=3 denial is load-bearing; do not gate it on this.
+        let opp_n = game.units.iter().filter(|u| u.player as usize != player).count() as i32;
+        let econ_mode = envi("MB_ADAPT_ECON", 0) == 1
+            && game.turn > envi("MB_ECON_TURN", 25)
+            && opp_n > n;
+
         // ── training plan ────────────────────────────────────────────────────
         // Greedy expansion: build the one chopper as soon as affordable (jumping the
         // queue), else the cheapest affordable harvester -- so the economy keeps growing
@@ -277,7 +288,8 @@ impl Strategy for MyBot {
                 // shack. Fall back to nearest ripe fruit so an idle chopper still banks
                 // points (late game, when few trees remain).
                 let opp = game.shacks[1 - player];
-                let dw = envi("MYBOT_DW", 3);
+                // Economy mode: chop the NEAREST tree (no denial trek) to recover the ramp.
+                let dw = if econ_mode { 0 } else { envi("MYBOT_DW", 3) };
                 let wt = envi("MYBOT_WT", 0);
                 iron_cell
                     .or_else(|| {
