@@ -9,7 +9,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{training_cost, BANANA, IRON, PLUM};
+use crate::game::engine::{plant_cooldown, training_cost, water_boost, BANANA, IRON, PLUM};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -76,6 +76,7 @@ enum Task {
     Harvest(Cell),
     Mine(Cell),   // iron-adjacent cell to stand on
     Print(Cell),  // base cell to plant a carried banana on
+    Orchard(Cell), // water-adjacent base cell to plant a carried PLUM on (+3pp feature)
     PickSeed,     // pick a banana at the shack
 }
 
@@ -191,6 +192,29 @@ impl Strategy for SchedBot {
                 }
             }
 
+            // ORCHARD: carried PLUM -> water-adjacent base cell (plum cd 8->3; the
+            // orchard funds every troll's plum cost; +3pp when added to mybot).
+            let orchard_n = game
+                .plants
+                .iter()
+                .filter(|p| p.plant_type == "PLUM" && manh(p.pos(), shack) <= base_r)
+                .count();
+            if !is_chop_role && u.carry[PLUM] > 0 && orchard_n < envi("SB_ORCH_N", 2) as usize {
+                let spot = game
+                    .walkable
+                    .iter()
+                    .filter(|c| manh(**c, shack) <= base_r && d.contains_key(*c))
+                    .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
+                    .filter(|c| game.water.iter().any(|w| manh(*w, **c) == 1))
+                    .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                    .min_by_key(|c| d[*c])
+                    .copied();
+                if let Some(sp) = spot {
+                    let t = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
+                    cands.push((envf("SB_ORCH_V", 10.0) / t, ti, Task::Orchard(sp)));
+                }
+            }
+
             // PRINT: plant carried banana at base (value = future wood/fruit)
             if window && base_trees < wf_cap && !is_chop_role {
                 if u.carry[BANANA] > 0 {
@@ -224,7 +248,8 @@ impl Strategy for SchedBot {
             let mem = self.mem.borrow();
             for c in cands.iter_mut() {
                 let cell = match &c.2 {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x) => Some(*x),
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x)
+                    | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };
                 if let (Some(cell), Some(&prev)) = (cell, mem.get(&(my[c.1].id))) {
@@ -243,7 +268,8 @@ impl Strategy for SchedBot {
                 continue;
             }
             let cell = match &task {
-                Task::Fell(c) | Task::Harvest(c) | Task::Mine(c) | Task::Print(c) => Some(*c),
+                Task::Fell(c) | Task::Harvest(c) | Task::Mine(c) | Task::Print(c)
+                | Task::Orchard(c) => Some(*c),
                 _ => None,
             };
             if let Some(c) = cell {
@@ -259,7 +285,8 @@ impl Strategy for SchedBot {
             let mut mem = self.mem.borrow_mut();
             for (ti, task) in &assigned {
                 let cell = match task {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x) => Some(*x),
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x)
+                    | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };
                 match cell {
@@ -319,15 +346,45 @@ impl Strategy for SchedBot {
                         go_move(*c)
                     }
                 }
+                Some(Task::Orchard(c)) => {
+                    if u.pos() == *c {
+                        format!("PLANT {} PLUM", u.id)
+                    } else {
+                        go_move(*c)
+                    }
+                }
                 Some(Task::PickSeed) => format!("PICK {} BANANA", u.id),
                 None => {
-                    // idle: park near base (never on the shack cell)
-                    let drop_cell = ortho(shack)
-                        .into_iter()
-                        .filter(|c| game.walkable.contains(c))
-                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
-                        .unwrap_or(shack);
-                    go_move(drop_cell)
+                    // idle: pre-position at the soonest-ripening tree (anticipation),
+                    // else park near base (never on the shack cell).
+                    let anticipate = game
+                        .plants
+                        .iter()
+                        .filter(|p| d.contains_key(&p.pos()))
+                        .filter_map(|p| {
+                            let mut cd = plant_cooldown(&p.plant_type);
+                            if game.water.iter().any(|w| manh(*w, p.pos()) == 1) {
+                                cd -= water_boost(&p.plant_type);
+                            }
+                            let cd = cd.max(1);
+                            let steps_needed = if p.size < 4 { 4 - p.size + 1 } else { 1 };
+                            let ttr = p.cooldown + (steps_needed - 1) * cd;
+                            let arrive = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
+                            (ttr <= 40).then(|| (arrive.max(ttr), d[&p.pos()], p.pos()))
+                        })
+                        .min()
+                        .map(|(_, _, c)| c);
+                    match anticipate {
+                        Some(c) => go_move(c),
+                        None => {
+                            let drop_cell = ortho(shack)
+                                .into_iter()
+                                .filter(|c| game.walkable.contains(c))
+                                .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                                .unwrap_or(shack);
+                            go_move(drop_cell)
+                        }
+                    }
                 }
             };
             cmd_by_id.insert(u.id, cmd);
