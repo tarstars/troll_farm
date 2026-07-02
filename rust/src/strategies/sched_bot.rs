@@ -145,12 +145,16 @@ impl Strategy for SchedBot {
             let steps = |dist: i32| -> f64 { ((dist + u.ms - 1) / u.ms.max(1)).max(0) as f64 };
             let carried: i32 = u.carry.iter().enumerate().map(|(i, c)| if i == 5 { 4 * c } else { *c }).sum();
 
-            // BANK: carried points become real when dropped.
+            // BANK: carried points become real when dropped. mybot's proven rule is
+            // bank-only-when-FULL (partial banking wastes trips); endgame overrides.
             if carried > 0 {
                 let t = steps(d_home) + 1.0;
-                // endgame override: if the clock barely covers banking, it dominates.
-                let urgency = if (turns_rem as f64) <= t + 2.0 { 1000.0 } else { 1.0 };
-                cands.push((urgency * carried as f64 / t, ti, Task::Bank));
+                let endgame = (turns_rem as f64) <= t + 2.0;
+                if endgame {
+                    cands.push((1000.0 * carried as f64 / t, ti, Task::Bank));
+                } else if u.free() == 0 || envi("SB_BANKFULL", 1) == 0 {
+                    cands.push((carried as f64 / t, ti, Task::Bank));
+                }
             }
 
             let is_chop_role = u.chop >= 2 || Some(u.id) == bootstrap_id;
@@ -165,15 +169,33 @@ impl Strategy for SchedBot {
                     let den = den_w * (1.0 - manh(pos, opp) as f64 / span);
                     let t = steps(dd) + chop_t + 0.5 * steps(manh(pos, shack)) + 1.0;
                     if turns_rem as f64 > t {
-                        cands.push(((wood + den) / t, ti, Task::Fell(pos)));
+                        // SB_FELL_MYBOT=1: order fells EXACTLY like mybot's proven
+                        // metric (minimize d + 3*manh(tree,oppShack)), expressed as a
+                        // rate that always outranks harvesting for chop-role trolls.
+                        let rate = match envi("SB_FELL_MYBOT", 2) {
+                            // 1: fell outranks EVERYTHING incl. banking (permanent
+                            //    denial camp): script 78.2 / silver 46.2 — a hard split.
+                            1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
+                            // 2: mybot ordering, but BELOW a full load's bank rate:
+                            //    chopper cycles fell->bank like mybot.
+                            2 => envf("SB_FB", 0.8) - (dd + 3 * manh(pos, opp)) as f64 * 0.005,
+                            _ => (wood + den) / t,
+                        };
+                        cands.push((rate, ti, Task::Fell(pos)));
                     }
                 }
-                // HARVEST ripe fruit
+                // HARVEST ripe fruit. SB_HARV_SIMPLE=1: pure-nearest (mybot's rule,
+                // value-blind); else rate = one-turn take / (travel + SB_RETW*return).
                 if p.fruits > 0 && u.hp > 0 && u.free() > 0 {
-                    let take = p.fruits.min(u.hp).min(u.free()) as f64;
-                    let t = steps(dd) + 1.0 + 0.5 * steps(manh(pos, shack));
+                    let retw = envf("SB_RETW", 0.5);
+                    let t = steps(dd) + 1.0 + retw * steps(manh(pos, shack));
                     if turns_rem as f64 > t {
-                        cands.push((take / t, ti, Task::Harvest(pos)));
+                        let rate = if envi("SB_HARV_SIMPLE", 0) == 1 {
+                            2.0 / (steps(dd) + 1.0)
+                        } else {
+                            p.fruits.min(u.hp).min(u.free()) as f64 / t
+                        };
+                        cands.push((rate, ti, Task::Harvest(pos)));
                     }
                 }
             }
