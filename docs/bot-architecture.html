@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>tass — Troll Farm Bot: Ideas &amp; Architecture</title>
+<style>
+  @page { size: A4; margin: 22mm 19mm; }
+  body { font-family: "DejaVu Sans", "Segoe UI", sans-serif; font-size: 10.5pt;
+         color: #1a1a1a; line-height: 1.45; max-width: 175mm; margin: 0 auto; }
+  h1 { font-size: 21pt; margin: 0 0 2mm 0; letter-spacing: -0.5px; }
+  .subtitle { color: #555; font-size: 11pt; margin-bottom: 8mm; }
+  h2 { font-size: 14pt; border-bottom: 2px solid #2b6cb0; padding-bottom: 1mm;
+       margin-top: 9mm; color: #1a365d; page-break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 1.5mm 0; color: #2b6cb0; page-break-after: avoid; }
+  code, .path { font-family: "DejaVu Sans Mono", monospace; font-size: 9pt;
+                background: #f0f4f8; padding: 0.5px 3px; border-radius: 3px; }
+  pre { background: #f0f4f8; border-left: 3px solid #2b6cb0; padding: 3mm;
+        font-size: 8.5pt; overflow-x: hidden; white-space: pre-wrap; page-break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 3mm 0; font-size: 9.5pt;
+          page-break-inside: avoid; }
+  th { background: #1a365d; color: white; text-align: left; padding: 1.5mm 2.5mm; }
+  td { border-bottom: 1px solid #cbd5e0; padding: 1.5mm 2.5mm; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7fafc; }
+  .keyidea { background: #ebf8ff; border-left: 4px solid #2b6cb0; padding: 2.5mm 4mm;
+             margin: 3mm 0; page-break-inside: avoid; }
+  .lesson { background: #fff5f5; border-left: 4px solid #c53030; padding: 2.5mm 4mm;
+            margin: 3mm 0; page-break-inside: avoid; }
+  .small { font-size: 8.5pt; color: #555; }
+  ul, ol { margin: 1.5mm 0; padding-left: 6mm; }
+  li { margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<h1>tass — a Troll Farm bot</h1>
+<div class="subtitle">CodinGame Spring Challenge 2026 · Silver league rank <b>1&nbsp;/&nbsp;681</b> (score&nbsp;23.95 peak) ·
+version <b>v1.1.5-nolock</b> · 2026-07-02</div>
+
+<h2>1. The game in one paragraph</h2>
+<p>
+Two players farm a point-symmetric grid (8–11&nbsp;rows, width = 2×height) for 300 turns.
+Trolls harvest fruit from trees (1&nbsp;pt each), chop trees for <b>wood (4&nbsp;pts each — the dominant currency)</b>,
+mine iron, plant new trees, and train more trolls. Training the <i>n</i>-th troll costs
+<code>n + stat²</code> of a resource per stat: PLUM→speed, LEMON→carry, APPLE→harvest, IRON→chop.
+A felled tree yields <code>min(size, free&nbsp;carry)</code> wood and is gone. Trees adjacent to water grow dramatically faster
+(APPLE cooldown 9→2, PLUM 8→3, BANANA 6→4). Only banked resources score; carried goods are worth nothing at the buzzer.
+</p>
+
+<h2>2. The opponent: Boss 4, decoded</h2>
+<p>
+Promotion to Gold requires out-rating <b>Boss&nbsp;4</b>, which sits <i>above the #1 human player</i> in Silver —
+so the real bar is "be the best bot of 681". We reverse-engineered the boss from full debug dumps
+(<span class="path">cgauto/last_console.txt</span>, per-turn <code>@TFD/@TFSUM</code> state) and arena replays. Its fixed script:
+</p>
+<ul>
+  <li><b>t≈2:</b> trains a cheap <code>(1,1,1,2)</code> utility troll; the starter plants a base <b>LEMON</b> orchard and mines iron.</li>
+  <li><b>Harvesting is strictly local:</b> its starter never left radius 5 of its shack in 300 turns (measured); the utility troll averages 4.7.</li>
+  <li><b>Hoards to lemon 18</b>, then at <b>t≈150</b> trains one <code>(2,4,2,2)</code> power-chopper — carry&nbsp;4 means 16&nbsp;pts per felled size-4 tree.</li>
+  <li>That chopper then <b>CHOPs every single turn</b>, raiding deep into our half; boss wood is ≈0 before t≈190, then ~1 wood / 5 turns.</li>
+  <li>Never trains a 4th troll (ends games with 20+ lemon unspent).</li>
+</ul>
+<p>This script is modelled as a sparring partner in <span class="path">rust/src/strategies/script_boss.rs</span> (<code>scriptboss</code>),
+alongside the older greedy-expansion model <span class="path">silver_boss.rs</span>. <b>Every change must hold on both models</b> — the rule that
+caught several would-be regressions (§6).</p>
+
+<h2>3. The core idea: a task-market scheduler with denial camping</h2>
+<div class="keyidea">
+<b>Instead of fixed per-troll roles, every turn is an auction.</b> For each (troll, task) pair we compute a
+<i>marginal rate</i> — points per turn — and greedily assign the best pairs under exclusivity. Strategy emerges from
+the prices, not from if-else role code.
+</div>
+<p>Implemented twice, kept in sync: <span class="path">rust/src/main.rs&nbsp;::&nbsp;decide_sched()</span> (the single-file CodinGame submission)
+and <span class="path">rust/src/strategies/sched_bot.rs</span> (the simulator mirror with env-var tuning knobs). Task types (enum <code>SchedTask</code>):</p>
+
+<table>
+<tr><th>Task</th><th>Rate (points / turn)</th><th>Key code element</th></tr>
+<tr><td><b>FELL</b> a tree</td><td><code>0.8 − (d + 3·manh(tree,&nbsp;enemy&nbsp;shack))·0.005</code> — a <i>denial metric</i>, not a yield metric (see §3.1)</td><td><code>fell_base</code>, <code>SchedTask::Fell</code></td></tr>
+<tr><td><b>BANK</b> carried load</td><td><code>carried&nbsp;pts / (walk&nbsp;home + 1)</code> — offered only when <b>full</b>, or with 1000× urgency when the clock barely covers the trip (endgame banking)</td><td><code>SchedTask::Bank</code>, <code>turns_rem ≤ eta+2</code></td></tr>
+<tr><td><b>HARVEST</b> ripe fruit</td><td><code>min(fruits, harvest, free) / (travel + 1 + ½·return)</code></td><td><code>SchedTask::Harvest</code></td></tr>
+<tr><td><b>PRINT</b> a crop</td><td><code>6 / travel</code> to plant; <code>3</code> to PICK a seed at the shack (§4)</td><td><code>SchedTask::Print(cell,&nbsp;species)</code>, <code>PickSeed</code></td></tr>
+<tr><td><b>ORCHARD</b> plum</td><td><code>10 / travel</code> — water-adjacent base cell, max 2 (plum funds every troll's speed cost)</td><td><code>SchedTask::Orchard</code></td></tr>
+<tr><td><b>MINE</b> iron</td><td><code>3 / travel</code>, only while iron blocks the next chopper</td><td><code>SchedTask::Mine</code>, <code>need_iron</code></td></tr>
+</table>
+
+<h3>3.1 Denial camping — the discovery that beats the boss</h3>
+<p>
+The fell rate deliberately <b>ignores wood yield</b> and prices a tree by <i>closeness to the enemy shack</i>
+(the classic metric <code>d + 3·manh(tree, oppShack)</code> from the earlier heuristic bot, re-expressed as a rate).
+Because that rate (≈0.8) is <i>below</i> a full load's bank rate but <i>above</i> everything else, a chopper that fills up
+far from home keeps felling at zero extraction — <b>permanently starving the opponent's tree supply</b> — and only banks
+when passing near home or at the endgame. Wood is worth 4&nbsp;pts, but a tree denied to the boss costs it up to
+16&nbsp;pts + future fruit. Measured: this "camper" beats the boss-script model at <b>87.5%</b> where the yield-driven
+"cycler" variant (<code>SB_FELL_FREE=1</code>) manages 67%.
+From <b>80&nbsp;turns before the end</b> the gate flips and fells require free carry — denial value decays to zero at the buzzer
+(<code>need_free = turns_rem ≤ 80</code>).
+</p>
+
+<h3>3.2 Training plan</h3>
+<p>Greedy, inherited from the proven heuristic ancestor: build up to <b>two fast cheap choppers <code>(2,2,0,2)</code></b>
+as soon as affordable (speed wins the race to contested trees; carry&nbsp;2 keeps them cheap — copying the boss's expensive carry-4
+chopper measurably drains the economy), otherwise the cheapest affordable harvester of
+<code>(2,2,2,0) / (1,2,2,0) / (1,1,1,0)</code>, capped at 4 trolls. Constants <code>MB_CHOPPER, MB_HARVESTERS</code> in
+<span class="path">main.rs</span>.</p>
+
+<h2>4. The economy: wood printing and water crops</h2>
+<div class="keyidea">
+<b>Fruit is seed capital; wood is income.</b> Surplus fruit is planted near the base, grown fast beside water, and
+felled young — a self-sustaining "wood printer" worth ~8&nbsp;pts per cycle. Decoded from the replays of the bots that were
+beating us (aRi: 67 wood = 268 of its 275 points; logiqub: 76 wood = 304 of 308).
+</div>
+<ul>
+<li><b>Species follows the spot</b> (from logiqub's crop system): on a water-adjacent cell plant <b>APPLE</b>
+(grows a size per 2 ticks, and its high health makes it unprofitable for the enemy to steal) or <b>PLUM</b>;
+on dry cells plant <b>BANANA</b> (fastest dry grower, and worthless for training — pure surplus).
+Plum/apple are training currency, so they are only spent above a <b>reserve of 8</b> banked units
+(<code>SB_CROP_RES</code>).</li>
+<li><b>PICK-based feeding:</b> harvesters PICK a seed back out of the bank at the shack when a plantable base spot exists
+— the printer never starves waiting for a lucky carry.</li>
+<li>The plum <b>orchard</b> (max 2, water-adjacent) keeps the troll-training pipeline funded; orchard duty outranks printing
+for a plum-carrying troll.</li>
+</ul>
+
+<h2>5. Correctness armour (each one converted real losses)</h2>
+<table>
+<tr><th>Mechanism</th><th>Failure it kills</th><th>Where</th></tr>
+<tr><td><b>Endgame banking</b>: any carrier whose remaining clock barely covers the walk home + DROP abandons its task and banks</td>
+<td>carried goods scoring 0 at turn 300 (4&nbsp;pts per stranded wood)</td><td><code>Bank</code> urgency term</td></tr>
+<tr><td><b>Wedge fix</b>: full troll standing on the (unwalkable) shack cell targets the nearest walkable drop cell</td>
+<td>starter freezing for 300 turns after mining turn-1 iron beside the shack</td><td>drop-cell fallback in <code>Bank</code>/legacy <code>decide()</code></td></tr>
+<tr><td><b>Plant-spot gate</b>: PICK is only offered when a plantable base cell exists</td>
+<td rowspan="4">the <b>pick/drop livelock family</b>: a carry-1 starter picking a banana, failing to plant, banking it back —
+forever (a real game lost 21–148 with 130 wasted turns; the user-reported replay showed 119&nbsp;PICKs + 129&nbsp;DROPs)</td>
+<td>spot computed for both arms of the printer</td></tr>
+<tr><td><b>Single-ferry gate</b>: no PICK while another troll already carries a seed</td><td><code>PickSeed</code> condition</td></tr>
+<tr><td><b>PICK cooldown (12 turns)</b>: a recent PICK no longer carried means the plant failed — cool down instead of looping</td><td><code>SB_PICKED</code> thread-local</td></tr>
+<tr><td><b>Dry-cell parking</b>: idle trolls park on non-water-adjacent cells so they never squat the plantable spot</td><td>idle fallback in the emit phase</td></tr>
+<tr><td><b>Contention guard</b>: idle pre-positioning avoids cells already assigned or occupied this turn</td>
+<td>two trolls MOVE-blocking each other on one target forever (3-troll jam, real loss 61–180)</td><td><code>anticipate</code> filters on <code>taken</code></td></tr>
+</table>
+<p class="small">The livelock fixes alone moved the simulator win rates from 83.9%/82.7% to <b>87.5%/87.5%</b> on the two boss models,
+and the arena rank from ~40 to <b>1</b>.</p>
+
+<h2>6. Methodology: how changes are validated</h2>
+<ol>
+<li><b>Fast local benchmark</b> — <code>bench A B N</code> plays N seeds × both seats in parallel
+(<span class="path">rust/src/bin/bench.rs</span>) on a referee-faithful simulator
+(<span class="path">rust/src/game/engine.rs</span>, validated against real replays).</li>
+<li><b>Two-model rule:</b> a change is accepted only if it helps (or holds) against <i>both</i>
+<code>silverboss</code> and <code>scriptboss</code>. Anchor-calibrated: the models correctly order historical bots by their real
+win rates where a single model inverted them.</li>
+<li><b>Real batches before defaults for risky classes.</b> Three <i>transfer-failure modes</i> were measured, where the sim said
+"better" and the arena said "worse":
+<div class="lesson" style="margin-top:2mm">
+<b>1.</b>&nbsp;Overfitting one boss model (v1.0.4: 90.5% sim, 33% real).&nbsp;
+<b>2.</b>&nbsp;Troll-spec/economy changes interacting with map-economy calibration (v1.0.9 "mower": best-ever on both models, 25% real).&nbsp;
+<b>3.</b>&nbsp;Opponent-conditional triggers under-represented by both models (v1.1.3 raid gate: +1.7pp on models, −5&nbsp;rating points in the arena).
+</div></li>
+<li><b>Arena replay decoding</b> (pure HTTP, no browser): <code>findLastBattlesByAgentId</code> →
+<code>gameResult/findByGameId</code> exposes both players' raw command streams, per-turn inventories and summaries.
+This pipeline found every major leak and decoded the elite engines. Submissions are verified by a <b>new agentId</b>
+on the leaderboard, never by the submitter's exit code.</li>
+</ol>
+
+<h2>7. Result trajectory (one day, 2026-07-02)</h2>
+<table>
+<tr><th>Version</th><th>Change</th><th>Arena outcome</th></tr>
+<tr><td>v1.0.1 (previous day)</td><td>heuristic wood-race + denial</td><td>rank 42 → slid to <b>134</b> as the field improved</td></tr>
+<tr><td>v1.0.6-tempo</td><td>endgame banking, cheap hp0 chopper, ripeness anticipation, water orchard</td><td>rank ~55</td></tr>
+<tr><td>v1.0.8-woodprinter</td><td>woodfarm + banana printer (decoded from aRi)</td><td>rank ~48–70, real avg score 152→164</td></tr>
+<tr><td>v1.1.0/v1.1.1-sched</td><td><b>scheduler architecture</b>, camper discovery, first livelock fixes</td><td>rank 18 → 10</td></tr>
+<tr><td>v1.1.2-sched</td><td>anticipate-contention fix, single-ferry gate</td><td><b>rank 2</b> (score 22.64)</td></tr>
+<tr><td>v1.1.4-crops</td><td>species-aware water crops (decoded from logiqub)</td><td>mid-placement when superseded</td></tr>
+<tr><td><b>v1.1.5-nolock</b></td><td>PICK cooldown + dry parking (user-reported replay)</td><td><b>rank 1 / 681, score 23.95</b>; promotion watch vs Boss&nbsp;4</td></tr>
+</table>
+
+<h2>8. File map</h2>
+<table>
+<tr><th>Element</th><th>Purpose</th></tr>
+<tr><td><span class="path">rust/src/main.rs</span> — <code>decide_sched()</code>, <code>SchedTask</code>, <code>MB_*</code> consts</td><td>the live single-file CodinGame bot (compiles with <code>rustc --edition 2021 -O</code>)</td></tr>
+<tr><td><span class="path">rust/src/strategies/sched_bot.rs</span></td><td>simulator mirror of the live bot; env knobs <code>SB_*</code> for sweeps</td></tr>
+<tr><td><span class="path">rust/src/strategies/script_boss.rs / silver_boss.rs</span></td><td>the two Boss-4 sparring models (§2, §6)</td></tr>
+<tr><td><span class="path">rust/src/game/engine.rs, mapgen.rs</span></td><td>referee-faithful rules engine + Silver-calibrated map generator</td></tr>
+<tr><td><span class="path">rust/src/bin/bench.rs, diag.rs, trace.rs, mapstat.rs</span></td><td>parallel benchmark, score composition, per-turn traces</td></tr>
+<tr><td><span class="path">cgauto/</span> (run_games.py, submit.py, submissions/)</td><td>real-CG automation: validation batches, arena submission, frozen artifacts</td></tr>
+<tr><td><span class="path">cgauto/HANDOFF.md, docs/silver-experiment-log.md</span></td><td>the full experiment record every number in this document comes from</td></tr>
+</table>
+
+<p class="small" style="margin-top:8mm">Generated 2026-07-02 late evening. Numbers: simulator win rates are 1000-seed × 2-seat benchmarks;
+arena figures are CodinGame leaderboard reads (public API). tass = the arena account name.</p>
+
+</body>
+</html>
