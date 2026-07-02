@@ -127,7 +127,13 @@ Neither model alone is the real boss; together they bracket it. This replaces th
    converged rank (LEADERBOARD or the API in the log). Throttle tip: if `.monaco-editor`
    times out repeatedly, `pkill -f "cgauto/profile"` (stale Playwright chromium instances
    holding the profile were the actual blocker once; after killing them the IDE loaded).
-2. **The road to Gold (score ~17 → >24) is an ARCHITECTURE rebuild, not knobs** — every
+2. **schedbot v0 EXISTS** (strategies/sched_bot.rs): global greedy task assignment by
+   marginal rate. Untuned: script 48.9 → 59.9 @SB_DEN=30 (compromise 20: 58.4/69.6),
+   silver 70.2, vs mybot 41%. Sticky hysteresis tested neutral. TODO to reach parity+:
+   port water plum orchard + ripeness anticipation; fix harvest multi-turn valuation;
+   then beat mybot on BOTH models before any real batch (and remember: spec changes
+   need a REAL batch — see the v1.0.9 inversion above).
+3. **The road to Gold (score ~17 → >24) is the ARCHITECTURE rebuild, not knobs** — every
    knob/role sweep is at a plateau (see log 2026-07-02 ~12:00 table). The evidence-backed
    direction: per-troll action scheduling (joint assignment/1-2-ply lookahead over the
    validated engine within the 50ms budget), targeting the two measured structural
