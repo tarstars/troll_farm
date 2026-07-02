@@ -249,7 +249,14 @@ impl Strategy for SchedBot {
             // The spot is computed for BOTH arms: PickSeed without a plantable spot
             // caused a PICK<->DROP livelock (arena game 21-148: the cc1 starter picked
             // a banana, went full, banked it, picked again — for 130 turns).
-            if window && base_trees < wf_cap && !is_chop_role {
+            // Suppress the printer while an enemy chopper is raiding our base:
+            // planting into a raid feeds the raider 2 wood per seedling and the
+            // fell->replant churn starves training (real arena boss loss 119-176).
+            let base_raided = game
+                .units
+                .iter()
+                .any(|e| e.player as usize != player && e.chop >= 2 && manh(e.pos(), shack) <= base_r + 2);
+            if window && base_trees < wf_cap && !is_chop_role && !base_raided {
                 let spot = game
                     .walkable
                     .iter()
