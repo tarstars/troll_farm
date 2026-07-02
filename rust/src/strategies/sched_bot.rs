@@ -20,12 +20,12 @@ const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 
 pub struct SchedBot {
-    _mem: RefCell<HashMap<i32, Cell>>,
+    mem: RefCell<HashMap<i32, Cell>>, // last target cell per troll (sticky hysteresis)
 }
 
 impl SchedBot {
     pub fn new() -> Self {
-        SchedBot { _mem: RefCell::new(HashMap::new()) }
+        SchedBot { mem: RefCell::new(HashMap::new()) }
     }
 }
 
@@ -85,6 +85,9 @@ impl Strategy for SchedBot {
     }
 
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
+        if game.turn == 1 {
+            self.mem.borrow_mut().clear();
+        }
         let shack = game.shacks[player];
         let opp = game.shacks[1 - player];
         let inv = &game.inventories[player];
@@ -213,6 +216,24 @@ impl Strategy for SchedBot {
             dists.push(d);
         }
 
+        // sticky hysteresis: boost the rate of whatever each troll targeted last
+        // turn (rates are recomputed from scratch, so near-ties flip targets and
+        // trolls oscillate — mybot's sticky memory existed for exactly this).
+        let stick = 1.0 + envf("SB_STICK", 0.0);
+        {
+            let mem = self.mem.borrow();
+            for c in cands.iter_mut() {
+                let cell = match &c.2 {
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x) => Some(*x),
+                    _ => None,
+                };
+                if let (Some(cell), Some(&prev)) = (cell, mem.get(&(my[c.1].id))) {
+                    if prev == cell {
+                        c.0 *= stick;
+                    }
+                }
+            }
+        }
         // greedy joint assignment: best rate first; one task per troll, one troll per target
         cands.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
         let mut assigned: HashMap<usize, Task> = HashMap::new();
@@ -232,6 +253,24 @@ impl Strategy for SchedBot {
                 taken.insert(c);
             }
             assigned.insert(ti, task);
+        }
+
+        {
+            let mut mem = self.mem.borrow_mut();
+            for (ti, task) in &assigned {
+                let cell = match task {
+                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x) => Some(*x),
+                    _ => None,
+                };
+                match cell {
+                    Some(c) => {
+                        mem.insert(my[*ti].id, c);
+                    }
+                    None => {
+                        mem.remove(&my[*ti].id);
+                    }
+                }
+            }
         }
 
         // emit commands
