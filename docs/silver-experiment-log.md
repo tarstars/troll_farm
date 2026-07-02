@@ -92,7 +92,31 @@ Field sanity (300s): mybot vs planner 87.5 / gatherer 92.3 / balanced 93.7 / cho
 Cumulative v1.0.5 -> v1.0.6-tempo FINAL (2000 seeds): scriptboss ~59.8->61.2% (margin
 +13.7->+21.3), silverboss 77.6->80.8% (+24.0->+33.1).
 
-### REAL-CG validation + submission (2026-07-02 ~10:20)
+### Field-strength phase (2026-07-02 late morning) — v1.0.7/v1.0.8
+Arena intel pipeline (NEW, pure HTTP, no browser): findLastBattlesByAgentId(agentId)
+-> gameIds; gameResult/findByGameId(gid) -> per-frame stdout (RAW COMMANDS of both
+players incl. TRAIN specs!), summaries, final inventories. Decoded v1.0.6's arena run:
+50% vs rating neighborhood, avg score us 152 / opp 154; losses are ECONOMY blowouts
+(opp 204-275). The 275-pt winner (aRi): 3 trolls, **67 wood = 268 pts** via a BANANA
+WOOD-PRINTER: PICK banana from inventory + replant near base (28 PICK/28 PLANT/195
+CHOP, only 35 HARVESTs all game). Banana: cd 6 (fastest), health 2+s (3 chops @chop2),
+cc2 extracts min(size,2) => fell at size 2, zero waste, ~8 pts/cycle forever.
+
+| change | scriptboss | silverboss | verdict |
+|---|---|---|---|
+| v1.0.7 = woodfarm ALONE on | 62.1 (+24.8) | 84.1 (+43.9) | KEEP (v1.0.4's flop was the coupled cheap chopper) |
+| v1.0.8 = + banana PICK+replant printer | 60.8 (+22.5) @2000s | 84.0 (+49.8) | KEEP: +11 avg score (156->167, wood 90) = field currency |
+| MB_FARMW chopper farm-affinity 8/16/32 | 59.8/57.6/50.2 | 83/81.6/75.8 | DEAD-END (denial is load-bearing; farm gets felled opportunistically) |
+| MB_MIXORCH plum+lemon+apple orchard | flat, trolls 2.44 | flat | DEAD-END (chicken-and-egg: never CARRY the starved type) |
+| MB_TIE=2 scarcity tie-break | -2.7pp | -1.2pp | DEAD-END loose; MB_TIE=0 (exact ties only) neutral -> kept |
+| MB_BIG late (2,4,2,2) hoard 80/120/160 | flat | flat-worse | parked (n>=3 gate rarely met at our 2.7-troll economy) |
+| WF_MAX 8/10, WF_START 10 | worse (10: 56.3!) | worse | defaults 6/20 confirmed |
+| MIRROR tests (seat-knob A/B): DW3 vs DW0, MAX4 vs 5/6, FARM vs none | all ~50/50, margin ~0 | | contested equilibria self-cancel; use score-density vs fixed opponents as the field metric |
+Post-v1.0.6-submission arena: rank 134 -> **58-59/682 converged, score ~16.9** (bar for
+Gold ≈ >24, Boss 4 sits above Silver's #1). diag: we average only 2.47-2.7 trolls
+(training blocked by fruit COMPOSITION, structural).
+
+### REAL-CG validation + submission of v1.0.6 (2026-07-02 ~10:20)
 - v1.0.6-tempo real batch: **5W/3L = 62%** vs Boss 4, bbox [101,43,752,470] (known-good),
   lastgame.png spot-checked at 300/300 showing tass 221 — Boss 4 116 (a historically high
   score for us). No overfit collapse (v1.0.4 test was 33% here). Statistically level with
