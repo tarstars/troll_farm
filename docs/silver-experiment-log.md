@@ -164,6 +164,21 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### v1.1.7-lemonchoke (~01:30): THE BOSS'S KILL SWITCH, from 30 decoded boss games
+Mined every boss game from tonight's agents (30 games). THE PATTERN:
+- boss never trains its DOUBLE (2,4,2,2): we won 12/12 (boss scores 15-114);
+- double lands <=t105: we lose nearly all (boss 201-310);
+- double lands >=t120: we win ~60%.
+The pair costs ~39 LEMON (n=3,4: 19+20) — its timing IS the boss's lemon economy.
+=> LEMON-FIRST early denial: enemy-half LEMON trees count 12 cells closer in the
+fell metric while turn<120. scriptboss 86.9->91.6% (+4.7pp; its cc4 needs lemon 18 —
+the real double needs 39, expect stronger live), silverboss flat.
+Boss opening pairs VARY per game ((2,2,2,1),(1,2,1,2),(2,1,3,2)x2 etc) — random-ish
+utility specs; only the double-(2,4,2,2) spike is invariant. bossv3 model attempt too
+weak (95% -- doesn't reproduce the real save speed); parked, the lemon-choke conclusion
+came straight from the real data instead.
+Carriers overnight: agentId-verified submit loop (v117_submit.log) + 08:23 cron.
+
 ### v1.1.6-clear (midnight): mine wedge + late-plant cutoff + clear-when-ahead
 From the decoded 122-279 boss loss + USER's IDE debug findings: (1) MINE now needs
 free capacity (full cc1 starter no-op-mined 30 turns — Mine rate outbid Bank);
