@@ -881,6 +881,29 @@ fn decide(state: &State) -> Vec<String> {
             // it for wood: 1pt fruit -> up to 4*size pts). Else drops.
             if t.free_capacity() == 0 {
                 mem.remove(&t.id);
+                // Place orchard plums DELIBERATELY on a water-adjacent base cell (plum
+                // cooldown 8 -> 3 beside water = ~2.7x fruit rate) instead of planting
+                // wherever the returning harvester happens to stand. Both-model win:
+                // scriptboss 60.5->62.5%, silverboss 78.2->81.2% (1000 seeds, same-seed).
+                if !is_chop && t.carry[PLUM] > 0 && orchard < MB_MAX_ORCHARD {
+                    let spot = state
+                        .walkable
+                        .iter()
+                        .filter(|c| manhattan(**c, shack) <= 3 && d.contains_key(*c))
+                        .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
+                        .filter(|c| state.water_cells.iter().any(|w| manhattan(*w, **c) == 1))
+                        .filter(|c| !my.iter().any(|o| o.id != t.id && o.pos() == **c))
+                        .min_by_key(|c| d[*c]);
+                    if let Some(&tc) = spot {
+                        if t.pos() == tc {
+                            cmd_by_id.insert(t.id, format!("PLANT {} PLUM", t.id));
+                        } else {
+                            cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, tc.0, tc.1));
+                        }
+                        continue;
+                    }
+                    // no water-adjacent base cell -> fall through to the old behavior
+                }
                 if is_adjacent(t.pos(), shack) {
                     let on_tree = state.trees.iter().any(|p| p.pos() == t.pos());
                     let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= 3).count();

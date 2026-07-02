@@ -263,6 +263,32 @@ impl Strategy for MyBot {
             // Full -> home; harvester seeds the plum orchard at base, else drops.
             if u.free() == 0 {
                 mem.remove(&u.id);
+                // MB_H2O: place orchard plums DELIBERATELY on a water-adjacent base cell
+                // (plum cooldown 8 -> 3 beside water = ~2.7x fruit rate) instead of
+                // planting wherever the returning harvester happens to stand.
+                if envi("MB_H2O", 1) == 1
+                    && !is_chopper
+                    && u.carry[PLUM] > 0
+                    && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize
+                {
+                    let spot = game
+                        .walkable
+                        .iter()
+                        .filter(|c| manh(**c, shack) <= 3 && d.contains_key(*c))
+                        .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
+                        .filter(|c| game.water.iter().any(|w| manh(*w, **c) == 1))
+                        .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                        .min_by_key(|c| d[*c]);
+                    if let Some(&tc) = spot {
+                        if u.pos() == tc {
+                            cmd_by_id.insert(u.id, format!("PLANT {} PLUM", u.id));
+                        } else {
+                            cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                        }
+                        continue;
+                    }
+                    // no water-adjacent base cell -> fall through to the old behavior
+                }
                 if manh(u.pos(), shack) == 1 {
                     let on_tree = game.plants.iter().any(|p| p.pos() == u.pos());
                     let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= 3).count();
