@@ -534,7 +534,11 @@ impl Strategy for MyBot {
                 // near-equal options) but repairs the fruit-COMPOSITION block that
                 // stalls training (diag: avg 2.47/4 trolls; e.g. seed 1 banked 55
                 // apples while plum/lemon starved at 2/1).
-                let tie = envi("MB_TIE", 2);
+                let tie = envi("MB_TIE", 0); // 0 = exact ties only (== main.rs); 2 tested -2.7pp
+                // MB_LOCAL_R: prefer ripe trees within R of the SHACK (the orchard/farm
+                // cluster) before ranging out — raises fruit-per-move when the base
+                // cluster is productive (field bots' trolls barely leave their half).
+                let local_r = envi("MB_LOCAL_R", 0);
                 let ban_pen = envi("MB_BAN_PEN", 6);
                 let nearest_ripe = |ty: Option<&str>| -> Option<Cell> {
                     let dmin = game
@@ -600,10 +604,22 @@ impl Strategy for MyBot {
                 // HARV=1 (default): nearest ripe fruit for max throughput (but chase a
                 // training-blocking deficit type first — see deficit_ty above). HARV=0:
                 // scarce-resource-first (funds training, but slower fruit).
+                let nearest_ripe_local = || -> Option<Cell> {
+                    if local_r == 0 {
+                        return None;
+                    }
+                    game.plants
+                        .iter()
+                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| manh(p.pos(), shack) <= local_r)
+                        .min_by_key(|p| d[&p.pos()])
+                        .map(|p| p.pos())
+                };
                 if envi("MYBOT_HARV", 1) == 1 {
                     tender_target
                         .or(sticky)
                         .or_else(|| deficit_ty.and_then(|t| nearest_ripe(Some(t))))
+                        .or_else(nearest_ripe_local)
                         .or_else(|| nearest_ripe(None))
                         .or_else(anticipate)
                 } else {
