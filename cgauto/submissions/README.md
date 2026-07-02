@@ -14,16 +14,20 @@ Then confirm promotion on the **LEADERBOARD** — you promote when you rank **ab
 
 | file | sim (silver_boss / scriptboss) | real vs Boss 4 | notes |
 |------|-------------------------------|----------------|-------|
-| **v1.0.6-tempo.rs** ⭐ | 78.4% / 61.1% | pending real batch (see experiment log) | = v1.0.5 + endgame banking (DROP partial carries before t=300) + `(2,2,0,2)` chopper (hp1→0 saves apple) + ripeness anticipation. Every change validated on BOTH boss models (`silver_boss` AND the real-script `scriptboss`). |
-| v1.0.5-safe.rs | ~77% / 60.6% | not yet CG-tested; = v1.0.1 + a pure bug-fix, so ≥ v1.0.1 | Robust denial wood-race bot + the wedge fix (a full troll stuck ON the shack cell after mining turn-1 iron). **Fallback** if v1.0.6's real batch disappoints. |
-| v1.0.1-denialrace.rs | ~78% / — | **66% (4W/2L), climbed us to rank 42/681** | This is what's **currently live in the arena**. Known-good baseline. |
+| **v1.0.9-mower.rs** ⭐ | **87.5% / 64.3%** | validating | = v1.0.8 + chop1 harvesters that mow the base farm. Best on both models by clear margins. |
+| v1.0.8-woodprinter.rs | 85.1% / 63.0% | **5W/3L (62%)** bbox-good | = v1.0.6 + woodfarm + banana PICK+replant printer + water orchard. Real-validated; its submit attempt got throttled, superseded by v1.0.9. |
+| v1.0.6-tempo.rs | 78.4% / 61.1% | **5W/3L (62%)**, live in arena (rank ~58) | = v1.0.5 + endgame banking + `(2,2,0,2)` chopper + ripeness anticipation. Every change validated on BOTH boss models. |
+| v1.0.5-safe.rs | ~77% / 60.6% | not yet CG-tested; = v1.0.1 + a pure bug-fix | Denial wood-race bot + the wedge fix. Historical fallback. |
+| v1.0.1-denialrace.rs | ~78% / — | 66% (4W/2L), once rank 42/681 | Previous arena bot (replaced by v1.0.6 on 2026-07-02). |
 | v1.0.4-woodfarm-cheapchop.rs | **90.5%** / 56.9% | **33% (2W/4L) — WORSE** | ⚠️ OVERFIT to the silver_boss model (scriptboss correctly ranks it below v1.0.5). Do NOT submit; kept as the canonical overfit warning. |
 
 ## TL;DR
-- Live now: **v1.0.1** (rank 42).
-- Best candidate: **v1.0.6-tempo** — real-CG validate first, then submit; fallback **v1.0.5-safe**.
-- v1.0.4 is a trap (great vs silver_boss, bad in reality) — sim gains past ~78% vs
-  silver_boss overfit. The second model (`scriptboss`, the real boss's script) now
-  catches this class of trap: only trust changes that hold on BOTH models.
+- Live in arena: **v1.0.6-tempo** (rank ~58/682, score ~16.9; Gold bar ≈ score >24).
+- Best: **v1.0.9-mower** — validate on real CG, then submit (v1.0.8 already validated
+  5W/3L = no collapse; v1.0.9 is a strict both-model improvement over it).
+- v1.0.4 is a trap (great vs silver_boss, bad in reality) — only trust changes that
+  hold on BOTH boss models (`silverboss` + `scriptboss`).
+- Throttle gotcha: `pkill -f "chrom.*cgauto/profil[e]"` (the naive pattern self-matches
+  the invoking shell and kills it).
 
-The working tree `rust/src/main.rs` currently == **v1.0.6-tempo**.
+The working tree `rust/src/main.rs` currently == **v1.0.9-mower**.
