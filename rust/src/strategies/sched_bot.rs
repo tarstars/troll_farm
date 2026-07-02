@@ -166,7 +166,12 @@ impl Strategy for SchedBot {
                 // SB_FELL_FREE=1: only offer fells with extraction capacity (forces
                 // fell->bank cycles). Default 0 = camper allowed (full choppers keep
                 // denying at zero yield when home is far — the anti-script sauce).
-                if is_chop_role && u.chop > 0 && (envi("SB_FELL_FREE", 0) == 0 || u.free() > 0) {
+                // SB_LATE_FREE: from this many turns-left onward, require extraction
+                // capacity (denial's value = opponent's FUTURE harvest, which decays to
+                // zero at game end; extraction value is constant).
+                let need_free = envi("SB_FELL_FREE", 0) == 1
+                    || (turns_rem <= envi("SB_LATE_FREE", 80));
+                if is_chop_role && u.chop > 0 && (!need_free || u.free() > 0) {
                     let chop_t = ((p.health + u.chop - 1) / u.chop) as f64;
                     let wood = p.size.min(u.free()) as f64 * 4.0;
                     let den = den_w * (1.0 - manh(pos, opp) as f64 / span);
