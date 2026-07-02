@@ -102,7 +102,8 @@ impl Strategy for SchedBot {
         let n = my.len() as i32;
 
         // ── training: mybot's proven greedy plan, verbatim ──────────────────
-        let want_chopper = (my.iter().filter(|u| u.chop >= 2).count() as i32) < N_CHOPPERS;
+        let want_chopper =
+            (my.iter().filter(|u| u.chop >= 2).count() as i32) < envi("SB_NCHOP", N_CHOPPERS);
         let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
             && afford(inv, &training_cost(n, CHOPPER_SPEC), have_iron)
         {
