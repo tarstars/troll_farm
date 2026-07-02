@@ -10,7 +10,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{training_cost, IRON, PLUM, LEMON, APPLE};
+use crate::game::engine::{plant_cooldown, training_cost, water_boost, IRON, PLUM, LEMON, APPLE};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -27,7 +27,10 @@ const MAX_ORCHARD: usize = 2; // base plum orchard size
 // (ms2) choppers that win the race to contested trees, and harvesters that grab the
 // NEAREST ripe fruit for max throughput (greedy expansion already funds training, so
 // we don't need scarce-resource-first harvesting).
-const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 1, 2);
+// hp0 (was hp1): saves n+1 APPLE per chopper; the only loss is a rarely-reachable
+// fruit-harvest fallback. Confirmed on BOTH boss models at 1000 seeds (2026-07-02):
+// scriptboss 59.8→60.9% (margin +14.7→+18.2), silverboss 77.5→78.4% (+24.1→+26.9).
+const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 0, 2);
 const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const HARVESTER: (i32, i32, i32, i32) = (1, 2, 2, 0);
@@ -201,6 +204,36 @@ impl Strategy for MyBot {
             let is_chopper = is_chopper(u);
             let d = bfs(&game.walkable, u.pos());
 
+            // ── ENDGAME BANKING (MB_ENDBANK, default on): carried items score ZERO
+            // unless DROPped at the shack by the final turn. When the remaining turns
+            // barely cover the walk home + the DROP, abandon whatever we're doing and
+            // bank. Without this, every troll strands up to cc-1 items at t=300 (a
+            // chopper's stranded wood = 4 pts each) — pure lost points in close games.
+            if envi("MB_ENDBANK", 1) == 1 && u.total() > 0 {
+                let turns_rem = TOTAL_TURNS - game.turn + 1; // incl. this turn
+                let d_home = ortho(shack)
+                    .iter()
+                    .filter(|c| game.walkable.contains(*c))
+                    .filter_map(|c| d.get(c))
+                    .min()
+                    .copied()
+                    .unwrap_or(i32::MAX / 2);
+                let eta = (d_home + u.ms - 1) / u.ms + 1; // walk turns + the DROP turn
+                if turns_rem <= eta + 1 {
+                    if manh(u.pos(), shack) == 1 {
+                        cmd_by_id.insert(u.id, format!("DROP {}", u.id));
+                    } else {
+                        let drop_cell = ortho(shack)
+                            .into_iter()
+                            .filter(|c| game.walkable.contains(c))
+                            .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                            .unwrap_or(shack);
+                        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                    }
+                    continue;
+                }
+            }
+
             // Full -> home; harvester seeds the plum orchard at base, else drops.
             if u.free() == 0 {
                 mem.remove(&u.id);
@@ -291,12 +324,18 @@ impl Strategy for MyBot {
                 // Economy mode: chop the NEAREST tree (no denial trek) to recover the ramp.
                 let dw = if econ_mode { 0 } else { envi("MYBOT_DW", 3) };
                 let wt = envi("MYBOT_WT", 0);
+                // MB_FELLT: also charge the fell TIME (ceil(health/chop) turns a fell
+                // actually costs — an APPLE s4 is 10 turns at chop2, a BANANA s4 just 3).
+                let ft = envi("MB_FELLT", 0);
                 iron_cell
                     .or_else(|| {
                         game.plants
                             .iter()
                             .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                            .min_by_key(|p| (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size, -p.size))
+                            .min_by_key(|p| {
+                                let fell = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
+                                (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell, -p.size)
+                            })
                             .map(|p| p.pos())
                     })
                     .or_else(|| {
@@ -322,12 +361,40 @@ impl Strategy for MyBot {
                         .min_by_key(|p| d[&p.pos()])
                         .map(|p| p.pos())
                 };
+                // When NOTHING is ripe, don't idle at base: pre-position at the tree
+                // whose first fruit lands soonest relative to our arrival (minimize
+                // max(travel, time-to-ripe)). Uses only validated growth mechanics
+                // (cooldown + water boost), no boss assumptions. MB_RIPE=0 disables.
+                let anticipate = || -> Option<Cell> {
+                    if envi("MB_RIPE", 1) == 0 {
+                        return None;
+                    }
+                    game.plants
+                        .iter()
+                        .filter(|p| !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter_map(|p| {
+                            let mut cd = plant_cooldown(&p.plant_type);
+                            if game.water.iter().any(|w| manh(*w, p.pos()) == 1) {
+                                cd -= water_boost(&p.plant_type);
+                            }
+                            let cd = cd.max(1);
+                            let steps = if p.size < 4 { 4 - p.size + 1 } else { 1 };
+                            let ttr = p.cooldown + (steps - 1) * cd;
+                            let arrive = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
+                            (ttr <= 40).then(|| (arrive.max(ttr), d[&p.pos()], p.pos()))
+                        })
+                        .min()
+                        .map(|(_, _, c)| c)
+                };
                 // HARV=1 (default): nearest ripe fruit for max throughput. HARV=0:
                 // scarce-resource-first (funds training, but slower fruit).
                 if envi("MYBOT_HARV", 1) == 1 {
-                    sticky.or_else(|| nearest_ripe(None))
+                    sticky.or_else(|| nearest_ripe(None)).or_else(anticipate)
                 } else {
-                    sticky.or_else(|| nearest_ripe(Some(need_ty))).or_else(|| nearest_ripe(None))
+                    sticky
+                        .or_else(|| nearest_ripe(Some(need_ty)))
+                        .or_else(|| nearest_ripe(None))
+                        .or_else(anticipate)
                 }
             };
 

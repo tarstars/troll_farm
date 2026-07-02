@@ -7,7 +7,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.0.5-safe";
+const VERSION: &str = "1.0.6-tempo";
 const TOTAL_TURNS: i32 = 300;
 // NO_CHOP is LEGACY: it only gates the old economic-planner bot (`decide_old`, now
 // dead code). The live bot is the v0.9.2 `decide` (big-chopper strategy). Real Boss 4
@@ -759,7 +759,10 @@ fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
 // Cheap pure chopper (ms1, cc2, hp0, chop2): swept best vs silver_boss at 87% (vs the
 // old ms2 (2,2,1,2) at 81%). cc2 = 2 wood/fell is essential; dropping ms+hp saves plum
 // +apple for a stronger economy while still winning the denial race (DW=3) + woodfarm.
-const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 1, 2);
+// hp0 (was hp1): saves n+1 APPLE per chopper; the only loss is a rarely-reachable
+// fruit-harvest fallback. Confirmed on BOTH boss models at 1000 seeds (2026-07-02):
+// scriptboss 59.8→60.9% (margin +14.7→+18.2), silverboss 77.5→78.4% (+24.1→+26.9).
+const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 0, 2);
 const MB_NCHOPPERS: i32 = 2;
 const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const MB_MAX_TROLLS: usize = 4;
@@ -841,6 +844,36 @@ fn decide(state: &State) -> Vec<String> {
         for t in &my {
             let is_chop = is_chopper(t);
             let d = bfs_distances(&state.walkable, &[t.pos()]);
+
+            // ── ENDGAME BANKING: carried items score ZERO unless DROPped at the shack
+            // by the final turn. When the remaining turns barely cover the walk home +
+            // the DROP, abandon everything and bank. Without this, every troll strands
+            // up to cc-1 items at t=300 (a chopper's stranded wood = 4 pts each).
+            if t.total_carried() > 0 {
+                let turns_rem = TOTAL_TURNS - state.turn + 1; // incl. this turn
+                let d_home = ortho_neighbors(shack)
+                    .iter()
+                    .filter(|c| state.walkable.contains(*c))
+                    .filter_map(|c| d.get(c))
+                    .min()
+                    .copied()
+                    .unwrap_or(i32::MAX / 2);
+                let ms = t.movement_speed.max(1);
+                let eta = (d_home + ms - 1) / ms + 1; // walk turns + the DROP turn
+                if turns_rem <= eta + 1 {
+                    if is_adjacent(t.pos(), shack) {
+                        cmd_by_id.insert(t.id, format!("DROP {}", t.id));
+                    } else {
+                        let drop_cell = ortho_neighbors(shack)
+                            .into_iter()
+                            .filter(|c| state.walkable.contains(c))
+                            .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                            .unwrap_or(shack);
+                        cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, drop_cell.0, drop_cell.1));
+                    }
+                    continue;
+                }
+            }
 
             // Full -> home; harvester seeds the base plum orchard, then does FRUIT->WOOD
             // conversion (plant surplus fruit -- prefer BANANA, which has no training
@@ -948,14 +981,43 @@ fn decide(state: &State) -> Vec<String> {
                 let sticky = mem.get(&t.id).copied().filter(|&c| {
                     state.trees.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
                 });
-                sticky.or_else(|| {
+                // When NOTHING is ripe, don't idle at base: pre-position at the tree
+                // whose first fruit lands soonest relative to our arrival (minimize
+                // max(travel, time-to-ripe)). Validated growth mechanics only.
+                let anticipate = || -> Option<Cell> {
                     state
                         .trees
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
-                        .min_by_key(|p| d[&p.pos()])
-                        .map(|p| p.pos())
-                })
+                        .filter(|p| !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter_map(|p| {
+                            let mut cd = plant_cooldown(&p.tree_type);
+                            if state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1) {
+                                cd -= water_boost(&p.tree_type);
+                            }
+                            let cd = cd.max(1);
+                            let steps = if p.size < 4 { 4 - p.size + 1 } else { 1 };
+                            let ttr = p.cooldown + (steps - 1) * cd;
+                            let ms = t.movement_speed.max(1);
+                            let arrive = (d[&p.pos()] + ms - 1) / ms;
+                            if ttr <= 40 {
+                                Some((arrive.max(ttr), d[&p.pos()], p.pos()))
+                            } else {
+                                None
+                            }
+                        })
+                        .min()
+                        .map(|(_, _, c)| c)
+                };
+                sticky
+                    .or_else(|| {
+                        state
+                            .trees
+                            .iter()
+                            .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                            .min_by_key(|p| d[&p.pos()])
+                            .map(|p| p.pos())
+                    })
+                    .or_else(anticipate)
             };
 
             match go {
