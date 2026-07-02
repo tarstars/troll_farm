@@ -192,6 +192,32 @@ impl Strategy for MyBot {
         let need_idx = (0..3usize).min_by_key(|&i| inv[i]).unwrap();
         let need_ty = ["PLUM", "LEMON", "APPLE"][need_idx];
 
+        // DEFICIT CHASE (MB_DEFICIT) — TESTED, NET-NEGATIVE; default OFF (dead-end).
+        // Root cause it targeted is real (e.g. seed 1: plum trees in far corners ->
+        // nearest-ripe never banks PLUM -> stuck at 2 trolls with 78 useless fruit,
+        // every troll costs n+ms^2 plum). But the cure loses more than it converts:
+        // loose trigger -3.6pp script / -1.6pp silver; tight starved-only trigger
+        // (below) still -1.2pp script / +0.4pp silver (1000 seeds, same-seed A/B).
+        // Chasing a far-off type bleeds exactly the throughput the wood race needs.
+        let deficit_ty: Option<&str> = if envi("MB_DEFICIT", 0) == 1
+            && train_now.is_none()
+            && (n as usize) < envi("MYBOT_MAX", MAX_TROLLS as i32) as usize
+            && TOTAL_TURNS - game.turn > MIN_TURNS_LEFT
+        {
+            // Fire only on the STARVATION signature: one type near zero while another
+            // is rich. A loose trigger (any shortfall vs next cost) fires transiently
+            // after every train and bleeds throughput everywhere: -3.6pp scriptboss /
+            // -1.6pp silverboss at 1000 seeds. Starved-only targets the stuck maps.
+            let cost_min = training_cost(n, HARVESTERS[HARVESTERS.len() - 1]);
+            let rich = (0..3usize).map(|i| inv[i]).max().unwrap() >= envi("MB_DEF_HI", 10);
+            (0..3usize)
+                .filter(|&i| rich && inv[i] <= envi("MB_DEF_LOW", 1) && inv[i] < cost_min[i])
+                .max_by_key(|&i| cost_min[i] - inv[i])
+                .map(|i| ["PLUM", "LEMON", "APPLE"][i])
+        } else {
+            None
+        };
+
         let mut mem = self.mem.borrow_mut();
         let mut reserved: HashSet<Cell> = HashSet::new();
         let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
@@ -327,6 +353,10 @@ impl Strategy for MyBot {
                 // MB_FELLT: also charge the fell TIME (ceil(health/chop) turns a fell
                 // actually costs — an APPLE s4 is 10 turns at chop2, a BANANA s4 just 3).
                 let ft = envi("MB_FELLT", 0);
+                // MB_LEMONW: extra denial pull toward LEMON trees — carry capacity costs
+                // lemon (n+cc^2), so any chopper-heavy foe is lemon-gated (the real Boss 4
+                // saves to lemon 18 for its (2,4,2,2); felling its lemons delays the spike).
+                let lw = envi("MB_LEMONW", 0);
                 iron_cell
                     .or_else(|| {
                         game.plants
@@ -334,7 +364,9 @@ impl Strategy for MyBot {
                             .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
                             .min_by_key(|p| {
                                 let fell = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
-                                (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell, -p.size)
+                                let lemon = (p.plant_type == "LEMON") as i32;
+                                (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell
+                                    - lw * lemon, -p.size)
                             })
                             .map(|p| p.pos())
                     })
@@ -386,10 +418,14 @@ impl Strategy for MyBot {
                         .min()
                         .map(|(_, _, c)| c)
                 };
-                // HARV=1 (default): nearest ripe fruit for max throughput. HARV=0:
+                // HARV=1 (default): nearest ripe fruit for max throughput (but chase a
+                // training-blocking deficit type first — see deficit_ty above). HARV=0:
                 // scarce-resource-first (funds training, but slower fruit).
                 if envi("MYBOT_HARV", 1) == 1 {
-                    sticky.or_else(|| nearest_ripe(None)).or_else(anticipate)
+                    sticky
+                        .or_else(|| deficit_ty.and_then(|t| nearest_ripe(Some(t))))
+                        .or_else(|| nearest_ripe(None))
+                        .or_else(anticipate)
                 } else {
                     sticky
                         .or_else(|| nearest_ripe(Some(need_ty)))

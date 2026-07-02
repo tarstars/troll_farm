@@ -58,3 +58,35 @@ Now relying on parallel agents (faithful sim + search bot).
 
 CONCLUSION: 100% ("all maps") unreachable (RNG tie-breaks + no-draw engine + Pareto peak).
 Ceiling ~66% real / rank ~42. Next real progress = submit v1.0.5-safe, ladder climbing.
+
+## Session 2026-07-02 (review by newer model): scriptboss + v1.0.6-tempo
+REVIEW FINDING: the uncommitted cgauto/last_console.txt held a FULL real-game DEBUG dump
+(v0.9.8 era) revealing the REAL Boss 4 script, which silver_boss does NOT match:
+train (1,1,1,2) at t~2; starter plants a base LEMON orchard + mines iron, harvest LOCALLY
+(starter max dist from shack = 5 over 300 turns! util troll avg 4.7); hoard to lemon 18;
+t~150 train ONE (2,4,2,2); it CHOPs literally every turn after (raiding our half);
+wood stays 0 until t~190; NO 4th troll ever (23 lemon banked unspent at t=300).
+=> the old ceiling analysis (out-ramped 2.6 vs 3.4 trolls / Pareto peak) describes the
+MODEL, not the real boss. Built strategies/script_boss.rs to capture the real shape.
+
+Anchor calibration (real% / vs silverboss / vs scriptboss):
+| mybot v1.0.5 | ~66 | 77.6 | 60.6 |     | v1.0.4-config | ~33 | 90.5 (!) | 56.9 |
+| planner | 35 | ~35 | 22.6 |          | gatherer | 31 | ~31 | 20.4 |
+scriptboss gets the ORDERING right where silverboss inverted it (v1.0.4). Decision rule
+going forward: accept a change only if it helps (or holds) on BOTH boss models.
+
+| test (1000 seeds x2 unless noted) | scriptboss | silverboss | verdict |
+|---|---|---|---|
+| ENDGAME BANKING (return+DROP partial carries by t=300) | +0.3pp, margin +0.8 | +0.0pp, +0.3 | KEEP (pure correctness) |
+| chopper (2,2,0,2) hp1->0 (saves n+1 apple) | +1.1pp, +3.5 | +0.9pp, +2.8 | KEEP |
+| ripeness anticipation (pre-position at soonest-ripe tree) | +0.6pp, +0.8 | -0.1pp, +0.1 | KEEP (validated mechanics only) |
+| MB_FELLT fell-time-weighted chopper targets (600s) | 62.4->58.4->53.6 (ft 0/1/2) | flat | DEAD-END (tanky trees ARE the denial) |
+| MB_DEFICIT chase training-blocking fruit type | loose: -3.6pp; starved-only: -1.2pp | -1.6pp; +0.4pp | DEAD-END (cure < disease; root cause real: seed 1 = plum-corner map, stuck 2 trolls @ 78 banked fruit) |
+| MB_LEMONW lemon-biased denial (600s) | -1.2pp @ lw2 | flat | DEAD-END (DW=3 already covers base lemons) |
+| DW re-sweep vs scriptboss | 0:27.6 1:49.6 2:59.9 3:61.2 4:60.6 5:60.2 | (3 was peak) | DW=3 RE-CONFIRMED on both |
+| NCHOP 1/2/3, cc3/cc4 specs | all within noise / clearly worse | same | keep NCHOP=2, cc2 |
+Cumulative v1.0.5 -> v1.0.6-tempo: scriptboss 58.9->61.1%, silverboss 77.6->78.4%,
+margins +13.7->+18.3 / +24.0->+27.0.
+Loss decomposition vs scriptboss (400 seeds): 30% both-seat + 18% one-seat (vs 15/15 on
+silverboss) — the systematic pool is BIGGER vs the real script, so the "~66% ceiling"
+claim was model-specific; headroom exists but the obvious knobs are exhausted.

@@ -1,4 +1,4 @@
-# Troll Farm — HANDOFF (2026-07-02)
+# Troll Farm — HANDOFF (2026-07-02, updated by review session)
 
 Authoritative project state + everything a fresh agent needs. Read this first, then
 `docs/silver-experiment-log.md` (full sweep history) and the memory files under
@@ -7,14 +7,21 @@ Authoritative project state + everything a fresh agent needs. Read this first, t
 ════════════════════════════════════════════════════════════════════════
 ## 1. GOAL & CURRENT STATE
 ════════════════════════════════════════════════════════════════════════
-- **Goal:** promote **Silver → Gold** by ranking **above "Boss 4"** in the ranked arena.
-  (The user's session goal was phrased "defeat Boss 4 on all maps" — see §8: 100% is PROVEN
-  unreachable; the actionable version is "rank above Boss 4" / maximize win rate.)
+- **Goal (user, 2026-07-02): advance to the GOLD league** = rank **above "Boss 4"** in
+  the ranked arena.
 - **Live arena bot:** `v1.0.1-denialrace` — **rank 42/681** (up from ~49), ~**66% vs Boss 4** (4W/2L, confirmed final-frame).
-- **Best safe bot (working tree `rust/src/main.rs`):** `v1.0.5-safe` = v1.0.1 + a wedge **bug-fix**. Compiles, committed. **NOT yet resubmitted** (recommended next action — free, low-risk upgrade). User said they may submit it themselves (`cgauto/submissions/v1.0.5-safe.rs`).
-- **"Defeat Boss 4 on ALL maps" (100%) is NOT achievable** — proven, see §8. Heuristic ceiling ≈ **66–70% real / rank low-40s**, essentially reached.
+- **Working tree `rust/src/main.rs`:** `v1.0.6-tempo` = v1.0.5-safe + endgame banking +
+  `(2,2,0,2)` chopper + ripeness anticipation — each validated on BOTH boss models (§5a).
+  Compiles standalone, committed. Real-CG batch pending/in-progress (throttle permitting).
+- **NEW (this session): `scriptboss`** — a model of the REAL Boss 4 script (from a real
+  DEBUG dump), structurally different from `silver_boss`. See §5a. The old "ceiling
+  ~66–70%, essentially reached" claim was MODEL-specific: loss decomposition vs scriptboss
+  shows 30% both-seat (systematic → in-principle fixable) + 18% one-seat, vs 15/15 on
+  silver_boss. Obvious knobs are exhausted, but the ceiling story is softer than §8 claims.
 
-Ready-to-submit files: **`cgauto/submissions/`** (`v1.0.5-safe.rs` ⭐, `v1.0.1-denialrace.rs` = live, `v1.0.4-woodfarm-cheapchop.rs` = overfit trap) + its README.
+Ready-to-submit files: **`cgauto/submissions/`** (`v1.0.6-tempo.rs` ⭐ pending real
+validation, `v1.0.5-safe.rs` = fallback, `v1.0.1-denialrace.rs` = live, `v1.0.4` = overfit
+trap) + its README.
 
 ════════════════════════════════════════════════════════════════════════
 ## 2. THE GAME (Silver league)  — see docs/mechanics.md + referee source
@@ -27,8 +34,15 @@ Referee: https://github.com/eulerscheZahl/Troll-Farm (open source).
 - **Boss 4** = a MIXED **WOOD-race** bot, ~3 trolls, incl. one dominant `(ms2,cc4,hp2,chop2)` chopper; harvests fruit, plants a base plum orchard, mines iron; scores ~150–283. (NOT the weak `level2/Boss.cs` farmer — that was a red herring; `strategies/boss_real.rs` models that wrong boss, ignore it. The faithful one is `strategies/silver_boss.rs`.)
 
 ════════════════════════════════════════════════════════════════════════
-## 3. OUR BOT — v1.0.5-safe (the shipped strategy)
+## 3. OUR BOT — v1.0.6-tempo (working tree; v1.0.1 is live in arena)
 ════════════════════════════════════════════════════════════════════════
+v1.0.6-tempo = everything below PLUS (all both-model-validated, see §5a):
+- **Endgame banking:** any troll carrying anything returns + DROPs before t=300
+  (was: partial carries stranded = dead points; a chopper's stranded wood = 4 pts each).
+- **Chopper spec (2,2,0,2)** (hp1→hp0): saves n+1 APPLE per chopper.
+- **Ripeness anticipation:** when nothing is ripe, pre-position at the tree whose first
+  fruit lands soonest relative to arrival (minimize max(travel, time-to-ripe)).
+
 A **wood-race** bot that beats the boss by out-denying + out-farming it:
 - Trains cheap **FAST (ms2) choppers `(2,2,1,2)`** — copying the boss's expensive cc4 chopper is WORSE (drains the economy). cc2 = 2 wood/fell.
 - Chopper targeting: fell the tree minimizing `dist + DW·manhattan(tree, enemyShack) − WT·size`, with **DW=3 (heavy denial bias)** and WT=0 — i.e. race to the BOSS's trees to starve its wood+fruit. DW was the single biggest lever (67.6%→78% sim, and it transfers to real CG). Falls back to nearest tree for our own wood.
@@ -58,14 +72,37 @@ A **wood-race** bot that beats the boss by out-denying + out-farming it:
 **Sim (fast, faithful-ish, but overfits past ~78%):**
 - `cd rust && cargo build --release && ./target/release/bench mybot silverboss 1000` → win% + margin, parallel, ~a few sec.
 - `diag` (score/troll/fruit/wood composition), `trace A B seed who` (per-turn + map + idle%), `probe`, `curve`. Rebuild bins after strategy changes (`cargo build --release --bin diag` etc.) or they're stale.
-- Tuning knobs (env, `mybot.rs` only; bake winners into consts in BOTH main.rs+mybot.rs): `MYBOT_DW`(denial, def 3), `MYBOT_WT`(size, def 0), `MYBOT_CHOP`(spec), `MYBOT_NCHOP`, `MYBOT_MAX`, `MB_WOODFARM`(0/1), `MB_WF_MAX/START/END`, `MB_ORCHARD`, `MB_CHOP_MIN_N`, `MYBOT_ADAPT`. mapgen density: `TREE_LO/TREE_HI/WATER_PAIRS/IRON_PAIRS`.
+- Tuning knobs (env, `mybot.rs` only; bake winners into consts in BOTH main.rs+mybot.rs): `MYBOT_DW`(denial, def 3), `MYBOT_WT`(size, def 0), `MYBOT_CHOP`(spec, def 2,2,0,2), `MYBOT_NCHOP`, `MYBOT_MAX`, `MB_ENDBANK`(1), `MB_RIPE`(1), `MB_WOODFARM`(0/1), `MB_WF_MAX/START/END`, `MB_ORCHARD`, `MB_CHOP_MIN_N`, `MYBOT_ADAPT`, dead-ends kept off: `MB_FELLT`(0), `MB_DEFICIT`(0), `MB_LEMONW`(0). mapgen density: `TREE_LO/TREE_HI/WATER_PAIRS/IRON_PAIRS`.
+
+════════════════════════════════════════════════════════════════════════
+## 5a. TWO BOSS MODELS — the both-models decision rule (2026-07-02)
+════════════════════════════════════════════════════════════════════════
+A real-game DEBUG dump (was sitting uncommitted in `cgauto/last_console.txt`; committed
+knowledge now) revealed the REAL Boss 4 script, and it is NOT what `silver_boss` plays:
+- t~2 train **(1,1,1,2)**; starter PICKs a LEMON, PLANTs a base LEMON orchard, MINEs iron.
+- Harvesting is **LOCAL** (starter never left radius 5 of its shack in 300 turns; util
+  troll avg 4.7) — measured from the dump's per-turn `@TFD` positions.
+- Hoard to **lemon 18** (+6 plum/6 apple/6 iron), **t~150 train ONE (2,4,2,2)**, which
+  then CHOPs every single turn (fells = 4 wood = 16 pts, raids into our half).
+  Wood stays ~0 before t~190. **No 4th troll ever** (23 lemon banked unspent at t=300).
+`rust/src/strategies/script_boss.rs` (= `scriptboss` in the roster) models this shape.
+
+**Anchor calibration** (bot: real% / vs silver_boss / vs scriptboss):
+mybot-v1.0.5: ~66 / 77.6 / 60.6 · v1.0.4-config: ~33 / **90.5 (inverted!)** / 56.9 ·
+planner: 35 / ~35 / 22.6 · gatherer: 31 / ~31 / 20.4. scriptboss gets the ordering
+right where silver_boss failed catastrophically (the v1.0.4 trap).
+
+**RULE: accept a strategy change ONLY if it helps (or at least holds) on BOTH models.**
+Neither model alone is the real boss; together they bracket it. This replaces the old
+"don't tune past 78% vs silver_boss" heuristic with something you can actually act on.
 
 ════════════════════════════════════════════════════════════════════════
 ## 6. FILE MAP
 ════════════════════════════════════════════════════════════════════════
 - `rust/src/main.rs` — **the live single-file CG bot** (v1.0.5-safe). Compile: `rustc --edition 2021 -O src/main.rs`.
 - `rust/src/strategies/mybot.rs` — sim mirror of the bot (KEEP IN SYNC with main.rs's decide).
-- `rust/src/strategies/silver_boss.rs` — **faithful Boss 4 model** (the sparring partner).
+- `rust/src/strategies/silver_boss.rs` — Boss 4 model #1 (greedy-expansion flavor).
+- `rust/src/strategies/script_boss.rs` — **Boss 4 model #2: the REAL script** (§5a). Judge every change on BOTH.
 - `rust/src/strategies/{boss4,boss_real}.rs` — OLD wrong boss models (chopper / weak farmer). Ignore.
 - `rust/src/strategies/search_bot.rs` — Agent B's lookahead bot; 53% vs faithful boss (weaker), reference only.
 - `rust/src/game/engine.rs` — mechanically CORRECT/validated referee sim (`step`). `mapgen.rs` — Silver-calibrated map gen.
@@ -79,12 +116,23 @@ A **wood-race** bot that beats the boss by out-denying + out-farming it:
 ════════════════════════════════════════════════════════════════════════
 ## 7. NEXT STEPS (if continuing)
 ════════════════════════════════════════════════════════════════════════
-1. **Resubmit `v1.0.5-safe`** (`submit.py cgauto/submissions/v1.0.5-safe.rs`) — strict, low-risk upgrade over live v1.0.1 (wedge fix converts iron-beside-shack wedge maps). Confirm rank via LEADERBOARD.
-2. To push past ~66–70% real you must **beat the model-overfit trap**: real-CG A/B the woodfarm ALONE (MB_WOODFARM=1, keep ms2 chopper) vs cheap-chopper ALONE, to see if EITHER transfers (v1.0.4 combined both and failed). Do it in small confirmed-final-frame batches.
-3. Bigger ideas (higher effort, need real-CG validation, diminishing returns): per-map-type strategy selection (the losses correlate with rich/close-shack/watery maps), or a fundamentally stronger economy. A search/MCTS bot underperformed the heuristic (53% vs faithful boss).
-4. **Do NOT** re-optimize purely against `silver_boss` past ~78% — it overfits.
+1. **Real-CG validate `v1.0.6-tempo`** (8+ confirmed-final-frame games, `run_games.py`),
+   then **submit it** (`submit.py cgauto/submissions/v1.0.6-tempo.rs`); fallback =
+   `v1.0.5-safe`. Confirm rank via LEADERBOARD. (A batch was launched 2026-07-02 but CG
+   was load-throttling hard; use a patient outer retry loop, waits of ~5–10 min.)
+2. The systematic-loss pool vs `scriptboss` is 30% of seeds (both-seat). Traced causes so
+   far: (a) plum-corner maps → stuck at 2 trolls with big useless fruit bank (deficit-chase
+   cure tested = net-negative; maybe try PLANTing the missing type instead), (b) the raw
+   late-game cc4-vs-cc2 wood race. Ideas not yet tried: water-adjacent orchard placement
+   (plum cd 8→3!), pair-chopping big trees (2 choppers same tree = full 4-wood extraction
+   + half fell time), search bot rebuilt against BOTH models.
+3. **The both-models rule (§5a) replaces "don't tune past 78%"** — any change must hold
+   on silver_boss AND scriptboss.
+4. Remember the arena is not only Boss 4: rank depends on the whole Silver field. If rank
+   stalls above-boss-but-not-promoted, look at losses vs other players (review.py).
 
-GIT: on branch `session-2026-07-01`. All work committed. HEAD = `e71c080` (v1.0.5-safe). Older versions recoverable via `git log`.
+GIT: on branch `session-2026-07-01`. HEAD = v1.0.6-tempo + scriptboss (see git log).
+Older versions recoverable via `git log`; submissions/ has the frozen artifacts.
 
 ════════════════════════════════════════════════════════════════════════
 ## 8. CEILING ANALYSIS (2026-07-02) — why 100% ("all maps") is unreachable
@@ -116,6 +164,10 @@ Measured facts (all reproducible with the parallel `bench`):
 - Cheap-chopper `(1,2,0,2)` + woodfarm: 90.5% SIM but 33% REAL (overfit, §4/§5).
 New tool: `rust/src/bin/mapstat.rs` (per-seed map features: shackdist/trees/water/iron).
 
-**Conclusion:** ~66% real (~77% vs the sim model) / rank ~42 is the heuristic ceiling.
-Progress beyond it = climbing the arena ladder (submit v1.0.5-safe; possibly careful
-real-CG A/B of woodfarm ALONE), not chasing 100% vs Boss 4.
+**Conclusion (REVISED 2026-07-02):** the 100%-unreachable part stands (RNG tie-breaks,
+no-draw engine). But the "~66% real is THE ceiling" claim rested on silver_boss-specific
+loss structure: vs the real-script `scriptboss` the systematic (both-seat, fixable-in-
+principle) pool is 30%, double the silver_boss picture, and the real boss is NOT the
+fast-ramping opponent the Pareto argument assumed (it sits on 2 trolls until ~t150).
+Realistic reading: meaningful headroom may exist beyond 66% real, but not via the simple
+knobs (all swept, see log §2026-07-02); it would take a structurally better bot (see §7.2).
