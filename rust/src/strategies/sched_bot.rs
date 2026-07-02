@@ -21,11 +21,12 @@ const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1
 
 pub struct SchedBot {
     mem: RefCell<HashMap<i32, Cell>>, // last target cell per troll (sticky hysteresis)
+    picked_at: RefCell<HashMap<i32, i32>>, // troll -> turn of last PICK (anti-livelock)
 }
 
 impl SchedBot {
     pub fn new() -> Self {
-        SchedBot { mem: RefCell::new(HashMap::new()) }
+        SchedBot { mem: RefCell::new(HashMap::new()), picked_at: RefCell::new(HashMap::new()) }
     }
 }
 
@@ -88,6 +89,7 @@ impl Strategy for SchedBot {
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
         if game.turn == 1 {
             self.mem.borrow_mut().clear();
+            self.picked_at.borrow_mut().clear();
         }
         let shack = game.shacks[player];
         let opp = game.shacks[1 - player];
@@ -299,6 +301,14 @@ impl Strategy for SchedBot {
                         && !my.iter().any(|o| {
                             o.id != u.id && (o.carry[BANANA] > 0 || o.carry[species] > 0)
                         })
+                        // anti-livelock: a recent PICK by this troll that is no longer
+                        // carried means the seed got banked back (plant failed) — cool
+                        // down instead of pick/drop looping (v1.1.0 record: 119 PICKs).
+                        && self
+                            .picked_at
+                            .borrow()
+                            .get(&u.id)
+                            .map_or(true, |&t0| game.turn - t0 > envi("SB_PICK_CD", 12))
                     {
                         cands.push((print_v / 2.0, ti, Task::PickSeed(species)));
                     }
@@ -349,6 +359,12 @@ impl Strategy for SchedBot {
         }
 
         {
+            let mut picked = self.picked_at.borrow_mut();
+            for (ti, task) in &assigned {
+                if matches!(task, Task::PickSeed(_)) {
+                    picked.insert(my[*ti].id, game.turn);
+                }
+            }
             let mut mem = self.mem.borrow_mut();
             for (ti, task) in &assigned {
                 let cell = match task {
@@ -453,10 +469,15 @@ impl Strategy for SchedBot {
                     match anticipate {
                         Some(c) => go_move(c),
                         None => {
+                            // park preferring NON-water-adjacent cells: parking on the
+                            // one plantable spot flickers it free/occupied (livelock).
                             let drop_cell = ortho(shack)
                                 .into_iter()
                                 .filter(|c| game.walkable.contains(c))
-                                .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                                .min_by_key(|c| {
+                                    let wet = game.water.iter().any(|w| manh(*w, *c) == 1);
+                                    (wet as i32, d.get(c).copied().unwrap_or(1 << 30))
+                                })
                                 .unwrap_or(shack);
                             go_move(drop_cell)
                         }
