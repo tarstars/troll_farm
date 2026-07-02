@@ -298,7 +298,11 @@ impl Strategy for MyBot {
                     // cell so it grows and the chopper later fells it for wood (1pt fruit ->
                     // up to 4*size pts). Prefer BANANA -- it can't fund training, so it's
                     // pure surplus. Only in a mid-game window so the tree has time to grow.
-                    let woodfarm = envi("MB_WOODFARM", 0) == 1
+                    // WOODFARM re-validated 2026-07-02 ALONE (v1.0.4 coupled it with the
+                    // overfit cheap-chopper): scriptboss 61.2->62.1% (+21.6->+24.5),
+                    // silverboss 81.0->84.2% (+33.4->+44.2). Converts surplus fruit
+                    // (BANANA first — no training value) into 4pt wood via the chopper.
+                    let woodfarm = envi("MB_WOODFARM", 1) == 1
                         && game.turn >= envi("MB_WF_START", 20)
                         && game.turn <= envi("MB_WF_END", 280)
                         && base_trees < envi("MB_WF_MAX", 6) as usize;
