@@ -164,6 +164,19 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### v1.1.6-clear (midnight): mine wedge + late-plant cutoff + clear-when-ahead
+From the decoded 122-279 boss loss + USER's IDE debug findings: (1) MINE now needs
+free capacity (full cc1 starter no-op-mined 30 turns — Mine rate outbid Bank);
+(2) plant window ends t230 (late plants feed the boss cc4); (3) clear-when-ahead:
+lead>=40 & turns_rem<=60 -> fell OUR half (deny cc4 food; empty map ends the game
+while ahead). Models 87.3/87.8 margins up. Arena: converged 23.43, rank 2-3, SILVER.
+**PROMOTION BLOCKER QUANTIFIED: the real top-band Boss 4 opens with TWO trolls at
+t1-2 (specs vary: (2,2,2,1)+(2,2,1,1) / (1,2,1,2)x2 / (2,1,3,2)x2) and fields TWO
+(2,4,2,2) at t80-142; our boss head-to-head is only ~40-60% (2W3L sample). Neither
+sparring model captures this. NEXT CYCLE: build boss model v3 (greedy 2-troll open +
+double cc4 ~t100), tune vs the TRIO, revalidate.** Boss bar > 23.96 (v1.1.5 peaked
+there unpromoted); both night agents finished 23.4-24.0.
+
 ### v1.1.5-nolock: RANK 1/681 (23:00-23:30) — the livelock family eradicated
 User-supplied replay (v1.1.0 vs LostInCode) showed the full damage: starter did 119
 PICK BANANA + 129 DROP with 2 PLANTs. Two closing fixes on top of v1.1.2's gates:
