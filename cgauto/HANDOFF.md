@@ -127,12 +127,14 @@ Neither model alone is the real boss; together they bracket it. This replaces th
    converged rank (LEADERBOARD or the API in the log). Throttle tip: if `.monaco-editor`
    times out repeatedly, `pkill -f "cgauto/profile"` (stale Playwright chromium instances
    holding the profile were the actual blocker once; after killing them the IDE loaded).
-2. The systematic-loss pool vs `scriptboss` is 30% of seeds (both-seat). Traced causes so
-   far: (a) plum-corner maps → stuck at 2 trolls with big useless fruit bank (deficit-chase
-   cure tested = net-negative; maybe try PLANTing the missing type instead), (b) the raw
-   late-game cc4-vs-cc2 wood race. Ideas not yet tried: water-adjacent orchard placement
-   (plum cd 8→3!), pair-chopping big trees (2 choppers same tree = full 4-wood extraction
-   + half fell time), search bot rebuilt against BOTH models.
+2. **The road to Gold (score ~17 → >24) is an ARCHITECTURE rebuild, not knobs** — every
+   knob/role sweep is at a plateau (see log 2026-07-02 ~12:00 table). The evidence-backed
+   direction: per-troll action scheduling (joint assignment/1-2-ply lookahead over the
+   validated engine within the 50ms budget), targeting the two measured structural
+   deficits: (a) micro throughput (real printer bots get 3x our chop/print rate with the
+   same concepts — decode more of their replays via the HTTP pipeline in the log), and
+   (b) the 2.5-troll training stall from fruit composition. Water-orchard was tried
+   (shipped, +2-3pp); pair-chopping is IMPOSSIBLE (1 troll per team per cell).
 3. **The both-models rule (§5a) replaces "don't tune past 78%"** — any change must hold
    on silver_boss AND scriptboss.
 4. **The real fight is the FIELD, not the boss** (see §1 THE BAR): to reach the boss's

@@ -116,6 +116,22 @@ Post-v1.0.6-submission arena: rank 134 -> **58-59/682 converged, score ~16.9** (
 Gold ≈ >24, Boss 4 sits above Silver's #1). diag: we average only 2.47-2.7 trolls
 (training blocked by fruit COMPOSITION, structural).
 
+### Architecture A/B round (2026-07-02 ~12:00) — where the remaining gap is NOT
+| test | result | conclusion |
+|---|---|---|
+| printerbot (decoded field archetype) vs mybot | mybot 85.9% | our strategy beats the archetype in-sim |
+| anti-field configs (DW0 / DW0+FARMW) vs printerbot | 76-78% (worse than DW3's 85.9!) | denial is the best config vs EVERY archetype in-sim; adaptive-config idea dead |
+| MB_TENDER (aRi chop1+hp2 base-farm tender) | flat both bosses | gates on n>=3; economy stalls below it |
+| MB_BIG late cc4 hoard (80/120/160) | flat | same n>=3 trap |
+| hybrid chopper (2,2,2,2)/(2,1,2,2) | -6pp both | hybrids pay only in base-camping architectures |
+| ORCHARD 2/3/4 (water-placed) | flat | plateau |
+CONCLUSION: every knob and role-addition is at a plateau. Real printer bots beat us on
+MICRO THROUGHPUT (aRi: 195 chops, 67 wood — 3x our print rate with the same concepts),
+not strategy choice. Next real lift = per-troll action scheduling (joint assignment/
+lookahead over the validated engine, using the 50ms budget), i.e. an architecture
+rebuild — NOT more heuristic knobs. The 2.5-troll training stall (fruit composition)
+is the other structural constraint no knob fixed.
+
 ### REAL-CG validation + submission of v1.0.6 (2026-07-02 ~10:20)
 - v1.0.6-tempo real batch: **5W/3L = 62%** vs Boss 4, bbox [101,43,752,470] (known-good),
   lastgame.png spot-checked at 300/300 showing tass 221 — Boss 4 116 (a historically high
