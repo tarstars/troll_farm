@@ -150,6 +150,20 @@ Top-5 Silver: 23.4/21.9/20.7/20.7/20.4 — the promotion bar is ~4 points away.
 THE WORKING RECIPE: decode own arena losses via HTTP -> find the leak -> fix ->
 both-model bench -> real batch (specs only) -> submit -> converge -> repeat.
 
+### v1.1.2 — RANK 3/681 (~18:10). Promotion gap ~1.5-2 pts. NEXT LEAK IDENTIFIED
+v1.1.2 (anticipate-contention fix + single-banana-ferry gate) submitted ~17:20:
+converged **rank 2-3/681, score 21.8-22.6** (peak rank 2 @22.64). Top: alexcercos
+23.1, logiqub 22.5, tass 22.1; Boss 4 above #1. At this band we run ~50% vs the
+elite with THREE 1-2-point losses (238-236, 252-250, 137-136 — endgame micro) and
+blowouts only vs logiqub-tier engines (250-310 scores).
+**NEXT FIX (identified, not yet done): third jam form in BOSS games** — lost a real
+arena boss game 119-176 with 67 PICKs/65 fails/2 trolls: under the boss cc4's farm
+raids, base_trees stays < cap and the pick/plant churn re-triggers; training starves.
+Candidate fixes: pick-loop cooldown after a PLANT gets felled; suppress printer while
+an enemy chopper is within base radius; or train-priority guard (never PICK when
+training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
+Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
+
 ### v1.0.8 live arena decode (~14:20, first 34 placement battles)
 12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
 271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
