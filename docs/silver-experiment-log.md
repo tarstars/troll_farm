@@ -164,6 +164,19 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### v1.1.5-nolock: RANK 1/681 (23:00-23:30) — the livelock family eradicated
+User-supplied replay (v1.1.0 vs LostInCode) showed the full damage: starter did 119
+PICK BANANA + 129 DROP with 2 PLANTs. Two closing fixes on top of v1.1.2's gates:
+(1) PICK cooldown 12 turns when a recent pick got banked back (plant failed);
+(2) idle parking prefers dry cells (never squat the plantable spot).
+Sim: BOTH models 87.5% (script margin +85.0!) — the churn cost sim games too.
+Arena: **RANK 1/681, score 23.96** > alexcercos 23.2 > logiqub 22.5. Placement done
+(114/115). STILL SILVER => Boss 4's fixed rating > 23.96. Roster re-sweep on the
+scheduler (NCHOP 2-3 x MAX 4-5): flat 86-88 both models — sim saturated; remaining
+gains live in arena details. Post-placement drift at rank 1 trends UP (each field win
+nudges toward the boss bar); v1.1.4-crops = species-aware water crops also landed
+earlier tonight (apple/plum near water, reserve-guarded).
+
 ### v1.1.3 ARENA REGRESSION + revert (evening): the raid gate over-triggers vs the field
 v1.1.3 (printer pauses while enemy chop>=2 within base_r+2) converged at **rank 51 /
 17.23** vs v1.1.2's rank 2-3 / ~22 — a 5-point regression with ONE change. Models said
