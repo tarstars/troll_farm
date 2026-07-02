@@ -172,6 +172,12 @@ impl Strategy for SchedBot {
                 // SB_LATE_FREE: from this many turns-left onward, require extraction
                 // capacity (denial's value = opponent's FUTURE harvest, which decays to
                 // zero at game end; extraction value is constant).
+                // CLEAR-WHEN-AHEAD: leading big late -> fell our OWN half first
+                // (kill the farm before the enemy cc4 eats it; if all trees die the
+                // game ends early while we lead).
+                let clearing = envi("SB_CLEAR", 1) == 1
+                    && turns_rem <= envi("SB_CLEAR_T", 60)
+                    && game.scores[player] - game.scores[1 - player] >= envi("SB_CLEAR_LEAD", 40);
                 let need_free = envi("SB_FELL_FREE", 0) == 1
                     || (turns_rem <= envi("SB_LATE_FREE", 80));
                 if is_chop_role && u.chop > 0 && (!need_free || u.free() > 0) {
@@ -183,7 +189,9 @@ impl Strategy for SchedBot {
                         // SB_FELL_MYBOT=1: order fells EXACTLY like mybot's proven
                         // metric (minimize d + 3*manh(tree,oppShack)), expressed as a
                         // rate that always outranks harvesting for chop-role trolls.
-                        let rate = match envi("SB_FELL_MYBOT", 2) {
+                        let rate = if clearing {
+                            2.0 - (dd + 3 * manh(pos, shack)) as f64 * 0.005
+                        } else { match envi("SB_FELL_MYBOT", 2) {
                             // 1: fell outranks EVERYTHING incl. banking (permanent
                             //    denial camp): script 78.2 / silver 46.2 — a hard split.
                             1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
@@ -191,7 +199,7 @@ impl Strategy for SchedBot {
                             //    chopper cycles fell->bank like mybot.
                             2 => envf("SB_FB", 0.8) - (dd + 3 * manh(pos, opp)) as f64 * 0.005,
                             _ => (wood + den) / t,
-                        };
+                        } };
                         cands.push((rate, ti, Task::Fell(pos)));
                     }
                 }
