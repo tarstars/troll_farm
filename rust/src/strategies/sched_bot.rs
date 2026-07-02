@@ -197,7 +197,7 @@ impl Strategy for SchedBot {
                             && p.plant_type == "LEMON"
                             && manh(pos, opp) < manh(pos, shack)
                         {
-                            envi("SB_LEMDENY", 12)
+                            envi("SB_LEMDENY", 0)
                         } else {
                             0
                         };
