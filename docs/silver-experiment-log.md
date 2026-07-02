@@ -164,6 +164,18 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### Night wrap (~02:20): four agents at the bar's edge; morning window queued
+v1.1.7 lemon-choke ARENA-FALSIFIED within one cycle (boss 3W3L unchanged; a spike
+still landed t93; far-lemon chasing cost our own economy — mode #3 again). Reverted:
+v1.1.8-safe (= v1.1.6 behavior) submitted 01:48, converged 22.77 rank 2.
+Night convergence chronology (hardened field): 23.96 / 23.43 / 21.92 / 22.77 —
+all just under the boss bar (~24+). Morning cron (08:23) resubmits v1.1.8 into the
+~3-5 pt softer morning field; expected ~24.5+ = the promotion window.
+Boss intel bank (for the next engineering cycle if needed): double-(2,4,2,2) =
+39 lemon = the kill condition; 12/12 wins when absent; simple lemon-bias failed —
+candidate next levers: general early-denial strength, or boss model v3 done right
+(needs the utils' real harvest behavior decoded from more games).
+
 ### v1.1.7-lemonchoke (~01:30): THE BOSS'S KILL SWITCH, from 30 decoded boss games
 Mined every boss game from tonight's agents (30 games). THE PATTERN:
 - boss never trains its DOUBLE (2,4,2,2): we won 12/12 (boss scores 15-114);
