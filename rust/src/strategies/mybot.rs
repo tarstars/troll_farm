@@ -155,6 +155,15 @@ impl Strategy for MyBot {
             && !want_chopper
             && !has_tender
             && n >= 1 + nchop;
+        // MB_HARV_CHOP: harvesters get chop1 (+n+1 iron each) so every fruit troll
+        // can also FELL the base farm's young bananas (the tender behavior applies to
+        // any chop1+hp>=2 troll). Decoded blueprint: aRi sustains 0.30 wood/turn vs
+        // our 0.07 — the printer needs fellers AT HOME, and denial choppers can't be.
+        let harvesters: [(i32, i32, i32, i32); 3] = if envi("MB_HARV_CHOP", 1) == 1 {
+            [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)]
+        } else {
+            HARVESTERS
+        };
         let train_now: Option<(i32, i32, i32, i32)> = if want_big {
             afford(inv, &training_cost(n, big_spec), have_iron).then_some(big_spec)
         } else if want_chopper && afford(inv, &training_cost(n, chop_spec), have_iron) {
@@ -162,7 +171,7 @@ impl Strategy for MyBot {
         } else if want_tender && afford(inv, &training_cost(n, tender_spec), have_iron) {
             Some(tender_spec)
         } else {
-            HARVESTERS.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
+            harvesters.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
         };
         // Mine iron whenever it's the binding constraint for the NEXT troll we'd train
         // (chopper if wanted, else cheapest harvester whose fruit we can already cover).
