@@ -945,26 +945,28 @@ fn decide_sched(state: &State) -> Vec<String> {
         }
 
         if window && base_trees < wf_cap && !is_chop_role {
-            if t.carry[BANANA] > 0 {
-                let free_base = |water: bool| {
-                    state
-                        .walkable
-                        .iter()
-                        .filter(|c| manhattan(**c, shack) <= base_r && d.contains_key(*c))
-                        .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
-                        .filter(|c| {
-                            !water || state.water_cells.iter().any(|w| manhattan(*w, **c) == 1)
-                        })
-                        .filter(|c| !my.iter().any(|o| o.id != t.id && o.pos() == **c))
-                        .min_by_key(|c| d[*c])
-                        .copied()
-                };
-                if let Some(sp) = free_base(true).or_else(|| free_base(false)) {
+            // Spot computed for BOTH arms: PickSeed without a plantable spot caused a
+            // PICK<->DROP livelock (arena game 21-148: cc1 starter, 130 wasted turns).
+            let free_base = |water: bool| {
+                state
+                    .walkable
+                    .iter()
+                    .filter(|c| manhattan(**c, shack) <= base_r && d.contains_key(*c))
+                    .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
+                    .filter(|c| {
+                        !water || state.water_cells.iter().any(|w| manhattan(*w, **c) == 1)
+                    })
+                    .filter(|c| !my.iter().any(|o| o.id != t.id && o.pos() == **c))
+                    .min_by_key(|c| d[*c])
+                    .copied()
+            };
+            if let Some(sp) = free_base(true).or_else(|| free_base(false)) {
+                if t.carry[BANANA] > 0 {
                     let tt = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
                     cands.push((print_v / tt, ti, SchedTask::Print(sp)));
+                } else if manhattan(t.pos(), shack) == 1 && t.free_capacity() > 0 && inv[BANANA] > 0 {
+                    cands.push((print_v / 2.0, ti, SchedTask::PickSeed));
                 }
-            } else if manhattan(t.pos(), shack) == 1 && t.free_capacity() > 0 && inv[BANANA] > 0 {
-                cands.push((print_v / 2.0, ti, SchedTask::PickSeed));
             }
         }
         dists.push(d);
@@ -1206,7 +1208,7 @@ fn decide(state: &State) -> Vec<String> {
                     // the plum ORCHARD outranks the banana printer
                     && !(t.carry[PLUM] > 0 && orchard < MB_MAX_ORCHARD)
                 {
-                    if t.carry[BANANA] > 0 {
+                    if t.carry[BANANA] > 0 || (is_adjacent(t.pos(), shack) && t.free_capacity() > 0 && state.my_inventory[BANANA] > 0) {
                         let free_base = |water: bool| {
                             state
                                 .walkable
@@ -1224,20 +1226,23 @@ fn decide(state: &State) -> Vec<String> {
                                 .min_by_key(|c| d[*c])
                                 .copied()
                         };
+                        // Spot for BOTH arms: PICK without a plantable spot livelocks.
                         if let Some(tc) = free_base(true).or_else(|| free_base(false)) {
-                            if t.pos() == tc {
-                                cmd_by_id.insert(t.id, format!("PLANT {} BANANA", t.id));
-                            } else {
-                                cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, tc.0, tc.1));
+                            if t.carry[BANANA] > 0 {
+                                if t.pos() == tc {
+                                    cmd_by_id.insert(t.id, format!("PLANT {} BANANA", t.id));
+                                } else {
+                                    cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, tc.0, tc.1));
+                                }
+                                continue;
+                            } else if is_adjacent(t.pos(), shack)
+                                && t.free_capacity() > 0
+                                && state.my_inventory[BANANA] > 0
+                            {
+                                cmd_by_id.insert(t.id, format!("PICK {} BANANA", t.id));
+                                continue;
                             }
-                            continue;
                         }
-                    } else if is_adjacent(t.pos(), shack)
-                        && t.free_capacity() > 0
-                        && state.my_inventory[BANANA] > 0
-                    {
-                        cmd_by_id.insert(t.id, format!("PICK {} BANANA", t.id));
-                        continue;
                     }
                 }
             }

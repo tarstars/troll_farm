@@ -245,26 +245,29 @@ impl Strategy for SchedBot {
                 }
             }
 
-            // PRINT: plant carried banana at base (value = future wood/fruit)
+            // PRINT: plant carried banana at base (value = future wood/fruit).
+            // The spot is computed for BOTH arms: PickSeed without a plantable spot
+            // caused a PICK<->DROP livelock (arena game 21-148: the cc1 starter picked
+            // a banana, went full, banked it, picked again — for 130 turns).
             if window && base_trees < wf_cap && !is_chop_role {
-                if u.carry[BANANA] > 0 {
-                    let spot = game
-                        .walkable
-                        .iter()
-                        .filter(|c| manh(**c, shack) <= base_r && d.contains_key(*c))
-                        .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
-                        .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                        .min_by_key(|c| {
-                            let water = game.water.iter().any(|w| manh(*w, **c) == 1);
-                            (!water as i32, d[*c])
-                        })
-                        .copied();
-                    if let Some(sp) = spot {
+                let spot = game
+                    .walkable
+                    .iter()
+                    .filter(|c| manh(**c, shack) <= base_r && d.contains_key(*c))
+                    .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
+                    .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                    .min_by_key(|c| {
+                        let water = game.water.iter().any(|w| manh(*w, **c) == 1);
+                        (!water as i32, d[*c])
+                    })
+                    .copied();
+                if let Some(sp) = spot {
+                    if u.carry[BANANA] > 0 {
                         let t = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
                         cands.push((print_v / t, ti, Task::Print(sp)));
+                    } else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
+                        cands.push((print_v / 2.0, ti, Task::PickSeed));
                     }
-                } else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
-                    cands.push((print_v / 2.0, ti, Task::PickSeed));
                 }
             }
             dists.push(d);

@@ -316,31 +316,31 @@ impl Strategy for MyBot {
                 && !(u.carry[PLUM] > 0
                     && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize)
             {
-                // Carrying a banana: route to a base cell (water-adjacent first) and plant.
-                if u.carry[BANANA] > 0 {
-                    let free_base = |water: bool| {
-                        game.walkable
-                            .iter()
-                            .filter(|c| manh(**c, shack) <= 3 && d.contains_key(*c))
-                            .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
-                            .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
-                            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                            .min_by_key(|c| d[*c])
-                            .copied()
-                    };
-                    if let Some(tc) = free_base(true).or_else(|| free_base(false)) {
+                // Spot computed for BOTH arms: PICKing without a plantable spot caused
+                // a PICK<->DROP livelock (cc1 starter, 130 turns in a real arena game).
+                let free_base = |water: bool| {
+                    game.walkable
+                        .iter()
+                        .filter(|c| manh(**c, shack) <= 3 && d.contains_key(*c))
+                        .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
+                        .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
+                        .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                        .min_by_key(|c| d[*c])
+                        .copied()
+                };
+                let spot = free_base(true).or_else(|| free_base(false));
+                if let Some(tc) = spot {
+                    if u.carry[BANANA] > 0 {
                         if u.pos() == tc {
                             cmd_by_id.insert(u.id, format!("PLANT {} BANANA", u.id));
                         } else {
                             cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
                         }
                         continue;
+                    } else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
+                        cmd_by_id.insert(u.id, format!("PICK {} BANANA", u.id));
+                        continue;
                     }
-                }
-                // At the shack with room and banked bananas: PICK a seed.
-                else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
-                    cmd_by_id.insert(u.id, format!("PICK {} BANANA", u.id));
-                    continue;
                 }
             }
 
