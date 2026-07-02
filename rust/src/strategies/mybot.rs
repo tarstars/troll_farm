@@ -10,7 +10,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{plant_cooldown, training_cost, water_boost, IRON, PLUM, LEMON, APPLE};
+use crate::game::engine::{plant_cooldown, training_cost, water_boost, BANANA, IRON, PLUM, LEMON, APPLE};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -226,6 +226,9 @@ impl Strategy for MyBot {
             actions.push("MSG Eat your vegetables!".into());
         }
 
+        let base_trees_now =
+            game.plants.iter().filter(|p| manh(p.pos(), shack) <= 3).count();
+
         for u in &my {
             let is_chopper = is_chopper(u);
             let d = bfs(&game.walkable, u.pos());
@@ -260,17 +263,76 @@ impl Strategy for MyBot {
                 }
             }
 
+            // ── WOOD PRINTER (MB_FARM): the engine top-Silver bots run (decoded from
+            // an arena loss to aRi, 275 pts = 67 wood): keep (re)planting BANANA near
+            // base — cd 6 (fastest growth), health 2+s (3 chops at chop2) — and fell
+            // the young trees for 2 wood (8 pts) each, forever. Unlike the passive
+            // woodfarm (plants only surplus CARRIED fruit), this PICKs banana back out
+            // of the inventory to keep the loop fed. 1 banana seed -> 2 wood + fruits.
+            let farm_on = if player == 1 {
+                envi("MB_FARM1", envi("MB_FARM", 1))
+            } else {
+                envi("MB_FARM", 1)
+            };
+            if farm_on == 1
+                && !is_chopper
+                && game.turn >= envi("MB_WF_START", 20)
+                && game.turn <= envi("MB_WF_END", 280)
+                && base_trees_now < envi("MB_WF_MAX", 6) as usize
+            {
+                // Carrying a banana: route to a base cell (water-adjacent first) and plant.
+                if u.carry[BANANA] > 0 {
+                    let free_base = |water: bool| {
+                        game.walkable
+                            .iter()
+                            .filter(|c| manh(**c, shack) <= 3 && d.contains_key(*c))
+                            .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
+                            .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
+                            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                            .min_by_key(|c| d[*c])
+                            .copied()
+                    };
+                    if let Some(tc) = free_base(true).or_else(|| free_base(false)) {
+                        if u.pos() == tc {
+                            cmd_by_id.insert(u.id, format!("PLANT {} BANANA", u.id));
+                        } else {
+                            cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                        }
+                        continue;
+                    }
+                }
+                // At the shack with room and banked bananas: PICK a seed.
+                else if manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
+                    cmd_by_id.insert(u.id, format!("PICK {} BANANA", u.id));
+                    continue;
+                }
+            }
+
             // Full -> home; harvester seeds the plum orchard at base, else drops.
             if u.free() == 0 {
                 mem.remove(&u.id);
                 // MB_H2O: place orchard plums DELIBERATELY on a water-adjacent base cell
                 // (plum cooldown 8 -> 3 beside water = ~2.7x fruit rate) instead of
                 // planting wherever the returning harvester happens to stand.
-                if envi("MB_H2O", 1) == 1
-                    && !is_chopper
-                    && u.carry[PLUM] > 0
-                    && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize
-                {
+                // MB_MIXORCH: diversify the orchard to PLUM+LEMON+APPLE (one of each) —
+                // every troll costs all three (n+ms^2 / n+cc^2 / n+hp^2), and diag shows
+                // we averaged only 2.47/4 trolls because training is blocked by fruit
+                // COMPOSITION on many maps (e.g. plum-corner starvation, seed 1). A
+                // renewable water-boosted trio at base unblocks the ramp map-independently.
+                let mix_want: Option<usize> = if envi("MB_MIXORCH", 0) == 1 {
+                    [PLUM, LEMON, APPLE].into_iter().find(|&ti| {
+                        u.carry[ti] > 0
+                            && !game.plants.iter().any(|p| {
+                                p.plant_type == ["PLUM", "LEMON", "APPLE"][ti]
+                                    && manh(p.pos(), shack) <= 3
+                            })
+                    })
+                } else {
+                    (u.carry[PLUM] > 0
+                        && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize)
+                        .then_some(PLUM)
+                };
+                if envi("MB_H2O", 1) == 1 && !is_chopper && mix_want.is_some() {
                     let spot = game
                         .walkable
                         .iter()
@@ -280,8 +342,9 @@ impl Strategy for MyBot {
                         .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
                         .min_by_key(|c| d[*c]);
                     if let Some(&tc) = spot {
+                        let ty = ["PLUM", "LEMON", "APPLE"][mix_want.unwrap()];
                         if u.pos() == tc {
-                            cmd_by_id.insert(u.id, format!("PLANT {} PLUM", u.id));
+                            cmd_by_id.insert(u.id, format!("PLANT {} {}", u.id, ty));
                         } else {
                             cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
                         }
@@ -378,7 +441,15 @@ impl Strategy for MyBot {
                 // points (late game, when few trees remain).
                 let opp = game.shacks[1 - player];
                 // Economy mode: chop the NEAREST tree (no denial trek) to recover the ramp.
-                let dw = if econ_mode { 0 } else { envi("MYBOT_DW", 3) };
+                // MYBOT_DW1: seat-1 override so `bench mybot mybot` can A/B two DW values
+                // head-to-head on symmetric maps (no seat bias, proven by self-play).
+                let dw = if econ_mode {
+                    0
+                } else if player == 1 {
+                    envi("MYBOT_DW1", envi("MYBOT_DW", 3))
+                } else {
+                    envi("MYBOT_DW", 3)
+                };
                 let wt = envi("MYBOT_WT", 0);
                 // MB_FELLT: also charge the fell TIME (ceil(health/chop) turns a fell
                 // actually costs — an APPLE s4 is 10 turns at chop2, a BANANA s4 just 3).
@@ -387,6 +458,11 @@ impl Strategy for MyBot {
                 // lemon (n+cc^2), so any chopper-heavy foe is lemon-gated (the real Boss 4
                 // saves to lemon 18 for its (2,4,2,2); felling its lemons delays the spike).
                 let lw = envi("MB_LEMONW", 0);
+                // MB_FARMW: affinity for READY (size>=2) trees at OUR base — the second
+                // half of the wood printer. cc2 extracts min(size,2) wood, so felling a
+                // base banana at size 2 (health 4 = 2 chops) is the whole point; without
+                // this the DW=3 denial metric never harvests the farm.
+                let fw = envi("MB_FARMW", 0);
                 iron_cell
                     .or_else(|| {
                         game.plants
@@ -395,8 +471,10 @@ impl Strategy for MyBot {
                             .min_by_key(|p| {
                                 let fell = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
                                 let lemon = (p.plant_type == "LEMON") as i32;
+                                let farm_ready =
+                                    (manh(p.pos(), shack) <= 3 && p.size >= 2) as i32;
                                 (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell
-                                    - lw * lemon, -p.size)
+                                    - lw * lemon - fw * farm_ready, -p.size)
                             })
                             .map(|p| p.pos())
                     })
@@ -415,12 +493,37 @@ impl Strategy for MyBot {
                 let sticky = mem.get(&u.id).copied().filter(|&c| {
                     game.plants.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
                 });
+                // Scarcity tie-break (MB_TIE): among ripe trees within `tie` of the
+                // nearest, prefer the type our inventory is SHORTEST on (banana gets a
+                // penalty — it can't fund training). Costs ~no travel (only reorders
+                // near-equal options) but repairs the fruit-COMPOSITION block that
+                // stalls training (diag: avg 2.47/4 trolls; e.g. seed 1 banked 55
+                // apples while plum/lemon starved at 2/1).
+                let tie = envi("MB_TIE", 2);
+                let ban_pen = envi("MB_BAN_PEN", 6);
                 let nearest_ripe = |ty: Option<&str>| -> Option<Cell> {
+                    let dmin = game
+                        .plants
+                        .iter()
+                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| ty.map_or(true, |t| p.plant_type == t))
+                        .map(|p| d[&p.pos()])
+                        .min()?;
                     game.plants
                         .iter()
                         .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
-                        .min_by_key(|p| d[&p.pos()])
+                        .filter(|p| d[&p.pos()] <= dmin + tie)
+                        .min_by_key(|p| {
+                            let ti = match p.plant_type.as_str() {
+                                "PLUM" => PLUM,
+                                "LEMON" => LEMON,
+                                "APPLE" => APPLE,
+                                _ => 3,
+                            };
+                            let scarcity = if ti == 3 { inv[3] + ban_pen } else { inv[ti] };
+                            (scarcity, d[&p.pos()])
+                        })
                         .map(|p| p.pos())
                 };
                 // When NOTHING is ripe, don't idle at base: pre-position at the tree
@@ -486,7 +589,12 @@ impl Strategy for MyBot {
         }
 
         if let Some(spec) = train_now {
-            if (n as usize) < envi("MYBOT_MAX", MAX_TROLLS as i32) as usize
+            let max_trolls = if player == 1 {
+                envi("MYBOT_MAX1", envi("MYBOT_MAX", MAX_TROLLS as i32))
+            } else {
+                envi("MYBOT_MAX", MAX_TROLLS as i32)
+            };
+            if (n as usize) < max_trolls as usize
                 && TOTAL_TURNS - game.turn > MIN_TURNS_LEFT
                 && !my.iter().any(|u| u.pos() == shack)
             {
