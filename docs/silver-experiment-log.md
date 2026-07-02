@@ -120,6 +120,14 @@ REFINED RULE: behavior changes (targeting, banking, planting) may ship after bot
 checks; ANY troll-spec/training change requires a REAL batch before merging to defaults.
 Real record this session: v1.0.6 5W/3L (62%) submitted; v1.0.8 5W/3L (62%) submitted
 ~13:05 (replacing v1.0.6); v1.0.9 2W/6L quarantined behind MB_HARV_CHOP=0.
+
+### v1.0.8 live arena decode (~14:20, first 34 placement battles)
+12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
+271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
+**Score density transferred: real avg 152 (v1.0.6) -> 164 (v1.0.8), matching sim's +11.**
+aRi rematch: -93 (182-275) -> -7 (122-129). The elite prints 200-270; our remaining
+40-90-pt gap = the per-troll scheduling rebuild (HANDOFF §7.2). Starter-as-mower
+variant tested and rejected (46.7/65.6 — the starter IS the early economy).
 | MB_FARMW chopper farm-affinity 8/16/32 | 59.8/57.6/50.2 | 83/81.6/75.8 | DEAD-END (denial is load-bearing; farm gets felled opportunistically) |
 | MB_MIXORCH plum+lemon+apple orchard | flat, trolls 2.44 | flat | DEAD-END (chicken-and-egg: never CARRY the starved type) |
 | MB_TIE=2 scarcity tie-break | -2.7pp | -1.2pp | DEAD-END loose; MB_TIE=0 (exact ties only) neutral -> kept |
