@@ -189,6 +189,18 @@ impl Strategy for SchedBot {
                         // SB_FELL_MYBOT=1: order fells EXACTLY like mybot's proven
                         // metric (minimize d + 3*manh(tree,oppShack)), expressed as a
                         // rate that always outranks harvesting for chop-role trolls.
+                        // LEMON-FIRST early denial (30 decoded boss games): the real
+                        // boss's kill condition is a DOUBLE (2,4,2,2) costing ~39 LEMON;
+                        // spike <=t105 = we lose, spike >=t120 = we win. Enemy-half
+                        // lemons count as 12 cells closer while turn < 120.
+                        let lemon_bonus = if game.turn < envi("SB_LEMDENY_T", 120)
+                            && p.plant_type == "LEMON"
+                            && manh(pos, opp) < manh(pos, shack)
+                        {
+                            envi("SB_LEMDENY", 12)
+                        } else {
+                            0
+                        };
                         let rate = if clearing {
                             2.0 - (dd + 3 * manh(pos, shack)) as f64 * 0.005
                         } else { match envi("SB_FELL_MYBOT", 2) {
@@ -197,7 +209,8 @@ impl Strategy for SchedBot {
                             1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
                             // 2: mybot ordering, but BELOW a full load's bank rate:
                             //    chopper cycles fell->bank like mybot.
-                            2 => envf("SB_FB", 0.8) - (dd + 3 * manh(pos, opp)) as f64 * 0.005,
+                            2 => envf("SB_FB", 0.8)
+                                - (dd + 3 * manh(pos, opp) - lemon_bonus) as f64 * 0.005,
                             _ => (wood + den) / t,
                         } };
                         cands.push((rate, ti, Task::Fell(pos)));
