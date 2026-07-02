@@ -164,6 +164,21 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### v1.1.3 ARENA REGRESSION + revert (evening): the raid gate over-triggers vs the field
+v1.1.3 (printer pauses while enemy chop>=2 within base_r+2) converged at **rank 51 /
+17.23** vs v1.1.2's rank 2-3 / ~22 — a 5-point regression with ONE change. Models said
+flat-to-up (script 85.5, silver 80.2, h2h 58.3): the gate fires rarely vs the boss
+models' choppers but CONSTANTLY vs field bots whose choppers roam our half; the
+printer sat silenced. **Transfer-failure mode #3: field-behavior triggers that both
+boss models under-represent.** (Modes: 1 silverboss-only overfit, 2 spec/economy
+changes, 3 opponent-conditional triggers.) Any opponent-state-conditional behavior
+needs an arena test, same rule as spec changes. REVERTED: v1.1.2 resubmitted.
+Precise-raid response idea for a future cycle: trigger only on an actual base-tree
+fell event (tree count near base decreased while enemy chopper adjacent), not mere
+proximity. Also note: my submit loop's triple-fire bug earlier (~18:43-18:59) came
+from trusting submit.py's exit code under pipefail — verify submissions via the
+leaderboard agentId instead.
+
 ### v1.0.8 live arena decode (~14:20, first 34 placement battles)
 12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
 271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
