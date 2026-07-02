@@ -121,6 +121,24 @@ checks; ANY troll-spec/training change requires a REAL batch before merging to d
 Real record this session: v1.0.6 5W/3L (62%) submitted; v1.0.8 5W/3L (62%) submitted
 ~13:05 (replacing v1.0.6); v1.0.9 2W/6L quarantined behind MB_HARV_CHOP=0.
 
+### SCHEDULER (v1.1.0-sched) — the architecture rebuild, same day (~13:30-14:30)
+sched_bot.rs: global greedy (troll,task) assignment by marginal rate (BANK/FELL/
+HARVEST/MINE/PRINT/ORCHARD/PICK). Key discovery: expressing mybot's fell metric
+(d + 3*manh(tree,opp)) as a rate CAPPED BELOW a full bank (FB=0.8) creates a
+"CAMPER": full choppers keep felling at zero yield deep in enemy land (permanent
+denial) and only bank en route/endgame.
+| config | script | silver | h2h vs mybot | density |
+|---|---|---|---|---|
+| mybot v1.0.8 (reference) | 63.9 | 85.1 | — | 167 |
+| schedbot rate-based v1 | 57.7 | 71.0 | 41 | — |
+| schedbot CAMPER (v1.1.0 defaults) | **83.8** | 79.4 | **56.8** | 144 |
+| schedbot CYCLER (SB_FELL_FREE=1) | 67.3 | 81.5 | 49.1 | 160 |
+Camper field sanity: printerbot 86.1, planner 90.8, gatherer 91.2, balanced 87.3.
++20pp on the real-script model (the promotion-gating matchup) and beats the
+incumbent head-to-head; silverboss (synthetic) disagrees by -6. ALL behavior-level
+changes (specs untouched) — but the v1.0.9 lesson says REAL batch before submit:
+loop running (>=5W of 8 to replace v1.0.8; incumbent holds ties).
+
 ### v1.0.8 live arena decode (~14:20, first 34 placement battles)
 12W/22L over the PLACEMENT mix (includes top-Silver: Psyho 266, ISeeSharper x5 up to
 271, Bojii13 253 — placement sweeps high; converged rank ~50-70 already reflects it).
