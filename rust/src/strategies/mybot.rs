@@ -138,10 +138,29 @@ impl Strategy for MyBot {
         // for a stronger early economy (user hypothesis: gather early, chop late).
         let want_chopper = (my.iter().filter(|u| u.chop >= 2).count() as i32) < nchop
             && n >= envi("MB_CHOP_MIN_N", 1);
-        let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
-            && afford(inv, &training_cost(n, chop_spec), have_iron)
-        {
+        // MB_BIG: from this turn on, hoard toward ONE (2,4,2,2) big chopper (the real
+        // boss's engine: cc4 = 16 pts per size-4 fell where our cc2 banks 8 and wastes
+        // the rest). While saving, harvester training is blocked (hard hoard).
+        let big_spec = (2, 4, 2, 2);
+        let want_big = envi("MB_BIG", 0) > 0
+            && game.turn >= envi("MB_BIG", 0)
+            && n >= 3
+            && !my.iter().any(|u| u.cc >= 4 && u.chop >= 2);
+        // MB_TENDER: after the choppers exist, train ONE cheap chop1+hp2 hybrid that
+        // TENDS the base farm (fell young printed bananas, replant, harvest locally) —
+        // the aRi (2,2,2,1) pattern. Adds printer throughput without touching denial.
+        let tender_spec = env_spec("MB_TENDER_SPEC", (1, 2, 2, 1));
+        let has_tender = my.iter().any(|u| u.chop == 1 && u.hp >= 2);
+        let want_tender = envi("MB_TENDER", 0) == 1
+            && !want_chopper
+            && !has_tender
+            && n >= 1 + nchop;
+        let train_now: Option<(i32, i32, i32, i32)> = if want_big {
+            afford(inv, &training_cost(n, big_spec), have_iron).then_some(big_spec)
+        } else if want_chopper && afford(inv, &training_cost(n, chop_spec), have_iron) {
             Some(chop_spec)
+        } else if want_tender && afford(inv, &training_cost(n, tender_spec), have_iron) {
+            Some(tender_spec)
         } else {
             HARVESTERS.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
         };
@@ -165,6 +184,10 @@ impl Strategy for MyBot {
                     }
                     None => false,
                 }
+        } else if want_big {
+            have_iron
+                && inv[IRON] < training_cost(n, big_spec)[IRON]
+                && inv[LEMON] >= training_cost(n, big_spec)[LEMON] / 2
         } else {
             have_iron
                 && want_chopper
@@ -404,8 +427,16 @@ impl Strategy for MyBot {
             }
 
             // On a tree: chopper fells it (wood engine); harvester grabs the fruit.
+            // The TENDER (chop1+hp2 hybrid) fells fruitless base-farm trees at size>=2
+            // (banana health 2+s: 4 chops at chop1) and harvests like anyone else.
+            let is_tender = u.chop == 1 && u.hp >= 2;
             if let Some(p) = game.plants.iter().find(|p| p.pos() == u.pos()) {
                 if is_chopper && u.chop > 0 {
+                    cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                    reserved.insert(u.pos());
+                    continue;
+                }
+                if is_tender && manh(p.pos(), shack) <= 3 && p.size >= 2 && p.fruits == 0 {
                     cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
                     reserved.insert(u.pos());
                     continue;
@@ -551,16 +582,29 @@ impl Strategy for MyBot {
                         .min()
                         .map(|(_, _, c)| c)
                 };
+                // Tender first: head for a fellable (size>=2, fruitless) base-farm tree.
+                let tender_target = if is_tender {
+                    game.plants
+                        .iter()
+                        .filter(|p| manh(p.pos(), shack) <= 3 && p.size >= 2 && p.fruits == 0)
+                        .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                        .min_by_key(|p| d[&p.pos()])
+                        .map(|p| p.pos())
+                } else {
+                    None
+                };
                 // HARV=1 (default): nearest ripe fruit for max throughput (but chase a
                 // training-blocking deficit type first — see deficit_ty above). HARV=0:
                 // scarce-resource-first (funds training, but slower fruit).
                 if envi("MYBOT_HARV", 1) == 1 {
-                    sticky
+                    tender_target
+                        .or(sticky)
                         .or_else(|| deficit_ty.and_then(|t| nearest_ripe(Some(t))))
                         .or_else(|| nearest_ripe(None))
                         .or_else(anticipate)
                 } else {
-                    sticky
+                    tender_target
+                        .or(sticky)
                         .or_else(|| nearest_ripe(Some(need_ty)))
                         .or_else(|| nearest_ripe(None))
                         .or_else(anticipate)

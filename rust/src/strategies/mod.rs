@@ -11,6 +11,7 @@ pub mod boss4;
 pub mod boss_real;
 pub mod silver_boss;
 pub mod script_boss;
+pub mod printer_bot;
 pub mod mybot;
 pub mod search_bot;
 pub mod planner_strategy;
@@ -68,6 +69,7 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(search_bot::SearchBot),
         Box::new(silver_boss::SilverBoss::new()),
         Box::new(script_boss::ScriptBoss::new()),
+        Box::new(printer_bot::PrinterBot::new()),
         Box::new(mybot::MyBot::new()),
     ]
 }
