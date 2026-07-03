@@ -125,7 +125,7 @@ impl Strategy for SchedBot {
 
         // knobs (v0 defaults hand-set; sweep later)
         let den_w = envf("SB_DEN", 12.0); // denial uplift (pts-equivalent) at the foe's shack
-        let print_v = envf("SB_PRINT", 6.0); // future value of one planted banana
+        let print_v = envf("SB_PRINT", 9.0); // future value of one planted banana
         let base_r = envi("SB_BASE_R", 3);
         let wf_cap = envi("SB_WF_MAX", 6) as usize;
         let span = (game.width + game.height) as f64;
@@ -208,7 +208,7 @@ impl Strategy for SchedBot {
                         } else {
                             0
                         };
-                        let rate = if turns_rem <= envi("SB_LIQ_T", 100) {
+                        let rate = if turns_rem <= envi("SB_LIQ_T", 280) {
                             // LIQUIDATION: last turns — standing trees are unbanked
                             // wood; fell by pure yield/time, nearest first.
                             (p.size.min(u.free()) * 4) as f64
@@ -264,7 +264,7 @@ impl Strategy for SchedBot {
             // Sustainability gate: only mow when a replacement seed is banked (the
             // fell kills future fruit; the cycle nets positive only if replanting
             // keeps pace — without the gate: wood +10 but fruit -14, net -4).
-            let liquidation = turns_rem <= envi("SB_LIQ_T", 100);
+            let liquidation = turns_rem <= envi("SB_LIQ_T", 280);
             if !is_chop_role
                 && u.chop > 0
                 && envi("SB_MOW", 1) == 1
