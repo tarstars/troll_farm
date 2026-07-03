@@ -14,6 +14,7 @@ pub mod script_boss;
 pub mod boss_v3;
 pub mod printer_bot;
 pub mod sched_bot;
+pub mod rhea_bot;
 pub mod mybot;
 pub mod search_bot;
 pub mod planner_strategy;
@@ -74,6 +75,7 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(boss_v3::BossV3::new()),
         Box::new(printer_bot::PrinterBot::new()),
         Box::new(sched_bot::SchedBot::new()),
+        Box::new(rhea_bot::RheaBot::new()),
         Box::new(mybot::MyBot::new()),
     ]
 }
