@@ -132,9 +132,9 @@ impl Strategy for SchedBot {
 
         // knobs (v0 defaults hand-set; sweep later)
         let den_w = envf("SB_DEN", 12.0); // denial uplift (pts-equivalent) at the foe's shack
-        let print_v = envf("SB_PRINT", 9.0); // future value of one planted banana
+        let print_v = envf("SB_PRINT", 8.36); // future value of one planted banana
         let base_r = envi("SB_BASE_R", 3);
-        let wf_cap = envi("SB_WF_MAX", 10) as usize;
+        let wf_cap = envi("SB_WF_MAX", 13) as usize;
         let span = (game.width + game.height) as f64;
 
         let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= base_r).count();
@@ -193,7 +193,7 @@ impl Strategy for SchedBot {
                     && turns_rem <= envi("SB_CLEAR_T", 60)
                     && game.scores[player] - game.scores[1 - player] >= envi("SB_CLEAR_LEAD", 40);
                 let need_free = envi("SB_FELL_FREE", 0) == 1
-                    || (turns_rem <= envi("SB_LATE_FREE", 80));
+                    || (turns_rem <= envi("SB_LATE_FREE", 82));
                 if is_chop_role && u.chop > 0 && (!need_free || u.free() > 0) {
                     let chop_t = ((p.health + u.chop - 1) / u.chop) as f64;
                     let wood = p.size.min(u.free()) as f64 * 4.0;
@@ -215,7 +215,7 @@ impl Strategy for SchedBot {
                         } else {
                             0
                         };
-                        let rate = if turns_rem <= envi("SB_LIQ_T", 280) {
+                        let rate = if turns_rem <= envi("SB_LIQ_T", 189) {
                             // LIQUIDATION: last turns — standing trees are unbanked
                             // wood; fell by pure yield/time, nearest first.
                             (p.size.min(u.free()) * 4) as f64
@@ -228,7 +228,7 @@ impl Strategy for SchedBot {
                             1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
                             // 2: mybot ordering, but BELOW a full load's bank rate:
                             //    chopper cycles fell->bank like mybot.
-                            2 => envf("SB_FB", 0.8)
+                            2 => envf("SB_FB", 0.654)
                                 - (dd + 3 * manh(pos, opp) - lemon_bonus) as f64 * 0.005,
                             _ => (wood + den) / t,
                         } };
@@ -241,7 +241,7 @@ impl Strategy for SchedBot {
                 // get a rate boost (the roster stalls at 2.3 because nearest-fruit
                 // never assembles plum+lemon+apple; the elite runs 3-4 trolls).
                 if p.fruits > 0 && u.hp > 0 && u.free() > 0 {
-                    let retw = envf("SB_RETW", 0.5);
+                    let retw = envf("SB_RETW", 0.592);
                     let t = steps(dd) + 1.0 + retw * steps(manh(pos, shack));
                     if turns_rem as f64 > t {
                         let mut rate = if envi("SB_HARV_SIMPLE", 0) == 1 {
@@ -271,7 +271,7 @@ impl Strategy for SchedBot {
             // Sustainability gate: only mow when a replacement seed is banked (the
             // fell kills future fruit; the cycle nets positive only if replanting
             // keeps pace — without the gate: wood +10 but fruit -14, net -4).
-            let liquidation = turns_rem <= envi("SB_LIQ_T", 280);
+            let liquidation = turns_rem <= envi("SB_LIQ_T", 189);
             if !is_chop_role
                 && u.chop > 0
                 && envi("SB_MOW", 1) == 1
