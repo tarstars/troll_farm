@@ -164,6 +164,19 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### GOLD ERA / goal: 200 avg in-game score (2026-07-03 morning)
+Baseline arena (v1.1.9 in Gold): 44% wins, avg 162. v1.2.0-market submitted 09:37:
+**71% wins, avg 172 (+10 real)** — deficit-weighted harvesting (NEED_W=1: roster
+2.28->2.72 trolls, +7 density), market mower (starter fells own farm, seed-gated),
+liquidation (fell-by-yield late). v1.2.1-yield: yield-mode from t20 (LIQ_T=280,
+denial only in the opening — the Gold field is printer-elites; scriptboss knob kept).
+v1.2.2-farmcap: WF_MAX 10 (Gold top-2 decode: GoodDevel/PonyPonyCodeCode run TWO
+trolls, zero denial, 21-46 plants + 140-163 chops; PonyPony banked 328 with 2 trolls).
+Chop1 harvester ladder re-tested in scheduler: REJECTED again (168 density, iron tax).
+Sim density plateau ~192+-4 vs printerbot (was 172). Sim->arena offset ~ -15:
+arena-200 needs sim ~215 => next class = multi-turn planner (sequencing waste is
+the remaining overhead: ~40-50% troll-turns are MOVEs).
+
 ### ★★★ GOLD LEAGUE — PROMOTED (2026-07-03 03:40) ★★★
 v1.1.9-morning (= v1.1.5-nolock behavior + the mine-wedge fix, nothing speculative)
 submitted 02:47 into the quiet overnight pool. Placement peaked **24.69**, held above
