@@ -18,6 +18,8 @@ const MAX_TROLLS: usize = 4;
 const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 0, 2);
 const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
+const HARVESTERS_CHOP1: [(i32, i32, i32, i32); 3] =
+    [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)]; // +n+1 iron each; every troll mows
 
 pub struct SchedBot {
     mem: RefCell<HashMap<i32, Cell>>, // last target cell per troll (sticky hysteresis)
@@ -104,12 +106,17 @@ impl Strategy for SchedBot {
         // ── training: mybot's proven greedy plan, verbatim ──────────────────
         let want_chopper =
             (my.iter().filter(|u| u.chop >= 2).count() as i32) < envi("SB_NCHOP", N_CHOPPERS);
+        let harvesters: &[(i32, i32, i32, i32); 3] = if envi("SB_HARV_CHOP1", 0) == 1 {
+            &HARVESTERS_CHOP1
+        } else {
+            &HARVESTERS
+        };
         let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
             && afford(inv, &training_cost(n, CHOPPER_SPEC), have_iron)
         {
             Some(CHOPPER_SPEC)
         } else {
-            HARVESTERS.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
+            harvesters.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
         };
         let need_iron = have_iron
             && want_chopper
@@ -127,7 +134,7 @@ impl Strategy for SchedBot {
         let den_w = envf("SB_DEN", 12.0); // denial uplift (pts-equivalent) at the foe's shack
         let print_v = envf("SB_PRINT", 9.0); // future value of one planted banana
         let base_r = envi("SB_BASE_R", 3);
-        let wf_cap = envi("SB_WF_MAX", 6) as usize;
+        let wf_cap = envi("SB_WF_MAX", 10) as usize;
         let span = (game.width + game.height) as f64;
 
         let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= base_r).count();
