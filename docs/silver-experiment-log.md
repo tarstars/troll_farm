@@ -164,6 +164,21 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### ★★★ GOLD LEAGUE — PROMOTED (2026-07-03 03:40) ★★★
+v1.1.9-morning (= v1.1.5-nolock behavior + the mine-wedge fix, nothing speculative)
+submitted 02:47 into the quiet overnight pool. Placement peaked **24.69**, held above
+the boss bar, and CodinGame promoted: **divisionIndex=4, GOLD, entry ~355/531 @12.3
+(fresh Gold rating scale)**. The winning composition rejected both unconditional
+boss-countermeasures (t230 cutoff, clear-when-ahead) — general strength + pure bug
+fixes is what crossed the bar, exactly the pattern of the whole climb.
+FULL ARC (36h): rank 134 Silver -> Gold. Architecture: task-market scheduler with
+denial camping + water-species wood printer. Method: decode arena replays over HTTP ->
+fix the leak -> two-model bench -> agentId-verified submit -> converge -> repeat.
+Falsified en route (each within one arena cycle): raid gate, lemon-choke, spec-change
+mower, plant-cutoff/clearing (suspect). The boss (starter + 2 local utils + ONE
+(2,4,2,2)) fell to the accumulated correctness + economy work, not to any
+boss-specific trick.
+
 ### Boss model v3 postmortem (~03:00) + composition CORRECTION
 CORRECTION: the boss's "double (2,4,2,2)" is ONE cc4 + a same-turn failed repeat
 (shack occupied). Real composition: starter + TWO local utils (specs vary) + ONE
