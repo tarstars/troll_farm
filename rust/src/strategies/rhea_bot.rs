@@ -100,6 +100,9 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
             return FAct::Harvest;
         }
     }
+    // (printer-lite in the rule cascade tested: -80 density, trolls 1.91 —
+    // hard-priority planting hijacks harvesters. Printing belongs to the
+    // SEARCH via Task::PlantHere mutations, not to the baseline policy.)
     // choose a target
     let is_chopper = s.u_chop[ui] >= 2;
     let mut best_c = usize::MAX;
@@ -295,6 +298,28 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
                 cmds[pl].acts[ui] = act;
             }
         }
+        // training (both sides): greedy chopper-first, then harvester ladder
+        for pl in 0..2usize {
+            let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
+            if n >= 4 || turns_rem <= 20 {
+                continue;
+            }
+            let n_chop = (0..s.n_units as usize)
+                .filter(|&ui| s.u_pl[ui] as usize == pl && s.u_chop[ui] >= 2)
+                .count();
+            let afford = |t: (i8, i8, i8, i8)| -> bool {
+                let c = crate::game::fast::training_cost_fast(n, t);
+                (0..6).all(|i| (i == 4 && !s.has_iron) || s.inv[pl][i] >= c[i])
+            };
+            let spec = if n_chop < 2 && afford((2, 2, 0, 2)) {
+                Some((2, 2, 0, 2))
+            } else {
+                [(2i8, 2i8, 2i8, 0i8), (1, 2, 2, 0), (1, 1, 1, 0)]
+                    .into_iter()
+                    .find(|&t| afford(t))
+            };
+            cmds[pl].train = spec;
+        }
         crate::game::fast::step_fast(&mut s, nav, &cmds);
     }
     // eval: banked diff + fraction of carried value + tiny asset term
@@ -303,7 +328,26 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
         let v: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
         carried[s.u_pl[ui] as usize] += v as f64;
     }
-    (s.score(me) - s.score(1 - me)) as f64 + 0.5 * (carried[me] - carried[1 - me])
+    // asset terms: a troll's future output and standing base trees have value
+    // beyond the horizon; without these, in-rollout training/planting read as
+    // pure losses and plans learn to avoid growth.
+    let mut trolls = [0f64; 2];
+    for ui in 0..s.n_units as usize {
+        trolls[s.u_pl[ui] as usize] += 1.0;
+    }
+    let mut base_trees = [0f64; 2];
+    for pi in 0..s.n_plants as usize {
+        for p in 0..2usize {
+            let sh = s.shack[p];
+            if (s.p_x[pi] - sh.0).abs() + (s.p_y[pi] - sh.1).abs() <= 3 {
+                base_trees[p] += (s.p_size[pi] as f64).max(1.0);
+            }
+        }
+    }
+    (s.score(me) - s.score(1 - me)) as f64
+        + 0.5 * (carried[me] - carried[1 - me])
+        + 12.0 * (trolls[me] - trolls[1 - me])
+        + 1.5 * (base_trees[me] - base_trees[1 - me])
 }
 
 impl Strategy for RheaBot {
