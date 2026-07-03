@@ -131,6 +131,13 @@ impl Strategy for SchedBot {
         let span = (game.width + game.height) as f64;
 
         let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= base_r).count();
+        // Which fruit types block the next (cheapest-harvester) train?
+        let next_cost = training_cost(n, HARVESTERS[HARVESTERS.len() - 1]);
+        let need_fruit: [bool; 3] = [
+            inv[0] < next_cost[0],
+            inv[1] < next_cost[1],
+            inv[2] < next_cost[2],
+        ];
         let window = game.turn >= 20 && game.turn <= 280;
 
         // per-troll BFS + candidate scoring
@@ -201,7 +208,12 @@ impl Strategy for SchedBot {
                         } else {
                             0
                         };
-                        let rate = if clearing {
+                        let rate = if turns_rem <= envi("SB_LIQ_T", 100) {
+                            // LIQUIDATION: last turns — standing trees are unbanked
+                            // wood; fell by pure yield/time, nearest first.
+                            (p.size.min(u.free()) * 4) as f64
+                                / (steps(dd) + chop_t + 0.5 * steps(manh(pos, shack)) + 1.0)
+                        } else if clearing {
                             2.0 - (dd + 3 * manh(pos, shack)) as f64 * 0.005
                         } else { match envi("SB_FELL_MYBOT", 2) {
                             // 1: fell outranks EVERYTHING incl. banking (permanent
@@ -218,16 +230,57 @@ impl Strategy for SchedBot {
                 }
                 // HARVEST ripe fruit. SB_HARV_SIMPLE=1: pure-nearest (mybot's rule,
                 // value-blind); else rate = one-turn take / (travel + SB_RETW*return).
+                // SB_NEED_W: deficit weighting — fruit types short for the NEXT troll
+                // get a rate boost (the roster stalls at 2.3 because nearest-fruit
+                // never assembles plum+lemon+apple; the elite runs 3-4 trolls).
                 if p.fruits > 0 && u.hp > 0 && u.free() > 0 {
                     let retw = envf("SB_RETW", 0.5);
                     let t = steps(dd) + 1.0 + retw * steps(manh(pos, shack));
                     if turns_rem as f64 > t {
-                        let rate = if envi("SB_HARV_SIMPLE", 0) == 1 {
+                        let mut rate = if envi("SB_HARV_SIMPLE", 0) == 1 {
                             2.0 / (steps(dd) + 1.0)
                         } else {
                             p.fruits.min(u.hp).min(u.free()) as f64 / t
                         };
+                        let ty = match p.plant_type.as_str() {
+                            "PLUM" => 0,
+                            "LEMON" => 1,
+                            "APPLE" => 2,
+                            _ => 3,
+                        };
+                        if ty < 3 && need_fruit[ty] {
+                            rate *= 1.0 + envf("SB_NEED_W", 1.0);
+                        }
                         cands.push((rate, ti, Task::Harvest(pos)));
+                    }
+                }
+            }
+
+            // MOWER (market-priced): any chop-capable non-chopper (the post-bootstrap
+            // starter, chop1) may fell OWN-half fruitless size>=2 trees at a pure
+            // yield rate — no denial term. Fixed-role mowing collapsed the early
+            // economy (46.7/65.6); the market version only wins when it should:
+            // early there are no size>=2 farm trees, so the starter harvests.
+            // Sustainability gate: only mow when a replacement seed is banked (the
+            // fell kills future fruit; the cycle nets positive only if replanting
+            // keeps pace — without the gate: wood +10 but fruit -14, net -4).
+            let liquidation = turns_rem <= envi("SB_LIQ_T", 100);
+            if !is_chop_role
+                && u.chop > 0
+                && envi("SB_MOW", 1) == 1
+                && (inv[BANANA] >= envi("SB_MOW_SEED", 1) || liquidation)
+            {
+                for p in &game.plants {
+                    let pos = p.pos();
+                    let Some(&dd) = d.get(&pos) else { continue };
+                    if manh(pos, shack) > envi("SB_MOW_R", 4) || p.size < 2 || p.fruits > 0 {
+                        continue;
+                    }
+                    let chop_t = ((p.health + u.chop - 1) / u.chop) as f64;
+                    let wood = (p.size.min(u.free()) * 4) as f64 - 1.0; // -1 = seed cost
+                    let t = steps(dd) + chop_t + 0.5 * steps(manh(pos, shack)) + 1.0;
+                    if u.free() > 0 && (turns_rem as f64) > t {
+                        cands.push((wood / t, ti, Task::Fell(pos)));
                     }
                 }
             }
