@@ -117,7 +117,15 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         let v = if is_chopper {
             let chop_t = (s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32;
             let wood = (s.p_size[pi].min(free) as i32 * 4) as f64;
-            wood / (steps as f64 + chop_t as f64 + 1.0)
+            if s.turn < 20 {
+                // OPENING DENIAL (mirrors the shipped scheduler): without it RHEA
+                // folds to contested bots (41.7% vs schedbot despite 226 density).
+                let osh = s.shack[1 - pl];
+                let deny = ((s.p_x[pi] - osh.0).abs() + (s.p_y[pi] - osh.1).abs()) as f64;
+                100.0 - (d as f64 + 3.0 * deny)
+            } else {
+                wood / (steps as f64 + chop_t as f64 + 1.0)
+            }
         } else if s.p_fruits[pi] > 0 && s.u_hp[ui] > 0 {
             let take = s.p_fruits[pi].min(s.u_hp[ui]).min(free) as f64;
             take / (steps as f64 + 1.0)
