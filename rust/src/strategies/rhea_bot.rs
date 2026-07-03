@@ -37,11 +37,18 @@ pub struct RheaBot {
     nav: RefCell<Option<Box<NavTable>>>,
     best: RefCell<Plan>,
     rng: RefCell<u64>,
+    // anti-stall watchdog: troll id -> (x, y, same-pos streak while MOVEing)
+    lastpos: RefCell<std::collections::HashMap<i32, (i8, i8, u8)>>,
 }
 
 impl RheaBot {
     pub fn new() -> Self {
-        RheaBot { nav: RefCell::new(None), best: RefCell::new(Plan::default()), rng: RefCell::new(0x9E3779B97F4A7C15) }
+        RheaBot {
+            nav: RefCell::new(None),
+            best: RefCell::new(Plan::default()),
+            rng: RefCell::new(0x9E3779B97F4A7C15),
+            lastpos: RefCell::new(std::collections::HashMap::new()),
+        }
     }
     fn rand(&self) -> u64 {
         let mut r = self.rng.borrow_mut();
@@ -360,6 +367,7 @@ impl Strategy for RheaBot {
         if game.turn == 1 || self.nav.borrow().is_none() {
             *self.nav.borrow_mut() = Some(NavTable::build(game));
             *self.best.borrow_mut() = Plan::default();
+            self.lastpos.borrow_mut().clear();
         }
         let navb = self.nav.borrow();
         let nav = navb.as_ref().unwrap();
@@ -437,8 +445,55 @@ impl Strategy for RheaBot {
                     None => k += 1,
                 }
             }
-            let act = act.unwrap_or_else(|| policy_act(&root, nav, me, ui, turns_rem, &mut reserved));
+            let mut act = act.unwrap_or_else(|| policy_act(&root, nav, me, ui, turns_rem, &mut reserved));
             let id = root.u_id[ui];
+            // ANTI-STALL WATCHDOG (arena decode: 99 failed MOVEs/game, trolls stuck
+            // 20-248 turns behind OWN units — 8/17 losses). If we issued MOVEs but
+            // the troll hasn't moved for 2+ turns, sidestep to a free adjacent cell.
+            {
+                let mut lp = self.lastpos.borrow_mut();
+                let cur = (root.u_x[ui], root.u_y[ui]);
+                let entry = lp.entry(id as i32).or_insert((cur.0, cur.1, 0));
+                let stuck = entry.0 == cur.0 && entry.1 == cur.1;
+                let was_moving = matches!(act, FAct::Move(_));
+                if stuck && was_moving {
+                    entry.2 = entry.2.saturating_add(1);
+                } else {
+                    entry.2 = 0;
+                }
+                *entry = (cur.0, cur.1, entry.2);
+                if entry.2 >= 2 {
+                    if let FAct::Move(tgt) = act {
+                        if tgt as usize != cid(cur.0, cur.1, root.w) {
+                            // pick a free adjacent walkable cell not under an own troll
+                            let mut cands: Vec<u8> = Vec::new();
+                            for (dx, dy) in [(0i8, 1i8), (1, 0), (0, -1), (-1, 0)] {
+                                let (nx, ny) = (cur.0 + dx, cur.1 + dy);
+                                if nx < 0 || ny < 0 || nx >= root.w || ny >= root.h {
+                                    continue;
+                                }
+                                let c = cid(nx, ny, root.w);
+                                if !nav.walk[c] {
+                                    continue;
+                                }
+                                let occupied = (0..root.n_units as usize).any(|o| {
+                                    root.u_pl[o] as usize == me
+                                        && root.u_x[o] == nx
+                                        && root.u_y[o] == ny
+                                });
+                                if !occupied {
+                                    cands.push(c as u8);
+                                }
+                            }
+                            if !cands.is_empty() {
+                                let pick = cands[(self.rand() as usize) % cands.len()];
+                                act = FAct::Move(pick);
+                                entry.2 = 0;
+                            }
+                        }
+                    }
+                }
+            }
             let s = match act {
                 FAct::Idle => format!("MOVE {} {} {}", id, root.shack[me].0, root.shack[me].1),
                 FAct::Move(c) => {

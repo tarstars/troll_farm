@@ -1,28 +1,15 @@
 #![allow(dead_code, unused)]
-// CodinGame Spring Challenge 2026 - Troll Farm bot (Rust port of Python v0.7.1)
-// Single-file submission. stdlib only.
-
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::io::{self, BufRead, Write};
-
-// ── constants ───────────────────────────────────────────────────────────────
-
 const VERSION: &str = "1.3.3-unstall";
 const TOTAL_TURNS: i32 = 300;
-// Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
-// to stderr (captured in the replay) so we can replay a real game through the sim
-// and compare turn-by-turn. Off by default (no effect on play or stdout parity).
 const DEBUG: bool = false;
-
-// Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
 const PLUM: usize = 0;
 const LEMON: usize = 1;
 const APPLE: usize = 2;
 const BANANA: usize = 3;
 const IRON: usize = 4;
 const WOOD: usize = 5;
-
-// Base growth cooldown per tree type
 fn plant_cooldown(t: &str) -> i32 {
     match t {
         "PLUM" => 8,
@@ -32,7 +19,6 @@ fn plant_cooldown(t: &str) -> i32 {
         _ => panic!("unknown plant: {}", t),
     }
 }
-
 fn water_boost(t: &str) -> i32 {
     match t {
         "PLUM" => 5,
@@ -42,11 +28,7 @@ fn water_boost(t: &str) -> i32 {
         _ => panic!("unknown plant for water_boost: {}", t),
     }
 }
-
-// ── data structures ─────────────────────────────────────────────────────────
-
 type Cell = (i32, i32);
-
 #[derive(Clone)]
 struct Troll {
     id: i32,
@@ -58,7 +40,6 @@ struct Troll {
     chop_power: i32,
     carry: [i32; 6],
 }
-
 impl Troll {
     fn pos(&self) -> Cell {
         (self.x, self.y)
@@ -73,10 +54,9 @@ impl Troll {
         (self.movement_speed, self.carry_capacity, self.harvest_power, self.chop_power)
     }
 }
-
 #[derive(Clone)]
 struct Tree {
-    tree_type: String, // "PLUM","LEMON","APPLE","BANANA"
+    tree_type: String,
     x: i32,
     y: i32,
     size: i32,
@@ -84,13 +64,11 @@ struct Tree {
     fruits: i32,
     cooldown: i32,
 }
-
 impl Tree {
     fn pos(&self) -> Cell {
         (self.x, self.y)
     }
 }
-
 struct State {
     walkable: HashSet<Cell>,
     my_shack: Cell,
@@ -104,22 +82,14 @@ struct State {
     iron_cells: HashSet<Cell>,
     water_cells: HashSet<Cell>,
 }
-
-// ── geometry helpers ─────────────────────────────────────────────────────────
-
 const NEIGHBORS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
-
 fn ortho_neighbors(cell: Cell) -> [Cell; 4] {
     let (x, y) = cell;
     [(x, y + 1), (x + 1, y), (x, y - 1), (x - 1, y)]
 }
-
 fn is_adjacent(a: Cell, b: Cell) -> bool {
     (a.0 - b.0).abs() + (a.1 - b.1).abs() == 1
 }
-
-// ── BFS ─────────────────────────────────────────────────────────────────────
-
 fn bfs_distances(walkable: &HashSet<Cell>, sources: &[Cell]) -> HashMap<Cell, i32> {
     let mut dist: HashMap<Cell, i32> = HashMap::new();
     let mut queue: VecDeque<Cell> = VecDeque::new();
@@ -141,13 +111,9 @@ fn bfs_distances(walkable: &HashSet<Cell>, sources: &[Cell]) -> HashMap<Cell, i3
     }
     dist
 }
-
 fn manhattan(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
-
-// ── training cost ────────────────────────────────────────────────────────────
-
 fn training_cost(n: i32, talents: (i32, i32, i32, i32)) -> [i32; 6] {
     let (ms, cc, hp, chop) = talents;
     let mut cost = [0i32; 6];
@@ -157,65 +123,25 @@ fn training_cost(n: i32, talents: (i32, i32, i32, i32)) -> [i32; 6] {
     cost[IRON] = n + chop * chop;
     cost
 }
-
 fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
     inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE]
 }
-
-// ── WOOD-RACE bot (v1.0) — beats the Silver Boss ~68% in the local sim ─────────
-// Mirror of strategies::mybot (validated in the referee-faithful Rust sim). Strategy:
-//   * GREEDY expansion to ~4 trolls (train the cheapest affordable troll each turn),
-//     jumping the queue to build TWO fast (ms2,cc2,chop2) choppers as soon as afford-
-//     able; the rest are speed harvesters. Mine iron to fund the choppers' chop cost.
-//   * Choppers fell the best tree (close + big) with a DENIAL bias toward the foe's
-//     shack -- felling starves the opponent's fruit while banking 4pt-each wood.
-//   * Harvesters grab the NEAREST ripe fruit (max throughput) and seed a tiny base
-//     plum orchard; everyone banks when full.
-// The boss is a similar wood/denial bot; our edge is faster (ms2) choppers that win
-// the race to contested trees + higher fruit throughput (nearest-ripe harvesting).
-// Cheap pure chopper (ms1, cc2, hp0, chop2): swept best vs silver_boss at 87% (vs the
-// old ms2 (2,2,1,2) at 81%). cc2 = 2 wood/fell is essential; dropping ms+hp saves plum
-// +apple for a stronger economy while still winning the denial race (DW=3) + woodfarm.
-// hp0 (was hp1): saves n+1 APPLE per chopper; the only loss is a rarely-reachable
-// fruit-harvest fallback. Confirmed on BOTH boss models at 1000 seeds (2026-07-02):
-// scriptboss 59.8→60.9% (margin +14.7→+18.2), silverboss 77.5→78.4% (+24.1→+26.9).
 const MB_CHOPPER: (i32, i32, i32, i32) = (2, 2, 0, 2);
 const MB_NCHOPPERS: i32 = 2;
-// chop1 harvesters (+n+1 iron each): every fruit troll can also FELL the base
-// farm's young bananas (the "mower"). Blueprint from arena replays: 250-pt bots
-// sustain 0.30 wood/turn vs our 0.07; fellers must live AT the farm, and the
-// denial choppers can't. Both-model win at 1000 seeds: scriptboss 63.0->64.3%
-// (margin +25.8->+31.6), silverboss 85.1->87.5% (+51.4->+54.1); wood 90->105.
 const MB_HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const MB_MAX_TROLLS: usize = 4;
 const MB_MAX_ORCHARD: usize = 2;
 const MB_MIN_TURNS_LEFT: i32 = 20;
-// Denial-heavy chopper targeting (swept 2026-07-01 in the faithful sim): DW=3, WT=0
-// lifts the bot from 67.6% -> 78.0% vs silver_boss. Our cheap fast choppers win the
-// race to the BOSS's trees and starve its wood+fruit; biasing hard toward the enemy
-// shack (and dropping the tree-size preference) is decisively better than balanced.
 const MB_DENIAL_W: i32 = 3;
 const MB_SIZE_W: i32 = 0;
-
 thread_local! {
-    // Sticky per-harvester target memory (reset at turn 1). Persists across turns
-    // within a single game process.
     static MB_MEM: std::cell::RefCell<HashMap<i32, Cell>> = std::cell::RefCell::new(HashMap::new());
-    // troll -> turn of last PICK (anti pick/drop livelock; see v1.1.5)
     static SB_PICKED: std::cell::RefCell<HashMap<i32, i32>> = std::cell::RefCell::new(HashMap::new());
 }
-
 fn mb_afford(inv: &[i32; 6], cost: &[i32; 6], have_iron: bool) -> bool {
     let iron_ok = !have_iron || inv[IRON] >= cost[IRON];
     inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE] && iron_ok
 }
-
-
-// ═══ v1.1.0 SCHEDULER (port of strategies/sched_bot.rs, mode2/FB0.8 defaults) ═══
-// Global greedy task assignment by marginal rate. Fell ordering = mybot's proven
-// denial metric (d + 3*manh(tree,oppShack)) expressed as a rate BELOW a full
-// load's bank rate, so choppers cycle fell->bank. Both-model: scriptboss 83.8%
-// (mybot: 63.9), silverboss 79.4% (mybot: 85.1), head-to-head vs mybot 56.8%.
 #[derive(Clone, Debug)]
 enum SchedTask {
     Bank,
@@ -226,7 +152,6 @@ enum SchedTask {
     Orchard(Cell),
     PickSeed(usize),
 }
-
 fn decide_sched(state: &State) -> Vec<String> {
     if state.turn == 1 {
         SB_PICKED.with(|m| m.borrow_mut().clear());
@@ -236,11 +161,9 @@ fn decide_sched(state: &State) -> Vec<String> {
     let inv = &state.my_inventory;
     let have_iron = !state.iron_cells.is_empty();
     let turns_rem = TOTAL_TURNS - state.turn + 1;
-
     let mut my: Vec<Troll> = state.my_trolls.clone();
     my.sort_by_key(|t| t.id);
     let n = my.len() as i32;
-
     let want_chopper = (my.iter().filter(|t| t.chop_power >= 2).count() as i32) < MB_NCHOPPERS;
     let train_now: Option<(i32, i32, i32, i32)> =
         if want_chopper && mb_afford(inv, &training_cost(n, MB_CHOPPER), have_iron) {
@@ -252,7 +175,6 @@ fn decide_sched(state: &State) -> Vec<String> {
         && want_chopper
         && inv[IRON] < training_cost(n, MB_CHOPPER)[IRON]
         && afford_fruit_only(inv, &training_cost(n, MB_CHOPPER));
-
     let has_real_chopper = my.iter().any(|t| t.chop_power >= 2);
     let bootstrap_id: Option<i32> = if has_real_chopper {
         None
@@ -262,28 +184,20 @@ fn decide_sched(state: &State) -> Vec<String> {
             .max_by_key(|t| (t.carry_capacity, -t.id))
             .map(|t| t.id)
     };
-
     let base_r = 3;
-    let wf_cap = 10usize; // farm cap up (elite decode: 21-46 plants/game)
+    let wf_cap = 10usize;
     let fell_base = 0.8f64;
     let print_v = 9.0f64;
     let orch_v = 10.0f64;
     let mine_v = 3.0f64;
-
     let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= base_r).count();
-    // Which fruit types block the next (cheapest-harvester) train? The roster
-    // stalls at ~2.3 trolls because nearest-fruit never assembles plum+lemon+apple;
-    // deficit-weighted harvesting lifts it to ~2.7 (+7 score).
     let next_cost = training_cost(n, MB_HARVESTERS[MB_HARVESTERS.len() - 1]);
     let need_fruit: [bool; 3] = [
         inv[0] < next_cost[0],
         inv[1] < next_cost[1],
         inv[2] < next_cost[2],
     ];
-    // (t230 cutoff and clear-when-ahead were boss-reasoning applied to ALL games;
-    // night data suggests they cost field points — reverted to the v1.1.5 window.)
     let window = state.turn >= 20 && state.turn <= 280;
-
     let mut cands: Vec<(f64, usize, SchedTask)> = Vec::new();
     let mut dists: Vec<HashMap<Cell, i32>> = Vec::new();
     for (ti, t) in my.iter().enumerate() {
@@ -303,8 +217,6 @@ fn decide_sched(state: &State) -> Vec<String> {
             .enumerate()
             .map(|(i, c)| if i == WOOD { 4 * c } else { *c })
             .sum();
-
-        // BANK when full (or endgame urgency).
         if carried > 0 {
             let tt = steps(d_home) + 1.0;
             let endgame = (turns_rem as f64) <= tt + 2.0;
@@ -314,42 +226,26 @@ fn decide_sched(state: &State) -> Vec<String> {
                 cands.push((carried as f64 / tt, ti, SchedTask::Bank));
             }
         }
-
         let is_chop_role = t.chop_power >= 2 || Some(t.id) == bootstrap_id;
-
         for p in &state.trees {
             let pos = p.pos();
             let dd = match d.get(&pos) {
                 Some(&x) => x,
                 None => continue,
             };
-            // From 80 turns-left, require extraction capacity (denial's value decays
-            // to zero at game end; extraction value is constant).
             let need_free = turns_rem <= 80;
-            // CLEAR-WHEN-AHEAD: leading big late -> fell our OWN half first (kill the
-            // farm before the enemy cc4 eats it; no trees ends the game while ahead).
             let my_score: i32 = state.my_inventory[0] + state.my_inventory[1]
                 + state.my_inventory[2] + state.my_inventory[3] + 4 * state.my_inventory[5];
             let opp_score: i32 = state.opp_inventory[0] + state.opp_inventory[1]
                 + state.opp_inventory[2] + state.opp_inventory[3] + 4 * state.opp_inventory[5];
             let clearing = false && turns_rem <= 60 && my_score - opp_score >= 40;
-            let liquidation = turns_rem <= 280; // yield-mode from t20 on (Gold field rewards density)
+            let liquidation = turns_rem <= 280;
             if is_chop_role && t.chop_power > 0 && (!need_free || t.free_capacity() > 0) {
                 let chop_t = ((p.health + t.chop_power - 1) / t.chop_power) as f64;
                 let tt = steps(dd) + chop_t + 0.5 * steps(manhattan(pos, shack)) + 1.0;
                 if turns_rem as f64 > tt {
-                    // LEMON-FIRST early denial (30 decoded boss games): the boss's kill
-                    // condition is a DOUBLE (2,4,2,2) costing ~39 LEMON; spike <=t105 =
-                    // we lose, >=t120 = we win. Enemy-half lemons count 12 cells closer
-                    // while turn < 120. (+4.7pp vs the script model, flat on silver.)
-                    // (lemon-choke ARENA-FALSIFIED: boss record stayed 3W3L, spike
-                    // still landed t93, and diverting choppers to far lemons cost our
-                    // own economy — transfer-failure mode #3 again. Default 0.)
                     let lemon_bonus = 0;
                     let rate = if liquidation {
-                        // LIQUIDATION (last 100 turns): standing trees are unbanked
-                        // wood; fell by pure yield/time. Density +14; the script
-                        // model degrades past T=130, so T=100 is the frontier.
                         (p.size.min(t.free_capacity()) * 4) as f64 / tt
                     } else if clearing {
                         2.0 - (dd + 3 * manhattan(pos, shack)) as f64 * 0.005
@@ -372,16 +268,12 @@ fn decide_sched(state: &State) -> Vec<String> {
                     };
                     let mut rate = take / tt;
                     if ty < 3 && need_fruit[ty] {
-                        rate *= 2.0; // deficit weight (SB_NEED_W=1.0)
+                        rate *= 2.0;
                     }
                     cands.push((rate, ti, SchedTask::Harvest(pos)));
                 }
             }
         }
-
-        // MOWER (market-priced): the post-bootstrap starter (chop1) fells OWN-half
-        // fruitless size>=2 trees at pure yield rate; gated on a banked replacement
-        // seed except during liquidation (last 100 turns).
         if !is_chop_role && t.chop_power > 0 && (state.my_inventory[BANANA] >= 1 || turns_rem <= 280) {
             for p in &state.trees {
                 let pos = p.pos();
@@ -400,9 +292,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                 }
             }
         }
-
-        // free_capacity()>0 REQUIRED: a full starter issuing MINE no-ops silently
-        // and the Mine rate outbids Bank forever (30 frozen turns in a real loss).
         if need_iron && t.chop_power > 0 && t.free_capacity() > 0 {
             if let Some(c) = state
                 .iron_cells
@@ -415,7 +304,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                 cands.push((mine_v / tt, ti, SchedTask::Mine(c)));
             }
         }
-
         let orchard_n = state
             .trees
             .iter()
@@ -436,11 +324,7 @@ fn decide_sched(state: &State) -> Vec<String> {
                 cands.push((orch_v / tt, ti, SchedTask::Orchard(sp)));
             }
         }
-
-        // (raid gate removed: ARENA-FALSIFIED — rank 51 vs v1.1.2's rank 2-3.)
         if window && base_trees < wf_cap && !is_chop_role {
-            // Spot computed for BOTH arms: PickSeed without a plantable spot caused a
-            // PICK<->DROP livelock (arena game 21-148: cc1 starter, 130 wasted turns).
             let free_base = |water: bool| {
                 state
                     .walkable
@@ -455,9 +339,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                     .copied()
             };
             if let Some(sp) = free_base(true).or_else(|| free_base(false)) {
-                // Species follows the spot (logiqub's 308-pt crop system): near water
-                // APPLE grows a size per 2 ticks, PLUM per 3 (banana 4+), both tankier
-                // against theft. Plum/apple are training currency -> reserve-guarded.
                 let wet = state.water_cells.iter().any(|w| manhattan(*w, sp) == 1);
                 let species: usize = if wet {
                     if inv[APPLE] >= 8 || t.carry[APPLE] > 0 {
@@ -479,8 +360,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                     && !my.iter().any(|o| {
                         o.id != t.id && (o.carry[BANANA] > 0 || o.carry[species] > 0)
                     })
-                    // anti-livelock: a recent PICK no longer carried = the seed got
-                    // banked back (plant failed) -> cool down 12 turns, don't loop.
                     && SB_PICKED.with(|m| {
                         m.borrow().get(&t.id).map_or(true, |&t0| state.turn - t0 > 12)
                     })
@@ -491,7 +370,6 @@ fn decide_sched(state: &State) -> Vec<String> {
         }
         dists.push(d);
     }
-
     cands.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
     let mut assigned: HashMap<usize, SchedTask> = HashMap::new();
     let mut taken: HashSet<Cell> = HashSet::new();
@@ -515,7 +393,6 @@ fn decide_sched(state: &State) -> Vec<String> {
         }
         assigned.insert(ti, task);
     }
-
     SB_PICKED.with(|m| {
         let mut m = m.borrow_mut();
         for (ti, task) in &assigned {
@@ -524,7 +401,6 @@ fn decide_sched(state: &State) -> Vec<String> {
             }
         }
     });
-
     let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
     for (ti, t) in my.iter().enumerate() {
         let d = &dists[ti];
@@ -587,8 +463,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                     .trees
                     .iter()
                     .filter(|p| d.contains_key(&p.pos()))
-                    // never contest a cell already assigned this turn or occupied by
-                    // an own troll: two movers on one target block each other forever.
                     .filter(|p| !taken.contains(&p.pos()))
                     .filter(|p| !my.iter().any(|o| o.id != t.id && o.pos() == p.pos()))
                     .filter_map(|p| {
@@ -612,8 +486,6 @@ fn decide_sched(state: &State) -> Vec<String> {
                 match anticipate {
                     Some(c) => go_move(c),
                     None => {
-                        // park preferring NON-water-adjacent cells (don't squat the
-                        // plantable spot: flickering it free/occupied livelocks).
                         let park = ortho_neighbors(shack)
                             .into_iter()
                             .filter(|c| state.walkable.contains(c))
@@ -632,7 +504,6 @@ fn decide_sched(state: &State) -> Vec<String> {
         };
         cmd_by_id.insert(t.id, cmd);
     }
-
     let mut actions: Vec<String> = Vec::new();
     if state.turn == 1 {
         actions.push(format!("MSG v{}", VERSION));
@@ -655,36 +526,17 @@ fn decide_sched(state: &State) -> Vec<String> {
     }
     actions
 }
-
-// ═══ v1.3.0 RHEA — fast engine + rolling-horizon search ═════════════════════
-// Port of game/fast.rs + strategies/rhea_bot.rs into the standalone bot.
-//
-// [fast.rs] Copy-cheap game state + O(1) pathing for rollout search:
-// 1. `NavTable` — the walkable set never changes during a game, so all-pairs
-//    BFS distances and next-step tables are precomputed ONCE (per game), and
-//    every rollout move becomes a table lookup instead of a BFS.
-// 2. `FastState` — fixed-size arrays, `Copy`; cloning is a ~2 KB memcpy.
-//    `step_fast` ports the referee rules (move conflicts per player, harvest
-//    rounds, chop + wood distribution, plant/pick/train/drop/mine, ticking).
-
 use std::cell::RefCell;
 use std::time::Instant;
-
 pub const MAXW: usize = 22;
 pub const MAXH: usize = 11;
-pub const MAXC: usize = MAXW * MAXH; // 242
+pub const MAXC: usize = MAXW * MAXH;
 pub const MAXP: usize = 72;
 pub const MAXU: usize = 12;
-
 #[inline]
 pub fn cid(x: i8, y: i8, w: i8) -> usize {
     y as usize * w as usize + x as usize
 }
-
-/// Map dims are not stored in `State`: derive (w, h) = (max x + 1, max y + 1)
-/// over all known cells. The static sets (walkable/iron/water/shacks) alone
-/// make this stable across turns; trees/trolls are included for safety (they
-/// only ever sit on walkable/shack cells).
 fn derive_dims(st: &State) -> (i32, i32) {
     let mut mx = 0i32;
     let mut my = 0i32;
@@ -717,17 +569,14 @@ fn derive_dims(st: &State) -> (i32, i32) {
     }
     (mx + 1, my + 1)
 }
-
-/// Static per-map navigation: all-pairs dist + next-step (O(1) rollout moves).
 pub struct NavTable {
     pub w: i8,
     pub h: i8,
     pub walk: [bool; MAXC],
-    pub dist: Vec<u8>,    // dist[from * MAXC + to], 255 = unreachable
-    pub next: Vec<u8>,    // next[from * MAXC + to] = cell id of first step
-    pub park: [u8; MAXC], // for unreachable targets: reachable cell minimizing manhattan
+    pub dist: Vec<u8>,
+    pub next: Vec<u8>,
+    pub park: [u8; MAXC],
 }
-
 impl NavTable {
     fn build_from_state(st: &State) -> Box<NavTable> {
         let (wi, hi) = derive_dims(st);
@@ -744,7 +593,6 @@ impl NavTable {
         for &(x, y) in &st.walkable {
             nav.walk[cid(x as i8, y as i8, w)] = true;
         }
-        // BFS from every cell (walkable sources + shack cells: units can stand there)
         let mut sources: Vec<usize> = (0..(w as usize * h as usize)).filter(|&c| nav.walk[c]).collect();
         for &s in &[st.my_shack, st.opp_shack] {
             sources.push(cid(s.0 as i8, s.1 as i8, w));
@@ -769,14 +617,11 @@ impl NavTable {
                         continue;
                     }
                     nav.dist[base + n] = d + 1;
-                    // first step from src toward n: inherit, or n itself if c==src
                     nav.next[base + n] = if c == src { n as u8 } else { nav.next[base + c] };
                     q.push_back(n);
                 }
             }
         }
-        // park targets for unwalkable cells (e.g. shacks as MOVE targets):
-        // reachable cell minimizing manhattan to the target (referee rule).
         for t in 0..(w as usize * h as usize) {
             if nav.walk[t] {
                 nav.park[t] = t as u8;
@@ -800,13 +645,11 @@ impl NavTable {
         }
         nav
     }
-
     #[inline]
     pub fn d(&self, from: usize, to: usize) -> u8 {
         self.dist[from * MAXC + to]
     }
 }
-
 #[derive(Clone, Copy)]
 pub struct FastState {
     pub w: i8,
@@ -816,14 +659,14 @@ pub struct FastState {
     pub shack: [(i8, i8); 2],
     pub inv: [[i16; 6]; 2],
     pub n_plants: u8,
-    pub p_type: [u8; MAXP], // 0..3 = PLUM,LEMON,APPLE,BANANA
+    pub p_type: [u8; MAXP],
     pub p_x: [i8; MAXP],
     pub p_y: [i8; MAXP],
     pub p_size: [i8; MAXP],
     pub p_health: [i8; MAXP],
     pub p_fruits: [i8; MAXP],
     pub p_cd: [i8; MAXP],
-    pub p_wet: [bool; MAXP], // water-adjacent (cooldown boost)
+    pub p_wet: [bool; MAXP],
     pub n_units: u8,
     pub u_id: [i16; MAXU],
     pub u_pl: [u8; MAXU],
@@ -834,16 +677,14 @@ pub struct FastState {
     pub u_hp: [i8; MAXU],
     pub u_chop: [i8; MAXU],
     pub u_carry: [[i8; 6]; MAXU],
-    pub iron_adj: [bool; MAXC], // cells adjacent to iron (MINE legality)
+    pub iron_adj: [bool; MAXC],
     pub water_adj: [bool; MAXC],
     pub has_iron: bool,
 }
-
 pub const CD_BASE: [i8; 4] = [8, 8, 9, 6];
 pub const CD_BOOST: [i8; 4] = [5, 5, 7, 2];
 pub const HP_BASE: [i8; 4] = [4, 4, 8, 2];
 pub const HP_SLOPE: [i8; 4] = [2, 2, 3, 1];
-
 pub fn type_idx(t: &str) -> u8 {
     match t {
         "PLUM" => 0,
@@ -852,11 +693,7 @@ pub fn type_idx(t: &str) -> u8 {
         _ => 3,
     }
 }
-
 impl FastState {
-    /// Build from the standalone bot's `State`. my_trolls -> player 0,
-    /// opp_trolls -> player 1. Unit slots are ordered by id ascending across
-    /// BOTH players merged (stable slots across turns: new units get higher ids).
     fn from_state(st: &State) -> FastState {
         let (wi, hi) = derive_dims(st);
         let w = wi as i8;
@@ -965,49 +802,40 @@ impl FastState {
         }
         s
     }
-
     #[inline]
     pub fn plant_at(&self, x: i8, y: i8) -> Option<usize> {
         (0..self.n_plants as usize).find(|&i| self.p_x[i] == x && self.p_y[i] == y)
     }
-
     #[inline]
     pub fn free(&self, ui: usize) -> i8 {
         self.u_cc[ui] - self.u_carry[ui].iter().sum::<i8>()
     }
-
     pub fn score(&self, p: usize) -> i32 {
         (self.inv[p][0] + self.inv[p][1] + self.inv[p][2] + self.inv[p][3]) as i32
             + 4 * self.inv[p][5] as i32
     }
 }
-
-/// One unit's action for a turn (macro-free, referee-level).
 #[derive(Clone, Copy, PartialEq, Debug)]
 pub enum FAct {
     Idle,
-    Move(u8), // target cell id (may be unwalkable -> park rule)
+    Move(u8),
     Harvest,
     Chop,
     Drop,
     Mine,
-    Plant(u8), // fruit type
-    Pick(u8),  // fruit type
+    Plant(u8),
+    Pick(u8),
 }
-
-/// Per-player turn command set: one action per unit slot + optional train.
 #[derive(Clone, Copy)]
 pub struct FCmds {
     pub acts: [FAct; MAXU],
     pub train: Option<(i8, i8, i8, i8)>,
 }
-
 impl Default for FCmds {
     fn default() -> Self {
         FCmds { acts: [FAct::Idle; MAXU], train: None }
     }
 }
-
 pub fn training_cost_fast(n: i16, t: (i8, i8, i8, i8)) -> [i16; 6] {
     let mut c = [0i16; 6];
     c[0] = n + (t.0 as i16) * (t.0 as i16);
@@ -1016,14 +844,9 @@ pub fn training_cost_fast(n: i16, t: (i8, i8, i8, i8)) -> [i16; 6] {
     c[4] = n + (t.3 as i16) * (t.3 as i16);
     c
 }
-
-/// Full referee turn: moves -> harvest -> plant -> chop -> pick -> train -> drop
-/// -> mine -> tick plants. Mirrors engine.rs::step semantics.
 pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
     let w = s.w;
-    // ── moves (per-player conflict resolution, highest id first) ─────────────
     for pl in 0..2u8 {
-        // desired target cell per unit (after speed-limited pathing)
         let mut want: [Option<usize>; MAXU] = [None; MAXU];
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] != pl {
@@ -1033,7 +856,7 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
                 let from = cid(s.u_x[ui], s.u_y[ui], w);
                 let mut to = tgt as usize;
                 if !nav.walk[to] {
-                    to = nav.park[to] as usize; // park rule for unwalkable targets
+                    to = nav.park[to] as usize;
                 }
                 let d = nav.d(from, to);
                 if d == 255 {
@@ -1041,7 +864,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
                 }
                 let ms = s.u_ms[ui] as u8;
                 let mut cell = from;
-                // walk up to ms steps along the shortest path
                 for _ in 0..ms.min(d) {
                     cell = nav.next[cell * MAXC + to] as usize;
                 }
@@ -1050,14 +872,12 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
                 }
             }
         }
-        // conflict resolution: occupied set = this player's unit cells
         let mut occ: [bool; MAXC] = [false; MAXC];
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] == pl {
                 occ[cid(s.u_x[ui], s.u_y[ui], w)] = true;
             }
         }
-        // iterate: move units whose target is free, highest id first; repeat
         let mut order: Vec<usize> = (0..s.n_units as usize)
             .filter(|&ui| s.u_pl[ui] == pl && want[ui].is_some())
             .collect();
@@ -1069,7 +889,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             for &ui in &order {
                 let Some(t) = want[ui] else { continue };
                 let cur = cid(s.u_x[ui], s.u_y[ui], w);
-                // count contenders
                 let contested = order
                     .iter()
                     .filter(|&&o| want[o] == Some(t))
@@ -1088,7 +907,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             if progress {
                 continue;
             }
-            // swaps: A->B while B->A (2-cycles only; longer cycles are rare)
             for &a in &order {
                 let Some(ta) = want[a] else { continue };
                 for &b in &order {
@@ -1115,10 +933,7 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
     }
-
-    // ── harvest (rounds; last-fruit duplication across both players) ─────────
     for round in 1..=3i8 {
-        // collect harvesters per plant this round
         for pi in 0..s.n_plants as usize {
             if s.p_fruits[pi] <= 0 {
                 continue;
@@ -1139,12 +954,9 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
                     took += 1;
                 }
             }
-            // decrement once per taker but not below 0 (duplication quirk)
             s.p_fruits[pi] = (s.p_fruits[pi] - took).max(0);
         }
     }
-
-    // ── plant ────────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] as usize != pl {
@@ -1173,12 +985,9 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
     }
-
-    // ── chop ────────────────────────────────────────────────────────────────
     let mut dead: [bool; MAXP] = [false; MAXP];
     for pi in 0..s.n_plants as usize {
         let (px, py) = (s.p_x[pi], s.p_y[pi]);
-        // damage
         let mut choppers: [usize; 4] = [usize::MAX; 4];
         let mut nch = 0usize;
         for ui in 0..s.n_units as usize {
@@ -1196,7 +1005,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
         if nch > 0 && s.p_health[pi] <= 0 {
-            // wood distribution round-robin among choppers with free capacity
             let mut remaining = s.p_size[pi];
             let mut i = 0;
             while i < s.p_size[pi] && remaining > 0 {
@@ -1212,7 +1020,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             dead[pi] = true;
         }
     }
-    // remove dead plants (swap-remove keeping order-insensitive)
     let mut pi = 0usize;
     while pi < s.n_plants as usize {
         if dead[pi] {
@@ -1232,8 +1039,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             pi += 1;
         }
     }
-
-    // ── pick ────────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] as usize != pl {
@@ -1252,8 +1057,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
     }
-
-    // ── train ───────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         if let Some(t) = cmds[pl].train {
             let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
@@ -1289,8 +1092,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
     }
-
-    // ── drop ────────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] as usize != pl || cmds[pl].acts[ui] != FAct::Drop {
@@ -1306,8 +1107,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             }
         }
     }
-
-    // ── mine ────────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         for ui in 0..s.n_units as usize {
             if s.u_pl[ui] as usize != pl || cmds[pl].acts[ui] != FAct::Mine {
@@ -1323,8 +1122,6 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
             s.u_carry[ui][4] += amount;
         }
     }
-
-    // ── tick plants ─────────────────────────────────────────────────────────
     for pi in 0..s.n_plants as usize {
         if s.p_cd[pi] > 0 {
             s.p_cd[pi] -= 1;
@@ -1348,45 +1145,31 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
     }
     s.turn += 1;
 }
-
-// [rhea_bot.rs] RHEA — rolling-horizon evolutionary search over task plans
-// (the "trajectory pool" design): keep a pool of per-troll task plans, mutate,
-// evaluate by forward-simulating H turns with the exact fast engine, keep the
-// best, act on its first move. Time-boxed anytime loop (28 ms/turn hardcoded;
-// 550 ms on turn 1 — CG allows 50 ms / 1000 ms).
-
-const H: usize = 40; // rollout horizon (turns)
-const PLAN_LEN: usize = 3; // tasks per troll in a plan
-
+const H: usize = 40;
+const PLAN_LEN: usize = 3;
 #[derive(Clone, Copy, PartialEq)]
 enum Task {
-    Auto,       // follow the baseline policy
-    GoTree(u8), // plant list index at ROOT (chop or harvest depending on troll)
+    Auto,
+    GoTree(u8),
     GoBank,
     GoMine,
-    PlantHere(u8), // fruit type: walk to base free cell and plant
+    PlantHere(u8),
 }
-
 #[derive(Clone, Copy)]
 struct RheaPlan {
     tasks: [[Task; PLAN_LEN]; MAXU],
 }
-
 impl Default for RheaPlan {
     fn default() -> Self {
         RheaPlan { tasks: [[Task::Auto; PLAN_LEN]; MAXU] }
     }
 }
-
 thread_local! {
-    // RHEA per-game caches (RheaBot struct fields in the lib version).
     static RH_NAV: RefCell<Option<Box<NavTable>>> = RefCell::new(None);
     static RH_BEST: RefCell<RheaPlan> = RefCell::new(RheaPlan::default());
     static RH_RNG: RefCell<u64> = RefCell::new(0x9E3779B97F4A7C15);
-    // anti-stall watchdog: troll id -> (x, y, same-pos streak while MOVEing)
     static RH_LASTPOS: RefCell<HashMap<i32, (i8, i8, u8)>> = RefCell::new(HashMap::new());
 }
-
 fn rh_rand() -> u64 {
     RH_RNG.with(|rng| {
         let mut r = rng.borrow_mut();
@@ -1396,10 +1179,6 @@ fn rh_rand() -> u64 {
         *r
     })
 }
-
-/// Baseline per-troll policy on FastState (market-lite): full->bank,
-/// on-fruit->harvest, chopper->fell by yield-nearest, else harvest-nearest,
-/// endgame banking. Used for the opponent and for Task::Auto trolls.
 fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i32, reserved: &mut [bool; MAXC]) -> FAct {
     let w = s.w;
     let me = cid(s.u_x[ui], s.u_y[ui], w);
@@ -1407,7 +1186,6 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
     let carried: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
     let sh = s.shack[pl];
     let shc = cid(sh.0, sh.1, w);
-    // nearest walkable drop cell
     let mut dropc = usize::MAX;
     let mut dropd = 255u8;
     for (dx, dy) in [(0i8, 1i8), (1, 0), (0, -1), (-1, 0)] {
@@ -1422,7 +1200,6 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         }
     }
     let adj_shack = (s.u_x[ui] - sh.0).abs() + (s.u_y[ui] - sh.1).abs() <= 1;
-    // endgame banking
     if carried > 0 {
         let eta = (dropd as i32 + s.u_ms[ui] as i32 - 1) / s.u_ms[ui].max(1) as i32 + 1;
         if turns_rem <= eta + 1 {
@@ -1432,7 +1209,6 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
     if free == 0 {
         return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
     }
-    // on a plant?
     if let Some(pi) = s.plant_at(s.u_x[ui], s.u_y[ui]) {
         if s.u_chop[ui] >= 2 {
             return FAct::Chop;
@@ -1441,7 +1217,6 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
             return FAct::Harvest;
         }
     }
-    // choose a target
     let is_chopper = s.u_chop[ui] >= 2;
     let mut best_c = usize::MAX;
     let mut best_v = -1e18f64;
@@ -1459,8 +1234,6 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
             let chop_t = (s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32;
             let wood = (s.p_size[pi].min(free) as i32 * 4) as f64;
             if s.turn < 20 {
-                // OPENING DENIAL (mirrors the shipped scheduler): without it RHEA
-                // folds to contested bots (41.7% vs schedbot despite 226 density).
                 let osh = s.shack[1 - pl];
                 let deny = ((s.p_x[pi] - osh.0).abs() + (s.p_y[pi] - osh.1).abs()) as f64;
                 100.0 - (d as f64 + 3.0 * deny)
@@ -1487,13 +1260,10 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
     }
     FAct::Move(if dropc != usize::MAX { dropc as u8 } else { shc as u8 })
 }
-
-/// Decode one troll's plan-task into an action given the current rolled state.
-/// Returns None when the task is complete (advance to the next task).
 fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, root_plants: &[(i8, i8); 72], n_root_plants: usize) -> Option<FAct> {
     let w = s.w;
     match task {
-        Task::Auto => None, // handled by caller (policy)
+        Task::Auto => None,
         Task::GoBank => {
             let carried: i32 = (0..6).map(|k| s.u_carry[ui][k] as i32).sum();
             if carried == 0 {
@@ -1503,7 +1273,6 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
             if (s.u_x[ui] - sh.0).abs() + (s.u_y[ui] - sh.1).abs() <= 1 {
                 Some(FAct::Drop)
             } else {
-                // nearest drop cell
                 let me = cid(s.u_x[ui], s.u_y[ui], w);
                 let mut bc = usize::MAX;
                 let mut bd = 255u8;
@@ -1544,7 +1313,7 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
                 return None;
             }
             let (tx, ty) = root_plants[k as usize];
-            let Some(pi) = s.plant_at(tx, ty) else { return None }; // tree gone -> next task
+            let Some(pi) = s.plant_at(tx, ty) else { return None };
             if s.u_x[ui] == tx && s.u_y[ui] == ty {
                 if s.u_chop[ui] > 0 && (s.p_fruits[pi] == 0 || s.u_chop[ui] >= 2) {
                     return Some(FAct::Chop);
@@ -1555,7 +1324,7 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
                 return None;
             }
             if s.free(ui) == 0 {
-                return None; // full: let policy bank
+                return None;
             }
             Some(FAct::Move(cid(tx, ty, w) as u8))
         }
@@ -1569,7 +1338,6 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
             if near && nav.walk[me] && s.plant_at(s.u_x[ui], s.u_y[ui]).is_none() {
                 return Some(FAct::Plant(ty));
             }
-            // walk to a free base cell (prefer water-adjacent)
             let mut bc = usize::MAX;
             let mut key = (2i32, 255i32);
             for c in 0..(s.w as usize * s.h as usize) {
@@ -1590,17 +1358,14 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
         }
     }
 }
-
-/// Roll the plan forward H turns; opponent plays the baseline policy.
 fn rollout(root: &FastState, nav: &NavTable, plan: &RheaPlan, me: usize) -> f64 {
     let mut s = *root;
-    // snapshot root plant positions for GoTree indices
     let mut root_plants = [(0i8, 0i8); 72];
     let nrp = root.n_plants as usize;
     for i in 0..nrp {
         root_plants[i] = (root.p_x[i], root.p_y[i]);
     }
-    let mut cursor = [0usize; MAXU]; // per-troll task index
+    let mut cursor = [0usize; MAXU];
     for step_i in 0..H {
         let turns_rem = 300 - s.turn as i32 + 1;
         if turns_rem <= 0 || s.n_plants == 0 {
@@ -1614,7 +1379,6 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &RheaPlan, me: usize) -> f64 
                     continue;
                 }
                 let act = if pl == me && step_i < H {
-                    // advance through the troll's plan
                     let mut a = None;
                     while cursor[ui] < PLAN_LEN {
                         let t = plan.tasks[ui][cursor[ui]];
@@ -1636,9 +1400,6 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &RheaPlan, me: usize) -> f64 
                 cmds[pl].acts[ui] = act;
             }
         }
-        // training (both sides): greedy chopper-first, then harvester ladder —
-        // paired with the asset-valued eval below (troll term), otherwise
-        // in-rollout training reads as a pure loss.
         for pl in 0..2usize {
             let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
             if n >= 4 || turns_rem <= 20 {
@@ -1662,13 +1423,11 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &RheaPlan, me: usize) -> f64 
         }
         step_fast(&mut s, nav, &cmds);
     }
-    // eval: banked diff + fraction of carried value + tiny asset term
     let mut carried = [0f64; 2];
     for ui in 0..s.n_units as usize {
         let v: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
         carried[s.u_pl[ui] as usize] += v as f64;
     }
-    // asset terms: trolls and standing base trees have value beyond the horizon.
     let mut trolls = [0f64; 2];
     for ui in 0..s.n_units as usize {
         trolls[s.u_pl[ui] as usize] += 1.0;
@@ -1687,18 +1446,12 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &RheaPlan, me: usize) -> f64 
         + 12.0 * (trolls[me] - trolls[1 - me])
         + 1.5 * (base_trees[me] - base_trees[1 - me])
 }
-
-/// v1.3.0 live decider: RHEA over the fast engine. The standalone bot is
-/// always player 0 (my_trolls). Budget: 28 ms/turn, 550 ms on turn 1
-/// (includes the NavTable build) — hardcoded, no env vars.
 fn decide_rhea(state: &State) -> Vec<String> {
     let t0 = Instant::now();
     let (wi, hi) = derive_dims(state);
-    // safety net: map/roster beyond fast-engine bounds -> proven scheduler
     if wi as usize > MAXW || hi as usize > MAXH || state.my_trolls.len() + state.opp_trolls.len() > MAXU {
         return decide_sched(state);
     }
-    // (re)build nav at game start or when cached dims differ
     let stale = RH_NAV.with(|n| match n.borrow().as_ref() {
         Some(nav) => nav.w as i32 != wi || nav.h as i32 != hi,
         None => true,
@@ -1712,16 +1465,12 @@ fn decide_rhea(state: &State) -> Vec<String> {
         rhea_decide(state, navb.as_ref().unwrap(), t0)
     })
 }
-
 fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
     let root = FastState::from_state(state);
     let me = 0usize;
     let budget_ms: u128 = if state.turn == 1 { 550 } else { 28 };
-
     let nrp = (root.n_plants as usize).min(72);
     let my_units: Vec<usize> = (0..root.n_units as usize).filter(|&ui| root.u_pl[ui] as usize == me).collect();
-
-    // seed pool: carried-over best (shifted) + policy-only
     let mut best = RH_BEST.with(|b| *b.borrow());
     let mut best_v = rollout(&root, nav, &best, me);
     let policy_only = RheaPlan::default();
@@ -1732,7 +1481,6 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
     }
     let mut evals = 2u32;
     while t0.elapsed().as_millis() < budget_ms {
-        // mutate: pick a troll, rewrite 1-2 tasks randomly
         let mut cand = best;
         if my_units.is_empty() {
             break;
@@ -1746,7 +1494,7 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
             } else if roll < 60 {
                 Task::GoBank
             } else if roll < 70 {
-                Task::PlantHere(3) // banana
+                Task::PlantHere(3)
             } else if roll < 78 {
                 Task::GoMine
             } else {
@@ -1762,8 +1510,6 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
     }
     RH_BEST.with(|b| *b.borrow_mut() = best);
     let _ = evals;
-
-    // emit the first move of the best plan (same decode as the rollout's turn 0)
     let turns_rem = 300 - root.turn as i32 + 1;
     let mut root_plants = [(0i8, 0i8); 72];
     for i in 0..nrp {
@@ -1791,9 +1537,6 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
             }
         }
         let mut act = act.unwrap_or_else(|| policy_act(&root, nav, me, ui, turns_rem, &mut reserved));
-        // ANTI-STALL WATCHDOG (arena decode: 99 failed MOVEs/game, trolls stuck
-        // 20-248 turns behind OWN units — 8/17 losses). If we issued MOVEs but the
-        // troll hasn't moved for 2+ turns, sidestep to a free adjacent cell.
         {
             let id32 = root.u_id[ui] as i32;
             let cur = (root.u_x[ui], root.u_y[ui]);
@@ -1859,7 +1602,6 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
         };
         out.push(s);
     }
-    // training: reuse the greedy plan (chopper first, then harvester ladder)
     let n = my_units.len() as i32;
     let inv = &state.my_inventory;
     let have_iron = !state.iron_cells.is_empty();
@@ -1891,9 +1633,6 @@ fn rhea_decide(state: &State, nav: &NavTable, t0: Instant) -> Vec<String> {
     }
     out
 }
-
-// ── I/O parsing ───────────────────────────────────────────────────────────────
-
 fn parse_grid(grid_lines: &[String]) -> (HashSet<Cell>, Cell, Cell, HashSet<Cell>, HashSet<Cell>) {
     let mut walkable = HashSet::new();
     let mut iron = HashSet::new();
@@ -1909,13 +1648,12 @@ fn parse_grid(grid_lines: &[String]) -> (HashSet<Cell>, Cell, Cell, HashSet<Cell
                 '.' => { walkable.insert(cell); }
                 '+' => { iron.insert(cell); }
                 '~' => { water.insert(cell); }
-                _ => {} // '#' and others are rocks
+                _ => {}
             }
         }
     }
     (walkable, my_shack, opp_shack, iron, water)
 }
-
 fn read_line(reader: &mut impl BufRead) -> Option<String> {
     let mut s = String::new();
     match reader.read_line(&mut s) {
@@ -1924,7 +1662,6 @@ fn read_line(reader: &mut impl BufRead) -> Option<String> {
         Err(_) => None,
     }
 }
-
 fn parse_turn(
     reader: &mut impl BufRead,
     walkable: &HashSet<Cell>,
@@ -1942,7 +1679,6 @@ fn parse_turn(
     let opp_inventory: Vec<i32> = inv1_line.split_whitespace()
         .map(|v| v.parse().unwrap())
         .collect();
-
     let tree_count_line = read_line(reader)?;
     let tree_count: usize = tree_count_line.trim().parse().unwrap();
     let mut trees = Vec::with_capacity(tree_count);
@@ -1959,7 +1695,6 @@ fn parse_turn(
             cooldown: parts[6].parse().unwrap(),
         });
     }
-
     let troll_count_line = read_line(reader)?;
     let troll_count: usize = troll_count_line.trim().parse().unwrap();
     let mut my_trolls = Vec::new();
@@ -1969,7 +1704,6 @@ fn parse_turn(
         let f: Vec<i32> = line.split_whitespace()
             .map(|v| v.parse().unwrap())
             .collect();
-        // id player x y ms cc hp chop carry[6]
         let troll = Troll {
             id: f[0],
             x: f[2],
@@ -1986,12 +1720,10 @@ fn parse_turn(
             opp_trolls.push(troll);
         }
     }
-
     let my_inv: [i32; 6] = [my_inventory[0], my_inventory[1], my_inventory[2],
                             my_inventory[3], my_inventory[4], my_inventory[5]];
     let opp_inv: [i32; 6] = [opp_inventory[0], opp_inventory[1], opp_inventory[2],
                              opp_inventory[3], opp_inventory[4], opp_inventory[5]];
-
     Some(State {
         walkable: walkable.clone(),
         my_shack,
@@ -2006,13 +1738,6 @@ fn parse_turn(
         water_cells: water_cells.clone(),
     })
 }
-
-// ── main ──────────────────────────────────────────────────────────────────────
-
-/// Echo per-turn state to stderr for sim validation (gated by DEBUG). At turn 1
-/// it logs the map + full initial trees/trolls (to reconstruct the start); every
-/// turn it logs a compact digest (both inventories + all troll positions) so a
-/// captured game can be replayed through the sim and compared turn-by-turn.
 fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
     if !DEBUG {
         return;
@@ -2048,10 +1773,6 @@ fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
         us.push_str(&format!("{},1,{},{};", u.id, u.x, u.y));
     }
     eprintln!("@TFD {} {} {} {}", state.turn, join(&state.my_inventory), join(&state.opp_inventory), us);
-
-    // Compact per-turn SUMMARY (printed LAST so it's the console line that survives
-    // truncation): both scores, tree count, and OPPONENT troll stats -- so we can read
-    // the real Boss 4's composition (fruit vs wood) and troll build from one screenshot.
     let score = |inv: &[i32; 6]| inv[0] + inv[1] + inv[2] + inv[3] + 4 * inv[5];
     let opp_builds: Vec<String> = state
         .opp_trolls
@@ -2070,14 +1791,11 @@ fn debug_log(state: &State, grid: &[String], width: i32, height: i32) {
         my_builds.join(","), opp_builds.join(",")
     );
 }
-
 fn main() {
     let stdin = io::stdin();
     let stdout = io::stdout();
     let mut reader = io::BufReader::new(stdin.lock());
     let mut out = io::BufWriter::new(stdout.lock());
-
-    // Read header: width height
     let header = match read_line(&mut reader) {
         Some(s) => s,
         None => return,
@@ -2085,7 +1803,6 @@ fn main() {
     let mut hw = header.split_whitespace();
     let width: i32 = hw.next().unwrap().parse().unwrap();
     let height: i32 = hw.next().unwrap().parse().unwrap();
-
     let mut grid_lines = Vec::with_capacity(height as usize);
     for _ in 0..height {
         match read_line(&mut reader) {
@@ -2093,9 +1810,7 @@ fn main() {
             None => return,
         }
     }
-
     let (walkable, my_shack, opp_shack, iron_cells, water_cells) = parse_grid(&grid_lines);
-
     let mut turn = 0i32;
     loop {
         turn += 1;
