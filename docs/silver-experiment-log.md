@@ -332,3 +332,24 @@ is the other structural constraint no knob fixed.
 Loss decomposition vs scriptboss (400 seeds): 30% both-seat + 18% one-seat (vs 15/15 on
 silverboss) — the systematic pool is BIGGER vs the real script, so the "~66% ceiling"
 claim was model-specific; headroom exists but the obvious knobs are exhausted.
+
+### RHEA baseline upgrade (2026-07-04): rollout policy market-lite -> full evolved schedbot
+`policy_act` (rhea_bot.rs) now ports the ENTIRE evolved schedbot cascade as a per-troll
+rate market with the searched constants baked (FB 0.654, PRINT 8.36, ORCH_V 10, NEED_W
+1.0, RETW 0.592, LIQ_T 189, WF_MAX 13, MOW_R 4, CROP_RES 8, LATE_FREE 82): FB denial
+fells -> liquidation yield flip, LATE_FREE capacity gate, deficit-weighted harvest
+(next-troll (1,1,1,0) cost), mower, plum orchard, wood printer (pick+plant, species
+follows the spot), bootstrap chop-role. Bank-when-full is a market rate (not a hard
+rule) so seed-carrying printers outrank banking — the old hard rule would pick/drop
+livelock a cc1 troll; PICK anti-livelock = spot-exists + no-other-ferry + empty carry
+(replaces schedbot's 12-turn cross-turn cooldown, which rollouts can't keep).
+| bench | before | after |
+|---|---|---|
+| RH_MS=1 rhea vs schedbot 60 (pure policy) | 8.3%, margin -68.6 | **51.7%, +15.0** |
+| RH_MS=8 diag rhea vs printerbot 60 (rhea line) | 211.3 / 95% | **224.5 / 97%** (trolls 3.06->3.27, wood*4 70.8->112.5) |
+| RH_MS=8 rhea vs schedbot 80 | 13.8%, -55.7 | **55.0%, +13.2** |
+| RH_MS=8 rhea vs mybot 60 | 35.0%, -15.5 | **74.2%, +28.7** |
+NOTE: the earlier "printer-lite in the cascade = -80 density" finding was about
+HARD-priority planting; market-priced printing (schedbot's fix) transfers cleanly into
+the rollout baseline. Search on top of the strong baseline still adds (51.7 -> 55.0 as
+budget grows 1 -> 8 ms).
