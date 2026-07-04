@@ -63,15 +63,39 @@ fn envi(name: &str, d: i64) -> i64 {
     std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
 }
 
-/// Baseline per-troll policy on FastState (market-lite): full->bank,
-/// on-fruit->harvest, chopper->fell by yield-nearest, else harvest-nearest,
-/// endgame banking. Used for the opponent and for Task::Auto trolls.
+// Evolved schedbot constants (Monte-Carlo searched; see sched_bot.rs) baked
+// into the baseline policy — no env reads in the hot path.
+const FB: f64 = 0.654; // fell-vs-bank anchor rate (SB_FB)
+const PRINT_V: f64 = 8.36; // future value of one planted base seed (SB_PRINT)
+const ORCH_V: f64 = 10.0; // value of a plum-orchard slot (SB_ORCH_V)
+const NEED_W: f64 = 1.0; // deficit-fruit harvest boost (SB_NEED_W)
+const RETW: f64 = 0.592; // harvest return-leg weight (SB_RETW)
+const LIQ_T: i32 = 189; // turns_rem <= this -> liquidation fells (SB_LIQ_T)
+const WF_MAX: i32 = 13; // base-tree cap for the printer (SB_WF_MAX)
+const MOW_R: i32 = 4; // mow radius around own shack (SB_MOW_R)
+const CROP_RES: i16 = 8; // plum/apple bank reserve before planting them (SB_CROP_RES)
+const LATE_FREE: i32 = 82; // turns_rem <= this -> fells need free capacity (SB_LATE_FREE)
+const BASE_R: i32 = 3; // base radius for print/orchard/census (SB_BASE_R)
+const ORCH_N: usize = 2; // max plum trees near base (SB_ORCH_N)
+
+/// Baseline per-troll policy on FastState — a port of the FULL evolved
+/// schedbot cascade (sched_bot.rs), expressed as a per-troll rate market:
+/// every candidate task gets a marginal rate (points/turn) and the troll takes
+/// the argmax (deterministic tie-break: first candidate in schedbot's order).
+/// Tasks: BANK (full-load rate + endgame override), FELL (FB denial metric
+/// until the liquidation flip at turns_rem<=LIQ_T, then pure yield; LATE_FREE
+/// capacity gate), MOW (chop-capable non-chopper on own-base fruitless trees),
+/// HARVEST (deficit-weighted by the next troll's (1,1,1,0) cost), ORCHARD
+/// (carried plum -> water base cell) and PRINT (pick+plant crops at base;
+/// species follows the spot). Used for the opponent model and for Task::Auto
+/// trolls in rollouts and at emit time.
 fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i32, reserved: &mut [bool; MAXC]) -> FAct {
     let w = s.w;
     let me = cid(s.u_x[ui], s.u_y[ui], w);
     let free = s.free(ui);
     let carried: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
     let sh = s.shack[pl];
+    let osh = s.shack[1 - pl];
     let shc = cid(sh.0, sh.1, w);
     // nearest walkable drop cell
     let mut dropc = usize::MAX;
@@ -88,34 +112,86 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         }
     }
     let adj_shack = (s.u_x[ui] - sh.0).abs() + (s.u_y[ui] - sh.1).abs() <= 1;
-    // endgame banking
+    // endgame banking (hard rule = schedbot's 1000x endgame bank rate)
     if carried > 0 {
         let eta = (dropd as i32 + s.u_ms[ui] as i32 - 1) / s.u_ms[ui].max(1) as i32 + 1;
         if turns_rem <= eta + 1 {
             return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
         }
     }
-    if free == 0 {
-        return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
-    }
-    // on a plant?
-    if let Some(pi) = s.plant_at(s.u_x[ui], s.u_y[ui]) {
-        if s.u_chop[ui] >= 2 {
-            return FAct::Chop;
+    let ms = s.u_ms[ui].max(1) as i32;
+    let steps = |dist: i32| -> f64 { ((dist + ms - 1) / ms).max(0) as f64 };
+
+    // roster facts: own count + chop role (real chopper, or the bootstrap
+    // starter — max (cc, -id) among chop>=1 — while no chop>=2 troll exists)
+    let mut n_own = 0i16;
+    let mut has_real = false;
+    for oi in 0..s.n_units as usize {
+        if s.u_pl[oi] as usize != pl {
+            continue;
         }
-        if s.p_fruits[pi] > 0 && s.u_hp[ui] > 0 {
-            return FAct::Harvest;
+        n_own += 1;
+        if s.u_chop[oi] >= 2 {
+            has_real = true;
         }
     }
-    // (printer-lite in the rule cascade tested: -80 density, trolls 1.91 —
-    // hard-priority planting hijacks harvesters. Printing belongs to the
-    // SEARCH via Task::PlantHere mutations, not to the baseline policy.)
-    // choose a target
-    let is_chopper = s.u_chop[ui] >= 2;
-    let mut best_c = usize::MAX;
+    let mut boot = usize::MAX;
+    if !has_real {
+        for oi in 0..s.n_units as usize {
+            if s.u_pl[oi] as usize != pl || s.u_chop[oi] < 1 {
+                continue;
+            }
+            if boot == usize::MAX
+                || (s.u_cc[oi], -(s.u_id[oi] as i32)) > (s.u_cc[boot], -(s.u_id[boot] as i32))
+            {
+                boot = oi;
+            }
+        }
+    }
+    let is_chop_role = s.u_chop[ui] >= 2 || boot == ui;
+    let liquidation = turns_rem <= LIQ_T;
+    let fell_needs_free = turns_rem <= LATE_FREE;
+    // mow sustainability gate: a banked replacement seed (or liquidation)
+    let mow_ok = !is_chop_role && s.u_chop[ui] > 0 && (s.inv[pl][3] >= 1 || liquidation);
+
     let mut best_v = -1e18f64;
+    let mut best_act = FAct::Idle;
+    let mut best_cell = usize::MAX;
+    macro_rules! consider {
+        ($v:expr, $a:expr, $c:expr) => {{
+            let v: f64 = $v;
+            if v > best_v {
+                best_v = v;
+                best_act = $a;
+                best_cell = $c;
+            }
+        }};
+    }
+
+    // BANK when full: rate carried/t — competes in the market (a seed-carrying
+    // printer must be allowed to outrank banking, else cc1 pick->drop livelock)
+    if carried > 0 && free == 0 && dropc != usize::MAX {
+        let t = steps(dropd as i32) + 1.0;
+        consider!(
+            carried as f64 / t,
+            if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) },
+            usize::MAX
+        );
+    }
+
+    // plants: FELL / MOW / HARVEST (+ base census for printer & orchard)
+    let mut base_trees = 0i32;
+    let mut orchard_n = 0usize;
     for pi in 0..s.n_plants as usize {
-        let pc = cid(s.p_x[pi], s.p_y[pi], w);
+        let (px, py) = (s.p_x[pi], s.p_y[pi]);
+        let man_home = ((px - sh.0).abs() + (py - sh.1).abs()) as i32;
+        if man_home <= BASE_R {
+            base_trees += 1;
+            if s.p_type[pi] == 0 {
+                orchard_n += 1;
+            }
+        }
+        let pc = cid(px, py, w);
         if reserved[pc] {
             continue;
         }
@@ -123,33 +199,146 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         if d == 255 {
             continue;
         }
-        let steps = (d as i32 + s.u_ms[ui] as i32 - 1) / s.u_ms[ui].max(1) as i32;
-        let v = if is_chopper {
-            let chop_t = (s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32;
-            let wood = (s.p_size[pi].min(free) as i32 * 4) as f64;
-            if s.turn < 20 {
-                // OPENING DENIAL (mirrors the shipped scheduler): without it RHEA
-                // folds to contested bots (41.7% vs schedbot despite 226 density).
-                let osh = s.shack[1 - pl];
-                let deny = ((s.p_x[pi] - osh.0).abs() + (s.p_y[pi] - osh.1).abs()) as f64;
-                100.0 - (d as f64 + 3.0 * deny)
-            } else {
-                wood / (steps as f64 + chop_t as f64 + 1.0)
+        // FELL (chop role): mybot denial metric below a full bank rate; pure
+        // yield once liquidation starts; capacity-gated late.
+        if is_chop_role && s.u_chop[ui] > 0 && (!fell_needs_free || free > 0) {
+            let chop_t = ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
+            let t = steps(d as i32) + chop_t + 0.5 * steps(man_home) + 1.0;
+            if turns_rem as f64 > t {
+                let rate = if liquidation {
+                    (s.p_size[pi].min(free) as i32 * 4) as f64 / t
+                } else {
+                    let man_opp = ((px - osh.0).abs() + (py - osh.1).abs()) as i32;
+                    FB - (d as i32 + 3 * man_opp) as f64 * 0.005
+                };
+                consider!(rate, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
             }
-        } else if s.p_fruits[pi] > 0 && s.u_hp[ui] > 0 {
-            let take = s.p_fruits[pi].min(s.u_hp[ui]).min(free) as f64;
-            take / (steps as f64 + 1.0)
-        } else {
-            continue;
-        };
-        if v > best_v {
-            best_v = v;
-            best_c = pc;
+        }
+        // MOW: own-base fruitless size>=2 trees at pure yield (-1 seed cost)
+        if mow_ok && free > 0 && man_home <= MOW_R && s.p_size[pi] >= 2 && s.p_fruits[pi] == 0 {
+            let chop_t = ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
+            let t = steps(d as i32) + chop_t + 0.5 * steps(man_home) + 1.0;
+            if turns_rem as f64 > t {
+                let wood = (s.p_size[pi].min(free) as i32 * 4) as f64 - 1.0;
+                consider!(wood / t, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
+            }
+        }
+        // HARVEST: one-turn take / (travel + RETW*return), deficit-weighted
+        if s.p_fruits[pi] > 0 && s.u_hp[ui] > 0 && free > 0 {
+            let t = steps(d as i32) + 1.0 + RETW * steps(man_home);
+            if turns_rem as f64 > t {
+                let mut rate = s.p_fruits[pi].min(s.u_hp[ui]).min(free) as f64 / t;
+                let ty = s.p_type[pi] as usize;
+                // fruit types short for the NEXT troll ((1,1,1,0): n+1 each)
+                if ty < 3 && s.inv[pl][ty] < n_own + 1 {
+                    rate *= 1.0 + NEED_W;
+                }
+                consider!(rate, if me == pc { FAct::Harvest } else { FAct::Move(pc as u8) }, pc);
+            }
         }
     }
-    if best_c != usize::MAX {
-        reserved[best_c] = true;
-        return FAct::Move(best_c as u8);
+
+    // ORCHARD + PRINT: base-spot scan (only when eligible; fixed 7x7 diamond)
+    let window = s.turn >= 20 && s.turn <= 230;
+    let want_orch = !is_chop_role && s.u_carry[ui][0] > 0 && orchard_n < ORCH_N;
+    let want_print = !is_chop_role && window && base_trees < WF_MAX;
+    if want_orch || want_print {
+        // spot blockers: existing plants + other own trolls
+        let mut occ = [false; MAXC];
+        for pi in 0..s.n_plants as usize {
+            occ[cid(s.p_x[pi], s.p_y[pi], w)] = true;
+        }
+        for oi in 0..s.n_units as usize {
+            if oi != ui && s.u_pl[oi] as usize == pl {
+                occ[cid(s.u_x[oi], s.u_y[oi], w)] = true;
+            }
+        }
+        let mut print_c = usize::MAX;
+        let mut print_key = (2i32, i32::MAX); // (!water_adj, dist)
+        let mut orch_c = usize::MAX;
+        let mut orch_d = i32::MAX;
+        for dy in -(BASE_R as i8)..=(BASE_R as i8) {
+            for dx in -(BASE_R as i8)..=(BASE_R as i8) {
+                if (dx.abs() + dy.abs()) as i32 > BASE_R {
+                    continue;
+                }
+                let (x, y) = (sh.0 + dx, sh.1 + dy);
+                if x < 0 || y < 0 || x >= s.w || y >= s.h {
+                    continue;
+                }
+                let c = cid(x, y, w);
+                if !nav.walk[c] || occ[c] || reserved[c] {
+                    continue;
+                }
+                let dd = nav.d(me, c);
+                if dd == 255 {
+                    continue;
+                }
+                if want_print {
+                    let k = (!s.water_adj[c] as i32, dd as i32);
+                    if k < print_key {
+                        print_key = k;
+                        print_c = c;
+                    }
+                }
+                if want_orch && s.water_adj[c] && (dd as i32) < orch_d {
+                    orch_d = dd as i32;
+                    orch_c = c;
+                }
+            }
+        }
+        // ORCHARD: carried PLUM -> water base cell; ORCH_V/t outranks the
+        // printer's PRINT_V/t, so plum-carriers build the orchard first.
+        if orch_c != usize::MAX {
+            let t = steps(orch_d) + 1.0;
+            consider!(
+                ORCH_V / t,
+                if me == orch_c { FAct::Plant(0) } else { FAct::Move(orch_c as u8) },
+                orch_c
+            );
+        }
+        // PRINT: species follows the spot (wet: apple/plum above a bank
+        // reserve, else banana; dry: banana).
+        if want_print && print_c != usize::MAX {
+            let species: usize = if s.water_adj[print_c] {
+                if s.inv[pl][2] >= CROP_RES || s.u_carry[ui][2] > 0 {
+                    2
+                } else if s.inv[pl][0] >= CROP_RES || s.u_carry[ui][0] > 0 {
+                    0
+                } else {
+                    3
+                }
+            } else {
+                3
+            };
+            if s.u_carry[ui][species] > 0 {
+                let t = steps(print_key.1) + 1.0;
+                consider!(
+                    PRINT_V / t,
+                    if me == print_c { FAct::Plant(species as u8) } else { FAct::Move(print_c as u8) },
+                    print_c
+                );
+            } else if adj_shack && free > 0 && s.inv[pl][species] > 0 && carried == 0 {
+                // anti-livelock (rollout-simple, replaces the 12-turn PICK
+                // cooldown): only pick on a completely empty carry, and never
+                // while another own troll already ferries a seed.
+                let ferrying = (0..s.n_units as usize).any(|oi| {
+                    oi != ui
+                        && s.u_pl[oi] as usize == pl
+                        && (s.u_carry[oi][3] > 0 || s.u_carry[oi][species] > 0)
+                });
+                if !ferrying {
+                    consider!(PRINT_V / 2.0, FAct::Pick(species as u8), usize::MAX);
+                }
+            }
+        }
+    }
+
+    if best_v > -1e17 {
+        if best_cell != usize::MAX {
+            reserved[best_cell] = true;
+        }
+        return best_act;
     }
     if carried > 0 {
         return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
