@@ -13,6 +13,7 @@ pub mod silver_boss;
 pub mod script_boss;
 pub mod boss_v3;
 pub mod printer_bot;
+pub mod gold_elite;
 pub mod sched_bot;
 pub mod rhea_bot;
 pub mod mybot;
@@ -74,6 +75,7 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(script_boss::ScriptBoss::new()),
         Box::new(boss_v3::BossV3::new()),
         Box::new(printer_bot::PrinterBot::new()),
+        Box::new(gold_elite::GoldElite::new()),
         Box::new(sched_bot::SchedBot::new()),
         Box::new(rhea_bot::RheaBot::new()),
         Box::new(mybot::MyBot::new()),
