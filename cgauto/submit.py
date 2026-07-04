@@ -5,6 +5,14 @@ URL="https://www.codingame.com/ide/puzzle/spring-challenge-2026-troll-farm"
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
 MAIN=sys.argv[1] if len(sys.argv)>1 else "/home/tarstars/prj/troll_farm/rust/src/main.rs"
 code=open(MAIN).read()
+# HARD SIZE GATE: CodinGame rejects sources over 100k chars. A stale/oversized
+# artifact once burned 8+ submit attempts reading as throttle failures.
+CG_LIMIT = 99000
+if len(code) > CG_LIMIT:
+    print(f"SIZE GATE: {MAIN} is {len(code)} chars > {CG_LIMIT} — REFUSING to submit."
+          f" Minify first: rust/tools/minify.py", flush=True)
+    sys.exit(2)
+print(f"size gate ok: {len(code)} chars ({MAIN})", flush=True)
 
 cks=[]
 for line in open("/home/tarstars/prj/troll_farm/cgauto/cg_session.txt"):
