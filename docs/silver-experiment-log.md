@@ -164,6 +164,18 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### GOAL RE-DEFINED: Gold rank <=200 (rating >=15.46). WIN-RATE, not score.
+tass v1.4.0 plateaued at rank 392/rating 11.59. gold_elite verified at its greedy
+ceiling: NO knob beats the mirror (farm/liq/spec/max/starter all 40-49%). But for a
+WIN-RATE goal the lever is converting LOSSES, not raising margins. v1.4.1-nostarve:
+the chopper fells the nearest reachable tree (size>=1) anywhere instead of idling when
+its local farm empties (arena shutdown signature: 5 plants / wood 22 / 115-pt losses).
+Measured win-rate gain vs FIXED opponents (self-play masked it — env hit both sides):
+schedbot 52.7->63.3, scriptboss 70->78.7, silverboss 91->98, mybot 74.7->77.7,
+printerbot 98->98.7. First change this session with a consistent measured win-rate lift.
+The #1 bot GoodDevel (rating 25.9) decoded: chopper t13-14, 144-166 chops, 30-44 banana
+plants, wood 69-71 — our clone matches on good maps, collapsed on hard ones (the fix).
+
 ### EFFICIENCY AUDIT (2026-07-04, user-prompted) — the search wasn't starved, we starved it
 Platform: **50ms/turn**, 1000ms turn 1 (referee-verified). We hardcoded a 28ms budget —
 44% of allowed compute WASTED. Profiled the fast engine (src/bin/profsim.rs):
