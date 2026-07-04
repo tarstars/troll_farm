@@ -164,6 +164,22 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### EFFICIENCY AUDIT (2026-07-04, user-prompted) — the search wasn't starved, we starved it
+Platform: **50ms/turn**, 1000ms turn 1 (referee-verified). We hardcoded a 28ms budget —
+44% of allowed compute WASTED. Profiled the fast engine (src/bin/profsim.rs):
+- BARE ENGINE: 71,000 rollouts/sec = **3,202 full 40-turn rollouts per 45ms turn** (14us
+  each); FastState copy ~0ns (1278B, register-cheap); NavTable::build 0.12ms once/game.
+- But RHEA achieved only ~30 rollouts/turn -> the ~100x loss is ENTIRELY the full-
+  scheduler policy_act running inside every rollout step (per troll/turn: 2 plant scans,
+  a 242-cell bitmap, base census). The engine is competitive; the ROLLOUT POLICY is the
+  hotspot. My earlier "search is a dead end" was WRONG in cause: fixable, not fundamental.
+- Competitive CG practice (refs): top bots maximize sims/turn (10k-1M) via LIGHT
+  (random/tiny-heuristic) rollouts + full budget + zero hot-path allocation; quality-vs-
+  count tradeoff — we went 100% quality (30 sims), the sweet spot is a light policy.
+REVIVAL PATH (post-200, toward Legend): budget 28->45ms + a cheap rollout policy (bare
+engine + minimal heuristic ~20us/rollout) -> ~2000 real search rollouts/turn. v1.4.0
+gold_elite (greedy, no search) is live at arena avg 194 meanwhile.
+
 ### THE ANSWER (2026-07-04): ship gold_elite — the winning meta, not our hybrid
 gold_elite (built as a benchmark) turns out to be our STRONGEST bot AND the right thing
 to ship. Clean sim (positive margin everywhere): vs schedbot 54.2% (+7.5), vs rhea 54.4%
