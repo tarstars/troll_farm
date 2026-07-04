@@ -164,6 +164,21 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### GOAL: Gold rank <=100 (rating >=19.37). The TRAVEL thesis + throttle-gated grind.
+Progress ladder (WIN-RATE = rank; only ARENA-MOTIVATED fixes transfer, sim gains don't):
+v1.4.0 rank 392 -> v1.4.1 anti-starvation (chopper never idles) 187 -> v1.4.2 starter
+anti-idle (same 187 in arena despite +5pp sim: TRANSFER WALL) -> v1.4.3 roam-cap 10
+(TRAVEL is the confirmed arena cost) BROKE 187 -> rank ~174 -> v1.4.4 nearest-plant
+(cut printer travel; validated non-negative) QUEUED behind heavy throttle.
+KNOBS EXHAUSTED (verified: FARM_R/LIQ_T/FARM_MAX/spec all within noise vs the pool at
+200 games). Residual travel is INHERENT (fell<->bank cycle, 60% of troll-turns, 0% idle).
+Wood gap to the top: us ~42, GoodDevel (rank 98) ~70 — the rank-100 tier is ~50-55.
+AUTONOMOUS CONTINUATION set up: (a) detached nohup submit loop lands v1.4.4 (agentId-
+verified); (b) durable cron 7003406d (every 2h, 7-day expiry) resumes the full pipeline:
+check rank -> land v1.4.4 -> decode losses -> next STRUCTURAL cut -> validate non-negative
+-> minify+size-gate -> ship. Rank 100 is a throttle-gated grind (~10-20 ranks/cut, ~40min
+convergence each), NOT a single action. Method + artifacts fully committed & resumable.
+
 ### GOAL RE-DEFINED: Gold rank <=200 (rating >=15.46). WIN-RATE, not score.
 tass v1.4.0 plateaued at rank 392/rating 11.59. gold_elite verified at its greedy
 ceiling: NO knob beats the mirror (farm/liq/spec/max/starter all 40-49%). But for a
