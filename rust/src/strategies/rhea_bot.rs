@@ -342,6 +342,8 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
     for ui in 0..s.n_units as usize {
         trolls[s.u_pl[ui] as usize] += 1.0;
     }
+    // CAPPED tree-asset term: uncapped it made planting near-free in eval
+    // (arena decode: 68 PLANTs, 30 chops, 54-point game — plant mania).
     let mut base_trees = [0f64; 2];
     for pi in 0..s.n_plants as usize {
         for p in 0..2usize {
@@ -351,6 +353,8 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
             }
         }
     }
+    base_trees[0] = base_trees[0].min(12.0);
+    base_trees[1] = base_trees[1].min(12.0);
     (s.score(me) - s.score(1 - me)) as f64
         + 0.5 * (carried[me] - carried[1 - me])
         + 12.0 * (trolls[me] - trolls[1 - me])
@@ -403,7 +407,7 @@ impl Strategy for RheaBot {
                     Task::GoTree((self.rand() as usize % nrp) as u8)
                 } else if roll < 60 {
                     Task::GoBank
-                } else if roll < 70 {
+                } else if roll < 65 {
                     Task::PlantHere(3) // banana
                 } else if roll < 78 {
                     Task::GoMine
@@ -520,6 +524,9 @@ impl Strategy for RheaBot {
             [n + t.0 * t.0, n + t.1 * t.1, n + t.2 * t.2, 0, n + t.3 * t.3, 0]
         };
         let n_chop = my_units.iter().filter(|&&ui| root.u_chop[ui] >= 2).count();
+        // (mid-game high-carry hauler (2,3,1,2) tested AGAIN: density held but
+        // schedbot h2h collapsed 55->29% — the lemon n+9 drain; expensive specs
+        // remain falsified in OUR economy despite powering the elite's.)
         let spec = if n_chop < 2 && afford(cost((2, 2, 0, 2))) {
             Some((2, 2, 0, 2))
         } else {
