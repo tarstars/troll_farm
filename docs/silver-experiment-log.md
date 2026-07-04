@@ -164,6 +164,21 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### CRITICAL PIVOT (2026-07-04): the RHEA search is throughput-starved
+Instrumented eval-count/turn: RHEA does **5 rollouts/turn at 8ms, 18-36 at CG's real
+28ms**, and `improved_over_policy` is MOSTLY FALSE — the search almost never beats the
+plan its baseline policy already produces. Cause: porting the full evolved scheduler
+into the rollout baseline made each policy_act ~5x costlier, so a 40-turn 2-player
+rollout costs ~1ms. RHEA's 58% h2h edge over bare schedbot comes from the anti-stall
+watchdog + asset-eval, NOT lookahead. CONSEQUENCE: the live bot's behavior == the
+evolved scheduler; the arena plateau at ~170 is the SCHEDULER's ceiling, and the
+deficit is WOOD PRODUCTION in the baseline (real-data: we lose wood 74 vs 165 in
+losses), not search quality. To ever make the search matter would need ~10x cheaper
+rollouts (H=20 + a cheap opponent heuristic instead of the full scheduler) -> ~300
+evals/turn; parked as a lever, LOWER priority than fixing the baseline's wood.
+Building a STRONG gold_elite sparring bot (printerbot only banks 129, useless) so the
+sim finally discriminates and the wood fix can be measured -> arena.
+
 ### v1.3.5-fullpolicy (2026-07-04 afternoon): the baseline-policy leap
 Subagent ported the FULL evolved scheduler into RHEA's rollout baseline as a per-troll
 rate market (orchard/printer/pick/fell/harvest/mow/bank, evolved constants baked):
