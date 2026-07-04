@@ -164,6 +164,20 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### THE ANSWER (2026-07-04): ship gold_elite — the winning meta, not our hybrid
+gold_elite (built as a benchmark) turns out to be our STRONGEST bot AND the right thing
+to ship. Clean sim (positive margin everywhere): vs schedbot 54.2% (+7.5), vs rhea 54.4%
+(+15.8 @28ms), vs mybot 72%, vs printerbot 99%. Production ceiling 275 (ours: 205) —
+decisive, because you cannot average 200 with a 205 ceiling that contests down to 170;
+you need gold_elite's ceiling. It plays the real Gold-winning meta (2-troll pure
+production, perma-chop local banana crops, 0.54 wood/chop vs our 0.16), so it should
+TRANSFER better than our denial-hybrid, which the production-heavy field punishes.
+Failed en route (measured vs the new gold_elite discriminator): SB_CHOP_FIRST hoard-for-
+chopper (win 26%, wood unchanged — the deficit is production EFFICIENCY, not just the
+missing chopper); cheap-opponent RHEA rollouts (47% h2h — opponent-model overfit).
+Both RHEA search paths dead: accurate rollouts too slow (30 evals/turn), cheap ones
+overfit. => decide_elite is the live bot (v1.4.0); RHEA/scheduler kept as dead code.
+
 ### CRITICAL PIVOT (2026-07-04): the RHEA search is throughput-starved
 Instrumented eval-count/turn: RHEA does **5 rollouts/turn at 8ms, 18-36 at CG's real
 28ms**, and `improved_over_policy` is MOSTLY FALSE — the search almost never beats the
