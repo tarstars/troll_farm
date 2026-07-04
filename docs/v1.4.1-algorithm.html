@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>tass v1.4.1-nostarve — Algorithm Reference</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  body { font-family: "DejaVu Sans","Segoe UI",sans-serif; font-size: 10pt; color:#1a1a1a; line-height:1.45; }
+  h1 { font-size: 20pt; margin:0 0 1mm; letter-spacing:-.4px; }
+  .sub { color:#555; font-size:10.5pt; margin-bottom:6mm; }
+  h2 { font-size:13.5pt; color:#12365e; border-bottom:2px solid #2b6cb0; padding-bottom:1mm; margin:8mm 0 2mm; page-break-after:avoid; }
+  h3 { font-size:11pt; color:#2b6cb0; margin:4mm 0 1mm; page-break-after:avoid; }
+  code,.p { font-family:"DejaVu Sans Mono",monospace; font-size:8.7pt; background:#eef2f7; padding:.4px 3px; border-radius:3px; }
+  pre { background:#0f1b2d; color:#d6e2f0; padding:3mm 4mm; font-size:8.3pt; border-radius:4px; white-space:pre-wrap; page-break-inside:avoid; line-height:1.4; }
+  pre .c { color:#7fa8c9; } pre .k { color:#e0a86b; } pre .s { color:#8fce8f; }
+  table { border-collapse:collapse; width:100%; margin:2mm 0; font-size:9pt; page-break-inside:avoid; }
+  th { background:#12365e; color:#fff; text-align:left; padding:1.3mm 2.5mm; }
+  td { border-bottom:1px solid #cbd5e0; padding:1.3mm 2.5mm; vertical-align:top; }
+  tr:nth-child(even) td { background:#f6f9fc; }
+  .key { background:#ebf6ff; border-left:4px solid #2b6cb0; padding:2.5mm 4mm; margin:3mm 0; page-break-inside:avoid; }
+  .win { background:#eefbf0; border-left:4px solid #2f855a; padding:2.5mm 4mm; margin:3mm 0; page-break-inside:avoid; }
+  ul,ol { margin:1mm 0; padding-left:6mm; } li { margin-bottom:1mm; }
+  .small { font-size:8.5pt; color:#555; }
+  .flow { font-family:"DejaVu Sans Mono",monospace; font-size:8.5pt; background:#f6f9fc; border:1px solid #cbd5e0; padding:3mm; border-radius:4px; white-space:pre; page-break-inside:avoid; }
+</style>
+</head>
+<body>
+
+<h1>tass — bot <code>v1.4.1-nostarve</code></h1>
+<div class="sub">The agent that broke the Gold rank-200 ceiling (arena rank 392 → 187 / 530).<br>
+CodinGame Spring Challenge 2026 · "Troll Farm" · 2026-07-04 · a two-troll production ("gold-elite") strategy.</div>
+
+<h2>1. One-paragraph summary</h2>
+<p>
+<b>v1.4.1 is a greedy, two-troll <i>wood-production</i> bot.</b> It trains exactly one dedicated
+chopper and keeps both trolls productive every single turn. The starter funds and then continuously
+re-seeds a tight cluster of fast-growing BANANA trees next to the shack; the chopper fells those trees
+in a perpetual local loop, banking wood (worth <b>4×</b> a fruit) whenever it fills. The decisive
+feature that this version adds over its predecessor — and the reason it broke rank 200 — is the
+<b>anti-starvation rule</b>: a troll <i>never idles</i>. When its local farm is momentarily empty, it
+falls back to felling the nearest reachable tree anywhere on the map rather than parking. Eliminating
+zero-value turns lifted the head-to-head win rate against the production-heavy Gold field by
+7–11 percentage points, which the ranking system converted into a ~160-place climb.
+</p>
+
+<h2>2. Why this strategy — the game's economics</h2>
+<p>The referee scores a player as <code>Σ fruit_in_shack + 4·wood_in_shack</code> (iron scores 0). Wood is
+4× leveraged, so a bot that converts its effort into wood out-scores a fruit farmer. Trees grow a
+"size" each cooldown tick, then bear fruit; a felled tree yields <code>min(size, free_carry)</code> wood
+and is gone. The relevant per-type facts the algorithm exploits:</p>
+<table>
+<tr><th>Species</th><th>Grow cooldown</th><th>Health = base + slope·size</th><th>Why the bot cares</th></tr>
+<tr><td><b>BANANA</b></td><td>6 (→4 by water)</td><td>2 + 1·size (very low)</td><td>Grows fastest AND is cheapest to fell (≈2 chops at size 2) → the ideal crop. Worthless for training, so pure surplus.</td></tr>
+<tr><td>APPLE</td><td>9 (→2 by water)</td><td>8 + 3·size (tanky)</td><td>Water-apple grows very fast but is slow to fell — used as a secondary crop only near water.</td></tr>
+<tr><td>PLUM/LEMON</td><td>8 (→3)</td><td>4 + 2·size</td><td>Training currency (troll cost = n+stat²); harvested only to fund the chopper.</td></tr>
+</table>
+<div class="key"><b>The winning insight (decoded from the top Gold bots GoodDevel &amp; PonyPonyCodeCode):</b>
+2 trolls, harvest-first opening, then a <b>banana printer + perma-chopper</b> banking ~40–70 wood by
+turn 300 (= 160–280 points). Our earlier denial/hybrid bots banked ~26 wood and lost the production
+race; matching this meta is what reached Gold, and refining its efficiency is what climbs it.</div>
+
+<h2>3. Architecture: two trolls, fixed roles</h2>
+<p>The bot commits to <b>exactly two trolls</b> (<code>GE_MAX = 2</code>): the (1,1,1,1) <b>starter</b> it
+begins with, plus <b>one trained chopper</b> with talents <code>(ms 2, cc 2, hp 0, chop 2)</code> —
+abbreviated <code>(2,2,0,2)</code>. Role is decided purely by <code>chop_power ≥ 2</code>.</p>
+<table>
+<tr><th>Troll</th><th>Talents</th><th>Job</th></tr>
+<tr><td><b>Starter</b></td><td>(1,1,1,1)</td><td>① harvest fruit + mine iron to <i>fund</i> the chopper (turns 1–~20); ② after the chopper exists, run the <b>banana printer</b>: pick/harvest bananas and re-plant them near base; ③ help chop (it has chop 1) when the farm is stocked.</td></tr>
+<tr><td><b>Chopper</b></td><td>(2,2,0,2)</td><td>Perma-fell local trees; bank on fill. cc 2 means it fills after 2 wood → short trips. hp 0 (can't harvest) makes it cheaper (saves apple), and it never needs to.</td></tr>
+</table>
+<p class="small">Why not the boss's expensive cc-4 chopper or 3–4 trolls? Both were measured worse: a
+cc-4 chopper drains the economy (lemon cost n+16), and every alternative troll count / spec loses to
+the 2-troll <code>(2,2,0,2)</code> configuration in head-to-head simulation.</p>
+
+<h2>4. Training policy</h2>
+<pre><span class="c">// once per game: train the ONE chopper as soon as it is affordable, then stop.</span>
+want_chopper = (troll_count &lt; 2) &amp;&amp; (no troll has chop ≥ 2)
+cost         = training_cost(n, (2,2,0,2))   <span class="c">// n + ms², n + cc², n + hp², n + chop²  (iron)</span>
+train_now    = want_chopper &amp;&amp; can_afford(cost)
+need_iron    = want_chopper &amp;&amp; iron &lt; cost.iron &amp;&amp; fruit_already_covers_cost
+need_fund[t] = inv[t] &lt; cost[t]   <span class="c">// which of plum/lemon/apple still block the chopper</span></pre>
+<p>Until the chopper is affordable the starter is steered by <code>need_fund</code> (harvest the missing
+fruit types) and <code>need_iron</code> (mine iron). This funds the chopper around turn 13–25 on normal
+maps — matching the decoded elite's timing.</p>
+
+<h2>5. Per-turn decision flow</h2>
+<p>Each turn, for every troll (sorted by id) the bot runs a fixed priority cascade and emits one command.
+A per-troll BFS distance map <code>d</code> over walkable cells is computed once; a <code>reserved</code>
+set prevents two trolls from targeting the same cell.</p>
+
+<h3>5a. Chopper cascade</h3>
+<div class="flow">CHOPPER (chop ≥ 2):
+ 1. endgame? (turns_left ≤ dist_home+2 with a carried load)  → bank it
+ 2. full (free == 0)                                          → bank
+ 3. standing on a fellable tree (size ≥ fell_size)            → CHOP
+ 4. a fellable own-half tree in roam range exists             → MOVE toward the nearest/fastest
+ 5. ★ ANTI-STARVATION: farm empty → nearest reachable tree    → MOVE/CHOP it  (size ≥ 1, anywhere)
+ 6. carrying something                                        → bank the partial load
+ 7. otherwise                                                 → park by the shack (last resort)</div>
+
+<h3>5b. Starter cascade</h3>
+<div class="flow">STARTER (chop 1):
+ 1. endgame banking (same rule)
+ 2. carrying a banana &amp; farm has room → walk to a free base cell &amp; PLANT it   (printer, step B)
+ 3. full → bank
+ 4. on a ripe tree we want → HARVEST   (funding: deficit fruit; post-fund: only banana/water-apple seeds)
+ 5. FUNDING PHASE: MINE iron / go harvest the fruit types the chopper still needs
+ 6. BANANA PRINTER (post-funding):
+       a. banked bananas at shack   → PICK one   (fastest seed cycle)      (printer, step A)
+       b. no banked seed            → go HARVEST a native banana/water-apple to get one
+ 7. farm full / no seeds → help CHOP (chop 1), else
+    ★ (v1.4.2 also applies anti-starvation here), else park</div>
+
+<h2>6. The banana printer — the wood engine</h2>
+<div class="key">The printer is a closed loop that keeps a dense cluster of ~fast-growing banana trees
+within <code>farm_r = 3</code> of the shack (cap <code>farm_max = 12</code>), so the chopper always has a
+ripe, low-health tree a step away — no travel, no idle.</div>
+<ol>
+<li><b>Seed acquisition (A):</b> the starter <code>PICK</code>s a banana out of the shack inventory
+(bananas banked from felling/harvesting), or if none are banked, <code>HARVEST</code>s a native banana
+tree to obtain one.</li>
+<li><b>Planting (B):</b> carrying a banana, it walks to the nearest free base cell — <b>preferring
+water-adjacent cells</b> (banana cooldown 6→4 beside water) — and <code>PLANT</code>s it.</li>
+<li><b>Felling:</b> the chopper fells these local bananas at <code>fell_size = 2</code> (2 wood, ≈2 chops),
+banks at cc 2, and the loop repeats. Banked fruit stays near zero — everything funnels into wood.</li>
+</ol>
+<p class="small">Species choice is deliberate: banana's cooldown-6 growth and health 2+size give the best
+wood-per-chop-time of any tree; water-apple is used only as a secondary seed when standing on one.</p>
+
+<h2>7. ★ The anti-starvation rule (why v1.4.1 broke rank 200)</h2>
+<div class="win"><b>The change.</b> Previously, when a chopper had no fellable tree in its local farm
+(<code>nearest_fell</code> returned nothing), it fell through to <code>park</code> — it stood next to the
+shack doing nothing. On maps where the printer could not keep the farm stocked (banana-poor or contested
+starts) this produced the arena's shutdown games: <b>~5 plants, the chopper wandering, ~22 wood, a
+115-point loss.</b></div>
+<pre><span class="c">// v1.4.1 fallback, inserted just before "park":</span>
+<span class="k">if</span> local farm empty {
+    tc = <span class="s">nearest reachable tree</span> with size ≥ 1, minimising  steps(travel) + ceil(health/chop)
+    <span class="k">if</span> tc exists { <span class="k">if</span> on it → CHOP  <span class="k">else</span> → MOVE toward it }   <span class="c">// 1 wood beats 0</span>
+}</pre>
+<p>Felling a size-1 tree for a single wood is worth far more than an idle turn. This converts the
+shutdown <i>losses</i> into competitive games. Because Gold rank is <b>win-rate driven</b> (not score
+margin), turning losses into wins is pure ranking gain.</p>
+<div class="win"><b>Measured effect</b> — head-to-head win rate against fixed sparring opponents,
+anti-starvation OFF → ON:
+<table>
+<tr><th>Opponent (archetype)</th><th>OFF</th><th>ON</th><th>Δ</th></tr>
+<tr><td>schedbot (production)</td><td>52.7%</td><td>63.3%</td><td>+10.6</td></tr>
+<tr><td>scriptboss (wood-race boss)</td><td>70.0%</td><td>78.7%</td><td>+8.7</td></tr>
+<tr><td>silverboss (mixed)</td><td>91.0%</td><td>98.0%</td><td>+7.0</td></tr>
+<tr><td>mybot (denial)</td><td>74.7%</td><td>77.7%</td><td>+3.0</td></tr>
+</table>
+<b>Arena result:</b> Gold rank 392 → 187 (crossed the rank-200 line); rating 11.59 → 15.9.
+<span class="small">(A self-play A/B masks this: the env flag flips <i>both</i> mirror sides, so the gain
+only shows against a fixed third party — a measurement subtlety worth remembering.)</span></div>
+
+<h2>8. Safety mechanisms</h2>
+<table>
+<tr><th>Mechanism</th><th>What it prevents</th></tr>
+<tr><td><b>Endgame banking</b> — any carried load is banked when <code>turns_left ≤ eta_home + 1</code></td><td>Carried goods score 0 at t=300; a chopper's stranded wood is 4 pts each.</td></tr>
+<tr><td><b>Anti-stall watchdog</b> — if a troll issued a MOVE but its position is unchanged for 2+ turns, it sidesteps to a free adjacent cell</td><td>The #1 arena loss cause in earlier bots: a troll spamming an identical blocked MOVE for dozens of turns behind its own teammate/crop.</td></tr>
+<tr><td><b>Reserved-cell set</b></td><td>Two of our trolls targeting/standing on the same cell (referee forbids it; would waste a move).</td></tr>
+<tr><td><b>Shack-adjacent DROP cell</b> (never the shack itself)</td><td>The shack tile is unwalkable; a troll must DROP from an orthogonally-adjacent cell.</td></tr>
+</table>
+
+<h2>9. Tunable constants (arena defaults)</h2>
+<table>
+<tr><th>Constant</th><th>Default</th><th>Meaning</th></tr>
+<tr><td><code>GE_SPEC</code></td><td>(2,2,0,2)</td><td>the one chopper's talents (ms,cc,hp,chop)</td></tr>
+<tr><td><code>GE_MAX</code></td><td>2</td><td>total troll cap</td></tr>
+<tr><td><code>GE_FARM_R</code></td><td>3</td><td>banana-farm radius around the shack</td></tr>
+<tr><td><code>GE_FARM_MAX</code></td><td>12</td><td>max base trees the printer maintains</td></tr>
+<tr><td><code>GE_FELL_SIZE</code></td><td>2</td><td>min tree size the chopper fells normally (1 in liquidation / anti-starvation)</td></tr>
+<tr><td><code>GE_CHOP_R</code></td><td>99</td><td>max shack-distance the chopper roams for a normal fell</td></tr>
+<tr><td><code>GE_LIQ_T</code></td><td>34</td><td>final turns: fell anything reachable (liquidate standing wood)</td></tr>
+<tr><td><code>GE_STARTER_CHOP</code></td><td>1</td><td>let the starter help chop when the farm is stocked</td></tr>
+</table>
+<p class="small">All of these were swept; the defaults are a verified local optimum — no single knob beats
+a mirror of the default configuration.</p>
+
+<h2>10. Where the code lives</h2>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><span class="p">cgauto/submissions/v1.4.1-nostarve.rs</span></td><td>the exact submitted single-file bot (minified, stdlib-only, compiles with <code>rustc --edition 2021 -O</code>)</td></tr>
+<tr><td><span class="p">docs/v1.4.1-nostarve-readable.rs</span></td><td><b>readable un-minified</b> reconstruction of the same bot (verified: compiles &amp; reproduces the sample output)</td></tr>
+<tr><td><span class="p">rust/src/strategies/gold_elite.rs</span></td><td>the core algorithm as a library strategy, heavily commented — the clearest place to read it (current tip = v1.4.2, which additionally applies the anti-starvation rule to the starter)</td></tr>
+</table>
+<p class="small">The live decision function inside the single file is <code>fn decide_elite(state: &amp;State) -&gt; Vec&lt;String&gt;</code>.
+Generated 2026-07-04. The exhaustive experiment history is in <span class="p">docs/silver-experiment-log.md</span>.</p>
+
+</body>
+</html>
