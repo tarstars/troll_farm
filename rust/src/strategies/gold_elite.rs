@@ -254,15 +254,23 @@ impl Strategy for GoldElite {
 
             // ── STARTER (1,1,1,1): funder early, banana printer after ───────────
             // free base cell to plant on (prefer water-adjacent: banana cd 6->4)
-            let free_base = |water: bool| -> Option<Cell> {
+            // Plant at the NEAREST free base cell, with water-adjacency only a mild
+            // tiebreak (GE_WATER_W cells' worth), not a hard first pass. Water bananas
+            // grow faster (cd 6->4) but trekking to water is the printer's biggest
+            // travel sink — and travel is the arena's confirmed cost. Nearest-first
+            // cuts the shack<->farm round-trip.
+            let water_w = envi("GE_WATER_W", 2);
+            let free_base = |_water: bool| -> Option<Cell> {
                 game.walkable
                     .iter()
                     .filter(|c| manh(**c, shack) <= farm_r && d.contains_key(*c))
                     .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
-                    .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
                     .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
                     .filter(|c| !reserved.contains(*c))
-                    .min_by_key(|c| d[*c])
+                    .min_by_key(|c| {
+                        let wet = game.water.iter().any(|w| manh(*w, **c) == 1);
+                        d[*c] + if wet { 0 } else { water_w }
+                    })
                     .copied()
             };
 
