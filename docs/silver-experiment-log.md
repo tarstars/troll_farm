@@ -164,6 +164,19 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### RHEA arena iterations (2026-07-04)
+v1.3.3-unstall (RHEA + anti-stall watchdog) reached the arena: first 25 games avg 146 —
+PLANT MANIA (68 plants/30 chops/54-pt game): the uncapped 1.5*size tree-asset eval term
+made burying fruit read as profit. v1.3.4-nogarden (term capped at 12, mutation band
+halved): avg 172 @62% over 40 placement games, 200+ in 40%. No crashes in 55+ games —
+the fast-engine port is protocol-solid.
+DIAGNOSIS of the remaining sim->arena gap (226 sim vs ~172): on CG's slower servers the
+search degrades toward its BASELINE policy, which is market-LITE (no printer/orchard/
+deficit weights). Fix in flight: port the full evolved scheduler as the rollout baseline.
+PROCESS: submit.py + loop got a HARD SIZE GATE (user caught a stale 138k artifact
+burning 8+ 'throttle' failures that were really CG size rejections).
+Falsified again: mid-game high-carry hauler (2,3,1,2) — h2h 55->29% (lemon drain).
+
 ### GOLD ERA / goal: 200 avg in-game score (2026-07-03 morning)
 Baseline arena (v1.1.9 in Gold): 44% wins, avg 162. v1.2.0-market submitted 09:37:
 **71% wins, avg 172 (+10 real)** — deficit-weighted harvesting (NEED_W=1: roster
