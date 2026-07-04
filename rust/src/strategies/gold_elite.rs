@@ -224,6 +224,29 @@ impl Strategy for GoldElite {
                     cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
                     continue;
                 }
+                // ANTI-STARVATION: farm empty -> fell nearest reachable tree (size>=1)
+                // anywhere instead of idling (arena shutdown floor fix). GE_NOIDLE=0 off.
+                if envi("GE_NOIDLE", 1) == 1 {
+                    if let Some(tc) = game
+                        .plants
+                        .iter()
+                        .filter(|p| p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                        .min_by_key(|p| {
+                            let steps = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
+                            let chop_t = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
+                            steps + chop_t
+                        })
+                        .map(|p| p.pos())
+                    {
+                        if u.pos() == tc {
+                            cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                        } else {
+                            reserved.insert(tc);
+                            cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                        }
+                        continue;
+                    }
+                }
                 // nothing to fell: bank a partial load, else idle near base
                 cmd_by_id.insert(u.id, if u.total() > 0 { bank_cmd(u, &d) } else { park_cmd(u, &d) });
                 continue;
@@ -365,6 +388,29 @@ impl Strategy for GoldElite {
                     reserved.insert(tc);
                     cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
                     continue;
+                }
+                // anti-starvation for the starter too: fell the nearest reachable
+                // size>=1 tree anywhere (with free capacity) rather than parking idle.
+                if envi("GE_NOIDLE", 1) == 1 && u.free() > 0 {
+                    if let Some(tc) = game
+                        .plants
+                        .iter()
+                        .filter(|p| p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                        .min_by_key(|p| {
+                            let steps = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
+                            let chop_t = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
+                            steps + chop_t
+                        })
+                        .map(|p| p.pos())
+                    {
+                        if u.pos() == tc {
+                            cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                        } else {
+                            reserved.insert(tc);
+                            cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                        }
+                        continue;
+                    }
                 }
             }
             cmd_by_id.insert(u.id, if u.total() > 0 { bank_cmd(u, &d) } else { park_cmd(u, &d) });
