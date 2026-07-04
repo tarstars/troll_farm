@@ -164,6 +164,16 @@ an enemy chopper is within base radius; or train-priority guard (never PICK when
 training is fruit-blocked). Then: validate + submit -> likely crosses the boss.
 Elite-tier structural study (logiqub/Glandouille 300-430-pt engines) = after Gold.
 
+### v1.3.5-fullpolicy (2026-07-04 afternoon): the baseline-policy leap
+Subagent ported the FULL evolved scheduler into RHEA's rollout baseline as a per-troll
+rate market (orchard/printer/pick/fell/harvest/mow/bank, evolved constants baked):
+- pure policy (RH_MS=1): 8.3% -> 51.7% vs evolved schedbot — the floor RHEA degrades
+  to on slow CG servers is now our best scheduler itself;
+- with search (RH_MS=8): 55% vs schedbot, 74.2% vs mybot (was 35), density 224.5
+  with wood x4 = 112.5.
+main.rs synced verbatim (v1.3.5, 88.8k raw -> 71.5k minified, size-gated, timing
+verified 28ms/turn on a 30-turn synthetic). Queued behind the afternoon throttle.
+
 ### RHEA arena iterations (2026-07-04)
 v1.3.3-unstall (RHEA + anti-stall watchdog) reached the arena: first 25 games avg 146 —
 PLANT MANIA (68 plants/30 chops/54-pt game): the uncapped 1.5*size tree-asset eval term
