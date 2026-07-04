@@ -126,7 +126,7 @@ impl Strategy for GoldElite {
         let farm_r = envi("GE_FARM_R", 3);
         let farm_cap = envi("GE_FARM_MAX", 12) as usize;
         let fell_size = envi("GE_FELL_SIZE", 2);
-        let chop_r = envi("GE_CHOP_R", 99); // max manh(tree, shack) the chopper roams
+        let chop_r = envi("GE_CHOP_R", 10); // max manh(tree, shack) the chopper roams
         let liq_t = envi("GE_LIQ_T", 34); // last turns: fell anything reachable
         let starter_chop = envi("GE_STARTER_CHOP", 1) == 1;
         let liquidation = turns_rem <= liq_t;
