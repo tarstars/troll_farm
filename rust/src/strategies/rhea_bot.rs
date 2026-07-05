@@ -62,21 +62,40 @@ impl RheaBot {
 fn envi(name: &str, d: i64) -> i64 {
     std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
 }
+fn envf(name: &str, d: f64) -> f64 {
+    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+}
 
 // Evolved schedbot constants (Monte-Carlo searched; see sched_bot.rs) baked
 // into the baseline policy — no env reads in the hot path.
 const FB: f64 = 0.654; // fell-vs-bank anchor rate (SB_FB)
 const PRINT_V: f64 = 8.36; // future value of one planted base seed (SB_PRINT)
 const ORCH_V: f64 = 10.0; // value of a plum-orchard slot (SB_ORCH_V)
-const NEED_W: f64 = 1.0; // deficit-fruit harvest boost (SB_NEED_W)
 const RETW: f64 = 0.592; // harvest return-leg weight (SB_RETW)
 const LIQ_T: i32 = 189; // turns_rem <= this -> liquidation fells (SB_LIQ_T)
 const WF_MAX: i32 = 13; // base-tree cap for the printer (SB_WF_MAX)
 const MOW_R: i32 = 4; // mow radius around own shack (SB_MOW_R)
 const CROP_RES: i16 = 8; // plum/apple bank reserve before planting them (SB_CROP_RES)
-const LATE_FREE: i32 = 82; // turns_rem <= this -> fells need free capacity (SB_LATE_FREE)
 const BASE_R: i32 = 3; // base radius for print/orchard/census (SB_BASE_R)
 const ORCH_N: usize = 2; // max plum trees near base (SB_ORCH_N)
+
+// ── wood-economy tuning (this bot's rewrite) ─────────────────────────────────
+// The 2-troll wood economy is the champion (starter printer/funder + ONE cc2
+// perma-chopper). More trolls dilute; the eval's troll term drove 4-troll fruit
+// play that banks ~4x less wood than goldelite. Cap at 2.
+const MAX_TROLLS: usize = 2;
+// A REAL chopper (chop>=2) fells at WOOD THROUGHPUT (points/turn), which
+// dominates fruit-harvest rates (~1.9) so it commits to banking wood instead of
+// idling/harvesting. DENIAL_W biases the fell target toward CONTESTED (near-opp)
+// trees. The game is a scorched-earth RACE for a shared, finite tree pool —
+// grabbing the opponent's easy trees first wins (sim: 40%->67% vs goldelite). The
+// bias is additive+bounded (max DENIAL_W/2), so `wood/t` still penalizes distance:
+// it prefers contested trees but never treks blindly to a far one.
+const DENIAL_W: f64 = 8.0;
+// Additive priority for FUNDING the chopper (gather its training fruit + iron).
+// Large so it dominates the rate market until the cc2 chopper is affordable —
+// the old market never mined iron, so the chopper was never trained.
+const FUND_RATE: f64 = 50.0;
 
 /// Baseline per-troll policy on FastState — a port of the FULL evolved
 /// schedbot cascade (sched_bot.rs), expressed as a per-troll rate market:
@@ -90,6 +109,9 @@ const ORCH_N: usize = 2; // max plum trees near base (SB_ORCH_N)
 /// species follows the spot). Used for the opponent model and for Task::Auto
 /// trolls in rollouts and at emit time.
 fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i32, reserved: &mut [bool; MAXC]) -> FAct {
+    // tunable knobs (env-overridable for sweeps; cheap under policy-only play)
+    let denial_w = envf("RH_DENIAL", DENIAL_W);
+    let farm_cap = envi("RH_FARM", WF_MAX as i64) as i32;
     let w = s.w;
     let me = cid(s.u_x[ui], s.u_y[ui], w);
     let free = s.free(ui);
@@ -149,8 +171,17 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         }
     }
     let is_chop_role = s.u_chop[ui] >= 2 || boot == ui;
+    // FUNDING choppers: gather each cc2 chopper's training cost (plum/lemon + iron)
+    // until we have `n_chop_target`. training_cost_fast -> [plum,lemon,apple,_,iron,_].
+    let n_real_chop = (0..s.n_units as usize)
+        .filter(|&oi| s.u_pl[oi] as usize == pl && s.u_chop[oi] >= 2)
+        .count();
+    let max_trolls = envi("RH_MAXT", MAX_TROLLS as i64) as usize;
+    let n_chop_target = envi("RH_NCHOP", 1) as usize;
+    let want_chopper =
+        n_real_chop < n_chop_target && (n_own as usize) < max_trolls && s.u_chop[ui] < 2;
+    let chop_cost = crate::game::fast::training_cost_fast(n_own, (2, 2, 0, 2));
     let liquidation = turns_rem <= LIQ_T;
-    let fell_needs_free = turns_rem <= LATE_FREE;
     // mow sustainability gate: a banked replacement seed (or liquidation)
     let mow_ok = !is_chop_role && s.u_chop[ui] > 0 && (s.inv[pl][3] >= 1 || liquidation);
 
@@ -179,6 +210,29 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         );
     }
 
+    // FUND (boot starter): MINE iron for the chopper when iron still blocks it.
+    // Without this the market never affords the cc2 chopper on iron maps.
+    if want_chopper && s.has_iron && s.inv[pl][4] < chop_cost[4] && s.u_chop[ui] > 0 && free > 0 {
+        if s.iron_adj[me] {
+            consider!(FUND_RATE, FAct::Mine, usize::MAX);
+        } else {
+            let mut bc = usize::MAX;
+            let mut bd = 255u8;
+            for c in 0..(w as usize * s.h as usize) {
+                if s.iron_adj[c] && nav.walk[c] && !reserved[c] {
+                    let dd = nav.d(me, c);
+                    if dd < bd {
+                        bd = dd;
+                        bc = c;
+                    }
+                }
+            }
+            if bc != usize::MAX {
+                consider!(FUND_RATE - bd as f64 * 0.01, FAct::Move(bc as u8), bc);
+            }
+        }
+    }
+
     // plants: FELL / MOW / HARVEST (+ base census for printer & orchard)
     let mut base_trees = 0i32;
     let mut orchard_n = 0usize;
@@ -199,16 +253,24 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         if d == 255 {
             continue;
         }
-        // FELL (chop role): mybot denial metric below a full bank rate; pure
-        // yield once liquidation starts; capacity-gated late.
-        if is_chop_role && s.u_chop[ui] > 0 && (!fell_needs_free || free > 0) {
+        // FELL (chop role). REQUIRE free>0: felling while full collects no wood and
+        // just wastes the turn — the old `!fell_needs_free` let a FULL funder trek to
+        // a tree (rate 0.65) instead of banking (rate 0.25), stalling the opening.
+        let man_opp = ((px - osh.0).abs() + (py - osh.1).abs()) as i32;
+        if is_chop_role && s.u_chop[ui] > 0 && free > 0 {
             let chop_t = ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
             let t = steps(d as i32) + chop_t + 0.5 * steps(man_home) + 1.0;
             if turns_rem as f64 > t {
-                let rate = if liquidation {
-                    (s.p_size[pi].min(free) as i32 * 4) as f64 / t
+                let rate = if s.u_chop[ui] >= 2 || liquidation {
+                    // REAL chopper (or endgame): wood points per turn (travel- AND
+                    // chop-time-aware via t) + a bounded denial bias toward contested
+                    // trees. (An earlier travel-BLIND quick-fell bonus lifted goldelite
+                    // but was exploited by scriptboss/schedbot 86%->38% — dropped.)
+                    let wood = (s.p_size[pi].min(free) as i32 * 4) as f64;
+                    wood / t + denial_w / (1.0 + man_opp as f64)
                 } else {
-                    let man_opp = ((px - osh.0).abs() + (py - osh.1).abs()) as i32;
+                    // bootstrap starter (chop=1, no real chopper yet): fell only as a
+                    // low-priority fallback so it FUNDS (harvest/mine) the chopper first.
                     FB - (d as i32 + 3 * man_opp) as f64 * 0.005
                 };
                 consider!(rate, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
@@ -223,17 +285,24 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
                 consider!(wood / t, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
             }
         }
-        // HARVEST: one-turn take / (travel + RETW*return), deficit-weighted
+        // HARVEST: one-turn take / (travel + RETW*return). Only worth it when it
+        // FEEDS the economy: funding fruit (buys the chopper) or a BANANA seed (feeds
+        // the printer). Harvesting random plum/lemon post-funding banks 1 pt while the
+        // same turn spent printing/chopping is worth ~4 — goldelite avoids it (13 fruit
+        // vs our old 35). Liquidation grabs anything.
         if s.p_fruits[pi] > 0 && s.u_hp[ui] > 0 && free > 0 {
-            let t = steps(d as i32) + 1.0 + RETW * steps(man_home);
-            if turns_rem as f64 > t {
-                let mut rate = s.p_fruits[pi].min(s.u_hp[ui]).min(free) as f64 / t;
-                let ty = s.p_type[pi] as usize;
-                // fruit types short for the NEXT troll ((1,1,1,0): n+1 each)
-                if ty < 3 && s.inv[pl][ty] < n_own + 1 {
-                    rate *= 1.0 + NEED_W;
+            let ty = s.p_type[pi] as usize;
+            let funding = want_chopper && ty < 3 && s.inv[pl][ty] < chop_cost[ty];
+            let seed = ty == 3; // banana -> printer seed
+            if funding || seed || liquidation {
+                let t = steps(d as i32) + 1.0 + RETW * steps(man_home);
+                if turns_rem as f64 > t {
+                    let mut rate = s.p_fruits[pi].min(s.u_hp[ui]).min(free) as f64 / t;
+                    if funding {
+                        rate += FUND_RATE; // top priority: buy the chopper first
+                    }
+                    consider!(rate, if me == pc { FAct::Harvest } else { FAct::Move(pc as u8) }, pc);
                 }
-                consider!(rate, if me == pc { FAct::Harvest } else { FAct::Move(pc as u8) }, pc);
             }
         }
     }
@@ -241,7 +310,7 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
     // ORCHARD + PRINT: base-spot scan (only when eligible; fixed 7x7 diamond)
     let window = s.turn >= 20 && s.turn <= 230;
     let want_orch = !is_chop_role && s.u_carry[ui][0] > 0 && orchard_n < ORCH_N;
-    let want_print = !is_chop_role && window && base_trees < WF_MAX;
+    let want_print = !is_chop_role && window && base_trees < farm_cap;
     if want_orch || want_print {
         // spot blockers: existing plants + other own trolls
         let mut occ = [false; MAXC];
@@ -497,7 +566,7 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
         // training (both sides): greedy chopper-first, then harvester ladder
         for pl in 0..2usize {
             let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
-            if n >= 4 || turns_rem <= 20 {
+            if n as usize >= MAX_TROLLS || turns_rem <= 20 {
                 continue;
             }
             let n_chop = (0..s.n_units as usize)
@@ -507,8 +576,10 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
                 let c = crate::game::fast::training_cost_fast(n, t);
                 (0..6).all(|i| (i == 4 && !s.has_iron) || s.inv[pl][i] >= c[i])
             };
-            let spec = if n_chop < 2 && afford((2, 2, 0, 2)) {
-                Some((2, 2, 0, 2))
+            let spec = if n_chop < 1 {
+                // SAVE for the cc2 chopper — WAIT rather than waste the slot on a
+                // cheap body (which delays the chopper and inflates its n-scaled cost).
+                afford((2, 2, 0, 2)).then_some((2, 2, 0, 2))
             } else {
                 [(2i8, 2i8, 2i8, 0i8), (1, 2, 2, 0), (1, 1, 1, 0)]
                     .into_iter()
@@ -566,7 +637,12 @@ impl Strategy for RheaBot {
         let nav = navb.as_ref().unwrap();
         let root = FastState::from_game(game);
         let me = player;
-        let budget_ms = envi("RH_MS", 30) as u128;
+        // Search budget. DEFAULT 0 = pure policy: the evolutionary plan search over
+        // this (now strong) baseline consistently REGRESSED it — the short H=40 rollout
+        // eval rewards carried value / tree assets, so mutations that skip training or
+        // grab quick fruit look good but lose the long wood game (e.g. 42%->25% vs
+        // goldelite, trolls 2.0->1.8). Set RH_MS>0 to re-enable the search for study.
+        let budget_ms = envi("RH_MS", 0) as u128;
         let t0 = Instant::now();
 
         let nrp = (root.n_plants as usize).min(72);
@@ -713,11 +789,14 @@ impl Strategy for RheaBot {
             [n + t.0 * t.0, n + t.1 * t.1, n + t.2 * t.2, 0, n + t.3 * t.3, 0]
         };
         let n_chop = my_units.iter().filter(|&&ui| root.u_chop[ui] >= 2).count();
-        // (mid-game high-carry hauler (2,3,1,2) tested AGAIN: density held but
-        // schedbot h2h collapsed 55->29% — the lemon n+9 drain; expensive specs
-        // remain falsified in OUR economy despite powering the elite's.)
-        let spec = if n_chop < 2 && afford(cost((2, 2, 0, 2))) {
-            Some((2, 2, 0, 2))
+        let max_trolls = envi("RH_MAXT", MAX_TROLLS as i64) as usize;
+        let n_chop_target = envi("RH_NCHOP", 1) as usize;
+        // SAVE for cc2 chopper(s) — never spend the slot on a cheap body (that both
+        // delays the chopper and inflates its n-scaled cost). The single biggest fix:
+        // the old fallback trained a (1,1,1,0) at t2 so a real chopper was NEVER built
+        // (all felling was the cc1 starter, 1 wood/fell).
+        let spec = if n_chop < n_chop_target {
+            afford(cost((2, 2, 0, 2))).then_some((2, 2, 0, 2))
         } else {
             [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)]
                 .into_iter()
@@ -725,7 +804,7 @@ impl Strategy for RheaBot {
         };
         if let Some(t) = spec {
             let sh = game.shacks[me];
-            if (n as usize) < 4 && 300 - game.turn > 20 && !game.units.iter().any(|u| u.pos() == sh) {
+            if (n as usize) < max_trolls && 300 - game.turn > 20 && !game.units.iter().any(|u| u.pos() == sh) {
                 out.push(format!("TRAIN {} {} {} {}", t.0, t.1, t.2, t.3));
             }
         }
