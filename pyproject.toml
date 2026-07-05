@@ -3,7 +3,9 @@ name = "troll-farm"
 version = "0.1.0"
 description = "CodinGame Spring Challenge 2026 - Troll Farm bot"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "numpy>=2.4.6",
+]
 
 [dependency-groups]
 dev = [
