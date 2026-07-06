@@ -932,3 +932,14 @@ v1.26.0's established 18.9 (its 22:47 reconvergence was only +8min → bracket i
 convergence; drift risk noted). Census tool insight: label-matched equality runs against the
 right BASE = a decision-diff catalog; vs v1.25.1 the diffs conflate R6a landing-pinning —
 census v2 must diff against a label-matched v1.26 binary.
+
+## 2026-07-06 23:34 — ★★★ v1.28.2-steady2 VERDICT: KEEP — ALL-TIME BEST 113 @ 19.1
+Converged 19.7@+19m → 19.1@+29m → 19.1@+39m vs v1.26.0's 18.9. **The full manager
+(joint tasks + joint moves) with sticky targets is the new champion: rank 113, score 19.1**
+(era baseline 18.4-18.6; two manager stages = +0.5-0.7 total). The v1.27 fade is EXPLAINED
+and CURED: assignment flapping (16-36/game → 2-12 with STICKY=3). Gap to rank ≤99 (~19.7):
+~0.6. NEXT (v1.29.0-reserve): treat the FARM DISEASE the field-safe way — the seed reserve
+(2 most-mature FARM bananas, map-distance r≤2 — inside our pocket, minimal gift-surface
+unlike seedloop's mid-map widening) becomes inviolable to the ANTI-STARVATION bands too
+(30/31 currently bypass it, exactly how the cascade broke v1.4.5's reserve). Expected:
+seeds regenerate → farm survives t150+ → late delta up → ALSO unblocks the 3rd hand.
