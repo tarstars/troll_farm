@@ -878,3 +878,11 @@ BLOCKS with solver: 1.83% ≈ the enemy-contention + intentional-wait floor (sel
 structural payoff scales with troll count → R6b). FIELD vs the blowout tier: **1/2 vs each of
 nep7un/plcc/mikdiet, wood 78-77/71-79/54-46 — NO blowouts** (arena showed −100..−287 vs them).
 SUBMITTED after bracket read; keep if ≥ bracket−0.2.
+
+## 2026-07-06 21:19 — ★★ R6a VERDICT: KEEP — ALL-TIME BEST 118 @ 18.9 (+0.7 vs bracket)
+v1.26.0-jointmove converged 118 @ 18.9 (reads 18.7 @+29m, 18.9 @+39m, 18.9 @+49m) vs the
+same-hour bracket v1.25.1-spread = 122 @ 18.2. Best score ever recorded (prior best reading
+18.6, standard 18.4). The user's activity-manager concept, stage one (joint move solving),
+is the first change of the project to GAIN vs a clean bracket. api_submit default updated.
+Gap to rank ≤99 (~19.7): ~0.8. NEXT: R6b — joint task assignment (valuation matrix + exact
+matching replacing the sequential cascade in jobs::assign_all).
