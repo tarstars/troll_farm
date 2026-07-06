@@ -167,3 +167,38 @@ pub fn ge_fruit_ty(t: &str) -> Option<usize> {
         _ => None,
     }
 }
+
+// ── R5.0: deterministic tie-break "spread" ──────────────────────────────────
+// v1.20.0's HashSet iteration accidentally gave RANDOM-PER-GAME tie-breaking, which
+// spread plant spots around the shack; the R1 lexicographic determinization clustered
+// them (measured ~-0.5 arena vs same-hour baseline). These helpers restore the spread
+// deterministically: a per-game salt from immutable map facts (STABLE WITHIN a game so
+// tied targets never flap turn-to-turn) mixed with the cell -> a pseudo-random rank.
+
+/// per-game-stable salt from immutable map facts (varies across maps/seats).
+pub fn tie_salt(state: &State) -> u64 {
+    let (sx, sy) = state.my_shack;
+    let (ox, oy) = state.opp_shack;
+    let mut h = 0x9E37_79B9_7F4A_7C15u64;
+    for v in [
+        sx as u64, sy as u64, ox as u64, oy as u64,
+        state.walkable.len() as u64,
+        state.water_cells.len() as u64,
+        state.iron_cells.len() as u64,
+    ] {
+        h ^= v.wrapping_mul(0x0000_0100_0000_01B3);
+        h = h.rotate_left(23).wrapping_mul(0xFF51_AFD7_ED55_8CCD);
+    }
+    h
+}
+
+/// mix a cell with the salt -> deterministic pseudo-random tie-break rank.
+pub fn tie_mix(c: Cell, salt: u64) -> u64 {
+    let mut h = salt
+        ^ (c.0 as u64).wrapping_mul(0x9E37_79B9_7F4A_7C15)
+        ^ (c.1 as u64).wrapping_mul(0xC2B2_AE3D_27D4_EB4F);
+    h ^= h >> 33;
+    h = h.wrapping_mul(0xFF51_AFD7_ED55_8CCD);
+    h ^= h >> 29;
+    h
+}

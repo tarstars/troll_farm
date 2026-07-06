@@ -36,6 +36,7 @@ pub fn assign_all(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, Stri
     let base_trees = plan.base_trees;
     let seed_cells = &plan.seed_cells;
     let inv = &state.my_inventory;
+    let salt = tie_salt(state); // R5.0: per-game tie-break salt
     // is a tree currently fellable by the chopper (per-tree threshold)?
     let fell_ok = |p: &Tree| -> bool {
         if seed_cells.contains(&p.pos()) {
@@ -175,9 +176,10 @@ pub fn assign_all(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, Stri
                 .filter(|c| !reserved.contains(*c))
                 .min_by_key(|c| {
                     let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
-                    // (…, **c): total-order tiebreak — HashSet iteration order is random per
-                    // process; equal-scored ties must not depend on it (R1 determinism).
-                    (d[*c] + if wet { 0 } else { 2 }, **c)
+                    // R5.0: seeded tie-break — deterministic (per-game salt, no flapping)
+                    // but SPREAD like v1.20.0's accidental randomness (lexicographic ties
+                    // clustered plants and measured ~-0.5 arena).
+                    (d[*c] + if wet { 0 } else { 2 }, tie_mix(**c, salt))
                 })
                 .copied()
         };
@@ -234,7 +236,7 @@ pub fn assign_all(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, Stri
                     .iter()
                     .flat_map(|ic| ortho_neighbors(*ic))
                     .filter(|c| d.contains_key(c) && !reserved.contains(c))
-                    .min_by_key(|c| (d[c], *c)) // cell tiebreak: HashSet order is per-process random
+                    .min_by_key(|c| (d[c], tie_mix(*c, salt))) // R5.0 seeded tie-break (see free_base)
                 {
                     reserved.insert(c);
                     cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, c.0, c.1));

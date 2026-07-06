@@ -8,11 +8,834 @@ use std::io::{self, BufRead, Write};
 // ── constants ───────────────────────────────────────────────────────────────
 
 const VERSION: &str = "1.25.1-spread"; // R5.0: seeded tie-breaks (new stream reference frozen at v1.25.1-ref)
-mod state;
+mod state {
+//! State layer (R3a): game-state types, item indices, and pure helpers shared by
+//! every decider. Extracted VERBATIM from botmain.rs (only visibility added);
+//! behavior equality is enforced by the black-box harness (src/bin/equality.rs).
+use std::collections::{HashMap, HashSet, VecDeque};
+
+pub const TOTAL_TURNS: i32 = 300;
+
+// Item indices: PLUM=0, LEMON=1, APPLE=2, BANANA=3, IRON=4, WOOD=5
+pub const PLUM: usize = 0;
+pub const LEMON: usize = 1;
+pub const APPLE: usize = 2;
+pub const BANANA: usize = 3;
+pub const IRON: usize = 4;
+pub const WOOD: usize = 5;
+
+// Base growth cooldown per tree type
+pub fn plant_cooldown(t: &str) -> i32 {
+    match t {
+        "PLUM" => 8,
+        "LEMON" => 8,
+        "APPLE" => 9,
+        "BANANA" => 6,
+        _ => panic!("unknown plant: {}", t),
+    }
+}
+
+pub fn water_boost(t: &str) -> i32 {
+    match t {
+        "PLUM" => 5,
+        "LEMON" => 5,
+        "APPLE" => 7,
+        "BANANA" => 2,
+        _ => panic!("unknown plant for water_boost: {}", t),
+    }
+}
+
+// ── data structures ─────────────────────────────────────────────────────────
+
+pub type Cell = (i32, i32);
+
+#[derive(Clone)]
+pub struct Troll {
+    pub id: i32,
+    pub x: i32,
+    pub y: i32,
+    pub movement_speed: i32,
+    pub carry_capacity: i32,
+    pub harvest_power: i32,
+    pub chop_power: i32,
+    pub carry: [i32; 6],
+}
+
+impl Troll {
+    pub fn pos(&self) -> Cell {
+        (self.x, self.y)
+    }
+    pub fn total_carried(&self) -> i32 {
+        self.carry.iter().sum()
+    }
+    pub fn free_capacity(&self) -> i32 {
+        self.carry_capacity - self.total_carried()
+    }
+    pub fn stats(&self) -> (i32, i32, i32, i32) {
+        (self.movement_speed, self.carry_capacity, self.harvest_power, self.chop_power)
+    }
+}
+
+#[derive(Clone)]
+pub struct Tree {
+    pub tree_type: String, // "PLUM","LEMON","APPLE","BANANA"
+    pub x: i32,
+    pub y: i32,
+    pub size: i32,
+    pub health: i32,
+    pub fruits: i32,
+    pub cooldown: i32,
+}
+
+impl Tree {
+    pub fn pos(&self) -> Cell {
+        (self.x, self.y)
+    }
+}
+
+pub struct State {
+    pub walkable: HashSet<Cell>,
+    pub my_shack: Cell,
+    pub opp_shack: Cell,
+    pub my_inventory: [i32; 6],
+    pub opp_inventory: [i32; 6],
+    pub trees: Vec<Tree>,
+    pub my_trolls: Vec<Troll>,
+    pub opp_trolls: Vec<Troll>,
+    pub turn: i32,
+    pub iron_cells: HashSet<Cell>,
+    pub water_cells: HashSet<Cell>,
+}
+
+// ── geometry helpers ─────────────────────────────────────────────────────────
+
+pub const NEIGHBORS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+
+pub fn ortho_neighbors(cell: Cell) -> [Cell; 4] {
+    let (x, y) = cell;
+    [(x, y + 1), (x + 1, y), (x, y - 1), (x - 1, y)]
+}
+
+pub fn is_adjacent(a: Cell, b: Cell) -> bool {
+    (a.0 - b.0).abs() + (a.1 - b.1).abs() == 1
+}
+
+// ── BFS ─────────────────────────────────────────────────────────────────────
+
+pub fn bfs_distances(walkable: &HashSet<Cell>, sources: &[Cell]) -> HashMap<Cell, i32> {
+    let mut dist: HashMap<Cell, i32> = HashMap::new();
+    let mut queue: VecDeque<Cell> = VecDeque::new();
+    for &cell in sources {
+        if !dist.contains_key(&cell) {
+            dist.insert(cell, 0);
+            queue.push_back(cell);
+        }
+    }
+    while let Some((x, y)) = queue.pop_front() {
+        let d = dist[&(x, y)];
+        for &(dx, dy) in &NEIGHBORS {
+            let n = (x + dx, y + dy);
+            if walkable.contains(&n) && !dist.contains_key(&n) {
+                dist.insert(n, d + 1);
+                queue.push_back(n);
+            }
+        }
+    }
+    dist
+}
+
+pub fn manhattan(a: Cell, b: Cell) -> i32 {
+    (a.0 - b.0).abs() + (a.1 - b.1).abs()
+}
+
+// ── training cost ────────────────────────────────────────────────────────────
+
+pub fn training_cost(n: i32, talents: (i32, i32, i32, i32)) -> [i32; 6] {
+    let (ms, cc, hp, chop) = talents;
+    let mut cost = [0i32; 6];
+    cost[PLUM] = n + ms * ms;
+    cost[LEMON] = n + cc * cc;
+    cost[APPLE] = n + hp * hp;
+    cost[IRON] = n + chop * chop;
+    cost
+}
+
+pub fn afford_fruit_only(inv: &[i32; 6], cost: &[i32; 6]) -> bool {
+    inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE]
+}
+
+pub fn mb_afford(inv: &[i32; 6], cost: &[i32; 6], have_iron: bool) -> bool {
+    let iron_ok = !have_iron || inv[IRON] >= cost[IRON];
+    inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON] && inv[APPLE] >= cost[APPLE] && iron_ok
+}
+
+pub fn ge_fruit_ty(t: &str) -> Option<usize> {
+    match t {
+        "PLUM" => Some(0),
+        "LEMON" => Some(1),
+        "APPLE" => Some(2),
+        "BANANA" => Some(3),
+        _ => None,
+    }
+}
+
+// ── R5.0: deterministic tie-break "spread" ──────────────────────────────────
+// v1.20.0's HashSet iteration accidentally gave RANDOM-PER-GAME tie-breaking, which
+// spread plant spots around the shack; the R1 lexicographic determinization clustered
+// them (measured ~-0.5 arena vs same-hour baseline). These helpers restore the spread
+// deterministically: a per-game salt from immutable map facts (STABLE WITHIN a game so
+// tied targets never flap turn-to-turn) mixed with the cell -> a pseudo-random rank.
+
+/// per-game-stable salt from immutable map facts (varies across maps/seats).
+pub fn tie_salt(state: &State) -> u64 {
+    let (sx, sy) = state.my_shack;
+    let (ox, oy) = state.opp_shack;
+    let mut h = 0x9E37_79B9_7F4A_7C15u64;
+    for v in [
+        sx as u64, sy as u64, ox as u64, oy as u64,
+        state.walkable.len() as u64,
+        state.water_cells.len() as u64,
+        state.iron_cells.len() as u64,
+    ] {
+        h ^= v.wrapping_mul(0x0000_0100_0000_01B3);
+        h = h.rotate_left(23).wrapping_mul(0xFF51_AFD7_ED55_8CCD);
+    }
+    h
+}
+
+/// mix a cell with the salt -> deterministic pseudo-random tie-break rank.
+pub fn tie_mix(c: Cell, salt: u64) -> u64 {
+    let mut h = salt
+        ^ (c.0 as u64).wrapping_mul(0x9E37_79B9_7F4A_7C15)
+        ^ (c.1 as u64).wrapping_mul(0xC2B2_AE3D_27D4_EB4F);
+    h ^= h >> 33;
+    h = h.wrapping_mul(0xFF51_AFD7_ED55_8CCD);
+    h ^= h >> 29;
+    h
+}
+
+}
 pub use state::*;
-mod motion;
-mod tactics;
-mod jobs;
+mod motion {
+//! Motion layer (R3b): everything about *getting trolls where their job says without
+//! wasting moves* — distinct camp-cell claiming for bank/park (v1.20.0, the #1 near-camp
+//! block fix) and the anti-stall watchdog (sidestep after 2 stuck turns). Extracted
+//! VERBATIM from decide_elite (closures → functions); behavior equality is enforced by
+//! the black-box harness. The corridor tests (tests/motion_corridor.rs) pin the required
+//! swap-pipeline behavior this layer must keep enabling.
+use super::*;
+use std::cell::RefCell;
+use std::collections::{HashMap, HashSet};
+
+thread_local! {
+    // anti-stall watchdog (mirrors decide_rhea/RH_LASTPOS):
+    // troll id -> (x, y, same-pos streak while MOVEing). Reset at turn 1.
+    static GE_LASTPOS: RefCell<HashMap<i32, (i32, i32, u8)>> = RefCell::new(HashMap::new());
+}
+
+/// Turn-1 reset of the watchdog memory.
+pub fn reset() {
+    GE_LASTPOS.with(|m| m.borrow_mut().clear());
+}
+
+/// nearest UNCLAIMED walkable drop cell (& claim it) — trolls heading to the camp claim
+/// DISTINCT shack-adjacent cells so they don't converge on one cell and block each other.
+pub fn pick_camp_cell(
+    state: &State,
+    shack: Cell,
+    d: &HashMap<Cell, i32>,
+    claimed: &mut HashSet<Cell>,
+) -> Cell {
+    let free = ortho_neighbors(shack)
+        .into_iter()
+        .filter(|c| state.walkable.contains(c) && !claimed.contains(c))
+        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30));
+    let cell = free
+        .or_else(|| {
+            // all camp cells claimed (rare): fall back to the nearest walkable one
+            ortho_neighbors(shack)
+                .into_iter()
+                .filter(|c| state.walkable.contains(c))
+                .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+        })
+        .unwrap_or(shack);
+    claimed.insert(cell);
+    cell
+}
+
+/// DROP if shack-adjacent, else MOVE toward a claimed camp cell.
+pub fn bank_cmd(
+    state: &State,
+    shack: Cell,
+    u: &Troll,
+    d: &HashMap<Cell, i32>,
+    claimed: &mut HashSet<Cell>,
+) -> String {
+    if manhattan(u.pos(), shack) == 1 {
+        format!("DROP {}", u.id)
+    } else {
+        let c = pick_camp_cell(state, shack, d, claimed);
+        format!("MOVE {} {} {}", u.id, c.0, c.1)
+    }
+}
+
+/// MOVE toward a claimed camp cell (idle parking).
+pub fn park_cmd(
+    state: &State,
+    shack: Cell,
+    u: &Troll,
+    d: &HashMap<Cell, i32>,
+    claimed: &mut HashSet<Cell>,
+) -> String {
+    let c = pick_camp_cell(state, shack, d, claimed);
+    format!("MOVE {} {} {}", u.id, c.0, c.1)
+}
+
+/// ANTI-STALL WATCHDOG: if a troll issued a MOVE but hasn't moved for 2+ consecutive
+/// turns, it is self-blocked — sidestep to a free orthogonally-adjacent walkable cell.
+/// This is the #1 arena loss cause (self-block stalls).
+pub fn watchdog(state: &State, my: &[Troll], cmd_by_id: &mut HashMap<i32, String>) {
+    GE_LASTPOS.with(|cell| {
+        let mut m = cell.borrow_mut();
+        for t in my {
+            let cur = t.pos();
+            let is_move = cmd_by_id.get(&t.id).map_or(false, |c| c.starts_with("MOVE "));
+            let entry = m.entry(t.id).or_insert((cur.0, cur.1, 0u8));
+            let stuck = entry.0 == cur.0 && entry.1 == cur.1;
+            entry.2 = if stuck && is_move { entry.2.saturating_add(1) } else { 0 };
+            entry.0 = cur.0;
+            entry.1 = cur.1;
+            let streak = entry.2;
+            if streak >= 2 && is_move {
+                // parse the MOVE target; only sidestep if it isn't the cur cell
+                let tgt = cmd_by_id.get(&t.id).and_then(|c| {
+                    let p: Vec<&str> = c.split_whitespace().collect();
+                    if p.len() == 4 {
+                        Some((p[2].parse::<i32>().ok()?, p[3].parse::<i32>().ok()?))
+                    } else {
+                        None
+                    }
+                });
+                if let Some((tx, ty)) = tgt {
+                    if (tx, ty) != cur {
+                        let mut cands: Vec<Cell> = Vec::new();
+                        for nb in ortho_neighbors(cur) {
+                            if state.walkable.contains(&nb) && !my.iter().any(|o| o.pos() == nb) {
+                                cands.push(nb);
+                            }
+                        }
+                        if !cands.is_empty() {
+                            let pick = cands[(rh_rand() as usize) % cands.len()];
+                            cmd_by_id.insert(t.id, format!("MOVE {} {} {}", t.id, pick.0, pick.1));
+                            entry.2 = 0;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+}
+mod tactics {
+//! Tactics layer (L1, R4): everything decided BEFORE any troll is looked at — the
+//! turn-1 adaptive chopper spec, train gating, farm geometry/phase, and the seed
+//! reserve. `Plan` is the explicit L1→L2 interface consumed by jobs::assign_all.
+//! Bodies moved VERBATIM from decide_elite; equality enforced by the harness.
+use super::*;
+use std::cell::RefCell;
+use std::collections::HashSet;
+
+thread_local! {
+    // v1.7.0: the chopper spec chosen ONCE at turn 1 from the starting draw.
+    static GE_CHOSEN_SPEC: RefCell<Option<(i32, i32, i32, i32)>> = RefCell::new(None);
+}
+
+/// Turn-1 reset of the committed spec.
+pub fn reset() {
+    GE_CHOSEN_SPEC.with(|c| *c.borrow_mut() = None);
+}
+
+pub struct Plan {
+    pub shack: Cell,
+    pub opp: Cell,
+    pub have_iron: bool,
+    pub turns_rem: i32,
+    pub n: i32,
+    pub farm_now: usize,
+    pub nchop: i32,
+    pub spec: (i32, i32, i32, i32),
+    pub want_chopper: bool,
+    pub want_feeder: bool,
+    pub train_spec: (i32, i32, i32, i32),
+    pub cost: [i32; 6],
+    pub train_now: bool,
+    pub need_iron: bool,
+    pub need_fund: [bool; 3],
+    pub farm_r: i32,
+    pub farm_cap: usize,
+    pub fell_size: i32,
+    pub farm_fell: i32,
+    pub chop_r: i32,
+    pub starter_chop: bool,
+    pub liquidation: bool,
+    pub base_trees: usize,
+    pub seed_cells: HashSet<Cell>,
+}
+
+pub fn plan(state: &State, my: &[Troll]) -> Plan {
+    let shack = state.my_shack;
+    let opp = state.opp_shack;
+    let inv = &state.my_inventory;
+    let have_iron = !state.iron_cells.is_empty();
+    let turns_rem = TOTAL_TURNS - state.turn + 1;
+
+    let n = my.len() as i32;
+
+    // ── training: ONE chopper, EARLY, spec ADAPTED to the starting draw (v1.7.0) ──
+    // Denial > production (proven 2026-07-05): the chopper must train at turn 1 so we win
+    // the shared-tree race. cc=3 captures 3 wood/tree but its lemon cost (n+9=10) only fits
+    // a rich starting draw; cc=2 (lemon n+4=5) trains at t1 on nearly any draw. So pick the
+    // RICHEST chopper the turn-1 inventory can train IMMEDIATELY — cc=3 when the draw affords
+    // it (production), else cc=2 (denial) — NEVER delay waiting to afford cc=3.
+    let spec = GE_CHOSEN_SPEC.with(|c| {
+        let mut c = c.borrow_mut();
+        if c.is_none() {
+            // v1.9.0 (data-driven vs 32 real Boss-5 games): pick EACH axis independently to
+            // level 3 iff the turn-1 draw's binding resource already affords it — ms<-plum,
+            // cc<-lemon, chop<-iron (each level-3 costs n+9). This (a) FIXES the v1.7.0 bug
+            // where a plum/iron shortfall wrongly locked cc2 on a lemon-rich map (cc3 vs cc2
+            // differ ONLY in lemon), and (b) adopts Boss 5's ms=3/chop=3 flexibility (faster
+            // travel + faster felling = the sustained-throughput lever it beats us on). An axis
+            // upgrades only when its resource is ALREADY >= n+9, so it never delays training
+            // beyond the cc2 baseline (the upgrade is "free"). hp=0 (can't harvest, cheap).
+            // ms/cc/chop upgrade to 3 when their resource is free (>=n+9), else 2. (v1.14.0's cc1
+            // tier on lemon-poor maps was WORSE: 0/5 wood 40 — cc1 throughput too low even with
+            // the tight farm's cheap banking. A late cc2 beats an early cc1.)
+            let lvl = |res: usize| if inv[res] >= n + 9 { 3 } else { 2 };
+            *c = Some((lvl(PLUM), lvl(LEMON), 0, lvl(IRON)));
+        }
+        c.unwrap()
+    });
+    let farm_now = state
+        .trees
+        .iter()
+        .filter(|p| manhattan(p.pos(), shack) <= GE_FARM_R)
+        .count();
+    // v1.11.0: troll 2 = the CHOPPER (early, adaptive spec). troll 3 = a FEEDER (late): a cheap
+    // hp>0/chop=0 harvester. Because decide_elite routes any chop<2 troll through the STARTER
+    // (printer) branch, the feeder auto-plants bananas — a 2nd pair of hands keeping the farm
+    // DENSE so the single chopper never travels/idles (travel is ~2.5x the felling = the real
+    // Boss-5 throughput gap). This is the runninglvlan structure (starter+feeder+chopper) and
+    // AVOIDS the 2-chopper starvation (validated: a 2nd chopper starves the 1-feeder farm).
+    let nchop = my.iter().filter(|u| u.chop_power >= 2).count() as i32;
+    let want_chopper =
+        nchop == 0 && (state.turn >= GE_CHOP_DELAY || farm_now >= GE_CHOP_FARM);
+    let want_feeder = nchop >= 1
+        && n < GE_MAX_TROLLS
+        && state.turn >= GE_FEEDER_T
+        && farm_now >= GE_FEEDER_FARM;
+    let train_spec = if want_chopper { spec } else { GE_FEEDER_SPEC };
+    let cost = training_cost(n, train_spec);
+    let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
+    let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the chopper train)
+    // iron-gated: fruit is ready but we still lack the iron for the chopper.
+    let need_iron =
+        have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
+    // which fruit types still block the chopper (funding targets)
+    let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
+
+    // ── farm config ─────────────────────────────────────────────────────────
+    // v1.18.0: TURN-1 ADAPTIVE ECONOMY (committed via the draw-chosen spec, no mid-game switch).
+    // High-draw map (spec chose cc>=3): economy B = BIG farm + size-3 fells (cc3 captures 3, chop3
+    // fells size-3 in 2 chops; the cc3 banks-every-3 offsets the bigger farm's longer trips) — the
+    // Boss-5 throughput economy. Low-draw map (cc2): economy A = the TIGHT farm (short bank trips,
+    // fast size-2 maturation) that beats Boss 5 ~40%. Best of both, per the felling mechanics.
+    let econ_b = false; // econ B (big-farm size-3) arena-validated WORSE (135 vs 120) — the big farm cannot sustain size-3 maturation; pure tight-farm (A) is best
+    let farm_r = if econ_b { 3 } else { GE_FARM_R };
+    let farm_cap = if econ_b { 20 } else { GE_FARM_MAX };
+    let fell_size = GE_FELL_SIZE; // NATIVE/contested trees: always size-2 = DENIAL
+    let farm_fell = if econ_b { 3 } else { 2 }; // OUR farm bananas: size-3 in econ B, size-2 in A
+    let chop_r = if econ_b { 10 } else { GE_CHOP_R }; // econ B roams a bigger farm; A stays tight
+    let starter_chop = GE_STARTER_CHOP;
+    let liquidation = turns_rem <= GE_LIQ_T;
+    let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= farm_r).count();
+
+    // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
+    // Trees only fruit at MAX_SIZE(4); felling farm bananas at size 2 means they
+    // NEVER fruit, so the seed supply drains -> the farm dies -> our half
+    // deforests -> both trolls park (the decoded arena stall). Fix: keep the K
+    // most-mature farm bananas as a permanent seed reserve the chopper won't
+    // fell — they ripen, fruit, and the starter harvests their fruit for seeds.
+    let mut seed_cells: HashSet<Cell> = HashSet::new();
+    if GE_SEED_RESERVE > 0 && !liquidation {
+        let mut fb: Vec<&Tree> = state
+            .trees
+            .iter()
+            .filter(|p| p.tree_type == "BANANA" && manhattan(p.pos(), shack) <= farm_r)
+            .collect();
+        fb.sort_by_key(|p| (-p.size, -p.fruits, manhattan(p.pos(), shack), p.pos()));
+        for p in fb.into_iter().take(GE_SEED_RESERVE) {
+            seed_cells.insert(p.pos());
+        }
+    }
+    Plan {
+        shack, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
+        want_feeder, train_spec, cost, train_now, need_iron, need_fund, farm_r, farm_cap,
+        fell_size, farm_fell, chop_r, starter_chop, liquidation, base_trees, seed_cells,
+    }
+}
+
+}
+mod jobs {
+//! Jobs layer (L2, R3c): per-troll decision cascade — who funds, mines, harvests,
+//! plants, fells, banks, parks. Consumes the tactical Plan; produces one command per
+//! troll (id → command). Bodies moved VERBATIM from decide_elite (plan fields re-bound
+//! as same-named locals); equality enforced by the harness. This is the layer where the
+//! future policy experiments (farm-supply invariant, dynamic starter role) live.
+use super::tactics::Plan;
+use super::*;
+use std::collections::{HashMap, HashSet};
+
+thread_local! {
+    // GoldElite::mem — last sticky target cell per troll. Write-only (never read);
+    // kept for a faithful 1:1 port. Reset at turn 1.
+    static GE_MEM: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
+}
+
+/// Turn-1 reset of the sticky-target memory.
+pub fn reset() {
+    GE_MEM.with(|m| m.borrow_mut().clear());
+}
+
+pub fn assign_all(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> {
+    let shack = plan.shack;
+    let opp = plan.opp;
+    let turns_rem = plan.turns_rem;
+    let want_chopper = plan.want_chopper;
+    let cost = plan.cost;
+    let need_iron = plan.need_iron;
+    let need_fund = plan.need_fund;
+    let farm_r = plan.farm_r;
+    let farm_cap = plan.farm_cap;
+    let fell_size = plan.fell_size;
+    let farm_fell = plan.farm_fell;
+    let chop_r = plan.chop_r;
+    let starter_chop = plan.starter_chop;
+    let liquidation = plan.liquidation;
+    let base_trees = plan.base_trees;
+    let seed_cells = &plan.seed_cells;
+    let inv = &state.my_inventory;
+    let salt = tie_salt(state); // R5.0: per-game tie-break salt
+    // is a tree currently fellable by the chopper (per-tree threshold)?
+    let fell_ok = |p: &Tree| -> bool {
+        if seed_cells.contains(&p.pos()) {
+            return false; // protected seed source
+        }
+        if liquidation {
+            return p.size >= 1;
+        }
+        let farm_banana = p.tree_type == "BANANA" && manhattan(p.pos(), shack) <= farm_r;
+        p.size >= if farm_banana { farm_fell } else { fell_size }
+    };
+
+    // own-half + reachable + not reserved fellable trees, with fell time
+    let own_half = |p: &Tree| liquidation || manhattan(p.pos(), shack) <= manhattan(p.pos(), opp);
+    let within_roam = |p: &Tree| liquidation || manhattan(p.pos(), shack) <= chop_r;
+    let mut reserved: HashSet<Cell> = HashSet::new();
+    let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
+    // v1.20.0 MOTION: trolls heading to the camp (bank/park) claim DISTINCT shack-adjacent cells
+    // so they don't converge on one cell and block each other (the #1 near-camp move-waste).
+    let mut claimed_drop: HashSet<Cell> = HashSet::new();
+
+    // bank/park via motion:: camp-cell claiming (R3b); thin wrappers keep call sites short.
+    let bank_cmd = |u: &Troll, d: &HashMap<Cell, i32>, claimed: &mut HashSet<Cell>| -> String {
+        motion::bank_cmd(state, shack, u, d, claimed)
+    };
+    let park_cmd = |u: &Troll, d: &HashMap<Cell, i32>, claimed: &mut HashSet<Cell>| -> String {
+        motion::park_cmd(state, shack, u, d, claimed)
+    };
+
+    for u in my {
+        let d = bfs_distances(&state.walkable, &[u.pos()]);
+        let is_chopper = u.chop_power >= 2;
+
+        // endgame banking (bank a carried load in time to score it)
+        if u.total_carried() > 0 {
+            let d_home = ortho_neighbors(shack)
+                .iter()
+                .filter(|c| state.walkable.contains(*c))
+                .filter_map(|c| d.get(c))
+                .min()
+                .copied()
+                .unwrap_or(i32::MAX / 2);
+            let eta = (d_home + u.movement_speed - 1) / u.movement_speed.max(1) + 1;
+            if turns_rem <= eta + 1 {
+                cmd_by_id.insert(u.id, bank_cmd(u, &d, &mut claimed_drop));
+                continue;
+            }
+        }
+
+        // nearest fellable tree (size>=fell_size, own-half, in roam range)
+        let nearest_fell = |free_needed: bool| -> Option<Cell> {
+            if free_needed && u.free_capacity() == 0 {
+                return None;
+            }
+            state
+                .trees
+                .iter()
+                .filter(|p| fell_ok(p))
+                .filter(|p| own_half(p) && within_roam(p))
+                .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                .min_by_key(|p| {
+                    // prefer close + fast-to-fell (banana health 4 << apple health 20)
+                    let steps = (d[&p.pos()] + u.movement_speed - 1) / u.movement_speed.max(1);
+                    let chop_t = (p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1);
+                    steps + chop_t
+                })
+                .map(|p| p.pos())
+        };
+
+        // ── CHOPPER: perma-fell local trees, bank when full ─────────────────
+        if is_chopper {
+            if u.free_capacity() == 0 {
+                cmd_by_id.insert(u.id, bank_cmd(u, &d, &mut claimed_drop));
+                continue;
+            }
+            // standing on a fellable tree -> chop
+            if let Some(p) = state.trees.iter().find(|p| p.pos() == u.pos()) {
+                if u.chop_power > 0 && fell_ok(p) {
+                    cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                    reserved.insert(u.pos());
+                    continue;
+                }
+            }
+            if let Some(tc) = nearest_fell(false) {
+                reserved.insert(tc);
+                GE_MEM.with(|m| {
+                    m.borrow_mut().insert(u.id, tc);
+                });
+                cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                continue;
+            }
+            // ANTI-STARVATION (arena floor fix for the win-rate goal): the local farm
+            // is empty -> instead of idling (shutdown games: 5 plants, chopper wandered,
+            // wood 22), fell the nearest reachable tree ANYWHERE of size>=1 (1 wood
+            // beats 0). Converts shutdown-LOSSES into competitive games. Neutral in
+            // sim (no banana-poor maps there); arena is the judge.
+            if let Some(tc) = state
+                .trees
+                .iter()
+                .filter(|p| p.size >= 1)
+                .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                .min_by_key(|p| {
+                    let steps = (d[&p.pos()] + u.movement_speed - 1) / u.movement_speed.max(1);
+                    let chop_t = (p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1);
+                    steps + chop_t
+                })
+                .map(|p| p.pos())
+            {
+                if u.pos() == tc {
+                    cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                } else {
+                    reserved.insert(tc);
+                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                }
+                continue;
+            }
+            // nothing at all to fell: bank a partial load, else idle near base
+            cmd_by_id.insert(
+                u.id,
+                if u.total_carried() > 0 { bank_cmd(u, &d, &mut claimed_drop) } else { park_cmd(u, &d, &mut claimed_drop) },
+            );
+            continue;
+        }
+
+        // ── STARTER (1,1,1,0): funder early, banana printer after ───────────
+        // free base cell to plant on (prefer water-adjacent: banana cd 6->4)
+        // Plant at the NEAREST free base cell; water-adjacency is a mild tiebreak
+        // (2 cells' worth), not a hard first pass — trekking to water is the
+        // printer's biggest travel sink and travel is the arena's confirmed cost.
+        let free_base = |_water: bool| -> Option<Cell> {
+            state
+                .walkable
+                .iter()
+                .filter(|c| manhattan(**c, shack) <= farm_r && d.contains_key(*c))
+                .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
+                .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+                .filter(|c| !reserved.contains(*c))
+                .min_by_key(|c| {
+                    let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
+                    // R5.0: seeded tie-break — deterministic (per-game salt, no flapping)
+                    // but SPREAD like v1.20.0's accidental randomness (lexicographic ties
+                    // clustered plants and measured ~-0.5 arena).
+                    (d[*c] + if wet { 0 } else { 2 }, tie_mix(**c, salt))
+                })
+                .copied()
+        };
+
+        // 1) carrying a banana + base room -> plant it near base (BEFORE the
+        //    full->bank check, since cc1 + carried banana reads as "full").
+        if u.carry[BANANA] > 0 && base_trees < farm_cap {
+            if let Some(tc) = free_base(true).or_else(|| free_base(false)) {
+                reserved.insert(tc);
+                if u.pos() == tc {
+                    cmd_by_id.insert(u.id, format!("PLANT {} BANANA", u.id));
+                } else {
+                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                }
+                continue;
+            }
+        }
+
+        // 2) full -> bank
+        if u.free_capacity() == 0 {
+            cmd_by_id.insert(u.id, bank_cmd(u, &d, &mut claimed_drop));
+            continue;
+        }
+
+        // 3) standing on a ripe fruit tree we want -> harvest
+        if let Some(p) = state.trees.iter().find(|p| p.pos() == u.pos()) {
+            if p.fruits > 0 && u.harvest_power > 0 && u.free_capacity() > 0 {
+                let ty = ge_fruit_ty(&p.tree_type);
+                let want = if want_chopper {
+                    ty.map_or(false, |t| t < 3 && need_fund[t])
+                } else {
+                    // post-funding: only harvest seeds we replant (banana/water apple)
+                    p.tree_type == "BANANA"
+                        || (p.tree_type == "APPLE"
+                            && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))
+                };
+                if want {
+                    cmd_by_id.insert(u.id, format!("HARVEST {}", u.id));
+                    reserved.insert(u.pos());
+                    continue;
+                }
+            }
+        }
+
+        // 4) FUNDING PHASE: mine iron / harvest deficit fruit for the chopper
+        if want_chopper {
+            if need_iron && u.chop_power > 0 {
+                if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
+                    cmd_by_id.insert(u.id, format!("MINE {}", u.id));
+                    continue;
+                }
+                if let Some(c) = state
+                    .iron_cells
+                    .iter()
+                    .flat_map(|ic| ortho_neighbors(*ic))
+                    .filter(|c| d.contains_key(c) && !reserved.contains(c))
+                    .min_by_key(|c| (d[c], tie_mix(*c, salt))) // R5.0 seeded tie-break (see free_base)
+                {
+                    reserved.insert(c);
+                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, c.0, c.1));
+                    continue;
+                }
+            }
+            // nearest ripe deficit fruit
+            let target = state
+                .trees
+                .iter()
+                .filter(|p| p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                .filter(|p| ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && need_fund[t]))
+                .min_by_key(|p| d[&p.pos()])
+                .map(|p| p.pos());
+            if let Some(tc) = target {
+                reserved.insert(tc);
+                GE_MEM.with(|m| {
+                    m.borrow_mut().insert(u.id, tc);
+                });
+                cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                continue;
+            }
+            // no deficit fruit reachable — fall through to the printer so the
+            // troll never stalls (it pre-seeds the banana farm meanwhile).
+        }
+
+        // 5) BANANA PRINTER: keep the farm stocked with bananas
+        if base_trees < farm_cap {
+            // pick a banked banana at the shack (fastest seed cycle)
+            if manhattan(u.pos(), shack) == 1 && inv[BANANA] > 0 && u.free_capacity() > 0 {
+                cmd_by_id.insert(u.id, format!("PICK {} BANANA", u.id));
+                continue;
+            }
+            if inv[BANANA] > 0 {
+                // go to a shack-adjacent cell to PICK
+                cmd_by_id.insert(u.id, park_cmd(u, &d, &mut claimed_drop));
+                continue;
+            }
+            // no banked seeds: harvest a native banana (or water-apple) tree
+            let seed_tree = state
+                .trees
+                .iter()
+                .filter(|p| p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                .filter(|p| {
+                    p.tree_type == "BANANA"
+                        || (p.tree_type == "APPLE"
+                            && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))
+                })
+                .min_by_key(|p| d[&p.pos()])
+                .map(|p| p.pos());
+            if let Some(tc) = seed_tree {
+                reserved.insert(tc);
+                GE_MEM.with(|m| {
+                    m.borrow_mut().insert(u.id, tc);
+                });
+                cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                continue;
+            }
+        }
+
+        // 6) farm full / no seeds: help chop (chop1), else park at base
+        if starter_chop && u.chop_power > 0 {
+            if let Some(p) = state.trees.iter().find(|p| p.pos() == u.pos()) {
+                if fell_ok(p) {
+                    cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                    reserved.insert(u.pos());
+                    continue;
+                }
+            }
+            if let Some(tc) = nearest_fell(true) {
+                reserved.insert(tc);
+                cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                continue;
+            }
+            // anti-starvation for the starter too: fell the nearest reachable size>=1
+            // tree anywhere (with free capacity) rather than parking idle (+4pp vs
+            // production bots, the real Gold field).
+            if u.free_capacity() > 0 {
+                if let Some(tc) = state
+                    .trees
+                    .iter()
+                    .filter(|p| p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                    .min_by_key(|p| {
+                        let steps = (d[&p.pos()] + u.movement_speed - 1) / u.movement_speed.max(1);
+                        let chop_t = (p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1);
+                        steps + chop_t
+                    })
+                    .map(|p| p.pos())
+                {
+                    if u.pos() == tc {
+                        cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
+                    } else {
+                        reserved.insert(tc);
+                        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, tc.0, tc.1));
+                    }
+                    continue;
+                }
+            }
+        }
+        cmd_by_id.insert(
+            u.id,
+            if u.total_carried() > 0 { bank_cmd(u, &d, &mut claimed_drop) } else { park_cmd(u, &d, &mut claimed_drop) },
+        );
+    }
+
+    cmd_by_id
+}
+
+}
 // Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
 // to stderr (captured in the replay) so we can replay a real game through the sim
 // and compare turn-by-turn. Off by default (no effect on play or stdout parity).
@@ -2238,4 +3061,9 @@ pub fn run() {
             }
         }
     }
+}
+
+
+fn main() {
+    run();
 }

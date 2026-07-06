@@ -836,3 +836,15 @@ the −0.5 gap looks more like a REAL (small) cost of the lexicographic tiebreak
 drift. ⇒ **R5.0 (first experiment on the new platform): seeded-rh_rand tiebreaks** in
 free_base + funding-iron picks (keeps per-process determinism, restores spatial spread);
 it changes streams → freeze a new reference after it validates.
+
+## 2026-07-06 19:26 — R5.0 seeded tie-breaks: all local gates green, arena cycle started
+Implemented on the layered platform (first platform experiment): `state::tie_salt` (per-game
+salt from immutable map facts — STABLE within a game so tied targets never flap) +
+`state::tie_mix(cell, salt)`; jobs.rs free_base + funding-iron picks now break score-ties by
+seeded rank instead of lexicographic (which clustered plants and measured ~-0.5 same-hour).
+VERSION 1.25.1-spread. GATES: 18 suites ✓; self-determinism EQUAL (20 games) ✓; diverges
+from old reference (change active) ✓; bundled EQUAL + minified 92,885 B compiles ✓; boss
+spot-check 2/6 wood 48.5 (healthy, no flapping) ✓. NEW stream reference frozen:
+submissions/v1.25.1-ref.rs + target/refactor/reference_bin_v1251. Bracket: v1.20.0 stable
+125 @ 17.9 (17:23→19:26). v1.25.1-spread SUBMITTED 19:26; verdict ~20:30: keep live if
+≥ 17.7 (bracket −0.2), else revert to v1.20.0.
