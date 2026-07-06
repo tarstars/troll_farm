@@ -860,3 +860,7 @@ Those bots build 120-160-wood late economies; our ceiling ~60-85 wood. ⇒ the +
 exactly R5.1 (farm-supply invariant as an L2 job rule) + field-gate vs nep7un/plcc/mikdiet
 (agentIds via field_targets.py). Matchmaking is rank-local: all 40 opponents were rank
 105-128, so these ARE the gatekeepers.
+
+## 2026-07-06 20:07 — R5.0 verdict: KEEP. The layered platform is LIVE (v1.25.1-spread, 122 @ 18.2)
+Reads 18.1 @+30min, 18.2 @+41min vs same-hour bracket v1.20.0 = 17.9 → the seeded tie-break
+recovered the lexicographic clustering cost. api_submit default → v1.25.1-spread.min.rs.
