@@ -848,3 +848,15 @@ spot-check 2/6 wood 48.5 (healthy, no flapping) ✓. NEW stream reference frozen
 submissions/v1.25.1-ref.rs + target/refactor/reference_bin_v1251. Bracket: v1.20.0 stable
 125 @ 17.9 (17:23→19:26). v1.25.1-spread SUBMITTED 19:26; verdict ~20:30: keep live if
 ≥ 17.7 (bracket −0.2), else revert to v1.20.0.
+
+## 2026-07-06 ~20:05 — NEW TOOL cgauto/battles.py + live-bot arena-battle analysis (40 games)
+Fetches LAST BATTLES for the current submission via REST (findLastBattlesByTestSessionHandle
++ gameResult/findByGameId), joins opponents with the Gold leaderboard. v1.25.1-spread @ ~122:
+**19/40 wins, avg score 236 vs 262. THE TIER SPLIT: vs peers (17.5-18.5) we win ~60-65% with
+modest margins; vs the 18.7-19.6 tier we get BLOWN OUT (nep7un 19.5: -238/-287 with scores
+566/658; Eagleast 19.6: -271; plcc 19.0: -138/-140/-101; mikdiet 18.7: -104/-92/-91).**
+Those bots build 120-160-wood late economies; our ceiling ~60-85 wood. ⇒ the +1.5 to rank
+≤99 is concretely: STOP BEING BLOWN OUT by the 19+ tier = raise the late economy ceiling =
+exactly R5.1 (farm-supply invariant as an L2 job rule) + field-gate vs nep7un/plcc/mikdiet
+(agentIds via field_targets.py). Matchmaking is rank-local: all 40 opponents were rank
+105-128, so these ARE the gatekeepers.
