@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.28.0-thirdhand"; // R6b.2: 3rd troll on the planner (cheap (1,1,1,0) hands; fund-for-feeder band)
+const VERSION: &str = "1.28.2-steady2"; // = v1.27 planner + map-fix + STICKY targets (flaps 16-36 -> 2-12); 3rd-hand machinery dormant
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -79,7 +79,7 @@ fn rh_rand() -> u64 {
 // Full history: git; frozen artifacts: cgauto/submissions/.)
 
 const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
-const GE_MAX_TROLLS: i32 = 3; // R6b.2: the 19+ tier all run 3-4 trolls; the old failures were CASCADE coordination costs — retest on the planner
+const GE_MAX_TROLLS: i32 = 2; // 3rd hand DORMANT until the farm-death disease is treated (it never trains through a dead farm gate; v1.28.1 telemetry 0/8)
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
 const GE_FEEDER_T: i32 = 60; // after the chopper economy stabilizes
 const GE_FEEDER_FARM: usize = 3; // map-distance farm now; the feeder's JOB is to grow it

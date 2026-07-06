@@ -920,3 +920,15 @@ FIELD leak the probes under-sample.
    cratered vs field and was reverted); also blocks the feeder's farm≥3 gate.
 NEXT: v1.28.1 = stickiness + feeder-band demotion → boss gate; expect flaps↓, feeder trains
 on lemon-ok maps, wood ≥ v1.27's 51. Arena bracket vs v1.26.0 @ 18.9.
+
+## 2026-07-06 23:00 — v1.28.1/.2: stickiness works; 3rd hand blocked by the farm disease; v1.28.2 in arena
+v1.28.1 (sticky targets STICKY=3 + feeder-funding demoted to luxury band 45/44): **flaps
+16-36 → 2-12**, wood back to 50, but 3rd hand trained 0/8 — the DEAD FARM gate (farm≥3 @t60+)
+blocks it; the farm disease (seeds exhausted, farm 0-1 by t150) is the standing blocker for
+ALL scale plays and remains THE strategic target. v1.28.2 = planner + map-fix + stickiness
+with the 3rd hand DORMANT (MAX_TROLLS=2) — the minimal test of "stickiness fixes v1.27's
+arena fade" — boss 1/6 wood 50 flaps 2-21 (noisy but < 16-36), SUBMITTED 22:55. Verdict vs
+v1.26.0's established 18.9 (its 22:47 reconvergence was only +8min → bracket is the 21:19
+convergence; drift risk noted). Census tool insight: label-matched equality runs against the
+right BASE = a decision-diff catalog; vs v1.25.1 the diffs conflate R6a landing-pinning —
+census v2 must diff against a label-matched v1.26 binary.

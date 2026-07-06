@@ -31,6 +31,11 @@ pub fn flaps() -> u32 {
 
 const K: usize = 8; // per-troll candidate cap (bands make more irrelevant)
 const BAND: i64 = 100_000; // > any ETA by orders of magnitude
+// v1.28.1 STICKINESS: bonus for keeping last turn's target — the joint matcher re-plans
+// globally every turn and small ETA shifts flipped assignments mid-travel (measured 16-36
+// flaps/game = leaked steps, the v1.27 arena fade). Within-band (« BAND): stability never
+// overrides the priority hierarchy, only breaks near-ties toward the current plan.
+const STICKY: i64 = 3;
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
@@ -175,9 +180,13 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         // 4) FUNDING (bands 60/58) — for the chopper OR a pending 3rd hand (R6b.2: the old
         // feeder never trained because post-funding nobody harvested plum/lemon/apple)
         if plan.want_chopper || plan.want_feeder {
+            // v1.28.1: the chopper is EXISTENTIAL (60/58) but a 3rd hand is a LUXURY — its
+            // funding (45/44) must never displace printer/seed work (50/48). The v1.28.0
+            // regression: perpetual feeder-funding starved the farm on lemon-poor maps.
+            let (fund_hi, fund_lo) = if plan.want_chopper { (60, 58) } else { (45, 44) };
             if plan.need_iron && u.chop_power > 0 {
                 if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
-                    out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: 60 * BAND });
+                    out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: fund_hi * BAND });
                 } else if let Some(c) = state
                     .iron_cells
                     .iter()
@@ -185,7 +194,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     .filter(|c| d.contains_key(c))
                     .min_by_key(|c| (d[c], tie_mix(*c, salt)))
                 {
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: 60 * BAND - eta(&d, c, ms) });
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: fund_hi * BAND - eta(&d, c, ms) });
                 }
             }
             for p in state.trees.iter().filter(|p| {
@@ -194,7 +203,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
             }) {
                 let pc = p.pos();
-                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 58 * BAND - eta(&d, pc, ms) });
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: fund_lo * BAND - eta(&d, pc, ms) });
             }
         }
         // 5) PRINTER (bands 50/48)
@@ -262,6 +271,15 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         });
     }
 
+    // stickiness: prefer last turn's target on near-ties (see STICKY)
+    let last = LAST_TGT.with(|m| m.borrow().get(&u.id).copied());
+    if let Some(lt) = last {
+        for c in out.iter_mut() {
+            if c.target == Some(lt) {
+                c.value += STICKY;
+            }
+        }
+    }
     // canonical order + cap: by (-value, target) — never by discovery order
     out.sort_by_key(|c| (-c.value, c.target));
     out.truncate(K);
