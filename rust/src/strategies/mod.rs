@@ -8,6 +8,7 @@ pub mod harvester;
 pub mod balanced;
 pub mod orchard;
 pub mod boss4;
+pub mod boss5;
 pub mod boss_real;
 pub mod silver_boss;
 pub mod script_boss;
@@ -66,6 +67,7 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(gatherer::Gatherer),
         Box::new(orchard::Orchard),
         Box::new(boss4::Boss4),
+        Box::new(boss5::Boss5::new()),
         Box::new(boss_real::BossReal::new()),
         Box::new(chopper::Chopper),
         Box::new(harvester::Harvester),
@@ -76,6 +78,9 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(boss_v3::BossV3::new()),
         Box::new(printer_bot::PrinterBot::new()),
         Box::new(gold_elite::GoldElite::new()),
+        Box::new(gold_elite::GoldElite::hybrid()),
+        Box::new(gold_elite::GoldElite::accumulate()),
+        Box::new(gold_elite::GoldElite::adaptive()),
         Box::new(sched_bot::SchedBot::new()),
         Box::new(rhea_bot::RheaBot::new()),
         Box::new(mybot::MyBot::new()),

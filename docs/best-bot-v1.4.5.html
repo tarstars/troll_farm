@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Troll Farm best bot v1.4.5-seedreserve — Rust primer, strategy & code guide</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: "DejaVu Sans","Segoe UI",sans-serif; font-size: 10pt; color:#1a1a1a; line-height:1.45; }
+  h1 { font-size: 20pt; margin:0 0 1mm; letter-spacing:-.4px; }
+  .sub { color:#555; font-size:10.5pt; margin-bottom:5mm; }
+  h2 { font-size:13.5pt; color:#12365e; border-bottom:2px solid #2b6cb0; padding-bottom:1mm; margin:7mm 0 2mm; page-break-after:avoid; }
+  h3 { font-size:11pt; color:#2b6cb0; margin:4mm 0 1mm; page-break-after:avoid; }
+  code,.p { font-family:"DejaVu Sans Mono",monospace; font-size:8.7pt; background:#eef2f7; padding:.4px 3px; border-radius:3px; }
+  pre { background:#0f1b2d; color:#d6e2f0; padding:3mm 4mm; font-size:8.1pt; border-radius:4px; white-space:pre-wrap; page-break-inside:avoid; line-height:1.4; }
+  pre .c { color:#7fa8c9; } pre .k { color:#e0a86b; } pre .s { color:#8fce8f; } pre .n { color:#c9a0dc; }
+  table { border-collapse:collapse; width:100%; margin:2mm 0; font-size:9pt; page-break-inside:avoid; }
+  th { background:#12365e; color:#fff; text-align:left; padding:1.3mm 2.5mm; }
+  td { border-bottom:1px solid #cbd5e0; padding:1.3mm 2.5mm; vertical-align:top; }
+  tr:nth-child(even) td { background:#f6f9fc; }
+  td code { font-size:8.3pt; white-space:nowrap; }
+  .key { background:#ebf6ff; border-left:4px solid #2b6cb0; padding:2.5mm 4mm; margin:3mm 0; page-break-inside:avoid; }
+  .win { background:#eefbf0; border-left:4px solid #2f855a; padding:2.5mm 4mm; margin:3mm 0; page-break-inside:avoid; }
+  .warn{ background:#fff7ec; border-left:4px solid #dd8a1a; padding:2.5mm 4mm; margin:3mm 0; page-break-inside:avoid; }
+  ul,ol { margin:1mm 0; padding-left:6mm; } li { margin-bottom:1mm; }
+  .small { font-size:8.5pt; color:#555; }
+  .flow { font-family:"DejaVu Sans Mono",monospace; font-size:8.4pt; background:#f6f9fc; border:1px solid #cbd5e0; padding:3mm; border-radius:4px; white-space:pre; page-break-inside:avoid; }
+  .toc { font-size:9pt; columns:2; column-gap:8mm; }
+  .toc b { color:#12365e; }
+</style>
+</head>
+<body>
+
+<h1>Troll Farm — best bot <code>v1.4.5-seedreserve</code></h1>
+<div class="sub">A reading guide to the arena's strongest bot, written for a developer fluent in <b>C++, Go and Python</b> who is new to <b>Rust</b>.<br>
+CodinGame Spring Challenge 2026 · "Troll Farm" · 2-player, ~300 turns, 50&nbsp;ms/turn · the live decider is <code>fn decide_elite(state: &amp;State) -&gt; Vec&lt;String&gt;</code>.</div>
+
+<div class="key"><b>How to read this document.</b> <b>Part 0</b> is a two-minute setup: how to compile and run a single Rust file on this machine with <code>emacs</code>&nbsp;+&nbsp;<code>make</code>, so you can try anything below immediately. The rest is three reading parts.
+<b>Part A</b> is a one-time Rust reference: every language construct that appears in the bot, explained in one or two sentences against the C++/Go/Python you already know — read it once, then refer back.
+<b>Part B</b> is the game and the strategy: <i>what</i> the bot does and <i>why</i>.
+<b>Part C</b> walks the actual source top to bottom, block by block, with short verbatim excerpts, pointing back to Part&nbsp;A for the syntax and Part&nbsp;B for the intent.
+The readable source is <span class="p">docs/best-bot-v1.4.5.rs</span> (the arena submission with all dead code removed; it still compiles with <code>rustc --edition 2021 -O</code>).</div>
+
+<!-- ============================================================ PART 0 -->
+<h2>Part 0 — Running Rust on this machine (emacs + make)</h2>
+<p>To try the constructs in Part A you do <b>not</b> need <code>cargo</code> or a project. A single
+<code>.rs</code> file with a <code>fn main()</code> is a complete program: <code>rustc</code> compiles it to one binary.
+A two-line <code>Makefile</code> wraps that so the whole loop is <b>edit → <code>make</code> → read output</b>. This machine has
+<code>rustc 1.75.0</code> and GNU <code>make</code> already installed — nothing else is required.</p>
+
+<h3>The scratch pad (already set up)</h3>
+<p>Two files live in <span class="p">rust-scratch/</span>: <span class="p">scratch.rs</span> (a runnable file whose examples mirror Part&nbsp;A —
+<code>&amp;str</code>/<code>String</code>, <code>Vec</code>/<code>HashMap</code>, iterators/closures, <code>Option</code>/<code>match</code>/<code>if let</code>, a <code>struct</code>+<code>impl</code>) and
+<span class="p">Makefile</span>. Edit <span class="p">scratch.rs</span>, replace the examples with whatever you want to test, and run one command:</p>
+<pre><span class="c"># from rust-scratch/ :</span>
+make            <span class="c"># compile scratch.rs (edition 2021) and run it — prints its output</span>
+make FILE=x.rs  <span class="c"># compile + run some other single file instead</span>
+make check      <span class="c"># type-check only (fast) — no binary produced, no run</span>
+make clean      <span class="c"># delete the built binary (/tmp/rust-scratch-bin)</span></pre>
+<p>The whole <span class="p">Makefile</span> is just a wrapper around <code>rustc</code> — no magic, portable to any Rust box:</p>
+<pre><span class="k">FILE</span> ?= scratch.rs
+<span class="k">BIN</span>  := /tmp/rust-scratch-bin
+run:
+	@rustc --edition 2021 $(FILE) -o $(BIN) &amp;&amp; ./$(BIN)   <span class="c"># compile then run</span></pre>
+<p>Without <code>make</code> at all, the same thing is one line: <code>rustc --edition 2021 scratch.rs -o /tmp/s &amp;&amp; /tmp/s</code>.
+Add <code>-O</code> for an optimized build (as the arena uses); omit it for faster compiles while iterating.</p>
+
+<div class="win"><b>The emacs loop.</b> Open <span class="p">scratch.rs</span>, then <code>M-x compile RET make RET</code>. Output (or compiler
+errors) appear in the <code>*compilation*</code> buffer; <b>compiler errors are clickable</b> — press <code>C-x `</code> (or click) to
+jump straight to the offending line, since <code>rustc</code>'s <span class="p">file:line:col</span> messages are exactly what emacs' error
+parser understands. After the first run, <code>M-x recompile</code> (or bind it) re-runs the same command with no prompts.
+To make <code>make</code> the default so you never retype it, add <code>(setq compile-command "make")</code> to your config
+(or set it per-file). Base emacs needs no <code>rust-mode</code> for this — it treats <code>.rs</code> as text and <code>make</code>/<code>rustc</code> do the work
+(if you want syntax highlighting later, <code>M-x package-install rust-mode</code>).</div>
+
+<p class="small">Why edition 2021: the arena bot and the examples use 2021 idioms (notably inline format args like
+<code>println!("{x}")</code>). Plain <code>rustc scratch.rs</code> defaults to edition 2015 and would reject those — hence the flag is baked into the Makefile.</p>
+
+<!-- ============================================================ PART A -->
+<h2>Part A — Reading Rust as a C++/Go/Python developer</h2>
+<p>Rust will feel familiar in the small (C-like syntax, methods, generics) but has three ideas that have no direct analogue in the languages you know: <b>ownership &amp; borrowing</b> (who may read or write a value, enforced at compile time), <b>no null / no exceptions</b> (absence is <code>Option</code>, failure is <code>Result</code>), and <b>explicit copying</b> (nothing heap-allocated is duplicated unless you say <code>.clone()</code>). Everything below is a construct that literally appears in this bot.</p>
+
+<h3>A1. The three hard ideas, once</h3>
+<p><b>Ownership.</b> Every value has exactly one owner; when the owner goes out of scope the value is freed (RAII, like C++ destructors, but the compiler tracks it). Assigning or passing a non-trivial value <i>moves</i> ownership — the source name becomes unusable — unless the type is <code>Copy</code> (small stack types: integers, <code>char</code>, tuples of those) or you explicitly <code>.clone()</code> it. There is no garbage collector.</p>
+<p><b>Borrowing.</b> Instead of moving, you lend a reference. A <b>shared borrow</b> <code>&amp;T</code> is read-only and you may have any number at once; an <b>exclusive borrow</b> <code>&amp;mut T</code> is read-write and you may have exactly one, with no <code>&amp;T</code> alive at the same time. The compiler's "borrow checker" rejects code that violates this. The pay-off: a value is either <i>shared and immutable</i> or <i>uniquely mutable</i>, which is how Rust prevents data races and dangling pointers with zero runtime cost. In this bot, <code>decide_elite(state: &amp;State)</code> only ever reads the world; the parser takes <code>reader: &amp;mut impl BufRead</code> because reading a line mutates the stream position.</p>
+<p><b>Absence, not null.</b> A maybe-missing value is <code>Option&lt;T&gt;</code> = <code>Some(x)</code> or <code>None</code>; there is no null pointer. A maybe-failing call is <code>Result&lt;T,E&gt;</code>. You must handle both cases, which is why you will see <code>if let Some(x) = …</code>, <code>.unwrap_or(default)</code>, and the <code>?</code> operator everywhere.</p>
+
+<h3>A2. Types, memory &amp; copying</h3>
+<table>
+<tr><th>Construct</th><th>What it is (vs C++ / Go / Python)</th></tr>
+<tr><td><code>&amp;str</code></td><td>Borrowed <b>string slice</b>: an immutable view into text you do not own — essentially a C++ <code>std::string_view</code> or a read-only Go <code>string</code>. Cheap to pass; no allocation. Seen as <code>VERSION: &amp;str</code> and every <code>t: &amp;str</code> parameter.</td></tr>
+<tr><td><code>String</code></td><td>Owned, growable, heap UTF-8 string — C++ <code>std::string</code>, Python <code>str</code>. <code>Tree.tree_type</code> owns its text; <code>format!(…)</code> produces a <code>String</code>.</td></tr>
+<tr><td><code>&amp;T</code> / <code>&amp;mut T</code></td><td>Shared (read-only, many) vs exclusive (read-write, one) borrow — see A1. <code>&amp;State</code>, <code>&amp;HashSet&lt;Cell&gt;</code>, <code>&amp;mut String</code>.</td></tr>
+<tr><td><code>.clone()</code></td><td>Explicit deep copy. Rust never copies heap data implicitly (unlike a C++ copy-constructor or a Python/Go reference assignment); you ask for it, so the cost is visible. <code>state.walkable.clone()</code>, <code>my_trolls.clone()</code>.</td></tr>
+<tr><td><code>as</code> cast</td><td>Explicit numeric conversion; Rust never converts integer types implicitly. <code>my.len() as i32</code>, <code>x as i8</code>.</td></tr>
+</table>
+
+<h3>A3. Collections &amp; compound types</h3>
+<table>
+<tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td><code>Vec&lt;T&gt;</code></td><td>Growable array — C++ <code>std::vector</code>, Go slice, Python <code>list</code>. <code>Vec&lt;String&gt;</code> (the turn's commands), <code>Vec&lt;Troll&gt;</code>.</td></tr>
+<tr><td><code>HashMap&lt;K,V&gt;</code></td><td>Hash map / dict — <code>unordered_map</code>, Go <code>map</code>, Python <code>dict</code>. <code>HashMap&lt;Cell,i32&gt;</code> is a BFS distance-per-cell.</td></tr>
+<tr><td>indexing <code>dist[&amp;(x, y)]</code></td><td>Read a <code>HashMap</code> by key with the <code>[]</code> operator. Two things to notice. <b>(1) The <code>&amp;</code>:</b> map indexing borrows the key — the signature is <code>fn index(&amp;self, key: &amp;K) -&gt; &amp;V</code>, so you pass <code>&amp;(x, y)</code> (a reference to the coordinate tuple), <i>not</i> the tuple by value. (Contrast <code>Vec</code>: <code>v[i]</code> takes <code>usize</code> by value.) The result is <code>&amp;V</code>, but because the value here is <code>i32</code> (<code>Copy</code>) <code>let d = dist[&amp;(x, y)]</code> just copies the number out. <b>(2) It <code>panics</code> if the key is absent</b> — like Python's <code>dict[k]</code> raising <code>KeyError</code>, <i>not</i> Go's silent zero-value. So <code>[]</code> is used only where the key is guaranteed present (here <code>(x, y)</code> was just <code>pop_front()</code>ed from the BFS queue); everywhere a cell might be missing the bot uses <code>.get(&amp;key)</code> → <code>Option</code> instead (see <code>d.get(c).copied().unwrap_or(1&lt;&lt;30)</code>).</td></tr>
+<tr><td><code>HashSet&lt;T&gt;</code></td><td>Set of unique keys. <code>walkable</code>, <code>reserved</code>, and <code>seed_cells</code> are all <code>HashSet&lt;Cell&gt;</code>.</td></tr>
+<tr><td><code>VecDeque&lt;T&gt;</code></td><td>Double-ended queue; the BFS frontier (<code>push_back</code> / <code>pop_front</code>).</td></tr>
+<tr><td><code>[T; N]</code></td><td>Fixed-size stack array (C array / <code>std::array</code>). <code>[i32; 6]</code> inventory, <code>[Cell; 4]</code> neighbours, <code>[bool; 3]</code> funding flags.</td></tr>
+<tr><td>tuple <code>(A,B)</code> · <code>.0</code>/<code>.1</code></td><td>Anonymous fixed group — C++ <code>std::tuple</code>, Python tuple. Fields are positional: <code>c.0</code>, <code>c.1</code>; <code>GE_SPEC.0</code> is movement-speed. <code>type Cell = (i32,i32)</code> names the coordinate pair.</td></tr>
+<tr><td><code>type X = …</code></td><td>Type alias — C++ <code>using</code> / <code>typedef</code>. <code>type Cell = (i32, i32)</code>.</td></tr>
+<tr><td><code>struct</code> · <code>.field</code></td><td>Named-field record — C++/Go <code>struct</code>. <code>Troll { id, x, y, … }</code>, read as <code>u.id</code>.</td></tr>
+</table>
+
+<h3>A4. Option, matching &amp; control flow</h3>
+<table>
+<tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td><code>Option&lt;T&gt;</code>, <code>Some</code>/<code>None</code></td><td>Maybe-present value — C++ <code>std::optional</code>, Go's comma-ok, replacing null. <code>d.get(&amp;cell)</code> and <code>.min_by_key(…)</code> return <code>Option</code>.</td></tr>
+<tr><td><code>if let Some(x) = e { … }</code></td><td>Bind <code>x</code> and run the block only when <code>e</code> is <code>Some</code> — a concise "unwrap if present".</td></tr>
+<tr><td><code>match</code></td><td>Exhaustive multi-way branch / pattern match — a <code>switch</code> that must cover all cases. <code>match ch { '0' =&gt; …, '.' =&gt; …, _ =&gt; {} }</code>; <code>_</code> is the catch-all.</td></tr>
+<tr><td><code>while let Some(x) = it { … }</code></td><td>Loop while the pattern matches; the BFS drains its queue until <code>pop_front()</code> yields <code>None</code>.</td></tr>
+<tr><td><code>for &amp;cell in sources</code></td><td>The <code>&amp;</code> in the pattern dereferences each borrowed item, so <code>cell</code> is a <code>Cell</code> value rather than <code>&amp;Cell</code>.</td></tr>
+<tr><td>early <code>return x;</code></td><td><b>Yes — Rust has a mid-function <code>return</code>, identical to C++/Go/Python.</b> <code>return x;</code> (or bare <code>return;</code> for a <code>()</code> function) exits immediately from anywhere, including inside a <code>match</code> arm or loop. The twist is <i>idiom</i>: a Rust function's normal result is its <b>last expression written with NO semicolon</b> (the "tail expression"), so <code>return</code> is reserved for <b>early exits / guard clauses</b>, not the final value. Compare <code>fell_ok</code>: the guard bails early — <code>if seed_cells.contains(&amp;p.pos()) { return false; }</code> — while the ordinary result is the trailing <code>p.size &gt;= 1</code> (no <code>return</code>, no <code>;</code>). Writing <code>return p.size &gt;= 1;</code> would compile too; it is just less idiomatic. A stray <code>;</code> on that last line would instead make the function return <code>()</code> and fail to type-check — the #1 surprise for newcomers.</td></tr>
+<tr><td><code>?</code> on <code>Option</code></td><td>In a function that returns <code>Option</code>, <code>read_line(reader)?</code> returns <code>None</code> immediately if the call was <code>None</code>, else unwraps it — Go's <code>if err != nil { return }</code> in one character; a specialised <i>early return</i>. (Elsewhere the parser uses <code>.unwrap()</code>, which <i>panics</i> on malformed input — acceptable because the referee guarantees well-formed input.)</td></tr>
+</table>
+
+<h3>A5. Closures &amp; iterator chains (the workhorse)</h3>
+<p>Most of the bot's logic is expressed as lazy iterator pipelines over the trees, cells and trolls. Read a chain left to right as a data-flow. These are C++20 ranges / Python generator expressions / Go loops, but composable.</p>
+<table>
+<tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td>closure <code>|x| expr</code></td><td>Anonymous inline function — C++ lambda, Go func literal, Python <code>lambda</code>. <code>|p| p.size &gt;= 2</code>; a block body uses braces.</td></tr>
+<tr><td>capturing</td><td>A closure automatically borrows the outer variables it names (no C++-style capture list). <code>fell_ok</code> captures <code>seed_cells</code>, <code>liquidation</code>, <code>farm_r</code>; <code>nearest_fell</code> captures <code>u</code>, <code>d</code>, <code>reserved</code>.</td></tr>
+<tr><td><code>.iter()</code> / <code>.into_iter()</code></td><td>Iterate by borrow (<code>&amp;T</code>) or by value (<code>T</code>, consuming the collection). Lazy.</td></tr>
+<tr><td><code>.filter(pred)</code></td><td>Keep items where the closure is true.</td></tr>
+<tr><td><code>.map(f)</code></td><td>Transform each item.</td></tr>
+<tr><td><code>.filter_map(f)</code></td><td><code>map</code> + drop the <code>None</code>s in one pass (<code>f</code> returns <code>Option</code>).</td></tr>
+<tr><td><code>.flat_map(f)</code></td><td>Map each item to an iterator and flatten — used to expand each iron cell into its four neighbours.</td></tr>
+<tr><td><code>.min_by_key(|x| k)</code></td><td>The item with the smallest key; returns <code>Option</code>. This is the core "pick the nearest / cheapest target" primitive.</td></tr>
+<tr><td><code>.any(pred)</code> · <code>.count()</code></td><td>"Does any match" (bool) · "how many match". <code>!my.iter().any(|u| u.chop_power &gt;= 2)</code>.</td></tr>
+<tr><td><code>.find(pred)</code></td><td>First matching item as <code>Option</code> ("is a troll standing on a tree?").</td></tr>
+<tr><td><code>.sum()</code> · <code>.take(k)</code></td><td>Add up items · keep the first <code>k</code> (the seed reserve is <code>.take(GE_SEED_RESERVE)</code>).</td></tr>
+<tr><td><code>.collect()</code></td><td>Materialise a lazy iterator into a real collection (<code>Vec</code>, <code>HashMap</code>…); target type is inferred or given by turbofish.</td></tr>
+<tr><td><code>.copied()</code> · <code>.unwrap_or(d)</code> · <code>.map_or(d,f)</code></td><td><code>&amp;T</code>→<code>T</code> by copy · <code>Option</code>-or-default · transform-or-default. <code>d.get(c).copied().unwrap_or(1&lt;&lt;30)</code> = "its distance, or infinity".</td></tr>
+<tr><td><code>.sort_by_key(|x| k)</code></td><td>In-place sort by a derived key; <b>tuple keys sort lexicographically</b>, which is how the seed reserve orders bananas by <code>(-size, -fruits, dist, pos)</code>.</td></tr>
+</table>
+
+<h3>A6. Macros, traits &amp; interior mutability</h3>
+<table>
+<tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td>macro <code>name!(…)</code></td><td>The <code>!</code> marks a <b>macro</b> (expanded at compile time), not a function. <code>format!</code> builds a <code>String</code>; <code>writeln!</code>/<code>eprintln!</code> do formatted output; <code>thread_local!</code> declares per-thread statics. Macros take variadic, compile-time-checked format arguments.</td></tr>
+<tr><td>trait</td><td>A set of methods a type promises to provide — a <b>Go interface</b> / C++ concept. <code>#[derive(Clone)]</code> auto-implements the <code>Clone</code> trait for <code>Troll</code>/<code>Tree</code>; <code>reader: &amp;mut impl BufRead</code> accepts any type implementing <code>BufRead</code>. (The library twin of this file is written as <code>impl Strategy for GoldElite</code>, where <code>Strategy</code> is exactly such an interface with one <code>decide(…)</code> method.)</td></tr>
+<tr><td><code>impl T { fn m(&amp;self) }</code></td><td>Attach methods to a type — C++ member functions, Go methods. <code>&amp;self</code> is a read-only receiver (<code>fn pos(&amp;self) -&gt; Cell</code>); <code>&amp;mut self</code> would mutate.</td></tr>
+<tr><td><code>#[derive(Clone)]</code></td><td>An attribute that auto-generates a trait impl (here, the field-by-field copy code).</td></tr>
+<tr><td><code>thread_local!</code> + <code>RefCell&lt;T&gt;</code> + <code>.borrow_mut()</code></td><td><b>Interior mutability</b> — worth understanding, because it is the only reason this bot can remember anything between turns. Rust forbids a plain mutable global (<code>static mut</code>) because a shared <code>&amp;T</code> may never mutate. <code>thread_local!</code> gives a per-thread global; <code>RefCell&lt;T&gt;</code> is a wrapper that moves the borrow check from compile time to <i>run</i> time, letting you take a temporary <code>&amp;mut</code> via <code>.borrow_mut()</code> (or <code>&amp;</code> via <code>.borrow()</code>) through a shared handle (it panics if you double-borrow). This is how <code>GE_LASTPOS</code> (the anti-stall streak) and <code>RH_RNG</code> (the random seed) persist across turns.</td></tr>
+<tr><td><code>.entry(k).or_insert(v)</code></td><td>Map "insert-if-absent, return a mutable handle" — Python <code>dict.setdefault</code>. Initialises a troll's watchdog record on first sight.</td></tr>
+</table>
+
+<h3>A7. Numbers &amp; small idioms</h3>
+<table>
+<tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td><code>const</code></td><td>Compile-time constant — C++ <code>constexpr</code>, Go <code>const</code>. <code>const TOTAL_TURNS: i32 = 300;</code>.</td></tr>
+<tr><td><code>i32</code> vs <code>usize</code></td><td><code>i32</code> = 32-bit signed (coordinates, sizes). <code>usize</code> = pointer-sized unsigned, <b>required for indexing</b> any collection (like C++ <code>size_t</code>) — that is why the item indices <code>PLUM…WOOD</code> are <code>usize</code> and you see <code>as usize</code> / <code>as i32</code> casts between "count" and "coordinate".</td></tr>
+<tr><td>turbofish <code>::&lt;T&gt;</code></td><td>Spell out a generic argument when inference cannot: <code>.collect::&lt;Vec&lt;_&gt;&gt;()</code>, <code>p[2].parse::&lt;i32&gt;()</code>. The <code>_</code> lets the compiler fill the rest.</td></tr>
+<tr><td><code>.max(1)</code> / <code>.min(k)</code></td><td>Numeric clamp helpers. <code>u.movement_speed.max(1)</code> guards against divide-by-zero.</td></tr>
+<tr><td>ceil-divide <code>(a+b-1)/b</code></td><td>Integer round-up division with no floats. <code>(dist + ms - 1) / ms</code> = travel turns; <code>(health + chop - 1) / chop</code> = chops needed to fell.</td></tr>
+<tr><td><code>.saturating_add(1)</code></td><td>Add without wrap-around (stops at the type's max). The watchdog streak counter is a <code>u8</code>.</td></tr>
+<tr><td><code>1 &lt;&lt; 30</code> sentinel</td><td>A bit-shift producing a huge number used as "unreachable / infinity" in <code>min</code> comparisons — <code>unwrap_or(1 &lt;&lt; 30)</code>.</td></tr>
+<tr><td><code>x.abs()</code></td><td>Absolute value; builds Manhattan distance <code>|dx| + |dy|</code>.</td></tr>
+</table>
+
+<!-- ============================================================ PART B -->
+<h2>Part B — The game and the strategy (what &amp; why)</h2>
+
+<h3>B1. The game in one paragraph</h3>
+<p>Two players share a small grid map over ~300 turns with a 50&nbsp;ms budget each turn. You command "trolls" (workers) that <code>MOVE</code>, <code>HARVEST</code> fruit, <code>CHOP</code>/fell trees, <code>MINE</code> iron, <code>PLANT</code> a carried seed, <code>PICK</code> a banked item back out of your shack, <code>DROP</code> (bank) their load at the shack, or <code>TRAIN</code> a new troll. The map has fruit trees (<b>PLUM, LEMON, APPLE, BANANA</b>), <b>water</b> (which speeds nearby tree growth), and <b>iron</b>. A tree grows one size per cooldown tick, from size 1 up to <b>size 4 (<code>MAX_SIZE</code>)</b>; <b>only at size 4 does it start bearing fruit</b>. Felling a size-<i>s</i> tree yields <i>s</i> wood (capped by free carry capacity) and <b>removes the tree from the map</b> — so a half of the board can be permanently deforested.</p>
+
+<h3>B2. Why wood — the scoring economics</h3>
+<div class="key">A player's score is <code>Σ(plum + lemon + apple + banana) + 4·wood</code> banked in the shack; iron scores <b>0</b> (it is only a training currency). <b>Wood is leveraged 4×</b>, so a bot that funnels its effort into banked wood out-scores a fruit farmer of equal activity. Every design choice below follows from this one fact.</div>
+<table>
+<tr><th>Species</th><th>Grow cooldown</th><th>Health (base + slope·size)</th><th>Why the bot cares</th></tr>
+<tr><td><b>BANANA</b></td><td>6 (→4 next to water)</td><td>2 + 1·size — very low</td><td>Grows fastest <i>and</i> is cheapest to fell (~2 chops at size 2). The ideal crop. Useless for training, so every banana is pure surplus turned into wood.</td></tr>
+<tr><td>APPLE</td><td>9 (→2 next to water)</td><td>8 + 3·size — tanky</td><td>Water-apple grows very fast but is slow to fell; used only as a <i>secondary</i> seed source when standing beside water.</td></tr>
+<tr><td>PLUM / LEMON</td><td>8 (→3)</td><td>4 + 2·size</td><td>Training currency (a troll costs <code>n + stat²</code> of each fruit). Harvested only to fund the one chopper, then ignored.</td></tr>
+</table>
+
+<h3>B3. The strategy: two trolls, fixed roles ("gold-elite")</h3>
+<p>This bot replicates the decoded top-of-Gold meta. It commits to <b>exactly two trolls</b> (<code>GE_MAX_TROLLS = 2</code>) and assigns roles purely by the test <code>chop_power &gt;= 2</code>:</p>
+<table>
+<tr><th>Troll</th><th>Talents (ms, cc, hp, chop)</th><th>Job</th></tr>
+<tr><td><b>Starter</b></td><td>the (1,1,1,1) troll you begin with</td><td>① harvest the fruit types the chopper still needs and <code>MINE</code> iron to <i>fund</i> it (roughly turns 20–77); ② once the chopper exists, run the <b>banana printer</b> (below); ③ if the farm is momentarily stocked, help chop (it has chop 1).</td></tr>
+<tr><td><b>Chopper</b></td><td>(2, 2, 0, 2) — trained once</td><td>Perma-fell local trees and bank whenever it fills. <code>cc 2</code> means it is full after 2 wood → very short round-trips. <code>hp 0</code> (cannot harvest) makes it cheaper to train — it never needs to harvest.</td></tr>
+</table>
+<p class="small">Why not the boss's expensive <code>cc 4</code> chopper, or 3–4 trolls? Both were measured worse: a <code>cc 4</code> chopper's lemon cost (<code>n + 16</code>) drains the economy, and every alternative troll count / spec loses the head-to-head production race to the two-troll <code>(2,2,0,2)</code> configuration.</p>
+<p>The <b>opening</b> (≈ turns 1–77) funds and trains the single chopper. After that the game is one sustained loop: the starter keeps a dense cluster of fast-growing bananas alive next to the base, and the chopper fells them forever, banking ~40–82 wood by turn 300 (≈ 160–330 points).</p>
+
+<h3>B4. The banana printer — the wood engine</h3>
+<div class="key">The "printer" is a closed loop that keeps a cluster of bananas within <code>farm_r = 3</code> of the shack (cap <code>farm_max = 12</code>), so the chopper always has a ripe, low-health tree one step away — no travel, no idle.</div>
+<ol>
+<li><b>Seed acquisition:</b> the starter <code>PICK</code>s a banana out of the shack inventory (bananas get banked from felling/harvesting), or, if none are banked, <code>HARVEST</code>s a fruit-bearing banana (or water-apple) tree to obtain one seed.</li>
+<li><b>Planting:</b> carrying a banana, it walks to the nearest free base cell (water-adjacency is a mild tiebreak, since banana cooldown drops 6→4 beside water) and <code>PLANT</code>s it.</li>
+<li><b>Felling:</b> the chopper fells these local bananas, banks at <code>cc 2</code>, and the loop repeats. Banked fruit stays near zero — everything is converted into wood.</li>
+</ol>
+
+<h3>B5. ★ The v1.4.5 fix: a protected seed reserve (the crux)</h3>
+<div class="warn"><b>The bug it fixes — the #1 arena loss.</b> The chopper's normal rule is "fell any farm banana at size ≥ 2". But <b>a tree only bears fruit at size 4</b>. If the chopper fells <i>every</i> banana the instant it reaches size 2, no banana ever survives to size 4, so <b>none ever fruits</b>. Fruit is the only new source of banana seeds, so the seed supply only drains. When the last banked seed is spent, the printer has nothing to plant, our half of the map deforests, and — with no tree to fell and nothing to harvest — <b>both trolls park next to the shack and do nothing for the rest of the game.</b> That is the "shutdown" loss the arena kept handing us: ~5 plants left, chopper wandering, ~22 wood banked, a ~115-point defeat.</div>
+<div class="win"><b>The fix — a seed reserve.</b> Before choosing targets each turn, the bot marks the <code>K = 2</code> (<code>GE_SEED_RESERVE</code>) <i>most-mature</i> farm bananas as a protected reserve the chopper is forbidden to fell. Those two bananas are allowed to ripen to size 4, where they <b>bear fruit</b>; the starter <code>HARVEST</code>s that fruit as fresh seeds and replants — closing the loop into a genuinely <b>self-sustaining farm</b>. Every <i>other</i> farm banana is still felled aggressively for wood, so throughput barely drops. The reserve is dropped during end-game "liquidation" (there is no future to sustain, so fell everything).</div>
+<p><b>Measured effect</b> on arena-faithful sparse maps: banked wood rises from <b>~45 → ~82</b>, idle turns collapse, and the farm survives to the end instead of dying mid-game. Because Gold rank is win-rate driven, converting these shutdown <i>losses</i> into competitive games is pure ranking gain — this was the single change that mattered most for v1.4.5.</p>
+
+<h3>B6. Robustness features (never waste a turn)</h3>
+<table>
+<tr><th>Mechanism</th><th>What it prevents</th></tr>
+<tr><td><b>Anti-starvation / never-idle</b> — a troll with no normal task fells the nearest reachable tree of size ≥ 1 <i>anywhere</i> on the map rather than parking.</td><td>Zero-value turns. Felling a size-1 tree for a single wood beats standing still; on banana-poor maps this alone turned losses into wins.</td></tr>
+<tr><td><b>Anti-stall watchdog</b> — if a troll issued a <code>MOVE</code> but its position has not changed for 2+ turns, it is self-blocked; the bot forces a random side-step to a free adjacent cell.</td><td>The classic self-block: a troll spamming an identical, blocked <code>MOVE</code> for dozens of turns behind its own teammate or crop. Historically the #1 loss cause.</td></tr>
+<tr><td><b>Seed reserve</b> (B5)</td><td>Farm deforestation → the both-trolls-parked shutdown.</td></tr>
+<tr><td><b>Endgame banking</b> — any carried load is banked once <code>turns_left ≤ eta_home + 1</code>.</td><td>Carried goods score 0 at t = 300; a chopper's un-banked wood is 4 points each, thrown away.</td></tr>
+<tr><td><b>Reserved-cell set</b> — a per-turn <code>HashSet</code> of cells already claimed.</td><td>Two of our own trolls targeting the same cell (the referee forbids co-occupation; it would waste a move).</td></tr>
+<tr><td><b>Shack-adjacent DROP</b> — bank from an orthogonally-adjacent cell, never the shack tile itself.</td><td>The shack tile is unwalkable; a troll must <code>DROP</code> from beside it.</td></tr>
+</table>
+
+<!-- ============================================================ PART C -->
+<h2>Part C — The code, block by block</h2>
+<p>This walks <span class="p">docs/best-bot-v1.4.5.rs</span> in source order. Each block notes its purpose, the Part-A idioms it leans on, and the Part-B intent it serves. Line numbers refer to the readable file.</p>
+
+<h3>C1. <code>fn main</code> and the I/O loop (lines ~837–end)</h3>
+<p>CodinGame speaks to the bot over stdin/stdout. <code>main</code> reads a one-time header (<code>width height</code>) and the static ASCII map, then loops once per turn: parse this turn's state, decide, print the semicolon-joined commands, flush.</p>
+<div class="flow">read "width height"                       <span class="c">// once</span>
+read `height` map rows  → parse_grid       <span class="c">// walkable / shacks / iron / water (static all game)</span>
+loop turns:
+    parse_turn → State                     <span class="c">// inventories, trees, trolls this turn</span>
+    debug_log (no-op unless DEBUG)          <span class="c">// stderr sim-fidelity echo</span>
+    cmds = decide_elite(&amp;state)            <span class="c">// ← the whole brain</span>
+    writeln!(out, "{}", cmds.join(";"))     <span class="c">// e.g. "MSG v1.4.5…;MOVE 0 2 1"</span></div>
+
+<div class="key"><b>Why the import reads <code>use std::io::{self, BufRead, Write}</code> — the <code>self</code>.</b>
+That one line pulls in <b>three</b> things, and they play two different roles:
+<ul>
+<li><b><code>self</code> = the module <code>std::io</code> itself.</b> It is what lets the code write the <i>path-qualified</i> constructors <code>io::stdin()</code>, <code>io::stdout()</code>, <code>io::BufReader::new(…)</code>, <code>io::BufWriter::new(…)</code>. Drop the <code>self</code> and the name <code>io</code> is simply not in scope — you would have to spell every call <code>std::io::stdin()</code> in full, or add a second line <code>use std::io;</code>. The <code>self</code> inside the braces is exactly that second line, folded in: "also bring the module named by the prefix into scope."</li>
+<li><b><code>BufRead</code> and <code>Write</code> are traits</b>, imported by <i>name</i>. Here is the Rust rule with no analogue in Go or Python: <b>a trait's methods are only callable when the trait is in scope by name</b> — a path prefix is not enough. <code>io::stdin().lock()</code> hands back a reader whose <code>.read_line()</code> / <code>.lines()</code> live on <code>BufRead</code>; <code>writeln!(out, …)</code> and <code>out.flush()</code> are <code>Write</code> methods. Without these two names in scope, those calls would not compile even though the module path already is. (This is also why the parser's signature <code>reader: &amp;mut impl BufRead</code> needs the name — see A6.)</li>
+</ul>
+So <code>{self, BufRead, Write}</code> says, in one tidy line: <i>the module</i> (to reach the <code>io::</code> constructors) <b>plus</b> <i>the two traits</i> (to call the read/write methods). The closest Python is <code>import io</code> (the module handle) <b>combined with</b> <code>from io import BufRead, Write</code> (the names) — Rust merges both into a single <code>use</code>.</div>
+
+<ul>
+<li><b>Idioms:</b> <code>parse_grid</code> is a <code>match ch { '0' =&gt; …, '.' =&gt; … }</code> over map characters (A4). <code>read_line</code> returns <code>Option&lt;String&gt;</code> and <code>parse_turn</code> propagates end-of-stream with <code>?</code> (A4); field parsing uses <code>.parse().unwrap()</code>, trusting the referee's format (A4).</li>
+<li>The static sets (<code>walkable</code>, shacks, <code>iron_cells</code>, <code>water_cells</code>) are parsed once and <code>.clone()</code>d into each turn's <code>State</code> (A2) — the map never changes.</li>
+</ul>
+
+<h3>C2. State structs: <code>State</code>, <code>Troll</code>, <code>Tree</code> (lines ~53–106)</h3>
+<p>Plain records (A3) holding the parsed world. <code>Troll</code> and <code>Tree</code> carry small <code>impl</code> method blocks (A6):</p>
+<ul>
+<li><code>Troll::pos()</code> → its <code>(x,y)</code>; <code>total_carried()</code> = <code>self.carry.iter().sum()</code>; <code>free_capacity()</code> = <code>carry_capacity − total_carried()</code>. These three drive nearly every "am I full / where am I" test.</li>
+<li><code>carry: [i32; 6]</code> is indexed by the item constants <code>PLUM=0 … WOOD=5</code> (all <code>usize</code>, A7) — e.g. <code>u.carry[BANANA]</code>.</li>
+<li><code>#[derive(Clone)]</code> (A6) lets <code>decide_elite</code> take a working copy of the troll list (<code>state.my_trolls.clone()</code>) so it can sort it by id without touching the shared <code>State</code>.</li>
+</ul>
+
+<h3>C3. Configuration constants <code>GE_*</code> (lines 187–197)</h3>
+<p>The whole strategy is captured in eleven <code>const</code>s (A7). These are the swept, verified arena defaults.</p>
+<table>
+<tr><th>Constant</th><th>Value</th><th>Meaning</th></tr>
+<tr><td><code>GE_SPEC</code></td><td>(2,2,0,2)</td><td>the one chopper's talents (ms, cc, hp, chop)</td></tr>
+<tr><td><code>GE_MAX_TROLLS</code></td><td>2</td><td>total troll cap — never train a third</td></tr>
+<tr><td><code>GE_FARM_R</code></td><td>3</td><td>banana-farm radius around the shack</td></tr>
+<tr><td><code>GE_FARM_MAX</code></td><td>12</td><td>max base trees the printer maintains</td></tr>
+<tr><td><code>GE_FELL_SIZE</code></td><td>2</td><td>min size the chopper fells (non-farm trees)</td></tr>
+<tr><td><code>GE_FARM_FELL</code></td><td>2</td><td>min size to fell a <i>non-reserved</i> farm banana</td></tr>
+<tr><td><code>GE_CHOP_R</code></td><td>10</td><td>max shack-distance the chopper roams for a normal fell</td></tr>
+<tr><td><code>GE_LIQ_T</code></td><td>34</td><td>final turns: liquidation — fell anything reachable</td></tr>
+<tr><td><code>GE_SEED_RESERVE</code></td><td>2</td><td><b>K protected most-mature bananas (B5)</b></td></tr>
+<tr><td><code>GE_STARTER_CHOP</code></td><td>true</td><td>let the chop-1 starter help fell when the farm is stocked</td></tr>
+<tr><td><code>GE_MIN_TURNS_LEFT</code></td><td>20</td><td>no training inside the last 20 turns</td></tr>
+</table>
+
+<h3>C4. Per-turn setup &amp; the training gate (inside <code>decide_elite</code>, lines ~222–255)</h3>
+<p>At turn 1 the persistent maps are cleared. Then the bot snapshots the shacks, inventory and <code>turns_rem</code>, sorts its trolls by id, and decides <i>whether to train the chopper this turn</i>:</p>
+<pre><span class="k">let</span> want_chopper = n &lt; GE_MAX_TROLLS &amp;&amp; !my.iter().<span class="n">any</span>(|u| u.chop_power &gt;= 2);
+<span class="k">let</span> cost        = <span class="n">training_cost</span>(n, spec);            <span class="c">// n + ms², n + cc², n + hp², n + chop² (iron)</span>
+<span class="k">let</span> train_now   = want_chopper &amp;&amp; <span class="n">mb_afford</span>(inv, &amp;cost, have_iron);
+<span class="k">let</span> need_iron   =
+    have_iron &amp;&amp; want_chopper &amp;&amp; inv[IRON] &lt; cost[IRON] &amp;&amp; <span class="n">afford_fruit_only</span>(inv, &amp;cost);
+<span class="k">let</span> need_fund: [<span class="k">bool</span>; 3] = [inv[0] &lt; cost[0], inv[1] &lt; cost[1], inv[2] &lt; cost[2]];</pre>
+<ul>
+<li><b>Idioms:</b> <code>.iter().any(…)</code> (A5) tests "do we already have a chopper?"; the tuple <code>spec</code> is <code>GE_SPEC</code> (A3); indexing <code>inv[IRON]</code> uses a <code>usize</code> constant (A7).</li>
+<li><b>Intent (B3):</b> <code>want_chopper</code> is true until one <code>(_,_,_,≥2)</code> troll exists. <code>need_fund[t]</code> is the per-fruit deficit that steers the starter's harvesting; <code>need_iron</code> flags "fruit is ready but iron isn't → go mine".</li>
+</ul>
+
+<h3>C5. ★ The seed reserve &amp; the <code>fell_ok</code> gate (lines ~263–283)</h3>
+<p>This is the v1.4.5 change (B5) and the heart of the file. First, collect the farm's bananas, sort them <i>most-mature-first</i>, and reserve the top <code>K</code>. Then <code>fell_ok</code> — a closure every targeting step consults — refuses to fell a reserved cell.</p>
+<pre><span class="k">let mut</span> seed_cells: HashSet&lt;Cell&gt; = HashSet::new();
+<span class="k">if</span> GE_SEED_RESERVE &gt; 0 &amp;&amp; !liquidation {
+    <span class="k">let mut</span> fb: Vec&lt;&amp;Tree&gt; = state.trees.iter()
+        .<span class="n">filter</span>(|p| p.tree_type == <span class="s">"BANANA"</span> &amp;&amp; manhattan(p.pos(), shack) &lt;= farm_r)
+        .<span class="n">collect</span>();
+    fb.<span class="n">sort_by_key</span>(|p| (-p.size, -p.fruits, manhattan(p.pos(), shack), p.pos())); <span class="c">// mature first</span>
+    <span class="k">for</span> p <span class="k">in</span> fb.into_iter().<span class="n">take</span>(GE_SEED_RESERVE) { seed_cells.insert(p.pos()); }
+}
+<span class="k">let</span> fell_ok = |p: &amp;Tree| -&gt; <span class="k">bool</span> {
+    <span class="k">if</span> seed_cells.contains(&amp;p.pos()) { <span class="k">return</span> false; }   <span class="c">// protected seed source</span>
+    <span class="k">if</span> liquidation { <span class="k">return</span> p.size &gt;= 1; }            <span class="c">// endgame: fell anything</span>
+    <span class="k">let</span> farm_banana = p.tree_type == <span class="s">"BANANA"</span> &amp;&amp; manhattan(p.pos(), shack) &lt;= farm_r;
+    p.size &gt;= <span class="k">if</span> farm_banana { GE_FARM_FELL } <span class="k">else</span> { fell_size }
+};</pre>
+<ul>
+<li><b>Idioms:</b> a whole iterator pipeline — <code>.iter().filter(…).collect()</code> into a <code>Vec&lt;&amp;Tree&gt;</code> of borrows (A5, A2); <code>sort_by_key</code> with a <b>tuple key</b> for lexicographic "size desc, then fruits desc, then nearest" (A5); <code>.into_iter().take(K)</code> to keep the top K (A5). <code>fell_ok</code> is a closure capturing <code>seed_cells</code>, <code>liquidation</code>, <code>farm_r</code>, <code>fell_size</code> (A5); early <code>return</code>s make it read like a guard cascade.</li>
+<li><b>Intent (B5):</b> "most mature first" guarantees the two bananas closest to fruiting are the ones spared, so the farm reaches size 4 and re-seeds itself.</li>
+</ul>
+
+<h3>C6. Target selection: <code>nearest_fell</code> (lines ~337–354)</h3>
+<p>A representative iterator chain: among all trees, keep the fellable, own-half, in-range, reachable, un-reserved ones, and return the position of the one that is <i>fastest to fell</i> (travel turns + chop turns).</p>
+<pre><span class="k">let</span> nearest_fell = |free_needed: <span class="k">bool</span>| -&gt; Option&lt;Cell&gt; {
+    <span class="k">if</span> free_needed &amp;&amp; u.free_capacity() == 0 { <span class="k">return</span> None; }
+    state.trees.iter()
+        .<span class="n">filter</span>(|p| fell_ok(p))                                   <span class="c">// C5 gate (respects the reserve)</span>
+        .<span class="n">filter</span>(|p| own_half(p) &amp;&amp; within_roam(p))
+        .<span class="n">filter</span>(|p| d.contains_key(&amp;p.pos()) &amp;&amp; !reserved.contains(&amp;p.pos()))
+        .<span class="n">min_by_key</span>(|p| {                                          <span class="c">// pick the cheapest</span>
+            <span class="k">let</span> steps  = (d[&amp;p.pos()] + u.movement_speed - 1) / u.movement_speed.max(1);
+            <span class="k">let</span> chop_t = (p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1);
+            steps + chop_t                                          <span class="c">// ceil-divides (A7)</span>
+        })
+        .<span class="n">map</span>(|p| p.pos())                                          <span class="c">// Option&lt;&amp;Tree&gt; → Option&lt;Cell&gt;</span>
+};</pre>
+<ul>
+<li><b>Idioms:</b> three <code>.filter</code>s then <code>.min_by_key</code> returning an <code>Option</code> (A4, A5); the key uses two ceil-divisions and <code>.max(1)</code> divide-by-zero guards (A7); a trailing <code>.map</code> converts the winning <code>&amp;Tree</code> into its <code>Cell</code>. <code>d</code> is this troll's BFS distance map (<code>bfs_distances</code> from the shack-less source = the troll's own cell).</li>
+<li><b>Intent (B3/B4):</b> "closest and cheapest to fell" — banana health 2+size is tiny, so a ripe farm banana almost always wins, keeping the chopper on the local loop.</li>
+</ul>
+
+<h3>C7. The chopper branch (lines ~356–410)</h3>
+<p>For the <code>chop_power ≥ 2</code> troll, a fixed priority cascade, each arm ending in <code>continue</code>:</p>
+<div class="flow">CHOPPER:
+ 1. carrying a load &amp; endgame (turns_left ≤ eta_home+1)  → bank it        <span class="c">// B6 endgame</span>
+ 2. full (free_capacity == 0)                            → bank
+ 3. standing on a fell_ok tree                           → CHOP  (reserve the cell)
+ 4. nearest_fell(false) exists                           → MOVE toward it
+ 5. ★ ANTI-STARVATION: nearest reachable size≥1 tree     → CHOP / MOVE       <span class="c">// B6 never-idle</span>
+ 6. carrying something → bank the partial load; else     → park by the shack</div>
+<p><b>Idioms:</b> <code>state.trees.iter().find(|p| p.pos() == u.pos())</code> (A5) is "am I standing on a tree?"; writing to the <code>GE_MEM</code> thread-local via <code>.with(|m| m.borrow_mut().insert(…))</code> (A6) records the target. Step 5 is a second, <i>ungated</i> <code>min_by_key</code> over all size-≥1 trees — deliberately ignoring <code>fell_ok</code>/own-half so the chopper always has something to do.</p>
+
+<h3>C8. The starter branch (lines ~411–585)</h3>
+<p>For the non-chopper, a six-step cascade that <i>is</i> the printer plus funding:</p>
+<div class="flow">STARTER:
+ 1. endgame banking (same rule)
+ 2. carrying a banana &amp; farm has room  → walk to a free base cell &amp; PLANT   <span class="c">// printer: plant</span>
+ 3. full → bank
+ 4. standing on a ripe tree we want    → HARVEST
+        (funding phase: a deficit fruit type;  after funding: only banana / water-apple seeds)
+ 5. FUNDING: MINE iron / go harvest the fruit types the chopper still needs (need_fund)
+ 6. BANANA PRINTER:  PICK a banked banana at the shack → else HARVEST a native banana for a seed
+    (then, if the farm is full / no seeds: help CHOP, anti-starvation, or park)</div>
+<pre>    <span class="c">// 5) BANANA PRINTER: keep the farm stocked with bananas</span>
+    <span class="k">if</span> base_trees &lt; farm_cap {
+        <span class="k">if</span> manhattan(u.pos(), shack) == 1 &amp;&amp; inv[BANANA] &gt; 0 &amp;&amp; u.free_capacity() &gt; 0 {
+            cmd_by_id.insert(u.id, format!(<span class="s">"PICK {} BANANA"</span>, u.id)); <span class="k">continue</span>;   <span class="c">// fastest seed cycle</span>
+        }
+        <span class="k">if</span> inv[BANANA] &gt; 0 { cmd_by_id.insert(u.id, park_cmd(u, &amp;d)); <span class="k">continue</span>; } <span class="c">// step to the shack to PICK</span>
+        <span class="c">// no banked seeds: harvest a native banana (or water-apple) for one</span>
+        <span class="k">let</span> seed_tree = state.trees.iter()
+            .<span class="n">filter</span>(|p| p.fruits &gt; 0 &amp;&amp; d.contains_key(&amp;p.pos()) &amp;&amp; !reserved.contains(&amp;p.pos()))
+            .<span class="n">filter</span>(|p| p.tree_type == <span class="s">"BANANA"</span>
+                || (p.tree_type == <span class="s">"APPLE"</span> &amp;&amp; state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1)))
+            .<span class="n">min_by_key</span>(|p| d[&amp;p.pos()]).<span class="n">map</span>(|p| p.pos());
+        <span class="c">// … if Some(tc): MOVE toward it …</span>
+    }</pre>
+<p><b>Intent (B4/B5):</b> the fruit that step 6 harvests comes precisely from the <b>size-4 reserved bananas</b> of C5 — that is the loop closing. During funding, step 4/5 instead chase <code>need_fund</code> fruit and iron; <code>ge_fruit_ty</code> (a <code>match</code>, A4) maps a tree type name to its inventory index.</p>
+
+<h3>C9. Endgame banking &amp; liquidation</h3>
+<p>Two time-based overrides woven through the cascades: (1) <b>endgame banking</b> — computed per troll as <code>eta = ceil(dist_home / ms) + 1</code>; if <code>turns_rem ≤ eta + 1</code> the troll banks whatever it holds (B6), because carried goods score 0 at t=300. (2) <b>Liquidation</b> — once <code>turns_rem ≤ GE_LIQ_T (34)</code>, <code>fell_ok</code> returns <code>size ≥ 1</code> for <i>any</i> tree and the seed reserve is skipped: with no future to sustain, every standing tree is just un-banked wood to be cut.</p>
+
+<h3>C10. The anti-stall watchdog (lines ~589–635)</h3>
+<p>After the cascades fill <code>cmd_by_id</code>, one pass detects self-blocked trolls (B6) using the persistent <code>GE_LASTPOS</code> map:</p>
+<pre>GE_LASTPOS.<span class="n">with</span>(|cell| {
+    <span class="k">let mut</span> m = cell.<span class="n">borrow_mut</span>();                       <span class="c">// interior mutability (A6)</span>
+    <span class="k">for</span> t <span class="k">in</span> &amp;my {
+        <span class="k">let</span> cur = t.pos();
+        <span class="k">let</span> is_move = cmd_by_id.get(&amp;t.id).<span class="n">map_or</span>(false, |c| c.starts_with(<span class="s">"MOVE "</span>));
+        <span class="k">let</span> entry = m.<span class="n">entry</span>(t.id).<span class="n">or_insert</span>((cur.0, cur.1, 0u8));   <span class="c">// A6 entry API</span>
+        <span class="k">let</span> stuck = entry.0 == cur.0 &amp;&amp; entry.1 == cur.1;
+        entry.2 = <span class="k">if</span> stuck &amp;&amp; is_move { entry.2.<span class="n">saturating_add</span>(1) } <span class="k">else</span> { 0 };
+        <span class="c">// … if streak ≥ 2 &amp; still MOVE-ing: pick a random free neighbour and override the command …</span>
+    }
+});</pre>
+<p><b>Idioms:</b> <code>.with(|cell| …)</code> is how you access a <code>thread_local!</code>; <code>.borrow_mut()</code> takes the run-time-checked <code>&amp;mut</code> (A6); <code>.entry().or_insert()</code> initialises the record (A6); the streak is a <code>u8</code> bumped with <code>.saturating_add(1)</code> (A7); tuple fields <code>entry.0/.1/.2</code> hold <code>(x, y, streak)</code> (A3). The random side-step cell is chosen with <code>rh_rand()</code> (the xorshift over <code>RH_RNG</code>).</p>
+
+<h3>C11. Command emission</h3>
+<p>Finally the per-id commands are gathered and printed deterministically: sort the troll ids, push each command in id order; prepend <code>MSG v1.4.5-seedreserve</code> on turn 1; append <code>TRAIN 2 2 0 2</code> if <code>train_now</code> holds, we are not inside the last 20 turns, and the shack tile is free; emit <code>WAIT</code> if somehow empty. <code>main</code> joins the vector with <code>;</code> into the single output line the referee expects.</p>
+
+<h2>Appendix — where things live</h2>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><span class="p">docs/best-bot-v1.4.5.rs</span></td><td>the readable single-file bot documented here (submission with dead code stripped; compiles with <code>rustc --edition 2021 -O</code>)</td></tr>
+<tr><td><span class="p">cgauto/submissions/v1.4.5-seedreserve.rs</span></td><td>the exact arena submission (identical live path, plus unused experimental code)</td></tr>
+<tr><td><span class="p">rust/src/strategies/gold_elite.rs</span></td><td>the same algorithm as a heavily-commented <code>impl Strategy for GoldElite</code> — the clearest place to read the intent</td></tr>
+</table>
+<p class="small">Generated 2026-07-04. The live decision function is <code>fn decide_elite(state: &amp;State) -&gt; Vec&lt;String&gt;</code>; the game is CodinGame Spring Challenge 2026, "Troll Farm".</p>
+
+</body>
+</html>

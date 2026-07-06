@@ -111,12 +111,17 @@ impl Strategy for SchedBot {
         } else {
             &HARVESTERS
         };
+        // Harvester fallback OFF by default (SB_HARVEST=1 restores it) — vs real Boss 5 the
+        // harvesters hoarded useless fruit (apple->47) while wood stalled; choppers-only turns
+        // those into steady chop economies. Kept as an A/B knob to measure the sim's transfer bias.
         let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
             && afford(inv, &training_cost(n, CHOPPER_SPEC), have_iron)
         {
             Some(CHOPPER_SPEC)
-        } else {
+        } else if envi("SB_HARVEST", 0) == 1 {
             harvesters.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
+        } else {
+            None
         };
         let need_iron = have_iron
             && want_chopper

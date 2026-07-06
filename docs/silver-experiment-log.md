@@ -448,3 +448,391 @@ NOTE: the earlier "printer-lite in the cascade = -80 density" finding was about
 HARD-priority planting; market-priced printing (schedbot's fix) transfers cleanly into
 the rollout baseline. Search on top of the strong baseline still adds (51.7 -> 55.0 as
 budget grows 1 -> 8 ms).
+
+---
+
+## 2026-07-04 — v1.4.5-seedreserve: fixed the #1 arena loss (deforestation stall)
+
+Decoded v1.4.4's arena games (rank 204, rating 15.51 — a regression vs v1.4.3's
+~159-174). Signal: we WIN on average wood (47 vs opp 41) yet lose 45%, and 13/44 games
+score <150. Decoding those 13: **12 were STALLED** — `endW == maxW`, wood frozen
+partway through, both trolls parked at a shack-adjacent cell for the rest of the game
+(replay 895134585: our trolls stuck at (8,0)/(9,1) while opp kept working).
+
+**Root cause:** trees only fruit at MAX_SIZE=4, but the chopper felled farm bananas at
+`GE_FELL_SIZE=2` -> they never fruited -> banana-seed supply only drained -> when
+banked seeds hit 0 with no reachable native banana, the printer died, the farm emptied,
+and both trolls fell through to `park_cmd` forever. (Felling at size 2 doesn't even
+help wood rate: wood == size.)
+
+**Fix:** keep the K=2 most-mature farm bananas as a protected seed reserve the chopper
+won't fell (`GE_SEED_RESERVE=2`, new `seed_cells` set + `fell_ok` closure in both
+gold_elite.rs and main.rs decide_elite). They ripen, fruit, and the starter harvests
+the fruit as seeds to replant -> self-sustaining farm.
+
+**Sim-calibration insight:** the DEFAULT sim (`TREE_LO=2 TREE_HI=3`) is ~2x too
+tree-rich; the farm never deforests (0 starved turns) so it CANNOT reproduce the stall.
+The real arena maps are SPARSE — `TREE_LO=1 TREE_HI=1` reproduces arena wood (~47) and
+the idle. New tool `src/bin/stall.rs` reports winrate/wood/idle/starved/plants@end.
+
+| map density | metric | baseline (reserve=0) | v1.4.5 (reserve=2) |
+|---|---|---|---|
+| SPARSE (arena-like) vs scriptboss | wood | 45.0 | **82.0** |
+| SPARSE vs scriptboss | idle turns/game | 7.2 | **2.7** |
+| SPARSE vs scriptboss | plants@end | 1.1 | **7.3** |
+| RICH vs scriptboss | winrate | 80% | **88%** |
+| RICH vs schedbot | winrate | 68% | **75%** |
+| RICH vs silverboss | winrate | 100% | 100% |
+
+Uniformly non-negative vs all three pool bots on rich maps; large wins on sparse.
+Submitted via api_submit (40950032). At submit: rating 18.32, position 122/531.
+
+---
+
+## 2026-07-04 — 3-troll redesign attempt (kurigen build): REFUTED; wood is supply-limited
+
+Motivated by a user-supplied game log where opponent **kurigen** ran THREE trolls
+(starter + `2,2,2,2` hybrid chopper @t16 + `2,3,0,2` chopper @t86) and banked **121
+wood**, crushing our old v1.2.2 (64). Hypothesised a 2nd chopper would add throughput
++ deny the opponent's trees. Built an env/config-gated 3-troll variant
+(`GoldElite::hybrid()`, roster `goldelite3`): staggered 2nd chopper (train @t60),
+`GE_CHOPPERS`/`GE_STAGGER`/`GE_SPEC2` knobs.
+
+**Every configuration is decisively WORSE:**
+| test | 2-troll v1.4.5 | 3-troll variant |
+|---|---|---|
+| sparse vs scriptboss (wood) | 83 | 22 |
+| dense vs schedbot (winrate) | 78% | 47% |
+| dense vs schedbot (wood, full-len games) | 76 | 49 |
+| **H2H vs v1.4.5 itself, dense (winrate)** | **92%** | **8%** |
+| **H2H vs v1.4.5 itself, sparse (winrate)** | **98%** | **2%** |
+
+Traced `goldelite3` — it is NOT buggy (trains 3 trolls, both choppers CHOP), but the
+two choppers repeatedly converge on the same cell competing for a depleted supply, and
+in the H2H the opponent v1.4.5 banks its full ~354 wood UNsuppressed (denial fails —
+its seed-reserve defends its farm). Also refuted single-chopper spec swaps: `2,2,2,2`,
+`2,2,1,2`, `2,3,0,3` all ≤ current `2,2,0,2`. Carry-capacity `2,3+..` refuted earlier
+(training cost = n+cc²).
+
+**ROOT CAUSE / ceiling insight: WOOD IS SUPPLY-LIMITED, not chopper-limited.** Total
+wood is bounded by the tree supply (native trees + the sustainable banana-farm
+replant rate, which is gated by the single fixed `(1,1,1,1)` printer and ~15-25-turn
+banana maturation). One chopper consumes that sustainable supply; a 2nd chopper only
+races through it faster then starves, while its training cost (n+ms²+cc²+chop² fruit)
+sets us back. The 2-troll (1 printer + 1 chopper) design is the economic OPTIMUM for
+this game's tree mechanics — which is why the meta converged there. v1.4.5's
+seed-reserve already maximises the sustainable supply. kurigen's 121 came from a weak
+opponent (denial worked vs v1.2.2) + a dense map, NOT a repeatable edge vs a strong bot.
+
+**Conclusion:** hold v1.4.5 (live @ rank ~104, rating ~18.5, up from v1.4.4's 204).
+Config infra kept (default = v1.4.5, submission `main.rs` untouched) for any future
+faithful hybrid-economy work. Reaching Legend (Boss 5) appears to need a deeper,
+higher-risk economy redesign the current evidence does not support.
+
+### follow-up: the FAITHFUL self-planting hybrid also fails (refutation complete)
+
+My first refutation used PURE 2nd choppers — not kurigen's build. kurigen's 2nd unit is
+`2,2,2,2` (harvest-capable), so it can PLANT bananas, raising the farm's supply rate
+(the suspected real bottleneck). Built it faithfully: routed hp>0 choppers through the
+flexible printer/chopper branch (`is_chopper = chop>=2 && hp==0`), spec2=`2,2,2,2`, so
+the hybrid plants when the farm is low and chops when it's full.
+
+Result: **still 2% (dense) / 1% (sparse) H2H vs v1.4.5**, banks LESS total wood (237 vs
+366 dense, 146 vs 299 sparse). So even the faithful mechanism fails. Conclusion is now
+airtight: a 3rd troll's marginal wood < its ~20-resource / ~40-turn training cost,
+because total wood is bounded by tree supply (native depletion + farm cap × ~15-25-turn
+maturation), NOT by planting rate — a 2nd planter fills the cap faster but can't raise
+the maturation-limited fell rate, and 2 choppers just deforest faster then starve.
+kurigen's 121 wood was denial vs a weak (v1.2.2) opponent on a dense map, not a
+repeatable economic edge. **v1.4.5 (2-troll seed-reserve) is the confirmed optimum.**
+
+### 2026-07-05 — search/RHEA path CLOSED by data: losses are economic blowouts
+
+Before investing in a search-bot rewrite, decoded v1.4.5's arena loss MARGINS (agent
+6538316, 50 games, 22W/28L): only **1/28 losses within 25 pts**, **18/28 are >50 pts
+behind**, **median loss −78 pts (≈20 wood)**. Flipping every close game → winrate
+44%→46% (negligible). CONCLUSION: losses are decisive PRODUCTION blowouts, not tactical
+→ a search/RHEA bot (which only improves tactical micro over the near-optimal heuristic)
+CANNOT reach Legend. The constraint is 100% economic, and the economy is already proven
+optimal (2-troll) with the 3-troll alternative refuted. Boss 5/Legend is beyond reach
+without a genuinely superior economy that this session could not construct (the opponents
+banking 87+ wood do so via more supply — denial vs weaker fields — which our 2 trolls
+can't replicate). v1.4.5 @ rank ~118 (top-of-Gold) is the rigorous endpoint.
+
+### 2026-07-05 — cc x fell_size combo also refuted (throughput > wood-per-tree)
+
+Re-examined the "economy optimal" claim: our cc=2 chopper captures ≤2 wood/tree (engine
+DROPS overflow when felling a size>cc tree). Hypothesised cc=3 + fell-at-size≥3 = 3
+captured wood/tree. Tested the COMBO (untested before — had only tried cc and fell_size
+separately): DECISIVELY WORSE (wood 74.8 vs 81.5 sparse; 86 vs 90 dense; cc=4/fs=4
+catastrophic 13-21 wood). Reason: THROUGHPUT dominates — felling fast at size 2 extracts
+more total wood than felling slowly at size 3-4 (waiting for growth + higher n+cc²
+training cost kills the fell rate). `cc=2 / fell-size-2` is throughput-optimal. Ceiling
+re-confirmed. Levers now refuted with data: knobs (all), 3-troll (both variants),
+search/RHEA (losses are -78 blowouts not tactical), cc×fell_size combo. v1.4.5 stands.
+
+### 2026-07-05 — MAJOR: the real Legend meta is ACCUMULATE-HARVEST (180 wood), not steady-state
+
+Decoded my worst arena blowout (game 895146562, lost 386 vs Tchoubidouwa123 **729**).
+Opponent banked **180 WOOD** (vs my 93). Wood trajectory `[0,0,24,128,176,180]` at
+(0,25,50,75,95,100)% — banks ~0 for the first HALF, then EXPLODES +104 in the 3rd
+quarter. Trained 3 extra trolls (turns ~3/73/119 → a 4-troll economy). This is a
+two-phase **accumulate-then-harvest**: build a big farm + several trolls early (bank ~0),
+let a huge mature forest stand, then MASS-HARVEST it late. This OVERTURNS the earlier
+"~90-wood ceiling / v1.4.5 optimal" conclusion — that was optimal only for STEADY-STATE
+felling; the real ceiling is ~180.
+
+Built a first `accumulate()` variant (roster `goldelite_acc`; GE_HOLD_UNTIL = choppers
+PLANT not fell before turn N; big farm_cap; multi-troll). Results vs v1.4.5 h2h:
+- config A (hold=140, cap=30, cc=4 harvester): **0%**, banks 207 (< v1.4.5's 391).
+- config B (hold=100, cap=20, cheap cc=2 choppers): **11% dense / 1% sparse**, banks 302.
+Improving but still loses. Diagnosis — TWO hard mechanisms my prototype lacks:
+  1. **Full-capture felling**: cc=2 grabs only 2 wood from a size-4 tree (engine DROPS the
+     overflow), so accumulating size-4 trees is wasted unless you CO-FELL (2 choppers/tree
+     = 4 captured) or train cc=4 (expensive). Must add co-fell coordination (currently
+     `reserved` forbids 2 choppers on one cell).
+  2. **Seed-economy buildup**: filling a 20-30-tree farm needs exponential early seed growth
+     (harvest fruit→plant→more fruit); the single printer can't fill it fast.
+NEXT: implement co-felling of big trees in the harvest phase + a dedicated early
+seed-multiplication phase. This is the genuine path to Legend/Boss 5; v1.4.5 (steady-state)
+stays live as the safe floor. Default gold_elite/main.rs UNCHANGED (hold_until=0).
+
+### 2026-07-05 — accumulate param sweep: implementation is 4.5x short (hard-hold is wrong)
+
+Swept GE_ACC_* (hold 90-180, cap 24-40, choppers 3-4) vs scriptboss. EVERY config banks
+only ~40 wood (best: hold=90/cap=24 → 40 wood, 42%) vs v1.4.5's 90 and the Legend bot's
+180. Can't even fund the 4th troll (banking 0 during the hold starves funding). So the
+HARD-HOLD implementation is fundamentally wrong, not mistuned. The real Legend economy is
+NOT "bank 0 then harvest" — the decoded opponent banked 24 by t150 (not 0) and trained
+trolls EARLY (t3/t73/t119), i.e. it FRUIT-FUNDS aggressively early + PARTIAL-fells to pay
+for trolls while the farm compounds, then explodes. That's a subtle fruit-funded compound-
+buildup, well beyond a hard hold. My 8+ redesign prototypes across 4 strategies (3-troll,
+hybrid, search, accumulate) all bank LESS wood than v1.4.5 — I cannot replicate the Legend
+economy this session. HONEST LIMIT: v1.4.5 (steady-state, ~90 wood, rank ~118) is the best
+bot I can build; Legend/Boss 5 needs the compound seed-economy cracked, which is a focused
+multi-hour effort (ideally collaborative). Not shipping any prototype (all worse). v1.4.5 holds.
+
+### 2026-07-05 — cheap-PLANTER supply build: right mechanism, best redesign yet, but plateaus < v1.4.5
+
+Found the mechanism I'd been missing: every prior redesign added expensive CHOPPERS
+(~17 res) which starved funding; the supply bottleneck needs CHEAP (1,1,1,1) PLANTER
+trolls (~8-12 res, hp>0 so they harvest+plant). Added `planters` field + train-planters-
+first logic (roster `goldelite_acc`, GE_ACC_PLANT). This moved the redesign from 0-11% to
+**best 38% h2h vs v1.4.5** (PLANT=1 CHOP=1, ~79-85 wood) — the closest any redesign got.
+BUT it plateaus BELOW v1.4.5:
+- DENSE: best ~85.6 wood (CAP=12) vs v1.4.5's 90; 27-38% h2h. Bigger farm HURTS (planters
+  spread thin, chopper travels more): CAP 12→85w, 16→75, 20→59, 24→47.
+- SPARSE (arena-like!): **1% h2h** — 3-4 trolls badly overcrowd/starve a sparse map.
+Since the ARENA maps are sparse (~47 wood matches TREE_LO=1), the supply build would TANK
+the arena rank. NOT arena-viable. CONCLUSION: v1.4.5 (2-troll) is the efficient frontier
+for the testable map distribution; the extra troll's training cost + throughput caps keep
+every multi-troll build ≤ v1.4.5 net, and multi-troll is catastrophic on sparse maps. The
+Legend bot's 180 wood likely needs specific dense/watery maps + micro-routing I can't
+replicate generally. v1.4.5 stays live @ rank 118. Cheap-planter mechanism validated + left
+in gold_elite.rs (GE_PLANTERS, default 0) for future dense-map or map-adaptive work.
+
+### 2026-07-05 — map-adaptive bot: apparent edge was NOISE (44-45% over 240 games)
+
+Built a map-adaptive variant (roster `goldelite_ad`): detect tree density at turn 1, run
+the cheap-planter+hold SUPPLY economy on dense maps (which showed 53% h2h at 40 seeds) and
+the lean 2-troll v1.4.5 build on sparse. At 40 seeds it looked like a breakthrough (52%
+dense / 54% sparse — first bot all session to seemingly beat v1.4.5). But at 120 seeds
+(240 games) it's **44% dense / 45% sparse — it LOSES**. The 52-54% was small-sample noise.
+Worse, sparse h2h at 45% (should mirror v1.4.5 at 50%) shows the density threshold
+MISCLASSIFIES some maps -> wrong economy -> avoidable losses. RIGOROUS FINAL RESULT: nothing
+built this session beats v1.4.5 at a proper sample size. The cheap-planter mechanism is real
+(validated the supply concept) but even its best assembly loses. v1.4.5 (2-troll) is the
+statistically-confirmed optimum for the testable map distribution. All experiment variants
+left additive in gold_elite.rs (default new()=v1.4.5, submission main.rs untouched).
+LESSON: validate apparent edges at >=200 games before believing them.
+
+## 2026-07-06 ~11:30 — T1 (roadmap): decide_sched 4-troll scale economy vs REAL Boss 5 = CLOSED, FAILED
+Executed roadmap T1: dispatched main() to decide_sched (1 super-chopper 2.3.0.3 + up to 3
+harvesters, MB_MAX_TROLLS=4, MB_DENIAL_W=0 — the post-"disaster-fix" config), DEBUG build,
+12 real Boss-5 games via collect_debug_games.py. **RESULT: 1/12 wins, our avg final wood 13
+(range 2-22) vs boss 45 — uniform wood collapse in every game**; the lone "win" was 10-22 on
+wood (won on hoarded fruit). The remembered 3/10-with-out-producing-wins form did NOT
+reproduce; the config as it stands in main.rs banks fruit, not wood, and is ~3x below
+decide_elite's 39-49 wood. Dispatch reverted to decide_elite same hour (cargo build+tests
+green). VERDICT: the 4-troll scale-economy hope is CLOSED as a dead end in its current shape;
+do not re-run without a fundamentally different wood pipeline. Next per roadmap: T2.a
+late-feeder (GE_FEEDER_T 45→150, GE_MAX_TROLLS 2→3) after the v1.21.0 arena verdict lands.
+Also this morning: v1.21.0-motion (goal-directed sidestep + proactive re-route) verified
+block rate 4.1%→1.73% on 4 real games, submitted 10:35; convergence reads 18.0 (11:05),
+17.7 (11:13), 18.1 (11:27) vs v1.20.0 baseline 18.4 — verdict pending.
+
+## 2026-07-06 ~12:00 — v1.21.0 verdict; T2.a inconclusive; ★ SEED-LOOP root cause found (T2.0)
+- **v1.21.0-motion arena verdict: converged 119 @ 18.1** (reads 18.1 @11:27/11:30/11:48) =
+  baseline −0.3 → REVERTED to v1.20.0 per roadmap §3.G (resubmitted 11:52, api_submit default
+  restored to v1.20.0). The motion code (blocks 4.1%→1.73%) stays in the tree — arena-neutral,
+  not harmful; future versions carry it.
+- **T2.a late feeder (GE_MAX_TROLLS 3, GE_FEEDER_T 150): INCONCLUSIVE-BY-CONSTRUCTION** —
+  0/12, wood 42.3, but the feeder NEVER TRAINED (12/12 games 2-troll). @TFFEED instrumentation
+  (3-game probe) shows why: want_feeder=false throughout — farm_now=0-1 (<5 gate) AND
+  inv plum/lemon ≈ 0-4 (<6/6/6 cost; post-funding the starter only harvests banana/water-apple,
+  the wallet never refills). Reverted knobs; reopen after the seed loop works + pair with a
+  funding fix.
+- **★ ROOT CAUSE of the late-throughput ceiling (probe + @TFD analysis): the SEED LOOP IS
+  DEAD.** banana_seeds = 0 for essentially ENTIRE games (all 3 probes); farm EMPTY (0-1 trees)
+  by t140; map deforests 21→9 trees. Mechanism: everyone fells bananas at size 2 (nothing ever
+  fruits) AND both ANTI-STARVATION fallbacks (chopper ~L2384, starter ~L2562) bypass fell_ok —
+  they EAT the 2 protected seed trees. The v1.4.5 seed-reserve fix and the anti-starvation
+  floor fight each other; the reserve loses. Note: with cc2, size-2 and size-4 fells yield the
+  SAME 2 wood — ripening reserves is ~free.
+- **v1.23.0-seedloop shipped to the 12-game boss gate (~12:00)**: seed_cells widened to
+  our-half bananas within chop_r when farm bananas < K; both anti-starvation fallbacks exclude
+  seed_cells. Gate extras: expect banana_seeds>0 & farm>2 at t150+ in @TFFEED, t300 delta
+  better than −12, wins ≥4/12 → arena as usual.
+
+## 2026-07-06 ~12:10 — ★ v1.23.0-seedloop GATE PASSED → SUBMITTED; v1.23.1-fruitbank gating
+- **Seedloop 18-game gate: 4/18 wins (22% vs 14% baseline), avg wood 46.9 (vs 38.7), t300
+  delta −6.8 (vs −15.3, halved), late-quarter gap us +13.4 vs boss +17.8 (was +12/+23).**
+  Out-produced the boss on wood in 4 games (57-52, 77-75, 57-40W, 53-52W) — never happened
+  with decide_elite before. Mechanism verified: farm ALIVE (≥2 trees) at t150+ in 10/12
+  (was 0-1); bank seeds stay 0 because carried bananas are planted directly (expected).
+  SUBMITTED 12:04 (TestSession 40956279); arena verdict ≥13:05 vs baseline 18.4; frozen at
+  submissions/v1.23.0-seedloop.{rs,min.rs}. api_submit default stays v1.20.0 until verdict.
+- **New diagnosis from the seedloop games: we lose wood-won games on FRUIT** (57-52 & 77-75
+  wood, both L) — post-funding the starter harvests only banana/water-apple; all other ripe
+  fruit is left on the map while the boss banks everything. **v1.23.1-fruitbank**: from t150
+  (GE_FRUITBANK_T) the starter harvests ANY ripe fruit — banked points + refills the
+  plum/lemon/apple wallet (which also unblocks the T2.a late feeder later). Early game
+  untouched (seed priority + gates unchanged before t150). 12-game gate running ~12:10.
+
+## 2026-07-06 ~12:15 — v1.23.1-fruitbank gate: HOLD for the seedloop arena verdict
+15 games (3 of the 6-game extension failed — throttle warming; ~71 API games today): **3/15
+wins, avg wood 51.3, t300 delta ≈ −6.2** — equal to seedloop on wins, better on wood, and its
+extra value (banked fruit points) is INVISIBLE to the wood-only gate metrics: its wins include
+two fruit-decided wood-draws/losses (59-60 W, 69-70 W), the exact scenario seedloop lost.
+Strictly dominates seedloop on expected score. Frozen: submissions/v1.23.1-fruitbank.{rs,min.rs}
+(MIN-OK). DECISION: hold submission until v1.23.0-seedloop's arena verdict (~13:05) — one arena
+variable at a time; if seedloop transfers (≥18.2), submit fruitbank on top; if seedloop craters
+(<18.1), that's a boss↑/field↓ divergence — revert to v1.20.0 and re-examine the family vs
+FIELD opponents (T3) before any resubmit.
+
+## 2026-07-06 ~12:57 — ★ v1.23.0-seedloop ARENA VERDICT: CRATERED — boss↑/field↓ divergence PROVEN
+Arena-room read 12:55 (51 min post-submit): **rank 205 @ 15.6** (baseline 117 @ 18.4, −2.8) —
+far below any convergence trajectory seen (v1.21.0 read 18.0 at +30 min). User spotted it first.
+REVERTED to v1.20.0 at 12:57 (TestSession 40956563). LESSON (now proven, not just suspected):
+the 12-18-game boss gate measures ONLY Boss 5; the arena rating is earned against the FIELD
+(~15-19-score players), and a change can be the best-ever vs the boss while LOSING to the field
+— seedloop's seed-tree protection/ripening evidently gives field opponents standing value or
+costs tempo they punish. CONSEQUENCES: (1) v1.23.1-fruitbank submission CANCELLED (contains
+seedloop); (2) the whole seedloop family goes to FIELD analysis first (T3): collect games vs
+rank-100-140 players, find HOW they beat seedloop; (3) roadmap gate procedure gains a field
+check before arena submits of economy changes.
+
+## 2026-07-06 ~13:40 — FIELD GATE built + first field data; seedloop crater mechanism
+`cgauto/field_targets.py` (raw getFilteredPuzzleLeaderboard → agentIds): ★ GOAL MATH CORRECTED:
+Gold ranks 95-113 hold scores 19.0-19.9 → **rank ≤99 = ~19.7 = +1.3-1.5 from baseline** (the old
++7.5 figure conflated the separate Legend/boss bar 26.2). Field games via collect_debug_games
+with agentIds WORK. v1.20.0 baseline vs the band: RunninglVlan(102) 1/2 wood 49-46;
+nmahoude(110) 1/2 wood 60-64 — ~EVEN with our matchmaking diet; Tchoubidouwa123(98) 0/2 wood
+86-123 (4-troll ms3/cc4 scale tier — not required for rank 99). Field games are WOOD-RICH
+(60-86 avg vs 39-50 vs boss): the field expands (3-4 trolls incl. (2,2,2,0)/(2,2,1,1)
+harvesters + cc3 choppers) instead of denying. SEEDLOOP A/B vs same opponents (n=2/cell,
+directional): vs RunninglVlan lost 37-67 (same opp got 46/27 vs baseline) — **mechanism
+hypothesis: our ripening protected bananas = 3-4-wood gifts for field cc3 choppers (cc2 caps
+US at 2)**; explains boss-gate↑ (boss cc2 + shallow raids) vs field-crater. Seedloop family
+stays frozen. NEXT: v1.24.0 = fruitbank-only on the v1.20.0 base (no ripening, banks existing
+fruit from t150; field-safe by construction) → FIELD gate first.
+
+## 2026-07-06 13:36 — v1.24.0-fruitbank SUBMITTED (field-gated, single-variable)
+Baseline reconvergence CONFIRMED first: v1.20.0 back at **118 @ 18.6** (13:35; above the old
+18.4 read — arena noise band ±0.2 confirmed empirically). v1.24.0 = fruitbank ONLY (starter
+harvests/banks ANY ripe fruit from t150) on the v1.21-logic base; ALL seedloop edits removed
+(dead-end note left in code). Field gate: level with baseline vs RunninglVlan/nmahoude (1/2
+each; 88-77 high-water win); no crater signature. Boss numbers not re-run (fruitbank's value
+= fruit points, invisible to wood metrics; arena = the only sufficiently sensitive scale).
+Submitted 13:35:57 (TestSession 40956721). Verdict ≥14:35 vs baseline 18.5±0.1; revert rule
+armed (≤18.2 → resubmit v1.20.0). If kept: next = T2.a.2 late feeder (fruitbank refills its
+6/6/6 wallet) or Phase R refactor on user go.
+
+## 2026-07-06 14:50 — v1.24.0-fruitbank verdict: −1.0, REVERTED (124 @ 17.5 converged ×2)
+Two identical reads (14:35, 14:46). Baseline was 118 @ 18.6. MECHANISM (hypothesis): from t150
+the starter stops chop-helping (step 6 contributes to 4-pt wood fells) to chase 1-pt fruit —
+net negative. LESSON: the 4-game field gate filters CRATERS only; ±1.0 effects are invisible
+under wood noise — the arena is the only scale for knob-sized effects, and even "additive-
+looking" behaviors trade against the tight 2-troll machine. DAY TALLY: 4 arena experiments
+(v1.21 motion −0.3 neutral; v1.23 seedloop −2.8 crater; v1.24 fruitbank −1.0), ALL reverted;
+baseline v1.20.0 intact (118 @ 18.6). The decide_elite knob well is DRY — every bolt-on
+behavior loses. ⇒ The remaining road to +1.3 is COORDINATED policy change = Phase R (L2 jobs
+layer). Starting R1/R2 (behavior-preserving extraction + equality harness — zero arena risk)
+while v1.20.0 reconverges.
+
+## 2026-07-06 ~16:15 — Phase R: R1 DONE + R2a DONE + bundler DONE (all gates green)
+R1: `src/bin/equality.rs` black-box harness (two bot binaries over the CG protocol on sim
+games; opponent = frozen reference binary or WAIT — lib strategies are nondeterministic).
+Found+fixed the bot's own nondeterminism (2 HashSet-tie sites → `(score, cell)` keys);
+self-play determinism proven; **reference frozen** (submissions/v1.25.0-ref-deterministic.rs,
+target/refactor/reference_bin; VERSION frozen "1.25.0-layers"); **500-game baseline: EQUAL
+(0 divergences)**. Goal-file amendments documented (reference = v1.20.0+2 tiebreaks; version
+freeze; binary opponents; bundler allowance).
+R2a: whole bot moved VERBATIM into the lib (`src/botmain.rs`, `pub fn run()`); main.rs = 6-line
+shim; 18 test suites green; **100-game equality vs reference: EQUAL**.
+Bundler: `tools/bundle.py` (recursive `mod x;` inliner + fn main trampoline). Gates: rustc
+compiles ✓, bundled binary **50-game equality EQUAL** ✓, minified 89,101 B < 100 KB ✓.
+NEXT (R3, each step harness-gated ≥50 seeds + bundle gates): R3a `mod state` (types+helpers+
+consts), R3b `mod motion` (watchdog, camp-cell claims, bank/park), R3c `mod jobs` (the per-troll
+cascade → Job enum + assignment fn; the delicate one — preserve priority order + reserved/claimed
+side-effect order), R4 `mod tactics` (spec/farm/liquidation/seed_cells). Then final gates +
+arena hold-check per docs/refactor-goal.md.
+
+## 2026-07-06 ~16:40 — R3a DONE: `mod state` extracted, all gates green
+tools/extract_state.py (anchor-based): 160 lines → src/botmain/state.rs (types Cell/Troll/
+Tree/State + impls, item-index consts, TOTAL_TURNS, plant_cooldown/water_boost, manhattan/
+ortho_neighbors/bfs_distances, training_cost/afford_fruit_only/mb_afford/ge_fruit_ty), with
+`pub` visibility added mechanically; botmain.rs keeps `mod state; pub use state::*;` so all
+references work unchanged. GATES: 18 test suites ✓, 100-game equality vs reference EQUAL ✓,
+bundled single file compiles + 20-game equality EQUAL ✓, minified 89,397 B < 100 KB ✓.
+
+## 2026-07-06 ~16:55 — R3b DONE: `mod motion` extracted, all gates green
+src/botmain/motion.rs: pick_camp_cell/bank_cmd/park_cmd (closures → pub fns; thin closure
+wrappers kept in decide_elite so call sites are unchanged), the ANTI-STALL WATCHDOG
+(GE_LASTPOS thread_local moved in, `motion::reset()` at turn 1, `motion::watchdog(state,
+&my, &mut cmd_by_id)` replaces the inline block). GATES: build ✓, 18 suites ✓, 100-game
+equality EQUAL ✓, bundled compiles + 20-game equality EQUAL ✓, minified < 100 KB ✓.
+NEXT: R3c `mod jobs` — the per-troll cascade → Job enum + assignment fn (delicate: preserve
+priority order + reserved/claimed side-effect order); then R4 `mod tactics` (spec ladder,
+farm config, seed_cells, liquidation); then final gates + arena hold-check.
+
+## 2026-07-06 ~15:40 — R3c+R4 DONE in one restructuring; FINAL gates running
+tools/extract_layers.py: decide_elite split into **tactics.rs (L1)** — `pub struct Plan` (24
+fields = the explicit L1→L2 interface) + `plan(state, my)` (spec ladder, train gating, farm
+config, seed reserve, all verbatim; GE_CHOSEN_SPEC moved in) — and **jobs.rs (L2)** —
+`assign_all(state, plan, my) -> HashMap<id, cmd>` (fell_ok/own_half/within_roam closures +
+the whole per-troll cascade verbatim; plan fields re-bound as same-named locals so ZERO
+renames; GE_MEM moved in). decide_elite is now 15 lines: resets → tactics::plan →
+jobs::assign_all → motion::watchdog → assemble+TRAIN. Compiled FIRST TRY; dead root
+thread_locals removed.
+GATES: 18 suites ✓; **100-game equality EQUAL** ✓; bundled layered file compiles + 20-game
+equality EQUAL ✓; **minified 92,071 B < 100 KB ✓ (criterion 3)**. 500-game final equality
+(criterion 1) running. **Criterion 4 hold-check: v1.25.0-layers SUBMITTED 15:40**
+(submissions/v1.25.0-layers.{rs,min.rs}). ⚠ Baseline drift observed: v1.20.0 converged
+17.8 @ 15:39 (was 18.6 @ 13:35, 18.4 morning) — the arena wanders ±0.4-0.8 across hours;
+judge the hold-check vs the CONTEMPORANEOUS baseline (17.8-18.6 band), fallback = resubmit
+v1.20.0 if clearly below it.
+
+## 2026-07-06 16:45 — Phase R hold-check verdict + goal closeout
+v1.25.0-layers converged **128 @ 17.3** (3 stable reads 16:05/16:33/16:43). Contemporaneous
+v1.20.0 baseline: 17.8 (15:39); day's same-code v1.20.0 spread: 17.8-18.6 (the room drifts
+±0.4-0.8/hours). Delta −0.5 = outside the strict ±0.2, inside the observed drift scale —
+cannot separate drift from a real tiebreak cost without a multi-hour alternating A/B.
+CONSERVATIVE CLOSE per the goal text: **v1.20.0 resubmitted 16:45 → the baseline ends
+intact**; v1.25.0-layers stays the frozen, equality-proven PLATFORM (all four criteria
+executed: 500-game EQUAL ✓, 18 suites/28 tests ✓, minified 92,071 B compiles ✓, hold-check
+run with conservative outcome ✓). OPEN QUESTION for R5.0: the 2 determinizing tiebreaks pick
+lexicographically-smallest cells (clustered plants?) — a seeded-rh_rand tiebreak would keep
+determinism AND spread; test as the first experiment ON the new platform if the −0.5 recurs.
+Phase R deliverables: src/botmain/{state,motion,tactics,jobs}.rs (L1 Plan interface → L2
+assign_all → L3 watchdog; decide_elite = 15 lines), src/bin/equality.rs harness,
+tools/{bundle,extract_state,extract_layers}.py, frozen v1.25.0-ref-deterministic +
+v1.25.0-layers.
+
+## 2026-07-06 17:23 — baseline restoration VERIFIED; goal closed
+v1.20.0 reconverged **125 @ 17.9** (+39 min) — baseline intact, goal criteria all executed.
+NB: same-hour comparison now exists: v1.20.0 17.8-17.9 (twice) vs v1.25.0-layers 17.3 —
+the −0.5 gap looks more like a REAL (small) cost of the lexicographic tiebreaks than pure
+drift. ⇒ **R5.0 (first experiment on the new platform): seeded-rh_rand tiebreaks** in
+free_base + funding-iron picks (keeps per-process determinism, restores spatial spread);
+it changes streams → freeze a new reference after it validates.

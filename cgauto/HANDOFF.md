@@ -1,35 +1,45 @@
-# Troll Farm — HANDOFF (2026-07-02, updated by review session)
+# Troll Farm — HANDOFF (updated 2026-07-05, Gold/Boss-5 session)
+
+> **⚠ 2026-07-06: §1 "current state" below is STALE** (live bot is v1.21.0-motion at Gold
+> ~117-122, not v1.4.5). **The current execution plan is `docs/ROADMAP.md` — read that first**;
+> this file remains valid as background (game mechanics, measurement lessons, dead ends).
 
 Authoritative project state + everything a fresh agent needs. Read this first, then
 `docs/silver-experiment-log.md` (full sweep history) and the memory files under
-`~/.claude/projects/-home-tarstars-prj-troll-farm/memory/`.
+`~/.claude/projects/-home-tarstars-prj-troll-farm/memory/` (esp. `arena-deforestation-stall.md`).
 
 ════════════════════════════════════════════════════════════════════════
-## 1. GOAL & CURRENT STATE
+## 1. GOAL & CURRENT STATE  (2026-07-05)
 ════════════════════════════════════════════════════════════════════════
-- **Goal (user, 2026-07-02): advance to the GOLD league** = rank **above "Boss 4"** in
-  the ranked arena.
-- **Live arena bot (submitted 2026-07-02 ~13:05): `v1.0.8-woodprinter`** — real-validated
-  5W/3L (62%) vs Boss 4, converged band **rank ~50-70/682, score ~16.4-17.5** (day
-  started at 134/15.05; v1.0.6 was live 10:20-13:05 and peaked 48-55). Real score
-  density transferred: arena avg 152 (v1.0.6) -> 164 (v1.0.8).
-- **THE BAR (measured via public leaderboard API, see log):** top-of-Silver ~21-24;
-  **Boss 4 ranks ABOVE Silver's #1** ⇒ promotion ≈ be the best bot in Silver.
-  Head-to-head 60-66% vs the boss is NOT sufficient — the rating is earned vs the field.
-- **⚠️ v1.0.9-mower NEVER SUBMITTED:** best-ever on BOTH models (64.3/87.5) but 2W/6L
-  (25%) REAL — the second spec-change inversion (after v1.0.4). RULE: troll-spec /
-  training changes require a REAL batch before becoming defaults.
-- **Working tree `rust/src/main.rs`:** == v1.0.8-woodprinter (v1.0.5 + endgame banking +
-  `(2,2,0,2)` chopper + ripeness anticipation + water orchard + woodfarm + banana
-  printer; v1.0.9 mower code present but inert). Compiles standalone, committed.
-- **NEW (this session): `scriptboss`** — a model of the REAL Boss 4 script (from a real
-  DEBUG dump), structurally different from `silver_boss`. See §5a. The old "ceiling
-  ~66–70%, essentially reached" claim was MODEL-specific: loss decomposition vs scriptboss
-  shows 30% both-seat (systematic → in-principle fixable) + 18% one-seat, vs 15/15 on
-  silver_boss. Obvious knobs are exhausted, but the ceiling story is softer than §8 claims.
+- **GOLD achieved** (was the earlier goal). **Current goal: beat "Boss 5" = promote Gold→
+  Legend (divisionIndex 4→5 of 6).** Waypoint rank ≤100 (rating ≥19.37) essentially met.
+- **Live arena bot: `v1.4.5-seedreserve`** (submission 40950032). Stable at **rank ~118/531,
+  rating 18.03**, up from v1.4.4's 204. The win this session: diagnosing + fixing the #1
+  arena loss — the **deforestation stall** (see memory `arena-deforestation-stall.md`):
+  trees only fruit at size 4, but the chopper felled farm bananas at size 2 → seeds drained
+  → farm died → both trolls parked. Fix = protect the 2 most-mature farm bananas as a seed
+  reserve (`GE_SEED_RESERVE=2`). Arena wood 47→71, blowout losses 13/40→2/40.
+- **Live bot source = `rust/src/main.rs` `fn decide_elite`** (VERSION "1.4.5-seedreserve").
+  Readable strategy mirror: `rust/src/strategies/gold_elite.rs`. Frozen submission:
+  `cgauto/submissions/v1.4.5-seedreserve.min.rs` (what the hourly cron + `api_submit.py`
+  resubmit). Deliverables: `docs/best-bot-v1.4.5.{rs,pdf}` (readable bot + Rust tutorial PDF).
+- **CEILING (confirmed, do NOT re-run): v1.4.5 is a proven local optimum.** Every knob
+  (troll count, chopper spec, carry capacity, farm density, seed-reserve K, both fell
+  thresholds, liquidation timing) is optimal/within-noise. The 3-troll economy — BOTH naive
+  pure-choppers AND kurigen's faithful self-planting hybrid (`2,2,2,2`) — is decisively
+  worse (1-8% head-to-head vs v1.4.5). Reason: **wood is supply-limited** (native depletion
+  + farm cap × ~15-25-turn maturation), so a 3rd troll costs more than it can extract.
+  Config infra for a future *faithful* hybrid is left in `gold_elite.rs` (`GoldElite::hybrid()`,
+  roster `goldelite3`, GE_CHOPPERS/GE_STAGGER/GE_SPEC2); default new()=v1.4.5, main.rs untouched.
+- **THE FORK for Boss 5/Legend (needs user greenlight):** (1) search bot (RHEA/MCTS) — only
+  real upside but large rewrite + uncertain (heuristic proven near-optimal; must rebuild the
+  search baseline as gold_elite, not sched_bot); (2) opponent-adaptive/denial-raiding —
+  HISTORICALLY REGRESSED (transfer-failure mode); (3) accept the strong Gold result.
+- **Submit via API:** `python3 cgauto/api_submit.py <min.rs>` (REST, bypasses browser
+  throttle). Verify landings by rating/position via `Puzzle/findProgressByPrettyId`
+  (script `scratchpad/myrank.py`), NEVER by submit exit codes.
 
-Ready-to-submit files: **`cgauto/submissions/`** (v1.0.8 = live ⭐, v1.0.9 = quarantined,
-older = history) + its README.
+Ready-to-submit files: **`cgauto/submissions/`** (v1.4.5-seedreserve = live ⭐; v1.4.x history).
 
 ════════════════════════════════════════════════════════════════════════
 ## 2. THE GAME (Silver league)  — see docs/mechanics.md + referee source
