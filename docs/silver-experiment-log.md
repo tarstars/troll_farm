@@ -980,3 +980,13 @@ census on the 19.1 champion — who beats it now and how; (b) valuation polish f
 (c) decision-diff census vs label-matched v1.26 to find residual planner regressions;
 (d) STICKY sweep (3 → 5/8) — flaps 2-21 residual; (e) endgame liquidation timing on the
 planner. The lemon wall + pie findings close the scale line for now.
+
+## 2026-07-07 00:55 — champion census (40 battles @ 19.1-19.4, rank 111-115)
+**rank 100-150 band: 17/35, avg margin +4 — the tier split is nearly ERASED** (wins over
+plcc 19.8, TheMagicShop 19.6, RunninglVlan 20.0, Dasein8 19.3). Remaining losses: the ≤100
+tier (94-96 @ 20.0): 1/5, avg −98, one −265 blowout (jrl86 @ 602 = monster long-game
+economy). MORNING AGENDA (data-driven): (1) convert the +4-margin coin-flips in the 100-115
+band (STICKY sweep 3→5/8; endgame liquidation timing on the planner; valuation polish);
+(2) shrink the 20.0-tier blowouts (their monster games are LONG — our anti-long-game levers:
+earlier liquidation? denial weighting?); (3) the decision-diff census vs label-matched v1.26.
+Champion reconvergence confirmed: 19.4@+18m / 18.9@+28m (band ≈ 19.1±0.3, rank 111-115).
