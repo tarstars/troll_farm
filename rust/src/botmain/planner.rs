@@ -123,8 +123,8 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 70 * BAND - (steps + chop_t) });
             }
         }
-        // anti-starvation fell anything (band 30)
-        for p in state.trees.iter().filter(|p| p.size >= 1) {
+        // anti-starvation fell anything (band 30) — except the farm seed reserve (v1.29.0)
+        for p in state.trees.iter().filter(|p| p.size >= 1 && !plan.seed_cells.contains(&p.pos())) {
             let pc = p.pos();
             if !d.contains_key(&pc) {
                 continue;
@@ -248,7 +248,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
             }
             if u.free_capacity() > 0 {
-                for p in state.trees.iter().filter(|p| p.size >= 1) {
+                for p in state.trees.iter().filter(|p| p.size >= 1 && !plan.seed_cells.contains(&p.pos())) {
                     let pc = p.pos();
                     if !d.contains_key(&pc) {
                         continue;

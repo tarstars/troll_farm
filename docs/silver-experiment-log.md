@@ -943,3 +943,11 @@ and CURED: assignment flapping (16-36/game → 2-12 with STICKY=3). Gap to rank 
 unlike seedloop's mid-map widening) becomes inviolable to the ANTI-STARVATION bands too
 (30/31 currently bypass it, exactly how the cascade broke v1.4.5's reserve). Expected:
 seeds regenerate → farm survives t150+ → late delta up → ALSO unblocks the 3rd hand.
+
+## 2026-07-06 23:55 — v1.29.0-reserve: THE FARM LIVES — submitted
+One line: the anti-starvation bands (30/31) now SPARE plan.seed_cells (farm-local reserve,
+map-distance pocket — NOT seedloop's mid-map widening). Result: **farm alive at t150+ in 6/8
+boss games (0/8 all era)**; wood 50 (holds); field spot-check wood **90/89 avg (era best:
+69-80)** — 1/4 wins but the losses were 90-96 monsters. The seed loop is resurrected the
+field-safe way. SUBMITTED vs bracket v1.28.2 @ 113 @ 19.1. If kept: the 3rd hand's farm gate
+is finally passable → v1.30 = re-arm GE_MAX_TROLLS=3 (machinery already in, dormant).
