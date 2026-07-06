@@ -951,3 +951,14 @@ boss games (0/8 all era)**; wood 50 (holds); field spot-check wood **90/89 avg (
 69-80)** — 1/4 wins but the losses were 90-96 monsters. The seed loop is resurrected the
 field-safe way. SUBMITTED vs bracket v1.28.2 @ 113 @ 19.1. If kept: the 3rd hand's farm gate
 is finally passable → v1.30 = re-arm GE_MAX_TROLLS=3 (machinery already in, dormant).
+
+## 2026-07-07 00:20 — v1.29.0 verdict: REVERTED (~17.0, −2 vs 19.1). ★ THE PIE INSIGHT
+Converged low-and-falling (17.1@+20, 16.9@+30, 17.1@+40) → reverted to v1.28.2 (19.1
+champion). THIRD strike for the protection family (seedloop −2.8, fruitbank −1.0, reserve
+~−2) and the boss/field wood numbers were GOOD every time. The synthesis that fits all data:
+**protection GROWS THE PIE (more standing trees, longer supply) and the 19+ tier out-eats us
+on a bigger pie — our arena edge is the early game + short supply.** Field probes showed it:
+our wood 90 but opp 96 in the same games. COROLLARY (v1.30 hypothesis): the reserve is only
+worth shipping TOGETHER with the extra eater it enables — reserve + 3rd hand (farm gate now
+passable: farm alive 6/8) converts the living farm into OUR wood instead of feeding the
+tier's better late engines. Pie + eater, not pie alone.
