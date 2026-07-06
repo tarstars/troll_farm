@@ -116,3 +116,114 @@ pub fn watchdog(state: &State, my: &[Troll], cmd_by_id: &mut HashMap<i32, String
         }
     });
 }
+
+// ── R6a: JOINT MOVE SOLVER (the activity manager's motion stage) ────────────────
+// The sequential cascade let iteration order + tie-breaks decide who moves where.
+// This solver takes ALL movement intents (troll -> goal cell) and chooses this turn's
+// landing cells JOINTLY: maximize total progress toward goals under the verified engine
+// rules (final-cell conflicts; adjacent cross-steps SWAP; vacated-cell chains resolve;
+// stationary teammates are hard obstacles). Design criterion: SHUFFLE INVARIANCE — the
+// result is a function of the objective only (canonical candidate order + exhaustive
+// joint search + total-order tie-break), never of input order.
+
+/// Jointly choose this turn's MOVE landing cell per intent (troll id -> goal cell).
+/// Returns id -> landing cell (may be the troll's own cell = effectively WAIT/stay).
+pub fn solve_moves(state: &State, my: &[Troll], intents: &[(i32, Cell)]) -> HashMap<i32, Cell> {
+    let moving: HashSet<i32> = intents.iter().map(|(id, _)| *id).collect();
+    let stationary: HashSet<Cell> = my
+        .iter()
+        .filter(|t| !moving.contains(&t.id))
+        .map(|t| t.pos())
+        .collect();
+
+    // canonical processing order: by troll id (input order must not matter)
+    let mut intents: Vec<(i32, Cell)> = intents.to_vec();
+    intents.sort();
+
+    // per troll: candidate landing cells within movement range, canonical order
+    let mut ids: Vec<i32> = Vec::new();
+    let mut cands: Vec<Vec<(Cell, i32)>> = Vec::new(); // (landing, progress toward goal)
+    for (id, goal) in &intents {
+        let t = match my.iter().find(|t| t.id == *id) {
+            Some(t) => t,
+            None => continue,
+        };
+        let dg = bfs_distances(&state.walkable, &[*goal]);
+        let dp = bfs_distances(&state.walkable, &[t.pos()]);
+        let here = match dg.get(&t.pos()) {
+            Some(&d) => d,
+            None => {
+                // goal unreachable: stay put (the watchdog / next replan handles it)
+                ids.push(*id);
+                cands.push(vec![(t.pos(), 0)]);
+                continue;
+            }
+        };
+        let mut cs: Vec<(Cell, i32)> = state
+            .walkable
+            .iter()
+            .filter(|c| dp.get(*c).map_or(false, |&d| d > 0 && d <= t.movement_speed))
+            .filter(|c| !stationary.contains(*c))
+            .filter_map(|c| dg.get(c).map(|&d| (*c, here - d)))
+            .filter(|(_, pr)| *pr >= 0) // progress or lateral sidestep; never retreat
+            .collect();
+        cs.push((t.pos(), 0)); // staying is always an option
+        cs.sort_by_key(|(c, pr)| (-pr, *c)); // canonical: best progress, then cell order
+        cs.truncate(8);
+        ids.push(*id);
+        cands.push(cs);
+    }
+
+    // exhaustive joint choice over ≤ 8^n combos (n ≤ ~4 trolls): maximize total progress;
+    // validity = pairwise-distinct landing cells (swaps/chains through MOVING teammates are
+    // legal under the engine; stationary cells were excluded above). Ties -> lexicographic
+    // landing vector (one canonical rule; shuffle invariance holds).
+    let n = ids.len();
+    let mut best: Option<(i32, Vec<Cell>)> = None;
+    let mut pick = vec![0usize; n];
+    loop {
+        let landing: Vec<Cell> = (0..n).map(|i| cands[i][pick[i]].0).collect();
+        let distinct = {
+            let mut s: Vec<Cell> = landing.clone();
+            s.sort();
+            s.windows(2).all(|w| w[0] != w[1])
+        };
+        if distinct {
+            let total: i32 = (0..n).map(|i| cands[i][pick[i]].1).sum();
+            let better = match &best {
+                None => true,
+                Some((bt, bl)) => total > *bt || (total == *bt && landing < *bl),
+            };
+            if better {
+                best = Some((total, landing));
+            }
+        }
+        // odometer over candidate indices
+        let mut i = 0;
+        loop {
+            if i == n {
+                break;
+            }
+            pick[i] += 1;
+            if pick[i] < cands[i].len() {
+                break;
+            }
+            pick[i] = 0;
+            i += 1;
+        }
+        if i == n {
+            break;
+        }
+        if n == 0 {
+            break;
+        }
+    }
+
+    let mut out = HashMap::new();
+    if let Some((_, landing)) = best {
+        for (i, id) in ids.iter().enumerate() {
+            out.insert(*id, landing[i]);
+        }
+    }
+    out
+}

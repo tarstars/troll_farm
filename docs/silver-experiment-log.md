@@ -864,3 +864,17 @@ exactly R5.1 (farm-supply invariant as an L2 job rule) + field-gate vs nep7un/pl
 ## 2026-07-06 20:07 — R5.0 verdict: KEEP. The layered platform is LIVE (v1.25.1-spread, 122 @ 18.2)
 Reads 18.1 @+30min, 18.2 @+41min vs same-hour bracket v1.20.0 = 17.9 → the seeded tie-break
 recovered the lexicographic clustering cost. api_submit default → v1.25.1-spread.min.rs.
+
+## 2026-07-06 ~21:20 — R6a joint move solver: gates + arena submit
+`motion::solve_moves`: joint landing-cell choice for ALL movement intents (exhaustive ≤8^n,
+max total progress, swaps/chains legal, stationary teammates obstacles, canonical tie-break).
+TESTS (all first-run green): corridor 5-turn unload EMERGES from the objective; SHUFFLE
+INVARIANCE (permuted intents + troll lists → identical plans); crossing pair swaps.
+Integrated as decide_elite's motion stage (MOVEs pinned to joint landings; watchdog kept as
+net). 19 suites ✓ self-determinism EQUAL ✓ bundle EQUAL ✓ min 96,815 B ✓ (headroom ~3 KB!).
+@TFMOVE instrument RESTORED (was lost with the v1.20.0 tree restore — DEBUG-only).
+BOSS: 0/12 + 2/4 (win noise), wood 49.1, delta −6.5 (top-tier economy, unchanged).
+BLOCKS with solver: 1.83% ≈ the enemy-contention + intentional-wait floor (self-blocks ~0;
+structural payoff scales with troll count → R6b). FIELD vs the blowout tier: **1/2 vs each of
+nep7un/plcc/mikdiet, wood 78-77/71-79/54-46 — NO blowouts** (arena showed −100..−287 vs them).
+SUBMITTED after bracket read; keep if ≥ bracket−0.2.
