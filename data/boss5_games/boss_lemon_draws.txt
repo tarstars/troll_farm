@@ -1,0 +1,20 @@
+gid=895231209 LOSS my_lemon1=10 opp_lemon1=10 my_train=t15 opp_train=t15 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.3.0.2 mywood=47 oppwood=62
+gid=895231230 LOSS my_lemon1=10 opp_lemon1=10 my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.3.0.2 oppbuild=1:1.1.1.1,2:3.3.0.2 mywood=64 oppwood=76
+gid=895231253 LOSS my_lemon1=9 opp_lemon1=9 my_train=t15 opp_train=t15 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.2.0.2 mywood=35 oppwood=64
+gid=895231265 LOSS my_lemon1=2 opp_lemon1=2 my_train=t39 opp_train=t39 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.2.0.2 mywood=40 oppwood=56
+gid=895231276 LOSS my_lemon1=7 opp_lemon1=7 my_train=t15 opp_train=t15 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.2.0.3 mywood=49 oppwood=87
+gid=895231293 LOSS my_lemon1=6 opp_lemon1=6 my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.2 mywood=38 oppwood=52
+gid=895231308 LOSS my_lemon1=6 opp_lemon1=6 my_train=t25 opp_train=t20 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.2 mywood=40 oppwood=51
+gid=895231324 LOSS my_lemon1=10 opp_lemon1=10 my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.3.0.2 oppbuild=1:1.1.1.1,2:2.3.0.2 mywood=57 oppwood=80
+gid=895231339 LOSS my_lemon1=5 opp_lemon1=5 my_train=t17 opp_train=t17 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.2.0.2 mywood=59 oppwood=68
+gid=895231358 LOSS my_lemon1=2 opp_lemon1=2 my_train=t85 opp_train=t68 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.2 mywood=26 oppwood=44
+gid=895231371 LOSS my_lemon1=4 opp_lemon1=4 my_train=t33 opp_train=t22 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.2 mywood=43 oppwood=58
+gid=895231384 LOSS my_lemon1=7 opp_lemon1=7 my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:3.2.0.2 mywood=38 oppwood=72
+gid=895231482 LOSS myinv1=[4, 10, 9, 7, 8, 0] oppinv1=[4, 10, 9, 7, 8, 0] my_train=t21 opp_train=t21 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.3.0.2 mywood=56 oppwood=72
+gid=895231498 LOSS myinv1=[5, 3, 5, 10, 3, 0] oppinv1=[5, 3, 5, 10, 3, 0] my_train=t41 opp_train=t39 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.2 mywood=46 oppwood=50
+gid=895231515 LOSS myinv1=[8, 7, 10, 9, 2, 0] oppinv1=[8, 7, 10, 9, 2, 0] my_train=t15 opp_train=t15 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.2.0.2 mywood=47 oppwood=56
+gid=895231541 LOSS myinv1=[10, 6, 8, 2, 6, 0] oppinv1=[10, 6, 8, 2, 6, 0] my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:3.2.0.2 mywood=46 oppwood=75
+gid=895231557 LOSS myinv1=[10, 5, 9, 6, 7, 0] oppinv1=[10, 5, 9, 6, 7, 0] my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:3.2.0.2 mywood=54 oppwood=83
+gid=895231564 LOSS myinv1=[10, 4, 3, 10, 7, 0] oppinv1=[10, 4, 3, 10, 7, 0] my_train=t53 opp_train=t42 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:3.2.0.2 mywood=44 oppwood=49
+gid=895231583 LOSS myinv1=[8, 8, 6, 10, 10, 0] oppinv1=[8, 8, 6, 10, 10, 0] my_train=t3 opp_train=t2 mybuild=0:1.1.1.1,3:2.2.0.2 oppbuild=1:1.1.1.1,2:2.2.0.3 mywood=36 oppwood=79
+gid=895231605 LOSS myinv1=[2, 10, 2, 6, 10, 0] oppinv1=[2, 10, 2, 6, 10, 0] my_train=t33 opp_train=t33 mybuild=0:1.1.1.1,2:2.2.0.2 oppbuild=1:1.1.1.1,3:2.3.0.3 mywood=41 oppwood=79

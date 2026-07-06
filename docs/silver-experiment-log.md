@@ -901,3 +901,22 @@ outrank FINISHING the tree underfoot (cascade never abandoned invested chops) �
 continue-to-completion bands (72/42/31 standing > 70/40/30 travel) → **BOSS 3/8, wood 51.2,
 delta −4.2 (best ever)**. FIELD vs blowout tier: 2/6, wood 69-80 (72-34 over nep7un!), no
 blowouts. SUBMITTED vs bracket v1.26.0 @ 118 @ 18.9. Keep if ≥ 18.7.
+
+## 2026-07-06 22:47 — v1.27.0 verdict: REVERTED (17.7, −1.2); v1.28.0 gate FAILED; two defects found
+**v1.27.0-taskplan arena: 18.7@+20m → 17.7@+40m → 17.7 (fell through convergence) = −1.2 vs
+the 18.9 bracket → REVERTED to v1.26.0-jointmove.** Boss/field gates were good — the fade is a
+FIELD leak the probes under-sample.
+**v1.28.0-thirdhand boss gate: FAILED 1/8 wood 46 delta −11.5**, and the new telemetry
+(@TFFARM: farm/seeds/hands/flaps) explains everything:
+1. **PERPETUAL-FUNDING BUG**: want_feeder=true switches cost to the feeder and my funding
+   bands (60/58) outrank printer work (50/48) → the starter chases plum/lemon/apple ALL GAME
+   for a feeder that never affords (lemon-starved maps), instead of planting/seeding. The
+   feeder never trained (n=2 end, 8/8). Fix: feeder-funding band 45 (chopper keeps 60/58 —
+   existential vs luxury).
+2. **FLAPPING CONFIRMED: 16-36 mid-travel target switches/game** — the joint matcher re-plans
+   globally each turn; small ETA shifts flip assignments; steps leak. Likely v1.27's arena
+   fade. Fix: stickiness — small value bonus for keeping last turn's MoveTo target.
+3. **Farm still dead at t150+ (0-1 trees)** — the untreated original disease (seedloop's fix
+   cratered vs field and was reverted); also blocks the feeder's farm≥3 gate.
+NEXT: v1.28.1 = stickiness + feeder-band demotion → boss gate; expect flaps↓, feeder trains
+on lemon-ok maps, wood ≥ v1.27's 51. Arena bracket vs v1.26.0 @ 18.9.

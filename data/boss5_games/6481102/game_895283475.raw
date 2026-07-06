@@ -1,0 +1,31 @@
+
+@TFMAP 18 9
+@TFMAP .....#.......~~~~~
+@TFMAP ...#...#.....~~~~~
+@TFMAP ..+.........~~~~.~
+@TFMAP ....#..##.....1..~
+@TFMAP .#..............#.
+@TFMAP ~..0.....##..#....
+@TFMAP ~.~~~~.........+..
+@TFMAP ~~~~~.....#...#...
+@TFMAP ~~~~~.......#.....
+@TFI P PLUM 4 2 3 10 0 8
+@TFI P PLUM 13 6 3 10 0 8
+@TFI P LEMON 5 5 4 12 0 3
+@TFI P LEMON 12 3 4 12 0 3
+@TFI P LEMON 13 8 4 12 0 5
+@TFI P LEMON 4 0 4 12 0 5
+@TFI P LEMON 7 7 2 8 0 1
+@TFI P LEMON 10 1 2 8 0 1
+@TFI P APPLE 12 0 3 17 0 1
+@TFI P APPLE 5 8 3 17 0 1
+@TFI P APPLE 16 2 4 20 0 1
+@TFI P APPLE 1 6 4 20 0 1
+@TFI P BANANA 1 2 2 4 0 5
+@TFI P BANANA 16 6 2 4 0 5
+@TFI U 0 0 3 5 1 1 1 1 0 0 0 0 0 0
+@TFI U 1 1 14 3 1 1 1 1 0 0 0 0 0 0
+@TFD 1 3,9,6,9,2,0 3,9,6,9,2,0 0,0,3,5;1,1,14,3;
+@TFSUM t=1 me=27 opp=27 trees=14 myinv=[3,9,6,9,2,0] oppinv=[3,9,6,9,2,0] mybuilds=0:1.1.1.1 oppbuilds=1:1.1.1.1
+@TFMOVE t=1 pos=[0@3,5] moves=[MOVE 0 4 5]
+

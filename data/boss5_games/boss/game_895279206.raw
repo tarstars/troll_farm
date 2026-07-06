@@ -1,0 +1,1580 @@
+
+@TFMAP 18 9
+@TFMAP .#.......1#.......
+@TFMAP ...+.##...#..~~~~.
+@TFMAP .+~.......#.~~~~~~
+@TFMAP ..~~~.......~~~~~~
+@TFMAP ~~~#~~..##..~~#~~~
+@TFMAP ~~~~~~.......~~~..
+@TFMAP ~~~~~~.#.......~+.
+@TFMAP .~~~~..#...##.+...
+@TFMAP .......#0.......#.
+@TFI P PLUM 15 8 4 12 2 7
+@TFI P PLUM 2 0 4 12 2 7
+@TFI P LEMON 1 8 4 12 1 3
+@TFI P LEMON 16 0 4 12 1 3
+@TFI P LEMON 8 6 4 12 2 7
+@TFI P LEMON 9 2 4 12 2 7
+@TFI P LEMON 4 8 4 12 1 3
+@TFI P LEMON 13 0 4 12 1 3
+@TFI P APPLE 17 5 4 20 3 2
+@TFI P APPLE 0 3 4 20 3 2
+@TFI P APPLE 17 8 4 20 2 1
+@TFI P APPLE 0 0 4 20 2 1
+@TFI P BANANA 14 0 3 5 0 1
+@TFI P BANANA 3 8 3 5 0 1
+@TFI U 0 0 8 8 1 1 1 1 0 0 0 0 0 0
+@TFI U 1 1 9 0 1 1 1 1 0 0 0 0 0 0
+@TFD 1 6,8,10,7,9,0 6,8,10,7,9,0 0,0,8,8;1,1,9,0;
+@TFSUM t=1 me=31 opp=31 trees=14 myinv=[6,8,10,7,9,0] oppinv=[6,8,10,7,9,0] mybuilds=0:1.1.1.1 oppbuilds=1:1.1.1.1
+@TFMOVE t=1 pos=[0@8,8] moves=[MOVE 0 9 8]
+
+
+@TFD 2 6,8,10,7,9,0 1,3,9,7,4,0 0,0,9,8;1,1,9,1;2,1,9,0;
+@TFSUM t=2 me=31 opp=20 trees=14 myinv=[6,8,10,7,9,0] oppinv=[1,3,9,7,4,0] mybuilds=0:1.1.1.1 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=2 pos=[0@9,8] moves=[]
+
+
+@TFD 3 1,3,9,6,4,0 1,3,9,6,4,0 0,0,9,8;3,0,8,8;1,1,9,1;2,1,9,2;
+@TFSUM t=3 me=19 opp=19 trees=14 myinv=[1,3,9,6,4,0] oppinv=[1,3,9,6,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=3 pos=[0@9,8 3@8,8] moves=[MOVE 3 8 6]
+
+
+@TFD 4 1,3,9,6,4,0 1,3,9,6,4,0 0,0,9,8;3,0,8,6;1,1,9,1;2,1,8,3;
+@TFSUM t=4 me=19 opp=19 trees=16 myinv=[1,3,9,6,4,0] oppinv=[1,3,9,6,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=4 pos=[0@9,8 3@8,6] moves=[]
+
+
+@TFD 5 1,3,9,5,4,0 1,3,9,5,4,0 0,0,9,8;3,0,8,6;1,1,9,1;2,1,7,4;
+@TFSUM t=5 me=18 opp=18 trees=16 myinv=[1,3,9,5,4,0] oppinv=[1,3,9,5,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=5 pos=[0@9,8 3@8,6] moves=[MOVE 0 10 8]
+
+
+@TFD 6 1,3,9,5,4,0 1,3,9,5,4,0 0,0,10,8;3,0,8,6;1,1,8,1;2,1,8,5;
+@TFSUM t=6 me=18 opp=18 trees=16 myinv=[1,3,9,5,4,0] oppinv=[1,3,9,5,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=6 pos=[0@10,8 3@8,6] moves=[]
+
+
+@TFD 7 1,3,9,5,4,0 1,3,9,5,4,0 0,0,10,8;3,0,8,6;1,1,8,1;2,1,8,6;
+@TFSUM t=7 me=18 opp=18 trees=18 myinv=[1,3,9,5,4,0] oppinv=[1,3,9,5,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=7 pos=[0@10,8 3@8,6] moves=[MOVE 0 9 8]
+
+
+@TFD 8 1,3,9,5,4,0 1,3,9,5,4,0 0,0,9,8;3,0,8,6;1,1,9,1;2,1,8,6;
+@TFSUM t=8 me=18 opp=18 trees=18 myinv=[1,3,9,5,4,0] oppinv=[1,3,9,5,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=8 pos=[0@9,8 3@8,6] moves=[]
+
+
+@TFD 9 1,3,9,4,4,0 1,3,9,4,4,0 0,0,9,8;3,0,8,6;1,1,9,1;2,1,8,6;
+@TFSUM t=9 me=17 opp=17 trees=17 myinv=[1,3,9,4,4,0] oppinv=[1,3,9,4,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=9 pos=[0@9,8 3@8,6] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 10 1,3,9,4,4,0 1,3,9,4,4,0 0,0,9,7;3,0,8,7;1,1,8,1;2,1,9,5;
+@TFSUM t=10 me=17 opp=17 trees=17 myinv=[1,3,9,4,4,0] oppinv=[1,3,9,4,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=10 pos=[0@9,7 3@8,7] moves=[]
+
+
+@TFD 11 1,3,9,4,4,2 1,3,9,4,4,0 0,0,9,7;3,0,8,7;1,1,8,0;2,1,9,7;
+@TFSUM t=11 me=25 opp=17 trees=18 myinv=[1,3,9,4,4,2] oppinv=[1,3,9,4,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=11 pos=[0@9,7 3@8,7] moves=[MOVE 0 9 8 MOVE 3 3 8]
+
+
+@TFD 12 1,3,9,4,4,2 1,3,9,4,4,0 0,0,9,8;3,0,8,5;1,1,8,0;2,1,9,8;
+@TFSUM t=12 me=25 opp=17 trees=19 myinv=[1,3,9,4,4,2] oppinv=[1,3,9,4,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=12 pos=[0@9,8 3@8,5] moves=[MOVE 3 3 8]
+
+
+@TFD 13 1,3,9,3,4,2 1,3,9,3,4,0 0,0,9,8;3,0,6,5;1,1,8,0;2,1,9,8;
+@TFSUM t=13 me=24 opp=16 trees=19 myinv=[1,3,9,3,4,2] oppinv=[1,3,9,3,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=13 pos=[0@9,8 3@6,5] moves=[MOVE 0 8 7 MOVE 3 3 8]
+
+
+@TFD 14 1,3,9,3,4,2 1,3,9,3,4,0 0,0,9,7;3,0,6,7;1,1,7,0;2,1,9,8;
+@TFSUM t=14 me=24 opp=16 trees=18 myinv=[1,3,9,3,4,2] oppinv=[1,3,9,3,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=14 pos=[0@9,7 3@6,7] moves=[MOVE 0 9 8 MOVE 3 3 8]
+
+
+@TFD 15 1,3,9,3,4,2 1,3,9,3,4,0 0,0,9,8;3,0,5,8;1,1,7,0;2,1,10,8;
+@TFSUM t=15 me=24 opp=16 trees=19 myinv=[1,3,9,3,4,2] oppinv=[1,3,9,3,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=15 pos=[0@9,8 3@5,8] moves=[MOVE 3 3 8]
+
+
+@TFD 16 1,3,9,3,4,2 1,3,9,3,4,0 0,0,9,8;3,0,3,8;1,1,8,0;2,1,10,8;
+@TFSUM t=16 me=24 opp=16 trees=20 myinv=[1,3,9,3,4,2] oppinv=[1,3,9,3,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=16 pos=[0@9,8 3@3,8] moves=[]
+
+
+@TFD 17 1,3,9,2,4,2 1,3,9,2,4,0 0,0,9,8;3,0,3,8;1,1,8,0;2,1,10,8;
+@TFSUM t=17 me=23 opp=15 trees=19 myinv=[1,3,9,2,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=17 pos=[0@9,8 3@3,8] moves=[MOVE 0 10 8]
+
+
+@TFD 18 1,3,9,2,4,2 1,3,9,2,4,0 0,0,10,8;3,0,3,8;1,1,7,0;2,1,9,7;
+@TFSUM t=18 me=23 opp=15 trees=19 myinv=[1,3,9,2,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=18 pos=[0@10,8 3@3,8] moves=[]
+
+
+@TFD 19 1,3,9,2,4,2 1,3,9,2,4,0 0,0,10,8;3,0,3,8;1,1,6,0;2,1,9,7;
+@TFSUM t=19 me=23 opp=15 trees=19 myinv=[1,3,9,2,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=19 pos=[0@10,8 3@3,8] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 20 1,3,9,2,4,2 1,3,9,2,4,0 0,0,9,8;3,0,5,8;1,1,6,0;2,1,9,7;
+@TFSUM t=20 me=23 opp=15 trees=19 myinv=[1,3,9,2,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=20 pos=[0@9,8 3@5,8] moves=[MOVE 3 8 7]
+
+
+@TFD 21 1,3,9,1,4,2 1,3,9,2,4,0 0,0,9,8;3,0,6,7;1,1,7,0;2,1,10,6;
+@TFSUM t=21 me=22 opp=15 trees=19 myinv=[1,3,9,1,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=21 pos=[0@9,8 3@6,7] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 22 1,3,9,1,4,2 1,3,9,2,4,0 0,0,9,7;3,0,6,5;1,1,8,0;2,1,10,4;
+@TFSUM t=22 me=22 opp=15 trees=19 myinv=[1,3,9,1,4,2] oppinv=[1,3,9,2,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=22 pos=[0@9,7 3@6,5] moves=[MOVE 3 8 7]
+
+
+@TFD 23 1,3,9,1,4,2 1,3,9,1,4,0 0,0,9,7;3,0,8,5;1,1,8,0;2,1,9,5;
+@TFSUM t=23 me=22 opp=14 trees=20 myinv=[1,3,9,1,4,2] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=23 pos=[0@9,7 3@8,5] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 24 1,3,9,1,4,2 1,3,9,1,4,0 0,0,9,8;3,0,8,7;1,1,7,0;2,1,9,7;
+@TFSUM t=24 me=22 opp=14 trees=20 myinv=[1,3,9,1,4,2] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=24 pos=[0@9,8 3@8,7] moves=[]
+
+
+@TFD 25 1,3,9,0,4,4 1,3,9,1,4,0 0,0,9,8;3,0,8,7;1,1,7,1;2,1,9,8;
+@TFSUM t=25 me=29 opp=14 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=25 pos=[0@9,8 3@8,7] moves=[MOVE 0 8 6 MOVE 3 4 8]
+
+
+@TFD 26 1,3,9,0,4,4 1,3,9,1,4,0 0,0,9,7;3,0,8,5;1,1,7,1;2,1,9,8;
+@TFSUM t=26 me=29 opp=14 trees=21 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=26 pos=[0@9,7 3@8,5] moves=[MOVE 0 8 7 MOVE 3 4 8]
+
+
+@TFD 27 1,3,9,0,4,4 1,3,9,1,4,0 0,0,8,7;3,0,6,5;1,1,7,0;2,1,9,8;
+@TFSUM t=27 me=29 opp=14 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=27 pos=[0@8,7 3@6,5] moves=[MOVE 3 4 8]
+
+
+@TFD 28 1,3,9,0,4,4 1,3,9,1,4,0 0,0,8,7;3,0,6,7;1,1,8,0;2,1,10,8;
+@TFSUM t=28 me=29 opp=14 trees=21 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,1,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=28 pos=[0@8,7 3@6,7] moves=[MOVE 0 9 1 MOVE 3 4 8]
+
+
+@TFD 29 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,7;3,0,5,8;1,1,8,0;2,1,10,8;
+@TFSUM t=29 me=29 opp=13 trees=21 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=29 pos=[0@9,7 3@5,8] moves=[MOVE 0 9 1 MOVE 3 4 8]
+
+
+@TFD 30 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,6;3,0,4,8;1,1,8,1;2,1,10,8;
+@TFSUM t=30 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=30 pos=[0@9,6 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 31 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,5;3,0,4,8;1,1,8,2;2,1,9,7;
+@TFSUM t=31 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=31 pos=[0@9,5 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 32 1,3,9,0,4,4 1,3,9,0,4,0 0,0,10,5;3,0,4,8;1,1,8,2;2,1,9,7;
+@TFSUM t=32 me=29 opp=13 trees=21 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=32 pos=[0@10,5 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 33 1,3,9,0,4,4 1,3,9,0,4,0 0,0,10,4;3,0,4,8;1,1,9,2;2,1,9,7;
+@TFSUM t=33 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=33 pos=[0@10,4 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 34 1,3,9,0,4,4 1,3,9,0,4,0 0,0,10,3;3,0,4,8;1,1,9,2;2,1,10,6;
+@TFSUM t=34 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=34 pos=[0@10,3 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 35 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,3;3,0,4,8;1,1,9,3;2,1,9,7;
+@TFSUM t=35 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=35 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=35 pos=[0@9,3 3@4,8] moves=[MOVE 0 9 1]
+
+
+@TFD 36 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,2;3,0,4,8;1,1,9,3;2,1,8,7;
+@TFSUM t=36 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=36 pos=[0@9,2 3@4,8] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 37 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,1;3,0,6,8;1,1,9,2;2,1,8,7;
+@TFSUM t=37 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=37 pos=[0@9,1 3@6,8] moves=[MOVE 3 8 7]
+
+
+@TFD 38 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,1;3,0,6,6;1,1,9,2;2,1,8,7;
+@TFSUM t=38 me=29 opp=13 trees=19 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=38 pos=[0@9,1 3@6,6] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 39 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,2;3,0,7,5;1,1,8,2;2,1,10,7;
+@TFSUM t=39 me=29 opp=13 trees=19 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=39 pos=[0@9,2 3@7,5] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 40 1,3,9,0,4,4 1,3,9,0,4,0 0,0,9,3;3,0,8,6;1,1,7,2;2,1,10,5;
+@TFSUM t=40 me=29 opp=13 trees=19 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=40 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=40 pos=[0@9,3 3@8,6] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 41 1,3,9,0,4,4 1,3,9,0,4,0 0,0,10,3;3,0,8,7;1,1,7,2;2,1,10,3;
+@TFSUM t=41 me=29 opp=13 trees=20 myinv=[1,3,9,0,4,4] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=41 pos=[0@10,3 3@8,7] moves=[MOVE 0 10 8]
+
+
+@TFD 42 1,3,9,0,4,6 1,3,9,0,4,0 0,0,10,4;3,0,8,7;1,1,8,2;2,1,9,2;
+@TFSUM t=42 me=37 opp=13 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=42 pos=[0@10,4 3@8,7] moves=[MOVE 0 10 8 MOVE 3 8 2]
+
+
+@TFD 43 1,3,9,0,4,6 1,3,9,0,4,0 0,0,10,5;3,0,8,5;1,1,8,2;2,1,9,1;
+@TFSUM t=43 me=37 opp=13 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,0,4,0] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=43 pos=[0@10,5 3@8,5] moves=[MOVE 0 10 8 MOVE 3 8 2]
+
+
+@TFD 44 1,3,9,0,4,6 1,3,9,0,4,2 0,0,10,6;3,0,7,4;1,1,9,2;2,1,9,1;
+@TFSUM t=44 me=37 opp=21 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,0,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=44 pos=[0@10,6 3@7,4] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 45 1,3,9,0,4,6 1,3,9,0,4,2 0,0,10,7;3,0,7,2;1,1,9,1;2,1,9,2;
+@TFSUM t=45 me=37 opp=21 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,0,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=45 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=45 pos=[0@10,7 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 46 1,3,9,0,4,6 1,3,9,0,4,2 0,0,10,8;3,0,7,2;1,1,9,1;2,1,8,2;
+@TFSUM t=46 me=37 opp=21 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,0,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=46 pos=[0@10,8 3@7,2] moves=[]
+
+
+@TFD 47 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,8;3,0,7,2;1,1,9,1;2,1,7,2;
+@TFSUM t=47 me=37 opp=22 trees=21 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=47 pos=[0@10,8 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 48 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,7;3,0,7,2;1,1,9,1;2,1,7,2;
+@TFSUM t=48 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=48 pos=[0@10,7 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 1]
+
+
+@TFD 49 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,6;3,0,8,1;1,1,9,2;2,1,8,3;
+@TFSUM t=49 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=49 pos=[0@10,6 3@8,1] moves=[MOVE 0 9 1]
+
+
+@TFD 50 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,5;3,0,8,1;1,1,8,2;2,1,10,3;
+@TFSUM t=50 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=50 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=50 pos=[0@10,5 3@8,1] moves=[MOVE 0 9 1]
+
+
+@TFD 51 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,4;3,0,8,1;1,1,7,2;2,1,10,5;
+@TFSUM t=51 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=51 pos=[0@10,4 3@8,1] moves=[MOVE 0 9 1]
+
+
+@TFD 52 1,3,9,0,4,6 1,3,9,1,4,2 0,0,10,3;3,0,8,1;1,1,7,2;2,1,10,7;
+@TFSUM t=52 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=52 pos=[0@10,3 3@8,1] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 53 1,3,9,0,4,6 1,3,9,1,4,2 0,0,9,3;3,0,8,3;1,1,8,2;2,1,10,8;
+@TFSUM t=53 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=53 pos=[0@9,3 3@8,3] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 54 1,3,9,0,4,6 1,3,9,1,4,2 0,0,9,2;3,0,7,4;1,1,9,2;2,1,10,8;
+@TFSUM t=54 me=37 opp=22 trees=20 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=54 pos=[0@9,2 3@7,4] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 55 1,3,9,0,4,6 1,3,9,1,4,2 0,0,9,1;3,0,8,5;1,1,9,2;2,1,10,8;
+@TFSUM t=55 me=37 opp=22 trees=19 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=55 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=55 pos=[0@9,1 3@8,5] moves=[MOVE 3 8 7]
+
+
+@TFD 56 1,3,9,0,4,6 1,3,9,1,4,2 0,0,9,1;3,0,8,7;1,1,8,2;2,1,10,6;
+@TFSUM t=56 me=37 opp=22 trees=19 myinv=[1,3,9,0,4,6] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=56 pos=[0@9,1 3@8,7] moves=[MOVE 0 10 8]
+
+
+@TFD 57 1,3,9,0,4,8 1,3,9,1,4,2 0,0,9,2;3,0,8,7;1,1,8,1;2,1,10,4;
+@TFSUM t=57 me=45 opp=22 trees=19 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=57 pos=[0@9,2 3@8,7] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 58 1,3,9,0,4,8 1,3,9,1,4,2 0,0,9,3;3,0,8,5;1,1,8,1;2,1,9,3;
+@TFSUM t=58 me=45 opp=22 trees=20 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=58 pos=[0@9,3 3@8,5] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 59 1,3,9,0,4,8 1,3,9,1,4,2 0,0,10,3;3,0,7,4;1,1,8,1;2,1,9,1;
+@TFSUM t=59 me=45 opp=22 trees=20 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,2] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=59 pos=[0@10,3 3@7,4] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 60 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,4;3,0,7,2;1,1,8,1;2,1,9,1;
+@TFSUM t=60 me=45 opp=30 trees=20 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=60 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=60 pos=[0@10,4 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 61 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,5;3,0,7,2;1,1,8,1;2,1,8,2;
+@TFSUM t=61 me=45 opp=30 trees=20 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=61 pos=[0@10,5 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 62 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,6;3,0,7,2;1,1,9,1;2,1,7,2;
+@TFSUM t=62 me=45 opp=30 trees=19 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=62 pos=[0@10,6 3@7,2] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 63 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,7;3,0,7,4;1,1,9,1;2,1,7,1;
+@TFSUM t=63 me=45 opp=30 trees=19 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=63 pos=[0@10,7 3@7,4] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 64 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,8;3,0,8,5;1,1,9,2;2,1,7,1;
+@TFSUM t=64 me=45 opp=30 trees=19 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=64 pos=[0@10,8 3@8,5] moves=[MOVE 3 8 7]
+
+
+@TFD 65 1,3,9,0,4,8 1,3,9,1,4,4 0,0,10,8;3,0,8,7;1,1,8,2;2,1,7,1;
+@TFSUM t=65 me=45 opp=30 trees=20 myinv=[1,3,9,0,4,8] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=65 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=65 pos=[0@10,8 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 66 1,3,9,0,4,10 1,3,9,1,4,4 0,0,10,7;3,0,8,7;1,1,7,2;2,1,7,1;
+@TFSUM t=66 me=53 opp=30 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=66 pos=[0@10,7 3@8,7] moves=[MOVE 0 9 1 MOVE 3 7 0]
+
+
+@TFD 67 1,3,9,0,4,10 1,3,9,1,4,4 0,0,10,6;3,0,8,5;1,1,7,2;2,1,8,0;
+@TFSUM t=67 me=53 opp=30 trees=20 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,4] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=67 pos=[0@10,6 3@8,5] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 68 1,3,9,0,4,10 1,3,9,1,4,6 0,0,10,5;3,0,7,4;1,1,8,2;2,1,8,0;
+@TFSUM t=68 me=53 opp=38 trees=20 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=68 pos=[0@10,5 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 69 1,3,9,0,4,10 1,3,9,1,4,6 0,0,10,4;3,0,7,2;1,1,8,2;2,1,7,0;
+@TFSUM t=69 me=53 opp=38 trees=20 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=69 pos=[0@10,4 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 70 1,3,9,0,4,10 1,3,9,1,4,6 0,0,10,3;3,0,7,2;1,1,8,3;2,1,7,0;
+@TFSUM t=70 me=53 opp=38 trees=20 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=70 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=70 pos=[0@10,3 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 71 1,3,9,0,4,10 1,3,9,1,4,6 0,0,9,3;3,0,7,2;1,1,8,3;2,1,7,0;
+@TFSUM t=71 me=53 opp=38 trees=20 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=71 pos=[0@9,3 3@7,2] moves=[MOVE 0 9 1 MOVE 3 7 0]
+
+
+@TFD 72 1,3,9,0,4,10 1,3,9,1,4,6 0,0,9,2;3,0,7,0;1,1,8,2;2,1,7,0;
+@TFSUM t=72 me=53 opp=38 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=72 pos=[0@9,2 3@7,0] moves=[MOVE 0 9 1 MOVE 3 8 0]
+
+
+@TFD 73 1,3,9,0,4,10 1,3,9,1,4,6 0,0,9,1;3,0,8,0;1,1,8,2;2,1,8,0;
+@TFSUM t=73 me=53 opp=38 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,6] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=73 pos=[0@9,1 3@8,0] moves=[]
+
+
+@TFD 74 1,3,9,0,4,10 1,3,9,1,4,8 0,0,9,1;3,0,8,0;1,1,7,2;2,1,8,0;
+@TFSUM t=74 me=53 opp=46 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,8] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=74 pos=[0@9,1 3@8,0] moves=[MOVE 0 9 7]
+
+
+@TFD 75 1,3,9,0,4,10 1,3,9,1,4,8 0,0,9,2;3,0,8,0;1,1,7,2;2,1,8,0;
+@TFSUM t=75 me=53 opp=46 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,8] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=75 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=75 pos=[0@9,2 3@8,0] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 76 1,3,9,0,4,10 1,3,9,1,4,10 0,0,9,3;3,0,7,1;1,1,8,2;2,1,8,0;
+@TFSUM t=76 me=53 opp=54 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=76 pos=[0@9,3 3@7,1] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 77 1,3,9,0,4,10 1,3,9,1,4,10 0,0,10,3;3,0,7,3;1,1,9,2;2,1,8,2;
+@TFSUM t=77 me=53 opp=54 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=77 pos=[0@10,3 3@7,3] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 78 1,3,9,0,4,10 1,3,9,1,4,10 0,0,10,4;3,0,7,5;1,1,9,2;2,1,9,3;
+@TFSUM t=78 me=53 opp=54 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=78 pos=[0@10,4 3@7,5] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 79 1,3,9,0,4,10 1,3,9,1,4,10 0,0,10,5;3,0,8,6;1,1,8,2;2,1,10,4;
+@TFSUM t=79 me=53 opp=54 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=79 pos=[0@10,5 3@8,6] moves=[MOVE 0 9 7 MOVE 3 8 7]
+
+
+@TFD 80 1,3,9,0,4,10 1,3,9,1,4,10 0,0,9,5;3,0,8,7;1,1,8,1;2,1,10,6;
+@TFSUM t=80 me=53 opp=54 trees=19 myinv=[1,3,9,0,4,10] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=80 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=80 pos=[0@9,5 3@8,7] moves=[MOVE 0 9 7]
+
+
+@TFD 81 1,3,9,0,4,12 1,3,9,1,4,10 0,0,9,6;3,0,8,7;1,1,8,0;2,1,10,8;
+@TFSUM t=81 me=61 opp=54 trees=19 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=81 pos=[0@9,6 3@8,7] moves=[MOVE 0 9 7 MOVE 3 8 3]
+
+
+@TFD 82 1,3,9,0,4,12 1,3,9,1,4,10 0,0,9,7;3,0,8,5;1,1,8,0;2,1,10,8;
+@TFSUM t=82 me=61 opp=54 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,1,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=82 pos=[0@9,7 3@8,5] moves=[MOVE 3 8 3]
+
+
+@TFD 83 1,3,9,0,4,12 1,3,9,0,4,10 0,0,9,7;3,0,7,4;1,1,8,0;2,1,10,8;
+@TFSUM t=83 me=61 opp=53 trees=21 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=83 pos=[0@9,7 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 84 1,3,9,0,4,12 1,3,9,0,4,10 0,0,9,6;3,0,7,2;1,1,7,0;2,1,10,8;
+@TFSUM t=84 me=61 opp=53 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=84 pos=[0@9,6 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 85 1,3,9,0,4,12 1,3,9,0,4,10 0,0,9,5;3,0,7,2;1,1,7,0;2,1,10,6;
+@TFSUM t=85 me=61 opp=53 trees=21 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=85 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=85 pos=[0@9,5 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 86 1,3,9,0,4,12 1,3,9,0,4,10 0,0,10,5;3,0,7,2;1,1,6,0;2,1,10,4;
+@TFSUM t=86 me=61 opp=53 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=86 pos=[0@10,5 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 87 1,3,9,0,4,12 1,3,9,0,4,10 0,0,10,4;3,0,7,4;1,1,6,0;2,1,9,3;
+@TFSUM t=87 me=61 opp=53 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=87 pos=[0@10,4 3@7,4] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 88 1,3,9,0,4,12 1,3,9,0,4,10 0,0,10,3;3,0,8,5;1,1,7,0;2,1,9,1;
+@TFSUM t=88 me=61 opp=53 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,10] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=88 pos=[0@10,3 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 89 1,3,9,0,4,12 1,3,9,0,4,12 0,0,9,3;3,0,8,7;1,1,7,1;2,1,9,1;
+@TFSUM t=89 me=61 opp=61 trees=20 myinv=[1,3,9,0,4,12] oppinv=[1,3,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=89 pos=[0@9,3 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 90 1,3,9,0,4,14 1,3,9,0,4,12 0,0,9,2;3,0,8,7;1,1,7,1;2,1,9,3;
+@TFSUM t=90 me=69 opp=61 trees=21 myinv=[1,3,9,0,4,14] oppinv=[1,3,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=90 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=90 pos=[0@9,2 3@8,7] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 91 1,3,9,0,4,14 1,3,9,0,4,12 0,0,9,1;3,0,8,5;1,1,8,1;2,1,10,4;
+@TFSUM t=91 me=69 opp=61 trees=21 myinv=[1,3,9,0,4,14] oppinv=[1,3,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=91 pos=[0@9,1 3@8,5] moves=[MOVE 3 8 3]
+
+
+@TFD 92 1,3,9,0,4,14 1,3,9,0,4,12 0,0,9,1;3,0,7,4;1,1,8,1;2,1,9,5;
+@TFSUM t=92 me=69 opp=61 trees=21 myinv=[1,3,9,0,4,14] oppinv=[1,3,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=92 pos=[0@9,1 3@7,4] moves=[MOVE 0 10 8 MOVE 3 8 3]
+
+
+@TFD 93 1,3,9,0,4,14 1,3,9,0,4,12 0,0,9,2;3,0,8,3;1,1,9,1;2,1,9,7;
+@TFSUM t=93 me=69 opp=61 trees=21 myinv=[1,3,9,0,4,14] oppinv=[1,3,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=93 pos=[0@9,2 3@8,3] moves=[MOVE 0 10 8]
+
+
+@TFD 94 1,3,9,0,4,14 1,4,9,0,4,12 0,0,9,3;3,0,8,3;1,1,9,1;2,1,9,7;
+@TFSUM t=94 me=69 opp=62 trees=21 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=94 pos=[0@9,3 3@8,3] moves=[MOVE 0 10 8]
+
+
+@TFD 95 1,3,9,0,4,14 1,4,9,0,4,12 0,0,10,3;3,0,8,3;1,1,9,1;2,1,9,7;
+@TFSUM t=95 me=69 opp=62 trees=20 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,0,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=95 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=95 pos=[0@10,3 3@8,3] moves=[MOVE 0 10 8]
+
+
+@TFD 96 1,3,9,0,4,14 1,4,9,1,4,12 0,0,10,4;3,0,8,3;1,1,9,1;2,1,10,6;
+@TFSUM t=96 me=69 opp=63 trees=19 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,1,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=96 pos=[0@10,4 3@8,3] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 97 1,3,9,0,4,14 1,4,9,1,4,12 0,0,10,5;3,0,7,4;1,1,9,1;2,1,10,4;
+@TFSUM t=97 me=69 opp=63 trees=19 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,1,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=97 pos=[0@10,5 3@7,4] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 98 1,3,9,0,4,14 1,4,9,1,4,12 0,0,10,6;3,0,8,5;1,1,9,2;2,1,9,3;
+@TFSUM t=98 me=69 opp=63 trees=19 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,1,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=98 pos=[0@10,6 3@8,5] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 99 1,3,9,0,4,14 1,4,9,1,4,12 0,0,10,7;3,0,8,7;1,1,8,2;2,1,9,1;
+@TFSUM t=99 me=69 opp=63 trees=19 myinv=[1,3,9,0,4,14] oppinv=[1,4,9,1,4,12] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=99 pos=[0@10,7 3@8,7] moves=[MOVE 0 10 8]
+
+
+@TFD 100 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,8;3,0,8,7;1,1,7,2;2,1,9,1;
+@TFSUM t=100 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=100 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=100 pos=[0@10,8 3@8,7] moves=[MOVE 3 7 1]
+
+
+@TFD 101 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,8;3,0,8,5;1,1,7,2;2,1,9,2;
+@TFSUM t=101 me=77 opp=71 trees=21 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=101 pos=[0@10,8 3@8,5] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 102 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,7;3,0,7,4;1,1,8,2;2,1,10,3;
+@TFSUM t=102 me=77 opp=71 trees=21 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=102 pos=[0@10,7 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 103 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,6;3,0,7,2;1,1,8,2;2,1,10,5;
+@TFSUM t=103 me=77 opp=71 trees=21 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=103 pos=[0@10,6 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 104 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,5;3,0,7,2;1,1,9,2;2,1,10,7;
+@TFSUM t=104 me=77 opp=71 trees=21 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=104 pos=[0@10,5 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 105 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,4;3,0,7,2;1,1,9,1;2,1,10,8;
+@TFSUM t=105 me=77 opp=71 trees=20 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=105 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=105 pos=[0@10,4 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 2]
+
+
+@TFD 106 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,3;3,0,8,2;1,1,9,2;2,1,10,8;
+@TFSUM t=106 me=77 opp=71 trees=20 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=106 pos=[0@10,3 3@8,2] moves=[MOVE 0 9 1]
+
+
+@TFD 107 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,3;3,0,8,2;1,1,8,2;2,1,10,8;
+@TFSUM t=107 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=107 pos=[0@9,3 3@8,2] moves=[MOVE 0 9 1]
+
+
+@TFD 108 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,2;3,0,8,2;1,1,7,2;2,1,12,8;
+@TFSUM t=108 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=108 pos=[0@9,2 3@8,2] moves=[MOVE 0 9 1]
+
+
+@TFD 109 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,1;3,0,8,2;1,1,7,2;2,1,14,8;
+@TFSUM t=109 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=109 pos=[0@9,1 3@8,2] moves=[MOVE 3 8 7]
+
+
+@TFD 110 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,1;3,0,7,3;1,1,8,2;2,1,15,8;
+@TFSUM t=110 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=110 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=110 pos=[0@9,1 3@7,3] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 111 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,2;3,0,7,5;1,1,9,2;2,1,15,8;
+@TFSUM t=111 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=111 pos=[0@9,2 3@7,5] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 112 1,3,9,0,4,16 1,4,9,1,4,14 0,0,9,3;3,0,8,6;1,1,9,2;2,1,15,8;
+@TFSUM t=112 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=112 pos=[0@9,3 3@8,6] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 113 1,3,9,0,4,16 1,4,9,1,4,14 0,0,10,3;3,0,8,7;1,1,8,2;2,1,15,8;
+@TFSUM t=113 me=77 opp=71 trees=19 myinv=[1,3,9,0,4,16] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=113 pos=[0@10,3 3@8,7] moves=[MOVE 0 10 8]
+
+
+@TFD 114 1,3,9,0,4,18 1,4,9,1,4,14 0,0,10,4;3,0,8,7;1,1,8,2;2,1,15,8;
+@TFSUM t=114 me=85 opp=71 trees=20 myinv=[1,3,9,0,4,18] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=114 pos=[0@10,4 3@8,7] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 115 1,3,9,0,4,18 1,4,9,1,4,14 0,0,10,5;3,0,8,5;1,1,9,2;2,1,15,8;
+@TFSUM t=115 me=85 opp=71 trees=20 myinv=[1,3,9,0,4,18] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=115 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=115 pos=[0@10,5 3@8,5] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 116 1,3,9,0,4,18 1,4,9,1,4,14 0,0,10,6;3,0,7,4;1,1,9,2;2,1,15,8;
+@TFSUM t=116 me=85 opp=71 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=116 pos=[0@10,6 3@7,4] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 117 1,3,9,0,4,18 1,4,9,1,4,14 0,0,10,7;3,0,7,2;1,1,9,1;2,1,13,8;
+@TFSUM t=117 me=85 opp=71 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,4,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=117 pos=[0@10,7 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 118 1,3,9,0,4,18 1,5,9,1,4,14 0,0,10,8;3,0,7,2;1,1,9,1;2,1,11,8;
+@TFSUM t=118 me=85 opp=72 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=118 pos=[0@10,8 3@7,2] moves=[]
+
+
+@TFD 119 1,3,9,0,4,18 1,5,9,1,4,14 0,0,10,8;3,0,7,2;1,1,9,1;2,1,10,7;
+@TFSUM t=119 me=85 opp=72 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=119 pos=[0@10,8 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 120 1,3,9,0,4,18 1,5,9,1,4,14 0,0,10,7;3,0,7,4;1,1,9,2;2,1,10,5;
+@TFSUM t=120 me=85 opp=72 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=120 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=120 pos=[0@10,7 3@7,4] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 121 1,3,9,0,4,18 1,5,9,1,4,14 0,0,10,6;3,0,8,5;1,1,8,2;2,1,10,3;
+@TFSUM t=121 me=85 opp=72 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=121 pos=[0@10,6 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 122 1,3,9,0,4,18 1,5,9,1,4,14 0,0,10,5;3,0,8,7;1,1,7,2;2,1,9,2;
+@TFSUM t=122 me=85 opp=72 trees=19 myinv=[1,3,9,0,4,18] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=122 pos=[0@10,5 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 123 1,3,9,0,4,20 1,5,9,1,4,14 0,0,10,4;3,0,8,7;1,1,7,2;2,1,9,1;
+@TFSUM t=123 me=93 opp=72 trees=20 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,1,4,14] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=123 pos=[0@10,4 3@8,7] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 124 1,3,9,0,4,20 1,5,9,1,4,16 0,0,10,3;3,0,8,5;1,1,7,1;2,1,9,1;
+@TFSUM t=124 me=93 opp=80 trees=20 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,1,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=124 pos=[0@10,3 3@8,5] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 125 1,3,9,0,4,20 1,5,9,1,4,16 0,0,9,3;3,0,7,4;1,1,7,1;2,1,9,3;
+@TFSUM t=125 me=93 opp=80 trees=20 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,1,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=125 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=125 pos=[0@9,3 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 126 1,3,9,0,4,20 1,5,9,1,4,16 0,0,9,2;3,0,7,2;1,1,7,0;2,1,10,4;
+@TFSUM t=126 me=93 opp=80 trees=20 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,1,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=126 pos=[0@9,2 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 127 1,3,9,0,4,20 1,5,9,1,4,16 0,0,9,1;3,0,7,2;1,1,8,0;2,1,10,6;
+@TFSUM t=127 me=93 opp=80 trees=20 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,1,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=127 pos=[0@9,1 3@7,2] moves=[]
+
+
+@TFD 128 1,3,9,0,4,20 1,5,9,2,4,16 0,0,9,1;3,0,7,2;1,1,8,0;2,1,10,8;
+@TFSUM t=128 me=93 opp=81 trees=19 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=128 pos=[0@9,1 3@7,2] moves=[MOVE 0 9 7 MOVE 3 7 0]
+
+
+@TFD 129 1,3,9,0,4,20 1,5,9,2,4,16 0,0,9,2;3,0,7,0;1,1,8,0;2,1,10,8;
+@TFSUM t=129 me=93 opp=81 trees=19 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=129 pos=[0@9,2 3@7,0] moves=[MOVE 0 9 7]
+
+
+@TFD 130 1,3,9,0,4,20 1,5,9,2,4,16 0,0,9,3;3,0,7,0;1,1,7,0;2,1,10,8;
+@TFSUM t=130 me=93 opp=81 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=130 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=130 pos=[0@9,3 3@7,0] moves=[MOVE 0 10 8]
+
+
+@TFD 131 1,3,9,0,4,20 1,5,9,2,4,16 0,0,10,3;3,0,7,0;1,1,7,1;2,1,10,6;
+@TFSUM t=131 me=93 opp=81 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=131 pos=[0@10,3 3@7,0] moves=[MOVE 0 10 8]
+
+
+@TFD 132 1,3,9,0,4,20 1,5,9,2,4,16 0,0,10,4;3,0,7,0;1,1,7,2;2,1,10,4;
+@TFSUM t=132 me=93 opp=81 trees=17 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=132 pos=[0@10,4 3@7,0] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 133 1,3,9,0,4,20 1,5,9,2,4,16 0,0,10,5;3,0,7,2;1,1,7,2;2,1,9,3;
+@TFSUM t=133 me=93 opp=81 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=133 pos=[0@10,5 3@7,2] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 134 1,3,9,0,4,20 1,5,9,2,4,16 0,0,10,6;3,0,7,4;1,1,8,2;2,1,9,1;
+@TFSUM t=134 me=93 opp=81 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,16] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=134 pos=[0@10,6 3@7,4] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 135 1,3,9,0,4,20 1,5,9,2,4,18 0,0,10,7;3,0,8,5;1,1,9,2;2,1,9,1;
+@TFSUM t=135 me=93 opp=89 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=135 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=135 pos=[0@10,7 3@8,5] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 136 1,3,9,0,4,20 1,5,9,2,4,18 0,0,10,8;3,0,8,7;1,1,9,1;2,1,9,2;
+@TFSUM t=136 me=93 opp=89 trees=18 myinv=[1,3,9,0,4,20] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=136 pos=[0@10,8 3@8,7] moves=[]
+
+
+@TFD 137 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,8;3,0,8,7;1,1,9,1;2,1,9,3;
+@TFSUM t=137 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=137 pos=[0@10,8 3@8,7] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 138 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,7;3,0,8,5;1,1,8,1;2,1,10,4;
+@TFSUM t=138 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=138 pos=[0@10,7 3@8,5] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 139 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,6;3,0,7,4;1,1,7,1;2,1,10,6;
+@TFSUM t=139 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=139 pos=[0@10,6 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 140 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,5;3,0,7,2;1,1,7,0;2,1,10,8;
+@TFSUM t=140 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=140 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=140 pos=[0@10,5 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 141 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,4;3,0,7,2;1,1,7,0;2,1,10,8;
+@TFSUM t=141 me=101 opp=89 trees=20 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=141 pos=[0@10,4 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 142 1,3,9,0,4,22 1,5,9,2,4,18 0,0,10,3;3,0,7,2;1,1,6,0;2,1,10,8;
+@TFSUM t=142 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=142 pos=[0@10,3 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 143 1,3,9,0,4,22 1,5,9,2,4,18 0,0,9,3;3,0,7,2;1,1,6,0;2,1,12,8;
+@TFSUM t=143 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=143 pos=[0@9,3 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 144 1,3,9,0,4,22 1,5,9,2,4,18 0,0,9,2;3,0,7,2;1,1,7,0;2,1,14,8;
+@TFSUM t=144 me=101 opp=89 trees=18 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=144 pos=[0@9,2 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 145 1,3,9,0,4,22 1,5,9,2,4,18 0,0,9,1;3,0,7,4;1,1,7,1;2,1,15,7;
+@TFSUM t=145 me=101 opp=89 trees=18 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=145 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=145 pos=[0@9,1 3@7,4] moves=[MOVE 3 8 7]
+
+
+@TFD 146 1,3,9,0,4,22 1,5,9,2,4,18 0,0,9,1;3,0,8,5;1,1,7,2;2,1,17,7;
+@TFSUM t=146 me=101 opp=89 trees=18 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=146 pos=[0@9,1 3@8,5] moves=[MOVE 0 10 8 MOVE 3 8 7]
+
+
+@TFD 147 1,3,9,0,4,22 1,5,9,2,4,18 0,0,9,2;3,0,8,7;1,1,7,2;2,1,17,8;
+@TFSUM t=147 me=101 opp=89 trees=19 myinv=[1,3,9,0,4,22] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=147 pos=[0@9,2 3@8,7] moves=[MOVE 0 10 8]
+
+
+@TFD 148 1,3,9,0,4,24 1,5,9,2,4,18 0,0,9,3;3,0,8,7;1,1,7,1;2,1,17,8;
+@TFSUM t=148 me=109 opp=89 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=148 pos=[0@9,3 3@8,7] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 149 1,3,9,0,4,24 1,5,9,2,4,18 0,0,10,3;3,0,8,5;1,1,7,1;2,1,17,8;
+@TFSUM t=149 me=109 opp=89 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=149 pos=[0@10,3 3@8,5] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 150 1,3,9,0,4,24 1,5,9,2,4,18 0,0,10,4;3,0,7,4;1,1,7,0;2,1,17,8;
+@TFSUM t=150 me=109 opp=89 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=150 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=150 pos=[0@10,4 3@7,4] moves=[MOVE 0 10 8 MOVE 3 7 2]
+
+
+@TFD 151 1,3,9,0,4,24 1,5,9,2,4,18 0,0,10,5;3,0,7,2;1,1,8,0;2,1,17,8;
+@TFSUM t=151 me=109 opp=89 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,2,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=151 pos=[0@10,5 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 152 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,6;3,0,7,2;1,1,8,0;2,1,17,8;
+@TFSUM t=152 me=109 opp=90 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=152 pos=[0@10,6 3@7,2] moves=[MOVE 0 10 8]
+
+
+@TFD 153 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,7;3,0,7,2;1,1,8,0;2,1,17,8;
+@TFSUM t=153 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=153 pos=[0@10,7 3@7,2] moves=[MOVE 0 10 8 MOVE 3 7 1]
+
+
+@TFD 154 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,8;3,0,7,1;1,1,7,0;2,1,17,8;
+@TFSUM t=154 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=154 pos=[0@10,8 3@7,1] moves=[]
+
+
+@TFD 155 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,8;3,0,7,1;1,1,7,1;2,1,17,8;
+@TFSUM t=155 me=109 opp=90 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=155 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=155 pos=[0@10,8 3@7,1] moves=[MOVE 0 9 1]
+
+
+@TFD 156 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,7;3,0,7,1;1,1,7,2;2,1,17,8;
+@TFSUM t=156 me=109 opp=90 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=156 pos=[0@10,7 3@7,1] moves=[MOVE 0 9 1]
+
+
+@TFD 157 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,6;3,0,7,1;1,1,7,2;2,1,17,8;
+@TFSUM t=157 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=157 pos=[0@10,6 3@7,1] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 158 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,5;3,0,7,3;1,1,8,2;2,1,16,7;
+@TFSUM t=158 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=158 pos=[0@10,5 3@7,3] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 159 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,4;3,0,7,5;1,1,8,2;2,1,15,8;
+@TFSUM t=159 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=159 pos=[0@10,4 3@7,5] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 160 1,3,9,0,4,24 1,5,9,3,4,18 0,0,10,3;3,0,8,6;1,1,8,3;2,1,13,8;
+@TFSUM t=160 me=109 opp=90 trees=18 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=160 nchop=1 n=2 farm=1 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=160 pos=[0@10,3 3@8,6] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 161 1,3,9,0,4,24 1,5,9,3,4,18 0,0,9,3;3,0,8,7;1,1,8,3;2,1,11,8;
+@TFSUM t=161 me=109 opp=90 trees=19 myinv=[1,3,9,0,4,24] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=161 pos=[0@9,3 3@8,7] moves=[]
+
+
+@TFD 162 1,3,9,0,4,26 1,5,9,3,4,18 0,0,9,3;3,0,8,7;1,1,9,3;2,1,10,8;
+@TFSUM t=162 me=117 opp=90 trees=19 myinv=[1,3,9,0,4,26] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=162 pos=[0@9,3 3@8,7] moves=[MOVE 0 9 8 MOVE 3 7 2]
+
+
+@TFD 163 1,3,9,0,4,26 1,5,9,3,4,18 0,0,10,3;3,0,8,5;1,1,9,3;2,1,10,8;
+@TFSUM t=163 me=117 opp=90 trees=19 myinv=[1,3,9,0,4,26] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=163 pos=[0@10,3 3@8,5] moves=[MOVE 0 9 8 MOVE 3 7 2]
+
+
+@TFD 164 1,3,9,0,4,26 1,5,9,3,4,18 0,0,10,4;3,0,7,4;1,1,9,2;2,1,10,8;
+@TFSUM t=164 me=117 opp=90 trees=18 myinv=[1,3,9,0,4,26] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=164 pos=[0@10,4 3@7,4] moves=[MOVE 0 9 8 MOVE 3 7 2]
+
+
+@TFD 165 1,3,9,0,4,26 1,5,9,3,4,18 0,0,10,5;3,0,7,2;1,1,9,1;2,1,10,6;
+@TFSUM t=165 me=117 opp=90 trees=18 myinv=[1,3,9,0,4,26] oppinv=[1,5,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=165 nchop=1 n=2 farm=0 want_feeder=false inv=[1,3,9] cost=[6,6,6] train_now=false
+@TFMOVE t=165 pos=[0@10,5 3@7,2] moves=[MOVE 0 9 8]
+
+
+@TFD 166 1,3,9,0,4,26 1,6,9,3,4,18 0,0,9,5;3,0,7,2;1,1,9,1;2,1,10,4;
+@TFSUM t=166 me=117 opp=91 trees=18 myinv=[1,3,9,0,4,26] oppinv=[1,6,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=166 pos=[0@9,5 3@7,2] moves=[MOVE 0 9 8]
+
+
+@TFD 167 1,3,9,0,4,26 1,6,9,3,4,18 0,0,9,6;3,0,7,2;1,1,9,1;2,1,9,3;
+@TFSUM t=167 me=117 opp=91 trees=18 myinv=[1,3,9,0,4,26] oppinv=[1,6,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=167 pos=[0@9,6 3@7,2] moves=[MOVE 0 9 8]
+
+
+@TFD 168 1,3,9,0,4,26 1,6,9,3,4,18 0,0,9,7;3,0,7,2;1,1,9,2;2,1,9,1;
+@TFSUM t=168 me=117 opp=91 trees=18 myinv=[1,3,9,0,4,26] oppinv=[1,6,9,3,4,18] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=168 pos=[0@9,7 3@7,2] moves=[MOVE 0 9 8]
+
+
+@TFD 169 1,3,9,0,4,26 1,6,9,3,4,20 0,0,9,8;3,0,7,2;1,1,9,2;2,1,9,1;
+@TFSUM t=169 me=117 opp=99 trees=17 myinv=[1,3,9,0,4,26] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=169 pos=[0@9,8 3@7,2] moves=[MOVE 3 8 7]
+
+
+@TFD 170 1,4,9,0,4,26 1,6,9,3,4,20 0,0,9,8;3,0,7,4;1,1,9,2;2,1,8,2;
+@TFSUM t=170 me=118 opp=99 trees=17 myinv=[1,4,9,0,4,26] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=170 nchop=1 n=2 farm=0 want_feeder=false inv=[1,4,9] cost=[6,6,6] train_now=false
+@TFMOVE t=170 pos=[0@9,8 3@7,4] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 171 1,4,9,0,4,26 1,6,9,3,4,20 0,0,9,7;3,0,8,5;1,1,9,2;2,1,8,3;
+@TFSUM t=171 me=118 opp=99 trees=17 myinv=[1,4,9,0,4,26] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=171 pos=[0@9,7 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 172 1,4,9,0,4,26 1,6,9,3,4,20 0,0,10,7;3,0,8,7;1,1,8,2;2,1,8,3;
+@TFSUM t=172 me=118 opp=99 trees=17 myinv=[1,4,9,0,4,26] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=172 pos=[0@10,7 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 173 1,4,9,0,4,28 1,6,9,3,4,20 0,0,10,6;3,0,8,7;1,1,7,2;2,1,8,3;
+@TFSUM t=173 me=126 opp=99 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=173 pos=[0@10,6 3@8,7] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 174 1,4,9,0,4,28 1,6,9,3,4,20 0,0,10,5;3,0,8,5;1,1,7,2;2,1,8,3;
+@TFSUM t=174 me=126 opp=99 trees=18 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=174 pos=[0@10,5 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 175 1,4,9,0,4,28 1,6,9,3,4,20 0,0,10,4;3,0,7,4;1,1,8,2;2,1,8,3;
+@TFSUM t=175 me=126 opp=99 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=175 nchop=1 n=2 farm=0 want_feeder=false inv=[1,4,9] cost=[6,6,6] train_now=false
+@TFMOVE t=175 pos=[0@10,4 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 176 1,4,9,0,4,28 1,6,9,3,4,20 0,0,10,3;3,0,7,2;1,1,8,2;2,1,9,2;
+@TFSUM t=176 me=126 opp=99 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=176 pos=[0@10,3 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 177 1,4,9,0,4,28 1,6,9,3,4,20 0,0,9,3;3,0,7,2;1,1,8,3;2,1,9,1;
+@TFSUM t=177 me=126 opp=99 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,20] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=177 pos=[0@9,3 3@7,2] moves=[]
+
+
+@TFD 178 1,4,9,0,4,28 1,6,9,3,4,22 0,0,9,3;3,0,7,2;1,1,8,3;2,1,9,1;
+@TFSUM t=178 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=178 pos=[0@9,3 3@7,2] moves=[MOVE 0 9 8 MOVE 3 7 0]
+
+
+@TFD 179 1,4,9,0,4,28 1,6,9,3,4,22 0,0,10,3;3,0,7,0;1,1,8,2;2,1,9,2;
+@TFSUM t=179 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=179 pos=[0@10,3 3@7,0] moves=[MOVE 0 9 8]
+
+
+@TFD 180 1,4,9,0,4,28 1,6,9,3,4,22 0,0,10,4;3,0,7,0;1,1,8,2;2,1,9,3;
+@TFSUM t=180 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=180 nchop=1 n=2 farm=0 want_feeder=false inv=[1,4,9] cost=[6,6,6] train_now=false
+@TFMOVE t=180 pos=[0@10,4 3@7,0] moves=[MOVE 0 9 8]
+
+
+@TFD 181 1,4,9,0,4,28 1,6,9,3,4,22 0,0,10,5;3,0,7,0;1,1,7,2;2,1,9,3;
+@TFSUM t=181 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=181 pos=[0@10,5 3@7,0] moves=[MOVE 0 9 8]
+
+
+@TFD 182 1,4,9,0,4,28 1,6,9,3,4,22 0,0,10,6;3,0,7,0;1,1,7,2;2,1,9,3;
+@TFSUM t=182 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=182 pos=[0@10,6 3@7,0] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 183 1,4,9,0,4,28 1,6,9,3,4,22 0,0,10,7;3,0,7,2;1,1,8,2;2,1,9,3;
+@TFSUM t=183 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=183 pos=[0@10,7 3@7,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 184 1,4,9,0,4,28 1,6,9,3,4,22 0,0,9,7;3,0,7,4;1,1,8,2;2,1,9,3;
+@TFSUM t=184 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=184 pos=[0@9,7 3@7,4] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 185 1,4,9,0,4,28 1,6,9,3,4,22 0,0,9,8;3,0,8,5;1,1,7,2;2,1,9,3;
+@TFSUM t=185 me=126 opp=107 trees=17 myinv=[1,4,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=185 nchop=1 n=2 farm=0 want_feeder=false inv=[1,4,9] cost=[6,6,6] train_now=false
+@TFMOVE t=185 pos=[0@9,8 3@8,5] moves=[MOVE 3 8 7]
+
+
+@TFD 186 1,5,9,0,4,28 1,6,9,3,4,22 0,0,9,8;3,0,8,7;1,1,7,1;2,1,9,3;
+@TFSUM t=186 me=127 opp=107 trees=16 myinv=[1,5,9,0,4,28] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=186 pos=[0@9,8 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 187 1,5,9,0,4,30 1,6,9,3,4,22 0,0,10,8;3,0,8,7;1,1,7,1;2,1,9,1;
+@TFSUM t=187 me=135 opp=107 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,22] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=187 pos=[0@10,8 3@8,7] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 188 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,7;3,0,8,5;1,1,7,0;2,1,9,1;
+@TFSUM t=188 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=188 pos=[0@10,7 3@8,5] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 189 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,6;3,0,7,4;1,1,8,0;2,1,8,2;
+@TFSUM t=189 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=189 pos=[0@10,6 3@7,4] moves=[MOVE 0 9 1 MOVE 3 7 2]
+
+
+@TFD 190 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,5;3,0,7,2;1,1,8,0;2,1,8,3;
+@TFSUM t=190 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=190 nchop=1 n=2 farm=0 want_feeder=false inv=[1,5,9] cost=[6,6,6] train_now=false
+@TFMOVE t=190 pos=[0@10,5 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 191 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,4;3,0,7,2;1,1,7,0;2,1,8,3;
+@TFSUM t=191 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=191 pos=[0@10,4 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 192 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,3;3,0,7,2;1,1,7,0;2,1,7,2;
+@TFSUM t=192 me=135 opp=115 trees=18 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=192 pos=[0@10,3 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 193 1,5,9,0,4,30 1,6,9,3,4,24 0,0,9,3;3,0,7,2;1,1,6,0;2,1,7,2;
+@TFSUM t=193 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=193 pos=[0@9,3 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 194 1,5,9,0,4,30 1,6,9,3,4,24 0,0,9,2;3,0,8,3;1,1,6,0;2,1,8,2;
+@TFSUM t=194 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=194 pos=[0@9,2 3@8,3] moves=[]
+
+
+@TFD 195 1,5,9,0,4,30 1,6,9,3,4,24 0,0,9,2;3,0,8,3;1,1,7,0;2,1,8,3;
+@TFSUM t=195 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=195 nchop=1 n=2 farm=0 want_feeder=false inv=[1,5,9] cost=[6,6,6] train_now=false
+@TFMOVE t=195 pos=[0@9,2 3@8,3] moves=[MOVE 0 9 8]
+
+
+@TFD 196 1,5,9,0,4,30 1,6,9,3,4,24 0,0,9,3;3,0,8,3;1,1,7,1;2,1,8,3;
+@TFSUM t=196 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=196 pos=[0@9,3 3@8,3] moves=[MOVE 0 9 8]
+
+
+@TFD 197 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,3;3,0,8,3;1,1,7,2;2,1,8,3;
+@TFSUM t=197 me=135 opp=115 trees=16 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=197 pos=[0@10,3 3@8,3] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 198 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,4;3,0,7,4;1,1,7,2;2,1,9,2;
+@TFSUM t=198 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=198 pos=[0@10,4 3@7,4] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 199 1,5,9,0,4,30 1,6,9,3,4,24 0,0,10,5;3,0,8,5;1,1,8,2;2,1,9,1;
+@TFSUM t=199 me=135 opp=115 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,24] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=199 pos=[0@10,5 3@8,5] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 200 1,5,9,0,4,30 1,6,9,3,4,26 0,0,9,5;3,0,8,7;1,1,8,2;2,1,9,1;
+@TFSUM t=200 me=135 opp=123 trees=17 myinv=[1,5,9,0,4,30] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=200 nchop=1 n=2 farm=0 want_feeder=false inv=[1,5,9] cost=[6,6,6] train_now=false
+@TFMOVE t=200 pos=[0@9,5 3@8,7] moves=[MOVE 0 9 8]
+
+
+@TFD 201 1,5,9,0,4,32 1,6,9,3,4,26 0,0,9,6;3,0,8,7;1,1,8,3;2,1,9,2;
+@TFSUM t=201 me=143 opp=123 trees=17 myinv=[1,5,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=201 pos=[0@9,6 3@8,7] moves=[MOVE 0 9 8 MOVE 3 7 2]
+
+
+@TFD 202 1,5,9,0,4,32 1,6,9,3,4,26 0,0,9,7;3,0,8,5;1,1,8,3;2,1,8,2;
+@TFSUM t=202 me=143 opp=123 trees=18 myinv=[1,5,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=202 pos=[0@9,7 3@8,5] moves=[MOVE 0 9 8 MOVE 3 7 2]
+
+
+@TFD 203 1,5,9,0,4,32 1,6,9,3,4,26 0,0,9,8;3,0,7,4;1,1,8,3;2,1,8,2;
+@TFSUM t=203 me=143 opp=123 trees=18 myinv=[1,5,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=203 pos=[0@9,8 3@7,4] moves=[MOVE 3 7 2]
+
+
+@TFD 204 1,6,9,0,4,32 1,6,9,3,4,26 0,0,9,8;3,0,7,2;1,1,8,3;2,1,8,2;
+@TFSUM t=204 me=144 opp=123 trees=18 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=204 pos=[0@9,8 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 205 1,6,9,0,4,32 1,6,9,3,4,26 0,0,9,7;3,0,7,2;1,1,8,3;2,1,8,2;
+@TFSUM t=205 me=144 opp=123 trees=18 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=205 nchop=1 n=2 farm=0 want_feeder=false inv=[1,6,9] cost=[6,6,6] train_now=false
+@TFMOVE t=205 pos=[0@9,7 3@7,2] moves=[MOVE 0 9 1]
+
+
+@TFD 206 1,6,9,0,4,32 1,6,9,3,4,26 0,0,9,6;3,0,7,2;1,1,8,3;2,1,8,2;
+@TFSUM t=206 me=144 opp=123 trees=17 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=206 pos=[0@9,6 3@7,2] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 207 1,6,9,0,4,32 1,6,9,3,4,26 0,0,9,5;3,0,7,4;1,1,8,3;2,1,8,2;
+@TFSUM t=207 me=144 opp=123 trees=17 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=207 pos=[0@9,5 3@7,4] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 208 1,6,9,0,4,32 1,6,9,3,4,26 0,0,10,5;3,0,8,5;1,1,8,3;2,1,8,2;
+@TFSUM t=208 me=144 opp=123 trees=16 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=208 pos=[0@10,5 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 209 1,6,9,0,4,32 1,6,9,3,4,26 0,0,10,4;3,0,8,7;1,1,8,3;2,1,9,1;
+@TFSUM t=209 me=144 opp=123 trees=16 myinv=[1,6,9,0,4,32] oppinv=[1,6,9,3,4,26] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=209 pos=[0@10,4 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 210 1,6,9,0,4,34 1,6,9,3,4,28 0,0,10,3;3,0,8,7;1,1,8,2;2,1,9,1;
+@TFSUM t=210 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=210 nchop=1 n=2 farm=0 want_feeder=false inv=[1,6,9] cost=[6,6,6] train_now=false
+@TFMOVE t=210 pos=[0@10,3 3@8,7] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 211 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,3;3,0,8,5;1,1,9,2;2,1,8,2;
+@TFSUM t=211 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=211 pos=[0@9,3 3@8,5] moves=[MOVE 0 9 1 MOVE 3 8 3]
+
+
+@TFD 212 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,2;3,0,7,4;1,1,9,2;2,1,8,3;
+@TFSUM t=212 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=212 pos=[0@9,2 3@7,4] moves=[MOVE 3 8 3]
+
+
+@TFD 213 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,2;3,0,8,3;1,1,8,2;2,1,8,3;
+@TFSUM t=213 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=213 pos=[0@9,2 3@8,3] moves=[MOVE 0 9 8]
+
+
+@TFD 214 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,3;3,0,8,3;1,1,8,2;2,1,8,3;
+@TFSUM t=214 me=152 opp=131 trees=17 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=214 pos=[0@9,3 3@8,3] moves=[MOVE 0 9 8]
+
+
+@TFD 215 1,6,9,0,4,34 1,6,9,3,4,28 0,0,10,3;3,0,8,3;1,1,9,2;2,1,8,3;
+@TFSUM t=215 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=215 nchop=1 n=2 farm=0 want_feeder=false inv=[1,6,9] cost=[6,6,6] train_now=false
+@TFMOVE t=215 pos=[0@10,3 3@8,3] moves=[MOVE 0 9 8 MOVE 3 8 2]
+
+
+@TFD 216 1,6,9,0,4,34 1,6,9,3,4,28 0,0,10,4;3,0,8,2;1,1,9,2;2,1,7,2;
+@TFSUM t=216 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=216 pos=[0@10,4 3@8,2] moves=[MOVE 0 9 8]
+
+
+@TFD 217 1,6,9,0,4,34 1,6,9,3,4,28 0,0,10,5;3,0,8,2;1,1,9,3;2,1,7,1;
+@TFSUM t=217 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=217 pos=[0@10,5 3@8,2] moves=[MOVE 0 9 8]
+
+
+@TFD 218 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,5;3,0,8,2;1,1,9,3;2,1,7,1;
+@TFSUM t=218 me=152 opp=131 trees=17 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=218 pos=[0@9,5 3@8,2] moves=[MOVE 0 9 8]
+
+
+@TFD 219 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,6;3,0,8,2;1,1,9,2;2,1,7,1;
+@TFSUM t=219 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=219 pos=[0@9,6 3@8,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 220 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,7;3,0,7,3;1,1,9,2;2,1,7,1;
+@TFSUM t=220 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=220 nchop=1 n=2 farm=0 want_feeder=false inv=[1,6,9] cost=[6,6,6] train_now=false
+@TFMOVE t=220 pos=[0@9,7 3@7,3] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 221 1,6,9,0,4,34 1,6,9,3,4,28 0,0,9,8;3,0,7,5;1,1,8,2;2,1,7,1;
+@TFSUM t=221 me=152 opp=131 trees=16 myinv=[1,6,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=221 pos=[0@9,8 3@7,5] moves=[MOVE 3 8 7]
+
+
+@TFD 222 1,7,9,0,4,34 1,6,9,3,4,28 0,0,9,8;3,0,8,6;1,1,8,2;2,1,7,1;
+@TFSUM t=222 me=153 opp=131 trees=17 myinv=[1,7,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=222 pos=[0@9,8 3@8,6] moves=[MOVE 0 9 1 MOVE 3 8 7]
+
+
+@TFD 223 1,7,9,0,4,34 1,6,9,3,4,28 0,0,10,8;3,0,8,7;1,1,9,2;2,1,7,1;
+@TFSUM t=223 me=153 opp=131 trees=16 myinv=[1,7,9,0,4,34] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=223 pos=[0@10,8 3@8,7] moves=[MOVE 0 9 1]
+
+
+@TFD 224 1,7,9,0,4,36 1,6,9,3,4,28 0,0,10,7;3,0,8,7;1,1,9,2;2,1,8,0;
+@TFSUM t=224 me=161 opp=131 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,28] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=224 pos=[0@10,7 3@8,7] moves=[MOVE 0 9 1 MOVE 3 9 3]
+
+
+@TFD 225 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,6;3,0,8,5;1,1,8,2;2,1,8,0;
+@TFSUM t=225 me=161 opp=139 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=225 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=225 pos=[0@10,6 3@8,5] moves=[MOVE 0 9 1 MOVE 3 9 3]
+
+
+@TFD 226 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,6;3,0,10,5;1,1,7,2;2,1,6,0;
+@TFSUM t=226 me=161 opp=139 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=226 pos=[0@10,6 3@10,5] moves=[MOVE 0 9 1 MOVE 3 9 3]
+
+
+@TFD 227 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,5;3,0,10,3;1,1,7,2;2,1,6,0;
+@TFSUM t=227 me=161 opp=139 trees=17 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=227 pos=[0@10,5 3@10,3] moves=[MOVE 0 9 1 MOVE 3 9 3]
+
+
+@TFD 228 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,4;3,0,9,3;1,1,8,2;2,1,6,0;
+@TFSUM t=228 me=161 opp=139 trees=17 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=228 pos=[0@10,4 3@9,3] moves=[MOVE 0 9 1]
+
+
+@TFD 229 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,3;3,0,9,3;1,1,9,2;2,1,6,0;
+@TFSUM t=229 me=161 opp=139 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=229 pos=[0@10,3 3@9,3] moves=[MOVE 0 9 1]
+
+
+@TFD 230 1,7,9,0,4,36 1,6,9,3,4,30 0,0,10,3;3,0,9,3;1,1,9,2;2,1,8,0;
+@TFSUM t=230 me=161 opp=139 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,30] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=230 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=230 pos=[0@10,3 3@9,3] moves=[MOVE 0 9 1]
+
+
+@TFD 231 1,7,9,0,4,36 1,6,9,3,4,32 0,0,10,3;3,0,9,3;1,1,8,2;2,1,8,0;
+@TFSUM t=231 me=161 opp=147 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,32] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=231 pos=[0@10,3 3@9,3] moves=[MOVE 0 10 4]
+
+
+@TFD 232 1,7,9,0,4,36 1,6,9,3,4,32 0,0,10,4;3,0,9,3;1,1,8,3;2,1,9,1;
+@TFSUM t=232 me=161 opp=147 trees=15 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,32] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=232 pos=[0@10,4 3@9,3] moves=[MOVE 0 9 1 MOVE 3 9 8]
+
+
+@TFD 233 1,7,9,0,4,36 1,6,9,3,4,32 0,0,10,3;3,0,10,4;1,1,8,3;2,1,9,1;
+@TFSUM t=233 me=161 opp=147 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,32] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=233 pos=[0@10,3 3@10,4] moves=[MOVE 0 9 1 MOVE 3 9 8]
+
+
+@TFD 234 1,7,9,0,4,36 1,6,9,3,4,32 0,0,9,3;3,0,10,6;1,1,8,2;2,1,9,1;
+@TFSUM t=234 me=161 opp=147 trees=16 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,32] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=234 pos=[0@9,3 3@10,6] moves=[MOVE 0 9 1 MOVE 3 9 8]
+
+
+@TFD 235 1,7,9,0,4,36 1,6,9,3,4,32 0,0,9,2;3,0,10,8;1,1,9,2;2,1,9,1;
+@TFSUM t=235 me=161 opp=147 trees=15 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,32] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=235 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=235 pos=[0@9,2 3@10,8] moves=[MOVE 0 14 0 MOVE 3 9 8]
+
+
+@TFD 236 1,7,9,0,4,36 1,6,9,3,4,34 0,0,9,3;3,0,9,8;1,1,9,2;2,1,9,1;
+@TFSUM t=236 me=161 opp=155 trees=15 myinv=[1,7,9,0,4,36] oppinv=[1,6,9,3,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=236 pos=[0@9,3 3@9,8] moves=[MOVE 0 14 0]
+
+
+@TFD 237 1,7,9,0,4,38 1,6,9,3,4,34 0,0,10,3;3,0,9,8;1,1,9,2;2,1,8,2;
+@TFSUM t=237 me=169 opp=155 trees=15 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,3,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=237 pos=[0@10,3 3@9,8] moves=[MOVE 0 14 0 MOVE 3 8 3]
+
+
+@TFD 238 1,7,9,0,4,38 1,6,9,3,4,34 0,0,11,3;3,0,9,6;1,1,9,1;2,1,7,2;
+@TFSUM t=238 me=169 opp=155 trees=15 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,3,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=238 pos=[0@11,3 3@9,6] moves=[MOVE 0 14 0 MOVE 3 8 3]
+
+
+@TFD 239 1,7,9,0,4,38 1,6,9,3,4,34 0,0,11,2;3,0,10,5;1,1,9,1;2,1,7,2;
+@TFSUM t=239 me=169 opp=155 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,3,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=239 pos=[0@11,2 3@10,5] moves=[MOVE 0 14 0 MOVE 3 8 3]
+
+
+@TFD 240 1,7,9,0,4,38 1,6,9,2,4,34 0,0,11,1;3,0,10,3;1,1,9,1;2,1,7,2;
+@TFSUM t=240 me=169 opp=154 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=240 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=240 pos=[0@11,1 3@10,3] moves=[MOVE 0 14 0 MOVE 3 7 2]
+
+
+@TFD 241 1,7,9,0,4,38 1,6,9,2,4,34 0,0,11,0;3,0,9,2;1,1,8,1;2,1,7,2;
+@TFSUM t=241 me=169 opp=154 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=241 pos=[0@11,0 3@9,2] moves=[MOVE 0 14 0]
+
+
+@TFD 242 1,7,9,0,4,38 1,6,9,2,4,34 0,0,12,0;3,0,9,2;1,1,7,1;2,1,7,2;
+@TFSUM t=242 me=169 opp=154 trees=15 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=242 pos=[0@12,0 3@9,2] moves=[MOVE 0 14 0]
+
+
+@TFD 243 1,7,9,0,4,38 1,6,9,2,4,34 0,0,13,0;3,0,9,2;1,1,7,1;2,1,9,2;
+@TFSUM t=243 me=169 opp=154 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=243 pos=[0@13,0 3@9,2] moves=[]
+
+
+@TFD 244 1,7,9,0,4,38 1,6,9,2,4,34 0,0,13,0;3,0,9,2;1,1,7,0;2,1,9,1;
+@TFSUM t=244 me=169 opp=154 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,34] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=244 pos=[0@13,0 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 245 1,7,9,0,4,38 1,6,9,2,4,36 0,0,12,0;3,0,9,2;1,1,7,0;2,1,9,1;
+@TFSUM t=245 me=169 opp=162 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,36] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=245 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=245 pos=[0@12,0 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 246 1,7,9,0,4,38 1,6,9,2,4,36 0,0,11,0;3,0,9,2;1,1,6,0;2,1,9,2;
+@TFSUM t=246 me=169 opp=162 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,36] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=246 pos=[0@11,0 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 247 1,7,9,0,4,38 1,6,9,2,4,36 0,0,11,1;3,0,9,2;1,1,6,0;2,1,9,2;
+@TFSUM t=247 me=169 opp=162 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,36] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=247 pos=[0@11,1 3@9,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 248 1,7,9,0,4,38 1,6,9,2,4,36 0,0,11,2;3,0,10,3;1,1,7,0;2,1,9,1;
+@TFSUM t=248 me=169 opp=162 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,36] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=248 pos=[0@11,2 3@10,3] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 249 1,7,9,0,4,38 1,6,9,2,4,38 0,0,11,3;3,0,10,5;1,1,7,0;2,1,9,1;
+@TFSUM t=249 me=169 opp=170 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,38] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=249 pos=[0@11,3 3@10,5] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 250 1,7,9,0,4,38 1,6,9,2,4,38 0,0,11,4;3,0,10,7;1,1,7,0;2,1,7,1;
+@TFSUM t=250 me=169 opp=170 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,38] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=250 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=250 pos=[0@11,4 3@10,7] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 251 1,7,9,0,4,38 1,6,9,2,4,38 0,0,10,4;3,0,8,7;1,1,7,0;2,1,7,1;
+@TFSUM t=251 me=169 opp=170 trees=16 myinv=[1,7,9,0,4,38] oppinv=[1,6,9,2,4,38] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=251 pos=[0@10,4 3@8,7] moves=[MOVE 0 9 8]
+
+
+@TFD 252 1,7,9,0,4,40 1,6,9,2,4,38 0,0,10,5;3,0,8,7;1,1,7,0;2,1,7,1;
+@TFSUM t=252 me=177 opp=170 trees=15 myinv=[1,7,9,0,4,40] oppinv=[1,6,9,2,4,38] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=252 pos=[0@10,5 3@8,7] moves=[MOVE 0 9 8 MOVE 3 8 3]
+
+
+@TFD 253 1,7,9,0,4,40 1,6,9,2,4,38 0,0,10,6;3,0,8,5;1,1,7,0;2,1,8,0;
+@TFSUM t=253 me=177 opp=170 trees=15 myinv=[1,7,9,0,4,40] oppinv=[1,6,9,2,4,38] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=253 pos=[0@10,6 3@8,5] moves=[MOVE 0 9 8 MOVE 3 8 3]
+
+
+@TFD 254 1,7,9,0,4,40 1,6,9,2,4,40 0,0,10,7;3,0,7,4;1,1,7,1;2,1,8,0;
+@TFSUM t=254 me=177 opp=178 trees=15 myinv=[1,7,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=254 pos=[0@10,7 3@7,4] moves=[MOVE 0 9 8 MOVE 3 8 3]
+
+
+@TFD 255 1,7,9,0,4,40 1,6,9,2,4,40 0,0,10,8;3,0,8,3;1,1,7,1;2,1,8,2;
+@TFSUM t=255 me=177 opp=178 trees=16 myinv=[1,7,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=255 nchop=1 n=2 farm=0 want_feeder=false inv=[1,7,9] cost=[6,6,6] train_now=false
+@TFMOVE t=255 pos=[0@10,8 3@8,3] moves=[MOVE 0 9 8]
+
+
+@TFD 256 1,7,9,0,4,40 1,6,9,2,4,40 0,0,9,8;3,0,8,3;1,1,7,0;2,1,8,3;
+@TFSUM t=256 me=177 opp=178 trees=16 myinv=[1,7,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=256 pos=[0@9,8 3@8,3] moves=[]
+
+
+@TFD 257 1,8,9,0,4,40 1,6,9,2,4,40 0,0,9,8;3,0,8,3;1,1,7,0;2,1,8,3;
+@TFSUM t=257 me=178 opp=178 trees=16 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=257 pos=[0@9,8 3@8,3] moves=[MOVE 0 17 5]
+
+
+@TFD 258 1,8,9,0,4,40 1,6,9,2,4,40 0,0,10,8;3,0,8,3;1,1,7,1;2,1,8,3;
+@TFSUM t=258 me=178 opp=178 trees=16 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=258 pos=[0@10,8 3@8,3] moves=[MOVE 0 17 5]
+
+
+@TFD 259 1,8,9,0,4,40 1,6,9,2,4,40 0,0,11,8;3,0,8,3;1,1,7,2;2,1,8,3;
+@TFSUM t=259 me=178 opp=178 trees=15 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=259 pos=[0@11,8 3@8,3] moves=[MOVE 0 17 5 MOVE 3 8 7]
+
+
+@TFD 260 1,8,9,0,4,40 1,6,9,2,4,40 0,0,12,8;3,0,7,4;1,1,7,2;2,1,9,2;
+@TFSUM t=260 me=178 opp=178 trees=16 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=260 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,9] cost=[6,6,6] train_now=false
+@TFMOVE t=260 pos=[0@12,8 3@7,4] moves=[MOVE 0 17 5 MOVE 3 8 7]
+
+
+@TFD 261 1,8,9,0,4,40 1,6,9,2,4,40 0,0,13,8;3,0,8,5;1,1,8,2;2,1,9,1;
+@TFSUM t=261 me=178 opp=178 trees=16 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,40] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=261 pos=[0@13,8 3@8,5] moves=[MOVE 0 17 5 MOVE 3 8 7]
+
+
+@TFD 262 1,8,9,0,4,40 1,6,9,2,4,42 0,0,14,8;3,0,8,7;1,1,8,2;2,1,9,1;
+@TFSUM t=262 me=178 opp=186 trees=16 myinv=[1,8,9,0,4,40] oppinv=[1,6,9,2,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=262 pos=[0@14,8 3@8,7] moves=[MOVE 0 17 5]
+
+
+@TFD 263 1,8,9,0,4,42 1,6,9,2,4,42 0,0,15,8;3,0,8,7;1,1,9,2;2,1,8,1;
+@TFSUM t=263 me=186 opp=186 trees=16 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,2,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=263 pos=[0@15,8 3@8,7] moves=[MOVE 0 17 5 MOVE 3 7 2]
+
+
+@TFD 264 1,8,9,0,4,42 1,6,9,2,4,42 0,0,15,7;3,0,8,5;1,1,9,2;2,1,8,2;
+@TFSUM t=264 me=186 opp=186 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,2,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=264 pos=[0@15,7 3@8,5] moves=[MOVE 0 17 5 MOVE 3 7 2]
+
+
+@TFD 265 1,8,9,0,4,42 1,6,9,2,4,42 0,0,16,7;3,0,7,4;1,1,9,1;2,1,8,2;
+@TFSUM t=265 me=186 opp=186 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,2,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=265 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,9] cost=[6,6,6] train_now=false
+@TFMOVE t=265 pos=[0@16,7 3@7,4] moves=[MOVE 0 17 5 MOVE 3 7 2]
+
+
+@TFD 266 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,7;3,0,7,2;1,1,9,1;2,1,8,2;
+@TFSUM t=266 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=266 pos=[0@17,7 3@7,2] moves=[MOVE 0 17 5]
+
+
+@TFD 267 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,6;3,0,7,2;1,1,9,2;2,1,8,2;
+@TFSUM t=267 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=267 pos=[0@17,6 3@7,2] moves=[MOVE 0 17 5]
+
+
+@TFD 268 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,5;3,0,7,2;1,1,9,3;2,1,7,2;
+@TFSUM t=268 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=268 pos=[0@17,5 3@7,2] moves=[]
+
+
+@TFD 269 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,5;3,0,7,2;1,1,9,3;2,1,7,2;
+@TFSUM t=269 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=269 pos=[0@17,5 3@7,2] moves=[MOVE 0 9 8 MOVE 3 8 2]
+
+
+@TFD 270 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,6;3,0,8,2;1,1,9,2;2,1,8,2;
+@TFSUM t=270 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=270 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,9] cost=[6,6,6] train_now=false
+@TFMOVE t=270 pos=[0@17,6 3@8,2] moves=[MOVE 0 9 8]
+
+
+@TFD 271 1,8,9,0,4,42 1,6,9,1,4,42 0,0,17,7;3,0,8,2;1,1,9,1;2,1,8,2;
+@TFSUM t=271 me=186 opp=185 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=271 pos=[0@17,7 3@8,2] moves=[MOVE 0 9 8]
+
+
+@TFD 272 1,8,9,0,4,42 1,6,9,1,4,42 0,0,16,7;3,0,8,2;1,1,9,1;2,1,8,2;
+@TFSUM t=272 me=186 opp=185 trees=16 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=272 pos=[0@16,7 3@8,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 273 1,8,9,0,4,42 1,6,9,1,4,42 0,0,15,7;3,0,7,3;1,1,9,2;2,1,9,1;
+@TFSUM t=273 me=186 opp=185 trees=16 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,42] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=273 pos=[0@15,7 3@7,3] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 274 1,8,9,0,4,42 1,6,9,1,4,44 0,0,15,8;3,0,7,5;1,1,8,2;2,1,9,1;
+@TFSUM t=274 me=186 opp=193 trees=16 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=274 pos=[0@15,8 3@7,5] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 275 1,8,9,0,4,42 1,6,9,1,4,44 0,0,14,8;3,0,8,6;1,1,8,2;2,1,8,1;
+@TFSUM t=275 me=186 opp=193 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=275 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,9] cost=[6,6,6] train_now=false
+@TFMOVE t=275 pos=[0@14,8 3@8,6] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 276 1,8,9,0,4,42 1,6,9,1,4,44 0,0,13,8;3,0,8,7;1,1,9,2;2,1,8,3;
+@TFSUM t=276 me=186 opp=193 trees=17 myinv=[1,8,9,0,4,42] oppinv=[1,6,9,1,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=276 pos=[0@13,8 3@8,7] moves=[MOVE 0 9 8]
+
+
+@TFD 277 1,8,9,0,4,44 1,6,9,1,4,44 0,0,12,8;3,0,8,7;1,1,9,1;2,1,9,3;
+@TFSUM t=277 me=194 opp=193 trees=17 myinv=[1,8,9,0,4,44] oppinv=[1,6,9,1,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=277 pos=[0@12,8 3@8,7] moves=[MOVE 0 9 8 MOVE 3 9 3]
+
+
+@TFD 278 1,8,9,0,4,44 1,6,9,0,4,44 0,0,11,8;3,0,9,6;1,1,9,1;2,1,9,3;
+@TFSUM t=278 me=194 opp=192 trees=17 myinv=[1,8,9,0,4,44] oppinv=[1,6,9,0,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=278 pos=[0@11,8 3@9,6] moves=[MOVE 0 9 8 MOVE 3 9 3]
+
+
+@TFD 279 1,8,9,0,4,44 1,6,9,0,4,44 0,0,10,8;3,0,10,5;1,1,9,2;2,1,9,3;
+@TFSUM t=279 me=194 opp=192 trees=16 myinv=[1,8,9,0,4,44] oppinv=[1,6,9,0,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=279 pos=[0@10,8 3@10,5] moves=[MOVE 0 9 8 MOVE 3 9 2]
+
+
+@TFD 280 1,8,9,0,4,44 1,6,9,0,4,44 0,0,9,8;3,0,10,3;1,1,9,2;2,1,9,1;
+@TFSUM t=280 me=194 opp=192 trees=16 myinv=[1,8,9,0,4,44] oppinv=[1,6,9,0,4,44] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=280 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,9] cost=[6,6,6] train_now=false
+@TFMOVE t=280 pos=[0@9,8 3@10,3] moves=[MOVE 3 8 2]
+
+
+@TFD 281 1,8,10,0,4,44 1,6,9,0,4,46 0,0,9,8;3,0,9,2;1,1,9,3;2,1,9,1;
+@TFSUM t=281 me=195 opp=200 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=281 pos=[0@9,8 3@9,2] moves=[MOVE 0 17 5]
+
+
+@TFD 282 1,8,10,0,4,44 1,6,9,0,4,46 0,0,10,8;3,0,9,2;1,1,9,3;2,1,8,1;
+@TFSUM t=282 me=195 opp=200 trees=17 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=282 pos=[0@10,8 3@9,2] moves=[MOVE 0 17 5]
+
+
+@TFD 283 1,8,10,0,4,44 1,6,9,0,4,46 0,0,11,8;3,0,9,2;1,1,9,3;2,1,9,2;
+@TFSUM t=283 me=195 opp=200 trees=17 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=283 pos=[0@11,8 3@9,2] moves=[MOVE 0 17 5]
+
+
+@TFD 284 1,8,10,0,4,44 1,6,9,0,4,46 0,0,12,8;3,0,9,2;1,1,9,3;2,1,9,2;
+@TFSUM t=284 me=195 opp=200 trees=17 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=284 pos=[0@12,8 3@9,2] moves=[MOVE 0 17 5]
+
+
+@TFD 285 1,8,10,0,4,44 1,6,9,0,4,46 0,0,13,8;3,0,9,2;1,1,9,3;2,1,9,2;
+@TFSUM t=285 me=195 opp=200 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=285 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,10] cost=[6,6,6] train_now=false
+@TFMOVE t=285 pos=[0@13,8 3@9,2] moves=[MOVE 0 17 5 MOVE 3 9 8]
+
+
+@TFD 286 1,8,10,0,4,44 1,6,9,0,4,46 0,0,14,8;3,0,10,3;1,1,9,3;2,1,9,1;
+@TFSUM t=286 me=195 opp=200 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,46] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=286 pos=[0@14,8 3@10,3] moves=[MOVE 0 17 5 MOVE 3 9 8]
+
+
+@TFD 287 1,8,10,0,4,44 1,6,9,0,4,48 0,0,15,8;3,0,10,5;1,1,9,2;2,1,9,1;
+@TFSUM t=287 me=195 opp=208 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=287 pos=[0@15,8 3@10,5] moves=[MOVE 0 17 5 MOVE 3 9 8]
+
+
+@TFD 288 1,8,10,0,4,44 1,6,9,0,4,48 0,0,15,7;3,0,10,7;1,1,9,2;2,1,8,1;
+@TFSUM t=288 me=195 opp=208 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=288 pos=[0@15,7 3@10,7] moves=[MOVE 0 17 5 MOVE 3 9 8]
+
+
+@TFD 289 1,8,10,0,4,44 1,6,9,0,4,48 0,0,16,7;3,0,9,8;1,1,9,1;2,1,8,3;
+@TFSUM t=289 me=195 opp=208 trees=16 myinv=[1,8,10,0,4,44] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=289 pos=[0@16,7 3@9,8] moves=[MOVE 0 17 5]
+
+
+@TFD 290 1,8,10,0,4,46 1,6,9,0,4,48 0,0,17,7;3,0,9,8;1,1,9,1;2,1,9,3;
+@TFSUM t=290 me=203 opp=208 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=290 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,10] cost=[6,6,6] train_now=false
+@TFMOVE t=290 pos=[0@17,7 3@9,8] moves=[MOVE 0 17 5 MOVE 3 9 3]
+
+
+@TFD 291 1,8,10,0,4,46 1,6,9,0,4,48 0,0,17,6;3,0,10,7;1,1,9,2;2,1,9,3;
+@TFSUM t=291 me=203 opp=208 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=291 pos=[0@17,6 3@10,7] moves=[MOVE 0 17 5 MOVE 3 9 3]
+
+
+@TFD 292 1,8,10,0,4,46 1,6,9,0,4,48 0,0,17,5;3,0,10,5;1,1,9,2;2,1,9,3;
+@TFSUM t=292 me=203 opp=208 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=292 pos=[0@17,5 3@10,5] moves=[MOVE 3 9 2]
+
+
+@TFD 293 1,8,10,0,4,46 1,6,9,0,4,48 0,0,17,5;3,0,10,3;1,1,9,2;2,1,9,1;
+@TFSUM t=293 me=203 opp=208 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,48] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=293 pos=[0@17,5 3@10,3] moves=[MOVE 0 9 8 MOVE 3 9 2]
+
+
+@TFD 294 1,8,10,0,4,46 1,6,9,0,4,50 0,0,17,6;3,0,9,2;1,1,9,2;2,1,9,1;
+@TFSUM t=294 me=203 opp=216 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=294 pos=[0@17,6 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 295 1,8,10,0,4,46 1,6,9,0,4,50 0,0,17,7;3,0,9,2;1,1,9,2;2,1,8,1;
+@TFSUM t=295 me=203 opp=216 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=295 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,10] cost=[6,6,6] train_now=false
+@TFMOVE t=295 pos=[0@17,7 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 296 1,8,10,0,4,46 1,6,9,0,4,50 0,0,16,7;3,0,9,2;1,1,9,1;2,1,9,2;
+@TFSUM t=296 me=203 opp=216 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=296 pos=[0@16,7 3@9,2] moves=[MOVE 0 9 8]
+
+
+@TFD 297 1,8,10,0,4,46 1,6,9,0,4,50 0,0,15,7;3,0,9,2;1,1,9,1;2,1,9,2;
+@TFSUM t=297 me=203 opp=216 trees=15 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=297 pos=[0@15,7 3@9,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 298 1,8,10,0,4,46 1,6,9,0,4,50 0,0,15,8;3,0,7,2;1,1,9,1;2,1,8,2;
+@TFSUM t=298 me=203 opp=216 trees=15 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=298 pos=[0@15,8 3@7,2] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 299 1,8,10,0,4,46 1,6,9,0,4,50 0,0,14,8;3,0,7,4;1,1,9,2;2,1,8,2;
+@TFSUM t=299 me=203 opp=216 trees=15 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFMOVE t=299 pos=[0@14,8 3@7,4] moves=[MOVE 0 9 8 MOVE 3 8 7]
+
+
+@TFD 300 1,8,10,0,4,46 1,6,9,0,4,50 0,0,13,8;3,0,8,5;1,1,9,2;2,1,8,2;
+@TFSUM t=300 me=203 opp=216 trees=16 myinv=[1,8,10,0,4,46] oppinv=[1,6,9,0,4,50] mybuilds=0:1.1.1.1,3:2.2.0.2 oppbuilds=1:1.1.1.1,2:2.2.0.2
+@TFFEED t=300 nchop=1 n=2 farm=0 want_feeder=false inv=[1,8,10] cost=[6,6,6] train_now=false
+@TFMOVE t=300 pos=[0@13,8 3@8,5] moves=[MOVE 0 9 8 MOVE 3 8 7]
+

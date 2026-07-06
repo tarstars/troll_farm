@@ -10,7 +10,24 @@
 //! never on troll/candidate iteration order.
 use super::tactics::Plan;
 use super::*;
+use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
+
+thread_local! {
+    // last MoveTo target per troll (diagnostics: assignment-flap counter) + flap count
+    static LAST_TGT: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
+    static FLAPS: RefCell<u32> = RefCell::new(0);
+}
+
+/// Turn-1 reset of diagnostics.
+pub fn reset() {
+    LAST_TGT.with(|m| m.borrow_mut().clear());
+    FLAPS.with(|f| *f.borrow_mut() = 0);
+}
+
+pub fn flaps() -> u32 {
+    FLAPS.with(|f| *f.borrow())
+}
 
 const K: usize = 8; // per-troll candidate cap (bands make more irrelevant)
 const BAND: i64 = 100_000; // > any ETA by orders of magnitude
@@ -144,20 +161,20 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         if let Some(p) = state.trees.iter().find(|p| p.pos() == u.pos()) {
             if p.fruits > 0 && u.harvest_power > 0 && u.free_capacity() > 0 {
                 let ty = ge_fruit_ty(&p.tree_type);
-                let want = if plan.want_chopper {
-                    ty.map_or(false, |t| t < 3 && plan.need_fund[t])
-                } else {
-                    p.tree_type == "BANANA"
-                        || (p.tree_type == "APPLE"
-                            && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))
-                };
+                let funding = plan.want_chopper || plan.want_feeder;
+                let want = (funding && ty.map_or(false, |t| t < 3 && plan.need_fund[t]))
+                    || (!plan.want_chopper
+                        && (p.tree_type == "BANANA"
+                            || (p.tree_type == "APPLE"
+                                && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))));
                 if want {
                     out.push(Cand { kind: Kind::Harvest, target: Some(u.pos()), value: 75 * BAND });
                 }
             }
         }
-        // 4) FUNDING (bands 60/58)
-        if plan.want_chopper {
+        // 4) FUNDING (bands 60/58) — for the chopper OR a pending 3rd hand (R6b.2: the old
+        // feeder never trained because post-funding nobody harvested plum/lemon/apple)
+        if plan.want_chopper || plan.want_feeder {
             if plan.need_iron && u.chop_power > 0 {
                 if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
                     out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: 60 * BAND });
@@ -183,10 +200,11 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         // 5) PRINTER (bands 50/48)
         if plan.base_trees < plan.farm_cap {
             if inv[BANANA] > 0 && u.free_capacity() > 0 {
+                // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
-                    out.push(Cand { kind: Kind::Pick, target: None, value: 50 * BAND });
+                    out.push(Cand { kind: Kind::Pick, target: Some(shack), value: 50 * BAND });
                 } else {
-                    out.push(Cand { kind: Kind::Park, target: None, value: 50 * BAND - 1 });
+                    out.push(Cand { kind: Kind::Park, target: Some(shack), value: 50 * BAND - 1 });
                 }
             }
             if inv[BANANA] == 0 {
@@ -311,6 +329,19 @@ pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> 
             let u = trolls[i];
             let d = bfs_distances(&state.walkable, &[u.pos()]);
             let c = &cands[i][picks[i]];
+            if let (Kind::MoveTo, Some(tc)) = (&c.kind, c.target) {
+                LAST_TGT.with(|m| {
+                    let mut m = m.borrow_mut();
+                    if let Some(prev) = m.get(id) {
+                        if *prev != tc && u.pos() != *prev {
+                            FLAPS.with(|f| *f.borrow_mut() += 1);
+                        }
+                    }
+                    m.insert(*id, tc);
+                });
+            } else {
+                LAST_TGT.with(|m| m.borrow_mut().remove(id));
+            }
             let cmd = match (&c.kind, c.target) {
                 (Kind::Bank, _) => motion::bank_cmd(state, plan.shack, u, &d, &mut claimed_drop),
                 (Kind::Park, _) => motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop),

@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.27.0-taskplan"; // R6b: joint task assignment (manager stage 1)
+const VERSION: &str = "1.28.0-thirdhand"; // R6b.2: 3rd troll on the planner (cheap (1,1,1,0) hands; fund-for-feeder band)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -79,10 +79,10 @@ fn rh_rand() -> u64 {
 // Full history: git; frozen artifacts: cgauto/submissions/.)
 
 const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
-const GE_MAX_TROLLS: i32 = 2; // v1.13.0 LIVE: tight-farm 2-troll (feeder was neutral-negative on the arena, reverted)
-const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (2, 2, 2, 0); // (unused at MAX_TROLLS=2)
-const GE_FEEDER_T: i32 = 45;
-const GE_FEEDER_FARM: usize = 5;
+const GE_MAX_TROLLS: i32 = 3; // R6b.2: the 19+ tier all run 3-4 trolls; the old failures were CASCADE coordination costs — retest on the planner
+const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
+const GE_FEEDER_T: i32 = 60; // after the chopper economy stabilizes
+const GE_FEEDER_FARM: usize = 3; // map-distance farm now; the feeder's JOB is to grow it
 const GE_CHOP_DELAY: i32 = 0; // NO delay: train chopper early (denial > accumulation, proven 2026-07-05)
 const GE_CHOP_FARM: usize = 3; // train as soon as affordable (early aggression, v1.4.5 regime)
 const GE_FARM_R: i32 = 2; // v1.13.0: TIGHT farm hugging the shack — halves the chopper's bank-trip distance (the throughput bottleneck)
@@ -104,6 +104,7 @@ fn decide_elite(state: &State) -> Vec<String> {
     if state.turn == 1 {
         motion::reset();
         tactics::reset();
+        planner::reset();
     }
     let mut my: Vec<Troll> = state.my_trolls.clone();
     my.sort_by_key(|t| t.id);
@@ -111,6 +112,12 @@ fn decide_elite(state: &State) -> Vec<String> {
     // L1: tactical plan → L2: per-troll job assignment → L3: motion post-pass
     let plan = tactics::plan(state, &my);
     let mut cmd_by_id = planner::assign(state, &plan, &my);
+    if DEBUG && state.turn % 5 == 0 {
+        eprintln!(
+            "@TFFARM t={} farm={} seeds={} n={} flaps={}",
+            state.turn, plan.farm_now, state.my_inventory[BANANA], my.len(), planner::flaps()
+        );
+    }
 
     // R6a: JOINT MOVE RESOLUTION — the manager's motion stage. Collect every MOVE's goal,
     // choose all landing cells together (max total progress; swaps/chains exploited;

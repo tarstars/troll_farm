@@ -248,6 +248,36 @@ Milestones, each gated:
   stays empty while a seed is available") as a testable assignment rule → 12-game gate → arena.
 - **R6+** iterate L2 policies (dynamic starter role by marginal value; feeder-as-job).
 
+### ★ R6 — the CENTRAL ACTIVITY PLANNER (user directive 2026-07-06; the new main line)
+The seeded tie-break (R5.0) restored the accident, not fixed the defect: L2/L3 are SEQUENTIAL
+— trolls decide one-by-one in id order, coordinating only via `reserved`/`claimed_drop`
+side-effects, so arbitrary order decides outcomes. The fix is a per-turn MANAGER that knows
+all tasks and plans all trolls JOINTLY. **Design criterion: SHUFFLE INVARIANCE — permuting
+troll order or candidate enumeration must not change the plan** (the objective decides, not
+the iteration order; residual objective-ties broken by one canonical rule).
+
+- **R6a — L3 joint move solver.** Input: each troll's goal cell. Output: this turn's MOVE set
+  chosen jointly against the verified engine rules (speed ≤ ms, swap-on-cross, block/deadlock
+  resolution): maximize total progress, exploit swaps, sequence corridor traffic. Tests: the
+  corridor unload (3 trolls / 5 turns) must EMERGE from the objective rather than a hand-coded
+  policy (tests/motion_corridor.rs stays green) + NEW property tests: shuffle invariance and
+  no-avoidable-self-block on random states.
+- **R6b — L2 joint task assignment.** Enumerate the task pool (Fell/Plant/HarvestSeed/
+  HarvestFund/Mine/Bank/Park per tactics::Plan), score every (troll, task) pair by marginal
+  points per turn (value / ETA), solve the matching exactly (n ≤ 4 trolls → exhaustive ≤ 24
+  assignments over a pruned pool). Replaces the priority cascade in jobs::assign_all; the
+  branch logic becomes the VALUATION function.
+- **Prior art:** decide_sched was a global-greedy scheduler whose ECONOMY tasks were wrong
+  (fruit-hoarding, 1/12 wood 13) — salvage the machinery concept, keep the elite economy
+  (tight farm, fell-at-2, seed reserve). RHEA search = over-budget/transfer-wall; matching is
+  cheap + deterministic. The corridor experiment proved swaps make simple joint plans optimal.
+- **Gates (behavior-CHANGING):** unit/property tests → boss 12 → field 6-10 incl. the blowout
+  tier (nep7un 113, plcc 115, mikdiet 118, Eagleast 105 — battles.py found −100..−287 losses
+  to them) → arena with same-hour bracketing. Success metric: blowout margins shrink and
+  win-rate vs 18.7+ rises; killing those blowouts IS the +1.5 to rank ≤99.
+- After R6 validates: new stream reference frozen; R5.1 farm-supply invariant becomes a
+  VALUATION term (plant value spikes when farm cells empty + seeds available), not a bolt-on.
+
 ### T4 — ONLY with the user's explicit go-ahead
 - Search bot (RHEA/MCTS over the validated engine within 50 ms) or RL — prior scaffolds exist
   (`decide_rhea`, RL agent) but both are sim-bound (rule 2) and were not competitive.
