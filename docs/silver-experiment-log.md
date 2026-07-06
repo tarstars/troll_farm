@@ -886,3 +886,18 @@ same-hour bracket v1.25.1-spread = 122 @ 18.2. Best score ever recorded (prior b
 is the first change of the project to GAIN vs a clean bracket. api_submit default updated.
 Gap to rank ≤99 (~19.7): ~0.8. NEXT: R6b — joint task assignment (valuation matrix + exact
 matching replacing the sequential cascade in jobs::assign_all).
+
+## 2026-07-06 ~22:15 — R6b task planner: built, debugged, gated, SUBMITTED
+planner.rs (L2): cascade branches → value BANDS (hierarchy preserved), ETA within band,
+exhaustive conflict-free matching, canonical ties. Tests: shuffle invariance, contested-tree,
+priorities (3/3 green). USER-FOUND BUG fixed along the way: farm membership / chopper roam
+were MANHATTAN-radius (ignores water — biz1 game showed the starter planting across a lake);
+now MAP distance via shack-BFS shared in Plan (farm_d). SIZE saga: bundle hit 121 KB → deleted
+the dead deciders (sched/RHEA/legacy, −1906 lines; pre/post-cut equality EQUAL 30 games) →
+then a BUNDLER RESOLUTION BUG (mod planner; captured the legacy src/planner.rs — rustc
+resolves botmain/planner.rs first; fixed candidate order) → true artifact **37,132 B**.
+FIRST boss gate FAILED 0/8 wood 36 → diagnosis: single 70-band let farther-faster fells
+outrank FINISHING the tree underfoot (cascade never abandoned invested chops) → fix:
+continue-to-completion bands (72/42/31 standing > 70/40/30 travel) → **BOSS 3/8, wood 51.2,
+delta −4.2 (best ever)**. FIELD vs blowout tier: 2/6, wood 69-80 (72-34 over nep7un!), no
+blowouts. SUBMITTED vs bracket v1.26.0 @ 118 @ 18.9. Keep if ≥ 18.7.

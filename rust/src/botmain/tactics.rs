@@ -18,6 +18,10 @@ pub fn reset() {
 
 pub struct Plan {
     pub shack: Cell,
+    /// MAP distances from the shack (BFS) — farm membership and chopper roam use THIS,
+    /// not manhattan (user-found bug vs biz1: manhattan ignores water, so the starter
+    /// planted "nearby" cells that were a long walk around a lake).
+    pub farm_d: std::collections::HashMap<Cell, i32>,
     pub opp: Cell,
     pub have_iron: bool,
     pub turns_rem: i32,
@@ -44,6 +48,7 @@ pub struct Plan {
 }
 
 pub fn plan(state: &State, my: &[Troll]) -> Plan {
+    let farm_d = bfs_distances(&state.walkable, &[state.my_shack]);
     let shack = state.my_shack;
     let opp = state.opp_shack;
     let inv = &state.my_inventory;
@@ -80,7 +85,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     let farm_now = state
         .trees
         .iter()
-        .filter(|p| manhattan(p.pos(), shack) <= GE_FARM_R)
+        .filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= GE_FARM_R))
         .count();
     // v1.11.0: troll 2 = the CHOPPER (early, adaptive spec). troll 3 = a FEEDER (late): a cheap
     // hp>0/chop=0 harvester. Because decide_elite routes any chop<2 troll through the STARTER
@@ -119,7 +124,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     let chop_r = if econ_b { 10 } else { GE_CHOP_R }; // econ B roams a bigger farm; A stays tight
     let starter_chop = GE_STARTER_CHOP;
     let liquidation = turns_rem <= GE_LIQ_T;
-    let base_trees = state.trees.iter().filter(|p| manhattan(p.pos(), shack) <= farm_r).count();
+    let base_trees = state.trees.iter().filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r)).count();
 
     // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
     // Trees only fruit at MAX_SIZE(4); felling farm bananas at size 2 means they
@@ -132,7 +137,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
         let mut fb: Vec<&Tree> = state
             .trees
             .iter()
-            .filter(|p| p.tree_type == "BANANA" && manhattan(p.pos(), shack) <= farm_r)
+            .filter(|p| p.tree_type == "BANANA" && farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r))
             .collect();
         fb.sort_by_key(|p| (-p.size, -p.fruits, manhattan(p.pos(), shack), p.pos()));
         for p in fb.into_iter().take(GE_SEED_RESERVE) {
@@ -140,7 +145,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
         }
     }
     Plan {
-        shack, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
+        shack, farm_d, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
         want_feeder, train_spec, cost, train_now, need_iron, need_fund, farm_r, farm_cap,
         fell_size, farm_fell, chop_r, starter_chop, liquidation, base_trees, seed_cells,
     }

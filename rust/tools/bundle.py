@@ -28,7 +28,10 @@ def inline(path: str, seen: set) -> str:
     def repl(m):
         vis, name = m.group(1) or "", m.group(2)
         # module file: <dir>/<name>.rs or <dir>/<stem>/<name>.rs (non-root layout)
-        cands = [os.path.join(base, f"{name}.rs"), os.path.join(base, stem, f"{name}.rs")]
+        # rustc resolves children of path/to/foo.rs from path/to/foo/<name>.rs FIRST —
+        # the flat <dir>/<name>.rs candidate once wrongly captured the unrelated legacy
+        # src/planner.rs when bundling botmain's `mod planner;` (v1.27.0 bug).
+        cands = [os.path.join(base, stem, f"{name}.rs"), os.path.join(base, f"{name}.rs")]
         for c in cands:
             if os.path.exists(c):
                 body = inline(c, seen)
