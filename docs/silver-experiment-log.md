@@ -962,3 +962,21 @@ our wood 90 but opp 96 in the same games. COROLLARY (v1.30 hypothesis): the rese
 worth shipping TOGETHER with the extra eater it enables — reserve + 3rd hand (farm gate now
 passable: farm alive 6/8) converts the living farm into OUR wood instead of feeding the
 tier's better late engines. Pie + eater, not pie alone.
+
+## 2026-07-07 00:45 — NIGHT CLOSE: champion v1.28.2 @ 19.1; the LEMON WALL; tree restored
+v1.30.0 (pie+hands): best boss delta ever (−2.8) but 3rd hand 0/8. v1.30.1 (errand band 52,
+t<150): STILL 0/8. ★ ROOT CAUSE — **THE LEMON WALL**: any 3rd troll needs ≥3 lemons (cc1 =
+n+1); the chopper consumes ALL starting lemons at t~3 (cc2/3 = 6-11); lemons never ripen
+later because BOTH players fell everything at size 2 (same dynamic that killed bananas).
+The wallet is structurally unfillable on most maps → the 3-troll line is CLOSED under the
+current fell-at-2 meta unless a lemon is deliberately ripened (= protection = pie = feeds
+the tier, −2 measured). v1.30.x NOT submitted (≡ v1.29 in the field). Tree restored to the
+champion source (equality-verified vs the live artifact).
+NIGHT LEDGER: baseline 18.4-18.6 era → **champion v1.28.2-steady2 @ 113 @ 19.1** (planner +
+map-fix + sticky). Arena experiments: v1.27 −1.2 (flapping, cured), v1.29 −2 (pie insight),
+v1.30.x gate-closed (lemon wall). Gap to rank ≤99 ≈ +0.6. NEXT CANDIDATES: (a) battles.py
+census on the 19.1 champion — who beats it now and how; (b) valuation polish from the census
+(fell-target scoring: size-3 natives vs size-2, denial weighting by opponent distance);
+(c) decision-diff census vs label-matched v1.26 to find residual planner regressions;
+(d) STICKY sweep (3 → 5/8) — flaps 2-21 residual; (e) endgame liquidation timing on the
+planner. The lemon wall + pie findings close the scale line for now.
