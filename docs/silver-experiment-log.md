@@ -1085,3 +1085,46 @@ but the funding tax alone costs >2pts vs the field" (might be salvageable with a
 condition). Track record update: T-hand now joins the protection family as arena-negative
 despite being boss-gate-clean — reinforces the tempo/scale frontier as the standing explanation
 for why boss-gate wins keep failing to transfer to the field.
+
+## v1.36.0-race arena verdict (2026-07-07 22:24) — KEEP, new CHAMPION (converged ~19.9-20.1 vs 18.6 bracket, +1.3-1.5 pts)
+**Change:** doomed-target race check in fell valuation — skip trees an enemy chopper will
+finish before we arrive, join winnable shared-tree contests at a small (`RACE_SHARE_PEN=2`)
+discount. Pure waste-cut, no training/farm/funding change (`GE_MAX_TROLLS` reverted 3->2,
+T-hand parked pending its own analyst follow-up). Champion-equality gate explicitly waived by
+design (behavior only changes on contested cells); gated PASS by the builder (see
+`data/candidates/v1.36.0-race/report.md`), boss/field probe games waived under the
+arena-queue idle-slot policy (2026-07-07).
+
+**Bracket (pre-submit):** 21:34:12 — ARENA-ROOM rank 117/527, Gold score **18.6** (agentId
+6542490). **Submit:** 21:34:21, SUBMIT-OK (TestSession 40964539).
+
+**Convergence reads (agentId 6542530 confirmed live from the first read):**
+| time | Δt | rank | score |
+|---|---|---|---|
+| 21:54:29 | +20m | 116/527 | 18.6 |
+| 22:09:17 | +35m | 88/527 | 20.1 |
+| 22:24:24 | +50m | 103/527 | 19.9 |
+
+Shape: flat-at-bracket (+20m), then climb (+35m), then flatten (+50m, 20.1->19.9, Δ0.2) —
+steady-climb-to-flat, clears the KEEP bar (bracket−0.2 = 18.4) by roughly a full point-and-a-
+half. Decided at +50 per the tight-window policy — not ambiguous (both post-climb reads sit
+well clear of the bar and are within 0.2 of each other). Biggest single-candidate jump of the
+whole T-hand/protection cycle, and the first clean positive verdict since sticky6.
+
+**Decision:** KEEP. Converged score sits clearly ABOVE the bracket (not mere parity), so per
+step 5 of the arena-runner brief, `cgauto/api_submit.py`'s default path was updated — it had
+gone stale at `v1.28.2-steady2.min.rs` (already behind the actual champion, v1.28.3-sticky6)
+and now points at `submissions/v1.36.0-race.min.rs`. v1.36.0-race is the new standing
+champion; `docs/arena-queue.md` Champion/Queue/Verdict-log sections updated accordingly.
+
+**Reading vs the brief's own prediction:** the builder's report explicitly predicted this
+"isn't an economy lever, it's an execution/efficiency fix" and expected wood/economy numbers to
+stay flat since no training/farm/funding changes were made — the result is consistent with that
+framing while still producing the largest score jump of the whole recent cycle, suggesting
+wasted travel into doomed shared-tree races was a bigger tax on field performance than the
+economy-side experiments (T-hand, protection family) were able to move in the other direction.
+
+**NEXT for the analyst:** run `battles.py 40`, confirm the win-rate/margin shift lines up with
+fewer wasted-trek losses (not a variance artifact) — see the 1-2 loss replay command-mix method
+in the analyst brief — and decide whether v1.37.0-nanaflow (next in queue) should now gate its
+champion-equality check against v1.36.0-race instead of sticky6.

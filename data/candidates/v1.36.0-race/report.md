@@ -197,3 +197,38 @@ possibly a small reduction in wasted-travel turns on maps with contested/shared 
 zero effect on games where the two players' chop zones never overlap. `ramp.py --last 8` for
 wood/delta as usual; no crater expected given the narrow, discount-only nature of the change
 (never larger than avoiding one bad multi-turn trek).
+
+## Arena verdict (2026-07-07 22:24) — KEEP, new CHAMPION
+
+Boss/field gate was WAIVED for this candidate under the arena-queue idle-slot policy
+(2026-07-07): pure waste-cut, no pie risk, diagnostic probe games left optional for later. Ran
+directly through the arena-runner procedure (full detail + table also logged in
+`docs/silver-experiment-log.md` under "v1.36.0-race arena verdict").
+
+**Bracket (pre-submit):** 21:34:12 MSK — ARENA-ROOM rank 117/527, Gold score **18.6** (agentId
+6542490). **Submit:** 21:34:21, SUBMIT-OK (TestSession 40964539).
+
+**Convergence reads (agentId 6542530 confirmed live throughout):**
+| time | Δt | rank | score |
+|---|---|---|---|
+| 21:54:29 | +20m | 116/527 | 18.6 |
+| 22:09:17 | +35m | 88/527 | 20.1 |
+| 22:24:24 | +50m | 103/527 | 19.9 |
+
+Shape: flat-at-bracket -> climb -> flatten (20.1 -> 19.9, Δ0.2). Steady-climb-to-flat, clears
+KEEP bar (bracket−0.2 = 18.4) by ~1.3-1.5 pts. Decided at +50, not ambiguous.
+
+**Decision: KEEP.** Since the converged score is clearly above the bracket (not parity),
+`cgauto/api_submit.py`'s default path was updated to `submissions/v1.36.0-race.min.rs` (it had
+gone stale pointing at `v1.28.2-steady2.min.rs`, already behind the true prior champion
+v1.28.3-sticky6). v1.36.0-race is now the standing arena champion; `docs/arena-queue.md`
+Champion/Queue/Verdict-log sections updated to match.
+
+This is the largest single-candidate arena jump of the whole T-hand/protection cycle, and the
+first clean positive result since sticky6 — notable because the change is execution-only (no
+economy/training move), suggesting wasted travel into doomed shared-tree races was costing more
+field points than the recent economy-side experiments were able to recover.
+
+**Handoff to analyst:** run `battles.py 40`, confirm the shift traces to fewer wasted-trek
+losses (pull 1-2 loss replays, compare command mixes) rather than variance, and decide whether
+v1.37.0-nanaflow's champion-equality gate should now target v1.36.0-race instead of sticky6.
