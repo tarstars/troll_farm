@@ -1018,3 +1018,11 @@ with −173 blowout vs plcc, and the liq-specific readout REGRESSED (final-34-tu
 +6.1 vs era +8-12 — earlier liquidation did not bank more, it banked less late). No arena
 cost. Track-A negative #1 of 2 before A retires. Next: B1 phase skeleton (zero-behavior),
 then B2 hoard.
+
+## 2026-07-07 14:30 — REASSESSMENT: hoard parked; T-hand is the new queue head
+Scale gates #1-#4: machinery fixed to working (hands 7/8) but strategy condemned — our wood
+0/0/4/23 vs opp CONSTANT ~57-60 (the ceded-map signature), field −400 avg. Matchmaking makes
+the hoard unclimbable from 113. SALVAGE: the funding stack (65/64 iron > 63 deficit-fruit,
+want_feeder-scoped, graceful) = the lemon wall is DEAD. → v1.35.0-thand: Tempo + funded 3rd
+hand — every historical blocker (coordination, wallet, farm gate, perpetual-funding) now
+individually dismantled. Gates: boss 8 + field 4, then arena vs the 19.0 bracket.

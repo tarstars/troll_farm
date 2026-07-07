@@ -86,3 +86,24 @@ telemetry asserted in gatekeeper readouts. The equality harness protects Tempo t
 
 Rank ≤99 verified twice → feature done; leftover B momentum (Legend/boss 26) becomes the
 next feature's spec.
+
+## Amendment (2026-07-07 ~14:30, after Scale gates #1-#4) — hoard PARKED, queue re-ranked
+
+Gates #1-#4 (data/candidates/v1.34.0-factory/report.md) proved the Scale machinery works
+(phase flip 8/8, wallet fills, all 4 hands train 7/8) and simultaneously condemned the
+strategy at our band: our wood 0→0→4→23 across fixes while OPPONENT wood held ~57-60
+throughout — the gap is the 100-140 turns of shared map ceded to feller opponents, not our
+internals. Field probes −400 avg = arena-crater signature (seedloop lesson). Matchmaking
+argument: the hoard meta cannot climb from rank ~113 because every rank between here and
+the 20.0-tier is a feller who punishes it; the blueprint works only AT the tier where
+neighbors reciprocate. **B4 (Scale arena trial) is PARKED** — do not spend gate #5.
+
+**Salvage → new queue head, T-hand (v1.35.0-thand): Tempo + funded third hand.** The Scale
+arc's real yield is the battle-tested funding machine (iron 65/64 > deficit-fruit 63 >
+wallet 62 > printer, want_feeder-scoped, self-extinguishing, gracefully absent when the
+resource doesn't exist). It dissolves the historical lemon wall. Under Tempo: GE_MAX_TROLLS
+2→3 (the existing feeder gates apply: nchop≥1, t≥45, farm≥3) + the elevated funding stack
+extended from Scale-only to all want_feeder. Adds extraction (right side of the pie
+insight); attacks the champion's one measured flaw (late farm supply). Degrades gracefully
+to the 2-troll champion on maps where the wallet can't fill. Then A2 (denial probe).
+Exit gate unchanged: rank ≤99 verified twice.
