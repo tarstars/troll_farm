@@ -1009,3 +1009,12 @@ STICKY 3→6: flaps 3-15 (marginal), arena within noise. The stickiness lever is
 Overnight stability datum: v1.28.2 held 113 @ 19.1-19.2 for ~7h. sticky6 left live (same
 policy); v1.28.2 remains the frozen champion + submit default. Champion band: 19.0-19.2,
 rank 111-115. Gap to ≤99: ~+0.5-0.7.
+
+## 2026-07-07 ~12:30 — A1 (GE_LIQ_T 34→44) REJECTED at the gatekeeper; pipeline live
+First candidate through the 4-stage subagent pipeline (spec/plan: docs/superpowers/
+{specs,plans}/2026-07-07-*). Builder: all local gates green (reviewed: SPEC PASS/Approved).
+Gatekeeper: FAIL — boss 1/8 wood 44.6 (bar 45), t300 delta −7.8 (ok), flaps ok, field 0/4
+with −173 blowout vs plcc, and the liq-specific readout REGRESSED (final-34-turn banking
++6.1 vs era +8-12 — earlier liquidation did not bank more, it banked less late). No arena
+cost. Track-A negative #1 of 2 before A retires. Next: B1 phase skeleton (zero-behavior),
+then B2 hoard.

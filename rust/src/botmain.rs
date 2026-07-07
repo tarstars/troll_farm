@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.31.0-liq44"; // A1 liquidation-timing knob
+const VERSION: &str = "1.28.3-sticky6"; // tree = champion-twin config
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -89,7 +89,7 @@ const GE_FARM_R: i32 = 2; // v1.13.0: TIGHT farm hugging the shack — halves th
 const GE_FARM_MAX: usize = 12; // v1.19.0: fill the radius-2 area (~12 cells) — more trees maturing in parallel = chopper idles less
 const GE_FELL_SIZE: i32 = 2; // NATIVE/contested trees: fell at size 2 = DENIAL (grab before opponent)
 const GE_CHOP_R: i32 = 5; // v1.13.0 LIVE roam (GE_CHOP_R=3 was marginally better in bursts but within noise; kept 5)
-const GE_LIQ_T: i32 = 44; // A1: bank standing value earlier (census: +4-margin coin-flips vs peers)
+const GE_LIQ_T: i32 = 34; // turns_rem <= this: fell anything reachable (A1 liq44 REJECTED by gatekeeper 2026-07-07)
 const GE_STARTER_CHOP: bool = true; // let a chop-capable starter help fell
 const GE_MIN_TURNS_LEFT: i32 = 20; // no training inside the last 20 turns
 const GE_SEED_RESERVE: usize = 2; // protect K most-mature farm bananas as seed sources
