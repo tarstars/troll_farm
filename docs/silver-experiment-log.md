@@ -1465,3 +1465,31 @@ commit as this entry to close out the stale "deny1 pending" / "arena-slot note" 
 analyst's b62c977 commit (predates the controller's takeover). v1.39.0-sharepen4 (next queued
 candidate, `RACE_SHARE_PEN` 2→4 + `DENY_W` parked at 0) is out of scope for this runner — left
 untouched for its own arena-runner episode.
+
+## v1.39.0-sharepen4 arena verdict (IN PROGRESS — bracket + submit recorded 2026-07-08 02:47)
+
+**Phase 0 — champion reconvergence, independently re-confirmed:** after the deny1 revert
+(01:47), read `cg_rank.py` every ~9-10 min:
+
+| time (MSK) | rank | score | agentId |
+|---|---|---|---|
+| 02:16:59 | 117/527 | 18.1 | 6542647 |
+| 02:28:33 | 121/527 | 17.6 | 6542647 |
+| 02:37:43 | 121/527 | 17.6 | 6542647 |
+| 02:46:58 | 121/527 | 17.6 | 6542647 |
+
+Three consecutive reads at 121/527 @ 17.6 spanning 02:28→02:46 (19 min, Δ0.0) satisfy the
+"two reads ≥15 min apart moving <0.15" fresh-bracket criterion. This matches (does not just
+corroborate — is numerically identical to) the deny1 arena-runner's own closing reconvergence
+record filed minutes earlier (121/527 @ 17.6 at 02:22:14/02:37:14) — three independent read
+sequences (analyst, controller-adjacent deny1 runner, this runner) now agree on the same
+number. Per the brief ("late-night drift may land it lower, use what you measure"), **BRACKET
+= 17.6, rank 121/527**, well below the champion's historical 19.3-20.1 band but the correct
+current baseline to compare sharepen4 against.
+
+**Phase 1 — submit:** 02:47:19 MSK, `api_submit.py cgauto/submissions/v1.39.0-sharepen4.min.rs`
+→ `TestSession/submit: 200 40965544` → **SUBMIT-OK**.
+
+Convergence reads (Phase 2, +20/+35/+50m) and verdict (Phase 3) to follow below; this entry is
+being committed now (mid-episode) per the runner brief's explicit instruction, after a prior
+episode's runner went silent past its decision window without committing.

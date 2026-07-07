@@ -216,3 +216,19 @@ expected or possible from this half of the change; (c) whether the sweep measura
 the late-throughput-ceiling gap documented in HANDOFF.md, or whether `RACE_SHARE_PEN=4` is
 overshooting (a follow-up sweep at an intermediate value, e.g. 3, may be needed if this candidate
 under- or over-shoots).
+
+## Arena verdict (arena-runner, IN PROGRESS — recorded 2026-07-08 02:47)
+
+Boss/field gate was waived per the queue-never-idles policy (arena-runner brief went straight
+from champion-reconvergence to submit; no separate gatekeeper episode ran for this candidate).
+
+**Bracket** (champion v1.36.0-race reconvergence after the deny1 revert, independently
+re-confirmed): 3 consecutive `cg_rank.py` reads 02:28/02:37/02:47 all **121/527 @ 17.6**
+(agentId 6542647; matches the deny1 runner's own closing record exactly). BRACKET = 17.6.
+
+**Submit**: 02:47:19, `api_submit.py cgauto/submissions/v1.39.0-sharepen4.min.rs` →
+`TestSession/submit: 200 40965544` → SUBMIT-OK.
+
+Convergence reads and final KEEP/REVERT verdict to follow (see
+`docs/silver-experiment-log.md` "## v1.39.0-sharepen4 arena verdict" for the up-to-date
+sequence — this section will be filled in at decision time).

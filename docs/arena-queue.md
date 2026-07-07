@@ -29,12 +29,17 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   (~00:44-01:47) is now closed out — REVERTED (see verdict log below). The champion has been
   the live arena entry again since a parallel controller's 01:47:07 resubmit; this runner
   independently verified that resubmit's reconvergence (two stable reads, 121/527 @ 17.6).
-  Next queued candidate (v1.39.0-sharepen4) had not yet been submitted as of this note.
+- **Arena-slot update (2026-07-08 02:47):** v1.39.0-sharepen4 (queue #1, `RACE_SHARE_PEN`
+  2→4 + `DENY_W` parked at 0) submitted by its own arena-runner episode. Bracket
+  (independently re-confirmed, 3 reads 02:28-02:47, 121/527 @ 17.6) matches the champion's
+  just-closed reconvergence exactly. Convergence reads in progress; see verdict log /
+  `docs/silver-experiment-log.md` for the live sequence. **This runner owns the slot** per
+  the slot-ownership rule until the verdict commit lands.
 
 ## Queue (ordered; update statuses as they move)
-1. **RACE_SHARE_PEN sweep (2→4)** — PROMOTED to top (analyst re-rank 2026-07-08 night).
-   Tunes the one mechanism with a proven, large positive field result (the race-check
-   itself); lowest interaction risk of the remaining ideas.
+1. **RACE_SHARE_PEN sweep (2→4)** — **IN ARENA** (v1.39.0-sharepen4, submitted 02:47:19,
+   agentId pending reconvergence). Tunes the one mechanism with a proven, large positive
+   field result (the race-check itself); lowest interaction risk of the remaining ideas.
 2. **chop_r 5→4 retest** — PROMOTED. Orthogonal travel-reduction lever in the same
    "cut waste" family as the race-check's proven win; no fell-valuation interaction risk.
 3. **tree-first-only (nanaflow's safe half)** — re-gate champion-equality UN-WAIVED against
