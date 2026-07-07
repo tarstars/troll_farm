@@ -8,6 +8,11 @@ do not serialize when the slot would otherwise idle (the revert rule bounds all 
 (4) verdict windows are tight: reads at +20/+35/+50 min, decide at +50 unless genuinely
 ambiguous (climb-then-fade and flat-low shapes are decidable at +35).
 
+**Slot ownership rule (2026-07-08, after the deny1 double-revert):** one runner owns the slot
+from its bracket read until its verdict COMMIT lands in git. The controller may take over only
+if BOTH: ≥90 min have passed since the runner's submit AND the arena reads regressed. Runners
+commit the verdict the moment it's decided (before reconvergence verification).
+
 **Bracket discipline stands:** every verdict compares against the last converged champion
 reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named below.
 
