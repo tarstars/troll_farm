@@ -17,16 +17,43 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   rank ~113, for ~36h). `cgauto/api_submit.py` default points at this candidate. Re-confirmed
   live 2026-07-08 00:41 after reverting v1.37.0-nanaflow (two stable reads, 111/527 @ 19.3,
   15m17s apart) — arena was not left on a regressed bot.
+- **Arena-slot note (analyst, 2026-07-08 ~01:24):** the champion is the standing default and
+  designation, but it is **not currently the live arena entry** — v1.38.0-deny1 (below) has
+  occupied the slot since ~00:44-00:48, per the queue-never-idles policy. `battles.py`/
+  `cg_rank.py` reads during this window reflect deny1, not the champion; see the analyst
+  census in `docs/silver-experiment-log.md` ("Analyst census on the race champion,
+  2026-07-08 night") for full detail and the structural note that there is no read-API path
+  to recover a superseded agent's battle history once a newer candidate takes the slot.
 
 ## Queue (ordered; update statuses as they move)
-1. **A2 v1.38.0-deny1** — TO BUILD (3-line denial-weight probe, DENY_W=1). Next in queue.
-2. **diagonal-contest** — DESIGN (the "join raids on our pocket trees" split-aware defense;
-   strictly-gated protection-family sub-candidate).
-3. **T-hand line — DROPPED** (post-mortem da574b0: the hand NEVER plants — 4 hauler/1
+1. **RACE_SHARE_PEN sweep (2→4)** — PROMOTED to top (analyst re-rank 2026-07-08 night).
+   Tunes the one mechanism with a proven, large positive field result (the race-check
+   itself); lowest interaction risk of the remaining ideas.
+2. **chop_r 5→4 retest** — PROMOTED. Orthogonal travel-reduction lever in the same
+   "cut waste" family as the race-check's proven win; no fell-valuation interaction risk.
+3. **tree-first-only (nanaflow's safe half)** — re-gate champion-equality UN-WAIVED against
+   v1.36.0-race specifically (per the nanaflow post-mortem's own recommendation) to isolate
+   it from the diagonal-placement half before restacking both.
+4. **diagonal-contest design** — still undesigned; lowest maturity, unchanged last place.
+5. **A2 v1.38.0-deny1** — STATUS CORRECTED (was stale "TO BUILD"): already builder-complete
+   since 2026-07-07 22:22 and **currently LIVE in the arena** (submitted by a concurrent
+   arena-runner ~00:44-00:48 on 2026-07-08, per the queue-never-idles policy). Analyst
+   monitoring (read-only, ~40 min, see silver-experiment-log.md) found it **converged at
+   score 17.0 / rank ~134-136** — a 2.3-3.1 pt regression vs the champion's own band, in a
+   40-game battles.py sample that is properly matched (not a still-climbing transient).
+   Loss-replay decode of the 3 worst losses found our own MOVE:CHOP ratio running 1.5-2.6x
+   the historical baseline in 2 of 3 — suggestive of DENY_W adding wasted travel by
+   colliding with the race-check's own contested-tree tie-break (same decision point, bands
+   70/72). DEMOTED to last priority pending the arena-runner's actual verdict; if reverted as
+   trending, file next to the protection family / T-hand as a closed dead end.
+6. **T-hand line — DROPPED** (post-mortem da574b0: the hand NEVER plants — 4 hauler/1
    tourist/1 idler across 6 games, 34-58% path overlap with the chopper, bill never repaid.
    Residual design note: same-role trolls need a dispersion/exclusivity notion in the
    matcher — filed for the R6 concurrency backlog. Cheap-variant-if-ever: farm-ring-
    restricted forage band.)
+7. **NEW, filed (not urgent):** mlomb-style fruit-harvest/bank win pattern (low chop count,
+   high HARVEST+DROP volume) — a loss mechanism not previously catalogued; needs a dedicated
+   look once a champion-specific census is unblocked (analyst finding, 2026-07-08 night).
 
 ## Verdict log (newest first)
 - v1.37.0-nanaflow: REVERTED (bracket 103/527 @19.9; converged climb-then-flatten at

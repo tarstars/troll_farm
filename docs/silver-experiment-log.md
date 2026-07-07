@@ -1209,3 +1209,147 @@ confirmed champion, any future re-attempt at the tree-first/diagonal mechanisms 
 champion-equality against v1.36.0-race directly rather than waiving it, so a future flag-off
 comparison can isolate which of the two sub-changes (A or B) is responsible before restacking
 both again.
+
+## Analyst census on the race champion (2026-07-08 night)
+
+**HEADLINE BLOCKER: a live, per-opponent `battles.py` census of v1.36.0-race itself was NOT
+obtainable this session** — the arena test slot was occupied by a different, already-converged
+candidate for the entire analysis window. Read-API only was respected throughout (no submits,
+no games played by this analyst).
+
+**What was found instead, in detail:**
+
+`cg_rank.py` at the first read (00:48) showed `agentId=6542627`, rank **521/527**, score **0.0**
+— not any of the champion's confirmed-live agentIds (6542490 / 6542530 / 6542585 / 6542604),
+and not remotely near its 19.3-20.1 band. `battles.py 40`'s first pull (9 finished games) showed
+an opponent spread of rank **4 to 484** — nothing like the champion's ~90-130 diet. The brief's
+own self-check ("verify the opponent list looks like the race champion's diet") **FAILS**
+outright. Diagnosis (high confidence, inferred, not directly confirmed via source-code
+inspection — no read-only API path to the live source text was found; `Puzzle/
+generateSessionFromPuzzlePrettyId` was probed and confirmed read-only/safe but returns only a
+session handle, not code): this is **v1.38.0-deny1** (A2, `DENY_W=1` contested-tree fell-target
+bias). It was fully builder-complete (report + frozen `.min.rs`) since 22:22 the previous
+evening — the only queue item ready to submit — and the agentId change lands within ~5-7
+minutes of the champion's 00:41 reconvergence confirmation, exactly matching `docs/
+arena-queue.md`'s "queue never idles" policy (a concurrent arena-runner submitting the next
+item immediately on verdict).
+
+Confirmed (read-only) that `gamesPlayersRanking/findLastBattlesByTestSessionHandle` only ever
+returns the CURRENT live agent's battles — passing an old agentId (6542604, 6542530) as the
+2nd argument instead of `None` made no difference to the result. **There is no read-API path to
+recover the champion's own per-opponent battle history once a newer candidate has taken the
+arena slot** — this is a structural limitation of the tool, not a one-off fluke, and will recur
+for any analyst pass that lands mid-queue-rotation. Worth a tools note for future sessions.
+
+Monitored `cg_rank.py` read-only for ~40 minutes (00:48→01:24, no arena actions taken):
+0.0/rank521 → 15.7/190 → 15.1/224 → 15.7/190 → 15.5/203 → 16.6/146 → 17.0/134 → 17.0/136 →
+17.0/135 — the last three reads over ~10 minutes are stable (**converged at score 17.0, rank
+~134-136**). A fresh `battles.py 40` at this point (134 total battles listed, 40 analyzed)
+confirms a genuine, properly-matched rating, not noise: **20/40 wins, avg score 181 vs 180**,
+opponents rank 98-175 / score 16.1-17.5 (by band: rank100-150 13/31 wins avg margin −6;
+rank150-250 7/9 wins avg margin +27) — a coherent ~17.0-skill matchmaking pool, not a
+still-climbing transient. **This candidate's converged rating sits ~2.3-3.1 points below the
+champion's own logged band (19.3-20.1) and ~2.1 points below the pre-race 00:55 baseline
+(19.1) — a clear regression**, in the now-familiar boss-gate-clean/field-negative shape shared
+by the protection family, T-hand, and nanaflow. This is an observation for the record, not a
+verdict — reverting is the arena-runner's call, and `api_submit.py`'s default is unchanged
+(`v1.36.0-race.min.rs`).
+
+### (a)-(c) vs the 2026-07-07 00:55 census — best-available comparison
+
+Since a fresh per-opponent pull for the champion wasn't possible, the comparison falls back to
+the champion's own already-logged convergence reads (aggregate score only, both live windows):
+- First promotion (07-07 21:34-22:24): bracket 18.6 → 18.6(+20m) → 20.1(+35m) → 19.9(+50m),
+  rank 88-117.
+- Post-nanaflow-revert reconfirmation (07-08 00:10-00:41): 18.2(+20m) → 19.3(+35m) →
+  19.3(+50m), rank 111-117.
+
+**Headline: champion band 19.3-20.1 / rank 88-117 now vs 19.1 / rank 111-115 at 00:55 ⇒
+roughly +0.2 to +1.0 pts net** — real, but smaller than the "+1.3-1.5" the race-check's own
+arena verdict quoted (that figure was measured against an artificially low 18.6 bracket, not
+against the historical 19.1 baseline this census is supposed to check against).
+
+(a) **Blowout-shrinkage: UNRESOLVED** for the champion (no fresh per-opponent breakdown
+obtainable). Indirect-only signal: a higher converged score against a similarly-strong
+opponent pool implies fewer/smaller losses in aggregate, consistent with but not proof of the
+race-check's intended effect.
+(b) **Which opponents still beat us: UNRESOLVED** for the champion specifically (same
+blocker).
+(c) **New dominant loss pattern: partial answer**, from the currently-live (presumed-deny1,
+NOT champion) candidate's converged 40-game sample — see the replay decode below. Caveat
+clearly: this reflects deny1, not v1.36.0-race. However deny1's ONLY delta from the champion
+is a small fell-target tie-break scoped to bands 70/72 (confirmed in `data/candidates/
+v1.38.0-deny1/report.md`) — opponent-side behavior (what THEY do to win) should generalize to
+the champion; only OUR OWN command-mix numbers (esp. MOVE:CHOP ratio, below) are
+deny1-specific and must not be attributed to the champion.
+
+### Task 3 — loss replay decode (from the live, presumed-deny1 session; champion-specific replays unavailable)
+
+Fetched + command-mix-decoded (75-turn phases, both players, verbs normalized case-insensitive
+after discovering some opponents emit lowercase command tokens) the 3 worst losses from the
+converged 40-game sample, via `gameResult/findByGameId` (same call `battles.py` uses):
+
+| game (gameId) | opp (rank/score) | margin | opp CHOP by phase (t1-75/76-150/151-225/226-300) | my MOVE:CHOP |
+|---|---|---|---|---|
+| 895447389 | ArgoZ (152/16.4) | −113 | 0 / 0 / **143** / 38 | 379:54 = **7.0** |
+| 895447344 | mlomb (140/16.8) | −92 | 22 / 2 / 8 / 8 (low — wins via HARVEST 171 + DROP 186 instead) | 336:83 = **4.1** |
+| 895447761 | NicknamedTwice (121/17.5; game ended EARLY at turn ~219/300) | −68 | 0 / **116** / 78 / (n/a, game over) | 259:98 = 2.6 |
+
+Sanity-checked the decode script against the already-known jrl86 monster game
+(`data/arena_replays/game_895341619.json`, pre-race v1.28.2 champion) — reproduced the
+documented shape (opp CHOP 0/2/60/87, PLANT-heavy back half) before trusting it on fresh data.
+Also decoded 3 more pre-race replays on disk (RunninglVlan, plcc, TheMagicShop) to get a
+historical MOVE:CHOP baseline for "me": **2.3-3.4, avg ~2.7**, across all 4 historical games.
+
+**Sharpest new pattern:** in 2 of the 3 worst fresh losses (ArgoZ, mlomb), our own MOVE:CHOP
+ratio (7.0, 4.1) runs **1.5-2.6x the historical baseline (~2.7)** — the chopper burns far more
+travel per tree felled than usual. That is exactly the shape a wasted-travel-inducing
+tie-break would produce, and it lines up mechanically with deny1's design: `DENY_W` biases the
+chopper's PRIMARY fell choice (bands 70/72 — the same decision point `race()`'s doomed-target
+check already governs) toward trees FARTHER from us / nearer the opponent whenever two
+candidates are near-tied. If near-ties are common on some maps, this could systematically add
+travel beyond what `race()` alone would allow — the two mechanisms are not obviously
+composable, they compete for the same tie-breaks. The third loss (NicknamedTwice, ratio 2.6,
+in-baseline) shows the effect isn't universal, consistent with `DENY_W` only firing on
+near-ties (map-dependent).
+
+Independent of the deny1 confound, two distinct opponent win shapes recur and are both
+untouched by the race-check (so they're standing champion weaknesses, not artifacts of
+tonight's live-slot mixup): **(i) explosive delayed chop-burst** — ArgoZ (0/0/143/38) and
+NicknamedTwice (0/116/78) both jump from ~0 chops to 100+ in a single 75-turn window, a
+sharper/more sudden cousin of jrl86's gradual hoard-then-factory ramp (0/2/60/87); **(ii)
+fruit-harvest/bank economy** — mlomb wins with a LOW chop count (40 total) but very high
+HARVEST (171) + DROP (186), a win condition not previously catalogued as distinct from the
+wood/chop economy in this log. All 3 opponents out-trained us (+1 to +2 trolls over the game),
+reconfirming the standing scale gap is untouched by the race-check (expected — it doesn't
+touch training/funding). One of three losses ended in a notably short game (~219 of 300 turns)
+— single-sample, flagged not confirmed as a pattern.
+
+### Task 4 — re-ranked hypothesis queue (also applied to `docs/arena-queue.md`)
+
+1. **RACE_SHARE_PEN sweep (2→4)** — NEW TOP PICK. Tunes the one mechanism with a proven, large
+   positive field result; lowest risk of the remaining ideas, and doubles as an indirect probe
+   of whether `RACE_SHARE_PEN` is already doing enough on contested trees that a second,
+   independent contest-bias (`DENY_W`) is actively harmful (redundant tie-breaks colliding).
+2. **chop_r 5→4 retest** — NEW SECOND PICK. Orthogonal travel-reduction lever in the same
+   "cut waste" family as the race-check's proven win; does not touch fell-target valuation at
+   all, so zero interaction risk with the race-check or the deny1 defect above.
+3. **tree-first-only (nanaflow's safe half)** — unchanged priority, proceed when picked up, but
+   per the nanaflow post-mortem's own recommendation, gate champion-equality UN-WAIVED against
+   v1.36.0-race specifically (not sticky6) so a flag-off run can isolate it from the
+   diagonal-placement half before restacking both.
+4. **diagonal-contest design** — still undesigned; lowest maturity, unchanged last place.
+5. **DEMOTED: any further `DENY_W` sweep/A2 follow-up** — the live evidence above (converged
+   ~17.0, a 2.3-3.1pt regression vs the champion, plus the elevated MOVE:CHOP signal in the
+   worst losses) argues against pursuing this family further unless the arena-runner's actual
+   verdict is unexpectedly positive. If reverted as trending, file A2/deny1 next to the
+   protection family / T-hand as a closed dead end (boss-gate-clean, field-negative).
+6. **NEW, filed for later (not urgent tonight):** the mlomb-style fruit-harvest/bank win
+   pattern (low chop count, high HARVEST+DROP volume) is not addressed by anything in the
+   current queue — worth a dedicated look once a champion-specific census is unblocked.
+
+**Process recommendation:** re-run `battles.py 40` + the loss-replay decode against
+v1.36.0-race specifically once the arena slot is confirmed back on it (watch for the agentId
+to revert away from 6542627, or a fresh verdict log entry) — this session could only
+characterize the *arena-occupancy* problem and the *deny1* candidate, not the champion's own
+current per-opponent diet.
