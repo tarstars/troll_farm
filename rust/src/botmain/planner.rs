@@ -36,6 +36,14 @@ const BAND: i64 = 100_000; // > any ETA by orders of magnitude
 // flaps/game = leaked steps, the v1.27 arena fade). Within-band (« BAND): stability never
 // overrides the priority hierarchy, only breaks near-ties toward the current plan.
 const STICKY: i64 = 6; // v1.28.3 sweep: residual flaps 2-21 at 3; absorb bigger ETA jitter
+// v1.38.0-deny1 (A2 probe): bias the PRIMARY fell choice (bands 70/72 ONLY — not the
+// anti-starvation fallback, not the starter's chop-help band) toward trees nearer the
+// opponent's shack. Silver-era denial weighting toward the foe was the single biggest lever
+// measured pre-planner (MB_DENIAL_W in botmain.rs); the R6b joint planner has carried weight
+// 0 since it replaced that cascade. At DENY_W=0 every fell value is byte-identical to the
+// pre-probe code (the subtracted term is `0 * x == 0`); DENY_W=1 only breaks near-ties and
+// nudges marginal calls, « BAND — never overrides the priority hierarchy.
+const DENY_W: i64 = 1; // A2 probe: prefer contested trees (0 = off; silver-era denial was the biggest lever)
 // v1.36.0-race: mild discount for a JOINABLE contested tree (an enemy is already chopping it,
 // but we can arrive before they finish) — the wood splits round-robin among cell-sharers
 // (engine apply_chop), so a shared tree is worth slightly less than an uncontested one, but
@@ -167,12 +175,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                 Some(pen) => pen,
             };
+            // A2 probe (DENY_W): trees closer to the opponent lose less -> rank higher.
+            let deny_pen = DENY_W * (manhattan(pc, plan.opp) as i64 / 2);
             if pc == u.pos() {
                 // standing on a fellable tree: FINISH IT (cascade branch order) — band 72
                 // outranks every travel-fell so invested chops are never abandoned.
-                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 72 * BAND - chop_t - race_pen });
+                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 72 * BAND - chop_t - race_pen - deny_pen });
             } else {
-                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 70 * BAND - (steps + chop_t) - race_pen });
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 70 * BAND - (steps + chop_t) - race_pen - deny_pen });
             }
         }
         // anti-starvation fell anything (band 30)

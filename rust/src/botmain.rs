@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.37.0-nanaflow"; // nanaflow: banana tree-first harvesting + diagonal plant placement (user replay findings #2+#3)
+const VERSION: &str = "1.38.0-deny1"; // A2 probe: chopper fell-choice DENY_W bias toward CONTESTED trees (silver-era denial lever, planner-era retest)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
