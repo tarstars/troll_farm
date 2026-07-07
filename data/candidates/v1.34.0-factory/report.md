@@ -256,3 +256,115 @@ actually gets *used*: it only helps if the Scale ladder's hands (wallet funded d
 plant enough bananas to approach 20 slots before the game ends; if the ladder under-trains (e.g.
 iron-poor maps stalling slot 2's `need_iron` gate), the bigger cap is a never-reached ceiling and
 the next lever is the plant *rate*, not the cap.
+
+## Gatekeeper verdict (Scale meta, B2+B3)
+
+**Role:** combined GATEKEEPER for Task 3 (B2/hoard) + Task 4 (B3/factory), per the dispatching
+agent's refined 6-readout brief (supersedes the separate Step-7 invariants written into
+`task-3-brief.md`/`task-4-brief.md` at authoring time — this run is the actual first empirical
+test of the two tasks together). Gatekeeper never submits to the arena; nothing below touched
+`cgauto/api_submit.py` or the arena.
+
+**Probe build — from the CURRENT tree (HEAD `1ba52a3`, i.e. including the `plan_with_meta`
+test-seam commit, which is inert: it only factors `plan()` into `plan_impl` + a new unused-in-
+production `pub fn plan_with_meta`, calling `plan_impl(state, my, super::GE_META)` exactly as
+before — verified by re-reading the commit's diff before building):
+```
+cd rust && sed -i 's/Meta::Tempo;/Meta::Scale;/' src/botmain.rs   # (GE_META line only)
+uv run --no-sync python tools/bundle.py       # 63773 chars
+git checkout -- src/botmain.rs                # tree restored + verified clean/Tempo immediately
+sed 's/DEBUG: bool = false;/true;/' bundled.rs > s.rs
+uv run --no-sync python tools/minify.py s.rs s.min.rs   # 63772 -> 41763 chars
+rustc --edition 2021 -O s.min.rs -o ccbin     # exit 0
+```
+Verified: `grep -c Meta::Scale s.min.rs` = 4; `grep DEBUG: bool = true` present. Probe kept in the
+session scratchpad only (not frozen into the repo — ephemeral gatekeeper artifact, per role).
+Cross-check: diffed the probe's Hoard-band logic against the builder's ALREADY-FROZEN
+`v1.34.0-factory.scale-debug-probe.min.rs` (41,570 B; the 193-byte difference is exactly the
+`plan_with_meta` seam) — **byte-identical band structure** (`62 * BAND`, `fund_hi` 45/44,
+`want_chopper = false`), so every finding below is a property of the already-committed Task 3/4
+source, not an artifact of this session's rebuild.
+
+**Games played (all 12 completed the full 300 turns; zero HTTP 422s; zero crashes):**
+- Boss ×8: `data/boss5_games/boss/game_895365{179,211,251,341,407,482,556,593}.{map,log,raw}`
+- Field ×2 mikdiet (6480914): `data/boss5_games/6480914/game_895366{781,840}.*`
+- Field ×2 plcc (6480966): `data/boss5_games/6480966/game_895366{890,943}.*`
+
+### Readout 1 — phase schedule: HOLDS (8/8)
+Every boss raw: last `@TFFARM ... phase=Hoard` sample at t=135, first `phase=Factory` sample at
+t=140 (telemetry every 5 turns) — the T_SWITCH=140 boundary is exact in all 8 games.
+
+### Readout 2 — hoard discipline (our wood at t≈150 ≤ 6, from .log): HOLDS, but vacuously (8/8)
+All 8 games: wood@t150 = **0** (179:0, 211:0, 251:0, 341:0, 407:0, 482:0, 556:0, 593:0) — trivially
+≤6. Not a meaningful pass: wood is 0 because nothing is EVER felled the entire game (readout 6),
+not because Hoard is cleanly banking a wallet while suppressing production fells.
+
+### Readout 3 — hands ladder: **FAILS** (5/8 < 6/8 bar)
+`n` reaches 3 by t45 in only **5/8** games (179, 211, 251, 341, 482); the other 3 (407, 556, 593)
+never get past n=2 for the entire game. Per-game n-schedule (first t each value of n is seen):
+all 8 games: n=1→t5, n=2→t15 (SCALE_MIN_TURN[0]=10 gate). The 5 that progress: n=2→3→t45
+(SCALE_MIN_TURN[1]=40 gate). **Max n reached, across all 8 games and the ENTIRE 300-turn duration
+(not just by t140) = 3, in every single game.** The ladder's slot-2 hand — the ONLY chop-capable
+unit the Scale meta ever specifies (`(2,2,0,2)`, gated `t≥110`) — never trains in any of the 8
+games.
+
+### Readout 4 — wallet (lemon ≥3 @ t≈100): diagnostic, holds directionally (7/8)
+179:5, 211:4, 251:5, 341:3, 407:8, 482:13, 556:7, 593:2 → 7/8 ≥3 (only 593 misses, at 2).
+
+### Readout 5 — factory output: diagnostic, **wood gain fails outright, farm-count is misleading**
+Wood gain t150→300: **0 in all 8/8 games** (bar was ≥4/8 games ≥40 gain — off by the entire
+margin, not close). `@TFFARM farm=` max at t150+: 179:6, 211:8, 251:10, 341:10, 407:11, 482:9,
+556:11, 593:11 → 7/8 ≥8. This looks encouraging in isolation but is a trap: the farm regrows after
+t140 only because Factory removes the Hoard-only wallet band (freeing the printer/plant path to
+finally win a band contest) — trees accumulate because **nobody can ever chop them**, not because
+the factory loop (plant→fell→bank) is running. Rising farm count + flat-zero wood is the signature
+of an unharvested garden, not a production ramp.
+
+### Readout 6 — overall: **FAILS catastrophically** (gating)
+- Boss avg final wood = **0.0** (need ≥55 — fails by the entire bar). **All 8/8 games** finish at
+  wood=0 (need: no game <25 — this is not a single outlier, it is universal). Boss score
+  (us−opp) at t300: 179:−260, 211:−169, 251:−188, 341:−158, 407:−248, 482:−386, 556:−170,
+  593:−137 (opponent final wood 26-88, avg 45.8 — `ramp.py`: t75 delta −4.2, t150 −12.1, t225
+  −22.6, t300 −45.8, "late gain us +0.0 vs opp +23.1").
+- Field: **4/4 losses**, every one worse than −150: mikdiet game1 56−291=**−235**, mikdiet game2
+  29−461=**−432**; plcc game1 63−481=**−418**, plcc game2 29−505=**−476** (avg **−390**). Field
+  wood: 0 for us in all 4 games too (opp 64, 106, 119, 124).
+
+### Root cause (verified by reading the CURRENT `rust/src/botmain/planner.rs` directly)
+The Hoard "wallet-building" band (`candidates()`, ~line 207-212: `value: 62 * BAND - eta(...)`,
+fires for ANY reachable ripe fruit of ANY type, gated only on `plan.phase == Phase::Hoard`)
+**unconditionally outranks** the iron-funding candidate a few lines below it (~line 213-232:
+`value: fund_hi * BAND`, and under `Meta::Scale`, `want_chopper` is forced `false` at
+`tactics.rs:132`, so `fund_hi = 45` always — never even the 60 "existential" tier). Since
+62 > 50 (printer) > 45 (iron fund) > 42/40 (starter chop-help), and a ripe fruit tree is reachable
+almost every turn on a real map, **no unit ever mines iron during Hoard.** The ladder's one
+chop-capable slot (`(2,2,0,2)`, `cost[IRON] = n + chop² = 3 + 4 = 7` once n=3) can only ever be
+paid from the map's *starting* iron endowment, because iron income is permanently zero — that
+starting stock (2-7 across these 8 maps, e.g. game179's inventory trace: iron 5→2 by t45, then
+frozen at 2 through t300) never reaches 7 in any sampled game, so **the chopper never trains, in
+any of the 8 games.** With zero chop-capable units for the entire game (the starter's own
+chop-help band, 40/42, is dominated by 62 the same way), wood production is deterministically
+**zero for the full 300 turns, in both Hoard and Factory** — Task 4's `farm_cap` 12→20 and
+reopened bands are correctly wired (readout 1 proves the phase flip; readout 5's farm-regrowth
+proves band 62's removal reopens the printer path) but are moot, because the bottleneck was never
+farm capacity — it's the chopper that never exists. In the 3 games that stall at n=2 (407, 556,
+593), the identical missing-income problem bites one rung earlier: starting IRON below 2 blocks
+even the ladder's SECOND hand (`cost[IRON]=2` at slot 1).
+This is exactly the risk Task 3's own review flagged and left open (`progress.md`: "Gatekeeper
+watch: iron cost on feeder slots (nobody mines it)") — it is not a corner case; it reproduced in
+**12/12 games (100%)**, boss and field alike.
+
+### Verdict: **FAIL**
+Readouts 3 and 6 both fail on their own (gating); readout 1 holds; readout 2 holds only
+vacuously. This is a logic defect in Task 3's Hoard wallet band (a priority-ordering bug), not a
+tuning-margin miss — it wastes the entire game on every map sampled and must block Task 5 (B4
+arena trial) until fixed. No crashes; no HTTP 422s; probe compiled clean both copies.
+
+### Single most actionable observation
+The Hoard wallet-building band's value (62) must not be allowed to outrank the iron-funding path
+whenever a chop-capable troll is needed and iron is short — e.g. skip pushing the value-62
+candidate for a troll while `plan.need_iron` is true (or give iron-mining its own unconditional
+Hoard band above 62, or lower 62 below the funding tier). Until someone can mine iron during
+Hoard, the ladder's only chopper slot is permanently unreachable on any map without a ≥7 starting
+iron endowment, and the Scale meta banks exactly 0 wood, forever — Task 4's Factory-phase work is
+sound but sits entirely downstream of a chopper that never gets born.
