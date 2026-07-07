@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.28.3-sticky6"; // tree = champion-twin config
+const VERSION: &str = "1.32.0-phases"; // B1: phase skeleton (Meta/Phase) — zero behavior change
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -78,6 +78,11 @@ fn rh_rand() -> u64 {
 // REMOVED 2026-07-06 for the 100 KB submission cap — run() calls decide_elite only.
 // Full history: git; frozen artifacts: cgauto/submissions/.)
 
+// B1 phase skeleton: the meta selector consumed by tactics::phase_for. Tempo is the
+// live meta (phase-inert: phase_for(Tempo, _) == Phase::Tempo always) — this candidate
+// ships the machinery with ZERO behavior change; Scale (Hoard→Factory at T_SWITCH) is
+// wired but not yet selected. See rust/src/botmain/tactics.rs.
+const GE_META: tactics::Meta = tactics::Meta::Tempo;
 const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
 const GE_MAX_TROLLS: i32 = 2; // 3rd hand DORMANT until the farm-death disease is treated (it never trains through a dead farm gate; v1.28.1 telemetry 0/8)
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
@@ -114,8 +119,8 @@ fn decide_elite(state: &State) -> Vec<String> {
     let mut cmd_by_id = planner::assign(state, &plan, &my);
     if DEBUG && state.turn % 5 == 0 {
         eprintln!(
-            "@TFFARM t={} farm={} seeds={} n={} flaps={}",
-            state.turn, plan.farm_now, state.my_inventory[BANANA], my.len(), planner::flaps()
+            "@TFFARM t={} farm={} seeds={} n={} flaps={} phase={:?}",
+            state.turn, plan.farm_now, state.my_inventory[BANANA], my.len(), planner::flaps(), plan.phase
         );
     }
 

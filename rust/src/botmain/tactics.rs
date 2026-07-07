@@ -6,6 +6,24 @@ use super::*;
 use std::cell::RefCell;
 use std::collections::HashSet;
 
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum Meta { Tempo, Scale }
+
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum Phase { Tempo, Hoard, Factory }
+
+/// Scale meta: hoard (no felling, bank the wallet) until T_SWITCH, then the factory.
+pub const T_SWITCH: i32 = 140;
+
+pub fn phase_for(meta: Meta, turn: i32) -> Phase {
+    match meta {
+        Meta::Tempo => Phase::Tempo,
+        Meta::Scale => {
+            if turn < T_SWITCH { Phase::Hoard } else { Phase::Factory }
+        }
+    }
+}
+
 thread_local! {
     // v1.7.0: the chopper spec chosen ONCE at turn 1 from the starting draw.
     static GE_CHOSEN_SPEC: RefCell<Option<(i32, i32, i32, i32)>> = RefCell::new(None);
@@ -45,6 +63,7 @@ pub struct Plan {
     pub liquidation: bool,
     pub base_trees: usize,
     pub seed_cells: HashSet<Cell>,
+    pub phase: Phase,
 }
 
 pub fn plan(state: &State, my: &[Troll]) -> Plan {
@@ -144,9 +163,12 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
             seed_cells.insert(p.pos());
         }
     }
+
+    let phase = phase_for(super::GE_META, state.turn);
     Plan {
         shack, farm_d, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
         want_feeder, train_spec, cost, train_now, need_iron, need_fund, farm_r, farm_cap,
         fell_size, farm_fell, chop_r, starter_chop, liquidation, base_trees, seed_cells,
+        phase,
     }
 }

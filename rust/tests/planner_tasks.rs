@@ -2,7 +2,7 @@
 //! and priority sanity (the value bands must reproduce the cascade's hierarchy).
 use std::collections::HashSet;
 use troll_farm::botmain::planner::assign;
-use troll_farm::botmain::tactics::Plan;
+use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll};
 
 fn base_state() -> State {
@@ -64,6 +64,7 @@ fn base_plan() -> Plan {
         liquidation: false,
         base_trees: 0,
         seed_cells: HashSet::new(),
+        phase: Phase::Tempo,
     }
 }
 
