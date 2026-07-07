@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.28.2-steady2"; // = v1.27 planner + map-fix + STICKY targets (flaps 16-36 -> 2-12); 3rd-hand machinery dormant
+const VERSION: &str = "1.28.3-sticky6"; // STICKY 3->6 (coin-flip conversion attempt)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

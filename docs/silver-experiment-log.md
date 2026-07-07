@@ -1003,3 +1003,9 @@ optimum (them, ~20.0); crossing = the hoard-first build order = the Legend-harve
 (docs/superpowers/specs/2026-07-05-…) — NOW buildable on the planner machinery (daytime
 project). Tonight's path stays in-basin: convert the +4-margin coin-flips vs the 100-115
 band. NEXT CYCLE: v1.28.3-sticky6 (STICKY 3→6; residual flaps 2-21 = the measured defect).
+
+## 2026-07-07 09:25 — v1.28.3-sticky6 verdict: NEUTRAL (114 @ 19.0 vs bracket 19.2)
+STICKY 3→6: flaps 3-15 (marginal), arena within noise. The stickiness lever is EXHAUSTED.
+Overnight stability datum: v1.28.2 held 113 @ 19.1-19.2 for ~7h. sticky6 left live (same
+policy); v1.28.2 remains the frozen champion + submit default. Champion band: 19.0-19.2,
+rank 111-115. Gap to ≤99: ~+0.5-0.7.

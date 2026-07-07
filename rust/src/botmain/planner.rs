@@ -35,7 +35,7 @@ const BAND: i64 = 100_000; // > any ETA by orders of magnitude
 // globally every turn and small ETA shifts flipped assignments mid-travel (measured 16-36
 // flaps/game = leaked steps, the v1.27 arena fade). Within-band (« BAND): stability never
 // overrides the priority hierarchy, only breaks near-ties toward the current plan.
-const STICKY: i64 = 3;
+const STICKY: i64 = 6; // v1.28.3 sweep: residual flaps 2-21 at 3; absorb bigger ETA jitter
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
