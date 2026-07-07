@@ -368,3 +368,180 @@ Hoard band above 62, or lower 62 below the funding tier). Until someone can mine
 Hoard, the ladder's only chopper slot is permanently unreachable on any map without a ≥7 starting
 iron endowment, and the Scale meta banks exactly 0 wood, forever — Task 4's Factory-phase work is
 sound but sits entirely downstream of a chopper that never gets born.
+
+## Gatekeeper verdict #2 (Scale meta, post-B2.1)
+
+**Role:** GATEKEEPER only (never submits to the arena; nothing below touched `cgauto/api_submit.py`
+or the arena). Re-running the same 6-readout gate against `e09ac48` ("fix(b2.1): hoard iron band
+64/63 + early iron target"), the fix written directly in response to verdict #1's root cause
+(the Hoard wallet band, 62×BAND, unconditionally outranked iron-funding at 45×BAND, so nobody ever
+mined and the ladder's chopper never trained — wood 0 in 12/12 games). HEAD at run time: `e09ac48`
+(tip of `session-2026-07-01`; tree confirmed clean before and after the probe build).
+
+**Probe build** (from the CURRENT tree, i.e. including `e09ac48`):
+```
+cd rust
+sed -i 's/const GE_META: tactics::Meta = tactics::Meta::Tempo;/const GE_META: tactics::Meta = tactics::Meta::Scale;/' src/botmain.rs
+uv run --no-sync python tools/bundle.py        # 64830 chars
+git checkout -- src/botmain.rs                 # tree restored; verified clean + Tempo immediately
+sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/' target/refactor/bundled.rs > s.rs
+uv run --no-sync python tools/minify.py s.rs s.min.rs   # 64829 -> 41875 chars
+cp s.min.rs cc.rs && rustc --edition 2021 -O cc.rs -o ccbin   # exit 0, COMPILE-OK
+```
+Verified: full `s.rs` contains `GE_META: tactics::Meta = tactics::Meta::Scale;` and
+`DEBUG: bool = true` (both grep-confirmed, 1 hit each); minified `s.min.rs` contains 3×
+`Meta::Scale` and `DEBUG: bool = true`. Probe kept in the session scratchpad only (ephemeral
+gatekeeper artifact, per role) — not frozen into the repo.
+
+**Games played (all 12 completed the full 300 turns; zero HTTP 422s; zero crashes):**
+- Boss ×8: `data/boss5_games/boss/game_895368{157,180,198,221,238,266,280,299}.{map,log,raw}`
+- Field ×2 mikdiet (6480914): `data/boss5_games/6480914/game_895368{323,339}.*`
+- Field ×2 plcc (6480966): `data/boss5_games/6480966/game_895368{358,370}.*`
+
+### Readout 1 — phase schedule: HOLDS (8/8)
+Every boss raw: last `@TFFARM ... phase=Hoard` sample at t=135, first `phase=Factory` sample at
+t=140 — the T_SWITCH=140 boundary is exact in all 8 games, identical to verdict #1 (this part of
+B2/B3 was never in question).
+
+### Readout 2 — hoard discipline (our wood at t≈150 ≤ 6, from .log): HOLDS, still mostly vacuous (8/8)
+All 8 games: wood@t150 = **0** (157:0, 180:0, 198:0, 221:0, 238:0, 266:0, 280:0, 299:0) — trivially
+≤6. Less vacuous than verdict #1 though: this time **1/8 (266)** goes on to actually bank wood after
+t150 (34 by t300, see readout 5) — the first real (non-hypothetical) instance of the "hoard now,
+factory produces after t150" story the phase design intends, even though the other 7/8 still bank
+nothing for the entire game.
+
+### Readout 3 — hands ladder: **FAILS** (5/8 < 6/8 bar; 1/8 ≪ 4/8 bar)
+Per-game first-t each value of `n` is seen (all 8 games: n=1→t5, n=2→t15, the `SCALE_MIN_TURN[0]=10`
+gate):
+| game | n ladder (first-t) | max n | n≥3 by t140 | n==4 by t160 |
+|---|---|---|---|---|
+| 157 | 1@5, 2@15, 3@45 | 3 | YES (t45) | NO |
+| 180 | 1@5, 2@15 | **2** | NO | NO |
+| 198 | 1@5, 2@15 | **2** | NO | NO |
+| 221 | 1@5, 2@15, 3@95 | 3 | YES (t95) | NO |
+| 238 | 1@5, 2@15, 3@45 | 3 | YES (t45) | NO |
+| 266 | 1@5, 2@15, 3@85, 4@145 | **4** | YES (t85) | YES (t145) |
+| 280 | 1@5, 2@15, 3@45 | 3 | YES (t45) | NO |
+| 299 | 1@5, 2@15 | **2** | NO | NO |
+
+n≥3 by t140: **5/8** (need ≥6) → miss by one. n==4 (the chopper slot) by t160: **1/8** (need ≥4) →
+miss by three-quarters of the bar. **Across the full 300-turn game (not just by t160), the chopper
+trains in exactly 1/8 games (266)** — the other 7/8 never train it at all, for the entire match.
+
+### Readout 4 — wallet (diagnostic): iron mixed (4/8), lemon holds directionally (6/8)
+| game | iron@t110 | iron first≥7 | lemon@t100 |
+|---|---|---|---|
+| 157 | 1 MISS | t138 | 4 OK |
+| 180 | 9 OK | t1 (map start) | 2 MISS |
+| 198 | 9 OK | t1 (map start) | 9 OK |
+| 221 | 4 MISS | t126 | 0 MISS |
+| 238 | 7 OK | t1 (map start≈10, mines down to plateau 7) | 8 OK |
+| 266 | 5 MISS | t1 (map start, dips then recovers) | 8 OK |
+| 280 | 0 MISS | **never** (plateaus at 3-4 all game) | 16 OK |
+| 299 | 8 OK | t1 (map start) | 7 OK |
+
+iron≥7 by t110: **4/8** (need ≥5, diagnostic). lemon≥3@t100: **6/8** (diagnostic). Important
+qualifier found by tracing full iron histories (not just the t110 snapshot): in the 5 games that
+start with iron ≥7 already on the map (180, 198, 238, 266, 299), the bar is met by map luck, not by
+the fix. In the 3 low-endowment games (157, 221, 280), the fix **does** now cause real mining
+(iron rises over time — e.g. 157: 1→2→7 between t100-140; 221: 4→6→7 between t100-140 — this did
+not happen at all pre-fix, where iron only ever fell or sat flat). But 280's iron mining stalls at
+3-4 and never reaches 7 for the rest of the 300-turn game, so even where the fix engages, it does
+not always finish the job in time.
+
+### Readout 5 — factory output (the decider): **FAILS on every sub-bar**
+| game | wood@150 | wood@300 | gain | opp final wood |
+|---|---|---|---|---|
+| 157 | 0 | 0 | 0 | 38 |
+| 180 | 0 | 0 | 0 | 36 |
+| 198 | 0 | 0 | 0 | 34 |
+| 221 | 0 | 0 | 0 | 46 |
+| 238 | 0 | 0 | 0 | 74 |
+| 266 | 0 | **34** | **34** | 52 |
+| 280 | 0 | 0 | 0 | 34 |
+| 299 | 0 | 0 | 0 | 38 |
+
+gain(t150→300)≥40: **0/8** (need ≥4 — even the one game with any production, 266, gains only 34,
+short of the 40 bar). Avg final wood = **4.2** (need ≥55 — off by the entire bar). Games with final
+wood <25: **7/8** (need 0 — this is not a single outlier, it is 7 of 8 maps). Opp avg final wood =
+**44.0**. This is a small, real improvement over verdict #1 (which was 0/8 wood, avg 0.0) but is
+still catastrophically short of a passing factory economy.
+
+### Readout 6 — field: **FAILS** (3/3 losses worse than −150; win rate 1/4)
+| game | opp | result | wood | scores | delta |
+|---|---|---|---|---|---|
+| 895368323 | mikdiet | **WIN** | 49–17 | [234, 113] | **+121** |
+| 895368339 | mikdiet | LOSS | 0–70 | [35, 302] | **−267** (violation) |
+| 895368358 | plcc | LOSS | 0–91 | [75, 376] | **−301** (violation) |
+| 895368370 | plcc | LOSS | 0–93 | [38, 390] | **−352** (violation, worst) |
+
+All 3 losses exceed the −150 bar (worst = **−352**); only the 1 win is clean. This is a substantial
+improvement over verdict #1 (4/4 losses, avg −390, all wood 0) — one game now actually wins — but
+the gate still fails outright since any loss worse than −150 fails it, and 3/3 sampled losses do.
+
+### Root cause (verified by reading the CURRENT `rust/src/botmain/{tactics,planner}.rs` directly)
+`e09ac48` is a correct, working fix for exactly what it targeted: `tactics.rs:142`
+(`let need_iron = have_iron && inv[IRON] < 7;`, widened from "only once slot 2" to "any time
+short") plus `planner.rs:226-239` (the Mine/MoveTo-to-iron candidates get value 64/63 during Hoard,
+**now correctly outranking** the generic wallet band at `planner.rs:207-211`
+(`value: 62 * BAND - eta(...)`)). Confirmed empirically: in the 3 low-iron-endowment games
+(157, 221, 280), iron now visibly **rises** over time via real mining — this never happened in
+verdict #1's 8 games (iron only ever fell or sat flat, "frozen at 2 through t300").
+
+But the slot-2 chopper spec `SCALE_LADDER[2] = (2,2,0,2)` (`tactics.rs:128`) costs **four** resources
+simultaneously via `training_cost` (`state.rs:142-149`): at n=3, cost = `PLUM:7, LEMON:7, APPLE:3,
+IRON:7`. Only IRON got the priority-bump treatment. The parallel per-fruit-type targeting candidate
+for PLUM/LEMON/APPLE — `need_fund[t]` (`tactics.rs:143`), pushed at `planner.rs:241-248` with
+`value: fund_lo * BAND` where `fund_lo` is **always 44** under Scale (`planner.rs:219`:
+`if plan.want_chopper { (60,58) } else { (45,44) }`, and Scale hardcodes `want_chopper = false` at
+`tactics.rs:132`, so the `58` branch is dead) — was **not** bumped. 44 < 62, so during Hoard a
+troll still just walks to "whatever ripe fruit is nearest" (band 62) rather than specifically the
+fruit type the ladder is short on. This is **the same bug class `e09ac48` just fixed for iron**,
+now gating on PLUM/LEMON/APPLE instead:
+- **3/8 games (180, 198, 299) never even clear slot 1** (n=2→3, cost 3 each): 180's PLUM is stuck at
+  **1** for the entire 300 turns (verified full trace: t100/150/200/250/299 all read PLUM=1); 198's
+  PLUM is likewise stuck at **1** the whole game; 299's APPLE is stuck at **1** the whole game — in
+  all 3 cases every OTHER resource is abundant (e.g. 198: LEMON=9, APPLE=5, IRON=9 the whole game),
+  it is specifically one starved fruit type, forever, despite 150+ idle turns after t150 to fix it.
+- **4/8 games clear slot 1 (n=3) but never clear slot 2** (cost 7 on 3 of 4 resources): 157's PLUM
+  sticks at 5 (needs 7), 221's LEMON sticks at 5 (needs 7), 238's PLUM sticks at 3 (needs 7), 280's
+  IRON sticks at 3-4 (needs 7 — this is the ONE case where `e09ac48`'s own target resource is still
+  short at game end, i.e. the fix helps but does not always finish within 300 turns).
+- **1/8 (266) is the only game where all four resources cleared slot 2's bar together** — traced
+  turn-by-turn: at t140 (Factory just started) PLUM=6, LEMON=8, APPLE=11, IRON=7; PLUM ticks 6→7 at
+  t141 (the last of the four to arrive); training fires at t142 (a 6th troll, id 5, appears; every
+  inventory drops by exactly cost `(7,7,3,7)` in that single turn). This is the only boss game with
+  any wood (34 final).
+
+**Cross-validated outside boss:** the field win (mikdiet, 895368323) reached n=4 at **t=115** (the
+earliest chopper of any of the 12 games sampled) and won 49–17 / scores +121. All 3 field losses
+stalled at n=2 (both plcc games, immediately after `SCALE_MIN_TURN[0]`, never progressing at all)
+or n=3 (the other mikdiet game, stuck from t150 onward) and scored 0 wood. **Across all 12 games
+sampled this run, the chopper trained in exactly 2 (266 boss, 895368323 field) — and those are the
+only 2 games with any wood production or a win.** The other 10/12 (83%) reproduce the pre-fix
+failure mode exactly, just gated one resource-type later in the dependency chain than before.
+
+### Verdict: **FAIL**
+Readouts 3, 5, and 6 all fail on their own (gating); readout 1 holds; readout 2 holds only
+vacuously (7/8) / weakly (1/8 — 266). `e09ac48` measurably works (iron now actively accumulates via
+real mining where it previously never did, and one game each in the boss and field samples now
+trains the chopper and produces wood/wins where verdict #1 had zero), but it is a partial fix: it
+special-cased iron alone inside a 4-resource simultaneous-funding requirement, and 10/12 games this
+run stall on one of the THREE resources (PLUM/LEMON/APPLE) that did not get the same treatment. No
+crashes; no HTTP 422s; probe compiled clean (full and minified).
+
+### Single most actionable observation
+Generalize `e09ac48`'s fix from iron to all of `need_fund[0..3]` (PLUM/LEMON/APPLE): the
+`need_fund`-driven candidates at `planner.rs:241-248` (currently pushed at `fund_lo=44*BAND`,
+constant under Scale since `want_chopper` is hardcoded false) must outrank the generic Hoard
+wallet band (`62*BAND`, `planner.rs:207-211`) whenever the specific fruit type is the ladder's
+current bottleneck — the same priority-bump `e09ac48` already gave `need_iron`'s Mine/MoveTo
+candidates (64/63, both now legitimately above 62). Right now 10 of the 12 games sampled (83%)
+stall for the ENTIRE remaining game on exactly one stuck PLUM/LEMON/APPLE/IRON count that never
+climbs past whatever the generic "walk to nearest ripe fruit" behavior happens to supply — 3/8
+games stuck below the slot-1 bar (cost 3) and 5/8 (4 boss + the mikdiet field loss) stuck below the
+slot-2 bar (cost 7 on 3 of 4 resources). This is not a new bug — it is the identical band-62-vs-
+targeted-funding priority bug `e09ac48` fixed, recurring at the three resource types that fix did
+not touch. Until `need_fund`'s candidates get the same priority bump, the Scale ladder will keep
+training its chopper in roughly 1 game out of 6 (2/12 here), gated by whichever single fruit type a
+given map happens to be locally poor in near the wallet-gathering path.
