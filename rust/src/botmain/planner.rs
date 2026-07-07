@@ -8,7 +8,7 @@
 //! exhaustive over per-troll top-K, maximizing total value, same-target conflicts
 //! forbidden, canonical tie-break. SHUFFLE INVARIANCE: the plan depends on the objective,
 //! never on troll/candidate iteration order.
-use super::tactics::Plan;
+use super::tactics::{Phase, Plan};
 use super::*;
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
@@ -71,6 +71,23 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     let is_chopper = u.chop_power >= 2;
     let mut out: Vec<Cand> = Vec::new();
 
+    // B2 (Hoard): suppress felling except the denial emergency (an enemy troll within
+    // map-distance 2 of the tree). Computed ONCE per candidates() call — a single multi-source
+    // BFS from every opp troll, not a BFS per (enemy, tree) pair — and ONLY during Hoard, so
+    // the Tempo path (the live meta) pays zero extra cost.
+    let hoard = plan.phase == Phase::Hoard;
+    let enemy_d: Option<HashMap<Cell, i32>> = if hoard {
+        Some(bfs_distances(
+            &state.walkable,
+            &state.opp_trolls.iter().map(|e| e.pos()).collect::<Vec<_>>(),
+        ))
+    } else {
+        None
+    };
+    let threatened = |pc: Cell| -> bool {
+        enemy_d.as_ref().map_or(false, |ed| ed.get(&pc).map_or(false, |&dd| dd <= 2))
+    };
+
     let fell_ok = |p: &Tree| -> bool {
         if plan.seed_cells.contains(&p.pos()) {
             return false;
@@ -113,6 +130,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             if !d.contains_key(&pc) {
                 continue;
             }
+            if hoard && !threatened(pc) {
+                continue; // Hoard: no fells unless the tree is under denial threat
+            }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
             if pc == u.pos() {
@@ -128,6 +148,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             let pc = p.pos();
             if !d.contains_key(&pc) {
                 continue;
+            }
+            if hoard && !threatened(pc) {
+                continue; // Hoard: no fells unless the tree is under denial threat
             }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
@@ -171,10 +194,20 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     || (!plan.want_chopper
                         && (p.tree_type == "BANANA"
                             || (p.tree_type == "APPLE"
-                                && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))));
+                                && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1))))
+                    || plan.phase == Phase::Hoard; // Hoard wants EVERYTHING ripe standing under foot too
                 if want {
                     out.push(Cand { kind: Kind::Harvest, target: Some(u.pos()), value: 75 * BAND });
                 }
+            }
+        }
+        // B2 (Hoard): wallet-building — travel to ANY ripe fruit tree. Fruit is points AND
+        // wallet fuel during Hoard, so there is no per-type targeting like the funding/printer
+        // bands below (those stay as-is; the matcher just takes the max of every band pushed).
+        if plan.phase == Phase::Hoard {
+            for p in state.trees.iter().filter(|p| p.fruits > 0 && d.contains_key(&p.pos())) {
+                let pc = p.pos();
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 62 * BAND - eta(&d, pc, ms) });
             }
         }
         // 4) FUNDING (bands 60/58) — for the chopper OR a pending 3rd hand (R6b.2: the old
@@ -239,6 +272,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 if !d.contains_key(&pc) {
                     continue;
                 }
+                if hoard && !threatened(pc) {
+                    continue; // Hoard: no fells unless the tree is under denial threat
+                }
                 let steps = eta(&d, pc, ms);
                 let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
                 if pc == u.pos() {
@@ -252,6 +288,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     let pc = p.pos();
                     if !d.contains_key(&pc) {
                         continue;
+                    }
+                    if hoard && !threatened(pc) {
+                        continue; // Hoard: no fells unless the tree is under denial threat
                     }
                     let steps = eta(&d, pc, ms);
                     let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;

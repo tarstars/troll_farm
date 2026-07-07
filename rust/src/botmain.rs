@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.32.0-phases"; // B1: phase skeleton (Meta/Phase) — zero behavior change
+const VERSION: &str = "1.33.0-hoard"; // B2: hoard bands + Scale training ladder (Tempo-inert)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -78,10 +78,12 @@ fn rh_rand() -> u64 {
 // REMOVED 2026-07-06 for the 100 KB submission cap — run() calls decide_elite only.
 // Full history: git; frozen artifacts: cgauto/submissions/.)
 
-// B1 phase skeleton: the meta selector consumed by tactics::phase_for. Tempo is the
-// live meta (phase-inert: phase_for(Tempo, _) == Phase::Tempo always) — this candidate
-// ships the machinery with ZERO behavior change; Scale (Hoard→Factory at T_SWITCH) is
-// wired but not yet selected. See rust/src/botmain/tactics.rs.
+// B1/B2: the meta selector consumed by tactics::phase_for. Tempo is the live meta
+// (phase-inert: phase_for(Tempo, _) == Phase::Tempo always, so every phase-gated band in
+// planner.rs/tactics.rs is a no-op) — Tempo is equality-proven byte-identical to the
+// pre-phase champion. Scale (Hoard→Factory at T_SWITCH) now has real Hoard-phase behavior
+// (fell suppression + denial exception + wallet band + training ladder) but is still not
+// selected live. See rust/src/botmain/tactics.rs and planner.rs.
 const GE_META: tactics::Meta = tactics::Meta::Tempo;
 const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
 const GE_MAX_TROLLS: i32 = 2; // 3rd hand DORMANT until the farm-death disease is treated (it never trains through a dead farm gate; v1.28.1 telemetry 0/8)

@@ -113,21 +113,47 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     // Boss-5 throughput gap). This is the runninglvlan structure (starter+feeder+chopper) and
     // AVOIDS the 2-chopper starvation (validated: a 2nd chopper starves the 1-feeder farm).
     let nchop = my.iter().filter(|u| u.chop_power >= 2).count() as i32;
-    let want_chopper =
-        nchop == 0 && (state.turn >= GE_CHOP_DELAY || farm_now >= GE_CHOP_FARM);
-    let want_feeder = nchop >= 1
-        && n < GE_MAX_TROLLS
-        && state.turn >= GE_FEEDER_T
-        && farm_now >= GE_FEEDER_FARM;
-    let train_spec = if want_chopper { spec } else { GE_FEEDER_SPEC };
-    let cost = training_cost(n, train_spec);
-    let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
-    let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the chopper train)
-    // iron-gated: fruit is ready but we still lack the iron for the chopper.
-    let need_iron =
-        have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
-    // which fruit types still block the chopper (funding targets)
-    let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
+    // B2 (Scale ladder): under Meta::Scale, replace the adaptive chopper-training logic with a
+    // FIXED HAND ladder — want_chopper forced false (no t3 chopper at all; Hoard banks the
+    // wallet with hands only). Troll count n selects the next hand's spec/turn-gate from
+    // SCALE_LADDER/SCALE_MIN_TURN, mapped onto the SAME Plan fields the Tempo path uses
+    // (want_feeder/train_spec/cost/train_now/need_iron/need_fund) so planner.rs needs no new
+    // fields — it already reads want_feeder to drive funding/printer work. The Tempo branch
+    // below is BYTE-IDENTICAL to the pre-B2 code (equality-critical: GE_META stays Tempo live).
+    let (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund) = if super::GE_META
+        == Meta::Scale
+    {
+        const SCALE_LADDER: [(i32, i32, i32, i32); 3] = [(1, 1, 1, 0), (1, 1, 1, 0), (2, 2, 0, 2)];
+        const SCALE_MIN_TURN: [i32; 3] = [10, 40, 110];
+        let slot = ((n - 1).max(0) as usize).min(2);
+        let want_hand = n < 4 && state.turn >= SCALE_MIN_TURN[slot];
+        let want_chopper = false;
+        let want_feeder = want_hand;
+        let train_spec = SCALE_LADDER[slot];
+        let cost = training_cost(n, train_spec);
+        let train_now = want_hand && mb_afford(inv, &cost, have_iron);
+        let need_iron =
+            have_iron && slot == 2 && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
+        let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
+        (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
+    } else {
+        let want_chopper =
+            nchop == 0 && (state.turn >= GE_CHOP_DELAY || farm_now >= GE_CHOP_FARM);
+        let want_feeder = nchop >= 1
+            && n < GE_MAX_TROLLS
+            && state.turn >= GE_FEEDER_T
+            && farm_now >= GE_FEEDER_FARM;
+        let train_spec = if want_chopper { spec } else { GE_FEEDER_SPEC };
+        let cost = training_cost(n, train_spec);
+        let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
+        let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the chopper train)
+        // iron-gated: fruit is ready but we still lack the iron for the chopper.
+        let need_iron =
+            have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
+        // which fruit types still block the chopper (funding targets)
+        let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
+        (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
+    };
 
     // ── farm config ─────────────────────────────────────────────────────────
     // v1.18.0: TURN-1 ADAPTIVE ECONOMY (committed via the draw-chosen spec, no mid-game switch).
