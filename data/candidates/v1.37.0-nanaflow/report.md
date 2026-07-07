@@ -226,3 +226,71 @@ maps where the bank cells are already a bottleneck this should show up as fewer 
 no regression on maps with very few reachable ripe trees (tree-first should never make
 things worse there, since band 52 only ever fires when a reachable ripe tree exists -- the
 tent fallback is otherwise identical to today's champion behavior).
+
+## Mini-gate (v1.37.0-nanaflow, boss 6)
+
+**Role: GATEKEEPER, REDUCED probe** (crater-insurance before an arena submit; economy-band
+changes are the historically crater-prone class). Scope: boss games ONLY, no field games, per
+the reduced-probe instruction (arena mid-goal-verification on v1.36.0-race, budget-fresh but
+speed matters).
+
+**Probe verification** (`data/candidates/v1.37.0-nanaflow/v1.37.0-nanaflow.debug-probe.min.rs`,
+43,532 B): `DEBUG: bool = true` (1 hit, confirmed) / `1.37.0-nanaflow` present / `52 * BAND`
+present (the tree-first printer push, confirmed byte-for-byte in the shipped probe) -- used
+directly, no rebuild.
+
+**Collection:** `collect_debug_games.py <probe> boss 6` -- 6/6 games returned cleanly, no HTTP
+422, no retry needed.
+
+### Per-game numbers
+
+| gameId | result | final turn | my wood | boss wood | wood delta @final | max seeds (tent) | flaps (final) | banana@t150 | banana@t~300/final |
+|---|---|---|---|---|---|---|---|---|---|
+| 895437502 | L | 300 | 66 | 84 | -18 | 7 | 9 | 7 | 7 |
+| 895437524 | L | 300 | 36 | 59 | -23 | 4 | 3 | 4 | 4 |
+| 895437570 | L | 300 | 30 | 56 | -26 | 2 | 8 | 2 | 2 |
+| 895437583 | W | 300 | 59 | 49 | +10 | 7 | 6 | 7 | 7 |
+| 895437610 | L | 300 | 48 | 62 | -14 | 5 | 2 | 5 | 5 |
+| 895437624 | W | 174 (natural early end -- `trees=0` from t170 on, both sides fully deforested the map; clean `@TFSUM`/`@TFD` progression to the last frame, no panic/error string anywhere in the `.raw`) | 33 | 30 | +3 | 3 | 2 | 1 | 0 |
+
+Wins 2/6 (33%, vs the standing ~14% baseline win rate) -- context only, not a gate criterion.
+
+### Readout 1 -- CRATER CHECK (the gate)
+
+- avg final wood (ours) = **45.3** -- inside the era 45-52 band, clears the ≥40 floor. **PASS**
+- min final wood = **30** (game 895437570) -- clears the >25 floor with margin. **PASS**
+- avg wood delta @ final turn (t300 or the natural early-end turn) = **-11.3** -- clears the
+  ≥ -14 floor (also better than the ramp.py-printed -15.3 historical baseline). **PASS**
+- crashes: **0/6** -- no panic/error/backtrace string in any of the 6 `.raw` files; all 6
+  headers show plausible non-degenerate `scores` pairs. **PASS**
+
+**All four hold -> readout 1 PASSES.**
+
+### Readout 2 -- BANANA FLOW (diagnostic, non-gating)
+
+`seeds=` (tent stock, `state.my_inventory[BANANA]`) does sit **above** the historical era
+norm of flat-0 in all 6 games (max seeds per game: **7, 4, 2, 7, 5, 3** -- avg 4.7, never 0).
+However the shape is a **plateau, not a climb**: in 5/6 games the value is set by t5 and then
+perfectly flat for the entire rest of the game (295 turns, unchanged to the digit -- see the
+per-game seeds series pulled from `@TFFARM`); only the one early-ending game
+(895437624) shows the tent stock draining (3 -> 2 -> 1 -> 0 across t140-155) rather than
+climbing. `@TFD` banana inventory at t150 / t~300(-or-final) matches the `@TFFARM` seeds
+reading exactly at every checked game (7/7, 4/4, 2/2, 7/7, 5/5, 1/0) -- the two telemetry
+sources agree. Read: tree-first harvesting front-loads a small persistent banked buffer early
+and then goes quiet (consistent with the farm hitting `farm_cap` almost immediately, after
+which the whole printer band -- including the new band-52 push -- stops firing for the rest
+of the game); it is not compounding a growing tent hoard over time. Not a crater signal either
+way; flagged for the analyst as a shape worth understanding, not a defect.
+
+### Readout 3 -- Flaps
+
+Final `flaps=` value per game: 9, 3, 8, 2, 6, 2 (order matches the table above: 895437502,
+895437524, 895437570, 895437583, 895437610, 895437624) -- all ≤15. **6/6 ≥ the required 5/6.
+PASS.**
+
+### Verdict: **PASS**
+
+No crater signature. All three readouts clear their bars; the diagnostic banana-flow shape
+(early plateau, not a climb) is worth a follow-up note for the analyst but does not change the
+gate outcome. No field games run (out of scope for this reduced probe). Recommend proceeding
+to the arena-runner step per the existing queue position (`docs/arena-queue.md` #1).
