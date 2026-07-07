@@ -439,3 +439,98 @@ block on `afford_fruit_only` even at farm-gate=0, since lemon craters to 0-1 for
 after the chopper's own training cost drains the pool — that would need its own fix (e.g.
 reserve lemon from the chopper's cost, or fund the feeder before the chopper on lemon-tight
 draws) if dropping the farm gate doesn't clear the whole sample on its own.
+
+## Gatekeeper verdict #3 (v1.35.0-thand, post T-hand.2)
+
+**Probe verified:** `v1.35.0-thand.debug-probe.min.rs` — `const DEBUG: bool = true` (1 hit),
+`GE_MAX_TROLLS: i32 = 3` (1 hit), `GE_FEEDER_FARM: usize = 0` (1 hit, grepped loosely for both
+the raw and minified spellings). Matches fix 49f566e (T-hand.2) exactly.
+
+**REDUCED BATCH per brief:** daily play-API budget nearly exhausted → boss-only, n=6, no field
+games this pass. All 6 games collected in a single uninterrupted run (no HTTP 422, no throttle
+wait needed). Boss gameIds: 895417090, 895417118, 895417148, 895417203, 895417231, 895417248.
+
+### 1. THE HAND — n reaches 3? (primary, binary)
+**6/6 boss games** — a full reversal of verdicts #1 and #2 (0/12 and 0/12). `first_n3` (turn
+`@TFFARM` first logs `n=3`), against `my_train` (turn the chopper itself, troll 2, appears —
+i.e. the earliest `want_feeder` could possibly become eligible is `max(45, my_train)`):
+
+| game | my_train (nchop=1) | trigger t | first n=3 | lemon pre-train (t-5) | lemon @ train (post-spend) |
+|---|---|---|---|---|---|
+| 895417090 | 67 | 67 | 135 | 4 | 1 |
+| 895417118 | 3 | 45 | 145 | 3 | 0 |
+| 895417148 | 3 | 45 | **70** | 3 | 0 |
+| 895417203 | 23 | 45 | 180 | 4 | 1 |
+| 895417231 | 15 | 45 | 140 | 3 | 0 |
+| 895417248 | 53 | 53 | 125 | 4 | 1 |
+
+Lemon (and plum/apple, not tabulated, same pattern) clears the n=2 feeder cost floor
+(cost[LEMON]=n+cc²=3) in the sample immediately before every training event — the fruit side
+was never the residual blocker once the farm-gate catch-22 (verdict #2's root cause) was
+removed; `GE_FEEDER_FARM=0` alone was sufficient in this sample.
+
+**Iron trajectory — mining resumed?** No, in **0/6** games does iron climb again after the
+training spend (e.g. 895417148: iron 4→2 at the train turn, flat at 2 through t115; 895417090:
+1→0, flat at 0 through t180). This is now the CORRECT/expected shape, not a new blocker: once
+`n` reaches `GE_MAX_TROLLS=3`, both `want_chopper` (chopper already exists) and `want_feeder`
+(`n < GE_MAX_TROLLS` now false) are permanently false, so `need_iron` legitimately gates back
+off — there is no 4th hand left to fund. Contrast with verdict #1, where iron never funded the
+pending hand *at all*; here it funds it correctly every single time, then correctly stops.
+
+### 2. THE HAND'S WORK — farm at t150+, seeds trend
+**Informational (no pass/fail bar) — inconclusive/negative.** Max `farm=` at t≥150 per game (same
+order as the table above): 1, 1, 2, 1, 1, 2 — indistinguishable from verdict #2's pre-fix context
+numbers (0,0,1,0,1,1,1,0). Seeds (`@TFFARM seeds=`, the banana bank): nonzero only early —
+last-nonzero sample per game at t=135, t=25, t=35, t=20, t=30, t=160 respectively (peak values
+3-9) — then **0 for the remainder of every game, all 6/6**, including in the games where the
+hand trains early (895417148, t70) and late (895417203, t180) alike. The hand now trains
+reliably, but within this 300-turn sample its intended cure — reviving a collapsed farm — is not
+yet visible: farm stays at 0-2 and the seed bank stays drained in every game, with or without the
+3rd hand present.
+
+### 3. ECONOMY (boss, `ramp.py --last 6`)
+```
+t75 : us  11.0  opp   5.0  delta  +6.0
+t150: us  23.8  opp  20.8  delta  +3.0
+t225: us  34.3  opp  36.2  delta  -1.8
+t300: us  47.0  opp  56.5  delta  -9.5
+wins 2/6 (33%)   avg final wood 47.0   late(225->300) us +12.7 vs opp +20.3
+```
+Per game (final wood us-opp): 40-48(L), 70-71(W), 42-63(L), 45-56(L), 50-55(W), 35-46(L).
+Min final wood = 35 (>25 floor: OK). t300 delta -9.5 (better than the -14 floor: OK). avg final
+wood 47.0 (>=40 floor: OK). No crash/panic in any of the 6 raw logs (grepped clean); all `scores`
+entries are normal positive pairs. **All four sub-checks pass — readout 3 HOLDS.**
+
+Comparison across all three verdicts (mind ±5 batch noise and n=6 vs n=8):
+| verdict | hand trains | wins | avg final wood | t300 delta | min final wood |
+|---|---|---|---|---|---|
+| #1 (pre-fix) | 0/12 | 2/8 (25%) | 45.4 | -5.8 | 35 |
+| #2 (post T-hand.1) | 0/12 | 0/8 (0%) | 40.6 | -12.2 | 30 |
+| **#3 (post T-hand.2)** | **6/6** | 2/6 (33%) | **47.0** | **-9.5** | 35 |
+
+Verdict #3 is the best economy of the three AND the first to actually engage the hand.
+
+### 4. FUNDING TAX — wood@t75 (boss, era norm 10-14)
+Per game: 2, 24, 12, 10, 14, 4 → **avg 11.0** (inside the era norm). The two low outliers (2, 4)
+both trace to the same late-chopper-draw pattern flagged in verdicts #1/#2 (895417090 my_train=
+t67, 895417248 my_train=t53) — the hand isn't even eligible before t45 regardless, so this is not
+a new hand-funding tax.
+
+### Verdict: **PASS**
+Per the brief: hand trains in **6/6** (bar ≥2/6) AND readout 3 holds (all four economy sub-checks
+pass). T-hand.2's `GE_FEEDER_FARM` 1→0 fix cleanly resolved the catch-22 identified in verdict
+#2 — combined with T-hand.1's widened `need_iron`, no structural blocker remains in this sample;
+every one of the 6 games trains the 3rd hand, funded correctly, with iron/fruit mining stopping
+(correctly) once there is no further pending hand to fund.
+
+**Most actionable observation:** the hand reliably trains now and the top-line economy is the
+best of the three verdicts (47.0 avg wood, -9.5 t300 delta, 33% win rate) — this candidate is
+ready to move to the arena stage. But readout 2 is a real caution flag: the farm/seed bank the
+hand exists to revive stays flat (farm 0-2, seeds drained to 0) in all 6 games regardless of
+whether/when the hand trained, including the earliest-training game (895417148, t70, 230 turns
+of hand-time). If the arena doesn't show a lift over the v1.28.3 baseline, the next thing to
+check is whether the feeder troll is actually issuing plant/seed actions once trained (a
+motion/tactics assignment question) rather than existing as an idle hp-only unit — this sample
+cannot distinguish "the hand exists but doesn't plant" from "230 turns still isn't enough time
+for a revival to show," and that distinction is the natural next diagnostic if economy gains
+don't materialize live.
