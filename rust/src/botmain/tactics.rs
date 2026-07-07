@@ -13,7 +13,17 @@ pub enum Meta { Tempo, Scale }
 pub enum Phase { Tempo, Hoard, Factory }
 
 /// Scale meta: hoard (no felling, bank the wallet) until T_SWITCH, then the factory.
-pub const T_SWITCH: i32 = 140;
+// Swept down per gatekeeper verdict #4 — hoarding until t=140 cedes the shared map to
+// deforesting opponents (opp wood 60.1 vs our 23.2 avg, boss avg score delta -169.0): 100 =
+// the design spec's sweep floor (docs/superpowers/specs/2026-07-07-last-mile-and-basin-jump-
+// design.md, "Risks": T_SWITCH sweeps down to 120/100 if Hoard loses the early race
+// unrecoverably). Note: SCALE_MIN_TURN stays [10, 40, 110] unchanged — slot 2 (the ladder's
+// only chop-capable hand) now has its min-turn gate (110) ABOVE T_SWITCH (100), so it becomes
+// eligible only after Factory has already begun. This is intentional: `scale_funding`
+// (planner.rs) keeps the funding bands elevated through a grace window scoped to
+// `want_feeder`, not `phase == Phase::Hoard` alone, so the ladder's tail still gets funded
+// priority even though it crosses the Hoard->Factory boundary.
+pub const T_SWITCH: i32 = 100;
 
 pub fn phase_for(meta: Meta, turn: i32) -> Phase {
     match meta {
