@@ -8,7 +8,7 @@
 //! recorded in the report).
 use std::collections::HashSet;
 use troll_farm::botmain::tactics::{plan_with_meta, Meta, Phase};
-use troll_farm::botmain::{State, Troll};
+use troll_farm::botmain::{State, Tree, Troll};
 
 // [copied VERBATIM from tests/phase_hoard.rs]
 
@@ -37,6 +37,12 @@ fn base_state() -> State {
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
     Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+}
+fn chopper(id: i32, x: i32, y: i32) -> Troll {
+    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+}
+fn banana(x: i32, y: i32, size: i32) -> Tree {
+    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
 }
 
 #[test]
@@ -69,4 +75,22 @@ fn scale_factory_plan() {
     assert_eq!(plan.phase, Phase::Factory);
     assert_eq!(plan.farm_cap, 20);
     assert_eq!(plan.want_chopper, false);
+}
+
+// v1.35.0 (T-hand): GE_MAX_TROLLS 2->3 re-arms the dormant feeder slot under Tempo itself
+// (not just Scale). Three farm bananas at map-distance 2 from the shack (0,2) satisfy
+// farm_now(2) >= GE_FEEDER_FARM(3); n=2 (starter + an already-trained chopper) satisfies
+// n < GE_MAX_TROLLS(3); turn=50 satisfies turn >= GE_FEEDER_T. Under the OLD GE_MAX_TROLLS=2,
+// n < GE_MAX_TROLLS is 2 < 2 = false, so want_feeder is unreachable whenever a chopper already
+// exists (the chopper itself already brings n to 2) — the third hand never trains.
+#[test]
+fn tempo_wants_third_hand() {
+    let mut st = base_state();
+    st.trees = vec![banana(1, 1, 2), banana(1, 3, 2), banana(2, 2, 2)];
+    st.turn = 50;
+    let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
+    let plan = plan_with_meta(&st, &my, Meta::Tempo);
+    assert_eq!(plan.want_chopper, false, "a chopper already exists: {:?}", plan.want_chopper);
+    assert_eq!(plan.want_feeder, true, "the third hand must be wanted");
+    assert_eq!(plan.train_spec, (1, 1, 1, 0));
 }

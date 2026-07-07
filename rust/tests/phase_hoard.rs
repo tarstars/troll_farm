@@ -213,3 +213,30 @@ fn factory_grace_keeps_funding_until_ladder_done() {
         &cmds[&0]
     );
 }
+
+// v1.35.0 (T-hand): the funding stack (65/64 iron, 63 deficit-fruit) must serve ANY pending
+// ladder hand, not just Scale's Hoard/Factory phases — Tempo's revived 3rd hand (GE_MAX_TROLLS
+// 2->3, botmain.rs) needs the identical deficit-fruit priority the Scale ladder already has, or
+// it stalls exactly like the pre-fix Scale ladder did (gatekeeper verdict #2: nearby non-funding
+// fruit outranked the distant deficit type). Exact mirror of
+// hoard_targets_deficit_fruit_over_nearby_fruit, except phase: Phase::Tempo instead of Hoard.
+#[test]
+fn tempo_ladder_funding_treks_to_deficit_fruit() {
+    let mut st = base_state();
+    let mut nearby = banana(3, 2, 4);
+    nearby.fruits = 3; // ripe, but BANANA is not a funding type (ge_fruit_ty >= 3)
+    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    st.trees = vec![nearby, distant];
+    let mut plan = base_plan();
+    plan.phase = Phase::Tempo;
+    plan.want_feeder = true;
+    plan.need_fund = [true, false, false]; // PLUM deficit
+    plan.cost = [3, 3, 3, 0, 0, 0];
+    plan.need_iron = false;
+    let cmds = assign(&st, &plan, &[starter(0, 2, 2)]);
+    assert!(
+        cmds[&0].contains("6 2"),
+        "under Tempo, the pending 3rd hand must trek to the distant deficit PLUM too, not the nearer non-funding BANANA: {}",
+        &cmds[&0]
+    );
+}

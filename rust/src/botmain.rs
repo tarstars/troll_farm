@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.34.0-factory"; // B3: Factory farm_cap 12->20 (Tempo-inert)
+const VERSION: &str = "1.35.0-thand"; // T-hand: Tempo + funded 3rd hand (GE_MAX_TROLLS 2->3; funding stack now serves all ladder hands, not just Scale)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -86,9 +86,9 @@ fn rh_rand() -> u64 {
 // selected live. See rust/src/botmain/tactics.rs and planner.rs.
 const GE_META: tactics::Meta = tactics::Meta::Tempo;
 const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
-const GE_MAX_TROLLS: i32 = 2; // 3rd hand DORMANT until the farm-death disease is treated (it never trains through a dead farm gate; v1.28.1 telemetry 0/8)
+const GE_MAX_TROLLS: i32 = 3; // T-hand — the funding stack (65/64/63) dissolved the lemon wall; the hand is the farm's missing planter.
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
-const GE_FEEDER_T: i32 = 60; // after the chopper economy stabilizes
+const GE_FEEDER_T: i32 = 45; // T-hand: restored from 60 — 60 was a leftover from the v1.28.x farm-death era when GE_MAX_TROLLS=2 made this gate unreachable anyway (dormant 3rd hand); the funding fix (planner.rs ladder_funding) is what actually treats farm-death now, so the feeder can arm this early again
 const GE_FEEDER_FARM: usize = 3; // map-distance farm now; the feeder's JOB is to grow it
 const GE_CHOP_DELAY: i32 = 0; // NO delay: train chopper early (denial > accumulation, proven 2026-07-05)
 const GE_CHOP_FARM: usize = 3; // train as soon as affordable (early aggression, v1.4.5 regime)

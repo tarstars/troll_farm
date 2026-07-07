@@ -19,10 +19,11 @@ pub enum Phase { Tempo, Hoard, Factory }
 // design.md, "Risks": T_SWITCH sweeps down to 120/100 if Hoard loses the early race
 // unrecoverably). Note: SCALE_MIN_TURN stays [10, 40, 110] unchanged — slot 2 (the ladder's
 // only chop-capable hand) now has its min-turn gate (110) ABOVE T_SWITCH (100), so it becomes
-// eligible only after Factory has already begun. This is intentional: `scale_funding`
-// (planner.rs) keeps the funding bands elevated through a grace window scoped to
-// `want_feeder`, not `phase == Phase::Hoard` alone, so the ladder's tail still gets funded
-// priority even though it crosses the Hoard->Factory boundary.
+// eligible only after Factory has already begun. This is intentional: `ladder_funding`
+// (planner.rs; renamed from `scale_funding` in v1.35.0-thand) keeps the funding bands elevated
+// through a grace window scoped to `want_feeder`, not `phase == Phase::Hoard` alone, so the
+// ladder's tail still gets funded priority even though it crosses the Hoard->Factory boundary —
+// and, as of v1.35.0, the same grace window now also serves Tempo's own pending 3rd hand.
 pub const T_SWITCH: i32 = 100;
 
 pub fn phase_for(meta: Meta, turn: i32) -> Phase {

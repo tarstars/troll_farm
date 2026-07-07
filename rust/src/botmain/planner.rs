@@ -227,17 +227,24 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // (b) T_SWITCH CLIFF — all these bands were gated `phase == Phase::Hoard` only, so
             // at t=140 a nearly-complete wallet was abandoned instantly (funding fell to
             // fund_lo=44, below Printer's 48/50) and the ladder's last hand never trained
-            // (chopper 1/14 games). `scale_funding` extends the elevated bands through a grace
-            // window scoped to `want_feeder` (the ladder is still incomplete) instead of Hoard
-            // alone — it covers Hoard (want_feeder is true throughout the ladder) AND the
-            // Factory grace (want_feeder stays true until the ladder finishes), self-extinguishes
-            // once the ladder completes (n reaches GE_MAX_TROLLS), and is provably a no-op on the
-            // live Tempo path: `phase_for(Tempo, _) == Phase::Tempo` always, so `plan.phase !=
-            // Phase::Tempo` is always false under the live meta regardless of want_feeder.
-            let scale_funding = plan.phase != Phase::Tempo && plan.want_feeder;
+            // (chopper 1/14 games). The elevated bands extend through a grace window scoped to
+            // `want_feeder` (the ladder is still incomplete) instead of Hoard alone — it covers
+            // Hoard (want_feeder is true throughout the ladder) AND the Factory grace (want_feeder
+            // stays true until the ladder finishes), self-extinguishing once the ladder completes
+            // (n reaches GE_MAX_TROLLS).
+            // v1.35.0 (T-hand): renamed `scale_funding` -> `ladder_funding` and DROPPED the
+            // `plan.phase != Phase::Tempo` gate — the elevated funding stack now serves ANY
+            // pending ladder hand, including Tempo's revived 3rd hand (GE_MAX_TROLLS 2->3), not
+            // just Scale's Hoard/Factory ladder. Graceful: a MoveTo/Mine candidate only exists
+            // where ripe deficit fruit / adjacent iron actually exists on the map, and
+            // `want_feeder` self-extinguishes the instant the pending hand trains — so Tempo
+            // degrades to today's champion behavior on any map where the wallet never fills.
+            // The generic wallet band (62, ~line 207 above) is UNTOUCHED: it stays gated on
+            // `plan.phase == Phase::Hoard` directly, never on this variable.
+            let ladder_funding = plan.want_feeder;
             if plan.need_iron && u.chop_power > 0 {
                 if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
-                    let v = if scale_funding { 65 } else { fund_hi };
+                    let v = if ladder_funding { 65 } else { fund_hi };
                     out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: v * BAND });
                 } else if let Some(c) = state
                     .iron_cells
@@ -246,12 +253,12 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     .filter(|c| d.contains_key(c))
                     .min_by_key(|c| (d[c], tie_mix(*c, salt)))
                 {
-                    let v = if scale_funding { 64 } else { fund_hi };
+                    let v = if ladder_funding { 64 } else { fund_hi };
                     out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: v * BAND - eta(&d, c, ms) });
                 }
             }
             // Deficit-fruit funding (PLUM/LEMON/APPLE): same grace window, one band below iron.
-            let fruit_band = if scale_funding { 63 } else { fund_lo };
+            let fruit_band = if ladder_funding { 63 } else { fund_lo };
             for p in state.trees.iter().filter(|p| {
                 p.fruits > 0
                     && d.contains_key(&p.pos())
