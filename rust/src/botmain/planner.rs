@@ -217,15 +217,27 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // funding (45/44) must never displace printer/seed work (50/48). The v1.28.0
             // regression: perpetual feeder-funding starved the farm on lemon-poor maps.
             let (fund_hi, fund_lo) = if plan.want_chopper { (60, 58) } else { (45, 44) };
-            // B2.1 gatekeeper fix: during Hoard, the wallet band (62, above) unconditionally
-            // outranked fund_hi (45, since want_chopper is forced false under Scale) — nobody
-            // ever mined, so the ladder's iron-costed hand never trained (wood=0 in 12/12
-            // games). Iron is scarce and un-substitutable (no fruit alternative funds it), so
-            // while iron-short during Hoard it must outrank the fruit wallet band (62).
-            let hoard_iron = plan.phase == Phase::Hoard;
+            // Gatekeeper verdict #3 (post-b14ebc7) fixed two compounding defects in one change:
+            // (a) BAND COLLISION — e09ac48 (iron, 64/63) and b14ebc7 (fruit, 63) independently
+            // landed on the SAME band, 63, so a troll needing both at once (routine: the
+            // ladder's last hand needs all four resources together) picked whichever was
+            // physically closer instead of the scarcer one. Iron has no fruit-harvest
+            // alternative (B2.1: "iron is scarce and un-substitutable") so it must win
+            // unconditionally — bumped to 65/64, strictly above the fruit band (63).
+            // (b) T_SWITCH CLIFF — all these bands were gated `phase == Phase::Hoard` only, so
+            // at t=140 a nearly-complete wallet was abandoned instantly (funding fell to
+            // fund_lo=44, below Printer's 48/50) and the ladder's last hand never trained
+            // (chopper 1/14 games). `scale_funding` extends the elevated bands through a grace
+            // window scoped to `want_feeder` (the ladder is still incomplete) instead of Hoard
+            // alone — it covers Hoard (want_feeder is true throughout the ladder) AND the
+            // Factory grace (want_feeder stays true until the ladder finishes), self-extinguishes
+            // once the ladder completes (n reaches GE_MAX_TROLLS), and is provably a no-op on the
+            // live Tempo path: `phase_for(Tempo, _) == Phase::Tempo` always, so `plan.phase !=
+            // Phase::Tempo` is always false under the live meta regardless of want_feeder.
+            let scale_funding = plan.phase != Phase::Tempo && plan.want_feeder;
             if plan.need_iron && u.chop_power > 0 {
                 if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
-                    let v = if hoard_iron { 64 } else { fund_hi };
+                    let v = if scale_funding { 65 } else { fund_hi };
                     out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: v * BAND });
                 } else if let Some(c) = state
                     .iron_cells
@@ -234,17 +246,12 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     .filter(|c| d.contains_key(c))
                     .min_by_key(|c| (d[c], tie_mix(*c, salt)))
                 {
-                    let v = if hoard_iron { 63 } else { fund_hi };
+                    let v = if scale_funding { 64 } else { fund_hi };
                     out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: v * BAND - eta(&d, c, ms) });
                 }
             }
-            // B2.2 gatekeeper fix #2: the same wallet-vs-funding priority bug e09ac48 fixed for
-            // iron (64/63) also gates PLUM/LEMON/APPLE — the generic Hoard wallet band (62,
-            // above) unconditionally outranked fund_lo (44), so a troll kept grabbing whichever
-            // ripe fruit was nearest instead of the type the ladder is actually short on. During
-            // Hoard, targeted deficit-fruit funding must outrank the generic wallet (63 > 62);
-            // outside Hoard, fund_lo is unchanged.
-            let fruit_band = if plan.phase == Phase::Hoard { 63 } else { fund_lo };
+            // Deficit-fruit funding (PLUM/LEMON/APPLE): same grace window, one band below iron.
+            let fruit_band = if scale_funding { 63 } else { fund_lo };
             for p in state.trees.iter().filter(|p| {
                 p.fruits > 0
                     && d.contains_key(&p.pos())

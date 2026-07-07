@@ -152,3 +152,64 @@ fn hoard_targets_deficit_fruit_over_nearby_fruit() {
         &cmds[&0]
     );
 }
+
+// Gatekeeper verdict #3 (post-b14ebc7), defect (a) BAND COLLISION: e09ac48 (iron, 64/63) and
+// b14ebc7 (fruit, 63) independently landed on the SAME band, 63, for their MoveTo candidates. A
+// troll facing both an iron shortfall and a fruit shortfall at once (routine — the ladder's last
+// hand needs all four resources simultaneously) now resolves the choice by raw travel distance,
+// not priority: iron loses whenever the fruit happens to be closer. Iron has no fruit-harvest
+// alternative (B2.1's own comment: "iron is scarce and un-substitutable") so it must win this
+// race unconditionally — reproduced in 8/8 sampled games (iron short at t110 in all of them).
+#[test]
+fn hoard_iron_beats_deficit_fruit() {
+    let mut st = base_state();
+    st.iron_cells.insert((5, 2));
+    let plum = Tree { tree_type: "PLUM".into(), x: 3, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    st.trees = vec![plum];
+    let mut plan = base_plan();
+    plan.phase = Phase::Hoard;
+    plan.want_feeder = true;
+    plan.need_iron = true;
+    plan.need_fund = [true, false, false];
+    plan.cost = [3, 3, 3, 0, 7, 0];
+    plan.have_iron = true;
+    let cmds = assign(&st, &plan, &[starter(0, 2, 2)]);
+    assert!(
+        (cmds[&0].contains("4 2")
+            || cmds[&0].contains("5 1")
+            || cmds[&0].contains("5 3")
+            || cmds[&0].contains("6 2"))
+            && !cmds[&0].contains("3 2"),
+        "starter must head for iron (a cell adjacent to (5,2)), not the closer deficit PLUM: {}",
+        &cmds[&0]
+    );
+}
+
+// Gatekeeper verdict #3, defect (b) T_SWITCH CLIFF: every elevated Hoard funding band
+// (62/63/64) is gated `plan.phase == Phase::Hoard` only, so at t=140 they all evaporate at once —
+// even when the ladder's wallet is one resource-tick from complete, funding priority drops to
+// fund_lo (44, under Scale's forced want_chopper=false), which sits below Printer (50/48). A
+// nearly-finished wallet gets abandoned instantly and the ladder's last hand never trains
+// (chopper trained in 1/14 sampled games). A short grace window past T_SWITCH — scoped to
+// want_feeder (the ladder is still incomplete) — must keep targeted funding above Printer work.
+#[test]
+fn factory_grace_keeps_funding_until_ladder_done() {
+    let mut st = base_state();
+    let mut nearby = banana(3, 2, 4);
+    nearby.fruits = 3; // ripe, non-funding type — competes via the Printer band (48)
+    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    st.trees = vec![nearby, distant];
+    let mut plan = base_plan();
+    plan.phase = Phase::Factory;
+    plan.want_feeder = true; // ladder incomplete
+    plan.need_iron = false;
+    plan.need_fund = [true, false, false]; // PLUM deficit
+    plan.cost = [3, 3, 3, 0, 7, 0];
+    plan.have_iron = true;
+    let cmds = assign(&st, &plan, &[starter(0, 2, 2)]);
+    assert!(
+        cmds[&0].contains("6 2"),
+        "past T_SWITCH with the ladder still incomplete, funding must still outrank Printer work: {}",
+        &cmds[&0]
+    );
+}
