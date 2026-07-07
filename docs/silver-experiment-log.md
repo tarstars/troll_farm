@@ -1353,3 +1353,11 @@ v1.36.0-race specifically once the arena slot is confirmed back on it (watch for
 to revert away from 6542627, or a fresh verdict log entry) — this session could only
 characterize the *arena-occupancy* problem and the *deny1* candidate, not the champion's own
 current per-opponent diet.
+
+## 2026-07-08 01:47 — A2/deny1 verdict (controller takeover): REVERTED at 135 @ 17.0 (−2.3+)
+The deny1 arena-runner went silent past its decision window; the analyst's independent monitor
+had already measured convergence at 17.0/135 with the collision mechanism (DENY_W vs the race
+check at the same decision point; MOVE:CHOP blew up 1.5-2.6x in worst losses). Controller
+reverted to v1.36.0-race at 01:47. DENY_W parked at 0 inside v1.39.0-sharepen4 (merged,
+controller-reviewed: exactly 2 consts + TDD both directions). sharepen4 submits after race
+reconverges (~02:30).
