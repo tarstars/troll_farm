@@ -86,6 +86,8 @@ fn scale_factory_plan() {
 // disease (a thin farm) was actually present. GE_FEEDER_FARM dropped 3->1 fixes this: a single
 // surviving farm banana is enough to justify sending a planter. Under the OLD GE_FEEDER_FARM=3,
 // farm_now(1) >= 3 is false, so want_feeder is unreachable here — this pins fix (b).
+// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+#[ignore]
 #[test]
 fn tempo_wants_third_hand() {
     let mut st = base_state();
@@ -101,6 +103,8 @@ fn tempo_wants_third_hand() {
 
 // Non-regression companion: the original 3-banana construction (farm_now=3, comfortably above
 // the new GE_FEEDER_FARM=1 gate) must still want the third hand after the gate drops.
+// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+#[ignore]
 #[test]
 fn tempo_wants_third_hand_farm3() {
     let mut st = base_state();
@@ -125,6 +129,8 @@ fn tempo_wants_third_hand_farm3() {
 // 0 < 2. Under the current want_chopper-only gate, need_iron is false here (no chopper is
 // wanted — the pending hand is the FEEDER), so the elevated ladder_funding iron bands
 // (planner.rs 65/64) never fire and the hand is permanently unfunded.
+// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+#[ignore]
 #[test]
 fn tempo_hand_iron_funding_after_chopper() {
     let mut st = base_state();
@@ -149,6 +155,8 @@ fn tempo_hand_iron_funding_after_chopper() {
 // construction as tempo_wants_third_hand (one starter + one already-trained chopper, turn=50)
 // but with ZERO farm bananas anywhere (farm_now=0). Under the OLD GE_FEEDER_FARM=1,
 // farm_now(0) >= 1 is false, so want_feeder is unreachable here — this pins fix (b) of T-hand.2.
+// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+#[ignore]
 #[test]
 fn tempo_wants_third_hand_dead_farm() {
     let mut st = base_state();

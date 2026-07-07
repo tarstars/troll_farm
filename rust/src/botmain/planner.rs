@@ -36,6 +36,11 @@ const BAND: i64 = 100_000; // > any ETA by orders of magnitude
 // flaps/game = leaked steps, the v1.27 arena fade). Within-band (« BAND): stability never
 // overrides the priority hierarchy, only breaks near-ties toward the current plan.
 const STICKY: i64 = 6; // v1.28.3 sweep: residual flaps 2-21 at 3; absorb bigger ETA jitter
+// v1.36.0-race: mild discount for a JOINABLE contested tree (an enemy is already chopping it,
+// but we can arrive before they finish) — the wood splits round-robin among cell-sharers
+// (engine apply_chop), so a shared tree is worth slightly less than an uncontested one, but
+// never enough to lose to a materially worse alternative. « BAND, like STICKY.
+const RACE_SHARE_PEN: i64 = 2;
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
@@ -102,6 +107,29 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         |p: &Tree| plan.liquidation || manhattan(p.pos(), shack) <= manhattan(p.pos(), plan.opp);
     let within_roam = |p: &Tree| plan.liquidation || plan.farm_d.get(&p.pos()).map_or(false, |&fd| fd <= plan.chop_r);
 
+    // v1.36.0-race (user replay finding): a tree an enemy is already chopping is a RACE.
+    // If they fell it before we arrive, walking there donates the travel (skip). If we can
+    // arrive in time, the wood SPLITS round-robin among cell-sharers (engine apply_chop) —
+    // join, but discount the value by the shared payoff. Pure function of `state` (no
+    // per-troll mutable state), so shuffle invariance holds; called once per candidate,
+    // covers every fell-type push (bands 72/70, 42/40, 31/30) via this one helper.
+    let race = |pc: Cell, our_eta: i64| -> Option<i64> {
+        // returns None = doomed (skip candidate); Some(penalty) = value adjustment
+        let occupant = state.opp_trolls.iter().find(|e| e.pos() == pc && e.chop_power > 0);
+        match occupant {
+            None => Some(0),
+            Some(e) => {
+                let h = state.trees.iter().find(|p| p.pos() == pc).map(|p| p.health).unwrap_or(0) as i64;
+                let their_turns = (h + e.chop_power as i64 - 1) / e.chop_power.max(1) as i64;
+                if their_turns <= our_eta {
+                    None // they finish first: doomed
+                } else {
+                    Some(RACE_SHARE_PEN) // joinable: shared wood, mild discount
+                }
+            }
+        }
+    };
+
     // endgame banking (band 95): bank a carried load in time to score it
     if u.total_carried() > 0 {
         let d_home = ortho_neighbors(shack)
@@ -135,12 +163,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
+            let race_pen = match race(pc, steps) {
+                None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
+                Some(pen) => pen,
+            };
             if pc == u.pos() {
                 // standing on a fellable tree: FINISH IT (cascade branch order) — band 72
                 // outranks every travel-fell so invested chops are never abandoned.
-                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 72 * BAND - chop_t });
+                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 72 * BAND - chop_t - race_pen });
             } else {
-                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 70 * BAND - (steps + chop_t) });
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 70 * BAND - (steps + chop_t) - race_pen });
             }
         }
         // anti-starvation fell anything (band 30)
@@ -154,10 +186,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
+            let race_pen = match race(pc, steps) {
+                None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
+                Some(pen) => pen,
+            };
             if pc == u.pos() {
-                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 31 * BAND - chop_t });
+                out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 31 * BAND - chop_t - race_pen });
             } else {
-                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 30 * BAND - (steps + chop_t) });
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 30 * BAND - (steps + chop_t) - race_pen });
             }
         }
         // partial bank / park (band 10)
@@ -306,10 +342,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
                 let steps = eta(&d, pc, ms);
                 let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
+                let race_pen = match race(pc, steps) {
+                    None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
+                    Some(pen) => pen,
+                };
                 if pc == u.pos() {
-                    out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 42 * BAND - chop_t });
+                    out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 42 * BAND - chop_t - race_pen });
                 } else {
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 40 * BAND - (steps + chop_t) });
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 40 * BAND - (steps + chop_t) - race_pen });
                 }
             }
             if u.free_capacity() > 0 {
@@ -323,10 +363,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     }
                     let steps = eta(&d, pc, ms);
                     let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
+                    let race_pen = match race(pc, steps) {
+                        None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
+                        Some(pen) => pen,
+                    };
                     if pc == u.pos() {
-                        out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 31 * BAND - chop_t });
+                        out.push(Cand { kind: Kind::ChopHere, target: Some(pc), value: 31 * BAND - chop_t - race_pen });
                     } else {
-                        out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 30 * BAND - (steps + chop_t) });
+                        out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 30 * BAND - (steps + chop_t) - race_pen });
                     }
                 }
             }
