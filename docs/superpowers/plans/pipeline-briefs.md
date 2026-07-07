@@ -4,7 +4,7 @@
 Repo: /home/tarstars/prj/troll_farm (bot crate in rust/, tools in cgauto/, run python via
 `uv run --no-sync python`). The bot: rust/src/botmain.rs + rust/src/botmain/{state,motion,
 tactics,planner}.rs; submission = tools/bundle.py (module inliner) → tools/minify.py.
-Champion: cgauto/submissions/v1.28.2-steady2.min.rs (arena 19.0-19.2). Read
+Champion/live reference: cgauto/submissions/v1.28.3-sticky6.min.rs (arena-live twin of v1.28.2; equality gates compare against THIS). Read
 docs/ROADMAP.md §2 (iron rules) before acting. NEVER submit to the arena unless you are the
 arena-runner. Record everything you conclude in your final report.
 
