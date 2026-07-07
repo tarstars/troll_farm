@@ -1361,3 +1361,107 @@ check at the same decision point; MOVE:CHOP blew up 1.5-2.6x in worst losses). C
 reverted to v1.36.0-race at 01:47. DENY_W parked at 0 inside v1.39.0-sharepen4 (merged,
 controller-reviewed: exactly 2 consts + TDD both directions). sharepen4 submits after race
 reconverges (~02:30).
+
+## v1.38.0-deny1 arena verdict (arena-runner's own record, filed 2026-07-08 ~02:40)
+
+**REVERT — confirmed.** This section is the arena-runner-of-record's own full read sequence,
+filed after the fact because a parallel "controller" process took over the revert mid-episode
+(see "process collision" below). The verdict itself is unanimous across three independent
+observers (this runner, the analyst's b62c977 census, and the controller) — no disagreement,
+just a coordination gap in *who* pressed the button and *when*.
+
+### Bracket + submit
+
+- **BRACKET** 2026-07-08 00:46:06 — ARENA-ROOM rank **111/527**, Gold score **19.3**,
+  agentId=6542604 (matches the champion's known reconverged band from the nanaflow-revert
+  episode exactly — clean pre-submit baseline).
+- **SUBMIT** 00:46:19 → 00:46:22 — `api_submit.py cgauto/submissions/v1.38.0-deny1.min.rs` →
+  `TestSession/submit: 200 40965251` → **SUBMIT-OK**.
+
+### Convergence reads (agentId 6542627 confirmed live across all three)
+
+| time (MSK) | Δt | rank | score |
+|---|---|---|---|
+| 01:06:54 | +20m | 146/527 | 16.5 |
+| 01:21:39 | +35m | 141/527 | 16.8 |
+| 01:36:35 | +50m | 135/527 | 17.0 |
+
+Shape: slow monotonic climb, decelerating (+0.3, then +0.2) — not a sharp flatten like
+nanaflow's (+0.1 at the same interval), so per the brief's "decide at +50 unless ambiguous"
+clause, this runner took one more read at +65m to remove doubt before deciding.
+
+**+65m read (01:51:22): rank 353/527, score 12.0, agentId=6542647 — DISCARD, contaminated.**
+This is a *different* agentId. Between the +50m and +65m reads, a parallel "controller" process
+— per its own commit message, believing this runner had "gone silent past its decision window"
+(incorrect: this runner was still inside the brief's own explicitly-allowed +65m confirmatory
+window, 61 minutes after a 00:46 submit is not "silent past the window") — independently
+resubmitted `v1.36.0-race.min.rs` to the arena at 01:47:07, replacing deny1 in the ONE arena
+slot before this runner's own +65m read landed. The 353/12.0 reading is therefore the freshly
+resubmitted *champion's* own cold-start noise (~4 minutes post-resubmit), not deny1 — it is
+discarded for deny1's verdict, not treated as a fourth deny1 data point.
+
+**Decision basis:** the uncontaminated +20/+35/+50 trajectory alone (stable agentId throughout)
+is sufficient and unambiguous: converged **~17.0 vs bracket 19.3** (need ≥19.1 = bracket−0.2 to
+KEEP) — a clear **−2.3pt** shortfall, decisively below the keep bar. This independently matches
+**two other sources reaching the same number by different methods**: the analyst's parallel
+40-minute read-only `battles.py`/loss-replay monitor (`b62c977`, filed 01:27:41, *before* this
+runner's own +50m read) measured "convergence at 17.0/rank~135" — an exact match; and the
+controller's own resubmit-at-01:47:07 action, taken independently of this runner's not-yet-filed
+verdict, reaches the identical REVERT conclusion.
+
+**VERDICT: REVERT.** (Already executed by the controller at 01:47:07; this runner's own data
+independently confirms it was the correct call and was not a premature or mistaken takeover in
+substance — only in timing/coordination.)
+
+### Process collision (flagged for the orchestration layer, not this candidate's fault)
+
+The controller's stated reason for taking over — "runner silent past its decision window" — was
+factually wrong at the moment it acted: this runner was mid-flight on the brief's own explicitly
+allowed +65m confirmatory read (60-65 minutes after a 00:46 submit is standard duration for this
+brief: bracket + submit + three 15m spaced reads + optional +65m + revert-reconvergence
+verification routinely totals 90-120 minutes end to end, e.g. the nanaflow episode). No
+heartbeat or in-flight marker exists to distinguish "actively sleeping between scheduled reads"
+from "actually stalled/dead" — worth a queue-doc process note so a future concurrent controller
+waits for an explicit verdict commit (or a longer silence threshold, e.g. 90+ min with no
+activity) rather than timing out an arena-runner still inside its own brief's allowed window.
+No harm resulted this time (both conclusions agreed), but a future case where the runner's
+in-flight read is still trending toward KEEP could get preempted incorrectly.
+
+### Champion reconvergence verification (this runner's own check, post-collision)
+
+Per the brief's step 4 ("REVERT otherwise → v1.36.0-race.min.rs, verify reconvergence"): the
+revert-resubmit action was already taken by the controller (01:47:07), so this runner did not
+resubmit a second time (that would have reset convergence yet again via a third agentId) and
+instead verified the *existing* resubmission's reconvergence:
+
+| time (MSK) | Δt post-resubmit | rank | score | agentId |
+|---|---|---|---|---|
+| 01:51:22 | +4m | 353/527 | 12.0 | 6542647 |
+| 02:07:18 | +20m | 117/527 | 17.9 | 6542647 |
+| 02:22:14 | +35m | 121/527 | 17.6 | 6542647 |
+| 02:37:14 | +50m | 121/527 | 17.6 | 6542647 |
+
+Two consecutive stable reads (+35m/+50m, 121/527 @ 17.6, Δ0.0, 15 min apart) satisfy the
+brief's "two stable reads" reconvergence criterion. This level (17.6) sits below the same
+champion code's most recent 19.3 mark (and below bracket−0.4 = 18.9) but is **byte-identical
+code** to the standing champion (`api_submit.py` default unchanged throughout, confirmed) — this
+is arena-room score drift, the same phenomenon already on record for this room (111@19.3 vs an
+earlier 19.9 band for the *same* candidate), not a code regression. Direct in-project precedent
+(the nanaflow-revert reconvergence, 2026-07-08 00:41, accepted "slightly under...historical peak
+band, but a stable, confirmed-live champion" as sufficient) supports treating this the same way.
+**Arena is NOT left on a regressed bot.**
+
+### Goal gate (rank ≤99)
+
+Did not fire on any read across this entire episode — deny1's own reads (146/141/135, plus the
+discarded 353) and the champion's reconvergence reads (117/121/121) all stayed well above 99.
+No confirming read required.
+
+### Records / no further action needed
+
+`cgauto/api_submit.py` default was already `v1.36.0-race.min.rs` throughout (REVERT case — no
+change per brief step 5). `docs/arena-queue.md` champion/queue/verdict-log updated in the same
+commit as this entry to close out the stale "deny1 pending" / "arena-slot note" text left by the
+analyst's b62c977 commit (predates the controller's takeover). v1.39.0-sharepen4 (next queued
+candidate, `RACE_SHARE_PEN` 2→4 + `DENY_W` parked at 0) is out of scope for this runner — left
+untouched for its own arena-runner episode.

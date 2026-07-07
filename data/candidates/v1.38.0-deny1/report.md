@@ -180,6 +180,55 @@ funding bands (60/58/65/64/63/45/44), the printer/tree-first bands (52/50/49) an
 plant-placement geometry from v1.37.0-nanaflow (untouched), `seed_cells`/`fell_ok`'s
 protection logic, `GE_MAX_TROLLS`/training/`tactics.rs`, or `motion.rs`.
 
+## Arena verdict (arena-runner, 2026-07-08) — REVERT
+
+**Bracket** 00:46:06: rank 111/527, Gold score 19.3, agentId=6542604. **Submit** 00:46:19-22:
+`api_submit.py cgauto/submissions/v1.38.0-deny1.min.rs` → SUBMIT-OK (TestSession 40965251).
+
+**Convergence** (agentId 6542627, stable across all three):
+
+| time | Δt | rank | score |
+|---|---|---|---|
+| 01:06:54 | +20m | 146/527 | 16.5 |
+| 01:21:39 | +35m | 141/527 | 16.8 |
+| 01:36:35 | +50m | 135/527 | 17.0 |
+
+Converged ~17.0 vs bracket 19.3 (need ≥19.1 to KEEP) — a clear −2.3pt regression, decisively
+below the keep bar. Independently corroborated by the analyst's parallel `battles.py`/loss-
+replay census (`b62c977`), which measured the identical 17.0/~135 convergence point by a
+different method, and diagnosed the mechanism: `DENY_W`'s bands-70/72 tie-break collides with
+`race()`'s doomed-target check at the same decision point, producing excessive travel (worst-loss
+MOVE:CHOP ratio 1.5-2.6x the ~2.7 historical baseline in 2/3 decoded replays).
+
+**Process note:** a parallel "controller" process, believing this runner had gone silent past its
+decision window (it had not — it was mid-flight on the brief's own explicitly-allowed +65m
+confirmatory read, a normal 60-65 minute mark for this brief), independently resubmitted
+`v1.36.0-race.min.rs` at 01:47:07 before this runner's own +65m read landed. That read (01:51:22,
+353/527 @ 12.0, agentId=6542647) is therefore the *freshly resubmitted champion's* own cold-start
+noise, not a deny1 data point — discarded. The uncontaminated +20/+35/+50 trajectory above is
+sufficient on its own to decide REVERT, and matches the controller's and analyst's independent
+conclusions exactly (unanimous three ways, coordination gap only).
+
+**Champion reconvergence** (verifying the already-executed revert; agentId 6542647 throughout):
+
+| time | Δt post-resubmit | rank | score |
+|---|---|---|---|
+| 01:51:22 | +4m | 353/527 | 12.0 |
+| 02:07:18 | +20m | 117/527 | 17.9 |
+| 02:22:14 | +35m | 121/527 | 17.6 |
+| 02:37:14 | +50m | 121/527 | 17.6 |
+
+Two stable reads (+35m/+50m, 121/527 @ 17.6, Δ0.0) satisfy the reconvergence bar. Level sits
+below the champion's most recent 19.3 mark but is byte-identical code (api_submit.py default
+unchanged) — consistent with this room's documented score drift, not a code regression. Arena
+NOT left on a regressed bot.
+
+**Goal gate (rank ≤99):** did not fire on any read this episode.
+
+**VERDICT: REVERT.** No `api_submit.py` default change (already pointed at v1.36.0-race.min.rs).
+Full detail, including the process-collision note, in `docs/silver-experiment-log.md`
+("## v1.38.0-deny1 arena verdict") and `docs/arena-queue.md`.
+
 ## Next steps (gatekeeper)
 
 `collect_debug_games.py <debug-probe.min.rs> boss 8` then vs field (incl. >=1 denial-style

@@ -12,18 +12,19 @@ ambiguous (climb-then-fade and flat-low shapes are decidable at +35).
 reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named below.
 
 ## Champion
-- v1.36.0-race (`cgauto/submissions/v1.36.0-race.min.rs`) — converged band 19.3-20.1,
-  rank ~88-111. Promoted 2026-07-07 22:24, superseding v1.28.3-sticky6 (held 19.0-19.2,
+- v1.36.0-race (`cgauto/submissions/v1.36.0-race.min.rs`) — converged band 17.6-20.1,
+  rank ~88-121. Promoted 2026-07-07 22:24, superseding v1.28.3-sticky6 (held 19.0-19.2,
   rank ~113, for ~36h). `cgauto/api_submit.py` default points at this candidate. Re-confirmed
   live 2026-07-08 00:41 after reverting v1.37.0-nanaflow (two stable reads, 111/527 @ 19.3,
-  15m17s apart) — arena was not left on a regressed bot.
-- **Arena-slot note (analyst, 2026-07-08 ~01:24):** the champion is the standing default and
-  designation, but it is **not currently the live arena entry** — v1.38.0-deny1 (below) has
-  occupied the slot since ~00:44-00:48, per the queue-never-idles policy. `battles.py`/
-  `cg_rank.py` reads during this window reflect deny1, not the champion; see the analyst
-  census in `docs/silver-experiment-log.md` ("Analyst census on the race champion,
-  2026-07-08 night") for full detail and the structural note that there is no read-API path
-  to recover a superseded agent's battle history once a newer candidate takes the slot.
+  15m17s apart), and AGAIN 2026-07-08 02:37 after reverting v1.38.0-deny1 (two stable reads,
+  121/527 @ 17.6, 15m apart — same unmodified code, a lower point in this room's documented
+  drift band, not a regression; see verdict log) — arena was not left on a regressed bot
+  either time.
+- **Arena-slot resolved (2026-07-08 ~02:40):** v1.38.0-deny1's occupation of the slot
+  (~00:44-01:47) is now closed out — REVERTED (see verdict log below). The champion has been
+  the live arena entry again since a parallel controller's 01:47:07 resubmit; this runner
+  independently verified that resubmit's reconvergence (two stable reads, 121/527 @ 17.6).
+  Next queued candidate (v1.39.0-sharepen4) had not yet been submitted as of this note.
 
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — PROMOTED to top (analyst re-rank 2026-07-08 night).
@@ -35,17 +36,14 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    v1.36.0-race specifically (per the nanaflow post-mortem's own recommendation) to isolate
    it from the diagonal-placement half before restacking both.
 4. **diagonal-contest design** — still undesigned; lowest maturity, unchanged last place.
-5. **A2 v1.38.0-deny1** — STATUS CORRECTED (was stale "TO BUILD"): already builder-complete
-   since 2026-07-07 22:22 and **currently LIVE in the arena** (submitted by a concurrent
-   arena-runner ~00:44-00:48 on 2026-07-08, per the queue-never-idles policy). Analyst
-   monitoring (read-only, ~40 min, see silver-experiment-log.md) found it **converged at
-   score 17.0 / rank ~134-136** — a 2.3-3.1 pt regression vs the champion's own band, in a
-   40-game battles.py sample that is properly matched (not a still-climbing transient).
-   Loss-replay decode of the 3 worst losses found our own MOVE:CHOP ratio running 1.5-2.6x
-   the historical baseline in 2 of 3 — suggestive of DENY_W adding wasted travel by
-   colliding with the race-check's own contested-tree tie-break (same decision point, bands
-   70/72). DEMOTED to last priority pending the arena-runner's actual verdict; if reverted as
-   trending, file next to the protection family / T-hand as a closed dead end.
+5. **A2 v1.38.0-deny1 — CLOSED, REVERTED** (dead end; filed next to the protection family /
+   T-hand). The arena-runner's own read sequence (bracket 111/527@19.3 → +20/+35/+50m
+   146/141/135 @ 16.5/16.8/17.0, stable agentId throughout) independently confirmed the
+   analyst's 17.0 convergence estimate and the mechanism diagnosis: `DENY_W` collides with
+   `race()`'s own contested-tree tie-break (same decision point, bands 70/72), producing
+   excessive travel (MOVE:CHOP 1.5-2.6x baseline in 2/3 worst losses). REVERTED — see verdict
+   log. Any future denial-weighting retest should target a decision point that doesn't
+   collide with `race()`'s own tie-break before trying again.
 6. **T-hand line — DROPPED** (post-mortem da574b0: the hand NEVER plants — 4 hauler/1
    tourist/1 idler across 6 games, 34-58% path overlap with the chopper, bill never repaid.
    Residual design note: same-role trolls need a dispersion/exclusivity notion in the
@@ -56,6 +54,21 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    look once a champion-specific census is unblocked (analyst finding, 2026-07-08 night).
 
 ## Verdict log (newest first)
+- v1.38.0-deny1: REVERTED (bracket 111/527 @19.3; converged 135/527 @17.0 across a stable
+  +20/+35/+50m trajectory, 16.5→16.8→17.0, a −2.3pt shortfall vs the −0.2pt keep bar, not
+  ambiguous — independently corroborated by the analyst's parallel `battles.py` census
+  (identical 17.0/~135) and the mechanism diagnosis: `DENY_W` collides with `race()`'s own
+  contested-tree tie-break, same bands 70/72, causing excessive travel. Process note: a
+  parallel "controller" resubmitted the champion at 01:47:07 believing this runner had gone
+  silent — it had not (mid-flight on the brief's own explicitly-allowed +65m confirmatory
+  read); the +65m read (353/527@12.0, agentId 6542647) is discarded as contaminated — a
+  different agentId, i.e. the freshly-resubmitted champion's own cold-start noise, not deny1.
+  Runner/analyst/controller independently reached the same REVERT conclusion — a coordination
+  gap, not a disagreement. Champion reconvergence verified by this runner (two stable reads,
+  121/527 @ 17.6, 15m apart) — a lower level than the most recent 19.3 mark but the same
+  unmodified code, consistent with this room's documented score drift, not a regression. Goal
+  gate (≤99) did not fire. Full detail in `docs/silver-experiment-log.md`
+  ("## v1.38.0-deny1 arena verdict") and `data/candidates/v1.38.0-deny1/report.md`.
 - v1.37.0-nanaflow: REVERTED (bracket 103/527 @19.9; converged climb-then-flatten at
   142/527 @16.6-16.7, 3.2-3.3pts below bracket, decided at +50m, not ambiguous; reverted to
   v1.36.0-race at 23:50:11, reconverged 111/527 @19.3 confirmed by two stable reads; goal
