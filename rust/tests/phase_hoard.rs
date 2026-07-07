@@ -98,3 +98,30 @@ fn hoard_denial_emergency_fells_threatened_tree() {
     assert!(cmds[&2] == "CHOP 2" || cmds[&2].contains("3 2"),
         "threatened tree must be denial-felled: {}", &cmds[&2]);
 }
+
+// B2.1 gatekeeper fix (Scale meta, wood=0 in 12/12 games): during Hoard, the wallet band
+// (62*BAND, any ripe fruit) unconditionally outranked iron-funding (fund_hi=45, since
+// want_chopper is forced false under Scale) — so nobody ever mined, the ladder's chopper slot
+// (cost[IRON]=7) never trained, and wood stayed 0 for the entire game in every sampled game.
+// The starter must prefer mining iron it's already adjacent to over chasing a competing ripe
+// fruit tree while the ladder is iron-short.
+#[test]
+fn hoard_mines_iron_when_ladder_is_iron_short() {
+    let mut st = base_state();
+    st.iron_cells.insert((3, 2));
+    let mut b = banana(5, 2, 4);
+    b.fruits = 3;
+    st.trees = vec![b];
+    let mut plan = base_plan();
+    plan.phase = Phase::Hoard;
+    plan.have_iron = true;
+    plan.need_iron = true;
+    plan.want_feeder = true;
+    plan.cost = [3, 3, 3, 0, 7, 0];
+    let cmds = assign(&st, &plan, &[starter(0, 2, 2)]);
+    assert_eq!(
+        cmds[&0], "MINE 0",
+        "starter adjacent to iron must mine it over chasing a competing ripe fruit during Hoard: {}",
+        &cmds[&0]
+    );
+}

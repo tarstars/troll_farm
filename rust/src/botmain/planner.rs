@@ -217,9 +217,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // funding (45/44) must never displace printer/seed work (50/48). The v1.28.0
             // regression: perpetual feeder-funding starved the farm on lemon-poor maps.
             let (fund_hi, fund_lo) = if plan.want_chopper { (60, 58) } else { (45, 44) };
+            // B2.1 gatekeeper fix: during Hoard, the wallet band (62, above) unconditionally
+            // outranked fund_hi (45, since want_chopper is forced false under Scale) — nobody
+            // ever mined, so the ladder's iron-costed hand never trained (wood=0 in 12/12
+            // games). Iron is scarce and un-substitutable (no fruit alternative funds it), so
+            // while iron-short during Hoard it must outrank the fruit wallet band (62).
+            let hoard_iron = plan.phase == Phase::Hoard;
             if plan.need_iron && u.chop_power > 0 {
                 if state.iron_cells.iter().any(|ic| manhattan(u.pos(), *ic) == 1) {
-                    out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: fund_hi * BAND });
+                    let v = if hoard_iron { 64 } else { fund_hi };
+                    out.push(Cand { kind: Kind::Mine, target: Some(u.pos()), value: v * BAND });
                 } else if let Some(c) = state
                     .iron_cells
                     .iter()
@@ -227,7 +234,8 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     .filter(|c| d.contains_key(c))
                     .min_by_key(|c| (d[c], tie_mix(*c, salt)))
                 {
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: fund_hi * BAND - eta(&d, c, ms) });
+                    let v = if hoard_iron { 63 } else { fund_hi };
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: v * BAND - eta(&d, c, ms) });
                 }
             }
             for p in state.trees.iter().filter(|p| {

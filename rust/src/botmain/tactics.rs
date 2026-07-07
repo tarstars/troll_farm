@@ -134,8 +134,12 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let train_spec = SCALE_LADDER[slot];
         let cost = training_cost(n, train_spec);
         let train_now = want_hand && mb_afford(inv, &cost, have_iron);
-        let need_iron =
-            have_iron && slot == 2 && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
+        // B2.1 gatekeeper fix: accumulate iron EARLY (all of Hoard), not only once slot 2 is
+        // reached at t>=110 — 7 = the slot-2 chopper's iron cost (n=3 + chop^2=4). Iron income
+        // is otherwise zero (nothing mines it) and the map's starting stock rarely reaches 7 by
+        // t110, so the wallet must be pre-filled during Hoard or the ladder's only chop-capable
+        // hand never trains (wood=0 the entire game, confirmed 12/12 in the gatekeeper report).
+        let need_iron = have_iron && inv[IRON] < 7;
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
         (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
     } else {
