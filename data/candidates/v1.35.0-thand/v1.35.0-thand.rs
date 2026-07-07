@@ -1216,7 +1216,7 @@ const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mech
 const GE_MAX_TROLLS: i32 = 3; // T-hand — the funding stack (65/64/63) dissolved the lemon wall; the hand is the farm's missing planter.
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
 const GE_FEEDER_T: i32 = 45; // T-hand: restored from 60 — 60 was a leftover from the v1.28.x farm-death era when GE_MAX_TROLLS=2 made this gate unreachable anyway (dormant 3rd hand); the funding fix (planner.rs ladder_funding) is what actually treats farm-death now, so the feeder can arm this early again
-const GE_FEEDER_FARM: usize = 1; // T-hand.1: 3->1 — the hand IS the farm's planter; gating it on an already-healthy farm blocked the cure (gatekeeper v1.35.0 verdict: farm sits at 0-1 after t45 in half the boss games sampled, so farm_now>=3 was rarely satisfied)
+const GE_FEEDER_FARM: usize = 0; // T-hand.2: 1->0 — verdict-#2 catch-22: the hand rescues the dead farm; any farm precondition blocks the cure exactly when it's needed (fruit/iron wallets, need_fund/need_iron, are the real gates now). farm_now collapsed to literal 0 for 63-100% of sampled turns per game (8/8 boss games ended farm=0); one game had fruit+iron sufficient for 255 straight turns while farm sat at 0 the whole time and want_feeder still never became eligible under the old >=1 floor.
 const GE_CHOP_DELAY: i32 = 0; // NO delay: train chopper early (denial > accumulation, proven 2026-07-05)
 const GE_CHOP_FARM: usize = 3; // train as soon as affordable (early aggression, v1.4.5 regime)
 const GE_FARM_R: i32 = 2; // v1.13.0: TIGHT farm hugging the shack — halves the chopper's bank-trip distance (the throughput bottleneck)

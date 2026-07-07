@@ -139,3 +139,24 @@ fn tempo_hand_iron_funding_after_chopper() {
     assert_eq!(plan.need_iron, true, "iron funding must be requested for the pending hand");
     assert_eq!(plan.train_now, false, "cannot train yet: iron unaffordable");
 }
+
+// T-hand.2 (gatekeeper v1.35.0 verdict #2): farm_now collapses to literal ZERO for most of
+// every real boss game sampled (63-100% of turns per game; 8/8 games ended with farm=0) — not
+// merely "thin". Game 895413149 isolated the catch-22 cleanly: fruit+iron cleared the feeder's
+// full cost for 255 straight turns (t45-t300) while farm sat at 0 the ENTIRE game, so
+// want_feeder never once became eligible under GE_FEEDER_FARM=1 — the hand exists specifically
+// to rescue a dead farm, so any nonzero floor blocks the cure exactly when it's needed. Same
+// construction as tempo_wants_third_hand (one starter + one already-trained chopper, turn=50)
+// but with ZERO farm bananas anywhere (farm_now=0). Under the OLD GE_FEEDER_FARM=1,
+// farm_now(0) >= 1 is false, so want_feeder is unreachable here — this pins fix (b) of T-hand.2.
+#[test]
+fn tempo_wants_third_hand_dead_farm() {
+    let mut st = base_state();
+    st.trees = vec![];
+    st.turn = 50;
+    let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
+    let plan = plan_with_meta(&st, &my, Meta::Tempo);
+    assert_eq!(plan.farm_now, 0, "sanity: zero farm bananas in range");
+    assert_eq!(plan.want_chopper, false, "a chopper already exists: {:?}", plan.want_chopper);
+    assert_eq!(plan.want_feeder, true, "the third hand must be wanted even with a dead farm");
+}

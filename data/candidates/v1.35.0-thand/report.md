@@ -357,3 +357,85 @@ would still block them because lemon craters to 0-1 for ~240 turns after the cho
 training cost drains the pool — that may need its own fix (e.g. reserve lemon from the chopper's
 cost, or fund the feeder before the chopper on lemon-tight draws) if farm-gate=0 doesn't clear
 the whole sample.
+
+## Fix T-hand.2
+
+**Task:** drop the farm precondition (`GE_FEEDER_FARM` 1->0) — the gatekeeper's verdict-#2
+catch-22: `farm_now` collapses to literal ZERO for 63-100% of sampled turns per boss game (8/8
+games ended `farm=0`), so even the relaxed `>=1` floor still blocked the hand exactly when the
+disease (a dead farm) was present. Base tree: this branch, on top of 01bfa2f (the FAIL #2 gate
+commit).
+
+### What changed
+- TDD, `rust/tests/tactics_scale.rs`, confirmed FAILING pre-fix:
+  - New `tempo_wants_third_hand_dead_farm`: same construction as `tempo_wants_third_hand` (one
+    starter + one already-trained chopper, turn=50, Meta::Tempo) but with ZERO farm bananas
+    anywhere (`st.trees = vec![]`, `farm_now=0`) — failed with `want_feeder=false` (assertion:
+    "the third hand must be wanted even with a dead farm", left=false, right=true) under the
+    pre-fix `GE_FEEDER_FARM=1` gate.
+- `rust/src/botmain.rs`: `GE_FEEDER_FARM` 1 -> 0 with an inline comment — verdict-#2's
+  catch-22: the hand rescues the dead farm, so ANY nonzero farm precondition blocks the cure
+  exactly when it's needed; fruit/iron wallets (`need_fund`/`need_iron`) are the real gates
+  now. `farm_now >= GE_FEEDER_FARM` with `GE_FEEDER_FARM: usize = 0` is now trivially true —
+  checked for an `unused_comparisons`-style lint (rustc fires this for literal `x >= 0`
+  comparisons on unsigned types); none appeared under `cargo build --release` / `cargo test
+  --release` (the lint doesn't trigger through a named const, only a literal), and
+  `cargo clippy` isn't installed in this environment to cross-check further. Kept the
+  comparison as-is per the brief's contingency (it's a const knob; the warning — had it fired —
+  would have been acceptable); no restructuring was needed since no warning fired.
+- Diffstat: `botmain.rs` 2± (1 line: value + comment), `tactics_scale.rs` +21 (new test +
+  comment block).
+
+### Gate results
+1. `cargo test --release`: all 24 suites green (7/7 in `tactics_scale.rs`, incl. the new
+   `tempo_wants_third_hand_dead_farm`; every other suite unaffected).
+2. Compiler-warning check: `cargo build --release` (touched `botmain.rs` to force a fresh
+   compile) shows the same 4 pre-existing warnings as pre-fix (unused import `PLUM`, unused
+   variable `opp`, `HARVESTER` never used x2 in `strategies/mybot.rs`, plus a separate unused
+   import `Strategy` in `bin/fastcheck.rs`) — no new warning attributable to the widened
+   `farm_now >= GE_FEEDER_FARM` comparison.
+3. Self-determinism: `equality target/release/bot target/release/bot 8 300 target/release/bot`
+   -> `EQUAL: 16 games (8 seeds x 2 seats), all command streams identical`.
+4. Champion-equality: N/A (waived by design, per the original T-hand brief — Tempo behavior
+   changes intentionally).
+5. `tools/bundle.py`: `src/botmain.rs -> target/refactor/bundled.rs: 68854 chars`. Grep
+   confirms in the bundle: `VERSION = "1.35.0-thand"` (1), `GE_MAX_TROLLS: i32 = 3` (1),
+   `GE_FEEDER_FARM: usize = 0` (1), `T-hand.2` (1), `ladder_funding = plan.want_feeder` (1),
+   `need_iron = have_iron` (2 — the Scale branch's own gate plus the Tempo branch widened in
+   T-hand.1, both untouched by this fix).
+6. rustc compile-check on the full bundled source (dot-free copy): exit 0 (`SRC-COMPILE-OK`).
+7. Bundle-inlining sanity: bundled bin vs `target/release/bot` ->
+   `EQUAL: 16 games (8 seeds x 2 seats), all command streams identical`.
+8. `tools/minify.py`: `68854 -> 41992 chars (60%)` — byte-identical minified size to T-hand.1
+   (58% under the 100,000 B cap): the only functional edit is a single-character value swap
+   (`1`->`0`), and the (much longer) new comment is comment-stripped by the minifier.
+9. rustc compile-check on the minified copy (dot-free copy): exit 0 (`MIN-COMPILE-OK`).
+10. Minified bin vs `target/release/bot`: `EQUAL: 16 games (8 seeds x 2 seats), all command
+    streams identical`.
+11. DEBUG probe rebuilt: `sed` flip confirmed (`const DEBUG: bool = true;` x1 pre-minify),
+    minified to 41,991 B (`const DEBUG: bool = true;` x1 and `GE_FEEDER_FARM: usize = 0` x1
+    confirmed post-minify), rustc compile-check exit 0, 2-seed local smoke ->
+    `EQUAL: 4 games (2 seeds x 2 seats), all command streams identical` (no crash; DEBUG only
+    echoes to stderr, so stdout-parity holds as documented).
+
+### New sizes
+- `cgauto/submissions/v1.35.0-thand.rs`: 69,968 B -> **70,203 B** (grew only because the new
+  comment is longer; no functional size driver).
+- `cgauto/submissions/v1.35.0-thand.min.rs`: 41,992 B -> **41,992 B** (unchanged — comments are
+  stripped by the minifier, confirming the only functional change is the 1-character value
+  swap).
+- `data/candidates/v1.35.0-thand/v1.35.0-thand.rs` / `.min.rs`: byte-identical (`cmp`-verified)
+  to the `cgauto/submissions/` copies above.
+- `data/candidates/v1.35.0-thand/v1.35.0-thand.debug-probe.min.rs`: 41,991 B -> **41,991 B**
+  (unchanged, same reasoning).
+
+### Next steps (gatekeeper, re-run)
+Same recipe as before: `collect_debug_games.py <probe> boss 8` + field (incl. mikdiet 6480914 /
+plcc 6480966); read `@TFFARM`: does `n` now reach 3 even in the games where farm sat at literal
+0 the whole game (895413149-style: fruit+iron sufficient for 255 straight turns); `ramp.py
+--last 8` for wood/delta; no crater. If the hand still doesn't train, the prior verdict's own
+residual-risk note still applies: late-chopper-train games (895413055/097-style) may still
+block on `afford_fruit_only` even at farm-gate=0, since lemon craters to 0-1 for ~240 turns
+after the chopper's own training cost drains the pool — that would need its own fix (e.g.
+reserve lemon from the chopper's cost, or fund the feeder before the chopper on lemon-tight
+draws) if dropping the farm gate doesn't clear the whole sample on its own.
