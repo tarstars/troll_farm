@@ -545,3 +545,186 @@ targeted-funding priority bug `e09ac48` fixed, recurring at the three resource t
 not touch. Until `need_fund`'s candidates get the same priority bump, the Scale ladder will keep
 training its chopper in roughly 1 game out of 6 (2/12 here), gated by whichever single fruit type a
 given map happens to be locally poor in near the wallet-gathering path.
+
+## Gatekeeper verdict #3 (Scale meta, post-B2.2)
+
+**Role:** GATEKEEPER only (never submits to the arena; nothing below touched `cgauto/api_submit.py`
+or the arena). Re-running the same style of gate against `b14ebc7` ("fix(b2.2): hoard deficit-fruit
+band 63 — targeted funding outranks the generic wallet"), the fix written directly in response to
+verdict #2's root cause (iron got the priority bump in `e09ac48`/B2.1, but PLUM/LEMON/APPLE funding
+was still dominated by the generic 62-band wallet candidate, so 10/12 games stalled on one of those
+three types). HEAD at run time: `b14ebc7` (tip of `session-2026-07-01`; tree confirmed clean before
+and after the probe build).
+
+**Probe build** (from the CURRENT tree, i.e. including `b14ebc7`), exactly mirroring verdict #2's
+recipe:
+```
+cd rust
+sed -i 's/const GE_META: tactics::Meta = tactics::Meta::Tempo;/const GE_META: tactics::Meta = tactics::Meta::Scale;/' src/botmain.rs
+uv run --no-sync python tools/bundle.py        # 65450 chars
+git checkout -- src/botmain.rs                 # tree restored; verified clean + Tempo immediately
+sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/' target/refactor/bundled.rs > s.rs
+uv run --no-sync python tools/minify.py s.rs s.min.rs   # 65449 -> 41962 chars
+cp s.min.rs dotfree.rs && rustc --edition 2021 -O dotfree.rs -o ccbin   # exit 0, COMPILE-OK (both full + minified copies)
+```
+Verified: full `s.rs` contains `Meta::Scale` (4 hits), `const DEBUG: bool = true` (1 hit),
+`fruit_band` (2 hits — the B2.2 fix's new binding + its use site); minified copy contains
+`Meta::Scale` (3 hits), `DEBUG: bool = true` (1 hit), `fruit_band` (2 hits). `rust/src/botmain.rs`
+confirmed back to `Meta::Tempo` and `git status --short` clean in `rust/` immediately after the
+bundle step, before any games were played. Probe kept in the session scratchpad only (ephemeral
+gatekeeper artifact, per role) — not frozen into the repo.
+
+**Games played (all completed the full 300 turns; zero crashes):**
+- Boss ×8: `data/boss5_games/boss/game_895373{184,212,239,258,279,291,303,319}.{map,log,raw}`
+- Field vs mikdiet (6480914) ×3: `data/boss5_games/6480914/game_8953{73543,74625,74658}.*`
+  (requested ×2; got 1/2 on the first pass — the 2nd call hit **HTTP 422**; per instructions,
+  waited 15 min once, then retried the full ×2 batch and got both cleanly, for 3 total)
+- Field vs plcc (6480966) ×3: `data/boss5_games/6480966/game_8953{73567,74707,74740}.*`
+  (same pattern — 1st call hit **HTTP 422** on the 1st sub-game, 2nd sub-game succeeded; the
+  post-wait retry then landed both, for 3 total)
+- **One HTTP 422 retry cycle used, exactly per the brief's "on 422: wait 15 min once" rule** — no
+  second wait, no further retries; all numbers below use every game that came back (14 total: 8
+  boss + 6 field), not just the minimum requested 4 field games.
+
+### Readout 1 — phase flip t=140: **HOLDS (8/8)**
+Every boss raw: last `@TFFARM ... phase=Hoard` sample at t=135, first `phase=Factory` sample at
+t=140, in all 8 games — identical to verdicts #1/#2 (this part of B1-B3 has never regressed).
+
+### Readout 2 — HANDS (the fix's direct target): **FAILS** (n=4 sub-bar misses by the entire bar)
+First-t per value of `n`, per boss game (all 8: n=1→t5, n=2→t15, the fixed early gates):
+
+| game | n=3 first-t | max n (whole 300-turn game) | n≥3 by t140 | n=4 by t≈160 |
+|---|---|---|---|---|
+| 184 | t45 | 3 | YES | NO (never) |
+| 212 | t45 | 3 | YES | NO (never) |
+| 239 | t115 | 3 | YES | NO (never) |
+| 258 | — (stuck at n=2) | **2** | NO | NO (never) |
+| 279 | t55 | 3 | YES | NO (never) |
+| 291 | t65 | 3 | YES | NO (never) |
+| 303 | t45 | 3 | YES | NO (never) |
+| 319 | t45 | 3 | YES | NO (never) |
+
+n≥3 by t140: **7/8** (need ≥6/8 — holds). n=4 by t≈160: **0/8** (need ≥4/8 — fails by the entire
+bar). More striking than "by t160": **across the full 300-turn duration, n never reaches 4 in any
+of the 8 boss games** — the ladder's only chop-capable slot (the actual fix target) trained in
+zero boss games this run, down from verdict #2's 1/8 (266). Cross-checked against field (below):
+n=4 fires in exactly **1 of 6** field games (plcc 895374707, at t=150 — 10 turns after the Factory
+switch, the wallet finished just barely too late to matter under Hoard's own priority rules); the
+other 5/6 field games max out at n=3, same signature as boss. **Aggregate across all 14 games
+sampled this run: chopper trains in 1/14 (7%)** — worse than verdict #2's 2/12 (17%), and materially
+indistinguishable from verdict #1's 0/12 in practical terms (still essentially "never").
+
+### Readout 3 — FACTORY OUTPUT (the decider): **FAILS on every sub-bar, reverts to verdict #1's zero**
+| game | wood@150 | wood@300 (ours) | gain(150→300) | opp final wood | boss score (us−opp) |
+|---|---|---|---|---|---|
+| 184 | 0 | 0 | 0 | 38 | 27−203 = **−176** |
+| 212 | 0 | 0 | 0 | 32 | 25−187 = **−162** |
+| 239 | 0 | 0 | 0 | 63 | 21−321 = **−300** |
+| 258 | 0 | 0 | 0 | 26 | 33−150 = **−117** |
+| 279 | 0 | 0 | 0 | 46 | 45−217 = **−172** |
+| 291 | 0 | 0 | 0 | 56 | 22−243 = **−221** |
+| 303 | 0 | 0 | 0 | 40 | 28−227 = **−199** |
+| 319 | 0 | 0 | 0 | 58 | 49−270 = **−221** |
+
+gain(t150→300)≥40: **0/8** (need ≥4/8). Avg final wood = **0.0** (need ≥55 — off by the entire
+bar). Games with final wood <25: **8/8** (need 0 — universal, not an outlier). Opp avg final wood =
+**44.9**. Boss win rate **0/8**, avg score delta **−196**. This is **not** an improvement over
+verdict #2 (avg wood 4.2, 1/8 games with any production) — it is a **full reversion to verdict #1's
+0/8-wood, 0.0-avg total failure**, despite B2.2 being a targeted, verified-correct fix for exactly
+the bug verdict #2 found.
+
+### Readout 4 — WALLET diagnostics (not gating): iron regresses to worst-yet, lemon/plum mixed
+Snapshot values (not "ever reached", per verdict #2's own methodology) — `iron@t110`, `lemon@t100`,
+`plum@t110`:
+
+| game | iron@110 | lemon@100 | plum@110 |
+|---|---|---|---|
+| 184 | 0 MISS | 0 MISS | 9 OK |
+| 212 | 5 MISS | 1 MISS | 11 OK |
+| 239 | 6 MISS | 13 OK | 12 OK |
+| 258 | 1 MISS | 13 OK | 1 MISS |
+| 279 | 5 MISS | 3 OK | 14 OK |
+| 291 | 6 MISS | 1 MISS | 11 OK |
+| 303 | 5 MISS | 6 OK | 4 MISS |
+| 319 | 4 MISS | 2 MISS | 13 OK |
+
+iron≥7@t110: **0/8** (verdict #2 was 4/8 — this run is worse on the exact resource B2.1 targeted).
+lemon≥3@t100: **4/8**. plum≥7@t110: **6/8**. Unlike verdict #2 (where the short resource varied
+game-to-game and was usually a single type), **iron is short in 8/8 games this run** — a much more
+uniform failure than either prior verdict saw for any single resource. See Root Cause: this lines up
+exactly with a code-level mechanism, not just map luck.
+
+### Readout 5 — Hoard discipline (wood ≤6 @t150): **HOLDS, still fully vacuous (8/8)**
+All 8 games: wood@t150 = 0 (trivially ≤6). As in both prior verdicts, this passes only because
+nothing is ever felled at all (readout 3), not because Hoard is banking cleanly while suppressing a
+real production stream.
+
+### Readout 6 — Field: **FAILS** (6/6 losses worse than −150, not just the minimum-required 4)
+| game | opp | result | wood (us-opp) | scores | delta |
+|---|---|---|---|---|---|
+| 895373543 | mikdiet | LOSS | 0–116 | [16, 483] | **−467** |
+| 895374625 | mikdiet | LOSS | 0–80 | [20, 366] | **−346** |
+| 895374658 | mikdiet | LOSS | 0–90 | [57, 441] | **−384** |
+| 895373567 | plcc | LOSS | 0–107 | [30, 433] | **−403** |
+| 895374707 | plcc | LOSS | 50–102 | [226, 416] | **−190** |
+| 895374740 | plcc | LOSS | 0–130 | [30, 527] | **−497** |
+
+**0/6 wins, 6/6 losses worse than −150** (best case −190, worst −497, avg **−381**). 895374707 is
+the one bright spot in the whole 14-game sample: it is both the only field game with any wood at
+all (50, from the one n=4 chopper training at t=150) and the smallest-margin loss (−190) — still a
+gate violation, but directionally consistent with "train the chopper → produce wood → lose by
+less," which is the mechanism the whole B2/B3 arc is betting on. It just doesn't fire reliably.
+
+### Root cause (verified by reading the CURRENT `rust/src/botmain/{tactics,planner}.rs` directly)
+`b14ebc7` is exactly what it claims to be: a correct, narrowly-scoped fix that makes the deficit-
+fruit `MoveTo` candidate (`planner.rs`, `let fruit_band = if plan.phase == Phase::Hoard { 63 } else
+{ fund_lo };`) outrank the generic wallet band (62) during Hoard, closing the specific gap verdict
+#2 found. Inspecting it next to the iron fix it was modeled on (`e09ac48`, `hoard_iron` → 64/63)
+surfaces the thing neither fix's own author flagged: **the two now share the exact same numeric
+band, 63, for their `MoveTo` candidates.** Iron's `MoveTo` and the new fruit-deficit `MoveTo` are
+no longer in a deliberate priority order — they compete purely on `eta` (travel distance), because
+`value = 63 * BAND - eta(...)` for both. Since the ladder's slot-2 hand needs **all four** resources
+funded simultaneously (`training_cost(3, (2,2,0,2))` = `PLUM:7, LEMON:7, APPLE:3, IRON:7`, unchanged
+since verdict #2), and `need_iron`/`need_fund[t]` are frequently true at the same time for the same
+troll (verified directly in the traces above — e.g. game 184 has iron and lemon both short for most
+of the game simultaneously), this is not a hypothetical collision: on every turn where a troll can
+see both an iron cell and a deficit fruit tree, whichever is physically closer wins, regardless of
+which resource is scarcer. Iron cells are plausibly sparser/farther than fruit trees on typical maps
+(there are usually many trees but few iron deposits), which would explain why iron — the one
+resource with **no fruit-harvest fallback**, per B2.1's own comment ("iron is scarce and un-
+substitutable") — is now short in 8/8 games, the most uniform failure of any resource across all
+three verdicts. **A second, compounding factor**: both the generic wallet band (62) and the fixed
+funding bands (63/64) are gated `plan.phase == Phase::Hoard` only — at t=140 (Factory) they all
+evaporate simultaneously, dropping funding priority back to `fund_lo`=44 (`want_chopper` is
+hardcoded `false` under Scale, so the 58 tier is dead), which sits below Printer (50/48). Game
+895374707's chopper trained at **t=150, ten turns after** this cliff — meaning the wallet was
+*already essentially complete* when Hoard ended, and finished only by leftover momentum; every
+other game's wallet was still missing at least one resource (usually iron) at t=140 and, per this
+mechanism, was then structurally abandoned in favor of Printer work for the remaining 160 turns,
+which matches the observed "stuck forever past t150" pattern in readout 4 exactly.
+
+### Verdict: **FAIL**
+Readouts 2, 3, and 6 all fail on their own (gating: PASS requires 1, 2, 3, 6); readout 1 holds;
+readout 5 holds only vacuously. `b14ebc7` is a verified-correct, narrow fix for exactly the bug
+verdict #2 diagnosed, but it does not move the needle empirically — this run is a full reversion to
+verdict #1's total-failure state (0/8 boss wood, 0/8 boss wins, 6/6 field losses worse than −150),
+worse on the chopper-training rate than verdict #2 (1/14 vs 2/12) and worse on iron specifically
+(0/8 vs 4/8 games ≥7 by t110) — the exact resource the immediately-prior fix targeted. No crashes;
+one HTTP 422 retry cycle used per the brief's rule, both batches succeeded on retry.
+
+### Single most actionable observation
+`e09ac48` (iron) and `b14ebc7` (fruit) independently picked the **same priority number, 63**, for
+their `MoveTo` candidates, so a troll facing both an iron shortfall and a fruit shortfall at once —
+which happens routinely, since the ladder's final hand needs all four resources at once — now
+resolves the choice by raw travel distance instead of any deliberate ordering, and iron (previously
+the sole occupant of that band, per verdict #2) is the apparent loser: it is short at t110 in 8/8
+games this run, the most uniform single-resource failure across all three verdicts. The fix: give
+iron's Hoard-phase `Mine`/`MoveTo` bands a value strictly above 63 (e.g. 65/64, preserving the
+64-vs-63 Mine/MoveTo gap already used) so it keeps unconditional priority over fruit funding — iron
+has no harvest alternative and B2.1's own comment already asserts it should never lose this race.
+Second, independent lever worth testing regardless: the Hoard-only gating on all three funding
+bands (62/63/64) creates a hard cliff at T_SWITCH=140 — a wallet that is one resource-tick away from
+complete gets fully abandoned the instant Factory starts (game 895374707's t=150 chopper is the one
+case that survived this cliff, by 10 turns of leftover momentum). Either push `T_SWITCH` a bit later,
+or let the funding bands stay elevated for a short grace window past 140 until the ladder's last
+hand actually trains, before conceding the priority to Printer work.
