@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.33.0-hoard"; // B2: hoard bands + Scale training ladder (Tempo-inert)
+const VERSION: &str = "1.34.0-factory"; // B3: Factory farm_cap 12->20 (Tempo-inert)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

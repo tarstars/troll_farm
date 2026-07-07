@@ -114,8 +114,10 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     // AVOIDS the 2-chopper starvation (validated: a 2nd chopper starves the 1-feeder farm).
     let nchop = my.iter().filter(|u| u.chop_power >= 2).count() as i32;
     // B2 (Scale ladder): under Meta::Scale, replace the adaptive chopper-training logic with a
-    // FIXED HAND ladder — want_chopper forced false (no t3 chopper at all; Hoard banks the
-    // wallet with hands only). Troll count n selects the next hand's spec/turn-gate from
+    // FIXED HAND ladder — want_chopper forced false (the early adaptive t1 chopper is REPLACED
+    // by the ladder itself: its final slot trains a real chopper `(2,2,0,2)` once n reaches 3
+    // hands, gated at t>=110; Hoard banks the wallet with hands only before that). Troll count n
+    // selects the next hand's spec/turn-gate from
     // SCALE_LADDER/SCALE_MIN_TURN, mapped onto the SAME Plan fields the Tempo path uses
     // (want_feeder/train_spec/cost/train_now/need_iron/need_fund) so planner.rs needs no new
     // fields — it already reads want_feeder to drive funding/printer work. The Tempo branch
@@ -161,9 +163,14 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     // fells size-3 in 2 chops; the cc3 banks-every-3 offsets the bigger farm's longer trips) — the
     // Boss-5 throughput economy. Low-draw map (cc2): economy A = the TIGHT farm (short bank trips,
     // fast size-2 maturation) that beats Boss 5 ~40%. Best of both, per the felling mechanics.
+    let phase = phase_for(super::GE_META, state.turn);
     let econ_b = false; // econ B (big-farm size-3) arena-validated WORSE (135 vs 120) — the big farm cannot sustain size-3 maturation; pure tight-farm (A) is best
     let farm_r = if econ_b { 3 } else { GE_FARM_R };
-    let farm_cap = if econ_b { 20 } else { GE_FARM_MAX };
+    // B3 (Factory): once the Scale meta reaches Factory (post-T_SWITCH), the hoard-built wallet
+    // funds a bigger farm — 20 slots instead of 12 — so the plant-and-fell loop has room to grow
+    // with the trained hand ladder. Hoard/Tempo are unchanged (econ_b is a permanent `false`, so
+    // they fall through to GE_FARM_MAX=12).
+    let farm_cap = if phase == Phase::Factory { 20 } else if econ_b { 20 } else { GE_FARM_MAX };
     let fell_size = GE_FELL_SIZE; // NATIVE/contested trees: always size-2 = DENIAL
     let farm_fell = if econ_b { 3 } else { 2 }; // OUR farm bananas: size-3 in econ B, size-2 in A
     let chop_r = if econ_b { 10 } else { GE_CHOP_R }; // econ B roams a bigger farm; A stays tight
@@ -190,7 +197,6 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
         }
     }
 
-    let phase = phase_for(super::GE_META, state.turn);
     Plan {
         shack, farm_d, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
         want_feeder, train_spec, cost, train_now, need_iron, need_fund, farm_r, farm_cap,
