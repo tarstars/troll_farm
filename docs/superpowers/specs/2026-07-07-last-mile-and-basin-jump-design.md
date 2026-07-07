@@ -107,3 +107,17 @@ extended from Scale-only to all want_feeder. Adds extraction (right side of the 
 insight); attacks the champion's one measured flaw (late farm supply). Degrades gracefully
 to the 2-troll champion on maps where the wallet can't fill. Then A2 (denial probe).
 Exit gate unchanged: rank ≤99 verified twice.
+
+## Amendment 2 (2026-07-07 ~20:00) — user replay-review: three efficiency findings → queue
+User watched live-bot games and found: (1) DOOMED-TARGET CHASING — we trek to trees an
+enemy is already chopping and lose the race + the travel; fix = race check in fell valuation
+(enemy-on-tree: ceil(health/enemy_chop) vs our ETA; doomed → value ~0). (2) BANANA SOURCE
+ORDER — printer PICKs the tent before harvesting ripe trees; backwards: tree-first accumulates
+tent stock = 1pt held or 8pt via plant→fell (2 wood) conversion. (3) DIAGONAL FARM GEOMETRY —
+plant preference for the 4 diagonal-to-shack cells: map-distance 2 but OFF the orthogonal
+bank-path cells (no traffic block); collect-all → plant → bank excess loop. The "keep grown
+diagonal fruiters" sub-idea = protection (3× arena-negative) → separate, strictly-gated
+sub-candidate only.
+QUEUE (after the in-flight v1.35.0-thand arena verdict): v1.36.0-race (finding 1, standalone,
+zero-pie-risk waste cut), v1.37.0-nanaflow (findings 2+3 placement+loop, one candidate;
+protection part deferred). A2 (denial probe) follows.

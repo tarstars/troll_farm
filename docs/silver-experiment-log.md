@@ -1026,3 +1026,9 @@ the hoard unclimbable from 113. SALVAGE: the funding stack (65/64 iron > 63 defi
 want_feeder-scoped, graceful) = the lemon wall is DEAD. → v1.35.0-thand: Tempo + funded 3rd
 hand — every historical blocker (coordination, wallet, farm gate, perpetual-funding) now
 individually dismantled. Gates: boss 8 + field 4, then arena vs the 19.0 bracket.
+
+## 2026-07-07 ~20:00 — user replay-review findings queued (race-check, banana flow, diagonal farm)
+Three user-observed inefficiencies from live games (see spec Amendment 2): doomed-target
+chasing (race math in fell valuation), tent-PICK-before-tree-harvest inversion (8:1
+plant-fell conversion argument), diagonal-to-shack plant placement (distance 2, off the
+bank path). Queued as v1.36.0-race and v1.37.0-nanaflow behind the T-hand arena verdict.
