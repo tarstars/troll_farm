@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.36.0-race"; // race: doomed-target race check + split-aware contest joining in fell valuation (user replay finding #1)
+const VERSION: &str = "1.37.0-nanaflow"; // nanaflow: banana tree-first harvesting + diagonal plant placement (user replay findings #2+#3)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

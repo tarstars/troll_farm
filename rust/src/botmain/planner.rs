@@ -213,7 +213,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
                 .min_by_key(|c| {
                     let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
-                    (d[*c] + if wet { 0 } else { 2 }, tie_mix(**c, salt))
+                    // v1.37.0-nanaflow (user replay finding #3): DIAGONAL PLANT PLACEMENT. The
+                    // four cells orthogonally adjacent to the shack (farm_d==1) are the only
+                    // bank/DROP cells every hand's carry trip needs — planting there congests
+                    // banking, so penalize them (+3). The four diagonal-to-shack cells sit at
+                    // the same map-distance (2) but off that traffic path, so reward them (-1).
+                    let bank_adj = plan.farm_d.get(*c).copied() == Some(1);
+                    let (cx, cy) = **c;
+                    let diag = (cx - plan.shack.0).abs() == 1 && (cy - plan.shack.1).abs() == 1;
+                    let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
+                    (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
                 })
                 .copied();
             if let Some(tc) = cell {
@@ -304,26 +313,30 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: fruit_band * BAND - eta(&d, pc, ms) });
             }
         }
-        // 5) PRINTER (bands 50/48)
+        // 5) PRINTER (bands 52/50/49) — v1.37.0-nanaflow (user replay finding #2): TREE-FIRST.
+        // Harvesting a ripe seed tree directly converts its fruit straight into a farm seed;
+        // banked tent stock is just as harvestable a turn later. So a ripe seed tree now
+        // outranks the tent unconditionally (band 52, the old `inv[BANANA] == 0` gate is
+        // REMOVED — harvested even with tent stock on hand). PICK/park (50/49, unchanged) is
+        // the fallback once no ripe seed tree is reachable; excess bananas accumulate in the
+        // tent via the existing full->bank flow (1pt banked each, or 8pt later via plant->fell).
         if plan.base_trees < plan.farm_cap {
+            for p in state.trees.iter().filter(|p| {
+                p.fruits > 0
+                    && d.contains_key(&p.pos())
+                    && (p.tree_type == "BANANA"
+                        || (p.tree_type == "APPLE"
+                            && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1)))
+            }) {
+                let pc = p.pos();
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 52 * BAND - eta(&d, pc, ms) });
+            }
             if inv[BANANA] > 0 && u.free_capacity() > 0 {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand { kind: Kind::Pick, target: Some(shack), value: 50 * BAND });
                 } else {
                     out.push(Cand { kind: Kind::Park, target: Some(shack), value: 50 * BAND - 1 });
-                }
-            }
-            if inv[BANANA] == 0 {
-                for p in state.trees.iter().filter(|p| {
-                    p.fruits > 0
-                        && d.contains_key(&p.pos())
-                        && (p.tree_type == "BANANA"
-                            || (p.tree_type == "APPLE"
-                                && state.water_cells.iter().any(|w| manhattan(*w, p.pos()) == 1)))
-                }) {
-                    let pc = p.pos();
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 48 * BAND - eta(&d, pc, ms) });
                 }
             }
         }
