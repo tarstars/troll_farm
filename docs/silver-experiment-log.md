@@ -1128,3 +1128,11 @@ economy-side experiments (T-hand, protection family) were able to move in the ot
 fewer wasted-trek losses (not a variance artifact) — see the 1-2 loss replay command-mix method
 in the analyst brief — and decide whether v1.37.0-nanaflow (next in queue) should now gate its
 champion-equality check against v1.36.0-race instead of sticky6.
+
+## 2026-07-07 ~22:55 — ★★★ v1.36.0-race KEPT: 19.9-20.1, rank 88-103 — biggest jump ever (+1.3-1.5)
+The user's doomed-chase replay finding, as a pure waste-cut in the fell valuation, added more
+than every economy experiment combined. Read sequence: bracket 18.6 → +20m 18.6 → +35m 88@20.1
+→ +50m 103@19.9 → stable 103@19.9 ×3. CHAMPION = v1.36.0-race; submit default updated by the
+runner. Goal (≤99 twice): oscillating at the line (88 once, 103 steady) — nanaflow mini-gate
+running for the decisive push. Meta-lesson reinforced: at this band, EXECUTION waste-cuts
+transfer to the arena at full size; economy rebalances don't.
