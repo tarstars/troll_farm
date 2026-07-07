@@ -116,3 +116,35 @@ fn winnable_contest_is_joined() {
     let cmds = assign(&st, &base_plan(), &my);
     assert!(cmds[&2].contains("3 2"), "winnable contest should be joined: {}", &cmds[&2]);
 }
+
+#[test]
+fn share_pen_shifts_near_tie_to_free_tree() {
+    // RACE_SHARE_PEN sweep (2 -> 4, v1.39.0-sharepen4, analyst b62c977 queue #1): a WINNABLE
+    // contested tree (enemy on it, but plenty of health left so we arrive long before they
+    // finish) sits at eta=1; a FREE tree of the same size (so the same chop_t) sits at eta=4.
+    // DENY_W=0 in this candidate, so deny_pen=0 for both and the band-70 MoveTo values reduce
+    // to `70*BAND - (steps + chop_t) - race_pen`:
+    //   contested: 70*BAND - (1 + chop_t) - pen        free: 70*BAND - (4 + chop_t) - 0
+    // At pen=2: contested = 70*BAND-3-chop_t-2, free = 70*BAND-4-chop_t -> contested wins by 1
+    //   (excessive trekking PAST the free tree to reach a merely-discounted shared one).
+    // At pen=4: contested = 70*BAND-3-chop_t-4, free = 70*BAND-4-chop_t -> free wins by 1.
+    // Our chopper is slowed to ms=1 (movement_speed overridden) so the small 8x5 test grid can
+    // still separate eta=1 from eta=4 with plain map-distance (dist 1 vs dist 4).
+    troll_farm::botmain::planner::reset();
+    let mut st = base_state();
+    st.trees = vec![banana(2, 2, 2), banana(3, 4, 2)]; // [0] contested near (eta 1), [1] free far (eta 4)
+    st.opp_trolls = vec![chopper(9, 2, 2)]; // enemy ON the near tree; health 4 left, their chop_power 2 -> 2 turns to fell (winnable: our_eta=1 < 2)
+    let plan = base_plan();
+    let my = Troll { movement_speed: 1, ..chopper(5, 1, 2) }; // slowed so eta 1 vs eta 4 separate cleanly on this grid
+    let cmds = assign(&st, &plan, &[my]);
+    assert!(
+        cmds[&5].contains("3 4"),
+        "RACE_SHARE_PEN=4 should discount the joinable contest enough to prefer the free tree at (3,4): got {}",
+        &cmds[&5]
+    );
+    assert!(
+        !cmds[&5].contains("2 2"),
+        "must not still trek to the discounted contested tree: {}",
+        &cmds[&5]
+    );
+}

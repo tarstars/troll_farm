@@ -43,12 +43,20 @@ const STICKY: i64 = 6; // v1.28.3 sweep: residual flaps 2-21 at 3; absorb bigger
 // 0 since it replaced that cascade. At DENY_W=0 every fell value is byte-identical to the
 // pre-probe code (the subtracted term is `0 * x == 0`); DENY_W=1 only breaks near-ties and
 // nudges marginal calls, « BAND — never overrides the priority hierarchy.
-const DENY_W: i64 = 1; // A2 probe: prefer contested trees (0 = off; silver-era denial was the biggest lever)
+// v1.39.0-sharepen4: REVERTED — analyst b62c977 measured this candidate at ~17.0 (down from
+// the 19.9-20.1 race-check band) and diagnosed a collision with the race check's own
+// tie-breaking. Parked at 0 (byte-identical to pre-probe) pending a retest that doesn't fight
+// RACE_SHARE_PEN; see tests/deny_probe.rs (its one test now requires DENY_W=1 and is ignored).
+const DENY_W: i64 = 0; // A2 reverted — collided with the race check per analyst b62c977; knob kept at 0
 // v1.36.0-race: mild discount for a JOINABLE contested tree (an enemy is already chopping it,
 // but we can arrive before they finish) — the wood splits round-robin among cell-sharers
 // (engine apply_chop), so a shared tree is worth slightly less than an uncontested one, but
 // never enough to lose to a materially worse alternative. « BAND, like STICKY.
-const RACE_SHARE_PEN: i64 = 2;
+// v1.39.0-sharepen4: sweep 2 -> 4 per analyst (queue #1, b62c977) — the race check is the one
+// mechanism that just gained +1.3 in the arena; the analyst's decoded losses show excessive
+// trekking to contested trees when a free tree is only marginally farther away, so discount
+// joinable contests harder.
+const RACE_SHARE_PEN: i64 = 4; // sweep 2->4 per analyst; harder discount on joinable contests
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {

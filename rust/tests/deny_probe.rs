@@ -82,6 +82,9 @@ fn banana(x: i32, y: i32, size: i32) -> Tree {
 }
 
 #[test]
+#[ignore] // A2 reverted; DENY_W parked at 0 (analyst b62c977) — this assertion requires DENY_W=1;
+          // confirmed FAILING at DENY_W=0 (falls back to the lexicographic tie-break) before
+          // being ignored, see data/candidates/v1.39.0-sharepen4/report.md
 fn tied_eta_prefers_the_contested_tree() {
     // Two equal-size (size-2, health-4) fellable bananas, both in OUR half (own_half: manhattan
     // to our shack (0,2) <= manhattan to opp shack (7,2)) and both within farm/roam radius, so
