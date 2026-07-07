@@ -66,7 +66,7 @@ pub struct Plan {
     pub phase: Phase,
 }
 
-pub fn plan(state: &State, my: &[Troll]) -> Plan {
+fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     let farm_d = bfs_distances(&state.walkable, &[state.my_shack]);
     let shack = state.my_shack;
     let opp = state.opp_shack;
@@ -122,7 +122,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     // (want_feeder/train_spec/cost/train_now/need_iron/need_fund) so planner.rs needs no new
     // fields — it already reads want_feeder to drive funding/printer work. The Tempo branch
     // below is BYTE-IDENTICAL to the pre-B2 code (equality-critical: GE_META stays Tempo live).
-    let (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund) = if super::GE_META
+    let (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund) = if meta
         == Meta::Scale
     {
         const SCALE_LADDER: [(i32, i32, i32, i32); 3] = [(1, 1, 1, 0), (1, 1, 1, 0), (2, 2, 0, 2)];
@@ -163,7 +163,7 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
     // fells size-3 in 2 chops; the cc3 banks-every-3 offsets the bigger farm's longer trips) — the
     // Boss-5 throughput economy. Low-draw map (cc2): economy A = the TIGHT farm (short bank trips,
     // fast size-2 maturation) that beats Boss 5 ~40%. Best of both, per the felling mechanics.
-    let phase = phase_for(super::GE_META, state.turn);
+    let phase = phase_for(meta, state.turn);
     let econ_b = false; // econ B (big-farm size-3) arena-validated WORSE (135 vs 120) — the big farm cannot sustain size-3 maturation; pure tight-farm (A) is best
     let farm_r = if econ_b { 3 } else { GE_FARM_R };
     // B3 (Factory): once the Scale meta reaches Factory (post-T_SWITCH), the hoard-built wallet
@@ -203,4 +203,17 @@ pub fn plan(state: &State, my: &[Troll]) -> Plan {
         fell_size, farm_fell, chop_r, starter_chop, liquidation, base_trees, seed_cells,
         phase,
     }
+}
+
+pub fn plan(state: &State, my: &[Troll]) -> Plan {
+    plan_impl(state, my, super::GE_META)
+}
+
+/// Test-only seam: drive `plan_impl` under an explicit `Meta` instead of the compile-time
+/// `GE_META` const. Plain `pub` (not `cfg(test)`) because integration tests in `rust/tests/`
+/// compile as a separate crate and can't see `cfg(test)` items; this is dead code in the arena
+/// build, which the crate's `#![allow(dead_code, unused)]` already tolerates, and the bundler
+/// carries it harmlessly (submission size gate is on the minified bytes, not source LOC).
+pub fn plan_with_meta(state: &State, my: &[Troll], meta: Meta) -> Plan {
+    plan_impl(state, my, meta)
 }
