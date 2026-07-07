@@ -223,3 +223,137 @@ blocker); `ramp.py --last 8` for wood/delta; no crater. If the hand still doesn'
 whether iron income itself (not just the gate) is the residual bottleneck — no mining event
 existed before this fix on 9/12 sampled maps, so the *rate* of iron income once mining resumes
 is untested.
+
+## Gatekeeper verdict #2 (v1.35.0-thand, post T-hand.1)
+
+**Probe verified:** `v1.35.0-thand.debug-probe.min.rs` — `const DEBUG: bool = true` (1 hit),
+`GE_MAX_TROLLS: i32 = 3` (1 hit), `GE_FEEDER_FARM: usize = 1` (1 hit), `ladder_funding =
+plan.want_feeder` (4 hits: definition + 3 use sites 65/64/63), widened
+`need_iron = have_iron && (want_chopper || want_feeder) && inv[IRON] < cost[IRON] &&
+afford_fruit_only(inv, &cost)` (confirmed by line-offset read of the minified file). Cross-read
+against the live source tree (`rust/src/botmain/tactics.rs`, `state.rs`) confirms the probe
+matches HEAD (`git diff b041c25 -- .../v1.35.0-thand.debug-probe.min.rs` = empty).
+
+**Boss games — reused, not re-collected.** On starting this verdict, `data/boss5_games/boss/`
+already held 8 fresh games (`895394529/576/602/649` at 17:04-17:05, `895413055/073/097/149` at
+18:44), all timestamped AFTER the b041c25 fix commit (17:02) — evidently an earlier, interrupted
+pass at this same verdict (a byte-identical scratchpad copy of the probe, `probe_check.rs`/
+`probe_check_bin`, sits at 17:03, `cmp`-clean against the committed probe). Rather than burn
+more of the (already ~3/4-consumed) daily play budget re-collecting an equivalent sample, I
+verified these 8 are genuine fixed-probe output by tracing observed behavior against the live
+`tactics.rs` logic turn-by-turn (see readout 1) — every non-training outcome is fully explained
+by legitimate gate/affordability states under the CURRENT code, with no contradiction found (had
+the old probe been used, `farm_now>=1` cases with fruit already ready would have trained; none
+exist in-sample where old-vs-new would visibly diverge, but several exist where the NEW gate is
+the only thing tested and it's cleanly consistent). Field games were collected fresh this pass
+(no reuse possible — none existed post-fix): 6480914×2, 6480966×2, no HTTP 422s encountered.
+
+Boss gameIds: 895394529, 895394576, 895394602, 895394649, 895413055, 895413073, 895413097, 895413149.
+Field: 6480914×2 (895415974, 895415996), 6480966×2 (895416024, 895416046).
+
+### 1. THE HAND — n reaches 3?
+**0/8 boss games. 0/4 field games. 0/12 overall.** `maxn=2` in every single game (grepped
+`n=` across all `@TFFARM` lines); first-t of n=3: N/A (never) in all 12. "Iron resumes mining
+after the chopper" is N/A for the same reason as verdict #1 (no game ever gets far enough to
+check) — but this time the reason is upstream of `need_iron` entirely.
+
+**New root cause: `farm_now` collapses to literal ZERO for most of the game — not merely thin —
+so even the relaxed `GE_FEEDER_FARM=1` gate fails.** Per-game count of `@TFFARM` samples with
+`farm=0` for t≥45 (out of ~52 five-turn samples per game): 46, 45, 37, 40, 33, 38, 34, **52**
+(i.e., 63%-100% of sampled turns). Final `farm=` at t=300 is **0 in all 8/8 games**.
+
+| game | trigger t (farm≥1) | plum,lemon,apple @trigger | iron @trigger | max plum after | max lemon after | max apple after |
+|---|---|---|---|---|---|---|
+| 895394529 | 45 | 0,2,8 | 2 | 1 | 2 | 15 |
+| 895394576 | 45 | 4,0,6 | 4 | 4 | 2 | 15 |
+| 895394602 | 45 | 0,4,1 | 2 | 2 | 4 | 3 |
+| 895394649 | 45 | 0,0,6 | 2 | 0 | 0 | 8 |
+| 895413055 | 45 | 5,5,8 | 4 | 5 | 5 | 11 |
+| 895413073 | 45 | 1,3,2 | 4 | 1 | 3 | 3 |
+| 895413097 | 60 | 0,0,2 | 1 | 0 | 1 | 3 |
+| **895413149** | **never** | – | – | 4 | 3 | 21 |
+
+Three distinct failure patterns, all tracing back to the same collapsed farm:
+1. **Farm never reaches even 1** (895413149, cleanest case): plum/lemon/apple/iron all clear the
+   feeder's cost (3/3/3/2) and STAY cleared continuously from t45 to t300 (255 straight turns:
+   p=4,l=3,a=7→21,i=4 the whole way) — every precondition except `farm_now>=1` holds for nearly
+   the whole game, yet `@TFFARM` never once logs `farm>=1` after t15, so `want_feeder` is never
+   even eligible. This is a pure gate failure, not a resource failure.
+2. **Late-chopper resource depletion + lemon non-recovery** (895413055, 895413097): fruit+iron
+   are all sufficient at t45 while the chopper hasn't trained yet (nchop=0 blocks `want_feeder`
+   regardless of farm), but the chopper itself trains late (t55, t59) and its own training cost
+   drains the same pool (e.g. 895413055: p,l,i go 5,5,4 → 0,0,0 exactly at the training turn);
+   lemon in particular never recovers above 0-1 for the remaining ~240 turns, so
+   `afford_fruit_only` stays false even though `want_feeder`'s gate itself would now pass.
+3. **Single-fruit-type ceiling** (895394529/576/602/649/073): plum or lemon (varies by map) caps
+   at 0-2 for the entire game and never simultaneously clears 3 alongside the other two legs.
+
+### 2. THE HAND'S WORK — farm at t150+
+**N/A — no game ever reached n=3.** For context, max `farm=` at t≥150 stayed at/near collapse
+regardless: boss 1, 0, 1, 1, 1, 1, 1, 0 (game order as above) — indistinguishable from verdict
+#1's context numbers (0,0,1,0,1,1,1,0); the farm is already dead by t150 independent of the hand.
+
+### 3. ECONOMY (boss, `ramp.py --last 8`)
+```
+t75 : us  10.2  opp   2.6  delta  +7.6
+t150: us  21.5  opp  14.6  delta  +6.9
+t225: us  31.5  opp  32.2  delta  -0.8
+t300: us  40.6  opp  52.9  delta -12.2
+wins 0/8 (0%)   avg final wood 40.6   late(225->300) us +9.1 vs opp +20.6
+```
+Per game (final wood us-opp): 38-56(L), 40-54(L), 42-48(L), 48-60(L), 42-49(L), 50-62(L),
+30-38(L), 35-56(L). Min final wood = 30 (>25 floor: OK, but below verdict #1's min of 35).
+No crash/panic in any of the 8 raw logs (grepped clean); all `scores` entries are normal
+positive pairs. **Compare vs verdict #1 (45.4 avg, −5.8 delta, min 35, wins 2/8): avg final
+wood 40.6 < 45 (gate MISS) and t300 delta −12.2 is worse than the −12 floor (gate MISS, albeit
+marginal) — this is a regression on both economy sub-gates, not the improvement the hand was
+meant to deliver. Win rate also dropped 25%→0%, though n=8 is too small to weight that alone.**
+**Readout 3 FAILS.**
+
+### 4. FUNDING TAX — wood at t75 (boss, era norm 10-14)
+Per game: 12, 12, 12, 10, 6, 18, 2, 10 → **avg 10.25** (matches verdict #1's 10.0; sits at the
+floor of the era norm). One low outlier (2, game 895413097) traces to a late chopper draw
+(trains t59), the same pattern as verdict #1's single low outlier — not hand-funding-related,
+since the hand is never even eligible this early. No evidence of a new broad funding tax.
+
+### 5. FLAPS (final value per game, boss)
+7, 6, 11, 14, 7, 15, 8, 5 → **8/8 ≤15** (bar was ≥6/8). Holds comfortably, same as verdict #1.
+
+### 6. FIELD (score margins, us-opp, from `scores`)
+- 6480914 g1 (895415974): LOSS 401-540 → **-139**
+- 6480914 g2 (895415996): LOSS 234-387 → **-153** ← worse than the −150 floor
+- 6480966 g1 (895416024): WIN 204-161 → **+43**
+- 6480966 g2 (895416046): LOSS 282-392 → **-110** (game concluded early at t269, no crash,
+  normal score pair — not counted as a DNF)
+
+Record 1W-3L (verdict #1 was 3W-1L on the same two opponents; only 2 games/opponent each pass,
+so this reversal is largely sample noise, not a reliable trend on its own). Worst margin **-153**
+breaches the −150 floor. **Readout 6 FAILS.**
+
+### Verdict: **FAIL — still inert, plus new economy/field regressions**
+Per the brief, PASS requires the hand to train in ≥3/8 AND readout 3 holds AND readout 6 holds.
+All three miss:
+- Readout 1: hand trains in **0/8** (need ≥3/8).
+- Readout 3: avg final wood **40.6 < 45**; t300 delta **-12.2** worse than the −12 floor.
+- Readout 6: worst field margin **-153** worse than the −150 floor.
+
+T-hand.1 correctly fixed the two blockers it targeted (need_iron scope, farm gate 3→1 — no
+evidence either one is still active as a blocker: no game in this sample straddles the "iron
+funded, want_feeder eligible" boundary the OLD code would have failed but the NEW code passes,
+because a THIRD, more fundamental blocker sits upstream of both).
+
+**Most actionable observation:** `GE_FEEDER_FARM=1` is still a nonzero floor, and `farm_now` is
+routinely **exactly 0** (not merely "thin") — 63-100% of sampled turns per game, and 8/8 games
+end with `farm=0`. Game 895413149 isolates this cleanly: fruit (p=4,l=3,a=7→21) and iron (i=4)
+clear the feeder's full cost continuously for 255 straight turns (t45-t300), yet `want_feeder`
+never once becomes eligible because `farm_now` never reaches even 1. The hand exists specifically
+to rescue a collapsed farm, so gating it on `farm_now>=1` is the same catch-22 `>=3` was, one
+notch smaller. Next fix to try: `GE_FEEDER_FARM` 1→0 (drop the farm-density precondition
+entirely — `nchop>=1 && n<GE_MAX_TROLLS && turn>=GE_FEEDER_T` is already a sufficient gate; the
+farm term was never load-bearing in the direction that matters, since a HEALTHY farm was the
+original v1.34-era reason for the gate, not a floor a DEAD farm needs to clear). Separately,
+watch the late-chopper-train games (895413055/097): even at farm-gate=0, `afford_fruit_only`
+would still block them because lemon craters to 0-1 for ~240 turns after the chopper's own
+training cost drains the pool — that may need its own fix (e.g. reserve lemon from the chopper's
+cost, or fund the feeder before the chopper on lemon-tight draws) if farm-gate=0 doesn't clear
+the whole sample.
