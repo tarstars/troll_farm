@@ -534,3 +534,63 @@ motion/tactics assignment question) rather than existing as an idle hp-only unit
 cannot distinguish "the hand exists but doesn't plant" from "230 turns still isn't enough time
 for a revival to show," and that distinction is the natural next diagnostic if economy gains
 don't materialize live.
+
+## Arena verdict (2026-07-07 20:46) — REVERTED
+
+**Bracket read (pre-submit):** 19:40:59 — `ARENA-ROOM: tass rank 113/527 Gold score 19.0`
+(agentId=6542129, promotable=False). Matches the expected champion band (19.0-19.2).
+
+**Submit:** 19:41:09 — `timeout 120 uv run --no-sync python cgauto/api_submit.py
+cgauto/submissions/v1.35.0-thand.min.rs` → `SUBMIT-OK via TestSession submit`
+(TestSession 40964128).
+
+**Convergence reads** (agentId=6542461 confirmed live starting with the first read):
+
+| # | timestamp | Δt since submit | rank/527 | score |
+|---|---|---|---|---|
+| 1 | 20:01:39 | +20m | 123 | 17.4 |
+| 2 | 20:16:23 | +35m | 145 | 16.7 |
+| 3 | 20:31:27 | +50m | 143 | 16.8 |
+| 4 | 20:45:48 | +64m (confirmatory) | 143 | 16.8 |
+
+Reads 3→4 are 14m21s apart and move 0.0 (< 0.1) → converged at **16.8**. Shape: fall then
+flatten — 17.4 → 16.7 → 16.8 → 16.8, no climb phase at all (not even a climb-then-fall; this
+never climbed).
+
+**Verdict rule:** KEEP requires converged score ≥ bracket − 0.2 = 19.0 − 0.2 = 18.8. Actual
+16.8 < 18.8 by **2.2** → **REVERT.**
+
+**Revert:** 20:46:05 — `timeout 120 uv run --no-sync python cgauto/api_submit.py
+cgauto/submissions/v1.28.3-sticky6.min.rs` → `SUBMIT-OK via TestSession submit`
+(TestSession 40964380).
+
+**Reconvergence reads** (agentId=6542490 confirmed live starting with the first read):
+
+| # | timestamp | Δt since revert | rank/527 | score |
+|---|---|---|---|---|
+| 1 | 21:06:42 | +20m | 116 | 18.5 |
+| 2 | 21:21:26 | +35m | 114 | **18.9** |
+| 3 | 21:30:42 | +44m (confirmatory) | 117 | 18.6 |
+
+Read 2 (18.9) clears the ≥18.7 reconvergence bar; band 18.5-18.9 matches the champion's known
+±0.2-0.3 noise around its 19.0-19.2 home line (rank 111-117). **Champion (v1.28.3-sticky6)
+confirmed reconverged and safe.**
+
+**`api_submit.py` default:** left unchanged. It currently reads `submissions/v1.28.2-steady2.min.rs`
+(line 12) — this predates my run: it is the intentional kept-at-parity default carried over from
+the v1.28.3-sticky6 NEUTRAL verdict (2026-07-07 09:25 log entry), not a stale/broken pointer.
+Since v1.35.0-thand reverted, no default update applies either way (step 5 only fires on KEEP).
+
+**Interpretation:** the strongest gatekeeper pass of the T-hand line (6/6 hand trains, best-era
+boss economy) still failed the field by 2.2 points — the same boss-gate-clean / field-negative
+shape as the whole protection family (seedloop, fruitbank, reserve). This is consistent with
+the gatekeeper's own flagged caveat (readout 2: farm/seed bank stayed flat at 0-2, seeds
+drained to 0, in all 6 games regardless of hand-training) — i.e. the arena result may be the
+live confirmation that the "revived farm" never materializes, so the 3rd hand is pure funding
+cost with no offsetting production. **Next diagnostic for the analyst:** pull replays for
+agentId 6542461 (window 19:41-20:46) and check whether the feeder troll issues any plant/seed
+commands post-training — this resolves "idle mouth" vs "funding tax alone costs >2pts" and
+determines whether the T-hand line is dead or needs a cheaper trigger.
+
+**Records:** this verdict is also appended to `docs/silver-experiment-log.md` under
+"v1.35.0-thand arena verdict (2026-07-07 20:46)".

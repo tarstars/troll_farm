@@ -1032,3 +1032,56 @@ Three user-observed inefficiencies from live games (see spec Amendment 2): doome
 chasing (race math in fell valuation), tent-PICK-before-tree-harvest inversion (8:1
 plant-fell conversion argument), diagonal-to-shack plant placement (distance 2, off the
 bank path). Queued as v1.36.0-race and v1.37.0-nanaflow behind the T-hand arena verdict.
+
+## v1.35.0-thand arena verdict (2026-07-07 20:46) — REVERTED (converged 16.8, −2.2 vs bracket 19.0)
+**Bracket (pre-submit):** 19:40:59 — ARENA-ROOM rank 113/527, Gold score **19.0** (agentId
+6542129). **Submit:** 19:41:09, SUBMIT-OK (TestSession 40964128).
+
+**Convergence reads (v1.35.0-thand, agentId 6542461 confirmed live from the first read):**
+| time | Δt | rank | score |
+|---|---|---|---|
+| 20:01:39 | +20m | 123/527 | 17.4 |
+| 20:16:23 | +35m | 145/527 | 16.7 |
+| 20:31:27 | +50m | 143/527 | 16.8 |
+| 20:45:48 | +64m (confirmatory) | 143/527 | 16.8 |
+
+Reads 3→4 (15 min apart) moved 0.0 → converged at **16.8**. Shape: NOT climb-then-fall (no
+climb phase at all) — straight fall (17.4→16.7) then flatten (16.8→16.8). Fails KEEP (needs
+≥18.8 = bracket 19.0 − 0.2) by **2.2 points**, the worst arena miss of the whole T-hand/hoard
+cycle (worse than v1.29.0-reserve's −2.0 and v1.30.x's gate-closure).
+
+**Revert:** 20:46:05, submitted `v1.28.3-sticky6.min.rs`, SUBMIT-OK (TestSession 40964380).
+
+**Reconvergence reads (agentId 6542490 confirmed live from the first read):**
+| time | Δt (post-revert) | rank | score |
+|---|---|---|---|
+| 21:06:42 | +20m | 116/527 | 18.5 |
+| 21:21:26 | +35m | 114/527 | 18.9 |
+| 21:30:42 | +44m (confirmatory) | 117/527 | 18.6 |
+
++35m read (18.9) clears the ≥18.7 reconvergence bar; the 18.5-18.9 band matches the champion's
+known ±0.2-0.3 noise around its 19.0-19.2 home band (rank 111-117). **Arena is SAFE on
+v1.28.3-sticky6.** `api_submit.py` default left **unchanged** (still `v1.28.2-steady2.min.rs` —
+that was already the intentional kept-at-parity default from the sticky6 NEUTRAL verdict on
+2026-07-07 09:25; v1.35.0-thand did not qualify to replace it either).
+
+**Reading vs the gatekeeper:** gatekeeper verdict #3 was the strongest of the T-hand line (6/6
+hand trains, era-best boss economy: 47.0 avg wood, −9.5 t300 delta) — and it still cratered the
+field by 2.2 points, the same boss-gate-clean/field-negative shape as the whole protection
+family (seedloop −2.8, fruitbank −1.0, reserve −2.0 on 2026-07-06/07). The gatekeeper's own
+report flagged the live half of this candidate as unverified: readout 2 (farm/seed revival) was
+"inconclusive/negative" in all 6 boss games — farm stayed at 0-2 and seeds drained to 0
+regardless of whether/when the hand trained. This arena result supplies the missing half: on
+the field's 19-20 tier, whatever the 3rd hand does live costs more than it returns — consistent
+with either "one more funded mouth with a farm that isn't reviving" or "the funding tax itself
+(iron/fruit rerouted to fund hand #3) is the direct cost," per the tempo-vs-scale ("pie") thesis
+from 2026-07-07 00:20 and 14:30.
+
+**NEXT for the analyst:** run `battles.py` + pull 1-2 loss replays for agentId 6542461
+specifically (window 19:41-20:46) and check the feeder troll's actual command stream once
+trained — does it ever issue plant/seed actions, or does it sit idle? That distinguishes "the
+3rd hand is a net-negative idle mouth" (kills the whole hand line) from "the hand plants fine
+but the funding tax alone costs >2pts vs the field" (might be salvageable with a cheaper trigger
+condition). Track record update: T-hand now joins the protection family as arena-negative
+despite being boss-gate-clean — reinforces the tempo/scale frontier as the standing explanation
+for why boss-gate wins keep failing to transfer to the field.
