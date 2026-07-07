@@ -294,3 +294,56 @@ No crater signature. All three readouts clear their bars; the diagnostic banana-
 (early plateau, not a climb) is worth a follow-up note for the analyst but does not change the
 gate outcome. No field games run (out of scope for this reduced probe). Recommend proceeding
 to the arena-runner step per the existing queue position (`docs/arena-queue.md` #1).
+
+## Arena verdict (arena-runner, 2026-07-07/08) — REVERT
+
+**Bracket (pre-submit):** 2026-07-07 22:58:26 — ARENA-ROOM rank 103/527, Gold score **19.9**
+(agentId 6542530), matching the v1.36.0-race champion's own converged band. **Submit:**
+22:58:44, SUBMIT-OK (TestSession 40964870).
+
+**Convergence reads** (agentId 6542585, confirmed live from the first read):
+
+| time | Δt | rank | score |
+|---|---|---|---|
+| 23:19:06 | +20m | 199/527 | 15.6 |
+| 23:34:26 | +35m | 145/527 | 16.6 |
+| 23:49:44 | +50m | 142/527 | 16.7 |
+
+Shape: drop, then climb (+1.0), then flatten (Δ0.1) — converged at **16.6-16.7**, 3.2-3.3
+points below the 19.9 bracket and well below the KEEP bar (bracket−0.2 = 19.7). Not ambiguous;
+decided at +50 per the tight-window policy (no +65m read needed).
+
+**Decision: REVERT.** Resubmitted `cgauto/submissions/v1.36.0-race.min.rs` (the current
+champion — NOT sticky6) at 23:50:11, SUBMIT-OK (TestSession 40965088).
+
+**Revert reconvergence** (agentId 6542604, confirmed live from the first read):
+
+| time | Δt (post-revert) | rank | score |
+|---|---|---|---|
+| 2026-07-08 00:10:25 | +20m | 117/527 | 18.2 |
+| 00:25:43 | +35m | 111/527 | 19.3 |
+| 00:41:00 | +50m | 111/527 | 19.3 |
+
+Two reads 15m17s apart at +35m/+50m are identical (111/527, 19.3) — satisfies the "two stable"
+reconvergence criterion. Champion confirmed live and stable; arena not left on a regressed bot.
+`cgauto/api_submit.py` default remains `v1.36.0-race.min.rs` (unchanged — nanaflow was reverted,
+not kept, so it never earned the default-path update).
+
+**Goal gate (rank ≤99):** did not fire on any read this session (nanaflow bottomed at 142;
+revert-reconvergence bottomed at 111).
+
+**Post-mortem hypothesis for the analyst:** the boss-gate mini-gate (this file, above) passed
+clean on wood/delta/crashes and flagged the banana-flow shape as "plateau, not climb, not a
+defect" — but a pure boss-economy probe cannot see field-specific interactions. Two candidate
+mechanisms for the arena-negative result: (1) tree-first re-ranking (band 52 > 50) may send
+choppers/starters onto farther ripe trees mid-cycle, increasing exposure on cells the
+v1.36.0-race doomed-target check would otherwise have steered them away from — a possible
+negative interaction between this candidate's band reshuffle and the reigning champion's own
+core mechanism, never tested together beyond the (explicitly waived) champion-equality gate;
+(2) the diagonal plant-cell bias may congest differently (not necessarily better) under
+real-field map geometries/pressure than the boss-gate's map pool exercises. Recommend: if
+either sub-mechanism (A tree-first, or B diagonal-placement) is revisited, gate its
+champion-equality check against v1.36.0-race directly (not waived) and consider landing A and B
+as two separate candidates so a future arena regression is attributable to one mechanism, not
+both at once. Full read sequence and framing: `docs/silver-experiment-log.md` §"v1.37.0-nanaflow
+arena verdict"; queue/champion bookkeeping: `docs/arena-queue.md`.

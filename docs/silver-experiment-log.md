@@ -1136,3 +1136,76 @@ than every economy experiment combined. Read sequence: bracket 18.6 → +20m 18.
 runner. Goal (≤99 twice): oscillating at the line (88 once, 103 steady) — nanaflow mini-gate
 running for the decisive push. Meta-lesson reinforced: at this band, EXECUTION waste-cuts
 transfer to the arena at full size; economy rebalances don't.
+
+## v1.37.0-nanaflow arena verdict (2026-07-08 00:41) — REVERT (converged ~16.6-16.7 vs 19.9 bracket, −3.2/−3.3 regression)
+**Change:** banana TREE-FIRST harvesting (removed the `inv[BANANA]==0` gate on the ripe-seed-
+tree MoveTo band, re-ranked it 52·BAND ahead of the 50·BAND tent Pick/Park) + DIAGONAL plant
+placement (added `bank_adj`/`diag` geometry terms to the plant-cell tie-break key, penalizing
+the four orthogonal bank/DROP cells and rewarding the four diagonal cells). Both changes live
+entirely in `rust/src/botmain/planner.rs`'s `candidates()`; no fell/funding/race-band/training
+constants touched. Mini-gate (boss 6, reduced probe) PASSED: avg wood 45.3, min wood 30, delta
+−11.3 (better than the −15.3 historical baseline), 0/6 crashes, flaps 6/6 ≤15 — no crater
+signature. Champion-equality gate explicitly waived by design (both mechanisms intentionally
+change behavior). Full detail: `data/candidates/v1.37.0-nanaflow/report.md`.
+
+**Bracket (pre-submit):** 2026-07-07 22:58:26 — ARENA-ROOM rank 103/527, Gold score **19.9**
+(agentId 6542530) — matches the v1.36.0-race champion's own converged band exactly, confirming
+a clean pre-submit baseline. **Submit:** 22:58:44, SUBMIT-OK (TestSession 40964870).
+
+**Convergence reads (agentId 6542585 confirmed live from the first read):**
+| time | Δt | rank | score |
+|---|---|---|---|
+| 23:19:06 | +20m | 199/527 | 15.6 |
+| 23:34:26 | +35m | 145/527 | 16.6 |
+| 23:49:44 | +50m | 142/527 | 16.7 |
+
+Shape: drop, then climb (+20m→+35m: +1.0), then flatten (+35m→+50m: Δ0.1, converged) — a
+climb-then-flatten shape at a level **3.2-3.3 points below the bracket**, well clear of the
+KEEP bar (bracket−0.2 = 19.7) on the wrong side. Not ambiguous — the flattening at +50m
+resolves the shape cleanly (this is not a still-climbing trajectory that might reach parity
+with more time), so decided at +50 per the tight-window policy, no +65m read needed.
+
+**Decision:** REVERT. Converged score (16.6-16.7) sits far below bracket−0.2 (19.7); this is a
+clear regression, not noise. Resubmitted `cgauto/submissions/v1.36.0-race.min.rs` (the correct
+revert target per the current champion — NOT sticky6) at 23:50:11, SUBMIT-OK (TestSession
+40965088).
+
+**Revert reconvergence (agentId 6542604 confirmed live from the first read):**
+| time | Δt (post-revert) | rank | score |
+|---|---|---|---|
+| 2026-07-08 00:10:25 | +20m | 117/527 | 18.2 |
+| 00:25:43 | +35m | 111/527 | 19.3 |
+| 00:41:00 | +50m | 111/527 | 19.3 |
+
+Two consecutive reads 15m17s apart (+35m, +50m) are identical (111/527, 19.3, Δ0.0) — satisfies
+the "two stable" reconvergence criterion (the alternative to reaching ≥19.5 explicitly allowed
+for revert verification). Slightly under the champion's historical 19.9-20.1 peak band but a
+stable, confirmed-live champion; arena is NOT left on a regressed bot. `api_submit.py` default
+was already `v1.36.0-race.min.rs` (unchanged by this episode — nanaflow never earned the
+default-path update in step 5 of the arena-runner brief since it was reverted, not kept).
+
+**Goal gate (rank ≤99):** did NOT fire on any read this session — nanaflow's own reads
+(199/145/142) never approached it, and the champion's revert-reconvergence bottomed at
+rank 111. No confirming read required.
+
+**Reading vs the mini-gate's prediction:** the gatekeeper's report explicitly flagged the
+banana-flow readout as "a plateau, not a climb" (tent stock set by t5 then flat for the rest
+of the game in 5/6 boss games) and recommended this as "worth a follow-up note for the analyst,
+not a defect" — the arena result suggests it undersold the risk: a pure boss-gate crater check
+(wood/delta/crashes) cannot see the interaction between the new tree-first travel pattern and
+the v1.36.0-race doomed-target check, nor between the diagonal plant bias and real-field bank-
+cell contention under 2v2-vs-4-trolls pressure — exactly the transfer-wall failure mode this
+project has hit before with boss-clean, field-negative candidates.
+
+**NEXT for the analyst:** run `battles.py 40` against the CURRENT (reverted) champion state to
+re-confirm v1.36.0-race's own field numbers are unaffected by this episode, then specifically
+pull 1-2 nanaflow-window loss replays (if still queryable — check the 22:58-23:50 submission
+window) and check whether the tree-first re-ranking caused choppers/starters to divert onto
+farther ripe trees mid-farm-cycle (increasing exposure to contested/raided cells the race-check
+would otherwise have steered around) or whether the diagonal-placement bias interacted badly
+with a tighter or more irregular field-map geometry than the boss-gate's map pool exercised.
+Also resolve the flagged-but-unresolved queue note: since v1.36.0-race (not sticky6) is now the
+confirmed champion, any future re-attempt at the tree-first/diagonal mechanisms should gate
+champion-equality against v1.36.0-race directly rather than waiving it, so a future flag-off
+comparison can isolate which of the two sub-changes (A or B) is responsible before restacking
+both again.
