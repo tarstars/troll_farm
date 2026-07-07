@@ -125,3 +125,30 @@ fn hoard_mines_iron_when_ladder_is_iron_short() {
         &cmds[&0]
     );
 }
+
+// Gatekeeper verdict #2 (post-e09ac48): e09ac48 fixed the wallet-vs-funding priority bug ONLY
+// for iron (band 64/63). The identical bug still gates PLUM/LEMON/APPLE: need_fund's targeted
+// candidate (planner.rs ~241-248, fund_lo=44*BAND under Scale) is still dominated by the generic
+// Hoard wallet band (62*BAND, ANY ripe fruit) at planner.rs ~207-212, so a troll keeps grabbing
+// nearby non-deficit fruit and never treks to the distant deficit type. 10/12 sampled games
+// stalled on exactly this (chopper trained in only 2/12).
+#[test]
+fn hoard_targets_deficit_fruit_over_nearby_fruit() {
+    let mut st = base_state();
+    let mut nearby = banana(3, 2, 4);
+    nearby.fruits = 3; // ripe, but BANANA is not a funding type (ge_fruit_ty >= 3)
+    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    st.trees = vec![nearby, distant];
+    let mut plan = base_plan();
+    plan.phase = Phase::Hoard;
+    plan.want_feeder = true;
+    plan.need_fund = [true, false, false]; // PLUM deficit
+    plan.cost = [3, 3, 3, 0, 0, 0];
+    plan.need_iron = false;
+    let cmds = assign(&st, &plan, &[starter(0, 2, 2)]);
+    assert!(
+        cmds[&0].contains("6 2"),
+        "starter must trek to the distant deficit PLUM, not the nearer non-funding BANANA: {}",
+        &cmds[&0]
+    );
+}

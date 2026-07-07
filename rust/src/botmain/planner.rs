@@ -238,13 +238,20 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     out.push(Cand { kind: Kind::MoveTo, target: Some(c), value: v * BAND - eta(&d, c, ms) });
                 }
             }
+            // B2.2 gatekeeper fix #2: the same wallet-vs-funding priority bug e09ac48 fixed for
+            // iron (64/63) also gates PLUM/LEMON/APPLE — the generic Hoard wallet band (62,
+            // above) unconditionally outranked fund_lo (44), so a troll kept grabbing whichever
+            // ripe fruit was nearest instead of the type the ladder is actually short on. During
+            // Hoard, targeted deficit-fruit funding must outrank the generic wallet (63 > 62);
+            // outside Hoard, fund_lo is unchanged.
+            let fruit_band = if plan.phase == Phase::Hoard { 63 } else { fund_lo };
             for p in state.trees.iter().filter(|p| {
                 p.fruits > 0
                     && d.contains_key(&p.pos())
                     && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
             }) {
                 let pc = p.pos();
-                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: fund_lo * BAND - eta(&d, pc, ms) });
+                out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: fruit_band * BAND - eta(&d, pc, ms) });
             }
         }
         // 5) PRINTER (bands 50/48)
