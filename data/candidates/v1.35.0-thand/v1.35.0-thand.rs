@@ -1066,11 +1066,17 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let train_spec = if want_chopper { spec } else { GE_FEEDER_SPEC };
         let cost = training_cost(n, train_spec);
         let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
-        let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the chopper train)
-        // iron-gated: fruit is ready but we still lack the iron for the chopper.
-        let need_iron =
-            have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
-        // which fruit types still block the chopper (funding targets)
+        let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the pending hand)
+        // iron-gated: fruit is ready but we still lack the iron for the PENDING HAND — the
+        // chopper OR the feeder. T-hand.1 (gatekeeper v1.35.0 verdict, fix a): this used to be
+        // want_chopper-only, so iron mining stopped FOREVER the instant the chopper trained,
+        // permanently starving any later pending hand of its flat cost[IRON]=n training cost
+        // (every spec carries it) on every iron-bearing map — 12/12 sampled by the gatekeeper.
+        let need_iron = have_iron
+            && (want_chopper || want_feeder)
+            && inv[IRON] < cost[IRON]
+            && afford_fruit_only(inv, &cost);
+        // which fruit types still block the pending hand (funding targets)
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
         (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
     };
@@ -1210,7 +1216,7 @@ const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mech
 const GE_MAX_TROLLS: i32 = 3; // T-hand — the funding stack (65/64/63) dissolved the lemon wall; the hand is the farm's missing planter.
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
 const GE_FEEDER_T: i32 = 45; // T-hand: restored from 60 — 60 was a leftover from the v1.28.x farm-death era when GE_MAX_TROLLS=2 made this gate unreachable anyway (dormant 3rd hand); the funding fix (planner.rs ladder_funding) is what actually treats farm-death now, so the feeder can arm this early again
-const GE_FEEDER_FARM: usize = 3; // map-distance farm now; the feeder's JOB is to grow it
+const GE_FEEDER_FARM: usize = 1; // T-hand.1: 3->1 — the hand IS the farm's planter; gating it on an already-healthy farm blocked the cure (gatekeeper v1.35.0 verdict: farm sits at 0-1 after t45 in half the boss games sampled, so farm_now>=3 was rarely satisfied)
 const GE_CHOP_DELAY: i32 = 0; // NO delay: train chopper early (denial > accumulation, proven 2026-07-05)
 const GE_CHOP_FARM: usize = 3; // train as soon as affordable (early aggression, v1.4.5 regime)
 const GE_FARM_R: i32 = 2; // v1.13.0: TIGHT farm hugging the shack — halves the chopper's bank-trip distance (the throughput bottleneck)

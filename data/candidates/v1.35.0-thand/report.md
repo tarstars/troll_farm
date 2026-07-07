@@ -150,3 +150,76 @@ hand of the flat `n`-iron cost every spec carries, on every map that has iron (1
 Before re-testing this candidate, extend `need_iron` (or add a parallel condition) to also
 cover `want_feeder`, so the elevated `ladder_funding` Mine/MoveTo-iron bands (65/64) can
 actually fire once the chopper already exists.
+
+## Fix T-hand.1
+
+**Task:** fix the two structural blockers the gatekeeper verdict identified (above) and
+re-freeze v1.35.0-thand IN PLACE (iteration 2). Base tree: this branch, on top of e8ed378
+(the FAIL gate commit).
+
+### What changed
+- TDD, `rust/tests/tactics_scale.rs`, confirmed FAILING pre-fix:
+  - `tempo_wants_third_hand` state changed from three farm bananas (farm_now=3) to ONE
+    (farm_now=1) — failed with `want_feeder=false` (pins fix b, the farm≥3 gate).
+  - New `tempo_wants_third_hand_farm3`: the original 3-banana body kept verbatim as a
+    non-regression companion (farm_now=3 must still want the hand once the gate drops to 1).
+  - New `tempo_hand_iron_funding_after_chopper`: reuses the farm3 construction, adds an iron
+    cell + inventory `[5,5,5,0,0,0]` (every fruit leg clears the feeder spec's cost, iron
+    alone sits at 0 < cost[IRON]=2) — failed with `need_iron=false` (pins fix a, the
+    want_chopper-only gate).
+  - Both confirmed FAILING against the pre-fix tree; the untouched `tempo_wants_third_hand_farm3`
+    passed immediately (sanity that the harness/base construction was right).
+- `rust/src/botmain/tactics.rs` (TEMPO branch only — Scale's own `need_iron` from e09ac48 is
+  untouched, it's a separate branch of the same `if meta == Meta::Scale` split): `need_iron`
+  widened from `have_iron && want_chopper && ...` to
+  `have_iron && (want_chopper || want_feeder) && ...` — iron mining now stays wanted while
+  ANY pending hand (chopper or feeder) is unfunded, not just the chopper. `cost` already
+  switches to `GE_FEEDER_SPEC` whenever `!want_chopper`, so `cost[IRON]` correctly reflects
+  the feeder's own (small, n-only) iron price once the chopper already exists.
+- `rust/src/botmain.rs`: `GE_FEEDER_FARM` 3 -> 1 with an inline comment — the hand IS the
+  farm's planter, so gating it on an already-healthy farm blocked the cure (gatekeeper
+  v1.35.0 verdict: farm sits at 0-1 after t45 in half the boss games sampled, so `farm_now>=3`
+  was rarely satisfied in exactly the situation the hand exists to fix).
+- Diffstat: tactics.rs 8± (logic + comment), botmain.rs 1± (comment), tactics_scale.rs +47/-13.
+
+### Gate results
+1. `cargo test --release`: all suites green — 6/6 in `tactics_scale.rs` (the two new/modified
+   tests now pass; `tempo_wants_third_hand_farm3` and every other suite, incl. Scale/Hoard/
+   Factory phase tests and `phase_hoard.rs`'s `tempo_ladder_funding_treks_to_deficit_fruit`,
+   unaffected — Scale's `want_hand` path does not read `GE_FEEDER_FARM` at all (it has its own
+   `SCALE_MIN_TURN` gate), confirmed by reading tactics.rs's Scale branch: no reference).
+2. Self-determinism: `equality target/release/bot target/release/bot 8 300 target/release/bot`
+   -> `EQUAL: 16 games (8 seeds x 2 seats), all command streams identical`.
+3. Champion-equality: N/A (waived by design, per the original T-hand brief — Tempo behavior
+   changes intentionally).
+4. `tools/bundle.py`: `src/botmain.rs -> target/refactor/bundled.rs: 68619 chars`. Grep
+   confirms in the bundle: `VERSION = "1.35.0-thand"`, `GE_MAX_TROLLS: i32 = 3`,
+   `GE_FEEDER_FARM: usize = 1` (T-hand.1 comment present), `ladder_funding = plan.want_feeder`,
+   and the widened `need_iron = have_iron && (want_chopper || want_feeder) && ...` line.
+5. rustc compile-check on the full bundled source (dot-free copy): exit 0 (`SRC-COMPILE-OK`).
+6. Bundle-inlining sanity: bundled bin vs `target/release/bot` ->
+   `EQUAL: 16 games (8 seeds x 2 seats), all command streams identical`.
+7. `tools/minify.py`: `68619 -> 41992 chars (61%)` (58% under the 100,000 B cap).
+8. rustc compile-check on the minified copy (dot-free copy): exit 0 (`MIN-COMPILE-OK`).
+9. Minified bin vs `target/release/bot`: `EQUAL: 16 games (8 seeds x 2 seats), all command
+   streams identical`.
+10. DEBUG probe rebuilt: `sed` flip confirmed (`const DEBUG: bool = true;` x1 in the pre-minify
+    source), minified to 41,991 B, rustc compile-check exit 0, 2-seed local smoke ->
+    `EQUAL: 4 games (2 seeds x 2 seats), all command streams identical` (no crash; DEBUG only
+    echoes to stderr, so stdout-parity holds as documented).
+
+### New sizes
+- `cgauto/submissions/v1.35.0-thand.rs`: 69,353 B -> **69,968 B**.
+- `cgauto/submissions/v1.35.0-thand.min.rs`: 41,951 B -> **41,992 B** (58% under cap).
+- `data/candidates/v1.35.0-thand/v1.35.0-thand.rs` / `.min.rs`: byte-identical (`cmp`-verified)
+  to the `cgauto/submissions/` copies above.
+- `data/candidates/v1.35.0-thand/v1.35.0-thand.debug-probe.min.rs`: 41,950 B -> **41,991 B**.
+
+### Next steps (gatekeeper, re-run)
+Same recipe as before: `collect_debug_games.py <probe> boss 8` + field (incl. mikdiet
+6480914 / plcc 6480966); read `@TFFARM`: does `n` now reach 3 even on thin-farm maps (farm_now
+was the old blocker) and does iron stay funded past the chopper's training turn (was the other
+blocker); `ramp.py --last 8` for wood/delta; no crater. If the hand still doesn't train, check
+whether iron income itself (not just the gate) is the residual bottleneck — no mining event
+existed before this fix on 9/12 sampled maps, so the *rate* of iron income once mining resumes
+is untested.

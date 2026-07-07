@@ -163,11 +163,17 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let train_spec = if want_chopper { spec } else { GE_FEEDER_SPEC };
         let cost = training_cost(n, train_spec);
         let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
-        let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the chopper train)
-        // iron-gated: fruit is ready but we still lack the iron for the chopper.
-        let need_iron =
-            have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
-        // which fruit types still block the chopper (funding targets)
+        let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the pending hand)
+        // iron-gated: fruit is ready but we still lack the iron for the PENDING HAND — the
+        // chopper OR the feeder. T-hand.1 (gatekeeper v1.35.0 verdict, fix a): this used to be
+        // want_chopper-only, so iron mining stopped FOREVER the instant the chopper trained,
+        // permanently starving any later pending hand of its flat cost[IRON]=n training cost
+        // (every spec carries it) on every iron-bearing map — 12/12 sampled by the gatekeeper.
+        let need_iron = have_iron
+            && (want_chopper || want_feeder)
+            && inv[IRON] < cost[IRON]
+            && afford_fruit_only(inv, &cost);
+        // which fruit types still block the pending hand (funding targets)
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
         (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
     };

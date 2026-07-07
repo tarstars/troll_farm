@@ -808,8 +808,10 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let cost = training_cost(n, train_spec);
         let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
         let want_chopper = want_chopper;
-        let need_iron =
-            have_iron && want_chopper && inv[IRON] < cost[IRON] && afford_fruit_only(inv, &cost);
+        let need_iron = have_iron
+            && (want_chopper || want_feeder)
+            && inv[IRON] < cost[IRON]
+            && afford_fruit_only(inv, &cost);
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
         (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
     };
@@ -875,7 +877,7 @@ const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2);
 const GE_MAX_TROLLS: i32 = 3;
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0);
 const GE_FEEDER_T: i32 = 45;
-const GE_FEEDER_FARM: usize = 3;
+const GE_FEEDER_FARM: usize = 1;
 const GE_CHOP_DELAY: i32 = 0;
 const GE_CHOP_FARM: usize = 3;
 const GE_FARM_R: i32 = 2;
