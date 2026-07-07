@@ -17,12 +17,15 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
 ## Queue (ordered; update statuses as they move)
 1. **v1.36.0-race** — READY (built, reviewed, merged; boss/field gate WAIVED for tonight's
    idle slot — pure waste-cut, no pie risk; diagnostic probe games optional tomorrow).
-2. **v1.37.0-nanaflow** — BUILDING (banana tree-first + diagonal placement + bank-excess).
+2. **v1.37.0-nanaflow** — READY (built + reviewed SPEC-pass; submits after race's verdict).
 3. **A2 v1.38.0-deny1** — TO BUILD (3-line denial-weight probe, DENY_W=1).
 4. **diagonal-contest** — DESIGN (the "join raids on our pocket trees" split-aware defense;
    strictly-gated protection-family sub-candidate).
-5. **T-hand.3** — PARKED IDEA (needs the "does the trained hand actually plant?" analyst
-   answer from the T-hand revert data before any retry).
+5. **T-hand line — DROPPED** (post-mortem da574b0: the hand NEVER plants — 4 hauler/1
+   tourist/1 idler across 6 games, 34-58% path overlap with the chopper, bill never repaid.
+   Residual design note: same-role trolls need a dispersion/exclusivity notion in the
+   matcher — filed for the R6 concurrency backlog. Cheap-variant-if-ever: farm-ring-
+   restricted forage band.)
 
 ## Verdict log (newest first)
 - v1.35.0-thand: REVERTED (arena ~16.8 fading at +35m vs 19.0 bracket; hand trains 6/6 but
