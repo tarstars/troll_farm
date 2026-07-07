@@ -728,3 +728,185 @@ complete gets fully abandoned the instant Factory starts (game 895374707's t=150
 case that survived this cliff, by 10 turns of leftover momentum). Either push `T_SWITCH` a bit later,
 or let the funding bands stay elevated for a short grace window past 140 until the ladder's last
 hand actually trains, before conceding the priority to Printer work.
+
+## Gatekeeper verdict #4 (Scale meta, post-B2.3)
+
+**Role:** GATEKEEPER only (never submits to the arena; nothing below touched `cgauto/api_submit.py`
+or the arena). Re-running the same style of gate against `0ecbc66` ("fix(b2.3): iron 65/64
+unconditional + funding grace window past T_SWITCH (want_feeder-scoped) — gatekeeper #3 root
+causes"), the fix written directly in response to verdict #3's two root causes: (a) **band
+collision** — `e09ac48` (iron) and `b14ebc7` (fruit) both used band 63, so iron lost distance races
+to fruit 8/8 games; fixed by bumping iron to 65/64, strictly above fruit's 63. (b) **T_SWITCH
+cliff** — all funding bands were gated `phase == Phase::Hoard` only, so a nearly-complete wallet was
+abandoned the instant Factory began; fixed by a `scale_funding = plan.phase != Phase::Tempo &&
+plan.want_feeder` grace window that keeps funding elevated until the ladder actually finishes
+(`want_feeder` self-extinguishes once `n` reaches 4), and is a no-op on the live Tempo path since
+`phase_for(Tempo, _) == Phase::Tempo` always. HEAD at run time: `0ecbc66` (tip of
+`session-2026-07-01`; tree confirmed clean before and after the probe build).
+
+**Probe build** (from the CURRENT tree, i.e. including `0ecbc66`), exactly mirroring verdicts #2/#3's
+recipe:
+```
+cd rust
+sed -i 's/const GE_META: tactics::Meta = tactics::Meta::Tempo;/const GE_META: tactics::Meta = tactics::Meta::Scale;/' src/botmain.rs
+uv run --no-sync python tools/bundle.py        # 66146 chars
+git checkout -- src/botmain.rs                 # tree restored; verified clean + Tempo immediately
+sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/' target/refactor/bundled.rs > v4_s.rs
+uv run --no-sync python tools/minify.py v4_s.rs v4_s.min.rs   # 66145 -> 41978 chars
+cp v4_s.rs v4cc.rs && rustc --edition 2021 -O v4cc.rs -o v4_full_bin      # exit 0, COMPILE-OK
+cp v4_s.min.rs v4mcc.rs && rustc --edition 2021 -O v4mcc.rs -o v4_min_bin # exit 0, COMPILE-OK
+```
+Verified: full `v4_s.rs` contains `Meta::Scale` (4 hits), `const DEBUG: bool = true` (1 hit),
+`scale_funding` (5 hits — the B2.3 fix's new binding, its 3 use sites, plus one mention in a
+comment); minified `v4_s.min.rs` contains `Meta::Scale` (3 hits — comments stripped), `DEBUG: bool =
+true` (1 hit), `scale_funding` (4 hits — code only). `rust/src/botmain.rs` confirmed back to
+`Meta::Tempo` and `git status --short` clean in `rust/` immediately after the bundle step, before any
+games were played. Probe kept in the session scratchpad only (ephemeral gatekeeper artifact, per
+role) — not frozen into the repo.
+
+**Games played (all 12 completed the full 300 turns; zero crashes; zero HTTP 422s — no retry needed):**
+- Boss ×8: `data/boss5_games/boss/game_895375{939,969}.{map,log,raw}`,
+  `game_895376{000,019,045,060,092,109}.{map,log,raw}`
+- Field vs mikdiet (6480914) ×2: `data/boss5_games/6480914/game_895376{185,208}.*`
+- Field vs plcc (6480966) ×2: `data/boss5_games/6480966/game_895376{230,247}.*`
+
+### Readout 1 — phase flip t=140: **HOLDS (8/8)**
+Every boss raw: last `@TFFARM ... phase=Hoard` sample at t=135, first `phase=Factory` sample at
+t=140, in all 8 games — identical to every prior verdict (this part of B1-B3 has never regressed).
+
+### Readout 2 — HANDS (the fix's direct target): **HOLDS for the first time in the whole B2 arc**
+First-t per value of `n`, per boss game (all 8: n=1→t5, n=2→t15, unchanged early gates):
+
+| game | n-ladder (first-t) | max n | n≥3 by t140 | n=4 EVER (whole game) |
+|---|---|---|---|---|
+| 895375939 | 1@5, 2@15, 3@45, 4@195 | 4 | YES (t45) | YES (t195) |
+| 895375969 | 1@5, 2@15 | **2** | NO | NO (never) |
+| 895376000 | 1@5, 2@15, 3@60, 4@160 | 4 | YES (t60) | YES (t160) |
+| 895376019 | 1@5, 2@15, 3@70, 4@260 | 4 | YES (t70) | YES (t260) |
+| 895376045 | 1@5, 2@15, 3@45, 4@180 | 4 | YES (t45) | YES (t180) |
+| 895376060 | 1@5, 2@15, 3@65, 4@150 | 4 | YES (t65) | YES (t150) |
+| 895376092 | 1@5, 2@15, 3@45, 4@235 | 4 | YES (t45) | YES (t235) |
+| 895376109 | 1@5, 2@15, 3@45, 4@165 | 4 | YES (t45) | YES (t165) |
+
+n≥3 by t140: **7/8** (need ≥6/8 — holds; same bar verdict #3 already met). n=4 EVER: **7/8** (need
+≥5/8 — holds decisively; verdict #3 was **0/8**, verdict #2 was 1/8, verdict #1 was 0/8). This is the
+first run across the entire B2/B2.1/B2.2/B2.3 arc where the ladder's only chop-capable hand reliably
+trains. Mean first-t(n=4) across the 7 games that reach it ≈ **192** (range 150-260). The one holdout,
+895375969, never progresses past n=2 for the entire 300-turn game (see Root cause).
+
+### Readout 3 — FACTORY OUTPUT (the decider): **FAILS on every sub-bar**
+| game | wood@150 | wood@300 (ours) | gain(150→300) | opp final wood | boss score (us−opp) |
+|---|---|---|---|---|---|
+| 895375939 | 0 | 30 | 30 | 48 | 127−229 = **−102** |
+| 895375969 | 0 | 0 | 0 | 54 | 47−247 = **−200** |
+| 895376000 | 0 | 32 | 32 | 43 | 143−217 = **−74** |
+| 895376019 | 0 | 12 | 12 | 111 | 76−517 = **−441** |
+| 895376045 | 0 | 30 | 30 | 75 | 139−301 = **−162** |
+| 895376060 | 0 | 18 | 18 | 56 | 111−246 = **−135** |
+| 895376092 | 0 | 16 | 16 | 44 | 71−237 = **−166** |
+| 895376109 | 0 | 48 | 48 | 50 | 200−272 = **−72** |
+
+gain(t150→300)≥40: **1/8** (895376109 only; need ≥4/8). Avg final wood = **23.2** (need ≥55 — real
+production for the first time in the arc, but under half the bar). Games with final wood <25: **4/8**
+(895375969=0, 895376019=12, 895376060=18, 895376092=16; need 0). Opp avg final wood = **60.1**. Boss
+win rate **0/8**, avg score delta **−169.0** (an improvement over verdict #3's −196, but still a
+comfortable Boss-5 win on every sampled map).
+
+### Readout 4 — WALLET diagnostics (not gating): iron/apple usually funded by t140, plum/lemon usually not
+Snapshot values at t≈140 (`@TFD`, nearest sample):
+
+| game | plum@140 | lemon@140 | apple@140 | iron@140 |
+|---|---|---|---|---|
+| 895375939 | 12 OK | 3 MISS | 3 MISS | 3 MISS |
+| 895375969 | 5 MISS | 1 MISS | 16 OK | 8 OK |
+| 895376000 | 10 OK | 4 MISS | 12 OK | 7 OK |
+| 895376019 | 3 MISS | 6 MISS | 28 OK | 7 OK |
+| 895376045 | 3 MISS | 19 OK | 6 MISS | 7 OK |
+| 895376060 | 6 MISS | 6 MISS | 28 OK | 7 OK |
+| 895376092 | 2 MISS | 3 MISS | 9 OK | 3 MISS |
+| 895376109 | 6 MISS | 4 MISS | 8 OK | 7 OK |
+
+By t140, ≥7: iron **6/8**, plum **2/8**, lemon **1/8**, apple **6/8** (all diagnostic, not gating).
+Iron (the B2.3 fix's own priority target) and apple are usually funded on time; plum and especially
+lemon usually are not — but per readout 2 this no longer blocks the ladder outright, because
+`scale_funding`'s grace window now lets funding keep working past t140 until whichever resource is
+slowest finally arrives (median completion ≈ t192, well past the old t140 cliff).
+
+### Readout 5 — Hoard discipline (wood ≤6 @t150): **HOLDS (8/8), less vacuous than prior verdicts**
+All 8 games: wood@t150 = 0 (trivially ≤6). Still effectively vacuous for most games (the chopper
+hasn't finished training by t150 in 6/8 of them — see readout 2), but no longer vacuous for the
+*reason* verdicts #1-#3 saw (nothing ever felled all game) — this run's chopper does go on to fell
+real wood in 7/8 games, just mostly after t150.
+
+### Readout 6 — Field: **FAILS** (4/4 losses worse than −150)
+| game | opp | result | wood (us-opp) | scores | delta | n=4 ever? |
+|---|---|---|---|---|---|---|
+| 895376185 | mikdiet | LOSS | 0–112 | [42, 522] | **−480** | NO (max n=3 @t185) |
+| 895376208 | mikdiet | LOSS | 0–118 | [36, 494] | **−458** | NO (max n=3 @t50) |
+| 895376230 | plcc | LOSS | 22–91 | [109, 372] | **−263** | YES (t165) |
+| 895376247 | plcc | LOSS | 1–109 | [34, 444] | **−410** | NO (max n=3 @t70) |
+
+**0/4 wins, 4/4 losses worse than −150** (best case −263, worst −480, avg **−403**). The one field
+game where the ladder actually completes (895376230, n=4 at t165) is also the only field game with
+non-trivial wood (22) and the smallest-margin loss (−263) — the same "train the chopper → produce
+wood → lose by less" signature verdict #3 saw, but the ladder only ever completes in **1/4** field
+games this run (worse than boss's 7/8) — real opponents apply enough denial/tempo pressure that the
+funding grace window frequently never gets to finish at all within 300 turns.
+
+### Root cause (verified by reading the CURRENT `rust/src/botmain/{tactics,planner}.rs` directly, plus telemetry)
+`0ecbc66` is a correct, verified-working fix for both defects verdict #3 diagnosed: readout 2 — the
+fix's direct target — now holds decisively (n=4 EVER 7/8, up from 0/8 in verdict #3), and boss score
+delta improves (−169.0 vs −196). But fixing the training gate exposes the next bottleneck downstream,
+now visible for the first time because the chopper finally exists to reveal it:
+- **The ladder is fixed at 3 rungs and hard-capped at n=4 forever**: `let want_hand = n < 4 &&
+  state.turn >= SCALE_MIN_TURN[slot];` (`tactics.rs:131`) against `const SCALE_LADDER: [(i32, i32,
+  i32, i32); 3]` (`tactics.rs:128`) — there is no 4th rung. Confirmed empirically: `max_n` is exactly
+  4 in every one of the 7 boss games that complete the ladder, and never exceeds 4 in any of the 12
+  games sampled this run (boss or field). For the remainder of every game — up to 150 turns after the
+  earliest observed completion (t150) — **at most one chop=2 troll exists**, while opponents keep
+  growing: mikdiet's build strings train troll id 4 (5 total trolls), plcc's train up to troll id 7
+  (8 total trolls), over the same 300 turns.
+- **Even the earliest-training case underperforms the bar**: game 895376060 reaches n=4 at t150 (the
+  earliest in this sample) yet only gains 18 wood over the full remaining 150 turns (0.12 wood/turn)
+  — under half the ≥40 bar with the maximum possible production window. This means the shortfall is
+  not purely "the chopper trains too late": a single chop=2 hand's ceiling throughput, even given the
+  entire rest of the game, undershoots the bar on this run's maps.
+- **The farm itself stays small the whole game**: `@TFFARM farm=` never exceeds 10 at any checkpoint
+  in any of the 8 boss games (e.g. 895376019 peaks at farm=10 at t225), far under both the pre-Factory
+  12-slot cap and B3's new 20-slot cap — so the bigger farm B3 built is not yet the constraint. Root
+  cause: `scale_funding` (`planner.rs`, gated on `want_feeder`) keeps outranking Printer/plant work
+  (50/48) for as long as the ladder is incomplete — up to t260 in the slowest boss game and for the
+  *entire* game in 3/4 field games — so there are too few un-conscripted turns of plant/printer work
+  before the ladder finishes to grow the farm in the first place; by the time funding relents, only a
+  shrinking tail of the match remains to plant, mature, and fell.
+- **The one boss game that never completes the ladder (895375969) has a distinct, map-side cause**:
+  traced the full `@TFD` history — LEMON is frozen at exactly **1** from t50 through t299 (needs 3 for
+  even slot 1), while PLUM(5), APPLE(9→34), and IRON(8) are all healthy the entire game. This is a "no
+  reachable lemon supply" dead end on this specific map, not a priority-band bug — outside what any
+  Hoard-phase band fix can address.
+
+### Verdict: **FAIL**
+Readouts 3 and 6 fail on their own (gating: PASS requires 1, 2, 3, 6); readouts 1, 2 hold (2 for the
+first time in the arc); readout 5 holds, less vacuously than before. `0ecbc66` is empirically
+validated on its own direct target (chopper training) but the Scale meta as a whole is still far from
+a working factory economy or a competitive result — avg boss wood 23.2 (need ≥55), 0/8 boss wins,
+4/4 field losses worse than −150 (avg −403). No crashes; no HTTP 422s; probe compiled clean (full and
+minified).
+
+### Single most actionable observation
+The B2.3 fix worked exactly as designed — readout 2 (HANDS), the direct target of both its band-order
+fix and its grace window, now passes cleanly for the first time across four verdicts (n=4 EVER 7/8,
+up from 0/8 last run) — so the band-collision and T_SWITCH-cliff diagnoses were correct and the fixes
+should NOT be reverted. But getting the chopper to reliably train has now exposed the arc's next real
+ceiling, which no further priority-band tuning will fix: the Scale ladder is hard-capped at n=4
+forever (`SCALE_LADDER` has exactly 3 rungs, `want_hand` requires `n < 4`), so at most one chop=2
+troll ever exists for the rest of any game, and — because `scale_funding` keeps outranking
+Printer/plant work for the ladder's *entire* duration (up to t260 this run, or never-ending in 3/4
+field games) — the farm cannot even start growing in earnest until the ladder is fully paid off,
+squeezing the whole plant→mature→fell→bank pipeline into whatever turns remain (as little as 40 of
+300). Even the single best-case game this run (n=4 at t150, the earliest possible) only gains 18 wood
+in the following 150 turns, well under the ≥40 bar — evidence that raising the ladder's cap (add
+post-t260 rungs so headcount can keep growing past 4, matching opponents who reach 5-8 trolls) or
+letting some trolls do farm/printer work concurrently with the remainder still funding the ladder
+(rather than every troll racing bands until the wallet is fully paid) is the next lever, not another
+band-value adjustment.
