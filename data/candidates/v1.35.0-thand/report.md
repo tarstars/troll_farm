@@ -594,3 +594,181 @@ determines whether the T-hand line is dead or needs a cheaper trigger.
 
 **Records:** this verdict is also appended to `docs/silver-experiment-log.md` under
 "v1.35.0-thand arena verdict (2026-07-07 20:46)".
+
+## Analyst: T-hand post-mortem (plant-or-idle)
+
+**Task:** the arena reverted v1.35.0-thand (converged 16.8 vs. the 19.0 bracket) despite the
+gate #3 PASS. Hypothesis: the trained hand doesn't earn its ~9-fruit bill — it idles or
+duplicates work instead of planting/harvesting. Analysis-only (no games played); reads the 6
+boss `.raw`/`.log` pairs already on disk from gatekeeper verdict #3. This directly answers the
+arena verdict's own "next diagnostic for the analyst" ask above (does the feeder issue any
+plant/seed-adjacent work post-training, or is it an idle mouth).
+
+**Data identification.** The 6 files are the newest `.raw`/`.log` pairs in
+`data/boss5_games/boss/` (mtimes 19:32–19:34 on the collection day, immediately before the
+19:39:45 gate-verdict commit `99fb7dc`). `@TFFARM` first-`n=3` turns per game reproduce the
+report's list exactly: 895417148→70, 895417248→125, 895417090→135, 895417231→140,
+895417118→145, 895417203→180 (sorted: 70,125,135,140,145,180 — matches the brief). In all 6
+games the hand is **troll id 4** (every `.log` header's `mybuild` field carries a `4:1.1.1.0`
+entry; the opponent never trains a 3rd unit in this reduced sample, so id 4 is never
+contested with the chopper). `final wood us/opp` recomputed independently from each `.log`
+(40-48, 70-71, 42-63, 45-56, 50-55, 35-46, in gameId order below) matches the gatekeeper
+verdict #3 table exactly, cross-validating the parse.
+
+**Method.** Parsed `@TFFARM` (farm=/seeds=/n=, 5-turn cadence), `@TFD` (per-turn team
+inventory `[PLUM,LEMON,APPLE,BANANA,IRON,WOOD]`), the `.log` `mywood` column (per-turn), and
+`@TFMOVE` (per-turn troll positions, all 300 turns). Each map's exact farm ring
+(`farm_d<=2`, the same BFS `tactics.rs` uses) was reconstructed in Python from the `@TFMAP`
+grid + shack cell; each map's initial tree table (`@TFI P`) was used to tag every cell the
+hand visits as a named fruit tree / shack-adjacent / farm-ring / transit. The chopper's own
+`@TFMOVE` footprint (post-hand-birth) was extracted for overlap comparison.
+
+### 1. `farm=`/`seeds=` trend pre vs. post hand
+
+| game | birth (=first n=3) | farm mean pre→post | farm slope post (units/turn) | seeds last-nonzero t | seeds max post-birth |
+|---|---|---|---|---|---|
+| 895417090 | 135 | 3.15 → 0.65 | -0.0032 | 135 (= birth) | 2 |
+| 895417118 | 143 | 1.14 → 0.13 | -0.0023 | 25 (118 turns *before* birth) | 0 |
+| 895417148 | 70  | 1.00 → 0.60 | +0.0025 | 35 (35 turns before birth) | 0 |
+| 895417203 | 177 | 1.11 → 0.20 | -0.0012 | 20 (157 turns before birth) | 0 |
+| 895417231 | 137 | 0.67 → 0.09 | -0.0011 | 30 (107 turns before birth) | 0 |
+| 895417248 | 125 | 0.63 → 0.81 | +0.0027 | 160 (35 turns *after* birth) | 6 |
+
+Post-birth farm slope sits inside ±0.003 farm-units/turn in **6/6** games — flat, within noise
+of an integer 0-3 metric (a slope of 0.003/turn nets ~0.4 total change over the remaining
+~150 turns). Only 148 and 248 are even nominally positive, and the farm MEAN still drops
+pre→post in 5/6 games (only 248 rises, and only to 0.81 — under 1 tree on average). Seeds
+(banked bananas) are dead — last nonzero *before or at* the hand's birth — in 5/6 games; only
+895417248 ever banks anything post-birth, and only to a peak of 6. **The collapsed-farm
+disease mostly predates the hand's arrival and is never reversed by it inside this
+300-turn window.**
+
+### 2. `@TFD` fruit bill timing
+
+Every game charges the *same* atomic bill in exactly one turn (the birth turn), matching
+`training_cost(n=2, (1,1,1,0))` = n+talent² per leg = 2+1²=3 for plum/lemon/apple, 2+0²=2 for
+iron:
+
+| game | (p,l,a) at birth−1 | (p,l,a) at birth | Δ fruit | Δ iron |
+|---|---|---|---|---|
+| 895417090 | 3,4,3  | 0,1,0 | −3,−3,−3 | −2 |
+| 895417118 | 3,3,9  | 0,0,6 | −3,−3,−3 | −2 |
+| 895417148 | 3,3,3  | 0,0,0 | −3,−3,−3 | −2 |
+| 895417203 | 3,4,3  | 0,1,0 | −3,−3,−3 | −2 |
+| 895417231 | 3,3,10 | 0,0,7 | −3,−3,−3 | −2 |
+| 895417248 | 3,4,4  | 0,1,1 | −3,−3,−3 | −2 |
+
+**6/6 games: exactly −3/−3/−3 fruit + −2 iron, landing in a single turn, no spread** — the
+task's "~9 fruit" estimate is precise (9 fruit + 2 iron = 11 total resources). Because
+`afford_fruit_only` gates training on `inv>=cost` with zero slack, the hand always trains at
+the *poorest affordable instant* — it is born broke by construction. Plum is hit hardest
+afterward: the 30-turn post-birth average is **0 in 6/6 games** (vs. a healthy 1.4–3.0
+pre-birth average), because the funding bands that send trolls after plum/lemon/apple
+(`want_chopper||want_feeder`, planner.rs:251) switch off entirely the instant `n` reaches
+`GE_MAX_TROLLS` — nobody is tasked to fetch plum again for the rest of the game.
+
+### 3. wood rate pre/post (`.log` `mywood` column)
+
+| game | pre25/turn | post25/turn | overall-pre/turn | overall-post/turn |
+|---|---|---|---|---|
+| 895417090 | 0.080 | 0.240 | 0.090 | 0.170 |
+| 895417118 | 0.240 | 0.240 | 0.296 | 0.178 |
+| 895417148 | 0.080 | 0.160 | 0.174 | 0.130 |
+| 895417203 | 0.080 | 0.080 | 0.159 | 0.138 |
+| 895417231 | 0.160 | 0.080 | 0.191 | 0.147 |
+| 895417248 | 0.080 | 0.120 | 0.081 | 0.143 |
+
+Caveat first: the hand has `chop_power=0` — it physically cannot cut wood, so this is at best
+an indirect/confounded read (chopper travel/tree-availability variance, not hand causation).
+Tight-window (±25 turns around birth) reads split 3-up / 2-flat / 1-down; whole-game
+overall-pre/post splits 2-up / 4-down, confounded by the ordinary late-game deceleration
+every game already shows on its own (hand birth is late, t70–180, so "post" already overlaps
+the natural slowdown). **No consistent acceleration signal either way — the economy does not
+visibly speed up because the hand exists.**
+
+### 4. hand (troll 4) movement entropy
+
+| game | alive turns | distinct cells | frac stationary | frac in farm ring (outer-ring-only*) | banana coverage (visited/on map) | % stationary-on-banana | Jaccard vs. chopper footprint |
+|---|---|---|---|---|---|---|---|
+| 895417090 | 166 | 28 | 0.121 | 0.102 (0.066) | 0/4 | 0.0% | 0.340 |
+| 895417118 | 158 | 27 | 0.153 | 0.291 (0.145) | 4/6 | 37.5% | 0.452 |
+| 895417148 | 231 | 36 | 0.113 | 0.091 (0.078) | 1/2 | 50.0% | 0.392 |
+| 895417203 | 124 | 40 | 0.195 | 0.169 (0.096) | 4/6 | 70.8% | 0.581 |
+| 895417231 | 164 | 21 | 0.178 | 0.274 (0.140) | 2/2 | 24.1% | 0.444 |
+| 895417248 | 176 | 24 | 0.206 | 0.261 (0.130) | 1/6 | 2.8% | 0.556 |
+
+\* "outer-ring-only" subtracts the shack cell itself (frac at shack, Manhattan≤1), isolating
+time spent in the *rest* of the farm ring where planting on an empty cell would actually
+happen.
+
+No game shows IDLER-by-parking numbers in the classic sense (frac_stationary is 12–21%,
+21–40 distinct cells visited — the hand is almost always moving) and no game shows
+PLANTER-by-ring-oscillation numbers either (outer-ring-only time tops out at 14.5%). The
+discriminator that actually separates the 6 games is **how much of the hand's *stopped* time
+lands on a BANANA tree** (its one harvest+plant-eligible fruit): this ranges from 0.0%
+(895417090 — never once stops on a banana tile, 0/4 map banana trees ever visited even in
+transit) to 70.8% (895417203 — 4/6 map banana trees visited, most of its stops are on one).
+Two edge cases, called out explicitly:
+- **895417090** — the hand spends its stopped time on APPLE (2/20) and shack (3/20), never
+  banana; wide travel (28 distinct cells) with no fruit-type focus.
+- **895417248** — its first 25-turn window post-birth ([125,150), n=25) shows only **5
+  distinct cells and 15/25 (60%) stationary transitions**, the single most parked window in
+  the whole dataset, concentrated near the shack (13% of its life is shack-adjacent, the
+  highest of the 6, and 44% of all its stops are there) — then it loosens up to 12-13 distinct
+  cells/window for the remaining ~150 turns without ever engaging banana trees (1/6 visited,
+  2.8% of stops).
+
+Every game's Jaccard overlap with the chopper's own post-birth footprint is substantial
+(0.34–0.58, mean 0.46) — **roughly a third to over half of the combined ground the two units
+cover is covered by *both*.** Since the hand cannot chop, retracing the chopper's own circuit
+contributes nothing extra; this is measurable duplicated travel in every single game,
+independent of whether the hand is otherwise "working."
+
+### 5. Verdict per game
+
+| game | result | classification | why |
+|---|---|---|---|
+| 895417090 | LOSS 161-226 | **TOURIST** | 0/4 banana trees ever visited, 0% stationary-on-banana, farm still collapsing (3.15→0.65); wide travel (28 cells) with no fruit-type focus and no output. |
+| 895417118 | WIN 305-284  | **HAULER**  | 4/6 banana trees visited, 37.5% of stops on banana — but farm gets *worse* post-hand (1.14→0.13) and seeds were already dead 118 turns before birth. |
+| 895417148 | LOSS 177-285 | **HAULER**  | Only 2 banana trees on the map; visits 1, and 50% of all its stops are there (repeat-dwell) — yet seeds stay 0 for the entire 230-turn remainder. |
+| 895417203 | LOSS 185-224 | **HAULER**  | Strongest engagement of the sample: 4/6 banana trees visited, 70.8% of stops on banana — yet farm still collapses (1.11→0.20), seeds stay 0 for 123 straight turns, and it has the *highest* chopper-overlap (0.581) of the six. |
+| 895417231 | WIN 228-220  | **HAULER**  | Both map banana trees visited (2/2), 24.1% of stops on banana; farm still collapses to near-zero (0.67→0.09). |
+| 895417248 | LOSS 142-192 | **IDLER**   | Weakest banana engagement (1/6 trees, 2.8% of stops) paired with the sample's clearest parking signature (first post-birth window: 5 distinct cells, 60% stationary, concentrated at the shack) — the only game with a nominally positive farm/seed trend, but at trivial magnitude (farm never exceeds 2, seeds never exceed 6), most plausibly noise rather than a real revival. |
+
+**Tally: 4 HAULER / 1 TOURIST / 1 IDLER / 0 PLANTER.**
+
+### Sharpest number
+
+Even in the single best-case HAULER game (895417203: 70.8% of its stops on a banana tree,
+4 of the map's 6 banana trees visited), **farm_slope_post is still negative (−0.0012/turn)
+and the seed bank sits at literal 0 for 123 consecutive turns after training.** The hand's
+bill (3 plum + 3 lemon + 3 apple + 2 iron, charged atomically in 6/6 games) never earns a
+visible return in *any* of the 6 games, regardless of how actively the hand forages.
+
+### Implied fix
+
+`GE_FEEDER_FARM=0` (T-hand.2) successfully removed the *training* gate — the hand now trains
+reliably (verdict #3: 6/6). But this post-mortem shows the trained unit's own behavior is the
+real problem, not a residual threshold: 4/6 games are genuine HAULER behavior (it does travel
+to and stand on banana trees), yet the observable outputs (`farm=`, `seeds=`) never move in
+any of the 6 games, and the hand spends 34-58% of its footprint retracing the chopper's own
+path — dead-weight travel since it cannot chop. Two structural causes, both outside what a
+threshold tweak (a "T-hand.3") could plausibly fix:
+1. The hand is routed through the generic STARTER/PRINTER candidate list (planner.rs
+   bands 88/75/50/48) — the same code path as troll 0 — with no farm-ring-restricted
+   search; band 48 (`MoveTo` any ripe banana/water-apple ANYWHERE on the map) is exactly why
+   it wanders 60-90%+ of its life outside the farm ring chasing the map's few remaining
+   banana trees instead of doing tight farm-ring work.
+2. Once `n` reaches `GE_MAX_TROLLS`, `want_feeder` (and thus all fruit-funding bands) switch
+   off permanently — so even the games with real banana engagement have no mechanism left to
+   push plum/lemon back up, and the farm never gets a chance to recover within the sampled
+   window.
+
+Recommendation: **drop the line** (candidate already reverted; do not re-arm
+`GE_MAX_TROLLS=3`). Note that "second-chopper" is already independently disproven in the
+existing code comment (tactics.rs: "validated: a 2nd chopper starves the 1-feeder farm"), so
+it is not a live alternative. A cheap, narrow variant (restrict band 48/50's tree search to
+`farm_d<=GE_FARM_R` so the hand cannot leave the farm ring at all) could be tried as one more
+iteration if the team wants a single additional shot before abandoning the 3rd-hand
+direction — but given 3 iterations already spent (T-hand.1, T-hand.2, this gate) with zero
+net farm/seed benefit even in the best HAULER case, the evidence favors moving on.
