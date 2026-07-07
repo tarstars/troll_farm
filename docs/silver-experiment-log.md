@@ -990,3 +990,16 @@ band (STICKY sweep 3→5/8; endgame liquidation timing on the planner; valuation
 (2) shrink the 20.0-tier blowouts (their monster games are LONG — our anti-long-game levers:
 earlier liquidation? denial weighting?); (3) the decision-diff census vs label-matched v1.26.
 Champion reconvergence confirmed: 19.4@+18m / 18.9@+28m (band ≈ 19.1±0.3, rank 111-115).
+
+## 2026-07-07 01:05 — champion replays collected + the 20.0-TIER BLUEPRINT decoded
+data/arena_replays/: 7 full arena replays of the champion (both players' command streams).
+**jrl86's 602-337 monster decoded: HOARD-THEN-FACTORY.** t0-150: harvest/mine only (2 chops
+total!), 2→4 trolls trained from the untouched map — THE LEMON WALL DOESN'T EXIST FOR THEM
+because they harvest fruit before anyone fells the fruit trees; our wall is a TIMING artifact
+of chopper-first + fell-at-2. t150-300: plant-and-fell factory — 40 PLANT feeding 149 CHOP
+with 4-5 trolls (they grow their own chop targets → denial cannot starve them; only
+out-scoring works). Confirms the two-basin frontier: tempo optimum (us, ~19.1) vs scale
+optimum (them, ~20.0); crossing = the hoard-first build order = the Legend-harvest design
+(docs/superpowers/specs/2026-07-05-…) — NOW buildable on the planner machinery (daytime
+project). Tonight's path stays in-basin: convert the +4-margin coin-flips vs the 100-115
+band. NEXT CYCLE: v1.28.3-sticky6 (STICKY 3→6; residual flaps 2-21 = the measured defect).
