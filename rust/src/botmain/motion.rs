@@ -60,14 +60,47 @@ pub fn bank_cmd(
     }
 }
 
-/// MOVE toward a claimed camp cell (idle parking).
+/// MOVE toward a claimed camp cell. `idle=true` (band-10 idle parking) additionally steps
+/// back from a SCARCE camp — v1.41.0-nopickloop (user-observed): when the shack has <=2
+/// walkable ortho-neighbors, an idle-parking troll piling onto the one or two cells a
+/// banker actually needs blocks the bank. Prefer the nearest unclaimed, reachable
+/// manhattan-2 ring cell instead (one step further out, out of the banker's way); fall
+/// back to the normal camp-cell claim if no such cell is reachable/free (e.g. a true 1-2
+/// cell dead end with nothing beyond it).
+///
+/// `idle=false` (the band-49 park-to-pick ERRAND, planner.rs `Kind::Park` with
+/// `target: Some(shack)`) always takes the direct camp-cell approach and NEVER the ring-2
+/// detour — reviewer-caught CRITICAL bug: the errand is GOAL-DIRECTED (it must reach
+/// manhattan==1 to unlock band-50's PICK), but the ring-2 redirect has no convergence
+/// guarantee toward that goal. `claimed` is a fresh `HashSet` every `assign()` call (see
+/// planner.rs), so a redirected errand that reaches its own ring-2 cell sees, next turn,
+/// that same cell as the nearest unclaimed manhattan-2 option (distance 0 from itself) and
+/// reissues a MOVE to its own position forever — a permanent stall on scarce-camp maps that
+/// the anti-stall watchdog can't catch (it only sidesteps a MOVE whose target differs from
+/// the troll's current cell).
 pub fn park_cmd(
     state: &State,
     shack: Cell,
     u: &Troll,
     d: &HashMap<Cell, i32>,
     claimed: &mut HashSet<Cell>,
+    idle: bool,
 ) -> String {
+    if idle {
+        let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
+        if camp_cells <= 2 {
+            let ring2 = state
+                .walkable
+                .iter()
+                .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
+                .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
+                .min_by_key(|(c, dist)| (*dist, *c));
+            if let Some((c, _)) = ring2 {
+                claimed.insert(c);
+                return format!("MOVE {} {} {}", u.id, c.0, c.1);
+            }
+        }
+    }
     let c = pick_camp_cell(state, shack, d, claimed);
     format!("MOVE {} {} {}", u.id, c.0, c.1)
 }
