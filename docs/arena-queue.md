@@ -53,14 +53,36 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   bracket (also 17.6). Left live in the slot (no revert); `api_submit.py` default stays at
   `v1.36.0-race.min.rs` per the parity rule (candidate is NOT the new champion/default). See
   verdict log below and `docs/silver-experiment-log.md` for the full read sequence.
+- **Champion re-baseline (2026-07-08 07:20:53, controller action):** with sharepen4 flat at
+  121/527 @ 17.6 for 8 consecutive reads / 3h05m (03:58-07:03, no movement), the controller
+  independently resubmitted pure `v1.36.0-race.min.rs`, suspecting the flat 17.6 might mask a
+  sharepen4-specific regression. The v1.40.0-roam4 arena-runner (mid-Phase-0) verified the
+  resubmission independently (agentId 6542656→6543178) and tracked reconvergence: **stable at
+  115/527 @ 19.1** across two reads 86m46s apart (07:53:34, 09:20:20). The v2 policy note itself
+  (below, 07:40) confirms this methodology after the fact ("the 07:20 pure-champion resubmission
+  IS the fresh baseline; roam4 chains on it") and separately downgrades sharepen4's own
+  KEEP-AT-PARITY verdict to **INCONCLUSIVE retroactively** (old ±0.2 threshold was below the
+  measured noise floor). INCONCLUSIVE resolves the *label* but not the *mechanism* — whether
+  `RACE_SHARE_PEN=4` specifically costs ~1.5pt vs the champion's `=2` remains open; a dedicated
+  4→2 isolation retest (chained against one baseline, per v2) would settle it. Full detail in
+  `docs/silver-experiment-log.md` ("## v1.40.0-roam4 arena verdict").
+- **Arena-slot resolved (2026-07-08 ~10:13):** v1.40.0-roam4 (queue #2) verdict is
+  **REVERTED** — baseline 115/527 @ 19.1 (the fresh champion re-baseline above); converged
+  199/527 @ 15.5 across a monotonic-fade +20/+35/+50m trajectory (16.1→15.7→15.5), **delta
+  −3.6** — decisively past the v2 policy's own −0.5 revert bar (and past the −0.2 margin the
+  pre-v2 brief was run under; both frameworks agree). Reverted to `v1.36.0-race.min.rs`;
+  `api_submit.py` default was already this file. See verdict log below and
+  `docs/silver-experiment-log.md` for the full read sequence.
 
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
    121/527 @ 17.6, exact tie with bracket 17.6; left live, not promoted to default). Null
    result — cannot distinguish "mechanism saturated at 2" from "masked by the room's current
    ~2pt night-drift band"; see verdict log.
-2. **chop_r 5→4 retest** — PROMOTED. Orthogonal travel-reduction lever in the same
-   "cut waste" family as the race-check's proven win; no fell-valuation interaction risk.
+2. **chop_r 5→4 retest** — **CLOSED: REVERTED** (v1.40.0-roam4, baseline 115/527 @ 19.1,
+   converged 199/527 @ 15.5, delta −3.6, monotonic fade not noise). Tightening roam by 1 further
+   costs performance on the current R6b planner rather than saving travel — the sweep's premise
+   did not hold; `GE_CHOP_R` stays at 5 (champion value); see verdict log.
 3. **tree-first-only (nanaflow's safe half)** — re-gate champion-equality UN-WAIVED against
    v1.36.0-race specifically (per the nanaflow post-mortem's own recommendation) to isolate
    it from the diagonal-placement half before restacking both.
@@ -126,6 +148,24 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   turns of farm=0); design direction: ripeness-anticipation over wider roaming.
 
 ## Verdict log (newest first)
+- v1.40.0-roam4: **REVERTED** (baseline 115/527 @19.1 — a fresh champion re-baseline the
+  controller triggered mid-episode, not this candidate's own bracket read; see the "Champion
+  re-baseline" bullet above for that sub-episode's own detail — converged 199/527 @15.5 across
+  a monotonic-fade +20/+35/+50m trajectory, 16.1→15.7→15.5, no rebound at any point, decided
+  at +50m per the brief, not ambiguous. **Delta −3.6**, decisively past both the pre-v2 brief's
+  −0.2 keep-margin AND the v2 policy's own −0.5 revert bar (policy landed mid-episode, commit
+  73d3c10 07:32:50 — this verdict is robust to both framings). `GE_CHOP_R` 5→4 costs performance
+  rather than saving travel; the roam-radius-tightening hypothesis is not supported at this
+  planner generation either (the cascade-era radius-3 "within noise" verdict already didn't
+  transfer, and radius 4 now measures as a clean loss, not a null result). Reverted to
+  `v1.36.0-race.min.rs` (`api_submit.py` default already pointed there — no edit needed). Goal
+  gate (≤99) did not fire (best rank this episode: 115/527). Mid-episode process note: the
+  runner's original Phase-0 night-trough-wait loop (8 flat reads, 121/527@17.6, 03:58-07:03) was
+  superseded by a controller redirect at 07:20-07:21 to bracket off an independently-verified
+  fresh champion resubmission instead (agentId 6542656→6543178, converged 115/527@19.1); the
+  "sharepen4 masked regression" question this raised is flagged, not resolved (see above). Full
+  detail in `docs/silver-experiment-log.md` ("## v1.40.0-roam4 arena verdict") and
+  `data/candidates/v1.40.0-roam4/report.md`.
 - v1.39.0-sharepen4: **KEEP, AT PARITY** (bracket 121/527 @17.6, re-confirmed independently
   after the deny1 revert; converged 121/527 @17.6 across a flat +20/+35/+50m trajectory,
   17.4→17.6→17.6, decided at +50m, not ambiguous — exact tie with bracket, 0.0pt delta).

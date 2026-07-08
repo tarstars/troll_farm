@@ -196,3 +196,56 @@ the gap the `v1.39.0-sharepen4` sweep left unmeasured (that candidate converged 
 its bracket, 17.6 == 17.6, in a room the analyst flagged as possibly drift-depressed 2-3pts below
 its 19.3-20.1 high-water mark — re-baseline against a fresh champion read near 19-20 before
 judging this candidate's arena delta, same caveat the sharepen4 analyst left standing).
+
+## Arena verdict (2026-07-08, arena-runner) — REVERTED
+
+**Gate note:** this candidate went straight to the arena without a separate gatekeeper report in
+this file, per the queue's idle-slot policy (`docs/arena-queue.md`: "gates PRIORITIZE when the
+queue is full — they do not serialize when the slot would otherwise idle"); the builder's own
+gate results above (TDD RED/GREEN, full suite green, self-determinism, bundle/minify round-trip
+equality, DEBUG-probe compile check) stood in for it, matching the precedent set by
+`v1.36.0-race` ("boss/field probe waived per the idle-slot policy").
+
+**Mid-episode process note:** the arena-runner's original Phase-0 trough-wait loop logged 8
+flat reads (121/527 @ 17.6, agentId 6542656 = `v1.39.0-sharepen4`) from 03:58-07:03 MSK, zero
+movement. At 07:20-07:21 the controller independently resubmitted the pure champion
+`v1.36.0-race.min.rs` as a re-baseline (suspecting sharepen4's flat 17.6 masked a regression)
+and redirected the runner to bracket off of that resubmit's reconvergence instead. Verified
+independently (agentId 6542656→6543178 confirmed the resubmit was real); that resubmit climbed
+12.6→17.8→19.1 and held stable at **115/527 @ 19.1** across two reads 86m46s apart (07:53:34,
+09:20:20). Mid-episode, `docs/arena-queue.md`'s **MEASUREMENT POLICY v2** (user-designed,
+`73d3c10`, 07:32:50) landed and explicitly confirmed this exact methodology after the fact:
+"the 07:20 pure-champion resubmission IS the fresh baseline; roam4 chains on it" — and
+separately downgraded `v1.39.0-sharepen4`'s prior KEEP-AT-PARITY verdict to INCONCLUSIVE
+retroactively (the old ±0.2 threshold was below the measured noise floor). Full detail,
+including the epistemic caveat on the "sharepen4 masked regression" hypothesis (data-consistent
+but not conclusive even post-v2 — INCONCLUSIVE means "can't tell," not "confirmed regression";
+a `RACE_SHARE_PEN` 4→2 isolation retest would settle it), is in
+`docs/silver-experiment-log.md` ("## v1.40.0-roam4 arena verdict").
+
+**Bracket:** 115/527 @ 19.1 (v2: delta = candidate − 19.1; pre-v2 fallback keep bar =
+bracket−0.2 = 18.9 — both frameworks agree on this verdict, see below).
+
+**Submit:** 09:20:59 MSK, `api_submit.py cgauto/submissions/v1.40.0-roam4.min.rs` →
+`TestSession/submit: 200 40966338` → SUBMIT-OK.
+
+**Convergence reads** (agentId 6543450 throughout):
+
+| time (MSK) | Δt post-submit | rank | score |
+|---|---|---|---|
+| 09:41:18 | +20m | 174/527 | 16.1 |
+| 09:55:36 | +35m | 187/527 | 15.7 |
+| 10:09:59 | +50m | 199/527 | 15.5 |
+
+Monotonic fade, no rebound — unambiguous, decided at +50m (no +65m read needed).
+
+**Verdict: REVERT.** v2 delta = 15.5 − 19.1 = **−3.6**, decisively past the v2 revert bar
+(delta ≤ −0.5). Also fails the pre-v2 framing (18.9 keep bar) and the original brief's fallback
+bracket (sharepen4's own flat 17.6, keep bar 17.4, still −1.9pt short) — all three agree.
+`GE_CHOP_R` 5→4 costs performance in
+this room rather than saving travel — the roam-radius-tightening hypothesis (this candidate's
+premise) is not supported; radius stays at 5 (the champion value). Reverted to
+`cgauto/submissions/v1.36.0-race.min.rs`; `api_submit.py` default was already this file (no edit
+needed). Goal gate (rank ≤99) did not fire (best rank this episode: 115/527). Full read
+sequence, the analyst hand-off note, and the reconvergence confirmation are in
+`docs/silver-experiment-log.md` and `docs/arena-queue.md`.

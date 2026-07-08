@@ -1832,3 +1832,115 @@ just a knob.
 Both counters are orthogonal to the current in-flight candidate (chop_r 5→4 / v1.40.0-roam4,
 queue #2) and to the parked `DENY_W`/`race()` collision — neither touches fell-target
 tie-breaks.
+
+## v1.40.0-roam4 arena verdict (2026-07-08 ~10:13) — REVERTED (converged 199/527 @ 15.5 vs bracket 115/527 @ 19.1, −3.6pt)
+
+**Process note — mid-episode bracket redirect from the controller (07:20-07:21 MSK).** This
+runner's original Phase-0 loop (wait for a `cg_rank.py` read ≥19.0, or a 6h cap, per the
+arena-runner brief's night-trough clause) had logged **8 consecutive flat reads, 121/527 @ 17.6,
+agentId 6542656 (v1.39.0-sharepen4, live at parity), from 03:58 through 07:03 MSK (3h05m, zero
+movement)**. At 07:21:28 the controller messaged in: it had independently resubmitted the PURE
+champion `v1.36.0-race.min.rs` at 07:20:53 (SUBMIT-OK) as a clean re-baseline, on the theory
+that the persistent flat 17.6 might be masking a sharepen4-specific regression rather than pure
+night-trough drift, and instructed this runner to hold the roam4 submit, monitor that fresh
+resubmit's reconvergence, and use THAT as the Phase-1 bracket instead of the original loop's own
+threshold-or-cap criterion. This runner verified the claim independently rather than taking it
+on faith — `agentId` shifted 6542656 → **6543178** on the very next read, confirming a real
+resubmission had landed:
+
+| time (MSK) | rank | score | agentId | note |
+|---|---|---|---|---|
+| 07:22:52 | 335/527 | 12.6 | 6543178 (new) | cold-start; resubmit confirmed |
+| 07:38:16 | 119/527 | 17.8 | 6543178 | climbing |
+| 07:53:34 | 115/527 | 19.1 | 6543178 | climbing |
+| 09:20:20 | 115/527 | 19.1 | 6543178 | **stable** (Δ0.0, 86m46s after prior read) |
+
+(A `sleep 360` issued between the 07:53 and 09:20 reads returned after an unexplained ~72-minute
+wall-clock overrun beyond its requested duration — flagged as an environment/scheduling anomaly,
+not an arena event; `agentId` was unchanged across the gap, so it does not contaminate the read.)
+
+Two stable reads 86m46s apart, same agentId, Δ0.0 → **Phase-1 bracket = 115/527 @ 19.1**
+(v1.36.0-race, freshly resubmitted), superseding this runner's own Phase-0 criterion per the
+controller's redirect.
+
+**On the "sharepen4 masked regression" question the controller asked this runner to record:**
+the data is *consistent* with that hypothesis (the fresh pure-race resubmit settled 1.5pt above
+sharepen4's rock-flat 17.6) but is **not conclusive**, for a timing reason worth flagging
+plainly: sharepen4's flat-17.6 window (03:58-07:03) and the fresh race resubmit's climb-to-19.1
+window (07:20-09:20) are *sequential*, not concurrent. This room's own verdict log already
+documents the *identical, byte-unchanged* `v1.36.0-race` code reading anywhere from 17.6 to
+19.9-20.1 across different resubmissions/times of day (the documented drift band). Simple
+morning trough-recovery (this runner's original Phase-0 premise) is therefore an equally
+sufficient explanation for the 17.6→19.1 change as a sharepen4-specific cost is — no concurrent
+A/B (a fresh race resubmit DURING the 03:58-07:03 window) exists to separate the two. Recorded
+per the controller's request, flagged for the analyst to weigh rather than asserted as proven;
+if pursued, the controller's implied next step is a `RACE_SHARE_PEN` 4→2 isolation retest.
+
+**Update — this question already has an authoritative (partial) answer.** Mid-episode, the user
+landed `73d3c10` (07:32:50 MSK) — see "## 2026-07-08 07:40 — MEASUREMENT POLICY v2" above — which
+explicitly addresses exactly this: "the old ±0.2 threshold operated BELOW the noise floor
+(sharepen4's 'exact parity' was a coin-read)," and states **"sharepen4's parity verdict
+downgraded to INCONCLUSIVE retroactively."** That resolves the label (sharepen4 is INCONCLUSIVE,
+not KEEP-AT-PARITY) but not the underlying mechanism question — INCONCLUSIVE means "can't tell
+from this data," not "confirmed no cost," so the `RACE_SHARE_PEN` 4→2 isolation retest above
+remains the way to actually settle whether `RACE_SHARE_PEN=4` costs anything. The same 07:40
+note also explicitly sanctions this runner's bracket choice: **"the 07:20 pure-champion
+resubmission IS the fresh baseline; roam4 chains on it"** — i.e. using 115/527 @ 19.1 (not the
+flat sharepen4 17.6, and not a fresh from-scratch bracket read) as this candidate's baseline is
+the policy-designer's own prescribed methodology, not just this runner's/the controller's
+independent judgment call.
+
+**Phase 2 — submit** (09:20:59 MSK): `api_submit.py cgauto/submissions/v1.40.0-roam4.min.rs` →
+`TestSession/submit: 200 40966338` → SUBMIT-OK. New agentId confirmed live on first read
+(6543450).
+
+**Phase 3 — convergence reads:**
+
+| time (MSK) | Δt post-submit | rank | score | agentId |
+|---|---|---|---|---|
+| 09:41:18 | +20m | 174/527 | 16.1 | 6543450 |
+| 09:55:36 | +35m | 187/527 | 15.7 | 6543450 |
+| 10:09:59 | +50m | 199/527 | 15.5 | 6543450 |
+
+Shape: monotonic fade, 16.1→15.7→15.5, same agentId throughout, no rebound at any point —
+unambiguous (a clean "flat-low/fading" shape, decidable without a +65m read per the queue's own
+shape taxonomy). Decided at +50m per the brief.
+
+**Phase 4 — verdict:** under **MEASUREMENT POLICY v2** (landed mid-episode, `73d3c10`, and
+confirmed to apply to this exact candidate — "roam4 chains on it," see above), delta =
+candidate − baseline = 15.5 − 19.1 = **−3.6**, decisively past the v2 revert bar (delta ≤ −0.5)
+→ **REVERT**. Cross-checked against the pre-v2 brief's own criterion too (bracket 19.1, keep bar
+= bracket−0.2 = 18.9; 15.5 is −3.6pt below it) and against the original brief's fallback bracket
+(had the 6h cap been hit using the flat sharepen4 17.6 instead, keep bar 17.4; 15.5 still fails
+by −1.9pt) — all three framings agree. `GE_CHOP_R` 5→4 does not help in this arena room:
+tightening the roam radius by 1 further on the current R6b planner costs performance rather than
+saving travel, opposite the sweep's working hypothesis. Given the monotonic (not flat, not
+rebounding) fade shape, this reads as a genuine effect, not noise.
+
+**Revert executed:** `api_submit.py cgauto/submissions/v1.36.0-race.min.rs` — see the
+reconvergence table appended below (second commit, per the brief's "commit the verdict the
+moment it's decided, then again at the end").
+
+**Goal gate (rank ≤99):** did not fire at any point this episode (best rank reached: 115/527).
+
+**One line for the analyst:** `GE_CHOP_R` 5→4 REVERTED under v2 (delta −3.6, monotonic fade, not
+noise) — the cascade-era "radius 3 marginally better / within noise" verdict does not license
+assuming radius 4 is safe on the R6b planner either; tightening roam is net-negative here,
+opposite this sweep's premise, so the roam-radius family looks closed for now (5 stays live) and
+the queue's own top-ranked pending ideas — the Tempo-active fruit-harvest band (#1,
+HARVEST/DUAL-economy, 45% share) and the phase-1 `own_half`/`within_roam` loosening for
+delayed-burst opponents (#2, BURST-CHOPPER) — are the better next bets; separately, v2's own
+07:40 note already downgraded sharepen4 to INCONCLUSIVE (noise-floor correction, not this
+runner's finding), but that still leaves the underlying `RACE_SHARE_PEN=4` mechanism question
+open — a dedicated 4→2 isolation retest (chained against a single baseline, per v2) would settle
+it either way, and this runner's own bracket data (sharepen4 flat 17.6 for 3h+ vs a same-day
+fresh-resubmit champion settling at 19.1) is at least suggestive that it's worth doing sooner
+rather than later.
+
+### Records
+
+`cgauto/api_submit.py` default confirmed unchanged (`v1.36.0-race.min.rs` — was already correct
+pre-episode; REVERT case needs no edit). `docs/arena-queue.md` champion/queue/verdict-log
+updated in the same commit. Committed the moment this verdict was decided (~10:13), per the
+slot-ownership rule and the brief's "commit early and again at the end" instruction; reconvergence
+verification (in progress) to follow in a second commit.
