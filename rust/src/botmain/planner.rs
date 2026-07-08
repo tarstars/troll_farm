@@ -440,6 +440,28 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
             }
         }
+        // 6.5) IDLE-FRUIT (band 38, design D1 — champion loss taxonomy 2026-07-08 morning,
+        // docs/silver-experiment-log.md: 45% of all losses are opponents out-fruiting us,
+        // HARVEST+DROP 91-307 vs our flat 20-90). Strictly ABOVE anti-starvation (31/30) —
+        // never competes with keeping the wood supply alive — and strictly BELOW chop-help
+        // (42/40) and every printer/funding band above it (52/50/49/48/45/44/63/64/65/60/58) —
+        // this is the fix for the v1.24.0-fruitbank trap (arena -1.0), which ranked
+        // fruit-chasing ABOVE chop-help and lost. Because every one of those higher bands
+        // already claims its own trees first, band 38 only ever wins the joint assignment on
+        // a turn where nothing more valuable was available — it converts an otherwise-idle
+        // turn into fruit points and never displaces wood work, seed work, or funding. No
+        // per-type/own-half/roam gating on purpose ("harvest ANY ripe fruit"); mirrors the
+        // ChopHere/MoveTo split used by every other band in this function.
+        if u.harvest_power > 0 && u.free_capacity() > 0 {
+            for p in state.trees.iter().filter(|p| p.fruits > 0 && d.contains_key(&p.pos())) {
+                let pc = p.pos();
+                if pc == u.pos() {
+                    out.push(Cand { kind: Kind::Harvest, target: Some(pc), value: 38 * BAND });
+                } else {
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - eta(&d, pc, ms) });
+                }
+            }
+        }
         // fallback (band 10)
         out.push(Cand {
             kind: if u.total_carried() > 0 { Kind::Bank } else { Kind::Park },
