@@ -217,7 +217,7 @@ the late-throughput-ceiling gap documented in HANDOFF.md, or whether `RACE_SHARE
 overshooting (a follow-up sweep at an intermediate value, e.g. 3, may be needed if this candidate
 under- or over-shoots).
 
-## Arena verdict (arena-runner, IN PROGRESS — recorded 2026-07-08 02:47)
+## Arena verdict (arena-runner, final — 2026-07-08 03:37) — KEEP, AT PARITY
 
 Boss/field gate was waived per the queue-never-idles policy (arena-runner brief went straight
 from champion-reconvergence to submit; no separate gatekeeper episode ran for this candidate).
@@ -229,6 +229,32 @@ re-confirmed): 3 consecutive `cg_rank.py` reads 02:28/02:37/02:47 all **121/527 
 **Submit**: 02:47:19, `api_submit.py cgauto/submissions/v1.39.0-sharepen4.min.rs` →
 `TestSession/submit: 200 40965544` → SUBMIT-OK.
 
-Convergence reads and final KEEP/REVERT verdict to follow (see
-`docs/silver-experiment-log.md` "## v1.39.0-sharepen4 arena verdict" for the up-to-date
-sequence — this section will be filled in at decision time).
+**Convergence** (agentId 6542656 confirmed live throughout):
+
+| time (MSK) | Δt post-submit | rank | score |
+|---|---|---|---|
+| 03:07:11 | +20m | 123/527 | 17.4 |
+| 03:22:16 | +35m | 121/527 | 17.6 |
+| 03:37:26 | +50m | 121/527 | 17.6 |
+
+Flat from +20m, converged 121/527 @ 17.6 by +35m (unchanged at +50m, 15m5s apart, Δ0.0) — not
+ambiguous, decided at +50m, no +65m read needed.
+
+**Verdict:** converged 17.6 == bracket 17.6 exactly (≥ bracket−0.2 = 17.4) → **KEEP**. The
+`RACE_SHARE_PEN` 2→4 sweep (with `DENY_W` parked at 0) produced no measurable change vs the
+champion's own immediately-preceding reconvergence reading in this arena room — a clean tie.
+Candidate remains the live arena entry; no revert performed.
+
+**Phase 4 (parity rule):** `cgauto/api_submit.py` default left unchanged at
+`v1.36.0-race.min.rs` — sharepen4 is kept live but NOT promoted to champion/default status
+(mirrors the v1.28.3-sticky6 NEUTRAL precedent).
+
+**Goal gate (rank ≤99):** did not fire (all reads 117-123 this episode).
+
+**For the analyst:** the sweep is a null result in this room at this moment — cannot
+distinguish "mechanism already saturated at RACE_SHARE_PEN=2" from "effect masked by the
+~2pt night-drift band currently depressing the champion itself (19.3-20.1 -> 17.6)". Queue
+#2 (chop_r 5→4) is unaffected by this result and remains the correct next submit; re-baseline
+against a fresh champion read near 19-20 before judging future small-delta sweeps in this
+room. Full read sequence and reasoning: `docs/silver-experiment-log.md`, "## v1.39.0-sharepen4
+arena verdict (2026-07-08 03:37)".

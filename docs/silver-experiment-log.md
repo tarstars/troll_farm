@@ -1466,7 +1466,7 @@ analyst's b62c977 commit (predates the controller's takeover). v1.39.0-sharepen4
 candidate, `RACE_SHARE_PEN` 2→4 + `DENY_W` parked at 0) is out of scope for this runner — left
 untouched for its own arena-runner episode.
 
-## v1.39.0-sharepen4 arena verdict (IN PROGRESS — bracket + submit recorded 2026-07-08 02:47)
+## v1.39.0-sharepen4 arena verdict (2026-07-08 03:37) — KEEP, AT PARITY (converged 17.6 == 17.6 bracket)
 
 **Phase 0 — champion reconvergence, independently re-confirmed:** after the deny1 revert
 (01:47), read `cg_rank.py` every ~9-10 min:
@@ -1490,6 +1490,48 @@ current baseline to compare sharepen4 against.
 **Phase 1 — submit:** 02:47:19 MSK, `api_submit.py cgauto/submissions/v1.39.0-sharepen4.min.rs`
 → `TestSession/submit: 200 40965544` → **SUBMIT-OK**.
 
-Convergence reads (Phase 2, +20/+35/+50m) and verdict (Phase 3) to follow below; this entry is
-being committed now (mid-episode) per the runner brief's explicit instruction, after a prior
-episode's runner went silent past its decision window without committing.
+**Phase 2 — convergence reads** (new agentId 6542656 confirmed live on all three, distinct
+from the champion's 6542647):
+
+| time (MSK) | Δt post-submit | rank | score | agentId |
+|---|---|---|---|---|
+| 03:07:11 | +20m | 123/527 | 17.4 | 6542656 |
+| 03:22:16 | +35m | 121/527 | 17.6 | 6542656 |
+| 03:37:26 | +50m | 121/527 | 17.6 | 6542656 |
+
+Shape: flat from the start, converged by +35m (121/527 @ 17.6, unchanged at +50m — two reads
+15m5s apart, Δ0.0). Not ambiguous (no climb-then-fade or slow-drift shape) — decided at +50m
+per the brief, no +65m read needed.
+
+**Phase 3 — verdict:** converged score **17.6 == bracket 17.6** exactly (bracket−0.2 = 17.4;
+17.6 ≥ 17.4) → **KEEP**. The `RACE_SHARE_PEN` 2→4 sweep (+ `DENY_W` parked at 0) produced **no
+measurable change** in this arena room relative to the champion's own immediately-preceding
+reconvergence level — a clean tie, not a regression and not an improvement. Candidate remains
+the live arena entry (no revert needed).
+
+**Phase 4 — at parity, per the brief's explicit instruction ("at parity leave at race"):**
+`cgauto/api_submit.py`'s default is **left unchanged** at `v1.36.0-race.min.rs` — sharepen4 is
+NOT promoted to champion/default status despite being kept live in the slot. Verified the file
+still reads the race path (no edit made). This mirrors the v1.28.3-sticky6 precedent (NEUTRAL
+verdict, "left live (same policy)", champion/default pointer untouched).
+
+**Goal gate (rank ≤99):** did not fire — every read this episode stayed in the 117-123 range
+(bracket reads 117/121/121/121, convergence reads 123/121/121), nowhere near ≤99. No
+confirming read required.
+
+**One line for the analyst:** `RACE_SHARE_PEN` 2→4 landed as a flat no-op in this arena room
+(17.6→17.6, exact tie with the champion's own concurrent bracket) — either the mechanism is
+already saturated at the old value (2) for this room's current opponent mix, or the effect is
+being masked by the same night-drift band that's depressed the champion itself from 19.3-20.1
+down to 17.6; the next candidate (chop_r 5→4, queue #2, an orthogonal travel-reduction lever
+with no fell-valuation interaction risk) is unaffected by this null result and remains the
+right next submit — but note the arena room is currently reading ~2pt below the champion's
+historical peak band for reasons unrelated to any candidate's code, so don't over-interpret
+small deltas until a read lands back near 19-20 to re-baseline.
+
+### Records
+
+`cgauto/api_submit.py` default confirmed unchanged (`v1.36.0-race.min.rs`) — no edit needed
+(parity case). `docs/arena-queue.md` champion/queue/verdict-log updated in the same commit.
+Committed the moment this verdict was decided (03:37), per the slot-ownership rule and the
+brief's "commit early and again at the end" instruction.

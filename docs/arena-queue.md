@@ -29,17 +29,17 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   (~00:44-01:47) is now closed out — REVERTED (see verdict log below). The champion has been
   the live arena entry again since a parallel controller's 01:47:07 resubmit; this runner
   independently verified that resubmit's reconvergence (two stable reads, 121/527 @ 17.6).
-- **Arena-slot update (2026-07-08 02:47):** v1.39.0-sharepen4 (queue #1, `RACE_SHARE_PEN`
-  2→4 + `DENY_W` parked at 0) submitted by its own arena-runner episode. Bracket
-  (independently re-confirmed, 3 reads 02:28-02:47, 121/527 @ 17.6) matches the champion's
-  just-closed reconvergence exactly. Convergence reads in progress; see verdict log /
-  `docs/silver-experiment-log.md` for the live sequence. **This runner owns the slot** per
-  the slot-ownership rule until the verdict commit lands.
+- **Arena-slot resolved (2026-07-08 03:37):** v1.39.0-sharepen4 (queue #1) verdict is
+  **KEEP, AT PARITY** — converged 121/527 @ 17.6, an exact tie with the champion's own
+  bracket (also 17.6). Left live in the slot (no revert); `api_submit.py` default stays at
+  `v1.36.0-race.min.rs` per the parity rule (candidate is NOT the new champion/default). See
+  verdict log below and `docs/silver-experiment-log.md` for the full read sequence.
 
 ## Queue (ordered; update statuses as they move)
-1. **RACE_SHARE_PEN sweep (2→4)** — **IN ARENA** (v1.39.0-sharepen4, submitted 02:47:19,
-   agentId pending reconvergence). Tunes the one mechanism with a proven, large positive
-   field result (the race-check itself); lowest interaction risk of the remaining ideas.
+1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
+   121/527 @ 17.6, exact tie with bracket 17.6; left live, not promoted to default). Null
+   result — cannot distinguish "mechanism saturated at 2" from "masked by the room's current
+   ~2pt night-drift band"; see verdict log.
 2. **chop_r 5→4 retest** — PROMOTED. Orthogonal travel-reduction lever in the same
    "cut waste" family as the race-check's proven win; no fell-valuation interaction risk.
 3. **tree-first-only (nanaflow's safe half)** — re-gate champion-equality UN-WAIVED against
@@ -64,6 +64,13 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    look once a champion-specific census is unblocked (analyst finding, 2026-07-08 night).
 
 ## Verdict log (newest first)
+- v1.39.0-sharepen4: **KEEP, AT PARITY** (bracket 121/527 @17.6, re-confirmed independently
+  after the deny1 revert; converged 121/527 @17.6 across a flat +20/+35/+50m trajectory,
+  17.4→17.6→17.6, decided at +50m, not ambiguous — exact tie with bracket, 0.0pt delta).
+  `RACE_SHARE_PEN` 2→4 (+ `DENY_W` parked at 0) is a null result in this room right now. Left
+  live in the slot; `api_submit.py` default unchanged (`v1.36.0-race.min.rs`, parity rule).
+  Goal gate (≤99) did not fire. Full detail in `docs/silver-experiment-log.md` and
+  `data/candidates/v1.39.0-sharepen4/report.md`.
 - v1.38.0-deny1: REVERTED (bracket 111/527 @19.3; converged 135/527 @17.0 across a stable
   +20/+35/+50m trajectory, 16.5→16.8→17.0, a −2.3pt shortfall vs the −0.2pt keep bar, not
   ambiguous — independently corroborated by the analyst's parallel `battles.py` census
