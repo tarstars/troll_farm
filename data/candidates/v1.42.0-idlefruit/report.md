@@ -405,3 +405,157 @@ copied byte-identically (`cmp`-verified) over the `data/candidates/v1.42.0-idlef
 
 The `.debug-probe.min.rs` copy was not regenerated (out of scope for this fix; unaffected by the
 band-38 change beyond the same +130 B this fix adds elsewhere).
+
+(Note superseded by commit `fcc96c2`, which regenerated the debug probe from the fixed bundle —
+see the Mini-gate section below, which gates on that fresh probe.)
+
+## Mini-gate (idlefruit): PASS — 2026-07-08 15:47
+
+**Role: GATEKEEPER.** Candidate: `v1.42.0-idlefruit` = live `v1.41.0-nopickloop` base + planner
+value band 38 ("idle-fruit"): an otherwise-idle troll harvests reachable ripe fruit instead of
+parking, gated by `race()` so it never chases a doomed tree. Gate run against the probe frozen at
+commit `fcc96c2` (post race-check fix `9948578`, debug-probe regenerated).
+
+### Purity pre-check
+
+Grepped `data/candidates/v1.42.0-idlefruit/v1.42.0-idlefruit.rs` directly:
+
+| const | required | found | line |
+|---|---|---|---|
+| `VERSION` | contains "1.42.0-idlefruit" | `"1.42.0-idlefruit"` | 11 |
+| `GE_CHOP_R` | `= 5` | `i32 = 5` | 1410 |
+| `RACE_SHARE_PEN` | `= 2` | `i64 = 2` | 546 |
+| `DENY_W` | `= 0` | `i64 = 0` | 537 |
+| `STICKY` | `= 6` | `i64 = 6` | 525 |
+| `GE_MAX_TROLLS` | `= 2` | `i32 = 2` | 1401 |
+
+All six match champion semantics exactly — **no contamination**.
+
+Probe freshness: `cmp <(sed 's/const DEBUG: bool = true;/const DEBUG: bool = false;/' …debug-probe.min.rs) …min.rs` → **files identical** (exit 0), confirming the probe differs from the release
+build by the DEBUG flag only. Byte sizes 44,985 B (probe) vs 44,986 B (release) — the 1-byte gap
+is exactly `"true"`(4) vs `"false"`(5), consistent with a clean DEBUG-only diff. Cross-checked
+against git history: commit `fcc96c2` ("regenerate debug probe from fixed bundle") postdates the
+race-check fix `9948578`, resolving this same report's earlier "not regenerated" note above (that
+note described the pre-`fcc96c2` state). **Purity pre-check PASSES.**
+
+### Boss mini-gate (6 games)
+
+Collected via `collect_debug_games.py …debug-probe.min.rs boss 6` → gameIds 895490005, 895490023,
+895490036, 895490058, 895490067, 895490076 (all 6/6 returned cleanly, distinct from the prior
+v1.41.0-nopickloop gate's ids 895468000-895468151 still cached in the same directory).
+
+| gameId | result | final turn | my wood | boss wood | delta |
+|---|---|---|---|---|---|
+| 895490005 | W | 300 | 48 | 52 | -4 |
+| 895490023 | L | 300 | 51 | 66 | -15 |
+| 895490036 | L | 300 | 40 | 59 | -19 |
+| 895490058 | L | 300 | 32 | 42 | -10 |
+| 895490067 | W | 300 | 50 | 53 | -3 |
+| 895490076 | L | 300 | 42 | 40 | +2 |
+
+2/6 wins (33%). `ramp.py --last 6`: t75 delta +3.2, t150 delta +2.7, t225 delta -1.2, **t300 delta
+-8.2**; our avg final wood **43.8**; late-quarter (t225->300) gain us +10.5 vs opp +17.5.
+
+**Crashes:** grep for panic/backtrace/fatal/unwrap/segv/timeout/invalid move/exception/traceback
+across all 6 `.raw` files → 0 hits. Cross-checked with a second, independent method (full replay
+fetch via `gameResult/findByGameId`, scanning every frame's `stderr` for both agents) → 0/6 panics
+for us, 0/6 for the boss. Every game reaches t=300 (no truncation). **0/6 crashes.**
+
+### Readout against thresholds
+
+Reference (`v1.41.0-nopickloop` gate #3, clean base): wood 51.2 avg, t300 delta -12.3, 0 crashes.
+
+- wood < 40 (FAIL floor)? **43.8 — PASS** (3.8 clear).
+- delta worse than -15 (FAIL floor)? **-8.2 — PASS**, and actually 4.1 *better* than the reference's -12.3.
+- any crash/timeout? **0/6 — PASS**.
+- purity mismatch? **none — PASS**.
+- WATCH: wood drop > 5 vs the 51.2 reference? **51.2 - 43.8 = 7.4 → WATCH TRIGGERED** — diagnosed below before finalizing the verdict, per the gate protocol.
+
+### WATCH diagnosis: HARVEST/DROP telemetry + @TFFARM
+
+**Telemetry-gap finding, reported plainly:** `@TFMOVE` (the only per-command debug line in our
+stderr) is intentionally filtered to `cmds.iter().filter(|c| c.starts_with("MOVE "))` (source line
+~1710) — it is a motion-block instrument and structurally cannot show HARVEST/DROP counts; grepping
+our own `.raw` files for `HARVEST`/`DROP` returns **0 in every file**, for either candidate. This
+is not a bug in this gate, but it means "grep our stderr for HARVEST/DROP" as literally specified
+is not possible from the saved `.raw` artifacts (`collect_debug_games.py` only persists
+`frames[*]['stderr']`, i.e. our own filtered debug text — never `stdout`, and never the opponent's
+frames at all).
+
+**Workaround used:** `gameResult/findByGameId` (the same real-replay endpoint `battles.py` uses for
+rated ladder games) also serves these `TestSession/play` sandbox games and returns full
+per-frame `stdout` for *both* agents. Fetched all 6 gameIds above, split each frame's `;`-joined
+command string by verb (`MOVE`/`HARVEST`/`CHOP`/`DROP`/`PLANT`/`TRAIN`/`PICK`/`WAIT`/`MINE`/`MSG` —
+confirming along the way that `CHOP` (wood-felling) and `HARVEST` (fruit-only) are genuinely
+distinct commands in this ruleset, so `HARVEST+DROP` is a clean fruit-economy signal uncontaminated
+by wood work):
+
+| build | scope | us HARVEST | us DROP | **us H+D** | us CHOP | opp H+D | opp CHOP |
+|---|---|---|---|---|---|---|---|
+| v1.41.0-nopickloop (baseline, re-fetched, same 6-game gate ids 895468000-151) | 6 games | 115 | 176 | **291** (48.5/game) | 595 (99.2/game) | 508 | 841 |
+| v1.42.0-idlefruit (candidate, this gate) | 6 games | 149 | 226 | **375** (62.5/game) | 581 (96.8/game) | 534 | 814 |
+| **delta** | | +34 | +50 | **+84 (+29%)** | -14 (-2.4%, noise) | | |
+
+This is exactly the predicted signature from the task brief: **HARVEST+DROP command count clearly
+UP (+29%), CHOP (wood-felling) count flat within noise (-2.4%)** — the band is converting idle
+turns to fruit activity without measurably displacing wood-chopping attempts.
+
+`@TFFARM` end-of-game state, both batches (`farm`/`seeds`/`n`/`flaps`/`phase`):
+- v1.42.0-idlefruit: flaps 5,5,15,6,6,8 (avg **7.5**); n=2 every game; farm 0-1; phase Tempo throughout.
+- v1.41.0-nopickloop: flaps 8,6,6,10,14,12 (avg **9.3**); n=2 every game; farm 0-2; phase Tempo throughout.
+
+No red flags — troll count, phase, and farm state are comparable across batches, and flaps
+(target-flapping, a stability signal) is if anything slightly *better* in the candidate.
+
+**Diagnosis:** the wood-drop pattern does **not** match the fruitbank failure mode (that mode
+showed wood *and* chop activity collapsing together). Here CHOP attempts are flat and HARVEST+DROP
+rose exactly as designed; `@TFFARM` shows no economy-health regression. The most likely driver is
+ordinary n=6 map/opponent-draw variance — the v1.41.0-nopickloop gate #3 report itself flagged
+~12-point batch-to-batch wood swings on identical code as expected noise at this sample size, and
+7.4 sits inside that band. **WATCH resolved: not a structural regression; recommend the
+arena-runner watch live wood if this ships, but this does not block the gate.**
+
+### Field probe (2 games vs mikdiet, agentId 6480914 — harvest-economy archetype)
+
+`collect_debug_games.py …debug-probe.min.rs 6480914 2` → gameIds 895490646, 895490657 (wins not
+required for this leg).
+
+| gameId | result | wood us-opp | score us-opp | margin | us H+D | opp H+D |
+|---|---|---|---|---|---|---|
+| 895490646 | L | 44-87 | 196-381 | -185 | 46 (H17/D29) | 137 (H76/D61) |
+| 895490657 | L | 58-65 | 251-336 | -85 | 49 (H18/D31) | 188 (H112/D76) |
+
+0/2 wins (not required, not a threshold). 0/2 crashes (grep + replay-stderr scan, same method as
+above).
+
+Totals: us H+D = 95 (avg **47.5/game**), opp H+D = 325 (avg **162.5/game**). Per the task's
+reference framing ("typical champion losses to this cluster: opponents 91-307 HARVEST+DROP vs our
+20-90"): mikdiet's 137/188 sit squarely in that opponent range, and **our 46/49 sit squarely in the
+historical "our" 20-90 band too** — in this n=2 sample the band did **not** visibly lift us out of
+the classic harvest-economy-loss signature, in contrast to the clear +29% lift seen vs the boss
+pool. Plausible read: mikdiet's build (2nd troll by t2, 3-4 trolls by t15) keeps contested trees in
+play longer, so `race()` correctly suppresses band 38 more often here than vs Boss 5's slower
+build — or n=2 is simply too small to see the same effect. This is diagnostic only (step 4 carries
+no pass/fail threshold); flagging for the analyst rather than treating it as a gate concern.
+
+### Verdict: **PASS**
+
+All four auto-fail legs clear cleanly (wood 43.8 ≥ 40; delta -8.2, better than both the -15 floor
+and the -12.3 reference; 0/8 crashes across boss+field games via two independent detection
+methods; purity clean). The one WATCH trigger (wood drop 7.4 > 5 vs reference) was investigated
+per protocol and resolved as likely map-variance noise, not a structural regression — HARVEST+DROP
+rose exactly as designed (+29%) while CHOP stayed flat and `@TFFARM` showed no economy damage.
+
+**Recommendation:** hand off to the arena-runner for the live slot. Two notes to carry forward,
+neither blocking: (1) the -8.2 t300 delta and 7.4 wood-avg drop vs reference are within known n=6
+noise but worth a confirmatory larger-n boss read if a slot is cheap before submission; (2) the
+field-probe HARVEST+DROP lift seen vs the boss pool (+29%) did not reproduce vs mikdiet-style
+harvest-economy opponents in this 2-game sample — worth a wider field sample if the analyst wants
+to confirm this lever also helps against that archetype, not just the boss.
+
+**Telemetry gap for whoever owns the next probe rebuild:** `@TFMOVE`'s command filter (MOVE-only)
+means HARVEST/DROP/CHOP/PLANT/etc. are invisible in our own stderr; this gate worked around it via
+`gameResult/findByGameId` (confirmed to work on `TestSession/play` sandbox gameIds, not just rated
+ladder games — undocumented before this gate). Consider either widening the `@TFMOVE` filter or
+adding a dedicated `@TFCMD` verb-count line if this diagnostic is needed routinely, so future gates
+don't need the ad hoc replay-fetch workaround.
