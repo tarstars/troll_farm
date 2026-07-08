@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.41.0-nopickloop"; // fix: no PICK without a reachable plant cell + scarce-camp parking (user-observed corridor livelock)
+const VERSION: &str = "1.42.0-idlefruit"; // D1: idle-fruit band 38 — convert idle starter turns into fruit points, never displacing wood/seed/funding work
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
