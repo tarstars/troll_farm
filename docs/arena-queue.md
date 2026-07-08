@@ -113,6 +113,18 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    (diagonal-contest)** — #7's weight (28.75, share×margin, HARVEST+DUAL merged) dwarfs
    everything else measured so far, including #3/#4's un-designed, unweighed ideas.
 
+### Design candidates (data-ranked, 2026-07-08 morning)
+- **D1 idle-fruit band 38** — the 45%-of-losses lever (harvest-economy): fruit-harvest ONLY on
+  otherwise-idle turns (above anti-starvation 30, BELOW chop-help 40 — the fruitbank trap
+  inverted). After pickloop.
+- **D2 task-interference / yield-to-urgent (user architecture, 2026-07-08):** L3→L2 feedback
+  edge — when a mover's only path is blocked by a teammate's STATIONARY task cell and the
+  mover's band outranks the blocker's, suppress the blocker's candidate and re-match that
+  troll (it plants-aside/parks-off-path; resumes next turn automatically). Also absorbs the
+  same-role dispersion note. Test: corridor, picker-on-tree vs banking chopper.
+- **D3 funding-stall robustness** — 2nd-troll training at t77-89 on fruit-poor draws (60-90
+  turns of farm=0); design direction: ripeness-anticipation over wider roaming.
+
 ## Verdict log (newest first)
 - v1.39.0-sharepen4: **KEEP, AT PARITY** (bracket 121/527 @17.6, re-confirmed independently
   after the deny1 revert; converged 121/527 @17.6 across a flat +20/+35/+50m trajectory,
