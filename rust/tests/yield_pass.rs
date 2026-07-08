@@ -99,6 +99,11 @@ fn plum(x: i32, y: i32, fruits: i32) -> Tree {
 fn banana(x: i32, y: i32, fruits: i32) -> Tree {
     Tree { tree_type: "BANANA".into(), x, y, size: 2, health: 4, fruits, cooldown: 0 }
 }
+/// ms=1 chopper with room to spare (not full) -- used as an UNRELATED stationary
+/// obstacle (ChopHere) in yield_single_round; must never be touched by yield_pass.
+fn idle_chopper(id: i32, x: i32, y: i32) -> Troll {
+    Troll { id, x, y, movement_speed: 1, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+}
 
 /// Run assign() -> build intents -> first solve_moves -> rewrite cmd_by_id, EXACTLY the
 /// pipeline botmain.rs::decide_elite runs before calling yield_pass. Returns
@@ -191,5 +196,56 @@ fn no_yield_when_blocker_outranks() {
         result.is_none(),
         "S's task (75*BAND) outranks M's (38*BAND-ish): no yield must fire, got {:?}",
         result
+    );
+}
+
+#[test]
+fn yield_single_round() {
+    // Bound: at most ONE (mover, blocker) pair is acted on per turn -- no cascade, even
+    // when the chosen blocker's OWN re-match doesn't actually succeed.
+    //
+    // Corridor (1,2)..(4,2), a dead end (M has no OTHER direction at all). S2 (id 3) is
+    // an UNRELATED stationary chopper (ChopHere on a fruitless banana -- so it never
+    // competes for S1's fruit bands) at (2,2) -- exactly the cell S1's own next-best
+    // candidate (Park's scarce-camp ring-2 redirect: the shack's only ortho-neighbor is
+    // (1,2), so camp_cells=1 <= 2, and the only walkable manhattan-2 ring cell is (2,2))
+    // wants to move to. S1 (id 1) stands on a ripe PLUM at (3,2) -- band 38, value
+    // 38*BAND -- directly blocking M (id 2, a full-bank chopper at (4,2), ms=1, band 80,
+    // value 80*BAND), exactly like yield_corridor. (M, S1) is detected and acted on
+    // (M's task outranks S1's); S1 is re-matched to Park, which -- unaware of S2's
+    // PHYSICAL occupancy, since park_cmd only tracks its own `claimed` bookkeeping, not
+    // troll positions -- still targets (2,2). The re-solve then correctly refuses to let
+    // S1 actually land there (S2 is genuinely stationary there), so S1 stays put and M
+    // remains blocked -- but exactly ONE re-match was ATTEMPTED this turn
+    // (yields()==1), S2's own assignment was never touched, and nothing loops or panics.
+    troll_farm::botmain::planner::reset();
+    let mut st = corridor_state(4);
+    st.trees = vec![banana(2, 2, 0), plum(3, 2, 2)]; // S2's fruitless banana, S1's ripe plum
+    let plan = corridor_plan(&st.walkable);
+    let s2 = idle_chopper(3, 2, 2);
+    let s1 = starter(1, 3, 2);
+    let m = full_chopper(2, 4, 2);
+    let my = vec![s2, s1, m];
+
+    let (cmd_by_id, landing) = first_pass(&st, &plan, &my);
+    assert_eq!(landing.get(&2), Some(&(4, 2)), "setup check: M must start fully blocked by S1");
+    assert_eq!(cmd_by_id[&1], "HARVEST 1", "setup check: S1 must start stationary-harvesting");
+    assert_eq!(cmd_by_id[&3], "CHOP 3", "setup check: S2 must start stationary-chopping");
+
+    let result = yield_pass(&st, &plan, &my, &cmd_by_id, &landing);
+    assert!(result.is_some(), "expected one yield attempt: M's task (80*BAND) outranks S1's (38*BAND)");
+    let (new_cmds, new_landing) = result.unwrap();
+
+    assert_eq!(yields(), 1, "exactly one yield must be attempted this turn, no cascade to S2");
+    assert!(
+        new_cmds[&1].starts_with("MOVE 1"),
+        "S1 must have attempted to yield off its cell, got: {}",
+        &new_cmds[&1]
+    );
+    assert_eq!(new_cmds[&3], "CHOP 3", "S2 must never be touched -- only one teammate yields per turn");
+    assert_eq!(
+        new_landing.get(&2),
+        Some(&(4, 2)),
+        "M remains blocked this turn (S1's own re-match target is itself occupied by S2) -- accepted, not retried until next turn's re-detection"
     );
 }

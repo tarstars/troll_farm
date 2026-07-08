@@ -703,6 +703,16 @@ fn parse_move_target(cmd: &str) -> Option<Cell> {
 /// `motion::solve_moves` (and its landing-rewrite) have already run. Returns the updated
 /// `(cmd_by_id, landing)` if a yield fired, else `None` — the caller should keep its own
 /// copies unchanged in that case (nothing to replace).
+///
+/// CONTRACT: call at most ONCE per turn (mirrors `assign()`'s own single-call-per-turn
+/// contract for its thread-local FLAPS/LAST_TGT bookkeeping — `botmain::decide_elite`
+/// calls this exactly once, right after the first `solve_moves`). The one-round bound is
+/// enforced by that call discipline, not by internal re-entrancy tracking: `stationary`
+/// is re-derived from `cmd_by_id` each call, and a troll whose yield attempt FAILED (its
+/// re-match still landed on its own cell) nonetheless shows a "MOVE" command — a second
+/// call in the same turn would see it as safely non-stationary and could wrongly
+/// consider cascading past it (verified by hand-tracing `tests/yield_pass.rs`'s
+/// `yield_single_round` fixture through a hypothetical second call).
 pub fn yield_pass(
     state: &State,
     plan: &Plan,
