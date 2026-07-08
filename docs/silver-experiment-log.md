@@ -1546,6 +1546,126 @@ single-convergence noise: ±0.5 decision bands, +1.0 (or 2×+0.5) for promotion 
 In-flight conformance: the 07:20 pure-champion resubmission IS the fresh baseline; roam4
 chains on it; sharepen4's parity verdict downgraded to INCONCLUSIVE retroactively.
 
+## Probe: champion vs killer archetypes (from our side)
+
+**Setup.** Champion probed = `cgauto/submissions/v1.36.0-race.rs` (the FROZEN artifact, not
+the tree — matches the current live champion per this log). DEBUG probe rebuilt fresh:
+`sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/'` (1 hit) → `tools/minify.py`
+(71454→43305 chars, byte-identical size to the candidate's own gate report) →
+`rustc --edition 2021 -O` on a dot-free copy → exit 0. Opponent exemplars identified via
+`field_targets.py 60 160` cross-referenced against the "Analyst census on the race champion
+(2026-07-08 night)" entry above: **mlomb** (agentId `6480863`, rank 142/16.8 — the
+harvest-economy archetype, "wins with a LOW chop count but very high HARVEST+DROP volume")
+and **ArgoZ** (agentId `6480671`, rank 153/16.4 — the sharper of the two burst-chopper
+exemplars named in that census's worst-losses table, "explosive delayed chop-burst" shape,
+full 300-turn game vs NicknamedTwice's early-ended single sample). 5 DEBUG games played per
+opponent via `collect_debug_games.py` (10 of the 12-game budget; the other 2 held in
+reserve — both samples converged on clean, low-variance mechanisms with all-games agreement,
+so more play wasn't needed for signal). Artifacts: `data/boss5_games/6480863/` (mlomb),
+`data/boss5_games/6480671/` (ArgoZ) — `.map`/`.log`/`.raw` per game.
+
+### Results
+
+**mlomb (harvest-economy): 2W / 3L**
+
+| gameId | W/L | wood (me-opp) | score (me-opp) | my_train | opp_train | note |
+|---|---|---|---|---|---|---|
+| 895459345 | W | 50-26 | 208-115 | t11 | t2 | |
+| 895459363 | **L** | 26-**3** | 123-152 | t89 | t2 | we OUT-WOOD them 26-3 but lose on fruit: oppinv fruit=140 vs mine=19 |
+| 895459396 | L | 17-28 | 75-131 | t3 | t2 | game ends early t125 (deforestation); double-dimension loss |
+| 895459414 | **L** | 24-48 | 103-211 | **t77** | t2 | lopsided map (16 trees our half / 2 theirs); opp on OUR half up to 71% of troll-time in phase 1 |
+| 895459425 | W | 48-35 | 204-168 | t13 | t2 | |
+
+**ArgoZ (burst-chopper): 5W / 0L**
+
+| gameId | W/L | wood (me-opp) | score (me-opp) | my_train | opp_train | oppwood shape |
+|---|---|---|---|---|---|---|
+| 895459446 | W | 97-68 | 389-283 | t43 | t63 | 0 through t175, then 8→25→40→59→68 (t200→300) |
+| 895459486 | W | 66-46 | 269-184 | t17 | t37 | 0 through t175, then 6→28→35→40→43 |
+| 895459521 | W | 69-51 | 278-214 | t58 | t69 | 0 through t175, then 13→37→48 |
+| 895459556 | W | 83-70 | 341-294 | t55 | t81 | 0 through t200, then 25→42→59→70 |
+| 895459591 | W | 82-84 | 342-342 (tie-break W) | t15 | t39 | 0 through t150, then 11→30→52→64→77 |
+
+Note: ArgoZ went **5/0** against the true champion, whereas the 2026-07-08 night census's
+"explosive delayed chop-burst" loss decode came from a different, deny1-confounded live
+candidate — not v1.36.0-race. Under the actual champion code, this archetype's burst shape
+is still clearly visible (see below) but doesn't flip any of these 5 games; our own wood
+ramps steadily and monotonically from early game in every one (e.g. game 1: 0,2,12,22,30,
+40,50,60,70,80,90,97 every 25 turns) while theirs sits at literal 0 until ~t175-200.
+
+### Move-fraction + flap analysis (from @TFMOVE MOVE-intent presence; role = final
+`mybuilds` hp==0∧chop>0 ⇒ chopper, else starter)
+
+| bucket | chopper MOVE% | starter MOVE% | avg total flaps |
+|---|---|---|---|
+| mlomb WINS (n=2) | 48% (237/495) | 81% (417/517) | 7.5 |
+| mlomb LOSSES (n=3) | 57% (288/508) | 84% (564/674) | 0.0 |
+| ArgoZ WINS (n=5, no losses) | 41% (527/1272) | 69% (1001/1455) | 5.0 |
+
+Chopper MOVE-fraction runs **9pp higher in mlomb losses than wins** (57% vs 48%) — the
+chopper spends more of its turns traveling instead of chopping when we lose, reproducing
+(now against the TRUE champion, not the deny1 confound) the earlier census's "elevated
+MOVE:CHOP in worst losses" finding. Flap counts stayed single-digit in all 10 games (0-8),
+inside `STICKY`'s documented "absorbed" 2-21 band — not a differentiator here (if anything
+losses show *fewer* recorded flaps, likely just small-sample noise, not a real inverse
+effect).
+
+### New finding: training-gate / farm-stall correlation (mlomb)
+
+`my_train` is t11/t13 in both mlomb wins vs **t77/t89** in 2 of the 3 losses (`opp_train`
+is a rock-solid t2 in literally every game, no variance on their side). `@TFFARM` shows
+`farm_now`/`seeds` (banana bank) **flatlining at 0 for 60-90 straight turns** in exactly
+those two slow-train losses — game 895459363: `seeds` stuck at 1 then 0 from t10 through
+t85, `farm_now=0` from t35-t85; game 895459414: `farm_now` peaks at 5 by t20 then decays to
+0 by t95 while `seeds=0` from t25 onward — while both wins keep `seeds≥2`/`farm_now≥2`
+continuously right up to their (fast) training point. This is the same farm-stall failure
+mode already documented against Boss 5 (`GE_FEEDER_FARM` comment: "farm_now collapsed to
+literal 0 for 63-100% of sampled turns per game"), now reproduced against mlomb
+specifically: it costs ~20-30% of the game running a solo, travel-heavy (76-91% MOVE)
+starter while the opponent has already doubled its workforce since turn 2. The third loss
+(895459396, `my_train=t3`, ended early at t125 via deforestation) is unrelated to this
+mechanism — training was fast there; that loss is a plain short-game economy/scale defeat.
+
+### New finding: the burst IS a cross-half raid (ArgoZ)
+
+Opponent-troll presence on OUR half of the map (nearest-shack bucketing off turn-1 `@TFI P`
+tree/shack positions, confirmed exactly point-symmetric per game: reflecting `my_shack`
+about the map center lands exactly on `opp_shack` in every sampled map) is **~0-4% for the
+first three 75-turn phases (t1-225) in ALL 5 games**, then **jumps to 37-52% in the last
+phase (t226-300)** — exactly coincident with their wood curve going from flat 0 to +40-77
+in every single game. The archetype's "explosive delayed chop-burst" is mechanically a
+**late cross-half raid**: hoard/train (up to 4 trolls) on their own side while doing
+essentially nothing (0 wood) for 175-200 turns, then send a meaningful fraction of that
+larger roster across the midline once trees thin out, harvesting whatever's left —
+including trees on OUR side. We still won all 5 sampled games (our steady early ramp
+outpaces their delayed one), but the mechanism itself is unambiguous and reproduces
+identically across every game in the sample.
+
+### Answers to the two specific questions
+
+- **Harvest-economy (mlomb) — do we lose because they out-SCORE us on fruit while we match
+  wood?** PARTIALLY. In the sharpest loss (895459363) yes exactly: we out-wood them 26-3 but
+  lose 123-152 on a pure fruit blowout (140 vs 19 fruit-points). But the other 2/3 losses are
+  plain double-dimension defeats (they out-produce us on BOTH wood and fruit) — so the
+  fruit-only mechanism explains 1 of 3 losses, not the majority; the bigger recurring driver
+  is the training-gate/farm-stall above.
+- **Burst-chopper (ArgoZ) — is their burst fed by trees WE left standing, i.e. would earlier
+  liquidation/denial on our side starve it?** YES. Opponent troll-presence on our half jumps
+  from ~0% to 37-52% exactly in the burst window in all 5 games, so part of their late yield
+  is trees on OUR side that our own chopper hadn't reached yet; earlier liquidation of our
+  own-half ripe trees (denying them targets by the time they cross) should shrink what's left
+  for the raid to take — though it didn't cost us the game in this sample (5/5 wins).
+
+### Single most actionable our-side waste
+
+The farm/seed funding stall that delays 2nd-troll training to t77-t89 in 2 of 3 mlomb losses
+(vs a rock-solid t11-t13 in the wins), against an opponent that trains its own 2nd troll at
+t2 in literally every game sampled: `@TFFARM` shows `farm_now`/`seeds` flatlining at 0 for
+60-90 straight turns exactly in those two games — the same known farm-stall pattern already
+documented against Boss 5, now confirmed to recur against a live field archetype and to cost
+up to 30% of the game running a solo, travel-heavy starter while the opponent has already
+doubled its headcount.
+
 ## Champion loss taxonomy (2026-07-08 morning)
 
 **Read-API only, no DEBUG games, no arena actions.** Confirmed live/uncontaminated (unlike the
