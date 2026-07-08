@@ -245,7 +245,22 @@ bracket (sharepen4's own flat 17.6, keep bar 17.4, still −1.9pt short) — all
 `GE_CHOP_R` 5→4 costs performance in
 this room rather than saving travel — the roam-radius-tightening hypothesis (this candidate's
 premise) is not supported; radius stays at 5 (the champion value). Reverted to
-`cgauto/submissions/v1.36.0-race.min.rs`; `api_submit.py` default was already this file (no edit
-needed). Goal gate (rank ≤99) did not fire (best rank this episode: 115/527). Full read
-sequence, the analyst hand-off note, and the reconvergence confirmation are in
+`cgauto/submissions/v1.36.0-race.min.rs` (submitted 10:19:18 MSK, SUBMIT-OK); `api_submit.py`
+default was already this file (no edit needed). Goal gate (rank ≤99) did not fire (best rank
+this episode: 115/527).
+
+**Revert reconvergence** (agentId 6543474 throughout): 131/17.1 (+15m) → 140/16.8 (+29m) →
+135/17.0 (+43m) → 135/17.0 (+58m, exact match, Δ0.0, 14m38s after the prior read). Confirmed
+reconverged at ~17.0 — a little below the recent 19.1/17.6 marks but the same byte-identical
+champion code, within this room's documented drift band; arena is NOT left on a regressed bot.
+
+**Note (not this report's action item):** a concurrent gatekeeper on an unrelated candidate
+(`v1.41.0-nopickloop`) found the working tree's *source* consts (`rust/src/botmain.rs`) still
+carried this candidate's `GE_CHOP_R=4` post-revert (the arena revert only re-submitted the
+frozen `.min.rs` artifact, which is all this brief asked for) and got contaminated results before
+fixing it (`059ee5c`, new "tree-tracks-champion" rule: restore tree consts after every arena
+revert too). See `docs/silver-experiment-log.md` ("## 2026-07-08 ~11:00 — TREE-TRACKS-CHAMPION
+rule + pickloop refrozen clean") for the full account — already fixed, no action needed here.
+
+Full read sequence, the analyst hand-off note, and the reconvergence confirmation are in
 `docs/silver-experiment-log.md` and `docs/arena-queue.md`.

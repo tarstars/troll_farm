@@ -1917,9 +1917,23 @@ tightening the roam radius by 1 further on the current R6b planner costs perform
 saving travel, opposite the sweep's working hypothesis. Given the monotonic (not flat, not
 rebounding) fade shape, this reads as a genuine effect, not noise.
 
-**Revert executed:** `api_submit.py cgauto/submissions/v1.36.0-race.min.rs` — see the
-reconvergence table appended below (second commit, per the brief's "commit the verdict the
-moment it's decided, then again at the end").
+**Revert executed:** `api_submit.py cgauto/submissions/v1.36.0-race.min.rs` at 10:19:18 MSK →
+`TestSession/submit: 200 40966560` → SUBMIT-OK.
+
+**Revert reconvergence:**
+
+| time (MSK) | Δt post-revert-submit | rank | score | agentId |
+|---|---|---|---|---|
+| 10:34:38 | +15m | 131/527 | 17.1 | 6543474 (new) |
+| 10:47:56 | +29m | 140/527 | 16.8 | 6543474 |
+| 11:02:19 | +43m | 135/527 | 17.0 | 6543474 |
+| 11:16:57 | +58m | 135/527 | 17.0 | 6543474 |
+
+Settled after a brief 17.1→16.8 wobble; the last two reads are an exact match (135/527 @ 17.0,
+Δ0.0, 14m38s apart) — reconvergence confirmed, same agentId throughout (no contamination). 17.0
+sits a little below the most recent 19.1/17.6 points but is the same byte-identical champion
+code, consistent with this room's already-documented drift band (17.6-20.1) — **arena is NOT
+left on a regressed bot.**
 
 **Goal gate (rank ≤99):** did not fire at any point this episode (best rank reached: 115/527).
 
@@ -1943,7 +1957,21 @@ rather than later.
 pre-episode; REVERT case needs no edit). `docs/arena-queue.md` champion/queue/verdict-log
 updated in the same commit. Committed the moment this verdict was decided (~10:13), per the
 slot-ownership rule and the brief's "commit early and again at the end" instruction; reconvergence
-verification (in progress) to follow in a second commit.
+verified above (~11:17), second commit follows immediately.
+
+**Cross-reference — a real process gap this revert exposed (not this runner's action item, fixed
+by a concurrent gatekeeper):** this runner's revert, per the brief, only resubmitted the frozen
+`v1.36.0-race.min.rs` *artifact* to the arena — it did not (the brief never asked it to) restore
+`rust/src/botmain.rs`'s source consts, which still carried `GE_CHOP_R=4` (roam4) and
+`RACE_SHARE_PEN=4` (sharepen4) from the working tree's own commit history. A concurrent
+gatekeeper working an unrelated candidate (`v1.41.0-nopickloop`) built on top of that tree and
+got contaminated results (see "## 2026-07-08 ~11:00 — TREE-TRACKS-CHAMPION rule + pickloop
+refrozen clean" below) before catching and fixing it (`059ee5c`: consts restored to
+`GE_CHOP_R=5`/`RACE_SHARE_PEN=2`, a new "tree-tracks-champion" rule adopted — after every arena
+revert, restore the tree's consts to champion semantics too, not just the arena artifact). Flagged
+here for anyone reading this candidate's history end-to-end; no action needed from this runner
+since the fix already landed and this candidate's own arena verdict (measured entirely from
+pre-frozen `.min.rs` artifacts, never the live tree) is unaffected by the gap either way.
 
 ## 2026-07-08 ~11:00 — TREE-TRACKS-CHAMPION rule + pickloop refrozen clean
 Gatekeeper contamination find: roam4's arena revert (−3.6) never restored the SOURCE tree —

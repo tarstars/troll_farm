@@ -70,9 +70,14 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   **REVERTED** — baseline 115/527 @ 19.1 (the fresh champion re-baseline above); converged
   199/527 @ 15.5 across a monotonic-fade +20/+35/+50m trajectory (16.1→15.7→15.5), **delta
   −3.6** — decisively past the v2 policy's own −0.5 revert bar (and past the −0.2 margin the
-  pre-v2 brief was run under; both frameworks agree). Reverted to `v1.36.0-race.min.rs`;
-  `api_submit.py` default was already this file. See verdict log below and
-  `docs/silver-experiment-log.md` for the full read sequence.
+  pre-v2 brief was run under; both frameworks agree). Reverted to `v1.36.0-race.min.rs`
+  (10:19:18, SUBMIT-OK); `api_submit.py` default was already this file. Reconvergence confirmed:
+  135/527 @ 17.0 across two exact-match reads 14m38s apart (11:02:19, 11:16:57, agentId
+  6543474 throughout, after a brief 17.1→16.8 wobble) — arena NOT left on a regressed bot. Note:
+  the working *tree*'s consts still carried `GE_CHOP_R=4` post-revert (arena-revert only
+  re-submits the frozen artifact); a concurrent gatekeeper hit this contamination and fixed it
+  under a new "tree-tracks-champion" rule (`059ee5c`) — see verdict log and
+  `docs/silver-experiment-log.md` for both the full read sequence and that cross-reference.
 
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
@@ -158,8 +163,10 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   rather than saving travel; the roam-radius-tightening hypothesis is not supported at this
   planner generation either (the cascade-era radius-3 "within noise" verdict already didn't
   transfer, and radius 4 now measures as a clean loss, not a null result). Reverted to
-  `v1.36.0-race.min.rs` (`api_submit.py` default already pointed there — no edit needed). Goal
-  gate (≤99) did not fire (best rank this episode: 115/527). Mid-episode process note: the
+  `v1.36.0-race.min.rs` (`api_submit.py` default already pointed there — no edit needed);
+  reconvergence confirmed at 135/527 @17.0 (two exact-match reads 14m38s apart, 11:02:19/
+  11:16:57, agentId 6543474, after a brief 17.1→16.8 wobble) — arena not left on a regressed
+  bot. Goal gate (≤99) did not fire (best rank this episode: 115/527). Mid-episode process note: the
   runner's original Phase-0 night-trough-wait loop (8 flat reads, 121/527@17.6, 03:58-07:03) was
   superseded by a controller redirect at 07:20-07:21 to bracket off an independently-verified
   fresh champion resubmission instead (agentId 6542656→6543178, converged 115/527@19.1); the
