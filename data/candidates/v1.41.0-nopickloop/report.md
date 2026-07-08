@@ -504,3 +504,93 @@ NOT touched: `bank_cmd`/`pick_camp_cell`/`watchdog`/`solve_moves` (motion.rs), a
 band (70/72/31/30/95/88/75/62/60/58/45/44/52/40/42/10), `fell_ok`/`own_half`/`within_roam`/
 `race`/`STICKY`/`DENY_W`/`RACE_SHARE_PEN`, `tactics.rs`, or `VERSION` (this is a fix to the
 same candidate, not a new one).
+
+## Mini-gate (v1.41.0-nopickloop, boss 6)
+
+**Role: GATEKEEPER, REDUCED probe** (crater-insurance before this candidate's arena cycle).
+Scope: boss games ONLY, no field games, per the reduced-probe instruction.
+
+**Probe verification**
+(`data/candidates/v1.41.0-nopickloop/v1.41.0-nopickloop.debug-probe.min.rs`, 44,358 B):
+`grep` confirms exactly one `DEBUG: bool = true` (0 remaining `false`) and one
+`VERSION: &str = "1.41.0-nopickloop"`. Spacing around `:`/`=` throughout the file is the
+minifier's normal style (also present around e.g. `HashMap<Cell` — same convention as every
+prior candidate's probe), not evidence of a bad copy. Isolated `rustc --edition 2021 -O`
+compile-check on a dot-free copy: exit 0, clean (no stdout/stderr at all). Used directly, no
+rebuild.
+
+**Collection:** `collect_debug_games.py <probe> boss 6` — 6/6 games returned cleanly on the
+first attempt, **no HTTP 422**, no retry needed.
+
+### Per-game numbers
+
+| gameId | result | final turn | my wood | boss wood | delta | opp_train | flaps (final) | shack camp_cells | max shack-adj run (starter, id 0) |
+|---|---|---|---|---|---|---|---|---|---|
+| 895466560 | L | 300 | 32 | 52 | -20 | t50 | 5 | 4 | 2 |
+| 895466590 | L | 300 | 45 | 56 | -11 | t27 | 3 | 3 | 2 |
+| 895466630 | L | 222 (natural early end — `trees=0` from t215 on, both sides' wood frozen from t~219; clean `@TFSUM` progression to the last frame, no panic/error string anywhere in the `.raw`) | 30 | 61 | -31 | t2 | 4 | 4 | 3 |
+| 895466648 | L | 300 | 40 | 52 | -12 | t39 | **18** | **2** | 2 |
+| 895466669 | L | 300 | 42 | 69 | -27 | t2 | 6 | 4 | 2 |
+| 895466702 | L | 300 | 44 | 57 | -13 | t2 | 4 | 4 | 2 |
+
+0/6 wins (consistent with `boss` being the strongest single opponent available, not a gate
+criterion here). `ramp.py --last 6` aggregate: `t75 delta -0.2`, `t150 delta -4.7`, `t225 delta
+-9.8`, `t300 delta -19.0`, our avg final wood **38.8**, late-quarter (t225→300) gain us +8.5 vs
+opp +17.7.
+
+### Readout 1 — CRATER CHECK (the gate)
+
+- avg final wood (ours) = **38.8** — **below** the ≥40 floor by 1.2. **FAIL.**
+- min final wood = **30** (game 895466630) — clears the ≥25 floor. **PASS.**
+- avg wood delta @ final turn (t300 or the natural early-end turn) = **-19.0** — **worse**
+  than the ≥-14 floor by 5.0. **FAIL.**
+- crashes: **0/6** — no panic/backtrace/error-frame string in any of the 6 `.raw` files; every
+  game's header `scores` pair is a plausible non-degenerate LOSS. **PASS.**
+
+**Two of four hold, two do not -> readout 1 FAILS.**
+
+### Readout 2 — LIVELOCK SIGNATURE (diagnostic, non-gating)
+
+Parsed `@TFMAP` (shack cell + grid) and every `@TFMOVE t=.. pos=[..]` line for the starter
+(id 0, confirmed `hp=1` i.e. `mybuild 0:1.1.1.1,...` in all 6 games — the chopper is always
+the OTHER id at `hp=0`) in all 6 `.raw` files, run-length-encoding id 0's position and
+flagging any stretch of 40+ consecutive logged turns parked on a cell manhattan-1 from the
+shack.
+
+- **0/6 games show any such pin.** Longest shack-adjacent dwell observed anywhere: **3
+  consecutive turns** (game 895466630); every other game tops out at 2.
+- Only **1/6** maps even presents the scarce-camp precondition the fix targets (shack
+  ortho-neighbor walkable-cell count `<=2`): game 895466648, at exactly 2. Its max
+  shack-adjacent dwell is still only 2 turns — no stall there either.
+- Read: the specific defect this candidate targets does not recur anywhere in this sample,
+  including the one map that presents the geometry precondition. Consistent with the fix
+  working; also consistent with simply not drawing a map+timing combination that triggers it
+  (n=6, and the precondition itself only showed up once) — this sample cannot fully confirm
+  the fix, only fails to contradict it.
+
+### Readout 3 — Flaps
+
+Final `flaps=` value per game (order matches the table above): 5, 3, 4, 18, 6, 4 — **5/6
+≤15** (only game 895466648 exceeds, at 18; notably the same game that carries the sample's
+lone scarce-camp shack). **Meets the ≥5/6 bar.**
+
+### Verdict: **FAIL**
+
+Readout 1 is the gate and it does not hold (avg wood 38.8 < 40; delta -19.0 worse than -14).
+Readout 2 (0/6 pins, including the 1 scarce-camp map) and readout 3 (5/6 flaps ≤15) both
+pass but are diagnostic-only per the task framing and cannot override the gate.
+
+**One observation for whoever picks this up next:** the wood/delta miss is not obviously
+caused by the candidate's own change — the two blowout losses driving the delta (895466630
+at -31, natural deforestation at t222; 895466669 at -27) are on maps with *plentiful* shack
+camp space (camp_cells 4 in both) where the pickloop/park-cmd fix cannot even engage, and the
+one map that DOES exercise the new scarce-camp branch (895466648) has a merely-average delta
+(-12) and the sample's only flaps outlier (18) — a mild signal that the new ring-2 idle-park
+branch may be adding a *little* extra replanning churn on scarce-camp maps without causing an
+actual stall. Against the most recent comparable batch on the same opponent (v1.37.0-nanaflow,
+12h earlier: avg wood 45.3, delta -11.3, same "boss" pool), this batch is a real step down, but
+n=6 is thin and half these games drew the boss's early-second-troll (`opp_train` t2-3) build,
+which base-rates at ~31% historically (110/350 games) — not a rare draw, but a harder-than-
+median one. Recommend a larger confirmatory batch (12-18 games) reading specifically whether
+the delta stays worse than -14 before treating this as a fix-caused regression rather than
+variance.
