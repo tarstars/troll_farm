@@ -89,6 +89,20 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   becomes the CHAINED BASELINE (valid ~5h, until ~20:00) for the next candidate. NOT promoted
   to champion/default (v2 promotion needs +1.0 once or +0.5 twice; this is the first +0.5) —
   `api_submit.py` default stays `v1.36.0-race.min.rs`. Goal gate (≤99) did not fire (123).
+- **Arena-slot resolved (2026-07-08 16:33, arena-runner):** v1.42.0-idlefruit (D1 idle-fruit
+  band 38) verdict is **INCONCLUSIVE-KEEP (−0.1)** — bracketed the chained baseline at
+  123/527 @ 17.5 (agentId 6543505, read 15:42:31), submitted 15:42:40 (SUBMIT-OK). Read
+  trajectory (agentId 6543636 from the first read on, confirming landing): +20m 180/527 @ 16.0
+  (16:03:06), +35m 129/527 @ 17.3 (16:17:54), +50m 127/527 @ 17.4 (16:32:54) — dip-then-recover-
+  then-flatten; last-interval delta only +0.1, below the +0.2/read extension bar, so decided at
+  +50m per policy, not extended. **Delta −0.1** vs bracket — inside the v2 `|delta|<0.5`
+  INCONCLUSIVE band. The harvest-economy lever (mini-gate: HARVEST+DROP +29% vs the boss pool,
+  wood 43.8, 0 crashes) shows no clean effect either direction against the live field pool at
+  this single-convergence sampling — consistent with the mini-gate's own caveat that the
+  harvest-count lift did not reproduce in its 2-game mikdiet field probe. Left live in the slot
+  and becomes the new CHAINED BASELINE (valid ~5h, until ~21:33) for the next candidate. NOT
+  promoted — `api_submit.py` default stays `v1.36.0-race.min.rs`. Goal gate (≤99) did not fire
+  (best rank this episode: 127).
 
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
@@ -116,7 +130,11 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    Residual design note: same-role trolls need a dispersion/exclusivity notion in the
    matcher — filed for the R6 concurrency backlog. Cheap-variant-if-ever: farm-ring-
    restricted forage band.)
-7. **Tempo-phase fruit-harvest band** — **UPGRADED from "not urgent" to TOP-RANKED unbuilt
+7. **Tempo-phase fruit-harvest band** — **RESOLVED 2026-07-08 16:33: ARENA INCONCLUSIVE-KEEP**
+   (built as D1 idle-fruit band 38, shipped v1.42.0-idlefruit; bracket 123/527@17.5 →
+   converged 127/527@17.4, delta −0.1, inside the v2 noise band; left live as the new chained
+   baseline, not promoted to default; see verdict log). Original analysis kept below for
+   reference — **UPGRADED from "not urgent" to TOP-RANKED unbuilt
    idea** (analyst loss taxonomy, 2026-07-08 morning, 20-loss champion-specific census —
    supersedes the deny1-contaminated night census this item was filed from). HARVEST-ECONOMY +
    DUAL-ECONOMY shapes together are **45% of all losses, avg margin -63.9** — by far the
@@ -159,7 +177,10 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   case 3,999,751 > band-38 best case 3,800,006) + reviewer's IMPORTANT fixed (9948578: band 38
   consults `race()`, skips doomed fruit — RED→GREEN test). Re-review, merge, mini-gate, then
   arena CHAINED on the v1.41.0 baseline (123/527 @ 17.5). NOTE: STICKY is 6 (v1.28.3 sweep),
-  not 3 as older notes said.
+  not 3 as older notes said. STATUS UPDATE 2026-07-08 16:33: ARENA INCONCLUSIVE-KEEP (delta
+  −0.1; bracket 123/527@17.5 → converged 127/527@17.4, dip-recover-flatten shape). Left live
+  in the slot as the new chained baseline; not promoted to default. See verdict log for the
+  full read trajectory.
 - **D2 task-interference / yield-to-urgent (user architecture, 2026-07-08):** L3→L2 feedback
   edge — when a mover's only path is blocked by a teammate's STATIONARY task cell and the
   mover's band outranks the blocker's, suppress the blocker's candidate and re-match that
@@ -176,6 +197,19 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   transfers; likely ranks ABOVE D3).
 
 ## Verdict log (newest first)
+- v1.42.0-idlefruit: **INCONCLUSIVE-KEEP (−0.1)** (bracket 123/527 @17.5, agentId 6543505,
+  read 15:42:31; submitted 15:42:40 SUBMIT-OK). Read trajectory: +20m 180/527@16.0 (16:03:06,
+  agentId 6543636 — confirms landing), +35m 129/527@17.3 (16:17:54), +50m 127/527@17.4
+  (16:32:54, agentId 6543636 throughout) — dip-then-recover-then-flatten; last-interval delta
+  only +0.1 (below the +0.2/read extension bar), decided at +50m per policy, not extended.
+  **Delta −0.1**, inside the v2 INCONCLUSIVE band (|delta|<0.5). D1 (idle-fruit band 38, the
+  45%-of-losses harvest-economy lever; mini-gate: wood 43.8, HARVEST+DROP +29% vs the boss
+  pool, 0 crashes) shows no clean arena effect either direction against the live field pool at
+  this single-convergence sampling — consistent with the mini-gate's own flagged caveat that
+  the harvest-count lift did not reproduce in its 2-game mikdiet field probe. Left live in the
+  slot as the new chained baseline; `api_submit.py` default unchanged (`v1.36.0-race.min.rs`).
+  Goal gate (≤99) did not fire (best rank: 127). Detail:
+  `data/candidates/v1.42.0-idlefruit/report.md`.
 - v1.41.0-nopickloop: **KEEP (+0.5)** (bracket 135/527 @17.0; submitted 11:33:31 SUBMIT-OK;
   runner killed by session rate limit at 11:42, controller took the verdict reads after the
   14:50 reset: 123/527 @17.5 twice, exact match, 14:57/15:08 — +0.5 at the v2 KEEP bar).

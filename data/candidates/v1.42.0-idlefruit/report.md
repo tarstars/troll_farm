@@ -559,3 +559,31 @@ means HARVEST/DROP/CHOP/PLANT/etc. are invisible in our own stderr; this gate wo
 ladder games — undocumented before this gate). Consider either widening the `@TFMOVE` filter or
 adding a dedicated `@TFCMD` verb-count line if this diagnostic is needed routinely, so future gates
 don't need the ad hoc replay-fetch workaround.
+
+## Arena verdict (2026-07-08, arena-runner)
+
+Chained on the live v1.41.0-nopickloop baseline per MEASUREMENT POLICY v2 (deltas-only,
+5h baseline horizon). Bracket (base) read confirmed the chain exactly matched the recorded
+baseline before submitting.
+
+- **Base/bracket:** 123/527 Gold @ 17.5, agentId `6543505`, read 15:42:31 MSK.
+- **Submit:** `cgauto/api_submit.py cgauto/submissions/v1.42.0-idlefruit.min.rs` → SUBMIT-OK,
+  15:42:40 MSK.
+- **Read trajectory** (agentId `6543636` from the first read onward, confirming the candidate
+  landed):
+  - +20m (16:03:06): 180/527 @ **16.0**
+  - +35m (16:17:54): 129/527 @ **17.3**
+  - +50m (16:32:54): 127/527 @ **17.4**
+  - Shape: dip → recover → flatten. Last-interval delta (+0.1) fell below the +0.2/read
+    extension threshold, so the verdict was decided at +50m per the brief, no extension taken.
+- **Delta:** 17.4 − 17.5 = **−0.1** — inside the v2 policy's `|delta| < 0.5` band.
+- **Verdict: INCONCLUSIVE-KEEP.** The idle-fruit band 38 harvest-economy lever neither clearly
+  helped nor hurt at this single-convergence sampling, despite the mini-gate's clean +29%
+  HARVEST+DROP lift vs the boss pool (this arena read is against the live field pool, not the
+  boss — consistent with the mini-gate's own flagged caveat that the harvest lift did not
+  reproduce in the 2-game mikdiet field probe). Left live in the slot; becomes the new CHAINED
+  BASELINE for the next candidate (valid ~5h, until ~21:33 MSK). NOT promoted — `api_submit.py`
+  default stays `v1.36.0-race.min.rs` (v2 promotion needs +1.0 once or +0.5 twice; this reading
+  is neither).
+- **Goal gate (≤99):** did not fire — best rank this episode was 127/527.
+- Full verdict-log entry: `docs/arena-queue.md` ("## Verdict log", newest-first).
