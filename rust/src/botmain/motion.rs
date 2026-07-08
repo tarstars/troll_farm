@@ -60,7 +60,12 @@ pub fn bank_cmd(
     }
 }
 
-/// MOVE toward a claimed camp cell (idle parking).
+/// MOVE toward a claimed camp cell (idle parking) — UNLESS the camp is scarce.
+/// v1.41.0-nopickloop (user-observed): when the shack has <=2 walkable ortho-neighbors,
+/// an idle-parking troll piling onto the one or two cells a banker actually needs blocks
+/// the bank. Prefer the nearest unclaimed, reachable manhattan-2 ring cell instead (one
+/// step further out, out of the banker's way); fall back to the normal camp-cell claim if
+/// no such cell is reachable/free (e.g. a true 1-2 cell dead end with nothing beyond it).
 pub fn park_cmd(
     state: &State,
     shack: Cell,
@@ -68,6 +73,19 @@ pub fn park_cmd(
     d: &HashMap<Cell, i32>,
     claimed: &mut HashSet<Cell>,
 ) -> String {
+    let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
+    if camp_cells <= 2 {
+        let ring2 = state
+            .walkable
+            .iter()
+            .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
+            .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
+            .min_by_key(|(c, dist)| (*dist, *c));
+        if let Some((c, _)) = ring2 {
+            claimed.insert(c);
+            return format!("MOVE {} {} {}", u.id, c.0, c.1);
+        }
+    }
     let c = pick_camp_cell(state, shack, d, claimed);
     format!("MOVE {} {} {}", u.id, c.0, c.1)
 }

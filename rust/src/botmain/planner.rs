@@ -221,9 +221,24 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             value: 10 * BAND,
         });
     } else {
-        // STARTER — 1) plant carried banana (band 88) at the best free base cell
-        if u.carry[BANANA] > 0 && plan.base_trees < plan.farm_cap {
-            let cell = state
+        // STARTER — plant-cell search (shared): the best free base cell within the farm
+        // radius, reachable from this troll. Computed ONCE whenever there's farm room
+        // (base_trees < farm_cap), regardless of whether a banana is currently carried —
+        // both band 88 (plant the carried banana, right below) AND the PICK/park-to-pick
+        // bands (50/49, further down) need to know whether picking one up would even be
+        // usable.
+        // v1.41.0-nopickloop (user-observed corridor livelock): on maps where water + the
+        // map edge leave no reachable, tree-free, un-occupied cell within the farm radius
+        // (a dead-end pocket, or a shack whose few walkable neighbors are all tree/troll-
+        // occupied), the OLD code still issued PICK whenever the tent held a banana. The
+        // picked banana then had nowhere to plant; band 80 (full->bank) is suppressed for
+        // a banana-carrying starter expecting to plant it, so the fallback band 10 banked
+        // it right back next turn, and PICK fired again the turn after — an infinite
+        // PICK<->DROP loop that also parks the starter on a scarce shack-adjacent cell the
+        // chopper needs for banking. Gating both bands on `plant_cell.is_some()` fixes it:
+        // no reachable destination, no PICK.
+        let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
+            state
                 .walkable
                 .iter()
                 .filter(|c| plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c))
@@ -242,8 +257,13 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
                     (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
                 })
-                .copied();
-            if let Some(tc) = cell {
+                .copied()
+        } else {
+            None
+        };
+        // 1) plant carried banana (band 88) at the best free base cell
+        if u.carry[BANANA] > 0 {
+            if let Some(tc) = plant_cell {
                 let kind = if u.pos() == tc { Kind::PlantHere } else { Kind::MoveTo };
                 out.push(Cand { kind, target: Some(tc), value: 88 * BAND - eta(&d, tc, ms) });
             }
@@ -349,7 +369,10 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 let pc = p.pos();
                 out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 52 * BAND - eta(&d, pc, ms) });
             }
-            if inv[BANANA] > 0 && u.free_capacity() > 0 {
+            // v1.41.0-nopickloop: only PICK (or travel to pick) if a plantable cell
+            // actually exists (plant_cell.is_some()) — picking a banana with nowhere to
+            // plant it is pure waste that just re-parks the starter on a scarce cell.
+            if inv[BANANA] > 0 && u.free_capacity() > 0 && plant_cell.is_some() {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand { kind: Kind::Pick, target: Some(shack), value: 50 * BAND });
