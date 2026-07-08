@@ -17,7 +17,7 @@
 //! because its band 50 (PICK) was never wired to the band-88 plant-cell search. This file
 //! restores the same structural fix inside the new bands/Cand architecture.
 //!
-//! Three tests:
+//! Four tests:
 //!   A. `no_pick_without_reachable_plant_cell` -- the livelock itself: PICK must not fire
 //!      when no reachable plant cell exists. Must FAIL pre-fix.
 //!   B. `scarce_camp_park_leaves_drop_cell_free` -- the companion motion fix: idle-parking
@@ -27,6 +27,13 @@
 //!      a real plant cell reachable only by a BFS path that runs through a tree-occupied
 //!      cell must NOT be missed (trees are not walkability obstacles in this engine; only
 //!      terrain is). Must PASS both before and after the fix (a non-regression pin).
+//!   D. `errand_reaches_pick_on_scarce_map` -- reviewer CRITICAL: test B's ring-2 redirect
+//!      must apply ONLY to band-10 idle parking, never to the band-49 park-to-pick ERRAND
+//!      (`target: Some(shack)`), which is goal-directed and must reach manhattan==1 to ever
+//!      unlock PICK. On a scarce-camp map, redirecting the errand through the ring-2 detour
+//!      strands it: `claimed` resets every `assign()` call, so the redirected troll re-picks
+//!      its OWN ring-2 cell every turn (distance 0 from itself) and reissues a self-target
+//!      MOVE forever. Must FAIL pre-fix (stalls at the ring-2 cell within 12 simulated turns).
 use std::collections::HashSet;
 use troll_farm::botmain::motion;
 use troll_farm::botmain::planner::assign;
@@ -134,7 +141,7 @@ fn scarce_camp_park_leaves_drop_cell_free() {
     let starter = pure_starter(0, 2, 2, [0; 6]);
     let d = bfs_distances(&state.walkable, &[(2, 2)]); // (2,2)->0, (1,2)->1, (1,1)->2
     let mut claimed: HashSet<(i32, i32)> = HashSet::new();
-    let cmd = motion::park_cmd(&state, (0, 2), &starter, &d, &mut claimed);
+    let cmd = motion::park_cmd(&state, (0, 2), &starter, &d, &mut claimed, true);
     assert_ne!(
         cmd, "MOVE 0 1 2",
         "idle park must not clog the sole scarce camp cell: got {}",
@@ -217,5 +224,99 @@ fn pick_stays_enabled_when_plant_cell_lies_beyond_a_tree() {
         cmds[&0], "PICK 0 BANANA",
         "a reachable plant cell exists beyond the mid-corridor tree; PICK must stay enabled: got {}",
         &cmds[&0]
+    );
+}
+
+#[test]
+fn errand_reaches_pick_on_scarce_map() {
+    // Reviewer CRITICAL: motion::park_cmd's ring-2 scarce-camp redirect (test B, above) must
+    // apply ONLY to band-10 IDLE parking (`Kind::Park, target: None`), never to the band-49
+    // park-to-pick ERRAND (`Kind::Park, target: Some(shack)`). The errand is GOAL-DIRECTED --
+    // it exists only to close the manhattan distance to 1 so band-50's PICK can fire next --
+    // but the ring-2 redirect has no such convergence guarantee. `claimed` is a fresh HashSet
+    // every `assign()` call (planner.rs), so a redirected errand that reaches its own ring-2
+    // cell sees, next turn, that very cell as the nearest unclaimed manhattan-2 option
+    // (distance 0 from itself) and reissues a MOVE to its own position forever -- a permanent
+    // stall the anti-stall watchdog can't catch (it only sidesteps a MOVE whose target
+    // differs from the troll's current cell).
+    //
+    // Shack (0,2) has exactly ONE walkable ortho-neighbor, (1,2) -- camp_cells=1 <= 2, so the
+    // scarce-camp branch is live. A corridor extends it: {(1,2),(2,2),(3,2),(4,2),(5,2)}, no
+    // trees anywhere (the plant-cell gate stays open on every in-range cell regardless of
+    // where the starter stands), tent holds 1 banana, and a pure (chop_power=0) starter
+    // begins at the far end (5,2) -- 5 cells from the shack, so it must actually travel the
+    // errand rather than start already adjacent.
+    let mut walkable: HashSet<(i32, i32)> = HashSet::new();
+    for x in 1..=5 {
+        walkable.insert((x, 2));
+    }
+    let farm_d = bfs_distances(&walkable, &[(0, 2)]);
+
+    let state = State {
+        walkable,
+        my_shack: (0, 2),
+        opp_shack: (99, 99),
+        my_inventory: [0, 0, 0, 1, 0, 0], // 1 banked banana in the tent
+        opp_inventory: [0; 6],
+        trees: vec![], // no trees: the plant-cell gate stays open everywhere in range
+        my_trolls: vec![],
+        opp_trolls: vec![],
+        turn: 150,
+        iron_cells: HashSet::new(),
+        water_cells: HashSet::new(),
+    };
+    let plan = Plan {
+        shack: (0, 2),
+        farm_d,
+        opp: (99, 99),
+        have_iron: false,
+        turns_rem: 150,
+        n: 1,
+        farm_now: 0,
+        nchop: 0,
+        spec: (2, 2, 0, 2),
+        want_chopper: false,
+        want_feeder: false,
+        train_spec: (2, 2, 0, 2),
+        cost: [0; 6],
+        train_now: false,
+        need_iron: false,
+        need_fund: [false; 3],
+        farm_r: 5, // covers the whole corridor -- the plant-cell gate must stay open
+        farm_cap: 12,
+        fell_size: 2,
+        farm_fell: 2,
+        chop_r: 5,
+        starter_chop: true,
+        liquidation: false,
+        base_trees: 0, // 0 < farm_cap: "room" in the farm -- the gate the printer bands key off
+        seed_cells: HashSet::new(),
+        phase: Phase::Tempo,
+    };
+    let mut my = vec![pure_starter(0, 5, 2, [0; 6])];
+
+    let mut reached = false;
+    for turn in 0..12 {
+        let cmds = assign(&state, &plan, &my);
+        let cmd = cmds[&0].clone();
+        if cmd.starts_with("PICK") {
+            reached = true;
+            break;
+        }
+        // Parse "MOVE <id> <x> <y>" and teleport the lone starter there (single troll, no
+        // conflicts) -- a stand-in for the engine's move resolution, per the prescribed
+        // simplified multi-turn harness.
+        let parts: Vec<&str> = cmd.split_whitespace().collect();
+        assert_eq!(parts.len(), 4, "turn {turn}: expected a MOVE command, got {cmd:?}");
+        assert_eq!(parts[0], "MOVE", "turn {turn}: expected a MOVE command, got {cmd:?}");
+        let tx: i32 = parts[2].parse().expect("MOVE x");
+        let ty: i32 = parts[3].parse().expect("MOVE y");
+        my[0].x = tx;
+        my[0].y = ty;
+    }
+    assert!(
+        reached,
+        "the park-to-pick errand must reach PICK within 12 turns; starter stalled at {:?}",
+        my[0].pos()
     );
 }

@@ -282,30 +282,45 @@ pub fn bank_cmd(
     }
 }
 
-/// MOVE toward a claimed camp cell (idle parking) — UNLESS the camp is scarce.
-/// v1.41.0-nopickloop (user-observed): when the shack has <=2 walkable ortho-neighbors,
-/// an idle-parking troll piling onto the one or two cells a banker actually needs blocks
-/// the bank. Prefer the nearest unclaimed, reachable manhattan-2 ring cell instead (one
-/// step further out, out of the banker's way); fall back to the normal camp-cell claim if
-/// no such cell is reachable/free (e.g. a true 1-2 cell dead end with nothing beyond it).
+/// MOVE toward a claimed camp cell. `idle=true` (band-10 idle parking) additionally steps
+/// back from a SCARCE camp — v1.41.0-nopickloop (user-observed): when the shack has <=2
+/// walkable ortho-neighbors, an idle-parking troll piling onto the one or two cells a
+/// banker actually needs blocks the bank. Prefer the nearest unclaimed, reachable
+/// manhattan-2 ring cell instead (one step further out, out of the banker's way); fall
+/// back to the normal camp-cell claim if no such cell is reachable/free (e.g. a true 1-2
+/// cell dead end with nothing beyond it).
+///
+/// `idle=false` (the band-49 park-to-pick ERRAND, planner.rs `Kind::Park` with
+/// `target: Some(shack)`) always takes the direct camp-cell approach and NEVER the ring-2
+/// detour — reviewer-caught CRITICAL bug: the errand is GOAL-DIRECTED (it must reach
+/// manhattan==1 to unlock band-50's PICK), but the ring-2 redirect has no convergence
+/// guarantee toward that goal. `claimed` is a fresh `HashSet` every `assign()` call (see
+/// planner.rs), so a redirected errand that reaches its own ring-2 cell sees, next turn,
+/// that same cell as the nearest unclaimed manhattan-2 option (distance 0 from itself) and
+/// reissues a MOVE to its own position forever — a permanent stall on scarce-camp maps that
+/// the anti-stall watchdog can't catch (it only sidesteps a MOVE whose target differs from
+/// the troll's current cell).
 pub fn park_cmd(
     state: &State,
     shack: Cell,
     u: &Troll,
     d: &HashMap<Cell, i32>,
     claimed: &mut HashSet<Cell>,
+    idle: bool,
 ) -> String {
-    let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
-    if camp_cells <= 2 {
-        let ring2 = state
-            .walkable
-            .iter()
-            .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
-            .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
-            .min_by_key(|(c, dist)| (*dist, *c));
-        if let Some((c, _)) = ring2 {
-            claimed.insert(c);
-            return format!("MOVE {} {} {}", u.id, c.0, c.1);
+    if idle {
+        let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
+        if camp_cells <= 2 {
+            let ring2 = state
+                .walkable
+                .iter()
+                .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
+                .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
+                .min_by_key(|(c, dist)| (*dist, *c));
+            if let Some((c, _)) = ring2 {
+                claimed.insert(c);
+                return format!("MOVE {} {} {}", u.id, c.0, c.1);
+            }
         }
     }
     let c = pick_camp_cell(state, shack, d, claimed);
@@ -533,7 +548,8 @@ const RACE_SHARE_PEN: i64 = 4; // sweep 2->4 per analyst; harder discount on joi
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
     Bank,       // render via motion::bank_cmd (DROP if adjacent, else camp-cell MOVE)
-    Park,       // render via motion::park_cmd
+    Park,       // render via motion::park_cmd (target None = idle band-10, ring-2-aware;
+                // target Some(shack) = band-49 park-to-pick errand, direct camp approach)
     ChopHere,   // CHOP at current cell
     MoveTo,     // MOVE toward target (fell/fund/seed/mine-adjacent/plant travel)
     PlantHere,  // PLANT BANANA at current cell
@@ -618,6 +634,50 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         }
     };
 
+    // plant-cell search (shared across bands 80/88/50/49): the best free base cell within
+    // the farm radius, reachable from this troll. Computed ONCE, whenever there's farm room
+    // (base_trees < farm_cap), for EVERY troll — chopper included; band 80 just below needs
+    // the answer even though only a non-chopper carrying a banana can ever act on it — so
+    // band 80 (full -> bank), band 88 (plant the carried banana) and the PICK/park-to-pick
+    // bands (50/49, both in the STARTER branch further down) all agree on whether a banana
+    // would even be usable.
+    // v1.41.0-nopickloop (user-observed corridor livelock): on maps where water + the map
+    // edge leave no reachable, tree-free, un-occupied cell within the farm radius (a
+    // dead-end pocket, or a shack whose few walkable neighbors are all tree/troll-occupied),
+    // the OLD code still issued PICK whenever the tent held a banana. The picked banana then
+    // had nowhere to plant; band 80 (full->bank) was suppressed for a banana-carrying
+    // starter expecting to plant it (gated on the tree-COUNT `base_trees < farm_cap`, not a
+    // free-CELL check — the bug's heart), so the fallback band 10 banked it right back next
+    // turn, and PICK fired again the turn after — an infinite PICK<->DROP loop that also
+    // parked the starter on a scarce shack-adjacent cell the chopper needs for banking.
+    // Gating bands 88/50/49 on `plant_cell.is_some()` fixed the PICK half; band 80 below,
+    // gated the same way (reviewer MINOR fix), closes the other half — a carried banana with
+    // nowhere reachable to plant is banked, not hoarded waiting for a spot that never opens.
+    let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
+        state
+            .walkable
+            .iter()
+            .filter(|c| plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c))
+            .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
+            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+            .min_by_key(|c| {
+                let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
+                // v1.37.0-nanaflow (user replay finding #3): DIAGONAL PLANT PLACEMENT. The
+                // four cells orthogonally adjacent to the shack (farm_d==1) are the only
+                // bank/DROP cells every hand's carry trip needs — planting there congests
+                // banking, so penalize them (+3). The four diagonal-to-shack cells sit at
+                // the same map-distance (2) but off that traffic path, so reward them (-1).
+                let bank_adj = plan.farm_d.get(*c).copied() == Some(1);
+                let (cx, cy) = **c;
+                let diag = (cx - plan.shack.0).abs() == 1 && (cy - plan.shack.1).abs() == 1;
+                let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
+                (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
+            })
+            .copied()
+    } else {
+        None
+    };
+
     // endgame banking (band 95): bank a carried load in time to score it
     if u.total_carried() > 0 {
         let d_home = ortho_neighbors(shack)
@@ -632,8 +692,11 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             out.push(Cand { kind: Kind::Bank, target: None, value: 95 * BAND - e });
         }
     }
-    // full -> bank (band 80)
-    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plan.base_trees < plan.farm_cap)
+    // full -> bank (band 80) — reviewer MINOR fix: was `plan.base_trees < plan.farm_cap` (a
+    // tree COUNT), now `plant_cell.is_some()` (an actual reachable free CELL), matching the
+    // gate bands 88/50/49 already use. A carried banana with no plantable cell should be
+    // banked, not held waiting for room that will never materialize.
+    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some())
     {
         out.push(Cand { kind: Kind::Bank, target: None, value: 80 * BAND });
     }
@@ -693,46 +756,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             value: 10 * BAND,
         });
     } else {
-        // STARTER — plant-cell search (shared): the best free base cell within the farm
-        // radius, reachable from this troll. Computed ONCE whenever there's farm room
-        // (base_trees < farm_cap), regardless of whether a banana is currently carried —
-        // both band 88 (plant the carried banana, right below) AND the PICK/park-to-pick
-        // bands (50/49, further down) need to know whether picking one up would even be
-        // usable.
-        // v1.41.0-nopickloop (user-observed corridor livelock): on maps where water + the
-        // map edge leave no reachable, tree-free, un-occupied cell within the farm radius
-        // (a dead-end pocket, or a shack whose few walkable neighbors are all tree/troll-
-        // occupied), the OLD code still issued PICK whenever the tent held a banana. The
-        // picked banana then had nowhere to plant; band 80 (full->bank) is suppressed for
-        // a banana-carrying starter expecting to plant it, so the fallback band 10 banked
-        // it right back next turn, and PICK fired again the turn after — an infinite
-        // PICK<->DROP loop that also parks the starter on a scarce shack-adjacent cell the
-        // chopper needs for banking. Gating both bands on `plant_cell.is_some()` fixes it:
-        // no reachable destination, no PICK.
-        let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
-            state
-                .walkable
-                .iter()
-                .filter(|c| plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c))
-                .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
-                .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                .min_by_key(|c| {
-                    let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
-                    // v1.37.0-nanaflow (user replay finding #3): DIAGONAL PLANT PLACEMENT. The
-                    // four cells orthogonally adjacent to the shack (farm_d==1) are the only
-                    // bank/DROP cells every hand's carry trip needs — planting there congests
-                    // banking, so penalize them (+3). The four diagonal-to-shack cells sit at
-                    // the same map-distance (2) but off that traffic path, so reward them (-1).
-                    let bank_adj = plan.farm_d.get(*c).copied() == Some(1);
-                    let (cx, cy) = **c;
-                    let diag = (cx - plan.shack.0).abs() == 1 && (cy - plan.shack.1).abs() == 1;
-                    let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
-                    (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
-                })
-                .copied()
-        } else {
-            None
-        };
+        // `plant_cell` is hoisted above (before band 95/80) so band 80 can share it too —
+        // see its doc comment there. Bands 88 (below) and 50/49 (further down) just consume
+        // it.
         // 1) plant carried banana (band 88) at the best free base cell
         if u.carry[BANANA] > 0 {
             if let Some(tc) = plant_cell {
@@ -1000,7 +1026,14 @@ pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> 
             }
             let cmd = match (&c.kind, c.target) {
                 (Kind::Bank, _) => motion::bank_cmd(state, plan.shack, u, &d, &mut claimed_drop),
-                (Kind::Park, _) => motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop),
+                // idle band-10 (target None) gets the ring-2-aware scarce-camp step-back;
+                // the band-49 park-to-pick ERRAND (target Some(shack)) never does — it is
+                // goal-directed (must reach manhattan==1 to unlock PICK) and the ring-2
+                // redirect has no such convergence guarantee (reviewer CRITICAL fix, see
+                // motion::park_cmd's doc comment).
+                (Kind::Park, park_target) => {
+                    motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop, park_target.is_none())
+                }
                 (Kind::ChopHere, _) => format!("CHOP {}", u.id),
                 (Kind::PlantHere, _) => format!("PLANT {} BANANA", u.id),
                 (Kind::Harvest, _) => format!("HARVEST {}", u.id),

@@ -218,18 +218,21 @@ pub fn park_cmd(
     u: &Troll,
     d: &HashMap<Cell, i32>,
     claimed: &mut HashSet<Cell>,
+    idle: bool,
 ) -> String {
-    let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
-    if camp_cells <= 2 {
-        let ring2 = state
-            .walkable
-            .iter()
-            .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
-            .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
-            .min_by_key(|(c, dist)| (*dist, *c));
-        if let Some((c, _)) = ring2 {
-            claimed.insert(c);
-            return format!("MOVE {} {} {}", u.id, c.0, c.1);
+    if idle {
+        let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
+        if camp_cells <= 2 {
+            let ring2 = state
+                .walkable
+                .iter()
+                .filter(|c| manhattan(**c, shack) == 2 && !claimed.contains(*c))
+                .filter_map(|c| d.get(c).map(|&dist| (*c, dist)))
+                .min_by_key(|(c, dist)| (*dist, *c));
+            if let Some((c, _)) = ring2 {
+                claimed.insert(c);
+                return format!("MOVE {} {} {}", u.id, c.0, c.1);
+            }
         }
     }
     let c = pick_camp_cell(state, shack, d, claimed);
@@ -453,6 +456,25 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
         }
     };
+    let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
+        state
+            .walkable
+            .iter()
+            .filter(|c| plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c))
+            .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
+            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
+            .min_by_key(|c| {
+                let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
+                let bank_adj = plan.farm_d.get(*c).copied() == Some(1);
+                let (cx, cy) = **c;
+                let diag = (cx - plan.shack.0).abs() == 1 && (cy - plan.shack.1).abs() == 1;
+                let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
+                (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
+            })
+            .copied()
+    } else {
+        None
+    };
     if u.total_carried() > 0 {
         let d_home = ortho_neighbors(shack)
             .iter()
@@ -466,7 +488,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             out.push(Cand { kind: Kind::Bank, target: None, value: 95 * BAND - e });
         }
     }
-    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plan.base_trees < plan.farm_cap)
+    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some())
     {
         out.push(Cand { kind: Kind::Bank, target: None, value: 80 * BAND });
     }
@@ -518,25 +540,6 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             value: 10 * BAND,
         });
     } else {
-        let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
-            state
-                .walkable
-                .iter()
-                .filter(|c| plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c))
-                .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
-                .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                .min_by_key(|c| {
-                    let wet = state.water_cells.iter().any(|w| manhattan(*w, **c) == 1);
-                    let bank_adj = plan.farm_d.get(*c).copied() == Some(1);
-                    let (cx, cy) = **c;
-                    let diag = (cx - plan.shack.0).abs() == 1 && (cy - plan.shack.1).abs() == 1;
-                    let geo = (if bank_adj { 3 } else { 0 }) + (if diag { -1 } else { 0 });
-                    (d[*c] + if wet { 0 } else { 2 } + geo, tie_mix(**c, salt))
-                })
-                .copied()
-        } else {
-            None
-        };
         if u.carry[BANANA] > 0 {
             if let Some(tc) = plant_cell {
                 let kind = if u.pos() == tc { Kind::PlantHere } else { Kind::MoveTo };
@@ -747,7 +750,9 @@ pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> 
             }
             let cmd = match (&c.kind, c.target) {
                 (Kind::Bank, _) => motion::bank_cmd(state, plan.shack, u, &d, &mut claimed_drop),
-                (Kind::Park, _) => motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop),
+                (Kind::Park, park_target) => {
+                    motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop, park_target.is_none())
+                }
                 (Kind::ChopHere, _) => format!("CHOP {}", u.id),
                 (Kind::PlantHere, _) => format!("PLANT {} BANANA", u.id),
                 (Kind::Harvest, _) => format!("HARVEST {}", u.id),

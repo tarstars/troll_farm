@@ -309,3 +309,198 @@ sample, so the arena/gatekeeper read is the first real confirmation this fix mov
 measurable); (c) whether the scarce-camp parking change measurably reduces self-block/
 chopper-denied-bank turns on tight maps (a plausible secondary contributor to the documented
 late-throughput-ceiling, since a blocked bank cell directly throttles chopper throughput).
+
+## Fix: reviewer CRITICAL (park intents) + MINOR (band-80 alignment)
+
+A task reviewer audited this candidate and found one CRITICAL and one MINOR defect in the
+fix above. Both are corrected here, TDD-style, in the same worktree/candidate (`VERSION`
+stays `1.41.0-nopickloop` — this is a fix to the same candidate, not a new one).
+
+### CRITICAL — `park_cmd`'s ring-2 redirect swallowed the goal-directed park-to-pick errand
+
+`motion::park_cmd`'s scarce-camp ring-2 redirect (added by the fix above) was dispatched
+for **every** `Kind::Park` candidate, but the planner pushes `Kind::Park` for two different
+intents:
+
+- band 10 (`target: None`) — idle parking, no destination requirement, free to step back
+  to a ring-2 cell out of the banker's way.
+- band 49 (`target: Some(shack)`) — the park-to-pick ERRAND: a starter walking toward the
+  shack so it can PICK (band 50) once it reaches manhattan==1. This is goal-directed.
+
+Redirecting the errand through the ring-2 detour breaks its convergence: `claimed` is a
+fresh `HashSet` every `assign()` call, so once the redirected troll reaches its own ring-2
+cell, next turn `park_cmd` again sees that very cell as the nearest **unclaimed**
+manhattan-2 option (distance 0 from itself) and reissues `MOVE <id> <self.x> <self.y>` —
+forever. The anti-stall watchdog can't catch it: it only sidesteps a MOVE whose target
+differs from the troll's current cell, and a self-target MOVE never does. On any
+scarce-camp map (<=2 walkable shack neighbors) this is a **permanent stall**, not a
+slowdown.
+
+**Fix:** `park_cmd` gained an explicit `idle: bool` parameter (one function, one flag — no
+duplicated motion logic, per the reviewer's instruction). The ring-2 branch is now guarded
+by `if idle`; when `idle=false` it falls straight through to the original
+`pick_camp_cell`-only behavior. The dispatch site (`planner.rs`, `assign()`'s render loop)
+now distinguishes the two `Kind::Park` intents by their `target` field:
+
+```rust
+(Kind::Park, park_target) => {
+    motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop, park_target.is_none())
+}
+```
+
+`park_target.is_none()` is `true` only for band 10 (idle); band 49's errand
+(`target: Some(shack)`) always gets `idle=false` and the direct camp approach.
+
+### MINOR — band 80 (full -> bank) still gated on the tree-COUNT, not the hoisted `plant_cell`
+
+Bands 88/50/49 already gate on `plant_cell.is_some()` (an actual reachable free cell), but
+band 80's carrier-exclusion (`!(!is_chopper && u.carry[BANANA] > 0 && ...)`) still used the
+older, coarser `plan.base_trees < plan.farm_cap` (a tree *count*, not a free-*cell*
+check — the same mismatch the original fix closed for PICK). A full starter carrying a
+banana on a farm that has "room" by tree-count but nowhere actually reachable to plant
+would be excluded from banking, waiting indefinitely for a spot that never opens.
+
+**Fix:** hoisted the `plant_cell` computation from inside the STARTER (`else`) branch to
+before band 95/80 (i.e. above the `is_chopper` split), so it's computed once per troll —
+chopper included, harmlessly unused there — and referenced by band 80 too:
+
+```rust
+if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some())
+{
+    out.push(Cand { kind: Kind::Bank, target: None, value: 80 * BAND });
+}
+```
+
+Bands 88/50/49 inside the STARTER branch are unchanged except that they now consume the
+hoisted variable instead of redeclaring it. This is semantically better, not just aligned:
+a carried banana with no plantable cell should be banked (closing the loop's other half),
+not held hostage waiting for room.
+
+### TDD
+
+**New covering test** (`rust/tests/pickloop.rs`): `errand_reaches_pick_on_scarce_map` — the
+reviewer's exact scenario. Shack `(0,2)` with a single walkable ortho-neighbor `(1,2)`
+(`camp_cells=1 <= 2`, scarce-camp branch live); corridor
+`walkable = {(1,2),(2,2),(3,2),(4,2),(5,2)}`; no trees (plant-cell gate open everywhere in
+range); tent holds 1 banana; `base_trees=0 < farm_cap=12` with `farm_r=5` so a reachable
+plant cell always exists (the gate stays open throughout); pure (`chop_power=0`) starter
+begins at the far end `(5,2)`. Drives `assign()` for up to 12 simulated turns, teleporting
+the lone starter to each `MOVE` target (single troll, no conflicts) until `PICK` fires.
+
+**RED (verified against pre-fix code, `cargo test --release --test pickloop`):**
+
+```
+running 4 tests
+test no_pick_without_reachable_plant_cell ... ok
+test pick_stays_enabled_when_plant_cell_lies_beyond_a_tree ... ok
+test errand_reaches_pick_on_scarce_map ... FAILED
+test scarce_camp_park_leaves_drop_cell_free ... ok
+
+failures:
+
+---- errand_reaches_pick_on_scarce_map stdout ----
+thread 'errand_reaches_pick_on_scarce_map' panicked at tests/pickloop.rs:317:5:
+the park-to-pick errand must reach PICK within 12 turns; starter stalled at (2, 2)
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+```
+
+Stalled exactly where predicted: the ring-2 redirect's only manhattan-2 candidate in this
+corridor is `(2,2)`; once there, `park_cmd` re-picks it as its own nearest-unclaimed ring-2
+cell every turn (distance 0) and never moves again.
+
+**GREEN (post-fix, `cargo test --release --test pickloop`):**
+
+```
+running 4 tests
+test no_pick_without_reachable_plant_cell ... ok
+test errand_reaches_pick_on_scarce_map ... ok
+test scarce_camp_park_leaves_drop_cell_free ... ok
+test pick_stays_enabled_when_plant_cell_lies_beyond_a_tree ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+```
+
+The errand now reaches PICK in 2 simulated turns: turn 0 dispatches the direct
+`pick_camp_cell` approach (`MOVE 0 1 2`, the only camp cell), turn 1 the starter is
+shack-adjacent and band 50 fires `PICK 0 BANANA`.
+
+Existing test B (`scarce_camp_park_leaves_drop_cell_free`) was updated to pass the new
+`idle` parameter explicitly (`motion::park_cmd(&state, (0, 2), &starter, &d, &mut claimed,
+true)`) — it exercises band-10 idle parking, so `idle=true` preserves its original intent
+and assertion unchanged.
+
+### Gate results (re-run after both fixes)
+
+1. **GREEN — `cargo build --release`**: clean, the same 5 pre-existing warnings as before
+   (unchanged: `PLUM` unused import in `printer_bot.rs`, `opp` unused variable in
+   `boss_v3.rs`, `HARVESTER` dead-code x2 in `silver_boss.rs`/`mybot.rs`, `Strategy` unused
+   import in `fastcheck.rs`). **No new warnings.**
+2. **GREEN — `cargo test --release`**: **29 suites** (unchanged), **57 passed** (56 + the
+   new `errand_reaches_pick_on_scarce_map`) **+ 5 ignored + 0 failed**. `pickloop.rs` now
+   runs 4 tests (was 3), all green. Every other suite's count unchanged.
+3. **Self-determinism**: `./target/release/equality target/release/bot target/release/bot 8
+   300 target/release/bot` -> `EQUAL: 16 games (8 seeds x 2 seats), all command streams
+   identical`.
+4. **`tools/bundle.py`**: `src/botmain.rs -> target/refactor/bundled.rs: 79481 chars`
+   (actual file: 80,880 B — the usual multi-byte-UTF8-comment gap, e.g. em dashes, same
+   pattern as every prior candidate report). Grep confirms `VERSION: &str =
+   "1.41.0-nopickloop"` still the single occurrence (unchanged — this is a fix to the same
+   candidate).
+5. **`rustc --edition 2021 -O`** on the bundled source (dot-free copy): exit 0
+   (SRC-COMPILE-OK).
+6. **Bundle-inlining sanity**: bundled bin vs `target/release/bot` -> `EQUAL: 16 games (8
+   seeds x 2 seats), all command streams identical`.
+7. **`tools/minify.py`**: `79481 -> 44359 chars (55%)` (actual file: 44,359 B) — 56% under
+   the 100,000 B cap.
+8. **`rustc --edition 2021 -O`** on the minified copy (dot-free copy): exit 0
+   (MIN-COMPILE-OK).
+9. **Minified bin vs `target/release/bot`**: `EQUAL: 16 games (8 seeds x 2 seats), all
+   command streams identical`.
+10. **DEBUG probe**: `sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/'` on the
+    frozen bundled `.rs` -> exactly 1 hit of `true`, 0 remaining `false`. Bundled debug
+    source: 80,879 B (1 byte shorter than the release bundled `.rs`, as expected). `rustc
+    --edition 2021 -O` compile-check: exit 0. Minified: `79480 -> 44358 chars (55%)` (1 byte
+    shorter than the release `.min.rs`, matching the pattern seen on every prior candidate's
+    probe). `rustc --edition 2021 -O` compile-check: exit 0 (DBG-COMPILE-OK). 2-seed local
+    smoke: `./target/release/equality target/refactor/min_debug_bin target/release/bot 2
+    300 target/release/bot` -> `EQUAL: 4 games (2 seeds x 2 seats), all command streams
+    identical`.
+11. **Frozen artifacts re-verified byte-identical** to the exact gate-checked scratch copies
+    (`cmp` against `target/refactor/{bundled,min,min_debug}_check.rs`) before overwriting —
+    no drift between what was gated and what was frozen.
+
+### Sizes (updated)
+
+- `cgauto/submissions/v1.41.0-nopickloop.rs`: **80,880 B** (bundled, comments retained; was
+  78,521 B — grew from the new doc comments explaining the `idle` split and the hoisted
+  `plant_cell`, not from any logic growth).
+- `cgauto/submissions/v1.41.0-nopickloop.min.rs`: **44,359 B** (56% under the 100,000 B cap;
+  was 44,286 B).
+- `data/candidates/v1.41.0-nopickloop/v1.41.0-nopickloop.rs` / `.min.rs`: byte-identical
+  (`cmp`-verified) to the `cgauto/submissions/` copies above.
+- `data/candidates/v1.41.0-nopickloop/v1.41.0-nopickloop.debug-probe.min.rs`: **44,358 B**
+  (DEBUG=true; 1 byte shorter than the release `.min.rs`).
+
+### Diffstat (this fix, on top of the original candidate commit)
+
+```
+rust/src/botmain/motion.rs  |  49 +++++++++++++-------
+rust/src/botmain/planner.rs | 106 ++++++++++++++++++++++++++------------------
+rust/tests/pickloop.rs      | 105 ++++++++++++++++++++++++++++++++++++++++++-
+3 files changed, 197 insertions(+), 63 deletions(-)
+```
+
+(plus the re-frozen `cgauto/submissions/`/`data/candidates/` copies above — mechanical
+regenerations of the same source, no independent edits.)
+
+### Scope discipline
+
+Touched only: `motion::park_cmd`'s signature/body (added `idle: bool`, gated the ring-2
+branch on it), the one `Kind::Park` dispatch arm in `planner.rs::assign`, the hoist of
+`plant_cell` + band 80's guard clause in `planner.rs::candidates`, the one call site in
+`tests/pickloop.rs` (test B) needing the new parameter, and the new covering test (test D).
+NOT touched: `bank_cmd`/`pick_camp_cell`/`watchdog`/`solve_moves` (motion.rs), any other
+band (70/72/31/30/95/88/75/62/60/58/45/44/52/40/42/10), `fell_ok`/`own_half`/`within_roam`/
+`race`/`STICKY`/`DENY_W`/`RACE_SHARE_PEN`, `tactics.rs`, or `VERSION` (this is a fix to the
+same candidate, not a new one).
