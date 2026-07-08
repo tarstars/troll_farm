@@ -260,3 +260,33 @@ pub fn solve_moves(state: &State, my: &[Troll], intents: &[(i32, Cell)]) -> Hash
     }
     out
 }
+
+// ── D2: yield-to-urgent (task-interference) ─────────────────────────────────────
+// A stationary teammate (CHOP/HARVEST/PLANT/MINE/PICK/DROP-at-own-cell) is a hard wall
+// for landings — the engine never vacates a stationary unit's cell (game/engine.rs
+// apply_moves, :204-280 — `occupied` starts as all of that player's positions and a
+// stationary unit's cell stays in `occupied` all turn; no exception, not even
+// resolve_blocking). `best_progress` answers "how far could this ONE troll get toward
+// `goal` this turn, given an explicit stationary-cell exclusion set" — the same
+// per-troll candidate generation `solve_moves` uses internally, reduced to just its best
+// value (no sorted/truncated list, no joint search: the caller controls `stationary`
+// directly, so there is nothing to coordinate here). Used by the yield pass
+// (planner.rs) to test, cheaply and without a joint re-solve, "would excluding this ONE
+// teammate's cell let the mover advance?"
+pub fn best_progress(state: &State, t: &Troll, goal: Cell, stationary: &HashSet<Cell>) -> i32 {
+    let dg = bfs_distances(&state.walkable, &[goal]);
+    let dp = bfs_distances(&state.walkable, &[t.pos()]);
+    let here = match dg.get(&t.pos()) {
+        Some(&d) => d,
+        None => return 0, // goal unreachable: no progress possible
+    };
+    state
+        .walkable
+        .iter()
+        .filter(|c| dp.get(*c).map_or(false, |&d| d > 0 && d <= t.movement_speed))
+        .filter(|c| !stationary.contains(*c))
+        .filter_map(|c| dg.get(c).map(|&d| here - d))
+        .filter(|&pr| pr >= 0)
+        .max()
+        .unwrap_or(0)
+}

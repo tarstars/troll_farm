@@ -17,16 +17,24 @@ thread_local! {
     // last MoveTo target per troll (diagnostics: assignment-flap counter) + flap count
     static LAST_TGT: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
     static FLAPS: RefCell<u32> = RefCell::new(0);
+    // D2: count of yield-to-urgent re-matches fired (diagnostics; @TFYIELD telemetry
+    // mirrors this per-event, this is the per-game running total, same pattern as FLAPS).
+    static YIELDS: RefCell<u32> = RefCell::new(0);
 }
 
 /// Turn-1 reset of diagnostics.
 pub fn reset() {
     LAST_TGT.with(|m| m.borrow_mut().clear());
     FLAPS.with(|f| *f.borrow_mut() = 0);
+    YIELDS.with(|y| *y.borrow_mut() = 0);
 }
 
 pub fn flaps() -> u32 {
     FLAPS.with(|f| *f.borrow())
+}
+
+pub fn yields() -> u32 {
+    YIELDS.with(|y| *y.borrow())
 }
 
 const K: usize = 8; // per-troll candidate cap (bands make more irrelevant)
@@ -499,9 +507,48 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     out
 }
 
-/// Joint assignment: exhaustive over per-troll top-K candidates, maximize total value,
-/// same-target conflicts forbidden, ties broken by the lexicographic pick vector.
-pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> {
+/// Everything the joint search decided: canonical troll-id order, each troll's full
+/// (sorted, top-K) candidate list, and which index the joint search picked for it.
+/// `assign()`'s previously-internal state, now exposed (read-only, via `value`/
+/// `next_best`) so the D2 yield pass can ask "what did this troll get, and what's its
+/// own next-best alternative?" without recomputing the joint search by hand — it just
+/// calls `joint_solve` a second time (cheap: K<=8, n small, no thread-local side effects
+/// — see `joint_solve`'s doc comment).
+struct Joint {
+    ids: Vec<i32>,
+    cands: Vec<Vec<Cand>>,
+    picks: Vec<usize>,
+}
+
+impl Joint {
+    fn idx(&self, id: i32) -> Option<usize> {
+        self.ids.iter().position(|&x| x == id)
+    }
+    /// The i64 value of troll `id`'s CHOSEN candidate this turn. `None` if `id` isn't
+    /// one of this `Joint`'s trolls, or (defensive; not reachable in practice — see
+    /// `joint_solve`) if `picks` never got a valid entry for it.
+    fn value(&self, id: i32) -> Option<i64> {
+        let i = self.idx(id)?;
+        let p = *self.picks.get(i)?;
+        self.cands[i].get(p).map(|c| c.value)
+    }
+    /// Troll `id`'s next-best candidate after its chosen one, from the SAME sorted,
+    /// truncated list `candidates()` already produced (no recomputation, no re-ranking).
+    /// `None` if the chosen candidate was already the last one in the (top-K) list.
+    fn next_best(&self, id: i32) -> Option<&Cand> {
+        let i = self.idx(id)?;
+        let p = *self.picks.get(i)?;
+        self.cands[i].get(p + 1)
+    }
+}
+
+/// The joint search itself (exhaustive over per-troll top-K candidates, maximize total
+/// value, same-target conflicts forbidden, ties broken by the lexicographic pick
+/// vector), extracted verbatim out of `assign()` so it has exactly ONE implementation
+/// shared by `assign()` (which renders it into commands) and `yield_pass` (which only
+/// needs the values). Pure function of `(state, plan, my)` — no thread-local writes, so
+/// calling it twice in one turn (assign, then yield_pass) is side-effect-free.
+fn joint_solve(state: &State, plan: &Plan, my: &[Troll]) -> Joint {
     let salt = tie_salt(state);
     let mut ids: Vec<i32> = my.iter().map(|t| t.id).collect();
     ids.sort();
@@ -551,48 +598,117 @@ pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> 
             }
         }
     }
+    // `best` stays None only when n == 0 (the loop above never runs), OR — pathological,
+    // never observed — every troll's every candidate pairwise-collides on target (the
+    // band-10 fallback's `target: None` never collides with anything, so this needs ALL
+    // trolls to have lost that fallback to top-K truncation AND every remaining target to
+    // collide). Either way `picks` ends up empty; `Joint::value`/`next_best` are
+    // bounds-checked (`.get`, not indexing) so this can never panic downstream.
+    let picks = best.map(|(_, p)| p).unwrap_or_default();
+    Joint { ids, cands, picks }
+}
+
+/// Render one candidate to its command string — extracted verbatim from `assign()`'s
+/// render loop so `yield_pass` can render a troll's NEXT-best candidate (not just the
+/// one `assign()` chose) with the exact same logic, no drift possible between the two.
+fn render_one(
+    state: &State,
+    plan: &Plan,
+    u: &Troll,
+    d: &HashMap<Cell, i32>,
+    claimed_drop: &mut HashSet<Cell>,
+    c: &Cand,
+) -> String {
+    match (&c.kind, c.target) {
+        (Kind::Bank, _) => motion::bank_cmd(state, plan.shack, u, d, claimed_drop),
+        // idle band-10 (target None) gets the ring-2-aware scarce-camp step-back; the
+        // band-49 park-to-pick ERRAND (target Some(shack)) never does — it is
+        // goal-directed (must reach manhattan==1 to unlock PICK) and the ring-2 redirect
+        // has no such convergence guarantee (reviewer CRITICAL fix, see
+        // motion::park_cmd's doc comment).
+        (Kind::Park, park_target) => {
+            motion::park_cmd(state, plan.shack, u, d, claimed_drop, park_target.is_none())
+        }
+        (Kind::ChopHere, _) => format!("CHOP {}", u.id),
+        (Kind::PlantHere, _) => format!("PLANT {} BANANA", u.id),
+        (Kind::Harvest, _) => format!("HARVEST {}", u.id),
+        (Kind::Mine, _) => format!("MINE {}", u.id),
+        (Kind::Pick, _) => format!("PICK {} BANANA", u.id),
+        (Kind::MoveTo, Some(tc)) => format!("MOVE {} {} {}", u.id, tc.0, tc.1),
+        (Kind::MoveTo, None) => format!("MOVE {} {} {}", u.id, plan.shack.0, plan.shack.1),
+    }
+}
+
+/// Joint assignment: exhaustive over per-troll top-K candidates, maximize total value,
+/// same-target conflicts forbidden, ties broken by the lexicographic pick vector.
+pub fn assign(state: &State, plan: &Plan, my: &[Troll]) -> HashMap<i32, String> {
+    let j = joint_solve(state, plan, my);
 
     // render (troll-id order; camp-cell claiming stays deterministic via claimed_drop)
     let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
+    if j.picks.len() != j.ids.len() {
+        // no valid joint combo found (see joint_solve's doc comment) -- matches the
+        // original code's `if let Some(...) = best` guard, which left cmd_by_id empty.
+        return cmd_by_id;
+    }
     let mut claimed_drop: HashSet<Cell> = HashSet::new();
-    if let Some((_, picks)) = best {
-        for (i, id) in ids.iter().enumerate() {
-            let u = trolls[i];
-            let d = bfs_distances(&state.walkable, &[u.pos()]);
-            let c = &cands[i][picks[i]];
-            if let (Kind::MoveTo, Some(tc)) = (&c.kind, c.target) {
-                LAST_TGT.with(|m| {
-                    let mut m = m.borrow_mut();
-                    if let Some(prev) = m.get(id) {
-                        if *prev != tc && u.pos() != *prev {
-                            FLAPS.with(|f| *f.borrow_mut() += 1);
-                        }
+    for (i, id) in j.ids.iter().enumerate() {
+        let u = my.iter().find(|t| t.id == *id).unwrap();
+        let d = bfs_distances(&state.walkable, &[u.pos()]);
+        let c = &j.cands[i][j.picks[i]];
+        if let (Kind::MoveTo, Some(tc)) = (&c.kind, c.target) {
+            LAST_TGT.with(|m| {
+                let mut m = m.borrow_mut();
+                if let Some(prev) = m.get(id) {
+                    if *prev != tc && u.pos() != *prev {
+                        FLAPS.with(|f| *f.borrow_mut() += 1);
                     }
-                    m.insert(*id, tc);
-                });
-            } else {
-                LAST_TGT.with(|m| m.borrow_mut().remove(id));
-            }
-            let cmd = match (&c.kind, c.target) {
-                (Kind::Bank, _) => motion::bank_cmd(state, plan.shack, u, &d, &mut claimed_drop),
-                // idle band-10 (target None) gets the ring-2-aware scarce-camp step-back;
-                // the band-49 park-to-pick ERRAND (target Some(shack)) never does — it is
-                // goal-directed (must reach manhattan==1 to unlock PICK) and the ring-2
-                // redirect has no such convergence guarantee (reviewer CRITICAL fix, see
-                // motion::park_cmd's doc comment).
-                (Kind::Park, park_target) => {
-                    motion::park_cmd(state, plan.shack, u, &d, &mut claimed_drop, park_target.is_none())
                 }
-                (Kind::ChopHere, _) => format!("CHOP {}", u.id),
-                (Kind::PlantHere, _) => format!("PLANT {} BANANA", u.id),
-                (Kind::Harvest, _) => format!("HARVEST {}", u.id),
-                (Kind::Mine, _) => format!("MINE {}", u.id),
-                (Kind::Pick, _) => format!("PICK {} BANANA", u.id),
-                (Kind::MoveTo, Some(tc)) => format!("MOVE {} {} {}", u.id, tc.0, tc.1),
-                (Kind::MoveTo, None) => format!("MOVE {} {} {}", u.id, plan.shack.0, plan.shack.1),
-            };
-            cmd_by_id.insert(*id, cmd);
+                m.insert(*id, tc);
+            });
+        } else {
+            LAST_TGT.with(|m| m.borrow_mut().remove(id));
         }
+        let cmd = render_one(state, plan, u, &d, &mut claimed_drop, c);
+        cmd_by_id.insert(*id, cmd);
     }
     cmd_by_id
+}
+
+fn parse_move_target(cmd: &str) -> Option<Cell> {
+    let p: Vec<&str> = cmd.split_whitespace().collect();
+    if p.len() == 4 && p[0] == "MOVE" {
+        Some((p[2].parse().ok()?, p[3].parse().ok()?))
+    } else {
+        None
+    }
+}
+
+/// D2 (task-interference / yield-to-urgent, user architecture request 2026-07-08): a
+/// same-team STATIONARY troll (CHOP/HARVEST/PLANT/MINE/PICK/DROP at its own cell) is a
+/// hard wall for landings (engine fact, game/engine.rs apply_moves :204-280 — a
+/// stationary unit's cell never leaves `occupied`). That can fully block a lower-ms
+/// mover with strictly more valuable work queued up behind it (e.g. a full-bank chopper
+/// stuck behind a fruit-picker in a 1-wide corridor). This detects exactly that shape —
+/// after `assign` + the FIRST `motion::solve_moves` — and, iff the blocked mover's
+/// assignment outranks its blocker's (strict `>`, on the same i64 values `assign` already
+/// computed), lets the blocker yield ONE turn: re-match it to its own next-best
+/// candidate (never anyone else's assignment) and re-solve motion ONCE more. At most one
+/// (mover, blocker) pair is acted on per call — no cascade, no loop; if the blocker's
+/// own re-match is itself blocked (or no pair qualifies at all), nothing changes and the
+/// caller keeps what it already had. See data/candidates/v1.43.0-yield/brief.md for the
+/// full engine-grounded design rationale.
+///
+/// `cmd_by_id`/`landing` are this turn's state AFTER `assign` and the first
+/// `motion::solve_moves` (and its landing-rewrite) have already run. Returns the updated
+/// `(cmd_by_id, landing)` if a yield fired, else `None` — the caller should keep its own
+/// copies unchanged in that case (nothing to replace).
+pub fn yield_pass(
+    state: &State,
+    plan: &Plan,
+    my: &[Troll],
+    cmd_by_id: &HashMap<i32, String>,
+    landing: &HashMap<i32, Cell>,
+) -> Option<(HashMap<i32, String>, HashMap<i32, Cell>)> {
+    None
 }
