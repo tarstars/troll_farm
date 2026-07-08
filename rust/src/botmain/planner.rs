@@ -710,5 +710,91 @@ pub fn yield_pass(
     cmd_by_id: &HashMap<i32, String>,
     landing: &HashMap<i32, Cell>,
 ) -> Option<(HashMap<i32, String>, HashMap<i32, Cell>)> {
-    None
+    // "moving" / "stationary" exactly as motion::solve_moves defines them, from THIS
+    // turn's rendered commands (cmd_by_id already reflects the first solve's
+    // landing-rewrite: a mover that made progress shows its new landing as the MOVE
+    // target; a mover that made none shows its original pre-solve goal, unchanged --
+    // botmain.rs's rewrite loop only touches an entry when `cur != landing`).
+    let mut mover_ids: Vec<i32> = my
+        .iter()
+        .filter(|t| cmd_by_id.get(&t.id).map_or(false, |c| c.starts_with("MOVE ")))
+        .map(|t| t.id)
+        .collect();
+    mover_ids.sort();
+    let mut stationary_ids: Vec<i32> = my.iter().map(|t| t.id).filter(|id| !mover_ids.contains(id)).collect();
+    stationary_ids.sort();
+
+    let full_stationary: HashSet<Cell> = stationary_ids
+        .iter()
+        .filter_map(|id| my.iter().find(|t| t.id == *id).map(|t| t.pos()))
+        .collect();
+
+    let j = joint_solve(state, plan, my);
+
+    // detect: the first (canonical id order) blocked mover x stationary teammate pair
+    // where excluding JUST that teammate's cell would let the mover advance, AND the
+    // mover's assignment strictly outranks the teammate's. Bound: act on at most this
+    // ONE pair -- no cascade past it, even if other pairs would also qualify.
+    let mut chosen: Option<(i32, i32)> = None; // (mover_id, blocker_id)
+    'outer: for &mid in &mover_ids {
+        let m = match my.iter().find(|t| t.id == mid) {
+            Some(t) => t,
+            None => continue,
+        };
+        let cur = m.pos();
+        if landing.get(&mid) != Some(&cur) {
+            continue; // this mover already made progress this turn -- nothing to fix
+        }
+        let goal = match cmd_by_id.get(&mid).and_then(|c| parse_move_target(c)) {
+            Some(g) => g,
+            None => continue,
+        };
+        for &sid in &stationary_ids {
+            let s = match my.iter().find(|t| t.id == sid) {
+                Some(t) => t,
+                None => continue,
+            };
+            let mut without_s = full_stationary.clone();
+            without_s.remove(&s.pos());
+            if motion::best_progress(state, m, goal, &without_s) <= 0 {
+                continue; // S isn't (solely) the blocker -- excluding it alone doesn't help
+            }
+            let (vm, vs) = match (j.value(mid), j.value(sid)) {
+                (Some(vm), Some(vs)) => (vm, vs),
+                _ => continue,
+            };
+            if vm > vs {
+                chosen = Some((mid, sid));
+                break 'outer;
+            }
+        }
+    }
+
+    let (mid, sid) = chosen?;
+    let next = j.next_best(sid)?.clone();
+    let s = my.iter().find(|t| t.id == sid)?;
+    let d = bfs_distances(&state.walkable, &[s.pos()]);
+    let mut claimed_drop: HashSet<Cell> = HashSet::new();
+    let new_cmd = render_one(state, plan, s, &d, &mut claimed_drop, &next);
+
+    let mut new_cmd_by_id = cmd_by_id.clone();
+    new_cmd_by_id.insert(sid, new_cmd);
+
+    let intents: Vec<(i32, Cell)> = new_cmd_by_id
+        .iter()
+        .filter_map(|(id, c)| parse_move_target(c).map(|g| (*id, g)))
+        .collect();
+    let new_landing = motion::solve_moves(state, my, &intents);
+    for (id, cell) in &new_landing {
+        let cur = my.iter().find(|t| t.id == *id).map(|t| t.pos());
+        if cur != Some(*cell) {
+            new_cmd_by_id.insert(*id, format!("MOVE {} {} {}", id, cell.0, cell.1));
+        }
+    }
+
+    YIELDS.with(|y| *y.borrow_mut() += 1);
+    if super::DEBUG {
+        eprintln!("@TFYIELD t={} blocker={} mover={}", state.turn, sid, mid);
+    }
+    Some((new_cmd_by_id, new_landing))
 }

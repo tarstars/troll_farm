@@ -8,7 +8,7 @@ use std::cell::RefCell;
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.42.0-idlefruit"; // D1: idle-fruit band 38 — convert idle starter turns into fruit points, never displacing wood/seed/funding work
+const VERSION: &str = "1.43.0-yield"; // D2: yield-to-urgent — a lower-value stationary teammate steps aside for a fully-blocked, higher-value mover (task-interference at the mission level)
 // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
 // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -143,11 +143,20 @@ fn decide_elite(state: &State) -> Vec<String> {
         })
         .collect();
     let landing = motion::solve_moves(state, &my, &intents);
-    for (id, cell) in landing {
-        let cur = my.iter().find(|t| t.id == id).map(|t| t.pos());
-        if cur != Some(cell) {
-            cmd_by_id.insert(id, format!("MOVE {} {} {}", id, cell.0, cell.1));
+    for (id, cell) in &landing {
+        let cur = my.iter().find(|t| t.id == *id).map(|t| t.pos());
+        if cur != Some(*cell) {
+            cmd_by_id.insert(*id, format!("MOVE {} {} {}", id, cell.0, cell.1));
         }
+    }
+    // D2: yield-to-urgent — a same-team STATIONARY troll (CHOP/HARVEST/etc at its own
+    // cell) is a hard wall for landings (engine fact); that can fully block a
+    // lower-value mover behind it (e.g. a full-bank chopper stuck behind a
+    // fruit-picker). If the blocked mover's task strictly outranks its blocker's, let
+    // the blocker yield ONE turn (re-match to its own next-best task) and re-solve
+    // motion once more — bounded to at most one such re-match per turn, no cascade.
+    if let Some((new_cmds, _new_landing)) = planner::yield_pass(state, &plan, &my, &cmd_by_id, &landing) {
+        cmd_by_id = new_cmds;
     }
     // anti-stall watchdog (R3b: motion layer) — sidestep trolls self-blocked 2+ turns
     motion::watchdog(state, &my, &mut cmd_by_id);
