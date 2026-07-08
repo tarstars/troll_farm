@@ -1999,3 +1999,25 @@ fresh chop-help ≥ 3,999,751 vs sticky-held band-38 ≤ 3,800,006 — sticky=6 
 one IMPORTANT (band 38 lacked the race() doomed-target skip — the exact waste class v1.36.0
 cured) fixed in-worktree (9948578) with a RED→GREEN doomed-fruit test; 58 tests green;
 artifacts rebuilt 44,986 B. Next: re-review → merge → mini-gate → arena chained on 17.5.
+
+## 2026-07-08 16:50 — tent-wall analysis (user replay finding #5): shacks are WALKABLE, bot models them as rocks
+
+User watched game 895493013 vs Sasso_Stark (16x8 map, we won 214-81 as agent 1, agentId
+6543636 = v1.42.0's recalc burst) and saw absurdly long paths around a lake+tent+boulder
+wall. Verified: the wall's ONLY gap is our tent (13,4); the referee treats shack cells as
+walkable (engine mirror rust/src/game/state.rs:75-92 — trolls walk over/stand on tents;
+TRAIN's "shack unoccupied" check exists precisely because of this), but the LIVE BOT's
+parse_grid (botmain.rs ~:190) never inserts '0'/'1' into walkable — both tents are rocks in
+every BFS the bot runs (d, farm_d, camp/park, solver landings).
+
+Measured on the replay: BFS (12,4)->(14,4) = 24 steps in the bot's model vs 2 real. Our MOVE
+destinations: unit1 9 W<->E treks, unit3 4, all via the y=0 top corridor (side-sequence
+compression: Wx39 T Ex7 T Wx22 T Ex7 ...): ~18-22 wasted steps/trek ≈ 200+ troll-turns of
+~600 in the game (~1/3 of locomotion). Opponent stayed west (1 trek) and paid nothing.
+
+Fix queued as v1.44.0-tentgap (data/candidates/v1.44.0-tentgap/brief.md): parse_grid adds
+'0'/'1' to walkable + two guards (never PLANT on shack — engine allows it; never PARK/idle-
+land on shack — blocks TRAIN + it's the door) + fixture-shift discipline for pickloop/
+corridor tests that encoded the old walkability. Pure execution waste-cut class (the class
+that transfers). Queue position: next build after D2 (v1.43.0-yield, in build now); they
+compose (D2 handles the real temporary blocker on the door cell, D4 removes the phantom wall).
