@@ -1535,3 +1535,13 @@ small deltas until a read lands back near 19-20 to re-baseline.
 (parity case). `docs/arena-queue.md` champion/queue/verdict-log updated in the same commit.
 Committed the moment this verdict was decided (03:37), per the slot-ownership rule and the
 brief's "commit early and again at the end" instruction.
+
+## 2026-07-08 07:40 — MEASUREMENT POLICY v2 (user-designed): deltas, chaining, noise bands
+User's critique of the overnight process, adopted wholesale: (1) only base→feature DELTAS
+carry signal — absolute positions across hours are noise (the "trough" was a category
+error); (2) baseline valid ~5h → CHAIN candidates against one base measurement instead of
+re-measuring per pair (2× slot throughput); (3) bands recalibrated to the measured ±1
+single-convergence noise: ±0.5 decision bands, +1.0 (or 2×+0.5) for promotion — the old
+±0.2 threshold operated BELOW the noise floor (sharepen4's "exact parity" was a coin-read).
+In-flight conformance: the 07:20 pure-champion resubmission IS the fresh baseline; roam4
+chains on it; sharepen4's parity verdict downgraded to INCONCLUSIVE retroactively.

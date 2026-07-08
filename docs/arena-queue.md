@@ -1,5 +1,24 @@
 # ARENA QUEUE — the slot never idles
 
+## MEASUREMENT POLICY v2 (2026-07-08, user-designed)
+1. **Only DELTAS carry signal.** A verdict is `candidate_reading − baseline_reading`, never an
+   absolute level and never a comparison across hours. Time-of-day theories are dropped.
+2. **Baseline validity horizon: 5 hours.** Measure the champion once (one convergence), then
+   CHAIN candidates back-to-back against that same baseline number until the horizon expires
+   or the champion changes — do NOT re-measure the base between candidates (re-measuring
+   every pair = 50% slot efficiency; chaining ≈ doubles throughput).
+3. **Decision bands calibrated to measured noise** (single-convergence sampling noise ≈ ±1:
+   the same champion code converged at 17.6/19.3/19.9 within 12h):
+   - delta ≥ +0.5 → KEEP; promotion to champion additionally needs delta ≥ +1.0 once OR
+     ≥ +0.5 on two independent convergences.
+   - delta ≤ −0.5 → REVERT & reject.
+   - |delta| < 0.5 → INCONCLUSIVE: log it, do NOT promote, next candidate submits
+     immediately (champion returns to the slot only at chain end or on a −0.5 revert).
+4. **Speed first:** verdict at +50 min, no ambiguity extensions unless a goal-gate read is
+   involved; the queue must always hold ≥1 READY candidate so the chain never stalls.
+5. GOAL GATE unchanged (rank ≤99 twice — a threshold, not a comparison). Slot-ownership and
+   commit-verdict-immediately rules unchanged.
+
 **Policy (2026-07-07, user-prompted):** the arena accepts unlimited submissions; only games
 (play-API) are budgeted. Therefore: (1) keep a standing ordered queue of ARENA-READY
 candidates (built + reviewed + frozen .min.rs); (2) the moment a verdict resolves, the next
