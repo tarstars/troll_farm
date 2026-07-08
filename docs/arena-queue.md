@@ -167,6 +167,13 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   same-role dispersion note. Test: corridor, picker-on-tree vs banking chopper.
 - **D3 funding-stall robustness** — 2nd-troll training at t77-89 on fruit-poor draws (60-90
   turns of farm=0); design direction: ripeness-anticipation over wider roaming.
+- **D4 tentgap (user replay finding #5, 2026-07-08): shack cells are WALKABLE in the referee
+  but rocks in the bot's parse_grid** — phantom wall: 24-vs-2-step BFS divergence on the
+  Sasso_Stark map (game 895493013), 13 cross-wall treks ≈ 200+ wasted troll-turns (~1/3 of
+  locomotion) in one game. Fix = 2-line walkability + never-PLANT-on-shack +
+  never-PARK-on-shack guards; brief READY at `data/candidates/v1.44.0-tentgap/brief.md`.
+  PRIORITY: build immediately after D2 (execution waste-cut class — the class that
+  transfers; likely ranks ABOVE D3).
 
 ## Verdict log (newest first)
 - v1.41.0-nopickloop: **KEEP (+0.5)** (bracket 135/527 @17.0; submitted 11:33:31 SUBMIT-OK;
