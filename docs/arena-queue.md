@@ -79,6 +79,17 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   under a new "tree-tracks-champion" rule (`059ee5c`) — see verdict log and
   `docs/silver-experiment-log.md` for both the full read sequence and that cross-reference.
 
+- **Arena-slot resolved (2026-07-08 15:08, controller — runner died to session limit):**
+  v1.41.0-nopickloop verdict is **KEEP (+0.5)** — the runner (a3e1a9d) bracketed the champion
+  at 135/527 @ 17.0 (11:13-11:33, three stable reads, agentId 6543474), submitted at 11:33:31
+  (SUBMIT-OK), then hit the session rate limit at 11:42 — 9 min post-submit, before any
+  convergence read. The controller resumed the protocol after the limit reset: converged
+  **123/527 @ 17.5** on two exact-match reads (14:56:59, 15:07:55, agentId 6543505), 3.4-3.6h
+  post-submit — delta **+0.5** vs bracket, at the v2 KEEP bar. Left live in the slot and
+  becomes the CHAINED BASELINE (valid ~5h, until ~20:00) for the next candidate. NOT promoted
+  to champion/default (v2 promotion needs +1.0 once or +0.5 twice; this is the first +0.5) —
+  `api_submit.py` default stays `v1.36.0-race.min.rs`. Goal gate (≤99) did not fire (123).
+
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
    121/527 @ 17.6, exact tie with bracket 17.6; left live, not promoted to default). Null
@@ -143,7 +154,12 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
 ### Design candidates (data-ranked, 2026-07-08 morning)
 - **D1 idle-fruit band 38** — the 45%-of-losses lever (harvest-economy): fruit-harvest ONLY on
   otherwise-idle turns (above anti-starvation 30, BELOW chop-help 40 — the fruitbank trap
-  inverted). After pickloop.
+  inverted). STATUS 2026-07-08 15:20: BUILT (0958ed3, worktree ab5cee13) + review APPROVED
+  (band-order invariant proven numerically: sticky 6 ≪ inter-band gap 200k, chop-help worst
+  case 3,999,751 > band-38 best case 3,800,006) + reviewer's IMPORTANT fixed (9948578: band 38
+  consults `race()`, skips doomed fruit — RED→GREEN test). Re-review, merge, mini-gate, then
+  arena CHAINED on the v1.41.0 baseline (123/527 @ 17.5). NOTE: STICKY is 6 (v1.28.3 sweep),
+  not 3 as older notes said.
 - **D2 task-interference / yield-to-urgent (user architecture, 2026-07-08):** L3→L2 feedback
   edge — when a mover's only path is blocked by a teammate's STATIONARY task cell and the
   mover's band outranks the blocker's, suppress the blocker's candidate and re-match that
@@ -153,6 +169,16 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   turns of farm=0); design direction: ripeness-anticipation over wider roaming.
 
 ## Verdict log (newest first)
+- v1.41.0-nopickloop: **KEEP (+0.5)** (bracket 135/527 @17.0; submitted 11:33:31 SUBMIT-OK;
+  runner killed by session rate limit at 11:42, controller took the verdict reads after the
+  14:50 reset: 123/527 @17.5 twice, exact match, 14:57/15:08 — +0.5 at the v2 KEEP bar).
+  The corridor PICK/DROP livelock fix (user replay finding #4) rides along wood-neutral
+  (mini-gate #3: wood 51.2) and is insurance-class for rare corridor maps. Left live =
+  chained baseline; default unchanged (first +0.5, promotion needs a second). Slot-continuity
+  note: the runner's 3 bracket reads + the controller's 2 verdict reads bound the same
+  convergence; no reads were possible in the 11:42-14:50 limit window (arena had 3.4h to
+  converge — decided on the post-reset plateau, consistent with policy v2 deltas-only).
+  Detail: `data/candidates/v1.41.0-nopickloop/report.md`.
 - v1.40.0-roam4: **REVERTED** (baseline 115/527 @19.1 — a fresh champion re-baseline the
   controller triggered mid-episode, not this candidate's own bracket read; see the "Champion
   re-baseline" bullet above for that sub-episode's own detail — converged 199/527 @15.5 across

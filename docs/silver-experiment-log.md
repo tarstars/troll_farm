@@ -1982,3 +1982,20 @@ PEN=2 restored; 55 pass/7 ignored; self-det EQUAL). v1.41.0-nopickloop REFROZEN 
 base (min 44,2xx B, compiles, DEBUG probe rebuilt). Fresh mini-gate next; the contaminated
 gates' verdicts (074e5b8, b2f46eb) are void for the fix itself (weak-positive evidence:
 0/12 livelock pins, the one precondition map scored above sample average).
+
+## 2026-07-08 15:08 — v1.41.0-nopickloop arena verdict: KEEP (+0.5); session-limit gap handled
+
+Runner a3e1a9d bracketed the champion 135/527 @ 17.0 (3 stable reads 11:13-11:33, agentId
+6543474), submitted v1.41.0-nopickloop 11:33:31 (SUBMIT-OK, TestSession 40966815), then the
+account-wide session rate limit killed it at 11:42 (9 min post-submit, zero convergence reads).
+Controller resumed after the 14:50 reset: 123/527 @ 17.5 at 14:56:59 and again exact at
+15:07:55 (agentId 6543505) — **delta +0.5 vs bracket, KEEP** at the v2 bar. Left live =
+chained baseline (~valid to 20:00). NOT champion-promoted (first +0.5 of the required two;
+default stays v1.36.0-race.min.rs). Goal gate did not fire (123 > 99).
+
+Same window, D1 pipeline: v1.42.0-idlefruit review APPROVED (proof-grade band-order check:
+fresh chop-help ≥ 3,999,751 vs sticky-held band-38 ≤ 3,800,006 — sticky=6 cannot cross the
+200k inter-band gap; NB STICKY=6 since v1.28.3, older notes saying 3 are stale). Reviewer's
+one IMPORTANT (band 38 lacked the race() doomed-target skip — the exact waste class v1.36.0
+cured) fixed in-worktree (9948578) with a RED→GREEN doomed-fruit test; 58 tests green;
+artifacts rebuilt 44,986 B. Next: re-review → merge → mini-gate → arena chained on 17.5.
