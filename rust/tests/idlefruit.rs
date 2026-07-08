@@ -85,6 +85,9 @@ fn banana(x: i32, y: i32, size: i32) -> Tree {
 fn plum(x: i32, y: i32, fruits: i32) -> Tree {
     Tree { tree_type: "PLUM".into(), x, y, size: 2, health: 4, fruits, cooldown: 0 }
 }
+fn chopper(id: i32, x: i32, y: i32) -> Troll {
+    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+}
 
 #[test]
 fn idle_starter_harvests_fruit_instead_of_parking() {
@@ -142,6 +145,45 @@ fn fruit_never_displaces_chop_help() {
     assert!(
         !cmds[&0].contains("4 2"),
         "must not divert to the plum ahead of chop-help, got: {}",
+        &cmds[&0]
+    );
+}
+
+#[test]
+fn idle_troll_skips_doomed_fruit() {
+    // Reviewer IMPORTANT follow-up (code review of this candidate): band 38 didn't consult
+    // `race()`, so an idle troll could trek toward a fruit tree an enemy chopper fells before
+    // arrival -- the same "doomed-target chasing" waste class tests/race_check.rs already closes
+    // for the wood bands (70/72, 40/42, 30/31). Same construction as
+    // idle_starter_harvests_fruit_instead_of_parking (farm at cap, no funding deficit, a
+    // chop_power=0 starter so chop-help/anti-starvation never fire) plus an enemy chopper (see
+    // race_check.rs's `chopper` construction) standing ON the ripe plum at (4,2): health 4,
+    // chop_power 2 -> ceil(4/2) = 2 turns for them to fell it. Our troll starts at (1,2),
+    // map-distance 3 away at movement_speed 1 -> our_eta = 3: they finish (turn 2) strictly
+    // before we arrive (turn 3), so `race` returns None (doomed) and band 38 must skip this tree
+    // entirely.
+    //
+    // PRE-FIX (hand-verified; the band-38 loop never called `race` at all): the plum
+    // unconditionally emits a MoveTo candidate at `38*BAND - 3` -- the only real candidate this
+    // troll has (chop-help/anti-starvation closed off by chop_power=0; funding/printer bands
+    // closed off by farm-at-cap + no deficit) -- so it wins the joint assignment and
+    // `cmds[&0]` contains "4 2", exactly like idle_starter_harvests_fruit_instead_of_parking's
+    // pre-fix RED before band 38 existed at all. Confirmed by running this test against the
+    // pre-fix tree: `cargo test --release --test idlefruit idle_troll_skips_doomed_fruit` FAILED
+    // with `cmds[&0] == "MOVE 0 4 2"` (band 38's `eta(&d, pc, ms)`-only value, uncontested by any
+    // race check, beats the band-10 Park fallback).
+    let mut st = base_state();
+    st.trees = vec![plum(4, 2, 2)];
+    st.trees[0].health = 4; // enemy chop_power 2 fells it in ceil(4/2) = 2 turns
+    st.opp_trolls = vec![chopper(9, 4, 2)]; // enemy standing ON the plum
+    let mut plan = base_plan();
+    plan.base_trees = plan.farm_cap; // farm at cap: printer bands gated off
+    let mut u = starter(0, 1, 2); // map-distance 3 from (4,2), ms=1 -> our_eta = 3
+    u.chop_power = 0; // no chop-help/anti-starvation candidates possible for this troll
+    let cmds = assign(&st, &plan, &[u]);
+    assert!(
+        !cmds[&0].contains("4 2"),
+        "doomed fruit (enemy fells it before our ETA) must be skipped, not chased, got: {}",
         &cmds[&0]
     );
 }

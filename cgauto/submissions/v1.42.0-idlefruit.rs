@@ -942,10 +942,24 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         if u.harvest_power > 0 && u.free_capacity() > 0 {
             for p in state.trees.iter().filter(|p| p.fruits > 0 && d.contains_key(&p.pos())) {
                 let pc = p.pos();
+                let steps = eta(&d, pc, ms);
+                // reviewer IMPORTANT follow-up: same race check every other tree-targeting band
+                // uses (70/72, 40/42, 30/31) — an enemy chopper already standing on this tree
+                // fells it before we arrive, so chasing it donates the travel just like the
+                // wood-fell case (doomed-target chasing). Unlike those bands, a joinable race
+                // (Some(pen)) does NOT subtract the share-penalty: sharing a cell with an enemy
+                // CHOPPER while WE harvest fruit isn't a wood-split situation (apply_chop's
+                // round-robin split is a wood-only mechanic) — Some(_) here only means "not
+                // doomed"; a same-cell Harvest (steps=0) is never doomed in practice (their_turns
+                // is 0 only if the tree's health is already 0, which cannot coexist with the
+                // `p.fruits > 0` filter above), so this uniform pre-branch check costs it nothing.
+                if race(pc, steps).is_none() {
+                    continue; // doomed: they fell it before we arrive — skip, don't donate the travel
+                }
                 if pc == u.pos() {
                     out.push(Cand { kind: Kind::Harvest, target: Some(pc), value: 38 * BAND });
                 } else {
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - eta(&d, pc, ms) });
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - steps });
                 }
             }
         }

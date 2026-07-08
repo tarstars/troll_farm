@@ -296,3 +296,112 @@ can't fully anticipate, e.g. a fruit tree that also happens to be a farm banana 
 or interaction with the race check on a contested cell that also bears fruit); (c) whether the
 HARVEST-ECONOMY/DUAL-ECONOMY loss shapes specifically narrow in a follow-up loss-taxonomy census
 once this candidate has arena games to sample.
+
+## Fix: race() in band 38 (review follow-up)
+
+**Finding (code review, IMPORTANT):** the band-38 loop above did not consult `race()` — every
+other tree-targeting band in `candidates()` (72/70, 42/40, 31/30) skips a candidate whose tree an
+enemy chopper will fell before our ETA (doomed-target chasing, the v1.36.0-race fix), but band 38
+pushed a `Harvest`/`MoveTo` candidate for *any* ripe-fruit tree unconditionally. An idle troll
+could therefore trek toward a fruit tree an enemy chopper stood on and was about to fell —
+donated travel, the exact waste class v1.36.0-race closed for wood.
+
+### What changed
+
+`rust/src/botmain/planner.rs`, band 38 (STARTER branch of `candidates()`): hoisted `let steps =
+eta(&d, pc, ms);` before the branch (previously only computed inline for the `MoveTo` arm), then
+added the same race gate every other band uses:
+
+```rust
+let steps = eta(&d, pc, ms);
+if race(pc, steps).is_none() {
+    continue; // doomed: they fell it before we arrive — skip, don't donate the travel
+}
+if pc == u.pos() {
+    out.push(Cand { kind: Kind::Harvest, target: Some(pc), value: 38 * BAND });
+} else {
+    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - steps });
+}
+```
+
+Unlike the wood bands, the `Some(pen)` arm's penalty is **not** subtracted from the value —
+sharing a cell with an enemy chopper while *we* harvest fruit isn't a wood-split situation
+(`apply_chop`'s round-robin split is a wood-only engine mechanic), so `race`'s `Some(_)` result is
+used only as the "not doomed" signal here. The same pre-branch check structurally covers both the
+same-cell `Harvest` candidate and the `MoveTo` candidate (matching how bands 70/72 and 40/42 apply
+one check before their own standing/traveling split) — verified by hand that this costs the
+same-cell case nothing: at `pc == u.pos()`, `steps == 0`, and `race(pc, 0)` can only return `None`
+if the tree's health is already `<= 0`, which cannot coexist with this loop's own `p.fruits > 0`
+filter, so the guard is a live tripwire for `MoveTo` and a no-op for `Harvest`, never a false skip.
+
+No other band, constant, or file touched.
+
+### Test evidence
+
+New test `idle_troll_skips_doomed_fruit` in `rust/tests/idlefruit.rs`: same fixture as
+`idle_starter_harvests_fruit_instead_of_parking` (farm at cap, no funding deficit, `chop_power =
+0` starter so chop-help/anti-starvation can't fire) plus an enemy `chopper()` (helper copied from
+`tests/race_check.rs`) standing on the ripe plum at `(4,2)`, health 4, `chop_power` 2 → 2 turns to
+fell it, versus our troll's `our_eta = 3` (map-distance 3 at `movement_speed` 1) — the enemy wins
+the race, so band 38 must skip the tree.
+
+**RED (verified — test added and run BEFORE the source fix, not hand-waved):**
+
+```
+$ cargo test --release --test idlefruit
+running 3 tests
+test fruit_never_displaces_chop_help ... ok
+test idle_starter_harvests_fruit_instead_of_parking ... ok
+test idle_troll_skips_doomed_fruit ... FAILED
+
+---- idle_troll_skips_doomed_fruit stdout ----
+thread 'idle_troll_skips_doomed_fruit' panicked at tests/idlefruit.rs:184:5:
+doomed fruit (enemy fells it before our ETA) must be skipped, not chased, got: MOVE 0 4 2
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+```
+
+Exactly the predicted pre-fix failure: with no race check, band 38 unconditionally out-values the
+band-10 `Park` fallback and the troll treks toward the doomed plum.
+
+**GREEN (post-fix), required suite:**
+
+```
+$ cargo test --release --test idlefruit --test planner_tasks --test race_check --test planner_solver
+idlefruit:       3 passed; 0 failed; 0 ignored
+planner_solver:  3 passed; 0 failed; 0 ignored
+planner_tasks:   3 passed; 0 failed; 0 ignored
+race_check:      2 passed; 0 failed; 1 ignored (share_pen_shifts_near_tie_to_free_tree, pre-existing)
+```
+
+**Full workspace suite (regression check against this candidate's original gate #4 baseline of
+57 passed + 7 ignored):** `cargo test --release` → **58 passed** (57 + this one new test), **7
+ignored** (unchanged: `deny_probe` 1, `race_check` 1, `roam` 1, `tactics_scale` 4), **0 failed**.
+`cargo build --release`: clean, same 5 pre-existing warnings as the original gate #1 baseline, no
+new warnings.
+
+**Determinism/bundling re-verified after the fix** (same gate pattern as this candidate's
+original gates 6/9/12, all against the freshly rebuilt `target/release/bot`):
+
+```
+self-determinism (bot vs bot):            EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+bundle-inlining sanity (bot vs bundled):  EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+minified sanity (bot vs minified):        EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+```
+
+`rustc --edition 2021 -O` on dot-free scratch copies of both the rebundled and re-minified files:
+exit 0 for both (SRC-COMPILE-OK / MIN-COMPILE-OK).
+
+### Artifacts rebuilt
+
+Regenerated via `tools/bundle.py src/botmain.rs ../cgauto/submissions/v1.42.0-idlefruit.rs` then
+`tools/minify.py ../cgauto/submissions/v1.42.0-idlefruit.rs ../cgauto/submissions/v1.42.0-idlefruit.min.rs`,
+copied byte-identically (`cmp`-verified) over the `data/candidates/v1.42.0-idlefruit/` copies:
+
+| artifact | before this fix | after this fix |
+|---|---|---|
+| `v1.42.0-idlefruit.rs` (bundled) | 82,479 B | 83,644 B |
+| `v1.42.0-idlefruit.min.rs` (minified) | 44,856 B | 44,986 B (55% under the 100,000 B cap) |
+
+The `.debug-probe.min.rs` copy was not regenerated (out of scope for this fix; unaffected by the
+band-38 change beyond the same +130 B this fix adds elsewhere).
