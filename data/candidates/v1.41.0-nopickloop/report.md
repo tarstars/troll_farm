@@ -594,3 +594,101 @@ which base-rates at ~31% historically (110/350 games) — not a rare draw, but a
 median one. Recommend a larger confirmatory batch (12-18 games) reading specifically whether
 the delta stays worse than -14 before treating this as a fix-caused regression rather than
 variance.
+
+## Mini-gate confirmatory (12-game combined)
+
+**Role: GATEKEEPER, coordinator-approved confirmatory batch** — 6 MORE boss games with the
+same DEBUG probe (`v1.41.0-nopickloop.debug-probe.min.rs`, unchanged), re-verdict on the
+COMBINED 12-game sample. Collection: `collect_debug_games.py <probe> boss 6` — 6/6 clean,
+**no HTTP 422**, no wait needed.
+
+### Batch-2 per-game numbers
+
+| gameId | result | final turn | my wood | boss wood | delta | opp_train | flaps (final) | shack camp_cells | max shack-adj run (id 0) |
+|---|---|---|---|---|---|---|---|---|---|
+| 895467301 | L | 300 | 45 | 78 | -33 | t27 | 6 | 3 | 4 |
+| 895467316 | L | 300 | 46 | 43 | +3 | t43 | 6 | 4 | 2 |
+| 895467333 | W | 300 | 64 | 64 | 0 | t7 | 0 | 4 | 3 |
+| 895467344 | L | 300 | 42 | 58 | -16 | t2 | 8 | 3 | 3 |
+| 895467363 | W | 300 | 68 | 68 | 0 | t2 | 9 | 4 | 2 |
+| 895467389 | L | 300 | 42 | 53 | -11 | t2 | 12 | 3 | 3 |
+
+Batch 2 alone: avg wood **51.2**, avg final delta **-9.5**, 2/6 wins (both wood-TIED 64-64 and
+68-68, won on fruit points) — this batch alone would pass every leg comfortably. Batch-to-batch
+swing vs batch 1 (38.8 / -19.0) is ~12 wood / ~9.5 delta at n=6, calibrating how noisy a
+6-game read is.
+
+### Combined 12-game gate (the re-verdict)
+
+`ramp.py --last 12`: t75 +3.5, t150 -1.5, t225 -7.4, **t300 -14.2**; wins 2/12 (17% vs 14%
+historical); late-quarter us +10.3 vs opp +17.2; our avg final wood 45.0.
+
+- combined avg final wood = **45.0** — clears the ≥40 floor. **PASS**
+- combined t300 delta = **-14.2** (per-game final-delta mean -14.25 agrees) — misses the
+  ≥ -14 bar **by 0.2**. **FAIL (marginal)**
+- crashes: **0/12** — no panic/backtrace/error string in any `.raw`; the one sub-300 game
+  (895466630, t222) is a verified natural both-sides-deforested end. **PASS**
+
+**Combined gate: FAIL, on the delta leg only, by 0.2.** (For scale: -14.2 is *better* than
+the -15.3 historical 115-game baseline; the -14 bar is the stricter crater floor.)
+
+Combined diagnostics: LIVELOCK — **0/12** games show the pin signature (starter 40+
+consecutive turns on a shack-adjacent cell); max dwell anywhere = 4 turns (895467301).
+FLAPS — final flaps 5,3,4,18,6,4 / 6,6,0,8,9,12 = **11/12 ≤15** (lone outlier 18 =
+the lone scarce-camp map, 895466648).
+
+### Precondition split (fix-inertness analysis, per coordinator request)
+
+Parsed every map (`@TFMAP` grid + `@TFI P` initial trees) for the two fix preconditions —
+scarce camp (shack walkable ortho-neighbors ≤2) and dead-end banana (initial BANANA with ≤1
+walkable ortho-neighbor):
+
+| class | n | games | avg final delta |
+|---|---|---|---|
+| PRECONDITION maps | **1/12** | 895466648 (scarce-camp, camp_cells=2) | **-12.0** |
+| non-precondition maps | 11/12 | all others (camp_cells 3-4; dead-end bananas **0/12**) | **-14.5** |
+
+**The non-precondition maps alone drag the combined average below the bar** — the single map
+where the scarce-camp branch can engage scores BETTER (-12) than the non-precondition mean
+(-14.5), and no map in either batch contains a dead-end banana at all. On camp_cells≥3 maps
+the ring-2 park branch is dead code by construction; the PICK plant-cell gate can in principle
+fire anywhere (saturated farm), but 0/12 pins and normal dwell times (2-4) show no behavioral
+anomaly. As sample evidence goes, this is the noise signature, not the regression signature,
+with respect to the pickloop fix itself.
+
+### ★ CONTAMINATION FINDING (supersedes the noise-vs-regression question)
+
+While tracing why a "pure bug fix" batch reads below era norms, I diffed the candidate's
+constants against the LIVE champion (`cgauto/submissions/v1.36.0-race.min.rs`, the current
+arena bot and revert target):
+
+- **`GE_CHOP_R: i32 = 4` is baked into every v1.41.0-nopickloop artifact** (frozen `.rs`,
+  `.min.rs`, and the DEBUG probe this gate ran — grep-verified). That is the **v1.40.0-roam4
+  change, arena-REVERTED at −3.6 points** hours before this gate (a2c1c0e). The revert commit
+  touched **only docs + the roam4 report — it never restored `rust/src/botmain.rs`**
+  (`git log -S 'GE_CHOP_R: i32 = 4'` shows efc3787 introduced it and nothing since reverted
+  it; the working tree still holds 4), and the pickloop builder based on that tree (its own
+  report names efc3787 as the required base). The champion holds `GE_CHOP_R = 5`
+  (`plan.chop_r`, consumed by `within_roam` in `planner.rs:125` — live code, not vestigial).
+- Additionally `RACE_SHARE_PEN = 4` (v1.39.0-sharepen4 lineage — arena verdict KEEP-at-parity,
+  so defensible, but the live champion binary carries `2`, and a2c1c0e itself flags the
+  "sharepen4 masked regression" question as INCONCLUSIVE/open).
+
+So this mini-gate measured **pickloop + roam4 (+ sharepen4)**, not the pickloop fix alone —
+a one-change-per-experiment violation (ROADMAP §2.1) introduced upstream by the docs-only
+arena revert, not by the builder's edits. The known-arena-bad roam4 constant is a sufficient
+explanation for a mildly depressed 12-game read (roam4's own boss-side signal was never
+measured — it went to the arena ungated — and the arena, not the boss, is where it cratered;
+consistent with the "boss gate alone is not sufficient" iron rule).
+
+### Final recommendation: **REJECT for arena as-built; rebuild on the champion base, then re-gate**
+
+Not "another batch" — more games on this build spend throttle budget measuring a
+known-reverted constant. Concretely: (1) restore `GE_CHOP_R` 4→5 in `rust/src/botmain.rs`
+(un-doing the never-source-reverted roam4 sweep; also decide RACE_SHARE_PEN 4-vs-2 explicitly
+against the open isolation-retest question); (2) rebuild/refreeze the v1.41.0 artifacts on
+that base (the pickloop diff itself is reviewer-cleared with all 4 pickloop tests green — no
+code-design rework needed); (3) re-run a 6-game boss mini-gate on the rebuilt probe. The
+pickloop readouts gathered here carry forward as weak-positive: 0/12 livelock pins, the one
+precondition map beats the non-precondition mean, and the only flaps outlier (18) sits on the
+scarce-camp map — watch that number on the re-gate.
