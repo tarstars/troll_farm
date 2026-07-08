@@ -664,10 +664,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         if u.harvest_power > 0 && u.free_capacity() > 0 {
             for p in state.trees.iter().filter(|p| p.fruits > 0 && d.contains_key(&p.pos())) {
                 let pc = p.pos();
+                let steps = eta(&d, pc, ms);
+                if race(pc, steps).is_none() {
+                    continue;
+                }
                 if pc == u.pos() {
                     out.push(Cand { kind: Kind::Harvest, target: Some(pc), value: 38 * BAND });
                 } else {
-                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - eta(&d, pc, ms) });
+                    out.push(Cand { kind: Kind::MoveTo, target: Some(pc), value: 38 * BAND - steps });
                 }
             }
         }
