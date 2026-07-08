@@ -118,6 +118,7 @@ fn winnable_contest_is_joined() {
 }
 
 #[test]
+#[ignore] // sharepen4 inconclusive; PEN=2 champion semantics restored
 fn share_pen_shifts_near_tie_to_free_tree() {
     // RACE_SHARE_PEN sweep (2 -> 4, v1.39.0-sharepen4, analyst b62c977 queue #1): a WINNABLE
     // contested tree (enemy on it, but plenty of health left so we arrive long before they

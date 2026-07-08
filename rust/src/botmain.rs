@@ -95,7 +95,7 @@ const GE_CHOP_FARM: usize = 3; // train as soon as affordable (early aggression,
 const GE_FARM_R: i32 = 2; // v1.13.0: TIGHT farm hugging the shack — halves the chopper's bank-trip distance (the throughput bottleneck)
 const GE_FARM_MAX: usize = 12; // v1.19.0: fill the radius-2 area (~12 cells) — more trees maturing in parallel = chopper idles less
 const GE_FELL_SIZE: i32 = 2; // NATIVE/contested trees: fell at size 2 = DENIAL (grab before opponent)
-const GE_CHOP_R: i32 = 4; // roam retest on the planner (travel-cut; cascade-era noise verdict doesn't transfer; analyst b62c977 queue #2)
+const GE_CHOP_R: i32 = 5; // roam4 arena-REVERTED at -3.6 (2026-07-08); tree restored to champion semantics
 const GE_LIQ_T: i32 = 34; // turns_rem <= this: fell anything reachable (A1 liq44 REJECTED by gatekeeper 2026-07-07)
 const GE_STARTER_CHOP: bool = true; // let a chop-capable starter help fell
 const GE_MIN_TURNS_LEFT: i32 = 20; // no training inside the last 20 turns

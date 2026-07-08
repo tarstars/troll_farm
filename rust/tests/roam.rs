@@ -57,6 +57,7 @@ fn banana(x: i32, y: i32, size: i32) -> Tree {
 }
 
 #[test]
+#[ignore] // roam4 arena-reverted -3.6; tree restored to GE_CHOP_R=5
 fn tight_roam_drops_boundary_tree_to_enemy_half_rival() {
     // Own-half fellable banana at (3,4): manhattan to shack (0,2) = 5, to opp (7,2) = 6 ->
     // own_half=true. farm_d (BFS from the shack; open 8x5 grid == manhattan here) = 5, so it is

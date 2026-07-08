@@ -1944,3 +1944,13 @@ pre-episode; REVERT case needs no edit). `docs/arena-queue.md` champion/queue/ve
 updated in the same commit. Committed the moment this verdict was decided (~10:13), per the
 slot-ownership rule and the brief's "commit early and again at the end" instruction; reconvergence
 verification (in progress) to follow in a second commit.
+
+## 2026-07-08 ~11:00 — TREE-TRACKS-CHAMPION rule + pickloop refrozen clean
+Gatekeeper contamination find: roam4's arena revert (−3.6) never restored the SOURCE tree —
+pickloop was built+gated carrying GE_CHOP_R=4 (and PEN=4 from the inconclusive sharepen4).
+NEW RULE: after every arena revert, the tree's consts are restored to champion semantics and
+the candidate's tests get #[ignore]+reason (roam.rs, share_pen test done now; GE_CHOP_R=5,
+PEN=2 restored; 55 pass/7 ignored; self-det EQUAL). v1.41.0-nopickloop REFROZEN on the clean
+base (min 44,2xx B, compiles, DEBUG probe rebuilt). Fresh mini-gate next; the contaminated
+gates' verdicts (074e5b8, b2f46eb) are void for the fix itself (weak-positive evidence:
+0/12 livelock pins, the one precondition map scored above sample average).

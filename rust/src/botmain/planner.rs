@@ -56,7 +56,7 @@ const DENY_W: i64 = 0; // A2 reverted — collided with the race check per analy
 // mechanism that just gained +1.3 in the arena; the analyst's decoded losses show excessive
 // trekking to contested trees when a free tree is only marginally farther away, so discount
 // joinable contests harder.
-const RACE_SHARE_PEN: i64 = 4; // sweep 2->4 per analyst; harder discount on joinable contests
+const RACE_SHARE_PEN: i64 = 2; // sharepen4 kept-at-parity = INCONCLUSIVE under policy v2; champion (race) semantics = 2
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {

@@ -386,7 +386,7 @@ const K: usize = 8;
 const BAND: i64 = 100_000;
 const STICKY: i64 = 6;
 const DENY_W: i64 = 0;
-const RACE_SHARE_PEN: i64 = 4;
+const RACE_SHARE_PEN: i64 = 2;
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
     Bank,
@@ -941,7 +941,7 @@ const GE_CHOP_FARM: usize = 3;
 const GE_FARM_R: i32 = 2;
 const GE_FARM_MAX: usize = 12;
 const GE_FELL_SIZE: i32 = 2;
-const GE_CHOP_R: i32 = 4;
+const GE_CHOP_R: i32 = 5;
 const GE_LIQ_T: i32 = 34;
 const GE_STARTER_CHOP: bool = true;
 const GE_MIN_TURNS_LEFT: i32 = 20;
