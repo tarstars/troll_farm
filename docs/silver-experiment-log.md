@@ -1545,3 +1545,170 @@ single-convergence noise: ±0.5 decision bands, +1.0 (or 2×+0.5) for promotion 
 ±0.2 threshold operated BELOW the noise floor (sharepen4's "exact parity" was a coin-read).
 In-flight conformance: the 07:20 pure-champion resubmission IS the fresh baseline; roam4
 chains on it; sharepen4's parity verdict downgraded to INCONCLUSIVE retroactively.
+
+## Champion loss taxonomy (2026-07-08 morning)
+
+**Read-API only, no DEBUG games, no arena actions.** Confirmed live/uncontaminated (unlike the
+2026-07-08 night census, which hit a different candidate's slot): `cg_rank.py` read 115/527 @
+19.1 (agentId 6543178), squarely inside v1.36.0-race's documented 17.6-20.1/rank-88-121 band
+right after the 07:20 pure-champion resubmission baseline. `battles.py 40` pulled **20W/20L**
+(140 battles listed), opponent ranks 103-121 / scores 17.7-19.9 — matches the champion's diet
+exactly, so this census is clean (all 20 losses are genuinely v1.36.0-race's).
+
+**Method:** fetched all 20 losses via `gameResult/findByGameId` (same call `battles.py` uses,
+`userId=1302251`), decoded every frame's `stdout` (one command per troll, `;`-joined, verbs
+normalized uppercase) into command-mix counts per 75-turn phase (t1-75/76-150/151-225/226-300)
+for both players. Scratch decode/classify scripts + cached raw JSON live under this session's
+scratchpad (not committed); full per-game numbers reproduced below.
+
+### The 20-loss table
+
+| gameId | opponent (rank/score) | margin | shape | our anomalies |
+|---|---|---|---|---|
+| 895459072 | Eagleast (113/19.2) | -155 | HARVEST-ECONOMY | MOVE:CHOP 3.1 (in/near baseline); scale gap (opp trained 2 vs our 1); chop 124 vs opp 93 |
+| 895458889 | TheMagicShop (104/19.9) | -141 | BURST-CHOPPER | MOVE:CHOP 4.0 (1.5x baseline); scale gap (opp trained 2 vs our 1); chop 100 vs opp 207 |
+| 895458757 | TheMagicShop (104/19.9) | -115 | DUAL-ECONOMY | MOVE:CHOP 5.1 (**1.9x** baseline 2.7 — severe travel waste); scale gap (opp trained 2 vs our 1); chop 80 vs opp 180 |
+| 895458926 | mikdiet (112/19.4) | -78 | OTHER (balanced scale-grind) | MOVE:CHOP 2.6 (in/near baseline); scale gap (opp trained 2 vs our 1); chop 106 vs opp 129 |
+| 895458987 | mikdiet (112/19.4) | -74 | HARVEST-ECONOMY | MOVE:CHOP 2.5 (in/near baseline); scale gap (opp trained 2 vs our 1); chop 123 vs opp 109 |
+| 895459147 | mikdiet (112/19.4) | -68 | HARVEST-ECONOMY | MOVE:CHOP 2.9 (in/near baseline); scale gap (opp trained 2 vs our 1); chop 130 vs opp 78 |
+| 895459143 | R4N4R4M4 (118/17.9) | -66 | BURST-CHOPPER | MOVE:CHOP 3.6 (1.3x baseline); scale gap (opp trained 3 vs our 1); chop 95 vs opp 204 |
+| 895458790 | Crouistiti (119/17.8) | -50 | OUT-TEMPO | MOVE:CHOP 6.5 (**2.4x** baseline — severe travel waste); equal troll count; chop 49 vs opp 146 |
+| 895459050 | 7AM (114/19.1) | -46 | HARVEST-ECONOMY | MOVE:CHOP 2.8 (in/near baseline); scale gap (opp trained 3 vs our 1); chop 132 vs opp 159 |
+| 895458981 | TheMagicShop (104/19.9) | -37 | HARVEST-ECONOMY | MOVE:CHOP 3.5 (1.3x baseline); scale gap (opp trained 2 vs our 1); chop 116 vs opp 136 |
+| 895458742 | Haseir (106/19.8) | -36 | DUAL-ECONOMY | MOVE:CHOP 7.4 (**2.8x** baseline — severe travel waste); scale gap (opp trained 3 vs our 1); harvest+drop starved (29 vs opp 162); chop 65 vs opp 125 |
+| 895459060 | Bizzon. (117/17.9) | -32 | OUT-TEMPO | MOVE:CHOP 6.0 (**2.2x** baseline — severe travel waste); equal troll count; chop 60 vs opp 103 |
+| 895458705 | lD (116/18.3) | -31 | DUAL-ECONOMY | MOVE:CHOP 5.1 (**1.9x** baseline — severe travel waste); scale gap (opp trained 2 vs our 1); chop 67 vs opp 101 |
+| 895458698 | HLhop (108/19.6) | -28 | CLOSE-MARGIN | MOVE:CHOP 2.3 (in/near baseline); equal troll count; chop 113 vs opp 141 |
+| 895459126 | HLhop (108/19.6) | -27 | OUT-TEMPO | MOVE:CHOP 3.7 (1.4x baseline); equal troll count; chop 115 vs opp 270 |
+| 895459170 | HLhop (108/19.6) | -16 | CLOSE-MARGIN | MOVE:CHOP 1.2 (in/near baseline); equal troll count; chop 238 vs opp 207 |
+| 895458693 | Haseir (106/19.8) | -13 | DUAL-ECONOMY | MOVE:CHOP 4.8 (**1.8x** baseline — severe travel waste); scale gap (opp trained 3 vs our 1); chop 86 vs opp 151 |
+| 895458876 | Bizzon. (117/17.9) | -11 | OUT-TEMPO | MOVE:CHOP 5.1 (**1.9x** baseline — severe travel waste); equal troll count; chop 60 vs opp 95 |
+| 895458944 | pbou (103/19.9) | -10 | CLOSE-MARGIN | MOVE:CHOP 2.6 (in/near baseline); equal troll count; chop 80 vs opp 113 |
+| 895458712 | HLhop (108/19.6) | -6 | OUT-TEMPO | MOVE:CHOP 3.7 (1.4x baseline); equal troll count; chop 105 vs opp 241 |
+
+Classification rule (priority order, applied mechanically from the phase-chop series + totals):
+(a) BURST if opponent CHOP jumps from ≤10 to ≥60 in one phase transition; else (e) DUAL if
+opp HARVEST+DROP ≥1.8x ours AND opp CHOP ≥1.3x ours; else (b) HARVEST-ECONOMY if opp
+HARVEST+DROP ≥1.6x ours; else (c) OUT-TEMPO if opp CHOP ≥1.5x ours; else (d) CLOSE-MARGIN if
+|margin|<30; else (e) OTHER (described per-case). Shape boundaries are fuzzy at the edges (see
+TheMagicShop below) — opponent IDENTITY often predicts the shape better than any one game's
+numbers.
+
+### Shape distribution
+
+| shape | n | share | avg margin | avg MOVE:CHOP (ours) |
+|---|---|---|---|---|
+| b HARVEST-ECONOMY | 5 | 25% | -76.0 | 2.94 |
+| c OUT-TEMPO | 5 | 25% | -25.2 | **5.00** |
+| e DUAL-ECONOMY (new) | 4 | 20% | -48.8 | **5.60** |
+| d CLOSE-MARGIN | 3 | 15% | -18.0 | 2.05 |
+| a BURST-CHOPPER | 2 | 10% | -103.5 | 3.82 |
+| e OTHER (scale-grind) | 1 | 5% | -78.0 | 2.63 |
+
+**(e) shapes described precisely, both new since the last (deny1-contaminated) census:**
+- **DUAL-ECONOMY**: opponent trains a 2nd/3rd troll and out-produces us on BOTH wood (CHOP
+  ≥1.3x) AND fruit (HARVEST+DROP ≥1.8x) at once — a strict superset of HARVEST-ECONOMY, not a
+  specialist build. TheMagicShop/Haseir/lD, all with opp_train > ours.
+- **OTHER (balanced scale-grind)**, single sample (mikdiet, -78): opponent's extra troll (2 vs
+  our 1) buys a uniform ~1.2-1.25x edge on chop AND harvest/drop, no specialization at all —
+  just a flat scale tax.
+
+**Ranking by (share × |avg margin|)**, the requested weighting: (1) HARVEST-ECONOMY 0.25×76.0
+= **19.0**; (2) BURST-CHOPPER 0.10×103.5 = **10.35**; (3) DUAL-ECONOMY 0.20×48.8 = 9.76 (near
+tie with #2, n=4 vs n=2); (4) OUT-TEMPO 0.25×25.2 = 6.3; (5) OTHER 0.05×78 = 3.9; (6)
+CLOSE-MARGIN 0.15×18 = 2.7. If HARVEST-ECONOMY and DUAL-ECONOMY are merged (same root
+mechanism — opponent's extra troll runs a fruit economy, just with a chop edge attached or
+not): n=9/20 = **45% of ALL losses**, avg margin **-63.9**, weight **28.75** — by a wide margin
+the single biggest lever in this dataset.
+
+### Two cross-cutting findings (not one of the requested shapes, but sharper)
+
+**1. Scale parity perfectly predicts shape family.** Split by opp_train vs our fixed
+GE_MAX_TROLLS=2 (we trained exactly 1 extra troll in all 20 games, no exceptions):
+- **Equal troll count** (8/20 = 40%: all 4 HLhop games + both Bizzon. games + Crouistiti +
+  pbou): **100%** land in OUT-TEMPO or CLOSE-MARGIN, avg margin only **-22.5**.
+- **Opponent out-trains us** (12/20 = 60%, 2-3 trained): **100%** land in HARVEST-ECONOMY /
+  DUAL-ECONOMY / BURST-CHOPPER / OTHER, avg margin **-71.7** — 3.2x worse.
+No exceptions either direction across 20 games. Opponent identity clusters the same way: HLhop
+(4 losses, always equal-scale, always out-tempo/close) and TheMagicShop/mikdiet (3 each, always
+out-training us, always a specialized-economy shape) are recognizable recurring builds, not
+random draws — 5 opponents (HLhop, mikdiet, TheMagicShop, Bizzon., Haseir) account for 13/20
+(65%) of all losses at this rank band.
+
+**2. The late-throughput-ceiling reproduces live, inside the current champion's own arena
+losses** (previously only quantified vs the real Boss 5, `late-throughput-ceiling` memory).
+Average CHOP count by phase, both sides, across all 20 losses:
+
+| phase (turns) | our avg CHOP | opp avg CHOP | delta |
+|---|---|---|---|
+| 1-75 | 29.2 | 13.2 | **+16.0** (we lead) |
+| 76-150 | 26.8 | 40.0 | -13.3 |
+| 151-225 | 23.9 | 49.7 | -25.8 |
+| 226-300 | 22.3 | 46.5 | -24.2 |
+
+Our own chop output *declines* every phase (29.2→22.3) while the opponents' *triples*
+(13.2→46.5) — we win the opening in every one of these 20 losses and still lose the game.
+Textbook late-throughput-ceiling, now confirmed against the live arena field, not just Boss 5.
+
+### The single sharpest our-side anomaly
+
+**Our own MOVE:CHOP ratio averages 3.93 across all 20 losses vs the historical baseline ~2.7
+(≈1.46x), and is NOT a deny1 artifact** — `DENY_W` is parked at 0 and has been since the
+02:40 revert; this is pure v1.36.0-race. It is elevated almost identically in both scale-parity
+groups (equal-scale 3.89, opp-out-trains 3.95 — a champion-wide trait, not opponent-shape-
+specific) and peaks brutally in exactly the two most damaging shapes: DUAL-ECONOMY (avg 5.60,
+up to 7.45/7.4x-baseline vs Haseir) and OUT-TEMPO (avg 5.00, up to 6.53 vs Crouistiti — the
+*same-troll-count* group, so this is a pure execution/routing signature, unconfounded by
+scale). Best read as the mechanism behind finding #2 above: turns burned on travel are turns
+not spent chopping, compounding into the observed late-game chop-output decline. The prior
+night's census (deny1-contaminated) attributed an elevated MOVE:CHOP specifically to `DENY_W`
+colliding with `race()`'s tie-break — this data shows the elevated ratio predates and outlives
+deny1, so that attribution was at best partial; the travel-waste defect is standing and
+champion-wide.
+
+### Top-2 counters, ranked for the arena queue
+
+**#1 (top pick, addresses HARVEST-ECONOMY + DUAL-ECONOMY, 45% share / -63.9 avg margin
+merged).** Traced the mechanism in `rust/src/botmain/planner.rs`: the only "go get fruit" bands
+are (a) band 75, opportunistic-only (standing on it already), gated to BANANA/water-APPLE
+`when !want_chopper`, and (b) funding bands 58-65, narrow fruit-type + narrow
+`want_chopper||want_feeder` window. The one genuine "MoveTo any ripe fruit" band (62, line
+~270-274) is gated `plan.phase == Phase::Hoard` — and `phase_for` (`tactics.rs`) maps
+`Meta::Tempo` (the live meta; Scale/T-hand is reverted) **unconditionally** to `Phase::Tempo`,
+so that band never fires for the live champion. Net effect: under Tempo, fruit is harvested
+only as a side-effect of standing on it or of chopper/feeder funding — there is no active
+"path toward ripe fruit for its own point value" band once funding is satisfied, which is the
+direct, code-level explanation for our flat 20-90/game HARVEST+DROP totals regardless of the
+opponent's 91-307. **Proposed change:** add a modest Tempo-active MoveTo-to-ripe-fruit band
+(any fruit type, ~band 45-48 — below the primary chop bands 70/72 and funding 58-65, above
+chop-help 40/42) whenever a troll has free capacity and no higher-value candidate. **Testable
+prediction:** our own HARVEST+DROP totals should rise from 20-90 toward 100+ in games vs
+HARVEST/DUAL-economy-style opponents (mikdiet/TheMagicShop/Eagleast/7AM/Haseir/lD), and the
+avg margin against that specific cluster should close from -63.9 toward the OUT-TEMPO band
+(-25) or better, without touching CHOP valuation at all (zero interaction risk with `race()`
+or the parked `DENY_W`).
+
+**#2 (second pick, addresses BURST-CHOPPER, 10% share / -103.5 avg margin, n=2 — thin
+sample).** Both burst losses pair an opponent troll-count edge (2-3 vs our fixed
+`GE_MAX_TROLLS=2`) with a near-zero opponent CHOP count through phase 1 that converts
+explosively once their extra troll(s) come online (turn ~76-150). **Deliberately NOT**
+proposing to train our own extra troll earlier/cheaper to match — that mechanism is a
+re-tread of two already-dead ends (T-hand, reverted 2026-07-07 -2.2pts, the added troll never
+found a role and didn't repay its funding; and the older "2nd chopper starves the farm" result)
+whose failure was about the added troll's ROLE, not its training timing. **Proposed change
+instead:** a turn-gated valuation change confined to our *existing* single chopper — during
+phase 1 only (turns 1-75), loosen `own_half`/`within_roam` (planner.rs ~122-124, feeding bands
+70/72) so the chopper claims a slightly wider tree pool while these opponents are still
+dormant, banking extra fell-ready supply before the delayed burst starts converting.
+**Testable prediction:** re-sampled games vs R4N4R4M4/TheMagicShop-style delayed-onset
+opponents should show our phase-1/2 CHOP counts rise further above the current lead
+(29.2/26.8 avg) and the opponent's phase-3/4 burst should find a smaller remaining-tree pool,
+narrowing the -66/-141 margins toward the OUT-TEMPO band (-25 avg). Flagged as the
+thinnest-evidence proposal here (n=2); if it doesn't pan out, the more precise version (relax
+only when the opponent is *observed* to have felled ~0 trees so far, rather than a blanket
+phase-1 gate) is the natural follow-up but needs new per-game opponent-chop-count state, not
+just a knob.
+
+Both counters are orthogonal to the current in-flight candidate (chop_r 5→4 / v1.40.0-roam4,
+queue #2) and to the parked `DENY_W`/`race()` collision — neither touches fell-target
+tie-breaks.

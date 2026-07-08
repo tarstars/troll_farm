@@ -78,9 +78,40 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    Residual design note: same-role trolls need a dispersion/exclusivity notion in the
    matcher — filed for the R6 concurrency backlog. Cheap-variant-if-ever: farm-ring-
    restricted forage band.)
-7. **NEW, filed (not urgent):** mlomb-style fruit-harvest/bank win pattern (low chop count,
-   high HARVEST+DROP volume) — a loss mechanism not previously catalogued; needs a dedicated
-   look once a champion-specific census is unblocked (analyst finding, 2026-07-08 night).
+7. **Tempo-phase fruit-harvest band** — **UPGRADED from "not urgent" to TOP-RANKED unbuilt
+   idea** (analyst loss taxonomy, 2026-07-08 morning, 20-loss champion-specific census —
+   supersedes the deny1-contaminated night census this item was filed from). HARVEST-ECONOMY +
+   DUAL-ECONOMY shapes together are **45% of all losses, avg margin -63.9** — by far the
+   biggest lever measured. Root cause traced in `planner.rs`: under live `Meta::Tempo`,
+   `phase_for` never reaches `Phase::Hoard`, so the only "MoveTo any ripe fruit" band (62,
+   ~line 270) never fires; fruit is harvested only opportunistically (band 75, BANANA/
+   water-APPLE only, gated `!want_chopper`) or via narrow funding bands (58-65). Our own
+   HARVEST+DROP totals stay flat 20-90/game regardless of opponent output (91-307). Proposed:
+   add a Tempo-active MoveTo-to-ripe-fruit band (~45-48, below chop 70/72 and funding 58-65,
+   above chop-help 40/42), any fruit type, whenever free-capacity + no higher candidate.
+   Predicted: our HARVEST+DROP rises toward 100+ vs this opponent cluster (mikdiet/
+   TheMagicShop/Eagleast/7AM/Haseir/lD); their margin closes from -63.9 toward the OUT-TEMPO
+   band (-25). Zero interaction risk with `race()`/`DENY_W` (touches no fell valuation). See
+   `docs/silver-experiment-log.md` "## Champion loss taxonomy (2026-07-08 morning)" for the
+   full trace and table.
+8. **NEW — early-roam widening vs delayed-onset (burst-chopper) opponents** — second-ranked
+   unbuilt idea (same census; BURST-CHOPPER shape, 10% share, avg margin **-103.5**, the worst
+   single-shape average, but n=2, thin). Both instances (R4N4R4M4, TheMagicShop) pair an
+   opponent troll-count edge (2-3 vs our fixed `GE_MAX_TROLLS=2`) with a near-zero opponent
+   CHOP count through turns 1-75 that converts explosively turn ~76-150. Deliberately NOT a
+   train-earlier/train-cheaper fix — that re-treads two already-dead ends (T-hand: added troll
+   never found a role, reverted -2.2pts; "2nd chopper starves the farm", older). Proposed
+   instead: turn-gated only (turns 1-75), loosen `own_half`/`within_roam` (planner.rs ~122-124)
+   so our *existing* single chopper claims a wider tree pool while these opponents are
+   observably dormant, banking supply before their burst starts. Predicted: our phase-1/2 CHOP
+   rises further above the already-measured +16.0 phase-1 lead; their phase-3/4 burst finds a
+   smaller pool, narrowing -66/-141 toward the OUT-TEMPO band (-25). If it doesn't pan out, the
+   sharper follow-up (relax only when the opponent is *observed* at ~0 fells so far) needs new
+   per-game opponent-chop-count state, not just a knob — flagged, not yet designed.
+   **Priority note:** rank order for the next FREE queue slot (after #2/chop_r retest and #3's
+   re-gate resolve) is **#7 (harvest band) > #8 (early-roam) > #3 (tree-first-only) > #4
+   (diagonal-contest)** — #7's weight (28.75, share×margin, HARVEST+DUAL merged) dwarfs
+   everything else measured so far, including #3/#4's un-designed, unweighed ideas.
 
 ## Verdict log (newest first)
 - v1.39.0-sharepen4: **KEEP, AT PARITY** (bracket 121/527 @17.6, re-confirmed independently
