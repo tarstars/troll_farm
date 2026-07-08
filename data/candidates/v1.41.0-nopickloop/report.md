@@ -692,3 +692,82 @@ code-design rework needed); (3) re-run a 6-game boss mini-gate on the rebuilt pr
 pickloop readouts gathered here carry forward as weak-positive: 0/12 livelock pins, the one
 precondition map beats the non-precondition mean, and the only flaps outlier (18) sits on the
 scarce-camp map — watch that number on the re-gate.
+
+## Mini-gate #3 (clean base)
+
+**Role: GATEKEEPER, clean-base re-gate.** Both prior batches above ran a probe contaminated
+with the arena-reverted `GE_CHOP_R=4` roam4 constant (see the CONTAMINATION FINDING in the
+confirmatory section). Commit `059ee5c` ("restore champion semantics after roam4 revert
+(CHOP_R=5, PEN=2) + refreeze pickloop clean") rebuilt and refroze every v1.41.0-nopickloop
+artifact on top of the live champion's constants. This batch re-gates on THAT base — 6 fresh
+boss games, same probe path, same method as Mini-gate #1.
+
+**Probe verification**
+(`data/candidates/v1.41.0-nopickloop/v1.41.0-nopickloop.debug-probe.min.rs`, 44,358 B —
+identical size to the contaminated probe, confirming this was a targeted constant fix, not a
+rebuild-shape change): grep confirms `GE_CHOP_R: i32 = 5` (champion value; the reverted `4` is
+gone), `RACE_SHARE_PEN: i64 = 2` (champion value), `DEBUG: bool = true`, `VERSION: &str =
+"1.41.0-nopickloop"`. Copied to a dot-free name and compiled standalone
+(`rustc --edition 2021 -O`): exit 0, no stdout/stderr. **CLEAN — proceeded to play.**
+
+**Collection:** `collect_debug_games.py <probe> boss 6` — 6/6 games returned cleanly on the
+first attempt, no HTTP 422, no wait needed.
+
+### Per-game numbers
+
+| gameId | result | final turn | my wood | boss wood | delta | opp_train | flaps (final) | shack camp_cells | max shack-adj run (starter, id 0) |
+|---|---|---|---|---|---|---|---|---|---|
+| 895468000 | L | 300 | 30 | 56 | -26 | t33 | 8 | 3 | 2 |
+| 895468048 | L | 300 | 60 | 74 | -14 | t43 | 6 | 4 | 2 |
+| 895468082 | L | 300 | 61 | 65 | -4 | t16 | 6 | 4 | 5 |
+| 895468107 | W | 300 | 43 | 42 | +1 | t48 | 10 | 4 | 2 |
+| 895468126 | L | 300 | 57 | 67 | -10 | t2 | 14 | 4 | 2 |
+| 895468151 | L | 300 | 56 | 77 | -21 | t2 | 12 | 4 | 2 |
+
+1/6 wins. `ramp.py --last 6`: t75 delta +3.8, t150 delta +1.7, t225 delta -6.8, **t300 delta
+-12.3**; our avg final wood **51.2**; late-quarter (t225→300) gain us +14.5 vs opp +20.0.
+(ramp.py's aggregate numbers cross-checked bit-for-bit against an independent per-game parse
+of the `.raw` `@TFSUM` lines — both methods agree exactly.)
+
+### Readout 1 — CRATER CHECK (the gate)
+
+- avg final wood = **51.2** (≥40 floor) — **PASS**, +11.2 clear of the bar.
+- min final wood = **30** (895468000; >25 floor) — **PASS**.
+- avg wood delta @ final turn = **-12.3** (≥-14 floor) — **PASS**, 1.7 inside the bar.
+- crashes: **0/6** — grep for panic/backtrace/fatal/unwrap/segv/timeout/invalid move/
+  exception/traceback across all 6 `.raw` files returns 0 hits in every file; every game's
+  `@TFSUM` progression reaches t=300 (no early/truncated game). **PASS**.
+
+**All four legs hold → readout 1 PASSES.** Contrast vs both contaminated batches: batch 1
+delta -19.0 (FAIL by 5.0), combined 12-game delta -14.2 (FAIL by 0.2). Restoring champion
+semantics moved the *same candidate diff* from FAIL to a comfortable PASS on a fresh sample —
+strong confirmation that the roam4 constant (not the pickloop change) was what dragged the
+earlier reads down.
+
+### Readout 2 — Livelock signature (diagnostic)
+
+Same method as Mini-gate #1/#2: shack cell located from the `@TFMAP` grid (digit `0`), starter
+(id 0) position tracked per `@TFMOVE t=.. pos=[0@x,y]`, run-length of consecutive turns at
+manhattan distance ≤1 from shack.
+
+- **0/6 games show a 40+ turn pin** — expected 0, confirmed 0/6.
+- Max dwell observed anywhere: **5 turns** (895468082); every other game tops out at 2.
+- Scarce-camp precondition (shack ortho-neighbor walkable-cell count ≤2): **0/6 maps this
+  batch** (camp_cells 3,4,4,4,4,4) — this sample doesn't even present the geometry the fix
+  targets, so it can only fail to contradict the fix, not positively confirm it (consistent
+  with the same caveat noted in Mini-gate #1).
+
+### Readout 3 — Flaps
+
+Final flaps per game (table order): 8, 6, 6, 10, 14, 12 — **6/6 ≤15**, comfortably clears the
+≥5/6 bar.
+
+### Verdict: **PASS**
+
+Readout 1 (the gate) passes cleanly on all four legs; readouts 2 and 3 (diagnostic) both hold
+too (0/6 livelock, 6/6 flaps≤15). One observation for whoever picks this up next: both sides'
+wood totals run noticeably higher this batch (30-77 range, avg 51.2/63.5) than either
+contaminated batch (38.8 and 45.0-51.2 avg) — plausibly just map-variance at n=6 (the first
+mini-gate already calibrated ~12 wood / ~9.5 delta swings batch-to-batch), not a champion-
+semantics throughput effect, since opponent wood scaled up right alongside ours. Recommend:
+hand off to the arena-runner for the one arena slot.
