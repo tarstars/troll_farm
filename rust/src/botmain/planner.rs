@@ -304,7 +304,26 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     // Gating bands 88/50/49 on `plant_cell.is_some()` fixed the PICK half; band 80 below,
     // gated the same way (reviewer MINOR fix), closes the other half — a carried banana with
     // nowhere reachable to plant is banked, not hoarded waiting for a spot that never opens.
-    let plant_cell: Option<Cell> = if plan.base_trees < plan.farm_cap {
+    // v1.56.0-ringfarm: the ring IS the farm. In every real game `plan.ring` is the up-to-8
+    // Chebyshev-1 tent cells (role-tagged, front-door-filtered — see tactics::compute_ring),
+    // and the plant target is the nearest reachable EMPTY ring cell for THIS troll. plant_cell
+    // becomes None once the ring is full, which caps the farm at the tight 8-ring (the proven
+    // throughput lever: shortest possible bank trips — no scattered farm_cap=12 spread). On a
+    // hand-built test Plan with `ring: vec![]` we fall back to the pre-ring farm_cap chooser,
+    // so the legacy pick/plant/nopickloop/nanaflow tests keep their exact old semantics.
+    // `ring_active` also raises the build-ring PICK bands (78/77) in the printer section below.
+    let ring_active = !plan.ring.is_empty();
+    let plant_cell: Option<Cell> = if ring_active {
+        plan.ring
+            .iter()
+            .map(|(c, _)| *c)
+            .filter(|c| d.contains_key(c)) // reachable from this troll
+            .filter(|c| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
+            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
+            // nearest empty ring cell; canonical (dist, tie_mix) tie-break — the ring geometry
+            // already fixes the roles, so we just build the ring fastest (least travel).
+            .min_by_key(|c| (d[c], tie_mix(*c, salt)))
+    } else if plan.base_trees < plan.farm_cap {
         state
             .walkable
             .iter()
@@ -605,19 +624,30 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // v1.41.0-nopickloop: only PICK (or travel to pick) if a plantable cell
             // actually exists (plant_cell.is_some()) — picking a banana with nowhere to
             // plant it is pure waste that just re-parks the starter on a scarce cell.
+            // v1.56.0-ringfarm: BUILD THE RING EARLY. While the ring has an empty cell
+            // (plant_cell.is_some() under the ring path) and a banana is available, the
+            // pick->plant loop must outrank distant foraging — so the PICK band rises to 78
+            // (park-to-pick 77) instead of 50/49. Numeric ordering (BAND = 100_000, every eta
+            // « BAND): plant 88 > full-bank 80 > build-ring PICK 78 > park-to-pick 77 >
+            // standing-harvest 75 > seed-move/idle-fruit ≤ 52. So it strictly beats the
+            // distant harvest(75)/seed-move(52) but NEVER banking(80/95) or a carried-banana
+            // plant(88) — and it is gated on a reachable empty ring cell, so once the ring is
+            // full PICK is not offered at all and harvest wins (cannot displace real work on a
+            // built ring). Off the ring path (`ring: vec![]` tests) it stays 50/49.
+            let pick_band: i64 = if ring_active { 78 } else { 50 };
             if inv[BANANA] > 0 && u.free_capacity() > 0 && plant_cell.is_some() {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand {
                         kind: Kind::Pick,
                         target: Some(shack),
-                        value: 50 * BAND,
+                        value: pick_band * BAND,
                     });
                 } else {
                     out.push(Cand {
                         kind: Kind::Park,
                         target: Some(shack),
-                        value: 50 * BAND - 1,
+                        value: pick_band * BAND - 1,
                     });
                 }
             }
