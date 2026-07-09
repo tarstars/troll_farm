@@ -57,6 +57,14 @@ const DENY_W: i64 = 0; // A2 reverted — collided with the race check per analy
                        // trekking to contested trees when a free tree is only marginally farther away, so discount
                        // joinable contests harder.
 const RACE_SHARE_PEN: i64 = 2; // sharepen4 kept-at-parity = INCONCLUSIVE under policy v2; champion (race) semantics = 2
+// v1.53.0-pressurefarm (Task 2 Step 3): under Orange/Red observed pressure, a created/farm
+// tree the ownership model marks not-safely-ours (plan.pressure.exposed_created_cells) gets
+// a small within-band bump — raises it before less-urgent same-band work, never overrides
+// the priority hierarchy (« BAND, same discipline as STICKY/DENY_W/RACE_SHARE_PEN above).
+// Under Green/Yellow, exposed_created_cells is always empty (Yellow's own_half signal alone
+// never implies created_exposed>0 — see ownership::classify_pressure), so this is always +0
+// there: a proven no-op, not a static preference.
+const PRESSURE_LIQ_BONUS: i64 = 4;
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
@@ -186,7 +194,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     };
 
     let fell_ok = |p: &Tree| -> bool {
-        if plan.seed_cells.contains(&p.pos()) {
+        // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
+        // the pressure governor has specifically released it (Orange/Red AND this exact
+        // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
+        // comment for why the release check is per-tree, not the broader "exposed" set).
+        // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
+        // empty, so this is byte-identical to the pre-pressure check.
+        if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos())
+        {
             return false;
         }
         if plan.liquidation {
@@ -241,6 +256,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     Some(RACE_SHARE_PEN) // joinable: shared wood, mild discount
                 }
             }
+        }
+    };
+    // v1.53.0-pressurefarm (Task 2 Step 3): see PRESSURE_LIQ_BONUS's doc comment above.
+    let pressure_bonus = |pc: Cell| -> i64 {
+        if plan.pressure.state >= ownership::PressureState::Orange
+            && plan.pressure.exposed_created_cells.contains(&pc)
+        {
+            PRESSURE_LIQ_BONUS
+        } else {
+            0
         }
     };
 
@@ -343,19 +368,20 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             };
             // A2 probe (DENY_W): trees closer to the opponent lose less -> rank higher.
             let deny_pen = DENY_W * (manhattan(pc, plan.opp) as i64 / 2);
+            let pbonus = pressure_bonus(pc);
             if pc == u.pos() {
                 // standing on a fellable tree: FINISH IT (cascade branch order) — band 72
                 // outranks every travel-fell so invested chops are never abandoned.
                 out.push(Cand {
                     kind: Kind::ChopHere,
                     target: Some(pc),
-                    value: 72 * BAND - chop_t - race_pen - deny_pen,
+                    value: 72 * BAND - chop_t - race_pen - deny_pen + pbonus,
                 });
             } else {
                 out.push(Cand {
                     kind: Kind::MoveTo,
                     target: Some(pc),
-                    value: 70 * BAND - (steps + chop_t) - race_pen - deny_pen,
+                    value: 70 * BAND - (steps + chop_t) - race_pen - deny_pen + pbonus,
                 });
             }
         }
@@ -603,17 +629,18 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                     Some(pen) => pen,
                 };
+                let pbonus = pressure_bonus(pc);
                 if pc == u.pos() {
                     out.push(Cand {
                         kind: Kind::ChopHere,
                         target: Some(pc),
-                        value: 42 * BAND - chop_t - race_pen,
+                        value: 42 * BAND - chop_t - race_pen + pbonus,
                     });
                 } else {
                     out.push(Cand {
                         kind: Kind::MoveTo,
                         target: Some(pc),
-                        value: 40 * BAND - (steps + chop_t) - race_pen,
+                        value: 40 * BAND - (steps + chop_t) - race_pen + pbonus,
                     });
                 }
             }
