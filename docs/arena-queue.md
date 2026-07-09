@@ -36,10 +36,15 @@ commit the verdict the moment it's decided (before reconvergence verification).
 reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named below.
 
 ## Champion
+- v1.43.0-yield (`cgauto/submissions/v1.43.0-yield.min.rs`) — **PROMOTED 2026-07-08
+  21:38 MSK**, estimated Gold score **18.4**, rank **116/527**, agentId **6543753**. Bracket was
+  v1.42.0-idlefruit at 127/527 @17.4; reads: +20m 139/527 @16.9, +35m 116/527 @18.6, +50m
+  116/527 @18.4. Delta **+1.0**, meeting policy v2's single-convergence promotion bar.
+  `cgauto/api_submit.py` default now points at this artifact. Goal gate did not fire (116 > 99).
 - v1.36.0-race (`cgauto/submissions/v1.36.0-race.min.rs`) — converged band 17.6-20.1,
   rank ~88-121. Promoted 2026-07-07 22:24, superseding v1.28.3-sticky6 (held 19.0-19.2,
-  rank ~113, for ~36h). `cgauto/api_submit.py` default points at this candidate. Re-confirmed
-  live 2026-07-08 00:41 after reverting v1.37.0-nanaflow (two stable reads, 111/527 @ 19.3,
+  rank ~113, for ~36h). Former default champion until v1.43.0-yield's 2026-07-08 21:38
+  promotion. Re-confirmed live 2026-07-08 00:41 after reverting v1.37.0-nanaflow (two stable reads, 111/527 @ 19.3,
   15m17s apart), and AGAIN 2026-07-08 02:37 after reverting v1.38.0-deny1 (two stable reads,
   121/527 @ 17.6, 15m apart — same unmodified code, a lower point in this room's documented
   drift band, not a regression; see verdict log) — arena was not left on a regressed bot
@@ -103,6 +108,38 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   and becomes the new CHAINED BASELINE (valid ~5h, until ~21:33) for the next candidate. NOT
   promoted — `api_submit.py` default stays `v1.36.0-race.min.rs`. Goal gate (≤99) did not fire
   (best rank this episode: 127).
+- **Arena-slot resolved (2026-07-08 21:38, arena-runner):** v1.43.0-yield (D2 task-interference
+  / yield-to-urgent) verdict is **KEEP / PROMOTED (+1.0)** — bracketed the chained baseline at
+  127/527 @17.4 (agentId 6543636, read 20:47:11), submitted 20:47:20 (SUBMIT-OK). Candidate
+  landed as agentId 6543753. Read trajectory: +20m 139/527 @16.9 (dip to −0.5), +35m 116/527
+  @18.6 (rebound to +1.2), +50m 116/527 @18.4 (policy read, +1.0). Left live in the slot and
+  promoted to default (`cgauto/api_submit.py` now points at `v1.43.0-yield.min.rs`). Goal gate
+  did not fire (116 > 99). Detail: `data/candidates/v1.43.0-yield/report.md`.
+- **Arena-slot resolved (2026-07-08 22:49, arena-runner):** v1.44.0-harvest-before-fell
+  (tree-resource compatibility / harvest-before-fell) verdict is **REJECT / REVERTED (−2.6)** —
+  bracketed v1.43.0-yield at 116/527 @18.4 (agentId 6543753, read 22:13), submitted 22:13
+  (SUBMIT-OK, submit id 40969606). Candidate landed as agentId 6543779. Read trajectory: +20m
+  136/527 @16.9 (−1.5), +35m 182/527 @15.8 (−2.6). Reverted immediately to
+  `cgauto/submissions/v1.43.0-yield.min.rs` at 22:49 (submit id 40969730). Restore landed as
+  agentId 6543791 by 23:11 (first read 180/527 @16.0, early reconvergence). The narrowed rule
+  passed mini-gate, but the live field rejected it; do not requeue this mechanism as a simple
+  ripe-tree fell suppression. Detail: `data/candidates/v1.44.0-harvest-before-fell/report.md`.
+- **Local gate resolved (2026-07-08 23:39, builder):** v1.45.0-earlyroam
+  (opening-only chopper roam widening) verdict is **LOCAL REJECT / NOT SUBMITTED**. Local
+  tests, bundle/minify, and equality passed, but the Boss 8 DEBUG mini-gate failed: `0/8`,
+  our wood `39.9`, boss wood `53.2`, ramp t300 `-13.4`. It produced the intended early lead
+  through t150 but still lost the late burst. Active source restored to v1.43 behavior; do not
+  submit or retry this static turn-gated roam widening. Detail:
+  `data/candidates/v1.45.0-earlyroam/report.md`.
+- **Arena-slot resolved (2026-07-09 00:47, arena-runner):** v1.46.0-splitclaims
+  (split fruit-vs-wood tree claims) verdict is **KEEP / NOT PROMOTED (+0.9)**. Bracket:
+  restored v1.43.0-yield agentId 6543791 at `151/527 @16.5` (23:55). Submitted 23:56
+  (submit id `40969964`). Candidate landed as agentId 6543815. Read trajectory: landing
+  `371/527 @11.7`, +20m `169/527 @16.3`, +35m `127/527 @17.4`, +50m `127/527 @17.4`.
+  Final delta `+0.9` crosses the KEEP bar but misses the `+1.0` single-read promotion bar.
+  Left live as the chained baseline for the next candidate; `api_submit.py` default stays
+  `cgauto/submissions/v1.43.0-yield.min.rs`. Goal gate did not fire (`127 > 99`). Detail:
+  `data/candidates/v1.46.0-splitclaims/report.md`.
 
 ## Queue (ordered; update statuses as they move)
 1. **RACE_SHARE_PEN sweep (2→4)** — **CLOSED: KEEP, AT PARITY** (v1.39.0-sharepen4, converged
@@ -150,8 +187,14 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
    band (-25). Zero interaction risk with `race()`/`DENY_W` (touches no fell valuation). See
    `docs/silver-experiment-log.md` "## Champion loss taxonomy (2026-07-08 morning)" for the
    full trace and table.
-8. **NEW — early-roam widening vs delayed-onset (burst-chopper) opponents** — second-ranked
-   unbuilt idea (same census; BURST-CHOPPER shape, 10% share, avg margin **-103.5**, the worst
+8. **early-roam widening vs delayed-onset (burst-chopper) opponents — LOCAL REJECTED
+   2026-07-08 23:39.** Built as `v1.45.0-earlyroam`: true chopper only, Tempo only,
+   turns `<=75`, one extra primary-fell roam ring and one-cell own-half margin. Local tests and
+   equality passed, but Boss 8 failed (`0/8`, our wood `39.9`, opp wood `53.2`, ramp t300
+   `-13.4`). Static turn-gated widening gives early wood but does not survive the late burst.
+   Do not submit. If revisiting, use an observed-opponent trigger or a different resource plan,
+   not unconditional opening roam. Original rationale: same census; BURST-CHOPPER shape, 10%
+   share, avg margin **-103.5**, the worst
    single-shape average, but n=2, thin). Both instances (R4N4R4M4, TheMagicShop) pair an
    opponent troll-count edge (2-3 vs our fixed `GE_MAX_TROLLS=2`) with a near-zero opponent
    CHOP count through turns 1-75 that converts explosively turn ~76-150. Deliberately NOT a
@@ -181,22 +224,173 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   −0.1; bracket 123/527@17.5 → converged 127/527@17.4, dip-recover-flatten shape). Left live
   in the slot as the new chained baseline; not promoted to default. See verdict log for the
   full read trajectory.
-- **D2 task-interference / yield-to-urgent (user architecture, 2026-07-08):** L3→L2 feedback
-  edge — when a mover's only path is blocked by a teammate's STATIONARY task cell and the
-  mover's band outranks the blocker's, suppress the blocker's candidate and re-match that
-  troll (it plants-aside/parks-off-path; resumes next turn automatically). Also absorbs the
-  same-role dispersion note. Test: corridor, picker-on-tree vs banking chopper.
-- **D3 funding-stall robustness** — 2nd-troll training at t77-89 on fruit-poor draws (60-90
-  turns of farm=0); design direction: ripeness-anticipation over wider roaming.
-- **D4 tentgap (user replay finding #5, 2026-07-08): shack cells are WALKABLE in the referee
-  but rocks in the bot's parse_grid** — phantom wall: 24-vs-2-step BFS divergence on the
-  Sasso_Stark map (game 895493013), 13 cross-wall treks ≈ 200+ wasted troll-turns (~1/3 of
-  locomotion) in one game. Fix = 2-line walkability + never-PLANT-on-shack +
-  never-PARK-on-shack guards; brief READY at `data/candidates/v1.44.0-tentgap/brief.md`.
-  PRIORITY: build immediately after D2 (execution waste-cut class — the class that
-  transfers; likely ranks ABOVE D3).
+- **D2 task-interference / yield-to-urgent (user architecture, 2026-07-08):** **RESOLVED
+  2026-07-08 21:38: ARENA KEEP / PROMOTED (+1.0)** as `v1.43.0-yield`. Bracket 127/527 @17.4
+  → policy read 116/527 @18.4; see verdict log and `data/candidates/v1.43.0-yield/report.md`.
+  Original design: L3→L2 feedback edge — when a mover's only path is blocked by a teammate's
+  STATIONARY task cell and the mover's band outranks the blocker's, suppress the blocker's
+  candidate and re-match that troll.
+- **D3 funding-stall robustness — LOCAL REJECTED 2026-07-09 01:13 MSK.** Built as
+  `v1.47.0-ripefund`: chopper-funding ripeness anticipation for soon-ripe deficit
+  PLUM/LEMON/APPLE. Broad band-57 anticipation cratered `mikdiet` (`0/2`, wood `34-52`);
+  the narrowed "final missing fruit only" variant still failed field probes (`6480966` `0/1`,
+  wood `78-107`; `6480914` `0/1`, wood `62-106`) and Boss 8 was no better than the v1.46
+  watchlist (`1/8`, our wood `44`, ramp t300 `-18.1`). Not submitted. Do not retry simple
+  funding ripeness anticipation; any future funding-stall work needs a different mechanism.
+- **D4 tentgap — REJECTED 2026-07-08 19:39 MSK. DO NOT BUILD.** The hypothesis "shack cells
+  are walkable in the referee but rocks in the bot" was disproven. Official referee source says
+  `Cell.isWalkable() == type == GRASS`, and the statement says trolls cannot walk back onto the
+  shack after leaving it. Live probe `rust-scratch/tent_probe.rs` confirmed the runtime behavior:
+  game `895503881` trained troll `id=2`, moved it from `shack=(9,4)` to `(10,4)`, then issued
+  `MOVE 2 9 4`; on the next turn the troll was still at `(10,4)` (`on_shack=false`). Therefore
+  do **not** add `'0'`/`'1'` to `walkable`, and do **not** implement the old
+  `parse_grid_shacks_walkable` tests. The Sasso_Stark long-route replay must be re-explained as
+  normal unwalkable-shack geometry or as another movement/planner issue. Rejected brief retained
+  at `data/candidates/v1.44.0-tentgap/brief.md` as a warning.
+- **D5 tree-resource compatibility / harvest-before-fell — REJECTED 2026-07-08 22:49 MSK.**
+  Built as `v1.44.0-harvest-before-fell`: protect funding/printer/Hoard ripe fruit for nearby
+  pure gatherers before wood workers fell that same tree. The first broad version protected all
+  idle fruit and failed Boss 8 (`0/8`, t300 `-17.8`); the narrowed version recovered mini-gate
+  (`2/8`, t300 `-9.8`, plcc `1/2`) but arena rejected it hard: bracket 116/527 @18.4 →
+  +35m 182/527 @15.8, delta `−2.6`. Do not retry as simple fell suppression; any future tree
+  compatibility work needs a different mechanism, likely explicit timing/role scheduling rather
+  than hiding wood candidates.
+- **D6 early-roam widening — LOCAL REJECTED 2026-07-08 23:39 MSK.** Built as
+  `v1.45.0-earlyroam`: opening-only true-chopper roam widening, one extra primary-fell ring plus
+  one-cell own-half tolerance. Local code gates were clean and frozen artifacts exist, but Boss
+  8 failed (`0/8`, our wood `39.9`, opp wood `53.2`, ramp t300 `-13.4`). Not submitted. Static
+  turn-gated roam is closed; any future burst-chopper response needs an observed-opponent trigger
+  or another mechanism.
+- **D7 split fruit-vs-wood tree claims — KEEP / NOT PROMOTED 2026-07-09 00:47 MSK.** Built as
+  `v1.46.0-splitclaims`: the matcher now distinguishes `Fruit`, `Wood`, and ordinary `Cell`
+  claims. Same-resource claims still conflict; fruit+wood on the same tree is allowed only when
+  the fruit worker's ETA is strictly smaller than the wood worker's ETA. This fixes the
+  user-observed nearby-apple gatherer/chopper contention without suppressing fells. Local gates
+  passed; Boss 8 was PASS-WATCHLIST (`1/8`, our wood `44.0`, ramp t300 `-15.9`), field probes:
+  plcc `0/2` but our wood `62` vs opp `92`, mikdiet `2/2` with wood `72-26`. Arena bracket:
+  v1.43 restore `151/527 @16.5`; final +50m read `127/527 @17.4`, delta `+0.9`. Left live as
+  chained baseline, not promoted to default. Goal gate did not fire (`127 > 99`). Detail:
+  `data/candidates/v1.46.0-splitclaims/report.md`.
+- **D8 local-printer demotion — LOCAL REJECTED 2026-07-09 01:45 MSK.** Built as
+  `v1.48.0-localprinter`: premium printer seed-tree band 52 was restricted to farm-ring
+  banana/water-apple sources; distant ripe fruit remained available through idle-fruit band 38.
+  Local code gates were clean and artifacts were frozen, but field probes rejected it: Boss 8
+  `2/8`, our wood `41.2`, ramp t300 `-13.4`; mikdiet `1/2`, wood `72-51` (worse than v1.46's
+  `2/2`, wood `72-26`); plcc `0/1`, wood `72-117`. Not submitted. Active source restored to
+  `v1.46.0-splitclaims`. Detail: `data/candidates/v1.48.0-localprinter/report.md`.
+- **D9 farm-ring third hand — LOCAL REJECTED 2026-07-09 01:57 MSK.** Built as
+  `v1.49.0-farmhand`: `GE_MAX_TROLLS` was re-armed to 3, but the new pure gatherer hand's
+  printer and idle-fruit errands were confined to the farm ring. Code gates and equality passed,
+  and the third hand actually trained in 7/8 Boss games, but Boss 8 rejected it: `0/8`, our
+  wood `46.4`, boss wood `63.8`, ramp t300 `-17.4` versus the stored baseline line `-15.3`.
+  Not submitted. Active source restored to `v1.46.0-splitclaims`; simple farm-ring-restricted
+  cheap third hand is closed. Detail: `data/candidates/v1.49.0-farmhand/report.md`.
+- **D10 late observed threat-fell — LOCAL REJECTED 2026-07-09 02:21 MSK.** Built first as
+  broad `v1.50.0-threatfell`, then narrowed as `v1.50.1-latethreat`: a chopper-only band-71
+  emergency fell candidate for own-half trees with an enemy wood-capable troll nearby, narrowed
+  to `turn >= 150` after broad field probes were weak. Boss 8 improved to `2/8`, final wood
+  `46.9-59.6`, t300 `-12.8` versus stored baseline `-15.3`, but field probes rejected it:
+  `mikdiet` `2/2` but wood `68-60`, `plcc` `0/2`, wood `30-77` with one `18-97` blowout.
+  Not submitted. Active source restored to `v1.46.0-splitclaims`. Detail:
+  `data/candidates/v1.50.1-latethreat/report.md`.
+- **D11 standing fruit-vs-wood occupancy — LOCAL REJECTED 2026-07-09 MSK.** Root-cause analysis
+  of the `v1.50.1` `plcc` blowout found a chopper blocked for ~90 turns by our own fruit worker
+  standing on the target tree (`91/265` blocked moves, `34.3%`). Two fixes were tried:
+  `v1.51.0-standclaim` made standing fruit/wood same-tree claims conflict, and
+  `v1.51.1-fruitstand` made wood candidates skip ripe trees occupied by our own harvest-capable
+  worker. Both fixed the block rate, but neither improved field score. Final narrowed result:
+  Boss 8 `0/8`, wood `48.1-59.1`, t300 `-11.0`; `plcc` `0/2`, wood `60-91`, block rates
+  `0.0%/0.5%`; `mikdiet` `0/2`, wood `80-92`. Not submitted. Active source restored to
+  `v1.46.0-splitclaims`. Detail: `data/candidates/v1.51.1-fruitstand/report.md`.
+- **D12 late seed-home repair — REJECTED / REVERTED 2026-07-09 MSK.** Built as
+  `v1.52.0-lateseedhome`: after t150 under live Tempo, if the farm is below the seed-reserve
+  floor (`base_trees < 2`) and banked bananas plus a plantable cell exist, tent PICK/Park is
+  raised from band 50 to band 54 so the starter restarts the local farm before walking to
+  remote ripe seed trees. Local gates passed. Boss 8: `1/8`, wood `47.9-55.1`, t300 `-7.2`;
+  t151-225 farm-zero rate improved in the sample to `43%`. Field candidate probes:
+  `plcc 1/2`, `mikdiet 1/2`, `kurigen 1/2`, aggregate score `244.3-238.0`; immediate frozen
+  v1.46 comparison was `2/6`, score `232.7-235.2`. Submitted explicitly as
+  `cgauto/submissions/v1.52.0-lateseedhome.min.rs` (submit id `40970510`). Bracket:
+  `v1.46.0-splitclaims` live at `127/527 @17.4`, agentId `6543815`; landed as agentId
+  `6543941`. Arena reads climbed only to `172/528 @16.2`, delta `-1.2`, so it crossed the
+  policy revert bar. Reverted to prior live baseline `v1.46.0-splitclaims.min.rs` (submit id
+  `40971048`), landed as agentId `6544763` with first fresh-low read `256/528 @14.2`. Active
+  source restored to `v1.46.0-splitclaims`; restore tests and equality passed. `api_submit.py`
+  default unchanged (`v1.43.0-yield.min.rs`). Detail:
+  `data/candidates/v1.52.0-lateseedhome/report.md`.
+
+## Local gate log (not submitted)
+- v1.51.1-fruitstand: **LOCAL REJECT / NOT SUBMITTED**. Focused tests, full release suite,
+  self/bundled/minified equality passed; minified size `60245` bytes. The mechanism eliminated
+  the `plcc` block pattern (`0.0%/0.5%` vs the previous severe `34.3%`) but did not improve
+  score: Boss 8 `0/8`, final wood `48.1-59.1`, ramp t300 `-11.0`; `6480966` `0/2`, wood
+  `60-91`; `6480914` `0/2`, wood `80-92`. Active source restored to v1.46 behavior; arena was
+  not touched. Detail: `data/candidates/v1.51.1-fruitstand/report.md`.
+- v1.51.0-standclaim: **LOCAL REJECT / NOT SUBMITTED**. Intermediate broader form. Focused
+  tests, full release suite, self/bundled/minified equality passed; minified size `59626` bytes.
+  Boss 8 was watchlist-positive (`1/8`, wood `47.4-56.1`, t300 `-8.8`) and `plcc` block rates
+  normalized (`3.1%/1.4%`), but field score stayed mixed (`6480966` `0/2`, wood `74-106`;
+  `6480914` `1/2`, wood `75-65`). Superseded by the narrower rejected `v1.51.1`.
+- v1.50.1-latethreat: **LOCAL REJECT / NOT SUBMITTED**. Focused tests, full release suite,
+  self/bundled/minified equality passed; minified size `60930` bytes. Broad v1.50.0 improved
+  Boss t300 to `-8.0` but weakened field probes. Narrowed turn-150 form gave Boss `2/8`, wood
+  `46.9-59.6`, t300 `-12.8`; field probes rejected it (`6480914` `2/2`, wood `68-60`;
+  `6480966` `0/2`, wood `30-77`). Active source restored to v1.46 behavior; arena was not
+  touched. Detail: `data/candidates/v1.50.1-latethreat/report.md`.
+- v1.49.0-farmhand: **LOCAL REJECT / NOT SUBMITTED**. Focused T-hand/farmhand tests, full
+  release suite, self/bundled/minified equality all passed; minified size `59973` bytes. Boss 8
+  failed `0/8`, final wood `46.4-63.8`, ramp t75 `+3.1`, t150 `+1.0`, t225 `-5.0`, t300
+  `-17.4`. DEBUG summaries confirmed the third hand trained in 7/8 games, so this was an
+  engaged mechanism that did not repay the bill. Active source restored to v1.46 behavior; arena
+  was not touched. Detail: `data/candidates/v1.49.0-farmhand/report.md`.
+- v1.48.0-localprinter: **LOCAL REJECT / NOT SUBMITTED**. Focused tests, full release suite,
+  self/bundled/minified equality, and DEBUG smoke passed; minified size `59759` bytes. Boss 8
+  was `2/8` but low wood (`41.2-54.6`), mikdiet worsened to `1/2` with opponent wood `51`, and
+  plcc remained a blowout (`72-117`). The active source was restored to v1.46 behavior; arena was
+  not touched. Detail: `data/candidates/v1.48.0-localprinter/report.md`.
+- v1.47.0-ripefund: **LOCAL REJECT / NOT SUBMITTED**. Focused tests passed, full release suite
+  passed, and self/bundled/minified equality each returned `EQUAL: 16 games`; minified size
+  `61761` bytes. Broad form: Boss 8 `1/8`, wood `47-60`, but field probes cratered
+  (`6480914` `0/2`, wood `34-52`). Narrowed frozen form: Boss 8 `1/8`, wood `44-62`, ramp t300
+  `-18.1`; field probes still `0/1` each with opponent wood `107`/`106`. Active source restored
+  to v1.46 behavior; arena was not touched. Detail:
+  `data/candidates/v1.47.0-ripefund/report.md`.
+- v1.45.0-earlyroam: **LOCAL REJECT / NOT SUBMITTED**. Focused tests `3 passed`; full release
+  suite passed; self/bundled/minified equality each returned `EQUAL: 16 games`; minified size
+  `57515` bytes. Boss 8 DEBUG mini-gate failed `0/8`, final wood `39.9-53.2`, ramp t75 `+3.2`,
+  t150 `+1.8`, t225 `-4.6`, t300 `-13.4`. Detail:
+  `data/candidates/v1.45.0-earlyroam/report.md`.
 
 ## Verdict log (newest first)
+- v1.52.0-lateseedhome: **REJECT / REVERTED (−1.2)**. Bracket was live
+  `v1.46.0-splitclaims` at `127/527 @17.4`, agentId `6543815`. Submitted 2026-07-09 MSK
+  (submit id `40970510`), landed as agentId `6543941`. Read trajectory:
+  `521/527 @0.0`, `426/527 @10.7`, `261/527 @13.9`, `226/527 @15.1`,
+  `211/527 @15.3`, `180/528 @15.9`, `172/528 @16.2`. Final delta **−1.2** crossed the
+  v2 revert bar. Reverted to `cgauto/submissions/v1.46.0-splitclaims.min.rs` (submit id
+  `40971048`), landed as agentId `6544763` with first fresh-low read `256/528 @14.2`;
+  `api_submit.py` default unchanged at `v1.43.0-yield.min.rs`. Detail:
+  `data/candidates/v1.52.0-lateseedhome/report.md`.
+- v1.46.0-splitclaims: **KEEP / NOT PROMOTED (+0.9)** (bracket restored v1.43.0-yield
+  151/527 @16.5, agentId 6543791, read 23:55; submitted 23:56 SUBMIT-OK id 40969964).
+  Candidate landed as agentId 6543815. Read trajectory: landing 371/527 @11.7, +20m
+  169/527 @16.3, +35m 127/527 @17.4, +50m 127/527 @17.4. Final delta **+0.9** crossed the
+  v2 KEEP bar but missed the `+1.0` single-read promotion bar. Left live as chained baseline;
+  `api_submit.py` default unchanged (`cgauto/submissions/v1.43.0-yield.min.rs`). Goal gate did
+  not fire (`127 > 99`). Detail: `data/candidates/v1.46.0-splitclaims/report.md`.
+- v1.44.0-harvest-before-fell: **REJECT / REVERTED (−2.6)** (bracket v1.43.0-yield
+  116/527 @18.4, agentId 6543753, read 22:13; submitted 22:13 SUBMIT-OK id 40969606).
+  Candidate landed as agentId 6543779. Read trajectory: +20m 136/527 @16.9, +35m 182/527
+  @15.8. Final delta **−2.6** crossed the v2 revert bar. Reverted to
+  `cgauto/submissions/v1.43.0-yield.min.rs` at 22:49 (submit id 40969730); restore landed as
+  agentId 6543791 by 23:11. Detail:
+  `data/candidates/v1.44.0-harvest-before-fell/report.md`.
+- v1.43.0-yield: **KEEP / PROMOTED (+1.0)** (bracket 127/527 @17.4, agentId 6543636, read
+  20:47:11; submitted 20:47:20 SUBMIT-OK). Candidate landed as agentId 6543753. Read trajectory:
+  +20m 139/527 @16.9, +35m 116/527 @18.6, +50m 116/527 @18.4. Final delta **+1.0** meets the
+  v2 single-convergence promotion bar. Left live in the slot; `api_submit.py` default updated to
+  `cgauto/submissions/v1.43.0-yield.min.rs`. Goal gate did not fire (116 > 99). Detail:
+  `data/candidates/v1.43.0-yield/report.md`.
 - v1.42.0-idlefruit: **INCONCLUSIVE-KEEP (−0.1)** (bracket 123/527 @17.5, agentId 6543505,
   read 15:42:31; submitted 15:42:40 SUBMIT-OK). Read trajectory: +20m 180/527@16.0 (16:03:06,
   agentId 6543636 — confirms landing), +35m 129/527@17.3 (16:17:54), +50m 127/527@17.4

@@ -2000,7 +2000,7 @@ one IMPORTANT (band 38 lacked the race() doomed-target skip — the exact waste 
 cured) fixed in-worktree (9948578) with a RED→GREEN doomed-fruit test; 58 tests green;
 artifacts rebuilt 44,986 B. Next: re-review → merge → mini-gate → arena chained on 17.5.
 
-## 2026-07-08 16:50 — tent-wall analysis (user replay finding #5): shacks are WALKABLE, bot models them as rocks
+## 2026-07-08 16:50 — SUPERSEDED tent-wall analysis: old "shacks are WALKABLE" hypothesis was wrong
 
 User watched game 895493013 vs Sasso_Stark (16x8 map, we won 214-81 as agent 1, agentId
 6543636 = v1.42.0's recalc burst) and saw absurdly long paths around a lake+tent+boulder
@@ -2021,3 +2021,398 @@ land on shack — blocks TRAIN + it's the door) + fixture-shift discipline for p
 corridor tests that encoded the old walkability. Pure execution waste-cut class (the class
 that transfers). Queue position: next build after D2 (v1.43.0-yield, in build now); they
 compose (D2 handles the real temporary blocker on the door cell, D4 removes the phantom wall).
+
+## 2026-07-08 19:39 — CORRECTION: tentgap premise disproven; shacks are spawn-only, NOT walkable
+
+The 16:50 "shacks are WALKABLE" conclusion above is **wrong**. Do not implement
+`v1.44.0-tentgap` as originally written. Two independent checks resolve the issue:
+
+1. **Official referee source:** `Cell.isWalkable()` is `type == GRASS`; the statement says
+   "Only GRASS cells are walkable" and explicitly says trolls cannot walk back onto the shack
+   after leaving it. `PlantTask` also rejects non-GRASS cells, so the original "never PLANT on
+   shack after making it walkable" guard was compensating for a change the referee does not make.
+2. **Live TestSession probe:** scratch bot `rust-scratch/tent_probe.rs` trained a troll, moved
+   it off the tent, then ordered it back to the tent. Corrected probe game `895503881`:
+   - t1 starter `id=0` starts at `shack=(9,4)` and moves to `(10,4)`.
+   - t2 trained troll `id=2` starts at `shack=(9,4)`; starter clears `(10,4)->(11,4)`, and
+     `id=2` is ordered to `(10,4)`.
+   - t3 `id=2` is at `(10,4)` and receives `MOVE 2 9 4`.
+   - t4 `id=2` is still at `(10,4)`, `on_shack=false`.
+   Raw artifact: `data/boss5_games/boss/game_895503881.raw`.
+
+An earlier probe game `895503844` repeatedly showed the trained troll stuck on the shack, but
+that was a probe-design bug: the starter stayed on the only exit cell, so own-unit collision
+prevented the new troll from stepping out. It is not evidence about return-to-shack movement.
+
+**Action:** `data/candidates/v1.44.0-tentgap/brief.md` is now marked REJECTED. Do **not** add
+`'0'`/`'1'` to `walkable`; do **not** create `parse_grid_shacks_walkable`; do **not** treat tent
+cells as transit cells. The Sasso_Stark long-route observation must be explained as normal
+unwalkable-shack geometry or as another movement/planner issue. Active next candidate remains
+`v1.43.0-yield`.
+
+## 2026-07-08 21:38 — v1.43.0-yield arena verdict: KEEP / PROMOTED (+1.0)
+
+Builder/gatekeeper summary: D2 task-interference/yield-to-urgent built as `v1.43.0-yield`
+with one bounded L2/L3 yield pass. Local gates passed; DEBUG mini-gate was PASS-WATCHLIST:
+Boss pool `1/8`, our final wood `42.5`, t300 wood delta `-10.2` (not a crater vs the `-15.3`
+baseline), no crashes, and no game had more than one `@TFYIELD` on the same turn. Watchlist:
+plcc field probe was harsh (`0/2`, our wood `48`, opp wood `92`).
+
+Arena estimate: bracket read immediately before submit was `127/527 Gold score 17.4`, agentId
+`6543636` (`v1.42.0-idlefruit`, read 20:47:11 MSK). Submitted `v1.43.0-yield.min.rs` at
+20:47:20 MSK (SUBMIT-OK, submit id `40969224`). Candidate landed as agentId `6543753`.
+Read trajectory:
+
+- +20m: `139/527 @16.9` (delta `-0.5`) — initial dip.
+- +35m: `116/527 @18.6` (delta `+1.2`) — rebound.
+- +50m: `116/527 @18.4` (delta `+1.0`) — policy read.
+
+Verdict: **KEEP / PROMOTED**. Final estimate is **Gold score 18.4**, rank **116/527**, delta
+**+1.0** against the chained baseline, meeting measurement policy v2's single-convergence
+promotion bar. Left live in the arena slot; `cgauto/api_submit.py` default now points at
+`cgauto/submissions/v1.43.0-yield.min.rs`. Goal gate did not fire (`116 > 99`). Full detail:
+`data/candidates/v1.43.0-yield/report.md`.
+
+Follow-up mechanism note from user replay review: the next high-value inefficiency appears to
+be tree-resource compatibility, not the yield mechanism itself. A gatherer can ignore a nearby
+ripe apple and walk to a farther apple because the chopper claims the near tree as a fell target;
+the matcher treats `HARVEST tree_cell` and `CHOP/MoveTo tree_cell` as the same exclusive
+`target: Some(cell)`. Candidate direction: harvest-before-fell / split fruit-vs-wood tree
+claims, so a gatherer can harvest a ripe nearby tree before the chopper fells it later.
+
+## 2026-07-08 22:49 — v1.44.0-harvest-before-fell arena verdict: REJECT / REVERTED (−2.6)
+
+Built the user-observed tree-resource compatibility candidate as `v1.44.0-harvest-before-fell`.
+Mechanism: wood-capable trolls skip a ripe tree if a free-capacity gatherer can harvest it within
+two turns and the fruit is non-idle work (funding fruit, seed/printer fruit, or Hoard wallet
+fruit). Explicit exceptions preserve urgent wood behavior: no protection in liquidation, no
+protection under nearby enemy chopper pressure, no protection when the wood worker already stands
+on the tree, and ordinary idle fruit remains unprotected.
+
+Local tests: new `harvest_before_fell` suite has three pins (near water-apple gatherer beats
+chopper claim; adjacent enemy chopper keeps the tree fellable; ordinary idle fruit does not
+protect a tree from felling). Full release suite green (`61 passed / 7 ignored`), bundle/minified
+equality green, minified size `59684` bytes.
+
+Mini-gate had an important iteration:
+
+- Broad first version protected all nearby ripe fruit, including idle-fruit band 38. Boss 8 failed:
+  `0/8`, our wood `40`, opp wood `58`, t300 delta `-17.8`. Rejected locally.
+- Narrowed version protected only funding/printer/Hoard fruit. Boss 8 recovered: `2/8`, our wood
+  `41.6`, opp wood `51.4`, t300 delta `-9.8`. Field: plcc `1/2`, our wood `50`, opp wood `38`;
+  mikdiet `0/2`, our wood `84`, opp wood `96` (mixed, not a wood crater).
+
+Arena bracket before submit: `v1.43.0-yield` at `116/527 @18.4`, agentId `6543753` (read
+22:13 MSK). Submitted `v1.44.0-harvest-before-fell.min.rs` at 22:13 (SUBMIT-OK, submit id
+`40969606`). Candidate landed as agentId `6543779`.
+
+Read trajectory:
+
+- +20m: `136/527 @16.9` (delta `-1.5`).
+- +35m: `182/527 @15.8` (delta `-2.6`).
+
+Verdict: **REJECT / REVERTED**. The candidate does not improve Gold arena rating; it damages the
+live field despite the acceptable narrowed mini-gate. Reverted immediately to
+`cgauto/submissions/v1.43.0-yield.min.rs` at 22:49 (SUBMIT-OK, submit id `40969730`). Restore
+landed as agentId `6543791` by the 23:11 read (`180/527 @16.0`, early reconvergence), confirming
+the rejected v1.44 agentId `6543779` was no longer live. Do not retry this as simple ripe-tree
+fell suppression; any future tree-resource compatibility work needs a different mechanism, likely
+explicit timing/role scheduling rather than hiding wood candidates. Full detail:
+`data/candidates/v1.44.0-harvest-before-fell/report.md`.
+
+## 2026-07-08 23:39 — v1.45.0-earlyroam local verdict: REJECT / NOT SUBMITTED
+
+Built the burst-chopper follow-up as `v1.45.0-earlyroam`. Mechanism: during Tempo turns `<=75`,
+only the true chopper gets one extra primary-fell farm-distance roam ring and a one-cell own-half
+tolerance. Starter chop-help and anti-starvation fallback remain champion behavior.
+
+Local code gates were clean:
+
+- `cargo test --release --test early_roam`: `3 passed`.
+- `cargo test --release`: all active tests passed.
+- self, bundled, and minified equality: `EQUAL: 16 games (8 seeds x 2 seats)`.
+- minified source size: `57515` bytes.
+
+Boss DEBUG mini-gate rejected it:
+
+- Boss 8: `0/8 wins | our wood 40 | opp wood 53`.
+- Formal ramp: t75 `+3.2`, t150 `+1.8`, t225 `-4.6`, t300 `-13.4`.
+- Aggregate: wins `0/8 (0%)`, our avg final wood `39.9`, late gain us `+11.6` vs boss `+20.4`.
+
+Interpretation: the feature does what it was designed to do early, but that is not enough. It
+starts ahead through t150, then loses the late burst from t225 onward. Static turn-gated roam
+widening is closed and was not submitted to the arena. If this family is revisited, it should be
+with an observed-opponent trigger or a different resource plan, not unconditional opening roam.
+Full detail: `data/candidates/v1.45.0-earlyroam/report.md`.
+
+## 2026-07-09 00:47 — v1.46.0-splitclaims arena verdict: KEEP / NOT PROMOTED (+0.9)
+
+Built the user-requested split fruit-vs-wood tree claim mechanism as `v1.46.0-splitclaims`.
+The matcher now classifies assigned targets as `Fruit`, `Wood`, or ordinary `Cell`. Same-resource
+claims still conflict. A fruit claim and wood claim on the same tree are compatible only if the
+fruit worker's ETA is strictly smaller than the wood worker's ETA, avoiding equal-ETA movement
+fights and avoiding v1.44's failed fell suppression.
+
+Local gates:
+
+- `cargo test --release --test split_tree_claims`: `3 passed`.
+- `cargo test --release`: all active tests passed.
+- self, bundled, and minified equality: `EQUAL: 16 games (8 seeds x 2 seats)`.
+- minified source size: `58814` bytes.
+
+Mini-gate:
+
+- Boss 8: `1/8 wins | our wood 44 | opp wood 60`.
+- Formal ramp: t75 `+2.8`, t150 `+1.5`, t225 `-6.5`, t300 `-15.9`.
+- plcc (`6480966`): `0/2 wins | our wood 62 | opp wood 92` (still loses, but our wood is above
+  the v1.43 watchlist probe's `48`).
+- mikdiet (`6480914`): `2/2 wins | our wood 72 | opp wood 26`.
+
+Verdict before arena: **PASS-WATCHLIST**. The Boss gate is not clean, but the candidate directly
+addresses the observed nearby-apple contention and field probes did not crater.
+
+Arena bracket before submit: restored `v1.43.0-yield` agentId `6543791` at `151/527 @16.5`
+(`2026-07-08 23:55 MSK`). Submitted `cgauto/submissions/v1.46.0-splitclaims.min.rs` at
+`2026-07-08 23:56 MSK` (SUBMIT-OK, submit id `40969964`). Candidate landed as agentId
+`6543815`.
+
+Read trajectory:
+
+- Landing check: `371/527 @11.7` (delta `-4.8`) — severe early dip.
+- +20m: `169/527 @16.3` (delta `-0.2`) — recovered inside the inconclusive band.
+- +35m: `127/527 @17.4` (delta `+0.9`) — KEEP signal.
+- +50m: `127/527 @17.4` (delta `+0.9`) — policy read.
+
+Verdict: **KEEP / NOT PROMOTED**. The final delta `+0.9` crosses the v2 KEEP bar but misses the
+single-read promotion bar (`+1.0`). Left live as the chained baseline for the next candidate;
+`cgauto/api_submit.py` default stays on `cgauto/submissions/v1.43.0-yield.min.rs`. Goal gate did
+not fire (`127 > 99`). Full detail: `data/candidates/v1.46.0-splitclaims/report.md`.
+
+## 2026-07-09 01:13 — v1.47.0-ripefund local verdict: REJECT / NOT SUBMITTED
+
+Built D3 funding-stall robustness as `v1.47.0-ripefund`. The idea was chopper-funding
+ripeness anticipation: while the second troll was still pending, let the starter pre-position
+for soon-ripe deficit PLUM/LEMON/APPLE instead of waiting until funding fruit is already ripe.
+
+Two variants were tried:
+
+- Broad band-57 anticipation: any soon-ripe chopper-funding fruit, below already-ripe funding
+  band 58 and above printer work.
+- Narrowed final-missing-fruit form: only when one harvest would complete the chopper fruit
+  wallet and all other fruit costs were already covered. This is the frozen artifact.
+
+Code gates for the narrowed artifact were clean: focused tests, full release suite, self
+equality, bundled equality, and minified equality all passed. Minified size was `61761` bytes.
+
+Mini-gate results rejected both variants:
+
+- Broad form Boss 8: `1/8`, our wood `47`, opp wood `60`, ramp t300 `-13.5`.
+- Broad form field probes: `6480966` `0/1`, wood `48-83` (one HTTP 422); `6480914` `0/2`,
+  wood `34-52`.
+- Narrowed frozen form Boss 8: `1/8`, our wood `44`, opp wood `62`, ramp t300 `-18.1`.
+- Narrowed field probes: `6480966` `0/1`, wood `78-107` (one HTTP 422); `6480914` `0/1`,
+  wood `62-106` (one HTTP 422).
+
+Verdict: **LOCAL REJECT / NOT SUBMITTED**. Simple chopper-funding ripeness anticipation is closed:
+it worsens production-heavy field probes and does not produce a Boss lift over v1.46. Active
+source was restored to `v1.46.0-splitclaims`; the arena slot was not touched. Full detail:
+`data/candidates/v1.47.0-ripefund/report.md`.
+
+## 2026-07-09 01:45 — v1.48.0-localprinter local verdict: REJECT / NOT SUBMITTED
+
+Before building, the live rank was still `127/527 @17.4`, and the rank-99 gate remained around
+Gold score `20.1`. A new reusable analyzer, `cgauto/battle_taxonomy.py`, was added to make the
+command-count loss decode reproducible from recent arena `gameResult` frames. On the last 80
+finished games filtered to opponent ranks 100-150, the live bot was `24/49` with avg score
+`194-195` and wood `44.8-43.8`. Losses showed the same throughput shape as the earlier ad hoc
+decode: our TRAIN stayed `1.0`, opponent TRAIN `2.2`; our CHOP `92.1` vs opponent `149.7`;
+our HARVEST `17.4` vs `47.8`; our DROP `26.4` vs `68.7`.
+
+Built `v1.48.0-localprinter` as a narrow response to starter/printer travel waste. Mechanism:
+restrict premium printer band 52 to ripe banana / water-adjacent apple sources inside the farm
+ring (`farm_d <= farm_r`), while leaving distant fruit harvestable through the existing lower
+idle-fruit band 38. The candidate was built and frozen; code gates were clean:
+
+- Focused suites: `nanaflow` `4 passed`, `split_tree_claims` `3 passed`, `idlefruit` `3 passed`.
+- Full release suite passed.
+- Self, bundled, and minified equality each returned `EQUAL: 16 games`.
+- DEBUG smoke equality returned `EQUAL: 4 games`.
+- Minified size: `59759` bytes.
+
+Mini-gate rejected it:
+
+- Boss 8: `2/8`, our wood `41.2`, boss wood `54.6`; ramp t75 `+4.5`, t150 `+3.1`, t225 `-4.5`,
+  t300 `-13.4`.
+- mikdiet (`6480914`): `1/2`, wood `72-51`, worse than v1.46's `2/2`, wood `72-26`.
+- plcc (`6480966`): `0/1`, wood `72-117`.
+
+Verdict: **LOCAL REJECT / NOT SUBMITTED.** The change did not crater the Boss probe, but it
+worsened a production-heavy field probe and failed the rank-95 gatekeeper. Simple local-only
+premium printer demotion is closed. Active source was restored to `v1.46.0-splitclaims`; restore
+checks passed (`cargo test --release`, self equality `EQUAL: 16 games`). Full detail:
+`data/candidates/v1.48.0-localprinter/report.md`.
+
+## 2026-07-09 01:57 — v1.49.0-farmhand local verdict: REJECT / NOT SUBMITTED
+
+Built the remaining obvious workforce lever as `v1.49.0-farmhand`: re-arm
+`GE_MAX_TROLLS` from 2 to 3, but avoid v1.35.0-thand's tourist failure by role-filtering the
+third pure gatherer. Only a troll with `plan.n >= 3`, `chop_power == 0`, and
+`harvest_power > 0` was treated as the farmhand; for that role only, printer band 52 and
+idle-fruit band 38 required `farm_d <= farm_r`. Starter behavior stayed at v1.46 semantics.
+
+Code gates were clean:
+
+- `cargo test --release --test tactics_scale`: `7 passed`, with old T-hand tests re-enabled.
+- `cargo test --release`: all active tests passed.
+- self equality: `EQUAL: 16 games`.
+- bundled equality: `EQUAL: 16 games`.
+- minified equality: `EQUAL: 16 games`.
+- minified size: `59973` bytes; DEBUG minified size: `59972` bytes.
+
+Boss 8 DEBUG rejected the candidate:
+
+- `0/8` wins.
+- Final wood `46.4-63.8`.
+- Ramp t75 `+3.1`, t150 `+1.0`, t225 `-5.0`, t300 `-17.4`.
+- Late quarter: us `+11.5`, boss `+23.9`.
+
+The mechanism engaged: DEBUG `@TFFARM` summaries reached `n=3` in 7/8 games, first at
+t85/t85/t115/t140/t145/t150/t175 depending on the seed, and final build summaries showed the
+added hand as `1.1.1.0`. It still did not repay its bill or close the late wood-ramp gap. The
+stored ramp baseline for this gate was `14%` wins, final wood `38.7`, t300 delta `-15.3`, so
+v1.49 improved own wood but worsened the score shape.
+
+Verdict: **LOCAL REJECT / NOT SUBMITTED.** Do not retry simple farm-ring-restricted cheap third
+hand. If extra workforce comes back, it needs a materially different role or late-ramp plan.
+Active source was restored to `v1.46.0-splitclaims`; restore checks passed (`cargo test
+--release`, equality against frozen `v1.46.0-splitclaims.min.rs`: `EQUAL: 16 games`). Arena was
+not touched. Full detail: `data/candidates/v1.49.0-farmhand/report.md`.
+
+## 2026-07-09 02:21 — v1.50.1-latethreat local verdict: REJECT / NOT SUBMITTED
+
+Built an observed-trigger answer to the late raid problem. Broad `v1.50.0-threatfell` gave the
+chopper a band-71 emergency own-half fell candidate whenever an enemy wood-capable troll was
+within Manhattan distance 2 of a fellable own-half tree. It did not change training or global
+roam. Because field probes showed the broad trigger was too loose, it was narrowed to
+`v1.50.1-latethreat` by adding `state.turn >= 150`.
+
+Code gates for the narrowed form were clean:
+
+- `cargo test --release --test threatfell`: `4 passed`.
+- `cargo test --release`: all active tests passed.
+- self, bundled, and minified equality: `EQUAL: 16 games`.
+- minified size: `60930` bytes; DEBUG minified size: `60929` bytes.
+
+Broad form result:
+
+- Boss 8: `2/8`, final wood `40.8-48.8`, t300 `-8.0`, late gain us `+10.5`, boss `+17.6`.
+- Field: `mikdiet` `1/2`, wood `40-41`; `plcc` `0/2`, wood `85-134`.
+
+Narrowed form result:
+
+- Boss 8: `2/8`, final wood `46.9-59.6`, t300 `-12.8`, late gain us `+11.2`, boss `+17.5`.
+- Field: `mikdiet` `2/2`, wood `68-60`; `plcc` `0/2`, wood `30-77`, including one `18-97`
+  blowout.
+
+Verdict: **LOCAL REJECT / NOT SUBMITTED.** The mechanism can reduce Boss late gain, but it is not
+field-safe; simple enemy-near-tree emergency fell priority pulls the chopper into bad work against
+at least one rank-gate production opponent. Future late-raid work needs stronger selectivity tied
+to actual cross-half raid economics, not just proximity. Active source was restored to
+`v1.46.0-splitclaims`; restore checks passed (`cargo test --release`, equality against frozen
+`v1.46.0-splitclaims.min.rs`: `EQUAL: 16 games`). Arena was not touched. Full detail:
+`data/candidates/v1.50.1-latethreat/report.md`.
+
+## 2026-07-09 — v1.51 standing-claim line local verdict: REJECT / NOT SUBMITTED
+
+Postmortem on the `v1.50.1-latethreat` `plcc` blowout found a different root cause than the
+late-threat rule itself. The severe `18-97` loss had `91/265` blocked intended moves (`34.3%`);
+chopper `id=2` sat at `(2,7)` repeatedly trying to enter `(2,6)` while starter/gatherer `id=0`
+stood on `(2,6)` harvesting fruit. Better `plcc` games were normally `0-7` blocks, not ~90.
+
+Two standing-claim fixes were built:
+
+- `v1.51.0-standclaim`: same-tree fruit-vs-wood claims conflict whenever the fruit claimant is
+  already standing on the tree. It fixed the block rate (`plcc` new games `3.1%` and `1.4%`) and
+  Boss 8 looked watchlist-positive (`1/8`, wood `47.4-56.1`, t300 `-8.8`), but field probes were
+  mixed: `plcc` `0/2`, wood `74-106`; `mikdiet` `1/2`, wood `75-65`. The matcher often moved the
+  fruit worker away so the chopper could take the cell, which looked too wood-biased.
+- `v1.51.1-fruitstand`: narrower rule; wood candidates skip only a ripe tree currently occupied
+  by our own harvest-capable fruit worker. It removed the `plcc` block pattern completely
+  (`0.0%` and `0.5%`), but did not improve score: Boss 8 `0/8`, wood `48.1-59.1`, t300 `-11.0`;
+  `plcc` `0/2`, wood `60-91`; `mikdiet` `0/2`, wood `80-92`.
+
+Verdict: **LOCAL REJECT / NOT SUBMITTED.** The standing fruit-vs-wood occupancy bug is real, but
+simple claim exclusivity is not a profitable rank push. Do not requeue this mechanism as a
+standalone fix. Active source was restored to `v1.46.0-splitclaims`; restore checks passed
+(`cargo test --release`, equality against frozen `v1.46.0-splitclaims.min.rs`: `EQUAL: 16
+games`). Arena was not touched. Full detail:
+`data/candidates/v1.51.1-fruitstand/report.md`.
+
+## 2026-07-09 — phase-binned live loss taxonomy after v1.51 rejection
+
+Extended `cgauto/battle_taxonomy.py` to bin command counts by inferred turn phase
+(`t001-075`, `t076-150`, `t151-225`, `t226-300`). Current live arena state remains
+`v1.46.0-splitclaims`, rank `127/527 Gold @17.4`, agentId `6543815`.
+
+Read: `uv run --no-sync python cgauto/battle_taxonomy.py 100 80 150`.
+
+Across 49 recent finished games against opponent ranks 80-150, selected sample stayed `24/49`
+with avg score `194-195` and wood `44.8-43.8`. Losses were `0/25`, score `192-235`, wood
+`44.7-53.4`.
+
+The phase split makes the next direction sharper:
+
+| phase | CHOP us | CHOP opp | delta | key extra opponent gaps |
+|---|---:|---:|---:|---|
+| t001-075 | 28.6 | 15.1 | **-13.5 opp-us** | opp +0.4 TRAIN, +6.2 HARVEST, +7.6 DROP |
+| t076-150 | 28.8 | 40.9 | +12.1 | opp +0.6 TRAIN, +12.1 HARVEST, +12.7 DROP |
+| t151-225 | 22.8 | 58.4 | **+35.6** | opp +13.0 DROP, +6.7 PICK, +3.0 PLANT |
+| t226-300 | 11.9 | 35.3 | **+23.4** | opp +8.9 DROP, +5.5 PICK, +5.4 PLANT |
+
+Interpretation: the opening is not the failing phase; in losses we still out-chop the field by
+turn 75. The gap opens from turn 76 and becomes decisive after turn 150. Opponents are not just
+raiding one tree; they run a sustained late production loop with more CHOP plus supporting
+PICK/PLANT/DROP. This matches the older "late-throughput ceiling" and seed/farm-supply notes.
+
+Next candidate should target late wood production/farm supply from t150 onward, with field probes
+including `plcc`, `mikdiet`, and one of `kurigen`/`Dasein8`. Avoid another opening-roam,
+standing-claim, or simple third-hand retread unless it directly changes t151-300 production.
+
+## 2026-07-09 — v1.52 late seed-home candidate rejected / reverted
+
+Built `v1.52.0-lateseedhome` from the phase-binned finding above. DEBUG Tempo replays had many
+late turns with `farm=0` while banked banana seeds remained in the tent; the starter still chose
+remote ripe seed trees because printer tree-first band 52 outranked tent PICK/Park band 50.
+
+Change: keep early tree-first intact, but after t150 under live Tempo, when `base_trees < 2`,
+banked bananas exist, and a plantable cell exists, raise tent PICK/Park to band 54. No third
+troll, no roam change, no global printer demotion.
+
+Gates passed: focused `lateseedhome` test, full release suite, bundled equality, minified
+equality. Minified size `59968` bytes.
+
+Local gate:
+
+| probe | candidate | direct v1.46 comparison |
+|---|---:|---:|
+| Boss 8 | `1/8`, wood `47.9-55.1`, t300 `-7.2` | stored baseline line `-15.3`; older v1.51 t300 `-11.0` |
+| plcc | `1/2`, score `232-279`, wood `56-68` | `1/2`, score `250-193`, wood `56-44` |
+| mikdiet | `1/2`, score `202-204`, wood `48-48` | `1/2`, score `175-167`, wood `38-26` |
+| kurigen | `1/2`, score `299-232`, wood `69-55` | `0/2`, score `273-346`, wood `63-86` |
+| field aggregate | `3/6`, score `244.3-238.0`, wood `57.8-57.0` | `2/6`, score `232.7-235.2`, wood `52.3-52.5` |
+
+Verdict: arena-worthy locally, but arena-rejected. It fixed the measured middle-late farm
+starvation shape and beat the direct six-game field aggregate, but `plcc` worsened on opponent
+wood and the live field punished it.
+
+Submitted explicitly from `cgauto/submissions/v1.52.0-lateseedhome.min.rs` at bracket
+`v1.46.0-splitclaims` `127/527 @17.4`, agentId `6543815`. Submit id `40970510`; landed as
+agentId `6543941`. Arena reads: `521/527 @0.0`, `426/527 @10.7`, `261/527 @13.9`,
+`226/527 @15.1`, `211/527 @15.3`, `180/528 @15.9`, `172/528 @16.2`. Final delta was `-1.2`,
+past the v2 revert bar.
+
+Reverted to prior live baseline `cgauto/submissions/v1.46.0-splitclaims.min.rs` (submit id
+`40971048`), landed as agentId `6544763` with first fresh-low read `256/528 @14.2`. Active
+source restored to `v1.46.0-splitclaims`; full release suite passed and the restored release bot
+equals frozen v1.46 over `EQUAL: 16 games`. `lateseedhome` tests are parked with `#[ignore]`.
+`api_submit.py` default remains `v1.43.0-yield.min.rs`.

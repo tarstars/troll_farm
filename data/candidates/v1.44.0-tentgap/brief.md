@@ -1,13 +1,41 @@
-# D4 builder brief — v1.44.0-tentgap (shack cells are walkable; fix the phantom wall)
+# D4 brief — v1.44.0-tentgap REJECTED (shack cells are NOT walkable)
+
+**Status 2026-07-08 19:39 MSK: DO NOT BUILD.** The original premise below was disproven by a
+minimal live TestSession probe and by re-checking the official referee source. Shacks are spawn
+cells, not walkable terrain:
+
+- Official referee truth: `Cell.isWalkable()` is `type == GRASS`; the statement says "Only GRASS
+  cells are walkable" and "trolls can't walk back on [the shack] cell after leaving it."
+- Live probe truth: scratch bot `rust-scratch/tent_probe.rs` trained troll `id=2`, moved it off
+  the shack, then issued `MOVE 2 <shack_x> <shack_y>`. In game `895503881`, the troll stayed at
+  the adjacent cell:
+  - t2: `id=2 pos=(9,4)` on `shack=(9,4)`, command moves to `(10,4)`.
+  - t3: `id=2 pos=(10,4)`, command targets `shack=(9,4)`.
+  - t4: `id=2 pos=(10,4)`, `on_shack=false`.
+  - Raw artifact: `data/boss5_games/boss/game_895503881.raw`.
+- Earlier probe game `895503844` was invalid as evidence because the starter stayed on the only
+  exit cell and blocked the spawned troll; it is recorded only as a probe-bug artifact.
+
+**Actionable consequence:** do **not** add `'0'`/`'1'` to `walkable`; do **not** implement
+`parse_grid_shacks_walkable`; do **not** change plant/park logic to allow/transit through shack
+cells. The "tent wall" replay finding must be re-explained as normal unwalkable-shack pathing or
+as a different movement/planner issue. The active next candidate remains `v1.43.0-yield`.
+
+---
+
+## Original Superseded Brief
 
 **Origin:** user replay finding #5 (2026-07-08, game 895493013 vs Sasso_Stark, 16x8 map):
 lake + our tent + boulder column form a wall from the north lake to the south edge; the only
 gap IS the tent cell (13,4). Our bot walked the y=0 top corridor around the map for every
 west↔east transition.
 
+**Superseded warning:** the following root-cause and fix text is historically preserved but
+wrong. Do not implement it.
+
 ## Root cause (verified in source + replay)
 
-- **Referee truth** (our engine mirror `rust/src/game/state.rs:75-92`, arena-validated):
+- **WRONG CLAIM, SUPERSEDED** (kept only for history; do not use): the old brief said
   `'0'`/`'1'` shack cells ARE WALKABLE (trolls walk over and stand on tents — that is also
   why TRAIN requires "shack unoccupied", engine.rs:498-500, and why a picker can block a
   tent). `'+'` iron and `'~'` water are NOT walkable (bot already agrees on those).
@@ -43,7 +71,7 @@ west↔east transition.
 
 ## Tests (TDD)
 
-1. `parse_grid_shacks_walkable`: grid with '0'/'1' → both cells in walkable, shack coords
+1. **REJECTED TEST — do not write.** `parse_grid_shacks_walkable`: grid with '0'/'1' → both cells in walkable, shack coords
    still correct. RED first (currently not in walkable).
 2. `bfs_through_tent_gap`: reduced Sasso geometry (wall of water+shack+boulder splitting a
    corridor) → d(west,east) small (through shack), not the long way. RED first.
