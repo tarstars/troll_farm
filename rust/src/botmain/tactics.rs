@@ -426,14 +426,31 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         .filter(|p| farm_eligible(&farm_d, &door_d, p.pos(), farm_r))
         .count();
 
+    // ── RING FARM geometry (v1.56.0-ringfarm) ───────────────────────────────
+    // Computed ONCE per turn (borrows farm_d/door_d before they move into `provisional`).
+    // Placement/fell/harvest in planner.rs consume it. `raid` = any opponent troll within
+    // RING_RAID_R BFS map-distance of the shack (farm_d is the shack-seeded BFS; an
+    // unreachable/walled-off enemy is never a raid).
+    let ring = compute_ring(&state.walkable, &farm_d, &door_d, shack, farm_r);
+    let raid = state
+        .opp_trolls
+        .iter()
+        .any(|e| farm_d.get(&e.pos()).map_or(false, |&d| d <= RING_RAID_R));
+
     // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
     // Trees only fruit at MAX_SIZE(4); felling farm bananas at size 2 means they
     // NEVER fruit, so the seed supply drains -> the farm dies -> our half
     // deforests -> both trolls park (the decoded arena stall). Fix: keep the K
-    // most-mature farm bananas as a permanent seed reserve the chopper won't
-    // fell — they ripen, fruit, and the starter harvests their fruit for seeds.
+    // most-mature farm bananas as a permanent seed reserve the chopper won't fell.
+    //
+    // v1.56.0-ringfarm: when the ring is active (every real game), SKIP this generic reserve
+    // entirely — the DIAGONAL ring cells are the protected seed engine now (planner.rs fell_ok
+    // via `diag_ring`), a stronger and role-correct reserve. Keeping the generic "K most-mature
+    // farm bananas" here would wrongly protect an ORTHOGONAL cut-cell whenever an orthogonal
+    // happened to be the most mature, breaking the wood/cut cycle. Populated ONLY on the
+    // `ring: vec![]` fallback (hand-built tests), where it preserves the exact pre-ring behaviour.
     let mut seed_cells: HashSet<Cell> = HashSet::new();
-    if GE_SEED_RESERVE > 0 && !liquidation {
+    if GE_SEED_RESERVE > 0 && !liquidation && ring.is_empty() {
         let mut fb: Vec<&Tree> = state
             .trees
             .iter()
@@ -446,17 +463,6 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
             seed_cells.insert(p.pos());
         }
     }
-
-    // ── RING FARM geometry (v1.56.0-ringfarm) ───────────────────────────────
-    // Computed ONCE per turn (borrows farm_d/door_d before they move into `provisional`).
-    // Nothing read this in the structural commit; placement/fell/harvest consume it in
-    // planner.rs. `raid` = any opponent troll within RING_RAID_R BFS map-distance of the
-    // shack (farm_d is the shack-seeded BFS; an unreachable/walled-off enemy is never a raid).
-    let ring = compute_ring(&state.walkable, &farm_d, &door_d, shack, farm_r);
-    let raid = state
-        .opp_trolls
-        .iter()
-        .any(|e| farm_d.get(&e.pos()).map_or(false, |&d| d <= RING_RAID_R));
 
     let provisional = Plan {
         shack,

@@ -8,7 +8,7 @@
 //! exhaustive over per-troll top-K, maximizing total value, conflicting target claims
 //! forbidden, canonical tie-break. SHUFFLE INVARIANCE: the plan depends on the objective,
 //! never on troll/candidate iteration order.
-use super::tactics::{farm_eligible, Phase, Plan};
+use super::tactics::{farm_eligible, Phase, Plan, RingRole};
 use super::*;
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
@@ -193,7 +193,26 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             .map_or(false, |ed| ed.get(&pc).map_or(false, |&dd| dd <= 2))
     };
 
+    // v1.56.0-ringfarm: the DIAGONAL ring cells are the protected ripe fruit/seed engine.
+    // Computed ONCE (a ≤4-element set); consulted by fell_ok below, which gates every fell
+    // band that must respect it — the chopper's 70/72 and the starter's chop-help 40/42.
+    // Anti-starvation (30/31) deliberately does NOT consult fell_ok (it fells anything size≥1
+    // as a last resort), exactly as it already ignores seed_cells — so a diagonal can still be
+    // felled when the farm is otherwise dead, which is strictly better than parking.
+    let diag_ring: HashSet<Cell> = plan
+        .ring
+        .iter()
+        .filter(|(_, r)| *r == RingRole::Diagonal)
+        .map(|(c, _)| *c)
+        .collect();
+
     let fell_ok = |p: &Tree| -> bool {
+        // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
+        // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
+        // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
+        if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
+            return false;
+        }
         // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
         // the pressure governor has specifically released it (Orange/Red AND this exact
         // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
