@@ -41,6 +41,18 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
   v1.42.0-idlefruit at 127/527 @17.4; reads: +20m 139/527 @16.9, +35m 116/527 @18.6, +50m
   116/527 @18.4. Delta **+1.0**, meeting policy v2's single-convergence promotion bar.
   `cgauto/api_submit.py` default now points at this artifact. Goal gate did not fire (116 > 99).
+- **Chain-end champion restore (2026-07-09 11:40 MSK, controller):** the candidate chain
+  ended (pivot to the ownership DIAGNOSTIC phase — no more candidate submissions). Per policy
+  v2's "champion returns to the slot at chain end" rule, the promoted champion v1.43.0-yield
+  was resubmitted to the slot (submit id 40971679, SUBMIT-OK). Prior live occupant was the
+  post-lateseedhome-revert v1.46.0-splitclaims cold-start (agentId 6544763), which STALLED at
+  212/528 @ 15.3 across 3 reads / ~25 min rather than reconverging to its earlier 17.4 KEEP
+  level — consistent with room drift (Gold now 528, score bands ~2pt low) plus an incomplete
+  cold-start, NOT a code regression (splitclaims passed cargo test + its +0.9 KEEP gate).
+  splitclaims' +0.9 was a single convergence (noise ≈ ±1) and never met the +1.0/2×+0.5
+  promotion bar, so yield remains the confidently-best resident champion. Working tree +
+  champion line now COMMITTED (a0de498, 9b51ddd) — previously uncommitted. Convergence read
+  pending (~+50m).
 - v1.36.0-race (`cgauto/submissions/v1.36.0-race.min.rs`) — converged band 17.6-20.1,
   rank ~88-121. Promoted 2026-07-07 22:24, superseding v1.28.3-sticky6 (held 19.0-19.2,
   rank ~113, for ~36h). Former default champion until v1.43.0-yield's 2026-07-08 21:38

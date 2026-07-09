@@ -2416,3 +2416,23 @@ Reverted to prior live baseline `cgauto/submissions/v1.46.0-splitclaims.min.rs` 
 source restored to `v1.46.0-splitclaims`; full release suite passed and the restored release bot
 equals frozen v1.46 over `EQUAL: 16 games`. `lateseedhome` tests are parked with `#[ignore]`.
 `api_submit.py` default remains `v1.43.0-yield.min.rs`.
+
+## 2026-07-09 11:40 — chain-end champion restore + working tree committed (controller)
+
+Two housekeeping fixes after inheriting the parallel Opus session's uncommitted state:
+
+1. **Committed the working tree** (was ~60 modified + 56 untracked work files, HEAD stuck at
+   49fb8da). Verified first: `cargo test --release` exit 0 (all suites green, incl. yield_pass
+   3/3). Two commits: a0de498 (champion source v1.43-yield + v1.46-splitclaims + ownership.rs +
+   tests) and 9b51ddd (submissions v1.43-v1.52, tools, verdict docs, ownership design). Added
+   /target, rust-scratch/, data/boss5_games/ to .gitignore (build/debug output).
+
+2. **Restored the champion to the arena slot.** Live occupant was the post-lateseedhome-revert
+   v1.46.0-splitclaims cold-start (agentId 6544763), STALLED at 212/528 @ 15.3 across 3 reads /
+   ~25 min (not reconverging to its 17.4 KEEP level — room drift ~2pt low + incomplete cold
+   start, not a regression: splitclaims passes cargo test and its +0.9 gate). The candidate
+   chain has ended (pivot to the ownership diagnostic — no more submissions), so per policy v2
+   ("champion returns to the slot at chain end") resubmitted the promoted champion
+   v1.43.0-yield (submit id 40971679, SUBMIT-OK). splitclaims' +0.9 was single-convergence
+   (noise ±1), never met the +1.0/2×+0.5 promotion bar → yield stays the confident champion.
+   Convergence read pending (~+50m). Best rank remains 116; goal (≤99 twice) not reached.
