@@ -2468,3 +2468,39 @@ PIVOT (goal's kill branch): to the EXECUTION-class lever — the Sasso long-path
 (my walkability theory was wrong; the 200+ wasted-turn paths are real and need the correct
 cause). Execution waste-cuts are the only class that has transferred at this band (race +1.3,
 yield +1.0). Champion stays v1.43.0-yield.
+
+## 2026-07-09 late — game-review of the champion (yield), two execution candidates found
+
+User directive: review the best bot's games for execution waste (the class that transfers).
+Restored yield to the live slot (retired neutral pressurefarm). Findings across 25 recent
+champion battles + a Crouistiti reproduction:
+
+1. **Transit% is a red herring** — the gatherer is ~80% transit in wins AND losses alike (it's
+   a courier). NOT the lever.
+2. **The loss signature is a couple of huge single time-sinks.** maxRun (longest consecutive
+   no-action run) separates: wins <=20, worst losses 35-45. Decomposes into TWO different bugs:
+   - **Far-target chase**: a 31-step trek to harvest ONE fruit in a far corner (~60 round-trip
+     turns for 1 point). A task-VALUATION bug.
+   - **Idle-park** (the big one): late-game trolls PARK for up to 82 turns.
+3. **★ Idle-park root cause — TELEMETRY-PROVEN** (added a temporary @TFASSIGN probe, reverted
+   after; played vs Crouistiti 6479836): the parked troll has `band=park(10), tgt=None, empty
+   carry` — NOT a livelock, the task PRODUCER emitted an empty pool. Task generation is bounded
+   (chopper roam radius; ripe-only fruit), so once the neighborhood is felled the pool collapses
+   to PARK. 28-82 idle turns/game vs Crouistiti; both trolls can park simultaneously (whole team
+   idle a third of the game). idle-fruit (38) doesn't help — no ripe fruit left either.
+
+CANDIDATES SPAWNED (both game-review-driven, execution/transfer class):
+- **v1.54.0-frontdoor** (brief 7bcdf3f): fixes farm_d bridging the impassable shack (Sasso
+  chokepoint straddle, 87% gatherer transit). BUILT (81/81 tests, champion-equality 40/40 EQUAL
+  = no-op on normal maps; the sim can't generate chokepoints so the chokepoint branch rests on
+  review + arena). IN REVIEW.
+- **v1.55.0-taskfloor** (brief 871a4c4, user's TASK-MANAGER reframe): the fix is in the task
+  PRODUCER, not troll behavior — `candidates()` emits low-band reach-work tasks (nearest
+  reachable chop/harvest/plant, bands 16-20 STRICTLY between park 10 and anti-starvation 30, so
+  they can never displace real work) so the pool never underflows to PARK while reachable work
+  exists. The matcher assigns them; no per-troll idle logic. BUILDING. This bug the sim CAN
+  reproduce -> the gate directly measures idle-turn drop vs Crouistiti (biggest measured waste;
+  strongest arena bet of the batch).
+
+META (user's reframe): trolls "misbehaving" = the task manager produced the wrong task SET (too
+few = idle-park; mis-valued = far-chase; mis-located = farm-straddle). One debuggable surface.
