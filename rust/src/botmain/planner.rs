@@ -17,32 +17,16 @@ thread_local! {
     // last MoveTo target per troll (diagnostics: assignment-flap counter) + flap count
     static LAST_TGT: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
     static FLAPS: RefCell<u32> = RefCell::new(0);
-    // v1.55.0-taskfloor: how many trolls THIS TURN's final render selected the literal park
-    // band (value == 10*BAND exactly -- reach-work's lowest band, 16, is always strictly
-    // above this, see the REACH_*_BAND doc comment below, so there is no ambiguity between
-    // "genuinely parked" and "reach-work at a low value"). DEBUG-only telemetry (@TFPARK in
-    // botmain.rs); this is the direct, non-string-based proof of whether the task-producer
-    // floor is actually firing (pre-fix baseline: up to 82 consecutive idle turns/game vs
-    // Crouistiti, agentId 6479836 -- docs/silver-experiment-log.md 2026-07-09 late).
-    static PARK_COUNT: RefCell<usize> = RefCell::new(0);
 }
 
 /// Turn-1 reset of diagnostics.
 pub fn reset() {
     LAST_TGT.with(|m| m.borrow_mut().clear());
     FLAPS.with(|f| *f.borrow_mut() = 0);
-    PARK_COUNT.with(|p| *p.borrow_mut() = 0);
 }
 
 pub fn flaps() -> u32 {
     FLAPS.with(|f| *f.borrow())
-}
-
-/// Count of trolls parked (band 10, the literal idle fallback) on the most recent FINAL
-/// render (`render_assignments` with `update_last_target=true` -- i.e. one count per real
-/// decision, not per intermediate/speculative pass). See `PARK_COUNT`'s doc comment.
-pub fn park_count() -> usize {
-    PARK_COUNT.with(|p| *p.borrow())
 }
 
 const K: usize = 8; // per-troll candidate cap (bands make more irrelevant)
@@ -81,34 +65,6 @@ const RACE_SHARE_PEN: i64 = 2; // sharepen4 kept-at-parity = INCONCLUSIVE under 
 // never implies created_exposed>0 — see ownership::classify_pressure), so this is always +0
 // there: a proven no-op, not a static preference.
 const PRESSURE_LIQ_BONUS: i64 = 4;
-// v1.55.0-taskfloor (user's task-manager reframe, 2026-07-09): the TASK PRODUCER's floor.
-// Telemetry (@TFASSIGN probe vs Crouistiti, agentId 6479836; docs/silver-experiment-log.md
-// 2026-07-09 late) proved late-game trolls get band=park (value 1_000_000 = band 10,
-// tgt=None, empty carry) for up to 82 CONSECUTIVE turns -- not a livelock, genuinely no
-// task: every band above is bounded (roam radius / own-half / starter_chop / hoard-
-// threatened / ripe-only-fruit), so once the local neighborhood is exhausted the pool
-// underflows to PARK even while distant reachable trees/fruit/plant cells exist. Fix:
-// candidates() ALWAYS additionally emits "reach-work" -- the K nearest reachable productive
-// opportunities ANYWHERE on the map, no roam bound -- at three low bands strictly between
-// park (10) and anti-starvation (30/31):
-const REACH_CHOP_BAND: i64 = 20; // nearest reachable fellable tree (any location/half)
-const REACH_HARVEST_BAND: i64 = 18; // nearest reachable fruit tree, ripe OR maturing
-const REACH_PLANT_BAND: i64 = 16; // nearest free plantable cell, no farm_r bound
-const REACH_K: usize = 3; // nearest-K per kind: lets 2+ idle trolls diverge onto distinct targets
-                          // LOAD-BEARING ORDERING PROOF (taskfloor_never_displaces_real_work pins this; see
-                          // rust/tests/taskfloor.rs for the flip-check that confirms it manually):
-                          //   UPPER bound (can NEVER outrank real work) -- pure algebra, no map-size assumption
-                          //   needed at all: value = band*BAND - eta with band in {16,18,20} and eta >= 0, so
-                          //   value <= band*BAND <= 20*BAND < 30*BAND (anti-starvation, the LOWEST real band)
-                          //   UNCONDITIONALLY, because band < 30 by construction -- subtracting a non-negative
-                          //   eta can only push the value further below, never up, regardless of how small eta is.
-                          //   LOWER bound (still beats park whenever reachable work exists) -- value > 10*BAND
-                          //   requires eta < (band-10)*BAND, i.e. eta < 600_000 in the tightest case (band=16).
-                          //   Real maps are height<=11, width=2*height (<=242 cells, docs/statement.md); a BFS
-                          //   distance between two connected cells is bounded by the walkable cell count, so
-                          //   eta <= ~242 even at movement_speed=1 -- more than three orders of magnitude inside
-                          //   the 600_000 margin. Both halves hold with enormous headroom; the ordering cannot
-                          //   invert on any map this game deals.
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
@@ -796,151 +752,6 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         });
     }
 
-    // ── v1.55.0-taskfloor: TASK-PRODUCER FLOOR ──────────────────────────────────────────
-    // Unconditionally (regardless of role/phase/roam/starter_chop) search the WHOLE
-    // reachable map for the nearest productive opportunities and emit them at bands
-    // 16/18/20 -- strictly between park (10) and anti-starvation (30/31); see the
-    // REACH_*_BAND const doc comment above for the load-bearing ordering proof. A troll
-    // with any real task (>=30) is completely unaffected: reach-work only ever wins the
-    // joint assignment when nothing scoring >=20*BAND exists for THIS troll. No per-troll
-    // idle logic, no troll-behavior change -- this is purely the producer offering more
-    // (always-safe, always-low-priority) options; the existing matcher decides who gets
-    // what exactly as it already does for every other band.
-
-    // reach-chop (band 20): nearest reachable fellable tree, ANY location -- own_half/
-    // within_roam do NOT apply here on purpose (this is precisely the fallback for when
-    // those roam-bounded bands, and even the "unbounded" anti-starvation band gated behind
-    // `plan.starter_chop`, are all closed off). Still respects fell_ok (seed-cell
-    // protection, liquidation/farm_fell thresholds) and the race() doomed-tree check, same
-    // discipline as every fell band above. OUT-PRODUCE, not counter-raid: a neutral tree in
-    // enemy territory is a fine target (still producing) -- no attack behavior is added
-    // anywhere in this block.
-    //
-    // The `hoard && !threatened(pc)` gate is REQUIRED here too (regression caught by
-    // tests/phase_hoard.rs::hoard_suppresses_fells_without_threat): Hoard's fell-suppression
-    // is a deliberate STRATEGY (accumulate wood, fell ONLY under direct denial threat), not
-    // an accidental roam restriction -- without this gate, reach-chop would rescue every
-    // Hoard-suppressed chopper the instant nothing else scored, silently negating the
-    // strategy in precisely the case it's meant to apply (no threat anywhere). This costs
-    // the fix nothing on the live path: GE_META is Tempo, so `hoard` is always false there
-    // (phase_for(Tempo,_) == Phase::Tempo unconditionally) -- the gate only matters for the
-    // dormant-but-tested Scale/Hoard meta.
-    if u.chop_power > 0 {
-        let mut reach: Vec<(i32, Cell)> = Vec::new();
-        for p in state.trees.iter().filter(|p| fell_ok(p)) {
-            let pc = p.pos();
-            if !d.contains_key(&pc) {
-                continue;
-            }
-            if hoard && !threatened(pc) {
-                continue; // Hoard: no fells unless the tree is under denial threat
-            }
-            let e = eta(&d, pc, ms);
-            if race(pc, e).is_none() {
-                continue; // doomed: they fell it before we arrive -- don't donate the travel
-            }
-            reach.push((d[&pc], pc));
-        }
-        reach.sort_by_key(|&(dist, c)| (dist, c)); // canonical: nearest first, cell tie-break
-        reach.truncate(REACH_K);
-        for (_, pc) in reach {
-            let e = eta(&d, pc, ms);
-            if pc == u.pos() {
-                out.push(Cand {
-                    kind: Kind::ChopHere,
-                    target: Some(pc),
-                    value: REACH_CHOP_BAND * BAND - e,
-                });
-            } else {
-                out.push(Cand {
-                    kind: Kind::MoveTo,
-                    target: Some(pc),
-                    value: REACH_CHOP_BAND * BAND - e,
-                });
-            }
-        }
-    }
-
-    // reach-harvest (band 18): nearest reachable fruit tree, ripe (fruits>0) OR maturing
-    // (cooldown>0 -- an active growth timer counting toward the next fruit/size tick; the
-    // only fruits==0 && cooldown==0 case is a genuinely dead tree, health<=0, that will
-    // never produce again -- see engine.rs tick_plants). Needs harvest capability + carry
-    // room, same gate idle-fruit (band 38) uses; the race() doomed check applies exactly as
-    // idle-fruit uses it (issuing HARVEST on a still-maturing tree we've reached early is a
-    // safe no-op per engine.rs apply_harvest's `fruits > 0` guard, so arriving before it
-    // ripens costs nothing).
-    if u.harvest_power > 0 && u.free_capacity() > 0 {
-        let mut reach: Vec<(i32, Cell)> = Vec::new();
-        for p in state.trees.iter().filter(|p| p.fruits > 0 || p.cooldown > 0) {
-            let pc = p.pos();
-            if !d.contains_key(&pc) {
-                continue;
-            }
-            let e = eta(&d, pc, ms);
-            if race(pc, e).is_none() {
-                continue; // doomed: don't donate the travel
-            }
-            reach.push((d[&pc], pc));
-        }
-        reach.sort_by_key(|&(dist, c)| (dist, c));
-        reach.truncate(REACH_K);
-        for (_, pc) in reach {
-            let e = eta(&d, pc, ms);
-            if pc == u.pos() {
-                out.push(Cand {
-                    kind: Kind::Harvest,
-                    target: Some(pc),
-                    value: REACH_HARVEST_BAND * BAND - e,
-                });
-            } else {
-                out.push(Cand {
-                    kind: Kind::MoveTo,
-                    target: Some(pc),
-                    value: REACH_HARVEST_BAND * BAND - e,
-                });
-            }
-        }
-    }
-
-    // reach-plant (band 16): nearest free plantable cell ANYWHERE reachable (no farm_r
-    // bound) for a banana-carrying troll, when the farm still has room. Same mechanic as
-    // band 88's `plant_cell` (hoisted above) with the farm_r/door gate lifted -- the
-    // fallback for when every in-radius cell is already occupied/blocked. Skipped entirely
-    // when `plant_cell` is already Some: band 88 (88*BAND-eta) always outranks this
-    // (16*BAND-eta) regardless of distance, so computing it would be pure waste.
-    if !is_chopper
-        && u.carry[BANANA] > 0
-        && plan.base_trees < plan.farm_cap
-        && plant_cell.is_none()
-    {
-        let mut reach: Vec<(i32, Cell)> = state
-            .walkable
-            .iter()
-            .filter(|c| d.contains_key(*c))
-            .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
-            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-            .map(|c| (d[c], *c))
-            .collect();
-        reach.sort_by_key(|&(dist, c)| (dist, c));
-        reach.truncate(REACH_K);
-        for (_, tc) in reach {
-            let e = eta(&d, tc, ms);
-            if tc == u.pos() {
-                out.push(Cand {
-                    kind: Kind::PlantHere,
-                    target: Some(tc),
-                    value: REACH_PLANT_BAND * BAND - e,
-                });
-            } else {
-                out.push(Cand {
-                    kind: Kind::MoveTo,
-                    target: Some(tc),
-                    value: REACH_PLANT_BAND * BAND - e,
-                });
-            }
-        }
-    }
-
     // stickiness: prefer last turn's target on near-ties (see STICKY)
     let last = LAST_TGT.with(|m| m.borrow().get(&u.id).copied());
     if let Some(lt) = last {
@@ -1046,21 +857,12 @@ fn render_assignments(
     // render (troll-id order; camp-cell claiming stays deterministic via claimed_drop)
     let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
     let mut claimed_drop: HashSet<Cell> = HashSet::new();
-    // v1.55.0-taskfloor: PARK_COUNT is a per-FINAL-render count (reset then rebuilt here),
-    // matching FLAPS's own update_last_target gate below -- the initial speculative render
-    // inside assign_resolved (update_last_target=false) never touches it.
-    if update_last_target {
-        PARK_COUNT.with(|p| *p.borrow_mut() = 0);
-    }
     if !assignments.picks.is_empty() {
         for (i, id) in assignments.ids.iter().enumerate() {
             let u = my.iter().find(|t| t.id == *id).unwrap();
             let d = bfs_distances(&state.walkable, &[u.pos()]);
             let c = &assignments.cands[i][assignments.picks[i]];
             if update_last_target {
-                if c.value == 10 * BAND {
-                    PARK_COUNT.with(|p| *p.borrow_mut() += 1);
-                }
                 if let (Kind::MoveTo, Some(tc)) = (&c.kind, c.target) {
                     LAST_TGT.with(|m| {
                         let mut m = m.borrow_mut();
