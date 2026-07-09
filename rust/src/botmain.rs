@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.54.0-frontdoor"; // front-door farm placement: chokepoint-gated fix for the shack-hub farm_d bug (Sasso long-path re-diagnosis)
+const VERSION: &str = "1.56.0-ringfarm"; // structured 8-cell tent ring: diagonals=ripe fruit/seed engine (kept standing), orthogonals=wood/cut cycle; ring built early (build-ring PICK 78) instead of foraging distant
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

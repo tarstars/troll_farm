@@ -622,7 +622,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         // REMOVED — harvested even with tent stock on hand). PICK/park (50/49, unchanged) is
         // the fallback once no ripe seed tree is reachable; excess bananas accumulate in the
         // tent via the existing full->bank flow (1pt banked each, or 8pt later via plant->fell).
-        if plan.base_trees < plan.farm_cap {
+        //
+        // v1.56.0-ringfarm: under the ring, AGGRESSIVELY harvest the diagonal ripe bananas
+        // (the seed engine) — band 52 keeps firing even when the ring is nominally "full" (so
+        // the harvest→tent→replant loop never stalls). The seed RESERVE is the tent itself:
+        // harvested bananas bank there and are pulled back by build-ring PICK(78)+plant(88)
+        // whenever a cut orthogonal opens a cell ("some seed" replants, "some into tent" as
+        // points via full→bank). Eta-discount keeps this LOCAL — a ripe diagonal at map-dist 2
+        // always beats a distant native, and while the ring is incomplete build-ring(78) > 52
+        // suppresses foraging entirely. PICK/park stay gated on plant_cell (an empty ring cell).
+        if ring_active || plan.base_trees < plan.farm_cap {
             for p in state.trees.iter().filter(|p| {
                 p.fruits > 0
                     && d.contains_key(&p.pos())
