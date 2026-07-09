@@ -51,6 +51,8 @@ fn plan_for(walkable: &HashSet<(i32, i32)>) -> Plan {
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
         pressure: ownership::Pressure::default(),
+        door: None,
+        door_d: None,
     }
 }
 

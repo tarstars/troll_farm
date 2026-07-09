@@ -8,7 +8,7 @@
 //! exhaustive over per-troll top-K, maximizing total value, conflicting target claims
 //! forbidden, canonical tie-break. SHUFFLE INVARIANCE: the plan depends on the objective,
 //! never on troll/candidate iteration order.
-use super::tactics::{Phase, Plan};
+use super::tactics::{farm_eligible, Phase, Plan};
 use super::*;
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
@@ -309,7 +309,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             .walkable
             .iter()
             .filter(|c| {
-                plan.farm_d.get(*c).map_or(false, |&fd| fd <= plan.farm_r) && d.contains_key(*c)
+                farm_eligible(&plan.farm_d, &plan.door_d, **c, plan.farm_r) && d.contains_key(*c)
             })
             .filter(|c| !state.trees.iter().any(|p| p.pos() == **c))
             .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
