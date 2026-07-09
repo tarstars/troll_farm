@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.54.0-frontdoor"; // front-door farm placement: chokepoint-gated fix for the shack-hub farm_d bug (Sasso long-path re-diagnosis)
+const VERSION: &str = "1.55.0-taskfloor"; // task-producer floor: reach-work bands (16/18/20) so candidates() never underflows to PARK while reachable work exists
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -137,6 +137,13 @@ fn decide_elite(state: &State) -> Vec<String> {
     if DEBUG {
         ownership::log(state, &plan);
         ownership::log_pressure(state, &plan);
+    }
+    // v1.55.0-taskfloor: @TFPARK every turn (not sampled every-5 like @TFFARM above) — this
+    // is the direct validation-gate signal: count of trolls whose FINAL selected candidate
+    // was the literal park band this turn. Pre-fix baseline (docs/silver-experiment-log.md
+    // 2026-07-09 late): up to 82 consecutive idle turns/game vs Crouistiti (agentId 6479836).
+    if DEBUG {
+        eprintln!("@TFPARK t={} n={}", state.turn, planner::park_count());
     }
 
     // R6a/R6b feedback: planner::assign_resolved runs joint assignment, the first
