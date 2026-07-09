@@ -124,14 +124,28 @@ fn decide_elite(state: &State) -> Vec<String> {
     let plan = tactics::plan(state, &my);
     let mut cmd_by_id = planner::assign_resolved(state, &plan, &my);
     if DEBUG && state.turn % 5 == 0 {
+        // v1.56.0-ringfarm: ring_n = ring cells this turn; ring_planted = ring cells hosting a
+        // banana (the "bananas planted near the tent" the candidate gate measures by turn N).
+        let ring_planted = plan
+            .ring
+            .iter()
+            .filter(|(c, _)| {
+                state
+                    .trees
+                    .iter()
+                    .any(|p| p.pos() == *c && p.tree_type == "BANANA")
+            })
+            .count();
         eprintln!(
-            "@TFFARM t={} farm={} seeds={} n={} flaps={} phase={:?}",
+            "@TFFARM t={} farm={} seeds={} n={} flaps={} phase={:?} ring_n={} ring_planted={}",
             state.turn,
             plan.farm_now,
             state.my_inventory[BANANA],
             my.len(),
             planner::flaps(),
-            plan.phase
+            plan.phase,
+            plan.ring.len(),
+            ring_planted
         );
     }
     if DEBUG {
