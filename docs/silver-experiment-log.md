@@ -2504,3 +2504,24 @@ CANDIDATES SPAWNED (both game-review-driven, execution/transfer class):
 
 META (user's reframe): trolls "misbehaving" = the task manager produced the wrong task SET (too
 few = idle-park; mis-valued = far-chase; mis-located = farm-straddle). One debuggable surface.
+
+## 2026-07-09 — v1.55.0-taskfloor built: idle-park is TWO phenomena (producer-underflow FIXED; scarcity is separate)
+
+Built on the frontdoor-merged tip (c2e3c30), so the candidate = frontdoor + taskfloor (the
+combined execution-fix stack). 87/87 tests, self-equality EQUAL. Reach-work bands 20/18/16
+(chop/harvest/plant), REACH_K=3, emitted in candidates() after the real bands; numeric proof
+they sit strictly below anti-starvation (30) and above park (10) for all eta<=242 → can only
+fill a would-park slot, never displace real work. Caught+fixed a Hoard-suppression regression
+(reach-chop must respect Hoard's fell-suppression).
+
+★ KEY (builder investigated, not just measured): categorized 248 park instances vs Crouistiti →
+ZERO unexplained parks. The targeted bug (producer underflow while reachable MATURE UNCONTESTED
+work exists) is FULLY fixed — 0 idle turns vs boss. But vs Crouistiti idle only partly drops
+(21-99 vs 28-82) because most of it is GENUINE SCARCITY, not a producer bug: zero_trees 111,
+immature-below-fell_size 123, doomed_race 14. So the "82 idle turns" was TWO phenomena:
+(a) producer underflow [taskfloor FIXES], (b) economic tree-scarcity [separate, out of scope —
+felling immature/doomed trees would make us WORSE]. Phenomenon (b) is a NEW economy-class lead
+(why does Crouistiti induce young/exhausted tree populations? seed-reserve / farm-density
+tuning?) — filed, NOT chased now (economy class = the pie family's graveyard; needs its own
+evidence). taskfloor's arena signal may thus be modest (it only helps the (a) slice), but it's
+correct, no-harm (never displaces work), and the transfer class — worth shipping. IN REVIEW.
