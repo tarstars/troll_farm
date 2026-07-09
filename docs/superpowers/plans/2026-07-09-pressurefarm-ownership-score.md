@@ -19,7 +19,10 @@ bundle/minify/equality gates; fresh DEBUG probes via `cgauto/collect_debug_games
 
 - Work from `/home/tarstars/prj/troll_farm`.
 - Do not modify arena submission defaults until all local gates and DEBUG probes pass.
-- Keep AUROC/win-loss classifier validation postponed.
+- AUROC/win-loss classifier validation is NO LONGER postponed (un-deferred 2026-07-09, user
+  call): corpus collection is now an active parallel track (see `## Corpus Collection` at the
+  end). The pressurefarm behavior work in THIS plan still does not depend on AUROC — the two
+  run in parallel.
 - Keep behavior changes local to farm pressure: planting cap, seed-reserve release, and exposed
   local-tree liquidation.
 - No static turn-only behavior. The trigger must depend on live ownership pressure.
@@ -154,4 +157,24 @@ This plan is complete when `data/candidates/v1.53.0-pressurefarm/report.md` stat
 - `ITERATE: adjust pressure thresholds`;
 - `STOP: ownership-score behavior did not improve measured outcomes`.
 
-AUROC remains postponed until after a larger, more balanced post-candidate corpus exists.
+## Corpus Collection (un-deferred 2026-07-09)
+
+The AUROC "postponed until a larger corpus exists" flag is LIFTED — the corpus is now being
+built as an active parallel track, rather than waiting for behavior work to produce it
+incidentally. Rationale: at ~150 games/day budget the ~20-wins-+-20-losses-per-class target is
+a multi-day effort, so starting now means the labeled dataset is ready when pressurefarm's
+verdict lands (and it independently validates the ownership hypothesis on our baseline play).
+
+- **Baseline corpus:** the current champion-line tree (splitclaims + ownership telemetry,
+  DEBUG=true → emits `@TFOWN`/`@TFOWNCFG`), instrumented games vs the three opponent classes
+  plcc (6480966), mikdiet (6480914), kurigen (6480824). Labeled per game with win/loss + the
+  `@TFOWN` metrics at t75/t150/t225 (own_half_exposed, created_exposed, opp_share,
+  not_ours_share, composite pressure).
+- **Candidate corpus:** the FIXED pressurefarm's gate games join the same corpus (tagged by
+  bot version) so we can compare metric shifts.
+- **Aggregation:** `cgauto/map_value_ownership.py --csv <out>` over the collected `.raw` files;
+  accumulates into `data/analysis/map-value-ownership/corpus/`.
+- **Budget discipline:** the pressurefarm GATE has priority for its ~12 games; corpus batches
+  fill otherwise-idle budget and are bounded per batch (resumable across days).
+- **AUROC:** runs once the corpus reaches ≈20W+20L for at least one class (target: loss=1,
+  win=0; AUROC by phase + confidence notes).

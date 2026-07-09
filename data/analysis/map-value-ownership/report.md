@@ -142,11 +142,13 @@ The first candidate should key off the measured pattern: by t150/t225, if nearby
 projected opponent-owned or uncertain and our local farm contains exposed created value, stop
 expanding and convert/liquidate local value before the opponent's ETA window.
 
-## Postponed Target
+## Active Target: corpus collection UNDERWAY (un-deferred 2026-07-09, user call)
 
-AUROC-style supervised validation is useful but postponed. The current corpus has only one win, so
-AUROC mostly measures whether losses rank above that single win. Revisit this after behavior work
-creates a larger, more balanced corpus. Target shape for later:
+AUROC-style supervised validation was postponed because the original corpus had only one win.
+That flag is now LIFTED: a larger, balanced corpus is being collected as an active parallel
+track — instrumented baseline games (current champion-line tree, DEBUG `@TFOWN`) vs
+plcc/mikdiet/kurigen, accumulating into `data/analysis/map-value-ownership/corpus/`, labeled
+per game with win/loss. AUROC runs once ≈20W+20L exists for at least one class. Target shape:
 
 - target: loss = 1, win = 0;
 - scores: `own_half_exposed`, `created_exposed`, `opp_share`, `not_ours_share`, composite pressure;
