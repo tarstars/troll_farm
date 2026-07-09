@@ -36,7 +36,10 @@ fn main() {
     for _ in 0..200 {
         let _ = NavTable::build(&g);
     }
-    println!("(B) NavTable::build: {:.2} ms each", 1000.0 * t1.elapsed().as_secs_f64() / 200.0);
+    println!(
+        "(B) NavTable::build: {:.2} ms each",
+        1000.0 * t1.elapsed().as_secs_f64() / 200.0
+    );
 
     // (C) FastState clone cost (every rollout starts with a copy).
     let t2 = Instant::now();
@@ -45,6 +48,10 @@ fn main() {
         let s = fs;
         acc += s.turn as i64;
     }
-    println!("(C) FastState copy: {:.1} ns each ({} bytes) (acc {})",
-        1e9 * t2.elapsed().as_secs_f64() / 5_000_000.0, std::mem::size_of::<FastState>(), acc);
+    println!(
+        "(C) FastState copy: {:.1} ns each ({} bytes) (acc {})",
+        1e9 * t2.elapsed().as_secs_f64() / 5_000_000.0,
+        std::mem::size_of::<FastState>(),
+        acc
+    );
 }

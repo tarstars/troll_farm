@@ -87,7 +87,10 @@ pub fn park_cmd(
     idle: bool,
 ) -> String {
     if idle {
-        let camp_cells = ortho_neighbors(shack).iter().filter(|c| state.walkable.contains(*c)).count();
+        let camp_cells = ortho_neighbors(shack)
+            .iter()
+            .filter(|c| state.walkable.contains(*c))
+            .count();
         if camp_cells <= 2 {
             let ring2 = state
                 .walkable
@@ -113,10 +116,16 @@ pub fn watchdog(state: &State, my: &[Troll], cmd_by_id: &mut HashMap<i32, String
         let mut m = cell.borrow_mut();
         for t in my {
             let cur = t.pos();
-            let is_move = cmd_by_id.get(&t.id).map_or(false, |c| c.starts_with("MOVE "));
+            let is_move = cmd_by_id
+                .get(&t.id)
+                .map_or(false, |c| c.starts_with("MOVE "));
             let entry = m.entry(t.id).or_insert((cur.0, cur.1, 0u8));
             let stuck = entry.0 == cur.0 && entry.1 == cur.1;
-            entry.2 = if stuck && is_move { entry.2.saturating_add(1) } else { 0 };
+            entry.2 = if stuck && is_move {
+                entry.2.saturating_add(1)
+            } else {
+                0
+            };
             entry.0 = cur.0;
             entry.1 = cur.1;
             let streak = entry.2;
@@ -195,7 +204,10 @@ pub fn solve_moves(state: &State, my: &[Troll], intents: &[(i32, Cell)]) -> Hash
         let mut cs: Vec<(Cell, i32)> = state
             .walkable
             .iter()
-            .filter(|c| dp.get(*c).map_or(false, |&d| d > 0 && d <= t.movement_speed))
+            .filter(|c| {
+                dp.get(*c)
+                    .map_or(false, |&d| d > 0 && d <= t.movement_speed)
+            })
             .filter(|c| !stationary.contains(*c))
             .filter_map(|c| dg.get(c).map(|&d| (*c, here - d)))
             .filter(|(_, pr)| *pr >= 0) // progress or lateral sidestep; never retreat

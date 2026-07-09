@@ -20,10 +20,16 @@ pub struct SearchBot;
 
 // ── tunables (env, with defaults) ────────────────────────────────────────────
 fn envi(name: &str, default: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(default)
 }
 fn envf(name: &str, default: f64) -> f64 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(default)
 }
 
 fn dist(a: Cell, b: Cell) -> i32 {
@@ -90,9 +96,18 @@ fn nearest_fruited(game: &GameState, from: Cell, reserved: &HashSet<Cell>) -> Op
 
 /// Produce this turn's commands for `player` given a role `plan` and an optional
 /// TRAIN to attempt. Deterministic; used for both turn-0 emission and rollout.
-fn plan_cmds(game: &GameState, player: usize, plan: Plan, train: Option<(i32, i32, i32, i32)>) -> Vec<String> {
+fn plan_cmds(
+    game: &GameState,
+    player: usize,
+    plan: Plan,
+    train: Option<(i32, i32, i32, i32)>,
+) -> Vec<String> {
     let shack = game.shacks[player];
-    let mut mine: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+    let mut mine: Vec<&Unit> = game
+        .units
+        .iter()
+        .filter(|u| u.player as usize == player)
+        .collect();
     mine.sort_by_key(|u| u.id);
 
     // Designate the `plan.choppers` strongest choppers (chop>=1) as fellers.
@@ -101,7 +116,11 @@ fn plan_cmds(game: &GameState, player: usize, plan: Plan, train: Option<(i32, i3
         let u = mine.iter().find(|u| u.id == id).unwrap();
         (-u.chop, id) // strongest chop first, then lowest id
     });
-    let chopper_ids: HashSet<i32> = chop_capable.iter().take(plan.choppers as usize).copied().collect();
+    let chopper_ids: HashSet<i32> = chop_capable
+        .iter()
+        .take(plan.choppers as usize)
+        .copied()
+        .collect();
 
     let mut cmds = Vec::new();
     let mut reserved: HashSet<Cell> = HashSet::new();
@@ -189,15 +208,28 @@ fn plan_cmds(game: &GameState, player: usize, plan: Plan, train: Option<(i32, i3
 }
 
 fn affordable(game: &GameState, player: usize, spec: (i32, i32, i32, i32)) -> bool {
-    let n = game.units.iter().filter(|u| u.player as usize == player).count() as i32;
+    let n = game
+        .units
+        .iter()
+        .filter(|u| u.player as usize == player)
+        .count() as i32;
     let cost = training_cost(n, spec);
     let inv = &game.inventories[player];
-    let pay: &[usize] = if !game.iron.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+    let pay: &[usize] = if !game.iron.is_empty() {
+        &[0, 1, 2, 4]
+    } else {
+        &[0, 1, 2]
+    };
     pay.iter().all(|&i| inv[i] >= cost[i])
 }
 
 fn max_chop(game: &GameState, player: usize) -> i32 {
-    game.units.iter().filter(|u| u.player as usize == player).map(|u| u.chop).max().unwrap_or(0)
+    game.units
+        .iter()
+        .filter(|u| u.player as usize == player)
+        .map(|u| u.chop)
+        .max()
+        .unwrap_or(0)
 }
 
 // ── default continuation TRAIN policy (used for rollout turns 1..K) ──────────
@@ -206,7 +238,11 @@ fn max_chop(game: &GameState, player: usize) -> i32 {
 /// used to continue rollouts. NOT the thing we search over (that's the turn-0
 /// candidate); this just makes the rollout's future realistic.
 fn auto_train(game: &GameState, player: usize) -> Option<(i32, i32, i32, i32)> {
-    let n = game.units.iter().filter(|u| u.player as usize == player).count() as i32;
+    let n = game
+        .units
+        .iter()
+        .filter(|u| u.player as usize == player)
+        .count() as i32;
     let max_trolls = envi("SB_MAX_TROLLS", 5);
     if n >= max_trolls {
         return None;
@@ -301,12 +337,19 @@ fn rollout(
     k: i32,
 ) -> f64 {
     let opp = 1 - me;
-    let opp_plan = Plan { choppers: 1, mine: true }; // chopper-boss model
+    let opp_plan = Plan {
+        choppers: 1,
+        mine: true,
+    }; // chopper-boss model
     let mut g = game.clone();
     let start = g.turn;
     let mut first = true;
     while g.turn < start + k && g.turn < 300 {
-        let my_train = if first { turn0_train } else { auto_train(&g, me) };
+        let my_train = if first {
+            turn0_train
+        } else {
+            auto_train(&g, me)
+        };
         let my_cmds = plan_cmds(&g, me, my_plan, my_train);
         let opp_cmds = plan_cmds(&g, opp, opp_plan, auto_train(&g, opp));
         if me == 0 {
@@ -355,14 +398,23 @@ fn role_candidates(game: &GameState, player: usize) -> Vec<Plan> {
     let max_ch = chop_capable.min(envi("SB_MAX_CHOPPERS", 2));
     let mut plans = Vec::new();
     for c in 0..=max_ch {
-        plans.push(Plan { choppers: c, mine: false });
+        plans.push(Plan {
+            choppers: c,
+            mine: false,
+        });
         // Mining only makes sense for a chop-capable troll that ISN'T chopping.
         if !game.iron.is_empty() && c < chop_capable {
-            plans.push(Plan { choppers: c, mine: true });
+            plans.push(Plan {
+                choppers: c,
+                mine: true,
+            });
         }
     }
     if plans.is_empty() {
-        plans.push(Plan { choppers: 0, mine: false });
+        plans.push(Plan {
+            choppers: 0,
+            mine: false,
+        });
     }
     plans
 }

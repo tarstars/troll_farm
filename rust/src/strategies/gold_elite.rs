@@ -30,16 +30,16 @@ pub struct GoldElite {
     // per-instance config (defaults read from env in new(); the hybrid()
     // constructor bakes the 3-troll denial build so it can be A/B'd in-process).
     max_trolls: i32,
-    choppers: i32,           // how many chop>=2 trolls to train
-    stagger: i32,            // earliest turn to train chopper #2+
+    choppers: i32,               // how many chop>=2 trolls to train
+    stagger: i32,                // earliest turn to train chopper #2+
     spec1: (i32, i32, i32, i32), // spec for chopper #1
     spec2: (i32, i32, i32, i32), // spec for chopper #2+
-    planters: i32,           // extra CHEAP (1,1,1,1) planter trolls to boost farm supply
-    hold_until: i32,         // choppers PLANT (don't fell) before this turn — accumulate phase
-    farm_cap: usize,         // max standing farm trees (override GE_FARM_MAX)
-    co_fell: bool,           // let multiple choppers pile on one tree (full-capture size-4)
-    adaptive: bool,          // pick economy by map density at turn 1 (dense=supply, sparse=lean)
-    dense0: RefCell<i32>,    // initial tree count (-1 = unset), for the adaptive decision
+    planters: i32,               // extra CHEAP (1,1,1,1) planter trolls to boost farm supply
+    hold_until: i32,             // choppers PLANT (don't fell) before this turn — accumulate phase
+    farm_cap: usize,             // max standing farm trees (override GE_FARM_MAX)
+    co_fell: bool,               // let multiple choppers pile on one tree (full-capture size-4)
+    adaptive: bool, // pick economy by map density at turn 1 (dense=supply, sparse=lean)
+    dense0: RefCell<i32>, // initial tree count (-1 = unset), for the adaptive decision
 }
 
 impl GoldElite {
@@ -102,16 +102,26 @@ impl GoldElite {
     pub fn adaptive() -> Self {
         GoldElite {
             mem: RefCell::new(HashMap::new()),
-            max_trolls: 4, choppers: 2, stagger: 30,
-            spec1: (2, 2, 0, 2), spec2: (2, 2, 0, 2),
-            planters: 1, hold_until: 100, farm_cap: 24, co_fell: false,
-            adaptive: true, dense0: RefCell::new(-1),
+            max_trolls: 4,
+            choppers: 2,
+            stagger: 30,
+            spec1: (2, 2, 0, 2),
+            spec2: (2, 2, 0, 2),
+            planters: 1,
+            hold_until: 100,
+            farm_cap: 24,
+            co_fell: false,
+            adaptive: true,
+            dense0: RefCell::new(-1),
         }
     }
 }
 
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn env_spec(name: &str, d: (i32, i32, i32, i32)) -> (i32, i32, i32, i32) {
     if let Ok(s) = std::env::var(name) {
@@ -127,7 +137,12 @@ fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -191,7 +206,11 @@ impl Strategy for GoldElite {
         let have_iron = !game.iron.is_empty();
         let turns_rem = TOTAL_TURNS - game.turn + 1;
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -209,7 +228,13 @@ impl Strategy for GoldElite {
                 (2, 1, 0, 0, 12)
             }
         } else {
-            (self.max_trolls, self.choppers, self.planters, self.hold_until, self.farm_cap)
+            (
+                self.max_trolls,
+                self.choppers,
+                self.planters,
+                self.hold_until,
+                self.farm_cap,
+            )
         };
 
         // ── training: `choppers` choppers, staggered, then stop at max_trolls ────
@@ -254,7 +279,11 @@ impl Strategy for GoldElite {
         let liq_t = envi("GE_LIQ_T", 34); // last turns: fell anything reachable
         let starter_chop = envi("GE_STARTER_CHOP", 1) == 1;
         let liquidation = turns_rem <= liq_t;
-        let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= farm_r).count();
+        let base_trees = game
+            .plants
+            .iter()
+            .filter(|p| manh(p.pos(), shack) <= farm_r)
+            .count();
 
         // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
         // Trees only fruit at MAX_SIZE (4); felling farm bananas at size 2 means
@@ -358,7 +387,9 @@ impl Strategy for GoldElite {
                     .iter()
                     .filter(|p| fell_ok(p))
                     .filter(|p| own_half(p) && within_roam(p))
-                    .filter(|p| d.contains_key(&p.pos()) && (co_fell || !reserved.contains(&p.pos())))
+                    .filter(|p| {
+                        d.contains_key(&p.pos()) && (co_fell || !reserved.contains(&p.pos()))
+                    })
                     .min_by_key(|p| {
                         let steps = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
                         let chop_t = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
@@ -399,7 +430,9 @@ impl Strategy for GoldElite {
                     if let Some(tc) = game
                         .plants
                         .iter()
-                        .filter(|p| p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                        .filter(|p| {
+                            p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos())
+                        })
                         .min_by_key(|p| {
                             let steps = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
                             let chop_t = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
@@ -417,7 +450,14 @@ impl Strategy for GoldElite {
                     }
                 }
                 // nothing to fell: bank a partial load, else idle near base
-                cmd_by_id.insert(u.id, if u.total() > 0 { bank_cmd(u, &d) } else { park_cmd(u, &d) });
+                cmd_by_id.insert(
+                    u.id,
+                    if u.total() > 0 {
+                        bank_cmd(u, &d)
+                    } else {
+                        park_cmd(u, &d)
+                    },
+                );
                 continue;
             }
 
@@ -506,7 +546,9 @@ impl Strategy for GoldElite {
                 let target = game
                     .plants
                     .iter()
-                    .filter(|p| p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                    .filter(|p| {
+                        p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos())
+                    })
                     .filter(|p| fruit_ty(&p.plant_type).map_or(false, |t| t < 3 && need_fund[t]))
                     .min_by_key(|p| d[&p.pos()])
                     .map(|p| p.pos());
@@ -536,7 +578,9 @@ impl Strategy for GoldElite {
                 let seed_tree = game
                     .plants
                     .iter()
-                    .filter(|p| p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                    .filter(|p| {
+                        p.fruits > 0 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos())
+                    })
                     .filter(|p| {
                         p.plant_type == "BANANA"
                             || (p.plant_type == "APPLE"
@@ -573,7 +617,9 @@ impl Strategy for GoldElite {
                     if let Some(tc) = game
                         .plants
                         .iter()
-                        .filter(|p| p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
+                        .filter(|p| {
+                            p.size >= 1 && d.contains_key(&p.pos()) && !reserved.contains(&p.pos())
+                        })
                         .min_by_key(|p| {
                             let steps = (d[&p.pos()] + u.ms - 1) / u.ms.max(1);
                             let chop_t = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
@@ -591,7 +637,14 @@ impl Strategy for GoldElite {
                     }
                 }
             }
-            cmd_by_id.insert(u.id, if u.total() > 0 { bank_cmd(u, &d) } else { park_cmd(u, &d) });
+            cmd_by_id.insert(
+                u.id,
+                if u.total() > 0 {
+                    bank_cmd(u, &d)
+                } else {
+                    park_cmd(u, &d)
+                },
+            );
         }
 
         let mut actions: Vec<String> = Vec::new();

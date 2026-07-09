@@ -119,7 +119,12 @@ fn main() {
     let am = tot.margin as f64 / tot.games as f64;
     println!(
         "{} vs {} | {} games ({} seeds x2 seats, {} threads) in {:.2}s",
-        a_name, b_name, tot.games, seeds, nthreads, t0.elapsed().as_secs_f64()
+        a_name,
+        b_name,
+        tot.games,
+        seeds,
+        nthreads,
+        t0.elapsed().as_secs_f64()
     );
     println!(
         "{}: {} wins ({:.1}%)  |  {}: {} wins  |  draws: {}  |  avg margin (A-B): {:+.1}",
@@ -127,9 +132,20 @@ fn main() {
     );
 
     if show_losses {
-        println!("\n{} non-wins ({} seeds, seat = A's player index):", a_name, tot.losses.len());
+        println!(
+            "\n{} non-wins ({} seeds, seat = A's player index):",
+            a_name,
+            tot.losses.len()
+        );
         for (s, seat, asc, bsc) in &tot.losses {
-            println!("  seed {:>4} seat {}  A={:>3} B={:>3}  (margin {:+})", s, seat, asc, bsc, asc - bsc);
+            println!(
+                "  seed {:>4} seat {}  A={:>3} B={:>3}  (margin {:+})",
+                s,
+                seat,
+                asc,
+                bsc,
+                asc - bsc
+            );
         }
     }
 }

@@ -38,7 +38,9 @@ fn reachable_tree(g: &GameState, p: usize) -> bool {
             reach.insert(*c);
         }
     }
-    g.plants.iter().any(|pl| pl.size >= 1 && reach.contains(&(pl.x, pl.y)))
+    g.plants
+        .iter()
+        .any(|pl| pl.size >= 1 && reach.contains(&(pl.x, pl.y)))
 }
 
 fn main() {
@@ -64,9 +66,11 @@ fn main() {
                 if t.first() == Some(&"WAIT") {
                     idle += 1;
                 } else if t.first() == Some(&"MOVE") && t.len() >= 4 {
-                    if let (Ok(id), Ok(x), Ok(y)) =
-                        (t[1].parse::<i32>(), t[2].parse::<i32>(), t[3].parse::<i32>())
-                    {
+                    if let (Ok(id), Ok(x), Ok(y)) = (
+                        t[1].parse::<i32>(),
+                        t[2].parse::<i32>(),
+                        t[3].parse::<i32>(),
+                    ) {
                         if let Some(u) = g.units.iter().find(|u| u.id == id) {
                             if u.x == x && u.y == y {
                                 idle += 1;
@@ -103,7 +107,13 @@ fn main() {
     println!("  wood(banked){:>7.1}", wood_sum as f64 / n);
     println!("  game_len    {:>7.1} turns", len_sum as f64 / n);
     println!("  idle t-turns{:>7.1}/game", idle_sum as f64 / n);
-    println!("  STARVED turns{:>6.1}/game  (turns w/ no reachable tree)", starve_sum as f64 / n);
-    println!("  starved games{:>6} / {}  (>20 starved turns)", starved_games, games);
+    println!(
+        "  STARVED turns{:>6.1}/game  (turns w/ no reachable tree)",
+        starve_sum as f64 / n
+    );
+    println!(
+        "  starved games{:>6} / {}  (>20 starved turns)",
+        starved_games, games
+    );
     println!("  our plants@end{:>5.1}", endplants as f64 / n);
 }

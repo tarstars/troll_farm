@@ -43,5 +43,8 @@ fn main() {
     println!("  median {:>8.0} µs  ({:.2} ms)", median, median / 1000.0);
     println!("  p95    {:>8.0} µs  ({:.2} ms)", p95, p95 / 1000.0);
     println!("  max    {:>8.0} µs  ({:.2} ms)", max, max / 1000.0);
-    println!("  turns > 50ms: {}/{}   > 45ms: {}/{}", over_50ms, n, over_45ms, n);
+    println!(
+        "  turns > 50ms: {}/{}   > 45ms: {}/{}",
+        over_50ms, n, over_45ms, n
+    );
 }

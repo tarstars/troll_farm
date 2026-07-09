@@ -23,7 +23,9 @@ pub struct BossReal {
 
 impl BossReal {
     pub fn new() -> Self {
-        BossReal { targets: RefCell::new(HashMap::new()) }
+        BossReal {
+            targets: RefCell::new(HashMap::new()),
+        }
     }
 }
 
@@ -38,8 +40,11 @@ impl Strategy for BossReal {
 
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
         let base = game.shacks[player];
-        let mut mine: Vec<&Unit> =
-            game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut mine: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         mine.sort_by_key(|u| u.id);
 
         if game.turn == 1 {
@@ -85,7 +90,11 @@ impl Strategy for BossReal {
             let mut target = cands[0].pos();
             // Sticky: keep the remembered target if it still has fruit.
             if let Some(&(tx, ty)) = targets.get(&w.id) {
-                if game.plants.iter().any(|p| p.pos() == (tx, ty) && p.fruits > 0) {
+                if game
+                    .plants
+                    .iter()
+                    .any(|p| p.pos() == (tx, ty) && p.fruits > 0)
+                {
                     target = (tx, ty);
                 }
             }

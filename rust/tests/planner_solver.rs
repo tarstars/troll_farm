@@ -74,7 +74,10 @@ fn corridor_unload_emerges_from_the_objective() {
         let finals: Vec<(i32, i32)> = landing.values().copied().collect();
         let mut sorted = finals.clone();
         sorted.sort();
-        assert!(sorted.windows(2).all(|w| w[0] != w[1]), "solver emitted colliding landings");
+        assert!(
+            sorted.windows(2).all(|w| w[0] != w[1]),
+            "solver emitted colliding landings"
+        );
         for (id, c) in landing {
             pos.insert(id, c);
         }
@@ -82,7 +85,10 @@ fn corridor_unload_emerges_from_the_objective() {
             break;
         }
     }
-    assert_eq!(turns, 5, "3-troll corridor unload must complete in the optimal 5 turns");
+    assert_eq!(
+        turns, 5,
+        "3-troll corridor unload must complete in the optimal 5 turns"
+    );
 }
 
 #[test]

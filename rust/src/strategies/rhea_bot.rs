@@ -15,8 +15,8 @@ const PLAN_LEN: usize = 3; // tasks per troll in a plan
 
 #[derive(Clone, Copy, PartialEq)]
 enum Task {
-    Auto,          // follow the baseline policy
-    GoTree(u8),    // plant list index at ROOT (chop or harvest depending on troll)
+    Auto,       // follow the baseline policy
+    GoTree(u8), // plant list index at ROOT (chop or harvest depending on troll)
     GoBank,
     GoMine,
     PlantHere(u8), // fruit type: walk to base free cell and plant
@@ -29,7 +29,9 @@ struct Plan {
 
 impl Default for Plan {
     fn default() -> Self {
-        Plan { tasks: [[Task::Auto; PLAN_LEN]; MAXU] }
+        Plan {
+            tasks: [[Task::Auto; PLAN_LEN]; MAXU],
+        }
     }
 }
 
@@ -60,7 +62,10 @@ impl RheaBot {
 }
 
 fn envi(name: &str, d: i64) -> i64 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 
 // Evolved schedbot constants (Monte-Carlo searched; see sched_bot.rs) baked
@@ -89,11 +94,26 @@ const ORCH_N: usize = 2; // max plum trees near base (SB_ORCH_N)
 /// (carried plum -> water base cell) and PRINT (pick+plant crops at base;
 /// species follows the spot). Used for the opponent model and for Task::Auto
 /// trolls in rollouts and at emit time.
-fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i32, reserved: &mut [bool; MAXC]) -> FAct {
+fn policy_act(
+    s: &FastState,
+    nav: &NavTable,
+    pl: usize,
+    ui: usize,
+    turns_rem: i32,
+    reserved: &mut [bool; MAXC],
+) -> FAct {
     let w = s.w;
     let me = cid(s.u_x[ui], s.u_y[ui], w);
     let free = s.free(ui);
-    let carried: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
+    let carried: i32 = (0..6)
+        .map(|k| {
+            if k == 5 {
+                4 * s.u_carry[ui][k] as i32
+            } else {
+                s.u_carry[ui][k] as i32
+            }
+        })
+        .sum();
     let sh = s.shack[pl];
     let osh = s.shack[1 - pl];
     let shc = cid(sh.0, sh.1, w);
@@ -116,7 +136,11 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
     if carried > 0 {
         let eta = (dropd as i32 + s.u_ms[ui] as i32 - 1) / s.u_ms[ui].max(1) as i32 + 1;
         if turns_rem <= eta + 1 {
-            return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
+            return if adj_shack {
+                FAct::Drop
+            } else {
+                FAct::Move(dropc as u8)
+            };
         }
     }
     let ms = s.u_ms[ui].max(1) as i32;
@@ -174,7 +198,11 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         let t = steps(dropd as i32) + 1.0;
         consider!(
             carried as f64 / t,
-            if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) },
+            if adj_shack {
+                FAct::Drop
+            } else {
+                FAct::Move(dropc as u8)
+            },
             usize::MAX
         );
     }
@@ -202,7 +230,8 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         // FELL (chop role): mybot denial metric below a full bank rate; pure
         // yield once liquidation starts; capacity-gated late.
         if is_chop_role && s.u_chop[ui] > 0 && (!fell_needs_free || free > 0) {
-            let chop_t = ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
+            let chop_t =
+                ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
             let t = steps(d as i32) + chop_t + 0.5 * steps(man_home) + 1.0;
             if turns_rem as f64 > t {
                 let rate = if liquidation {
@@ -211,16 +240,33 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
                     let man_opp = ((px - osh.0).abs() + (py - osh.1).abs()) as i32;
                     FB - (d as i32 + 3 * man_opp) as f64 * 0.005
                 };
-                consider!(rate, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
+                consider!(
+                    rate,
+                    if me == pc {
+                        FAct::Chop
+                    } else {
+                        FAct::Move(pc as u8)
+                    },
+                    pc
+                );
             }
         }
         // MOW: own-base fruitless size>=2 trees at pure yield (-1 seed cost)
         if mow_ok && free > 0 && man_home <= MOW_R && s.p_size[pi] >= 2 && s.p_fruits[pi] == 0 {
-            let chop_t = ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
+            let chop_t =
+                ((s.p_health[pi] as i32 + s.u_chop[ui] as i32 - 1) / s.u_chop[ui] as i32) as f64;
             let t = steps(d as i32) + chop_t + 0.5 * steps(man_home) + 1.0;
             if turns_rem as f64 > t {
                 let wood = (s.p_size[pi].min(free) as i32 * 4) as f64 - 1.0;
-                consider!(wood / t, if me == pc { FAct::Chop } else { FAct::Move(pc as u8) }, pc);
+                consider!(
+                    wood / t,
+                    if me == pc {
+                        FAct::Chop
+                    } else {
+                        FAct::Move(pc as u8)
+                    },
+                    pc
+                );
             }
         }
         // HARVEST: one-turn take / (travel + RETW*return), deficit-weighted
@@ -233,7 +279,15 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
                 if ty < 3 && s.inv[pl][ty] < n_own + 1 {
                     rate *= 1.0 + NEED_W;
                 }
-                consider!(rate, if me == pc { FAct::Harvest } else { FAct::Move(pc as u8) }, pc);
+                consider!(
+                    rate,
+                    if me == pc {
+                        FAct::Harvest
+                    } else {
+                        FAct::Move(pc as u8)
+                    },
+                    pc
+                );
             }
         }
     }
@@ -293,7 +347,11 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
             let t = steps(orch_d) + 1.0;
             consider!(
                 ORCH_V / t,
-                if me == orch_c { FAct::Plant(0) } else { FAct::Move(orch_c as u8) },
+                if me == orch_c {
+                    FAct::Plant(0)
+                } else {
+                    FAct::Move(orch_c as u8)
+                },
                 orch_c
             );
         }
@@ -315,7 +373,11 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
                 let t = steps(print_key.1) + 1.0;
                 consider!(
                     PRINT_V / t,
-                    if me == print_c { FAct::Plant(species as u8) } else { FAct::Move(print_c as u8) },
+                    if me == print_c {
+                        FAct::Plant(species as u8)
+                    } else {
+                        FAct::Move(print_c as u8)
+                    },
                     print_c
                 );
             } else if adj_shack && free > 0 && s.inv[pl][species] > 0 && carried == 0 {
@@ -341,14 +403,30 @@ fn policy_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, turns_rem: i3
         return best_act;
     }
     if carried > 0 {
-        return if adj_shack { FAct::Drop } else { FAct::Move(dropc as u8) };
+        return if adj_shack {
+            FAct::Drop
+        } else {
+            FAct::Move(dropc as u8)
+        };
     }
-    FAct::Move(if dropc != usize::MAX { dropc as u8 } else { shc as u8 })
+    FAct::Move(if dropc != usize::MAX {
+        dropc as u8
+    } else {
+        shc as u8
+    })
 }
 
 /// Decode one troll's plan-task into an action given the current rolled state.
 /// Returns None when the task is complete (advance to the next task).
-fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, root_plants: &[(i8, i8); 72], n_root_plants: usize) -> Option<FAct> {
+fn task_act(
+    s: &FastState,
+    nav: &NavTable,
+    pl: usize,
+    ui: usize,
+    task: Task,
+    root_plants: &[(i8, i8); 72],
+    n_root_plants: usize,
+) -> Option<FAct> {
     let w = s.w;
     match task {
         Task::Auto => None, // handled by caller (policy)
@@ -376,7 +454,11 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
                         bc = c;
                     }
                 }
-                if bc == usize::MAX { None } else { Some(FAct::Move(bc as u8)) }
+                if bc == usize::MAX {
+                    None
+                } else {
+                    Some(FAct::Move(bc as u8))
+                }
             }
         }
         Task::GoMine => {
@@ -395,14 +477,20 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
                     bc = c;
                 }
             }
-            if bc == usize::MAX { None } else { Some(FAct::Move(bc as u8)) }
+            if bc == usize::MAX {
+                None
+            } else {
+                Some(FAct::Move(bc as u8))
+            }
         }
         Task::GoTree(k) => {
             if k as usize >= n_root_plants {
                 return None;
             }
             let (tx, ty) = root_plants[k as usize];
-            let Some(pi) = s.plant_at(tx, ty) else { return None }; // tree gone -> next task
+            let Some(pi) = s.plant_at(tx, ty) else {
+                return None;
+            }; // tree gone -> next task
             if s.u_x[ui] == tx && s.u_y[ui] == ty {
                 if s.u_chop[ui] > 0 && (s.p_fruits[pi] == 0 || s.u_chop[ui] >= 2) {
                     return Some(FAct::Chop);
@@ -444,7 +532,11 @@ fn task_act(s: &FastState, nav: &NavTable, pl: usize, ui: usize, task: Task, roo
                     bc = c;
                 }
             }
-            if bc == usize::MAX { None } else { Some(FAct::Move(bc as u8)) }
+            if bc == usize::MAX {
+                None
+            } else {
+                Some(FAct::Move(bc as u8))
+            }
         }
     }
 }
@@ -496,7 +588,9 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
         }
         // training (both sides): greedy chopper-first, then harvester ladder
         for pl in 0..2usize {
-            let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
+            let n = (0..s.n_units as usize)
+                .filter(|&ui| s.u_pl[ui] as usize == pl)
+                .count() as i16;
             if n >= 4 || turns_rem <= 20 {
                 continue;
             }
@@ -521,7 +615,15 @@ fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
     // eval: banked diff + fraction of carried value + tiny asset term
     let mut carried = [0f64; 2];
     for ui in 0..s.n_units as usize {
-        let v: i32 = (0..6).map(|k| if k == 5 { 4 * s.u_carry[ui][k] as i32 } else { s.u_carry[ui][k] as i32 }).sum();
+        let v: i32 = (0..6)
+            .map(|k| {
+                if k == 5 {
+                    4 * s.u_carry[ui][k] as i32
+                } else {
+                    s.u_carry[ui][k] as i32
+                }
+            })
+            .sum();
         carried[s.u_pl[ui] as usize] += v as f64;
     }
     // asset terms: a troll's future output and standing base trees have value
@@ -570,7 +672,9 @@ impl Strategy for RheaBot {
         let t0 = Instant::now();
 
         let nrp = (root.n_plants as usize).min(72);
-        let my_units: Vec<usize> = (0..root.n_units as usize).filter(|&ui| root.u_pl[ui] as usize == me).collect();
+        let my_units: Vec<usize> = (0..root.n_units as usize)
+            .filter(|&ui| root.u_pl[ui] as usize == me)
+            .collect();
 
         // seed pool: carried-over best (shifted) + policy-only
         let mut best = *self.best.borrow();
@@ -638,7 +742,8 @@ impl Strategy for RheaBot {
                     None => k += 1,
                 }
             }
-            let mut act = act.unwrap_or_else(|| policy_act(&root, nav, me, ui, turns_rem, &mut reserved));
+            let mut act =
+                act.unwrap_or_else(|| policy_act(&root, nav, me, ui, turns_rem, &mut reserved));
             let id = root.u_id[ui];
             // ANTI-STALL WATCHDOG (arena decode: 99 failed MOVEs/game, trolls stuck
             // 20-248 turns behind OWN units — 8/17 losses). If we issued MOVEs but
@@ -690,15 +795,26 @@ impl Strategy for RheaBot {
             let s = match act {
                 FAct::Idle => format!("MOVE {} {} {}", id, root.shack[me].0, root.shack[me].1),
                 FAct::Move(c) => {
-                    let (x, y) = ((c as usize % root.w as usize), (c as usize / root.w as usize));
+                    let (x, y) = (
+                        (c as usize % root.w as usize),
+                        (c as usize / root.w as usize),
+                    );
                     format!("MOVE {} {} {}", id, x, y)
                 }
                 FAct::Harvest => format!("HARVEST {}", id),
                 FAct::Chop => format!("CHOP {}", id),
                 FAct::Drop => format!("DROP {}", id),
                 FAct::Mine => format!("MINE {}", id),
-                FAct::Plant(ty) => format!("PLANT {} {}", id, ["PLUM", "LEMON", "APPLE", "BANANA"][ty as usize]),
-                FAct::Pick(ty) => format!("PICK {} {}", id, ["PLUM", "LEMON", "APPLE", "BANANA"][ty as usize]),
+                FAct::Plant(ty) => format!(
+                    "PLANT {} {}",
+                    id,
+                    ["PLUM", "LEMON", "APPLE", "BANANA"][ty as usize]
+                ),
+                FAct::Pick(ty) => format!(
+                    "PICK {} {}",
+                    id,
+                    ["PLUM", "LEMON", "APPLE", "BANANA"][ty as usize]
+                ),
             };
             out.push(s);
         }
@@ -710,7 +826,14 @@ impl Strategy for RheaBot {
             inv[0] >= c[0] && inv[1] >= c[1] && inv[2] >= c[2] && (!have_iron || inv[4] >= c[4])
         };
         let cost = |t: (i32, i32, i32, i32)| -> [i32; 6] {
-            [n + t.0 * t.0, n + t.1 * t.1, n + t.2 * t.2, 0, n + t.3 * t.3, 0]
+            [
+                n + t.0 * t.0,
+                n + t.1 * t.1,
+                n + t.2 * t.2,
+                0,
+                n + t.3 * t.3,
+                0,
+            ]
         };
         let n_chop = my_units.iter().filter(|&&ui| root.u_chop[ui] >= 2).count();
         // (mid-game high-carry hauler (2,3,1,2) tested AGAIN: density held but
@@ -725,7 +848,8 @@ impl Strategy for RheaBot {
         };
         if let Some(t) = spec {
             let sh = game.shacks[me];
-            if (n as usize) < 4 && 300 - game.turn > 20 && !game.units.iter().any(|u| u.pos() == sh) {
+            if (n as usize) < 4 && 300 - game.turn > 20 && !game.units.iter().any(|u| u.pos() == sh)
+            {
                 out.push(format!("TRAIN {} {} {} {}", t.0, t.1, t.2, t.3));
             }
         }

@@ -41,13 +41,30 @@ use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll};
 
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 
 /// A pure (non-chopping) starter: chop_power=0 so no fell/chop-help band ever competes
 /// with the plant/printer bands under test here.
 fn pure_starter(id: i32, x: i32, y: i32, carry: [i32; 6]) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 2, harvest_power: 1, chop_power: 0, carry }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 2,
+        harvest_power: 1,
+        chop_power: 0,
+        carry,
+    }
 }
 
 #[test]
@@ -307,8 +324,15 @@ fn errand_reaches_pick_on_scarce_map() {
         // conflicts) -- a stand-in for the engine's move resolution, per the prescribed
         // simplified multi-turn harness.
         let parts: Vec<&str> = cmd.split_whitespace().collect();
-        assert_eq!(parts.len(), 4, "turn {turn}: expected a MOVE command, got {cmd:?}");
-        assert_eq!(parts[0], "MOVE", "turn {turn}: expected a MOVE command, got {cmd:?}");
+        assert_eq!(
+            parts.len(),
+            4,
+            "turn {turn}: expected a MOVE command, got {cmd:?}"
+        );
+        assert_eq!(
+            parts[0], "MOVE",
+            "turn {turn}: expected a MOVE command, got {cmd:?}"
+        );
         let tx: i32 = parts[2].parse().expect("MOVE x");
         let ty: i32 = parts[3].parse().expect("MOVE y");
         my[0].x = tx;

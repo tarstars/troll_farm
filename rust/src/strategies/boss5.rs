@@ -23,18 +23,28 @@ pub struct Boss5 {
 }
 impl Boss5 {
     pub fn new() -> Self {
-        Boss5 { mem: RefCell::new(HashMap::new()) }
+        Boss5 {
+            mem: RefCell::new(HashMap::new()),
+        }
     }
 }
 
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
     let mut dist = HashMap::new();
@@ -72,7 +82,11 @@ impl Strategy for Boss5 {
         let inv = &game.inventories[player];
         let have_iron = !game.iron.is_empty();
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -84,7 +98,11 @@ impl Strategy for Boss5 {
 
         let farm_r = envi("B5_FARM_R", 3);
         let farm_cap = envi("B5_FARM_MAX", 18) as usize;
-        let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= farm_r).count();
+        let base_trees = game
+            .plants
+            .iter()
+            .filter(|p| manh(p.pos(), shack) <= farm_r)
+            .count();
         // is a fruit type needed to fund the (not-yet-trained) chopper?
         let cost = training_cost(n, spec);
         let need_iron = have_iron && (n as usize) < 2 && inv[IRON] < cost[IRON];
@@ -100,7 +118,12 @@ impl Strategy for Boss5 {
             // endgame banking: carry home before t=300
             if u.total() > 0 {
                 let turns_rem = TOTAL_TURNS - game.turn + 1;
-                let d_home = ortho(shack).iter().filter_map(|c| d.get(c)).min().copied().unwrap_or(1 << 29);
+                let d_home = ortho(shack)
+                    .iter()
+                    .filter_map(|c| d.get(c))
+                    .min()
+                    .copied()
+                    .unwrap_or(1 << 29);
                 let eta = (d_home + u.ms - 1) / u.ms.max(1) + 1;
                 if turns_rem <= eta + 1 {
                     bank(&mut cmd_by_id, u, shack, &d, &game.walkable);
@@ -127,7 +150,11 @@ impl Strategy for Boss5 {
                 // toward the opponent, so it prefers stealing their trees.
                 let midx = (shack.0 + opp_shack.0) / 2;
                 let toward_opp = |c: Cell| -> bool {
-                    if opp_shack.0 >= shack.0 { c.0 >= midx } else { c.0 <= midx }
+                    if opp_shack.0 >= shack.0 {
+                        c.0 >= midx
+                    } else {
+                        c.0 <= midx
+                    }
                 };
                 let bonus = envi("B5_DENY_BONUS", 6);
                 let tgt = game
@@ -144,7 +171,10 @@ impl Strategy for Boss5 {
                     }
                     None => {
                         // nothing to fell — walk toward the opponent base to deny.
-                        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, opp_shack.0, opp_shack.1));
+                        cmd_by_id.insert(
+                            u.id,
+                            format!("MOVE {} {} {}", u.id, opp_shack.0, opp_shack.1),
+                        );
                     }
                 }
                 continue;
@@ -183,7 +213,8 @@ impl Strategy for Boss5 {
                 }
             }
             // at shack with a banked banana seed & room to print -> PICK it
-            if base_trees < farm_cap && manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0 {
+            if base_trees < farm_cap && manh(u.pos(), shack) == 1 && u.free() > 0 && inv[BANANA] > 0
+            {
                 cmd_by_id.insert(u.id, format!("PICK {} BANANA", u.id));
                 continue;
             }
@@ -196,7 +227,9 @@ impl Strategy for Boss5 {
             let nearest_ripe = game
                 .plants
                 .iter()
-                .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                .filter(|p| {
+                    p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                })
                 .min_by_key(|p| d[&p.pos()])
                 .map(|p| p.pos());
             let iron_target = if need_iron {
@@ -232,7 +265,10 @@ impl Strategy for Boss5 {
         for id in ids {
             actions.push(cmd_by_id[&id].clone());
         }
-        if train_now && TOTAL_TURNS - game.turn > MIN_TURNS_LEFT && !my.iter().any(|u| u.pos() == shack) {
+        if train_now
+            && TOTAL_TURNS - game.turn > MIN_TURNS_LEFT
+            && !my.iter().any(|u| u.pos() == shack)
+        {
             actions.push(format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3));
         }
         actions
@@ -256,6 +292,9 @@ fn bank(
             .filter(|c| walkable.contains(c))
             .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
             .unwrap_or(shack);
-        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+        cmd_by_id.insert(
+            u.id,
+            format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+        );
     }
 }

@@ -10,7 +10,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{training_cost, IRON, PLUM, LEMON, APPLE};
+use crate::game::engine::{training_cost, APPLE, IRON, LEMON, PLUM};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -34,12 +34,17 @@ pub struct SilverBoss {
 
 impl SilverBoss {
     pub fn new() -> Self {
-        SilverBoss { mem: RefCell::new(HashMap::new()) }
+        SilverBoss {
+            mem: RefCell::new(HashMap::new()),
+        }
     }
 }
 
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn env_spec(name: &str, d: (i32, i32, i32, i32)) -> (i32, i32, i32, i32) {
     if let Ok(s) = std::env::var(name) {
@@ -55,7 +60,12 @@ fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -97,7 +107,11 @@ impl Strategy for SilverBoss {
         let inv = &game.inventories[player];
         let have_iron = !game.iron.is_empty();
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -106,14 +120,17 @@ impl Strategy for SilverBoss {
         // queue), else the cheapest affordable harvester -- so the economy keeps growing
         // toward ~4 trolls while we wait for the chopper's resources.
         let chop_spec = env_spec("BOSS_CHOP", CHOPPER_SPEC);
-        let want_chopper = (my.iter().filter(|u| u.chop >= 2).count() as i32) < envi("BOSS_NCHOP", N_CHOPPERS);
-        let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
-            && afford(inv, &training_cost(n, chop_spec), have_iron)
-        {
-            Some(chop_spec)
-        } else {
-            HARVESTERS.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
-        };
+        let want_chopper =
+            (my.iter().filter(|u| u.chop >= 2).count() as i32) < envi("BOSS_NCHOP", N_CHOPPERS);
+        let train_now: Option<(i32, i32, i32, i32)> =
+            if want_chopper && afford(inv, &training_cost(n, chop_spec), have_iron) {
+                Some(chop_spec)
+            } else {
+                HARVESTERS
+                    .iter()
+                    .copied()
+                    .find(|&s| afford(inv, &training_cost(n, s), have_iron))
+            };
         // Mine iron only while we still lack a chopper and its fruit is (nearly) covered.
         let need_iron = have_iron
             && want_chopper
@@ -126,7 +143,10 @@ impl Strategy for SilverBoss {
         let bootstrap_id: Option<i32> = if has_real_chopper {
             None
         } else {
-            my.iter().filter(|u| u.chop >= 1).max_by_key(|u| (u.cc, -u.id)).map(|u| u.id)
+            my.iter()
+                .filter(|u| u.chop >= 1)
+                .max_by_key(|u| (u.cc, -u.id))
+                .map(|u| u.id)
         };
         let is_chopper = |u: &Unit| -> bool { u.chop >= 2 || Some(u.id) == bootstrap_id };
 
@@ -157,7 +177,10 @@ impl Strategy for SilverBoss {
                 mem.remove(&u.id);
                 if manh(u.pos(), shack) == 1 {
                     let on_tree = game.plants.iter().any(|p| p.pos() == u.pos());
-                    if !is_chopper && !on_tree && orchard < MAX_ORCHARD && u.carry[PLUM] > 0
+                    if !is_chopper
+                        && !on_tree
+                        && orchard < MAX_ORCHARD
+                        && u.carry[PLUM] > 0
                         && game.walkable.contains(&u.pos())
                     {
                         cmd_by_id.insert(u.id, format!("PLANT {} PLUM", u.id));
@@ -185,7 +208,9 @@ impl Strategy for SilverBoss {
             }
 
             // Chopper mines iron when saving and adjacent to it.
-            if need_iron && is_chopper && u.chop > 0
+            if need_iron
+                && is_chopper
+                && u.chop > 0
                 && game.iron.iter().any(|ic| manh(u.pos(), *ic) == 1)
             {
                 cmd_by_id.insert(u.id, format!("MINE {}", u.id));
@@ -216,12 +241,15 @@ impl Strategy for SilverBoss {
                 })
             } else {
                 let sticky = mem.get(&u.id).copied().filter(|&c| {
-                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
+                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0)
+                        && !reserved.contains(&c)
                 });
                 let nearest_ripe = |ty: Option<&str>| -> Option<Cell> {
                     game.plants
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| {
+                            p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                        })
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
                         .min_by_key(|p| d[&p.pos()])
                         .map(|p| p.pos())

@@ -10,7 +10,9 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use super::Strategy;
-use crate::game::engine::{plant_cooldown, training_cost, water_boost, BANANA, IRON, PLUM, LEMON, APPLE};
+use crate::game::engine::{
+    plant_cooldown, training_cost, water_boost, APPLE, BANANA, IRON, LEMON, PLUM,
+};
 use crate::game::state::{Cell, GameState, Unit};
 
 const TOTAL_TURNS: i32 = 300;
@@ -41,12 +43,17 @@ pub struct MyBot {
 
 impl MyBot {
     pub fn new() -> Self {
-        MyBot { mem: RefCell::new(HashMap::new()) }
+        MyBot {
+            mem: RefCell::new(HashMap::new()),
+        }
     }
 }
 
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn env_spec(name: &str, d: (i32, i32, i32, i32)) -> (i32, i32, i32, i32) {
     if let Ok(s) = std::env::var(name) {
@@ -62,7 +69,12 @@ fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -104,7 +116,11 @@ impl Strategy for MyBot {
         let inv = &game.inventories[player];
         let have_iron = !game.iron.is_empty();
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -114,10 +130,13 @@ impl Strategy for MyBot {
         // boss" is our NORMAL winning state (we win via denial with fewer trolls), so the
         // trigger fires on maps we'd win and kills the denial edge. Kept as a documented
         // dead-end so it isn't retried. DW=3 denial is load-bearing; do not gate it on this.
-        let opp_n = game.units.iter().filter(|u| u.player as usize != player).count() as i32;
-        let econ_mode = envi("MB_ADAPT_ECON", 0) == 1
-            && game.turn > envi("MB_ECON_TURN", 25)
-            && opp_n > n;
+        let opp_n = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize != player)
+            .count() as i32;
+        let econ_mode =
+            envi("MB_ADAPT_ECON", 0) == 1 && game.turn > envi("MB_ECON_TURN", 25) && opp_n > n;
 
         // ── training plan ────────────────────────────────────────────────────
         // Greedy expansion: build the one chopper as soon as affordable (jumping the
@@ -129,7 +148,13 @@ impl Strategy for MyBot {
         // contested, field more choppers to win the wood/denial race.
         let nchop = if envi("MYBOT_ADAPT", 0) == 1 {
             let sd = manh(shack, game.shacks[1 - player]);
-            if sd <= envi("MYBOT_SDLO", 9) { 3 } else if sd >= envi("MYBOT_SDHI", 18) { 1 } else { 2 }
+            if sd <= envi("MYBOT_SDLO", 9) {
+                3
+            } else if sd >= envi("MYBOT_SDHI", 18) {
+                1
+            } else {
+                2
+            }
         } else {
             envi("MYBOT_NCHOP", N_CHOPPERS)
         };
@@ -151,10 +176,8 @@ impl Strategy for MyBot {
         // the aRi (2,2,2,1) pattern. Adds printer throughput without touching denial.
         let tender_spec = env_spec("MB_TENDER_SPEC", (1, 2, 2, 1));
         let has_tender = my.iter().any(|u| u.chop == 1 && u.hp >= 2);
-        let want_tender = envi("MB_TENDER", 0) == 1
-            && !want_chopper
-            && !has_tender
-            && n >= 1 + nchop;
+        let want_tender =
+            envi("MB_TENDER", 0) == 1 && !want_chopper && !has_tender && n >= 1 + nchop;
         // MB_HARV_CHOP: harvesters get chop1 (+n+1 iron each) so every fruit troll
         // can also FELL the base farm's young bananas (the tender behavior applies to
         // any chop1+hp>=2 troll). Decoded blueprint: aRi sustains 0.30 wood/turn vs
@@ -171,7 +194,10 @@ impl Strategy for MyBot {
         } else if want_tender && afford(inv, &training_cost(n, tender_spec), have_iron) {
             Some(tender_spec)
         } else {
-            harvesters.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
+            harvesters
+                .iter()
+                .copied()
+                .find(|&s| afford(inv, &training_cost(n, s), have_iron))
         };
         // Mine iron whenever it's the binding constraint for the NEXT troll we'd train
         // (chopper if wanted, else cheapest harvester whose fruit we can already cover).
@@ -182,7 +208,10 @@ impl Strategy for MyBot {
             let next = if want_chopper {
                 Some(chop_spec)
             } else {
-                HARVESTERS.iter().copied().find(|&s| afford_fruit(inv, &training_cost(n, s)))
+                HARVESTERS
+                    .iter()
+                    .copied()
+                    .find(|&s| afford_fruit(inv, &training_cost(n, s)))
             };
             have_iron
                 && (n as usize) < envi("MYBOT_MAX", MAX_TROLLS as i32) as usize
@@ -210,7 +239,10 @@ impl Strategy for MyBot {
         let bootstrap_id: Option<i32> = if has_real_chopper {
             None
         } else {
-            my.iter().filter(|u| u.chop >= 1).max_by_key(|u| (u.cc, -u.id)).map(|u| u.id)
+            my.iter()
+                .filter(|u| u.chop >= 1)
+                .max_by_key(|u| (u.cc, -u.id))
+                .map(|u| u.id)
         };
         let is_chopper = |u: &Unit| -> bool { u.chop >= 2 || Some(u.id) == bootstrap_id };
 
@@ -258,8 +290,11 @@ impl Strategy for MyBot {
             actions.push("MSG Eat your vegetables!".into());
         }
 
-        let base_trees_now =
-            game.plants.iter().filter(|p| manh(p.pos(), shack) <= 3).count();
+        let base_trees_now = game
+            .plants
+            .iter()
+            .filter(|p| manh(p.pos(), shack) <= 3)
+            .count();
 
         for u in &my {
             let is_chopper = is_chopper(u);
@@ -289,7 +324,10 @@ impl Strategy for MyBot {
                             .filter(|c| game.walkable.contains(c))
                             .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
                             .unwrap_or(shack);
-                        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                        cmd_by_id.insert(
+                            u.id,
+                            format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+                        );
                     }
                     continue;
                 }
@@ -364,8 +402,7 @@ impl Strategy for MyBot {
                             })
                     })
                 } else {
-                    (u.carry[PLUM] > 0
-                        && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize)
+                    (u.carry[PLUM] > 0 && orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize)
                         .then_some(PLUM)
                 };
                 if envi("MB_H2O", 1) == 1 && !is_chopper && mix_want.is_some() {
@@ -390,9 +427,13 @@ impl Strategy for MyBot {
                 }
                 if manh(u.pos(), shack) == 1 {
                     let on_tree = game.plants.iter().any(|p| p.pos() == u.pos());
-                    let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= 3).count();
-                    let plum_orchard =
-                        orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize && u.carry[PLUM] > 0;
+                    let base_trees = game
+                        .plants
+                        .iter()
+                        .filter(|p| manh(p.pos(), shack) <= 3)
+                        .count();
+                    let plum_orchard = orchard < envi("MB_ORCHARD", MAX_ORCHARD as i32) as usize
+                        && u.carry[PLUM] > 0;
                     // FRUIT->WOOD conversion (MB_WOODFARM): plant a seed on this empty base
                     // cell so it grows and the chopper later fells it for wood (1pt fruit ->
                     // up to 4*size pts). Prefer BANANA -- it can't fund training, so it's
@@ -405,7 +446,9 @@ impl Strategy for MyBot {
                         && game.turn >= envi("MB_WF_START", 20)
                         && game.turn <= envi("MB_WF_END", 280)
                         && base_trees < envi("MB_WF_MAX", 6) as usize;
-                    if !is_chopper && !on_tree && game.walkable.contains(&u.pos())
+                    if !is_chopper
+                        && !on_tree
+                        && game.walkable.contains(&u.pos())
                         && (plum_orchard || woodfarm)
                     {
                         let ty = if plum_orchard {
@@ -413,7 +456,10 @@ impl Strategy for MyBot {
                         } else if u.carry[3] > 0 {
                             "BANANA"
                         } else {
-                            match (0..4).filter(|&i| u.carry[i] > 0).max_by_key(|&i| u.carry[i]) {
+                            match (0..4)
+                                .filter(|&i| u.carry[i] > 0)
+                                .max_by_key(|&i| u.carry[i])
+                            {
                                 Some(0) => "PLUM",
                                 Some(1) => "LEMON",
                                 Some(2) => "APPLE",
@@ -434,7 +480,10 @@ impl Strategy for MyBot {
                         .filter(|c| game.walkable.contains(c))
                         .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
                         .unwrap_or(shack);
-                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                    cmd_by_id.insert(
+                        u.id,
+                        format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+                    );
                 }
                 continue;
             }
@@ -462,7 +511,9 @@ impl Strategy for MyBot {
             }
 
             // Chopper mines iron when saving and adjacent to it.
-            if need_iron && is_chopper && u.chop > 0
+            if need_iron
+                && is_chopper
+                && u.chop > 0
                 && game.iron.iter().any(|ic| manh(u.pos(), *ic) == 1)
             {
                 cmd_by_id.insert(u.id, format!("MINE {}", u.id));
@@ -515,10 +566,13 @@ impl Strategy for MyBot {
                             .min_by_key(|p| {
                                 let fell = (p.health + u.chop.max(1) - 1) / u.chop.max(1);
                                 let lemon = (p.plant_type == "LEMON") as i32;
-                                let farm_ready =
-                                    (manh(p.pos(), shack) <= 3 && p.size >= 2) as i32;
-                                (d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell
-                                    - lw * lemon - fw * farm_ready, -p.size)
+                                let farm_ready = (manh(p.pos(), shack) <= 3 && p.size >= 2) as i32;
+                                (
+                                    d[&p.pos()] + dw * manh(p.pos(), opp) - wt * p.size + ft * fell
+                                        - lw * lemon
+                                        - fw * farm_ready,
+                                    -p.size,
+                                )
                             })
                             .map(|p| p.pos())
                     })
@@ -526,7 +580,11 @@ impl Strategy for MyBot {
                         if u.hp > 0 {
                             game.plants
                                 .iter()
-                                .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                                .filter(|p| {
+                                    p.fruits > 0
+                                        && !reserved.contains(&p.pos())
+                                        && d.contains_key(&p.pos())
+                                })
                                 .min_by_key(|p| d[&p.pos()])
                                 .map(|p| p.pos())
                         } else {
@@ -535,7 +593,8 @@ impl Strategy for MyBot {
                     })
             } else {
                 let sticky = mem.get(&u.id).copied().filter(|&c| {
-                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
+                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0)
+                        && !reserved.contains(&c)
                 });
                 // Scarcity tie-break (MB_TIE): among ripe trees within `tie` of the
                 // nearest, prefer the type our inventory is SHORTEST on (banana gets a
@@ -544,22 +603,26 @@ impl Strategy for MyBot {
                 // stalls training (diag: avg 2.47/4 trolls; e.g. seed 1 banked 55
                 // apples while plum/lemon starved at 2/1).
                 let tie = envi("MB_TIE", 0); // 0 = exact ties only (== main.rs); 2 tested -2.7pp
-                // MB_LOCAL_R: prefer ripe trees within R of the SHACK (the orchard/farm
-                // cluster) before ranging out — raises fruit-per-move when the base
-                // cluster is productive (field bots' trolls barely leave their half).
+                                             // MB_LOCAL_R: prefer ripe trees within R of the SHACK (the orchard/farm
+                                             // cluster) before ranging out — raises fruit-per-move when the base
+                                             // cluster is productive (field bots' trolls barely leave their half).
                 let local_r = envi("MB_LOCAL_R", 0);
                 let ban_pen = envi("MB_BAN_PEN", 6);
                 let nearest_ripe = |ty: Option<&str>| -> Option<Cell> {
                     let dmin = game
                         .plants
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| {
+                            p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                        })
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
                         .map(|p| d[&p.pos()])
                         .min()?;
                     game.plants
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| {
+                            p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                        })
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
                         .filter(|p| d[&p.pos()] <= dmin + tie)
                         .min_by_key(|p| {
@@ -619,7 +682,9 @@ impl Strategy for MyBot {
                     }
                     game.plants
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| {
+                            p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                        })
                         .filter(|p| manh(p.pos(), shack) <= local_r)
                         .min_by_key(|p| d[&p.pos()])
                         .map(|p| p.pos())

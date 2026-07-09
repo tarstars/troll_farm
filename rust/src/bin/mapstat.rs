@@ -7,7 +7,10 @@ fn manh(a: (i32, i32), b: (i32, i32)) -> i32 {
 }
 
 fn main() {
-    let n: u64 = std::env::args().nth(1).and_then(|s| s.parse().ok()).unwrap_or(200);
+    let n: u64 = std::env::args()
+        .nth(1)
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(200);
     println!("seed shackdist trees water iron w h treedist");
     for s in 0..n {
         let g = generate_bronze(s);
@@ -16,7 +19,11 @@ fn main() {
         let water = g.water.len();
         let iron = g.iron.len();
         let td: f64 = if trees > 0 {
-            g.plants.iter().map(|p| manh(p.pos(), g.shacks[0]) as f64).sum::<f64>() / trees as f64
+            g.plants
+                .iter()
+                .map(|p| manh(p.pos(), g.shacks[0]) as f64)
+                .sum::<f64>()
+                / trees as f64
         } else {
             0.0
         };

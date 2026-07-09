@@ -12,9 +12,39 @@ fn main() {
     let exit = (5, 0);
     // 3 full trolls (carry 2 wood each), lined up in the corridor, nearest first.
     g.units = vec![
-        Unit { id: 0, player: 0, x: 1, y: 0, ms: 1, cc: 2, hp: 1, chop: 1, carry: [0, 0, 0, 0, 0, 2] },
-        Unit { id: 2, player: 0, x: 2, y: 0, ms: 1, cc: 2, hp: 1, chop: 1, carry: [0, 0, 0, 0, 0, 2] },
-        Unit { id: 4, player: 0, x: 3, y: 0, ms: 1, cc: 2, hp: 1, chop: 1, carry: [0, 0, 0, 0, 0, 2] },
+        Unit {
+            id: 0,
+            player: 0,
+            x: 1,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 0, 0, 2],
+        },
+        Unit {
+            id: 2,
+            player: 0,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 0, 0, 2],
+        },
+        Unit {
+            id: 4,
+            player: 0,
+            x: 3,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 0, 0, 2],
+        },
     ];
     g.next_id = 5;
     let banked0 = |g: &troll_farm::game::state::GameState| g.inventories[0][WOOD];
@@ -38,21 +68,47 @@ fn main() {
         }
         step(&mut g, &cmds0, &[]);
         // report
-        let after: Vec<(i32, (i32, i32))> =
-            g.units.iter().filter(|u| u.player == 0).map(|u| (u.id, (u.x, u.y))).collect();
-        let moved = before.iter().filter(|(id, p, _)| {
-            after.iter().find(|(aid, _)| aid == id).map(|(_, ap)| ap != p).unwrap_or(false)
-        }).count();
-        let stuck = before.iter().filter(|(id, p, c)| {
-            *c > 0 // was carrying (intended to move to drop) or empty (intended exit)
+        let after: Vec<(i32, (i32, i32))> = g
+            .units
+            .iter()
+            .filter(|u| u.player == 0)
+            .map(|u| (u.id, (u.x, u.y)))
+            .collect();
+        let moved = before
+            .iter()
+            .filter(|(id, p, _)| {
+                after
+                    .iter()
+                    .find(|(aid, _)| aid == id)
+                    .map(|(_, ap)| ap != p)
+                    .unwrap_or(false)
+            })
+            .count();
+        let stuck = before
+            .iter()
+            .filter(|(id, p, c)| {
+                *c > 0 // was carrying (intended to move to drop) or empty (intended exit)
                 && after.iter().find(|(aid, _)| aid == id).map(|(_, ap)| ap == p).unwrap_or(false)
                 && *p != drop_cell // being at the drop cell + dropping is not "stuck"
-        }).count();
+            })
+            .count();
         println!(
             "t{:2}: {:30} banked={} moved={} stuck(full,not-dropping)={}",
             t,
-            before.iter().map(|(id, p, c)| format!("{}@{},{}{}", id, p.0, p.1, if *c > 0 { "*" } else { "" })).collect::<Vec<_>>().join(" "),
-            banked0(&g), moved, stuck
+            before
+                .iter()
+                .map(|(id, p, c)| format!(
+                    "{}@{},{}{}",
+                    id,
+                    p.0,
+                    p.1,
+                    if *c > 0 { "*" } else { "" }
+                ))
+                .collect::<Vec<_>>()
+                .join(" "),
+            banked0(&g),
+            moved,
+            stuck
         );
         if banked0(&g) >= 6 {
             println!("ALL UNLOADED (6 wood) by end of t{} — {} turns", t, t + 1);

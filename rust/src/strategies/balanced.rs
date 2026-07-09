@@ -20,8 +20,11 @@ impl Strategy for Balanced {
 
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
         let shack = game.shacks[player];
-        let mut mine: Vec<&Unit> =
-            game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut mine: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         mine.sort_by_key(|u| u.id);
         let inv = &game.inventories[player];
         let n = mine.len() as i32;
@@ -39,7 +42,8 @@ impl Strategy for Balanced {
         for u in &mine {
             if Some(u.id) == chopper_id {
                 // mine iron until we have a stockpile, then fell trees for wood
-                if u.free() > 0 && inv[IRON] < 18
+                if u.free() > 0
+                    && inv[IRON] < 18
                     && game.iron.iter().any(|&c| dist(u.pos(), c) == 1)
                 {
                     cmds.push(format!("MINE {}", u.id));
@@ -63,7 +67,12 @@ impl Strategy for Balanced {
                 }
             } else {
                 // harvester
-                if u.free() > 0 && game.plants.iter().any(|p| p.pos() == u.pos() && p.fruits > 0) {
+                if u.free() > 0
+                    && game
+                        .plants
+                        .iter()
+                        .any(|p| p.pos() == u.pos() && p.fruits > 0)
+                {
                     cmds.push(format!("HARVEST {}", u.id));
                     continue;
                 }
@@ -89,7 +98,11 @@ impl Strategy for Balanced {
         // Expand: a powerful chopper first if we don't own one, then strong
         // balanced trolls, then affordable fallbacks (all chop-capable).
         if n < 4 && !mine.iter().any(|u| u.pos() == shack) {
-            let pay: &[usize] = if !game.iron.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+            let pay: &[usize] = if !game.iron.is_empty() {
+                &[0, 1, 2, 4]
+            } else {
+                &[0, 1, 2]
+            };
             let specs: &[(i32, i32, i32, i32)] = if !have_real_chopper {
                 &[(2, 4, 2, 2), (1, 2, 0, 2), (2, 2, 2, 2), (1, 1, 1, 1)]
             } else {

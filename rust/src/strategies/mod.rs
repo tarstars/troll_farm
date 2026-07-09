@@ -2,24 +2,24 @@
 //! GameState + which player it controls to that player's commands for the turn.
 use crate::game::state::GameState;
 
-pub mod gatherer;
-pub mod chopper;
-pub mod harvester;
 pub mod balanced;
-pub mod orchard;
 pub mod boss4;
 pub mod boss5;
 pub mod boss_real;
-pub mod silver_boss;
-pub mod script_boss;
 pub mod boss_v3;
-pub mod printer_bot;
+pub mod chopper;
+pub mod gatherer;
 pub mod gold_elite;
-pub mod sched_bot;
-pub mod rhea_bot;
+pub mod harvester;
 pub mod mybot;
-pub mod search_bot;
+pub mod orchard;
 pub mod planner_strategy;
+pub mod printer_bot;
+pub mod rhea_bot;
+pub mod sched_bot;
+pub mod script_boss;
+pub mod search_bot;
+pub mod silver_boss;
 
 pub trait Strategy {
     fn name(&self) -> &str;
@@ -41,7 +41,9 @@ pub fn bank(id: i32, pos: (i32, i32), shack: (i32, i32)) -> String {
 
 /// Nearest plant position (optionally fruited-only, skipping `reserved`).
 pub fn nearest_plant(
-    game: &GameState, from: (i32, i32), fruited_only: bool,
+    game: &GameState,
+    from: (i32, i32),
+    fruited_only: bool,
     reserved: &std::collections::HashSet<(i32, i32)>,
 ) -> Option<(i32, i32)> {
     let mut best: Option<(i32, (i32, i32))> = None;

@@ -15,8 +15,11 @@ impl Strategy for Chopper {
 
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
         let shack = game.shacks[player];
-        let mut mine: Vec<&crate::game::state::Unit> =
-            game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut mine: Vec<&crate::game::state::Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         mine.sort_by_key(|u| u.id);
         let inv = &game.inventories[player];
         let n = mine.len() as i32;
@@ -48,7 +51,12 @@ impl Strategy for Chopper {
                     None => {}
                 }
             } else {
-                if u.free() > 0 && game.plants.iter().any(|p| p.pos() == u.pos() && p.fruits > 0) {
+                if u.free() > 0
+                    && game
+                        .plants
+                        .iter()
+                        .any(|p| p.pos() == u.pos() && p.fruits > 0)
+                {
                     cmds.push(format!("HARVEST {}", u.id));
                     continue;
                 }
@@ -68,7 +76,11 @@ impl Strategy for Chopper {
         }
 
         if n < 4 && !mine.iter().any(|u| u.pos() == shack) {
-            let pay: &[usize] = if !game.iron.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+            let pay: &[usize] = if !game.iron.is_empty() {
+                &[0, 1, 2, 4]
+            } else {
+                &[0, 1, 2]
+            };
             let specs: &[(i32, i32, i32, i32)] = if !have_chopper {
                 &[(1, 2, 0, 2), (1, 1, 0, 2), (1, 1, 1, 0)]
             } else {

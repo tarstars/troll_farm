@@ -70,13 +70,39 @@ fn base_plan() -> Plan {
 }
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
 }
 fn chopper(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 2,
+        carry_capacity: 2,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    }
 }
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 
 #[test]
@@ -85,8 +111,11 @@ fn hoard_suppresses_fells_without_threat() {
     st.trees = vec![banana(3, 2, 2)];
     st.opp_trolls = vec![chopper(9, 6, 2)];
     let cmds = assign(&st, &base_plan(), &[starter(0, 1, 2), chopper(2, 4, 2)]);
-    assert!(!cmds[&2].starts_with("CHOP") && !cmds[&2].contains("3 2"),
-        "hoard must not fell an unthreatened tree: {}", &cmds[&2]);
+    assert!(
+        !cmds[&2].starts_with("CHOP") && !cmds[&2].contains("3 2"),
+        "hoard must not fell an unthreatened tree: {}",
+        &cmds[&2]
+    );
 }
 
 #[test]
@@ -95,8 +124,11 @@ fn hoard_denial_emergency_fells_threatened_tree() {
     st.trees = vec![banana(3, 2, 2)];
     st.opp_trolls = vec![chopper(9, 4, 2)]; // enemy 1 step from the tree
     let cmds = assign(&st, &base_plan(), &[starter(0, 1, 2), chopper(2, 4, 2)]);
-    assert!(cmds[&2] == "CHOP 2" || cmds[&2].contains("3 2"),
-        "threatened tree must be denial-felled: {}", &cmds[&2]);
+    assert!(
+        cmds[&2] == "CHOP 2" || cmds[&2].contains("3 2"),
+        "threatened tree must be denial-felled: {}",
+        &cmds[&2]
+    );
 }
 
 // B2.1 gatekeeper fix (Scale meta, wood=0 in 12/12 games): during Hoard, the wallet band
@@ -137,7 +169,15 @@ fn hoard_targets_deficit_fruit_over_nearby_fruit() {
     let mut st = base_state();
     let mut nearby = banana(3, 2, 4);
     nearby.fruits = 3; // ripe, but BANANA is not a funding type (ge_fruit_ty >= 3)
-    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    let distant = Tree {
+        tree_type: "PLUM".into(),
+        x: 6,
+        y: 2,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    };
     st.trees = vec![nearby, distant];
     let mut plan = base_plan();
     plan.phase = Phase::Hoard;
@@ -164,7 +204,15 @@ fn hoard_targets_deficit_fruit_over_nearby_fruit() {
 fn hoard_iron_beats_deficit_fruit() {
     let mut st = base_state();
     st.iron_cells.insert((5, 2));
-    let plum = Tree { tree_type: "PLUM".into(), x: 3, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    let plum = Tree {
+        tree_type: "PLUM".into(),
+        x: 3,
+        y: 2,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    };
     st.trees = vec![plum];
     let mut plan = base_plan();
     plan.phase = Phase::Hoard;
@@ -197,7 +245,15 @@ fn factory_grace_keeps_funding_until_ladder_done() {
     let mut st = base_state();
     let mut nearby = banana(3, 2, 4);
     nearby.fruits = 3; // ripe, non-funding type — competes via the Printer band (48)
-    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    let distant = Tree {
+        tree_type: "PLUM".into(),
+        x: 6,
+        y: 2,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    };
     st.trees = vec![nearby, distant];
     let mut plan = base_plan();
     plan.phase = Phase::Factory;
@@ -225,7 +281,15 @@ fn tempo_ladder_funding_treks_to_deficit_fruit() {
     let mut st = base_state();
     let mut nearby = banana(3, 2, 4);
     nearby.fruits = 3; // ripe, but BANANA is not a funding type (ge_fruit_ty >= 3)
-    let distant = Tree { tree_type: "PLUM".into(), x: 6, y: 2, size: 4, health: 6, fruits: 3, cooldown: 0 };
+    let distant = Tree {
+        tree_type: "PLUM".into(),
+        x: 6,
+        y: 2,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    };
     st.trees = vec![nearby, distant];
     let mut plan = base_plan();
     plan.phase = Phase::Tempo;

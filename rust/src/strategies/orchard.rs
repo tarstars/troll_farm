@@ -35,8 +35,11 @@ impl Strategy for Orchard {
     fn decide(&self, game: &GameState, player: usize) -> Vec<String> {
         let shack = game.shacks[player];
         let inv = &game.inventories[player];
-        let mut mine: Vec<&Unit> =
-            game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut mine: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         mine.sort_by_key(|u| u.id);
         let n = mine.len() as i32;
 
@@ -53,7 +56,11 @@ impl Strategy for Orchard {
         // turn-1 move. Below that bar, everyone harvests (so a 1-troll start grows
         // its fleet first, instead of starving on plant cycles).
         let need_orchard = !empty_orchard.is_empty() && inv[BANANA] >= 4 && n >= 3;
-        let planter_id = if need_orchard { mine.last().map(|u| u.id) } else { None };
+        let planter_id = if need_orchard {
+            mine.last().map(|u| u.id)
+        } else {
+            None
+        };
 
         let mut cmds = Vec::new();
         let mut reserved: HashSet<(i32, i32)> = HashSet::new();
@@ -87,7 +94,12 @@ impl Strategy for Orchard {
                 continue;
             }
             // Harvester
-            if u.free() > 0 && game.plants.iter().any(|p| p.pos() == u.pos() && p.fruits > 0) {
+            if u.free() > 0
+                && game
+                    .plants
+                    .iter()
+                    .any(|p| p.pos() == u.pos() && p.fruits > 0)
+            {
                 cmds.push(format!("HARVEST {}", u.id));
                 continue;
             }
@@ -111,7 +123,11 @@ impl Strategy for Orchard {
 
         // Expand to 4 fast harvesters; cheapest affordable spec wins (iron-aware pay).
         if n < 4 && !mine.iter().any(|u| u.pos() == shack) {
-            let pay: &[usize] = if !game.iron.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+            let pay: &[usize] = if !game.iron.is_empty() {
+                &[0, 1, 2, 4]
+            } else {
+                &[0, 1, 2]
+            };
             for &spec in [(2, 2, 2, 0), (1, 2, 1, 0), (1, 1, 1, 0)].iter() {
                 let cost = training_cost(n, spec);
                 if pay.iter().all(|&i| inv[i] >= cost[i]) {

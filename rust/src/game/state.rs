@@ -100,7 +100,11 @@ pub fn from_ascii(rows: &[&str]) -> GameState {
 
 pub fn from_ascii_with_talents(rows: &[&str], talents: (i32, i32, i32, i32)) -> GameState {
     let height = rows.len() as i32;
-    let width = if rows.is_empty() { 0 } else { rows[0].len() as i32 };
+    let width = if rows.is_empty() {
+        0
+    } else {
+        rows[0].len() as i32
+    };
     let mut walkable: HashSet<Cell> = HashSet::new();
     let mut iron: HashSet<Cell> = HashSet::new();
     let mut water: HashSet<Cell> = HashSet::new();
@@ -110,12 +114,22 @@ pub fn from_ascii_with_talents(rows: &[&str], talents: (i32, i32, i32, i32)) -> 
         for (x, ch) in row.chars().enumerate() {
             let cell = (x as i32, y as i32);
             match ch {
-                '0' => { shacks[0] = cell; }
-                '1' => { shacks[1] = cell; }
-                '+' => { iron.insert(cell); }
-                '~' => { water.insert(cell); }
+                '0' => {
+                    shacks[0] = cell;
+                }
+                '1' => {
+                    shacks[1] = cell;
+                }
+                '+' => {
+                    iron.insert(cell);
+                }
+                '~' => {
+                    water.insert(cell);
+                }
                 '#' => { /* wall, skip */ }
-                _ => { walkable.insert(cell); }
+                _ => {
+                    walkable.insert(cell);
+                }
             }
         }
     }

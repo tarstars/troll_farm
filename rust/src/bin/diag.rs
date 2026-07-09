@@ -5,7 +5,7 @@
 //!
 //! Usage: `cargo run --release --bin diag -- <botA> <botB> [seeds]`
 //!        defaults: planner gatherer 100
-use troll_farm::game::engine::{step, recompute_scores, WOOD};
+use troll_farm::game::engine::{recompute_scores, step, WOOD};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::game::state::GameState;
 use troll_farm::strategies::{roster, Strategy};
@@ -16,8 +16,8 @@ struct Stat {
     wins: i64,
     score: i64,
     trolls: i64,
-    wood: i64,   // units of wood banked (each worth 4 pts)
-    fruit: i64,  // banked PLUM+LEMON+APPLE+BANANA (1 pt each)
+    wood: i64,  // units of wood banked (each worth 4 pts)
+    fruit: i64, // banked PLUM+LEMON+APPLE+BANANA (1 pt each)
 }
 
 impl Stat {
@@ -65,8 +65,14 @@ fn main() {
     let seeds: u64 = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(100);
 
     let bots = roster();
-    let ia = bots.iter().position(|x| x.name() == name_a).expect("unknown botA");
-    let ib = bots.iter().position(|x| x.name() == name_b).expect("unknown botB");
+    let ia = bots
+        .iter()
+        .position(|x| x.name() == name_a)
+        .expect("unknown botA");
+    let ib = bots
+        .iter()
+        .position(|x| x.name() == name_b)
+        .expect("unknown botB");
     let (a, b) = (&*bots[ia], &*bots[ib]);
 
     let mut sa = Stat::default();
@@ -89,18 +95,33 @@ fn main() {
         }
     }
 
-    println!("=== diag: {} vs {} | {} seeds x2 sides = {} games each ===",
-             name_a, name_b, seeds, sa.games);
-    println!("{:<12}{:>8}{:>9}{:>10}{:>10}{:>10}",
-             "bot", "score", "trolls", "fruit", "wood*4", "winrate");
+    println!(
+        "=== diag: {} vs {} | {} seeds x2 sides = {} games each ===",
+        name_a, name_b, seeds, sa.games
+    );
+    println!(
+        "{:<12}{:>8}{:>9}{:>10}{:>10}{:>10}",
+        "bot", "score", "trolls", "fruit", "wood*4", "winrate"
+    );
     println!("{}", sa.line(&name_a));
     println!("{}", sb.line(&name_b));
 
     if std::env::var("SHOW_LOSSES").is_ok() {
         losses.sort_by_key(|l| l.2 - l.3); // worst (most negative) margin first
-        println!("\n{} losses/ties ({}): seed(side) a_score-b_score [margin]", name_a, losses.len());
+        println!(
+            "\n{} losses/ties ({}): seed(side) a_score-b_score [margin]",
+            name_a,
+            losses.len()
+        );
         for (seed, side, a, b) in losses.iter().take(14) {
-            println!("  seed {:>3}(p{}) {:>3}-{:<3} [{:+}]", seed, side, a, b, a - b);
+            println!(
+                "  seed {:>3}(p{}) {:>3}-{:<3} [{:+}]",
+                seed,
+                side,
+                a,
+                b,
+                a - b
+            );
         }
     }
 }

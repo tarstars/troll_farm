@@ -38,7 +38,9 @@ pub struct ScriptBoss {
 
 impl ScriptBoss {
     pub fn new() -> Self {
-        ScriptBoss { mem: RefCell::new(HashMap::new()) }
+        ScriptBoss {
+            mem: RefCell::new(HashMap::new()),
+        }
     }
 }
 
@@ -46,7 +48,12 @@ fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -86,7 +93,11 @@ impl Strategy for ScriptBoss {
         let inv = &game.inventories[player];
         let have_iron = !game.iron.is_empty();
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -142,7 +153,9 @@ impl Strategy for ScriptBoss {
                 if let Some(c) = game
                     .walkable
                     .iter()
-                    .filter(|c| manh(**c, shack) <= 2 && !game.plants.iter().any(|p| p.pos() == **c))
+                    .filter(|c| {
+                        manh(**c, shack) <= 2 && !game.plants.iter().any(|p| p.pos() == **c)
+                    })
                     .filter(|c| d.contains_key(*c))
                     .min_by_key(|c| d[*c])
                 {
@@ -166,7 +179,10 @@ impl Strategy for ScriptBoss {
                         .filter(|c| game.walkable.contains(c))
                         .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
                         .unwrap_or(shack);
-                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                    cmd_by_id.insert(
+                        u.id,
+                        format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+                    );
                 }
                 continue;
             }
@@ -215,18 +231,25 @@ impl Strategy for ScriptBoss {
                     .or_else(|| {
                         game.plants
                             .iter()
-                            .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                            .filter(|p| {
+                                p.fruits > 0
+                                    && !reserved.contains(&p.pos())
+                                    && d.contains_key(&p.pos())
+                            })
                             .min_by_key(|p| d[&p.pos()])
                             .map(|p| p.pos())
                     })
             } else {
                 let sticky = mem.get(&u.id).copied().filter(|&c| {
-                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0) && !reserved.contains(&c)
+                    game.plants.iter().any(|p| p.pos() == c && p.fruits > 0)
+                        && !reserved.contains(&c)
                 });
                 let nearest_ripe = |ty: Option<&str>, local_only: bool| -> Option<Cell> {
                     game.plants
                         .iter()
-                        .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                        .filter(|p| {
+                            p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                        })
                         .filter(|p| !local_only || manh(p.pos(), shack) <= LOCAL_R)
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
                         .min_by_key(|p| d[&p.pos()])

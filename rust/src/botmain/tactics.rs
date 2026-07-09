@@ -7,10 +7,17 @@ use std::cell::RefCell;
 use std::collections::HashSet;
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
-pub enum Meta { Tempo, Scale }
+pub enum Meta {
+    Tempo,
+    Scale,
+}
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
-pub enum Phase { Tempo, Hoard, Factory }
+pub enum Phase {
+    Tempo,
+    Hoard,
+    Factory,
+}
 
 /// Scale meta: hoard (no felling, bank the wallet) until T_SWITCH, then the factory.
 // Swept down per gatekeeper verdict #4 — hoarding until t=140 cedes the shared map to
@@ -30,7 +37,11 @@ pub fn phase_for(meta: Meta, turn: i32) -> Phase {
     match meta {
         Meta::Tempo => Phase::Tempo,
         Meta::Scale => {
-            if turn < T_SWITCH { Phase::Hoard } else { Phase::Factory }
+            if turn < T_SWITCH {
+                Phase::Hoard
+            } else {
+                Phase::Factory
+            }
         }
     }
 }
@@ -152,10 +163,17 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         // hand never trains (wood=0 the entire game, confirmed 12/12 in the gatekeeper report).
         let need_iron = have_iron && inv[IRON] < 7;
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
-        (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
+        (
+            want_chopper,
+            want_feeder,
+            train_spec,
+            cost,
+            train_now,
+            need_iron,
+            need_fund,
+        )
     } else {
-        let want_chopper =
-            nchop == 0 && (state.turn >= GE_CHOP_DELAY || farm_now >= GE_CHOP_FARM);
+        let want_chopper = nchop == 0 && (state.turn >= GE_CHOP_DELAY || farm_now >= GE_CHOP_FARM);
         let want_feeder = nchop >= 1
             && n < GE_MAX_TROLLS
             && state.turn >= GE_FEEDER_T
@@ -164,18 +182,26 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let cost = training_cost(n, train_spec);
         let train_now = (want_chopper || want_feeder) && mb_afford(inv, &cost, have_iron);
         let want_chopper = want_chopper; // (kept: need_iron/need_fund below key off the pending hand)
-        // iron-gated: fruit is ready but we still lack the iron for the PENDING HAND — the
-        // chopper OR the feeder. T-hand.1 (gatekeeper v1.35.0 verdict, fix a): this used to be
-        // want_chopper-only, so iron mining stopped FOREVER the instant the chopper trained,
-        // permanently starving any later pending hand of its flat cost[IRON]=n training cost
-        // (every spec carries it) on every iron-bearing map — 12/12 sampled by the gatekeeper.
+                                         // iron-gated: fruit is ready but we still lack the iron for the PENDING HAND — the
+                                         // chopper OR the feeder. T-hand.1 (gatekeeper v1.35.0 verdict, fix a): this used to be
+                                         // want_chopper-only, so iron mining stopped FOREVER the instant the chopper trained,
+                                         // permanently starving any later pending hand of its flat cost[IRON]=n training cost
+                                         // (every spec carries it) on every iron-bearing map — 12/12 sampled by the gatekeeper.
         let need_iron = have_iron
             && (want_chopper || want_feeder)
             && inv[IRON] < cost[IRON]
             && afford_fruit_only(inv, &cost);
         // which fruit types still block the pending hand (funding targets)
         let need_fund: [bool; 3] = [inv[0] < cost[0], inv[1] < cost[1], inv[2] < cost[2]];
-        (want_chopper, want_feeder, train_spec, cost, train_now, need_iron, need_fund)
+        (
+            want_chopper,
+            want_feeder,
+            train_spec,
+            cost,
+            train_now,
+            need_iron,
+            need_fund,
+        )
     };
 
     // ── farm config ─────────────────────────────────────────────────────────
@@ -191,13 +217,23 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     // funds a bigger farm — 20 slots instead of 12 — so the plant-and-fell loop has room to grow
     // with the trained hand ladder. Hoard/Tempo are unchanged (econ_b is a permanent `false`, so
     // they fall through to GE_FARM_MAX=12).
-    let farm_cap = if phase == Phase::Factory { 20 } else if econ_b { 20 } else { GE_FARM_MAX };
+    let farm_cap = if phase == Phase::Factory {
+        20
+    } else if econ_b {
+        20
+    } else {
+        GE_FARM_MAX
+    };
     let fell_size = GE_FELL_SIZE; // NATIVE/contested trees: always size-2 = DENIAL
     let farm_fell = if econ_b { 3 } else { 2 }; // OUR farm bananas: size-3 in econ B, size-2 in A
     let chop_r = if econ_b { 10 } else { GE_CHOP_R }; // econ B roams a bigger farm; A stays tight
     let starter_chop = GE_STARTER_CHOP;
     let liquidation = turns_rem <= GE_LIQ_T;
-    let base_trees = state.trees.iter().filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r)).count();
+    let base_trees = state
+        .trees
+        .iter()
+        .filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r))
+        .count();
 
     // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
     // Trees only fruit at MAX_SIZE(4); felling farm bananas at size 2 means they
@@ -210,7 +246,9 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         let mut fb: Vec<&Tree> = state
             .trees
             .iter()
-            .filter(|p| p.tree_type == "BANANA" && farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r))
+            .filter(|p| {
+                p.tree_type == "BANANA" && farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r)
+            })
             .collect();
         fb.sort_by_key(|p| (-p.size, -p.fruits, manhattan(p.pos(), shack), p.pos()));
         for p in fb.into_iter().take(GE_SEED_RESERVE) {
@@ -219,9 +257,31 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     }
 
     Plan {
-        shack, farm_d, opp, have_iron, turns_rem, n, farm_now, nchop, spec, want_chopper,
-        want_feeder, train_spec, cost, train_now, need_iron, need_fund, farm_r, farm_cap,
-        fell_size, farm_fell, chop_r, starter_chop, liquidation, base_trees, seed_cells,
+        shack,
+        farm_d,
+        opp,
+        have_iron,
+        turns_rem,
+        n,
+        farm_now,
+        nchop,
+        spec,
+        want_chopper,
+        want_feeder,
+        train_spec,
+        cost,
+        train_now,
+        need_iron,
+        need_fund,
+        farm_r,
+        farm_cap,
+        fell_size,
+        farm_fell,
+        chop_r,
+        starter_chop,
+        liquidation,
+        base_trees,
+        seed_cells,
         phase,
     }
 }

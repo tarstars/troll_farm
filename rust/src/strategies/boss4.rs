@@ -22,8 +22,11 @@ impl Strategy for Boss4 {
         let shack = game.shacks[player];
         let opp_shack = game.shacks[1 - player];
         let inv = &game.inventories[player];
-        let mut mine: Vec<&Unit> =
-            game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut mine: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         mine.sort_by_key(|u| u.id);
         let n = mine.len() as i32;
 
@@ -72,7 +75,11 @@ impl Strategy for Boss4 {
         // Expand to 4, fast choppers first (Boss buys them turn 1-2 from starting PLUM),
         // then a powerful cc-4 chopper, then cheaper fallbacks.
         if n < 4 && !mine.iter().any(|u| u.pos() == shack) {
-            let pay: &[usize] = if !game.iron.is_empty() { &[0, 1, 2, 4] } else { &[0, 1, 2] };
+            let pay: &[usize] = if !game.iron.is_empty() {
+                &[0, 1, 2, 4]
+            } else {
+                &[0, 1, 2]
+            };
             let specs: &[(i32, i32, i32, i32)] =
                 &[(2, 2, 1, 2), (2, 4, 2, 2), (1, 2, 1, 2), (1, 1, 1, 0)];
             for &spec in specs {

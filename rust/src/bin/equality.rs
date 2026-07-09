@@ -79,8 +79,14 @@ fn turn_block(g: &GameState, seat: usize) -> String {
     let mut s = String::new();
     let me = &g.inventories[seat];
     let op = &g.inventories[1 - seat];
-    s.push_str(&format!("{} {} {} {} {} {}\n", me[0], me[1], me[2], me[3], me[4], me[5]));
-    s.push_str(&format!("{} {} {} {} {} {}\n", op[0], op[1], op[2], op[3], op[4], op[5]));
+    s.push_str(&format!(
+        "{} {} {} {} {} {}\n",
+        me[0], me[1], me[2], me[3], me[4], me[5]
+    ));
+    s.push_str(&format!(
+        "{} {} {} {} {} {}\n",
+        op[0], op[1], op[2], op[3], op[4], op[5]
+    ));
     s.push_str(&format!("{}\n", g.plants.len()));
     for p in &g.plants {
         s.push_str(&format!(
@@ -93,8 +99,20 @@ fn turn_block(g: &GameState, seat: usize) -> String {
         let rel = if u.player as usize == seat { 0 } else { 1 };
         s.push_str(&format!(
             "{} {} {} {} {} {} {} {} {} {} {} {} {} {}\n",
-            u.id, rel, u.x, u.y, u.ms, u.cc, u.hp, u.chop,
-            u.carry[0], u.carry[1], u.carry[2], u.carry[3], u.carry[4], u.carry[5]
+            u.id,
+            rel,
+            u.x,
+            u.y,
+            u.ms,
+            u.cc,
+            u.hp,
+            u.chop,
+            u.carry[0],
+            u.carry[1],
+            u.carry[2],
+            u.carry[3],
+            u.carry[4],
+            u.carry[5]
         ));
     }
     s
@@ -122,7 +140,11 @@ fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i32) 
     bot.send(&format!("{} {}\n{}\n", g.width, g.height, rows.join("\n")));
     let mut reader = BufReader::new(bot.child.stdout.take().unwrap());
 
-    let mut opp = if opp_path == "WAIT" { None } else { Some(Bot::spawn(opp_path)) };
+    let mut opp = if opp_path == "WAIT" {
+        None
+    } else {
+        Some(Bot::spawn(opp_path))
+    };
     let mut opp_reader = opp.as_mut().map(|o| {
         let rows = grid_rows(&g, 1 - seat);
         o.send(&format!("{} {}\n{}\n", g.width, g.height, rows.join("\n")));
@@ -185,7 +207,12 @@ fn main() {
                     .zip(lb.iter())
                     .position(|(a, b)| a != b)
                     .unwrap_or_else(|| la.len().min(lb.len()));
-                eprintln!("DIVERGE seed={seed} seat={seat} turn={} ({} vs {} turns)", t + 1, la.len(), lb.len());
+                eprintln!(
+                    "DIVERGE seed={seed} seat={seat} turn={} ({} vs {} turns)",
+                    t + 1,
+                    la.len(),
+                    lb.len()
+                );
                 eprintln!("  A: {}", la.get(t).map(String::as_str).unwrap_or("<none>"));
                 eprintln!("  B: {}", lb.get(t).map(String::as_str).unwrap_or("<none>"));
                 if divergent >= 5 {
@@ -196,7 +223,12 @@ fn main() {
             }
         }
         if (seed + 1) % 50 == 0 {
-            eprintln!("  … {} seeds done ({} games), divergent so far: {}", seed + 1, games, divergent);
+            eprintln!(
+                "  … {} seeds done ({} games), divergent so far: {}",
+                seed + 1,
+                games,
+                divergent
+            );
         }
     }
     if divergent == 0 {

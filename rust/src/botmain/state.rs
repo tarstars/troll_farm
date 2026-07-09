@@ -61,7 +61,12 @@ impl Troll {
         self.carry_capacity - self.total_carried()
     }
     pub fn stats(&self) -> (i32, i32, i32, i32) {
-        (self.movement_speed, self.carry_capacity, self.harvest_power, self.chop_power)
+        (
+            self.movement_speed,
+            self.carry_capacity,
+            self.harvest_power,
+            self.chop_power,
+        )
     }
 }
 
@@ -181,7 +186,10 @@ pub fn tie_salt(state: &State) -> u64 {
     let (ox, oy) = state.opp_shack;
     let mut h = 0x9E37_79B9_7F4A_7C15u64;
     for v in [
-        sx as u64, sy as u64, ox as u64, oy as u64,
+        sx as u64,
+        sy as u64,
+        ox as u64,
+        oy as u64,
         state.walkable.len() as u64,
         state.water_cells.len() as u64,
         state.iron_cells.len() as u64,

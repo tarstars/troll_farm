@@ -14,7 +14,10 @@ fn verb(cmd: &str) -> &str {
 /// ASCII map at the current state: terrain + shacks + trees (lowercase) + trolls
 /// (digits = player). Reveals chokepoints/pockets that wedge trolls.
 fn render_map(g: &troll_farm::game::state::GameState) {
-    println!("--- map @ turn 250 (shack0={:?} shack1={:?}) ---", g.shacks[0], g.shacks[1]);
+    println!(
+        "--- map @ turn 250 (shack0={:?} shack1={:?}) ---",
+        g.shacks[0], g.shacks[1]
+    );
     for y in 0..g.height {
         let mut row = String::new();
         for x in 0..g.width {
@@ -56,9 +59,9 @@ fn main() {
 
     let mut g = generate_bronze(seed);
     let mut hist: BTreeMap<String, i64> = BTreeMap::new();
-    let mut idle_turns: i64 = 0;     // troll-turns spent on WAIT or move-to-self
-    let mut troll_turns: i64 = 0;    // total troll-turns (sum of troll count each turn)
-    let mut phase_wait = [0i64; 3];  // WAIT counts in early/mid/late thirds
+    let mut idle_turns: i64 = 0; // troll-turns spent on WAIT or move-to-self
+    let mut troll_turns: i64 = 0; // total troll-turns (sum of troll count each turn)
+    let mut phase_wait = [0i64; 3]; // WAIT counts in early/mid/late thirds
 
     let wi = who as i32;
     for t in 0..300 {
@@ -75,8 +78,10 @@ fn main() {
                 idle_turns += 1;
             } else if parts[0] == "MOVE" && parts.len() >= 4 {
                 if let Ok(id) = parts[1].parse::<i32>() {
-                    let (x, y): (i32, i32) =
-                        (parts[2].parse().unwrap_or(-1), parts[3].parse().unwrap_or(-1));
+                    let (x, y): (i32, i32) = (
+                        parts[2].parse().unwrap_or(-1),
+                        parts[3].parse().unwrap_or(-1),
+                    );
                     if let Some(u) = g.units.iter().find(|u| u.id == id) {
                         if (u.x, u.y) == (x, y) {
                             idle_turns += 1;
@@ -100,11 +105,23 @@ fn main() {
             render_map(&g);
         }
 
-        let phase = if t < 100 { 0 } else if t < 200 { 1 } else { 2 };
+        let phase = if t < 100 {
+            0
+        } else if t < 200 {
+            1
+        } else {
+            2
+        };
         phase_wait[phase] += cw.iter().filter(|c| c.starts_with("WAIT")).count() as i64;
 
         if t < 12 || (t >= 200 && t < 212) || t >= 288 {
-            println!("t{:<3} s{:<3} n{} | {}", t + 1, g.scores[who], nw, cw.join("; "));
+            println!(
+                "t{:<3} s{:<3} n{} | {}",
+                t + 1,
+                g.scores[who],
+                nw,
+                cw.join("; ")
+            );
         }
         step(&mut g, &c0, &c1);
         // Real referee: game ends when no plants remain.
@@ -113,17 +130,25 @@ fn main() {
             break;
         }
     }
-    println!("WAITs by phase: early(1-100)={} mid(101-200)={} late(201-300)={}",
-             phase_wait[0], phase_wait[1], phase_wait[2]);
+    println!(
+        "WAITs by phase: early(1-100)={} mid(101-200)={} late(201-300)={}",
+        phase_wait[0], phase_wait[1], phase_wait[2]
+    );
 
     let traced = if who == 0 { &na } else { &nb };
     println!("\n--- {} (p{}) over seed {} ---", traced, who, seed);
-    println!("final: score {} ({} fruit + {} wood*4), trolls {}",
-             g.scores[who],
-             g.inventories[who][0..4].iter().sum::<i32>(),
-             4 * g.inventories[who][WOOD],
-             g.units.iter().filter(|u| u.player == wi).count());
+    println!(
+        "final: score {} ({} fruit + {} wood*4), trolls {}",
+        g.scores[who],
+        g.inventories[who][0..4].iter().sum::<i32>(),
+        4 * g.inventories[who][WOOD],
+        g.units.iter().filter(|u| u.player == wi).count()
+    );
     println!("verb histogram: {:?}", hist);
-    println!("idle troll-turns: {}/{} ({:.0}%)",
-             idle_turns, troll_turns, 100.0 * idle_turns as f64 / troll_turns.max(1) as f64);
+    println!(
+        "idle troll-turns: {}/{} ({:.0}%)",
+        idle_turns,
+        troll_turns,
+        100.0 * idle_turns as f64 / troll_turns.max(1) as f64
+    );
 }

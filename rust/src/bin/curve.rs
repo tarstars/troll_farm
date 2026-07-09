@@ -2,7 +2,7 @@
 //! turns, the average plants remaining, fruited plants, and each side's banked
 //! score / wood / fruit. Reveals whether games deplete all trees (scorched-earth
 //! race) and where value accumulates. Usage: curve [A] [B] [seeds]
-use troll_farm::game::engine::{step, recompute_scores, WOOD};
+use troll_farm::game::engine::{recompute_scores, step, WOOD};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::roster;
 
@@ -31,8 +31,10 @@ fn main() {
 
     for seat in 0..2 {
         for s in 0..seeds {
-            let (p0, p1): (&dyn troll_farm::strategies::Strategy, &dyn troll_farm::strategies::Strategy) =
-                if seat == 0 { (a, b) } else { (b, a) };
+            let (p0, p1): (
+                &dyn troll_farm::strategies::Strategy,
+                &dyn troll_farm::strategies::Strategy,
+            ) = if seat == 0 { (a, b) } else { (b, a) };
             let us = seat; // A's player index
             let them = 1 - seat;
             let mut g = generate_bronze(s);
@@ -59,13 +61,26 @@ fn main() {
         }
     }
 
-    println!("=== curve: {} (A) vs {} (B) | {} seeds x2 seats = {} games ===", na, nb, seeds, n as i64);
-    println!("{:>5} {:>8} {:>8} | {:>8} {:>7} {:>7} | {:>8} {:>7} {:>7}",
-        "turn", "plants", "fruited", "A_score", "A_wood", "A_frt", "B_score", "B_wood", "B_frt");
+    println!(
+        "=== curve: {} (A) vs {} (B) | {} seeds x2 seats = {} games ===",
+        na, nb, seeds, n as i64
+    );
+    println!(
+        "{:>5} {:>8} {:>8} | {:>8} {:>7} {:>7} | {:>8} {:>7} {:>7}",
+        "turn", "plants", "fruited", "A_score", "A_wood", "A_frt", "B_score", "B_wood", "B_frt"
+    );
     for i in 0..SAMPLE.len() {
-        println!("{:>5} {:>8.1} {:>8.1} | {:>8.1} {:>7.1} {:>7.1} | {:>8.1} {:>7.1} {:>7.1}",
-            SAMPLE[i], nplants[i] / n, fruited[i] / n,
-            a_score[i] / n, a_wood[i] / n, a_fruit[i] / n,
-            b_score[i] / n, b_wood[i] / n, b_fruit[i] / n);
+        println!(
+            "{:>5} {:>8.1} {:>8.1} | {:>8.1} {:>7.1} {:>7.1} | {:>8.1} {:>7.1} {:>7.1}",
+            SAMPLE[i],
+            nplants[i] / n,
+            fruited[i] / n,
+            a_score[i] / n,
+            a_wood[i] / n,
+            a_fruit[i] / n,
+            b_score[i] / n,
+            b_wood[i] / n,
+            b_fruit[i] / n
+        );
     }
 }

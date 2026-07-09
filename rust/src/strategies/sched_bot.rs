@@ -18,8 +18,7 @@ const MAX_TROLLS: usize = 4;
 const CHOPPER_SPEC: (i32, i32, i32, i32) = (2, 2, 0, 2);
 const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
-const HARVESTERS_CHOP1: [(i32, i32, i32, i32); 3] =
-    [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)]; // +n+1 iron each; every troll mows
+const HARVESTERS_CHOP1: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 1), (1, 2, 2, 1), (1, 1, 1, 1)]; // +n+1 iron each; every troll mows
 
 pub struct SchedBot {
     mem: RefCell<HashMap<i32, Cell>>, // last target cell per troll (sticky hysteresis)
@@ -28,22 +27,36 @@ pub struct SchedBot {
 
 impl SchedBot {
     pub fn new() -> Self {
-        SchedBot { mem: RefCell::new(HashMap::new()), picked_at: RefCell::new(HashMap::new()) }
+        SchedBot {
+            mem: RefCell::new(HashMap::new()),
+            picked_at: RefCell::new(HashMap::new()),
+        }
     }
 }
 
 fn envf(name: &str, d: f64) -> f64 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 
 fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -77,10 +90,10 @@ enum Task {
     Bank,
     Fell(Cell),
     Harvest(Cell),
-    Mine(Cell),   // iron-adjacent cell to stand on
+    Mine(Cell),         // iron-adjacent cell to stand on
     Print(Cell, usize), // base cell + fruit index to plant (species follows the spot)
-    Orchard(Cell), // water-adjacent base cell to plant a carried PLUM on (+3pp feature)
-    PickSeed(usize), // pick this fruit index at the shack for the next crop
+    Orchard(Cell),      // water-adjacent base cell to plant a carried PLUM on (+3pp feature)
+    PickSeed(usize),    // pick this fruit index at the shack for the next crop
 }
 
 impl Strategy for SchedBot {
@@ -99,7 +112,11 @@ impl Strategy for SchedBot {
         let have_iron = !game.iron.is_empty();
         let turns_rem = TOTAL_TURNS - game.turn + 1;
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -114,15 +131,17 @@ impl Strategy for SchedBot {
         // Harvester fallback OFF by default (SB_HARVEST=1 restores it) — vs real Boss 5 the
         // harvesters hoarded useless fruit (apple->47) while wood stalled; choppers-only turns
         // those into steady chop economies. Kept as an A/B knob to measure the sim's transfer bias.
-        let train_now: Option<(i32, i32, i32, i32)> = if want_chopper
-            && afford(inv, &training_cost(n, CHOPPER_SPEC), have_iron)
-        {
-            Some(CHOPPER_SPEC)
-        } else if envi("SB_HARVEST", 0) == 1 {
-            harvesters.iter().copied().find(|&s| afford(inv, &training_cost(n, s), have_iron))
-        } else {
-            None
-        };
+        let train_now: Option<(i32, i32, i32, i32)> =
+            if want_chopper && afford(inv, &training_cost(n, CHOPPER_SPEC), have_iron) {
+                Some(CHOPPER_SPEC)
+            } else if envi("SB_HARVEST", 0) == 1 {
+                harvesters
+                    .iter()
+                    .copied()
+                    .find(|&s| afford(inv, &training_cost(n, s), have_iron))
+            } else {
+                None
+            };
         let need_iron = have_iron
             && want_chopper
             && inv[IRON] < training_cost(n, CHOPPER_SPEC)[IRON]
@@ -132,7 +151,10 @@ impl Strategy for SchedBot {
         let bootstrap_id: Option<i32> = if has_real_chopper {
             None
         } else {
-            my.iter().filter(|u| u.chop >= 1).max_by_key(|u| (u.cc, -u.id)).map(|u| u.id)
+            my.iter()
+                .filter(|u| u.chop >= 1)
+                .max_by_key(|u| (u.cc, -u.id))
+                .map(|u| u.id)
         };
 
         // knobs (v0 defaults hand-set; sweep later)
@@ -142,7 +164,11 @@ impl Strategy for SchedBot {
         let wf_cap = envi("SB_WF_MAX", 13) as usize;
         let span = (game.width + game.height) as f64;
 
-        let base_trees = game.plants.iter().filter(|p| manh(p.pos(), shack) <= base_r).count();
+        let base_trees = game
+            .plants
+            .iter()
+            .filter(|p| manh(p.pos(), shack) <= base_r)
+            .count();
         // Which fruit types block the next (cheapest-harvester) train?
         let next_cost = training_cost(n, HARVESTERS[HARVESTERS.len() - 1]);
         let need_fruit: [bool; 3] = [
@@ -165,7 +191,12 @@ impl Strategy for SchedBot {
                 .copied()
                 .unwrap_or(1 << 20);
             let steps = |dist: i32| -> f64 { ((dist + u.ms - 1) / u.ms.max(1)).max(0) as f64 };
-            let carried: i32 = u.carry.iter().enumerate().map(|(i, c)| if i == 5 { 4 * c } else { *c }).sum();
+            let carried: i32 = u
+                .carry
+                .iter()
+                .enumerate()
+                .map(|(i, c)| if i == 5 { 4 * c } else { *c })
+                .sum();
 
             // BANK: carried points become real when dropped. mybot's proven rule is
             // bank-only-when-FULL (partial banking wastes trips); endgame overrides.
@@ -197,8 +228,8 @@ impl Strategy for SchedBot {
                 let clearing = envi("SB_CLEAR", 0) == 1
                     && turns_rem <= envi("SB_CLEAR_T", 60)
                     && game.scores[player] - game.scores[1 - player] >= envi("SB_CLEAR_LEAD", 40);
-                let need_free = envi("SB_FELL_FREE", 0) == 1
-                    || (turns_rem <= envi("SB_LATE_FREE", 82));
+                let need_free =
+                    envi("SB_FELL_FREE", 0) == 1 || (turns_rem <= envi("SB_LATE_FREE", 82));
                 if is_chop_role && u.chop > 0 && (!need_free || u.free() > 0) {
                     let chop_t = ((p.health + u.chop - 1) / u.chop) as f64;
                     let wood = p.size.min(u.free()) as f64 * 4.0;
@@ -227,16 +258,20 @@ impl Strategy for SchedBot {
                                 / (steps(dd) + chop_t + 0.5 * steps(manh(pos, shack)) + 1.0)
                         } else if clearing {
                             2.0 - (dd + 3 * manh(pos, shack)) as f64 * 0.005
-                        } else { match envi("SB_FELL_MYBOT", 2) {
-                            // 1: fell outranks EVERYTHING incl. banking (permanent
-                            //    denial camp): script 78.2 / silver 46.2 — a hard split.
-                            1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
-                            // 2: mybot ordering, but BELOW a full load's bank rate:
-                            //    chopper cycles fell->bank like mybot.
-                            2 => envf("SB_FB", 0.654)
-                                - (dd + 3 * manh(pos, opp) - lemon_bonus) as f64 * 0.005,
-                            _ => (wood + den) / t,
-                        } };
+                        } else {
+                            match envi("SB_FELL_MYBOT", 2) {
+                                // 1: fell outranks EVERYTHING incl. banking (permanent
+                                //    denial camp): script 78.2 / silver 46.2 — a hard split.
+                                1 => 100.0 - (dd + 3 * manh(pos, opp)) as f64 * 0.1,
+                                // 2: mybot ordering, but BELOW a full load's bank rate:
+                                //    chopper cycles fell->bank like mybot.
+                                2 => {
+                                    envf("SB_FB", 0.654)
+                                        - (dd + 3 * manh(pos, opp) - lemon_bonus) as f64 * 0.005
+                                }
+                                _ => (wood + den) / t,
+                            }
+                        };
                         cands.push((rate, ti, Task::Fell(pos)));
                     }
                 }
@@ -412,7 +447,10 @@ impl Strategy for SchedBot {
             let mem = self.mem.borrow();
             for c in cands.iter_mut() {
                 let cell = match &c.2 {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x, _)
+                    Task::Fell(x)
+                    | Task::Harvest(x)
+                    | Task::Mine(x)
+                    | Task::Print(x, _)
                     | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };
@@ -432,7 +470,10 @@ impl Strategy for SchedBot {
                 continue;
             }
             let cell = match &task {
-                Task::Fell(c) | Task::Harvest(c) | Task::Mine(c) | Task::Print(c, _)
+                Task::Fell(c)
+                | Task::Harvest(c)
+                | Task::Mine(c)
+                | Task::Print(c, _)
                 | Task::Orchard(c) => Some(*c),
                 _ => None,
             };
@@ -455,7 +496,10 @@ impl Strategy for SchedBot {
             let mut mem = self.mem.borrow_mut();
             for (ti, task) in &assigned {
                 let cell = match task {
-                    Task::Fell(x) | Task::Harvest(x) | Task::Mine(x) | Task::Print(x, _)
+                    Task::Fell(x)
+                    | Task::Harvest(x)
+                    | Task::Mine(x)
+                    | Task::Print(x, _)
                     | Task::Orchard(x) => Some(*x),
                     _ => None,
                 };

@@ -73,13 +73,39 @@ fn base_plan() -> Plan {
 }
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
 }
 fn chopper(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 2,
+        carry_capacity: 2,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    }
 }
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 
 #[test]
@@ -96,8 +122,16 @@ fn doomed_contested_tree_is_skipped() {
     st.opp_trolls = vec![chopper(9, 3, 2)]; // enemy ON (3,2)
     let my = vec![chopper(2, 1, 2)];
     let cmds = assign(&st, &base_plan(), &my);
-    assert!(cmds[&2].contains("6 2"), "doomed race must be skipped: {}", &cmds[&2]);
-    assert!(!cmds[&2].contains("3 2"), "must not target the doomed tree at all: {}", &cmds[&2]);
+    assert!(
+        cmds[&2].contains("6 2"),
+        "doomed race must be skipped: {}",
+        &cmds[&2]
+    );
+    assert!(
+        !cmds[&2].contains("3 2"),
+        "must not target the doomed tree at all: {}",
+        &cmds[&2]
+    );
 }
 
 #[test]
@@ -114,7 +148,11 @@ fn winnable_contest_is_joined() {
     st.opp_trolls = vec![e];
     let my = vec![chopper(2, 1, 2)];
     let cmds = assign(&st, &base_plan(), &my);
-    assert!(cmds[&2].contains("3 2"), "winnable contest should be joined: {}", &cmds[&2]);
+    assert!(
+        cmds[&2].contains("3 2"),
+        "winnable contest should be joined: {}",
+        &cmds[&2]
+    );
 }
 
 #[test]
@@ -136,7 +174,10 @@ fn share_pen_shifts_near_tie_to_free_tree() {
     st.trees = vec![banana(2, 2, 2), banana(3, 4, 2)]; // [0] contested near (eta 1), [1] free far (eta 4)
     st.opp_trolls = vec![chopper(9, 2, 2)]; // enemy ON the near tree; health 4 left, their chop_power 2 -> 2 turns to fell (winnable: our_eta=1 < 2)
     let plan = base_plan();
-    let my = Troll { movement_speed: 1, ..chopper(5, 1, 2) }; // slowed so eta 1 vs eta 4 separate cleanly on this grid
+    let my = Troll {
+        movement_speed: 1,
+        ..chopper(5, 1, 2)
+    }; // slowed so eta 1 vs eta 4 separate cleanly on this grid
     let cmds = assign(&st, &plan, &[my]);
     assert!(
         cmds[&5].contains("3 4"),

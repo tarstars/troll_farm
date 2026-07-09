@@ -1,6 +1,8 @@
-use std::collections::HashSet;
+use super::engine::{
+    bfs_distances, plant_cooldown, tick_plants, tree_health, IRON, MAX_FRUITS, MAX_SIZE,
+};
 use super::state::{Cell, GameState, Plant, Unit};
-use super::engine::{bfs_distances, tick_plants, plant_cooldown, tree_health, MAX_SIZE, MAX_FRUITS, IRON};
+use std::collections::HashSet;
 
 // Calibrated to the real SILVER arena (not the old sparse Bronze). Real maps:
 // height 8-11, width = 2*height (~16x8 .. 22x11), ~18 fruit trees, iron + water
@@ -16,7 +18,10 @@ const FRUITS: [&str; 4] = ["PLUM", "LEMON", "APPLE", "BANANA"];
 // range (4 types * pairs * 2 sides). WATER_PAIRS / IRON_PAIRS = terrain pairs.
 // Defaults reproduce the calibrated Silver density (~18 trees).
 fn envi(name: &str, default: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(default)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(default)
 }
 
 // ── SplitMix64 PRNG ──────────────────────────────────────────────────────────
@@ -116,7 +121,9 @@ pub fn generate_bronze(seed: u64) -> GameState {
             continue;
         }
         // Build initial walkable (all cells except shacks)
-        let mut w: HashSet<Cell> = (0..width).flat_map(|x| (0..height).map(move |y| (x, y))).collect();
+        let mut w: HashSet<Cell> = (0..width)
+            .flat_map(|x| (0..height).map(move |y| (x, y)))
+            .collect();
         w.remove(&s0);
         w.remove(&s1);
         if all_reachable(&w, s0) {
@@ -132,7 +139,14 @@ pub fn generate_bronze(seed: u64) -> GameState {
 
     // ── step 2: plant fruit trees ────────────────────────────────────────────
     let inv_fruits: Vec<i32> = (0..4).map(|_| rnd.randint(2, 10)).collect();
-    let inv0: [i32; 6] = [inv_fruits[0], inv_fruits[1], inv_fruits[2], inv_fruits[3], 0, 0];
+    let inv0: [i32; 6] = [
+        inv_fruits[0],
+        inv_fruits[1],
+        inv_fruits[2],
+        inv_fruits[3],
+        0,
+        0,
+    ];
     let inv1 = inv0;
 
     let mut plants: Vec<Plant> = Vec::new();
@@ -147,7 +161,11 @@ pub fn generate_bronze(seed: u64) -> GameState {
             // Sort before the seeded RNG picks: HashSet iteration order is randomized
             // per process, so without this the SAME seed produces DIFFERENT maps on
             // every run -- making every tournament/diag measurement irreproducible.
-            let mut free: Vec<Cell> = walkable.iter().filter(|c| !used.contains(*c)).copied().collect();
+            let mut free: Vec<Cell> = walkable
+                .iter()
+                .filter(|c| !used.contains(*c))
+                .copied()
+                .collect();
             free.sort_unstable();
             if free.is_empty() {
                 break;
@@ -169,8 +187,24 @@ pub fn generate_bronze(seed: u64) -> GameState {
             // real `health = base + slope*size`.
             let h0 = tree_health(ftype, 0);
             let pair: Vec<Plant> = vec![
-                Plant { plant_type: ftype.to_string(), x: cell.0, y: cell.1, size: 0, health: h0, fruits: 0, cooldown: 0 },
-                Plant { plant_type: ftype.to_string(), x: mc.0, y: mc.1, size: 0, health: h0, fruits: 0, cooldown: 0 },
+                Plant {
+                    plant_type: ftype.to_string(),
+                    x: cell.0,
+                    y: cell.1,
+                    size: 0,
+                    health: h0,
+                    fruits: 0,
+                    cooldown: 0,
+                },
+                Plant {
+                    plant_type: ftype.to_string(),
+                    x: mc.0,
+                    y: mc.1,
+                    size: 0,
+                    health: h0,
+                    fruits: 0,
+                    cooldown: 0,
+                },
             ];
             // Simulate tick_plants on these two plants alone (no water adjustment)
             // using a temporary minimal game state
@@ -239,7 +273,11 @@ pub fn generate_bronze(seed: u64) -> GameState {
         b
     };
 
-    let mut candidates: Vec<Cell> = walkable.iter().filter(|c| !blocked.contains(*c)).copied().collect();
+    let mut candidates: Vec<Cell> = walkable
+        .iter()
+        .filter(|c| !blocked.contains(*c))
+        .copied()
+        .collect();
     candidates.sort_unstable(); // determinism: fix HashSet order before the seeded shuffle
     rnd2.shuffle(&mut candidates);
 
@@ -256,7 +294,11 @@ pub fn generate_bronze(seed: u64) -> GameState {
         if iron.contains(&c) || iron.contains(&m) || water.contains(&c) || water.contains(&m) {
             continue;
         }
-        let trial: HashSet<Cell> = walkable.iter().filter(|x| **x != c && **x != m).copied().collect();
+        let trial: HashSet<Cell> = walkable
+            .iter()
+            .filter(|x| **x != c && **x != m)
+            .copied()
+            .collect();
         if !all_reachable(&trial, s0) {
             continue;
         }
@@ -278,7 +320,11 @@ pub fn generate_bronze(seed: u64) -> GameState {
         if iron.contains(&c) || iron.contains(&m) || water.contains(&c) || water.contains(&m) {
             continue;
         }
-        let trial: HashSet<Cell> = walkable.iter().filter(|x| **x != c && **x != m).copied().collect();
+        let trial: HashSet<Cell> = walkable
+            .iter()
+            .filter(|x| **x != c && **x != m)
+            .copied()
+            .collect();
         if !all_reachable(&trial, s0) {
             continue;
         }
@@ -297,8 +343,28 @@ pub fn generate_bronze(seed: u64) -> GameState {
 
     // ── step 6: create starting units (starter troll per player) ─────────────
     let units = vec![
-        Unit { id: 0, player: 0, x: s0.0, y: s0.1, ms: 1, cc: 1, hp: 1, chop: 1, carry: [0; 6] },
-        Unit { id: 1, player: 1, x: s1.0, y: s1.1, ms: 1, cc: 1, hp: 1, chop: 1, carry: [0; 6] },
+        Unit {
+            id: 0,
+            player: 0,
+            x: s0.0,
+            y: s0.1,
+            ms: 1,
+            cc: 1,
+            hp: 1,
+            chop: 1,
+            carry: [0; 6],
+        },
+        Unit {
+            id: 1,
+            player: 1,
+            x: s1.0,
+            y: s1.1,
+            ms: 1,
+            cc: 1,
+            hp: 1,
+            chop: 1,
+            carry: [0; 6],
+        },
     ];
 
     GameState {

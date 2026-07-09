@@ -22,12 +22,17 @@ pub struct PrinterBot {
 
 impl PrinterBot {
     pub fn new() -> Self {
-        PrinterBot { mem: RefCell::new(HashMap::new()) }
+        PrinterBot {
+            mem: RefCell::new(HashMap::new()),
+        }
     }
 }
 
 fn envi(name: &str, d: i32) -> i32 {
-    std::env::var(name).ok().and_then(|v| v.parse().ok()).unwrap_or(d)
+    std::env::var(name)
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(d)
 }
 fn env_spec(name: &str, d: (i32, i32, i32, i32)) -> (i32, i32, i32, i32) {
     if let Ok(s) = std::env::var(name) {
@@ -43,7 +48,12 @@ fn manh(a: Cell, b: Cell) -> i32 {
     (a.0 - b.0).abs() + (a.1 - b.1).abs()
 }
 fn ortho(c: Cell) -> [Cell; 4] {
-    [(c.0, c.1 + 1), (c.0 + 1, c.1), (c.0, c.1 - 1), (c.0 - 1, c.1)]
+    [
+        (c.0, c.1 + 1),
+        (c.0 + 1, c.1),
+        (c.0, c.1 - 1),
+        (c.0 - 1, c.1),
+    ]
 }
 
 fn bfs(walkable: &HashSet<Cell>, src: Cell) -> HashMap<Cell, i32> {
@@ -85,7 +95,11 @@ impl Strategy for PrinterBot {
         let inv = &game.inventories[player];
         let have_iron = !game.iron.is_empty();
 
-        let mut my: Vec<&Unit> = game.units.iter().filter(|u| u.player as usize == player).collect();
+        let mut my: Vec<&Unit> = game
+            .units
+            .iter()
+            .filter(|u| u.player as usize == player)
+            .collect();
         my.sort_by_key(|u| u.id);
         let n = my.len() as i32;
 
@@ -119,8 +133,11 @@ impl Strategy for PrinterBot {
 
         let farm_r = envi("PB_FARM_R", 3);
         let farm_cap = envi("PB_FARM_MAX", 6) as usize;
-        let base_trees =
-            game.plants.iter().filter(|p| manh(p.pos(), shack) <= farm_r).count();
+        let base_trees = game
+            .plants
+            .iter()
+            .filter(|p| manh(p.pos(), shack) <= farm_r)
+            .count();
 
         let mut mem = self.mem.borrow_mut();
         let mut reserved: HashSet<Cell> = HashSet::new();
@@ -150,7 +167,10 @@ impl Strategy for PrinterBot {
                             .filter(|c| game.walkable.contains(c))
                             .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
                             .unwrap_or(shack);
-                        cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                        cmd_by_id.insert(
+                            u.id,
+                            format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+                        );
                     }
                     continue;
                 }
@@ -190,14 +210,18 @@ impl Strategy for PrinterBot {
                         .filter(|c| game.walkable.contains(c))
                         .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
                         .unwrap_or(shack);
-                    cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1));
+                    cmd_by_id.insert(
+                        u.id,
+                        format!("MOVE {} {} {}", u.id, drop_cell.0, drop_cell.1),
+                    );
                 }
                 continue;
             }
 
             // On a tree: fell ready farm trees / harvest ripe fruit.
             if let Some(p) = game.plants.iter().find(|p| p.pos() == u.pos()) {
-                let ready_farm = manh(p.pos(), shack) <= farm_r && p.size >= envi("PB_FELL_SIZE", 2);
+                let ready_farm =
+                    manh(p.pos(), shack) <= farm_r && p.size >= envi("PB_FELL_SIZE", 2);
                 if u.chop > 0 && (ready_farm || p.fruits == 0 && p.size >= 2) {
                     cmd_by_id.insert(u.id, format!("CHOP {}", u.id));
                     reserved.insert(u.pos());
@@ -222,7 +246,9 @@ impl Strategy for PrinterBot {
                 .then(|| {
                     game.plants
                         .iter()
-                        .filter(|p| manh(p.pos(), shack) <= farm_r && p.size >= envi("PB_FELL_SIZE", 2))
+                        .filter(|p| {
+                            manh(p.pos(), shack) <= farm_r && p.size >= envi("PB_FELL_SIZE", 2)
+                        })
                         .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
                         .min_by_key(|p| d[&p.pos()])
                         .map(|p| p.pos())
@@ -234,7 +260,9 @@ impl Strategy for PrinterBot {
             let nearest_ripe = || {
                 game.plants
                     .iter()
-                    .filter(|p| p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos()))
+                    .filter(|p| {
+                        p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
+                    })
                     .min_by_key(|p| d[&p.pos()])
                     .map(|p| p.pos())
             };

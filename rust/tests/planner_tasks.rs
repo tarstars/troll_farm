@@ -69,13 +69,39 @@ fn base_plan() -> Plan {
 }
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
 }
 fn chopper(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 2,
+        carry_capacity: 2,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    }
 }
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 
 #[test]
@@ -85,7 +111,11 @@ fn shuffle_invariance() {
     let plan = base_plan();
     let a = vec![starter(0, 1, 2), chopper(2, 4, 2)];
     let b = vec![chopper(2, 4, 2), starter(0, 1, 2)];
-    assert_eq!(assign(&st, &plan, &a), assign(&st, &plan, &b), "troll order changed the plan");
+    assert_eq!(
+        assign(&st, &plan, &a),
+        assign(&st, &plan, &b),
+        "troll order changed the plan"
+    );
 }
 
 #[test]
@@ -98,8 +128,15 @@ fn contested_tree_goes_to_the_better_troll_without_duplication() {
     let my = vec![starter(0, 2, 2), chopper(2, 4, 2)];
     let cmds = assign(&st, &plan, &my);
     let c2 = &cmds[&2];
-    assert!(c2 == "MOVE 2 3 2" || c2 == "CHOP 2", "chopper should take the tree, got {c2}");
-    assert!(!cmds[&0].contains("3 2"), "starter must not target the same tree: {}", &cmds[&0]);
+    assert!(
+        c2 == "MOVE 2 3 2" || c2 == "CHOP 2",
+        "chopper should take the tree, got {c2}"
+    );
+    assert!(
+        !cmds[&0].contains("3 2"),
+        "starter must not target the same tree: {}",
+        &cmds[&0]
+    );
 }
 
 #[test]
@@ -125,5 +162,8 @@ fn priorities_hold() {
         &cmds[&0]
     );
     // and it must not be a DROP (banking the seed would be the old full->bank bug)
-    assert!(!cmds[&0].starts_with("DROP"), "starter must plant, not bank the seed");
+    assert!(
+        !cmds[&0].starts_with("DROP"),
+        "starter must plant, not bank the seed"
+    );
 }

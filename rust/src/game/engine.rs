@@ -1,5 +1,5 @@
-use std::collections::{HashMap, HashSet, VecDeque};
 use super::state::{Cell, GameState, Plant, Unit};
+use std::collections::{HashMap, HashSet, VecDeque};
 
 // ── constants ────────────────────────────────────────────────────────────────
 
@@ -112,14 +112,19 @@ pub fn next_cell(walkable: &HashSet<Cell>, current: Cell, target: Cell, speed: i
             return current;
         }
         let best = src.keys().map(|c| manhattan(target, *c)).min().unwrap();
-        let goals: Vec<Cell> = src.keys().filter(|c| manhattan(target, **c) == best).copied().collect();
+        let goals: Vec<Cell> = src
+            .keys()
+            .filter(|c| manhattan(target, **c) == best)
+            .copied()
+            .collect();
         bfs_distances(walkable, &goals)
     } else {
         bfs_distances(walkable, &[target])
     };
 
     // Cells reachable within speed that are also in tdist
-    let in_range: Vec<Cell> = src.iter()
+    let in_range: Vec<Cell> = src
+        .iter()
         .filter(|(c, d)| **d <= speed && tdist.contains_key(*c))
         .map(|(c, _)| *c)
         .collect();
@@ -130,7 +135,8 @@ pub fn next_cell(walkable: &HashSet<Cell>, current: Cell, target: Cell, speed: i
 
     let best_dist = in_range.iter().map(|c| tdist[c]).min().unwrap();
     // Among ties, pick the lexicographically smallest cell (Python: min())
-    in_range.iter()
+    in_range
+        .iter()
         .filter(|c| tdist[*c] == best_dist)
         .copied()
         .min()
@@ -157,9 +163,10 @@ pub fn tick_plants(game: &mut GameState) {
                 // Compute inline.
                 let mut cd = plant_cooldown(&p.plant_type);
                 let (px, py) = (p.x, p.y);
-                let near_water = game.water.iter().any(|(wx, wy)| {
-                    (px - wx).abs() + (py - wy).abs() == 1
-                });
+                let near_water = game
+                    .water
+                    .iter()
+                    .any(|(wx, wy)| (px - wx).abs() + (py - wy).abs() == 1);
                 if near_water {
                     cd -= water_boost(&p.plant_type);
                 }
@@ -168,9 +175,10 @@ pub fn tick_plants(game: &mut GameState) {
                 p.fruits += 1;
                 let mut cd = plant_cooldown(&p.plant_type);
                 let (px, py) = (p.x, p.y);
-                let near_water = game.water.iter().any(|(wx, wy)| {
-                    (px - wx).abs() + (py - wy).abs() == 1
-                });
+                let near_water = game
+                    .water
+                    .iter()
+                    .any(|(wx, wy)| (px - wx).abs() + (py - wy).abs() == 1);
                 if near_water {
                     cd -= water_boost(&p.plant_type);
                 }
@@ -206,18 +214,24 @@ pub fn apply_moves(game: &mut GameState, intents: &HashMap<i32, Cell>) {
     // Process each player separately
     for player in 0..2i32 {
         // Collect unit ids for this player
-        let player_unit_ids: Vec<i32> = game.units.iter()
+        let player_unit_ids: Vec<i32> = game
+            .units
+            .iter()
             .filter(|u| u.player == player)
             .map(|u| u.id)
             .collect();
 
         // Build target map for this player's units
         // We need the actual unit positions to call next_cell
-        let unit_positions: HashMap<i32, Cell> = game.units.iter()
+        let unit_positions: HashMap<i32, Cell> = game
+            .units
+            .iter()
             .filter(|u| u.player == player)
             .map(|u| (u.id, u.pos()))
             .collect();
-        let unit_ms: HashMap<i32, i32> = game.units.iter()
+        let unit_ms: HashMap<i32, i32> = game
+            .units
+            .iter()
             .filter(|u| u.player == player)
             .map(|u| (u.id, u.ms))
             .collect();
@@ -234,10 +248,14 @@ pub fn apply_moves(game: &mut GameState, intents: &HashMap<i32, Cell>) {
         }
 
         // occupied = positions of all this player's units
-        let mut occupied: HashSet<Cell> = player_unit_ids.iter().map(|id| unit_positions[id]).collect();
+        let mut occupied: HashSet<Cell> = player_unit_ids
+            .iter()
+            .map(|id| unit_positions[id])
+            .collect();
 
         // movers: units that want to move to a different cell
-        let mut movers: Vec<i32> = player_unit_ids.iter()
+        let mut movers: Vec<i32> = player_unit_ids
+            .iter()
             .filter(|id| target[id] != unit_positions[id])
             .copied()
             .collect();
@@ -262,7 +280,12 @@ pub fn apply_moves(game: &mut GameState, intents: &HashMap<i32, Cell>) {
             for &uid in &movers {
                 let cell = target[&uid];
                 // Get current position of the unit (may have moved in a prior iteration)
-                let cur_cell = game.units.iter().find(|u| u.id == uid).map(|u| u.pos()).unwrap();
+                let cur_cell = game
+                    .units
+                    .iter()
+                    .find(|u| u.id == uid)
+                    .map(|u| u.pos())
+                    .unwrap();
                 if (resolve_blocking || freq[&cell] == 1) && !occupied.contains(&cell) {
                     occupied.remove(&cur_cell);
                     occupied.insert(cell);
@@ -284,9 +307,13 @@ pub fn apply_moves(game: &mut GameState, intents: &HashMap<i32, Cell>) {
 
             // Try to resolve circular swaps
             // Build pos_to_uid map for remaining movers (using current positions)
-            let mover_pos: HashMap<Cell, i32> = movers.iter()
+            let mover_pos: HashMap<Cell, i32> = movers
+                .iter()
                 .filter_map(|uid| {
-                    game.units.iter().find(|u| u.id == *uid).map(|u| (u.pos(), *uid))
+                    game.units
+                        .iter()
+                        .find(|u| u.id == *uid)
+                        .map(|u| (u.pos(), *uid))
                 })
                 .collect();
 
@@ -365,7 +392,9 @@ pub fn apply_harvest(game: &mut GameState, unit_ids: &[i32]) {
             }
             for &uid in troll_ids {
                 // Re-find unit each time since we mutate carry
-                let (u_hp, u_total, u_cc) = game.units.iter()
+                let (u_hp, u_total, u_cc) = game
+                    .units
+                    .iter()
                     .find(|u| u.id == uid)
                     .map(|u| (u.hp, u.total(), u.cc))
                     .unwrap_or((0, 0, 0));
@@ -548,7 +577,12 @@ pub fn apply_chop(game: &mut GameState, unit_ids: &[i32]) {
 
         // Deal chop damage
         for &uid in chopper_ids {
-            let chop_power = game.units.iter().find(|u| u.id == uid).map(|u| u.chop).unwrap_or(0);
+            let chop_power = game
+                .units
+                .iter()
+                .find(|u| u.id == uid)
+                .map(|u| u.chop)
+                .unwrap_or(0);
             let health = &mut game.plants[pi].health;
             *health = (*health - chop_power).max(0);
         }
@@ -560,7 +594,12 @@ pub fn apply_chop(game: &mut GameState, unit_ids: &[i32]) {
             let mut i = 0;
             while i < plant_size && remaining > 0 {
                 for &uid in chopper_ids {
-                    let free = game.units.iter().find(|u| u.id == uid).map(|u| u.free()).unwrap_or(0);
+                    let free = game
+                        .units
+                        .iter()
+                        .find(|u| u.id == uid)
+                        .map(|u| u.free())
+                        .unwrap_or(0);
                     if free > 0 {
                         if let Some(u) = game.units.iter_mut().find(|u| u.id == uid) {
                             u.carry[WOOD] += 1;
@@ -593,9 +632,10 @@ pub fn apply_mine(game: &mut GameState, unit_ids: &[i32]) {
             continue;
         }
         // Check if adjacent to any iron cell
-        let near_iron = game.iron.iter().any(|(ix, iy)| {
-            (ux - ix).abs() + (uy - iy).abs() == 1
-        });
+        let near_iron = game
+            .iron
+            .iter()
+            .any(|(ix, iy)| (ux - ix).abs() + (uy - iy).abs() == 1);
         if near_iron {
             let amount = u_chop.min(u_free);
             if let Some(u) = game.units.iter_mut().find(|u| u.id == uid) {

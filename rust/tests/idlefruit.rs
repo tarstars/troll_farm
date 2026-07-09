@@ -77,16 +77,50 @@ fn base_plan() -> Plan {
 }
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
 }
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 fn plum(x: i32, y: i32, fruits: i32) -> Tree {
-    Tree { tree_type: "PLUM".into(), x, y, size: 2, health: 4, fruits, cooldown: 0 }
+    Tree {
+        tree_type: "PLUM".into(),
+        x,
+        y,
+        size: 2,
+        health: 4,
+        fruits,
+        cooldown: 0,
+    }
 }
 fn chopper(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 2,
+        carry_capacity: 2,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    }
 }
 
 #[test]

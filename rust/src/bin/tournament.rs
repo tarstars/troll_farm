@@ -61,13 +61,21 @@ fn main() {
         "=== Local leaderboard | {} strategies | {} seeds/pairing both sides | {} games in {:.2}s ===",
         n, seeds, total_games, elapsed.as_secs_f64()
     );
-    println!("{:<4}{:<12}{:>7}{:>7}{:>9}{:>12}", "#", "strategy", "wins", "games", "winrate", "avg_margin");
+    println!(
+        "{:<4}{:<12}{:>7}{:>7}{:>9}{:>12}",
+        "#", "strategy", "wins", "games", "winrate", "avg_margin"
+    );
     for (rank, &i) in order.iter().enumerate() {
         let wr = 100.0 * wins[i] as f64 / games[i] as f64;
         let am = margin[i] as f64 / games[i] as f64;
         println!(
             "{:<4}{:<12}{:>7}{:>7}{:>8.0}%{:>12.1}",
-            rank + 1, bots[i].name(), wins[i], games[i], wr, am
+            rank + 1,
+            bots[i].name(),
+            wins[i],
+            games[i],
+            wr,
+            am
         );
     }
 

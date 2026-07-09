@@ -11,7 +11,13 @@ use troll_farm::game::state::{from_ascii, GameState, Unit};
 
 /// Run the "full → drop-cell, empty → exit" corridor policy for `max_t` turns; return
 /// (turns_until_all_unloaded, max_simultaneous_stuck-full-not-dropping).
-fn run_corridor(g: &mut GameState, drop_cell: (i32, i32), exit: (i32, i32), full_wood: i32, max_t: i32) -> i32 {
+fn run_corridor(
+    g: &mut GameState,
+    drop_cell: (i32, i32),
+    exit: (i32, i32),
+    full_wood: i32,
+    max_t: i32,
+) -> i32 {
     for t in 0..max_t {
         let mut cmds0 = Vec::new();
         for u in g.units.iter().filter(|u| u.player == 0) {
@@ -60,7 +66,10 @@ fn corridor_unloads_three_full_trolls_optimally() {
     // fails to head empties out, this jumps well past 5.
     let mut g = corridor_state(3);
     let turns = run_corridor(&mut g, (1, 0), (6, 0), 6, 12);
-    assert_eq!(turns, 5, "3-troll corridor should unload in 5 turns (drop/swap pipeline)");
+    assert_eq!(
+        turns, 5,
+        "3-troll corridor should unload in 5 turns (drop/swap pipeline)"
+    );
 }
 
 #[test]

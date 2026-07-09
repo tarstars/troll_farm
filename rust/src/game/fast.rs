@@ -26,9 +26,9 @@ pub struct NavTable {
     pub w: i8,
     pub h: i8,
     pub walk: [bool; MAXC],
-    pub dist: Vec<u8>,      // dist[from * MAXC + to], 255 = unreachable
-    pub next: Vec<u8>,      // next[from * MAXC + to] = cell id of first step
-    pub park: [u8; MAXC],   // for unreachable targets: reachable cell minimizing manhattan
+    pub dist: Vec<u8>,    // dist[from * MAXC + to], 255 = unreachable
+    pub next: Vec<u8>,    // next[from * MAXC + to] = cell id of first step
+    pub park: [u8; MAXC], // for unreachable targets: reachable cell minimizing manhattan
 }
 
 impl NavTable {
@@ -47,7 +47,9 @@ impl NavTable {
             nav.walk[cid(x as i8, y as i8, w)] = true;
         }
         // BFS from every cell (walkable sources + shack cells: units can stand there)
-        let mut sources: Vec<usize> = (0..(w as usize * h as usize)).filter(|&c| nav.walk[c]).collect();
+        let mut sources: Vec<usize> = (0..(w as usize * h as usize))
+            .filter(|&c| nav.walk[c])
+            .collect();
         for &s in &[g.shacks[0], g.shacks[1]] {
             sources.push(cid(s.0 as i8, s.1 as i8, w));
         }
@@ -72,7 +74,11 @@ impl NavTable {
                     }
                     nav.dist[base + n] = d + 1;
                     // first step from src toward n: inherit, or n itself if c==src
-                    nav.next[base + n] = if c == src { n as u8 } else { nav.next[base + c] };
+                    nav.next[base + n] = if c == src {
+                        n as u8
+                    } else {
+                        nav.next[base + c]
+                    };
                     q.push_back(n);
                 }
             }
@@ -197,7 +203,11 @@ impl FastState {
                 s.inv[p][i] = g.inventories[p][i] as i16;
             }
         }
-        let wet = |c: Cell| g.water.iter().any(|&(wx, wy)| (c.0 - wx).abs() + (c.1 - wy).abs() == 1);
+        let wet = |c: Cell| {
+            g.water
+                .iter()
+                .any(|&(wx, wy)| (c.0 - wx).abs() + (c.1 - wy).abs() == 1)
+        };
         for pl in &g.plants {
             let i = s.n_plants as usize;
             if i >= MAXP {
@@ -275,8 +285,8 @@ pub enum FAct {
     Chop,
     Drop,
     Mine,
-    Plant(u8),          // fruit type
-    Pick(u8),           // fruit type
+    Plant(u8), // fruit type
+    Pick(u8),  // fruit type
 }
 
 /// Per-player turn command set: one action per unit slot + optional train.
@@ -288,7 +298,10 @@ pub struct FCmds {
 
 impl Default for FCmds {
     fn default() -> Self {
-        FCmds { acts: [FAct::Idle; MAXU], train: None }
+        FCmds {
+            acts: [FAct::Idle; MAXU],
+            train: None,
+        }
     }
 }
 
@@ -354,11 +367,7 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
                 let Some(t) = want[ui] else { continue };
                 let cur = cid(s.u_x[ui], s.u_y[ui], w);
                 // count contenders
-                let contested = order
-                    .iter()
-                    .filter(|&&o| want[o] == Some(t))
-                    .count()
-                    > 1;
+                let contested = order.iter().filter(|&&o| want[o] == Some(t)).count() > 1;
                 if (!contested || force) && !occ[t] {
                     occ[cur] = false;
                     occ[t] = true;
@@ -540,7 +549,9 @@ pub fn step_fast(s: &mut FastState, nav: &NavTable, cmds: &[FCmds; 2]) {
     // ── train ───────────────────────────────────────────────────────────────
     for pl in 0..2usize {
         if let Some(t) = cmds[pl].train {
-            let n = (0..s.n_units as usize).filter(|&ui| s.u_pl[ui] as usize == pl).count() as i16;
+            let n = (0..s.n_units as usize)
+                .filter(|&ui| s.u_pl[ui] as usize == pl)
+                .count() as i16;
             let cost = training_cost_fast(n, t);
             let payable = (0..6).all(|i| {
                 if i == 4 && !s.has_iron {

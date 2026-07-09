@@ -36,13 +36,39 @@ fn base_state() -> State {
 }
 
 fn starter(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 1, carry_capacity: 1, harvest_power: 1, chop_power: 1, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
 }
 fn chopper(id: i32, x: i32, y: i32) -> Troll {
-    Troll { id, x, y, movement_speed: 2, carry_capacity: 2, harvest_power: 0, chop_power: 2, carry: [0; 6] }
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 2,
+        carry_capacity: 2,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    }
 }
 fn banana(x: i32, y: i32, size: i32) -> Tree {
-    Tree { tree_type: "BANANA".into(), x, y, size, health: 2 + size, fruits: 0, cooldown: 0 }
+    Tree {
+        tree_type: "BANANA".into(),
+        x,
+        y,
+        size,
+        health: 2 + size,
+        fruits: 0,
+        cooldown: 0,
+    }
 }
 
 #[test]
@@ -86,7 +112,7 @@ fn scale_factory_plan() {
 // disease (a thin farm) was actually present. GE_FEEDER_FARM dropped 3->1 fixes this: a single
 // surviving farm banana is enough to justify sending a planter. Under the OLD GE_FEEDER_FARM=3,
 // farm_now(1) >= 3 is false, so want_feeder is unreachable here — this pins fix (b).
-// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+// parked after v1.49.0-farmhand local reject; re-enable only for a new GE_MAX_TROLLS>=3 candidate
 #[ignore]
 #[test]
 fn tempo_wants_third_hand() {
@@ -96,14 +122,21 @@ fn tempo_wants_third_hand() {
     let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
     let plan = plan_with_meta(&st, &my, Meta::Tempo);
     assert_eq!(plan.farm_now, 1, "sanity: exactly one farm banana in range");
-    assert_eq!(plan.want_chopper, false, "a chopper already exists: {:?}", plan.want_chopper);
-    assert_eq!(plan.want_feeder, true, "the third hand must be wanted even with a thin farm");
+    assert_eq!(
+        plan.want_chopper, false,
+        "a chopper already exists: {:?}",
+        plan.want_chopper
+    );
+    assert_eq!(
+        plan.want_feeder, true,
+        "the third hand must be wanted even with a thin farm"
+    );
     assert_eq!(plan.train_spec, (1, 1, 1, 0));
 }
 
 // Non-regression companion: the original 3-banana construction (farm_now=3, comfortably above
 // the new GE_FEEDER_FARM=1 gate) must still want the third hand after the gate drops.
-// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+// parked after v1.49.0-farmhand local reject; re-enable only for a new GE_MAX_TROLLS>=3 candidate
 #[ignore]
 #[test]
 fn tempo_wants_third_hand_farm3() {
@@ -113,7 +146,11 @@ fn tempo_wants_third_hand_farm3() {
     let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
     let plan = plan_with_meta(&st, &my, Meta::Tempo);
     assert_eq!(plan.farm_now, 3, "sanity: three farm bananas in range");
-    assert_eq!(plan.want_chopper, false, "a chopper already exists: {:?}", plan.want_chopper);
+    assert_eq!(
+        plan.want_chopper, false,
+        "a chopper already exists: {:?}",
+        plan.want_chopper
+    );
     assert_eq!(plan.want_feeder, true, "the third hand must be wanted");
     assert_eq!(plan.train_spec, (1, 1, 1, 0));
 }
@@ -129,7 +166,7 @@ fn tempo_wants_third_hand_farm3() {
 // 0 < 2. Under the current want_chopper-only gate, need_iron is false here (no chopper is
 // wanted — the pending hand is the FEEDER), so the elevated ladder_funding iron bands
 // (planner.rs 65/64) never fire and the hand is permanently unfunded.
-// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+// parked after v1.49.0-farmhand local reject; re-enable only for a new GE_MAX_TROLLS>=3 candidate
 #[ignore]
 #[test]
 fn tempo_hand_iron_funding_after_chopper() {
@@ -140,9 +177,18 @@ fn tempo_hand_iron_funding_after_chopper() {
     st.my_inventory = [5, 5, 5, 0, 0, 0];
     let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
     let plan = plan_with_meta(&st, &my, Meta::Tempo);
-    assert_eq!(plan.want_feeder, true, "the pending hand must still be wanted");
-    assert_eq!(plan.cost[IRON], 2, "sanity: the feeder spec costs n=2 iron here");
-    assert_eq!(plan.need_iron, true, "iron funding must be requested for the pending hand");
+    assert_eq!(
+        plan.want_feeder, true,
+        "the pending hand must still be wanted"
+    );
+    assert_eq!(
+        plan.cost[IRON], 2,
+        "sanity: the feeder spec costs n=2 iron here"
+    );
+    assert_eq!(
+        plan.need_iron, true,
+        "iron funding must be requested for the pending hand"
+    );
     assert_eq!(plan.train_now, false, "cannot train yet: iron unaffordable");
 }
 
@@ -155,7 +201,7 @@ fn tempo_hand_iron_funding_after_chopper() {
 // construction as tempo_wants_third_hand (one starter + one already-trained chopper, turn=50)
 // but with ZERO farm bananas anywhere (farm_now=0). Under the OLD GE_FEEDER_FARM=1,
 // farm_now(0) >= 1 is false, so want_feeder is unreachable here — this pins fix (b) of T-hand.2.
-// parked with T-hand; re-enable when GE_MAX_TROLLS≥3
+// parked after v1.49.0-farmhand local reject; re-enable only for a new GE_MAX_TROLLS>=3 candidate
 #[ignore]
 #[test]
 fn tempo_wants_third_hand_dead_farm() {
@@ -165,6 +211,13 @@ fn tempo_wants_third_hand_dead_farm() {
     let my = vec![starter(0, 1, 2), chopper(2, 4, 2)];
     let plan = plan_with_meta(&st, &my, Meta::Tempo);
     assert_eq!(plan.farm_now, 0, "sanity: zero farm bananas in range");
-    assert_eq!(plan.want_chopper, false, "a chopper already exists: {:?}", plan.want_chopper);
-    assert_eq!(plan.want_feeder, true, "the third hand must be wanted even with a dead farm");
+    assert_eq!(
+        plan.want_chopper, false,
+        "a chopper already exists: {:?}",
+        plan.want_chopper
+    );
+    assert_eq!(
+        plan.want_feeder, true,
+        "the third hand must be wanted even with a dead farm"
+    );
 }

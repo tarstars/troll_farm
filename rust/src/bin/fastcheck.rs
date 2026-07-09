@@ -25,7 +25,9 @@ fn to_fcmds(g: &troll_farm::game::state::GameState, cmds: &[String], player: u8,
                 ));
             }
             "MOVE" if p.len() >= 4 => {
-                if let (Ok(id), Ok(x), Ok(y)) = (p[1].parse::<i32>(), p[2].parse::<i8>(), p[3].parse::<i8>()) {
+                if let (Ok(id), Ok(x), Ok(y)) =
+                    (p[1].parse::<i32>(), p[2].parse::<i8>(), p[3].parse::<i8>())
+                {
                     if let Some(ui) = idx_of(id) {
                         if g.units[ui].player as u8 == player {
                             fc.acts[ui] = FAct::Move(cid(x, y, w) as u8);
@@ -52,7 +54,11 @@ fn to_fcmds(g: &troll_farm::game::state::GameState, cmds: &[String], player: u8,
                     if let Some(ui) = idx_of(id) {
                         if g.units[ui].player as u8 == player {
                             let ty = troll_farm::game::fast::type_idx(p[2]);
-                            fc.acts[ui] = if p[0] == "PLANT" { FAct::Plant(ty) } else { FAct::Pick(ty) };
+                            fc.acts[ui] = if p[0] == "PLANT" {
+                                FAct::Plant(ty)
+                            } else {
+                                FAct::Pick(ty)
+                            };
                         }
                     }
                 }
@@ -67,7 +73,10 @@ fn main() {
     // SINGLE-STEP parity with per-turn resync: rebuild FastState from the engine
     // state each turn, apply one step of both, compare. Position diffs from
     // pathing tie-breaks are counted separately from hard rule mismatches.
-    let seeds: u64 = std::env::args().nth(1).and_then(|s| s.parse().ok()).unwrap_or(20);
+    let seeds: u64 = std::env::args()
+        .nth(1)
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(20);
     let bots = roster();
     let a = bots.iter().find(|b| b.name() == "schedbot").unwrap();
     let b = bots.iter().find(|b| b.name() == "silverboss").unwrap();
