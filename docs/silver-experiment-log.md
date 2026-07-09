@@ -2436,3 +2436,35 @@ Two housekeeping fixes after inheriting the parallel Opus session's uncommitted 
    v1.43.0-yield (submit id 40971679, SUBMIT-OK). splitclaims' +0.9 was single-convergence
    (noise ±1), never met the +1.0/2×+0.5 promotion bar → yield stays the confident champion.
    Convergence read pending (~+50m). Best rank remains 116; goal (≤99 twice) not reached.
+
+## 2026-07-09 15:06 — v1.53.0-pressurefarm arena verdict: INCONCLUSIVE/NEUTRAL (+0.2) → OWNERSHIP PROGRAM KILLED as a lever
+
+The "prove or kill ownership-aware play" goal is DECIDED: killed (as a lever), not crater.
+
+Bracket 131/528 @17.4 (champion yield). Submitted 14:15:19 (id 40972361). Reads +11/+22/+32/
++42/+51m: 15.9 → 17.4 → 17.8 → 17.6 → 17.6 (plateau). Delta **+0.2**, INCONCLUSIVE (|delta|<0.5).
+Left live (non-regressed); default stays yield; goal gate (≤99) did not fire (best 118).
+
+THREE independent measurements converged on "inert":
+1. Baseline corpus (36 games): exposed value does NOT predict losses — own_half_exposed@t150
+   WIN 67.6 > LOSS 55.6 (reversed). The signal the governor keys on is confounded with
+   farm-size, not a loss-predictor.
+2. Measurement gate (12 games): the Yellow→Orange fix HELD (Orange only 8% of mid-late turns,
+   wood 48.8 no crater) — so it's SAFE — but it produced no win benefit (field 1/6 ~ baseline).
+3. Arena (5 reads): neutral +0.2 vs champion.
+
+VERDICT ON THE PROGRAM: total-map-value-ownership is the FIFTH "pie" idea — but the
+non-cratering, inert variety (seedloop −2.8, fruitbank −1.0, reserve −2, the earlier pies all
+went NEGATIVE; this one is ~0). The Orange-gated governor doesn't hurt, but reducing "exposed
+value" doesn't win games because the metric doesn't track who actually loses. The ownership
+LEVER is dead; the program is PARKED (dynamic-seed-reserve-v2, raid-response follow-ons moot).
+
+WHY (the deeper lesson, cross-checked by the corpus): aggregate ownership metrics don't
+separate wins from losses. This is exactly the gap the user's ETUDES subproject targets —
+position-level FORCED-outcome analysis (approach A) to find the causal principles that
+aggregate stats miss. That is now the more promising research direction than more pie bolt-ons.
+
+PIVOT (goal's kill branch): to the EXECUTION-class lever — the Sasso long-path re-diagnosis
+(my walkability theory was wrong; the 200+ wasted-turn paths are real and need the correct
+cause). Execution waste-cuts are the only class that has transferred at this band (race +1.3,
+yield +1.0). Champion stays v1.43.0-yield.
