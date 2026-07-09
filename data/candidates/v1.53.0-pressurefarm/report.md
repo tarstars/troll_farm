@@ -399,3 +399,35 @@ All well under the 100,000-byte submission cap. `cgauto/submissions/v1.53.0-pres
 min.rs}` and `data/candidates/v1.53.0-pressurefarm/v1.53.0-pressurefarm.{rs,min.rs,
 debug-probe.min.rs}` were all regenerated from this pass and are byte-identical to each other
 pairwise (submissions vs candidates copies).
+
+## Measurement gate (Task 3): PASS (with caveats) — 2026-07-09 (controller inline; gatekeeper subagent died on API overload after collecting all 12 games)
+
+The gatekeeper subagent collected all candidate games (boss 6 + plcc/mikdiet/kurigen 2 each,
+@TFPRESS-instrumented) then died on an Anthropic API "Overloaded" error before analyzing.
+Controller ran the analysis inline (no API): parsed @TFPRESS/@TFOWN/@TFSUM from the 12 .raw.
+
+**@TFPRESS state distribution (THE fix-held check):** all turns Green 37% / Yellow 53% /
+Orange 10% / Red 0%; mid-late (t>=100) Green 40% / Yellow 52% / Orange 8% / Red 0%.
+**Orange+Red = 8% of mid-late turns — OCCASIONAL, not near-permanent.** The Yellow->Orange
+re-gate held empirically: the farm-cap clamp is active ~8% of the time, NOT always-on. Yellow
+is common (53%) but now inert (clamp gated on Orange+). Pie trap resolved, confirmed on real maps.
+
+**Ownership metrics (candidate vs diagnostic baseline):**
+- created_exposed t75/t150/t225 = 2.0/0.3/0.0 (baseline ~0/7.3/0) — held low/reduced.
+- own_half_exposed t75/t150/t225 = 53.8/32.7/22.8 (baseline ~52/78/43) — reduced at t150/t225.
+- Exposed value did NOT rise; the intended reduction is present (but CONFOUNDED: lower exposed
+  value can partly reflect farm-size/map-variance across only 12 games, not purely better ownership).
+
+**Wood / output:** mean 48.8 (baseline boss ~51), min 33 max 79 — NO crater. released_n max=1
+(seed-release fires rarely, only near genuine Red). No crashes/panics.
+
+**Win rate:** 1W/11L overall; field-only (plcc/mikdiet/kurigen) 1W/5L ~ baseline corpus 22%
+at tiny n; the 6 boss games are expected losses. INCONCLUSIVE locally, not a clear regression.
+
+**DECISION: PASS -> queue for arena.** Architecture sound (Orange occasional, fix held), exposed
+value reduced/held, wood not cratered, no crashes — the plan's PASS criterion (exposed value
+falls without wood collapse) is met. CAVEATS carried to the arena: (a) local win-rate is weak/
+small-n; (b) the baseline corpus (batch 1) showed exposed-value does NOT predict losses in
+aggregate (own_half_exposed@t150 WIN 67.6 > LOSS 55.6) — so REDUCING exposed value may not
+convert to wins. Temper arena expectations: a neutral/negative arena delta is plausible, and a
+clean revert is the goal's KILL branch (ownership-aware play doesn't move the needle at our band).
