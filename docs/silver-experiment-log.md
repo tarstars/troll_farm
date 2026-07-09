@@ -2525,3 +2525,24 @@ felling immature/doomed trees would make us WORSE]. Phenomenon (b) is a NEW econ
 tuning?) — filed, NOT chased now (economy class = the pie family's graveyard; needs its own
 evidence). taskfloor's arena signal may thus be modest (it only helps the (a) slice), but it's
 correct, no-harm (never displaces work), and the transfer class — worth shipping. IN REVIEW.
+
+## 2026-07-09 20:30 — frontdoor+taskfloor STACK arena verdict: REVERT (−1.0)
+
+Bracket 136/528 @17.1 (live yield, agentId 6545366). Submitted 19:48:13 (id 40973992, agentId
+6545482). Reads +20/+30/+45: 175@16.3, 182@15.7, 176@16.1 — a stable ~16.0 plateau, ~1.0 BELOW
+bracket. Delta ≈ **−1.0** → REVERT (past the −0.5 bar). Reverted to yield (champion) at ~20:30.
+
+★ LESSON (important, echoes the ownership result): frontdoor is a proven no-op on non-chokepoint
+maps, so the −1.0 is essentially all TASKFLOUR. taskfloor was APPROVED with a hard proof that
+reach-work never DISPLACES real work (band-wise) — and it doesn't — yet it still HURT ~1.0.
+Mechanism: the second-order positioning cost the band can't see. Converting idle-park into
+far reach-work sends a troll 20-30 steps for a marginal distant tree; next turn real local work
+appears (a farm banana ripens, wood regrows) and the troll either abandons the trek (wasted
+travel) or is out of position. A troll PARKED near the farm/bank is cheaply READY; a troll
+dispatched far is expensively committed. So idle-park was NOT the waste it looked like — parking
+is a reasonable "stay ready" behavior, and "go find far work" is net-negative.
+= the SAME failure shape as ownership: a surface metric that LOOKS like waste (idle turns /
+exposed value) does not predict/cause losses, and "fixing" it backfires. The execution cuts that
+DID transfer (race +1.3, yield +1.0) were about NOT doing dumb things (doomed chases, blocking),
+not about filling apparent gaps. TREE FOLLOW-UP: revert taskfloor from the working tree (it's
+arena-negative); frontdoor is no-op-harmless (keep or drop — near-zero either way).
