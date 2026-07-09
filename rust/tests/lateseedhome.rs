@@ -2,6 +2,7 @@
 //! floor and tent bananas are already banked, restart the local plant loop before walking
 //! to a remote ripe seed tree. Early tree-first behavior stays intact.
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll, BANANA};
@@ -57,6 +58,7 @@ fn base_plan(st: &State) -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

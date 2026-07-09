@@ -86,6 +86,12 @@ pub struct Plan {
     pub base_trees: usize,
     pub seed_cells: HashSet<Cell>,
     pub phase: Phase,
+    /// v1.53.0-pressurefarm (Task 1 Step 3): the live ownership-pressure verdict, computed
+    /// ONCE per turn below (never recomputed in planner.rs's per-troll hot loop). Under
+    /// `PressureState::Green` this is always the all-zero/empty default and every
+    /// pressure-gated behavior in planner.rs is a proven no-op (see
+    /// tests/pressurefarm.rs::pressure_green_is_noop).
+    pub pressure: ownership::Pressure,
 }
 
 fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
@@ -256,7 +262,7 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         }
     }
 
-    Plan {
+    let provisional = Plan {
         shack,
         farm_d,
         opp,
@@ -283,6 +289,51 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         base_trees,
         seed_cells,
         phase,
+        pressure: ownership::Pressure::default(),
+    };
+
+    // ── PRESSURE GOVERNOR (v1.53.0-pressurefarm, Task 1 Step 2) ─────────────
+    // ownership::assess only reads provisional.farm_d/farm_r/seed_cells (all already final
+    // above) — the placeholder `pressure` field on `provisional` is never read by it, so
+    // computing against the provisional Plan and overlaying the real pressure (plus its one
+    // derived override, farm_cap) afterward is equality-safe. Computed exactly ONCE per
+    // turn here — never inside planner.rs's per-troll candidates() hot loop.
+    let pressure = ownership::assess(state, &provisional);
+    // Task 2 Step 1 (dynamic farm cap): Orange+ pressure suppresses further expansion, but
+    // NEVER below a small survival floor — a farm already at/under the floor keeps planting
+    // regardless (the `.min` only ever shrinks the CEILING, it can't force liquidation). This
+    // keeps Green/Yellow byte-identical (provisional.farm_cap is returned unchanged) and
+    // avoids the "always smaller farm" static-control trap: the clamp only engages when
+    // pressure is actually observed.
+    //
+    // Code review C2 (2026-07-09): re-gated from `>= Yellow` to `>= Orange`. Yellow only
+    // requires `own_half_exposed > 0` (created_exposed == 0) — a signal that lights up from
+    // static map geometry (any own-half tree we can't PROVE decisively ours) and is
+    // near-permanent from ~turn 5 on real maps, independent of any real threat to farm value
+    // WE created. Gating the clamp there collapsed farm_cap 12->4 for essentially the whole
+    // game — exactly the "always smaller farm" nerf the paragraph above warns against, and a
+    // throughput crater (dense-farm-never-idle is this bot's whole economic thesis). Orange
+    // requires `created_exposed > 0` — a created/local farm tree the ownership model itself
+    // marks not-safely-ours — which IS threat-discriminating (it needs the opponent's ETA to
+    // actually contest a tree WE planted), matching this feature's own design intent (see
+    // docs/pressure-aware-farm.md Task 0 Step 3, "Yellow: … pause expansion ONLY IF
+    // created/local value exists") and data/analysis/map-value-ownership/report.md's
+    // recommended trigger.
+    //
+    // Factory latent note (M1): under Phase::Factory the champion raises farm_cap to 20
+    // (see the `phase == Phase::Factory` branch above); this clamp would override that down
+    // to GE_PRESSURE_FARM_FLOOR if Orange+ pressure ever fires during Factory. Dormant today
+    // (GE_META=Tempo, Factory unreachable) — flagged, not handled; no logic added here.
+    let farm_cap = if pressure.state >= ownership::PressureState::Orange {
+        provisional.farm_cap.min(GE_PRESSURE_FARM_FLOOR)
+    } else {
+        provisional.farm_cap
+    };
+
+    Plan {
+        farm_cap,
+        pressure,
+        ..provisional
     }
 }
 

@@ -7,6 +7,7 @@
 //! the opponent (the contestable, shared-map wood) over the one deeper in our own territory.
 //! [helpers copied VERBATIM from tests/planner_tasks.rs]
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll};
@@ -71,6 +72,7 @@ fn base_plan() -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

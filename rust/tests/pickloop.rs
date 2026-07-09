@@ -36,6 +36,7 @@
 //!      MOVE forever. Must FAIL pre-fix (stalls at the ring-2 cell within 12 simulated turns).
 use std::collections::HashSet;
 use troll_farm::botmain::motion;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll};
@@ -119,6 +120,7 @@ fn no_pick_without_reachable_plant_cell() {
         base_trees: 2,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     };
     // Standing at (1,2): shack-adjacent (manhattan 1), empty-handed, tent has bananas.
     let my = vec![pure_starter(0, 1, 2, [0; 6])];
@@ -234,6 +236,7 @@ fn pick_stays_enabled_when_plant_cell_lies_beyond_a_tree() {
         base_trees: 2,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     };
     let my = vec![pure_starter(0, 1, 2, [0; 6])];
     let cmds = assign(&state, &plan, &my);
@@ -309,6 +312,7 @@ fn errand_reaches_pick_on_scarce_map() {
         base_trees: 0, // 0 < farm_cap: "room" in the farm -- the gate the printer bands key off
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     };
     let mut my = vec![pure_starter(0, 5, 2, [0; 6])];
 

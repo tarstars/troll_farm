@@ -1,6 +1,7 @@
 //! R6b joint task assignment — tests: shuffle invariance, contested-resource resolution,
 //! and priority sanity (the value bands must reproduce the cascade's hierarchy).
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll};
@@ -65,6 +66,7 @@ fn base_plan() -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

@@ -2,6 +2,7 @@
 //! grows the farm cap 12->20. [copied VERBATIM from tests/phase_hoard.rs, except base_plan()
 //! sets phase: Phase::Factory and farm_cap: 20]
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll};
@@ -66,6 +67,7 @@ fn base_plan() -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Factory,
+        pressure: ownership::Pressure::default(),
     }
 }
 
