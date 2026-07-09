@@ -4,7 +4,7 @@
 //! Bodies moved VERBATIM from decide_elite; equality enforced by the harness.
 use super::*;
 use std::cell::RefCell;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Meta {
@@ -92,10 +92,118 @@ pub struct Plan {
     /// pressure-gated behavior in planner.rs is a proven no-op (see
     /// tests/pressurefarm.rs::pressure_green_is_noop).
     pub pressure: ownership::Pressure,
+    /// v1.54.0-frontdoor: the chosen "front door" cell when the shack straddles a
+    /// detected chokepoint (see `compute_door`); `None` on every normal map — a proven
+    /// no-op (tests/frontdoor.rs::frontdoor_open_map_noop).
+    pub door: Option<Cell>,
+    /// BFS distances from `door` (`Some` iff `door` is `Some`). `farm_eligible` uses
+    /// THIS instead of `farm_d` at the farm/plant-membership sites exactly when a
+    /// chokepoint override is active; every OTHER use of `farm_d` (banking-adjacency,
+    /// chop-roam) is untouched.
+    pub door_d: Option<HashMap<Cell, i32>>,
+}
+
+// ── FRONT-DOOR FARM PLACEMENT (v1.54.0-frontdoor) ───────────────────────────────────────
+// `farm_d` above is a BFS SEEDED AT THE SHACK CELL: the shack is impassable to trolls (they
+// can never stand on / re-enter it), but the BFS still treats it as a zero-cost hub, so
+// cells on OPPOSITE sides of a shack that straddles a chokepoint (lake + boulders, e.g. the
+// Sasso map) both read farm_d<=2 even when they are 20+ REAL walking steps apart — one
+// connected component, a DISTANCE bug, not a connectivity one (user replay 895493013,
+// confirmed: farm_d(14,4)=1 but real dist (12,4)->(14,4)=24). The farm/plant-membership
+// filter then wrongly admits cells on BOTH sides, so the gatherer shuttles the full detour
+// every trip (263/300 turns in transit, measured).
+//
+// Fix: `compute_door` detects the straddle (chokepoint-gated) and, ONLY then, picks a
+// single "front door" — the shack's walkable neighbor farthest (true BFS distance) from
+// the OPPONENT shack among candidates VIABLE enough to host a farm. `farm_eligible` then
+// resolves farm/plant membership through the door's BFS instead of the shack-hub `farm_d`.
+// On every normal (non-chokepoint) map `compute_door` returns `(None, None)` and
+// `farm_eligible` reduces to exactly today's `farm_d.get(pos) <= r` — a proven no-op (see
+// tests/frontdoor.rs::frontdoor_open_map_noop). `farm_d` keeps ALL its other uses
+// (banking-adjacency `farm_d==1` in planner.rs's plant_cell chooser, chop-roam `chop_r`)
+// untouched — only the farm/plant-membership sites route through `farm_eligible`.
+pub const MIN_FARM_CELLS: usize = 4; // a candidate door must host at least this many walkable cells within GE_FARM_R to be VIABLE
+pub const CHOKE_THRESHOLD: i32 = 8; // max true pairwise distance between door candidates before we call it a chokepoint (open maps: ~4 via the small detour around the shack; Sasso: 24)
+
+/// Chokepoint-gated front-door selection. Returns `(None, None)` on every normal map:
+/// fewer than 2 walkable shack-neighbors (nothing to straddle), every candidate mutually
+/// close (`<= CHOKE_THRESHOLD`), or no candidate is VIABLE (>= `MIN_FARM_CELLS` walkable
+/// cells within `GE_FARM_R`). Otherwise picks the viable candidate maximizing true BFS
+/// distance from `state.opp_shack` (farthest-from-enemy — the enemy must travel farther to
+/// raid our crops), tie-broken lexicographically on the cell.
+///
+/// Determinism: `candidates` is an explicit sorted `Vec` (never a HashSet iterated for
+/// order); the viable list is explicitly sorted on `(-opp_dist, door_cell)` before picking
+/// index 0 — the result depends only on map geometry, never on HashSet/HashMap internal
+/// iteration order (see tests/frontdoor.rs::frontdoor_determinism_hashset_reorder).
+pub fn compute_door(state: &State) -> (Option<Cell>, Option<HashMap<Cell, i32>>) {
+    let shack = state.my_shack;
+    let mut candidates: Vec<Cell> = ortho_neighbors(shack)
+        .into_iter()
+        .filter(|c| state.walkable.contains(c))
+        .collect();
+    candidates.sort();
+    if candidates.len() < 2 {
+        return (None, None); // nothing to straddle
+    }
+
+    let dds: Vec<(Cell, HashMap<Cell, i32>)> = candidates
+        .iter()
+        .map(|&c| (c, bfs_distances(&state.walkable, &[c])))
+        .collect();
+
+    let mut max_pair = 0;
+    for i in 0..dds.len() {
+        for j in (i + 1)..dds.len() {
+            let dist = dds[i].1.get(&dds[j].0).copied().unwrap_or(i32::MAX / 2);
+            max_pair = max_pair.max(dist);
+        }
+    }
+    if max_pair <= CHOKE_THRESHOLD {
+        return (None, None); // open map: no-op
+    }
+
+    let opp_d = bfs_distances(&state.walkable, &[state.opp_shack]);
+    let mut viable: Vec<(Cell, i32)> = Vec::new();
+    for (door, dd) in &dds {
+        let count = state
+            .walkable
+            .iter()
+            .filter(|c| dd.get(c).map_or(false, |&d| d <= GE_FARM_R))
+            .count();
+        if count >= MIN_FARM_CELLS {
+            viable.push((*door, opp_d.get(door).copied().unwrap_or(0)));
+        }
+    }
+    if viable.is_empty() {
+        return (None, None); // no side can host a farm: fall back to plain farm_d
+    }
+    viable.sort_by_key(|&(door, od)| (-od, door));
+    let chosen = viable[0].0;
+    let chosen_d = dds.into_iter().find(|(c, _)| *c == chosen).map(|(_, d)| d);
+    (Some(chosen), chosen_d)
+}
+
+/// Farm/plant-cell eligibility at radius `r`: `farm_d <= r` on every normal map (byte-
+/// identical to the pre-frontdoor test); `door_d <= r` when a chokepoint override is
+/// active. The only call sites this replaces are farm/plant-membership tests (tactics.rs
+/// farm_now/base_trees below, planner.rs's plant_cell chooser) — NOT `farm_d==1` banking-
+/// adjacency or `chop_r` roam, which keep consulting `farm_d` directly.
+pub fn farm_eligible(
+    farm_d: &HashMap<Cell, i32>,
+    door_d: &Option<HashMap<Cell, i32>>,
+    pos: Cell,
+    r: i32,
+) -> bool {
+    match door_d {
+        Some(dd) => dd.get(&pos).map_or(false, |&d| d <= r),
+        None => farm_d.get(&pos).map_or(false, |&d| d <= r),
+    }
 }
 
 fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     let farm_d = bfs_distances(&state.walkable, &[state.my_shack]);
+    let (door, door_d) = compute_door(state);
     let shack = state.my_shack;
     let opp = state.opp_shack;
     let inv = &state.my_inventory;
@@ -132,7 +240,7 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     let farm_now = state
         .trees
         .iter()
-        .filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= GE_FARM_R))
+        .filter(|p| farm_eligible(&farm_d, &door_d, p.pos(), GE_FARM_R))
         .count();
     // v1.11.0: troll 2 = the CHOPPER (early, adaptive spec). troll 3 = a FEEDER (late): a cheap
     // hp>0/chop=0 harvester. Because decide_elite routes any chop<2 troll through the STARTER
@@ -238,7 +346,7 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     let base_trees = state
         .trees
         .iter()
-        .filter(|p| farm_d.get(&p.pos()).map_or(false, |&d| d <= farm_r))
+        .filter(|p| farm_eligible(&farm_d, &door_d, p.pos(), farm_r))
         .count();
 
     // ── SEED SUSTAINABILITY (arena deforestation fix) ───────────────────────
@@ -290,6 +398,8 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         seed_cells,
         phase,
         pressure: ownership::Pressure::default(),
+        door,
+        door_d,
     };
 
     // ── PRESSURE GOVERNOR (v1.53.0-pressurefarm, Task 1 Step 2) ─────────────

@@ -73,6 +73,8 @@ fn base_plan() -> Plan {
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
         pressure: ownership::Pressure::default(),
+        door: None,
+        door_d: None,
     }
 }
 

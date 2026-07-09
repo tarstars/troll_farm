@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.53.0-pressurefarm"; // pressure governor: ownership-score-gated farm cap/seed-release/liquidation (D7 splitclaims base)
+const VERSION: &str = "1.54.0-frontdoor"; // front-door farm placement: chokepoint-gated fix for the shack-hub farm_d bug (Sasso long-path re-diagnosis)
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

@@ -103,6 +103,8 @@ fn own_plan(st: &State) -> Plan {
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
         pressure: Pressure::default(),
+        door: None,
+        door_d: None,
     }
 }
 
@@ -290,6 +292,8 @@ fn base_plan() -> Plan {
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
         pressure: Pressure::default(),
+        door: None,
+        door_d: None,
     }
 }
 
