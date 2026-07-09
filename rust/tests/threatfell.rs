@@ -1,5 +1,6 @@
 //! v1.50.1-latethreat: late observed enemy-near-own-tree raid response.
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll};
@@ -56,6 +57,7 @@ fn plan_for(st: &State) -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

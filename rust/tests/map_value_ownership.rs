@@ -78,6 +78,7 @@ fn plan(st: &State) -> Plan {
         base_trees: st.trees.len(),
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

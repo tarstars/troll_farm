@@ -12,6 +12,7 @@
 //! cells every hand's carry trip needs. Diagonal-to-shack cells are the same map-distance
 //! from the farm's edge but off that traffic path, so they should be preferred instead.
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll};
@@ -76,6 +77,7 @@ fn base_plan() -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

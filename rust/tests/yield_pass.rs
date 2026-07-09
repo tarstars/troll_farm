@@ -1,6 +1,7 @@
 //! v1.43.0-yield: one low-value stationary teammate may step aside for a
 //! higher-value mover, but the pass is strict-value and single-round.
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign_resolved;
 use troll_farm::botmain::tactics::{Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll, WOOD};
@@ -49,6 +50,7 @@ fn plan_for(walkable: &HashSet<(i32, i32)>) -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

@@ -1,6 +1,7 @@
 //! v1.49.0-farmhand: re-arm the cheap third hand, but keep its fruit errands
 //! local to the farm ring so it does not repeat the T-hand tourist path.
 use std::collections::HashSet;
+use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{plan_with_meta, Meta, Phase, Plan};
 use troll_farm::botmain::{bfs_distances, State, Tree, Troll};
@@ -57,6 +58,7 @@ fn base_plan() -> Plan {
         base_trees: 0,
         seed_cells: HashSet::new(),
         phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
     }
 }
 

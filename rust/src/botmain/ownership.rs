@@ -1,8 +1,17 @@
-//! DEBUG-only total-map value ownership diagnostic.
+//! Total-map value ownership diagnostic + pressure governor (v1.53.0-pressurefarm).
 //!
-//! This module computes a rough, auditable ownership split from the live per-turn
-//! `State`. It must not feed decisions back into planner behavior; callers only
-//! print the result when `DEBUG` is enabled.
+//! `analyze`/`classify_tree`/`Ownership` below are the ORIGINAL DEBUG-only diagnostic
+//! (unchanged): a rough, auditable ownership split from the live per-turn `State`, printed
+//! only when `DEBUG` is enabled, never read by behavior.
+//!
+//! `assess`/`Pressure`/`PressureState` are the NEW pressure governor (Task 1): they DO feed
+//! `tactics::plan_impl` every turn (unconditionally, not gated by DEBUG) so `Plan` can carry
+//! a live pressure verdict into `planner.rs`. This is a deliberate, narrow exception to the
+//! "diagnostic only" rule above — see docs/superpowers/plans/2026-07-09-pressurefarm-
+//! ownership-score.md and docs/pressure-aware-farm.md. `assess` reuses the existing
+//! `analyze`/`classify_tree`/`is_created_farm_tree` helpers verbatim (no behavior change to
+//! them); it only adds a second, cheap pass over created-farm trees (bounded by farm size,
+//! not map size) to classify which ones are exposed.
 use super::tactics::Plan;
 use super::*;
 use std::cell::RefCell;
@@ -18,6 +27,7 @@ thread_local! {
     static INITIAL_TREES: RefCell<HashSet<(Cell, String)>> = RefCell::new(HashSet::new());
     static INITIAL_READY: RefCell<bool> = RefCell::new(false);
     static CFG_PRINTED: RefCell<bool> = RefCell::new(false);
+    static PRESS_CFG_PRINTED: RefCell<bool> = RefCell::new(false);
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -43,6 +53,7 @@ pub fn reset() {
     INITIAL_TREES.with(|s| s.borrow_mut().clear());
     INITIAL_READY.with(|r| *r.borrow_mut() = false);
     CFG_PRINTED.with(|p| *p.borrow_mut() = false);
+    PRESS_CFG_PRINTED.with(|p| *p.borrow_mut() = false);
 }
 
 pub fn log(state: &State, plan: &Plan) {
@@ -108,6 +119,157 @@ pub fn analyze(state: &State, plan: &Plan) -> Ownership {
     }
 
     out
+}
+
+// ── Pressure governor (Task 0/1: score contract + live exposure to planning) ───────────
+
+/// Green < Yellow < Orange < Red (declaration order = derived `Ord`): the farm-pressure
+/// ladder from docs/pressure-aware-farm.md. Escalation is purely a function of the
+/// OBSERVED `Ownership` buckets below — never turn number alone (static turn-only gates
+/// are a proven dead end: earlyroam boss 0/8, lateseedhome -1.2).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub enum PressureState {
+    Green,
+    Yellow,
+    Orange,
+    Red,
+}
+
+impl Default for PressureState {
+    fn default() -> Self {
+        PressureState::Green
+    }
+}
+
+/// Compact pressure result consumed by `tactics::Plan` / `planner.rs`. `exposed_created_cells`
+/// and `released_seed_cells` are POSITION sets (not iterated for ordering — only ever
+/// `.contains()`-checked by callers, so HashSet's unspecified iteration order cannot leak
+/// into emitted command order; see the determinism note on `assess` below).
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct Pressure {
+    pub own_half_exposed: i32,
+    pub created_exposed: i32,
+    pub pressure_score: i32,
+    pub state: PressureState,
+    /// Created/local farm trees (is_created_farm_tree) classified Opponent or Uncertain —
+    /// "not safely ours". Drives Task 2 Step 3's liquidation-priority bonus.
+    pub exposed_created_cells: HashSet<Cell>,
+    /// Subset of `plan.seed_cells` that pressure has released from protection (Task 2 Step
+    /// 2). Deliberately STRICTER than `exposed_created_cells`: only a seed tree that is
+    /// ITSELF definitively opponent-bound (bucket == Opponent, not merely Uncertain)
+    /// releases, and only once the aggregate state has escalated to Orange/Red — seed
+    /// supply is the most dangerous lever in this codebase's history (arena deforestation
+    /// stalls when the farm's seed source dies), so releasing it is conservative by design.
+    pub released_seed_cells: HashSet<Cell>,
+}
+
+fn classify_pressure(own_half_exposed: i32, created_exposed: i32, definite_opponent: bool) -> PressureState {
+    if created_exposed > 0 {
+        if definite_opponent {
+            PressureState::Red
+        } else {
+            PressureState::Orange
+        }
+    } else if own_half_exposed > 0 {
+        PressureState::Yellow
+    } else {
+        PressureState::Green
+    }
+}
+
+/// Computed ONCE per turn by `tactics::plan_impl` (never inside planner.rs's per-troll
+/// `candidates()` hot loop — Task 1 Step 2). Calls the UNCHANGED `analyze` once, then a
+/// second pass bounded by created-farm-tree count (not map size) to classify exposure and
+/// find the Red trigger ("opponent ETA makes preserving nearby farm value worse than
+/// conversion" == at least one created-exposed tree is DEFINITELY opponent-bound, i.e.
+/// `Bucket::Opponent`, not just a close `Bucket::Uncertain` race).
+///
+/// Determinism: iterates `state.trees` (a `Vec`, stable order already) and inserts into
+/// HashSets that are only ever `.contains()`-queried afterward (never iterated for ordered
+/// output) — so HashSet's unspecified internal order cannot affect any emitted command.
+pub fn assess(state: &State, plan: &Plan) -> Pressure {
+    let own = analyze(state, plan);
+
+    let mut exposed_created_cells: HashSet<Cell> = HashSet::new();
+    let mut definite_opponent = false;
+    for tree in &state.trees {
+        if tree_value(tree) <= 0 || !is_created_farm_tree(tree, plan) {
+            continue;
+        }
+        match classify_tree(state, tree) {
+            Bucket::Opponent => {
+                exposed_created_cells.insert(tree.pos());
+                definite_opponent = true;
+            }
+            Bucket::Uncertain => {
+                exposed_created_cells.insert(tree.pos());
+            }
+            Bucket::Ours | Bucket::Dead => {}
+        }
+    }
+
+    let pressure_score = own.own_half_exposed + own.created_exposed;
+    let state_level = classify_pressure(own.own_half_exposed, own.created_exposed, definite_opponent);
+
+    // Task 2 Step 2 (seed-reserve release): conservative on purpose — see the doc comment
+    // on `Pressure::released_seed_cells`. Gated on the AGGREGATE state (Orange/Red, the
+    // plan's literal wording) as a belt-and-suspenders sanity check, even though in
+    // practice a seed tree with bucket==Opponent already forces state_level to Red on its
+    // own (a seed tree is always a created-farm tree).
+    let released_seed_cells: HashSet<Cell> = if state_level >= PressureState::Orange {
+        plan.seed_cells
+            .iter()
+            .filter(|&&pos| {
+                state
+                    .trees
+                    .iter()
+                    .find(|t| t.pos() == pos)
+                    .map_or(false, |t| classify_tree(state, t) == Bucket::Opponent)
+            })
+            .copied()
+            .collect()
+    } else {
+        HashSet::new()
+    };
+
+    Pressure {
+        own_half_exposed: own.own_half_exposed,
+        created_exposed: own.created_exposed,
+        pressure_score,
+        state: state_level,
+        exposed_created_cells,
+        released_seed_cells,
+    }
+}
+
+/// DEBUG telemetry (Task 1 Step 4): @TFPRESSCFG once at turn 1 (constants, near the farm
+/// constants per the plan), then @TFPRESS at the same cadence as @TFOWN. Reads Plan's
+/// ALREADY-computed `pressure` field — no recomputation, unlike `log` above (which still
+/// calls `analyze` fresh; the two numbers agree because nothing mutates state/plan between
+/// `tactics::plan` returning and this DEBUG print).
+pub fn log_pressure(state: &State, plan: &Plan) {
+    if state.turn == 1 {
+        PRESS_CFG_PRINTED.with(|printed| {
+            let mut printed = printed.borrow_mut();
+            if !*printed {
+                eprintln!("@TFPRESSCFG farm_floor={}", GE_PRESSURE_FARM_FLOOR);
+                *printed = true;
+            }
+        });
+    }
+    if !should_emit(state.turn) {
+        return;
+    }
+    eprintln!(
+        "@TFPRESS t={} own_half_exposed={} created_exposed={} pressure_score={} state={:?} exposed_n={} released_n={}",
+        state.turn,
+        plan.pressure.own_half_exposed,
+        plan.pressure.created_exposed,
+        plan.pressure.pressure_score,
+        plan.pressure.state,
+        plan.pressure.exposed_created_cells.len(),
+        plan.pressure.released_seed_cells.len(),
+    );
 }
 
 fn ensure_initial(state: &State) {

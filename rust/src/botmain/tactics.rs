@@ -86,6 +86,12 @@ pub struct Plan {
     pub base_trees: usize,
     pub seed_cells: HashSet<Cell>,
     pub phase: Phase,
+    /// v1.53.0-pressurefarm (Task 1 Step 3): the live ownership-pressure verdict, computed
+    /// ONCE per turn below (never recomputed in planner.rs's per-troll hot loop). Under
+    /// `PressureState::Green` this is always the all-zero/empty default and every
+    /// pressure-gated behavior in planner.rs is a proven no-op (see
+    /// tests/pressurefarm.rs::pressure_green_is_noop).
+    pub pressure: ownership::Pressure,
 }
 
 fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
@@ -256,7 +262,7 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         }
     }
 
-    Plan {
+    let provisional = Plan {
         shack,
         farm_d,
         opp,
@@ -283,6 +289,32 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         base_trees,
         seed_cells,
         phase,
+        pressure: ownership::Pressure::default(),
+    };
+
+    // ── PRESSURE GOVERNOR (v1.53.0-pressurefarm, Task 1 Step 2) ─────────────
+    // ownership::assess only reads provisional.farm_d/farm_r/seed_cells (all already final
+    // above) — the placeholder `pressure` field on `provisional` is never read by it, so
+    // computing against the provisional Plan and overlaying the real pressure (plus its one
+    // derived override, farm_cap) afterward is equality-safe. Computed exactly ONCE per
+    // turn here — never inside planner.rs's per-troll candidates() hot loop.
+    let pressure = ownership::assess(state, &provisional);
+    // Task 2 Step 1 (dynamic farm cap): Yellow+ pressure suppresses further expansion, but
+    // NEVER below a small survival floor — a farm already at/under the floor keeps planting
+    // regardless (the `.min` only ever shrinks the CEILING, it can't force liquidation). This
+    // keeps Green byte-identical (provisional.farm_cap is returned unchanged) and avoids the
+    // "always smaller farm" static-control trap: the clamp only engages when pressure is
+    // actually observed.
+    let farm_cap = if pressure.state >= ownership::PressureState::Yellow {
+        provisional.farm_cap.min(GE_PRESSURE_FARM_FLOOR)
+    } else {
+        provisional.farm_cap
+    };
+
+    Plan {
+        farm_cap,
+        pressure,
+        ..provisional
     }
 }
 
