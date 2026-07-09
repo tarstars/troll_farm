@@ -488,6 +488,61 @@ fn orange_raises_local_liquidation() {
 }
 
 #[test]
+fn orange_liq_bonus_is_race_safe() {
+    // Code review I1 (2026-07-09): PRESSURE_LIQ_BONUS (4) > RACE_SHARE_PEN (2), so applying
+    // it unconditionally to a joinable-contested exposed tree flipped the race check's tuned
+    // "don't over-trek to a shared/discounted tree" discount into a net BONUS (-2+4 = +2),
+    // reversing the sign of the v1.36.0-race behavior it must never touch. The fix withholds
+    // PRESSURE_LIQ_BONUS entirely on any tree where race() detects an opponent occupant
+    // (whether doomed -- already `continue`s before the bonus is ever computed -- or
+    // joinable), while leaving the bonus fully intact on a tree with no occupant at all.
+    //
+    // Setup mirrors `orange_raises_local_liquidation` exactly (chopper at (1,2); trees at
+    // (3,2) and (4,2), both size 2, so (4,2) is naturally 1 in-band step behind (3,2)) but
+    // ALSO puts a winnable enemy chopper on (4,2) (health 4, chop_power 1 -> their_turns=4 >
+    // our_eta=2 -- joinable, not doomed) and marks (4,2) exposed/Orange.
+    //   value(3,2) = 70*BAND - (steps=1 + chop_t=2)                          = 70*BAND - 3
+    //   value(4,2), buggy (unconditional +4): 70*BAND-(2+2)-2(race)+4        = 70*BAND - 2  (WINS -- reverses the discount)
+    //   value(4,2), fixed (bonus withheld):    70*BAND-(2+2)-2(race)+0       = 70*BAND - 6  (loses -- stays race-discounted)
+    troll_farm::botmain::planner::reset();
+    let mut st = base_state();
+    st.trees = vec![tree_at(3, 2, 2), tree_at(4, 2, 2)];
+    let mut enemy = chopper(9, 4, 2);
+    enemy.chop_power = 1;
+    st.opp_trolls = vec![enemy];
+    let mut plan = base_plan();
+    plan.pressure = Pressure {
+        created_exposed: 8,
+        state: PressureState::Orange,
+        exposed_created_cells: [(4, 2)].into_iter().collect(),
+        ..Pressure::default()
+    };
+
+    let cmds = assign(&st, &plan, &[chopper(2, 1, 2)]);
+    assert!(
+        cmds[&2].contains("3 2"),
+        "a joinable-contested exposed tree must NOT be lifted above its un-pressured \
+         (race-discounted) value: {}",
+        cmds[&2]
+    );
+    assert!(!cmds[&2].contains("4 2"), "{}", cmds[&2]);
+
+    // flip-check: remove the enemy occupant (now genuinely non-contested) -- the SAME
+    // exposed/Orange marking on (4,2) must still lift it above (3,2) via the full, untouched
+    // liquidation bonus (mirrors `orange_raises_local_liquidation`; repeated here so the
+    // discriminator -- contested vs not -- is visible in one place as a flip-check).
+    troll_farm::botmain::planner::reset();
+    st.opp_trolls = vec![];
+    let cmds = assign(&st, &plan, &[chopper(2, 1, 2)]);
+    assert!(
+        cmds[&2].contains("4 2"),
+        "a non-contested exposed tree must still get the full liquidation boost: {}",
+        cmds[&2]
+    );
+    assert!(!cmds[&2].contains("3 2"), "{}", cmds[&2]);
+}
+
+#[test]
 fn red_releases_seed_reserve() {
     // A protected seed tree the chopper is standing on, plus a free tree within roam (see
     // pressure_green_is_noop's scenario (c) for why it must be within chop_r, not merely
@@ -606,13 +661,96 @@ fn yellow_scenario(n_farm_trees: usize) -> State {
     }
 }
 
+fn orange_initial() -> State {
+    // Treeless snapshot for the two-call INITIAL_TREES dance (as in Section A's
+    // assess_orange_*/assess_red_* tests): run through `plan_with_meta` once on this BEFORE
+    // `orange_scenario` so every tree in the later state counts as "created", not native.
+    let mut walkable: HashSet<(i32, i32)> = HashSet::new();
+    for x in 0..8 {
+        for y in 0..5 {
+            walkable.insert((x, y));
+        }
+    }
+    walkable.remove(&(0, 2));
+    State {
+        walkable,
+        my_shack: (0, 2),
+        opp_shack: (7, 2),
+        my_inventory: [0; 6],
+        opp_inventory: [0; 6],
+        trees: vec![],
+        my_trolls: vec![chopper(0, 0, 1)],
+        opp_trolls: vec![chopper(1, 2, 2)],
+        turn: 1,
+        iron_cells: HashSet::new(),
+        water_cells: HashSet::new(),
+    }
+}
+
+/// Mirrors `yellow_scenario` but produces a genuinely ORANGE (not merely Yellow) pressure
+/// state: the FIRST candidate, (2,2), is a created BANANA farm tree engineered to a near-tie
+/// with an opposing chopper standing on it (both `chopper()`: ms=2, chop=2) --
+///   ours (from (0,1)): move 3 (ms2 -> 2 turns) + chop ceil(4/2)=2 + bank(tree->our bank
+///     cell (1,2), dist 1 -> 1 turn)+1 = 2+2+2 = 6
+///   theirs (standing on it): move 0 + chop 2 + bank(tree->their bank cell (6,2), dist 4 ->
+///     2 turns)+1 = 0+2+3 = 5
+/// |6-5|=1 < OWN_MARGIN_TURNS(3) -> Bucket::Uncertain, not a definite loss -> created_exposed
+/// > 0 lands Orange, never escalating to Red. The other four candidates are all safely ours
+/// (the opponent's return trip to ITS OWN shack from deep in our territory is far too long to
+/// contest them), so created_exposed is driven by exactly this one tree -- a clean, minimal
+/// Orange fixture.
+fn orange_scenario(n_farm_trees: usize) -> State {
+    let mut walkable: HashSet<(i32, i32)> = HashSet::new();
+    for x in 0..8 {
+        for y in 0..5 {
+            walkable.insert((x, y));
+        }
+    }
+    walkable.remove(&(0, 2));
+    // (2,2) FIRST (always included, any n_farm_trees>=1): the contested/created farm tree.
+    let candidates = [(2, 2), (1, 2), (0, 3), (1, 1), (1, 3)];
+    let trees: Vec<Tree> = candidates
+        .iter()
+        .take(n_farm_trees)
+        .map(|&(x, y)| {
+            let contested = (x, y) == (2, 2);
+            Tree {
+                tree_type: "BANANA".into(),
+                x,
+                y,
+                size: if contested { 2 } else { 1 },
+                health: if contested { 4 } else { 3 },
+                fruits: 0,
+                cooldown: 0,
+            }
+        })
+        .collect();
+    State {
+        walkable,
+        my_shack: (0, 2),
+        opp_shack: (7, 2),
+        my_inventory: [0; 6],
+        opp_inventory: [0; 6],
+        trees,
+        my_trolls: vec![chopper(0, 0, 1)],
+        opp_trolls: vec![chopper(1, 2, 2)],
+        turn: 75,
+        iron_cells: HashSet::new(),
+        water_cells: HashSet::new(),
+    }
+}
+
 #[test]
-fn tactics_farm_cap_floor_engages_under_yellow_but_not_below_floor() {
-    // GE_PRESSURE_FARM_FLOOR is a private botmain.rs const; 4 is hardcoded here the same
-    // way existing tests already hardcode GE_FARM_R=2 / GE_FARM_MAX=12 as literals rather
-    // than importing crate-root consts into an external integration-test crate.
+fn tactics_farm_cap_clamps_on_orange_not_yellow() {
+    // Code review C2 (2026-07-09) re-gate: the clamp must key off ORANGE (created_exposed>0
+    // -- a created/local farm tree the ownership model itself can't call safely ours), not
+    // the much weaker YELLOW (own_half_exposed>0 alone -- lights up from static map geometry
+    // and is near-permanent from ~turn 5 on real maps; see yellow_scenario's own docs).
+    // GE_PRESSURE_FARM_FLOOR(4)/GE_FARM_MAX(12) are private botmain.rs consts; hardcoded here
+    // the same way existing tests already hardcode GE_FARM_R=2 as a literal rather than
+    // importing crate-root consts into an external integration-test crate.
     ownership::reset();
-    let st = yellow_scenario(5); // base_trees(5) > floor(4)
+    let st = yellow_scenario(5); // base_trees(5) > floor(4); own_half_exposed>0, created_exposed==0
     let plan = plan_with_meta(&st, &st.my_trolls, Meta::Tempo);
     assert_eq!(
         plan.pressure.state,
@@ -622,21 +760,55 @@ fn tactics_farm_cap_floor_engages_under_yellow_but_not_below_floor() {
     );
     assert_eq!(plan.base_trees, 5);
     assert_eq!(
-        plan.farm_cap, 4,
-        "Yellow with base_trees above the floor must clamp farm_cap to the floor, got {}",
+        plan.farm_cap, 12,
+        "Yellow ALONE (own_half_exposed>0, created_exposed==0) must NOT clamp farm_cap -- \
+         that was the C2 bug (an 'always smaller farm' nerf firing from mere map geometry), got {}",
         plan.farm_cap
     );
 
-    // flip-check: a farm already below the floor (3 < 4) keeps its normal room to grow --
-    // the clamp is a ceiling, never a mandate to shrink below where the farm already is.
+    // flip-check: the SAME base_trees count, but a genuinely Orange scenario (one created
+    // farm tree is itself contested -> created_exposed>0, not merely own_half_exposed) DOES
+    // clamp. See orange_scenario's doc comment for the ETA arithmetic.
     ownership::reset();
-    let st_floor = yellow_scenario(3);
+    let seed = orange_initial();
+    let _ = plan_with_meta(&seed, &seed.my_trolls, Meta::Tempo);
+    let st_o = orange_scenario(5);
+    let plan_o = plan_with_meta(&st_o, &st_o.my_trolls, Meta::Tempo);
+    assert_eq!(plan_o.base_trees, 5);
+    assert!(
+        plan_o.pressure.created_exposed > 0,
+        "{:?}",
+        plan_o.pressure
+    );
+    assert_eq!(
+        plan_o.pressure.state,
+        PressureState::Orange,
+        "a near-tied race must land Orange, not escalate to Red: {:?}",
+        plan_o.pressure
+    );
+    assert_eq!(
+        plan_o.farm_cap, 4,
+        "Orange (created_exposed>0) must clamp farm_cap to the floor, got {}",
+        plan_o.farm_cap
+    );
+
+    // a farm below the survival floor keeps its normal room to grow even under Orange -- the
+    // clamp is a ceiling, never a mandate to shrink below where the farm already is.
+    ownership::reset();
+    let seed2 = orange_initial();
+    let _ = plan_with_meta(&seed2, &seed2.my_trolls, Meta::Tempo);
+    let st_floor = orange_scenario(3);
     let plan_floor = plan_with_meta(&st_floor, &st_floor.my_trolls, Meta::Tempo);
-    assert_eq!(plan_floor.pressure.state, PressureState::Yellow);
+    assert_eq!(
+        plan_floor.pressure.state,
+        PressureState::Orange,
+        "{:?}",
+        plan_floor.pressure
+    );
     assert_eq!(plan_floor.base_trees, 3);
     assert!(
         plan_floor.base_trees < plan_floor.farm_cap,
-        "a farm below the survival floor must still have plantable room: base_trees={} farm_cap={}",
+        "a farm below the survival floor must still have plantable room under Orange: base_trees={} farm_cap={}",
         plan_floor.base_trees,
         plan_floor.farm_cap
     );

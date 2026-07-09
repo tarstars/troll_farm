@@ -259,7 +259,23 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         }
     };
     // v1.53.0-pressurefarm (Task 2 Step 3): see PRESSURE_LIQ_BONUS's doc comment above.
-    let pressure_bonus = |pc: Cell| -> i64 {
+    //
+    // Code review I1 (2026-07-09): `race_pen` must gate this too. PRESSURE_LIQ_BONUS (4) >
+    // RACE_SHARE_PEN (2), so applying the bonus unconditionally on a joinable-contested tree
+    // (race_pen == RACE_SHARE_PEN) would more than cancel that discount (net +2), REVERSING
+    // the race check's tuned "don't over-trek to a shared/discounted tree" behavior into a
+    // preference for it — the exact opposite of what v1.36.0-race earned its +1.3. A doomed
+    // tree (race() returned None) never reaches here at all (every call site `continue`s on
+    // None before computing race_pen or calling this), so the only two live values of
+    // race_pen are 0 (no opponent occupant — genuinely non-contested) and RACE_SHARE_PEN (a
+    // joinable race). Withholding the bonus whenever race_pen != 0 therefore fully preserves
+    // it on every non-contested exposed tree (this behavior's primary job — raise exposed
+    // farm trees so we fell them before the opponent arrives) while making a contested tree's
+    // net adjustment exactly `-race_pen` either way, never a reversal.
+    let pressure_bonus = |pc: Cell, race_pen: i64| -> i64 {
+        if race_pen != 0 {
+            return 0;
+        }
         if plan.pressure.state >= ownership::PressureState::Orange
             && plan.pressure.exposed_created_cells.contains(&pc)
         {
@@ -368,7 +384,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             };
             // A2 probe (DENY_W): trees closer to the opponent lose less -> rank higher.
             let deny_pen = DENY_W * (manhattan(pc, plan.opp) as i64 / 2);
-            let pbonus = pressure_bonus(pc);
+            let pbonus = pressure_bonus(pc, race_pen);
             if pc == u.pos() {
                 // standing on a fellable tree: FINISH IT (cascade branch order) — band 72
                 // outranks every travel-fell so invested chops are never abandoned.
@@ -629,7 +645,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                     Some(pen) => pen,
                 };
-                let pbonus = pressure_bonus(pc);
+                let pbonus = pressure_bonus(pc, race_pen);
                 if pc == u.pos() {
                     out.push(Cand {
                         kind: Kind::ChopHere,

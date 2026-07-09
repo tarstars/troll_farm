@@ -905,7 +905,10 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
         }
     };
-    let pressure_bonus = |pc: Cell| -> i64 {
+    let pressure_bonus = |pc: Cell, race_pen: i64| -> i64 {
+        if race_pen != 0 {
+            return 0;
+        }
         if plan.pressure.state >= ownership::PressureState::Orange
             && plan.pressure.exposed_created_cells.contains(&pc)
         {
@@ -979,7 +982,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 Some(pen) => pen,
             };
             let deny_pen = DENY_W * (manhattan(pc, plan.opp) as i64 / 2);
-            let pbonus = pressure_bonus(pc);
+            let pbonus = pressure_bonus(pc, race_pen);
             if pc == u.pos() {
                 out.push(Cand {
                     kind: Kind::ChopHere,
@@ -1186,7 +1189,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     None => continue,
                     Some(pen) => pen,
                 };
-                let pbonus = pressure_bonus(pc);
+                let pbonus = pressure_bonus(pc, race_pen);
                 if pc == u.pos() {
                     out.push(Cand {
                         kind: Kind::ChopHere,
@@ -1838,7 +1841,7 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         pressure: ownership::Pressure::default(),
     };
     let pressure = ownership::assess(state, &provisional);
-    let farm_cap = if pressure.state >= ownership::PressureState::Yellow {
+    let farm_cap = if pressure.state >= ownership::PressureState::Orange {
         provisional.farm_cap.min(GE_PRESSURE_FARM_FLOOR)
     } else {
         provisional.farm_cap

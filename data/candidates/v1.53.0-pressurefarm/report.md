@@ -245,3 +245,157 @@ Suggested probe set (per the plan's Task 3 Step 2): boss context + >=2 games eac
   are only ever `.contains()`-queried by consuming code, never iterated for ordered output --
   confirmed no new sort-order dependency was introduced (see the doc comment on
   `ownership::assess`).
+
+## Fix: C2 Orange-gate + I1 race-safe liq bonus (review follow-up)
+
+Two targeted fixes from the code review (NEEDS_FIXES: one CRITICAL, one IMPORTANT), applied
+surgically in-place -- no architectural changes.
+
+### C2 (CRITICAL) -- farm-cap clamp re-gated Yellow -> Orange
+
+**Bug**: `tactics.rs`'s dynamic farm-cap clamp fired on `pressure.state >= Yellow`. Yellow only
+requires `own_half_exposed > 0` (`created_exposed == 0`) -- a signal that lights up from static
+map geometry (any own-half tree we can't *prove* decisively ours), near-permanent from ~turn 5
+on real maps, independent of any real threat to farm value we created. Gating the clamp there
+collapsed `farm_cap` 12->4 for essentially the whole game: the "always smaller farm" nerf this
+feature's own design explicitly forbids, and a throughput crater (dense-farm-never-idle is this
+bot's whole economic thesis).
+
+**Fix**: re-gated to `pressure.state >= ownership::PressureState::Orange` (`rust/src/botmain/
+tactics.rs`, the `farm_cap` `if`/`else` right after `ownership::assess`). Orange requires
+`created_exposed > 0` -- a created/local farm tree the ownership model itself marks
+not-safely-ours -- which is threat-discriminating (needs the opponent's ETA to actually contest
+a tree *we planted*), matching the plan's Task 0 Step 3 ("Yellow: ... pause expansion ONLY IF
+created/local value exists") and `data/analysis/map-value-ownership/report.md`'s recommended
+trigger. Green/Yellow both now leave `provisional.farm_cap` untouched; only Orange/Red clamp to
+`GE_PRESSURE_FARM_FLOOR` (4), still floored so a farm already below it keeps its normal room to
+grow.
+
+**M1 (MINOR, latent note only)**: added a one-line comment at the clamp site flagging that
+`Phase::Factory`'s `farm_cap = 20` would be overridden by this clamp if Orange+ pressure ever
+fires during Factory. Dormant today (`GE_META = Tempo`, Factory unreachable) -- no logic added.
+
+**Test update** (`rust/tests/pressurefarm.rs`): the old
+`tactics_farm_cap_floor_engages_under_yellow_but_not_below_floor` (which asserted Yellow itself
+clamped to the floor -- the bug, encoded as the expected behavior) is replaced by
+`tactics_farm_cap_clamps_on_orange_not_yellow`. New helpers `orange_initial`/`orange_scenario`
+build a genuinely Orange (not Red) fixture: a created BANANA farm tree at (2,2) is engineered to
+a near-tie (`|6-5|=1 < OWN_MARGIN_TURNS(3)`) against an opposing chopper standing on it ->
+`Bucket::Uncertain` -> `created_exposed > 0` -> Orange, never escalating to Red; the other four
+farm-radius candidates are all safely ours (the opponent's return trip to its own distant shack
+is far too long to contest them), so exactly one tree drives `created_exposed`. The rewritten
+test asserts, as a single flip-check: Yellow (`yellow_scenario(5)`) leaves `farm_cap` at the
+champion value (12, NOT clamped); the Orange fixture (`orange_scenario(5)`) clamps to the floor
+(4); and a below-floor Orange fixture (`orange_scenario(3)`) still leaves plantable room
+(`base_trees < farm_cap`).
+
+**RED evidence** (captured against the pre-fix, still-Yellow-gated code, before touching
+`tactics.rs`):
+```
+thread 'tactics_farm_cap_clamps_on_orange_not_yellow' panicked at tests/pressurefarm.rs:762:5:
+assertion `left == right` failed: Yellow ALONE (own_half_exposed>0, created_exposed==0) must NOT clamp farm_cap -- that was the C2 bug (an 'always smaller farm' nerf firing from mere map geometry), got 4
+  left: 4
+ right: 12
+```
+GREEN after the re-gate (see gate output below); the Orange-clamps-to-4 and below-floor
+sub-assertions in the same test were never reached pre-fix (the function panics at the first
+failing `assert_eq!`) but both pass cleanly post-fix, confirming the `orange_scenario` ETA
+arithmetic lands exactly Orange (not Red) on the first try.
+
+### I1 (IMPORTANT) -- PRESSURE_LIQ_BONUS made race-safe
+
+**Bug**: `PRESSURE_LIQ_BONUS` (4) > `RACE_SHARE_PEN` (2). `planner.rs`'s `pressure_bonus`
+closure added the bonus unconditionally to any `exposed_created_cells` fell candidate,
+including one that is *also* a joinable contested race (`race()` returned `Some(RACE_SHARE_PEN)`
+-- an enemy is already chopping it, but we can still arrive in time to share the wood). Net
+effect on such a tree: `-RACE_SHARE_PEN(2) + PRESSURE_LIQ_BONUS(4) = +2` -- the race check's
+tuned "don't over-trek to a shared/discounted tree" discount was not just canceled but
+*reversed into a preference*, locally undoing part of the v1.36.0-race behavior credited with
+the champion's +1.3 arena gain.
+
+**Fix**: `pressure_bonus` now takes `race_pen` as a second parameter (`rust/src/botmain/
+planner.rs`) and returns `0` whenever `race_pen != 0`. Both call sites (`candidates()`'s band
+70/72 primary fell loop and the starter's band 40/42 chop-help loop) already compute `race_pen`
+via `match race(pc, steps) { None => continue, Some(pen) => pen }` *before* the bonus is
+computed, so a doomed tree (`race() == None`) never reaches `pressure_bonus` at all (it
+`continue`s past the whole candidate, unchanged from before), and the only two live values of
+`race_pen` at the call site are `0` (no opponent occupant -- genuinely non-contested) and
+`RACE_SHARE_PEN` (a joinable race). Withholding the bonus whenever `race_pen != 0` therefore:
+(a) fully preserves the bonus on every non-contested exposed tree (this behavior's primary job),
+and (b) makes a contested tree's net adjustment exactly `-race_pen` either way -- i.e. it can
+never exceed its un-pressured, race-discounted value, closing the reversal with margin to
+spare (not just capping it at parity).
+
+**Test added** (`rust/tests/pressurefarm.rs`): `orange_liq_bonus_is_race_safe`, mirroring
+`orange_raises_local_liquidation`'s exact geometry (chopper at (1,2); trees at (3,2)/(4,2), both
+size 2, so (4,2) is naturally 1 in-band step behind (3,2)) but adding a winnable enemy chopper
+standing on (4,2) (health 4, chop_power 1 -> `their_turns=4 > our_eta=2`, joinable not doomed)
+while marking (4,2) exposed/Orange. Asserts the chopper still targets (3,2), not (4,2) (the
+contested exposed tree is not lifted above its race-discounted value); a flip-check then removes
+the enemy occupant (same Orange/exposed marking, now genuinely non-contested) and asserts (4,2)
+now wins via the full, untouched liquidation bonus -- reproducing `orange_raises_local_
+liquidation`'s outcome in the same test so the discriminator (contested vs not) is visible in
+one place.
+
+**RED evidence** (captured against the pre-fix, unconditional-bonus code, before touching
+`planner.rs`):
+```
+thread 'orange_liq_bonus_is_race_safe' panicked at tests/pressurefarm.rs:522:5:
+a joinable-contested exposed tree must NOT be lifted above its un-pressured (race-discounted) value: MOVE 2 4 2
+```
+(the chopper moved to the contested (4,2) instead of the discount-free (3,2) -- the bonus had
+flipped the race discount into a net preference, exactly the bug). GREEN after gating
+`pressure_bonus` on `race_pen`.
+
+### Gate outputs (in order run, this follow-up pass)
+
+```
+$ cd rust && cargo test --release --test pressurefarm --test race_check --test planner_tasks --test phase_factory
+test result: ok. 1 passed (phase_factory: factory_plants_and_fells)
+test result: ok. 3 passed (planner_tasks: contested_tree_goes_to_the_better_troll_without_duplication, priorities_hold, shuffle_invariance)
+test result: ok. 10 passed (pressurefarm -- up from 9: +1 net, tactics_farm_cap_floor_engages_under_yellow_but_not_below_floor
+  renamed to tactics_farm_cap_clamps_on_orange_not_yellow (+0), orange_liq_bonus_is_race_safe added (+1))
+test result: ok. 2 passed; 1 ignored (race_check: doomed_contested_tree_is_skipped, winnable_contest_is_joined;
+  share_pen_shifts_near_tie_to_free_tree stays #[ignore]d, untouched by either fix)
+
+$ cargo test --release
+test result: ok. 76 passed; 0 failed; ... (up from the pre-fix 75; the +1 is orange_liq_bonus_is_race_safe,
+  since the C2 test was a rename not an addition) -- across all suites, no regressions
+
+$ ./target/release/equality target/release/bot target/release/bot 8 300 target/release/bot
+EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+
+$ uv run --no-sync python tools/bundle.py src/botmain.rs target/refactor/v1.53.0-pressurefarm.rs
+src/botmain.rs -> target/refactor/v1.53.0-pressurefarm.rs: 119449 chars
+
+$ rustc --edition 2021 -O target/refactor/pressurefarm_check.rs -o target/refactor/pressurefarm_check_bin   # exit 0
+$ ./target/release/equality target/refactor/pressurefarm_check_bin target/release/bot 8 300 target/release/bot
+EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+
+$ uv run --no-sync python tools/minify.py target/refactor/v1.53.0-pressurefarm.rs target/refactor/v1.53.0-pressurefarm.min.rs
+119449 -> 71484 chars (59%)
+
+$ rustc --edition 2021 -O target/refactor/pressurefarm_min_check.rs -o target/refactor/pressurefarm_min_check_bin   # exit 0
+$ ./target/release/equality target/refactor/pressurefarm_min_check_bin target/release/bot 8 300 target/release/bot
+EQUAL: 16 games (8 seeds x 2 seats), all command streams identical
+
+$ sed 's/const DEBUG: bool = false;/const DEBUG: bool = true;/' target/refactor/v1.53.0-pressurefarm.rs \
+    > target/refactor/v1.53.0-pressurefarm.debug.rs
+$ uv run --no-sync python tools/minify.py target/refactor/v1.53.0-pressurefarm.debug.rs target/refactor/v1.53.0-pressurefarm.debug-probe.min.rs
+119448 -> 71483 chars (59%)
+$ rustc --edition 2021 -O target/refactor/pressurefarm_debug_check.rs -o target/refactor/pressurefarm_debug_check_bin   # exit 0
+```
+
+### Updated artifact sizes (bytes, `wc -c`; the char counts above are from Python's `len()`
+and differ slightly because the source uses multi-byte em-dashes in comments)
+
+| File | Bytes |
+|---|---:|
+| `v1.53.0-pressurefarm.rs` (bundled) | 120,969 |
+| `v1.53.0-pressurefarm.min.rs` | 71,484 |
+| `v1.53.0-pressurefarm.debug-probe.min.rs` (DEBUG=true) | 71,483 |
+
+All well under the 100,000-byte submission cap. `cgauto/submissions/v1.53.0-pressurefarm.{rs,
+min.rs}` and `data/candidates/v1.53.0-pressurefarm/v1.53.0-pressurefarm.{rs,min.rs,
+debug-probe.min.rs}` were all regenerated from this pass and are byte-identical to each other
+pairwise (submissions vs candidates copies).

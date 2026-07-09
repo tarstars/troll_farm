@@ -299,13 +299,32 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     // derived override, farm_cap) afterward is equality-safe. Computed exactly ONCE per
     // turn here — never inside planner.rs's per-troll candidates() hot loop.
     let pressure = ownership::assess(state, &provisional);
-    // Task 2 Step 1 (dynamic farm cap): Yellow+ pressure suppresses further expansion, but
+    // Task 2 Step 1 (dynamic farm cap): Orange+ pressure suppresses further expansion, but
     // NEVER below a small survival floor — a farm already at/under the floor keeps planting
     // regardless (the `.min` only ever shrinks the CEILING, it can't force liquidation). This
-    // keeps Green byte-identical (provisional.farm_cap is returned unchanged) and avoids the
-    // "always smaller farm" static-control trap: the clamp only engages when pressure is
-    // actually observed.
-    let farm_cap = if pressure.state >= ownership::PressureState::Yellow {
+    // keeps Green/Yellow byte-identical (provisional.farm_cap is returned unchanged) and
+    // avoids the "always smaller farm" static-control trap: the clamp only engages when
+    // pressure is actually observed.
+    //
+    // Code review C2 (2026-07-09): re-gated from `>= Yellow` to `>= Orange`. Yellow only
+    // requires `own_half_exposed > 0` (created_exposed == 0) — a signal that lights up from
+    // static map geometry (any own-half tree we can't PROVE decisively ours) and is
+    // near-permanent from ~turn 5 on real maps, independent of any real threat to farm value
+    // WE created. Gating the clamp there collapsed farm_cap 12->4 for essentially the whole
+    // game — exactly the "always smaller farm" nerf the paragraph above warns against, and a
+    // throughput crater (dense-farm-never-idle is this bot's whole economic thesis). Orange
+    // requires `created_exposed > 0` — a created/local farm tree the ownership model itself
+    // marks not-safely-ours — which IS threat-discriminating (it needs the opponent's ETA to
+    // actually contest a tree WE planted), matching this feature's own design intent (see
+    // docs/pressure-aware-farm.md Task 0 Step 3, "Yellow: … pause expansion ONLY IF
+    // created/local value exists") and data/analysis/map-value-ownership/report.md's
+    // recommended trigger.
+    //
+    // Factory latent note (M1): under Phase::Factory the champion raises farm_cap to 20
+    // (see the `phase == Phase::Factory` branch above); this clamp would override that down
+    // to GE_PRESSURE_FARM_FLOOR if Orange+ pressure ever fires during Factory. Dormant today
+    // (GE_META=Tempo, Factory unreachable) — flagged, not handled; no logic added here.
+    let farm_cap = if pressure.state >= ownership::PressureState::Orange {
         provisional.farm_cap.min(GE_PRESSURE_FARM_FLOOR)
     } else {
         provisional.farm_cap

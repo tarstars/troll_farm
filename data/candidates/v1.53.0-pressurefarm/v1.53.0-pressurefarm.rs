@@ -1195,7 +1195,23 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         }
     };
     // v1.53.0-pressurefarm (Task 2 Step 3): see PRESSURE_LIQ_BONUS's doc comment above.
-    let pressure_bonus = |pc: Cell| -> i64 {
+    //
+    // Code review I1 (2026-07-09): `race_pen` must gate this too. PRESSURE_LIQ_BONUS (4) >
+    // RACE_SHARE_PEN (2), so applying the bonus unconditionally on a joinable-contested tree
+    // (race_pen == RACE_SHARE_PEN) would more than cancel that discount (net +2), REVERSING
+    // the race check's tuned "don't over-trek to a shared/discounted tree" behavior into a
+    // preference for it — the exact opposite of what v1.36.0-race earned its +1.3. A doomed
+    // tree (race() returned None) never reaches here at all (every call site `continue`s on
+    // None before computing race_pen or calling this), so the only two live values of
+    // race_pen are 0 (no opponent occupant — genuinely non-contested) and RACE_SHARE_PEN (a
+    // joinable race). Withholding the bonus whenever race_pen != 0 therefore fully preserves
+    // it on every non-contested exposed tree (this behavior's primary job — raise exposed
+    // farm trees so we fell them before the opponent arrives) while making a contested tree's
+    // net adjustment exactly `-race_pen` either way, never a reversal.
+    let pressure_bonus = |pc: Cell, race_pen: i64| -> i64 {
+        if race_pen != 0 {
+            return 0;
+        }
         if plan.pressure.state >= ownership::PressureState::Orange
             && plan.pressure.exposed_created_cells.contains(&pc)
         {
@@ -1304,7 +1320,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             };
             // A2 probe (DENY_W): trees closer to the opponent lose less -> rank higher.
             let deny_pen = DENY_W * (manhattan(pc, plan.opp) as i64 / 2);
-            let pbonus = pressure_bonus(pc);
+            let pbonus = pressure_bonus(pc, race_pen);
             if pc == u.pos() {
                 // standing on a fellable tree: FINISH IT (cascade branch order) — band 72
                 // outranks every travel-fell so invested chops are never abandoned.
@@ -1565,7 +1581,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                     Some(pen) => pen,
                 };
-                let pbonus = pressure_bonus(pc);
+                let pbonus = pressure_bonus(pc, race_pen);
                 if pc == u.pos() {
                     out.push(Cand {
                         kind: Kind::ChopHere,
@@ -2378,13 +2394,32 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     // derived override, farm_cap) afterward is equality-safe. Computed exactly ONCE per
     // turn here — never inside planner.rs's per-troll candidates() hot loop.
     let pressure = ownership::assess(state, &provisional);
-    // Task 2 Step 1 (dynamic farm cap): Yellow+ pressure suppresses further expansion, but
+    // Task 2 Step 1 (dynamic farm cap): Orange+ pressure suppresses further expansion, but
     // NEVER below a small survival floor — a farm already at/under the floor keeps planting
     // regardless (the `.min` only ever shrinks the CEILING, it can't force liquidation). This
-    // keeps Green byte-identical (provisional.farm_cap is returned unchanged) and avoids the
-    // "always smaller farm" static-control trap: the clamp only engages when pressure is
-    // actually observed.
-    let farm_cap = if pressure.state >= ownership::PressureState::Yellow {
+    // keeps Green/Yellow byte-identical (provisional.farm_cap is returned unchanged) and
+    // avoids the "always smaller farm" static-control trap: the clamp only engages when
+    // pressure is actually observed.
+    //
+    // Code review C2 (2026-07-09): re-gated from `>= Yellow` to `>= Orange`. Yellow only
+    // requires `own_half_exposed > 0` (created_exposed == 0) — a signal that lights up from
+    // static map geometry (any own-half tree we can't PROVE decisively ours) and is
+    // near-permanent from ~turn 5 on real maps, independent of any real threat to farm value
+    // WE created. Gating the clamp there collapsed farm_cap 12->4 for essentially the whole
+    // game — exactly the "always smaller farm" nerf the paragraph above warns against, and a
+    // throughput crater (dense-farm-never-idle is this bot's whole economic thesis). Orange
+    // requires `created_exposed > 0` — a created/local farm tree the ownership model itself
+    // marks not-safely-ours — which IS threat-discriminating (it needs the opponent's ETA to
+    // actually contest a tree WE planted), matching this feature's own design intent (see
+    // docs/pressure-aware-farm.md Task 0 Step 3, "Yellow: … pause expansion ONLY IF
+    // created/local value exists") and data/analysis/map-value-ownership/report.md's
+    // recommended trigger.
+    //
+    // Factory latent note (M1): under Phase::Factory the champion raises farm_cap to 20
+    // (see the `phase == Phase::Factory` branch above); this clamp would override that down
+    // to GE_PRESSURE_FARM_FLOOR if Orange+ pressure ever fires during Factory. Dormant today
+    // (GE_META=Tempo, Factory unreachable) — flagged, not handled; no logic added here.
+    let farm_cap = if pressure.state >= ownership::PressureState::Orange {
         provisional.farm_cap.min(GE_PRESSURE_FARM_FLOOR)
     } else {
         provisional.farm_cap
