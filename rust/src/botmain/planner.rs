@@ -17,16 +17,32 @@ thread_local! {
     // last MoveTo target per troll (diagnostics: assignment-flap counter) + flap count
     static LAST_TGT: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
     static FLAPS: RefCell<u32> = RefCell::new(0);
+    // v1.55.0-taskfloor: how many trolls THIS TURN's final render selected the literal park
+    // band (value == 10*BAND exactly -- reach-work's lowest band, 16, is always strictly
+    // above this, see the REACH_*_BAND doc comment below, so there is no ambiguity between
+    // "genuinely parked" and "reach-work at a low value"). DEBUG-only telemetry (@TFPARK in
+    // botmain.rs); this is the direct, non-string-based proof of whether the task-producer
+    // floor is actually firing (pre-fix baseline: up to 82 consecutive idle turns/game vs
+    // Crouistiti, agentId 6479836 -- docs/silver-experiment-log.md 2026-07-09 late).
+    static PARK_COUNT: RefCell<usize> = RefCell::new(0);
 }
 
 /// Turn-1 reset of diagnostics.
 pub fn reset() {
     LAST_TGT.with(|m| m.borrow_mut().clear());
     FLAPS.with(|f| *f.borrow_mut() = 0);
+    PARK_COUNT.with(|p| *p.borrow_mut() = 0);
 }
 
 pub fn flaps() -> u32 {
     FLAPS.with(|f| *f.borrow())
+}
+
+/// Count of trolls parked (band 10, the literal idle fallback) on the most recent FINAL
+/// render (`render_assignments` with `update_last_target=true` -- i.e. one count per real
+/// decision, not per intermediate/speculative pass). See `PARK_COUNT`'s doc comment.
+pub fn park_count() -> usize {
+    PARK_COUNT.with(|p| *p.borrow())
 }
 
 const K: usize = 8; // per-troll candidate cap (bands make more irrelevant)
@@ -857,12 +873,21 @@ fn render_assignments(
     // render (troll-id order; camp-cell claiming stays deterministic via claimed_drop)
     let mut cmd_by_id: HashMap<i32, String> = HashMap::new();
     let mut claimed_drop: HashSet<Cell> = HashSet::new();
+    // v1.55.0-taskfloor: PARK_COUNT is a per-FINAL-render count (reset then rebuilt here),
+    // matching FLAPS's own update_last_target gate below -- the initial speculative render
+    // inside assign_resolved (update_last_target=false) never touches it.
+    if update_last_target {
+        PARK_COUNT.with(|p| *p.borrow_mut() = 0);
+    }
     if !assignments.picks.is_empty() {
         for (i, id) in assignments.ids.iter().enumerate() {
             let u = my.iter().find(|t| t.id == *id).unwrap();
             let d = bfs_distances(&state.walkable, &[u.pos()]);
             let c = &assignments.cands[i][assignments.picks[i]];
             if update_last_target {
+                if c.value == 10 * BAND {
+                    PARK_COUNT.with(|p| *p.borrow_mut() += 1);
+                }
                 if let (Kind::MoveTo, Some(tc)) = (&c.kind, c.target) {
                     LAST_TGT.with(|m| {
                         let mut m = m.borrow_mut();
