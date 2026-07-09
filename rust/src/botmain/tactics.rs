@@ -19,6 +19,18 @@ pub enum Phase {
     Factory,
 }
 
+/// v1.56.0-ringfarm (user's farm-geometry scheme): the two roles of an 8-cell tent ring.
+/// DIAGONAL cells (Chebyshev-diagonal to the shack) are the ripe fruit/seed engine: planted,
+/// kept standing, harvested aggressively, felled only in the endgame or under raid (see
+/// `Plan::raid`). ORTHOGONAL cells (the shack's four ortho-neighbors) are the wood/cut cycle:
+/// felled at `farm_fell`, replanted -- the chopper already stands there to bank, so cutting
+/// them costs zero extra travel.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum RingRole {
+    Diagonal,
+    Orthogonal,
+}
+
 /// Scale meta: hoard (no felling, bank the wallet) until T_SWITCH, then the factory.
 // Swept down per gatekeeper verdict #4 — hoarding until t=140 cedes the shared map to
 // deforesting opponents (opp wood 60.1 vs our 23.2 avg, boss avg score delta -169.0): 100 =
@@ -101,6 +113,19 @@ pub struct Plan {
     /// chokepoint override is active; every OTHER use of `farm_d` (banking-adjacency,
     /// chop-roam) is untouched.
     pub door_d: Option<HashMap<Cell, i32>>,
+    /// v1.56.0-ringfarm (user's farm-geometry scheme): the up-to-8-cell tent ring
+    /// (Chebyshev-1 around the shack), each cell tagged Diagonal (ripe fruit/seed engine)
+    /// or Orthogonal (wood/cut cycle), filtered to walkable + reachable + front-door-
+    /// eligible (`farm_eligible`, so on a chokepoint map only the reachable-side ring cells
+    /// count — composes with v1.54.0-frontdoor). EMPTY on a hand-built test Plan
+    /// (`ring: vec![]`) → planner.rs falls back to the pre-ring farm_cap placement; non-empty
+    /// in every real game (the shack always has walkable neighbours). See `compute_ring`.
+    pub ring: Vec<(Cell, RingRole)>,
+    /// v1.56.0-ringfarm: an opponent troll is within `RING_RAID_R` BFS map-distance of the
+    /// shack — a raid threat that RELEASES the diagonal ring bananas for defensive felling
+    /// (see planner.rs `fell_ok`). A deliberately simple LOCAL trigger, NOT the parked
+    /// ownership/pressure governor (brief: "keep it simple/local").
+    pub raid: bool,
 }
 
 // ── FRONT-DOOR FARM PLACEMENT (v1.54.0-frontdoor) ───────────────────────────────────────
@@ -199,6 +224,58 @@ pub fn farm_eligible(
         Some(dd) => dd.get(&pos).map_or(false, |&d| d <= r),
         None => farm_d.get(&pos).map_or(false, |&d| d <= r),
     }
+}
+
+// ── RING FARM (v1.56.0-ringfarm) ────────────────────────────────────────────────────────
+/// An opponent troll within this BFS map-distance of the shack = a raid threat that releases
+/// the diagonal ring bananas for defensive felling (brief: propose R=4). BFS, not manhattan,
+/// so walls between the enemy and the shack correctly de-escalate.
+pub const RING_RAID_R: i32 = 4;
+
+/// The 8-cell tent ring: the Chebyshev-1 cells around `shack`, filtered to walkable +
+/// reachable-from-the-shack + `farm_eligible` (so on a chokepoint map only the front-door
+/// side counts — composes with v1.54.0-frontdoor), each tagged with its role. DIAGONAL =
+/// `|dx|==1 && |dy|==1` (the ripe fruit/seed engine); ORTHOGONAL = the shack's ortho-
+/// neighbours (the wood/cut cycle).
+///
+/// Determinism: candidate cells are generated in a fixed (dy, dx) nested order and the result
+/// is explicitly sorted by cell before returning, so no HashSet/HashMap iteration order can
+/// leak into the ring (this codebase was burned by exactly that class of bug — see
+/// state.rs's tie_salt/tie_mix and compute_door's determinism note).
+pub fn compute_ring(
+    walkable: &HashSet<Cell>,
+    farm_d: &HashMap<Cell, i32>,
+    door_d: &Option<HashMap<Cell, i32>>,
+    shack: Cell,
+    farm_r: i32,
+) -> Vec<(Cell, RingRole)> {
+    let (sx, sy) = shack;
+    let mut out: Vec<(Cell, RingRole)> = Vec::new();
+    for dy in -1..=1 {
+        for dx in -1..=1 {
+            if dx == 0 && dy == 0 {
+                continue;
+            }
+            let c = (sx + dx, sy + dy);
+            if !walkable.contains(&c) {
+                continue; // rock / water / off-map neighbour
+            }
+            if !farm_d.contains_key(&c) {
+                continue; // not reachable from the shack at all
+            }
+            if !farm_eligible(farm_d, door_d, c, farm_r) {
+                continue; // far side of a chokepoint (frontdoor door_d excludes it)
+            }
+            let role = if dx.abs() == 1 && dy.abs() == 1 {
+                RingRole::Diagonal
+            } else {
+                RingRole::Orthogonal
+            };
+            out.push((c, role));
+        }
+    }
+    out.sort_by_key(|(c, _)| *c);
+    out
 }
 
 fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
@@ -370,6 +447,17 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         }
     }
 
+    // ── RING FARM geometry (v1.56.0-ringfarm) ───────────────────────────────
+    // Computed ONCE per turn (borrows farm_d/door_d before they move into `provisional`).
+    // Nothing read this in the structural commit; placement/fell/harvest consume it in
+    // planner.rs. `raid` = any opponent troll within RING_RAID_R BFS map-distance of the
+    // shack (farm_d is the shack-seeded BFS; an unreachable/walled-off enemy is never a raid).
+    let ring = compute_ring(&state.walkable, &farm_d, &door_d, shack, farm_r);
+    let raid = state
+        .opp_trolls
+        .iter()
+        .any(|e| farm_d.get(&e.pos()).map_or(false, |&d| d <= RING_RAID_R));
+
     let provisional = Plan {
         shack,
         farm_d,
@@ -400,6 +488,8 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
         pressure: ownership::Pressure::default(),
         door,
         door_d,
+        ring,
+        raid,
     };
 
     // ── PRESSURE GOVERNOR (v1.53.0-pressurefarm, Task 1 Step 2) ─────────────

@@ -53,6 +53,8 @@ fn plan_for(walkable: &HashSet<(i32, i32)>) -> Plan {
         pressure: ownership::Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     }
 }
 

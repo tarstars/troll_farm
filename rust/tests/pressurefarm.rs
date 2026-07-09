@@ -105,6 +105,8 @@ fn own_plan(st: &State) -> Plan {
         pressure: Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     }
 }
 
@@ -294,6 +296,8 @@ fn base_plan() -> Plan {
         pressure: Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     }
 }
 

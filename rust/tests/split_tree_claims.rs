@@ -68,6 +68,8 @@ fn base_plan() -> Plan {
         pressure: ownership::Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     }
 }
 

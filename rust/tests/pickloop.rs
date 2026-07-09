@@ -123,6 +123,8 @@ fn no_pick_without_reachable_plant_cell() {
         pressure: ownership::Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     };
     // Standing at (1,2): shack-adjacent (manhattan 1), empty-handed, tent has bananas.
     let my = vec![pure_starter(0, 1, 2, [0; 6])];
@@ -241,6 +243,8 @@ fn pick_stays_enabled_when_plant_cell_lies_beyond_a_tree() {
         pressure: ownership::Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     };
     let my = vec![pure_starter(0, 1, 2, [0; 6])];
     let cmds = assign(&state, &plan, &my);
@@ -319,6 +323,8 @@ fn errand_reaches_pick_on_scarce_map() {
         pressure: ownership::Pressure::default(),
         door: None,
         door_d: None,
+        ring: vec![],
+        raid: false,
     };
     let mut my = vec![pure_starter(0, 5, 2, [0; 6])];
 
