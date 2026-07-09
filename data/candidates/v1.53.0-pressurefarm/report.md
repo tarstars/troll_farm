@@ -431,3 +431,25 @@ small-n; (b) the baseline corpus (batch 1) showed exposed-value does NOT predict
 aggregate (own_half_exposed@t150 WIN 67.6 > LOSS 55.6) — so REDUCING exposed value may not
 convert to wins. Temper arena expectations: a neutral/negative arena delta is plausible, and a
 clean revert is the goal's KILL branch (ownership-aware play doesn't move the needle at our band).
+
+## Arena verdict: INCONCLUSIVE / NEUTRAL (+0.2) — 2026-07-09 15:06 (controller inline)
+
+Bracket 131/528 @ 17.4 (champion yield, agentId 6545190). Submitted 14:15:19 (id 40972361),
+landed agentId 6545335. Reads: +11m 182@15.9, +22m 131@17.4, +32m 118@17.8, +42m 125@17.6,
++51m 125@17.6 (plateau, exact repeat). Converged 17.6, delta **+0.2** vs bracket → INCONCLUSIVE
+(policy v2 |delta|<0.5). Left live as chained baseline (non-regressed, +0.2 over champion);
+api_submit default stays yield. Goal gate (≤99) did not fire (best 118).
+
+CONFOUND: pressurefarm = splitclaims + governor, chained on the live yield baseline; the +0.2
+measures (tree-claims + governor) vs yield. If splitclaims' earlier +0.9 held, the governor
+alone is ~−0.7 (mildly negative). Either way: the governor is NOT a positive lever.
+
+★ GOAL DECISION (prove/kill ownership-aware play): the pressurefarm governor is NEUTRAL — the
+Yellow→Orange fix stopped it cratering (Orange 8%, wood held), but it produces NO win benefit.
+Three independent measurements converge: (1) baseline corpus — exposed value does NOT predict
+losses (WIN 67.6 > LOSS 55.6 @t150); (2) gate — Orange fires 8%, reduces exposed value, no win
+lift; (3) arena — neutral +0.2. The total-map-value-ownership program is NOT the path to ≤99.
+It is the FIFTH "pie" idea — but the non-cratering, inert variety (the first four all went
+negative). KILL the ownership lever; PARK the program (dynamic-seed-reserve-v2 / raid-response
+follow-ons are moot). PIVOT to the execution-class lever (Sasso long-path re-diagnosis) — the
+class that has actually transferred at this band (race +1.3, yield +1.0).
