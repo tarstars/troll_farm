@@ -658,12 +658,31 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // (park-to-pick 77) instead of 50/49. Numeric ordering (BAND = 100_000, every eta
             // « BAND): plant 88 > full-bank 80 > build-ring PICK 78 > park-to-pick 77 >
             // standing-harvest 75 > seed-move/idle-fruit ≤ 52. So it strictly beats the
-            // distant harvest(75)/seed-move(52) but NEVER banking(80/95) or a carried-banana
-            // plant(88) — and it is gated on a reachable empty ring cell, so once the ring is
-            // full PICK is not offered at all and harvest wins (cannot displace real work on a
-            // built ring). Off the ring path (`ring: vec![]` tests) it stays 50/49.
+            // distant seed-move(52) but NEVER banking(80/95) or a carried-banana plant(88) —
+            // and it is gated on a reachable empty ring cell, so once the ring is full PICK
+            // is not offered at all (cannot displace real work on a built ring). Off the ring
+            // path (`ring: vec![]` tests) it stays 50/49.
+            // v1.57.0-ringtune: this ordering now has TWO conditional exceptions, both below:
+            // FIX1 drops the ring pick out of contention entirely while `want_chopper` (fund
+            // the chopper first); FIX3(ii) drops it whenever the troll could harvest a ripe
+            // fruit standing right where it is (band 75) instead — a same-turn zero-travel
+            // harvest always beats running a separate tent errand, so 78 no longer
+            // unconditionally beats 75 (see `standing_ripe_harvest` below).
             let pick_band: i64 = if ring_active { 78 } else { 50 };
-            if inv[BANANA] > 0 && u.free_capacity() > 0 && plant_cell.is_some() {
+            // v1.57.0-ringtune FIX1 (E1, code review): while the chopper is still
+            // unfunded, the build-ring PICK (78) must not outrank the funding bands above
+            // (58-65) -- the review's diagnosis of the boss 0/4: the starter stocked the
+            // ring instead of funding the existential chopper. Suppress ONLY the ring-build
+            // PICK/park-to-pick pair; the ORDINARY carried-banana plant (band 88, above) is
+            // untouched -- a troll already holding a banana (e.g. from a harvest) still
+            // plants it. Scoped to `ring_active`: off the ring path pick_band is already 50
+            // (below every funding band), so it never needed suppressing.
+            let suppress_ring_pick = ring_active && plan.want_chopper;
+            if !suppress_ring_pick
+                && inv[BANANA] > 0
+                && u.free_capacity() > 0
+                && plant_cell.is_some()
+            {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand {
