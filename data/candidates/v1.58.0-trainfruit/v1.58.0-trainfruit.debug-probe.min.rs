@@ -974,6 +974,14 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     } else {
         None
     };
+    let train_plant_ready = plan.ring.iter().any(|(cell, role)| {
+        role.train_idx().map_or(false, |idx| {
+            u.carry[idx] > 0
+                && d.contains_key(cell)
+                && !state.trees.iter().any(|p| p.pos() == *cell)
+                && !my.iter().any(|o| o.id != u.id && o.pos() == *cell)
+        })
+    });
     if u.total_carried() > 0 {
         let d_home = ortho_neighbors(shack)
             .iter()
@@ -991,7 +999,10 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             });
         }
     }
-    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some()) {
+    if u.free_capacity() == 0
+        && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some())
+        && !(!is_chopper && train_plant_ready)
+    {
         out.push(Cand {
             kind: Kind::Bank,
             target: None,

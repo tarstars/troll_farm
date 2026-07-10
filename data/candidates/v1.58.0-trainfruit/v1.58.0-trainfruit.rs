@@ -1351,6 +1351,24 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     } else {
         None
     };
+    // v1.58.0-trainfruit: mirrors `plant_cell` but for a carried training-fruit seed --
+    // does the troll carry PLUM/LEMON/APPLE for which its designated corner cell (role
+    // TrainPlum/TrainLemon/TrainApple) is empty, reachable, and unblocked? Needed so band
+    // 80 (full->bank) below can exempt a carried training seed exactly like it already
+    // exempts a carried banana. Without this, a capacity-1 troll that just PICKed a
+    // training seed becomes full immediately, and band 80 (which only recognizes
+    // `carry[BANANA]`) would bank it the very next turn -- discovered via a local
+    // simulation probe (not caught by any hand-built test: every trainfruit.rs fixture
+    // used a gatherer/carrier with enough spare capacity to avoid tripping band 80) as a
+    // "PICK then instantly DROP" loop that never once reached PLANT.
+    let train_plant_ready = plan.ring.iter().any(|(cell, role)| {
+        role.train_idx().map_or(false, |idx| {
+            u.carry[idx] > 0
+                && d.contains_key(cell)
+                && !state.trees.iter().any(|p| p.pos() == *cell)
+                && !my.iter().any(|o| o.id != u.id && o.pos() == *cell)
+        })
+    });
 
     // endgame banking (band 95): bank a carried load in time to score it
     if u.total_carried() > 0 {
@@ -1374,7 +1392,13 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     // tree COUNT), now `plant_cell.is_some()` (an actual reachable free CELL), matching the
     // gate bands 88/50/49 already use. A carried banana with no plantable cell should be
     // banked, not held waiting for room that will never materialize.
-    if u.free_capacity() == 0 && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some()) {
+    // v1.58.0-trainfruit: same exemption extended to a carried training-fruit seed with a
+    // ready corner cell (`train_plant_ready`) -- see its doc comment above for the "PICK
+    // then instantly DROP" bug this closes.
+    if u.free_capacity() == 0
+        && !(!is_chopper && u.carry[BANANA] > 0 && plant_cell.is_some())
+        && !(!is_chopper && train_plant_ready)
+    {
         out.push(Cand {
             kind: Kind::Bank,
             target: None,
