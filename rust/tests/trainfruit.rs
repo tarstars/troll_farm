@@ -1,7 +1,13 @@
 //! v1.58.0-trainfruit — a clustered training-fruit corner (lemon/plum/apple) carved out of
-//! the v1.56/57 tent ring, planted early as FUNDING (grows our own training fuel, attacking
-//! the documented funding-stall/lemon-wall). Builds on v1.57.0-ringtune (fund-first,
-//! diagonal-priority, banana no-carry-in-advance).
+//! the tent ring, planted early as FUNDING (grows our own training fuel, attacking the
+//! documented funding-stall/lemon-wall). Base = v1.56.0-ringfarm (build-ring PICK 78 fires
+//! whenever the ring has an empty cell, no want_chopper suppression, flat nearest-only
+//! plant_cell placement) -- NOT v1.57.0-ringtune, whose E1/E2/FIX3 tuning was arena-reverted
+//! at ~-2.4 on 2026-07-10 (see docs/silver-experiment-log.md). This file originally targeted
+//! v1.57; three tests were adjusted when the base changed (documented at each site): the
+//! reviewer-fix test was dropped (its bug requires v1.57's diagonal-priority, which doesn't
+//! exist here), and trainfruit_corner_before_banana's premise was corrected (v1.56 has no
+//! want_chopper suppression to prove coexistence with, for banana OR training-fruit).
 //!
 //! Shack at (3,2) in an open 8x5 room (identical geometry to ringfarm.rs/ringtune.rs), so all
 //! 8 Chebyshev-1 neighbours are walkable and the base ring is the full 8: orthogonals
@@ -14,7 +20,7 @@ use std::collections::HashSet;
 use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{compute_ring, Phase, Plan, RingRole};
-use troll_farm::botmain::{bfs_distances, State, Tree, Troll, APPLE, LEMON, PLUM};
+use troll_farm::botmain::{bfs_distances, State, Tree, Troll, LEMON};
 
 const SHACK: (i32, i32) = (3, 2);
 const OPP: (i32, i32) = (7, 2);
@@ -241,56 +247,18 @@ fn trainfruit_corner_is_compact() {
     );
 }
 
-// ── Reviewer fix (deferred from v1.57, FIX2 x FIX3(i)): a far diagonal-priority pick must
-//    not idle a builder standing on/near an immediate empty cell of either role ───────────────
-#[test]
-fn trainfruit_reviewer_fix_immediate_fallback_over_far_diagonal() {
-    // Carrier stands on the orthogonal ring cell (4,2) (untouched by the SW training corner
-    // — see trainfruit_5_banana_cells). Every ring cell is treed EXCEPT (4,1) [diagonal,
-    // d=1, immediate] and (4,2) itself [orthogonal, d=0]; (4,3) is filled to break the
-    // (4,1)/(4,3) diagonal tie the same way ringtune_diagonal_planted_first does. The
-    // remaining diagonal (2,1) is left EMPTY too but is FAR (d=3, beyond RING_PICK_STEPS via
-    // (4,2)) — so pre-fix, diagonal-priority (role_rank compared before distance) would still
-    // consider (2,1) a candidate... but since (4,1) [also a diagonal] is CLOSER, (4,1) wins
-    // the ORIGINAL min_by_key regardless of the reviewer fix. To isolate the fix, this test
-    // instead fills every diagonal except the training corner's — i.e. we need the sole
-    // remaining empty diagonal to be FAR, and a nearer orthogonal to be the true fallback. So:
-    // fill (4,1) too, leaving (2,1) [diagonal, FAR, d=3] as the only empty diagonal, and
-    // (4,2) [orthogonal, d=0, the carrier's own cell] as an empty orthogonal, with the carrier
-    // EMPTY-HANDED (a gatherer, not a carrier) so band 78 (build-ring PICK) is the one at
-    // stake, not band 88.
-    //
-    // Pre-fix: priority_pick = (2,1) (role_rank 0 beats every orthogonal regardless of
-    // distance), d[(2,1)] = 3 > RING_PICK_STEPS(2) -> plant_immediate=false -> the build-ring
-    // PICK is suppressed entirely -> the gatherer (standing on an empty, immediate, buildable
-    // orthogonal!) has no ring-building move at all this turn -- it idles (band 10 park).
-    // Post-fix: since (2,1) is far, fall back to the nearest IMMEDIATE cell of either role:
-    // (4,2) itself (d=0) -> plant_cell=(4,2), immediate -> "PICK 0 BANANA" fires (the gatherer
-    // is shack-adjacent: manhattan((4,2),(3,2))==1).
-    let mut st = base_state();
-    st.my_inventory[3] = 3; // tent bananas
-    st.trees = vec![
-        banana(4, 1, 2),
-        banana(4, 3, 2), // both remaining non-corner diagonals filled
-        banana(3, 1, 2), // the remaining non-corner orthogonal filled
-        // training-corner cells (2,2)/(2,3)/(3,3) intentionally left untouched (irrelevant to
-        // banana placement -- excluded from banana_ring_candidates regardless of tree
-        // presence); (2,1) [diagonal, far, d=3] and (4,2) [orthogonal, d=0] are the only
-        // EMPTY banana-role cells.
-    ];
-    let plan = train_plan(&st);
-    // sanity: (2,1) is the far empty diagonal, (4,2) is the immediate empty orthogonal.
-    assert!(plan.ring.contains(&((2, 1), RingRole::Diagonal)), "{:?}", plan.ring);
-    assert!(plan.ring.contains(&((4, 2), RingRole::Orthogonal)), "{:?}", plan.ring);
-
-    let cmds = assign(&st, &plan, &[gatherer(0, 4, 2)]);
-    assert_eq!(
-        cmds[&0], "PICK 0 BANANA",
-        "reviewer fix: a far diagonal-priority pick must fall back to the immediate orthogonal \
-         the gatherer stands on, not idle: {}",
-        cmds[&0]
-    );
-}
+// NOTE: the brief's deferred v1.57 reviewer fix (FIX2 x FIX3(i): a far diagonal-priority
+// plant_cell pick starving a nearer immediate cell of either role) is DROPPED here, not
+// merely untested. v1.57.0-ringtune (which introduced FIX2's diagonal-priority placement,
+// the only mechanism that fix's bug could occur in) was arena-reverted at ~-2.4 on
+// 2026-07-10 (see docs/silver-experiment-log.md); this candidate is rebased on plain
+// v1.56.0-ringfarm, whose plant_cell chooser is the original flat nearest-only
+// `min_by_key((d, tie_mix))` (see planner.rs) — there is no diagonal-priority to ever
+// prefer a far cell over a near one, so the bug this fix targeted cannot occur on this
+// base. (An earlier revision of this file had a dedicated test here that passed against
+// the rebased code, but only vacuously -- the flat nearest-only key trivially picks the
+// nearest cell regardless of role, so the fix's own fallback logic was never exercised.
+// Removed rather than kept as dead weight.)
 
 // ── Test 1 (brief): training corner is planted during funding, not just banana ────────────
 #[test]
@@ -317,17 +285,21 @@ fn trainfruit_corner_planted() {
     );
 }
 
-// ── Test 3 (brief): training corner is NOT suppressed by want_chopper; the banana ring IS ──
+// ── Test 3 (brief): training corner building is NOT gated on want_chopper ─────────────────
 #[test]
 fn trainfruit_corner_before_banana() {
-    // Funding phase, BOTH a banana seed and a lemon seed in the tent, fully empty ring.
-    // FIX1 (v1.57) suppresses the banana build-ring PICK during want_chopper; this candidate
-    // must NOT suppress the training-fruit PICK the same way. A single gatherer can only take
-    // one action, so this proves the priority ORDER: training-fruit must win over (or at
-    // least not be blocked by) the same want_chopper gate that blocks banana.
+    // Base = v1.56.0-ringfarm (v1.57.0-ringtune's E1/FIX1 want_chopper suppression of the
+    // banana ring-build was arena-reverted at ~-2.4, see docs/silver-experiment-log.md
+    // 2026-07-10 -- there is no want_chopper-based suppression mechanism on this base at
+    // all, for banana OR training-fruit; band 78 (banana) simply outranks band 56/54
+    // (training-fruit) whenever BOTH are simultaneously available, exactly as it outranks
+    // every other sub-78 band). So the meaningful, base-appropriate property to prove is:
+    // the training-fruit PLANT/PICK is NEVER gated on want_chopper -- it fires purely off
+    // corner-cell availability + the investment guard, during funding exactly like any
+    // other time. Isolate it by withholding banana stock entirely (so band 78 is not even
+    // a candidate) and confirm the training-fruit action still fires while want_chopper.
     let mut st = base_state();
-    st.my_inventory[3] = 3; // banana
-    st.my_inventory[LEMON] = 3;
+    st.my_inventory[LEMON] = 3; // no banana in the tent at all -- isolates the training path
     let mut plan = train_plan(&st);
     plan.want_chopper = true;
     plan.cost = [0; 6];
@@ -335,13 +307,8 @@ fn trainfruit_corner_before_banana() {
 
     let cmds = assign(&st, &plan, &[gatherer(0, 2, 2)]);
     assert!(
-        !cmds[&0].contains("BANANA"),
-        "banana ring-build must stay suppressed during want_chopper (v1.57 FIX1): {}",
-        cmds[&0]
-    );
-    assert!(
         cmds[&0].contains("LEMON"),
-        "training-fruit build must NOT be suppressed during want_chopper: {}",
+        "training-fruit build must fire during want_chopper (not gated on it at all): {}",
         cmds[&0]
     );
 }

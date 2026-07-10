@@ -65,11 +65,6 @@ const RACE_SHARE_PEN: i64 = 2; // sharepen4 kept-at-parity = INCONCLUSIVE under 
 // never implies created_exposed>0 — see ownership::classify_pressure), so this is always +0
 // there: a proven no-op, not a static preference.
 const PRESSURE_LIQ_BONUS: i64 = 4;
-// v1.57.0-ringtune FIX3(i) (user game-watch): the build-ring PICK fires only when the chosen
-// empty ring cell is within this many steps of the troll — "immediate plant, no carry-in-
-// advance". Ring cells are already <= GE_FARM_R(2) of the tent (compute_ring), so this is the
-// "near the troll" half of the brief's "near the troll AND near the tent" immediacy rule.
-const RING_PICK_STEPS: i32 = 2;
 // v1.58.0-trainfruit: the training-corner PLANT/PICK bands. FUNDING-class (comparable to the
 // 58-65 funding bands above) but strictly BELOW fund_lo(58) -- a real funding fetch for the
 // CURRENTLY pending hand (which directly closes `need_fund` this instant) always wins over
@@ -371,8 +366,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     let ring_active = !plan.ring.is_empty();
     // v1.58.0-trainfruit: the banana plant_cell chooser must never target a training-corner
     // cell (TrainLemon/TrainPlum/TrainApple) -- those are a different fruit's dedicated slot,
-    // planted/picked by the separate training-fruit logic further down. Collected once so
-    // both the priority pick and the reviewer-fix fallback below share the same candidate set.
+    // planted/picked by the separate training-fruit logic further down.
     let banana_ring_candidates: Vec<(Cell, RingRole)> = plan
         .ring
         .iter()
@@ -382,50 +376,19 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         .filter(|(c, _)| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
         .filter(|(c, _)| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
         .collect();
-    // v1.57.0-ringtune FIX2 (E2, code review): DIAGONAL-PRIORITY placement. role_rank
-    // 0 = Diagonal, 1 = Orthogonal, so an empty diagonal is always chosen before an
-    // empty orthogonal; the nearest wins only WITHIN a role (canonical tie_mix tie-
-    // break, unchanged). The diagonals are the ripe fruit/seed engine — the scheme's
-    // whole point — but pre-fix the nearest-only key filled all four map-dist-1
-    // orthogonals (and refilled cut orthogonals) before ever touching a map-dist-2
-    // (tent-impassable) diagonal, so the seed engine built last. Determinism unchanged:
-    // role_rank is a pure function of the cell's tagged role; ties still fall to
-    // (d, tie_mix), no HashSet/HashMap iteration order participates.
-    let role_rank = |role: &RingRole| match role {
-        RingRole::Diagonal => 0,
-        RingRole::Orthogonal => 1,
-        RingRole::TrainLemon | RingRole::TrainPlum | RingRole::TrainApple => 2, // unreachable: filtered out above
-    };
-    let priority_pick: Option<(Cell, RingRole)> = banana_ring_candidates
-        .iter()
-        .copied()
-        .min_by_key(|(c, role)| (role_rank(role), d[c], tie_mix(*c, salt)));
+    // nearest empty ring cell; canonical (dist, tie_mix) tie-break — the ring geometry
+    // already fixes the roles (v1.56.0-ringfarm's original semantics: no diagonal-priority
+    // -- v1.57.0-ringtune's FIX2 diagonal-first placement was arena-reverted at ~-2.4, see
+    // docs/silver-experiment-log.md 2026-07-10, so this candidate is rebased on plain
+    // v1.56.0-ringfarm, not the reverted tuning), so we just build the ring fastest (least
+    // travel). v1.58.0-trainfruit: still consults `banana_ring_candidates` (not the raw
+    // `plan.ring`) so a training-corner cell is never chosen as a banana plant target.
     let plant_cell: Option<Cell> = if ring_active {
-        match priority_pick {
-            Some((pc, _)) if d[&pc] > RING_PICK_STEPS => {
-                // v1.58.0-trainfruit reviewer fix (FIX2 x FIX3(i), deferred from v1.57): the
-                // diagonal-priority pick above can be a FAR diagonal while a NEARER empty ring
-                // cell of EITHER role sits right next to the troll -- role_rank is compared
-                // BEFORE distance, so a far diagonal always won even when an immediate
-                // orthogonal (or even the troll's own cell) was sitting empty right there. That
-                // starved FIX3(i)'s immediacy gate below (plant_cell not immediate -> no PICK
-                // at all) even though ring progress was one step away. Fix: when the priority
-                // pick is not immediate, fall back to the nearest IMMEDIATE cell of either role
-                // (diagonal-priority still applies AMONG the immediate cells) -- this guarantees
-                // ring progress whenever the troll stands near ANY empty cell. If no immediate
-                // alternative exists, keep the original (far) pick unchanged -- FIX3(i) already
-                // handles that case correctly (no PICK, no carry-in-advance).
-                banana_ring_candidates
-                    .iter()
-                    .copied()
-                    .filter(|(c, _)| d[c] <= RING_PICK_STEPS)
-                    .min_by_key(|(c, role)| (role_rank(role), d[c], tie_mix(*c, salt)))
-                    .map(|(c, _)| c)
-                    .or(Some(pc))
-            }
-            Some((pc, _)) => Some(pc),
-            None => None,
-        }
+        banana_ring_candidates
+            .iter()
+            .copied()
+            .min_by_key(|(c, _)| (d[c], tie_mix(*c, salt)))
+            .map(|(c, _)| c)
     } else if plan.base_trees < plan.farm_cap {
         state
             .walkable
@@ -811,52 +774,12 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // (park-to-pick 77) instead of 50/49. Numeric ordering (BAND = 100_000, every eta
             // « BAND): plant 88 > full-bank 80 > build-ring PICK 78 > park-to-pick 77 >
             // standing-harvest 75 > seed-move/idle-fruit ≤ 52. So it strictly beats the
-            // distant seed-move(52) but NEVER banking(80/95) or a carried-banana plant(88) —
-            // and it is gated on a reachable empty ring cell, so once the ring is full PICK
-            // is not offered at all (cannot displace real work on a built ring). Off the ring
-            // path (`ring: vec![]` tests) it stays 50/49.
-            // v1.57.0-ringtune: this ring PICK now has THREE conditional gates, all below:
-            // FIX1 drops it out of contention entirely while `want_chopper` (fund the chopper
-            // first); FIX3(ii) drops it whenever a ripe banana is AT or adjacent to the troll
-            // (harvest that instead — a zero-travel banana source beats a tent errand, and it
-            // stops the troll walking past ripe bananas); FIX3(i) fires it only when the chosen
-            // plant cell is <=RING_PICK_STEPS away (immediate plant, no carry-in-advance /
-            // backtrack-to-tent). All three are scoped to the ring path.
+            // distant harvest(75)/seed-move(52) but NEVER banking(80/95) or a carried-banana
+            // plant(88) — and it is gated on a reachable empty ring cell, so once the ring is
+            // full PICK is not offered at all and harvest wins (cannot displace real work on a
+            // built ring). Off the ring path (`ring: vec![]` tests) it stays 50/49.
             let pick_band: i64 = if ring_active { 78 } else { 50 };
-            // v1.57.0-ringtune FIX1 (E1, code review): while the chopper is still unfunded, the
-            // build-ring PICK (78) must not outrank the funding bands above (58-65) -- the
-            // review's diagnosis of the boss 0/4: the starter stocked the ring instead of
-            // funding the existential chopper.
-            // v1.57.0-ringtune FIX3(ii) (user game-watch): a ripe banana harvestable AT the
-            // troll's cell or one ortho-step away outranks a tent PICK -- a harvested banana
-            // seeds/banks with zero extra travel, so a same-turn/next-turn harvest always beats
-            // running a separate tent errand (and cures "walked past ripe bananas to fetch tent
-            // stock"). Suppressing the PICK lets the standing harvest (75) / seed-move (52) win.
-            let harvest_beats_pick = u.harvest_power > 0
-                && u.free_capacity() > 0
-                && state.trees.iter().any(|p| {
-                    p.fruits > 0 && p.tree_type == "BANANA" && manhattan(p.pos(), u.pos()) <= 1
-                });
-            // Suppress ONLY the ring-build PICK/park-to-pick pair; the ORDINARY carried-banana
-            // plant (band 88, above) is untouched -- a troll already holding a banana (e.g. from
-            // a harvest) still plants it. Scoped to `ring_active`: off the ring path pick_band
-            // is already 50 (below every funding band), so it never needed suppressing.
-            let suppress_ring_pick = ring_active && (plan.want_chopper || harvest_beats_pick);
-            // v1.57.0-ringtune FIX3(i) (user game-watch, no carry-in-advance): on the ring path,
-            // PICK only when the chosen plant cell (plant_cell, diagonal-first per FIX2) is
-            // IMMEDIATELY actionable -- within RING_PICK_STEPS of the troll. Ring cells are
-            // always <= farm_r(2) of the tent by compute_ring, so this is the missing "near the
-            // troll" half of the brief's "near the troll AND near the tent"; it stops picking a
-            // banana to carry it far (and the backtrack-to-tent that user watched). Off the ring
-            // path (`ring: vec![]` tests) the old "PICK whenever a plant cell exists" holds.
-            let plant_immediate = !ring_active
-                || plant_cell.map_or(false, |pc| d.get(&pc).map_or(false, |&dd| dd <= RING_PICK_STEPS));
-            if !suppress_ring_pick
-                && plant_immediate
-                && inv[BANANA] > 0
-                && u.free_capacity() > 0
-                && plant_cell.is_some()
-            {
+            if inv[BANANA] > 0 && u.free_capacity() > 0 && plant_cell.is_some() {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand {
