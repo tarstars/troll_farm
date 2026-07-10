@@ -681,7 +681,32 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // whenever a plant cell exists" holds (plant_immediate is trivially true there).
             let plant_immediate = !ring_active
                 || plant_cell.map_or(false, |pc| d.get(&pc).map_or(false, |&dd| dd <= RING_PICK_STEPS));
-            if plant_immediate && inv[BANANA] > 0 && u.free_capacity() > 0 && plant_cell.is_some() {
+            // v1.59.0-ringfix3 FIX3(ii) (user game-watch, isolated from v1.57.0-ringtune's E1
+            // bundle — see brief): a ripe banana harvestable AT the troll's cell or one
+            // ortho-step away outranks a tent PICK — a harvested banana seeds/banks with zero
+            // extra travel, so a same-turn/next-turn harvest always beats running a separate
+            // tent errand (and cures "walked past ripe bananas to fetch tent stock").
+            // Suppressing the PICK lets the standing harvest (75) / seed-move (52) win.
+            let harvest_beats_pick = u.harvest_power > 0
+                && u.free_capacity() > 0
+                && state.trees.iter().any(|p| {
+                    p.fruits > 0 && p.tree_type == "BANANA" && manhattan(p.pos(), u.pos()) <= 1
+                });
+            // Suppress ONLY the ring-build PICK/park-to-pick pair; the ORDINARY carried-banana
+            // plant (band 88, above) is untouched — a troll already holding a banana (e.g.
+            // from a harvest) still plants it. Scoped to `ring_active`: off the ring path
+            // pick_band is already 50 (below every funding band), so it never needed
+            // suppressing. NOTE: v1.57.0-ringtune ALSO suppressed this on `plan.want_chopper`
+            // (FIX1/E1) — that term is DELIBERATELY DROPPED here (isolating FIX3 from the
+            // bundle that reverted ~-2.4; see data/candidates/v1.59.0-ringfix3/brief.md and
+            // tests/ringfix3.rs::ringfix3_no_want_chopper_dependency, the guard proving it).
+            let suppress_ring_pick = ring_active && harvest_beats_pick;
+            if !suppress_ring_pick
+                && plant_immediate
+                && inv[BANANA] > 0
+                && u.free_capacity() > 0
+                && plant_cell.is_some()
+            {
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand {
