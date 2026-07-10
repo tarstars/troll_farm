@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.56.0-ringfarm"; // structured 8-cell tent ring: diagonals=ripe fruit/seed engine (kept standing), orthogonals=wood/cut cycle; ring built early (build-ring PICK 78) instead of foraging distant
+const VERSION: &str = "1.59.0-ringfix3"; // FIX3 (banana no-carry-in-advance) isolated onto v1.56.0-ringfarm: plant_immediate (RING_PICK_STEPS<=2) + harvest_beats_pick, WITHOUT the v1.57.0-ringtune E1 (want_chopper) term that bundle reverted -2.4 with
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;

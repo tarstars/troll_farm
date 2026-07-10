@@ -1,0 +1,33 @@
+collecting 8 DEBUG games vs agent 6479836 → /home/tarstars/prj/troll_farm/data/boss5_games/6479836
+
+    play failed (HTTP 422)
+  game 1/8: (failed)
+  game 2/8 895668861: L  wood 29-39  oppbuild=1:1.1.1.1,2:3.2.1.2  opp_train=t2 my_train=t3  | ramp t75(20, 15) t150(28, 30) t225('-', '-') t300('-', '-')
+    play failed (HTTP 422)
+  game 3/8: (failed)
+    play failed (HTTP 422)
+  game 4/8: (failed)
+    play failed (HTTP 422)
+  game 5/8: (failed)
+    play failed (HTTP 422)
+  game 6/8: (failed)
+    play failed (HTTP 422)
+  game 7/8: (failed)
+    play failed (HTTP 422)
+  game 8/8: (failed)
+
+== 0/1 wins | our wood 29 | opp wood 39 ==
+   opponent builds seen: {'1:1.1.1.1,2:3.2.1.2': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/6479836/
+collecting 6 DEBUG games vs agent 6479836 → /home/tarstars/prj/troll_farm/data/boss5_games/6479836
+
+  game 1/6 895669301: L  wood 18-21  oppbuild=1:1.1.1.1,2:2.1.1.1  opp_train=t2 my_train=t143  | ramp t75(0, 5) t150(0, 9) t225(10, 13) t300(18, 21)
+  game 2/6 895669314: L  wood 31-43  oppbuild=1:1.1.1.1,2:2.2.1.1  opp_train=t2 my_train=t55  | ramp t75(8, 11) t150(20, 24) t225(27, 39) t300('-', '-')
+  game 3/6 895669324: L  wood 6-16  oppbuild=1:1.1.1.1,2:2.1.1.2  opp_train=t2 my_train=t55  | ramp t75(4, 7) t150('-', '-') t225('-', '-') t300('-', '-')
+  game 4/6 895669342: W  wood 53-27  oppbuild=1:1.1.1.1,2:1.1.1.2  opp_train=t2 my_train=t79  | ramp t75(0, 5) t150(26, 10) t225(44, 15) t300(53, 27)
+  game 5/6 895669369: W  wood 29-22  oppbuild=1:1.1.1.1,2:1.1.1.1  opp_train=t2 my_train=t57  | ramp t75(6, 5) t150(24, 10) t225(29, 21) t300('-', '-')
+  game 6/6 895669378: W  wood 35-32  oppbuild=1:1.1.1.1,2:1.3.1.1  opp_train=t2 my_train=t51  | ramp t75(6, 9) t150(21, 17) t225(33, 26) t300('-', '-')
+
+== 3/6 wins | our wood 29 | opp wood 27 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.1.1.1': 1, '1:1.1.1.1,2:2.2.1.1': 1, '1:1.1.1.1,2:2.1.1.2': 1, '1:1.1.1.1,2:1.1.1.2': 1, '1:1.1.1.1,2:1.1.1.1': 1, '1:1.1.1.1,2:1.3.1.1': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/6479836/

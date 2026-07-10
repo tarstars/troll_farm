@@ -1,0 +1,34 @@
+collecting 8 DEBUG games vs agent boss → /home/tarstars/prj/troll_farm/data/boss5_games/boss
+
+  game 1/8 895668778: L  wood 47-70  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t2 my_train=t3  | ramp t75(16, 8) t150(26, 24) t225(36, 46) t300(47, 70)
+    play failed (HTTP 422)
+  game 2/8: (failed)
+    play failed (HTTP 422)
+  game 3/8: (failed)
+    play failed (HTTP 422)
+  game 4/8: (failed)
+    play failed (HTTP 422)
+  game 5/8: (failed)
+    play failed (HTTP 422)
+  game 6/8: (failed)
+    play failed (HTTP 422)
+  game 7/8: (failed)
+    play failed (HTTP 422)
+  game 8/8: (failed)
+
+== 0/1 wins | our wood 47 | opp wood 70 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.2.0.2': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/boss/
+collecting 7 DEBUG games vs agent boss → /home/tarstars/prj/troll_farm/data/boss5_games/boss
+
+  game 1/7 895669124: L  wood 50-56  oppbuild=1:1.1.1.1,2:3.2.0.2  opp_train=t27 my_train=t37  | ramp t75(10, 2) t150(24, 18) t225(40, 34) t300(50, 56)
+  game 2/7 895669139: L  wood 63-74  oppbuild=1:1.1.1.1,2:3.3.0.2  opp_train=t2 my_train=t3  | ramp t75(21, 6) t150(33, 21) t225(48, 44) t300(63, 74)
+  game 3/7 895669150: L  wood 57-64  oppbuild=1:1.1.1.1,2:2.3.0.2  opp_train=t27 my_train=t41  | ramp t75(18, 0) t150(33, 9) t225(42, 33) t300(57, 64)
+  game 4/7 895669169: L  wood 43-61  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t33 my_train=t107  | ramp t75(0, 6) t150(14, 18) t225(30, 38) t300(43, 61)
+  game 5/7 895669202: L  wood 55-67  oppbuild=1:1.1.1.1,2:2.3.0.2  opp_train=t2 my_train=t3  | ramp t75(24, 6) t150(33, 18) t225(42, 43) t300(55, 67)
+  game 6/7 895669221: L  wood 46-39  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t2 my_train=t3  | ramp t75(16, 4) t150(30, 12) t225(38, 22) t300(46, 39)
+  game 7/7 895669268: W  wood 72-64  oppbuild=1:1.1.1.1,2:2.3.0.2  opp_train=t15 my_train=t25  | ramp t75(18, 6) t150(39, 18) t225(54, 38) t300(72, 64)
+
+== 1/7 wins | our wood 55 | opp wood 61 ==
+   opponent builds seen: {'1:1.1.1.1,2:3.2.0.2': 1, '1:1.1.1.1,2:3.3.0.2': 1, '1:1.1.1.1,2:2.3.0.2': 3, '1:1.1.1.1,2:2.2.0.2': 2}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/boss/
