@@ -379,21 +379,60 @@ fn trainfruit_band_ordering_does_not_displace_real_work() {
         cmds[&0]
     );
 
-    // (b) banking must not be displaced: a FULL troll (free_capacity==0) already carrying a
-    // training-fruit seed (not banana) must still be banked (band 80), never diverted to
-    // plant it in the corner. Band 80's existing "carried banana with a plant spot" exemption
-    // checks `carry[BANANA]` ONLY, so a lemon-carrying full troll gets no such exemption and
-    // must fall through to the unconditional full->bank rule -- this is the direct "not above
-    // banking" numeric guarantee the brief requires (TRAIN_PLANT_BAND(56) < the bank band(80)
-    // by construction; this proves it behaviorally, not just by reading the constant).
-    let st_b = base_state();
-    let mut full_carrier = gatherer(0, 2, 2);
+    // (b) banking must not be displaced BY A HIGHER-VALUE candidate for a resource that has
+    // NOWHERE to go: a FULL troll (free_capacity==0) carrying a training-fruit seed whose
+    // designated corner cell is UNAVAILABLE (all 3 corner cells already treed) must still be
+    // banked (band 80) -- exactly the banana `plant_cell.is_some()` gate's logic, applied to
+    // training fruit. This proves TRAIN_PLANT_BAND(56) never displaces banking(80) when
+    // there's nothing plantable to displace it FOR.
+    //
+    // (Earlier revision of this test carried a lemon with an EMPTY, available corner cell and
+    // asserted the command wasn't PLANT/PICK -- that passed, but for the wrong reason: once
+    // band 80 correctly exempts a carried seed with a ready destination (the
+    // trainfruit_full_carrier_walks_to_ready_corner fix below), the troll instead MOVEs
+    // toward it, which also doesn't contain "PLANT"/"PICK" literally, making the old
+    // assertion vacuous. Corrected to actually block the destination, isolating the
+    // still-true "no plantable target -> bank" invariant.)
+    let mut st_b = base_state();
+    st_b.trees = vec![
+        Tree { tree_type: "LEMON".into(), x: 3, y: 3, size: 1, health: 6, fruits: 0, cooldown: 0 },
+        Tree { tree_type: "PLUM".into(), x: 2, y: 3, size: 1, health: 6, fruits: 0, cooldown: 0 },
+        Tree { tree_type: "APPLE".into(), x: 2, y: 2, size: 1, health: 11, fruits: 0, cooldown: 0 },
+    ]; // all 3 training-corner cells occupied -> no reachable destination for the carried lemon
+    let mut full_carrier = gatherer(0, 3, 1); // (3,1): a plain Orthogonal cell, shack-adjacent (manhattan==1), untouched by the corner
     full_carrier.carry[LEMON] = 1; // carry_capacity=1 (from `gatherer`) -> free_capacity()==0
     let plan_b = train_plan(&st_b);
     let cmds_b = assign(&st_b, &plan_b, &[full_carrier]);
-    assert!(
-        !cmds_b[&0].contains("PLANT") && !cmds_b[&0].contains("PICK"),
-        "a full troll carrying a training-fruit seed must be banked, not diverted to plant it: {}",
+    assert_eq!(
+        cmds_b[&0], "DROP 0",
+        "a full troll carrying a training-fruit seed with NO available corner cell must bank \
+         it (band 80), not hold it indefinitely: {}",
         cmds_b[&0]
+    );
+}
+
+// ── Regression (bug found via local simulation, not a hand-built fixture): a full troll
+//    carrying a training-fruit seed WITH a ready corner cell must WALK there, not bank ────────
+#[test]
+fn trainfruit_full_carrier_walks_to_ready_corner_instead_of_banking() {
+    // The actual bug: band 80 (full->bank) originally only recognized a carried BANANA's
+    // plant_cell exemption, never a carried training-fruit seed's. So a capacity-1 troll
+    // that just PICKed a training seed (free_capacity instantly 0) would be banked the very
+    // next turn by band 80 (80 > 56) -- discovered by running the real bot binary through
+    // local simulated games (not caught by ANY hand-built fixture in this file, since they
+    // all used a troll with enough spare capacity to dodge band 80 entirely): the bot's
+    // actual command stream showed "PICK 0 APPLE" immediately followed by "DROP 0" on the
+    // very next turn, every time, so the training-corner tree was NEVER ACTUALLY PLANTED in
+    // 20/20 fresh local games pre-fix (0/20 planted a training-corner tree; 10/20 post-fix).
+    let st = base_state();
+    let mut full_carrier = gatherer(0, 2, 2); // stands on (2,2) = TrainApple, but carries LEMON
+    full_carrier.carry[LEMON] = 1; // carry_capacity=1 -> free_capacity()==0 (mirrors the bug)
+    let plan = train_plan(&st);
+    let cmds = assign(&st, &plan, &[full_carrier]);
+    assert_eq!(
+        cmds[&0], "MOVE 0 3 3",
+        "a full troll carrying a training-fruit seed with a READY corner cell ((3,3)=TrainLemon, \
+         empty) must walk there to plant it, not bank the seed for a single point: {}",
+        cmds[&0]
     );
 }
