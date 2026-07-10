@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.56.0-ringfarm"; // structured 8-cell tent ring: diagonals=ripe fruit/seed engine (kept standing), orthogonals=wood/cut cycle; ring built early (build-ring PICK 78) instead of foraging distant
+const VERSION: &str = "1.57.0-ringtune"; // tunes v1.56.0-ringfarm (review E1/E2 + user game-watch): FIX1 fund the chopper before the ring (suppress build-ring PICK while want_chopper), FIX2 diagonal-priority placement (role_rank then dist), FIX3 banana no-carry-in-advance (PICK only when plant is immediate <=2 steps; ripe banana at/adjacent beats a tent PICK)
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
