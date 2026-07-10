@@ -108,6 +108,42 @@ const GE_FARM_FELL: i32 = 3; // OUR farm bananas: fell at size 3 = PRODUCTION (c
 // only ever shrinks room to expand further, never a mandate to shrink below where we are).
 const GE_PRESSURE_FARM_FLOOR: usize = 4;
 
+/// v1.60.0-fellmission (Task 4): the chopper (chop_power >= 2) runs its COMMITTED
+/// FellForWood mission (`missions::chopper_target`) and is EXCLUDED from the band system
+/// entirely; every other troll still flows through the proven joint band assignment
+/// (`planner::assign_resolved`) — the +1.7 ring economy is untouched (a gate gap check
+/// confirms this: `assign_resolved` sees the exact same `others` roster either way). Both
+/// command sets are then joint-solved TOGETHER by the R6a motion solver
+/// (`planner::move_intents` + `motion::solve_moves` + `planner::pin_landing`) over the
+/// WHOLE roster, not just the "others" subset — `assign_resolved`'s own internal solve
+/// never saw the chopper, so without this second pass the chopper's mission MOVE could
+/// collide with (or fail to yield shuffle-invariance against) everyone else's movement.
+/// Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`, same
+/// convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no I/O).
+pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> HashMap<i32, String> {
+    let chopper_id = my.iter().find(|t| t.chop_power >= 2).map(|t| t.id);
+    let others: Vec<Troll> = my
+        .iter()
+        .filter(|t| Some(t.id) != chopper_id)
+        .cloned()
+        .collect();
+    let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
+    if let Some(cid) = chopper_id {
+        let u = my.iter().find(|t| t.id == cid).unwrap();
+        let cmd = match missions::chopper_target(state, u) {
+            Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
+            Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),
+            None => format!("WAIT {}", cid), // no reachable/non-doomed tree this turn
+        };
+        cmd_by_id.insert(cid, cmd);
+    }
+    // joint move solve over ALL intents (chopper + others) — keeps shuffle-invariant motion
+    let intents = planner::move_intents(&cmd_by_id);
+    let landing = motion::solve_moves(state, my, &intents);
+    planner::pin_landing(my, &mut cmd_by_id, landing);
+    cmd_by_id
+}
+
 /// v1.4.0 live decider: the gold-elite pure-production strategy. The standalone
 /// bot is always player 0 (my_trolls). A 1:1 port of GoldElite::decide with an
 /// added turn-1 MSG and an anti-stall watchdog (below).
@@ -117,13 +153,15 @@ fn decide_elite(state: &State) -> Vec<String> {
         ownership::reset();
         tactics::reset();
         planner::reset();
+        missions::reset();
     }
     let mut my: Vec<Troll> = state.my_trolls.clone();
     my.sort_by_key(|t| t.id);
 
-    // L1: tactical plan → L2: per-troll job assignment → L3: motion post-pass
+    // L1: tactical plan → L2: chopper mission (FellForWood, excluded from bands) + everyone
+    // else's joint band assignment → (both joint-solved together) → L3: motion post-pass
     let plan = tactics::plan(state, &my);
-    let mut cmd_by_id = planner::assign_resolved(state, &plan, &my);
+    let mut cmd_by_id = resolve_commands(state, &plan, &my);
     if DEBUG && state.turn % 5 == 0 {
         // v1.56.0-ringfarm: ring_n = ring cells this turn; ring_planted = ring cells hosting a
         // banana (the "bananas planted near the tent" the candidate gate measures by turn N).
@@ -154,8 +192,9 @@ fn decide_elite(state: &State) -> Vec<String> {
         ownership::log_pressure(state, &plan);
     }
 
-    // R6a/R6b feedback: planner::assign_resolved runs joint assignment, the first
-    // motion solve, one bounded yield-to-urgent pass, and final MOVE landing pinning.
+    // R6a/R6b feedback + v1.60.0-fellmission: resolve_commands runs the chopper's mission,
+    // everyone else's joint band assignment (itself: first motion solve, one bounded
+    // yield-to-urgent pass), then a whole-roster joint solve + final MOVE landing pinning.
     // anti-stall watchdog (R3b: motion layer) — sidestep trolls self-blocked 2+ turns
     motion::watchdog(state, &my, &mut cmd_by_id);
 

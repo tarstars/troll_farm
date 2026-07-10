@@ -6,7 +6,10 @@
 //! docs/superpowers/plans/2026-07-10-fellmission.md and
 //! docs/superpowers/specs/2026-07-10-intent-missions-design.md.
 use std::collections::HashSet;
-use troll_farm::botmain::{missions, State, Tree, Troll};
+use troll_farm::botmain::ownership;
+use troll_farm::botmain::planner::assign_resolved;
+use troll_farm::botmain::tactics::{Phase, Plan};
+use troll_farm::botmain::{missions, resolve_commands, State, Tree, Troll};
 
 const SHACK: (i32, i32) = (0, 2);
 
@@ -74,6 +77,63 @@ fn tree(ty: &str, x: i32, y: i32, size: i32, health: i32) -> Tree {
         health,
         fruits: 0,
         cooldown: 0,
+    }
+}
+
+/// A pure gatherer (chop_power=0, like ringfix3.rs's `gatherer()`): isolates it from every
+/// fell-related band (40/42/31/30 all gate on `u.chop_power > 0`), so its behavior in the
+/// Task 4 wiring test cannot collide with the chopper's mission target.
+fn gatherer(id: i32, x: i32, y: i32) -> Troll {
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 0,
+        carry: [0; 6],
+    }
+}
+
+/// A Plan with the REAL champion consts, rest hand-set — same convention as
+/// ringfix3.rs/planner_tasks.rs's `base_plan`. `ring: vec![]` (off the ring path) so this
+/// test exercises only the pieces relevant to the chopper's mission / the gatherer's legacy
+/// bands, not the ringfarm economy.
+fn base_plan(st: &State) -> Plan {
+    let farm_d = troll_farm::botmain::bfs_distances(&st.walkable, &[st.my_shack]);
+    Plan {
+        shack: st.my_shack,
+        farm_d,
+        opp: st.opp_shack,
+        have_iron: false,
+        turns_rem: 240,
+        n: 2,
+        farm_now: 0,
+        nchop: 1,
+        spec: (2, 3, 0, 2),
+        want_chopper: false,
+        want_feeder: false,
+        train_spec: (2, 2, 0, 2),
+        cost: [0; 6],
+        train_now: false,
+        need_iron: false,
+        need_fund: [false; 3],
+        farm_r: 2,
+        farm_cap: 12,
+        fell_size: 2,
+        farm_fell: 2,
+        chop_r: 5,
+        starter_chop: true,
+        liquidation: false,
+        base_trees: 0,
+        seed_cells: HashSet::new(),
+        phase: Phase::Tempo,
+        pressure: ownership::Pressure::default(),
+        door: None,
+        door_d: None,
+        ring: vec![],
+        raid: false,
     }
 }
 
@@ -169,5 +229,42 @@ fn fellmission_commits_then_replans_on_done() {
         turn_c,
         Some((6, 1)),
         "once the committed target is Done (felled/gone), the mission re-plans to the next best"
+    );
+}
+
+// ── Task 4: decide_elite wiring — chopper mission, others' bands + joint-solve unchanged ──
+
+#[test]
+fn fellmission_chopper_uses_mission_starter_unchanged() {
+    missions::reset();
+    // A 2-troll state: a chopper far from a gatherer, one lemon EXACTLY ms(=2) steps from
+    // the chopper (6,2)->(8,2), so the joint solver's max-progress landing is uniquely the
+    // tree cell itself (distance 0 to goal cannot be tied) — no tie-break ambiguity to
+    // hand-verify. The gatherer (chop_power=0) has zero overlap with any fell band, so
+    // nothing here can make it compete with the chopper's mission target.
+    let mut st = base_state();
+    st.trees = vec![tree("LEMON", 8, 2, 4, 12)];
+    st.my_trolls = vec![chopper(1, 6, 2), gatherer(0, 1, 2)];
+    let plan = base_plan(&st);
+
+    // (a) the chopper's emitted command is a MOVE toward its mission target (not on it yet),
+    // landing exactly on the tree this turn (distance 2 == movement_speed 2) — NOT whatever
+    // the legacy bands would have produced for a chopper (which this mission entirely
+    // replaces).
+    let cmds = resolve_commands(&st, &plan, &st.my_trolls);
+    assert_eq!(
+        cmds[&1], "MOVE 1 8 2",
+        "the chopper must move toward its FellForWood mission target, landing on it this turn"
+    );
+
+    // (b) the gatherer's command is byte-identical to a baseline run with ONLY the gatherer
+    // through assign_resolved — excluding the chopper from the band system, and the final
+    // joint-solve-with-everyone pass, must not perturb it (the +1.7 economy stays on the
+    // bands, untouched).
+    let baseline = assign_resolved(&st, &plan, &[gatherer(0, 1, 2)]);
+    assert_eq!(
+        cmds[&0], baseline[&0],
+        "excluding the chopper from the bands + the final joint solve must not change the \
+         gatherer's command"
     );
 }

@@ -1016,7 +1016,14 @@ fn render_assignments(
     cmd_by_id
 }
 
-fn move_intents(cmd_by_id: &HashMap<i32, String>) -> Vec<(i32, Cell)> {
+// v1.60.0-fellmission (Task 4): bumped to `pub(crate)` (was private) so `botmain::
+// resolve_commands` can run ONE joint move-solve over the chopper's mission command
+// together with every other troll's band-derived command — the chopper is excluded from
+// `assign_resolved`'s own internal solve (it never sees the chopper's Troll at all), so a
+// second, whole-roster joint solve is required to keep movement shuffle-invariant across
+// EVERYONE, not just the "others" subset. Still private to callers outside this crate
+// (integration tests reach it only indirectly, via `resolve_commands`).
+pub(crate) fn move_intents(cmd_by_id: &HashMap<i32, String>) -> Vec<(i32, Cell)> {
     let mut intents: Vec<(i32, Cell)> = cmd_by_id
         .iter()
         .filter_map(|(id, c)| {
@@ -1032,7 +1039,8 @@ fn move_intents(cmd_by_id: &HashMap<i32, String>) -> Vec<(i32, Cell)> {
     intents
 }
 
-fn pin_landing(my: &[Troll], cmd_by_id: &mut HashMap<i32, String>, landing: HashMap<i32, Cell>) {
+// v1.60.0-fellmission (Task 4): bumped to `pub(crate)`, same reason as `move_intents` above.
+pub(crate) fn pin_landing(my: &[Troll], cmd_by_id: &mut HashMap<i32, String>, landing: HashMap<i32, Cell>) {
     for (id, cell) in landing {
         let cur = my.iter().find(|t| t.id == id).map(|t| t.pos());
         if cur != Some(cell) {
