@@ -70,18 +70,34 @@ const PRESSURE_LIQ_BONUS: i64 = 4;
 // advance". Ring cells are already <= GE_FARM_R(2) of the tent (compute_ring), so this is the
 // "near the troll" half of the brief's "near the troll AND near the tent" immediacy rule.
 const RING_PICK_STEPS: i32 = 2;
+// v1.58.0-trainfruit: the training-corner PLANT/PICK bands. FUNDING-class (comparable to the
+// 58-65 funding bands above) but strictly BELOW fund_lo(58) -- a real funding fetch for the
+// CURRENTLY pending hand (which directly closes `need_fund` this instant) always wins over
+// planting a NEW seed (a longer-horizon investment: tests/trainfruit.rs::
+// trainfruit_band_ordering_does_not_displace_real_work part (a)); still strictly ABOVE the
+// printer tier (52) so it beats generic foraging once real funding needs are satisfied. Both
+// are also « the bank band (80) by construction (56 < 80), proven behaviorally by the same
+// test's part (b): a full troll carrying a training seed is still banked, never diverted.
+// PLANT (56) > PICK (54), mirroring 88 > 78's "plant what you already carry before fetching
+// more" discipline.
+const TRAIN_PLANT_BAND: i64 = 56; // plant an ALREADY-CARRIED training-fruit seed
+const TRAIN_PICK_BAND: i64 = 54; // PICK a training-fruit seed from the tent (investment-guarded)
 
 #[derive(Clone, Debug, PartialEq)]
 enum Kind {
     Bank, // render via motion::bank_cmd (DROP if adjacent, else camp-cell MOVE)
     Park, // render via motion::park_cmd (target None = idle band-10, ring-2-aware;
     // target Some(shack) = band-49 park-to-pick errand, direct camp approach)
-    ChopHere,  // CHOP at current cell
-    MoveTo,    // MOVE toward target (fell/fund/seed/mine-adjacent/plant travel)
-    PlantHere, // PLANT BANANA at current cell
-    Harvest,   // HARVEST at current cell
-    Mine,      // MINE (adjacent to iron)
-    Pick,      // PICK BANANA (shack-adjacent)
+    ChopHere, // CHOP at current cell
+    MoveTo,   // MOVE toward target (fell/fund/seed/mine-adjacent/plant travel)
+    // PLANT <ty> at current cell. v1.58.0-trainfruit: generalized from a bare unit variant
+    // (always "BANANA") to carry the item-type string, so the SAME banana band-88 code path
+    // now also serves LEMON/PLUM/APPLE training-corner plants (see RingRole::train_fruit).
+    PlantHere(&'static str),
+    Harvest, // HARVEST at current cell
+    Mine,    // MINE (adjacent to iron)
+    // PICK <ty> (shack-adjacent). v1.58.0-trainfruit: same generalization as PlantHere.
+    Pick(&'static str),
 }
 
 #[derive(Clone, Debug)]
@@ -153,7 +169,7 @@ fn claim_info(state: &State, c: &Cand, steps: i64) -> Option<ClaimInfo> {
                 ClaimClass::Cell
             }
         }
-        Kind::Bank | Kind::Park | Kind::PlantHere | Kind::Mine | Kind::Pick => ClaimClass::Cell,
+        Kind::Bank | Kind::Park | Kind::PlantHere(_) | Kind::Mine | Kind::Pick(_) => ClaimClass::Cell,
     };
     Some(ClaimInfo { class, cell, steps })
 }
@@ -554,7 +570,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         if u.carry[BANANA] > 0 {
             if let Some(tc) = plant_cell {
                 let kind = if u.pos() == tc {
-                    Kind::PlantHere
+                    Kind::PlantHere("BANANA")
                 } else {
                     Kind::MoveTo
                 };
@@ -683,6 +699,75 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 });
             }
         }
+        // 4.5) TRAINING-CORNER PLANT (bands 56/54) — v1.58.0-trainfruit (user's training-fruit
+        // corner): grow our OWN lemon/plum/apple supply to fund training faster (attacks the
+        // documented funding-stall/lemon-wall). Unlike the banana ring-build (78/77, suppressed
+        // by FIX1 while want_chopper), this is NEVER suppressed by want_chopper — planting a
+        // training-fruit tree IS funding work (v1.58.0-trainfruit brief's "timing" section:
+        // "training corner -> chopper -> banana ring"); only the banana ring-build stays gated.
+        // Two steps mirror the banana ring's plant(88)/pick(78) pair, at the lower funding-tier
+        // bands TRAIN_PLANT_BAND/TRAIN_PICK_BAND (see their doc comment for the numeric proof).
+        //
+        // INVESTMENT GUARD: a PICK here spends 1 unit of PLUM/LEMON/APPLE from the TENT
+        // inventory (into carry; PLANT then consumes the carry) — the SAME pool `cost`/
+        // `need_fund` draw from. Only safe when no hand is currently pending (want_chopper and
+        // want_feeder both false — nothing to starve) OR there is a genuine SURPLUS beyond the
+        // pending hand's cost for that resource (`inv[idx] > plan.cost[idx]`: still affordable
+        // to train even after this seed leaves the pool). This also defuses a same-turn
+        // engine-order hazard: PICK resolves BEFORE TRAIN (engine order MOVE, HARVEST, PLANT,
+        // CHOP, PICK, TRAIN, DROP, MINE), so an exactly-at-threshold PICK this turn would
+        // invalidate a TRAIN this turn's `train_now` already committed to firing. Once a seed
+        // is ALREADY carried (a prior turn's PICK, or an incidental harvest), planting it is
+        // always safe — the resource already left the tent pool, so holding it hostage in
+        // carry helps nothing (see tests/trainfruit.rs::trainfruit_train_now_over_plant_last_seed).
+        let imminent_hand = plan.want_chopper || plan.want_feeder;
+        for (cell, role) in plan.ring.iter().copied() {
+            let (Some(idx), Some(fruit)) = (role.train_idx(), role.train_fruit()) else {
+                continue; // a banana (Diagonal/Orthogonal) ring cell — not this troll's job here
+            };
+            if state.trees.iter().any(|p| p.pos() == cell) {
+                continue; // already planted
+            }
+            if my.iter().any(|o| o.id != u.id && o.pos() == cell) {
+                continue; // blocked by a teammate
+            }
+            if !d.contains_key(&cell) {
+                continue; // unreachable from this troll
+            }
+            if u.carry[idx] > 0 {
+                // already carrying the seed -> plant it (band 56)
+                let kind = if u.pos() == cell {
+                    Kind::PlantHere(fruit)
+                } else {
+                    Kind::MoveTo
+                };
+                out.push(Cand {
+                    kind,
+                    target: Some(cell),
+                    value: TRAIN_PLANT_BAND * BAND - eta(&d, cell, ms),
+                });
+                continue;
+            }
+            let safe_to_invest = !imminent_hand || inv[idx] > plan.cost[idx];
+            if !safe_to_invest || inv[idx] <= 0 || u.free_capacity() == 0 {
+                continue;
+            }
+            // target = shack: dedupes the pick errand across multiple hands (R6b.2), same
+            // convention as the banana build-ring PICK.
+            if manhattan(u.pos(), shack) == 1 {
+                out.push(Cand {
+                    kind: Kind::Pick(fruit),
+                    target: Some(shack),
+                    value: TRAIN_PICK_BAND * BAND,
+                });
+            } else {
+                out.push(Cand {
+                    kind: Kind::Park,
+                    target: Some(shack),
+                    value: TRAIN_PICK_BAND * BAND - 1,
+                });
+            }
+        }
         // 5) PRINTER (bands 52/50/49) — v1.37.0-nanaflow (user replay finding #2): TREE-FIRST.
         // Harvesting a ripe seed tree directly converts its fruit straight into a farm seed;
         // banked tent stock is just as harvestable a turn later. So a ripe seed tree now
@@ -775,7 +860,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 // target = shack: dedupes the pick errand across multiple hands (R6b.2)
                 if manhattan(u.pos(), shack) == 1 {
                     out.push(Cand {
-                        kind: Kind::Pick,
+                        kind: Kind::Pick("BANANA"),
                         target: Some(shack),
                         value: pick_band * BAND,
                     });
@@ -1059,10 +1144,10 @@ fn render_assignments(
                     park_target.is_none(),
                 ),
                 (Kind::ChopHere, _) => format!("CHOP {}", u.id),
-                (Kind::PlantHere, _) => format!("PLANT {} BANANA", u.id),
+                (Kind::PlantHere(ty), _) => format!("PLANT {} {}", u.id, ty),
                 (Kind::Harvest, _) => format!("HARVEST {}", u.id),
                 (Kind::Mine, _) => format!("MINE {}", u.id),
-                (Kind::Pick, _) => format!("PICK {} BANANA", u.id),
+                (Kind::Pick(ty), _) => format!("PICK {} {}", u.id, ty),
                 (Kind::MoveTo, Some(tc)) => format!("MOVE {} {} {}", u.id, tc.0, tc.1),
                 (Kind::MoveTo, None) => format!("MOVE {} {} {}", u.id, plan.shack.0, plan.shack.1),
             };
@@ -1165,7 +1250,7 @@ fn candidate_can_move_for_yield(plan: &Plan, u: &Troll, cand: &Cand) -> bool {
     match cand.kind {
         Kind::MoveTo | Kind::Park => true,
         Kind::Bank => manhattan(u.pos(), plan.shack) != 1,
-        Kind::ChopHere | Kind::PlantHere | Kind::Harvest | Kind::Mine | Kind::Pick => false,
+        Kind::ChopHere | Kind::PlantHere(_) | Kind::Harvest | Kind::Mine | Kind::Pick(_) => false,
     }
 }
 
