@@ -2546,3 +2546,27 @@ exposed value) does not predict/cause losses, and "fixing" it backfires. The exe
 DID transfer (race +1.3, yield +1.0) were about NOT doing dumb things (doomed chases, blocking),
 not about filling apparent gaps. TREE FOLLOW-UP: revert taskfloor from the working tree (it's
 arena-negative); frontdoor is no-op-harmless (keep or drop — near-zero either way).
+
+## 2026-07-10 — ★ v1.56.0-ringfarm arena: STRONG KEEP (+1.7), best economy result ever
+
+The as-built ringfarm (user's 8-cell tent-ring scheme, DETUNED — E1/E2 unfixed) converged to
+**117/528 @ 18.4** and held it for **~7 hours** (06:24 → 13:28, agentId 6545819, exact-stable),
+vs the champion-yield bracket **147/528 @ 16.7** (8h-settled, immediately pre-submit 05:41).
+Delta **+1.7** — exceeds the +1.0 promotion bar, and 7h stability rules out a drift spike.
+
+★ SIGNIFICANCE: this is the FIRST economy/farm-class change to go clearly POSITIVE (the pie
+family was 0-for-5, taskfloor −1.0). It validates the user's core thesis: BUILD THE LOCAL FARM
+EARLY instead of foraging distant natural fruit. The mechanism is travel-reduction + a tight
+local farm = the SAME shape as the one economy lever that ever worked (v1.13.0-tightfarm), not
+pie-growing. Even detuned (funding delayed by E1, diagonals built late by E2), the early-farm
+win dominates.
+
+HONEST CAVEAT (residual): 18.4 sits within yield's own historical drift band (yield hit 116@18.4
+on 07-08). The disciplined policy-v2 delta is +1.7 vs the immediate pre-submit bracket, and 7h
+stability is strong, but a same-hour champion re-read would fully rule out room-wide drift. Given
+7h stability + the mechanistic plausibility, treated as a genuine KEEP, not drift.
+
+ACTION: api_submit.py default → v1.56.0-ringfarm (new live leader / revert target; protects the
++1.7 position). ringfarm stays live. v1.57-ringtune (fixes E1/E2 + banana no-carry) and
+v1.58-trainfruit (training-fruit corner) will build ON it to push further. Goal gate (≤99) did
+NOT fire (117), but this is the closest a stable bot has been in days.
