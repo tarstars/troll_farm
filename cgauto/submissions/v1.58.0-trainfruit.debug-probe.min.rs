@@ -1167,17 +1167,29 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
             }
             let fruit_band = if ladder_funding { 63 } else { fund_lo };
-            for p in state.trees.iter().filter(|p| {
-                p.fruits > 0
-                    && d.contains_key(&p.pos())
-                    && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
-            }) {
-                let pc = p.pos();
-                out.push(Cand {
-                    kind: Kind::MoveTo,
-                    target: Some(pc),
-                    value: fruit_band * BAND - eta(&d, pc, ms),
-                });
+            if u.free_capacity() > 0 {
+                for p in state.trees.iter().filter(|p| {
+                    p.fruits > 0
+                        && d.contains_key(&p.pos())
+                        && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
+                }) {
+                    let pc = p.pos();
+                    if pc == u.pos() {
+                        if u.harvest_power > 0 {
+                            out.push(Cand {
+                                kind: Kind::Harvest,
+                                target: Some(pc),
+                                value: fruit_band * BAND,
+                            });
+                        }
+                    } else {
+                        out.push(Cand {
+                            kind: Kind::MoveTo,
+                            target: Some(pc),
+                            value: fruit_band * BAND - eta(&d, pc, ms),
+                        });
+                    }
+                }
             }
         }
         let imminent_hand = plan.want_chopper || plan.want_feeder;

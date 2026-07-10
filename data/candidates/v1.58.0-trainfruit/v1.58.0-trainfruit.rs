@@ -1608,18 +1608,53 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
             }
             // Deficit-fruit funding (PLUM/LEMON/APPLE): same grace window, one band below iron.
+            //
+            // v1.58.0-trainfruit BUGFIX (pre-existing, exposed by this candidate): this loop had
+            // TWO compounding defects, neither hit by v1.56.0-ringfarm (it never grows PLUM/
+            // LEMON/APPLE near where the troll parks, so deficit fruit essentially never landed
+            // under the troll's feet or lured a full troll onward) but both hit often once the
+            // training corner deliberately does:
+            //  (1) it always emitted `Kind::MoveTo` even when ALREADY standing on the deficit
+            //      tree (pc == u.pos()) -- unlike every other tree-targeting band in this
+            //      function (70/72, 40/42, 30/31), which branch "standing here -> act now" vs
+            //      "travel first". A self-targeting MoveTo renders as a same-cell MOVE every
+            //      turn forever (never a HARVEST), and since this band still won against the
+            //      whole rest of the list, the troll never fell through to anything else.
+            //  (2) even after adding that branch, a troll that becomes FULL after harvesting
+            //      (capacity 1) was still lured onward by the MoveTo case (which never checked
+            //      free_capacity) to the NEXT ripe deficit tree it can't actually collect --
+            //      and once THERE (also full), band 80 (full->bank)'s new training-fruit
+            //      exemption could keep re-diverting it, producing a 2-cell oscillation that
+            //      also never trains the chopper.
+            // Fix: gate the WHOLE loop on `u.free_capacity() > 0` (mirrors the PICK gates
+            // elsewhere in this function) -- a full troll isn't attracted to MORE fruit at all,
+            // standing on it or not; it falls through to band 80 (bank) instead, exactly as
+            // intended. Found via a paired local-simulation comparison (same 60 seeds, same
+            // code otherwise): baseline 60/60 trained a 2nd troll, this candidate pre-fix 26/60.
             let fruit_band = if ladder_funding { 63 } else { fund_lo };
-            for p in state.trees.iter().filter(|p| {
-                p.fruits > 0
-                    && d.contains_key(&p.pos())
-                    && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
-            }) {
-                let pc = p.pos();
-                out.push(Cand {
-                    kind: Kind::MoveTo,
-                    target: Some(pc),
-                    value: fruit_band * BAND - eta(&d, pc, ms),
-                });
+            if u.free_capacity() > 0 {
+                for p in state.trees.iter().filter(|p| {
+                    p.fruits > 0
+                        && d.contains_key(&p.pos())
+                        && ge_fruit_ty(&p.tree_type).map_or(false, |t| t < 3 && plan.need_fund[t])
+                }) {
+                    let pc = p.pos();
+                    if pc == u.pos() {
+                        if u.harvest_power > 0 {
+                            out.push(Cand {
+                                kind: Kind::Harvest,
+                                target: Some(pc),
+                                value: fruit_band * BAND,
+                            });
+                        }
+                    } else {
+                        out.push(Cand {
+                            kind: Kind::MoveTo,
+                            target: Some(pc),
+                            value: fruit_band * BAND - eta(&d, pc, ms),
+                        });
+                    }
+                }
             }
         }
         // 4.5) TRAINING-CORNER PLANT (bands 56/54) — v1.58.0-trainfruit (user's training-fruit
