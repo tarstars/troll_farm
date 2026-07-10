@@ -2784,3 +2784,31 @@ mission layer is NOT validated by FellForWood (neutral-negative); re-decide befo
 BuildRing — either (a) try BuildRing (large measured waste, different mechanism) as the real test,
 or (b) conclude the tuned bands are a strong local optimum and missions aren't the lever.
 Champion = v1.59.0-ringfix3, LOCKED (live/default/tree).
+
+## 2026-07-11 02:15 — AFK strategic consolidation: the tuned-band champion is at its ceiling
+
+After the fellmission REVERT (6th "cleaner-but-arena-negative" result), assessed the next move
+with hard skepticism. The user's largest remaining observed waste = ring oscillation / mutual
+blocking (17-21 revisits/troll). Investigated an in-framework anti-flap (commit the plant_cell
+target). CONCLUSION — DO NOT BUILD IT: (1) band-88's plant MoveTo target ALREADY flows through
+the STICKY/LAST_TGT mechanism; (2) STICKY was already SWEPT (v1.28.3: STICKY=6 optimal, higher
+neutral-to-worse) — an anti-flap is just "more stickiness," already-explored + rejected; (3) the
+fellmission finding (commitment REDUCES load-bearing flexibility) is the exact mechanism an
+anti-flap would trigger. So the oscillation fix would very likely be the 7th revert.
+
+★★★ STRATEGIC STATE: v1.59.0-ringfix3 is at the PRACTICAL CEILING of the tuned-band approach.
+Evidence: 6 consecutive reverts of "obvious improvements" (ownership +0.2-inert, taskfloor −1.0,
+ringtune −2.4, trainfruit −3.2, roam4 −3.6, fellmission −1.0) + the STICKY sweep. The champion
+is the best-ever (+1.7 economy, ~18% Boss5, rank touched 88/116); the ONLY changes that
+transferred were execution waste-cuts WITHIN the band framework, and those cuts are now
+exhausted (race/yield/ringfarm/ringfix3 taken; wrong-tree + oscillation proven non-load-bearing
+or already-swept). The recurring lesson — "obvious waste often isn't load-bearing; the flexible
+thing it replaces IS" — now applies to the whole candidate well: it is DRY.
+
+NEXT MOVE (for the user — a STRATEGIC fork, not another quick candidate; the build-revert cycle
+should stop): (A) build the ETUDES research tool (position-level forced-outcome analysis) — the
+honest response to 6 reverts is to STOP guessing at waste and MEASURE what actually decides games
+(spec exists conceptually; this is the real research direction); (B) accept ringfix3 as the
+ceiling of this approach and stop; (C) a bigger structural swing (3+ troll scale — but that's the
+dead lemon-wall/T-hand). Recommendation: (A) etudes, or (B) accept the ceiling. Champion
+ringfix3 LOCKED (live/default/tree); arena stable. No 7th speculative candidate.
