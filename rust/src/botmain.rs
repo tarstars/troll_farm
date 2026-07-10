@@ -8,7 +8,13 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.59.0-ringfix3"; // FIX3 (banana no-carry-in-advance) isolated onto v1.56.0-ringfarm: plant_immediate (RING_PICK_STEPS<=2) + harvest_beats_pick, WITHOUT the v1.57.0-ringtune E1 (want_chopper) term that bundle reverted -2.4 with
+const VERSION: &str = "1.60.0-fellmission"; // L2 MISSION LAYER increment 1 (docs/superpowers/specs/2026-07-10-intent-missions-design.md):
+                                            // the chopper runs a committed FellForWood mission (missions.rs) picked by wood
+                                            // efficiency (wood/(travel+chops)), fixing the wrong-tree bug (sat on a tanky
+                                            // health-20 apple for 0 wood); excluded from the fell bands entirely, joint-solved
+                                            // with everyone else's proven band-driven commands (motion::solve_moves, unchanged).
+                                            // Base: v1.59.0-ringfix3 (FIX3 banana no-carry-in-advance isolated onto v1.56.0-
+                                            // ringfarm) — every non-chopper troll's behavior is byte-identical to it.
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
@@ -130,11 +136,26 @@ pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> Ha
     let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let cmd = match missions::chopper_target(state, u) {
+        let target = missions::chopper_target(state, u);
+        let cmd = match target {
             Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
             Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),
             None => format!("WAIT {}", cid), // no reachable/non-doomed tree this turn
         };
+        if DEBUG {
+            // @TFMISSION: the readable-decision payoff (design doc "Interface +
+            // debuggability") — every chopper turn's intent as one line: its committed
+            // target cell and how many more chops it needs there (ceil(health/chop_power)),
+            // or chops=-1 when no reachable/non-doomed tree exists (the WAIT case).
+            let chops_left = target
+                .and_then(|tc| state.trees.iter().find(|t| t.pos() == tc))
+                .map(|t| (t.health + u.chop_power.max(1) - 1) / u.chop_power.max(1))
+                .unwrap_or(-1);
+            eprintln!(
+                "@TFMISSION t={} id={} kind=FellForWood target={:?} chops={}",
+                state.turn, cid, target, chops_left
+            );
+        }
         cmd_by_id.insert(cid, cmd);
     }
     // joint move solve over ALL intents (chopper + others) — keeps shuffle-invariant motion
