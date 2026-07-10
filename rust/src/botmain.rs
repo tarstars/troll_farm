@@ -144,7 +144,7 @@ pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> Ha
     let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let target = missions::chopper_target(state, u);
+        let target = missions::chopper_target(state, plan, u);
         let cmd = match target {
             Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
             Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),

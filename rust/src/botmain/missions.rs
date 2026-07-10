@@ -13,6 +13,7 @@
 //! (v1.61+) migrate Bank/BuildRing/TrainTroll/HarvestFruit; see the design doc's
 //! "Incremental build path".
 use super::planner;
+use super::tactics::Plan;
 use super::*;
 use std::cell::RefCell;
 use std::collections::HashMap;
@@ -38,12 +39,25 @@ pub fn reset() {
 /// system already relies on for bands 70/72/42/40/31/30). Canonical: candidates sorted by
 /// `(-efficiency, cell)`, so ties break on cell coordinate — never HashMap/HashSet
 /// iteration order (this codebase's recurring determinism hazard).
-pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
+///
+/// Code review Fix C1 (2026-07-11): the candidate tree set is restricted to EXACTLY the
+/// champion's fell-band eligibility — `planner::fell_ok`/`own_half`/`within_roam`, the same
+/// predicate `candidates()` uses to gate bands 70/72/40/42. WITHOUT this, the most
+/// "wood-efficient" reachable tree is often our OWN standing ring diagonal (small/soft,
+/// close to the shack) — the mission would commit to felling the seed/fruit engine
+/// ringfix3's bands would never touch. The mission changes HOW we pick among the eligible
+/// trees (max efficiency + commit); it must never change WHICH trees are eligible.
+pub fn fell_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let d = bfs_distances(&state.walkable, &[u.pos()]);
     let ms = u.movement_speed.max(1);
     let cp = u.chop_power.max(1);
     let mut cands: Vec<(i64, Cell)> = Vec::new(); // (-efficiency_scaled, cell); smaller sorts first
     for t in &state.trees {
+        if !(planner::fell_ok(plan, t) && planner::own_half(plan, t) && planner::within_roam(plan, t))
+        {
+            continue; // not in the champion's fell-eligible set (ring diagonal / seed_cells /
+                      // enemy-half / out-of-roam / undersized) — never a mission candidate
+        }
         let pc = t.pos();
         let steps = match d.get(&pc) {
             Some(&s) => s as i64,
@@ -73,7 +87,7 @@ pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
 /// persists; it does NOT abandon/backtrack to a newly-nearer or newly-more-efficient tree
 /// (that flap is exactly the STICKY hack this replaces with a first-class concept — see the
 /// design doc). `reset()` clears all commitments at turn 1.
-pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
+pub fn chopper_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let committed = COMMITTED.with(|m| m.borrow().get(&u.id).copied());
     if let Some(c) = committed {
         let still_stands = state.trees.iter().any(|t| t.pos() == c);
@@ -89,7 +103,7 @@ pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
         }
         // Done (tree gone) or Invalidated (unreachable / now race-doomed): fall through
     }
-    let fresh = fell_target(state, u);
+    let fresh = fell_target(state, plan, u);
     COMMITTED.with(|m| {
         let mut m = m.borrow_mut();
         match fresh {

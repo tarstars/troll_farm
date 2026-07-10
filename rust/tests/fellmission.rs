@@ -8,7 +8,7 @@
 use std::collections::HashSet;
 use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign_resolved;
-use troll_farm::botmain::tactics::{Phase, Plan};
+use troll_farm::botmain::tactics::{Phase, Plan, RingRole};
 use troll_farm::botmain::{missions, resolve_commands, State, Tree, Troll};
 
 const SHACK: (i32, i32) = (0, 2);
@@ -137,6 +137,20 @@ fn base_plan(st: &State) -> Plan {
     }
 }
 
+/// A plan permissive enough that own_half/within_roam never reject the pre-existing
+/// efficiency/doomed/commitment tests' hand-picked tree coordinates (chosen for clean
+/// manhattan arithmetic centered on a chopper far from the shack — never meant to exercise
+/// realistic farm-radius placement). Isolates those tests from the C1 ring-protection filters
+/// added below. fell_ok's meaningful gates (diag_ring, seed_cells, liquidation) stay at
+/// `base_plan`'s real, champion-faithful defaults (empty ring/seed_cells, liquidation=false).
+fn permissive_plan(st: &State) -> Plan {
+    Plan {
+        opp: (-1000, -1000), // own_half: every in-room tree is nearer our shack than this
+        chop_r: 1000,        // within_roam: trivially true regardless of distance from shack
+        ..base_plan(st)
+    }
+}
+
 // ── Task 2: the wrong-tree fix — pick by wood efficiency, not nearest-tank ──────────────
 
 #[test]
@@ -159,8 +173,9 @@ fn fellmission_picks_wood_efficient_tree_not_nearest_tank() {
         tree("BANANA", 8, 4, 4, 6), // steps=4, chops=ceil(6/2)=3,   eff=4000/7=571 (winner)
     ];
     st.my_trolls = vec![u.clone()];
+    let plan = permissive_plan(&st);
     assert_eq!(
-        missions::fell_target(&st, &u),
+        missions::fell_target(&st, &plan, &u),
         Some((8, 4)),
         "the soft banana (fewer chops) must win on wood-efficiency even though it's farther \
          than both the lemon and the tanky apple — the apple must never be chosen"
@@ -183,8 +198,9 @@ fn fellmission_skips_doomed_tree() {
     ];
     st.opp_trolls = vec![opp_chopper(99, 8, 4, 6)];
     st.my_trolls = vec![u.clone()];
+    let plan = permissive_plan(&st);
     assert_eq!(
-        missions::fell_target(&st, &u),
+        missions::fell_target(&st, &plan, &u),
         Some((7, 0)),
         "the banana is doomed (enemy fells it before our ETA) — fell_target must skip it and \
          fall back to the lemon, not the tanky apple"
@@ -202,7 +218,10 @@ fn fellmission_commits_then_replans_on_done() {
     let mut st = base_state();
     st.trees = vec![tree("LEMON", 7, 0, 4, 12)];
     st.my_trolls = vec![u.clone()];
-    let turn_a = missions::chopper_target(&st, &u);
+    // st.walkable/my_shack/opp_shack never change across turns A/B/C (only st.trees mutates),
+    // so one permissive plan is valid for all three chopper_target calls below.
+    let plan = permissive_plan(&st);
+    let turn_a = missions::chopper_target(&st, &plan, &u);
     assert_eq!(
         turn_a,
         Some((7, 0)),
@@ -213,7 +232,7 @@ fn fellmission_commits_then_replans_on_done() {
     // a FRESH fell_target() would prefer it (1000 > 444), but the mission must NOT abandon
     // the already-committed lemon (no flap/backtrack).
     st.trees.push(tree("BANANA", 6, 1, 4, 6)); // adjacent to the chopper: steps=1
-    let turn_b = missions::chopper_target(&st, &u);
+    let turn_b = missions::chopper_target(&st, &plan, &u);
     assert_eq!(
         turn_b,
         Some((7, 0)),
@@ -224,7 +243,7 @@ fn fellmission_commits_then_replans_on_done() {
     // engine's real behavior of dropping a plant the instant health<=0). Only the banana
     // remains, so the mission re-plans to it.
     st.trees.retain(|t| t.pos() != (7, 0));
-    let turn_c = missions::chopper_target(&st, &u);
+    let turn_c = missions::chopper_target(&st, &plan, &u);
     assert_eq!(
         turn_c,
         Some((6, 1)),
@@ -238,12 +257,15 @@ fn fellmission_commits_then_replans_on_done() {
 fn fellmission_chopper_uses_mission_starter_unchanged() {
     missions::reset();
     // A 2-troll state: a chopper far from a gatherer, one lemon EXACTLY ms(=2) steps from
-    // the chopper (6,2)->(8,2), so the joint solver's max-progress landing is uniquely the
-    // tree cell itself (distance 0 to goal cannot be tied) — no tie-break ambiguity to
-    // hand-verify. The gatherer (chop_power=0) has zero overlap with any fell band, so
-    // nothing here can make it compete with the chopper's mission target.
+    // the chopper (6,2)->(4,2) — WEST, within base_plan's real chop_r(5)/farm_r(2) roam of the
+    // shack (0,2) (Fix C1: the mission now filters candidates through fell_ok/own_half/
+    // within_roam, same as the champion's bands, so the test tree must actually be in realistic
+    // roam) — so the joint solver's max-progress landing is uniquely the tree cell itself
+    // (distance 0 to goal cannot be tied) — no tie-break ambiguity to hand-verify. The gatherer
+    // (chop_power=0) has zero overlap with any fell band, so nothing here can make it compete
+    // with the chopper's mission target.
     let mut st = base_state();
-    st.trees = vec![tree("LEMON", 8, 2, 4, 12)];
+    st.trees = vec![tree("LEMON", 4, 2, 4, 12)];
     st.my_trolls = vec![chopper(1, 6, 2), gatherer(0, 1, 2)];
     let plan = base_plan(&st);
 
@@ -253,7 +275,7 @@ fn fellmission_chopper_uses_mission_starter_unchanged() {
     // replaces).
     let cmds = resolve_commands(&st, &plan, &st.my_trolls);
     assert_eq!(
-        cmds[&1], "MOVE 1 8 2",
+        cmds[&1], "MOVE 1 4 2",
         "the chopper must move toward its FellForWood mission target, landing on it this turn"
     );
 
@@ -266,5 +288,68 @@ fn fellmission_chopper_uses_mission_starter_unchanged() {
         cmds[&0], baseline[&0],
         "excluding the chopper from the bands + the final joint solve must not change the \
          gatherer's command"
+    );
+}
+
+// ── Code review Fix C1: fell_target must respect the ring protections ──────────────────────
+
+#[test]
+fn fellmission_never_fells_protected_ring_diagonal() {
+    // The ring-protection defect: fell_target originally ignored fell_ok/own_half/within_roam
+    // entirely, so the chopper's committed mission could target our OWN standing diagonal
+    // seed-banana (the ring economy's fruit/seed engine) — it is small/soft and CLOSE, so it
+    // wins on raw wood-efficiency math over a farther, tankier native tree, even though
+    // ringfix3's bands 70/72 would never touch it (fell_ok blocks any standing
+    // `RingRole::Diagonal` cell outside liquidation/raid).
+    //
+    // Chopper at (2,2); diagonal ring cell (1,1): steps=2 (BFS, orthogonal movement),
+    // chops=ceil(2/2)=1, eff=4*1000/(2+1)=1333 — WINS on raw efficiency, unfiltered.
+    // Native LEMON (4,2): steps=2, chops=ceil(12/2)=6, eff=4*1000/(2+6)=500 — must win once
+    // the diagonal is correctly excluded. Both cells are within base_plan's real chop_r(5)/
+    // own_half of the shack (0,2) — this is a REALISTIC ring-adjacent geometry, not a
+    // permissive-plan test.
+    let mut st = base_state();
+    let u = chopper(0, 2, 2);
+    st.trees = vec![
+        tree("BANANA", 1, 1, 4, 2),  // protected diagonal ring cell — must be skipped
+        tree("LEMON", 4, 2, 4, 12),  // native fallback — must be chosen instead
+    ];
+    st.my_trolls = vec![u.clone()];
+    let mut plan = base_plan(&st);
+    plan.ring = vec![((1, 1), RingRole::Diagonal)];
+
+    assert_eq!(
+        missions::fell_target(&st, &plan, &u),
+        Some((4, 2)),
+        "the diagonal ring cell (1,1) wins on raw efficiency (1333 > 500) but MUST be skipped \
+         — it is the protected seed/fruit engine (fell_ok blocks any standing \
+         RingRole::Diagonal tree outside liquidation/raid); the native LEMON at (4,2) must be \
+         picked instead"
+    );
+}
+
+#[test]
+fn fellmission_ring_protection_lifted_under_liquidation() {
+    // Same geometry as above, but under `plan.liquidation` — fell_ok's diagonal-ring guard is
+    // explicitly bypassed during the endgame ("fell anything reachable"), so the protected
+    // diagonal becomes eligible again and wins on efficiency as raw math would suggest. Proves
+    // the C1 filter isn't a blanket ban — it defers to the SAME liquidation/raid escape hatch
+    // the champion's own bands use.
+    let mut st = base_state();
+    let u = chopper(0, 2, 2);
+    st.trees = vec![
+        tree("BANANA", 1, 1, 4, 2),
+        tree("LEMON", 4, 2, 4, 12),
+    ];
+    st.my_trolls = vec![u.clone()];
+    let mut plan = base_plan(&st);
+    plan.ring = vec![((1, 1), RingRole::Diagonal)];
+    plan.liquidation = true;
+
+    assert_eq!(
+        missions::fell_target(&st, &plan, &u),
+        Some((1, 1)),
+        "under liquidation the diagonal ring guard is lifted (same escape hatch the champion's \
+         bands use) — the diagonal's higher raw efficiency should win"
     );
 }

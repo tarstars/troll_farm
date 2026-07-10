@@ -207,6 +207,75 @@ pub(crate) fn race(state: &State, pc: Cell, our_eta: i64) -> Option<i64> {
     }
 }
 
+// v1.60.0-fellmission (Fix C1, code review): extracted verbatim from `candidates()`'s local
+// `fell_ok` closure — same convention as `race` above (a pure function of `(plan, tree)`, no
+// captured mutable state; recomputes the tiny (<=8-cell) diagonal-ring set from `plan.ring`
+// each call instead of hoisting it once per `candidates()` invocation — negligible cost, no
+// behavior change). Consumed by `candidates()` (bands 70/72/40/42) AND by
+// `missions::fell_target` — WITHOUT this, the chopper's "most wood-efficient reachable tree"
+// mission search can pick our OWN standing ring diagonal (small/soft, close to the shack —
+// often the numerically most "efficient" tree on the map), felling the seed/fruit engine the
+// bands themselves would never touch.
+//
+// v1.56.0-ringfarm: the DIAGONAL ring cells are the protected ripe fruit/seed engine —
+// consulted here, which gates every fell band that must respect it. Anti-starvation (30/31)
+// deliberately does NOT consult fell_ok (it fells anything size≥1 as a last resort), exactly
+// as it already ignores seed_cells — so a diagonal can still be felled when the farm is
+// otherwise dead, which is strictly better than parking.
+pub(crate) fn fell_ok(plan: &Plan, p: &Tree) -> bool {
+    let diag_ring: HashSet<Cell> = plan
+        .ring
+        .iter()
+        .filter(|(_, r)| *r == RingRole::Diagonal)
+        .map(|(c, _)| *c)
+        .collect();
+    // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
+    // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
+    // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
+    if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
+        return false;
+    }
+    // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
+    // the pressure governor has specifically released it (Orange/Red AND this exact
+    // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
+    // comment for why the release check is per-tree, not the broader "exposed" set).
+    // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
+    // empty, so this is byte-identical to the pre-pressure check.
+    if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos()) {
+        return false;
+    }
+    if plan.liquidation {
+        return p.size >= 1;
+    }
+    let farm_banana = p.tree_type == "BANANA"
+        && plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.farm_r);
+    p.size
+        >= if farm_banana {
+            plan.farm_fell
+        } else {
+            plan.fell_size
+        }
+}
+
+// v1.60.0-fellmission (Fix C1): extracted verbatim from `candidates()`'s local `own_half`
+// closure — same convention as `fell_ok` above.
+pub(crate) fn own_half(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation || manhattan(p.pos(), plan.shack) <= manhattan(p.pos(), plan.opp)
+}
+
+// v1.60.0-fellmission (Fix C1): extracted verbatim from `candidates()`'s local `within_roam`
+// closure — same convention as `fell_ok` above.
+pub(crate) fn within_roam(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation
+        || plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.chop_r)
+}
+
 /// candidates for one troll — a faithful transcription of the jobs.rs cascade into bands.
 #[allow(clippy::too_many_lines)]
 fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) -> Vec<Cand> {
@@ -236,60 +305,13 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             .map_or(false, |ed| ed.get(&pc).map_or(false, |&dd| dd <= 2))
     };
 
-    // v1.56.0-ringfarm: the DIAGONAL ring cells are the protected ripe fruit/seed engine.
-    // Computed ONCE (a ≤4-element set); consulted by fell_ok below, which gates every fell
-    // band that must respect it — the chopper's 70/72 and the starter's chop-help 40/42.
-    // Anti-starvation (30/31) deliberately does NOT consult fell_ok (it fells anything size≥1
-    // as a last resort), exactly as it already ignores seed_cells — so a diagonal can still be
-    // felled when the farm is otherwise dead, which is strictly better than parking.
-    let diag_ring: HashSet<Cell> = plan
-        .ring
-        .iter()
-        .filter(|(_, r)| *r == RingRole::Diagonal)
-        .map(|(c, _)| *c)
-        .collect();
-
-    let fell_ok = |p: &Tree| -> bool {
-        // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
-        // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
-        // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
-        if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
-            return false;
-        }
-        // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
-        // the pressure governor has specifically released it (Orange/Red AND this exact
-        // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
-        // comment for why the release check is per-tree, not the broader "exposed" set).
-        // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
-        // empty, so this is byte-identical to the pre-pressure check.
-        if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos())
-        {
-            return false;
-        }
-        if plan.liquidation {
-            return p.size >= 1;
-        }
-        let farm_banana = p.tree_type == "BANANA"
-            && plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.farm_r);
-        p.size
-            >= if farm_banana {
-                plan.farm_fell
-            } else {
-                plan.fell_size
-            }
-    };
-    let own_half =
-        |p: &Tree| plan.liquidation || manhattan(p.pos(), shack) <= manhattan(p.pos(), plan.opp);
-    let within_roam = |p: &Tree| {
-        plan.liquidation
-            || plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.chop_r)
-    };
+    // v1.60.0-fellmission (Fix C1, code review): fell_ok/own_half/within_roam are now the
+    // module-level `pub(crate) fn`s below (extracted verbatim from what were local closures
+    // here) — call sites below pass `plan` explicitly, same convention as `race` (Task 1).
+    // Consumed by this function's two fell-band filters AND by `missions::fell_target` (the
+    // chopper's committed mission must never target a tree these bands would themselves
+    // refuse — see fell_ok's doc comment for the ring-diagonal crater this fixes).
+    //
     // v1.60.0-fellmission (Task 1): `race` is now the module-level `pub(crate) fn race`
     // above (extracted verbatim from this closure) — call sites below pass `state`
     // explicitly.
@@ -421,7 +443,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         for p in state
             .trees
             .iter()
-            .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+            .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
         {
             let pc = p.pos();
             if !d.contains_key(&pc) {
@@ -737,7 +759,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             for p in state
                 .trees
                 .iter()
-                .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+                .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
             {
                 if u.free_capacity() == 0 {
                     break;
