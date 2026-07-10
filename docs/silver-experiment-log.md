@@ -2723,3 +2723,29 @@ work-division fix (observation #1). The mission-layer's explicit per-troll goals
 cell / role, they stop flapping around each other. So (b) is a natural mission-layer win once
 BuildRing becomes a committed mission — file it as a mission-layer success criterion (division of
 labor: two trolls on the ring get distinct committed cells, no oscillation).
+
+## 2026-07-10 23:56 — AFK autonomous checkpoint: state + next move
+
+CHAMPION: v1.59.0-ringfix3 (banana ring + no-carry movement fix) live/default/tree, 123/529 @17.7,
+stable. Best-ever; first +economy result (+1.7 ringfarm base) + first Boss-5 wins (~18%).
+
+ARENA CENSUS (24 recent, battles.py): 9/24 wins, avg −18. Close winnable losses (Vaydi −3,
+ErwanO −1, WeiCao −21, ErwanO −25, Vaydi −15) vs production-monster blowouts (jrl86 685-pt game
+−359, WeiCao −133, Eagleast −115). The close losses are the execution/CONVERSION target (same as
+the Boss-5 decode: same chops, more score). Confirms the mission direction hits the winnable band.
+
+IN FLIGHT: v1.60.0-fellmission builder (a1db44ce) — 4/5 tasks committed (race extraction,
+fell_target efficiency, commitment, decide_elite wiring); Task 5 (telemetry+freeze) finishing.
+This is the DECISIVE test: do explicit committed missions beat the tuned weighted bands in the
+arena? (5 economy reverts warn local≠arena; FellForWood ships gated on champion.)
+
+USER OBSERVATIONS mapped to mission increments (spec updated): wrong-tree fell → FellForWood
+(v1.60, building); pick-plant back-and-forward + mutual blocking → BuildRing (next increment,
+committed planting sequence + 2-troll division of labor). Both = missing COMMITMENT, the mission
+layer's core.
+
+NEXT MOVE: shepherd FellForWood through review → paired boss gate (wood ≥ ringfix3) → arena
+(chained on champion). If KEEP → BuildRing next (fixes the pick-plant + crowding). If the gate
+shows wood dropping → the chopper's fell bands were load-bearing; halt, diagnose, champion holds.
+No speculative parallel builds (would contend with the gate's play-API budget / get ahead of the
+verdict). Champion safe throughout.
