@@ -2583,3 +2583,29 @@ Boss 5 starts are RANDOM (high variance). Boss 5 is the LEGEND gate (parked in f
 ≤99), but this reopens it as reachable. v1.57 (tuning) + v1.58 (training-fruit -> heavier
 trolls + more wood = exactly what beats Boss 5) should push the rate higher. The 2 win replays
 are worth decoding for the winning shape (useful for etudes + further pushes).
+
+## 2026-07-10 15:00 — v1.57.0-ringtune arena verdict: REVERT (~−2.4) — the TUNING made ringfarm WORSE
+
+Bracket = live ringfarm 117/528 @18.4 (agentId 6545819, ~8h stable, clean same-code baseline).
+Submitted ringtune 14:15:54 (id 40977355, agentId 6546569). Reads +11/+21/+31/+51:
+180@15.7 → 168@16.4 → 178@16.0 → 181@15.7 — plateau ~16.0, **~−2.4 below the 18.4 baseline**.
+Decisive REVERT. Reverted to ringfarm (14:57ish); default already = v1.56.0-ringfarm.
+
+★★ COUNTERINTUITIVE + IMPORTANT: v1.57 was strictly-more-conservative tuning of the +1.7
+ringfarm (reviewer: "only ADDS suppression to the ring-pick, never raises a band"), fixing the
+review's own E1/E2 diagnosis + the user's banana-no-carry finding. It tested BETTER locally
+(Crouistiti 4/6). Yet it LOST ~2.4 in the arena. So one of the "fixes" is the culprit —
+candidates:
+  - FIX1 (fund chopper BEFORE ring): delaying the ring to fund first may HURT — the as-built's
+    strength might BE that it builds the farm ultra-early even at the cost of funding timing.
+    "Fix" the funding delay and you lose the early-farm edge.
+  - FIX2 (diagonal-first placement): changes which cells fill first; may interact badly.
+  - FIX3 (no-carry-in-advance / the idle window the reviewer flagged): the transient idle the
+    review accepted as "non-cratering" may actually cost more than believed at arena scale.
+= ECHOES the taskfloor lesson (idle looked like waste but parking-ready was fine) and the
+ownership lesson: a change that is LOCALLY better / theoretically cleaner can be arena-negative.
+The as-built ringfarm's "flaws" (E1/E2) may be load-bearing, not bugs. DO NOT re-tune blind.
+NEXT: isolate WHICH fix hurt (submit FIX1-only, FIX2-only, FIX3-only separately vs the ringfarm
+baseline) rather than shipping all three again. Ringfarm stays champion/default/live at 117@18.4.
+Tree: revert v1.57 from working tree (keep ringfarm) — pending; v1.58-trainfruit is building ON
+v1.57, so its base now needs reconsideration (rebase to ringfarm, or keep as a separate experiment).
