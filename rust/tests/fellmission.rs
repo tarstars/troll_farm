@@ -130,3 +130,44 @@ fn fellmission_skips_doomed_tree() {
          fall back to the lemon, not the tanky apple"
     );
 }
+
+// ── Task 3: commitment — no abandon/backtrack; re-plan only on Done/Invalidated ─────────
+
+#[test]
+fn fellmission_commits_then_replans_on_done() {
+    missions::reset();
+    let u = chopper(0, 6, 2);
+
+    // Turn A: only the lemon (7,0) stands (steps=3, chops=6, eff=444) -> committed to it.
+    let mut st = base_state();
+    st.trees = vec![tree("LEMON", 7, 0, 4, 12)];
+    st.my_trolls = vec![u.clone()];
+    let turn_a = missions::chopper_target(&st, &u);
+    assert_eq!(
+        turn_a,
+        Some((7, 0)),
+        "turn A must commit to the only standing tree (lemon)"
+    );
+
+    // Turn B: a NEARER, more efficient banana appears (steps=1, chops=3, eff=4000/4=1000) —
+    // a FRESH fell_target() would prefer it (1000 > 444), but the mission must NOT abandon
+    // the already-committed lemon (no flap/backtrack).
+    st.trees.push(tree("BANANA", 6, 1, 4, 6)); // adjacent to the chopper: steps=1
+    let turn_b = missions::chopper_target(&st, &u);
+    assert_eq!(
+        turn_b,
+        Some((7, 0)),
+        "committed mission must not flap to a newly-nearer/more-efficient tree"
+    );
+
+    // Turn C: the committed lemon is felled (Done — removed from state.trees, matching the
+    // engine's real behavior of dropping a plant the instant health<=0). Only the banana
+    // remains, so the mission re-plans to it.
+    st.trees.retain(|t| t.pos() != (7, 0));
+    let turn_c = missions::chopper_target(&st, &u);
+    assert_eq!(
+        turn_c,
+        Some((6, 1)),
+        "once the committed target is Done (felled/gone), the mission re-plans to the next best"
+    );
+}

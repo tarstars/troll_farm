@@ -14,6 +14,20 @@
 //! "Incremental build path".
 use super::planner;
 use super::*;
+use std::cell::RefCell;
+use std::collections::HashMap;
+
+thread_local! {
+    // committed fell target per troll id — mission commitment, kept across turns until
+    // Done (tree gone) or Invalidated (unreachable / race lost). Pattern: planner.rs's
+    // LAST_TGT. Reset at turn 1 (see `reset`).
+    static COMMITTED: RefCell<HashMap<i32, Cell>> = RefCell::new(HashMap::new());
+}
+
+/// Turn-1 reset of mission memory.
+pub fn reset() {
+    COMMITTED.with(|m| m.borrow_mut().clear());
+}
 
 /// The most wood-efficient reachable, non-doomed, fellable tree for `u` — the wrong-tree
 /// fix: `efficiency = wood_yield / (travel_steps + chops_to_fell)`, `wood_yield ~ size`
@@ -50,4 +64,42 @@ pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
     }
     cands.sort(); // canonical: best efficiency first, then cell (deterministic tie-break)
     cands.first().map(|&(_, c)| c)
+}
+
+/// The chopper's COMMITTED fell target: kept across turns unless the tree is Done (no
+/// longer stands at that cell — the engine removes a plant from the list the instant its
+/// health reaches 0, so "still stands" is a simple presence check) or Invalidated
+/// (unreachable, or newly race-doomed by an enemy that has since moved onto it). A mission
+/// persists; it does NOT abandon/backtrack to a newly-nearer or newly-more-efficient tree
+/// (that flap is exactly the STICKY hack this replaces with a first-class concept — see the
+/// design doc). `reset()` clears all commitments at turn 1.
+pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
+    let committed = COMMITTED.with(|m| m.borrow().get(&u.id).copied());
+    if let Some(c) = committed {
+        let still_stands = state.trees.iter().any(|t| t.pos() == c);
+        let d = bfs_distances(&state.walkable, &[u.pos()]);
+        if still_stands {
+            if let Some(&steps) = d.get(&c) {
+                let ms = u.movement_speed.max(1);
+                let our_eta = (steps as i64 + ms as i64 - 1) / ms as i64;
+                if planner::race(state, c, our_eta).is_some() {
+                    return Some(c); // Active: keep the commitment, no re-plan
+                }
+            }
+        }
+        // Done (tree gone) or Invalidated (unreachable / now race-doomed): fall through
+    }
+    let fresh = fell_target(state, u);
+    COMMITTED.with(|m| {
+        let mut m = m.borrow_mut();
+        match fresh {
+            Some(c) => {
+                m.insert(u.id, c);
+            }
+            None => {
+                m.remove(&u.id);
+            }
+        }
+    });
+    fresh
 }
