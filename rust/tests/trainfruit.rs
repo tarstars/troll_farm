@@ -20,7 +20,7 @@ use std::collections::HashSet;
 use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
 use troll_farm::botmain::tactics::{compute_ring, Phase, Plan, RingRole};
-use troll_farm::botmain::{bfs_distances, State, Tree, Troll, LEMON};
+use troll_farm::botmain::{bfs_distances, State, Tree, Troll, IRON, LEMON};
 
 const SHACK: (i32, i32) = (3, 2);
 const OPP: (i32, i32) = (7, 2);
@@ -433,6 +433,71 @@ fn trainfruit_full_carrier_walks_to_ready_corner_instead_of_banking() {
         cmds[&0], "MOVE 0 3 3",
         "a full troll carrying a training-fruit seed with a READY corner cell ((3,3)=TrainLemon, \
          empty) must walk there to plant it, not bank the seed for a single point: {}",
+        cmds[&0]
+    );
+}
+
+// ── Regression (2nd bug found via the SAME local-simulation comparison): the pre-existing
+//    deficit-fruit funding loop (bands 58-65) never branched on "standing here", and never
+//    checked free_capacity -- a self-targeting MoveTo (no-op, forever) or a full troll being
+//    lured onward to fruit it can't collect. v1.56.0-ringfarm essentially never triggers this
+//    (it never grows PLUM/LEMON/APPLE near where the troll parks); the training corner
+//    deliberately does, so THIS candidate hit it often enough to permanently strand the
+//    chopper's funding on 34/60 paired local seeds (baseline: 0/60) before the fix ────────────
+#[test]
+fn trainfruit_funding_harvests_standing_deficit_fruit_not_self_move() {
+    // Standing on a ripe DEFICIT fruit tree must HARVEST it in place, not emit a
+    // self-targeting MoveTo (which never actually collects the fruit and repeats forever,
+    // permanently blocking the very funding this band exists to serve).
+    let mut st = base_state();
+    st.trees = vec![Tree {
+        tree_type: "PLUM".into(),
+        x: 6,
+        y: 3,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    }]; // off the ring entirely -- isolates the funding band from any ring interaction
+    let mut plan = train_plan(&st);
+    plan.want_chopper = true;
+    plan.cost = [0; 6];
+    plan.need_fund = [true, false, false]; // PLUM deficit
+    let cmds = assign(&st, &plan, &[gatherer(0, 6, 3)]);
+    assert_eq!(
+        cmds[&0], "HARVEST 0",
+        "standing on a ripe deficit fruit must harvest it in place, not self-move: {}",
+        cmds[&0]
+    );
+}
+
+#[test]
+fn trainfruit_full_troll_not_lured_by_distant_deficit_fruit() {
+    // A FULL troll (free_capacity==0, carrying IRON here -- deliberately neither banana nor
+    // a training-fruit type, so neither band-80 exemption applies) must not be lured toward
+    // a distant ripe DEFICIT fruit tree it cannot actually collect once it arrives (the
+    // funding loop's MoveTo case never checked free_capacity pre-fix) -- band 80 (bank) must
+    // win instead, exactly as it does for any other already-full troll.
+    let mut st = base_state();
+    st.trees = vec![Tree {
+        tree_type: "PLUM".into(),
+        x: 5,
+        y: 2,
+        size: 4,
+        health: 6,
+        fruits: 3,
+        cooldown: 0,
+    }]; // reachable but NOT at the troll's position
+    let mut plan = train_plan(&st);
+    plan.want_chopper = true;
+    plan.cost = [0; 6];
+    plan.need_fund = [true, false, false]; // PLUM deficit
+    let mut full_gatherer = gatherer(0, 3, 1); // shack-adjacent (manhattan==1) -> DROP renders directly
+    full_gatherer.carry[IRON] = 1; // capacity=1 -> free_capacity()==0; not banana/training-fruit
+    let cmds = assign(&st, &plan, &[full_gatherer]);
+    assert_eq!(
+        cmds[&0], "DROP 0",
+        "a full troll must not be lured toward a distant deficit fruit it cannot collect: {}",
         cmds[&0]
     );
 }
