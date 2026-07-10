@@ -2676,3 +2676,27 @@ were ECONOMY (E1 fund-first, trainfruit crop-dilution), not the movement fixes b
 NEXT: the mutual-blocking movement fix (observation 1, pure L3 solver, never built) is the next
 clean execution candidate; FIX2 (diagonal-first) could also be isolated+retried now that FIX3 is
 cleared. Farm economy stays FROZEN (local optimum).
+
+## 2026-07-10 21:xx — user clipboard debug log: WRONG-TREE fell inefficiency (chop_t under-weighted)
+
+User spotted an early-game inefficiency in a v1.59.0-ringfix3 vs Boss-5 game (clipboard log).
+Traced (map 16x8, our shack (5,4)): the chopper (troll 3) felled the soft BANANA (7,4) [health
+6 = 3 chops] correctly by ~t8 (+2 wood), then targeted the APPLE (7,1) [★ health 20 = 10 chops]
+and SAT ON IT t10-18 (9 turns) gaining ZERO wood, then ABANDONED it un-felled at t19. The soft
+BANANA (8,3) was correctly skipped (boss chopper contesting it = race()). But the LEMON (7,0)
+[health 12 = 6 chops] was a better remaining target than the apple.
+
+ROOT CAUSE (confirmed in planner.rs): fell value = `70*BAND − (steps + chop_t) − race_pen`,
+where chop_t = ceil(health/chop_power) IS health-aware — BUT it's a WITHIN-BAND linear
+subtraction (« BAND=100k), so a 10-chop apple vs 6-chop lemon differ by only 4, swamped by
+STICKY(+6)/tie-break/distance. So the chopper picks the CLOSEST fellable tree, nearly blind to
+chops-to-fell. FRUIT TREES (apple/lemon/plum) have HIGH health (tanky) but same size wood →
+terrible wood/chop: banana 4wood/3chops=1.33 vs apple 4wood/10chops=0.4 (3× worse). The bot fells
+tanky fruit trees for wood when it should fell SOFT bananas (and harvest the fruit trees' fruit,
+leaving them standing).
+
+= EXECUTION/CONVERSION class (the transferring lever; directly the Boss-5 "same chops, more
+score" finding). PROPOSED FIX (pending user's shape choice): make fell valuation strongly prefer
+low-chop_t (soft) trees — either (a) weight chop_t much more heavily / by wood-per-chop, or (b)
+deprioritize felling high-health fruit trees for wood entirely (fell bananas; harvest fruit
+trees). Candidate = v1.60.0-softfell. Farm economy untouched (this is fell TARGETING = execution).
