@@ -2749,3 +2749,38 @@ NEXT MOVE: shepherd FellForWood through review → paired boss gate (wood ≥ ri
 shows wood dropping → the chopper's fell bands were load-bearing; halt, diagnose, champion holds.
 No speculative parallel builds (would contend with the gate's play-API budget / get ahead of the
 verdict). Champion safe throughout.
+
+## 2026-07-11 02:08 — ★ v1.60.0-fellmission arena verdict: REVERT (~−1.0) — the FIRST mission loses to the tuned bands
+
+The intent-driven mission-layer's first increment (FellForWood: explicit wood-efficiency tree
+choice + commitment, replacing the chopper's fell bands) went through the FULL pipeline: build →
+review (caught C1 fell-own-farm + C2 starter-deconfliction) → fix → RE-REVIEW APPROVED → boss
+gate (caught C3 banking-crater: wood 0/6 — mission stripped banking) → fix (wood 0→49) → arena.
+Bracket champion ringfix3 123/529 @17.7 (agentId 6546793). Submitted 01:17:54 (id 40979849,
+agentId 6546925). Reads +11/+21/+31/+41/+51: 164@16.5 → 164@16.5 → 135@17.2 → 149@16.7 →
+142@16.8 — converged ~16.75, **~−1.0 below bracket**. REVERT. Arena + tree back to ringfix3
+(tree reset to 714aebd; mission code preserved on branch worktree-agent-a1db44cecce56bca4 +
+data/candidates/v1.60.0-fellmission).
+
+★★ FINDING (important for the mission-layer bet): FellForWood is CORRECT (wrong-tree fixed,
+protections preserved, banking preserved, starter byte-identical, boss wood 49 = champion) yet
+loses ~1.0 in the arena. WHY: (1) the wrong-tree case (chopper on a tanky apple) is RARE — fixing
+it doesn't help arena-wide; (2) COMMITMENT likely HURTS — the bands' greedy-but-FLEXIBLE fell
+selection (re-target when a better/closer tree appears, race-check steering each turn) was doing
+real work; committing to one tree and felling it fully reduces the chopper's responsiveness to
+a changing board. = the SAME lesson as ringtune/taskfloor/ownership: a locally-correct,
+theoretically-cleaner change is arena-negative because the flexible thing it replaced was
+load-bearing. The wrong-tree "waste" the user spotted was real but rare; the bands' fell
+selection was already near-arena-optimal.
+
+★★★ IMPLICATION for the mission DIRECTION: DO NOT conclude the whole mission layer is dead from
+ONE mission. FellForWood targeted FELLING, which the bands already did near-optimally. The user's
+STRONGER complaints (pick-plant back-and-forward, mutual oscillation 17-21 revisits/troll) are
+BuildRing territory — a DIFFERENT mission where the measured waste is LARGE (~20 wasted turns)
+and the bands have NO good answer (flapping). So BuildRing may still win where FellForWood didn't.
+BUT: the commitment-hurts finding is a CAUTION — BuildRing's committed planting sequence must be
+validated carefully (commitment helped there? or does the ring also need flexibility?). NET: the
+mission layer is NOT validated by FellForWood (neutral-negative); re-decide before investing in
+BuildRing — either (a) try BuildRing (large measured waste, different mechanism) as the real test,
+or (b) conclude the tuned bands are a strong local optimum and missions aren't the lever.
+Champion = v1.59.0-ringfix3, LOCKED (live/default/tree).
