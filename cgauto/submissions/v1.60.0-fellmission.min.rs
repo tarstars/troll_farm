@@ -177,6 +177,7 @@ pub fn tie_mix(c: Cell, salt: u64) -> u64 {
 pub use state::*;
 pub mod missions {
 use super::planner;
+use super::tactics::Plan;
 use super::*;
 use std::cell::RefCell;
 use std::collections::HashMap;
@@ -186,12 +187,16 @@ thread_local! {
 pub fn reset() {
     COMMITTED.with(|m| m.borrow_mut().clear());
 }
-pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
+pub fn fell_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let d = bfs_distances(&state.walkable, &[u.pos()]);
     let ms = u.movement_speed.max(1);
     let cp = u.chop_power.max(1);
     let mut cands: Vec<(i64, Cell)> = Vec::new();
     for t in &state.trees {
+        if !(planner::fell_ok(plan, t) && planner::own_half(plan, t) && planner::within_roam(plan, t))
+        {
+            continue;
+        }
         let pc = t.pos();
         let steps = match d.get(&pc) {
             Some(&s) => s as i64,
@@ -211,7 +216,7 @@ pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
     cands.sort();
     cands.first().map(|&(_, c)| c)
 }
-pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
+pub fn chopper_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let committed = COMMITTED.with(|m| m.borrow().get(&u.id).copied());
     if let Some(c) = committed {
         let still_stands = state.trees.iter().any(|t| t.pos() == c);
@@ -226,7 +231,7 @@ pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
             }
         }
     }
-    let fresh = fell_target(state, u);
+    let fresh = fell_target(state, plan, u);
     COMMITTED.with(|m| {
         let mut m = m.borrow_mut();
         match fresh {
@@ -921,6 +926,44 @@ pub(crate) fn race(state: &State, pc: Cell, our_eta: i64) -> Option<i64> {
         }
     }
 }
+pub(crate) fn fell_ok(plan: &Plan, p: &Tree) -> bool {
+    let diag_ring: HashSet<Cell> = plan
+        .ring
+        .iter()
+        .filter(|(_, r)| *r == RingRole::Diagonal)
+        .map(|(c, _)| *c)
+        .collect();
+    if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
+        return false;
+    }
+    if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos()) {
+        return false;
+    }
+    if plan.liquidation {
+        return p.size >= 1;
+    }
+    let farm_banana = p.tree_type == "BANANA"
+        && plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.farm_r);
+    p.size
+        >= if farm_banana {
+            plan.farm_fell
+        } else {
+            plan.fell_size
+        }
+}
+pub(crate) fn own_half(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation || manhattan(p.pos(), plan.shack) <= manhattan(p.pos(), plan.opp)
+}
+pub(crate) fn within_roam(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation
+        || plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.chop_r)
+}
 #[allow(clippy::too_many_lines)]
 fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) -> Vec<Cand> {
     let shack = plan.shack;
@@ -942,44 +985,6 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         enemy_d
             .as_ref()
             .map_or(false, |ed| ed.get(&pc).map_or(false, |&dd| dd <= 2))
-    };
-    let diag_ring: HashSet<Cell> = plan
-        .ring
-        .iter()
-        .filter(|(_, r)| *r == RingRole::Diagonal)
-        .map(|(c, _)| *c)
-        .collect();
-    let fell_ok = |p: &Tree| -> bool {
-        if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
-            return false;
-        }
-        if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos())
-        {
-            return false;
-        }
-        if plan.liquidation {
-            return p.size >= 1;
-        }
-        let farm_banana = p.tree_type == "BANANA"
-            && plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.farm_r);
-        p.size
-            >= if farm_banana {
-                plan.farm_fell
-            } else {
-                plan.fell_size
-            }
-    };
-    let own_half =
-        |p: &Tree| plan.liquidation || manhattan(p.pos(), shack) <= manhattan(p.pos(), plan.opp);
-    let within_roam = |p: &Tree| {
-        plan.liquidation
-            || plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.chop_r)
     };
     let pressure_bonus = |pc: Cell, race_pen: i64| -> i64 {
         if race_pen != 0 {
@@ -1051,7 +1056,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         for p in state
             .trees
             .iter()
-            .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+            .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
         {
             let pc = p.pos();
             if !d.contains_key(&pc) {
@@ -1270,7 +1275,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             for p in state
                 .trees
                 .iter()
-                .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+                .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
             {
                 if u.free_capacity() == 0 {
                     break;
@@ -2111,15 +2116,10 @@ const GE_FARM_FELL: i32 = 3;
 const GE_PRESSURE_FARM_FLOOR: usize = 4;
 pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> HashMap<i32, String> {
     let chopper_id = my.iter().find(|t| t.chop_power >= 2).map(|t| t.id);
-    let others: Vec<Troll> = my
-        .iter()
-        .filter(|t| Some(t.id) != chopper_id)
-        .cloned()
-        .collect();
-    let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
+    let mut cmd_by_id = planner::assign_resolved(state, plan, my);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let target = missions::chopper_target(state, u);
+        let target = missions::chopper_target(state, plan, u);
         let cmd = match target {
             Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
             Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),

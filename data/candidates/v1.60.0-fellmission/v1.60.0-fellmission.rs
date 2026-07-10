@@ -249,6 +249,7 @@ pub mod missions {
 //! (v1.61+) migrate Bank/BuildRing/TrainTroll/HarvestFruit; see the design doc's
 //! "Incremental build path".
 use super::planner;
+use super::tactics::Plan;
 use super::*;
 use std::cell::RefCell;
 use std::collections::HashMap;
@@ -274,12 +275,25 @@ pub fn reset() {
 /// system already relies on for bands 70/72/42/40/31/30). Canonical: candidates sorted by
 /// `(-efficiency, cell)`, so ties break on cell coordinate — never HashMap/HashSet
 /// iteration order (this codebase's recurring determinism hazard).
-pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
+///
+/// Code review Fix C1 (2026-07-11): the candidate tree set is restricted to EXACTLY the
+/// champion's fell-band eligibility — `planner::fell_ok`/`own_half`/`within_roam`, the same
+/// predicate `candidates()` uses to gate bands 70/72/40/42. WITHOUT this, the most
+/// "wood-efficient" reachable tree is often our OWN standing ring diagonal (small/soft,
+/// close to the shack) — the mission would commit to felling the seed/fruit engine
+/// ringfix3's bands would never touch. The mission changes HOW we pick among the eligible
+/// trees (max efficiency + commit); it must never change WHICH trees are eligible.
+pub fn fell_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let d = bfs_distances(&state.walkable, &[u.pos()]);
     let ms = u.movement_speed.max(1);
     let cp = u.chop_power.max(1);
     let mut cands: Vec<(i64, Cell)> = Vec::new(); // (-efficiency_scaled, cell); smaller sorts first
     for t in &state.trees {
+        if !(planner::fell_ok(plan, t) && planner::own_half(plan, t) && planner::within_roam(plan, t))
+        {
+            continue; // not in the champion's fell-eligible set (ring diagonal / seed_cells /
+                      // enemy-half / out-of-roam / undersized) — never a mission candidate
+        }
         let pc = t.pos();
         let steps = match d.get(&pc) {
             Some(&s) => s as i64,
@@ -309,7 +323,7 @@ pub fn fell_target(state: &State, u: &Troll) -> Option<Cell> {
 /// persists; it does NOT abandon/backtrack to a newly-nearer or newly-more-efficient tree
 /// (that flap is exactly the STICKY hack this replaces with a first-class concept — see the
 /// design doc). `reset()` clears all commitments at turn 1.
-pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
+pub fn chopper_target(state: &State, plan: &Plan, u: &Troll) -> Option<Cell> {
     let committed = COMMITTED.with(|m| m.borrow().get(&u.id).copied());
     if let Some(c) = committed {
         let still_stands = state.trees.iter().any(|t| t.pos() == c);
@@ -325,7 +339,7 @@ pub fn chopper_target(state: &State, u: &Troll) -> Option<Cell> {
         }
         // Done (tree gone) or Invalidated (unreachable / now race-doomed): fall through
     }
-    let fresh = fell_target(state, u);
+    let fresh = fell_target(state, plan, u);
     COMMITTED.with(|m| {
         let mut m = m.borrow_mut();
         match fresh {
@@ -1257,6 +1271,75 @@ pub(crate) fn race(state: &State, pc: Cell, our_eta: i64) -> Option<i64> {
     }
 }
 
+// v1.60.0-fellmission (Fix C1, code review): extracted verbatim from `candidates()`'s local
+// `fell_ok` closure — same convention as `race` above (a pure function of `(plan, tree)`, no
+// captured mutable state; recomputes the tiny (<=8-cell) diagonal-ring set from `plan.ring`
+// each call instead of hoisting it once per `candidates()` invocation — negligible cost, no
+// behavior change). Consumed by `candidates()` (bands 70/72/40/42) AND by
+// `missions::fell_target` — WITHOUT this, the chopper's "most wood-efficient reachable tree"
+// mission search can pick our OWN standing ring diagonal (small/soft, close to the shack —
+// often the numerically most "efficient" tree on the map), felling the seed/fruit engine the
+// bands themselves would never touch.
+//
+// v1.56.0-ringfarm: the DIAGONAL ring cells are the protected ripe fruit/seed engine —
+// consulted here, which gates every fell band that must respect it. Anti-starvation (30/31)
+// deliberately does NOT consult fell_ok (it fells anything size≥1 as a last resort), exactly
+// as it already ignores seed_cells — so a diagonal can still be felled when the farm is
+// otherwise dead, which is strictly better than parking.
+pub(crate) fn fell_ok(plan: &Plan, p: &Tree) -> bool {
+    let diag_ring: HashSet<Cell> = plan
+        .ring
+        .iter()
+        .filter(|(_, r)| *r == RingRole::Diagonal)
+        .map(|(c, _)| *c)
+        .collect();
+    // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
+    // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
+    // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
+    if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
+        return false;
+    }
+    // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
+    // the pressure governor has specifically released it (Orange/Red AND this exact
+    // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
+    // comment for why the release check is per-tree, not the broader "exposed" set).
+    // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
+    // empty, so this is byte-identical to the pre-pressure check.
+    if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos()) {
+        return false;
+    }
+    if plan.liquidation {
+        return p.size >= 1;
+    }
+    let farm_banana = p.tree_type == "BANANA"
+        && plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.farm_r);
+    p.size
+        >= if farm_banana {
+            plan.farm_fell
+        } else {
+            plan.fell_size
+        }
+}
+
+// v1.60.0-fellmission (Fix C1): extracted verbatim from `candidates()`'s local `own_half`
+// closure — same convention as `fell_ok` above.
+pub(crate) fn own_half(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation || manhattan(p.pos(), plan.shack) <= manhattan(p.pos(), plan.opp)
+}
+
+// v1.60.0-fellmission (Fix C1): extracted verbatim from `candidates()`'s local `within_roam`
+// closure — same convention as `fell_ok` above.
+pub(crate) fn within_roam(plan: &Plan, p: &Tree) -> bool {
+    plan.liquidation
+        || plan
+            .farm_d
+            .get(&p.pos())
+            .map_or(false, |&fd| fd <= plan.chop_r)
+}
+
 /// candidates for one troll — a faithful transcription of the jobs.rs cascade into bands.
 #[allow(clippy::too_many_lines)]
 fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) -> Vec<Cand> {
@@ -1286,60 +1369,13 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             .map_or(false, |ed| ed.get(&pc).map_or(false, |&dd| dd <= 2))
     };
 
-    // v1.56.0-ringfarm: the DIAGONAL ring cells are the protected ripe fruit/seed engine.
-    // Computed ONCE (a ≤4-element set); consulted by fell_ok below, which gates every fell
-    // band that must respect it — the chopper's 70/72 and the starter's chop-help 40/42.
-    // Anti-starvation (30/31) deliberately does NOT consult fell_ok (it fells anything size≥1
-    // as a last resort), exactly as it already ignores seed_cells — so a diagonal can still be
-    // felled when the farm is otherwise dead, which is strictly better than parking.
-    let diag_ring: HashSet<Cell> = plan
-        .ring
-        .iter()
-        .filter(|(_, r)| *r == RingRole::Diagonal)
-        .map(|(c, _)| *c)
-        .collect();
-
-    let fell_ok = |p: &Tree| -> bool {
-        // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
-        // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
-        // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
-        if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
-            return false;
-        }
-        // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
-        // the pressure governor has specifically released it (Orange/Red AND this exact
-        // tree is definitively not ours — see ownership::Pressure::released_seed_cells's doc
-        // comment for why the release check is per-tree, not the broader "exposed" set).
-        // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
-        // empty, so this is byte-identical to the pre-pressure check.
-        if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos())
-        {
-            return false;
-        }
-        if plan.liquidation {
-            return p.size >= 1;
-        }
-        let farm_banana = p.tree_type == "BANANA"
-            && plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.farm_r);
-        p.size
-            >= if farm_banana {
-                plan.farm_fell
-            } else {
-                plan.fell_size
-            }
-    };
-    let own_half =
-        |p: &Tree| plan.liquidation || manhattan(p.pos(), shack) <= manhattan(p.pos(), plan.opp);
-    let within_roam = |p: &Tree| {
-        plan.liquidation
-            || plan
-                .farm_d
-                .get(&p.pos())
-                .map_or(false, |&fd| fd <= plan.chop_r)
-    };
+    // v1.60.0-fellmission (Fix C1, code review): fell_ok/own_half/within_roam are now the
+    // module-level `pub(crate) fn`s below (extracted verbatim from what were local closures
+    // here) — call sites below pass `plan` explicitly, same convention as `race` (Task 1).
+    // Consumed by this function's two fell-band filters AND by `missions::fell_target` (the
+    // chopper's committed mission must never target a tree these bands would themselves
+    // refuse — see fell_ok's doc comment for the ring-diagonal crater this fixes).
+    //
     // v1.60.0-fellmission (Task 1): `race` is now the module-level `pub(crate) fn race`
     // above (extracted verbatim from this closure) — call sites below pass `state`
     // explicitly.
@@ -1471,7 +1507,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         for p in state
             .trees
             .iter()
-            .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+            .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
         {
             let pc = p.pos();
             if !d.contains_key(&pc) {
@@ -1787,7 +1823,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             for p in state
                 .trees
                 .iter()
-                .filter(|p| fell_ok(p) && own_half(p) && within_roam(p))
+                .filter(|p| fell_ok(plan, p) && own_half(plan, p) && within_roam(plan, p))
             {
                 if u.free_capacity() == 0 {
                     break;
@@ -2974,29 +3010,49 @@ const GE_FARM_FELL: i32 = 3; // OUR farm bananas: fell at size 3 = PRODUCTION (c
 // only ever shrinks room to expand further, never a mandate to shrink below where we are).
 const GE_PRESSURE_FARM_FLOOR: usize = 4;
 
-/// v1.60.0-fellmission (Task 4): the chopper (chop_power >= 2) runs its COMMITTED
-/// FellForWood mission (`missions::chopper_target`) and is EXCLUDED from the band system
-/// entirely; every other troll still flows through the proven joint band assignment
-/// (`planner::assign_resolved`) — the +1.7 ring economy is untouched (a gate gap check
-/// confirms this: `assign_resolved` sees the exact same `others` roster either way). Both
-/// command sets are then joint-solved TOGETHER by the R6a motion solver
-/// (`planner::move_intents` + `motion::solve_moves` + `planner::pin_landing`) over the
-/// WHOLE roster, not just the "others" subset — `assign_resolved`'s own internal solve
-/// never saw the chopper, so without this second pass the chopper's mission MOVE could
-/// collide with (or fail to yield shuffle-invariance against) everyone else's movement.
+/// v1.60.0-fellmission (Task 4; Fix C2 code review 2026-07-11): the chopper (chop_power >= 2)
+/// runs its COMMITTED FellForWood mission (`missions::chopper_target`); every other troll
+/// still flows through the proven joint band assignment (`planner::assign_resolved`) — the
+/// +1.7 ring economy is untouched (see
+/// `tests/fellmission.rs::fellmission_chopper_uses_mission_starter_unchanged`, which checks
+/// this against a direct `assign_resolved` baseline). `assign_resolved` is called over the
+/// FULL roster (chopper included, not an "others" subset that excludes it) — a chop_power>0
+/// STARTER's chop-help (band 42/40) Wood claim must be jointly deconflicted against the
+/// chopper's own fell (band 70/72) Wood claim by `select_assignments`'s `claims_conflict`,
+/// exactly as ringfix3's own bands would have; excluding the chopper from this call blinds the
+/// matcher to that claim (see
+/// `tests/fellmission.rs::fellmission_starter_deconfliction_preserved_with_real_starter_spec`).
+/// The chopper's OWN command from that call is simply overridden below with its mission
+/// command — its internal yield-pass/LAST_TGT bookkeeping ran against the (discarded) band
+/// assignment, a minor, accepted second-order effect. Both final command sets are then
+/// joint-solved TOGETHER by the R6a motion solver (`planner::move_intents` +
+/// `motion::solve_moves` + `planner::pin_landing`) over the WHOLE roster — `assign_resolved`'s
+/// own internal solve ran with the chopper's now-overridden band command, so without this
+/// second pass the chopper's mission MOVE could collide with (or fail to yield
+/// shuffle-invariance against) everyone else's movement. NOTE: this second pass is a provable
+/// no-op whenever there's no chopper yet (pre-training: the mission override never fires, so
+/// cmd_by_id is exactly assign_resolved's own output and the re-solve reproduces its internal
+/// solve's result exactly); once a chopper exists, its position/movement can rarely contest
+/// the same cell another troll wanted this turn — a genuine, correct spatial interaction (two
+/// trolls truly cannot occupy one cell), not a change to anyone's underlying task choice.
 /// Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`, same
 /// convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no I/O).
 pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> HashMap<i32, String> {
     let chopper_id = my.iter().find(|t| t.chop_power >= 2).map(|t| t.id);
-    let others: Vec<Troll> = my
-        .iter()
-        .filter(|t| Some(t.id) != chopper_id)
-        .cloned()
-        .collect();
-    let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
+    // Fix C2 (code review): pass the FULL roster (chopper included) into assign_resolved, not
+    // just the "others" subset. The joint matcher's cross-troll `claims_conflict` is how
+    // ringfix3 deconflicts a chop_power>0 STARTER's chop-help (band 42/40) Wood claim against
+    // the chopper's own fell (band 70/72) Wood claim on the SAME tree — dropping the chopper
+    // from this call blinds the matcher to that claim entirely, so the starter's assignment
+    // could silently diverge from what ringfix3 would ever have produced (it might grab a tree
+    // the chopper's mission needs). The chopper's OWN assigned command from this call is
+    // irrelevant and gets overridden by its mission command below; assign_resolved's internal
+    // yield-pass/LAST_TGT bookkeeping runs against that (discarded) band assignment, a minor,
+    // accepted second-order effect (see data/candidates/v1.60.0-fellmission/report.md).
+    let mut cmd_by_id = planner::assign_resolved(state, plan, my);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let target = missions::chopper_target(state, u);
+        let target = missions::chopper_target(state, plan, u);
         let cmd = match target {
             Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
             Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),
