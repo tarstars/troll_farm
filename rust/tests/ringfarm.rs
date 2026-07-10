@@ -150,27 +150,17 @@ fn ripe_banana(x: i32, y: i32) -> Tree {
     }
 }
 
-// ── Test 1: placement — an orthogonal ring cell is a valid plant target (used when it is the
-//    best AVAILABLE ring cell) ────────────────────────────────────────────────────────────
+// ── Test 1: placement — orthogonal ring cells are valid plant targets (no longer avoided) ──
 #[test]
 fn ring_placement_diag_and_ortho() {
-    // A carrier stands ON the orthogonal ring cell (4,2), carrying a banana.
-    // v1.57.0-ringtune FIX2 (E2) CHANGED this test's premise: an empty ring now prefers the
-    // DIAGONAL cells (the ripe/seed engine) over orthogonals, so on a fully empty ring this
-    // carrier would MOVE off (4,2) to a diagonal (that behaviour is now pinned by
-    // tests/ringtune.rs::ringtune_diagonal_planted_first). To keep pinning the ORIGINAL
-    // property this test exists for — an orthogonal ring cell is a real, plantable target you
-    // PLANT on when it is the best available cell (NOT geo-penalised away, as the pre-ring
-    // nanaflow chooser did to bank-adjacent cells) — the four DIAGONAL cells are pre-filled
-    // with fruitless trees, leaving only orthogonals empty. Then (4,2) at d=0 is the nearest
-    // empty orthogonal and the carrier plants it in place.
-    let mut st = base_state();
-    st.trees = vec![
-        banana(2, 1, 2),
-        banana(4, 1, 2),
-        banana(2, 3, 2),
-        banana(4, 3, 2), // all four diagonals filled -> only orthogonals remain plantable
-    ];
+    // A carrier stands ON the orthogonal ring cell (4,2), carrying a banana; the ring is empty.
+    // Post-fix: the ring IS the farm, so the nearest empty ring cell (its own cell (4,2), d=0)
+    // is the plant target -> PLANT in place on the ORTHOGONAL cell. Pre-fix: the old plant_cell
+    // chooser ranks by (map-dist + wet + geo) with geo = (bank_adj? +3) + (diag? -1), which
+    // PENALISES the orthogonal bank cell (4,2) [+3] and REWARDS a diagonal like (4,1) [-1], so
+    // the carrier walks off to plant a diagonal ("MOVE 0 4 1") instead of the orthogonal it
+    // stands on -- exactly the "orthogonals avoided" behaviour this scheme replaces.
+    let st = base_state();
     let plan = ring_plan(&st);
     assert!(
         plan.ring.contains(&((4, 2), RingRole::Orthogonal)),
@@ -180,7 +170,7 @@ fn ring_placement_diag_and_ortho() {
     let cmds = assign(&st, &plan, &[carrier(0, 4, 2)]);
     assert_eq!(
         cmds[&0], "PLANT 0 BANANA",
-        "carrier on an empty orthogonal ring cell (diagonals filled) must plant it in place: {}",
+        "carrier on an empty orthogonal ring cell must plant it (orthogonals no longer avoided): {}",
         cmds[&0]
     );
 }
@@ -324,54 +314,43 @@ fn ring_respects_frontdoor() {
     );
 }
 
-// ── Test 7: band-ordering proof — the raw band values, plus the v1.57.0-ringtune conditional
-//    suppressions of the build-ring PICK (FIX1 want_chopper, FIX3 ripe-banana / immediacy) ───
+// ── Test 7: band-ordering proof — build-ring-pick(78) is strictly between harvest(75) and
+//    full-bank(80)/plant(88), and only ever fires while the ring is INCOMPLETE ──────────────
 #[test]
 fn ring_band_ordering_proof() {
-    // Raw numeric bands (BAND = 100_000; every eta on a reachable ring cell is < 10 << BAND):
+    // Numeric bands (BAND = 100_000; every eta on a reachable ring cell is < 10 << BAND):
     //   plant (carried banana)      88*BAND - eta      in (87*BAND, 88*BAND]
     //   full -> bank                80*BAND            (flat)
     //   build-ring PICK             78*BAND            (flat; at the shack, eta 0)
     //   build-ring park-to-pick     78*BAND - 1
     //   standing harvest (ripe)     75*BAND            (flat)
     //   seed-move / idle-fruit      <= 52*BAND - eta
-    // So by raw value: 88(plant) > 80(bank) > 78(pick) > 77(park-pick) > 75(harvest) > 52(...).
-    // The PICK is GATED on a reachable empty ring cell existing (ring incomplete) — once the
-    // ring is full PICK is not even offered (part (c)). v1.57.0-ringtune adds two more gates so
-    // the raw 78 no longer unconditionally wins: FIX3(ii) suppresses it when a ripe banana is
-    // at/adjacent (part (a) below now HARVESTS), and FIX3(i) suppresses it unless the plant is
-    // immediate; both are proven directly in tests/ringtune.rs.
+    // So for EVERY eta: 88(plant) > 80(bank) > 78(pick) > 77(park-pick) > 75(harvest) > 52(...).
+    // The raise is GATED on a reachable empty ring cell existing (ring incomplete), so once the
+    // ring is full PICK is not even offered and harvest wins -- it can never displace real work
+    // on a built ring.
 
-    // (a) v1.57.0-ringtune FIX3(ii) REVERSED this case: a gatherer STANDING on a ripe banana at
-    // (2,2), shack-adjacent, tent stock present -> the ring PICK is suppressed (a ripe banana is
-    // AT the troll) and the standing HARVEST (75) wins. A ripe fruit under the troll is a zero-
-    // travel banana source; passing it over to run a tent errand was the user-watched anti-
-    // pattern. Pre-ringfarm (PICK=50 < 75) this HARVESTed too; the intervening v1.56.0-ringfarm
-    // raised PICK to 78 (would PICK); FIX3(ii) restores HARVEST for the right reason.
+    // (a) 78 > 75: a gatherer STANDING on a ripe banana at (2,2) (band-75 harvest available),
+    // shack-adjacent, tent stock present, and 7 empty ring cells left -> build-ring PICK (78)
+    // must beat harvesting in place (75). Pre-fix (PICK=50 < 75) it would HARVEST.
     let mut st = base_state();
     st.my_inventory[3] = 2;
     st.trees = vec![ripe_banana(2, 2)]; // on the gatherer's own orthogonal ring cell
     let plan = ring_plan(&st);
     let cmds = assign(&st, &plan, &[gatherer(0, 2, 2)]);
     assert_eq!(
-        cmds[&0], "HARVEST 0",
-        "FIX3(ii): a ripe banana under the troll is HARVESTed, not passed over to PICK tent stock: {}",
+        cmds[&0], "PICK 0 BANANA",
+        "build-ring PICK (78) must outrank standing harvest (75) while the ring is incomplete: {}",
         cmds[&0]
     );
 
     // (b) 88 > 78: give the SAME troll a carried banana too (and tent stock, empty ring). The
     // carried-banana PLANT (88) must outrank build-ring PICK (78) -- a carried seed is placed
     // before fetching another.
-    // v1.57.0-ringtune FIX2 (E2): the carrier now stands on the empty DIAGONAL cell (2,1)
-    // instead of the orthogonal (2,2). FIX2 prefers diagonals, so a carrier on an orthogonal
-    // with an empty ring would MOVE off to a diagonal (still band 88, but a MoveTo, not a
-    // plant-in-place); standing on the diagonal keeps plant_cell == the troll's own cell so the
-    // band-88 action renders as PLANT — the property under test (88 plant > 78 pick) is
-    // unchanged, only the staging cell moved to stay diagonal-consistent.
     let mut st_b = base_state();
     st_b.my_inventory[3] = 2;
     let plan_b = ring_plan(&st_b);
-    let mut c = carrier(0, 2, 1); // carrying a banana, on empty DIAGONAL ring cell (2,1)
+    let mut c = carrier(0, 2, 2); // carrying a banana, on empty ring cell (2,2)
     c.harvest_power = 1;
     let cmds_b = assign(&st_b, &plan_b, &[c]);
     assert!(
