@@ -13,6 +13,7 @@ const VERSION: &str = "1.59.0-ringfix3"; // FIX3 (banana no-carry-in-advance) is
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
 pub use state::*;
+pub mod missions;
 pub mod motion;
 pub mod ownership;
 pub mod planner;
