@@ -50,7 +50,7 @@ STICKY anti-flap hack with a first-class concept.)
 | **Bank** | 95 endgame, 80 full→bank | route to shack-adjacent, DROP carry |
 | **TrainTroll** | 65/64/62/60/58 funding + TRAIN | collect the missing train resources (iron + fruit) by the cheapest route, then TRAIN — the user's plum-example |
 | **FellForWood** | 72/70 primary-fell, 42/40 chop-help, 31/30 anti-starv fell | pick the most wood-EFFICIENT reachable tree (see below), route, fell FULLY |
-| **BuildRing** | 88 plant, 78/77 build-ring-pick, 52/50/49 seed | pick/plant bananas on empty ring cells (ringfarm scheme + ringfix3 no-carry) |
+| **BuildRing** | 88 plant, 78/77 build-ring-pick, 52/50/49 seed | pick/plant bananas on empty ring cells (ringfarm scheme + ringfix3 no-carry). ★ PLANNED SEQUENCE: commit to a full planting order over the empty ring cells (pick → route DIRECTLY to the committed cell → plant → next), NOT greedy-nearest-recomputed-each-turn (which flaps → the "back-and-forward" the user observed). ★ DIVISION OF LABOR: with 2 trolls, PARTITION the ring — each troll commits to DISTINCT cells so they never crowd/block the same cell. |
 | **HarvestFruit** | 75 standing-harvest, 62 fruit-MoveTo, 38 idle-fruit | route to a ripe fruit tree, harvest (points / train fuel) |
 | **Fund** | (folded into TrainTroll) | mine iron / gather the training fruit |
 | **Idle** | 10 park | ring-2 park off the bank path (no reachable productive work) |
@@ -102,6 +102,12 @@ wrong-tree bug is impossible by construction (a reasoned max over efficiency, no
   immediate). The proven economy is a mission, unchanged in behavior.
 - **yield / task-interference (+1.0):** a stationary lower-priority mission-troll blocking a
   higher-priority mover yields — now a first-class rule between missions (was the yield_pass).
+  ★ Trolls block each other PERVASIVELY (user obs, confirmed on the water-constrained ring: 17-21
+  cell-revisits/troll, both crammed within manhattan-2 of the shack). Two mechanisms together
+  fix it: (i) DIVISION OF LABOR (each troll commits to distinct targets — no competing for the
+  same cell), (ii) the interference-yield rule for the residual cases. Success = the oscillation
+  measured in the clipboard game (both trolls swapping around the tight ring for ~20 turns) is
+  gone: each troll follows a planned committed route.
 - **sticky anti-flap:** subsumed by mission commitment (a mission persists; it doesn't re-win a
   weighted comparison each turn).
 The mission layer must MATCH these behaviors before it can beat them — the gate for each migrated
