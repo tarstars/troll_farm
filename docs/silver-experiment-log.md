@@ -2609,3 +2609,29 @@ NEXT: isolate WHICH fix hurt (submit FIX1-only, FIX2-only, FIX3-only separately 
 baseline) rather than shipping all three again. Ringfarm stays champion/default/live at 117@18.4.
 Tree: revert v1.57 from working tree (keep ringfarm) — pending; v1.58-trainfruit is building ON
 v1.57, so its base now needs reconsideration (rebase to ringfarm, or keep as a separate experiment).
+
+## 2026-07-10 17:21 — v1.58.0-trainfruit arena verdict: REVERT (~−3.2) — training-fruit economy craters
+
+Bracket = live ringfarm reconverged 135/528 @17.1 (agentId 6546578). Submitted trainfruit
+16:30:53 (id 40977854, agentId 6546647). Reads +10/+20/+30/+40/+50: 329@12.8 → 339@12.5 →
+305@13.2 → 262@13.9 → 262@13.9 — deep cold-start, slow monotonic climb PLATEAUED at ~13.9,
+**~−3.2 below the 17.1 bracket**. Decisive REVERT (arena + tree back to v1.56.0-ringfarm via
+`git reset --hard d97ca5e`; trainfruit commits preserved on worktree-agent-a3371ee branch).
+
+★ CONFIRMS THE PATTERN (3× in a row on the +1.7 ringfarm: ringtune −2.4, trainfruit −3.2): the
+training-fruit corner tested STRONGLY locally (median chopper train t47→t23 = 2× faster, 60/60
+paired seeds, 2 real bugs fixed) yet CRATERED the arena. Reviewer PREDICTED it ("local≠arena,
+weight the arena; boss 1/6 real lean"). MECHANISM: carving 3 of 8 ring cells into training fruit
+(8→5 banana) cuts the WOOD engine — wood is 4× score and the banana cut-cycle IS ringfarm's +1.7.
+Faster lemons ≠ winning; the displaced wood was worth more than the faster troll.
+
+★★ META-CONCLUSION — ringfarm is a LOCAL OPTIMUM. FIVE economy attempts in the ringfarm era all
+say the same: ringfarm ITSELF (build the tight banana farm early) is the ONLY economy positive
+ever (+1.7); EVERY refinement — funding-order tuning (ringtune) or crop diversification
+(trainfruit) — LOSES because it dilutes the banana-wood density that IS the win. STOP refining
+the farm economy. The only class that's ever transferred is EXECUTION waste-cuts (race +1.3,
+yield +1.0, frontdoor banked); that + the etudes/Sasso-execution direction are the remaining
+levers. Champion = v1.56.0-ringfarm, LOCKED (live + default + tree). NOTE: trainfruit's 2 bugfixes
+(band-80 training-seed exemption; funding-loop free_capacity + standing-harvest branch) are REAL
+and reviewer-verified byte-identical on banana-only play — cherry-pickable onto ringfarm as pure
+correctness fixes later, but they change nothing for banana-only ringfarm so no urgency.
