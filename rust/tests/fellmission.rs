@@ -9,7 +9,7 @@ use std::collections::HashSet;
 use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign_resolved;
 use troll_farm::botmain::tactics::{Phase, Plan, RingRole};
-use troll_farm::botmain::{missions, resolve_commands, State, Tree, Troll};
+use troll_farm::botmain::{missions, resolve_commands, State, Tree, Troll, WOOD};
 
 const SHACK: (i32, i32) = (0, 2);
 
@@ -427,5 +427,91 @@ fn fellmission_starter_deconfliction_preserved_with_real_starter_spec() {
          chopper's Wood claim on Tree A) would produce — excluding the chopper from \
          assign_resolved (the C2 bug) lets the starter wrongly grab the tree the chopper's \
          mission needs"
+    );
+}
+
+// ── Fix C3: banking-crater — a full/endgame chopper must BANK, not be redirected to fell ──
+//
+// THE BUG: `resolve_commands` unconditionally overwrote the chopper's `assign_resolved`
+// command with the FellForWood mission command. The mission only ever emits CHOP/MOVE (it
+// has no concept of banking), so whenever the band system's OWN pick for the chopper was
+// actually a Bank action (band 80 full->bank, or band 95 endgame-bank-a-partial-load), that
+// decision was silently discarded and replaced with "go fell the next tree" — felled wood
+// piled up in the chopper's carry forever and was never banked (boss-gate measurement: our
+// banked wood == 0 across all 6 games, vs champion ringfix3's ~48).
+//
+// THE FIX: only let the mission override the chopper's command when the band's own pick is
+// NOT itself a bank/endgame action. `u.free_capacity() == 0` is a provably exact detector on
+// its own for the full case: `candidates()` always offers band 80 (80*BAND) whenever
+// free_capacity()==0, and 80*BAND outranks every fell candidate a chopper can have (<=72*BAND
+// plus small offsets, BAND=100_000), so `assign_resolved`'s pick for a full chopper is always
+// that Bank candidate. `plan.liquidation` (turns_rem <= GE_LIQ_T) additionally defers for the
+// chopper's whole endgame tail — a safe superset of the exact turn band 95 fires (which needs
+// `d_home`, not available in `resolve_commands`): whenever band 95 hasn't fired yet inside
+// liquidation, `assign_resolved`'s own bands 70/72/30/31 still fell trees, so this only forgoes
+// the mission's wood-efficiency PICK for this short (~11%-of-the-game) tail, never a bank
+// action for a fell action. A rendered `"DROP "` command is also an unambiguous tell (only
+// `Kind::Bank`'s `motion::bank_cmd` ever emits one) kept as a belt-and-braces guard.
+
+#[test]
+fn fellmission_full_chopper_banks_not_fells() {
+    missions::reset();
+    troll_farm::botmain::planner::reset();
+    // Chopper is FULL (free_capacity() == 3 - 3 == 0) and stands directly adjacent to the
+    // shack (manhattan((1,2),(0,2)) == 1) — assign_resolved's band 80 ("full -> bank",
+    // 80*BAND) strictly outranks every fell candidate this chopper has (<=72*BAND, small
+    // offsets), so its own pick renders via `motion::bank_cmd` as exactly "DROP 1" — no
+    // camp-cell tie-break to hand-verify. An eligible LEMON (size 4 >= fell_size 2, well
+    // within base_plan's real chop_r(5)/own_half of the shack) stands nearby so the (buggy)
+    // unconditional mission override had somewhere else to send the chopper.
+    let mut st = base_state();
+    st.trees = vec![tree("LEMON", 4, 2, 4, 12)];
+    let mut u = chopper(1, 1, 2); // adjacent to SHACK (0,2): manhattan == 1
+    u.carry[WOOD] = 3; // full: free_capacity() == 3 - 3 == 0
+    st.my_trolls = vec![u];
+    let plan = base_plan(&st);
+
+    let cmds = resolve_commands(&st, &plan, &st.my_trolls);
+    assert_eq!(
+        cmds[&1], "DROP 1",
+        "a FULL chopper (free_capacity() == 0) must bank its carried wood (the band's own \
+         DROP), never be redirected by the mission to fell another tree — overriding this \
+         stranded every chop of felled wood in carry forever (banked wood stuck at 0)"
+    );
+}
+
+#[test]
+fn fellmission_endgame_banks_partial_load() {
+    missions::reset();
+    troll_farm::botmain::planner::reset();
+    // Chopper carries a PARTIAL load (free_capacity() == 3 - 1 == 2 > 0, so band 80
+    // "full->bank" does NOT fire) but the game is in the endgame liquidation window
+    // (plan.liquidation, i.e. turns_rem <= GE_LIQ_T): at this geometry — chopper at (2,2),
+    // BFS distance 1 from the nearest shack camp cell (1,2), movement_speed 2 — band 95's own
+    // trigger is `turns_rem <= e+1` where `e = ceil(d_home/ms) + 1 = ceil(1/2) + 1 = 2`, so
+    // turns_rem=3 satisfies `3 <= 3`: band 95 ("bank a carried load in time to score it",
+    // 95*BAND) genuinely fires and outranks every fell candidate (<=72*BAND), not merely
+    // "liquidation is set". The chopper is deliberately NOT adjacent to the shack (manhattan
+    // 2, not 1) so this test exercises ONLY the `plan.liquidation` deferral, isolated from
+    // both the free_capacity()==0 and the rendered-"DROP " disjuncts covered by the previous
+    // test. The camp cell (1,2) is exactly 1 step away (<= movement_speed 2), so the chopper
+    // lands there this turn with no partial-progress tie to hand-verify. An eligible LEMON
+    // stands nearby so the (buggy) unconditional mission override had somewhere else to send
+    // the chopper instead of banking.
+    let mut st = base_state();
+    st.trees = vec![tree("LEMON", 4, 2, 4, 12)];
+    let mut u = chopper(1, 2, 2);
+    u.carry[WOOD] = 1; // partial: free_capacity() == 3 - 1 == 2 > 0
+    st.my_trolls = vec![u];
+    let mut plan = base_plan(&st);
+    plan.turns_rem = 3; // triggers band 95's own e+1(=2+1=3) threshold at this geometry
+    plan.liquidation = true; // tactics::plan_impl always sets this exactly when turns_rem <= GE_LIQ_T
+
+    let cmds = resolve_commands(&st, &plan, &st.my_trolls);
+    assert_eq!(
+        cmds[&1], "MOVE 1 1 2",
+        "in the endgame liquidation window a partially-loaded chopper must bank (band 95's \
+         MOVE toward the camp cell (1,2)), never be redirected by the mission to fell another \
+         tree — a load banked too late scores zero"
     );
 }
