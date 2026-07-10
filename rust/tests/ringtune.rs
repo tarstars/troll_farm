@@ -228,3 +228,57 @@ fn ringtune_diagonal_planted_first() {
         cmds[&0]
     );
 }
+
+// ── FIX3(i): banana NO-CARRY-IN-ADVANCE — no PICK unless the plant is immediate ─────────────
+#[test]
+fn ringtune_no_pick_when_plant_not_immediate() {
+    // A gatherer is shack-adjacent at (2,2), the tent holds bananas, but every ring cell is
+    // treed EXCEPT the far diagonal (4,3) — d=3 from (2,2), outside the <=2-step immediacy
+    // window (RING_PICK_STEPS). plant_cell resolves to (4,3) (the only empty cell). Pre-fix the
+    // build-ring PICK fires whenever the ring has ANY empty cell -> "PICK 0 BANANA" (then the
+    // troll would carry that banana 3 steps to plant it). Post-fix (FIX3(i)) the PICK is gated
+    // on the chosen plant cell being <=2 steps away, so the gatherer does NOT PICK — no
+    // carry-in-advance. The 7 filler bananas are fruitless (no harvest band competes).
+    let mut st = base_state();
+    st.my_inventory[3] = 3; // tent bananas
+    st.trees = vec![
+        banana(3, 1, 2),
+        banana(2, 2, 2),
+        banana(4, 2, 2),
+        banana(3, 3, 2), // all four orthogonals
+        banana(2, 1, 2),
+        banana(4, 1, 2),
+        banana(2, 3, 2), // three of four diagonals
+                         // (4,3) left EMPTY — the only plantable cell, far (d=3) from the gatherer at (2,2)
+    ];
+    let plan = base_plan(&st);
+    let cmds = assign(&st, &plan, &[gatherer(0, 2, 2)]);
+    assert!(
+        !cmds[&0].starts_with("PICK"),
+        "no carry-in-advance: gatherer must NOT PICK a tent banana to haul 3 steps to the only \
+         (far) empty ring cell: {}",
+        cmds[&0]
+    );
+}
+
+// ── FIX3(ii): prefer a ripe banana at/adjacent to the troll over a tent PICK ─────────────────
+#[test]
+fn ringtune_harvest_ripe_over_tent_pick() {
+    // A gatherer at (2,2) (shack-adjacent) has: tent bananas, empty near ring cells (so pre-fix
+    // the build-ring PICK would fire), and a RIPE banana one ortho-step away at (2,1). A
+    // harvested banana seeds or banks with zero extra travel, so it must beat running a tent
+    // errand — and this is exactly the "walked PAST ripe bananas to fetch tent stock" anti-
+    // pattern the user watched. Pre-fix: PICK (78) beats the seed-move (52) -> "PICK 0 BANANA".
+    // Post-fix (FIX3(ii)): the ring PICK is suppressed while a ripe banana is at/adjacent, so
+    // the band-52 seed-move toward (2,1) wins -> the troll goes to harvest it, not PICK.
+    let mut st = base_state();
+    st.my_inventory[3] = 3; // tent bananas
+    st.trees = vec![ripe_banana(2, 1)]; // ripe, one ortho-step from the gatherer at (2,2)
+    let plan = base_plan(&st);
+    let cmds = assign(&st, &plan, &[gatherer(0, 2, 2)]);
+    assert_eq!(
+        cmds[&0], "MOVE 0 2 1",
+        "a ripe adjacent banana must be harvested (moved-to), not passed over to PICK tent stock: {}",
+        cmds[&0]
+    );
+}

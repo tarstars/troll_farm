@@ -324,33 +324,38 @@ fn ring_respects_frontdoor() {
     );
 }
 
-// ── Test 7: band-ordering proof — build-ring-pick(78) is strictly between harvest(75) and
-//    full-bank(80)/plant(88), and only ever fires while the ring is INCOMPLETE ──────────────
+// ── Test 7: band-ordering proof — the raw band values, plus the v1.57.0-ringtune conditional
+//    suppressions of the build-ring PICK (FIX1 want_chopper, FIX3 ripe-banana / immediacy) ───
 #[test]
 fn ring_band_ordering_proof() {
-    // Numeric bands (BAND = 100_000; every eta on a reachable ring cell is < 10 << BAND):
+    // Raw numeric bands (BAND = 100_000; every eta on a reachable ring cell is < 10 << BAND):
     //   plant (carried banana)      88*BAND - eta      in (87*BAND, 88*BAND]
     //   full -> bank                80*BAND            (flat)
     //   build-ring PICK             78*BAND            (flat; at the shack, eta 0)
     //   build-ring park-to-pick     78*BAND - 1
     //   standing harvest (ripe)     75*BAND            (flat)
     //   seed-move / idle-fruit      <= 52*BAND - eta
-    // So for EVERY eta: 88(plant) > 80(bank) > 78(pick) > 77(park-pick) > 75(harvest) > 52(...).
-    // The raise is GATED on a reachable empty ring cell existing (ring incomplete), so once the
-    // ring is full PICK is not even offered and harvest wins -- it can never displace real work
-    // on a built ring.
+    // So by raw value: 88(plant) > 80(bank) > 78(pick) > 77(park-pick) > 75(harvest) > 52(...).
+    // The PICK is GATED on a reachable empty ring cell existing (ring incomplete) — once the
+    // ring is full PICK is not even offered (part (c)). v1.57.0-ringtune adds two more gates so
+    // the raw 78 no longer unconditionally wins: FIX3(ii) suppresses it when a ripe banana is
+    // at/adjacent (part (a) below now HARVESTS), and FIX3(i) suppresses it unless the plant is
+    // immediate; both are proven directly in tests/ringtune.rs.
 
-    // (a) 78 > 75: a gatherer STANDING on a ripe banana at (2,2) (band-75 harvest available),
-    // shack-adjacent, tent stock present, and 7 empty ring cells left -> build-ring PICK (78)
-    // must beat harvesting in place (75). Pre-fix (PICK=50 < 75) it would HARVEST.
+    // (a) v1.57.0-ringtune FIX3(ii) REVERSED this case: a gatherer STANDING on a ripe banana at
+    // (2,2), shack-adjacent, tent stock present -> the ring PICK is suppressed (a ripe banana is
+    // AT the troll) and the standing HARVEST (75) wins. A ripe fruit under the troll is a zero-
+    // travel banana source; passing it over to run a tent errand was the user-watched anti-
+    // pattern. Pre-ringfarm (PICK=50 < 75) this HARVESTed too; the intervening v1.56.0-ringfarm
+    // raised PICK to 78 (would PICK); FIX3(ii) restores HARVEST for the right reason.
     let mut st = base_state();
     st.my_inventory[3] = 2;
     st.trees = vec![ripe_banana(2, 2)]; // on the gatherer's own orthogonal ring cell
     let plan = ring_plan(&st);
     let cmds = assign(&st, &plan, &[gatherer(0, 2, 2)]);
     assert_eq!(
-        cmds[&0], "PICK 0 BANANA",
-        "build-ring PICK (78) must outrank standing harvest (75) while the ring is incomplete: {}",
+        cmds[&0], "HARVEST 0",
+        "FIX3(ii): a ripe banana under the troll is HARVESTed, not passed over to PICK tent stock: {}",
         cmds[&0]
     );
 
