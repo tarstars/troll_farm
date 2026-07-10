@@ -9,7 +9,7 @@ PUZZLE = "spring-challenge-2026-troll-farm"
 USERID = 1302251
 LANG = "Rust"
 CODE = open(sys.argv[1] if len(sys.argv) > 1 else
-            "/home/tarstars/prj/troll_farm/cgauto/submissions/v1.56.0-ringfarm.min.rs").read()
+            "/home/tarstars/prj/troll_farm/cgauto/submissions/v1.59.0-ringfix3.min.rs").read()
 
 if len(CODE) > 100000:
     print(f"SIZE GATE: {len(CODE)} > 100000 — abort"); sys.exit(2)

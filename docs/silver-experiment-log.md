@@ -2649,3 +2649,30 @@ starts). IMPLICATION: the path to more boss wins + arena climb is the EXECUTION/
 (banking/fell-size/harvest efficiency), NOT more economy — directly confirms the meta-conclusion
 (economy is the local optimum; execution transfers). Feeds the etudes direction (what converts
 a fixed chop budget into max score is a position-level question) + the ringfix3/movement work.
+
+## 2026-07-10 20:57 — ★ v1.59.0-ringfix3 arena: KEEP (~+1.1 to +1.4) — FIX3 is INNOCENT; E1 was the v1.57 culprit
+
+Bracket = live ringfarm 160/529 @16.6 (agentId 6546671; reconverged 18.4→16.6 across the day's
+2 revert-resubmits = same-code drift). Submitted ringfix3 20:06:42 (id 40978915, agentId
+6546793). Reads +11/+21/+31/+41/+51: 116@18.7 → 120@18.1 → 121@18.1 → 123@17.7 → 123@17.7 —
+converged FAST and PLATEAUED ~17.9, **+1.1 to +1.4 above the 16.6 bracket** (and at/above
+ringfarm's own best 18.4). KEEP.
+
+★★ THE SCIENTIFIC RESULT: FIX3 (banana no-carry-in-advance / the user's backtracking finding),
+ISOLATED from the E1 want_chopper term it was bundled with, is POSITIVE — NOT the −2.4 disaster
+v1.57 was. This CONFIRMS the hypothesis: E1 (fund-chopper-before-ring) was the v1.57 culprit
+(delaying the early-farm edge that IS ringfarm's win), and FIX3 is a genuine EXECUTION-class
+improvement (backtracking waste-cut, wood-density preserved — the gate showed wood UP). The
+isolation discipline paid off: bundling hid a good fix inside a bad one.
+Caveat: the 16.6 bracket may have been a still-reconverging low read (ringfarm's 8h level was
+18.4), so the delta could be as low as ~neutral IF ringfarm's true level is 18.4 — but ringfix3
+is AT LEAST as good as ringfarm's best and clearly non-regressed, so promoting is low-risk.
+
+ACTION: ringfix3 is the new CHAMPION/default (= ringfarm + a clean isolated backtracking fix;
+strictly the better artifact — same economy, less wasted movement). api_submit default →
+v1.59.0-ringfix3. Live + tree + default all consistent. Goal gate (≤99) did not fire (116 best).
+LESSON REINFORCED: execution waste-cuts transfer (this is another one); the earlier −2.4/−3.2
+were ECONOMY (E1 fund-first, trainfruit crop-dilution), not the movement fixes bundled with them.
+NEXT: the mutual-blocking movement fix (observation 1, pure L3 solver, never built) is the next
+clean execution candidate; FIX2 (diagonal-first) could also be isolated+retried now that FIX3 is
+cleared. Farm economy stays FROZEN (local optimum).
