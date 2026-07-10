@@ -335,13 +335,27 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     let plant_cell: Option<Cell> = if ring_active {
         plan.ring
             .iter()
-            .map(|(c, _)| *c)
-            .filter(|c| d.contains_key(c)) // reachable from this troll
-            .filter(|c| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
-            .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
-            // nearest empty ring cell; canonical (dist, tie_mix) tie-break — the ring geometry
-            // already fixes the roles, so we just build the ring fastest (least travel).
-            .min_by_key(|c| (d[c], tie_mix(*c, salt)))
+            .copied()
+            .filter(|(c, _)| d.contains_key(c)) // reachable from this troll
+            .filter(|(c, _)| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
+            .filter(|(c, _)| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
+            // v1.57.0-ringtune FIX2 (E2, code review): DIAGONAL-PRIORITY placement. role_rank
+            // 0 = Diagonal, 1 = Orthogonal, so an empty diagonal is always chosen before an
+            // empty orthogonal; the nearest wins only WITHIN a role (canonical tie_mix tie-
+            // break, unchanged). The diagonals are the ripe fruit/seed engine — the scheme's
+            // whole point — but pre-fix the nearest-only key filled all four map-dist-1
+            // orthogonals (and refilled cut orthogonals) before ever touching a map-dist-2
+            // (tent-impassable) diagonal, so the seed engine built last. Determinism unchanged:
+            // role_rank is a pure function of the cell's tagged role; ties still fall to
+            // (d, tie_mix), no HashSet/HashMap iteration order participates.
+            .min_by_key(|(c, role)| {
+                let role_rank = match role {
+                    RingRole::Diagonal => 0,
+                    RingRole::Orthogonal => 1,
+                };
+                (role_rank, d[c], tie_mix(*c, salt))
+            })
+            .map(|(c, _)| c)
     } else if plan.base_trees < plan.farm_cap {
         state
             .walkable

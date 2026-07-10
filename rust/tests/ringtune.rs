@@ -201,3 +201,30 @@ fn ringtune_fund_chopper_before_ring() {
         cmds_b[&0]
     );
 }
+
+// ── FIX2 (E2): diagonal-priority placement ─────────────────────────────────────────────────
+#[test]
+fn ringtune_diagonal_planted_first() {
+    // A carrier (carrying one banana -> exercises the plant band 88 directly, no PICK/harvest
+    // interaction) stands ON the orthogonal ring cell (2,2). The ring is empty EXCEPT for a
+    // tree on the diagonal (2,3), which BREAKS the left-side diagonal tie so exactly one
+    // nearest empty diagonal, (2,1), remains -- a deterministic target (no tie_mix hashing in
+    // the assertion). Empty ring cells reachable from (2,2): orthogonals (2,2) d=0, (3,1)/
+    // (4,2)/(3,3) d=2; diagonals (2,1) d=1, (4,1)/(4,3) d=3.
+    //   Pre-fix (nearest-only key): (2,2) at d=0 wins -> PLANT in place on the ORTHOGONAL.
+    //   Post-fix (role_rank first): every diagonal outranks every orthogonal, and (2,1) is the
+    //   uniquely nearest empty diagonal -> MOVE toward it. This is the E2 engine: build the
+    //   diagonal ripe/seed cells before refilling orthogonals.
+    let mut st = base_state();
+    st.trees = vec![banana(2, 3, 2)]; // fruitless: breaks the (2,1)/(2,3) diagonal tie only
+    let plan = base_plan(&st);
+    // sanity: (2,1) diagonal and (2,2) orthogonal are both in the ring
+    assert!(plan.ring.contains(&((2, 1), RingRole::Diagonal)), "{:?}", plan.ring);
+    assert!(plan.ring.contains(&((2, 2), RingRole::Orthogonal)), "{:?}", plan.ring);
+    let cmds = assign(&st, &plan, &[carrier(0, 2, 2)]);
+    assert_eq!(
+        cmds[&0], "MOVE 0 2 1",
+        "an empty diagonal (2,1) must be chosen before the orthogonal the carrier stands on: {}",
+        cmds[&0]
+    );
+}

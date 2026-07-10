@@ -150,17 +150,27 @@ fn ripe_banana(x: i32, y: i32) -> Tree {
     }
 }
 
-// ── Test 1: placement — orthogonal ring cells are valid plant targets (no longer avoided) ──
+// ── Test 1: placement — an orthogonal ring cell is a valid plant target (used when it is the
+//    best AVAILABLE ring cell) ────────────────────────────────────────────────────────────
 #[test]
 fn ring_placement_diag_and_ortho() {
-    // A carrier stands ON the orthogonal ring cell (4,2), carrying a banana; the ring is empty.
-    // Post-fix: the ring IS the farm, so the nearest empty ring cell (its own cell (4,2), d=0)
-    // is the plant target -> PLANT in place on the ORTHOGONAL cell. Pre-fix: the old plant_cell
-    // chooser ranks by (map-dist + wet + geo) with geo = (bank_adj? +3) + (diag? -1), which
-    // PENALISES the orthogonal bank cell (4,2) [+3] and REWARDS a diagonal like (4,1) [-1], so
-    // the carrier walks off to plant a diagonal ("MOVE 0 4 1") instead of the orthogonal it
-    // stands on -- exactly the "orthogonals avoided" behaviour this scheme replaces.
-    let st = base_state();
+    // A carrier stands ON the orthogonal ring cell (4,2), carrying a banana.
+    // v1.57.0-ringtune FIX2 (E2) CHANGED this test's premise: an empty ring now prefers the
+    // DIAGONAL cells (the ripe/seed engine) over orthogonals, so on a fully empty ring this
+    // carrier would MOVE off (4,2) to a diagonal (that behaviour is now pinned by
+    // tests/ringtune.rs::ringtune_diagonal_planted_first). To keep pinning the ORIGINAL
+    // property this test exists for — an orthogonal ring cell is a real, plantable target you
+    // PLANT on when it is the best available cell (NOT geo-penalised away, as the pre-ring
+    // nanaflow chooser did to bank-adjacent cells) — the four DIAGONAL cells are pre-filled
+    // with fruitless trees, leaving only orthogonals empty. Then (4,2) at d=0 is the nearest
+    // empty orthogonal and the carrier plants it in place.
+    let mut st = base_state();
+    st.trees = vec![
+        banana(2, 1, 2),
+        banana(4, 1, 2),
+        banana(2, 3, 2),
+        banana(4, 3, 2), // all four diagonals filled -> only orthogonals remain plantable
+    ];
     let plan = ring_plan(&st);
     assert!(
         plan.ring.contains(&((4, 2), RingRole::Orthogonal)),
@@ -170,7 +180,7 @@ fn ring_placement_diag_and_ortho() {
     let cmds = assign(&st, &plan, &[carrier(0, 4, 2)]);
     assert_eq!(
         cmds[&0], "PLANT 0 BANANA",
-        "carrier on an empty orthogonal ring cell must plant it (orthogonals no longer avoided): {}",
+        "carrier on an empty orthogonal ring cell (diagonals filled) must plant it in place: {}",
         cmds[&0]
     );
 }
@@ -347,10 +357,16 @@ fn ring_band_ordering_proof() {
     // (b) 88 > 78: give the SAME troll a carried banana too (and tent stock, empty ring). The
     // carried-banana PLANT (88) must outrank build-ring PICK (78) -- a carried seed is placed
     // before fetching another.
+    // v1.57.0-ringtune FIX2 (E2): the carrier now stands on the empty DIAGONAL cell (2,1)
+    // instead of the orthogonal (2,2). FIX2 prefers diagonals, so a carrier on an orthogonal
+    // with an empty ring would MOVE off to a diagonal (still band 88, but a MoveTo, not a
+    // plant-in-place); standing on the diagonal keeps plant_cell == the troll's own cell so the
+    // band-88 action renders as PLANT — the property under test (88 plant > 78 pick) is
+    // unchanged, only the staging cell moved to stay diagonal-consistent.
     let mut st_b = base_state();
     st_b.my_inventory[3] = 2;
     let plan_b = ring_plan(&st_b);
-    let mut c = carrier(0, 2, 2); // carrying a banana, on empty ring cell (2,2)
+    let mut c = carrier(0, 2, 1); // carrying a banana, on empty DIAGONAL ring cell (2,1)
     c.harvest_power = 1;
     let cmds_b = assign(&st_b, &plan_b, &[c]);
     assert!(
