@@ -2635,3 +2635,17 @@ levers. Champion = v1.56.0-ringfarm, LOCKED (live + default + tree). NOTE: train
 (band-80 training-seed exemption; funding-loop free_capacity + standing-harvest branch) are REAL
 and reviewer-verified byte-identical on banana-only play — cherry-pickable onto ringfarm as pure
 correctness fixes later, but they change nothing for banana-only ringfarm so no urgency.
+
+## 2026-07-10 19:30 — Boss-5 win-vs-loss decode: the lever is CONVERSION, not production
+
+Decoded all 12 ringfarm-vs-Boss5 games (gameResult streams). WINS (n=2): our score 232, boss
+216, chop 81, first-train t21. LOSSES (n=9): our 187, boss 232, chop 82.8, train t34.8.
+★ KEY: chop count is ~IDENTICAL in wins and losses (81 vs 83) — we fell the SAME number of
+trees — yet wins score +45 more. So boss wins are driven by CONVERSION (turning the same
+chopping into score: bank wood in time, fell bigger trees for more wood/cut, harvest fruit),
+NOT by felling more. Close loss 895636212: −7 with boss at a weak 192 but us at only 185 —
+better conversion of chops we ALREADY did flips it. Caveat n=2 wins (high variance, random boss
+starts). IMPLICATION: the path to more boss wins + arena climb is the EXECUTION/CONVERSION lever
+(banking/fell-size/harvest efficiency), NOT more economy — directly confirms the meta-conclusion
+(economy is the local optimum; execution transfers). Feeds the etudes direction (what converts
+a fixed chop budget into max score is a position-level question) + the ringfix3/movement work.
