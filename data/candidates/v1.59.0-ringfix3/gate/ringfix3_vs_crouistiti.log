@@ -1,0 +1,29 @@
+collecting 8 DEBUG games vs agent 6479836 → /home/tarstars/prj/troll_farm/data/boss5_games/6479836
+
+  game 1/8 895668788: L  wood 20-33  oppbuild=1:1.1.1.1,2:2.1.1.3  opp_train=t2 my_train=t75  | ramp t75(0, 8) t150(16, 15) t225(20, 24) t300('-', '-')
+    play failed (HTTP 422)
+  game 2/8: (failed)
+  game 3/8 895668902: W  wood 40-39  oppbuild=1:1.1.1.1,2:2.2.2.3  opp_train=t2 my_train=t3  | ramp t75(22, 8) t150(34, 16) t225(40, 34) t300('-', '-')
+    play failed (HTTP 422)
+  game 4/8: (failed)
+    play failed (HTTP 422)
+  game 5/8: (failed)
+  game 6/8 895669023: L  wood 22-38  oppbuild=1:1.1.1.1,2:2.2.2.2  opp_train=t2 my_train=t3  | ramp t75(12, 10) t150(21, 22) t225(22, 35) t300('-', '-')
+    play failed (HTTP 422)
+  game 7/8: (failed)
+  game 8/8 895669080: L  wood 31-40  oppbuild=1:1.1.1.1,2:1.2.2.2  opp_train=t2 my_train=t57  | ramp t75(4, 10) t150(16, 18) t225(26, 30) t300('-', '-')
+
+== 1/4 wins | our wood 28 | opp wood 38 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.1.1.3': 1, '1:1.1.1.1,2:2.2.2.3': 1, '1:1.1.1.1,2:2.2.2.2': 1, '1:1.1.1.1,2:1.2.2.2': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/6479836/
+collecting 4 DEBUG games vs agent 6479836 → /home/tarstars/prj/troll_farm/data/boss5_games/6479836
+
+  game 1/4 895669650: W  wood 36-35  oppbuild=1:1.1.1.1,2:1.3.2.2  opp_train=t2 my_train=t23  | ramp t75(9, 8) t150(21, 16) t225(33, 24) t300('-', '-')
+  game 2/4 895669684: W  wood 38-32  oppbuild=1:1.1.1.1,2:2.2.2.1  opp_train=t2 my_train=t29  | ramp t75(14, 8) t150(28, 15) t225(34, 21) t300('-', '-')
+  game 3/4 895669702: W  wood 20-22  oppbuild=1:1.1.1.1,2:2.1.1.2  opp_train=t2 my_train=t19  | ramp t75(12, 6) t150(18, 18) t225('-', '-') t300('-', '-')
+    play failed (HTTP 422)
+  game 4/4: (failed)
+
+== 3/3 wins | our wood 31 | opp wood 30 ==
+   opponent builds seen: {'1:1.1.1.1,2:1.3.2.2': 1, '1:1.1.1.1,2:2.2.2.1': 1, '1:1.1.1.1,2:2.1.1.2': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/6479836/

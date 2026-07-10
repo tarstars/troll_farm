@@ -1,0 +1,31 @@
+collecting 8 DEBUG games vs agent boss → /home/tarstars/prj/troll_farm/data/boss5_games/boss
+
+    play failed (HTTP 422)
+  game 1/8: (failed)
+    play failed (HTTP 422)
+  game 2/8: (failed)
+    play failed (HTTP 422)
+  game 3/8: (failed)
+    play failed (HTTP 422)
+  game 4/8: (failed)
+    play failed (HTTP 422)
+  game 5/8: (failed)
+  game 6/8 895668975: L  wood 44-38  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t69 my_train=t89  | ramp t75(0, 0) t150(18, 2) t225(28, 12) t300(44, 38)
+    play failed (HTTP 422)
+  game 7/8: (failed)
+  game 8/8 895669057: W  wood 52-55  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t35 my_train=t51  | ramp t75(10, 8) t150(28, 22) t225(42, 40) t300(52, 55)
+
+== 1/2 wins | our wood 48 | opp wood 46 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.2.0.2': 2}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/boss/
+collecting 5 DEBUG games vs agent boss → /home/tarstars/prj/troll_farm/data/boss5_games/boss
+
+  game 1/5 895669404: W  wood 48-37  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t15 my_train=t49  | ramp t75(10, 0) t150(28, 6) t225(36, 18) t300(48, 37)
+  game 2/5 895669440: L  wood 48-56  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t55 my_train=t105  | ramp t75(0, 4) t150(18, 18) t225(32, 35) t300(48, 56)
+  game 3/5 895669468: L  wood 62-75  oppbuild=1:1.1.1.1,2:2.2.0.3  opp_train=t21 my_train=t79  | ramp t75(0, 16) t150(22, 42) t225(44, 57) t300(62, 75)
+  game 4/5 895669506: L  wood 50-62  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t2 my_train=t3  | ramp t75(16, 6) t150(28, 18) t225(40, 34) t300(50, 62)
+  game 5/5 895669547: L  wood 52-60  oppbuild=1:1.1.1.1,2:3.2.0.2  opp_train=t2 my_train=t3  | ramp t75(16, 6) t150(28, 18) t225(38, 34) t300(52, 60)
+
+== 1/5 wins | our wood 52 | opp wood 58 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.2.0.2': 3, '1:1.1.1.1,2:2.2.0.3': 1, '1:1.1.1.1,2:3.2.0.2': 1}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/boss/
