@@ -102,3 +102,22 @@ Plan (e.g. `ring: Vec<(Cell, Role)>` or two cell-sets `ripe_cells`/`cut_cells`).
   early (bananas planted near tent by ~turn 15-20, vs the current 0), (b) gatherer distant-trek
   turns DROP, (c) wood does not crater. VERSION -> "1.56.0-ringfarm". Base = current session HEAD
   (1.54.0-frontdoor, post-taskfloor-revert). Preserve champion consts. Standard freeze + trailer.
+
+## FIX-PASS backlog (post as-built arena — for v1.57)
+User + review findings on the as-built ringfarm, to fold into one tuning pass:
+- **E1 (review):** build-ring-pick(78) outranks the funding stack (58-65), delaying chopper
+  training in the opening (likely the boss 0/4). FIX: gate ring-building under !want_chopper
+  (fund the chopper first, THEN build the ring).
+- **E2 (review):** nearest-first placement fills orthogonals (d=1) before diagonals (d=2), so
+  the diagonal seed/fruit engine — the whole point — builds last. FIX: diagonal-priority
+  placement (plant keepers before cut cells).
+- **★ BANANA MANAGEMENT (user, watching as-built):** do NOT PICK from tent in advance and carry.
+  The anti-pattern seen: "take banana[tent] -> walk through ripe tree -> seed banana" (carrying a
+  tent banana PAST a free ripe one). Two valid modes only: (1) pick from tent -> plant IMMEDIATELY
+  (target ring cell adjacent; pick, step, plant — no travel holding a banana); (2) pick up
+  opportunistically ON the way (harvest a ripe banana you pass) -> then seed OR bank. FIX: the
+  build-ring-pick task fires ONLY when an empty ring cell is adjacent (immediate plant); otherwise
+  prefer harvesting a passed ripe banana over PICKing tent stock. This corrects the "aggressive
+  pick-78" design in this brief's original placement section.
+- **CUT SIZE (user open):** orthogonal cut-bananas fell at 2 (live champ value; GE_FARM_FELL=3 is
+  dead code) — user may want 3 (full wood on our own uncontested cells). Pending user call.
