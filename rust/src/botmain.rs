@@ -8,7 +8,7 @@ use std::io::{self, BufRead, Write};
 
 // ── constants ───────────────────────────────────────────────────────────────
 
-const VERSION: &str = "1.56.0-ringfarm"; // structured 8-cell tent ring: diagonals=ripe fruit/seed engine (kept standing), orthogonals=wood/cut cycle; ring built early (build-ring PICK 78) instead of foraging distant
+const VERSION: &str = "1.58.0-trainfruit"; // base = v1.56.0-ringfarm (v1.57.0-ringtune's E1/E2/FIX3 tuning was arena-reverted ~-2.4, 2026-07-10). Adds a clustered training-fruit corner (lemon/plum/apple) to the tent ring: compute_ring carves an adaptive compact quadrant (2 orthogonals + 1 diagonal, farthest-from-opponent among fully-eligible corners, graceful degradation) out of the 8-cell ring; the corner is planted as FUNDING-class work (bands 56/54, below real funding fetches but above generic foraging) with an investment guard (never spends a seed the pending hand needs this turn). The other 5 ring cells stay the v1.56 banana scheme.
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
