@@ -2700,3 +2700,26 @@ score" finding). PROPOSED FIX (pending user's shape choice): make fell valuation
 low-chop_t (soft) trees — either (a) weight chop_t much more heavily / by wood-per-chop, or (b)
 deprioritize felling high-health fruit trees for wood entirely (fell bananas; harvest fruit
 trees). Candidate = v1.60.0-softfell. Farm economy untouched (this is fell TARGETING = execution).
+
+## 2026-07-10 late — user clipboard log #2: MUTUAL-INTERFERENCE / oscillation on a water-constrained ring
+
+v1.59.0-ringfix3 vs Boss-5, water-heavy 16x8 map (shack (4,1); (4,2) south of shack is WATER so
+the 8-cell ring collapses to ~6 north-side cells). Traced: BOTH trolls oscillate hard in the
+tight ring — troll 0 = 17 cell-revisits-within-3-turns, troll 3 = 21 (of ~35 positions); for
+turns 3/9-16/21-25 BOTH trolls are within manhattan-2 of the shack, swapping positions around
+each other (t22->23 they trade (4,0)/(5,1)). Underlying work IS happening (banana inv 5->0 = ring
+planted; wood crawls to 10 by t33) but with huge movement overhead. Secondary waste: the chopper's
+first action is a ~10-turn round-trip WEST to (1,2) (toward a tanky lemon/plum) for ZERO wood,
+then back east (wrong-tree/abandonment).
+
+DIAGNOSIS: this is user observation #1 (trolls blocking each other / mutual interference),
+CONFIRMED + quantified, AMPLIFIED on constrained maps — the ring squeezes both trolls into a few
+cells and they never settle into a clean DIVISION OF LABOR (not physical same-cell blocking — the
+joint solver prevents that — but flap/reposition around each other). Two levers, both execution
+class: (a) the chopper west-waste = wrong-tree/abandonment → the FellForWood mission v1.60 (in
+build) fixes target-choice + commitment; (b) the oscillation = the unbuilt mutual-interference /
+work-division fix (observation #1). The mission-layer's explicit per-troll goals + commitment
+(spec 2026-07-10-intent-missions) should dissolve (b): if each troll commits to a distinct ring
+cell / role, they stop flapping around each other. So (b) is a natural mission-layer win once
+BuildRing becomes a committed mission — file it as a mission-layer success criterion (division of
+labor: two trolls on the ring get distinct committed cells, no oscillation).
