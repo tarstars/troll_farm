@@ -96,6 +96,24 @@ fn gatherer(id: i32, x: i32, y: i32) -> Troll {
     }
 }
 
+/// The REAL starting troll (mapgen.rs ms=1/cc=1/hp=1/chop=1 — every game starts with exactly
+/// one of these per side). Unlike `gatherer` (chop_power=0), this "hand" DOES emit chop-help
+/// (band 42/40) and anti-starvation (31/30) Wood-claim candidates — Code review Fix C2 is
+/// specifically about whether the joint matcher deconflicts THIS troll's claims against the
+/// chopper's.
+fn starter_hand(id: i32, x: i32, y: i32) -> Troll {
+    Troll {
+        id,
+        x,
+        y,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    }
+}
+
 /// A Plan with the REAL champion consts, rest hand-set — same convention as
 /// ringfix3.rs/planner_tasks.rs's `base_plan`. `ring: vec![]` (off the ring path) so this
 /// test exercises only the pieces relevant to the chopper's mission / the gatherer's legacy
@@ -351,5 +369,63 @@ fn fellmission_ring_protection_lifted_under_liquidation() {
         Some((1, 1)),
         "under liquidation the diagonal ring guard is lifted (same escape hatch the champion's \
          bands use) — the diagonal's higher raw efficiency should win"
+    );
+}
+
+// ── Code review Fix C2: assign_resolved must still see the chopper (starter deconfliction) ──
+
+#[test]
+fn fellmission_starter_deconfliction_preserved_with_real_starter_spec() {
+    missions::reset();
+    // Two eligible fell trees (fell_ok && own_half && within_roam under REAL champion consts:
+    // chop_r=5, farm_r=2, farm_fell=2, fell_size=2, opp=(13,6)):
+    //   Tree A (4,2): starter steps=2/eta=2 (ms=1), chopper steps=2/eta=1 (ms=2) — the BEST
+    //     pick for BOTH the starter's chop-help band (40) and the chopper's own fell/mission
+    //     target (band 70/efficiency).
+    //   Tree B (0,4): starter steps=4/eta=4, chopper steps=8/eta=4 — each one's clearly-worse
+    //     fallback.
+    // Because the chopper's fell value (band 70, ~6,999,997) always dominates the starter's
+    // chop-help value (band 40, ~3,999,994) for the SAME cell (claims_conflict: same-cell
+    // Wood-vs-Wood always conflicts), a joint matcher that sees BOTH trolls must award Tree A
+    // to the chopper and force the starter onto Tree B (total value 10,999,989, strictly
+    // higher than awarding A to the starter: 10,999,988). A matcher that never sees the
+    // chopper (the C2 bug: `others` excludes it from `assign_resolved`) lets the starter grab
+    // Tree A outright — a DIFFERENT assignment than ringfix3's own joint matcher would ever
+    // produce for this roster.
+    let mut st = base_state();
+    st.trees = vec![
+        tree("LEMON", 4, 2, 2, 4), // Tree A: contested — chopper's mission target
+        tree("LEMON", 0, 4, 2, 4), // Tree B: each troll's fallback
+    ];
+    let starter = starter_hand(0, 2, 2);
+    let chopper_u = chopper(1, 6, 2);
+    st.my_trolls = vec![starter.clone(), chopper_u.clone()];
+    let plan = base_plan(&st);
+
+    // planner::reset() clears the STICKY (LAST_TGT) thread-local before EACH independent
+    // measurement below — cargo test's worker threads reuse thread_locals across tests, and
+    // (more importantly) `resolve_commands` and `assign_resolved` each WRITE LAST_TGT as a
+    // side effect (render_assignments(..., update_last_target=true)); without resetting
+    // between the two calls, whichever runs SECOND gets a same-cell STICKY bonus (+6) toward
+    // whatever the FIRST call already picked — enough to hide the exact conflict this test
+    // exists to catch. Both measurements must start from the same blank slate.
+    troll_farm::botmain::planner::reset();
+    missions::reset();
+    let cmds = resolve_commands(&st, &plan, &st.my_trolls);
+
+    // Baseline: a direct, INDEPENDENT assign_resolved call over the FULL roster (chopper
+    // included, no mission override at all) — exactly ringfix3's own joint matcher. If
+    // resolve_commands truly preserves the starter's ringfix3 assignment, its result for the
+    // starter must be byte-identical to this baseline, independent of whatever the mission
+    // does to the chopper.
+    troll_farm::botmain::planner::reset();
+    let baseline = assign_resolved(&st, &plan, &st.my_trolls);
+    assert_eq!(
+        cmds[&0], baseline[&0],
+        "the starter's assignment must be exactly what a full-roster assign_resolved (chopper \
+         included, so the joint matcher deconflicts the starter's chop-help claim against the \
+         chopper's Wood claim on Tree A) would produce — excluding the chopper from \
+         assign_resolved (the C2 bug) lets the starter wrongly grab the tree the chopper's \
+         mission needs"
     );
 }

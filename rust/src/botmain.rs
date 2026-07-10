@@ -114,34 +114,46 @@ const GE_FARM_FELL: i32 = 3; // OUR farm bananas: fell at size 3 = PRODUCTION (c
 // only ever shrinks room to expand further, never a mandate to shrink below where we are).
 const GE_PRESSURE_FARM_FLOOR: usize = 4;
 
-/// v1.60.0-fellmission (Task 4): the chopper (chop_power >= 2) runs its COMMITTED
-/// FellForWood mission (`missions::chopper_target`) and is EXCLUDED from the band system
-/// entirely; every other troll still flows through the proven joint band assignment
-/// (`planner::assign_resolved`) with the exact same `others` roster it always would have
-/// gotten — the +1.7 ring economy is untouched (see
+/// v1.60.0-fellmission (Task 4; Fix C2 code review 2026-07-11): the chopper (chop_power >= 2)
+/// runs its COMMITTED FellForWood mission (`missions::chopper_target`); every other troll
+/// still flows through the proven joint band assignment (`planner::assign_resolved`) — the
+/// +1.7 ring economy is untouched (see
 /// `tests/fellmission.rs::fellmission_chopper_uses_mission_starter_unchanged`, which checks
-/// this against a direct `assign_resolved` baseline). Both command sets are then
+/// this against a direct `assign_resolved` baseline). `assign_resolved` is called over the
+/// FULL roster (chopper included, not an "others" subset that excludes it) — a chop_power>0
+/// STARTER's chop-help (band 42/40) Wood claim must be jointly deconflicted against the
+/// chopper's own fell (band 70/72) Wood claim by `select_assignments`'s `claims_conflict`,
+/// exactly as ringfix3's own bands would have; excluding the chopper from this call blinds the
+/// matcher to that claim (see
+/// `tests/fellmission.rs::fellmission_starter_deconfliction_preserved_with_real_starter_spec`).
+/// The chopper's OWN command from that call is simply overridden below with its mission
+/// command — its internal yield-pass/LAST_TGT bookkeeping ran against the (discarded) band
+/// assignment, a minor, accepted second-order effect. Both final command sets are then
 /// joint-solved TOGETHER by the R6a motion solver (`planner::move_intents` +
-/// `motion::solve_moves` + `planner::pin_landing`) over the WHOLE roster, not just the
-/// "others" subset — `assign_resolved`'s own internal solve never saw the chopper, so
-/// without this second pass the chopper's mission MOVE could collide with (or fail to
-/// yield shuffle-invariance against) everyone else's movement. NOTE: this second pass is a
-/// provable no-op whenever there's no chopper yet (pre-training: `others == my`, so the
-/// roster/goals/stationary-set are unchanged and the re-solve reproduces the first solve's
-/// result exactly); once a chopper exists, its position/movement can rarely contest the
-/// same cell an "others" troll wanted this turn — a genuine, correct spatial interaction
-/// (two trolls truly cannot occupy one cell), not a change to anyone's underlying task
-/// choice. Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`,
-/// same convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no
-/// I/O).
+/// `motion::solve_moves` + `planner::pin_landing`) over the WHOLE roster — `assign_resolved`'s
+/// own internal solve ran with the chopper's now-overridden band command, so without this
+/// second pass the chopper's mission MOVE could collide with (or fail to yield
+/// shuffle-invariance against) everyone else's movement. NOTE: this second pass is a provable
+/// no-op whenever there's no chopper yet (pre-training: the mission override never fires, so
+/// cmd_by_id is exactly assign_resolved's own output and the re-solve reproduces its internal
+/// solve's result exactly); once a chopper exists, its position/movement can rarely contest
+/// the same cell another troll wanted this turn — a genuine, correct spatial interaction (two
+/// trolls truly cannot occupy one cell), not a change to anyone's underlying task choice.
+/// Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`, same
+/// convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no I/O).
 pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> HashMap<i32, String> {
     let chopper_id = my.iter().find(|t| t.chop_power >= 2).map(|t| t.id);
-    let others: Vec<Troll> = my
-        .iter()
-        .filter(|t| Some(t.id) != chopper_id)
-        .cloned()
-        .collect();
-    let mut cmd_by_id = planner::assign_resolved(state, plan, &others);
+    // Fix C2 (code review): pass the FULL roster (chopper included) into assign_resolved, not
+    // just the "others" subset. The joint matcher's cross-troll `claims_conflict` is how
+    // ringfix3 deconflicts a chop_power>0 STARTER's chop-help (band 42/40) Wood claim against
+    // the chopper's own fell (band 70/72) Wood claim on the SAME tree — dropping the chopper
+    // from this call blinds the matcher to that claim entirely, so the starter's assignment
+    // could silently diverge from what ringfix3 would ever have produced (it might grab a tree
+    // the chopper's mission needs). The chopper's OWN assigned command from this call is
+    // irrelevant and gets overridden by its mission command below; assign_resolved's internal
+    // yield-pass/LAST_TGT bookkeeping runs against that (discarded) band assignment, a minor,
+    // accepted second-order effect (see data/candidates/v1.60.0-fellmission/report.md).
+    let mut cmd_by_id = planner::assign_resolved(state, plan, my);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
         let target = missions::chopper_target(state, plan, u);
