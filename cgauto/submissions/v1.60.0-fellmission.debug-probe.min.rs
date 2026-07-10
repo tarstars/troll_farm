@@ -2119,23 +2119,30 @@ pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> Ha
     let mut cmd_by_id = planner::assign_resolved(state, plan, my);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let target = missions::chopper_target(state, plan, u);
-        let cmd = match target {
-            Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
-            Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),
-            None => format!("WAIT {}", cid),
-        };
-        if DEBUG {
-            let chops_left = target
-                .and_then(|tc| state.trees.iter().find(|t| t.pos() == tc))
-                .map(|t| (t.health + u.chop_power.max(1) - 1) / u.chop_power.max(1))
-                .unwrap_or(-1);
-            eprintln!(
-                "@TFMISSION t={} id={} kind=FellForWood target={:?} chops={}",
-                state.turn, cid, target, chops_left
-            );
+        let band_cmd = cmd_by_id.get(&cid).cloned().unwrap_or_default();
+        let band_wants_bank =
+            u.free_capacity() == 0 || plan.liquidation || band_cmd.starts_with("DROP ");
+        if !band_wants_bank {
+            let target = missions::chopper_target(state, plan, u);
+            if DEBUG {
+                let chops_left = target
+                    .and_then(|tc| state.trees.iter().find(|t| t.pos() == tc))
+                    .map(|t| (t.health + u.chop_power.max(1) - 1) / u.chop_power.max(1))
+                    .unwrap_or(-1);
+                eprintln!(
+                    "@TFMISSION t={} id={} kind=FellForWood target={:?} chops={}",
+                    state.turn, cid, target, chops_left
+                );
+            }
+            if let Some(tc) = target {
+                let cmd = if tc == u.pos() {
+                    format!("CHOP {}", cid)
+                } else {
+                    format!("MOVE {} {} {}", cid, tc.0, tc.1)
+                };
+                cmd_by_id.insert(cid, cmd);
+            }
         }
-        cmd_by_id.insert(cid, cmd);
     }
     let intents = planner::move_intents(&cmd_by_id);
     let landing = motion::solve_moves(state, my, &intents);

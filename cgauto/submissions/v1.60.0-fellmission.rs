@@ -3052,27 +3052,76 @@ pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> Ha
     let mut cmd_by_id = planner::assign_resolved(state, plan, my);
     if let Some(cid) = chopper_id {
         let u = my.iter().find(|t| t.id == cid).unwrap();
-        let target = missions::chopper_target(state, plan, u);
-        let cmd = match target {
-            Some(tc) if tc == u.pos() => format!("CHOP {}", cid),
-            Some(tc) => format!("MOVE {} {} {}", cid, tc.0, tc.1),
-            None => format!("WAIT {}", cid), // no reachable/non-doomed tree this turn
-        };
-        if DEBUG {
-            // @TFMISSION: the readable-decision payoff (design doc "Interface +
-            // debuggability") — every chopper turn's intent as one line: its committed
-            // target cell and how many more chops it needs there (ceil(health/chop_power)),
-            // or chops=-1 when no reachable/non-doomed tree exists (the WAIT case).
-            let chops_left = target
-                .and_then(|tc| state.trees.iter().find(|t| t.pos() == tc))
-                .map(|t| (t.health + u.chop_power.max(1) - 1) / u.chop_power.max(1))
-                .unwrap_or(-1);
-            eprintln!(
-                "@TFMISSION t={} id={} kind=FellForWood target={:?} chops={}",
-                state.turn, cid, target, chops_left
-            );
+        // Fix C3 (2026-07-11, code review — banking crater): the mission ONLY knows how to
+        // fell (CHOP/MOVE-toward-tree); it has no concept of banking. Unconditionally
+        // overriding the chopper's `assign_resolved` command with the mission command (as
+        // before this fix) therefore discarded the band system's OWN bank decisions
+        // outright — a full chopper's band-80 DROP, or an endgame chopper's band-95
+        // MOVE-toward-camp — replacing them with "go fell the next tree" every single turn.
+        // Felled wood then piled up in the chopper's carry forever and was never banked
+        // (boss-gate measurement: banked wood == 0 across all 6 games, vs champion
+        // ringfix3's ~48; see data/candidates/v1.60.0-fellmission/report.md "Fix:
+        // banking-crater").
+        //
+        // `band_wants_bank` detects "the band's OWN pick for this troll is a bank/endgame
+        // action" from `assign_resolved`'s already-rendered command, without needing
+        // `Kind`/`Cand` visibility outside planner.rs:
+        //   * `u.free_capacity() == 0` is a PROVABLY EXACT detector by itself: `candidates()`
+        //     always offers band 80 ("full -> bank", 80*BAND) whenever free_capacity()==0,
+        //     and 80*BAND outranks every fell candidate a chopper can have (<=72*BAND plus
+        //     small offsets, BAND=100_000) — so `assign_resolved`'s pick for a full chopper
+        //     is always that Bank candidate.
+        //   * `plan.liquidation` (turns_rem <= GE_LIQ_T) defers for the chopper's WHOLE
+        //     endgame tail, a strictly safe superset of the exact turn band 95 fires (which
+        //     needs `d_home`, not available here): whenever band 95 hasn't fired yet inside
+        //     liquidation, `assign_resolved`'s own bands 70/72/30/31 still fell trees, so
+        //     this only forgoes the mission's wood-efficiency tree PICK for this short
+        //     (~11%-of-the-game) tail, never a bank action for a fell action.
+        //   * a rendered `"DROP "` command is an unambiguous tell on its own (only
+        //     `Kind::Bank`'s `motion::bank_cmd` ever emits one) — kept as a belt-and-braces
+        //     guard in case the two conditions above are ever refactored independently.
+        // Tests: tests/fellmission.rs::fellmission_full_chopper_banks_not_fells (free_capacity
+        // disjunct) and ::fellmission_endgame_banks_partial_load (liquidation disjunct,
+        // deliberately isolated from the other two).
+        let band_cmd = cmd_by_id.get(&cid).cloned().unwrap_or_default();
+        let band_wants_bank =
+            u.free_capacity() == 0 || plan.liquidation || band_cmd.starts_with("DROP ");
+        // Deliberately short-circuits BEFORE calling `missions::chopper_target` whenever
+        // `band_wants_bank`: the mission's COMMITTED thread-local must NOT be touched while
+        // banking, so the SAME commitment persists across a banking trip and the chopper
+        // re-fells the same tree afterward (no wasted re-plan) — see
+        // `missions::chopper_target`'s doc comment.
+        if !band_wants_bank {
+            let target = missions::chopper_target(state, plan, u);
+            if DEBUG {
+                // @TFMISSION: the readable-decision payoff (design doc "Interface +
+                // debuggability") — every chopper turn's intent as one line: its committed
+                // target cell and how many more chops it needs there (ceil(health/chop_power)),
+                // or chops=-1 when no reachable/non-doomed tree exists (the fallback-to-band
+                // case below).
+                let chops_left = target
+                    .and_then(|tc| state.trees.iter().find(|t| t.pos() == tc))
+                    .map(|t| (t.health + u.chop_power.max(1) - 1) / u.chop_power.max(1))
+                    .unwrap_or(-1);
+                eprintln!(
+                    "@TFMISSION t={} id={} kind=FellForWood target={:?} chops={}",
+                    state.turn, cid, target, chops_left
+                );
+            }
+            if let Some(tc) = target {
+                let cmd = if tc == u.pos() {
+                    format!("CHOP {}", cid)
+                } else {
+                    format!("MOVE {} {} {}", cid, tc.0, tc.1)
+                };
+                cmd_by_id.insert(cid, cmd);
+            }
+            // else: no reachable/non-doomed eligible tree this turn — defer to the band's
+            // own fallback (band 30/31 anti-starvation fell-anything, or band 10 park),
+            // strictly no worse than the mission's own former hard-coded WAIT.
         }
-        cmd_by_id.insert(cid, cmd);
+        // else: band_wants_bank — keep assign_resolved's own command (DROP / MOVE-to-camp /
+        // endgame bank) exactly as computed above; this is the fix for the banking crater.
     }
     // joint move solve over ALL intents (chopper + others) — keeps shuffle-invariant motion
     let intents = planner::move_intents(&cmd_by_id);
