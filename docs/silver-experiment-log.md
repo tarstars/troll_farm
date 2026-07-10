@@ -2570,3 +2570,16 @@ ACTION: api_submit.py default → v1.56.0-ringfarm (new live leader / revert tar
 +1.7 position). ringfarm stays live. v1.57-ringtune (fixes E1/E2 + banana no-carry) and
 v1.58-trainfruit (training-fruit corner) will build ON it to push further. Goal gate (≤99) did
 NOT fire (117), but this is the closest a stable bot has been in days.
+
+## 2026-07-10 — ★ v1.56.0-ringfarm vs REAL Boss 5: 2W/9L (~18%) — first wins for the 2-troll lineage
+
+User watched ringfarm vs Boss 5 and saw occasional wins. Measured: 12 real Boss-5 games
+(playType BOSS), **2W / 9L (~18%)** — win gameIds 895636236, 895636255. Context: the recent
+2-troll champion (decide_elite/yield lineage) was 0-for-32 vs Boss 5; the all-time best was
+v1.13.0-tightfarm at 4/14 (29%). So ringfarm (DETUNED) already matches the historical best
+neighborhood, from a 0-fer baseline. Coherent with the +1.7 arena result: the early-farm
+economy is finally competitive with the boss's late engine. Caveats: n=11 (true rate ~10-35%),
+Boss 5 starts are RANDOM (high variance). Boss 5 is the LEGEND gate (parked in favor of rank
+≤99), but this reopens it as reachable. v1.57 (tuning) + v1.58 (training-fruit -> heavier
+trolls + more wood = exactly what beats Boss 5) should push the rate higher. The 2 win replays
+are worth decoding for the winning shape (useful for etudes + further pushes).
