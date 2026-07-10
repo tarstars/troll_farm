@@ -171,6 +171,42 @@ fn claims_conflict(a: ClaimInfo, b: ClaimInfo) -> bool {
     }
 }
 
+// v1.36.0-race (user replay finding): a tree an enemy is already chopping is a RACE. If
+// they fell it before we arrive, walking there donates the travel (skip). If we can arrive
+// in time, the wood SPLITS round-robin among cell-sharers (engine apply_chop) — join, but
+// discount the value by the shared payoff. Pure function of `state` (no per-troll mutable
+// state), so shuffle invariance holds; called once per candidate, covers every fell-type
+// push (bands 72/70, 42/40, 31/30) via this one helper.
+// v1.60.0-fellmission (Task 1): extracted from the `candidates()`-local closure verbatim
+// into a reusable `pub(crate) fn` — the closure only ever read `state`, so this is a pure
+// extraction (no behavior change); consumed by `candidates()` below AND by
+// `missions::fell_target`/`chopper_target` (the chopper's committed FellForWood target
+// must skip the same doomed/race-losing trees the band system already avoided).
+pub(crate) fn race(state: &State, pc: Cell, our_eta: i64) -> Option<i64> {
+    // returns None = doomed (skip candidate); Some(penalty) = value adjustment
+    let occupant = state
+        .opp_trolls
+        .iter()
+        .find(|e| e.pos() == pc && e.chop_power > 0);
+    match occupant {
+        None => Some(0),
+        Some(e) => {
+            let h = state
+                .trees
+                .iter()
+                .find(|p| p.pos() == pc)
+                .map(|p| p.health)
+                .unwrap_or(0) as i64;
+            let their_turns = (h + e.chop_power as i64 - 1) / e.chop_power.max(1) as i64;
+            if their_turns <= our_eta {
+                None // they finish first: doomed
+            } else {
+                Some(RACE_SHARE_PEN) // joinable: shared wood, mild discount
+            }
+        }
+    }
+}
+
 /// candidates for one troll — a faithful transcription of the jobs.rs cascade into bands.
 #[allow(clippy::too_many_lines)]
 fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) -> Vec<Cand> {
@@ -254,36 +290,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 .get(&p.pos())
                 .map_or(false, |&fd| fd <= plan.chop_r)
     };
-    // v1.36.0-race (user replay finding): a tree an enemy is already chopping is a RACE.
-    // If they fell it before we arrive, walking there donates the travel (skip). If we can
-    // arrive in time, the wood SPLITS round-robin among cell-sharers (engine apply_chop) —
-    // join, but discount the value by the shared payoff. Pure function of `state` (no
-    // per-troll mutable state), so shuffle invariance holds; called once per candidate,
-    // covers every fell-type push (bands 72/70, 42/40, 31/30) via this one helper.
-    let race = |pc: Cell, our_eta: i64| -> Option<i64> {
-        // returns None = doomed (skip candidate); Some(penalty) = value adjustment
-        let occupant = state
-            .opp_trolls
-            .iter()
-            .find(|e| e.pos() == pc && e.chop_power > 0);
-        match occupant {
-            None => Some(0),
-            Some(e) => {
-                let h = state
-                    .trees
-                    .iter()
-                    .find(|p| p.pos() == pc)
-                    .map(|p| p.health)
-                    .unwrap_or(0) as i64;
-                let their_turns = (h + e.chop_power as i64 - 1) / e.chop_power.max(1) as i64;
-                if their_turns <= our_eta {
-                    None // they finish first: doomed
-                } else {
-                    Some(RACE_SHARE_PEN) // joinable: shared wood, mild discount
-                }
-            }
-        }
-    };
+    // v1.60.0-fellmission (Task 1): `race` is now the module-level `pub(crate) fn race`
+    // above (extracted verbatim from this closure) — call sites below pass `state`
+    // explicitly.
     // v1.53.0-pressurefarm (Task 2 Step 3): see PRESSURE_LIQ_BONUS's doc comment above.
     //
     // Code review I1 (2026-07-09): `race_pen` must gate this too. PRESSURE_LIQ_BONUS (4) >
@@ -423,7 +432,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
-            let race_pen = match race(pc, steps) {
+            let race_pen = match race(state, pc, steps) {
                 None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                 Some(pen) => pen,
             };
@@ -457,7 +466,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             }
             let steps = eta(&d, pc, ms);
             let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
-            let race_pen = match race(pc, steps) {
+            let race_pen = match race(state, pc, steps) {
                 None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                 Some(pen) => pen,
             };
@@ -742,7 +751,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 }
                 let steps = eta(&d, pc, ms);
                 let chop_t = ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
-                let race_pen = match race(pc, steps) {
+                let race_pen = match race(state, pc, steps) {
                     None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                     Some(pen) => pen,
                 };
@@ -773,7 +782,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                     let steps = eta(&d, pc, ms);
                     let chop_t =
                         ((p.health + u.chop_power.max(1) - 1) / u.chop_power.max(1)) as i64;
-                    let race_pen = match race(pc, steps) {
+                    let race_pen = match race(state, pc, steps) {
                         None => continue, // doomed: they fell it before we arrive — skip, don't donate the travel
                         Some(pen) => pen,
                     };
@@ -823,7 +832,7 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 // doomed"; a same-cell Harvest (steps=0) is never doomed in practice (their_turns
                 // is 0 only if the tree's health is already 0, which cannot coexist with the
                 // `p.fruits > 0` filter above), so this uniform pre-branch check costs it nothing.
-                if race(pc, steps).is_none() {
+                if race(state, pc, steps).is_none() {
                     continue; // doomed: they fell it before we arrive — skip, don't donate the travel
                 }
                 if pc == u.pos() {
