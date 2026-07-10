@@ -117,15 +117,23 @@ const GE_PRESSURE_FARM_FLOOR: usize = 4;
 /// v1.60.0-fellmission (Task 4): the chopper (chop_power >= 2) runs its COMMITTED
 /// FellForWood mission (`missions::chopper_target`) and is EXCLUDED from the band system
 /// entirely; every other troll still flows through the proven joint band assignment
-/// (`planner::assign_resolved`) — the +1.7 ring economy is untouched (a gate gap check
-/// confirms this: `assign_resolved` sees the exact same `others` roster either way). Both
-/// command sets are then joint-solved TOGETHER by the R6a motion solver
-/// (`planner::move_intents` + `motion::solve_moves` + `planner::pin_landing`) over the
-/// WHOLE roster, not just the "others" subset — `assign_resolved`'s own internal solve
-/// never saw the chopper, so without this second pass the chopper's mission MOVE could
-/// collide with (or fail to yield shuffle-invariance against) everyone else's movement.
-/// Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`, same
-/// convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no I/O).
+/// (`planner::assign_resolved`) with the exact same `others` roster it always would have
+/// gotten — the +1.7 ring economy is untouched (see
+/// `tests/fellmission.rs::fellmission_chopper_uses_mission_starter_unchanged`, which checks
+/// this against a direct `assign_resolved` baseline). Both command sets are then
+/// joint-solved TOGETHER by the R6a motion solver (`planner::move_intents` +
+/// `motion::solve_moves` + `planner::pin_landing`) over the WHOLE roster, not just the
+/// "others" subset — `assign_resolved`'s own internal solve never saw the chopper, so
+/// without this second pass the chopper's mission MOVE could collide with (or fail to
+/// yield shuffle-invariance against) everyone else's movement. NOTE: this second pass is a
+/// provable no-op whenever there's no chopper yet (pre-training: `others == my`, so the
+/// roster/goals/stationary-set are unchanged and the re-solve reproduces the first solve's
+/// result exactly); once a chopper exists, its position/movement can rarely contest the
+/// same cell an "others" troll wanted this turn — a genuine, correct spatial interaction
+/// (two trolls truly cannot occupy one cell), not a change to anyone's underlying task
+/// choice. Plain `pub` (not private): a direct test seam for `rust/tests/fellmission.rs`,
+/// same convention as `tactics::plan_with_meta` (a pure function of `(state, plan, my)`, no
+/// I/O).
 pub fn resolve_commands(state: &State, plan: &tactics::Plan, my: &[Troll]) -> HashMap<i32, String> {
     let chopper_id = my.iter().find(|t| t.chop_power >= 2).map(|t| t.id);
     let others: Vec<Troll> = my
