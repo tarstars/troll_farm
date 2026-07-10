@@ -210,12 +210,28 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         .filter(|(_, r)| *r == RingRole::Diagonal)
         .map(|(c, _)| *c)
         .collect();
+    // v1.58.0-trainfruit: the up-to-3 training-corner cells (TrainLemon/TrainPlum/
+    // TrainApple) are ALSO kept standing — same protection as the diagonal banana cells,
+    // just a separate set (a different tree TYPE, so `fell_ok`'s farm_banana branch below
+    // would otherwise treat a grown PLUM/LEMON/APPLE tree here as a plain size>=2 NATIVE
+    // fell target once it reached fell_size, destroying the investment). Same exceptions
+    // apply: released only in liquidation or under an active raid.
+    let train_ring: HashSet<Cell> = plan
+        .ring
+        .iter()
+        .filter(|(_, r)| r.train_fruit().is_some())
+        .map(|(c, _)| *c)
+        .collect();
 
     let fell_ok = |p: &Tree| -> bool {
         // v1.56.0-ringfarm: keep the diagonal ripe/seed engine STANDING — never a fell
         // candidate except the endgame (plan.liquidation) or an active raid (plan.raid).
         // Orthogonal ring cells are NOT here, so they stay fellable as farm bananas below.
         if diag_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
+            return false;
+        }
+        // v1.58.0-trainfruit: same protection, same exceptions, for the training corner.
+        if train_ring.contains(&p.pos()) && !plan.liquidation && !plan.raid {
             return false;
         }
         // v1.53.0-pressurefarm (Task 2 Step 2): a protected seed tree stays protected UNLESS
@@ -337,30 +353,63 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
     // so the legacy pick/plant/nopickloop/nanaflow tests keep their exact old semantics.
     // `ring_active` also raises the build-ring PICK bands (78/77) in the printer section below.
     let ring_active = !plan.ring.is_empty();
+    // v1.58.0-trainfruit: the banana plant_cell chooser must never target a training-corner
+    // cell (TrainLemon/TrainPlum/TrainApple) -- those are a different fruit's dedicated slot,
+    // planted/picked by the separate training-fruit logic further down. Collected once so
+    // both the priority pick and the reviewer-fix fallback below share the same candidate set.
+    let banana_ring_candidates: Vec<(Cell, RingRole)> = plan
+        .ring
+        .iter()
+        .copied()
+        .filter(|(_, role)| matches!(role, RingRole::Diagonal | RingRole::Orthogonal))
+        .filter(|(c, _)| d.contains_key(c)) // reachable from this troll
+        .filter(|(c, _)| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
+        .filter(|(c, _)| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
+        .collect();
+    // v1.57.0-ringtune FIX2 (E2, code review): DIAGONAL-PRIORITY placement. role_rank
+    // 0 = Diagonal, 1 = Orthogonal, so an empty diagonal is always chosen before an
+    // empty orthogonal; the nearest wins only WITHIN a role (canonical tie_mix tie-
+    // break, unchanged). The diagonals are the ripe fruit/seed engine — the scheme's
+    // whole point — but pre-fix the nearest-only key filled all four map-dist-1
+    // orthogonals (and refilled cut orthogonals) before ever touching a map-dist-2
+    // (tent-impassable) diagonal, so the seed engine built last. Determinism unchanged:
+    // role_rank is a pure function of the cell's tagged role; ties still fall to
+    // (d, tie_mix), no HashSet/HashMap iteration order participates.
+    let role_rank = |role: &RingRole| match role {
+        RingRole::Diagonal => 0,
+        RingRole::Orthogonal => 1,
+        RingRole::TrainLemon | RingRole::TrainPlum | RingRole::TrainApple => 2, // unreachable: filtered out above
+    };
+    let priority_pick: Option<(Cell, RingRole)> = banana_ring_candidates
+        .iter()
+        .copied()
+        .min_by_key(|(c, role)| (role_rank(role), d[c], tie_mix(*c, salt)));
     let plant_cell: Option<Cell> = if ring_active {
-        plan.ring
-            .iter()
-            .copied()
-            .filter(|(c, _)| d.contains_key(c)) // reachable from this troll
-            .filter(|(c, _)| !state.trees.iter().any(|p| p.pos() == *c)) // empty ring cell
-            .filter(|(c, _)| !my.iter().any(|o| o.id != u.id && o.pos() == *c)) // not blocked by a teammate
-            // v1.57.0-ringtune FIX2 (E2, code review): DIAGONAL-PRIORITY placement. role_rank
-            // 0 = Diagonal, 1 = Orthogonal, so an empty diagonal is always chosen before an
-            // empty orthogonal; the nearest wins only WITHIN a role (canonical tie_mix tie-
-            // break, unchanged). The diagonals are the ripe fruit/seed engine — the scheme's
-            // whole point — but pre-fix the nearest-only key filled all four map-dist-1
-            // orthogonals (and refilled cut orthogonals) before ever touching a map-dist-2
-            // (tent-impassable) diagonal, so the seed engine built last. Determinism unchanged:
-            // role_rank is a pure function of the cell's tagged role; ties still fall to
-            // (d, tie_mix), no HashSet/HashMap iteration order participates.
-            .min_by_key(|(c, role)| {
-                let role_rank = match role {
-                    RingRole::Diagonal => 0,
-                    RingRole::Orthogonal => 1,
-                };
-                (role_rank, d[c], tie_mix(*c, salt))
-            })
-            .map(|(c, _)| c)
+        match priority_pick {
+            Some((pc, _)) if d[&pc] > RING_PICK_STEPS => {
+                // v1.58.0-trainfruit reviewer fix (FIX2 x FIX3(i), deferred from v1.57): the
+                // diagonal-priority pick above can be a FAR diagonal while a NEARER empty ring
+                // cell of EITHER role sits right next to the troll -- role_rank is compared
+                // BEFORE distance, so a far diagonal always won even when an immediate
+                // orthogonal (or even the troll's own cell) was sitting empty right there. That
+                // starved FIX3(i)'s immediacy gate below (plant_cell not immediate -> no PICK
+                // at all) even though ring progress was one step away. Fix: when the priority
+                // pick is not immediate, fall back to the nearest IMMEDIATE cell of either role
+                // (diagonal-priority still applies AMONG the immediate cells) -- this guarantees
+                // ring progress whenever the troll stands near ANY empty cell. If no immediate
+                // alternative exists, keep the original (far) pick unchanged -- FIX3(i) already
+                // handles that case correctly (no PICK, no carry-in-advance).
+                banana_ring_candidates
+                    .iter()
+                    .copied()
+                    .filter(|(c, _)| d[c] <= RING_PICK_STEPS)
+                    .min_by_key(|(c, role)| (role_rank(role), d[c], tie_mix(*c, salt)))
+                    .map(|(c, _)| c)
+                    .or(Some(pc))
+            }
+            Some((pc, _)) => Some(pc),
+            None => None,
+        }
     } else if plan.base_trees < plan.farm_cap {
         state
             .walkable

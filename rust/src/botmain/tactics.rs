@@ -25,10 +25,46 @@ pub enum Phase {
 /// `Plan::raid`). ORTHOGONAL cells (the shack's four ortho-neighbors) are the wood/cut cycle:
 /// felled at `farm_fell`, replanted -- the chopper already stands there to bank, so cutting
 /// them costs zero extra travel.
+///
+/// v1.58.0-trainfruit (user's training-fruit corner): up to 3 of the 8 ring cells are
+/// carved out as a compact TRAINING CORNER -- one each of TrainLemon/TrainPlum/TrainApple,
+/// chosen adaptively by `compute_ring` (see its corner-selection doc comment below). These
+/// cells are KEPT STANDING (never a banana plant_cell target, never felled for wood -- see
+/// planner.rs's fell_ok training-corner protection) and harvested for training fuel: their
+/// fruit funds TRAIN's cost vector exactly like any other PLUM/LEMON/APPLE source (the
+/// existing funding/harvest bands already treat any tree generically by `ge_fruit_ty`, so
+/// no new harvest logic is needed -- only the PLANT/PICK side is new, see planner.rs).
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum RingRole {
     Diagonal,
     Orthogonal,
+    TrainLemon,
+    TrainPlum,
+    TrainApple,
+}
+
+impl RingRole {
+    /// The PLANT/PICK item-type string for a training-corner role; `None` for the two
+    /// banana roles (Diagonal/Orthogonal never override the fruit type -- planner.rs's
+    /// banana plant_cell chooser handles those, unchanged).
+    pub fn train_fruit(self) -> Option<&'static str> {
+        match self {
+            RingRole::TrainLemon => Some("LEMON"),
+            RingRole::TrainPlum => Some("PLUM"),
+            RingRole::TrainApple => Some("APPLE"),
+            RingRole::Diagonal | RingRole::Orthogonal => None,
+        }
+    }
+
+    /// The `state::{PLUM,LEMON,APPLE}` inventory/carry index for a training role.
+    pub fn train_idx(self) -> Option<usize> {
+        match self {
+            RingRole::TrainLemon => Some(LEMON),
+            RingRole::TrainPlum => Some(PLUM),
+            RingRole::TrainApple => Some(APPLE),
+            RingRole::Diagonal | RingRole::Orthogonal => None,
+        }
+    }
 }
 
 /// Scale meta: hoard (no felling, bank the wallet) until T_SWITCH, then the factory.
@@ -232,22 +268,64 @@ pub fn farm_eligible(
 /// so walls between the enemy and the shack correctly de-escalate.
 pub const RING_RAID_R: i32 = 4;
 
+/// v1.58.0-trainfruit: the 4 candidate training-corner quadrants, fixed canonical order
+/// (NE, SE, SW, NW). Each quadrant is 2 orthogonals + the 1 diagonal between them, offsets
+/// relative to the shack, with a FIXED per-cell fruit assignment -- the user's own NE
+/// example (`(0,-1)=lemon, (1,-1)=plum, (1,0)=apple`) rotated 90 degrees per quadrant
+/// (first ortho in rotational order = LEMON, the diagonal = PLUM, second ortho = APPLE).
+/// "The exact cell-to-fruit mapping doesn't matter much" (brief) -- this just fixes ONE
+/// canonical choice so the result never depends on iteration order.
+const TRAIN_QUADRANTS: [[(i32, i32, &str); 3]; 4] = [
+    [(0, -1, "LEMON"), (1, -1, "PLUM"), (1, 0, "APPLE")], // NE
+    [(1, 0, "LEMON"), (1, 1, "PLUM"), (0, 1, "APPLE")],   // SE
+    [(0, 1, "LEMON"), (-1, 1, "PLUM"), (-1, 0, "APPLE")], // SW
+    [(-1, 0, "LEMON"), (-1, -1, "PLUM"), (0, -1, "APPLE")], // NW
+];
+
+fn train_role(fruit: &str) -> RingRole {
+    match fruit {
+        "LEMON" => RingRole::TrainLemon,
+        "PLUM" => RingRole::TrainPlum,
+        "APPLE" => RingRole::TrainApple,
+        _ => unreachable!("TRAIN_QUADRANTS only ever names LEMON/PLUM/APPLE"),
+    }
+}
+
 /// The 8-cell tent ring: the Chebyshev-1 cells around `shack`, filtered to walkable +
 /// reachable-from-the-shack + `farm_eligible` (so on a chokepoint map only the front-door
 /// side counts — composes with v1.54.0-frontdoor), each tagged with its role. DIAGONAL =
 /// `|dx|==1 && |dy|==1` (the ripe fruit/seed engine); ORTHOGONAL = the shack's ortho-
 /// neighbours (the wood/cut cycle).
 ///
-/// Determinism: candidate cells are generated in a fixed (dy, dx) nested order and the result
-/// is explicitly sorted by cell before returning, so no HashSet/HashMap iteration order can
-/// leak into the ring (this codebase was burned by exactly that class of bug — see
-/// state.rs's tie_salt/tie_mix and compute_door's determinism note).
+/// v1.58.0-trainfruit (user's training-fruit corner): AFTER the base 8-cell ring is
+/// computed, up to 3 of those cells are retagged into a compact TRAINING CORNER (one each
+/// of TrainLemon/TrainPlum/TrainApple) -- a compact quadrant of 2 orthogonals + the 1
+/// diagonal between them (`TRAIN_QUADRANTS`). Adaptive selection: among the 4 candidate
+/// quadrants, prefer the one with the MOST cells already present in the eligible ring (so a
+/// blocked/unreachable cell never gets silently substituted for -- "degrade gracefully:
+/// place as many training trees as there are compact eligible cells, never on a far cell");
+/// ties broken by farthest total BFS distance from the opponent shack (`opp_d`, reusing the
+/// v1.54.0-frontdoor "farthest from enemy" idea -- our crops should be the enemy's longest
+/// walk), then by the quadrant's fixed canonical index (NE/SE/SW/NW). A quadrant with ZERO
+/// eligible cells is not a candidate at all (no training corner if the ring itself is too
+/// sparse). Only the cells that ARE present in the winning quadrant get retagged; a missing
+/// cell simply has no training tree this game (its slot's fruit type is skipped, not
+/// reassigned elsewhere). The other 5 (or more, in a degraded case) ring cells stay
+/// Diagonal/Orthogonal (the v1.56/57 banana scheme), unchanged.
+///
+/// Determinism: candidate cells are generated in a fixed (dy, dx) nested order and the base
+/// result is explicitly sorted by cell before the corner retag (which mutates roles
+/// in-place, so the cell ordering is untouched); the quadrant search is a fixed-size
+/// (4-element) array scan, never a HashSet/HashMap iteration — this codebase was burned by
+/// exactly that class of bug (see state.rs's tie_salt/tie_mix and compute_door's
+/// determinism note).
 pub fn compute_ring(
     walkable: &HashSet<Cell>,
     farm_d: &HashMap<Cell, i32>,
     door_d: &Option<HashMap<Cell, i32>>,
     shack: Cell,
     farm_r: i32,
+    opp_d: &HashMap<Cell, i32>,
 ) -> Vec<(Cell, RingRole)> {
     let (sx, sy) = shack;
     let mut out: Vec<(Cell, RingRole)> = Vec::new();
@@ -275,6 +353,38 @@ pub fn compute_ring(
         }
     }
     out.sort_by_key(|(c, _)| *c);
+
+    // ── TRAINING CORNER (v1.58.0-trainfruit) ────────────────────────────────
+    let eligible: HashSet<Cell> = out.iter().map(|(c, _)| *c).collect();
+    // (-count, -dist_sum, quadrant_index): ascending sort picks the smallest tuple, i.e.
+    // the MOST eligible cells, then the FARTHEST total opp distance, then the lowest
+    // (most-canonical) quadrant index.
+    let mut scored: Vec<(i32, i32, usize)> = Vec::new();
+    for (qi, quad) in TRAIN_QUADRANTS.iter().enumerate() {
+        let mut count = 0i32;
+        let mut dist_sum = 0i32;
+        for (dx, dy, _fruit) in quad.iter() {
+            let cell = (sx + dx, sy + dy);
+            if eligible.contains(&cell) {
+                count += 1;
+                dist_sum += opp_d.get(&cell).copied().unwrap_or(0);
+            }
+        }
+        if count == 0 {
+            continue; // not a candidate: this quadrant has nothing to build on
+        }
+        scored.push((-count, -dist_sum, qi));
+    }
+    scored.sort();
+    if let Some(&(_, _, qi)) = scored.first() {
+        for (dx, dy, fruit) in TRAIN_QUADRANTS[qi].iter() {
+            let cell = (sx + dx, sy + dy);
+            if let Some(entry) = out.iter_mut().find(|(c, _)| *c == cell) {
+                entry.1 = train_role(fruit);
+            }
+        }
+    }
+
     out
 }
 
@@ -431,7 +541,11 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
     // Placement/fell/harvest in planner.rs consume it. `raid` = any opponent troll within
     // RING_RAID_R BFS map-distance of the shack (farm_d is the shack-seeded BFS; an
     // unreachable/walled-off enemy is never a raid).
-    let ring = compute_ring(&state.walkable, &farm_d, &door_d, shack, farm_r);
+    // v1.58.0-trainfruit: BFS from the opponent shack, for compute_ring's training-corner
+    // "farthest from the enemy" tie-break (mirrors compute_door's own opp_d, computed
+    // separately there since it's private to that function).
+    let opp_d_ring = bfs_distances(&state.walkable, &[opp]);
+    let ring = compute_ring(&state.walkable, &farm_d, &door_d, shack, farm_r, &opp_d_ring);
     let raid = state
         .opp_trolls
         .iter()

@@ -67,7 +67,8 @@ fn base_state() -> State {
 /// they need to exercise.
 fn base_plan(st: &State) -> Plan {
     let farm_d = bfs_distances(&st.walkable, &[st.my_shack]);
-    let ring = compute_ring(&st.walkable, &farm_d, &None, st.my_shack, 2);
+    let opp_d = bfs_distances(&st.walkable, &[st.opp_shack]);
+    let ring = compute_ring(&st.walkable, &farm_d, &None, st.my_shack, 2, &opp_d);
     Plan {
         shack: st.my_shack,
         farm_d,
@@ -205,26 +206,39 @@ fn ringtune_fund_chopper_before_ring() {
 // ── FIX2 (E2): diagonal-priority placement ─────────────────────────────────────────────────
 #[test]
 fn ringtune_diagonal_planted_first() {
+    // v1.58.0-trainfruit ADJUSTED this fixture (documented reason, per the brief): on this
+    // exact open-room/shack/opp geometry, compute_ring's new training-corner carve-out now
+    // claims the SW quadrant -- (3,3)=TrainLemon, (2,3)=TrainPlum, (2,2)=TrainApple (all 3
+    // fully eligible, farthest total BFS distance from opp_shack (7,2) among the 4
+    // candidate quadrants -- see the trainfruit_corner_is_compact test for the standalone
+    // proof). The ORIGINAL test stood the carrier on (2,2), which is now a training cell,
+    // not a banana ring slot -- so this fixture is now shifted to the SURVIVING orthogonal
+    // (4,2)/diagonal (4,1) pair (the other two ring cells, (2,1) and (4,1)(4,3), are
+    // untouched by the SW carve-out), preserving the EXACT original property under test:
+    // a carrier standing on an orthogonal (d=0) must still MOVE to a farther-but-diagonal
+    // empty cell, never plant in place.
+    //
     // A carrier (carrying one banana -> exercises the plant band 88 directly, no PICK/harvest
-    // interaction) stands ON the orthogonal ring cell (2,2). The ring is empty EXCEPT for a
-    // tree on the diagonal (2,3), which BREAKS the left-side diagonal tie so exactly one
-    // nearest empty diagonal, (2,1), remains -- a deterministic target (no tie_mix hashing in
-    // the assertion). Empty ring cells reachable from (2,2): orthogonals (2,2) d=0, (3,1)/
-    // (4,2)/(3,3) d=2; diagonals (2,1) d=1, (4,1)/(4,3) d=3.
-    //   Pre-fix (nearest-only key): (2,2) at d=0 wins -> PLANT in place on the ORTHOGONAL.
-    //   Post-fix (role_rank first): every diagonal outranks every orthogonal, and (2,1) is the
+    // interaction) stands ON the orthogonal ring cell (4,2). The ring is empty EXCEPT for a
+    // tree on the diagonal (4,3), which BREAKS the (4,1)/(4,3) diagonal tie so exactly one
+    // nearest empty diagonal, (4,1), remains -- a deterministic target (no tie_mix hashing in
+    // the assertion). Empty ring cells reachable from (4,2): orthogonal (4,2) d=0, (3,1) d=2;
+    // diagonal (4,1) d=1, (2,1) d=3 (training cells (2,2)/(2,3)/(3,3) excluded entirely).
+    //   Pre-fix (nearest-only key): (4,2) at d=0 wins -> PLANT in place on the ORTHOGONAL.
+    //   Post-fix (role_rank first): every diagonal outranks every orthogonal, and (4,1) is the
     //   uniquely nearest empty diagonal -> MOVE toward it. This is the E2 engine: build the
     //   diagonal ripe/seed cells before refilling orthogonals.
     let mut st = base_state();
-    st.trees = vec![banana(2, 3, 2)]; // fruitless: breaks the (2,1)/(2,3) diagonal tie only
+    st.trees = vec![banana(4, 3, 2)]; // fruitless: breaks the (4,1)/(4,3) diagonal tie only
     let plan = base_plan(&st);
-    // sanity: (2,1) diagonal and (2,2) orthogonal are both in the ring
-    assert!(plan.ring.contains(&((2, 1), RingRole::Diagonal)), "{:?}", plan.ring);
-    assert!(plan.ring.contains(&((2, 2), RingRole::Orthogonal)), "{:?}", plan.ring);
-    let cmds = assign(&st, &plan, &[carrier(0, 2, 2)]);
+    // sanity: (4,1) diagonal and (4,2) orthogonal are both in the ring, untouched by the SW
+    // training corner (documented above).
+    assert!(plan.ring.contains(&((4, 1), RingRole::Diagonal)), "{:?}", plan.ring);
+    assert!(plan.ring.contains(&((4, 2), RingRole::Orthogonal)), "{:?}", plan.ring);
+    let cmds = assign(&st, &plan, &[carrier(0, 4, 2)]);
     assert_eq!(
-        cmds[&0], "MOVE 0 2 1",
-        "an empty diagonal (2,1) must be chosen before the orthogonal the carrier stands on: {}",
+        cmds[&0], "MOVE 0 4 1",
+        "an empty diagonal (4,1) must be chosen before the orthogonal the carrier stands on: {}",
         cmds[&0]
     );
 }

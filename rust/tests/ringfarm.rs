@@ -49,7 +49,8 @@ fn base_state() -> State {
 /// the live champion value (tactics.rs `if econ_b {3} else {2}` with econ_b=false).
 fn ring_plan(st: &State) -> Plan {
     let farm_d = bfs_distances(&st.walkable, &[st.my_shack]);
-    let ring = compute_ring(&st.walkable, &farm_d, &None, st.my_shack, 2);
+    let opp_d = bfs_distances(&st.walkable, &[st.opp_shack]);
+    let ring = compute_ring(&st.walkable, &farm_d, &None, st.my_shack, 2, &opp_d);
     Plan {
         shack: st.my_shack,
         farm_d,
