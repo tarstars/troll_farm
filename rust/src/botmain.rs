@@ -17,6 +17,7 @@ pub mod motion;
 pub mod ownership;
 pub mod planner;
 pub mod tactics;
+pub mod yann;
 // Flip to true for a SIM-FIDELITY validation run: echoes the full per-turn state
 // to stderr (captured in the replay) so we can replay a real game through the sim
 // and compare turn-by-turn. Off by default (no effect on play or stdout parity).
