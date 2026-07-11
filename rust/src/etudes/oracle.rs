@@ -48,9 +48,19 @@ const NODE_BUDGET: u64 = 100_000;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Verdict {
-    ForcedWin { side: usize },
+    ForcedWin { side: usize, proof: Proof },
     Unresolved,
     TooLarge,
+}
+
+/// A checkable certificate for a `ForcedWin`: the forcing side's committed joint command at each
+/// ply of the principal variation (the argmax-X / argmin-informed-Y line the search actually
+/// found), paired with the resulting `informed_minimax` value from that point on. `line.len() ==
+/// horizon`. Independently checkable via `replay_proof`, which does NOT trust this line's values
+/// — it only trusts the recorded X commands and re-derives everything else via brute force.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Proof {
+    pub line: Vec<(String, i32)>,
 }
 
 /// X's guaranteed score-diff (`scores[x] - scores[1-x]`) at the horizon when Y is INFORMED
@@ -144,7 +154,84 @@ fn canonical_hash(st: &GameState) -> u64 {
     h.finish()
 }
 
-/// Decide the forced-outcome verdict for a Situation: `ForcedWin{side}` if that side's
+/// The value `informed_minimax` would report for `(st, x, depth)`, either read straight off the
+/// leaf formula (depth 0) or looked up in an ALREADY-COMPLETE memo table (depth > 0). Used by
+/// `extract_line`, which only ever asks for values at states a completed (non-`TooLarge`) search
+/// actually visited — see the "winning line's Y-loop always runs to completion" note below.
+fn lookup_value(st: &GameState, x: usize, depth: u32, memo: &HashMap<(u64, u32, usize), i32>) -> i32 {
+    if depth == 0 {
+        let mut s = st.clone();
+        engine::recompute_scores(&mut s);
+        return s.scores[x] - s.scores[1 - x];
+    }
+    let key = (canonical_hash(st), depth, x);
+    *memo.get(&key).expect(
+        "extract_line: memo entry missing for a state the completed search must have visited",
+    )
+}
+
+/// Walk the principal variation of an already-completed (`memo` fully populated, budget never
+/// exhausted) `informed_minimax(st0, x, horizon)` search: at each ply, re-derive X's argmax
+/// action and Y's argmin (informed) response via a plain O(|xm|*|ym|) scan using `lookup_value`
+/// (cheap — no re-exploration, just memo reads), matching exactly what the original search found
+/// (it's deterministic given the same canonical action ordering). This is safe — i.e. every
+/// `lookup_value` call here hits an already-known value — because alpha-beta only ever discards
+/// an X-action whose partial worst-so-far already can't beat the running best (see
+/// `informed_minimax`'s `break`), so the X-action that DOES end up winning at each node had its
+/// Y-loop run to completion without early-exit, and completed without hitting the node budget
+/// (otherwise `forced_verdict` would have returned `TooLarge`, not called this).
+fn extract_line(st0: &GameState, x: usize, horizon: u32, memo: &HashMap<(u64, u32, usize), i32>) -> Vec<(String, i32)> {
+    let y = 1 - x;
+    let mut line = Vec::with_capacity(horizon as usize);
+    let mut st = st0.clone();
+
+    for depth in (1..=horizon).rev() {
+        let xm = joint_actions(&st, x);
+        let ym = joint_actions(&st, y);
+
+        let mut best_val = i32::MIN;
+        let mut best_xc: &Vec<String> = &xm[0];
+        let mut best_yc: &Vec<String> = &ym[0];
+        for xc in &xm {
+            let mut worst = i32::MAX;
+            let mut worst_yc: &Vec<String> = &ym[0];
+            for yc in &ym {
+                let mut s = st.clone();
+                let (c0, c1) = if x == 0 {
+                    (xc.clone(), yc.clone())
+                } else {
+                    (yc.clone(), xc.clone())
+                };
+                engine::step(&mut s, &c0, &c1);
+                let v = lookup_value(&s, x, depth - 1, memo);
+                if v < worst {
+                    worst = v;
+                    worst_yc = yc;
+                }
+            }
+            if worst > best_val {
+                best_val = worst;
+                best_xc = xc;
+                best_yc = worst_yc;
+            }
+        }
+
+        line.push((best_xc.join(" | "), best_val));
+
+        let mut s = st.clone();
+        let (c0, c1) = if x == 0 {
+            (best_xc.clone(), best_yc.clone())
+        } else {
+            (best_yc.clone(), best_xc.clone())
+        };
+        engine::step(&mut s, &c0, &c1);
+        st = s;
+    }
+
+    line
+}
+
+/// Decide the forced-outcome verdict for a Situation: `ForcedWin{side, proof}` if that side's
 /// informed-minimax value is a strictly positive score-diff (checked for `prove_side` only, or
 /// both sides in id order if unpinned), else `Unresolved`, else `TooLarge` if the node budget
 /// was exhausted along the way.
@@ -158,9 +245,55 @@ pub fn forced_verdict(sit: &Situation) -> Verdict {
         let mut budget = NODE_BUDGET;
         match informed_minimax(&sit.state, x, sit.horizon, &mut memo, &mut budget) {
             None => return Verdict::TooLarge,
-            Some(v) if v > 0 => return Verdict::ForcedWin { side: x },
+            Some(v) if v > 0 => {
+                let line = extract_line(&sit.state, x, sit.horizon, &memo);
+                return Verdict::ForcedWin {
+                    side: x,
+                    proof: Proof { line },
+                };
+            }
             _ => {}
         }
     }
     Verdict::Unresolved
+}
+
+/// Independently validate a `ForcedWin` proof: replay the forcing side's committed joint command
+/// at each ply against a BRUTE-FORCE opponent that tries EVERY `joint_actions` response (not just
+/// the search's own pruned/memoized path), recursing over every branch, and assert the horizon
+/// score-diff is strictly positive on every single leaf. This does not trust `informed_minimax`,
+/// `canonical_hash`, or the memo table at all — it only trusts the proof's recorded X commands
+/// plus `joint_actions`/`engine::step`/`engine::recompute_scores`, so it independently re-proves
+/// the guarantee and would catch a bug in the search machinery. Returns `false` for a non-
+/// `ForcedWin` verdict (nothing to replay) or if any branch fails to hold.
+pub fn replay_proof(sit: &Situation, verdict: &Verdict) -> bool {
+    let (side, proof) = match verdict {
+        Verdict::ForcedWin { side, proof } => (*side, proof),
+        _ => return false,
+    };
+    replay_from(&sit.state, side, &proof.line)
+}
+
+fn replay_from(st: &GameState, x: usize, remaining: &[(String, i32)]) -> bool {
+    if remaining.is_empty() {
+        let mut s = st.clone();
+        engine::recompute_scores(&mut s);
+        return s.scores[x] - s.scores[1 - x] > 0;
+    }
+    let y = 1 - x;
+    let xc: Vec<String> = remaining[0].0.split(" | ").map(|c| c.to_string()).collect();
+    let ym = joint_actions(st, y);
+    for yc in &ym {
+        let mut s = st.clone();
+        let (c0, c1) = if x == 0 {
+            (xc.clone(), yc.clone())
+        } else {
+            (yc.clone(), xc.clone())
+        };
+        engine::step(&mut s, &c0, &c1);
+        if !replay_from(&s, x, &remaining[1..]) {
+            return false;
+        }
+    }
+    true
 }

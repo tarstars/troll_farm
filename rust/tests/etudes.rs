@@ -93,7 +93,67 @@ SCORES 0 0
 HORIZON 4
 PROVE 0",
     );
-    assert!(matches!(forced_verdict(&s), Verdict::ForcedWin { side: 0 }));
+    assert!(matches!(forced_verdict(&s), Verdict::ForcedWin { side: 0, .. }));
+}
+
+#[test]
+fn oracle_proof_replays_valid() {
+    // same fixture as oracle_forced_win_by_felling: the extracted proof must independently
+    // replay valid against a brute-force opponent that tries every possible response at every
+    // ply (not just the search's own pruned/memoized path) — every leaf strictly favors side 0.
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+..B..
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 2 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 0",
+    );
+    let v = forced_verdict(&s);
+    assert!(matches!(v, Verdict::ForcedWin { .. }));
+    assert!(troll_farm::etudes::oracle::replay_proof(&s, &v));
+}
+
+#[test]
+fn oracle_replay_proof_rejects_a_bogus_line() {
+    // extra (not in the plan): replay_proof must not be vacuously true. Same fixture, but a
+    // bogus proof line (WAIT the whole time: never fells the tree, banks nothing) must fail —
+    // otherwise replay_proof would be a no-op check that always returns true.
+    use troll_farm::etudes::oracle::{replay_proof, Proof, Verdict};
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+..B..
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 2 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 0",
+    );
+    let bogus = Verdict::ForcedWin {
+        side: 0,
+        proof: Proof {
+            line: vec![
+                ("WAIT 0".to_string(), 0),
+                ("WAIT 0".to_string(), 0),
+                ("WAIT 0".to_string(), 0),
+                ("WAIT 0".to_string(), 0),
+            ],
+        },
+    };
+    assert!(!replay_proof(&s, &bogus), "a bogus all-WAIT proof must NOT replay valid");
 }
 
 #[test]
