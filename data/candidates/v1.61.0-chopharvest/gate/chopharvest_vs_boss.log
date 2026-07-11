@@ -1,0 +1,13 @@
+collecting 7 DEBUG games vs agent boss → /home/tarstars/prj/troll_farm/data/boss5_games/boss
+
+  game 1/7 895705861: L  wood 39-97  oppbuild=1:1.1.1.1,2:2.2.0.3  opp_train=t21 my_train=t43  | ramp t75(6, 16) t150(16, 41) t225(25, 69) t300(39, 97)
+  game 2/7 895705882: L  wood 20-63  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t11 my_train=t63  | ramp t75(0, 10) t150(14, 30) t225(14, 48) t300(20, 63)
+  game 3/7 895705894: W  wood 56-40  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t7 my_train=t17  | ramp t75(12, 6) t150(24, 10) t225(34, 28) t300(56, 40)
+  game 4/7 895705909: L  wood 22-38  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t99 my_train=t103  | ramp t75(0, 0) t150(14, 0) t225(20, 14) t300(22, 38)
+  game 5/7 895705918: L  wood 48-54  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t2 my_train=t3  | ramp t75(15, 6) t150(18, 14) t225(27, 26) t300(48, 54)
+  game 6/7 895705937: L  wood 52-54  oppbuild=1:1.1.1.1,2:2.2.0.3  opp_train=t7 my_train=t27  | ramp t75(16, 2) t150(20, 12) t225(31, 28) t300(52, 54)
+  game 7/7 895705947: L  wood 44-52  oppbuild=1:1.1.1.1,2:2.2.0.2  opp_train=t11 my_train=t29  | ramp t75(14, 2) t150(22, 12) t225(30, 22) t300(44, 52)
+
+== 1/7 wins | our wood 40 | opp wood 57 ==
+   opponent builds seen: {'1:1.1.1.1,2:2.2.0.3': 2, '1:1.1.1.1,2:2.2.0.2': 5}
+   artifacts in /home/tarstars/prj/troll_farm/data/boss5_games/boss/
