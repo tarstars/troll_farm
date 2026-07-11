@@ -2812,3 +2812,25 @@ honest response to 6 reverts is to STOP guessing at waste and MEASURE what actua
 ceiling of this approach and stop; (C) a bigger structural swing (3+ troll scale — but that's the
 dead lemon-wall/T-hand). Recommendation: (A) etudes, or (B) accept the ceiling. Champion
 ringfix3 LOCKED (live/default/tree); arena stable. No 7th speculative candidate.
+
+## 2026-07-11 — clipboard analysis #3: ring/seed EXHAUSTION → dead farm → distant foraging (NEW angle, family-risky)
+
+Subagent analyzed a v1.59.0-ringfix3 vs Boss-5 game (loss 226-252, wood 52-60). FINDING: the
+farm dies mid-game. Starter's LAST ring plant = t148; seeds + ring_planted telemetry flatline to
+0 by t175 (48% of game with a dead ring). Gatherer then forages 2 DISTANT apples (dist 7,9): 6
+fruit in 136 turns (~18t cadence vs 5.4t pre-t149). TIME-CORRELATED with the loss: clawed a
+2-vs-9 wood deficit to EVEN by t140-200, then fell behind t200+ as the last trees ran out — while
+our farmer was on 9-tile round trips. MECHANISM: the chopper felled BOTH nearby WILD banana trees
+early (t52,t64) for one-time wood = permanently removed a renewable fruit/seed source; the ring's
+own seed stock also bled 7→0.
+
+ASSESSMENT: structurally DIFFERENT from the 6 reverts (those removed band FLEXIBILITY = commitment
+hurt; this is RESOURCE-PROTECTION / don't-cannibalize) — so the commitment-hurts caution may not
+apply. BUT overlaps heavily with the DOCUMENTED-AND-REVERTED "farm-dies-by-t140 / late-throughput
+ceiling" family (seedloop −2.8, reserve −2, ownership +0.2 — all lost; keeping value alive feeds
+the opp's stronger late engine = the pie trap). Also confounded: one game; early wood had real
+tempo value (we were behind t50-65); some late deceleration is shared map-tree-exhaustion; band 52
+correctly picks nearest ripe fruit per-turn. VERDICT: real+large+fresh-sub-angle but family-risky
++ unproven beyond one game. → PRIME FIRST ETUDE once the oracle lands: "with a nearby wild banana
+tree, is protecting it (forgo early wood) a FORCED net advantage, or does early-wood tempo
+dominate?" — prove it before spending an arena cycle on a 0-for-3 family.
