@@ -497,6 +497,16 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         // <= `38 * BAND` while preserving the exact same relative ordering (fuller trees still
         // win close/near-tie comparisons; a real distance advantage of a few steps still always
         // dominates it, same as the rest of this file's « BAND discipline).
+        // KNOWN PRE-EXISTING CAVEAT (reviewer-caught, not introduced here): the STICKY bonus
+        // (~line 38 above) is applied AFTER every band pushes its candidates, unconditionally,
+        // to any candidate whose target matches last turn's sticky target — so a value this
+        // close to its band ceiling (`steps + fullness_pen < STICKY == 6`, plausible for a
+        // near/full tree) COULD still be pushed past `38 * BAND` by stickiness alone, causing
+        // the same value_band misclassification the fullness_pen fix above avoids on its own.
+        // This exact risk already exists verbatim in the STARTER's mirror block below (this
+        // change duplicates it into a second producer, not a new one) and is a soft
+        // mis-prioritization only (never a panic/illegal move) — a real fix touches the shared
+        // STICKY mechanism every band in this file depends on, out of scope for this candidate.
         if u.harvest_power > 0 && u.free_capacity() > 0 {
             for p in state
                 .trees

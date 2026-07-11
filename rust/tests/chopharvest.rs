@@ -11,7 +11,7 @@
 use std::collections::HashSet;
 use troll_farm::botmain::ownership;
 use troll_farm::botmain::planner::assign;
-use troll_farm::botmain::tactics::{Phase, Plan};
+use troll_farm::botmain::tactics::{self, Phase, Plan};
 use troll_farm::botmain::{State, Tree, Troll, GE_SPEC};
 
 fn base_state() -> State {
@@ -252,11 +252,20 @@ fn chopharvest_deterministic_across_repeated_calls() {
     // RNG seed, so there is no seed parameter to sweep at the `assign()` level -- the true
     // 8-seed self-determinism check is the freeze-stage `equality` binary harness (playing full
     // simulated games through the compiled bot over 8 seeds; see bundle.py/equality.rs docs).
-    // This unit test is the closest in-crate proxy: the SAME inputs, called repeatedly (and
-    // with the two trees in reversed Vec order, to catch any accidental reliance on iteration
-    // order within the new band-38-for-chopper loop), must produce IDENTICAL output every time.
+    // This unit test is the closest in-crate proxy.
+    //
+    // reviewer CONFIRMED (hand-traced): a fixture with only ONE candidate per loop (one fell
+    // target, one harvest target) can't actually exercise order-sensitivity -- each tree only
+    // ever matches a single band's filter, and the final `out.sort_by_key` downstream is a true
+    // total order on `(value, target)`, so reversing a 2-element input Vec is a no-op no matter
+    // what. Fixed here: TWO ripe/full bananas, same distance (both map-distance 2, eta 1 step)
+    // and same fruits (3, so identical `fullness_pen`), i.e. a GENUINE tie in the new band-38
+    // loop's output value -- this is the file's own documented "SHUFFLE INVARIANCE" contract
+    // (see the module doc comment at the top of planner.rs): which of two truly-tied candidates
+    // wins must be decided by the canonical tie-break (`tie_mix`/salt), never by which one the
+    // Vec iterator happened to visit first.
     let mut st = base_state();
-    st.trees = vec![banana(3, 2, 2), ripe_banana(2, 2, 3)];
+    st.trees = vec![ripe_banana(2, 2, 3), ripe_banana(0, 1, 3)]; // both dist 2 from (1,2), fruits 3
     let plan = base_plan();
     let first = assign(&st, &plan, &[chopper(0, 1, 2)]);
     for _ in 0..8 {
@@ -267,6 +276,34 @@ fn chopharvest_deterministic_across_repeated_calls() {
     let reversed = assign(&st, &plan, &[chopper(0, 1, 2)]);
     assert_eq!(
         reversed, first,
-        "candidate order must not affect the outcome (shuffle invariance)"
+        "a genuine tie between two equal-value harvest targets must resolve the SAME way \
+         regardless of candidate Vec order (canonical tie-break, not iteration order): {} vs {}",
+        first[&0], reversed[&0]
+    );
+}
+
+// ── 6) regression guard: the REAL live wiring, not just the constant ────────────────────────
+#[test]
+fn chopharvest_live_adaptive_spec_wires_ge_spec_hp() {
+    // reviewer-caught gap: chopharvest_spec_hp1 only pins the raw GE_SPEC constant; every other
+    // test above hardcodes its own chopper()/starter() Troll fixture directly, bypassing
+    // `tactics::plan` entirely. NONE of them would have caught the actual critical bug found
+    // while live-smoke-testing this candidate: `tactics.rs`'s turn-1 adaptive spec selector
+    // (`GE_CHOSEN_SPEC`) used to hardcode hp as the bare literal `0`, completely independent of
+    // GE_SPEC -- bumping only the constant was a proven arena no-op (a live Boss-5 game showed
+    // `mybuilds=...,3:2.2.0.2`, hp still 0, even after the GE_SPEC bump landed). The fix wired
+    // `GE_SPEC.2` into that selector (tactics.rs, `plan_impl`). This test drives the REAL
+    // adaptive path end-to-end (a single starter, no chopper trained yet -> `want_chopper` under
+    // the live Tempo meta) and pins `plan.spec.2 == 1` -- so a future revert to a hardcoded
+    // literal at that call site fails a test instead of silently shipping a no-op again.
+    tactics::reset();
+    let mut st = base_state();
+    st.my_inventory = [0; 6];
+    let plan = tactics::plan(&st, &[starter(0, 1, 2)]);
+    assert_eq!(
+        plan.spec.2, 1,
+        "the LIVE turn-1 adaptive chopper spec's hp field must resolve to GE_SPEC.2 (1), not a \
+         stale hardcoded 0 -- got spec={:?}",
+        plan.spec
     );
 }
