@@ -4,8 +4,12 @@
 //!
 //! Usage: `etude <situation-file.txt> [--step]`
 
-use troll_farm::etudes::oracle::{replay_proof, Proof, Verdict};
-use troll_farm::etudes::situation::Situation;
+use std::env;
+use std::fs;
+use std::process::ExitCode;
+
+use troll_farm::etudes::oracle::{forced_verdict, replay_proof, Proof, Verdict};
+use troll_farm::etudes::situation::{from_text, Situation};
 use troll_farm::game::engine;
 
 /// [PLUM, LEMON, APPLE, BANANA, IRON, WOOD] — matches the carry/inventory slot order used
@@ -166,15 +170,43 @@ pub fn step_boards(sit: &Situation, side: usize, proof: &Proof) -> Vec<String> {
     boards
 }
 
-fn main() {
-    // TODO: IO + render + forced_verdict wiring (later stages).
+fn main() -> ExitCode {
+    let args: Vec<String> = env::args().collect();
+    let Some(path) = args.get(1) else {
+        eprintln!("usage: etude <situation-file.txt> [--step]");
+        return ExitCode::FAILURE;
+    };
+    let step_mode = args[2..].iter().any(|a| a == "--step");
+
+    let text = match fs::read_to_string(path) {
+        Ok(t) => t,
+        Err(e) => {
+            eprintln!("failed to read {path}: {e}");
+            return ExitCode::FAILURE;
+        }
+    };
+    let sit = from_text(&text);
+
+    print!("{}", render(&sit));
+
+    let verdict = forced_verdict(&sit);
+    print!("{}", format_verdict(&sit, &verdict));
+
+    if step_mode {
+        if let Verdict::ForcedWin { side, proof } = &verdict {
+            for (i, board) in step_boards(&sit, *side, proof).into_iter().enumerate() {
+                println!("--- ply {} ---", i + 1);
+                print!("{board}");
+            }
+        }
+    }
+
+    ExitCode::SUCCESS
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use troll_farm::etudes::oracle::forced_verdict;
-    use troll_farm::etudes::situation::from_text;
 
     /// The oracle's forced-win-by-felling fixture (rust/tests/etudes.rs
     /// `oracle_forced_win_by_felling`) — cooldown=6 so the tree is quiescent (cooldown=0 would
