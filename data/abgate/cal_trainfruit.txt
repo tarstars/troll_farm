@@ -1,0 +1,5 @@
+abgate: 200 pairs (400 games) in 153s | cand=trainfruit champ=ringfarm
+  pair delta mean -72.04  sd 39.25  CI95 [-77.52, -66.57]
+  W/D/L 23/1/376  wood -18.20  fruit +0.76  crashes cand=0 champ=0
+  csv: data/abgate/cal_trainfruit.csv
+GATE: REJECT

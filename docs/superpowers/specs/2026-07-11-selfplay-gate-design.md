@@ -94,3 +94,28 @@ execution (sequential 400 games is minutes; add rayon only if painful), telemetr
 1. equality.rs still EQUAL post-refactor; suite green (cargo). 2. `abgate.py --selftest`:
 pair delta exactly 0 per seed. 3. Calibration acceptance met (5 known-verdict pairs).
 4. One documented run wired into the candidate process docs (arena-queue policy note).
+
+## Calibration results (2026-07-11, n=200 pairs each, jobs=10, ~2.7 min/pair, 2000 games total)
+| pair | arena (known) | gate delta [CI95] | gate verdict | sign agrees? |
+|---|---|---|---|---|
+| ringfix3 vs ringfarm | +1.1 KEEP | −17.47 [−28.40, −6.54] | REJECT | **NO (confident)** |
+| ringtune vs ringfarm | −2.4 REVERT | −27.42 [−34.47, −20.38] | REJECT | yes |
+| trainfruit vs ringfarm | −3.2 REVERT | −72.04 [−77.52, −66.57] | REJECT | yes |
+| fellmission vs ringfix3 | −1.0 REVERT | −10.53 [−14.56, −6.49] | REJECT | yes |
+| chopharvest vs ringfix3 | −5.0 REVERT | **+13.64 [+8.10, +19.19]** | PASS-TO-ARENA | **NO (confident)** |
+
+**ACCEPTANCE: FAILED** (3/5 sign agreement; chopharvest — a required big-loser catch — PASSED;
+the only positive control confidently REJECTed). Per this spec: NOT wired into the candidate
+process; the escalation decision (frozen-pool variant vs park) belongs to the user.
+
+**DIAGNOSIS (the valuable part — the transfer wall, now MEASURED at 2000 games):** head-to-head
+self-play measures MIRROR-MATCH strength, which is not arena strength, with two distinct
+confident failure modes: (a) point-grab generosity — chopharvest's fruit-for-wood trade is
+nearly-free points vs its own sibling (wood +1.9, fruit +6.1) because the sibling doesn't
+exploit the dilution the way diverse field bots do; (b) sibling-interaction amplification —
+ringfix3's movement fix loses mirror races vs near-identical code (sd 78!) despite beating the
+field. What it DOES detect, decisively: absolute self-harm / economy-crippling (trainfruit −72,
+ringtune −27, fellmission −10.5 — three of the six historical arena cycles would have been
+saved). Secondary finding: n=10 probes are WORSE than useless — ringfix3 read +12.6 at n=10 and
+−17.5 at n=200; chopharvest +0.05 → +13.6. All historical n≤6 local probes (Crouistiti 4/6
+style) were pure noise; any future local gate needs n≥100 pairs.

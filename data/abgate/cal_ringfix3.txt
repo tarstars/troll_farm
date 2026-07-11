@@ -1,0 +1,5 @@
+abgate: 200 pairs (400 games) in 163s | cand=ringfix3 champ=ringfarm
+  pair delta mean -17.47  sd 78.39  CI95 [-28.40, -6.54]
+  W/D/L 206/13/181  wood -5.55  fruit +4.74  crashes cand=0 champ=0
+  csv: data/abgate/cal_ringfix3.csv
+GATE: REJECT

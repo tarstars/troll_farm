@@ -1,0 +1,5 @@
+abgate: 200 pairs (400 games) in 145s | cand=ringtune champ=ringfarm
+  pair delta mean -27.42  sd 50.53  CI95 [-34.47, -20.38]
+  W/D/L 131/9/260  wood -7.61  fruit +3.03  crashes cand=0 champ=0
+  csv: data/abgate/cal_ringtune.csv
+GATE: REJECT
