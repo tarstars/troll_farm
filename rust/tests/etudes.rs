@@ -1,4 +1,5 @@
 use troll_farm::etudes::actions::{joint_actions, troll_actions};
+use troll_farm::etudes::oracle::{forced_verdict, Verdict};
 use troll_farm::etudes::situation::{from_text, to_text, Situation};
 
 #[test]
@@ -65,4 +66,88 @@ PROVE -",
     let j = joint_actions(&s, 0);
     assert_eq!(j.len(), acts.len());
     assert!(j.iter().all(|c| c.len() == 1));
+}
+
+#[test]
+fn oracle_forced_win_by_felling() {
+    // our troll (chop 2) starts ON a size-2 banana (health 4 = 2 chops); opponent has no unit.
+    // PLANT cooldown=6 (a settled, freshly-at-this-size tree — NOT 0: cooldown==0 is a
+    // "grow on the very next tick" trigger in tick_plants, not a quiescent state, and would
+    // regrow the tree — size 2->3, health +1 — after the first chop, forcing a 3rd chop and
+    // leaving no turns to bank the wood; confirmed by direct engine replay during development).
+    // H=4 is enough for CHOP,CHOP (fells it, +2 wood carried, capped by cc=2) then MOVE,DROP
+    // (bank it into inventory — recompute_scores reads inventories, not carry) — score-diff > 0
+    // forced.
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+..B..
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 2 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 0",
+    );
+    assert!(matches!(forced_verdict(&s), Verdict::ForcedWin { side: 0 }));
+}
+
+#[test]
+fn oracle_toolarge() {
+    // 2 units/side on an open map with 4 trees (rich branching: each troll has ~5-6 sensible
+    // MOVE targets + WAIT) and H=8 — the (x-action, y-action) transition count blows well past
+    // NODE_BUDGET long before depth 0, so the search must abort and report TooLarge rather than
+    // exhaustively completing (or hanging).
+    let s = from_text(
+        "\
+MAP 9 7
+0.......1
+.........
+..B...B..
+.........
+..B...B..
+.........
+.........
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 0 0 1 2 1 2 0 0 0 0 0 0
+UNIT 1 0 8 6 1 2 1 2 0 0 0 0 0 0
+UNIT 2 1 8 0 1 2 1 2 0 0 0 0 0 0
+UNIT 3 1 0 6 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 2 2 4 0 6
+PLANT BANANA 6 2 2 4 0 6
+PLANT BANANA 2 4 2 4 0 6
+PLANT BANANA 6 4 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 8
+PROVE 0",
+    );
+    assert!(matches!(forced_verdict(&s), Verdict::TooLarge));
+}
+
+#[test]
+fn oracle_unresolved_or_symmetric() {
+    // no reachable resource for either side in H turns → nobody forces a positive diff.
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+.....
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 1 0 1 2 1 2 0 0 0 0 0 0
+UNIT 3 1 3 0 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 2 2 4 0 0
+TURN 5
+SCORES 0 0
+HORIZON 2
+PROVE -",
+    );
+    assert!(matches!(forced_verdict(&s), Verdict::Unresolved));
 }
