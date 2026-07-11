@@ -2883,3 +2883,24 @@ NEVER fires band 38 on busy maps (inert there) and trades wood 4:1 on sparse one
 "harvest when idle" design is dead as-is; (c) the successor design is already specified:
 FellWithSalvage macro-candidate (bundle valuation, zero commitment) via prove→express→verify.
 chopharvest artifacts remain frozen (submissions/ + worktree branch); do not resubmit as-is.
+
+## 2026-07-11 — abgate paired self-play gate: BUILT + CALIBRATION FAILED (the transfer wall, measured)
+
+Built the paired self-play A/B gate (spec docs/superpowers/specs/2026-07-11-selfplay-gate-design.md,
+branch abgate-selfplay-gate): `game::driver` extraction (equality.rs re-verified EQUAL 50 games),
+`playmatch` bin (one scored match → one line), `cgauto/abgate.py` (seat-swap pairing, t-based CI,
+exact-zero selftest — the real champion self-plays to pair delta EXACTLY 0.0 on every seed;
+jobs-parallel byte-identical). 5-task SDD build, 2 review fix-loops (both plan bugs: z-vs-t CI,
+exit-code collision with REJECT).
+
+★★ CALIBRATION (5 known-verdict pairs × n=200 × both seats = 2000 games, ~14 min at jobs=10):
+**FAILED 3/5 with BOTH misses confident** — chopharvest (arena −5.0) reads +13.64 [+8.1,+19.2]
+head-to-head (fruit points nearly free vs its own sibling); ringfix3 (arena +1.1, the champion!)
+reads −17.47 [−28.4,−6.5] (mirror-race dynamics, sd 78). Catches decisively: trainfruit −72,
+ringtune −27, fellmission −10.5 = absolute self-harm class. VERDICT: head-to-head self-play is a
+SELF-HARM DETECTOR, not an arena predictor — using it as specced would have blocked the champion
+and green-lit the worst loser. NOT wired into the process. ALSO: n=10 self-play probes flip signs
+vs n=200 (ringfix3 +12.6→−17.5) — all historical n≤6 local probes were noise. Full table in the
+spec; raw data data/abgate/cal_*.{txt,csv}. Escalation options (user decision): frozen-pool
+variant (same tooling, ~30 min recalibration), adopt-as-self-harm-filter-only, or park with the
+infrastructure banked (driver/playmatch/abgate reusable for pool sparring + etude-vs-bot).
