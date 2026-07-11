@@ -18,8 +18,8 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 
 use super::state::{
-    bfs_distances, ge_fruit_ty, is_adjacent, ortho_neighbors, plant_cooldown, water_boost, Cell,
-    State, Tree, Troll, APPLE, BANANA, LEMON, PLUM, WOOD,
+    bfs_distances, ge_fruit_ty, is_adjacent, mb_afford, ortho_neighbors, plant_cooldown,
+    training_cost, water_boost, Cell, State, Tree, Troll, APPLE, BANANA, IRON, LEMON, PLUM, WOOD,
 };
 
 // ── tunables (G1-G5 sweep candidates from the spec's "reproduction gaps"; starting
@@ -372,4 +372,210 @@ fn nearest_shack_neighbor(
         });
     }
     best.map(|(_, c)| c)
+}
+
+// ── Task 5: funding phase — target spec + gather + TRAIN ───────────────────────
+
+/// Nearest tree of `item`'s fruit type with `fruits > 0`, by distance-to-my-shack (`sd`, the
+/// caller's precomputed `shack_dist` map). `state.trees` is a `Vec` so the scan itself is in
+/// stable order; `min_by_key` is additionally a full, order-invariant reduction (the winner
+/// depends only on the `(distance, cell)` key, never on scan order — the same reasoning
+/// `shack_dist` already relies on for its `dist.values_mut()` pass, and the pattern the
+/// champion's `planner.rs` uses for `iron_cells.iter().min_by_key(...)`). Ties favor the
+/// lexicographically smaller cell (`Cell`'s default tuple `Ord`), matching
+/// `nearest_shack_neighbor`'s convention.
+fn nearest_fruited_tree(
+    state: &State,
+    sd: &HashMap<Cell, i32>,
+    item: usize,
+) -> Option<(Cell, i32)> {
+    state
+        .trees
+        .iter()
+        .filter(|t| t.fruits > 0 && ge_fruit_ty(&t.tree_type) == Some(item))
+        .filter_map(|t| sd.get(&t.pos()).map(|&d| (t.pos(), d)))
+        .min_by_key(|&(c, d)| (d, c))
+}
+
+/// Nearest walkable cell orthogonally adjacent to any `iron_cells` member, by distance-to-
+/// my-shack. Same order-invariance argument as `nearest_fruited_tree` applies to the
+/// `state.iron_cells.iter()` scan below (a full `min_by_key` reduction, never an order-
+/// dependent early pick) — this deliberately mirrors the champion's own `planner.rs` pattern
+/// (`iron_cells.iter().flat_map(|ic| ortho_neighbors(*ic)).min_by_key(...)`) rather than a
+/// bespoke BFS-with-early-exit.
+fn nearest_iron_access(state: &State, sd: &HashMap<Cell, i32>) -> Option<(Cell, i32)> {
+    state
+        .iron_cells
+        .iter()
+        .flat_map(|&ic| ortho_neighbors(ic))
+        .filter(|c| state.walkable.contains(c))
+        .filter_map(|c| sd.get(&c).map(|&d| (c, d)))
+        .min_by_key(|&(c, d)| (d, c))
+}
+
+/// Estimated turns to gather `need` more of `item` (PLUM/LEMON/IRON only), assuming the
+/// funding troll makes repeated round trips from the shack: nearest source (a fruit tree
+/// with `fruits > 0`, or a walkable cell orthogonally adjacent to iron) via `shack_dist`;
+/// per-trip yield from the "starter" troll's stats (`state.my_trolls[0]` — funding always
+/// runs with exactly one troll, per the design: Task 6 only calls this class of function
+/// while `my_trolls.len() < 2`); `round_trip = dist_to_source + dist_source_to_shack + 2`,
+/// which — since both legs start/end at the shack — is `2 * dist + 2` (there, back, +2 for
+/// the harvest/mine action and the drop). No source, no starter troll, or a non-positive
+/// per-trip yield all fall back to the `i32::MAX / 2` sentinel: "unreachable within any
+/// reasonable horizon" (this also sidesteps `i32` overflow that doubling a saturated
+/// distance would otherwise risk).
+pub fn est_gather_turns(state: &State, item: usize, need: i32) -> i32 {
+    if need <= 0 {
+        return 0;
+    }
+    let starter = match state.my_trolls.first() {
+        Some(t) => t,
+        None => return i32::MAX / 2,
+    };
+    let sd = shack_dist(state, state.my_shack);
+    let (dist, per_trip) = if item == IRON {
+        let per_trip = starter.chop_power.max(1).min(starter.carry_capacity);
+        (nearest_iron_access(state, &sd).map(|(_, d)| d), per_trip)
+    } else {
+        let per_trip = starter.harvest_power.min(starter.carry_capacity);
+        (
+            nearest_fruited_tree(state, &sd, item).map(|(_, d)| d),
+            per_trip,
+        )
+    };
+    let dist = match dist {
+        Some(d) => d,
+        None => return i32::MAX / 2,
+    };
+    if per_trip <= 0 {
+        return i32::MAX / 2;
+    }
+    let round_trip = dist * 2 + 2;
+    ceil_div(need, per_trip) * round_trip
+}
+
+/// Per-resource funding target spec (PLUM→ms, LEMON→cc, IRON→chop): stat 3 if the shortfall
+/// to 10 is gatherable within `YF_T` turns, else stat 2; hp fixed at 1 (2 apples — covered
+/// by starting inventory, per the postmortem).
+pub fn choose_target_spec(state: &State) -> (i32, i32, i32, i32) {
+    let stat = |item: usize| {
+        let need = (10 - state.my_inventory[item]).max(0);
+        if est_gather_turns(state, item, need) <= YF_T {
+            3
+        } else {
+            2
+        }
+    };
+    (stat(PLUM), stat(LEMON), 1, stat(IRON))
+}
+
+/// Funding-phase candidate generator for the single pre-training troll, in priority order:
+/// 1. TRAIN: fires when `spec`'s exact cost is affordable — `training_cost(n, spec)` with
+///    `n = state.my_trolls.len()` (the CURRENT troll count). This matches
+///    `engine::apply_train`'s own `n` exactly (verified by reading it) — NOT a literal
+///    `training_cost(2, spec)` as the brief's interface text guessed; see the task report.
+///    `engine::apply_train`'s only positional precondition is that no unit (mine or the
+///    opponent's) stands on OUR shack cell (the new recruit's spawn point) — not an
+///    adjacency requirement on the acting troll, as the brief hypothesized. When affordable
+///    but blocked this way, fall back to moving this troll off the shack (score
+///    `Y_TRAIN - 1.0`) so the recruit can spawn next turn.
+/// 2. Deficit gathering (PLUM/LEMON/IRON only — "just enough resources": a non-needed type
+///    is never gathered): one candidate per still-deficient item, score `5000 -
+///    est_remaining_turns`. HARVEST when already standing on a fruited tree of that type;
+///    MINE when already orthogonally adjacent to iron; else MOVE toward the nearest needed
+///    source (the same shack-distance-nearest source `est_gather_turns` costed).
+/// 3. DROP (score `Y_DROP`) when adjacent to our shack and carrying any still-deficient item.
+pub fn funding_candidates(state: &State, troll: &Troll, spec: (i32, i32, i32, i32)) -> Vec<Cand> {
+    let mut out = Vec::new();
+    let pos = troll.pos();
+    let n = state.my_trolls.len() as i32;
+    let cost = training_cost(n, spec);
+    let have_iron = !state.iron_cells.is_empty();
+
+    // 1. TRAIN, or a move-off-shack fallback when a unit blocks the recruit's spawn cell.
+    if mb_afford(&state.my_inventory, &cost, have_iron) {
+        let shack_blocked = state.my_trolls.iter().any(|t| t.pos() == state.my_shack);
+        if !shack_blocked {
+            out.push(Cand {
+                cmd: format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3),
+                score: Y_TRAIN,
+                target: None,
+            });
+        } else {
+            let dist_from_troll = bfs_distances(&state.walkable, &[pos]);
+            if let Some(c) =
+                nearest_shack_neighbor(&state.walkable, &dist_from_troll, state.my_shack)
+            {
+                out.push(Cand {
+                    cmd: format!("MOVE {} {} {}", troll.id, c.0, c.1),
+                    score: Y_TRAIN - 1.0,
+                    target: Some(c),
+                });
+            }
+        }
+    }
+
+    // 2. Deficit gathering: PLUM, LEMON, IRON only.
+    let sd = shack_dist(state, state.my_shack);
+    for &item in &[PLUM, LEMON, IRON] {
+        let deficit = cost[item] - state.my_inventory[item];
+        if deficit <= 0 {
+            continue; // never gather a satisfied (or non-target) resource
+        }
+        let score = 5000.0 - est_gather_turns(state, item, deficit) as f64;
+        if item == IRON {
+            let adjacent_iron = troll.chop_power > 0
+                && ortho_neighbors(pos)
+                    .iter()
+                    .any(|c| state.iron_cells.contains(c));
+            if adjacent_iron {
+                out.push(Cand {
+                    cmd: format!("MINE {}", troll.id),
+                    score,
+                    target: Some(pos),
+                });
+                continue;
+            }
+        } else if troll.harvest_power > 0
+            && state
+                .trees
+                .iter()
+                .any(|t| t.pos() == pos && t.fruits > 0 && ge_fruit_ty(&t.tree_type) == Some(item))
+        {
+            out.push(Cand {
+                cmd: format!("HARVEST {}", troll.id),
+                score,
+                target: Some(pos),
+            });
+            continue;
+        }
+        let target = if item == IRON {
+            nearest_iron_access(state, &sd).map(|(c, _)| c)
+        } else {
+            nearest_fruited_tree(state, &sd, item).map(|(c, _)| c)
+        };
+        if let Some(c) = target {
+            out.push(Cand {
+                cmd: format!("MOVE {} {} {}", troll.id, c.0, c.1),
+                score,
+                target: Some(c),
+            });
+        }
+    }
+
+    // 3. DROP: adjacent to shack, carrying any still-deficient item.
+    if is_adjacent(pos, state.my_shack) {
+        let carrying_needed = [PLUM, LEMON, IRON]
+            .iter()
+            .any(|&item| troll.carry[item] > 0 && cost[item] > state.my_inventory[item]);
+        if carrying_needed {
+            out.push(Cand {
+                cmd: format!("DROP {}", troll.id),
+                score: Y_DROP,
+                target: Some(state.my_shack),
+            });
+        }
+    }
+
+    out
 }
