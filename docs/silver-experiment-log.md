@@ -2904,3 +2904,32 @@ vs n=200 (ringfix3 +12.6→−17.5) — all historical n≤6 local probes were n
 spec; raw data data/abgate/cal_*.{txt,csv}. Escalation options (user decision): frozen-pool
 variant (same tooling, ~30 min recalibration), adopt-as-self-harm-filter-only, or park with the
 infrastructure banked (driver/playmatch/abgate reusable for pool sparring + etude-vs-bot).
+
+## 2026-07-11 — yannbot v1.0 (reproduction of Yann Moisan's #3-Legend bot): BUILT + measured locally; platform steps halted by user
+
+Reproduced the #3-Legend 2-troll chop bot from the archived postmortem (docs/reference/
+yann-moisan-postmortem-2026-05-26.txt; spec + full results docs/superpowers/specs/
+2026-07-11-yannbot-design.md; branch abgate-selfplay-gate, 7 SDD tasks, every task
+review-gated, champion path EQUAL 50 games throughout — ringfix3 untouched).
+
+★ SIDE DISCOVERIES (bigger than the bot): (1) referee scoring verified banked-only — our
+engine CORRECT; (2) the referee's REAL end rule is a grace-countdown + stuck/mercy system
+(May-25 mid-contest change) — ported into engine::has_stalled + driver (E1); all prior
+local data used the naive plants-empty rule; (3) training cost n = CURRENT troll count
+(5/10 thresholds for the 2nd troll) — memory's formula corrected; (4) TRAIN's real
+precondition = shack cell unoccupied.
+
+Pipeline caught 3 plan-level bugs: endgame PICK/PLANT livelock (Y_PLANT=8500);
+training_cost n; park fallback 1.0 outranking ALL chop values (bot idled 260 turns with
+0 CHOPs — found via command-stream capture; now epsilon). Post-fix vs WAIT: 225-23,
+122 chops, ends t237 via hasStalled (the new end rule live).
+
+V3 (n=200 paired vs ringfix3): **−61.0 [−71.5,−50.5], W/D/L 103/297 → self-harm-range
+REJECT** (between ringtune −27 and trainfruit −72 on the calibrated axis). v1.0-faithful
+(unswept G1-G5, naive movement per the postmortem's own admission) is materially weaker
+than the tuned champion head-to-head. NOT a champion candidate as-is; REGISTERED ROLE:
+the gate's first genuinely different-strategy sparring opponent (legal, deterministic,
+94,276 B artifact y1.0.0-yannrepro.min.rs MIN-OK). V4 (boss gate) + V5 (arena) NOT RUN —
+user stop-order before platform interaction. Next levers if pursued: G1-G5 sweeps via
+abgate, v1.1 joint-move-solver swap, mid-game harvest. All code on branch
+abgate-selfplay-gate (12 commits today: abgate gate + calibration + yannbot).
