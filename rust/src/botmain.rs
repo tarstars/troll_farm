@@ -488,6 +488,23 @@ pub fn run() {
                         pos.join(" "),
                         moves.join(" ")
                     );
+                    // v1.61.0-chopharvest validation probe: every HARVEST command issued this
+                    // turn, verbatim ("HARVEST <id>") — cross-reference the id's chop_power
+                    // against the turn-1 @TFI dump to tell chopper harvests (chop_power>=2)
+                    // from starter harvests (chop_power<2) when grepping a .raw replay.
+                    let harvests: Vec<&String> =
+                        cmds.iter().filter(|c| c.starts_with("HARVEST ")).collect();
+                    if !harvests.is_empty() {
+                        eprintln!(
+                            "@TFHARVEST t={} [{}]",
+                            state.turn,
+                            harvests
+                                .iter()
+                                .map(|s| s.as_str())
+                                .collect::<Vec<_>>()
+                                .join(" ")
+                        );
+                    }
                 }
                 writeln!(out, "{}", cmds.join(";")).unwrap();
                 out.flush().unwrap();
