@@ -1,3 +1,4 @@
+use troll_farm::etudes::actions::{joint_actions, troll_actions};
 use troll_farm::etudes::situation::{from_text, to_text, Situation};
 
 #[test]
@@ -28,4 +29,40 @@ PROVE -";
     assert_eq!(s2.state.inventories, s.state.inventories);
     assert_eq!(s2.state.turn, s.state.turn);
     assert_eq!(s2.horizon, s.horizon);
+}
+
+#[test]
+fn actions_pruned_and_canonical() {
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+.....
+..B..
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 1 0 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 2 2 4 0 0
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE -",
+    )
+    .state;
+    let acts = troll_actions(&s, &s.units[0]);
+    // sensible only: WAIT + a MOVE toward the tree + a MOVE toward the shack; NOT 8 blind dirs;
+    // no CHOP (not on the tree). canonical (sorted, deduped).
+    assert!(acts.contains(&"WAIT 0".to_string()));
+    assert!(acts.iter().any(|a| a.starts_with("MOVE 0 ")));
+    assert!(!acts.contains(&"CHOP 0".to_string())); // unit not on a tree
+    assert_eq!(acts, {
+        let mut v = acts.clone();
+        v.sort();
+        v.dedup();
+        v
+    }); // canonical
+        // one-unit player → joint == each single action wrapped
+    let j = joint_actions(&s, 0);
+    assert_eq!(j.len(), acts.len());
+    assert!(j.iter().all(|c| c.len() == 1));
 }
