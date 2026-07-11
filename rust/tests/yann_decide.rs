@@ -198,7 +198,7 @@ fn behind_endgame_pick_prefers_cheapest_banana_first() {
         .iter()
         .find(|c| c.cmd == "PICK 1 BANANA")
         .expect("expected a PICK candidate for the cheapest (BANANA-first) banked fruit");
-    assert_eq!(pick.score, 6000.0);
+    assert_eq!(pick.score, 8500.0); // Y_PLANT: must outrank DROP/BANK (livelock fix)
     assert!(
         !cands.iter().any(|c| c.cmd.starts_with("PICK 1 PLUM")
             || c.cmd.starts_with("PICK 1 LEMON")
@@ -224,7 +224,7 @@ fn behind_endgame_plant_on_first_free_shack_neighbor() {
         .iter()
         .find(|c| c.cmd == "PLANT 1 BANANA")
         .expect("expected a PLANT candidate at the first free shack-neighbor cell");
-    assert_eq!(plant.score, 6000.0);
+    assert_eq!(plant.score, 8500.0); // Y_PLANT: must outrank DROP/BANK (livelock fix)
     assert_eq!(plant.target, Some((0, 2)));
 }
 
@@ -241,9 +241,33 @@ fn behind_endgame_plant_moves_toward_the_cell_first_when_not_yet_there() {
     let cands = troll_candidates(&s, &troll, LEMON, false, &ctx);
     let plant = cands
         .iter()
-        .find(|c| c.target == Some((0, 2)) && c.score == 6000.0)
+        .find(|c| c.target == Some((0, 2)) && c.score == 8500.0)
         .expect("expected a move-toward-the-plant-cell candidate");
     assert_eq!(plant.cmd, "MOVE 1 0 2");
+}
+
+#[test]
+fn behind_endgame_decide_plants_instead_of_dropping_back() {
+    // Livelock regression (Task-6 review, Important #1): the OLD scores (PICK/PLANT 6000 <
+    // DROP 8000) made decide_yann re-drop a just-picked fruit forever. At the decide level
+    // (not candidate presence!), a carrying troll adjacent to the shack in endgame-behind
+    // must PLANT, and an empty one must PICK.
+    reset_mem();
+    let mut s = grid_state(6, 4, (0, 1), (5, 1));
+    s.turn = 260;
+    s.opp_inventory = [0, 0, 0, 0, 0, 10]; // behind
+    let mut troll = mk_starter(1, 0, 2); // on the first free plant cell, adjacent to shack
+    troll.carry[BANANA] = 1;
+    s.my_trolls.push(troll);
+    assert_eq!(decide_yann(&s), vec!["PLANT 1 BANANA".to_string()]);
+
+    reset_mem();
+    let mut s2 = grid_state(6, 4, (0, 1), (5, 1));
+    s2.turn = 260;
+    s2.my_inventory = [0, 0, 0, 2, 0, 0]; // 2 bananas banked; score 2 << opp 40 -> behind
+    s2.opp_inventory = [0, 0, 0, 0, 0, 10];
+    s2.my_trolls.push(mk_starter(1, 1, 1)); // adjacent to shack, empty carry
+    assert_eq!(decide_yann(&s2), vec!["PICK 1 BANANA".to_string()]);
 }
 
 // ── Mandatory A: funding-phase union with troll_candidates ──────────────────────

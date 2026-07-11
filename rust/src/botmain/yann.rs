@@ -31,6 +31,10 @@ const YE_TURN: i32 = 250; // endgame turn trigger (postmortem)
 const Y_DROP: f64 = 8000.0; // postmortem priority stack
 const Y_BANK: f64 = 7000.0;
 const Y_TRAIN: f64 = 9000.0;
+// Endgame extension: PICK+PLANT must outrank DROP(8000)/BANK(7000), or the picked fruit is
+// instantly re-dropped at the shack and the extension plant never happens (reviewer-confirmed
+// livelock, 1- and 2-troll: pair enumeration PLANT_A(8500)+DROP_B(8000) beats DROP_A+BANK_B).
+const Y_PLANT: f64 = 8500.0;
 
 // ── memory: turn-1 typeToCut cache + funding target-spec cache, each memoized once
 // they're first decided so later turns don't re-derive them ────────────────────────────
@@ -315,7 +319,7 @@ pub fn troll_candidates(
             {
                 out.push(Cand {
                     cmd: format!("PICK {} {}", troll.id, fruit_name(item)),
-                    score: 6000.0,
+                    score: Y_PLANT,
                     target: Some(state.my_shack),
                 });
             }
@@ -333,7 +337,7 @@ pub fn troll_candidates(
                 };
                 out.push(Cand {
                     cmd,
-                    score: 6000.0,
+                    score: Y_PLANT,
                     target: Some(cell),
                 });
             }
