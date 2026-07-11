@@ -259,7 +259,7 @@ impl Ctx {
 /// 3. Chop / move-to-tree: dynamic throughput `value = wood / (travel + chop_t + ret)`
 ///    from the Task-3 arrival simulation, boosted by a proximity-to-opponent-shack
 ///    denial term on `ttc`-typed trees while the opponent has <= 2 trolls.
-/// 4. Fallback park (score 1.0, always present): head for our shack's neighbor, or the
+/// 4. Fallback park (epsilon score 0.001 — must sit BELOW all real chop throughput values, which are wood-per-turn ~0.05-0.67; always present): head for our shack's neighbor, or the
 ///    opponent's while `endgame_ahead` (contest their extension plants).
 ///
 /// All MOVE-class targets are picked from a single per-troll BFS (`bfs_distances` from
@@ -417,7 +417,10 @@ pub fn troll_candidates(
         nearest_shack_neighbor(&state.walkable, &dist_from_troll, park_shack).unwrap_or(pos); // no reachable shack-neighbor: degenerate MOVE-in-place
     out.push(Cand {
         cmd: format!("MOVE {} {} {}", troll.id, park_target.0, park_target.1),
-        score: 1.0,
+        // Epsilon, NOT 1.0: chop throughput values are wood-per-turn (~0.05-0.67), so a
+        // 1.0 park outranked ALL real chopping — the bot trained at ~t38 and then idled
+        // 260 turns with zero CHOPs (found via command-stream capture vs WAIT, seed 3).
+        score: 0.001,
         target: Some(park_target),
     });
 

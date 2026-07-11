@@ -1,0 +1,5 @@
+abgate: 200 pairs (400 games) in 167s | cand=yannbot_bin champ=champ_bin
+  pair delta mean -61.00  sd 75.25  CI95 [-71.49, -50.51]
+  W/D/L 103/0/297  wood -14.11  fruit -4.57  crashes cand=0 champ=0
+  csv: data/abgate/yann_v1_vs_ringfix3.csv
+GATE: REJECT

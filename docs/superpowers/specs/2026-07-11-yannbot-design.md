@@ -91,3 +91,23 @@ V5: arena, chained on ringfix3 per policy v2, ONLY if V3+V4 are non-negative —
 registered as a standing gate opponent (fixes the calibration blind spot with a genuinely
 different strategy). 4. E1 (end-condition fidelity) resolved in the engine. 5. Champion
 path equality-proven untouched.
+
+## v1.0 results (2026-07-11)
+- Build: 7 tasks, all review-gated; champion path EQUAL 50 games at every step; E1 (referee
+  hasStalled grace rule) ported and observed live (games end early after deforestation).
+- Two plan-level bugs found by the pipeline and fixed: endgame PICK/PLANT livelock
+  (Y_PLANT=8500 now outranks DROP/BANK) and the park fallback at 1.0 outranking ALL chop
+  throughput values (~0.05-0.67 wood/turn) — the bot trained at t38 then idled 260 turns
+  with zero CHOPs; found by command-stream capture vs WAIT; park is now epsilon 0.001.
+- V2: legal full games; deterministic (abgate selftest pair delta ≡ 0 ×5); artifacts frozen
+  (y1.0.0-yannrepro.min.rs, 94,274 B, MIN-OK). vs WAIT seed 3: 225-23, 122 chops, 54 wood,
+  ends t237 via hasStalled.
+- **V3 (n=200 pairs vs ringfix3): delta −61.0 [−71.5, −50.5], W/D/L 103/0/297, wood −14.1,
+  fruit −4.6 → GATE: REJECT.** Context: head-to-head measures the self-harm axis (calibrated
+  same day); −61 sits between ringtune (−27) and trainfruit (−72) — v1.0-faithful is
+  materially weaker than the tuned champion in direct play, as expected with unswept G1-G5
+  constants, faithful-naive movement, and no mid-game harvesting. NOT a champion candidate
+  as-is; ALREADY useful as the gate's diverse sparring opponent (legal, deterministic,
+  different strategy family). V4 (boss gate) + V5 (arena) NOT RUN — user directed stop
+  before platform interaction; sweeps (G1-G5) + v1.1 (joint move solver) are the obvious
+  next levers if pursued.
