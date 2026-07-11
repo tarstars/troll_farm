@@ -1,7 +1,8 @@
 # Paired self-play A/B gate (`abgate`) — design
 
-**Status: DRAFT — pending user approval** (user AFK at decision time; head-to-head opponent
-model chosen per controller recommendation, revisit on review). Origin: rethink finding #1/#2
+**Status: APPROVED (user, 2026-07-11) — BUILT; calibration RUN and FAILED acceptance (results
+at the bottom); gate NOT wired into the process pending the escalation decision.**
+Origin: rethink finding #1/#2
 (docs/strategic-rethink-2026-07-11.md) — the measurement instrument is the binding constraint;
 this gate is the enabler for everything else (macro-candidates, salvage protocol, scale
 experiments).
@@ -87,7 +88,7 @@ arena (judge). Verdict log records gate deltas next to arena deltas — every fu
 extends the calibration corpus for free.
 
 ## Not in v1 (YAGNI)
-Field-panel play-API games (separate existing tooling), per-map-class breakdown, parallel
+Field-panel play-API games (separate existing tooling), per-map-class breakdown, Rust-side parallel
 execution (sequential 400 games is minutes; add rayon only if painful), telemetry parsing.
 
 ## Success criteria

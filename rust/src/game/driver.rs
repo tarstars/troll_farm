@@ -118,10 +118,12 @@ pub fn read_cmds(reader: &mut BufReader<ChildStdout>) -> Option<String> {
     }
 }
 
-/// Play one game: `bot_path` in `seat`; opponent = another binary or the scripted "WAIT"
-/// bot. Returns the bot's per-turn command lines (empty line marks a read failure).
-/// (Equality semantics — verbatim from equality.rs `play`, lines 136-183, with the four
-/// internal `send` calls suffixed `.unwrap()`.)
+/// Play one game: `bot_path` in `seat`; opponent = another binary (deterministic by the
+/// same fixes) or the scripted "WAIT" bot. A lib strategy is NOT used: roster strategies
+/// carry their own per-process HashSet nondeterminism, which would break equality even for
+/// a deterministic bot. Returns the bot's per-turn command lines (empty line marks a read
+/// failure). (Equality semantics — verbatim from the pre-extraction equality.rs at cec35bf,
+/// with the four internal `send` calls suffixed `.unwrap()`.)
 pub fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i32) -> Vec<String> {
     let mut g = generate_bronze(seed);
     let mut bot = Bot::spawn(bot_path);
