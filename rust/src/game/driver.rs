@@ -8,7 +8,7 @@
 use std::io::{BufRead, BufReader, Write};
 use std::process::{Child, ChildStdout, Command, Stdio};
 
-use crate::game::engine::step;
+use crate::game::engine::{recompute_scores, step, WOOD};
 use crate::game::mapgen::generate_bronze;
 use crate::game::state::GameState;
 
@@ -169,4 +169,76 @@ pub fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i
         }
     }
     lines
+}
+
+pub struct MatchResult {
+    pub turns: i32,
+    pub scores: [i32; 2],
+    pub fruit: [i32; 2],
+    pub wood: [i32; 2],
+    pub crashed: [bool; 2],
+}
+
+struct Side {
+    bot: Option<Bot>,
+    reader: Option<BufReader<ChildStdout>>,
+    crashed: bool,
+}
+
+/// One scored match on `generate_bronze(seed)`: bot0 = player 0, bot1 = player 1.
+/// "WAIT" = scripted do-nothing side. A side that crashes (send/read failure) plays
+/// WAIT for the remainder and is FLAGGED. Early end when no plants remain (mirrors the
+/// referee, same rule as `play`).
+pub fn play_match(bot0_path: &str, bot1_path: &str, seed: u64, max_turns: i32) -> MatchResult {
+    let mut g = generate_bronze(seed);
+    let mut sides: Vec<Side> = Vec::new();
+    for (i, path) in [bot0_path, bot1_path].iter().enumerate() {
+        if *path == "WAIT" {
+            sides.push(Side { bot: None, reader: None, crashed: false });
+        } else {
+            let mut b = Bot::spawn(path);
+            let rows = grid_rows(&g, i);
+            let header_ok = b
+                .send(&format!("{} {}\n{}\n", g.width, g.height, rows.join("\n")))
+                .is_ok();
+            let reader = BufReader::new(b.child.stdout.take().unwrap());
+            sides.push(Side { bot: Some(b), reader: Some(reader), crashed: !header_ok });
+        }
+    }
+    let mut turns = 0;
+    for _ in 0..max_turns {
+        let mut cmds: [Vec<String>; 2] = [vec!["WAIT".to_string()], vec!["WAIT".to_string()]];
+        for i in 0..2 {
+            let blk = turn_block(&g, i);
+            let side = &mut sides[i];
+            if side.crashed || side.bot.is_none() {
+                continue;
+            }
+            if side.bot.as_mut().unwrap().send(&blk).is_err() {
+                side.crashed = true;
+                continue;
+            }
+            match read_cmds(side.reader.as_mut().unwrap()) {
+                Some(l) => cmds[i] = l.split(';').map(|s| s.to_string()).collect(),
+                None => side.crashed = true,
+            }
+        }
+        step(&mut g, &cmds[0], &cmds[1]);
+        turns += 1;
+        if g.plants.is_empty() {
+            break;
+        }
+    }
+    recompute_scores(&mut g);
+    let fruit = |p: usize| {
+        let inv = &g.inventories[p];
+        inv[0] + inv[1] + inv[2] + inv[3]
+    };
+    MatchResult {
+        turns,
+        scores: [g.scores[0], g.scores[1]],
+        fruit: [fruit(0), fruit(1)],
+        wood: [g.inventories[0][WOOD], g.inventories[1][WOOD]],
+        crashed: [sides[0].crashed, sides[1].crashed],
+    }
 }
