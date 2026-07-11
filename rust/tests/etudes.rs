@@ -211,3 +211,61 @@ PROVE -",
     );
     assert!(matches!(forced_verdict(&s), Verdict::Unresolved));
 }
+
+#[test]
+fn oracle_deterministic() {
+    // forced_verdict must be a pure function of the Situation: no HashSet/HashMap-iteration
+    // nondeterminism (memo tables and terrain sets are only ever used via point lookups /
+    // existence checks / canonical-sorted aggregation, never iterated straight into a decision)
+    // may leak into the verdict OR the proof line. Reuse the felling fixture since it exercises
+    // the richest output (a real ForcedWin + a 4-ply proof), not just a trivial Unresolved.
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+..B..
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 2 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 0",
+    );
+    let v1 = forced_verdict(&s);
+    let v2 = forced_verdict(&s);
+    assert_eq!(v1, v2);
+}
+
+#[test]
+fn oracle_forced_win_by_felling_side_1_mirror() {
+    // extra (not in the plan): every x==0/x==1 role-swap in informed_minimax, extract_line, and
+    // replay_from is written as `if x==0 {(xc,yc)} else {(yc,xc)}` when calling engine::step
+    // (which always wants (player0_cmds, player1_cmds) in that fixed order) -- the felling
+    // fixture above only ever exercises x==0 all the way through a built Proof (PROVE=- in the
+    // unresolved fixture DOES run x==1 through informed_minimax, but never reaches extract_line/
+    // replay_proof since that verdict stays Unresolved). Mirror the felling geometry onto player
+    // 1 (tree moved from x=2 to x=3 so the post-chop dash to shack1 at (4,0) is also exactly one
+    // step, keeping the same CHOP,CHOP,MOVE,DROP timing within H=4) to cover the x==1 path
+    // through extract_line and replay_proof too, not just informed_minimax.
+    let s = from_text(
+        "\
+MAP 5 3
+.0..1
+.....
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 1 1 3 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 3 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 1",
+    );
+    let v = forced_verdict(&s);
+    assert!(matches!(v, Verdict::ForcedWin { side: 1, .. }), "{:?}", v);
+    assert!(troll_farm::etudes::oracle::replay_proof(&s, &v));
+}
