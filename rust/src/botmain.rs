@@ -11,6 +11,11 @@ use std::io::{self, BufRead, Write};
 const VERSION: &str = "1.59.0-ringfix3"; // FIX3 (banana no-carry-in-advance) isolated onto v1.56.0-ringfarm: plant_immediate (RING_PICK_STEPS<=2) + harvest_beats_pick, WITHOUT the v1.57.0-ringtune E1 (want_chopper) term that bundle reverted -2.4 with
                                             // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
                                             // git history and in the frozen v1.26.0 artifacts for instant fallback)
+
+// yannbot dispatch (docs/superpowers/specs/2026-07-11-yannbot-design.md): "elite" (default,
+// the champion path, equality-proven untouched) vs "yann" (the isolated reproduction —
+// dead code / never selected live until a later task's measurement says otherwise).
+pub const DECIDER: &str = "elite";
 mod state;
 pub use state::*;
 pub mod motion;
@@ -462,7 +467,11 @@ pub fn run() {
             None => break,
             Some(state) => {
                 debug_log(&state, &grid_lines, width, height);
-                let cmds = decide_elite(&state);
+                let cmds = if DECIDER == "yann" {
+                    yann::decide_yann(&state)
+                } else {
+                    decide_elite(&state)
+                };
                 // @TFMOVE: motion-rule instrument (motion_analyze.py) — positions BEFORE
                 // moving + intended MOVEs; block rate = intended-but-didn't-advance.
                 if DEBUG {

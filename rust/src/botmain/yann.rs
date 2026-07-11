@@ -79,6 +79,29 @@ fn score_of(inv: &[i32; 6]) -> i32 {
     inv[PLUM] + inv[LEMON] + inv[APPLE] + inv[BANANA] + 4 * inv[WOOD]
 }
 
+/// Trees remaining, of any type -- the endgame's "trees almost gone" input (spec gap G3:
+/// counts every tree regardless of type or size).
+fn fellable_trees(state: &State) -> usize {
+    state.trees.len()
+}
+
+/// Endgame trigger: `None` during the normal main-loop phase; `Some(ahead)` once either
+/// the hard turn cutoff or the "trees nearly gone while behind" condition fires (the
+/// postmortem's rule 5), where `ahead` reports whether we currently lead on score (a tie
+/// counts as ahead -- `>=`, matching the brief's formula exactly). Pure function of
+/// `state`, cheap (no BFS) -- safe to call as often as needed (`troll_candidates` and
+/// `decide_yann` each call it independently rather than threading a shared value through,
+/// since both derive it from the same `state` and can therefore never disagree).
+pub fn endgame_mode(state: &State) -> Option<bool> {
+    let trees_low = fellable_trees(state) <= YE_TREES;
+    let behind = my_score(state) < opp_score(state);
+    if state.turn > YE_TURN || (trees_low && behind) {
+        Some(my_score(state) >= opp_score(state))
+    } else {
+        None
+    }
+}
+
 /// BFS distance from every walkable cell to `shack`: seed the *walkable* orthogonal
 /// neighbors of `shack` at 0, run `bfs_distances`, then shift every resulting distance by
 /// +1 — since the seeds are one step short of the shack itself, this turns "distance to
@@ -218,18 +241,31 @@ impl Ctx {
 
 /// Main-loop candidate generator for one troll, in priority order:
 /// 1. DROP at our shack (score `Y_DROP`) when carrying anything and adjacent.
-/// 2. Bank move (score `Y_BANK`) when full: head for the nearest walkable shack-neighbor.
+/// 2. Bank move (score `Y_BANK`) toward the nearest walkable shack-neighbor: normally
+///    gated on being full; during the endgame (`endgame_mode(state).is_some()`), gated on
+///    carrying ANYTHING instead (the postmortem's "bank-rush all carry").
+/// 2b. Endgame + behind only (`endgame_mode(state) == Some(false)`): PICK the cheapest
+///     banked fruit (BANANA, then APPLE, LEMON, PLUM — the postmortem's extend-the-game
+///     move) once adjacent to the shack with room to carry it (score 6000, mirrors the
+///     champion's PICK command shape — see `planner.rs`); once carrying it, PLANT (same
+///     score) on the first free (walkable, unplanted) shack-neighbor cell in
+///     `ortho_neighbors` order, MOVE-ing there first if not already standing on it —
+///     spends a banked point to keep the game alive for a wood catch-up. Both are simply
+///     absent (no candidate pushed) when there's nothing to pick/plant or no free cell.
 /// 3. Chop / move-to-tree: dynamic throughput `value = wood / (travel + chop_t + ret)`
 ///    from the Task-3 arrival simulation, boosted by a proximity-to-opponent-shack
 ///    denial term on `ttc`-typed trees while the opponent has <= 2 trolls.
 /// 4. Fallback park (score 1.0, always present): head for our shack's neighbor, or the
-///    opponent's while `endgame_ahead` (contest their extension plants — wired by a
-///    later task).
+///    opponent's while `endgame_ahead` (contest their extension plants).
 ///
-/// All three MOVE-class targets (bank, chop, park) are picked from a single per-troll
-/// BFS (`bfs_distances` from `troll.pos()` alone) computed once at the top, per this
-/// module's determinism contract (state.trees walked as a Vec; no HashMap/HashSet
-/// iteration — only single-key `.get`/`.contains` lookups).
+/// All MOVE-class targets are picked from a single per-troll BFS (`bfs_distances` from
+/// `troll.pos()` alone) computed once at the top, per this module's determinism contract
+/// (state.trees walked as a Vec; no HashMap/HashSet iteration — only single-key
+/// `.get`/`.contains` lookups). `endgame_mode(state)` is recomputed fresh here (cheap, no
+/// BFS) rather than threaded through as a parameter, so the pre-existing `endgame_ahead:
+/// bool` parameter keeps its original Task-4 meaning (which shack to park near)
+/// undisturbed — `decide_yann` derives both from the SAME `endgame_mode(state)` call, so
+/// they can never disagree.
 pub fn troll_candidates(
     state: &State,
     troll: &Troll,
@@ -240,6 +276,9 @@ pub fn troll_candidates(
     let mut out = Vec::new();
     let pos = troll.pos();
     let dist_from_troll = bfs_distances(&state.walkable, &[pos]);
+    let mode = endgame_mode(state);
+    let in_endgame = mode.is_some();
+    let behind = matches!(mode, Some(false));
 
     // 1. DROP: carrying anything, standing adjacent to our shack.
     if troll.total_carried() > 0 && is_adjacent(pos, state.my_shack) {
@@ -250,14 +289,54 @@ pub fn troll_candidates(
         });
     }
 
-    // 2. Bank move: full — head for the nearest walkable shack-neighbor.
-    if troll.free_capacity() == 0 {
+    // 2. Bank move: normally requires being full; the endgame rushes home with ANY carry.
+    let bank_ready = if in_endgame {
+        troll.total_carried() > 0
+    } else {
+        troll.free_capacity() == 0
+    };
+    if bank_ready {
         if let Some(c) = nearest_shack_neighbor(&state.walkable, &dist_from_troll, state.my_shack) {
             out.push(Cand {
                 cmd: format!("MOVE {} {} {}", troll.id, c.0, c.1),
                 score: Y_BANK,
                 target: Some(c),
             });
+        }
+    }
+
+    // 2b. Endgame + behind: PICK the cheapest banked fruit, then PLANT it once carried.
+    if behind {
+        if is_adjacent(pos, state.my_shack) && troll.free_capacity() > 0 {
+            if let Some(item) = [BANANA, APPLE, LEMON, PLUM]
+                .iter()
+                .copied()
+                .find(|&it| state.my_inventory[it] > 0)
+            {
+                out.push(Cand {
+                    cmd: format!("PICK {} {}", troll.id, fruit_name(item)),
+                    score: 6000.0,
+                    target: Some(state.my_shack),
+                });
+            }
+        }
+        if let Some(item) = [BANANA, APPLE, LEMON, PLUM]
+            .iter()
+            .copied()
+            .find(|&it| troll.carry[it] > 0)
+        {
+            if let Some(cell) = first_free_plant_cell(state, state.my_shack) {
+                let cmd = if pos == cell {
+                    format!("PLANT {} {}", troll.id, fruit_name(item))
+                } else {
+                    format!("MOVE {} {} {}", troll.id, cell.0, cell.1)
+                };
+                out.push(Cand {
+                    cmd,
+                    score: 6000.0,
+                    target: Some(cell),
+                });
+            }
         }
     }
 
@@ -372,6 +451,31 @@ fn nearest_shack_neighbor(
         });
     }
     best.map(|(_, c)| c)
+}
+
+/// Item index -> the protocol's type-name string, for the 4 fruit types only (PICK/PLANT
+/// never operate on IRON or WOOD). Panics on any other index — never real data, since
+/// every caller in this module scans exactly `[BANANA, APPLE, LEMON, PLUM]`.
+fn fruit_name(item: usize) -> &'static str {
+    match item {
+        PLUM => "PLUM",
+        LEMON => "LEMON",
+        APPLE => "APPLE",
+        BANANA => "BANANA",
+        _ => panic!("fruit_name: not a fruit index {}", item),
+    }
+}
+
+/// First walkable orthogonal neighbor of `shack`, in fixed `ortho_neighbors` array order,
+/// that hosts no existing tree ("no plant" — mirrors `engine::apply_plant`'s own
+/// `plant_at_pos(...).is_some()` check, generalized here to "any tree at that cell" since
+/// `state.trees` is our only planted-object list). `state.trees` is a `Vec`, scanned
+/// directly (this module's determinism contract), and `ortho_neighbors` already returns a
+/// fixed 4-element array — the whole scan is deterministic top-to-bottom.
+fn first_free_plant_cell(state: &State, shack: Cell) -> Option<Cell> {
+    ortho_neighbors(shack)
+        .into_iter()
+        .find(|c| state.walkable.contains(c) && !state.trees.iter().any(|t| t.pos() == *c))
 }
 
 // ── Task 5: funding phase — target spec + gather + TRAIN ───────────────────────
@@ -494,7 +598,8 @@ pub fn funding_candidates(state: &State, troll: &Troll, spec: (i32, i32, i32, i3
 
     // 1. TRAIN, or a move-off-shack fallback when a unit blocks the recruit's spawn cell.
     if mb_afford(&state.my_inventory, &cost, have_iron) {
-        let shack_blocked = state.my_trolls.iter().any(|t| t.pos() == state.my_shack);
+        let shack_blocked = state.my_trolls.iter().any(|t| t.pos() == state.my_shack)
+            || state.opp_trolls.iter().any(|t| t.pos() == state.my_shack);
         if !shack_blocked {
             out.push(Cand {
                 cmd: format!("TRAIN {} {} {} {}", spec.0, spec.1, spec.2, spec.3),
@@ -578,4 +683,119 @@ pub fn funding_candidates(state: &State, troll: &Troll, spec: (i32, i32, i32, i3
     }
 
     out
+}
+
+// ── Task 6: pair coordination + decide_yann assembly ────────────────────────────
+
+/// Canonical single-list argmax (this module's tie-break convention, restated at the top
+/// of the file): higher score wins; on an exact tie, the lexicographically smaller command
+/// string wins. Every candidate list this module ever hands to this function is non-empty
+/// (`troll_candidates` always includes the fallback park); panics otherwise, since that
+/// would mean a troll has literally nothing to do — a bug elsewhere, not a real state.
+fn argmax_cand(cands: &[Cand]) -> &Cand {
+    let mut best: Option<&Cand> = None;
+    for c in cands {
+        best = Some(match best {
+            None => c,
+            Some(b) => {
+                if c.score > b.score || (c.score == b.score && c.cmd < b.cmd) {
+                    c
+                } else {
+                    b
+                }
+            }
+        });
+    }
+    best.expect("candidate list must be non-empty")
+}
+
+/// Exact pair coordination for two trolls (the postmortem's rule 4): enumerate every `(a,
+/// b)` with `a` from `a_list`, `b` from `b_list`, skip any pair that targets the same
+/// non-`None` cell (`None` never collides, including with itself — "both-None allowed"),
+/// maximize the summed score; ties broken by the concatenated command strings
+/// (lexicographically smaller wins, this module's convention). Falls back to each list's
+/// own independent `argmax_cand` (ignoring the dedup constraint) in the degenerate case
+/// where every combination collides — this can only happen when both trolls' entire
+/// candidate lists share a single common target (e.g., two identically-positioned trolls
+/// with nothing but the fallback park, both parking on the same shack-neighbor cell);
+/// never panics.
+fn pair_argmax(a_list: &[Cand], b_list: &[Cand]) -> (String, String) {
+    let mut best: Option<(f64, String, String, String)> = None; // (sum, tie-break key, a.cmd, b.cmd)
+    for a in a_list {
+        for b in b_list {
+            if a.target.is_some() && a.target == b.target {
+                continue;
+            }
+            let sum = a.score + b.score;
+            let key = format!("{}{}", a.cmd, b.cmd);
+            let better = match &best {
+                None => true,
+                Some((bs, bk, _, _)) => sum > *bs || (sum == *bs && key < *bk),
+            };
+            if better {
+                best = Some((sum, key, a.cmd.clone(), b.cmd.clone()));
+            }
+        }
+    }
+    match best {
+        Some((_, _, ac, bc)) => (ac, bc),
+        None => (
+            argmax_cand(a_list).cmd.clone(),
+            argmax_cand(b_list).cmd.clone(),
+        ),
+    }
+}
+
+/// Assembly. 1) Pin memory once: `type_to_cut` and `target_spec` are computed and stored
+/// TOGETHER the first time `type_to_cut` is `None`, then only ever read — never
+/// recomputed (a Task-5-review fix: a mid-trip recompute of one without the other could
+/// strand a carried item under a drifted spec). 2) Build the shared `Ctx` and the
+/// endgame's `ahead` flag once. 3) Generate each troll's candidate list: `funding_candidates`
+/// UNIONED with `troll_candidates` while `my_trolls.len() < 2` (so the bank-move/DROP
+/// paths always exist even before the second troll is trained — another Task-5-review
+/// fix), `troll_candidates` alone once there are 2. 4) Pick: one troll -> straight
+/// argmax; two -> exact pair coordination (`pair_argmax`); anything else (0, or more than
+/// 2 — never produced by this design's own play, defensive only) -> independent per-troll
+/// argmax, never panicking. `my_trolls` is sorted by id first for a deterministic,
+/// input-order-independent pairing (mirrors `decide_elite`'s own `my.sort_by_key(|t|
+/// t.id)`).
+pub fn decide_yann(state: &State) -> Vec<String> {
+    let (ttc, spec) = MEM.with(|m| {
+        let mut mem = m.borrow_mut();
+        if mem.type_to_cut.is_none() {
+            mem.type_to_cut = Some(choose_type_to_cut(state));
+            mem.target_spec = Some(choose_target_spec(state));
+        }
+        (mem.type_to_cut.unwrap(), mem.target_spec.unwrap())
+    });
+
+    let mut my: Vec<Troll> = state.my_trolls.clone();
+    my.sort_by_key(|t| t.id);
+    if my.is_empty() {
+        return Vec::new();
+    }
+
+    let ctx = Ctx::build(state);
+    let endgame_ahead = matches!(endgame_mode(state), Some(true));
+    let funding = my.len() < 2;
+
+    let lists: Vec<Vec<Cand>> = my
+        .iter()
+        .map(|t| {
+            let mut cands = troll_candidates(state, t, ttc, endgame_ahead, &ctx);
+            if funding {
+                cands.extend(funding_candidates(state, t, spec));
+            }
+            cands
+        })
+        .collect();
+
+    match lists.len() {
+        1 => vec![argmax_cand(&lists[0]).cmd.clone()],
+        2 => {
+            let (a, b) = pair_argmax(&lists[0], &lists[1]);
+            vec![a, b]
+        }
+        _ => lists.iter().map(|l| argmax_cand(l).cmd.clone()).collect(),
+    }
 }
