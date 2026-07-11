@@ -475,6 +475,55 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
                 });
             }
         }
+        // v1.61.0-chopharvest (user idea): CHOPPER opportunistic idle-fruit harvest (band 38)
+        // -- the ring's fruit fills to the cap and stalls when the gatherer is off foraging
+        // distant, and the chopper banks wood right next to a full/ripe banana but (pre-
+        // candidate hp=0) could never harvest it. Mirrors the STARTER's "6.5) IDLE-FRUIT" band
+        // 38 below (same band number, same race()-doomed-target check, same "no per-type/
+        // own-half/roam gating" -- harvest ANY ripe fruit) at the SAME numeric priority: it
+        // sits strictly BELOW this chopper's fell (72/70) -- the core constraint ("doesn't
+        // contradict chopping") -- and, matching the starter's already-proven ordering,
+        // strictly ABOVE anti-starvation (31/30) so an idle-fruit pass isn't pre-empted by the
+        // "fell literally anything" last resort. Gated on harvest_power>0 (true once GE_SPEC's
+        // hp is 1; a defensive no-op if a hypothetical hp=0 chopper spec is ever used again).
+        // Tie-break: among ripe fruit, prefer the fullest tree (closest to the 3-fruit cap) via
+        // a `fullness_pen` PENALTY (0 for a full tree, up to 2 for a barely-ripe one), not a
+        // bonus -- claim_info's exact-band match (`value_band`, ~line 149 above) reclassifies
+        // any candidate whose value drifts past its band's ceiling into the wrong ClaimClass,
+        // so every band in this file only ever SUBTRACTS within-band offsets from `38 * BAND`,
+        // never adds. A bonus (`+ p.fruits`) would push a full tree's value to `38*BAND + 3`,
+        // one band-ceiling short of 39 -- silently misclassified as ClaimClass::Cell instead of
+        // Fruit for any troll standing adjacent (steps<3). This penalty form keeps every value
+        // <= `38 * BAND` while preserving the exact same relative ordering (fuller trees still
+        // win close/near-tie comparisons; a real distance advantage of a few steps still always
+        // dominates it, same as the rest of this file's « BAND discipline).
+        if u.harvest_power > 0 && u.free_capacity() > 0 {
+            for p in state
+                .trees
+                .iter()
+                .filter(|p| p.fruits > 0 && d.contains_key(&p.pos()))
+            {
+                let pc = p.pos();
+                let steps = eta(&d, pc, ms);
+                if race(pc, steps).is_none() {
+                    continue; // doomed: they fell it before we arrive — skip, don't donate the travel
+                }
+                let fullness_pen = (3 - p.fruits).max(0) as i64;
+                if pc == u.pos() {
+                    out.push(Cand {
+                        kind: Kind::Harvest,
+                        target: Some(pc),
+                        value: 38 * BAND - fullness_pen,
+                    });
+                } else {
+                    out.push(Cand {
+                        kind: Kind::MoveTo,
+                        target: Some(pc),
+                        value: 38 * BAND - steps - fullness_pen,
+                    });
+                }
+            }
+        }
         // partial bank / park (band 10)
         out.push(Cand {
             kind: if u.total_carried() > 0 {
