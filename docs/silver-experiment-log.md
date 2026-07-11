@@ -2863,3 +2863,23 @@ ring-only harvest (thesis-preserving), or harvest-only-when-free-carry≥next-fe
 builder's band-38-below-anti-starvation ablation — through the (planned) paired self-play gate.
 The GE_SPEC wiring fix + its regression test are cherry-pickable correctness assets regardless.
 Strategic context + ranked roadmap: docs/strategic-rethink-2026-07-11.md.
+
+## 2026-07-11 13:25 — v1.61.0-chopharvest arena verdict: REVERT (−5.0) — gate flag confirmed decisively
+
+User-directed arena run ("deliver it, I want to see how it plays" — explicit override of the
+gate flag; the run bought certainty + the game-watching insights below). Bracket = champion
+ringfix3 118/530 @18.8 (agentId 6546933, stable all morning). Submitted 12:32:21 (id 40981305,
+agentId 6547642). Reads +5/+20/+35/+50m: 12.2 → 14.5 → 13.9 → 13.8 — climb stalled at +20m,
+plateaued ~13.8, **−5.0 below bracket**, decisively past the −0.5 bar. REVERTED to
+v1.59.0-ringfix3 at 13:25 (submit id 40981467); reconvergence poller running; `api_submit.py`
+default was never changed (still ringfix3). Note the arena loss (−5.0) is far worse than the
+boss gate implied (score −7%) — the harvest-detour economy degrades harder vs the FIELD than
+vs the boss; the wood-for-fruit trade is the mechanism (gate: +20 fruit pts vs −35 wood pts).
+
+VALUE EXTRACTED from the run (why it wasn't wasted): (a) user game-watching produced the
+3-observation analysis + the 4-troll loss game (perfect farm, 82 wood, still lost 337-362 —
+see docs/discussion-2026-07-11-ceiling-and-expressiveness.md §4); (b) confirmed the chopper
+NEVER fires band 38 on busy maps (inert there) and trades wood 4:1 on sparse ones — the
+"harvest when idle" design is dead as-is; (c) the successor design is already specified:
+FellWithSalvage macro-candidate (bundle valuation, zero commitment) via prove→express→verify.
+chopharvest artifacts remain frozen (submissions/ + worktree branch); do not resubmit as-is.
