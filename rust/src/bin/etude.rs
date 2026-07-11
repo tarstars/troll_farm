@@ -4,6 +4,7 @@
 //!
 //! Usage: `etude <situation-file.txt> [--step]`
 
+use troll_farm::etudes::oracle::{replay_proof, Verdict};
 use troll_farm::etudes::situation::Situation;
 
 /// [PLUM, LEMON, APPLE, BANANA, IRON, WOOD] — matches the carry/inventory slot order used
@@ -103,6 +104,28 @@ fn fmt_carry(carry: &[i32; 6]) -> String {
         .join(" ")
 }
 
+/// Format a `Verdict` for terminal output: `ForcedWin` prints the side, the forcing line (one
+/// `ply N: <joint command>   diff=<score-diff>` per `Proof.line` entry), and the independent
+/// `replay_proof` validation; `Unresolved`/`TooLarge` print plainly. Pure function of
+/// `(sit, verdict)` — `sit` is only needed to re-run `replay_proof`'s independent check.
+pub fn format_verdict(sit: &Situation, verdict: &Verdict) -> String {
+    let mut out = String::new();
+    match verdict {
+        Verdict::ForcedWin { side, proof } => {
+            out.push_str(&format!("Verdict: ForcedWin(side={side})\n"));
+            out.push_str("Forcing line:\n");
+            for (i, (cmd, diff)) in proof.line.iter().enumerate() {
+                out.push_str(&format!("  ply {}: {cmd}   diff={diff}\n", i + 1));
+            }
+            let valid = replay_proof(sit, verdict);
+            out.push_str(&format!("proof validated: {valid}\n"));
+        }
+        Verdict::Unresolved => out.push_str("Verdict: Unresolved\n"),
+        Verdict::TooLarge => out.push_str("Verdict: TooLarge\n"),
+    }
+    out
+}
+
 fn main() {
     // TODO: IO + render + forced_verdict wiring (later stages).
 }
@@ -110,7 +133,26 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use troll_farm::etudes::oracle::forced_verdict;
     use troll_farm::etudes::situation::from_text;
+
+    /// The oracle's forced-win-by-felling fixture (rust/tests/etudes.rs
+    /// `oracle_forced_win_by_felling`) — cooldown=6 so the tree is quiescent (cooldown=0 would
+    /// regrow it after the first chop; see that test's comment). Also shipped verbatim as
+    /// data/etudes/sample-forced-win.txt for the CLI demo.
+    const FELLING_FIXTURE: &str = "\
+MAP 5 3
+.0..1
+..B..
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 2 1 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 1 2 4 0 6
+TURN 5
+SCORES 0 0
+HORIZON 4
+PROVE 0";
 
     fn fixture_basic() -> Situation {
         from_text(
@@ -160,5 +202,59 @@ PROVE -",
         let out = render(&sit);
         let lines: Vec<&str> = out.lines().collect();
         assert_eq!(lines[2], "..3..", "troll standing on the tree renders its id, not B");
+    }
+
+    #[test]
+    fn format_verdict_unresolved_and_toolarge_print_plainly() {
+        let sit = fixture_basic(); // content irrelevant to these two branches
+        assert_eq!(format_verdict(&sit, &Verdict::Unresolved), "Verdict: Unresolved\n");
+        assert_eq!(format_verdict(&sit, &Verdict::TooLarge), "Verdict: TooLarge\n");
+    }
+
+    #[test]
+    fn format_verdict_forced_win_prints_line_and_validation() {
+        let sit = from_text(FELLING_FIXTURE);
+        let verdict = forced_verdict(&sit);
+        let text = format_verdict(&sit, &verdict);
+        assert!(text.contains("ForcedWin(side=0)"), "got: {text}");
+        assert!(text.contains("proof validated: true"), "got: {text}");
+        let ply_lines = text.lines().filter(|l| l.trim_start().starts_with("ply ")).count();
+        assert_eq!(ply_lines, 4, "H=4 proof must print exactly 4 plies; got: {text}");
+    }
+
+    #[test]
+    fn sample_data_file_is_forced_win_for_side_0() {
+        // Regression: the committed CLI demo fixture (data/etudes/sample-forced-win.txt) must
+        // stay byte-identical in substance to FELLING_FIXTURE — a valid, quiescent forced win.
+        let path = concat!(env!("CARGO_MANIFEST_DIR"), "/data/etudes/sample-forced-win.txt");
+        let text = std::fs::read_to_string(path)
+            .unwrap_or_else(|e| panic!("sample-forced-win.txt must exist at {path}: {e}"));
+        let sit = from_text(&text);
+        let verdict = forced_verdict(&sit);
+        assert!(matches!(verdict, Verdict::ForcedWin { side: 0, .. }), "got: {verdict:?}");
+        assert!(replay_proof(&sit, &verdict));
+    }
+
+    #[test]
+    fn contested_fixture_is_unresolved() {
+        // rust/tests/etudes.rs `oracle_unresolved_or_symmetric`'s fixture: neither side can
+        // reach a resource in time — documents/regression-checks the runner's Unresolved path.
+        let sit = from_text(
+            "\
+MAP 5 3
+.0..1
+.....
+.....
+INV0 0 0 0 0 0 0
+INV1 0 0 0 0 0 0
+UNIT 0 0 1 0 1 2 1 2 0 0 0 0 0 0
+UNIT 3 1 3 0 1 2 1 2 0 0 0 0 0 0
+PLANT BANANA 2 2 2 4 0 0
+TURN 5
+SCORES 0 0
+HORIZON 2
+PROVE -",
+        );
+        assert!(matches!(forced_verdict(&sit), Verdict::Unresolved));
     }
 }
