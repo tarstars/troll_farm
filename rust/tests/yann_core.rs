@@ -116,3 +116,140 @@ fn size_caps_at_four() {
 fn zero_travel_returns_current() {
     assert_eq!(tree_at_arrival(3, 9, 4, 8, PLUM, 5, 0), Some((3, 9)));
 }
+
+// ── Task 4: troll_candidates ────────────────────────────────────────────────
+
+#[test]
+fn throughput_value_matches_hand_computation() {
+    // troll ms2 cc3 chop2 empty at (1,2); lemon s3 h10 cd5 base8 at (4,2); shack (0,2).
+    // d=3 -> travel=2; quiescent 2 turns (cd 5->3) -> arrival (3,10); chop_t=5;
+    // ret: tree->shack dist 4 -> ceil(4/2)=2; wood=min(3,3)=3; value = 3/(2+5+2) = 0.333…
+    let mut s = grid_state(10, 5, (0, 2), (9, 2));
+    s.trees.push(Tree {
+        tree_type: "LEMON".to_string(),
+        x: 4,
+        y: 2,
+        size: 3,
+        health: 10,
+        fruits: 0,
+        cooldown: 5,
+    });
+    let troll = Troll {
+        id: 7,
+        x: 1,
+        y: 2,
+        movement_speed: 2,
+        carry_capacity: 3,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    };
+    let ctx = Ctx::build(&s);
+    // ttc = PLUM so the LEMON tree's denial multiplier never fires here.
+    let cands = troll_candidates(&s, &troll, PLUM, false, &ctx);
+    let cand = cands
+        .iter()
+        .find(|c| c.target == Some((4, 2)))
+        .expect("chop candidate for the lemon");
+    assert_eq!(cand.cmd, "MOVE 7 4 2");
+    assert!((cand.score - (1.0 / 3.0)).abs() < 1e-9);
+}
+
+#[test]
+fn doomed_tree_skipped() {
+    // opp troll chop3 ON a banana s2 h4 at distance 4 (travel 2 for ms2):
+    // t1 h1, t2 dead -> no candidate for that tree
+    let mut s = grid_state(10, 5, (0, 0), (9, 4));
+    s.trees.push(mk_tree("BANANA", 4, 2));
+    s.opp_trolls.push(Troll {
+        id: 99,
+        x: 4,
+        y: 2,
+        movement_speed: 1,
+        carry_capacity: 3,
+        harvest_power: 0,
+        chop_power: 3,
+        carry: [0; 6],
+    });
+    let troll = Troll {
+        id: 5,
+        x: 0,
+        y: 2,
+        movement_speed: 2,
+        carry_capacity: 3,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    };
+    let ctx = Ctx::build(&s);
+    let cands = troll_candidates(&s, &troll, PLUM, false, &ctx);
+    assert!(cands.iter().all(|c| c.target != Some((4, 2))));
+}
+
+#[test]
+fn denial_boosts_type_to_cut_near_opp_shack() {
+    // two identical lemons, one far from the opp shack (dist 6), one near (dist 2);
+    // opp has 1 troll; ttc = LEMON -> the nearer-to-opp one scores strictly higher
+    // despite equal throughput (symmetric about my_shack's/the troll's shared row).
+    let mut s = grid_state(6, 11, (0, 5), (2, 9));
+    s.trees.push(mk_tree("LEMON", 2, 3)); // far from opp shack
+    s.trees.push(mk_tree("LEMON", 2, 7)); // near opp shack
+    s.opp_trolls.push(Troll {
+        id: 50,
+        x: 5,
+        y: 5,
+        movement_speed: 1,
+        carry_capacity: 1,
+        harvest_power: 1,
+        chop_power: 1,
+        carry: [0; 6],
+    });
+    let troll = Troll {
+        id: 1,
+        x: 2,
+        y: 5,
+        movement_speed: 1,
+        carry_capacity: 5,
+        harvest_power: 0,
+        chop_power: 2,
+        carry: [0; 6],
+    };
+    let ctx = Ctx::build(&s);
+    let cands = troll_candidates(&s, &troll, LEMON, false, &ctx);
+    let far = cands
+        .iter()
+        .find(|c| c.target == Some((2, 3)))
+        .expect("far lemon candidate");
+    let near = cands
+        .iter()
+        .find(|c| c.target == Some((2, 7)))
+        .expect("near lemon candidate");
+    assert!(near.score > far.score);
+}
+
+#[test]
+fn drop_beats_everything_when_adjacent_and_carrying() {
+    // carrying 1 wood, adjacent to shack, a juicy tree nearby -> best candidate is DROP (8000)
+    let mut s = grid_state(10, 5, (0, 2), (9, 2));
+    s.trees.push(mk_tree("LEMON", 2, 2)); // tempting nearby throughput candidate
+    let mut carry = [0; 6];
+    carry[WOOD] = 1;
+    let troll = Troll {
+        id: 4,
+        x: 1,
+        y: 2, // adjacent to shack (0,2)
+        movement_speed: 2,
+        carry_capacity: 5,
+        harvest_power: 0,
+        chop_power: 2,
+        carry,
+    };
+    let ctx = Ctx::build(&s);
+    let cands = troll_candidates(&s, &troll, PLUM, false, &ctx);
+    let best = cands
+        .iter()
+        .max_by(|a, b| a.score.partial_cmp(&b.score).unwrap())
+        .expect("at least one candidate");
+    assert_eq!(best.cmd, format!("DROP {}", troll.id));
+    assert_eq!(best.score, 8000.0);
+}
