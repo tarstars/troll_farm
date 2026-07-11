@@ -4,8 +4,9 @@
 //!
 //! Usage: `etude <situation-file.txt> [--step]`
 
-use troll_farm::etudes::oracle::{replay_proof, Verdict};
+use troll_farm::etudes::oracle::{replay_proof, Proof, Verdict};
 use troll_farm::etudes::situation::Situation;
+use troll_farm::game::engine;
 
 /// [PLUM, LEMON, APPLE, BANANA, IRON, WOOD] — matches the carry/inventory slot order used
 /// throughout `game::state`/`game::engine`.
@@ -124,6 +125,45 @@ pub fn format_verdict(sit: &Situation, verdict: &Verdict) -> String {
         Verdict::TooLarge => out.push_str("Verdict: TooLarge\n"),
     }
     out
+}
+
+/// Replay a `ForcedWin` proof's line against a Situation, one ply per `engine::step` call: the
+/// forcing `side`'s recorded joint command (the proof only records X's commands — see
+/// `Proof.line`'s docs — so the opponent's response isn't part of the certificate), plus a fixed
+/// WAIT for every one of the opponent's current units (a readable, always-legal stand-in; the
+/// proof's guarantee holds against ANY opponent response, WAIT included). Returns one rendered
+/// board per ply (`len() == proof.line.len()`) — pure except for the internal `GameState` clone,
+/// no IO. `main` prints these with `--- ply N ---` separators for `--step`.
+pub fn step_boards(sit: &Situation, side: usize, proof: &Proof) -> Vec<String> {
+    let mut state = sit.state.clone();
+    let opponent = 1 - side;
+    let total = proof.line.len();
+    let mut boards = Vec::with_capacity(total);
+
+    for (i, (cmd, _diff)) in proof.line.iter().enumerate() {
+        let side_cmds: Vec<String> = cmd.split(" | ").map(|c| c.to_string()).collect();
+        let opponent_cmds: Vec<String> = state
+            .units
+            .iter()
+            .filter(|u| u.player as usize == opponent)
+            .map(|u| format!("WAIT {}", u.id))
+            .collect();
+        let (cmds0, cmds1) = if side == 0 {
+            (side_cmds, opponent_cmds)
+        } else {
+            (opponent_cmds, side_cmds)
+        };
+        engine::step(&mut state, &cmds0, &cmds1);
+
+        let step_sit = Situation {
+            state: state.clone(),
+            horizon: (total - i - 1) as u32,
+            prove_side: sit.prove_side,
+        };
+        boards.push(render(&step_sit));
+    }
+
+    boards
 }
 
 fn main() {
@@ -256,5 +296,40 @@ HORIZON 2
 PROVE -",
         );
         assert!(matches!(forced_verdict(&sit), Verdict::Unresolved));
+    }
+
+    #[test]
+    fn step_boards_replays_the_forcing_line_to_a_positive_diff() {
+        // FELLING_FIXTURE's proven line is CHOP,CHOP,MOVE,DROP (see rust/tests/etudes.rs
+        // oracle_forced_win_by_felling's comment): chop power 2 vs health 4 fells the size-2
+        // banana on the 2nd CHOP (apply_chop removes a health<=0 plant from state.plants,
+        // handing the choppers +wood), then a MOVE+DROP banks it for a positive score-diff.
+        let sit = from_text(FELLING_FIXTURE);
+        let verdict = forced_verdict(&sit);
+        let (side, proof) = match &verdict {
+            Verdict::ForcedWin { side, proof } => (*side, proof),
+            other => panic!("expected ForcedWin, got {other:?}"),
+        };
+
+        let boards = step_boards(&sit, side, proof);
+
+        assert_eq!(boards.len(), proof.line.len());
+        assert_eq!(boards.len(), 4, "H=4 fixture must produce 4 stepped boards");
+        assert!(boards[0].contains("BANANA"), "ply 1 (1st CHOP): tree still standing\n{}", boards[0]);
+        assert!(
+            !boards[1].contains("BANANA"),
+            "ply 2 (2nd CHOP): tree felled, removed from Trees\n{}",
+            boards[1]
+        );
+
+        let scores_line = boards[3]
+            .lines()
+            .find(|l| l.starts_with("Scores: "))
+            .unwrap_or_else(|| panic!("no Scores line in final board\n{}", boards[3]));
+        let nums: Vec<i32> = scores_line["Scores: ".len()..]
+            .split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+        assert!(nums[0] > nums[1], "side 0 must be strictly ahead after the full line: {scores_line}");
     }
 }
