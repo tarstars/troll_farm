@@ -147,3 +147,45 @@ pub fn effective_cd(state: &State, t: &Tree) -> i32 {
         base
     }
 }
+
+/// Simulate `n` turns of a tree's life while a troll travels toward it, returning its
+/// `(size, health)` on arrival — or `None` if it dies (health <= 0) before then. Each
+/// turn: health -= `opp_chop` first (a tree that dies this turn never gets to grow, and
+/// its death is checked immediately, before the cooldown tick); then cooldown -= 1; when
+/// cooldown drops to <= 0, the tree grows (size += 1, health += slope) only if
+/// `size < 4` (the cap), and the cooldown resets to `base_cd` regardless of whether the
+/// cap suppressed growth. Fruit production is deliberately ignored — irrelevant to chop
+/// value.
+pub fn tree_at_arrival(
+    size0: i32,
+    health0: i32,
+    cooldown0: i32,
+    base_cd: i32,
+    ty: usize,
+    opp_chop: i32,
+    n: i32,
+) -> Option<(i32, i32)> {
+    let slope = match ty {
+        APPLE => 3,
+        BANANA => 1,
+        _ => 2,
+    };
+    let mut size = size0;
+    let mut health = health0;
+    let mut cooldown = cooldown0;
+    for _ in 0..n {
+        health -= opp_chop;
+        if health <= 0 {
+            return None;
+        }
+        cooldown -= 1;
+        if cooldown <= 0 {
+            if size < 4 {
+                size += 1;
+                health += slope;
+            }
+            cooldown = base_cd;
+        }
+    }
+    Some((size, health))
+}

@@ -93,3 +93,26 @@ fn effective_cd_uses_water_adjacency() {
     s.water_cells.insert((3, 2));
     assert_eq!(effective_cd(&s, &t), 4); // 6 - 2
 }
+
+#[test]
+fn tree_grows_during_travel() {
+    // banana s2 h4 cd2, base 6, no opp: t1 cd->1; t2 cd->0 grow s3 h5 cd=6; t3 cd->5
+    assert_eq!(tree_at_arrival(2, 4, 2, 6, BANANA, 0, 3), Some((3, 5)));
+}
+
+#[test]
+fn opponent_chopping_kills_before_arrival() {
+    // banana s2 h4, opp chop 2: t1 h2; t2 h0 -> dead
+    assert_eq!(tree_at_arrival(2, 4, 5, 6, BANANA, 2, 3), None);
+}
+
+#[test]
+fn size_caps_at_four() {
+    // lemon s4 h12 cd1 base8: t1 cd0 -> size stays 4 (no growth), cd resets
+    assert_eq!(tree_at_arrival(4, 12, 1, 8, LEMON, 0, 2), Some((4, 12)));
+}
+
+#[test]
+fn zero_travel_returns_current() {
+    assert_eq!(tree_at_arrival(3, 9, 4, 8, PLUM, 5, 0), Some((3, 9)));
+}
