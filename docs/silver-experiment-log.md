@@ -2834,3 +2834,32 @@ correctly picks nearest ripe fruit per-turn. VERDICT: real+large+fresh-sub-angle
 + unproven beyond one game. → PRIME FIRST ETUDE once the oracle lands: "with a nearby wild banana
 tree, is protecting it (forgo early wood) a FORCED net advantage, or does early-wood tempo
 dominate?" — prove it before spending an arena cycle on a 0-for-3 family.
+
+## 2026-07-11 — v1.61.0-chopharvest boss-gate verdict: FLAG-FAIL as-tuned (wood −8.75) — NOT submitted; thesis confirmed, arithmetic adverse
+
+Builder a4a28cc4 delivered (branch worktree-agent-a4a28cc4b0708f40c, frozen
+cgauto/submissions/v1.61.0-chopharvest.{rs,min.rs,debug-probe.min.rs}, 78,250 B, TDD 6/6,
+self/bundled/min equality EQUAL). ★ CRITICAL CATCH during the build: bumping `GE_SPEC` hp 0→1
+was a live NO-OP — tactics.rs's turn-1 adaptive spec selector hardcoded hp literal `0`;
+caught by live smoke (mybuilds=…2.2.0.2), fixed by wiring `super::GE_SPEC.2` + regression
+test. LESSON: any spec change must be verified via the LIVE build string, never the const.
+
+Controller-computed gate stats (n=8 vs n=8 sequential unpaired boss games, @TFSUM finals;
+data/candidates/v1.61.0-chopharvest/gate/):
+- Mechanism fires: 26 chopper harvests/game; ring alive t≥150 at 6.8× baseline (ring_planted
+  1.96 vs 0.29); train turn NOT delayed (39.0 vs 53.5); wins tied 1/8 vs 1/8.
+- WOOD inv 38.75 vs 47.5 = −8.75 (Welch t≈1.65, p≈0.06-0.13, marginal but directional) —
+  the brief's kill criterion fired. FINAL SCORE 183.3 vs 198.0 = −14.7 (t≈0.72, n.s.).
+  Decomposition: fruit +20.25 pts vs wood −35 pts — 1 fruit-pt costs ~1.7 wood-pts (wood=4×).
+  Ring-aliveness did NOT buy late wood (t225→300 slope +14.3 vs +13.5, ~equal).
+- Wood-drop mechanism UNDISCRIMINATED: (1) stolen chopper turns (26 × ~0.35 wood/turn ≈ −9,
+  matches exactly); (2) fruit-in-carry shrinks free carry → engine caps wood-per-fell by FREE
+  CARRY (verified apply_chop ~:595-611) = FIX3's waste class recreated in fruit form; (3) map
+  luck (unpaired batches; candidate batch's boss scored 266 vs 226).
+
+DECISION: not arena'd as-tuned (gate criterion + adverse score arithmetic). If pursued: first
+extend @TFHARVEST to log carry+cell / count fells with wood_gained < size, then ONE variant —
+ring-only harvest (thesis-preserving), or harvest-only-when-free-carry≥next-fell-size, or the
+builder's band-38-below-anti-starvation ablation — through the (planned) paired self-play gate.
+The GE_SPEC wiring fix + its regression test are cherry-pickable correctness assets regardless.
+Strategic context + ranked roadmap: docs/strategic-rethink-2026-07-11.md.
