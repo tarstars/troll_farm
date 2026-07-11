@@ -195,7 +195,9 @@ def run_gate(cand, champ, seeds, max_turns, jobs, playmatch, csv_path):
     st = paired_stats(pairs)
     v = verdict(st)
     if csv_path:
-        os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+        d = os.path.dirname(csv_path)
+        if d:
+            os.makedirs(d, exist_ok=True)
         with open(csv_path, "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             w.writeheader()
@@ -218,8 +220,7 @@ def selftest(bot, max_turns, playmatch):
     """Same binary both roles: the swapped game is the identical matchup with labels
     exchanged, so pair delta must be EXACTLY 0 for every seed."""
     for seed in range(5):
-        g_a = run_playmatch(playmatch, bot, bot, seed, max_turns)
-        g_b = run_playmatch(playmatch, bot, bot, seed, max_turns)
+        _, g_a, g_b = play_pair((playmatch, bot, bot, seed, max_turns))
         p = pair_rows(g_a, g_b)
         assert p["delta"] == 0.0, (seed, p, g_a, g_b)
         print(f"  seed {seed}: pair delta 0.0 OK (scores {g_a['score0']}-{g_a['score1']})")
@@ -243,11 +244,13 @@ def main():
     if a.seeds < 1:
         ap.error("--seeds must be >= 1")
     if not os.path.exists(a.playmatch):
-        sys.exit(f"playmatch not found at {a.playmatch} — build it: "
-                 f"cd rust && cargo build --release --bin playmatch")
+        print(f"playmatch not found at {a.playmatch} — build it: "
+              f"cd rust && cargo build --release --bin playmatch", file=sys.stderr)
+        return 2
     if a.selftest:
         if len(a.bots) != 1:
-            sys.exit("--selftest needs exactly one BOT_BIN (or WAIT)")
+            print("--selftest needs exactly one BOT_BIN (or WAIT)", file=sys.stderr)
+            return 2
         selftest(a.bots[0], a.max_turns, a.playmatch)
         return 0
     if len(a.bots) != 2:
