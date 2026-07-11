@@ -156,10 +156,112 @@ def check_stats():
     print("check-stats: ALL OK")
 
 
-if __name__ == "__main__":
-    # Task 5 replaces this
-    if "--check-stats" in sys.argv:
-        check_stats()
+def play_pair(job):
+    """Top-level for ProcessPoolExecutor picklability."""
+    playmatch, cand, champ, seed, max_turns = job
+    g_a = run_playmatch(playmatch, cand, champ, seed, max_turns)  # candidate = bot0
+    g_b = run_playmatch(playmatch, champ, cand, seed, max_turns)  # candidate = bot1
+    return seed, g_a, g_b
+
+
+def csv_rows_for(seed, g_a, g_b):
+    return [
+        {"seed": seed, "cand_seat": 0, "turns": g_a["turns"],
+         "cand_score": g_a["score0"], "champ_score": g_a["score1"],
+         "cand_fruit": g_a["fruit0"], "cand_wood": g_a["wood0"],
+         "champ_fruit": g_a["fruit1"], "champ_wood": g_a["wood1"],
+         "cand_crash": g_a["crash0"], "champ_crash": g_a["crash1"]},
+        {"seed": seed, "cand_seat": 1, "turns": g_b["turns"],
+         "cand_score": g_b["score1"], "champ_score": g_b["score0"],
+         "cand_fruit": g_b["fruit1"], "cand_wood": g_b["wood1"],
+         "champ_fruit": g_b["fruit0"], "champ_wood": g_b["wood0"],
+         "cand_crash": g_b["crash1"], "champ_crash": g_b["crash0"]},
+    ]
+
+
+def run_gate(cand, champ, seeds, max_turns, jobs, playmatch, csv_path):
+    jobs_list = [(playmatch, cand, champ, s, max_turns) for s in range(seeds)]
+    t0 = time.time()
+    if jobs > 1:
+        with ProcessPoolExecutor(max_workers=jobs) as ex:
+            results = list(ex.map(play_pair, jobs_list))
     else:
-        print(__doc__)
-        sys.exit(2)
+        results = [play_pair(j) for j in jobs_list]
+    results.sort(key=lambda r: r[0])  # deterministic order regardless of jobs
+    pairs, rows = [], []
+    for seed, g_a, g_b in results:
+        pairs.append(pair_rows(g_a, g_b))
+        rows.extend(csv_rows_for(seed, g_a, g_b))
+    st = paired_stats(pairs)
+    v = verdict(st)
+    if csv_path:
+        os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+        with open(csv_path, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            w.writeheader()
+            w.writerows(rows)
+    dt = time.time() - t0
+    print(f"abgate: {st['n']} pairs ({st['n']*2} games) in {dt:.0f}s "
+          f"| cand={os.path.basename(cand)} champ={os.path.basename(champ)}")
+    print(f"  pair delta mean {st['mean']:+.2f}  sd {st['sd']:.2f}  "
+          f"CI95 [{st['ci_lo']:+.2f}, {st['ci_hi']:+.2f}]")
+    print(f"  W/D/L {st['wins']}/{st['draws']}/{st['losses']}  "
+          f"wood {st['wood']:+.2f}  fruit {st['fruit']:+.2f}  "
+          f"crashes cand={st['cand_crashes']} champ={st['champ_crashes']}")
+    if csv_path:
+        print(f"  csv: {csv_path}")
+    print(f"GATE: {v}")
+    return v
+
+
+def selftest(bot, max_turns, playmatch):
+    """Same binary both roles: the swapped game is the identical matchup with labels
+    exchanged, so pair delta must be EXACTLY 0 for every seed."""
+    for seed in range(5):
+        g_a = run_playmatch(playmatch, bot, bot, seed, max_turns)
+        g_b = run_playmatch(playmatch, bot, bot, seed, max_turns)
+        p = pair_rows(g_a, g_b)
+        assert p["delta"] == 0.0, (seed, p, g_a, g_b)
+        print(f"  seed {seed}: pair delta 0.0 OK (scores {g_a['score0']}-{g_a['score1']})")
+    print("selftest: ALL OK (pair delta exactly 0 on 5 seeds)")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("bots", nargs="*", help="CAND_BIN CHAMP_BIN (or BOT_BIN with --selftest)")
+    ap.add_argument("--seeds", type=int, default=200)
+    ap.add_argument("--max-turns", type=int, default=300)
+    ap.add_argument("--jobs", type=int, default=1)
+    ap.add_argument("--playmatch", default=os.path.join(REPO, "rust/target/release/playmatch"))
+    ap.add_argument("--csv", default=None)
+    ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--check-stats", action="store_true")
+    a = ap.parse_args()
+    if a.check_stats:
+        check_stats()
+        return 0
+    if a.seeds < 1:
+        ap.error("--seeds must be >= 1")
+    if not os.path.exists(a.playmatch):
+        sys.exit(f"playmatch not found at {a.playmatch} — build it: "
+                 f"cd rust && cargo build --release --bin playmatch")
+    if a.selftest:
+        if len(a.bots) != 1:
+            sys.exit("--selftest needs exactly one BOT_BIN (or WAIT)")
+        selftest(a.bots[0], a.max_turns, a.playmatch)
+        return 0
+    if len(a.bots) != 2:
+        ap.print_help()
+        return 2
+    cand, champ = a.bots
+    csv_path = a.csv
+    if csv_path is None:
+        ts = time.strftime("%Y%m%d-%H%M%S")
+        csv_path = os.path.join(REPO, "data/abgate",
+                                f"{ts}_{os.path.basename(cand)}_vs_{os.path.basename(champ)}.csv")
+    v = run_gate(cand, champ, a.seeds, a.max_turns, a.jobs, a.playmatch, csv_path)
+    return {"PASS-TO-ARENA": 0, "REJECT": 1, "INVALID": 2}[v]
+
+
+if __name__ == "__main__":
+    sys.exit(main())
