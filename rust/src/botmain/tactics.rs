@@ -305,12 +305,22 @@ fn plan_impl(state: &State, my: &[Troll], meta: Meta) -> Plan {
             // differ ONLY in lemon), and (b) adopts Boss 5's ms=3/chop=3 flexibility (faster
             // travel + faster felling = the sustained-throughput lever it beats us on). An axis
             // upgrades only when its resource is ALREADY >= n+9, so it never delays training
-            // beyond the cc2 baseline (the upgrade is "free"). hp=0 (can't harvest, cheap).
+            // beyond the cc2 baseline (the upgrade is "free").
             // ms/cc/chop upgrade to 3 when their resource is free (>=n+9), else 2. (v1.14.0's cc1
             // tier on lemon-poor maps was WORSE: 0/5 wood 40 — cc1 throughput too low even with
             // the tight farm's cheap banking. A late cc2 beats an early cc1.)
+            // v1.61.0-chopharvest (user idea) — REVIEWER CRITICAL fix: this axis used to be the
+            // bare literal `0` ("hp=0 (can't harvest, cheap)"), which is what actually reaches
+            // every live game (this adaptive turn-1 draw, committed once via GE_CHOSEN_SPEC, is
+            // what training_spec/spec ultimately resolve to below — NOT the botmain.rs `GE_SPEC`
+            // constant, which nothing in this function ever read). Bumping only the const
+            // (botmain.rs) would have been a NO-OP in the arena: the chopper's harvest_power
+            // would have stayed 0 in every real game, and the new is_chopper-branch band 38
+            // (planner.rs) would have compiled, tested green, and then never fired live. Wiring
+            // this axis to `GE_SPEC.2` (not a second hardcoded literal) makes the constant the
+            // actual single source of truth and the chopharvest_spec_hp1 test load-bearing.
             let lvl = |res: usize| if inv[res] >= n + 9 { 3 } else { 2 };
-            *c = Some((lvl(PLUM), lvl(LEMON), 0, lvl(IRON)));
+            *c = Some((lvl(PLUM), lvl(LEMON), super::GE_SPEC.2, lvl(IRON)));
         }
         c.unwrap()
     });
