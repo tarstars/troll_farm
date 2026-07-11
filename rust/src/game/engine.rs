@@ -782,3 +782,63 @@ pub fn step(game: &mut GameState, cmds0: &[String], cmds1: &[String]) {
     recompute_scores(game);
     game.turn += 1;
 }
+
+// ── end-of-game (hasStalled) ──────────────────────────────────────────────────
+
+/// Referee v1.0.5 end-of-game rule (engine/Board.java `hasStalled`, ported verbatim —
+/// checked directly against github.com/eulerscheZahl/Troll-Farm src/main/java/engine/
+/// Board.java, lines 409-436). Call AFTER `step` each turn with a persistent counter
+/// (start 0). While plants exist the grace counter is recomputed from scratch from units
+/// standing on plants (walk-home time + 6) and the game continues. With no plants: the
+/// counter ticks down FIRST (<=0 ends), THEN a player is judged "stuck" unless a unit
+/// carries a non-iron item or their bank holds any fruit (PLUM..BANANA) — this stuck
+/// check is recomputed UNCONDITIONALLY on every no-plants call (not gated on the counter
+/// value): both stuck ends; a stuck player who is strictly losing ends (mercy rule).
+///
+/// Reuses `bfs_distances` (identical semantics to the referee's `getDistances`: the shack
+/// cell is seeded at distance 0 regardless of its own walkability, and distances expand
+/// only over walkable neighbors) rather than adding a second BFS helper.
+pub fn has_stalled(game: &GameState, turns_until_end: &mut i32) -> bool {
+    if !game.plants.is_empty() {
+        *turns_until_end = 0;
+        let shack_dist: [HashMap<Cell, i32>; 2] = [
+            bfs_distances(&game.walkable, &[game.shacks[0]]),
+            bfs_distances(&game.walkable, &[game.shacks[1]]),
+        ];
+        for u in &game.units {
+            let pos = u.pos();
+            if plant_at_pos(&game.plants, pos).is_none() {
+                continue;
+            }
+            let dist = shack_dist[u.player as usize].get(&pos).copied().unwrap_or(9999);
+            *turns_until_end = (*turns_until_end).max(dist / u.ms.max(1) + 6);
+        }
+        return false;
+    }
+    *turns_until_end -= 1;
+    if *turns_until_end <= 0 {
+        return true;
+    }
+    let mut stuck = [true, true];
+    for u in &game.units {
+        let non_iron: i32 = u.carry[0] + u.carry[1] + u.carry[2] + u.carry[3] + u.carry[5];
+        if non_iron > 0 {
+            stuck[u.player as usize] = false;
+        }
+    }
+    for p in 0..2 {
+        if game.inventories[p][0..4].iter().any(|&c| c > 0) {
+            stuck[p] = false;
+        }
+    }
+    if stuck[0] && stuck[1] {
+        return true;
+    }
+    if stuck[0] && game.scores[0] < game.scores[1] {
+        return true;
+    }
+    if stuck[1] && game.scores[1] < game.scores[0] {
+        return true;
+    }
+    false
+}

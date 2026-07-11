@@ -8,7 +8,7 @@
 use std::io::{BufRead, BufReader, Write};
 use std::process::{Child, ChildStdout, Command, Stdio};
 
-use crate::game::engine::{recompute_scores, step, WOOD};
+use crate::game::engine::{has_stalled, recompute_scores, step, WOOD};
 use crate::game::mapgen::generate_bronze;
 use crate::game::state::GameState;
 
@@ -123,9 +123,11 @@ pub fn read_cmds(reader: &mut BufReader<ChildStdout>) -> Option<String> {
 /// carry their own per-process HashSet nondeterminism, which would break equality even for
 /// a deterministic bot. Returns the bot's per-turn command lines (empty line marks a read
 /// failure). (Equality semantics — verbatim from the pre-extraction equality.rs at cec35bf,
-/// with the four internal `send` calls suffixed `.unwrap()`.)
+/// with the four internal `send` calls suffixed `.unwrap()`.) Early end per the referee's
+/// hasStalled grace rule (was: plants-empty).
 pub fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i32) -> Vec<String> {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0i32;
     let mut bot = Bot::spawn(bot_path);
     let rows = grid_rows(&g, seat);
     bot.send(&format!("{} {}\n{}\n", g.width, g.height, rows.join("\n"))).unwrap();
@@ -166,8 +168,8 @@ pub fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i
             step(&mut g, &opp_cmds, &bot_cmds);
         }
         lines.push(line);
-        if g.plants.is_empty() {
-            break; // real referee ends the game with no plants
+        if has_stalled(&g, &mut turns_until_end) {
+            break; // referee hasStalled: grace period after the last plant dies
         }
     }
     lines
@@ -189,10 +191,11 @@ struct Side {
 
 /// One scored match on `generate_bronze(seed)`: bot0 = player 0, bot1 = player 1.
 /// "WAIT" = scripted do-nothing side. A side that crashes (send/read failure) plays
-/// WAIT for the remainder and is FLAGGED. Early end when no plants remain (mirrors the
-/// referee, same rule as `play`).
+/// WAIT for the remainder and is FLAGGED. Early end per the referee's hasStalled grace
+/// rule (was: plants-empty), same rule as `play`.
 pub fn play_match(bot0_path: &str, bot1_path: &str, seed: u64, max_turns: i32) -> MatchResult {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0i32;
     let mut sides: Vec<Side> = Vec::new();
     for (i, path) in [bot0_path, bot1_path].iter().enumerate() {
         if *path == "WAIT" {
@@ -227,7 +230,7 @@ pub fn play_match(bot0_path: &str, bot1_path: &str, seed: u64, max_turns: i32) -
         }
         step(&mut g, &cmds[0], &cmds[1]);
         turns += 1;
-        if g.plants.is_empty() {
+        if has_stalled(&g, &mut turns_until_end) {
             break;
         }
     }
