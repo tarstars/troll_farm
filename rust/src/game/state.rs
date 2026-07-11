@@ -4,7 +4,7 @@ use std::collections::HashSet;
 pub type Cell = (i32, i32);
 
 /// A troll unit (SimUnit in Python).
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Unit {
     pub id: i32,
     pub player: i32,
@@ -35,7 +35,7 @@ impl Unit {
 }
 
 /// A plant / tree (SimPlant in Python).
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Plant {
     pub plant_type: String,
     pub x: i32,
