@@ -84,7 +84,8 @@ fn rh_rand() -> u64 {
 // (fell suppression + denial exception + wallet band + training ladder) but is still not
 // selected live. See rust/src/botmain/tactics.rs and planner.rs.
 const GE_META: tactics::Meta = tactics::Meta::Tempo;
-const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
+pub const GE_SPEC: (i32, i32, i32, i32) = (2, 3, 0, 2); // cc=3 chopper (Boss-5 mechanism: capture 3 wood/size-3 tree)
+                                                         // pub: rust/tests/chopharvest.rs asserts this constant directly (test 1, chopharvest_spec_hp1)
 const GE_MAX_TROLLS: i32 = 2; // T-hand parked pending a better design; re-arm by setting 3
 const GE_FEEDER_SPEC: (i32, i32, i32, i32) = (1, 1, 1, 0); // cheap hands: 3 plum/3 lemon/3 apple at n=2 (half the old feeder price)
 const GE_FEEDER_T: i32 = 45; // T-hand: restored from 60 — 60 was a leftover from the v1.28.x farm-death era when GE_MAX_TROLLS=2 made this gate unreachable anyway (dormant 3rd hand); the funding fix (planner.rs ladder_funding) is what actually treats farm-death now, so the feeder can arm this early again
