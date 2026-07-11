@@ -55,13 +55,33 @@ def pair_rows(g_a, g_b):
     }
 
 
+_T975 = [12.706, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228,
+         2.201, 2.179, 2.160, 2.145, 2.131, 2.120, 2.110, 2.101, 2.093, 2.086,
+         2.080, 2.074, 2.069, 2.064, 2.060, 2.056, 2.052, 2.048, 2.045, 2.042]
+
+
+def t975(df):
+    """Two-sided 95% Student-t critical value (upper 97.5% quantile).
+    Exact table for df<=30, first-order Cornish-Fisher beyond (error <0.2%).
+    The spec requires t-based CIs: small runs (calibration timing probes, n=10)
+    are where z=1.96 would be materially too narrow."""
+    if df <= 0:
+        raise ValueError("df must be positive")
+    if df <= 30:
+        return _T975[df - 1]
+    return 1.96 + 2.372 / df
+
+
 def paired_stats(pairs):
+    if not pairs:
+        raise ValueError("paired_stats: no pairs (seeds must be >= 1)")
     n = len(pairs)
     deltas = [p["delta"] for p in pairs]
     mean = sum(deltas) / n
     var = sum((d - mean) ** 2 for d in deltas) / (n - 1) if n > 1 else 0.0
     sd = math.sqrt(var)
-    ci = 1.96 * sd / math.sqrt(n)
+    # n==1: zero-width CI — verdict degenerates to the sign of the single pair's delta
+    ci = t975(n - 1) * sd / math.sqrt(n) if n > 1 else 0.0
     return {
         "n": n, "mean": mean, "sd": sd, "ci_lo": mean - ci, "ci_hi": mean + ci,
         "wins": sum(p["wins"] for p in pairs),
@@ -113,6 +133,26 @@ def check_stats():
     # clearly-negative CI
     neg = [dict(p2, delta=p2["delta"] + i * 0.01) for i in range(30)]
     assert verdict(paired_stats(neg)) == "REJECT"
+    # INVALID dominates REJECT when both sides crash in the same pair
+    pboth = pair_rows(mk(20, 12, 4, 2, 4, 4, c0=1, c1=1), mk(12, 20, 2, 4, 4, 4))
+    assert verdict(paired_stats([pboth])) == "INVALID"
+    # game-B crash legs (crash flags on the swapped game attribute correctly)
+    pb_cand = pair_rows(mk(20, 12, 4, 2, 4, 4), mk(12, 20, 2, 4, 4, 4, c1=1))
+    assert pb_cand["cand_crash"] and not pb_cand["champ_crash"], pb_cand
+    pb_champ = pair_rows(mk(20, 12, 4, 2, 4, 4), mk(12, 20, 2, 4, 4, 4, c0=1))
+    assert pb_champ["champ_crash"] and not pb_champ["cand_crash"], pb_champ
+    # draws counted (equal scores both seatings)
+    pd = pair_rows(mk(16, 16, 2, 2, 8, 8), mk(16, 16, 2, 2, 8, 8))
+    assert pd["draws"] == 2 and pd["delta"] == 0.0, pd
+    # t-quantile sanity
+    assert t975(9) == 2.262
+    assert abs(t975(199) - 1.9719) < 1e-3
+    # empty input rejected loudly
+    try:
+        paired_stats([])
+        raise AssertionError("paired_stats([]) must raise")
+    except ValueError:
+        pass
     print("check-stats: ALL OK")
 
 
