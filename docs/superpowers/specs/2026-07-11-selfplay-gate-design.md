@@ -10,16 +10,24 @@ experiments).
 A cheap, high-n, paired REJECT filter that kills arena-loser candidates locally before they
 cost an arena slot — it does NOT accept candidates (the arena remains the judge).
 
-## What it is
-New bin `rust/src/bin/abgate.rs`:
+## What it is (two layers — Rust referee, Python orchestration)
+Performance note (user question, settled): the runtime is dominated by bot thinking +
+`engine::step`, which stay in Rust regardless; orchestration/stats need no performance.
+Python is preferred there for consistency with the cgauto toolkit and iteration speed.
+Reimplementing the referee in Python is FORBIDDEN (second source of truth — the project's
+known bug class); the engine/protocol stay single-sourced in Rust.
 
-```
-cargo run --release --bin abgate -- <candidate_bin> <champion_bin> [seeds=200] [max_turns=300]
-```
+1. **`rust/src/bin/playmatch.rs`** (thin, ~60 lines on the shared driver):
+   `playmatch <bot0_bin> <bot1_bin> <seed> [max_turns=300]` → one machine-readable line:
+   `seed turns score0 score1 fruit0 wood0 fruit1 wood1 crash0 crash1`.
+2. **`cgauto/abgate.py`** (the gate):
+   `uv run --no-sync python cgauto/abgate.py <candidate_bin> <champion_bin> [--seeds 200]`
+   — seed loop, seat-swap pairing, stats, verdict, CSV log; later the calibration runner.
 
-- For each seed: TWO games on the same `generate_bronze(seed)` map (real Gold-class: h 8-11,
-  mirror-symmetric, iron/water, ~18 trees) — candidate in seat 0 vs champion in seat 1, then
-  seats swapped. Driven over the real CG protocol + `engine::step`, exactly like equality.rs.
+- For each seed: TWO `playmatch` games on the same `generate_bronze(seed)` map (real
+  Gold-class: h 8-11, mirror-symmetric, iron/water, ~18 trees) — candidate as bot0 vs champion
+  as bot1, then swapped. Driven over the real CG protocol + `engine::step`, exactly like
+  equality.rs.
 - **Pair delta** = mean of (candidate_score − champion_score) over the two seatings. Same map
   + both seats cancels map luck and side bias. Deterministic bots ⇒ reproducible runs.
 - Output per run: mean pair delta, SD, 95% CI (t-based over seeds), W/D/L, wood-delta and
@@ -32,12 +40,15 @@ cargo run --release --bin abgate -- <candidate_bin> <champion_bin> [seeds=200] [
 
 ## Architecture
 Extract the game-driving loop (`Bot`, `grid_rows`, `turn_block`, `read_cmds`, `play`) from
-`equality.rs` into a shared lib module `src/game/driver.rs`; `equality.rs` and `abgate.rs`
+`equality.rs` into a shared lib module `src/game/driver.rs`; `equality.rs` and `playmatch.rs`
 both consume it. Alternatives considered: (a) `--score` mode inside equality.rs — rejected,
 entangles an exactness-assertion tool with a statistics tool; (b) copy the ~80 driver lines —
-rejected, the driver is exactly what later tools (pool sparring, etude-vs-bot) will reuse.
-Refactor safety: equality.rs is re-validated after extraction by a self-equality run
-(bot vs itself, 50 seeds — must print EQUAL) plus the existing test suite.
+rejected, the driver is exactly what later tools (pool sparring, etude-vs-bot) will reuse;
+(c) pure-Rust single bin — rejected per the performance note above (stats/orchestration
+iterate faster in Python and belong with the cgauto toolkit). Refactor safety: equality.rs is
+re-validated after extraction by a self-equality run (bot vs itself, 50 seeds — must print
+EQUAL) plus the existing test suite. The playmatch↔python interface is ONE versioned text
+line (fields above); abgate.py fails loudly on any parse mismatch.
 
 Differences from equality's `play`: return final `GameState` (scores via recompute) instead
 of command lines; on bot crash/EOF, that side plays WAIT for the remainder and the game is
@@ -47,9 +58,10 @@ reported separately, never silently pooled.
 
 ## Exact self-test invariant (the plumbing proof)
 Self vs self (same binary both roles): for every seed, game(swap) is the SAME matchup with
-labels exchanged, so pair delta ≡ 0 exactly. This is the integration smoke test (5 seeds) and
-validates the seat-swap plumbing end to end. Unit tests cover the paired-stats math on
-synthetic data (mean/CI/W-D-L, crash flagging).
+labels exchanged, so pair delta ≡ 0 exactly. `abgate.py --selftest <bot_bin>` runs 5 seeds
+and asserts the zeros — validates the seat-swap plumbing end to end. The paired-stats math
+(mean/CI/W-D-L, crash flagging) is a pure function in abgate.py, unit-testable on synthetic
+rows (a tiny pytest-free `--check-stats` self-test is acceptable, matching cgauto style).
 
 ## Calibration study — the gate's own acceptance test (run BEFORE trusting it)
 Compile the frozen artifacts (rustc each .min.rs) and run n=200 seeds each, candidate vs its
@@ -79,6 +91,6 @@ Field-panel play-API games (separate existing tooling), per-map-class breakdown,
 execution (sequential 400 games is minutes; add rayon only if painful), telemetry parsing.
 
 ## Success criteria
-1. equality.rs still EQUAL post-refactor; suite green. 2. Self-vs-self pair delta exactly 0
-per seed. 3. Calibration acceptance met. 4. One documented run wired into the candidate
-process docs (arena-queue policy note).
+1. equality.rs still EQUAL post-refactor; suite green (cargo). 2. `abgate.py --selftest`:
+pair delta exactly 0 per seed. 3. Calibration acceptance met (5 known-verdict pairs).
+4. One documented run wired into the candidate process docs (arena-queue policy note).
