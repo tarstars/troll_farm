@@ -4,12 +4,16 @@ bypassing the throttled browser IDE. Uses the session cookies in cg_session.txt.
 Usage: api_submit.py <path-to-.rs>
 """
 import sys, json, urllib.request, urllib.error
+from pathlib import Path
 
 PUZZLE = "spring-challenge-2026-troll-farm"
 USERID = 1302251
-LANG = "Rust"
-CODE = open(sys.argv[1] if len(sys.argv) > 1 else
-            "/home/tarstars/prj/troll_farm/cgauto/submissions/v1.59.0-ringfix3.min.rs").read()
+SOURCE = Path(sys.argv[1] if len(sys.argv) > 1 else
+              "/home/tarstars/prj/troll_farm/cgauto/submissions/v1.59.0-ringfix3.min.rs")
+LANG = {".go": "Go", ".rs": "Rust"}.get(SOURCE.suffix)
+if LANG is None:
+    print(f"LANGUAGE GATE: unsupported extension {SOURCE.suffix!r}"); sys.exit(2)
+CODE = SOURCE.read_text()
 
 if len(CODE) > 100000:
     print(f"SIZE GATE: {len(CODE)} > 100000 — abort"); sys.exit(2)
