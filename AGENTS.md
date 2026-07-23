@@ -1,8 +1,9 @@
 # Agent Operating Policy
 
-This repository has a long experiment history. Read the current handoff and
-the focused protocol/result needed for the task; use `rg` instead of loading
-the full experiment ledger unless archaeology is explicitly required.
+This repository has a long experiment history. Reading order: `docs/STATE.md` (live state),
+then `docs/CONSTRAINTS.md` before proposing any experiment, then the tail of the live ledger
+volume named in STATE §5. Use `rg` and `docs/archive/INDEX.md` instead of loading frozen
+ledgers unless archaeology is explicitly required.
 
 ## Local Bulk Storage Policy
 

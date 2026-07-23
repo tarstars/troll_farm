@@ -277,7 +277,7 @@ def main() -> int:
     result = {
         "schema": 1,
         "scope": "locked prospective scarcity-gate validation; no refitting",
-        "protocol_document": "docs/portfolio-prospective-gate-2026-07-16.md",
+        "protocol_document": "docs/archive/legend/portfolio-prospective-gate-2026-07-16.md",
         "protocol": frozen_protocol,
         "worker_history": worker_history,
         "candidate": {

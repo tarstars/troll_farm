@@ -265,7 +265,7 @@ def main() -> int:
     result = {
         "schema": 1,
         "scope": "locked repeated stochastic-motion follow-up; not a promotion gate",
-        "protocol_document": "docs/portfolio-motion-followup-2026-07-16.md",
+        "protocol_document": "docs/archive/legend/portfolio-motion-followup-2026-07-16.md",
         "protocol": frozen_protocol,
         "worker_history": worker_history,
         "candidate": {

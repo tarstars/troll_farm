@@ -2,12 +2,9 @@
 
 Bot for the CodinGame Spring Challenge 2026 — *Troll Farm*.
 
-> Current project state (2026-07-17): the promoted practice-ladder policy is Legend agent
-> `6557204`, submitted from the behavior-identical 62,725-byte
-> `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`. Its slim A/A
-> closed at rank 24/104 and 24.2 versus the full-size source's frozen 24.5 bracket. Start with
-> `docs/session-handoff-2026-07-16.md` and the 2026-07-17 retry report linked there; the
-> Wood-league overview below is historical onboarding.
+> **Start here: `docs/STATE.md`** — live state (resident, goal, standing rules, open
+> thread), then `docs/CONSTRAINTS.md` before proposing any experiment. Superseded docs:
+> `docs/archive/INDEX.md`. The Wood-league overview below is historical onboarding.
 
 - `bot/main.py` — the bot. **Single-file submission**: paste the whole file into the
   CodinGame IDE. Pure logic is module-level (unit-tested); the game loop runs only under

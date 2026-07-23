@@ -9,7 +9,7 @@ Toolchain: xelatex -shell-escape + minted + DejaVu Sans Mono (handles the
 Unicode box-drawing chars in the comments and page-breaks long files).
 
 Usage:  uv run --no-sync python cgauto/make_bot_pdf.py [out.pdf]
-Default out: docs/troll-farm-bot.pdf
+Default out: outputs/troll-farm-bot.pdf
 """
 import os, re, subprocess, sys, shutil
 
@@ -85,7 +85,7 @@ CodinGame accepts, then a minifier keeps it under the 100\,KB limit.
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "docs/troll-farm-bot.pdf")
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "outputs/troll-farm-bot.pdf")
     os.makedirs(SCRATCH, exist_ok=True)
     ver = version()
 

@@ -239,7 +239,7 @@ def main() -> int:
     result = {
         "schema": 1,
         "scope": "locked second-iteration prospective geometry gate; no refitting",
-        "protocol_document": "docs/portfolio-geometry-prospective-gate-2026-07-16.md",
+        "protocol_document": "docs/archive/legend/portfolio-geometry-prospective-gate-2026-07-16.md",
         "protocol": frozen_protocol,
         "worker_history": worker_history,
         "candidate": {

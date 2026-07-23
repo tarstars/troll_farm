@@ -9,7 +9,7 @@ collect_debug_games.py and prints:
 
 BASELINE (v1.20.0-era, 115 real Boss-5 games, 2026-07-06):
   t75 +4.1   t150 +2.8   t225 -3.1   t300 -15.3   | wins 14% | our avg final wood 38.7
-  late-quarter gain: us +10..16, boss +20..30 (~2x). See docs/ROADMAP.md.
+  late-quarter gain: us +10..16, boss +20..30 (~2x). See docs/archive/bronze-to-gold/ROADMAP.md.
 
 Usage: ramp.py [dir] [--last N]
   dir defaults to data/boss5_games/boss ; --last N = only the N most recent games.
