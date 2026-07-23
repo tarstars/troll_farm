@@ -4123,3 +4123,5 @@ Next recover the acquisition paths behind field and local PLANT returns, then fr
 trajectory-conditioned semantic successor value over exact KEEP, acquire-and-PLANT, and
 current-own-crop HARVEST. Do not select PLANT by local prevalence, force one verb, reopen D87/D89,
 train on terminal outcomes, construct a candidate, or touch Arena.
+
+## 2026-07-23: volume frozen at D166 — continue in legend-top3-experiment-cycle-vol2-2026-07-23.md; distilled state → docs/STATE.md, closed branches → docs/CONSTRAINTS.md
