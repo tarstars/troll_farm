@@ -1,7 +1,7 @@
 import random
 from bot.main import PLANT_COOLDOWN, bfs_distances, MAX_SIZE, MAX_FRUITS, ITEM_INDEX
 from sim.state import GameState, SimUnit, SimPlant
-from sim.engine import tick_plants
+from sim.engine import tick_plants, TREE_HEALTH_BASE
 
 WIDTH, HEIGHT = 16, 8
 FRUITS = ["PLUM", "LEMON", "APPLE", "BANANA"]
@@ -48,7 +48,15 @@ def generate(seed):
                 base = PLANT_COOLDOWN[ftype]
                 ticks = rnd.randint(1, base * (MAX_SIZE + MAX_FRUITS))
                 for cpos in (cell, mirror):
-                    p = SimPlant(ftype, cpos[0], cpos[1], 0, 6, 0, 0)
+                    p = SimPlant(
+                        ftype,
+                        cpos[0],
+                        cpos[1],
+                        0,
+                        TREE_HEALTH_BASE[ftype],
+                        0,
+                        0,
+                    )
                     plants.append(p)
                 # age both identically
                 tmp = GameState(WIDTH, HEIGHT, walkable, [s0, s1], [inv0, inv1],

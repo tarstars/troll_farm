@@ -5,4 +5,12 @@ __pycache__/
 .claude/
 /target
 rust-scratch/
+
+# External-backed bulk roots; no trailing slash so Git also ignores the
+# symlink objects themselves. See AGENTS.md and docs/storage-policy.md.
+/artifacts
+/outputs
+/yt_work
+/data/generated
+/data/external
 data/boss5_games/

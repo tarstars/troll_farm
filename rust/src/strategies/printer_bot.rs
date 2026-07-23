@@ -165,7 +165,7 @@ impl Strategy for PrinterBot {
                         let drop_cell = ortho(shack)
                             .into_iter()
                             .filter(|c| game.walkable.contains(c))
-                            .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                            .min_by_key(|c| (d.get(c).copied().unwrap_or(1 << 30), *c))
                             .unwrap_or(shack);
                         cmd_by_id.insert(
                             u.id,
@@ -186,7 +186,7 @@ impl Strategy for PrinterBot {
                         .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
                         .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
                         .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                        .min_by_key(|c| d[*c])
+                        .min_by_key(|c| (d[*c], **c))
                         .copied()
                 };
                 if let Some(tc) = free_base(true).or_else(|| free_base(false)) {
@@ -208,7 +208,7 @@ impl Strategy for PrinterBot {
                     let drop_cell = ortho(shack)
                         .into_iter()
                         .filter(|c| game.walkable.contains(c))
-                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                        .min_by_key(|c| (d.get(c).copied().unwrap_or(1 << 30), *c))
                         .unwrap_or(shack);
                     cmd_by_id.insert(
                         u.id,
@@ -250,7 +250,7 @@ impl Strategy for PrinterBot {
                             manh(p.pos(), shack) <= farm_r && p.size >= envi("PB_FELL_SIZE", 2)
                         })
                         .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                        .min_by_key(|p| d[&p.pos()])
+                        .min_by_key(|p| (d[&p.pos()], p.pos()))
                         .map(|p| p.pos())
                 })
                 .flatten();
@@ -263,7 +263,7 @@ impl Strategy for PrinterBot {
                     .filter(|p| {
                         p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
                     })
-                    .min_by_key(|p| d[&p.pos()])
+                    .min_by_key(|p| (d[&p.pos()], p.pos()))
                     .map(|p| p.pos())
             };
             let iron_target = need_iron
@@ -272,7 +272,7 @@ impl Strategy for PrinterBot {
                         .iter()
                         .flat_map(|ic| ortho(*ic))
                         .filter(|c| d.contains_key(c) && !reserved.contains(c))
-                        .min_by_key(|c| d[c])
+                        .min_by_key(|c| (d[c], *c))
                 })
                 .flatten();
 

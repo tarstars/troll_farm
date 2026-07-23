@@ -7,19 +7,18 @@
 //! (strategies hold RefCell target-memory, which is !Sync -- never shared).
 //!
 //! Usage: bench [A] [B] [seeds] [--losses]
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::{roster, Strategy};
 
 fn play(p0: &dyn Strategy, p1: &dyn Strategy, seed: u64) -> (i32, i32) {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0;
     for _ in 0..300 {
         let c0 = p0.decide(&g, 0);
         let c1 = p1.decide(&g, 1);
         step(&mut g, &c0, &c1);
-        // Real referee (hasStalled): the game ENDS as soon as no plants exist —
-        // un-banked carries never score. Matters for scorched-earth endgames.
-        if g.plants.is_empty() {
+        if has_stalled(&g, &mut turns_until_end) {
             break;
         }
     }

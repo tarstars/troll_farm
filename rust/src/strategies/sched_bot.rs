@@ -96,6 +96,18 @@ enum Task {
     PickSeed(usize),    // pick this fruit index at the shack for the next crop
 }
 
+fn task_key(task: &Task) -> (u8, i32, i32, usize) {
+    match task {
+        Task::Bank => (0, 0, 0, 0),
+        Task::Fell(cell) => (1, cell.0, cell.1, 0),
+        Task::Harvest(cell) => (2, cell.0, cell.1, 0),
+        Task::Mine(cell) => (3, cell.0, cell.1, 0),
+        Task::Orchard(cell) => (4, cell.0, cell.1, 0),
+        Task::Print(cell, species) => (5, cell.0, cell.1, *species),
+        Task::PickSeed(species) => (6, 0, 0, *species),
+    }
+}
+
 impl Strategy for SchedBot {
     fn name(&self) -> &str {
         "schedbot"
@@ -339,7 +351,7 @@ impl Strategy for SchedBot {
                     .iter()
                     .flat_map(|ic| ortho(*ic))
                     .filter(|c| d.contains_key(c))
-                    .min_by_key(|c| d[c])
+                    .min_by_key(|c| (d[c], *c))
                 {
                     let t = steps(d[&c]) + 1.0;
                     cands.push((envf("SB_MINE_V", 3.0) / t, ti, Task::Mine(c)));
@@ -361,7 +373,7 @@ impl Strategy for SchedBot {
                     .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
                     .filter(|c| game.water.iter().any(|w| manh(*w, **c) == 1))
                     .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                    .min_by_key(|c| d[*c])
+                    .min_by_key(|c| (d[*c], **c))
                     .copied();
                 if let Some(sp) = spot {
                     let t = steps(d.get(&sp).copied().unwrap_or(1 << 20)) + 1.0;
@@ -391,7 +403,7 @@ impl Strategy for SchedBot {
                     .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
                     .min_by_key(|c| {
                         let water = game.water.iter().any(|w| manh(*w, **c) == 1);
-                        (!water as i32, d[*c])
+                        (!water as i32, d[*c], **c)
                     })
                     .copied();
                 if let Some(sp) = spot {
@@ -462,7 +474,12 @@ impl Strategy for SchedBot {
             }
         }
         // greedy joint assignment: best rate first; one task per troll, one troll per target
-        cands.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
+        cands.sort_by(|a, b| {
+            b.0.partial_cmp(&a.0)
+                .unwrap()
+                .then_with(|| a.1.cmp(&b.1))
+                .then_with(|| task_key(&a.2).cmp(&task_key(&b.2)))
+        });
         let mut assigned: HashMap<usize, Task> = HashMap::new();
         let mut taken: HashSet<Cell> = HashSet::new();
         for (_, ti, task) in cands {

@@ -1,5 +1,10 @@
 # Troll Farm — HANDOFF (updated 2026-07-05, Gold/Boss-5 session)
 
+> **Superseded for current state:** see `docs/session-handoff-2026-07-16.md`, the active
+> `docs/hierarchical-controller-roadmap-2026-07-17.md`, and Phase 10's
+> `data/analysis/live-agent-6553250/norxondor-controller-iteration-2026-07-18.md`. The exact live
+> Legend source is recovered as agent `6553250`; this file remains historical background.
+
 > **⚠ 2026-07-06: §1 "current state" below is STALE** (live bot is v1.21.0-motion at Gold
 > ~117-122, not v1.4.5). **The current execution plan is `docs/ROADMAP.md` — read that first**;
 > this file remains valid as background (game mechanics, measurement lessons, dead ends).

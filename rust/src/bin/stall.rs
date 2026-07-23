@@ -8,7 +8,7 @@
 //!   - our-plants@end and game length (early end = full deforestation)
 //! Usage: cargo run --release --bin stall -- [opp] [seeds]
 use std::collections::{HashMap, HashSet, VecDeque};
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::game::state::{Cell, GameState};
 use troll_farm::strategies::roster;
@@ -57,6 +57,7 @@ fn main() {
     let (mut games, mut starved_games) = (0i64, 0i64);
     for s in 0..seeds {
         let mut g = generate_bronze(s);
+        let mut turns_until_end = 0;
         let (mut idle, mut starve, mut turns) = (0i64, 0i64, 0i64);
         for _ in 0..300 {
             let c0 = a.decide(&g, 0);
@@ -85,7 +86,7 @@ fn main() {
             let c1 = b.decide(&g, 1);
             step(&mut g, &c0, &c1);
             turns += 1;
-            if g.plants.is_empty() {
+            if has_stalled(&g, &mut turns_until_end) {
                 break;
             }
         }

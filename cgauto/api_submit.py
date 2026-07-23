@@ -9,7 +9,7 @@ from pathlib import Path
 PUZZLE = "spring-challenge-2026-troll-farm"
 USERID = 1302251
 SOURCE = Path(sys.argv[1] if len(sys.argv) > 1 else
-              "/home/tarstars/prj/troll_farm/cgauto/submissions/v1.59.0-ringfix3.min.rs")
+              "/home/tarstars/prj/troll_farm/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs")
 LANG = {".go": "Go", ".rs": "Rust"}.get(SOURCE.suffix)
 if LANG is None:
     print(f"LANGUAGE GATE: unsupported extension {SOURCE.suffix!r}"); sys.exit(2)
@@ -24,7 +24,7 @@ for line in open("/home/tarstars/prj/troll_farm/cgauto/cg_session.txt"):
     if line and not line.startswith("#") and "=" in line:
         n, v = line.split("=", 1)
         n, v = n.strip(), v.strip()
-        if v and "PASTE" not in v:
+        if n == "rememberMe" and v and "PASTE" not in v:
             cookies.append(f"{n}={v}")
 COOKIE = "; ".join(cookies)
 

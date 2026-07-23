@@ -1,5 +1,5 @@
 use super::state::{Cell, GameState, Plant, Unit};
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{BTreeMap, HashMap, HashSet, VecDeque};
 
 // ── constants ────────────────────────────────────────────────────────────────
 
@@ -156,8 +156,8 @@ pub fn tick_plants(game: &mut GameState) {
         if p.cooldown == 0 && p.health > 0 {
             if p.size < MAX_SIZE {
                 p.size += 1;
-                // Growing a size adds health (real trees: health = base + slope*size).
-                // Adding the slope preserves any chop damage already taken.
+                // Growth adds the type's health slope and therefore preserves
+                // accumulated chop damage. Verified turn-by-turn against replays.
                 p.health += tree_health_params(&p.plant_type).1;
                 // Can't call growth_cd with &mut p and &game simultaneously.
                 // Compute inline.
@@ -459,6 +459,7 @@ pub fn apply_pick(game: &mut GameState, picks: &[(i32, String)]) {
 
 /// Apply plant commands: units plant a seed from their carry at their position.
 pub fn apply_plant(game: &mut GameState, plants: &[(i32, String)]) {
+    let mut intents: BTreeMap<Cell, Vec<(i32, String, usize)>> = BTreeMap::new();
     for (uid, type_name) in plants {
         let (pos, carry_count) = {
             let u = match game.units.iter().find(|u| u.id == *uid) {
@@ -479,9 +480,24 @@ pub fn apply_plant(game: &mut GameState, plants: &[(i32, String)]) {
             continue;
         }
         let idx = item_index(type_name);
-        if let Some(u) = game.units.iter_mut().find(|u| u.id == *uid) {
-            u.carry[idx] -= 1;
+        intents
+            .entry(pos)
+            .or_default()
+            .push((*uid, type_name.clone(), idx));
+    }
+    // Plant commands resolve simultaneously. Same-type intents merge into one
+    // tree and every planter spends a seed; mixed-type intents cancel.
+    for (pos, entries) in &intents {
+        let types: HashSet<&str> = entries.iter().map(|entry| entry.1.as_str()).collect();
+        if types.len() != 1 {
+            continue;
         }
+        for (uid, _, idx) in entries {
+            if let Some(u) = game.units.iter_mut().find(|u| u.id == *uid) {
+                u.carry[*idx] -= 1;
+            }
+        }
+        let (_, type_name, _) = &entries[0];
         game.plants.push(Plant {
             plant_type: type_name.clone(),
             x: pos.0,
@@ -553,6 +569,11 @@ pub fn apply_train(game: &mut GameState, player: i32, talents: (i32, i32, i32, i
 
 /// Apply chop commands.
 pub fn apply_chop(game: &mut GameState, unit_ids: &[i32]) {
+    let allowed_cells: HashSet<Cell> = game.plants.iter().map(|plant| plant.pos()).collect();
+    apply_chop_on_cells(game, unit_ids, &allowed_cells);
+}
+
+fn apply_chop_on_cells(game: &mut GameState, unit_ids: &[i32], allowed_cells: &HashSet<Cell>) {
     // Group choppers by cell
     let mut cells: HashMap<Cell, Vec<i32>> = HashMap::new();
     for &uid in unit_ids {
@@ -561,7 +582,7 @@ pub fn apply_chop(game: &mut GameState, unit_ids: &[i32]) {
                 continue;
             }
             let pos = u.pos();
-            if plant_at_pos(&game.plants, pos).is_some() {
+            if allowed_cells.contains(&pos) && plant_at_pos(&game.plants, pos).is_some() {
                 cells.entry(pos).or_default().push(uid);
             }
         }
@@ -746,6 +767,7 @@ pub fn step(game: &mut GameState, cmds0: &[String], cmds1: &[String]) {
     apply_harvest(game, &all_harvest);
 
     // Plant
+    let choppable_cells: HashSet<Cell> = game.plants.iter().map(|plant| plant.pos()).collect();
     let mut all_plant = a.plant.clone();
     all_plant.extend(b.plant.iter().cloned());
     apply_plant(game, &all_plant);
@@ -753,7 +775,7 @@ pub fn step(game: &mut GameState, cmds0: &[String], cmds1: &[String]) {
     // Chop
     let mut all_chop = a.chop.clone();
     all_chop.extend(b.chop.iter());
-    apply_chop(game, &all_chop);
+    apply_chop_on_cells(game, &all_chop, &choppable_cells);
 
     // Pick
     let mut all_pick = a.pick.clone();
@@ -781,4 +803,66 @@ pub fn step(game: &mut GameState, cmds0: &[String], cmds1: &[String]) {
     tick_plants(game);
     recompute_scores(game);
     game.turn += 1;
+}
+
+// ── end-of-game (hasStalled) ────────────────────────────────────────────────
+
+/// Referee v1.0.5 end-of-game rule (`Board.hasStalled`). Call this after each
+/// [`step`] with a counter initialized to zero and preserved across turns.
+///
+/// While at least one plant exists, the counter is reset to the longest
+/// walk-home time plus six among units currently standing on plants. Once no
+/// plants remain, the counter is decremented before the stuck/mercy checks.
+/// Fruit or any carried non-iron item keeps a player unstuck; carried iron does
+/// not. The game ends when the counter expires, when both players are stuck, or
+/// when a stuck player is strictly behind.
+pub fn has_stalled(game: &GameState, turns_until_end: &mut i32) -> bool {
+    if !game.plants.is_empty() {
+        *turns_until_end = 0;
+        let shack_dist: [HashMap<Cell, i32>; 2] = [
+            bfs_distances(&game.walkable, &[game.shacks[0]]),
+            bfs_distances(&game.walkable, &[game.shacks[1]]),
+        ];
+        for unit in &game.units {
+            let pos = unit.pos();
+            if plant_at_pos(&game.plants, pos).is_none() {
+                continue;
+            }
+            let distance = shack_dist[unit.player as usize]
+                .get(&pos)
+                .copied()
+                .unwrap_or(9_999);
+            *turns_until_end = (*turns_until_end).max(distance / unit.ms.max(1) + 6);
+        }
+        return false;
+    }
+
+    *turns_until_end -= 1;
+    if *turns_until_end <= 0 {
+        return true;
+    }
+
+    let mut stuck = [true, true];
+    for unit in &game.units {
+        let non_iron: i32 = unit.carry[PLUM]
+            + unit.carry[LEMON]
+            + unit.carry[APPLE]
+            + unit.carry[BANANA]
+            + unit.carry[WOOD];
+        if non_iron > 0 {
+            stuck[unit.player as usize] = false;
+        }
+    }
+    for player in 0..2 {
+        if game.inventories[player][PLUM..=BANANA]
+            .iter()
+            .any(|&amount| amount > 0)
+        {
+            stuck[player] = false;
+        }
+    }
+
+    (stuck[0] && stuck[1])
+        || (stuck[0] && game.scores[0] < game.scores[1])
+        || (stuck[1] && game.scores[1] < game.scores[0])
 }

@@ -1,5 +1,8 @@
 # Session Handoff — 2026-07-11 (flush-safe snapshot)
 
+> **Superseded:** use `docs/session-handoff-2026-07-16.md` for the recovered live Legend bot and
+> current execution state. This snapshot remains historical experiment context.
+
 Durable state so a fresh/compacted session resumes without the transcript. Committed to git.
 Trust `docs/arena-queue.md` (live verdict log) + `docs/silver-experiment-log.md` (full narrative)
 over this file when they disagree; the memory header (`MEMORY.md`) is the one-line pointer.

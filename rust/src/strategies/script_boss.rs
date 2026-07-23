@@ -32,6 +32,7 @@ const BIG_SPEC: (i32, i32, i32, i32) = (2, 4, 2, 2);
 const MAX_ORCHARD: usize = 2; // base LEMON orchard (funds the cc4's lemon 18)
 const LOCAL_R: i32 = 5; // observed harvest radius around the boss shack
 
+#[derive(Clone)]
 pub struct ScriptBoss {
     mem: RefCell<HashMap<i32, Cell>>, // sticky per-harvester targets; reset at turn 1
 }
@@ -157,7 +158,7 @@ impl Strategy for ScriptBoss {
                         manh(**c, shack) <= 2 && !game.plants.iter().any(|p| p.pos() == **c)
                     })
                     .filter(|c| d.contains_key(*c))
-                    .min_by_key(|c| d[*c])
+                    .min_by_key(|c| (d[*c], **c))
                 {
                     cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, c.0, c.1));
                     continue;
@@ -177,7 +178,7 @@ impl Strategy for ScriptBoss {
                     let drop_cell = ortho(shack)
                         .into_iter()
                         .filter(|c| game.walkable.contains(c))
-                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                        .min_by_key(|c| (d.get(c).copied().unwrap_or(1 << 30), *c))
                         .unwrap_or(shack);
                     cmd_by_id.insert(
                         u.id,
@@ -212,7 +213,7 @@ impl Strategy for ScriptBoss {
                     .iter()
                     .flat_map(|ic| ortho(*ic))
                     .filter(|c| d.contains_key(c) && !reserved.contains(c))
-                    .min_by_key(|c| d[c])
+                    .min_by_key(|c| (d[c], *c))
                 {
                     cmd_by_id.insert(u.id, format!("MOVE {} {} {}", u.id, c.0, c.1));
                     continue;
@@ -226,7 +227,13 @@ impl Strategy for ScriptBoss {
                 game.plants
                     .iter()
                     .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                    .min_by_key(|p| (d[&p.pos()] + manh(p.pos(), opp) - 3 * p.size, -p.size))
+                    .min_by_key(|p| {
+                        (
+                            d[&p.pos()] + manh(p.pos(), opp) - 3 * p.size,
+                            -p.size,
+                            p.pos(),
+                        )
+                    })
                     .map(|p| p.pos())
                     .or_else(|| {
                         game.plants
@@ -236,7 +243,7 @@ impl Strategy for ScriptBoss {
                                     && !reserved.contains(&p.pos())
                                     && d.contains_key(&p.pos())
                             })
-                            .min_by_key(|p| d[&p.pos()])
+                            .min_by_key(|p| (d[&p.pos()], p.pos()))
                             .map(|p| p.pos())
                     })
             } else {
@@ -252,7 +259,7 @@ impl Strategy for ScriptBoss {
                         })
                         .filter(|p| !local_only || manh(p.pos(), shack) <= LOCAL_R)
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
-                        .min_by_key(|p| d[&p.pos()])
+                        .min_by_key(|p| (d[&p.pos()], p.pos()))
                         .map(|p| p.pos())
                 };
                 // Locality (observed): the starter farms ONLY its base patch; the util

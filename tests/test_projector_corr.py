@@ -19,9 +19,16 @@ POLICIES = [
 def _spearman(xs, ys):
     def ranks(v):
         order = sorted(range(len(v)), key=lambda i: v[i])
-        rk = [0] * len(v)
-        for pos, i in enumerate(order):
-            rk[i] = pos
+        rk = [0.0] * len(v)
+        start = 0
+        while start < len(order):
+            end = start + 1
+            while end < len(order) and v[order[end]] == v[order[start]]:
+                end += 1
+            average_rank = (start + end - 1) / 2
+            for pos in range(start, end):
+                rk[order[pos]] = average_rank
+            start = end
         return rk
     rx, ry = ranks(xs), ranks(ys)
     n = len(xs)
@@ -31,6 +38,12 @@ def _spearman(xs, ys):
     vx = sum((rx[i]-mx)**2 for i in range(n)) ** 0.5
     vy = sum((ry[i]-my)**2 for i in range(n)) ** 0.5
     return cov / (vx*vy) if vx and vy else 0.0
+
+
+def test_spearman_averages_tied_ranks() -> None:
+    # Arbitrarily ordering ties reports a false perfect correlation here; the
+    # standard average-rank definition gives the actual partial association.
+    assert abs(_spearman([0, 0, 1], [0, 1, 1]) - 0.5) < 1e-12
 
 
 def _policy_decide(state, policy, params):

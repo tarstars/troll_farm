@@ -3,7 +3,7 @@
 //! move-to-own-cell), and the opening. Reveals execution waste the aggregate
 //! diag averages hide. Usage: cargo run --release --bin trace -- [A] [B] [seed]
 use std::collections::BTreeMap;
-use troll_farm::game::engine::{step, WOOD};
+use troll_farm::game::engine::{has_stalled, step, WOOD};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::roster;
 
@@ -62,6 +62,7 @@ fn main() {
     let mut idle_turns: i64 = 0; // troll-turns spent on WAIT or move-to-self
     let mut troll_turns: i64 = 0; // total troll-turns (sum of troll count each turn)
     let mut phase_wait = [0i64; 3]; // WAIT counts in early/mid/late thirds
+    let mut turns_until_end = 0;
 
     let wi = who as i32;
     for t in 0..300 {
@@ -124,9 +125,8 @@ fn main() {
             );
         }
         step(&mut g, &c0, &c1);
-        // Real referee: game ends when no plants remain.
-        if g.plants.is_empty() {
-            println!("t{:<3} GAME END: no plants remain", t + 2);
+        if has_stalled(&g, &mut turns_until_end) {
+            println!("t{:<3} GAME END: referee stall rule", t + 2);
             break;
         }
     }

@@ -5,7 +5,7 @@
 //!
 //! Usage: `cargo run --release --bin diag -- <botA> <botB> [seeds]`
 //!        defaults: planner gatherer 100
-use troll_farm::game::engine::{recompute_scores, step, WOOD};
+use troll_farm::game::engine::{has_stalled, recompute_scores, step, WOOD};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::game::state::GameState;
 use troll_farm::strategies::{roster, Strategy};
@@ -45,12 +45,12 @@ impl Stat {
 
 fn play(a: &dyn Strategy, b: &dyn Strategy, seed: u64) -> GameState {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0;
     for _ in 0..300 {
         let c0 = a.decide(&g, 0);
         let c1 = b.decide(&g, 1);
         step(&mut g, &c0, &c1);
-        // Real referee: game ends when no plants remain.
-        if g.plants.is_empty() {
+        if has_stalled(&g, &mut turns_until_end) {
             break;
         }
     }

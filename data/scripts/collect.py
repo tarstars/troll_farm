@@ -9,16 +9,18 @@ the dataset (new battles) without refetching.
 Usage:
     python3 data/scripts/collect.py            # full collection
     python3 data/scripts/collect.py --no-fetch # only refresh leaderboard/battles
+    python3 data/scripts/collect.py --agent-id 6551038 --agent-only
+                                                # only this agent and its games
 
 Outputs (relative to data/):
     raw/leaderboard.json          full leaderboard snapshot (top 1000)
-    raw/players.json              selected players manifest (tass + top Legend/Gold)
+    raw/players.json              selected players manifest (target + top Legend/Gold)
     raw/battles/<agentId>.json    battle lists per selected agent
     raw/games/<gameId>.json       raw replays (gameResult/findByGameId)
     raw/fetch_log.json            per-gameId fetch status incl. failures
 """
+import argparse
 import json
-import sys
 import time
 import urllib.request
 import urllib.error
@@ -46,7 +48,45 @@ def post(service: str, body) -> object:
         return json.loads(r.read().decode())
 
 
-def main(fetch_games: bool = True) -> None:
+def selected_players(
+    users: list[dict], agent_id: int | None = None, agent_only: bool = False
+) -> tuple[dict[int, dict], int, int, int]:
+    """Build the collection manifest without coupling an agent id to a pseudo."""
+
+    def li(user: dict) -> int | None:
+        return user.get("league", {}).get("divisionIndex")
+
+    if agent_id is None:
+        ours = [user for user in users if user.get("pseudo") == OUR_PSEUDO]
+    else:
+        ours = [user for user in users if user.get("agentId") == agent_id]
+        if not ours:
+            ours = [{"agentId": agent_id, "pseudo": f"agent-{agent_id}"}]
+
+    legend = [] if agent_only else [user for user in users if li(user) == 5][:TOP_N]
+    gold = [] if agent_only else [user for user in users if li(user) == 4][:TOP_N]
+    selected: dict[int, dict] = {}
+    # Add the target last so an agent that is also in a top cohort keeps the
+    # "ours" scope, which captures all of its finished games.
+    cohorts = (("legend_top", legend), ("gold_top", gold), ("ours", ours))
+    for group, group_users in cohorts:
+        for user in group_users:
+            selected[user["agentId"]] = {
+                "pseudo": user.get("pseudo", f"agent-{user['agentId']}"),
+                "agentId": user["agentId"],
+                "userId": user.get("codingamer", {}).get("userId"),
+                "group": group,
+                "leagueIndex": li(user),
+                "league": LEAGUE_NAMES.get(li(user)),
+                "globalRank": user.get("rank"),
+                "score": user.get("score"),
+            }
+    return selected, len(ours), len(legend), len(gold)
+
+
+def main(
+    fetch_games: bool = True, agent_id: int | None = None, agent_only: bool = False
+) -> None:
     (RAW / "games").mkdir(parents=True, exist_ok=True)
     (RAW / "battles").mkdir(parents=True, exist_ok=True)
 
@@ -60,28 +100,12 @@ def main(fetch_games: bool = True) -> None:
     users = lb["users"]
     print(f"leaderboard: {len(users)} users", flush=True)
 
-    def li(u):
-        return u.get("league", {}).get("divisionIndex")
-
-    ours = [u for u in users if u.get("pseudo") == OUR_PSEUDO]
-    legend = [u for u in users if li(u) == 5][:TOP_N]
-    gold = [u for u in users if li(u) == 4][:TOP_N]
-    selected = {}
-    for group, us in (("ours", ours), ("legend_top", legend), ("gold_top", gold)):
-        for u in us:
-            selected[u["agentId"]] = {
-                "pseudo": u["pseudo"],
-                "agentId": u["agentId"],
-                "userId": u.get("codingamer", {}).get("userId"),
-                "group": group,
-                "leagueIndex": li(u),
-                "league": LEAGUE_NAMES.get(li(u)),
-                "globalRank": u.get("rank"),
-                "score": u.get("score"),
-            }
+    selected, ours_count, legend_count, gold_count = selected_players(
+        users, agent_id=agent_id, agent_only=agent_only
+    )
     (RAW / "players.json").write_text(json.dumps(selected, indent=1))
     print(f"selected {len(selected)} players "
-          f"(ours={len(ours)}, legend={len(legend)}, gold={len(gold)})", flush=True)
+          f"(ours={ours_count}, legend={legend_count}, gold={gold_count})", flush=True)
 
     # 2. Battle lists --------------------------------------------------------
     want = {}  # gameId -> source agentId
@@ -136,5 +160,33 @@ def main(fetch_games: bool = True) -> None:
           f"total_files={len(list((RAW / 'games').glob('*.json')))}", flush=True)
 
 
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--no-fetch",
+        action="store_true",
+        help="refresh the leaderboard and battle lists without fetching replays",
+    )
+    parser.add_argument(
+        "--agent-id",
+        type=int,
+        help=f"collect this exact agent as ours instead of looking up pseudo {OUR_PSEUDO!r}",
+    )
+    parser.add_argument(
+        "--agent-only",
+        action="store_true",
+        help="skip top Legend/Gold cohorts and collect only --agent-id",
+    )
+    args = parser.parse_args(argv)
+    if args.agent_only and args.agent_id is None:
+        parser.error("--agent-only requires --agent-id")
+    return args
+
+
 if __name__ == "__main__":
-    main(fetch_games="--no-fetch" not in sys.argv)
+    arguments = parse_args()
+    main(
+        fetch_games=not arguments.no_fetch,
+        agent_id=arguments.agent_id,
+        agent_only=arguments.agent_only,
+    )

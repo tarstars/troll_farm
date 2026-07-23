@@ -484,3 +484,35 @@ reading; keep ≥ bracket −0.2; revert = resubmit the champion artifact named 
 - v1.35.0-thand: REVERTED (arena ~16.8 fading at +35m vs 19.0 bracket; hand trains 6/6 but
   doesn't pay its 9-fruit bill — analyst question queued).
 - v1.28.3-sticky6: superseded 2026-07-07 by v1.36.0-race after holding 19.0-19.2 for ~36h.
+
+## 2026-07-16 — current Legend slot
+
+- **2026-07-17 behavior-identical slim A/A: KEEP / NEW PACKAGING BASELINE.**  Full-size agent
+  `6556873` was frozen at rank 21/104 @24.5.  Slim submission `41005161` landed as agent
+  `6557204`, read 23.3 at +20 and +35, then converged to rank 24/104 @24.2 at +50 and held 24.2
+  through six consecutive closing reads.  Its 160 finished battles by +52 were comparable to
+  the full-size reference's 167-game sample.  Delta -0.3 is inside the `|delta|<0.5` noise band;
+  keep slim and default `api_submit.py` to the arena-validated 62,725-byte artifact.  This is a
+  packaging verdict only; strategy is unchanged.  Full record:
+  `data/analysis/live-agent-6553250/arena-retry-2026-07-17.md`.
+
+- **2026-07-17 pre-seed + secure-orchard-coverage retry: PROMOTED (+3.0 to +3.3).**  Exact-source
+  A/A submit `41004754` landed as agent `6556775`, received 67 battles, and reconverged from a
+  21.1 pre-reset reading to 21.1 with a 20.8 confirming read.  Candidate submit `41004799`
+  landed as agent `6556873` and later held rank 23/104 Legend @24.1 on two authoritative reads
+  after 161 listed battles.  This beats the fresh 20.8-21.1 bracket by +3.0 to +3.3.  The
+  full-size candidate remained live through the later slim A/A; the default now points at its
+  arena-validated behavior-identical slim encoding.  The
+  nominal +20/+35/+50 reads were missed; the decisive read was around +102m but inside the
+  five-hour bracket horizon.  Full record:
+  `data/analysis/live-agent-6553250/arena-retry-2026-07-17.md`.
+  A later closing read reached rank 20/104 @24.4.
+
+- **pre-seed + secure-orchard-coverage stack: INCONCLUSIVE / ROLLED BACK.** Exact live bracket agent
+  `6553250`: rank 6/104 Legend @26.3. Candidate submit `41002151` landed as agent `6555355`,
+  peaked transiently at rank 11 @25.3, then read rank 34 @23.3 at +20m. Standing policy
+  triggered rollback. Exact artifact restored via submit `41002271`, agent `6555394`, but the
+  same-code A/A control reached only 16.1 at +20m and 19.9 at +35m versus its prior 26.3.
+  Uneven game waves plus an `URLError` indicate degraded platform capacity; no causal candidate
+  verdict is possible. Default remained exact live. Pause writes until normal same-code
+  convergence; see `data/analysis/live-agent-6553250/arena-verdict-2026-07-16.md`.

@@ -295,7 +295,12 @@ fn ring_respects_frontdoor() {
         water_cells: HashSet::new(),
     };
     let plan = plan_with_meta(&st, &st.my_trolls, Meta::Tempo);
-    assert_eq!(plan.door, Some((4, 2)), "sanity: west door chosen: {:?}", plan.door);
+    assert_eq!(
+        plan.door,
+        Some((4, 2)),
+        "sanity: west door chosen: {:?}",
+        plan.door
+    );
     let cells: Vec<(i32, i32)> = plan.ring.iter().map(|(c, _)| *c).collect();
     assert!(
         cells.contains(&(4, 2)),

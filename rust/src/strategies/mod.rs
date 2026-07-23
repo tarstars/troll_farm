@@ -7,21 +7,29 @@ pub mod boss4;
 pub mod boss5;
 pub mod boss_real;
 pub mod boss_v3;
+pub mod capacity_separated_denial;
 pub mod chopper;
+pub mod compact_gold;
 pub mod gatherer;
 pub mod gold_elite;
 pub mod harvester;
+pub mod legend_field_proxy;
 pub mod mybot;
+pub mod norxondor_native;
+pub mod norxondor_research;
 pub mod orchard;
+pub mod ownership_aware_farm;
 pub mod planner_strategy;
+pub mod prefruit_interruption;
 pub mod printer_bot;
+pub mod residual_search;
 pub mod rhea_bot;
 pub mod sched_bot;
 pub mod script_boss;
 pub mod search_bot;
 pub mod silver_boss;
 
-pub trait Strategy {
+pub trait Strategy: Send {
     fn name(&self) -> &str;
     fn decide(&self, game: &GameState, player: usize) -> Vec<String>;
 }
@@ -79,6 +87,7 @@ pub fn roster() -> Vec<Box<dyn Strategy>> {
         Box::new(script_boss::ScriptBoss::new()),
         Box::new(boss_v3::BossV3::new()),
         Box::new(printer_bot::PrinterBot::new()),
+        Box::new(residual_search::ResidualSearchBot::new()),
         Box::new(gold_elite::GoldElite::new()),
         Box::new(gold_elite::GoldElite::hybrid()),
         Box::new(gold_elite::GoldElite::accumulate()),

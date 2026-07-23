@@ -3,8 +3,8 @@ use std::collections::HashMap;
 /// Each test corresponds to a Python test case and verifies identical semantics.
 use std::collections::HashSet;
 use troll_farm::game::engine::{
-    apply_chop, apply_drop, apply_harvest, apply_mine, apply_moves, apply_train, next_cell,
-    recompute_scores, step, tick_plants, tree_health, IRON, WOOD,
+    apply_chop, apply_drop, apply_harvest, apply_mine, apply_moves, apply_plant, apply_train,
+    next_cell, recompute_scores, step, tick_plants, tree_health, IRON, WOOD,
 };
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::game::state::{from_ascii, GameState, Plant, Unit};
@@ -191,6 +191,142 @@ fn test_tick_plants_growing_tree_increases_size_no_fruit() {
     tick_plants(&mut g);
     assert_eq!(g.plants[0].size, 3);
     assert_eq!(g.plants[0].fruits, 0);
+    assert_eq!(g.plants[0].health, 7);
+}
+
+#[test]
+fn test_tick_growth_adds_health_but_preserves_damage() {
+    let mut g = from_ascii(&["....", "0..1"]);
+    g.plants = vec![Plant {
+        plant_type: "PLUM".to_string(),
+        x: 1,
+        y: 0,
+        size: 1,
+        health: 2,
+        fruits: 0,
+        cooldown: 1,
+    }];
+
+    tick_plants(&mut g);
+
+    assert_eq!(g.plants[0].size, 2);
+    assert_eq!(g.plants[0].health, 4);
+}
+
+#[test]
+fn test_opposing_plant_collision_cancels_both_commands() {
+    let mut g = from_ascii(&["0....1"]);
+    g.units = vec![
+        Unit {
+            id: 0,
+            player: 0,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 1, 0, 0],
+        },
+        Unit {
+            id: 1,
+            player: 1,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 1, 0, 0, 0],
+        },
+    ];
+
+    apply_plant(
+        &mut g,
+        &[(0, "BANANA".to_string()), (1, "APPLE".to_string())],
+    );
+
+    assert!(g.plants.is_empty());
+    assert_eq!(g.units[0].carry[3], 1);
+    assert_eq!(g.units[1].carry[2], 1);
+}
+
+#[test]
+fn test_same_type_plant_collision_merges_and_spends_both_seeds() {
+    let mut g = from_ascii(&["0....1"]);
+    g.units = vec![
+        Unit {
+            id: 0,
+            player: 0,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 1, 0, 0],
+        },
+        Unit {
+            id: 1,
+            player: 1,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 1, 0, 0],
+        },
+    ];
+
+    apply_plant(
+        &mut g,
+        &[(0, "BANANA".to_string()), (1, "BANANA".to_string())],
+    );
+
+    assert_eq!(g.plants.len(), 1);
+    assert_eq!(g.plants[0].plant_type, "BANANA");
+    assert_eq!(g.units[0].carry[3], 0);
+    assert_eq!(g.units[1].carry[3], 0);
+}
+
+#[test]
+fn test_chop_cannot_damage_tree_planted_on_same_turn() {
+    let mut g = from_ascii(&["0....1"]);
+    g.units = vec![
+        Unit {
+            id: 0,
+            player: 0,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0; 6],
+        },
+        Unit {
+            id: 1,
+            player: 1,
+            x: 2,
+            y: 0,
+            ms: 1,
+            cc: 2,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 1, 0, 0],
+        },
+    ];
+
+    step(
+        &mut g,
+        &["CHOP 0".to_string()],
+        &["PLANT 1 BANANA".to_string()],
+    );
+
+    assert_eq!(g.plants.len(), 1);
+    assert_eq!(g.plants[0].size, 1);
+    assert_eq!(g.plants[0].health, 3);
 }
 
 // ── recompute_scores ──────────────────────────────────────────────────────────

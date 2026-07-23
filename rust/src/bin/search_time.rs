@@ -5,7 +5,7 @@
 //!
 //! Usage: search_time [seeds]
 use std::time::Instant;
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::roster;
 
@@ -20,12 +20,16 @@ fn main() {
     let mut times_us: Vec<f64> = Vec::new();
     for s in 0..seeds {
         let mut g = generate_bronze(s);
+        let mut turns_until_end = 0;
         for _ in 0..300 {
             let t0 = Instant::now();
             let c0 = search.decide(&g, 0);
             times_us.push(t0.elapsed().as_secs_f64() * 1e6);
             let c1 = boss.decide(&g, 1);
             step(&mut g, &c0, &c1);
+            if has_stalled(&g, &mut turns_until_end) {
+                break;
+            }
         }
     }
 

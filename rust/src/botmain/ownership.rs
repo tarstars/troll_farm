@@ -163,7 +163,11 @@ pub struct Pressure {
     pub released_seed_cells: HashSet<Cell>,
 }
 
-fn classify_pressure(own_half_exposed: i32, created_exposed: i32, definite_opponent: bool) -> PressureState {
+fn classify_pressure(
+    own_half_exposed: i32,
+    created_exposed: i32,
+    definite_opponent: bool,
+) -> PressureState {
     if created_exposed > 0 {
         if definite_opponent {
             PressureState::Red
@@ -209,7 +213,8 @@ pub fn assess(state: &State, plan: &Plan) -> Pressure {
     }
 
     let pressure_score = own.own_half_exposed + own.created_exposed;
-    let state_level = classify_pressure(own.own_half_exposed, own.created_exposed, definite_opponent);
+    let state_level =
+        classify_pressure(own.own_half_exposed, own.created_exposed, definite_opponent);
 
     // Task 2 Step 2 (seed-reserve release): conservative on purpose — see the doc comment
     // on `Pressure::released_seed_cells`. Gated on the AGGREGATE state (Orange/Red, the

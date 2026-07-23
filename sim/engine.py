@@ -3,6 +3,8 @@ from bot.main import (PLANT_COOLDOWN, MAX_SIZE, MAX_FRUITS, ITEM_INDEX,
 from sim.state import SimUnit, SimPlant
 
 WATER_BOOST = {"PLUM": 5, "LEMON": 5, "APPLE": 7, "BANANA": 2}
+TREE_HEALTH_SLOPE = {"PLUM": 2, "LEMON": 2, "APPLE": 3, "BANANA": 1}
+TREE_HEALTH_BASE = {"PLUM": 4, "LEMON": 4, "APPLE": 8, "BANANA": 2}
 WOOD_POINTS = 4
 
 
@@ -20,6 +22,9 @@ def tick_plants(game):
         if p.cooldown == 0 and p.health > 0:
             if p.size < MAX_SIZE:
                 p.size += 1
+                # Growth adds the type's health slope and therefore preserves
+                # accumulated chop damage. Verified turn-by-turn against replays.
+                p.health += TREE_HEALTH_SLOPE[p.type]
                 p.cooldown = _growth_cd(game, p)
             elif p.fruits < MAX_FRUITS:
                 p.fruits += 1
@@ -30,6 +35,63 @@ def recompute_scores(game):
     for p in (0, 1):
         inv = game.inventories[p]
         game.scores[p] = sum(inv[0:4]) + WOOD_POINTS * inv[ITEM_INDEX["WOOD"]]
+
+
+def stuck_players(game) -> tuple[bool, bool]:
+    """Return the referee's resource-based stuck status for both players."""
+
+    stuck = [True, True]
+    non_iron_slots = (0, 1, 2, 3, ITEM_INDEX["WOOD"])
+    for unit in game.units:
+        if any(unit.carry[index] > 0 for index in non_iron_slots):
+            stuck[unit.player] = False
+    for player in (0, 1):
+        if any(game.inventories[player][0:4]):
+            stuck[player] = False
+    return stuck[0], stuck[1]
+
+
+def stall_reason(game, turns_until_end: int) -> str | None:
+    """Explain an end decision after the no-plants counter has been updated."""
+
+    if game.plants:
+        return None
+    if turns_until_end <= 0:
+        return "grace_expired"
+    stuck = stuck_players(game)
+    if stuck[0] and stuck[1]:
+        return "both_stuck"
+    if stuck[0] and game.scores[0] < game.scores[1]:
+        return "mercy_player_0"
+    if stuck[1] and game.scores[1] < game.scores[0]:
+        return "mercy_player_1"
+    return None
+
+
+def has_stalled(game, turns_until_end: int) -> tuple[bool, int]:
+    """Apply the referee's persistent grace/stuck/mercy end condition.
+
+    Call this after every ``step`` and feed the returned counter into the next
+    call. The initial counter is zero.
+    """
+
+    if game.plants:
+        turns_until_end = 0
+        shack_distances = [
+            bfs_distances(game.walkable, [game.shacks[player]])
+            for player in (0, 1)
+        ]
+        plant_cells = {plant.pos for plant in game.plants}
+        for unit in game.units:
+            if unit.pos not in plant_cells:
+                continue
+            distance = shack_distances[unit.player].get(unit.pos, 9_999)
+            turns_until_end = max(turns_until_end, distance // max(unit.ms, 1) + 6)
+        return False, turns_until_end
+
+    turns_until_end -= 1
+
+    return stall_reason(game, turns_until_end) is not None, turns_until_end
 
 
 def _manhattan(a, b):
@@ -177,14 +239,27 @@ def apply_pick(game, picks):
 
 def apply_plant(game, plants):
     by_id = {u.id: u for u in game.units}
+    intents = {}
     for uid, type_name in plants:
         u = by_id.get(uid)
         if u is None or u.pos not in game.walkable or _plant_at(game, u.pos):
             continue
         idx = ITEM_INDEX[type_name]
         if u.carry[idx] > 0:
+            intents.setdefault(u.pos, []).append((u, type_name, idx))
+    # Plant commands resolve simultaneously. Same-type intents on one cell
+    # merge into one tree and every planter spends a seed; mixed types cancel.
+    for entries in intents.values():
+        types = {entry[1] for entry in entries}
+        if len(types) != 1:
+            continue
+        type_name = entries[0][1]
+        for u, _, idx in entries:
             u.carry[idx] -= 1
-            game.plants.append(SimPlant(type_name, u.x, u.y, 0, 6, 0, 0))
+        u = entries[0][0]
+        game.plants.append(
+            SimPlant(type_name, u.x, u.y, 0, TREE_HEALTH_BASE[type_name], 0, 0)
+        )
 
 
 def apply_train(game, player, talents):
@@ -206,7 +281,7 @@ def apply_train(game, player, talents):
     game.next_id += 1
 
 
-def apply_chop(game, unit_ids):
+def apply_chop(game, unit_ids, allowed_cells=None):
     by_id = {u.id: u for u in game.units}
     cells = {}
     for uid in unit_ids:
@@ -214,7 +289,7 @@ def apply_chop(game, unit_ids):
         if u is None or u.chop == 0:
             continue
         plant = _plant_at(game, u.pos)
-        if plant is not None:
+        if plant is not None and (allowed_cells is None or u.pos in allowed_cells):
             cells.setdefault(u.pos, []).append(u)
     dead = []
     for cell, choppers in cells.items():
@@ -286,8 +361,9 @@ def step(game, cmds0, cmds1):
     # TRAIN 6, DROP 7, MINE 8 — then plants tick, scores recompute, turn++.
     apply_moves(game, {**a["move"], **b["move"]})
     apply_harvest(game, a["harvest"] + b["harvest"])
+    choppable_cells = {plant.pos for plant in game.plants}
     apply_plant(game, a["plant"] + b["plant"])
-    apply_chop(game, a["chop"] + b["chop"])
+    apply_chop(game, a["chop"] + b["chop"], choppable_cells)
     apply_pick(game, a["pick"] + b["pick"])
     for player, parsed in ((0, a), (1, b)):
         for talents in parsed["train"]:

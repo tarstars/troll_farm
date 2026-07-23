@@ -176,7 +176,7 @@ def main():
     for battle in done:
         game_id = battle["gameId"]
         try:
-            game = call("gameResult/findByGameId", [game_id, USERID])
+            game = call("gameResult/findByGameId", [game_id, None])
         except Exception as exc:
             print(f"game {game_id}: fetch failed ({exc})")
             continue

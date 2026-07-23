@@ -37,6 +37,7 @@ const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const HARVESTER: (i32, i32, i32, i32) = (1, 2, 2, 0);
 
+#[derive(Clone)]
 pub struct MyBot {
     mem: RefCell<HashMap<i32, Cell>>, // sticky per-harvester targets; reset at turn 1
 }
@@ -322,7 +323,7 @@ impl Strategy for MyBot {
                         let drop_cell = ortho(shack)
                             .into_iter()
                             .filter(|c| game.walkable.contains(c))
-                            .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                            .min_by_key(|c| (d.get(c).copied().unwrap_or(1 << 30), *c))
                             .unwrap_or(shack);
                         cmd_by_id.insert(
                             u.id,
@@ -363,7 +364,7 @@ impl Strategy for MyBot {
                         .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
                         .filter(|c| !water || game.water.iter().any(|w| manh(*w, **c) == 1))
                         .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                        .min_by_key(|c| d[*c])
+                        .min_by_key(|c| (d[*c], **c))
                         .copied()
                 };
                 let spot = free_base(true).or_else(|| free_base(false));
@@ -413,7 +414,7 @@ impl Strategy for MyBot {
                         .filter(|c| !game.plants.iter().any(|p| p.pos() == **c))
                         .filter(|c| game.water.iter().any(|w| manh(*w, **c) == 1))
                         .filter(|c| !my.iter().any(|o| o.id != u.id && o.pos() == **c))
-                        .min_by_key(|c| d[*c]);
+                        .min_by_key(|c| (d[*c], **c));
                     if let Some(&tc) = spot {
                         let ty = ["PLUM", "LEMON", "APPLE"][mix_want.unwrap()];
                         if u.pos() == tc {
@@ -478,7 +479,7 @@ impl Strategy for MyBot {
                     let drop_cell = ortho(shack)
                         .into_iter()
                         .filter(|c| game.walkable.contains(c))
-                        .min_by_key(|c| d.get(c).copied().unwrap_or(1 << 30))
+                        .min_by_key(|c| (d.get(c).copied().unwrap_or(1 << 30), *c))
                         .unwrap_or(shack);
                     cmd_by_id.insert(
                         u.id,
@@ -527,7 +528,7 @@ impl Strategy for MyBot {
                         .iter()
                         .flat_map(|ic| ortho(*ic))
                         .filter(|c| d.contains_key(c) && !reserved.contains(c))
-                        .min_by_key(|c| d[c])
+                        .min_by_key(|c| (d[c], *c))
                 } else {
                     None
                 };
@@ -572,6 +573,7 @@ impl Strategy for MyBot {
                                         - lw * lemon
                                         - fw * farm_ready,
                                     -p.size,
+                                    p.pos(),
                                 )
                             })
                             .map(|p| p.pos())
@@ -585,7 +587,7 @@ impl Strategy for MyBot {
                                         && !reserved.contains(&p.pos())
                                         && d.contains_key(&p.pos())
                                 })
-                                .min_by_key(|p| d[&p.pos()])
+                                .min_by_key(|p| (d[&p.pos()], p.pos()))
                                 .map(|p| p.pos())
                         } else {
                             None
@@ -633,7 +635,7 @@ impl Strategy for MyBot {
                                 _ => 3,
                             };
                             let scarcity = if ti == 3 { inv[3] + ban_pen } else { inv[ti] };
-                            (scarcity, d[&p.pos()])
+                            (scarcity, d[&p.pos()], p.pos())
                         })
                         .map(|p| p.pos())
                 };
@@ -668,7 +670,7 @@ impl Strategy for MyBot {
                         .iter()
                         .filter(|p| manh(p.pos(), shack) <= 3 && p.size >= 2 && p.fruits == 0)
                         .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                        .min_by_key(|p| d[&p.pos()])
+                        .min_by_key(|p| (d[&p.pos()], p.pos()))
                         .map(|p| p.pos())
                 } else {
                     None
@@ -686,7 +688,7 @@ impl Strategy for MyBot {
                             p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
                         })
                         .filter(|p| manh(p.pos(), shack) <= local_r)
-                        .min_by_key(|p| d[&p.pos()])
+                        .min_by_key(|p| (d[&p.pos()], p.pos()))
                         .map(|p| p.pos())
                 };
                 if envi("MYBOT_HARV", 1) == 1 {

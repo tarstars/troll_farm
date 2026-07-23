@@ -40,7 +40,10 @@ pub fn from_text(text: &str) -> Situation {
     let width: i32 = map_parts[1].parse().expect("MAP width");
     let height: i32 = map_parts[2].parse().expect("MAP height");
     let h = height as usize;
-    assert!(lines.len() >= 1 + h, "not enough grid rows for declared MAP height");
+    assert!(
+        lines.len() >= 1 + h,
+        "not enough grid rows for declared MAP height"
+    );
     let grid_rows: Vec<&str> = lines[1..1 + h].to_vec();
 
     let mut state = from_ascii(&grid_rows);
@@ -135,7 +138,15 @@ pub fn to_text(sit: &Situation) -> String {
     for u in units {
         out.push_str(&format!(
             "UNIT {} {} {} {} {} {} {} {} {}\n",
-            u.id, u.player, u.x, u.y, u.ms, u.cc, u.hp, u.chop, fmt6(&u.carry)
+            u.id,
+            u.player,
+            u.x,
+            u.y,
+            u.ms,
+            u.cc,
+            u.hp,
+            u.chop,
+            fmt6(&u.carry)
         ));
     }
 
@@ -176,7 +187,10 @@ fn parse_unit(fields: &[&str]) -> Unit {
     assert!(fields.len() >= 14, "UNIT needs 14 fields, got {:?}", fields);
     let n: Vec<i32> = fields
         .iter()
-        .map(|f| f.parse().unwrap_or_else(|_| panic!("bad UNIT field {:?}", f)))
+        .map(|f| {
+            f.parse()
+                .unwrap_or_else(|_| panic!("bad UNIT field {:?}", f))
+        })
         .collect();
     Unit {
         id: n[0],

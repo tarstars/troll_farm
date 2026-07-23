@@ -52,7 +52,7 @@ def main():
     for b in done:
         gid = b["gameId"]
         try:
-            g = call("gameResult/findByGameId", [gid, USERID])
+            g = call("gameResult/findByGameId", [gid, None])
         except Exception as e:
             print(f"  game {gid}: fetch failed ({e})"); continue
         agents = g.get("agents") or []

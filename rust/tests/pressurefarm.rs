@@ -175,7 +175,12 @@ fn assess_orange_when_created_tree_uncertain_and_seed_stays_protected() {
     //          = 0+2+4 = 6
     // Tied (6 == 6): neither side's ETA+margin(3) beats the other -> Uncertain.
     ownership::reset();
-    let initial = own_state(1, vec![], vec![own_troll(0, 0, 0, 0)], vec![own_troll(1, 6, 0, 0)]);
+    let initial = own_state(
+        1,
+        vec![],
+        vec![own_troll(0, 0, 0, 0)],
+        vec![own_troll(1, 6, 0, 0)],
+    );
     let _ = ownership::assess(&initial, &own_plan(&initial));
 
     let later = own_state(
@@ -209,7 +214,12 @@ fn assess_red_when_created_tree_definitely_opponent() {
     // my_eta stays INF -> the opponent definitely wins (Bucket::Opponent, not Uncertain) ->
     // Red. The same seed_cells entry now DOES release.
     ownership::reset();
-    let initial = own_state(1, vec![], vec![own_troll(0, 0, 0, 0)], vec![own_troll(1, 6, 0, 0)]);
+    let initial = own_state(
+        1,
+        vec![],
+        vec![own_troll(0, 0, 0, 0)],
+        vec![own_troll(1, 6, 0, 0)],
+    );
     let _ = ownership::assess(&initial, &own_plan(&initial));
 
     let later = own_state(
@@ -783,11 +793,7 @@ fn tactics_farm_cap_clamps_on_orange_not_yellow() {
     let st_o = orange_scenario(5);
     let plan_o = plan_with_meta(&st_o, &st_o.my_trolls, Meta::Tempo);
     assert_eq!(plan_o.base_trees, 5);
-    assert!(
-        plan_o.pressure.created_exposed > 0,
-        "{:?}",
-        plan_o.pressure
-    );
+    assert!(plan_o.pressure.created_exposed > 0, "{:?}", plan_o.pressure);
     assert_eq!(
         plan_o.pressure.state,
         PressureState::Orange,

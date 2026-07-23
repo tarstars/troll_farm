@@ -9,8 +9,8 @@ use std::io::{self, BufRead, Write};
 // ── constants ───────────────────────────────────────────────────────────────
 
 const VERSION: &str = "1.59.0-ringfix3"; // FIX3 (banana no-carry-in-advance) isolated onto v1.56.0-ringfarm: plant_immediate (RING_PICK_STEPS<=2) + harvest_beats_pick, WITHOUT the v1.57.0-ringtune E1 (want_chopper) term that bundle reverted -2.4 with
-                                            // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
-                                            // git history and in the frozen v1.26.0 artifacts for instant fallback)
+                                         // (the sequential cascade jobs.rs was REMOVED for submission size — 100 KB cap; it lives in
+                                         // git history and in the frozen v1.26.0 artifacts for instant fallback)
 mod state;
 pub use state::*;
 pub mod motion;
@@ -100,11 +100,11 @@ const GE_STARTER_CHOP: bool = true; // let a chop-capable starter help fell
 const GE_MIN_TURNS_LEFT: i32 = 20; // no training inside the last 20 turns
 const GE_SEED_RESERVE: usize = 2; // protect K most-mature farm bananas as seed sources
 const GE_FARM_FELL: i32 = 3; // OUR farm bananas: fell at size 3 = PRODUCTION (cc=3 captures all 3)
-// v1.53.0-pressurefarm (Task 2 Step 1): under Yellow+ observed pressure, tactics::plan_impl
-// clamps farm_cap down to this floor instead of GE_FARM_MAX — a small "keep some farm alive"
-// bootstrap floor, not zero (an empty farm was the seedloop/fruitbank-era failure mode). A
-// farm already below the floor keeps planting regardless of pressure (this is a CEILING that
-// only ever shrinks room to expand further, never a mandate to shrink below where we are).
+                             // v1.53.0-pressurefarm (Task 2 Step 1): under Yellow+ observed pressure, tactics::plan_impl
+                             // clamps farm_cap down to this floor instead of GE_FARM_MAX — a small "keep some farm alive"
+                             // bootstrap floor, not zero (an empty farm was the seedloop/fruitbank-era failure mode). A
+                             // farm already below the floor keeps planting regardless of pressure (this is a CEILING that
+                             // only ever shrinks room to expand further, never a mandate to shrink below where we are).
 const GE_PRESSURE_FARM_FLOOR: usize = 4;
 
 /// v1.4.0 live decider: the gold-elite pure-production strategy. The standalone

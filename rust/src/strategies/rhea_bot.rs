@@ -541,6 +541,47 @@ fn task_act(
     }
 }
 
+/// Deterministic complete-economy command set used by RHEA's internal opponent model.
+///
+/// This deliberately exposes the fixed baseline, not the rolling-horizon search.  Curriculum
+/// environments can therefore activate one reproducible opponent without importing search RNG,
+/// time budgets, or plan mutation.  Keep this action and training cascade identical to the one
+/// used inside `rollout` below.
+pub(crate) fn baseline_commands(s: &FastState, nav: &NavTable, player: usize) -> FCmds {
+    assert!(player < 2);
+    let turns_rem = 300 - s.turn as i32 + 1;
+    let mut commands = FCmds::default();
+    let mut reserved = [false; MAXC];
+    for ui in 0..s.n_units as usize {
+        if s.u_pl[ui] as usize == player {
+            commands.acts[ui] = policy_act(s, nav, player, ui, turns_rem, &mut reserved);
+        }
+    }
+
+    // Greedy chopper-first training, followed by the harvester ladder.  This is the exact
+    // deterministic training rule used by the baseline in RHEA rollouts.
+    let worker_count = (0..s.n_units as usize)
+        .filter(|&ui| s.u_pl[ui] as usize == player)
+        .count() as i16;
+    if worker_count < 4 && turns_rem > 20 {
+        let chopper_count = (0..s.n_units as usize)
+            .filter(|&ui| s.u_pl[ui] as usize == player && s.u_chop[ui] >= 2)
+            .count();
+        let affordable = |target: (i8, i8, i8, i8)| -> bool {
+            let cost = crate::game::fast::training_cost_fast(worker_count, target);
+            (0..6).all(|item| (item == 4 && !s.has_iron) || s.inv[player][item] >= cost[item])
+        };
+        commands.train = if chopper_count < 2 && affordable((2, 2, 0, 2)) {
+            Some((2, 2, 0, 2))
+        } else {
+            [(2i8, 2i8, 2i8, 0i8), (1, 2, 2, 0), (1, 1, 1, 0)]
+                .into_iter()
+                .find(|&target| affordable(target))
+        };
+    }
+    commands
+}
+
 /// Roll the plan forward H turns; opponent plays the baseline policy.
 fn rollout(root: &FastState, nav: &NavTable, plan: &Plan, me: usize) -> f64 {
     let mut s = *root;

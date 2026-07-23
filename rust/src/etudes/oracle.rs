@@ -158,7 +158,12 @@ fn canonical_hash(st: &GameState) -> u64 {
 /// leaf formula (depth 0) or looked up in an ALREADY-COMPLETE memo table (depth > 0). Used by
 /// `extract_line`, which only ever asks for values at states a completed (non-`TooLarge`) search
 /// actually visited — see the "winning line's Y-loop always runs to completion" note below.
-fn lookup_value(st: &GameState, x: usize, depth: u32, memo: &HashMap<(u64, u32, usize), i32>) -> i32 {
+fn lookup_value(
+    st: &GameState,
+    x: usize,
+    depth: u32,
+    memo: &HashMap<(u64, u32, usize), i32>,
+) -> i32 {
     if depth == 0 {
         let mut s = st.clone();
         engine::recompute_scores(&mut s);
@@ -180,7 +185,12 @@ fn lookup_value(st: &GameState, x: usize, depth: u32, memo: &HashMap<(u64, u32, 
 /// `informed_minimax`'s `break`), so the X-action that DOES end up winning at each node had its
 /// Y-loop run to completion without early-exit, and completed without hitting the node budget
 /// (otherwise `forced_verdict` would have returned `TooLarge`, not called this).
-fn extract_line(st0: &GameState, x: usize, horizon: u32, memo: &HashMap<(u64, u32, usize), i32>) -> Vec<(String, i32)> {
+fn extract_line(
+    st0: &GameState,
+    x: usize,
+    horizon: u32,
+    memo: &HashMap<(u64, u32, usize), i32>,
+) -> Vec<(String, i32)> {
     let y = 1 - x;
     let mut line = Vec::with_capacity(horizon as usize);
     let mut st = st0.clone();

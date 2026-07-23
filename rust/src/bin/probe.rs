@@ -1,7 +1,7 @@
 //! Deep single-game probe: for a seed + player, dump each of that player's trolls
 //! (id, pos, carry, free, cmd) plus a fruit summary over a turn range, so we can
 //! see EXACTLY why trolls go idle / wedge. Usage: probe [A] [B] [seed] [who] [lo] [hi]
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::roster;
 
@@ -20,6 +20,7 @@ fn main() {
     let wi = who as i32;
 
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0;
     for t in 0..300 {
         let c0 = a.decide(&g, 0);
         let c1 = b.decide(&g, 1);
@@ -86,5 +87,9 @@ fn main() {
             }
         }
         step(&mut g, &c0, &c1);
+        if has_stalled(&g, &mut turns_until_end) {
+            println!("--- game ended by referee stall rule after t{} ---", turn);
+            break;
+        }
     }
 }

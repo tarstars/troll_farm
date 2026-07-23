@@ -14,13 +14,14 @@ Strengthen the boss and add a seedable random tie-break mode before trusting the
 
 import argparse
 from bot.main import decide, PARAMS
-from sim.engine import step, recompute_scores
+from sim.engine import has_stalled, step, recompute_scores
 from sim.views import build_view
 from sim.boss import boss_decide
 from sim.mapgen import generate
 
 
 def play_game(game, params, max_turns=300, log=None):
+    turns_until_end = 0
     for _ in range(max_turns):
         ours = decide(build_view(game, 0), params)
         theirs = boss_decide(game, 1)
@@ -28,6 +29,9 @@ def play_game(game, params, max_turns=300, log=None):
             log.append((game.turn, [{"id": u.id, "pos": u.pos, "carry": list(u.carry)}
                                     for u in game.units if u.player == 0]))
         step(game, ours, theirs)
+        stalled, turns_until_end = has_stalled(game, turns_until_end)
+        if stalled:
+            break
     recompute_scores(game)
     return game.scores[0], game.scores[1]
 

@@ -1,5 +1,15 @@
 pub mod botmain;
+pub mod d41b_prior_kernel;
 pub mod etudes;
 pub mod game;
 pub mod planner;
+#[path = "bin/yamo_orchard_live.rs"]
+pub mod resident_policy;
+pub mod rl_batch_option;
+pub mod rl_level1;
+pub mod rl_level3;
+pub mod rl_macro;
+pub mod rl_opening_portfolio;
+pub mod rl_q6_proposal;
+pub mod rl_resident_residual;
 pub mod strategies;

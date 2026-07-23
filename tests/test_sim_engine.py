@@ -17,6 +17,17 @@ def test_tick_plants_growing_tree_increases_size_no_fruit():
     g.plants = [SimPlant("BANANA", 2, 0, 2, 6, 0, 1)]
     tick_plants(g)
     assert g.plants[0].size == 3 and g.plants[0].fruits == 0
+    assert g.plants[0].health == 7
+
+
+def test_tick_growth_adds_health_but_preserves_damage() -> None:
+    g = from_ascii(["....", "0..1"])
+    g.plants = [SimPlant("PLUM", 1, 0, 1, 2, 0, 1)]
+
+    tick_plants(g)
+
+    assert g.plants[0].size == 2
+    assert g.plants[0].health == 4
 
 
 def test_recompute_scores_counts_only_fruit():
@@ -145,6 +156,59 @@ def test_step_ignores_msg_and_wait_and_advances_turn():
     g = from_ascii(["0....1"])
     step(g, ["MSG hi", "WAIT"], ["WAIT"])
     assert g.turn == 2
+
+
+def test_apply_plant_starts_at_type_health_base() -> None:
+    g = from_ascii(["0....1"])
+    g.units = [SimUnit(0, 0, 2, 0, 1, 2, 1, 1, [1, 0, 0, 0, 0, 0])]
+
+    apply_plant(g, [(0, "PLUM")])
+
+    assert len(g.plants) == 1
+    assert g.plants[0].size == 0
+    assert g.plants[0].health == 4
+
+
+def test_opposing_plant_collision_cancels_both_commands() -> None:
+    g = from_ascii(["0....1"])
+    g.units = [
+        SimUnit(0, 0, 2, 0, 1, 2, 1, 1, [0, 0, 0, 1, 0, 0]),
+        SimUnit(1, 1, 2, 0, 1, 2, 1, 1, [0, 0, 1, 0, 0, 0]),
+    ]
+
+    apply_plant(g, [(0, "BANANA"), (1, "APPLE")])
+
+    assert g.plants == []
+    assert g.units[0].carry[3] == 1
+    assert g.units[1].carry[2] == 1
+
+
+def test_same_type_plant_collision_merges_and_spends_both_seeds() -> None:
+    g = from_ascii(["0....1"])
+    g.units = [
+        SimUnit(0, 0, 2, 0, 1, 2, 1, 1, [0, 0, 0, 1, 0, 0]),
+        SimUnit(1, 1, 2, 0, 1, 2, 1, 1, [0, 0, 0, 1, 0, 0]),
+    ]
+
+    apply_plant(g, [(0, "BANANA"), (1, "BANANA")])
+
+    assert len(g.plants) == 1 and g.plants[0].type == "BANANA"
+    assert g.units[0].carry[3] == 0
+    assert g.units[1].carry[3] == 0
+
+
+def test_chop_cannot_damage_tree_planted_on_same_turn() -> None:
+    g = from_ascii(["0....1"])
+    g.units = [
+        SimUnit(0, 0, 2, 0, 1, 2, 1, 1, [0] * 6),
+        SimUnit(1, 1, 2, 0, 1, 2, 1, 1, [0, 0, 0, 1, 0, 0]),
+    ]
+
+    step(g, ["CHOP 0"], ["PLANT 1 BANANA"])
+
+    assert len(g.plants) == 1
+    assert g.plants[0].size == 1
+    assert g.plants[0].health == 3
 
 
 from sim.engine import apply_chop, apply_mine

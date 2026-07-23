@@ -1,5 +1,6 @@
 from sim.mapgen import generate
 from bot.main import bfs_distances
+from sim.engine import TREE_HEALTH_BASE, TREE_HEALTH_SLOPE
 
 
 def test_generate_is_deterministic_and_symmetric():
@@ -22,3 +23,13 @@ def test_generate_has_starting_inventory_and_fruit():
             for dx, dy in ((0,1),(1,0),(0,-1),(-1,0))]
     dist = bfs_distances(g.walkable, [n for n in nbrs if n in g.walkable])
     assert all(c in dist for c in g.walkable)
+
+
+def test_generate_uses_species_specific_full_tree_health():
+    for seed in range(20):
+        game = generate(seed)
+        for plant in game.plants:
+            assert plant.health == (
+                TREE_HEALTH_BASE[plant.type]
+                + TREE_HEALTH_SLOPE[plant.type] * plant.size
+            )

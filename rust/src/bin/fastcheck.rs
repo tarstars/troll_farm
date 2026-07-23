@@ -1,7 +1,7 @@
 //! Parity check: play engine.rs games (schedbot vs silverboss), mirror every
 //! turn's commands into FastState/step_fast, and compare state each turn.
 //! Usage: fastcheck [seeds]
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::fast::{cid, FAct, FCmds, FastState, NavTable};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::{roster, Strategy};
@@ -86,6 +86,7 @@ fn main() {
     let mut steps_total = 0u64;
     for seed in 0..seeds {
         let mut g = generate_bronze(seed);
+        let mut turns_until_end = 0;
         let nav = NavTable::build(&g);
         for _ in 0..300 {
             let c0 = a.decide(&g, 0);
@@ -114,7 +115,7 @@ fn main() {
                     }
                 }
             }
-            if g.plants.is_empty() {
+            if has_stalled(&g, &mut turns_until_end) {
                 break;
             }
         }

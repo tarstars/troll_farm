@@ -2,7 +2,7 @@
 //! turns, the average plants remaining, fruited plants, and each side's banked
 //! score / wood / fruit. Reveals whether games deplete all trees (scorched-earth
 //! race) and where value accumulates. Usage: curve [A] [B] [seeds]
-use troll_farm::game::engine::{recompute_scores, step, WOOD};
+use troll_farm::game::engine::{has_stalled, recompute_scores, step, WOOD};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::roster;
 
@@ -39,6 +39,7 @@ fn main() {
             let them = 1 - seat;
             let mut g = generate_bronze(s);
             let mut si = 0usize;
+            let mut turns_until_end = 0;
             for t in 0..300 {
                 let c0 = p0.decide(&g, 0);
                 let c1 = p1.decide(&g, 1);
@@ -55,6 +56,23 @@ fn main() {
                     b_wood[si] += g.inventories[them][WOOD] as f64;
                     b_fruit[si] += g.inventories[them][0..4].iter().sum::<i32>() as f64;
                     si += 1;
+                }
+                if has_stalled(&g, &mut turns_until_end) {
+                    // A terminal board is the game's state at every later sampling
+                    // horizon; carry it forward so early endings do not become zeros.
+                    recompute_scores(&mut g);
+                    while si < SAMPLE.len() {
+                        nplants[si] += g.plants.len() as f64;
+                        fruited[si] += g.plants.iter().filter(|p| p.fruits > 0).count() as f64;
+                        a_score[si] += g.scores[us] as f64;
+                        b_score[si] += g.scores[them] as f64;
+                        a_wood[si] += g.inventories[us][WOOD] as f64;
+                        a_fruit[si] += g.inventories[us][0..4].iter().sum::<i32>() as f64;
+                        b_wood[si] += g.inventories[them][WOOD] as f64;
+                        b_fruit[si] += g.inventories[them][0..4].iter().sum::<i32>() as f64;
+                        si += 1;
+                    }
+                    break;
                 }
             }
             n += 1.0;

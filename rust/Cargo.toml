@@ -3,9 +3,14 @@ name = "troll_farm_bot"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+rayon = "=1.10.0"
+rayon-core = "=1.12.1"
+
 [lib]
 name = "troll_farm"
 path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
 
 [[bin]]
 name = "bot"

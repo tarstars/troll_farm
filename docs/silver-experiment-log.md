@@ -2933,3 +2933,231 @@ the gate's first genuinely different-strategy sparring opponent (legal, determin
 user stop-order before platform interaction. Next levers if pursued: G1-G5 sweeps via
 abgate, v1.1 joint-move-solver swap, mid-game harvest. All code on branch
 abgate-selfplay-gate (12 commits today: abgate gate + calibration + yannbot).
+
+## 2026-07-16 — recovered live Legend champion + idle-harvest-off smoke: infrastructure PASS, experiment NO-VERDICT
+
+Repository state was behind the arena: live agent `6553250` announced
+`yamo-carry-regen-transit-idle-harvest-rust`, while the checked-in fallback was still
+v1.59.0-ringfix3. Recovered the exact 90,133-byte IDE source (SHA-256
+`09fac1fefa24eac657dba16a75d802eee38e1269f4aa44413e1ca103df36fe7a`), compiled it,
+formatted a development copy, and verified exact/formatted command-stream equality. The exact
+artifact is now the submission helper's default; no arena submission was made.
+
+Generated a one-site `idle-harvest-off` ablation and ran ten alternating controlled games
+against delineate, wala, escdemon, norxondor, and laconic. Baseline: 2-3, mean margin -74.6;
+candidate: 1-4, mean margin -27.4. These are unpaired random maps, so the contradictory record
+and margin are noise, not a verdict. Replay enrichment found no baseline `HARVEST` after turn
+250; early harvests are not diagnostic, and the outer orchard wrapper can force harvests
+independently of the ablated inner fallback. DECISION: candidate PARKED; do not submit or spend
+a larger generic batch. Revisit only with branch-level activation telemetry and paired states.
+Full report: `data/analysis/live-agent-6553250/report.md`.
+
+## 2026-07-16 — idle-harvest causal follow-on: KEEP live fallback, REJECT ablation
+
+Built a behavior-neutral 90,826-byte stderr probe that distinguishes inner fallback candidates
+and selections (`@IH_CAND`/`@IH_SELECT`) from the outer orchard wrapper's forced mother harvest
+(`@IH_ORCHARD_FORCE`). Probe stdout equals the exact recovered champion on a fixed 300-view
+stream. First causal divergence: t280 live `HARVEST 0` versus ablation `WAIT`; rolling forward
+from that identical state scores 5-0 for live (fruit bank → seed conversion → wood + later fruit).
+
+Paired local mechanism study (40 seeds × both seats): inner branch selected on 5/40 seeds; every
+activated seed favored live, conditional mean paired margin +6.2 (+0.775 over all seeds). This is
+not an arena predictor. Two separate seeds logged 138/134 outer orchard harvests with zero inner
+selections, proving replay `HARVEST` counts had conflated distinct mechanisms.
+
+Real controlled activation sample (10 `TestSession/play` games, two per fixed top-five opponent):
+0 inner candidates/selections; one laconic game logged 140 outer orchard-forced harvests. VERDICT:
+inner fallback is rare but has positive causal evidence and no negative activated case; reject
+`idle-harvest-off`, keep agent-6553250 exact baseline, no arena submission. Next search moves to
+frequent loss mechanisms vs delineate/wala/norxondor. Raw:
+`data/analysis/live-agent-6553250/idle-harvest-local-study.json` and
+`data/panels/top5-idle-harvest-telemetry.json`.
+
+## 2026-07-16 — repeated-loss decode + sparse-farming screen: WOOD CONVERSION identified; both farm candidates rejected locally
+
+Decoded all 40 corpus games vs delineate/wala/norxondor (12W/28L). The repeated signature is
+late renewable wood: 23/28 losses lead wood at t100 and trail at t300; mean gap
++9.6 -> -6.3 -> -28.4. Every loss opponent has >=20 successful plants and >=20 harvested fruit.
+Crucially, live lands MORE chops (138.3 vs 117.1) but banks LESS wood (53.3 vs 81.2); mean
+per-game wood/chop 0.418 vs 0.773. The next lever is conversion efficiency, not chop volume.
+
+Tested the recovered source's dormant `scarce_farming` loop (initial trees <=14) as the smallest
+sustainable-production candidate. Isolated loop: 17/17 activated local paired losses, -47.5
+margin/-11.9 wood; 43/43 inactive dense seeds exact-neutral. Trace found a dormant empty-candidate
+bug (+115 WAIT, -61 CHOP). Repaired it so the farmer resumes live chopping: improved but still
+1W/16L activated, -32.5/-8.1 wood, with only ~2 extra crop cycles displacing ~38 chops. REJECT
+both as self-harm; no field games, no submission. Local pairing is not an arena predictor, but
+these candidates directly crater the target metric through an observed action mechanism.
+
+NEXT: behavior-neutral wood-conversion telemetry (tree kind/size/health, travel/return, free
+carry, realized wood), then a narrow target-choice/carry candidate only if a frequent branch is
+identified. Full report: `data/analysis/live-agent-6553250/report.md`.
+
+## 2026-07-16 — wood-conversion probe + focus-bonus-off gate: BANKING CLOSED, global ablation REJECTED
+
+Built a behavior-neutral wood-conversion probe (91,058 B; fixed 300-view stdout exactly equals
+agent-6553250). Ten controlled top-five games logged 1,744 chop actions, 324 fells, and 428 wood
+(0.245/chop). Kind yields: banana 0.398, lemon 0.229, plum 0.191, apple 0.145. The apparent
+partial-fell loss is mostly physical capacity, not bad bank timing: of 429 uncollected wood,
+only 10 was plausibly recoverable by unloading first, 408 exceeded maximum carry even when
+empty, and 11 had other causes. EARLY-BANK candidate CLOSED.
+
+Workforce split: starter unit 0 (chop1/carry1) used 845 chops for 114 wood (0.135); trained
+trolls used 899 for 314 (0.349). As the smallest target-choice isolation, removed only the
+`900/(1+opponent_distance)` lemon/plum denial bonus. The 60-seed paired-local screen was neutral
+(-0.19 margin, -0.07 wood; 24W/7T/29L). An unpaired diagnostic field batch looked promising
+(5-5, 0.275 wood/chop versus baseline probe 2-8, 0.245), so it advanced to a fresh standard
+panel rather than being promoted on telemetry.
+
+Final 12-game panel, two repetitions against delineate/wala/norxondor: exact baseline 3-3,
+mean margin +11.5, wood 51.8; focus-bonus-off 0-6, margin -150.7, wood 39.7. Random maps mean
+this is not a paired arena estimate, but it decisively fails the conservative promotion gate.
+REJECT global focus removal; KEEP exact live source and its denial policy; NO arena submission.
+
+NEXT if pursued: unit-role isolation only—keep focus denial on the trained chopper, remove it
+from the chop1/carry1 starter—then local self-harm screen before any new capped field burst.
+Do not combine this with training-count/spec changes.
+
+## 2026-07-16 — unit-role focus isolation: local SELF-HARM, no field escalation
+
+Built the promised one-site follow-on: focus denial remains full for any worker with chop>1 or
+carry>1, while a chop1/carry1 worker uses base wood/turn only. Capability rather than unit id is
+seat-safe and handles weak fallback-trained workers. Frozen artifact: 90,189 B, SHA-256
+`0170a3443d2622097df5a531ae36804d81a038962342e85806f094572246ad08`.
+
+Paired-local gate used `--jobs 8`, 60 seeds: mean margin -1.21, wood -0.31,
+13W/18T/29L; approximate 95% margin interval [-2.40,-0.02]. Action delta was -1.59 MOVE,
++1.61 WAIT, -0.04 CHOP. Margin minus 4*wood delta is only +0.025, so the damage is almost
+exactly fewer banked wood points—not a fruit/training confound. The weak worker's focus duty was
+locally productive; freeing it did not improve conversion.
+
+VERDICT: REJECT `focus-bonus-capable-only`; no controlled platform games and no arena
+submission. Together with global focus-off's field failure, focus-weight tuning is CLOSED.
+NEXT: read-only corpus extraction of actual TRAIN turn/spec and post-train work share before any
+training-policy mutation.
+
+## 2026-07-16 — ten one-field training ideas: NO WINNER; constant tuning closed
+
+User requested ten ideas without interruptions. Built ten exact variants of live
+`TUNED_CARRY`: prefer carry3, cap carry2, prefer chop2, cap chop2, require carry2, extra ETA
+8/25, deadline 25/45, movement-tie preference. All artifacts checksum-frozen and compiled.
+Stage 1 = identical seeds 0..59, both seats, `--jobs 8`.
+
+Eight were immediately negative/inert. Two positive raw means advanced to 200 seeds:
+
+- extra-eta8: +1.125 at n60 -> **-0.480** at n200, wood -0.125 (small-sample flip);
+- cap-chop2: +1.025 at n200, but **35W/112T/53L**, wood -0.040, CI
+  [-1.73,+3.78], 5%-trimmed mean -0.703. Seeds 29/72 contribute +374 of total +205 margin.
+
+Therefore cap-chop2's mean is outlier-driven, not promotion evidence. NO candidate reached the
+field gate: 0 controlled games, 0 arena submissions. Preserve live training policy; isolated
+opening-constant tuning CLOSED. Full table:
+`data/analysis/live-agent-6553250/training-policy-sweep.md`; aggregate JSON:
+`data/analysis/live-agent-6553250/training-policy-sweep-summary.json`.
+
+## 2026-07-16 — renewable supply: cliff VERIFIED, shared-mother economics still negative
+
+New exact-live self-play timeline (60 maps/120 sides, jobs=8): shared trees 16.23 t1 -> 1.55
+t100 -> 0.48 t150 -> 0.18 t200. Median first empty turn 81.5. 86/116 exhausted sides still
+hold fruit (69 banana); live already plants 12.89/game, median last plant t113.5. Therefore the
+observed cliff is true fruit renewal, not failure to spend banked fruit.
+
+Tested six mother/crop refinements. Late <=2-tree work-conserving loop created +1.70 plants but
+lost -11.77 margin/-2.89 wood via -14.48 CHOP/+22.43 MOVE. Trigger-at-zero halved damage;
+one-generation release did not help; banana-only cut it to -1.77/-0.44; liquidating the mature
+mother before its crop reached -1.27/-0.32 (6W/40T/14L); starting with one tree left remained
+-1.40/-0.38. Every genuine renewal version loses private wood.
+
+Control: schedule existing banked fruit while two trees remain, no farmer/protection/harvest.
+At n=200 it is neutral: +0.06 margin/+0.02 wood, 21W/158T/21L, zero PICK/PLANT count delta.
+Timing is not the lever.
+
+VERDICT: no field escalation, no arena submission, live unchanged. Renewal must be exclusive
+(safe geometry or harvest without fell-capacity loss); a shared mature mother repeats the known
+pie trap. Full report: `data/analysis/live-agent-6553250/renewable-supply-study.md`.
+
+## 2026-07-16 — referee terminal correction: pre-seed LOCAL PASS
+
+The fixed-300 evaluator above was not valid for a timing candidate.  Ported the referee's
+persistent no-tree grace, stuck-resource, and mercy end semantics to every active Rust/Python
+runner and added independent tests.  Corrected baseline: 58/60 matches end by stall at median
+turn 129; live successfully replants from empty in 45/60 matches (148 episodes).
+
+Reran pre-seed on seeds 0..999, both seats: **+0.259 mean paired margin**, **+0.115 wood**,
+221W/655T/124L; SD 1.969, SE 0.0623, normal 95% interval [+0.137,+0.381].  Action deltas are
+-0.069 CHOP, -0.773 MOVE, +0.209 PICK, +0.246 PLANT.  An inactive-region equality gate is exact
+in 200/200 games through t99.  The historical stream gate admits 19/26 reconstructed close
+games that reproduce the full baseline command stream; pre-seed activates in 14/19, split 7
+losses / 7 matched wins, with 14/14 eligible first divergences and none before t100.
+
+VERDICT: `candidate-agent6553250-preseed-low-supply.min.rs` is the first **LOCAL PASS** and may
+advance to a small controlled field panel.  No platform game or submission occurred; live agent
+`6553250` remains unchanged.  Roadmap and full evidence:
+`docs/improvement-roadmap-2026-07-16.md` and
+`data/analysis/live-agent-6553250/terminal-iteration-2026-07-16.md`.
+
+## 2026-07-16 — ten-direction sweep COMPLETE: geometry + pre-seed stack LOCAL PASS
+
+Executed all remaining attack angles without platform writes.  Completion-race soft filter:
++0.005 on n200 but only 7 active seeds; hard reject -0.1075.  Dynamic pre-train scarcity focus:
++0.935 raw, but SD 14.779, CI [-1.113,+2.983], 5%-trimmed +0.003, driven by one +206.5 outlier.
+Greedy joint-assignment ablation: -6.480/-1.7525 wood, confirming the live exhaustive pairing.
+Three-worker harvest-hand -> wood-worker sequence: -67.908/-15.800, 0W/0T/60L.  Behind-only
+pre-seed was inert; removing live score-aware endgame was -0.5775/-0.2425.  Terminal-bundle
+telemetry found only two unique harvest/bank/fell episodes.  Motion audit found every one of
+34,427 moves reached its emitted target and no teammate/door execution defects; target-memory
+bonus was neutral (+0.150, CI crosses zero).
+
+Exclusive geometry was the only new winner.  Enemy-door 14->12 alone was inert.  The existing
+broader safe orchard boundary (coverage 8, enemy door 11, speed 1) changed 27/1,000 seeds and
+went **26W/973T/1L, +3.7625 margin, +0.4525 wood**.  Heavy tail warning: range -0.5..+276.5;
+1%-trimmed mean +1.578.  Behavior-neutral diagnostic and non-probe source are command-identical
+in 200/200 games.
+
+Composed candidate `candidate-agent6553250-preseed-orchard-coverage.min.rs` (90,547 B,
+SHA `da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9`) scores
+**+4.025 margin, +0.5715 wood, 244W/632T/124L** over n=1,000 corrected seeds; SD 26.135,
+SE 0.826, normal 95% CI [+2.405,+5.645], 5%-trimmed +0.313.  It is exactly additive in both
+margin and wood on 996/1,000 seeds (mean interaction +0.0035/+0.004) and equals the geometry
+parent in 200/200 games through t99.
+
+VERDICT: stack is a **LOCAL PASS** for a future small activation-instrumented controlled panel,
+not an arena prediction.  No controlled game, code change to live agent, or submission occurred.
+Full report: `data/analysis/live-agent-6553250/direction-execution-2026-07-16.md`.
+
+## 2026-07-16 — pre-seed + orchard-coverage arena window: INCONCLUSIVE, ROLLED BACK
+
+User authorized the locally qualified stack for arena validation.  Exact-live bracket:
+16:57:35 MSK, agent `6553250`, rank 6/104 Legend @26.3.  Candidate submit `41002151` landed as
+agent `6555355`.  Cold-start climb reached rank 11 @25.3 around +11m, then faded: +20m policy
+read rank 34 @23.3, delta -3.0.  Although its +10m last-30 battle sample was 21W/9L with
++13 raw mean margin, the authoritative room rating reversed as higher-field results arrived.
+
+The standing -0.5 rule triggered a conservative rollback without waiting for candidate
++35/+50m.  Restored exact `agent-6553250-yamo-orchard-live.min.rs` via submit `41002271`; restore
+landed as agent `6555394`.  The A/A control then failed catastrophically: identical source was
+only 16.1 at restore +20m and 19.9 at +35m versus its prior 26.3, with uneven matchmaking waves
+and one `URLError`.  Therefore the candidate window is **INCONCLUSIVE**, not a causal rejection.
+Default source was never changed.  Keep exact live resident and pause arena writes until a
+same-code reset reconverges normally.  Full trajectory:
+`data/analysis/live-agent-6553250/arena-verdict-2026-07-16.md`.
+
+## 2026-07-16 — alternative-architecture pivot: banana-5 portfolio RESEARCH PASS
+
+Repaired and replay-validated the simulator first: 361,752 comparable transitions, 92.145%
+exact, 7.855% movement-position-only, zero material mismatches.  Reran four complete policies
+against six frozen architectures on 60 common maps/both seats with jobs=8.  Stack is best raw
+(+2.069 seed-balanced / +0.276 trimmed) but is not a global pass: CI crosses zero, worst decile
+-8.292, motion -0.092.
+
+Even/odd cross-validation selected stack iff initial banana fruit <=5, else exact live.  Odd
+holdout: +4.350 mean / +1.354 trimmed analytically.  Built deployable 91,101-byte artifact
+`candidate-agent6553250-banana5-stack-portfolio.min.rs`, SHA
+`96ef33e77c10281510f0f3ee5ceef912bb6cf27e3b463276b8257aa6e9a234db`.  It is branch-exact in
+300/300 deterministic cells; the process-randomized historical motion bot is outcome-only.  Its
+fresh odd run stays positive (+3.686/+0.821 trimmed) but CI and worst decile are negative.
+
+Maximin chooses 100% live.  Corrected funded three-worker macro activated fully in 356/360 cells
+and lost -28.349/-27.364 trimmed, negative versus every opponent.  VERDICT: portfolio retained
+for a >=200-new-seed offline gate only; exact live resident; no arena write.  Full report:
+`data/analysis/live-agent-6553250/alternative-approaches-execution-2026-07-16.md`.

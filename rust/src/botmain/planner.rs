@@ -57,13 +57,13 @@ const DENY_W: i64 = 0; // A2 reverted — collided with the race check per analy
                        // trekking to contested trees when a free tree is only marginally farther away, so discount
                        // joinable contests harder.
 const RACE_SHARE_PEN: i64 = 2; // sharepen4 kept-at-parity = INCONCLUSIVE under policy v2; champion (race) semantics = 2
-// v1.53.0-pressurefarm (Task 2 Step 3): under Orange/Red observed pressure, a created/farm
-// tree the ownership model marks not-safely-ours (plan.pressure.exposed_created_cells) gets
-// a small within-band bump — raises it before less-urgent same-band work, never overrides
-// the priority hierarchy (« BAND, same discipline as STICKY/DENY_W/RACE_SHARE_PEN above).
-// Under Green/Yellow, exposed_created_cells is always empty (Yellow's own_half signal alone
-// never implies created_exposed>0 — see ownership::classify_pressure), so this is always +0
-// there: a proven no-op, not a static preference.
+                               // v1.53.0-pressurefarm (Task 2 Step 3): under Orange/Red observed pressure, a created/farm
+                               // tree the ownership model marks not-safely-ours (plan.pressure.exposed_created_cells) gets
+                               // a small within-band bump — raises it before less-urgent same-band work, never overrides
+                               // the priority hierarchy (« BAND, same discipline as STICKY/DENY_W/RACE_SHARE_PEN above).
+                               // Under Green/Yellow, exposed_created_cells is always empty (Yellow's own_half signal alone
+                               // never implies created_exposed>0 — see ownership::classify_pressure), so this is always +0
+                               // there: a proven no-op, not a static preference.
 const PRESSURE_LIQ_BONUS: i64 = 4;
 // v1.59.0-ringfix3 FIX3(i) (user game-watch, isolated from v1.57.0-ringtune's E1/E2 bundle
 // that reverted ~-2.4 — see data/candidates/v1.59.0-ringfix3/brief.md): the build-ring PICK
@@ -226,7 +226,8 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
         // comment for why the release check is per-tree, not the broader "exposed" set).
         // Under Green/Yellow/Orange-without-a-definite-loser, released_seed_cells is always
         // empty, so this is byte-identical to the pre-pressure check.
-        if plan.seed_cells.contains(&p.pos()) && !plan.pressure.released_seed_cells.contains(&p.pos())
+        if plan.seed_cells.contains(&p.pos())
+            && !plan.pressure.released_seed_cells.contains(&p.pos())
         {
             return false;
         }
@@ -680,7 +681,9 @@ fn candidates(state: &State, plan: &Plan, my: &[Troll], u: &Troll, salt: u64) ->
             // that the user watched). Off the ring path (`ring: vec![]` tests) the old "PICK
             // whenever a plant cell exists" holds (plant_immediate is trivially true there).
             let plant_immediate = !ring_active
-                || plant_cell.map_or(false, |pc| d.get(&pc).map_or(false, |&dd| dd <= RING_PICK_STEPS));
+                || plant_cell.map_or(false, |pc| {
+                    d.get(&pc).map_or(false, |&dd| dd <= RING_PICK_STEPS)
+                });
             // v1.59.0-ringfix3 FIX3(ii) (user game-watch, isolated from v1.57.0-ringtune's E1
             // bundle — see brief): a ripe banana harvestable AT the troll's cell or one
             // ortho-step away outranks a tent PICK — a harvested banana seeds/banks with zero

@@ -2,16 +2,20 @@
 //! maps from both sides, and we print a leaderboard. This is our own trustworthy
 //! ladder for ranking strategies (and, later, tuned/learned ones) -- fast enough
 //! to run thousands of games because both the sim and the bots are in Rust.
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::strategies::{roster, Strategy};
 
 fn play(p0: &dyn Strategy, p1: &dyn Strategy, seed: u64) -> (i32, i32) {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0;
     for _ in 0..300 {
         let c0 = p0.decide(&g, 0);
         let c1 = p1.decide(&g, 1);
         step(&mut g, &c0, &c1);
+        if has_stalled(&g, &mut turns_until_end) {
+            break;
+        }
     }
     (g.scores[0], g.scores[1])
 }

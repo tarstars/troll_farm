@@ -18,7 +18,7 @@
 
 use std::io::{BufRead, BufReader, Write};
 use std::process::{Child, ChildStdout, Command, Stdio};
-use troll_farm::game::engine::step;
+use troll_farm::game::engine::{has_stalled, step};
 use troll_farm::game::mapgen::generate_bronze;
 use troll_farm::game::state::GameState;
 
@@ -135,6 +135,7 @@ fn read_cmds(reader: &mut BufReader<ChildStdout>) -> Option<String> {
 /// Returns the bot's per-turn command lines (empty line marks a read failure / crash).
 fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i32) -> Vec<String> {
     let mut g = generate_bronze(seed);
+    let mut turns_until_end = 0;
     let mut bot = Bot::spawn(bot_path);
     let rows = grid_rows(&g, seat);
     bot.send(&format!("{} {}\n{}\n", g.width, g.height, rows.join("\n")));
@@ -175,8 +176,8 @@ fn play(bot_path: &str, opp_path: &str, seed: u64, seat: usize, max_turns: i32) 
             step(&mut g, &opp_cmds, &bot_cmds);
         }
         lines.push(line);
-        if g.plants.is_empty() {
-            break; // real referee ends the game with no plants
+        if has_stalled(&g, &mut turns_until_end) {
+            break;
         }
     }
     lines

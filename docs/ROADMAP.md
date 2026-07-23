@@ -1,5 +1,13 @@
 # ROADMAP — Gold rank ~117 → sub-100 (the Legend bar)
 
+> **Completed historical roadmap.** The current live state is in
+> `docs/session-handoff-2026-07-16.md`.  The active next program is
+> `docs/hierarchical-controller-roadmap-2026-07-17.md`. Phase 11 validated a strong shared-state
+> terminal teacher, but its 240-turn proxy missed the precision bar and inner-parallel execution
+> missed the 50 ms budget. Exact resident remains live; Phase 12 distills larger offline branch
+> outcome data into a compact observable-trajectory value rule. No candidate, sealed-holdout read,
+> or arena action is authorized.
+
 **Written 2026-07-06 for the executing agent.** This is a *recipe book*, not a discussion:
 follow the steps exactly, in order, one experiment at a time. When an outcome contradicts the
 expectation written here, do NOT improvise a new theory — revert to the frozen best (§3.G),

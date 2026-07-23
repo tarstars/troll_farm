@@ -73,7 +73,8 @@ fn oracle_forced_win_by_felling() {
     // our troll (chop 2) starts ON a size-2 banana (health 4 = 2 chops); opponent has no unit.
     // PLANT cooldown=6 (a settled, freshly-at-this-size tree — NOT 0: cooldown==0 is a
     // "grow on the very next tick" trigger in tick_plants, not a quiescent state, and would
-    // regrow the tree — size 2->3, health +1 — after the first chop, forcing a 3rd chop and
+    // regrow the tree — size 2->3, health increases from 2 to 3 — after the first chop,
+    // forcing a 3rd chop and
     // leaving no turns to bank the wood; confirmed by direct engine replay during development).
     // H=4 is enough for CHOP,CHOP (fells it, +2 wood carried, capped by cc=2) then MOVE,DROP
     // (bank it into inventory — recompute_scores reads inventories, not carry) — score-diff > 0
@@ -93,7 +94,10 @@ SCORES 0 0
 HORIZON 4
 PROVE 0",
     );
-    assert!(matches!(forced_verdict(&s), Verdict::ForcedWin { side: 0, .. }));
+    assert!(matches!(
+        forced_verdict(&s),
+        Verdict::ForcedWin { side: 0, .. }
+    ));
 }
 
 #[test]
@@ -153,7 +157,10 @@ PROVE 0",
             ],
         },
     };
-    assert!(!replay_proof(&s, &bogus), "a bogus all-WAIT proof must NOT replay valid");
+    assert!(
+        !replay_proof(&s, &bogus),
+        "a bogus all-WAIT proof must NOT replay valid"
+    );
 }
 
 #[test]

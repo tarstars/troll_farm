@@ -1,5 +1,44 @@
 # Troll Farm game-record dataset
 
+## Current local corpus — 2026-07-15
+
+The local corpus has been extended well beyond the original 2026-07-03 snapshot described
+below. The current processed dataset contains:
+
+| what | n |
+|---|---:|
+| raw and parsed replays | **1,302** |
+| parse failures | **0** |
+| unique maps | **1,302** |
+| unique agents / names | **323 / 258** |
+| Boss 5 games | **32** |
+| full 300-turn games | **931** |
+| games for live agent `6553250` | **161** |
+
+`data/scripts/qa.py` recomputes the final score exactly for 1,295/1,302 games. The seven
+exceptions are all early-terminated games whose official score includes a crash/timeout
+penalty while the final decoded inventory still records resources collected before termination.
+Tree invariants and point symmetry pass for all 1,302 maps.
+
+The latest targeted collection used:
+
+```bash
+python3 data/scripts/collect.py --agent-id 6553250 --agent-only
+python3 data/scripts/parse.py
+python3 data/scripts/qa.py
+```
+
+The raw corpus is about 349 MB and processed output about 57 MB. New raw replays,
+trajectories, and JSONL products are intentionally ignored by Git; preserve them as a separate
+corpus/archive rather than adding them to ordinary source-control history. Files already tracked
+from the original snapshot remain tracked.
+
+Note that `raw/players.json` is the manifest for the most recent collection command, not a
+history of every incremental run. The durable aggregate provenance is therefore the raw replay
+set plus `raw/fetch_log.json`, battle-list snapshots, and `processed/stats.json`.
+
+## Original snapshot — 2026-07-03
+
 Replays of **CodinGame Spring Challenge 2026 — Troll Farm** arena games, collected from
 the public CodinGame services (no auth) for strategy analysis and future RL training.
 

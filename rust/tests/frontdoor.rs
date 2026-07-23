@@ -144,10 +144,18 @@ fn frontdoor_sasso_straddle_fixed() {
     // regardless of the plant_cell tie-break geometry terms.
     let cmds = assign(&st, &plan, &[carrier(0, 4, 2)]);
     let cmd = &cmds[&0];
-    assert!(cmd.contains("PLANT") || cmd.starts_with("MOVE 0 "), "{}", cmd);
+    assert!(
+        cmd.contains("PLANT") || cmd.starts_with("MOVE 0 "),
+        "{}",
+        cmd
+    );
     if let Some(rest) = cmd.strip_prefix("MOVE 0 ") {
         let x: i32 = rest.split_whitespace().next().unwrap().parse().unwrap();
-        assert!(x < 5, "carrier must never be routed east of the wall: {}", cmd);
+        assert!(
+            x < 5,
+            "carrier must never be routed east of the wall: {}",
+            cmd
+        );
     }
 }
 
@@ -179,7 +187,10 @@ fn frontdoor_open_map_noop() {
     };
     let plan = plan_with_meta(&st, &st.my_trolls, Meta::Tempo);
     assert_eq!(plan.door, None, "open map must not select a door");
-    assert!(plan.door_d.is_none(), "open map must not compute a door BFS");
+    assert!(
+        plan.door_d.is_none(),
+        "open map must not compute a door BFS"
+    );
 
     for &c in &walkable {
         let old = plan.farm_d.get(&c).map_or(false, |&d| d <= plan.farm_r);
@@ -281,7 +292,10 @@ fn frontdoor_determinism_hashset_reorder() {
         iron_cells: HashSet::new(),
         water_cells: HashSet::new(),
     };
-    assert_eq!(st_a.walkable, st_b.walkable, "sanity: same logical cell set");
+    assert_eq!(
+        st_a.walkable, st_b.walkable,
+        "sanity: same logical cell set"
+    );
 
     let (door_a, dd_a) = compute_door(&st_a);
     let (door_b, dd_b) = compute_door(&st_b);

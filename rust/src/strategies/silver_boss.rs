@@ -28,6 +28,7 @@ const N_CHOPPERS: i32 = 2;
 const HARVESTERS: [(i32, i32, i32, i32); 3] = [(2, 2, 2, 0), (1, 2, 2, 0), (1, 1, 1, 0)];
 const HARVESTER: (i32, i32, i32, i32) = (1, 2, 2, 0);
 
+#[derive(Clone)]
 pub struct SilverBoss {
     mem: RefCell<HashMap<i32, Cell>>, // sticky per-harvester targets; reset at turn 1
 }
@@ -224,7 +225,7 @@ impl Strategy for SilverBoss {
                         .iter()
                         .flat_map(|ic| ortho(*ic))
                         .filter(|c| d.contains_key(c) && !reserved.contains(c))
-                        .min_by_key(|c| d[c])
+                        .min_by_key(|c| (d[c], *c))
                 } else {
                     None
                 };
@@ -236,7 +237,13 @@ impl Strategy for SilverBoss {
                     game.plants
                         .iter()
                         .filter(|p| d.contains_key(&p.pos()) && !reserved.contains(&p.pos()))
-                        .min_by_key(|p| (d[&p.pos()] + manh(p.pos(), opp) - 3 * p.size, -p.size))
+                        .min_by_key(|p| {
+                            (
+                                d[&p.pos()] + manh(p.pos(), opp) - 3 * p.size,
+                                -p.size,
+                                p.pos(),
+                            )
+                        })
                         .map(|p| p.pos())
                 })
             } else {
@@ -251,7 +258,7 @@ impl Strategy for SilverBoss {
                             p.fruits > 0 && !reserved.contains(&p.pos()) && d.contains_key(&p.pos())
                         })
                         .filter(|p| ty.map_or(true, |t| p.plant_type == t))
-                        .min_by_key(|p| d[&p.pos()])
+                        .min_by_key(|p| (d[&p.pos()], p.pos()))
                         .map(|p| p.pos())
                 };
                 sticky

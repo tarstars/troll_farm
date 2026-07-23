@@ -97,7 +97,11 @@ pub fn render(sit: &Situation) -> String {
 }
 
 fn tree_glyph(plant_type: &str) -> char {
-    plant_type.chars().next().unwrap_or('?').to_ascii_uppercase()
+    plant_type
+        .chars()
+        .next()
+        .unwrap_or('?')
+        .to_ascii_uppercase()
 }
 
 fn fmt_carry(carry: &[i32; 6]) -> String {
@@ -273,14 +277,23 @@ PROVE -",
         );
         let out = render(&sit);
         let lines: Vec<&str> = out.lines().collect();
-        assert_eq!(lines[2], "..3..", "troll standing on the tree renders its id, not B");
+        assert_eq!(
+            lines[2], "..3..",
+            "troll standing on the tree renders its id, not B"
+        );
     }
 
     #[test]
     fn format_verdict_unresolved_and_toolarge_print_plainly() {
         let sit = fixture_basic(); // content irrelevant to these two branches
-        assert_eq!(format_verdict(&sit, &Verdict::Unresolved), "Verdict: Unresolved\n");
-        assert_eq!(format_verdict(&sit, &Verdict::TooLarge), "Verdict: TooLarge\n");
+        assert_eq!(
+            format_verdict(&sit, &Verdict::Unresolved),
+            "Verdict: Unresolved\n"
+        );
+        assert_eq!(
+            format_verdict(&sit, &Verdict::TooLarge),
+            "Verdict: TooLarge\n"
+        );
     }
 
     #[test]
@@ -290,20 +303,32 @@ PROVE -",
         let text = format_verdict(&sit, &verdict);
         assert!(text.contains("ForcedWin(side=0)"), "got: {text}");
         assert!(text.contains("proof validated: true"), "got: {text}");
-        let ply_lines = text.lines().filter(|l| l.trim_start().starts_with("ply ")).count();
-        assert_eq!(ply_lines, 4, "H=4 proof must print exactly 4 plies; got: {text}");
+        let ply_lines = text
+            .lines()
+            .filter(|l| l.trim_start().starts_with("ply "))
+            .count();
+        assert_eq!(
+            ply_lines, 4,
+            "H=4 proof must print exactly 4 plies; got: {text}"
+        );
     }
 
     #[test]
     fn sample_data_file_is_forced_win_for_side_0() {
         // Regression: the committed CLI demo fixture (data/etudes/sample-forced-win.txt) must
         // stay byte-identical in substance to FELLING_FIXTURE — a valid, quiescent forced win.
-        let path = concat!(env!("CARGO_MANIFEST_DIR"), "/data/etudes/sample-forced-win.txt");
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/data/etudes/sample-forced-win.txt"
+        );
         let text = std::fs::read_to_string(path)
             .unwrap_or_else(|e| panic!("sample-forced-win.txt must exist at {path}: {e}"));
         let sit = from_text(&text);
         let verdict = forced_verdict(&sit);
-        assert!(matches!(verdict, Verdict::ForcedWin { side: 0, .. }), "got: {verdict:?}");
+        assert!(
+            matches!(verdict, Verdict::ForcedWin { side: 0, .. }),
+            "got: {verdict:?}"
+        );
         assert!(replay_proof(&sit, &verdict));
     }
 
@@ -347,7 +372,11 @@ PROVE -",
 
         assert_eq!(boards.len(), proof.line.len());
         assert_eq!(boards.len(), 4, "H=4 fixture must produce 4 stepped boards");
-        assert!(boards[0].contains("BANANA"), "ply 1 (1st CHOP): tree still standing\n{}", boards[0]);
+        assert!(
+            boards[0].contains("BANANA"),
+            "ply 1 (1st CHOP): tree still standing\n{}",
+            boards[0]
+        );
         assert!(
             !boards[1].contains("BANANA"),
             "ply 2 (2nd CHOP): tree felled, removed from Trees\n{}",
@@ -362,6 +391,9 @@ PROVE -",
             .split_whitespace()
             .map(|s| s.parse().unwrap())
             .collect();
-        assert!(nums[0] > nums[1], "side 0 must be strictly ahead after the full line: {scores_line}");
+        assert!(
+            nums[0] > nums[1],
+            "side 0 must be strictly ahead after the full line: {scores_line}"
+        );
     }
 }
