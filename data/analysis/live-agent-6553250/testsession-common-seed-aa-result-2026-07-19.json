@@ -1,0 +1,69 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-19T04:19:25.567879+00:00",
+ "protocol": "testsession-common-seed-aa-protocol-2026-07-19.md",
+ "panel": "/home/tarstars/prj/troll_farm/data/panels/testsession-common-seed-aa-20260719.json",
+ "integrity": {
+  "panel_complete": true,
+  "two_rows": true,
+  "identical_exact_resident_sources": true,
+  "requested_options_exact": true,
+  "fixed_opponent_and_order": true,
+  "unique_game_ids": true,
+  "zero_diagnostics": true
+ },
+ "requested_game_options": "seed=-5687447269333978810\n",
+ "game_ids": [
+  896299140,
+  896299148
+ ],
+ "turn_one_bytes": [
+  528,
+  528
+ ],
+ "turn_one_sha256": [
+  "e14d31e1cdb361ccfe50667ff2fb533d73af79c1ba78a079fffbd329262d0240",
+  "e14d31e1cdb361ccfe50667ff2fb533d73af79c1ba78a079fffbd329262d0240"
+ ],
+ "stdout_frames": [
+  [
+   300,
+   300
+  ],
+  [
+   300,
+   300
+  ]
+ ],
+ "stdout_sha256": [
+  [
+   "d02aa78a5c684bc0c4ffcea1479e35fabb8c278ee901fe1f1b4014e9a8589302",
+   "293d00b072277d1200651a49c41082a4b687b3c9434c6eacbf1362cf6ebcbe19"
+  ],
+  [
+   "d02aa78a5c684bc0c4ffcea1479e35fabb8c278ee901fe1f1b4014e9a8589302",
+   "293d00b072277d1200651a49c41082a4b687b3c9434c6eacbf1362cf6ebcbe19"
+  ]
+ ],
+ "map_control": {
+  "responses_echo_requested_options": true,
+  "turn_one_inputs_identical": true,
+  "turn_one_matches_prior_replay": true
+ },
+ "deterministic_outcome": {
+  "scores_identical": true,
+  "final_inventories_identical": true,
+  "turn_counts_identical": true,
+  "workforce_histories_identical": true,
+  "player_0_stdout_identical": true,
+  "player_1_stdout_identical": true
+ },
+ "gates": {
+  "condition_1_complete_zero_diagnostics": true,
+  "condition_2_exact_options_echo": true,
+  "condition_3_identical_turn_one": true,
+  "condition_4_matches_frozen_prior_map": true,
+  "condition_5_full_determinism": true
+ },
+ "common_seed_pairing_available": true
+}

@@ -1,0 +1,86 @@
+{
+ "schema": 1,
+ "scope": "exact terminal control-vs-option rollouts on candidate-relative initial states from the known 60-game arena replay sample",
+ "sample_games": 60,
+ "model_names": [
+  "gold_elite",
+  "sched_bot",
+  "mybot",
+  "silver_boss"
+ ],
+ "compact_gold_vs_gold_elite_exact_cells": 120,
+ "compact_gold_vs_gold_elite_total_cells": 120,
+ "compact_gold_vs_gold_elite_mismatches": [],
+ "selector_reconstruction": {
+  "rule": "CompactGold option delta > 30",
+  "observed_selected_game_ids": [
+   896220422,
+   896220808,
+   896220941
+  ],
+  "reconstructed_selected_game_ids": [
+   896220422,
+   896220808,
+   896220941
+  ],
+  "exact": true
+ },
+ "selected_games": [
+  {
+   "game_id": 896220422,
+   "arena_opponent": "FreZzz",
+   "arena_margin": -26.0,
+   "arena_won": false,
+   "model_deltas": {
+    "gold_elite": 197,
+    "sched_bot": 7,
+    "mybot": -13,
+    "silver_boss": 1
+   },
+   "positive_model_count": 3,
+   "mean_model_delta": 48,
+   "worst_model_delta": -13,
+   "all_models_positive": false
+  },
+  {
+   "game_id": 896220808,
+   "arena_opponent": "daaskare",
+   "arena_margin": -18.0,
+   "arena_won": false,
+   "model_deltas": {
+    "gold_elite": 38,
+    "sched_bot": -28,
+    "mybot": -9,
+    "silver_boss": -29
+   },
+   "positive_model_count": 1,
+   "mean_model_delta": -7,
+   "worst_model_delta": -29,
+   "all_models_positive": false
+  },
+  {
+   "game_id": 896220941,
+   "arena_opponent": "a76a44",
+   "arena_margin": -27.0,
+   "arena_won": false,
+   "model_deltas": {
+    "gold_elite": 176,
+    "sched_bot": -40,
+    "mybot": -68,
+    "silver_boss": -33
+   },
+   "positive_model_count": 1,
+   "mean_model_delta": 8.75,
+   "worst_model_delta": -68,
+   "all_models_positive": false
+  }
+ ],
+ "selected_game_summary": {
+  "games": 3,
+  "arena_wins": 0,
+  "all_models_positive": 0,
+  "single_positive_model": 2,
+  "negative_worst_model": 3
+ },
+ "interpretation_limit": "The model deltas explain selector disagreement but are still simulator counterfactuals.  Arena margins are observational and do not reveal the exact resident-policy result on the same map and opponent."
+}

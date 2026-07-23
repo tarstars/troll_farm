@@ -1,0 +1,60 @@
+{
+  "schema": "troll-farm-d166a-producer-job-successor-affordance-lock-v1",
+  "frozen_at_utc": "2026-07-23T08:40:22Z",
+  "snapshot_id": "20260723T074715Z-d164a",
+  "field_actor_occurrences": 392,
+  "field_cohorts": {
+    "rank_1_5": 50,
+    "rank_6_20": 150,
+    "resident": 192
+  },
+  "field_cycle_counts": {
+    "rank_1_5": 36,
+    "rank_6_20": 41,
+    "resident": 21
+  },
+  "local_map_start": 9844136,
+  "local_maps": 64,
+  "local_tasks": 1024,
+  "local_seats": 2,
+  "local_opponent_families": 8,
+  "threads": [
+    1,
+    20
+  ],
+  "bulk_root": "artifacts/experiments/d166a-producer-job-successor-affordance",
+  "reserved_maps": [
+    9844200,
+    9844215
+  ],
+  "files": {
+    "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-protocol-2026-07-23.md": "c9042a60c6fa96678ec5e87e6e87c89268d66035473a1187aae6d804a7d851ed",
+    "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-result.json": "6ed98a7c7547b3b1c27b2b96bf975b07109880198f9b38fb5725bb626af42e27",
+    "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-lock.json": "88f1775aee4fecda4ee88c6e17f10230bfc62c489a20840533617032fd9d2999",
+    "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-result.json": "f6bd6c346ee5d21f4cf5bc86f64fcef7782472ff5a11702c829584570b75243a",
+    "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/manifest.json": "2e5ed6b0e8cb486de57d2deddaf36a46074b6ddc58057e4042c017007afb0520",
+    "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/processed/manifest.json": "eef9d329192cc2655ab4c2d0398999feb4e1f7b36cb88b03b4e693103230570c",
+    "artifacts/experiments/d164a-current-field-macro-transition/d164a-occurrences-jobs20-v4.jsonl": "453d91741198e03f00519feca8fba4349b6adaa78ba621e3c33c864aab16fc21",
+    "cgauto/analyze_d164a_current_field_macro_transitions.py": "617908d5f1bc12d37b7113e2578a87062fc48c30aa37f07884067e8752353fb6",
+    "cgauto/analyze_d101a_production_suppression.py": "9ffb10092180fa8a9ac848033650dc5d1c8fe95f83bff3a0aad9dc0dd37d4d30",
+    "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f"
+  },
+  "prohibitions": {
+    "sealed_confirmation_reads": true,
+    "fresh_maps": true,
+    "reserved_maps": true,
+    "yt": true,
+    "platform": true,
+    "intervention": true,
+    "candidate_generation": true,
+    "submission": true,
+    "resident_mutation": true,
+    "outcome_dependent_selection": true
+  }
+}

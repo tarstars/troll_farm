@@ -1,0 +1,28 @@
+{
+  "launched_utc": "2026-07-22T18:22:38.355428+00:00",
+  "lock": {
+    "manifest_sha256": "dad6d676f1d341ba7462f11aed128281c888d14ac5cbd75344eac7df8d6caad8",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "ebca5163-c00d4adc-42e03e8-b4adc649",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/mle/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_20260722",
+    "records": "//home/delivery_ml/research/tarstars/mle/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_20260722/records",
+    "specs": "//home/delivery_ml/research/tarstars/mle/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_20260722/specs"
+  },
+  "payload": {
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+  },
+  "schema": "troll-farm-d132a-yt-q6-teacher-launch-v1",
+  "specs": [
+    {
+      "maps": 1,
+      "shard_id": "pilot-00000",
+      "start_seed": 9843780,
+      "threads": 16
+    }
+  ]
+}

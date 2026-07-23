@@ -1,0 +1,306 @@
+{
+  "aggregate": {
+    "forced_harvest_deposits": 31,
+    "forced_harvest_jobs": 34,
+    "mean_paired_margin_delta": 89.5,
+    "mechanism_passes": 2,
+    "mechanism_tasks": 4,
+    "paired_margin_deltas": [
+      35,
+      24,
+      103,
+      196
+    ],
+    "portfolio_closed_tasks": 2,
+    "source_transactions": 43,
+    "worker_two_tasks": 2
+  },
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "whole_game_opening_architecture_and_capitalization_timing",
+    "open_confirmation": false,
+    "open_fresh_value": false,
+    "platform_action": false,
+    "status": "consumed_gate_failed"
+  },
+  "gate": {
+    "all_tasks_pass": false,
+    "failed_seed_pass": false,
+    "integrity_pass": true,
+    "per_task": {
+      "9830002:0:resident": false,
+      "9830002:1:resident": false,
+      "9830014:0:resident": true,
+      "9830014:1:resident": true
+    }
+  },
+  "generated_at": "2026-07-21T12:57:45.270441+00:00",
+  "inputs": {
+    "analyzer": "88e5648093d04526d3de99f4c9386a7e78e263841ff029c6de028462765ddab8",
+    "d66_control": "fd5ef3a95c4a76ee2b0c56318748456592655669837021743e9a13e4a64a6d45",
+    "d67_prefix": "5aa61fbcd49999ec1a2e4edfd0f15c67b21c0acb5d8608c40a85547db2bf0f41",
+    "matrix_a": "d484dec78c9e37ed894e98fe301f0d964cdd6feec0d26e67e11eafd10e8b534b",
+    "matrix_b": "d484dec78c9e37ed894e98fe301f0d964cdd6feec0d26e67e11eafd10e8b534b",
+    "protocol": "be59b11c22d2dd97063b4bc9dcaae5ee301d02085c5e0d4116204abc2e5659f8",
+    "runner": "7c6b07b91019741104b888b735823b6531e1eadafe311c90f599dde5e8b1c5be"
+  },
+  "integrity": {
+    "action_accounting_failures": 0,
+    "complete_grid": true,
+    "control_parity_failures": 0,
+    "duplicate_rows": 0,
+    "harvest_accounting_failures": 0,
+    "mechanical_failure_total": 0,
+    "policy_violation_total": 0,
+    "prefix_parity_failures": 0,
+    "repeat_byte_identical": true,
+    "reward_identity_failures": 0,
+    "rows": 8,
+    "source_command_accounting_failures": 0,
+    "worker_cap_failures": 0
+  },
+  "schema": "troll-farm-d68a-bill-capitalization-portfolio-v1",
+  "scope": "consumed bill-capitalization mechanism only; no fresh value or candidate claim",
+  "tasks": {
+    "9830002:0:resident": {
+      "control_margin": -140,
+      "control_workers": 1,
+      "first_bill_affordable_turn": -1,
+      "first_worker_two_turn": -1,
+      "forced_harvest_deposits": 11,
+      "forced_harvest_jobs": 14,
+      "interventions": 25,
+      "max_missing_bank": 4,
+      "mechanism_pass": false,
+      "missing_bank_progress": 0,
+      "paired_margin_delta": 35,
+      "portfolio_margin": -105,
+      "portfolio_workers": 1,
+      "prefix_missing_bank": 4,
+      "source_transactions": 11,
+      "species_flow": {
+        "apple": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 2,
+          "max_bank": 7,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "banana": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 0,
+          "max_bank": 5,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "lemon": {
+          "deposited_units": 6,
+          "experimental_net_units": -4,
+          "forced_harvest_jobs": 9,
+          "live_sources_peak": 3,
+          "max_bank": 4,
+          "source_investments": 10,
+          "successful_harvest_deposits": 6,
+          "target_sources_peak": 5
+        },
+        "plum": {
+          "deposited_units": 5,
+          "experimental_net_units": 4,
+          "forced_harvest_jobs": 5,
+          "live_sources_peak": 18,
+          "max_bank": 6,
+          "source_investments": 1,
+          "successful_harvest_deposits": 5,
+          "target_sources_peak": 5
+        }
+      },
+      "threat_peak": 2
+    },
+    "9830002:1:resident": {
+      "control_margin": -148,
+      "control_workers": 1,
+      "first_bill_affordable_turn": -1,
+      "first_worker_two_turn": -1,
+      "forced_harvest_deposits": 7,
+      "forced_harvest_jobs": 7,
+      "interventions": 28,
+      "max_missing_bank": 4,
+      "mechanism_pass": false,
+      "missing_bank_progress": 0,
+      "paired_margin_delta": 24,
+      "portfolio_margin": -124,
+      "portfolio_workers": 1,
+      "prefix_missing_bank": 4,
+      "source_transactions": 21,
+      "species_flow": {
+        "apple": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 0,
+          "max_bank": 7,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "banana": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 0,
+          "max_bank": 5,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "lemon": {
+          "deposited_units": 2,
+          "experimental_net_units": -18,
+          "forced_harvest_jobs": 2,
+          "live_sources_peak": 4,
+          "max_bank": 4,
+          "source_investments": 20,
+          "successful_harvest_deposits": 2,
+          "target_sources_peak": 5
+        },
+        "plum": {
+          "deposited_units": 5,
+          "experimental_net_units": 4,
+          "forced_harvest_jobs": 5,
+          "live_sources_peak": 2,
+          "max_bank": 5,
+          "source_investments": 1,
+          "successful_harvest_deposits": 5,
+          "target_sources_peak": 5
+        }
+      },
+      "threat_peak": 2
+    },
+    "9830014:0:resident": {
+      "control_margin": -123,
+      "control_workers": 1,
+      "first_bill_affordable_turn": 70,
+      "first_worker_two_turn": 71,
+      "forced_harvest_deposits": 6,
+      "forced_harvest_jobs": 6,
+      "interventions": 11,
+      "max_missing_bank": 6,
+      "mechanism_pass": true,
+      "missing_bank_progress": 3,
+      "paired_margin_delta": 103,
+      "portfolio_margin": -20,
+      "portfolio_workers": 3,
+      "prefix_missing_bank": 3,
+      "source_transactions": 5,
+      "species_flow": {
+        "apple": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 21,
+          "max_bank": 7,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "banana": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 0,
+          "max_bank": 2,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "lemon": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 5,
+          "max_bank": 6,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "plum": {
+          "deposited_units": 6,
+          "experimental_net_units": 1,
+          "forced_harvest_jobs": 6,
+          "live_sources_peak": 3,
+          "max_bank": 6,
+          "source_investments": 5,
+          "successful_harvest_deposits": 6,
+          "target_sources_peak": 4
+        }
+      },
+      "threat_peak": 2
+    },
+    "9830014:1:resident": {
+      "control_margin": -136,
+      "control_workers": 1,
+      "first_bill_affordable_turn": 64,
+      "first_worker_two_turn": 65,
+      "forced_harvest_deposits": 7,
+      "forced_harvest_jobs": 7,
+      "interventions": 13,
+      "max_missing_bank": 6,
+      "mechanism_pass": true,
+      "missing_bank_progress": 3,
+      "paired_margin_delta": 196,
+      "portfolio_margin": 60,
+      "portfolio_workers": 3,
+      "prefix_missing_bank": 3,
+      "source_transactions": 6,
+      "species_flow": {
+        "apple": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 11,
+          "max_bank": 7,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "banana": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 0,
+          "max_bank": 2,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "lemon": {
+          "deposited_units": 0,
+          "experimental_net_units": 0,
+          "forced_harvest_jobs": 0,
+          "live_sources_peak": 3,
+          "max_bank": 6,
+          "source_investments": 0,
+          "successful_harvest_deposits": 0,
+          "target_sources_peak": 0
+        },
+        "plum": {
+          "deposited_units": 7,
+          "experimental_net_units": 1,
+          "forced_harvest_jobs": 7,
+          "live_sources_peak": 10,
+          "max_bank": 6,
+          "source_investments": 6,
+          "successful_harvest_deposits": 7,
+          "target_sources_peak": 4
+        }
+      },
+      "threat_peak": 2
+    }
+  }
+}

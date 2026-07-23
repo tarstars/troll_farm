@@ -1,0 +1,930 @@
+{
+ "schema": 1,
+ "scope": "frozen sparse rule on reused discovery seeds; deterministic opponents only; structural zeros restored for inactive maps",
+ "league": "data/analysis/live-agent-6553250/adaptive-hp0-frozen-rule-discovery-0-999.json",
+ "activation_scan": "data/analysis/live-agent-6553250/adaptive-hp0-activation-scan-0-999.json",
+ "policy": "frozenhp0",
+ "opponents": [
+  "chopharvest",
+  "race",
+  "ringfix3",
+  "taskplan",
+  "yield"
+ ],
+ "excluded_opponents": [
+  "motion"
+ ],
+ "fit_max_seed": 59,
+ "activation": {
+  "seed_count": 1000,
+  "side_count": 2000,
+  "active_seed_count": 22,
+  "active_side_count": 37,
+  "active_seed_rate": 0.022,
+  "active_side_rate": 0.0185,
+  "active_seeds": [
+   4,
+   44,
+   118,
+   122,
+   158,
+   174,
+   221,
+   243,
+   272,
+   280,
+   400,
+   485,
+   494,
+   532,
+   576,
+   577,
+   654,
+   681,
+   774,
+   797,
+   943,
+   991
+  ],
+  "active_sides": [
+   [
+    4,
+    0
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    44,
+    0
+   ],
+   [
+    44,
+    1
+   ],
+   [
+    118,
+    0
+   ],
+   [
+    122,
+    0
+   ],
+   [
+    122,
+    1
+   ],
+   [
+    158,
+    1
+   ],
+   [
+    174,
+    0
+   ],
+   [
+    174,
+    1
+   ],
+   [
+    221,
+    0
+   ],
+   [
+    243,
+    0
+   ],
+   [
+    243,
+    1
+   ],
+   [
+    272,
+    1
+   ],
+   [
+    280,
+    0
+   ],
+   [
+    280,
+    1
+   ],
+   [
+    400,
+    0
+   ],
+   [
+    400,
+    1
+   ],
+   [
+    485,
+    1
+   ],
+   [
+    494,
+    0
+   ],
+   [
+    494,
+    1
+   ],
+   [
+    532,
+    0
+   ],
+   [
+    532,
+    1
+   ],
+   [
+    576,
+    0
+   ],
+   [
+    576,
+    1
+   ],
+   [
+    577,
+    0
+   ],
+   [
+    577,
+    1
+   ],
+   [
+    654,
+    0
+   ],
+   [
+    654,
+    1
+   ],
+   [
+    681,
+    0
+   ],
+   [
+    681,
+    1
+   ],
+   [
+    774,
+    0
+   ],
+   [
+    774,
+    1
+   ],
+   [
+    797,
+    0
+   ],
+   [
+    943,
+    1
+   ],
+   [
+    991,
+    0
+   ],
+   [
+    991,
+    1
+   ]
+  ],
+  "candidate_train_specs": {
+   "1/2/0/1": 12,
+   "1/2/0/2": 18,
+   "1/2/0/3": 7
+  }
+ },
+ "fitting_block_active": {
+  "seed_count": 2,
+  "seed_summary": {
+   "n": 2,
+   "mean": 57.75,
+   "median": 57.75,
+   "trimmed_5pct_mean": 57.75,
+   "standard_deviation": 7.424621202458749,
+   "standard_error": 5.249999999999999,
+   "ci95_normal": [
+    47.46,
+    68.03999999999999
+   ],
+   "worst_decile_mean": 52.5,
+   "wins": 2,
+   "ties": 0,
+   "losses": 0,
+   "minimum": 52.5,
+   "maximum": 63.0
+  },
+  "cell_summary_nonindependent": {
+   "n": 10,
+   "mean": 57.75,
+   "median": 57.25,
+   "trimmed_5pct_mean": 57.75,
+   "standard_deviation": 18.034303732362698,
+   "standard_error": 5.702947580954178,
+   "ci95_normal": [
+    46.57222274132981,
+    68.92777725867019
+   ],
+   "worst_decile_mean": 38.5,
+   "wins": 10,
+   "ties": 0,
+   "losses": 0,
+   "minimum": 38.5,
+   "maximum": 91
+  },
+  "opponent_means": {
+   "chopharvest": 60.0,
+   "race": 54.5,
+   "ringfix3": 55.0,
+   "taskplan": 54.5,
+   "yield": 64.75
+  },
+  "worst_opponent_mean": 54.5,
+  "leave_one_seed_out_minimum_mean": 52.5,
+  "active_side_count_distribution": {
+   "2": 2
+  },
+  "seeds": [
+   {
+    "seed": 4,
+    "active_sides": 2,
+    "mean_delta": 52.5,
+    "opponent_deltas": {
+     "chopharvest": 47.5,
+     "race": 40,
+     "ringfix3": 42,
+     "taskplan": 42,
+     "yield": 91
+    }
+   },
+   {
+    "seed": 44,
+    "active_sides": 2,
+    "mean_delta": 63.0,
+    "opponent_deltas": {
+     "chopharvest": 72.5,
+     "race": 69,
+     "ringfix3": 68.0,
+     "taskplan": 67,
+     "yield": 38.5
+    }
+   }
+  ]
+ },
+ "post_fit_extension_active": {
+  "seed_count": 20,
+  "seed_summary": {
+   "n": 20,
+   "mean": -8.405,
+   "median": -17.6,
+   "trimmed_5pct_mean": -11.561111111111112,
+   "standard_deviation": 40.79458781182673,
+   "standard_error": 9.121947146132896,
+   "ci95_normal": [
+    -26.284016406420477,
+    9.474016406420477
+   ],
+   "worst_decile_mean": -54.2,
+   "wins": 4,
+   "ties": 0,
+   "losses": 16,
+   "minimum": -65.4,
+   "maximum": 105.4
+  },
+  "cell_summary_nonindependent": {
+   "n": 100,
+   "mean": -8.405,
+   "median": -13.5,
+   "trimmed_5pct_mean": -11.522222222222222,
+   "standard_deviation": 47.89333134026789,
+   "standard_error": 4.789333134026789,
+   "ci95_normal": [
+    -17.792092942692506,
+    0.9820929426925069
+   ],
+   "worst_decile_mean": -74.6,
+   "wins": 29,
+   "ties": 1,
+   "losses": 70,
+   "minimum": -123.5,
+   "maximum": 186.0
+  },
+  "opponent_means": {
+   "chopharvest": -9.3,
+   "race": -7.85,
+   "ringfix3": -6.275,
+   "taskplan": -5.775,
+   "yield": -12.825
+  },
+  "worst_opponent_mean": -12.825,
+  "leave_one_seed_out_minimum_mean": -14.394736842105264,
+  "active_side_count_distribution": {
+   "1": 7,
+   "2": 13
+  },
+  "seeds": [
+   {
+    "seed": 118,
+    "active_sides": 1,
+    "mean_delta": -7.7,
+    "opponent_deltas": {
+     "chopharvest": -2,
+     "race": 3.5,
+     "ringfix3": -16.0,
+     "taskplan": -35.5,
+     "yield": 11.5
+    }
+   },
+   {
+    "seed": 122,
+    "active_sides": 2,
+    "mean_delta": -17.8,
+    "opponent_deltas": {
+     "chopharvest": -41.0,
+     "race": -22,
+     "ringfix3": 8,
+     "taskplan": -6.5,
+     "yield": -27.5
+    }
+   },
+   {
+    "seed": 158,
+    "active_sides": 1,
+    "mean_delta": -23.4,
+    "opponent_deltas": {
+     "chopharvest": -31,
+     "race": -48.5,
+     "ringfix3": -31.0,
+     "taskplan": -1.5,
+     "yield": -5
+    }
+   },
+   {
+    "seed": 174,
+    "active_sides": 2,
+    "mean_delta": -26.2,
+    "opponent_deltas": {
+     "chopharvest": -34.0,
+     "race": -18,
+     "ringfix3": -26,
+     "taskplan": -26.5,
+     "yield": -26.5
+    }
+   },
+   {
+    "seed": 221,
+    "active_sides": 1,
+    "mean_delta": 0.4,
+    "opponent_deltas": {
+     "chopharvest": -13.5,
+     "race": -2.0,
+     "ringfix3": -13.5,
+     "taskplan": 27.5,
+     "yield": 3.5
+    }
+   },
+   {
+    "seed": 243,
+    "active_sides": 2,
+    "mean_delta": -4.2,
+    "opponent_deltas": {
+     "chopharvest": 5.0,
+     "race": -9.5,
+     "ringfix3": -13.0,
+     "taskplan": 24.5,
+     "yield": -28.0
+    }
+   },
+   {
+    "seed": 272,
+    "active_sides": 1,
+    "mean_delta": -8.3,
+    "opponent_deltas": {
+     "chopharvest": -33.5,
+     "race": -2,
+     "ringfix3": -11.0,
+     "taskplan": -14,
+     "yield": 19.0
+    }
+   },
+   {
+    "seed": 280,
+    "active_sides": 2,
+    "mean_delta": -36.1,
+    "opponent_deltas": {
+     "chopharvest": -59.5,
+     "race": -42,
+     "ringfix3": -35.5,
+     "taskplan": -34.5,
+     "yield": -9
+    }
+   },
+   {
+    "seed": 400,
+    "active_sides": 2,
+    "mean_delta": -43.0,
+    "opponent_deltas": {
+     "chopharvest": -114.0,
+     "race": -6,
+     "ringfix3": -123.5,
+     "taskplan": 42.5,
+     "yield": -14
+    }
+   },
+   {
+    "seed": 485,
+    "active_sides": 1,
+    "mean_delta": -26.2,
+    "opponent_deltas": {
+     "chopharvest": -39,
+     "race": -10,
+     "ringfix3": 19.0,
+     "taskplan": -48.5,
+     "yield": -52.5
+    }
+   },
+   {
+    "seed": 494,
+    "active_sides": 2,
+    "mean_delta": -23.5,
+    "opponent_deltas": {
+     "chopharvest": -39.0,
+     "race": 4,
+     "ringfix3": -30.5,
+     "taskplan": -8,
+     "yield": -44
+    }
+   },
+   {
+    "seed": 532,
+    "active_sides": 2,
+    "mean_delta": -65.4,
+    "opponent_deltas": {
+     "chopharvest": -74.0,
+     "race": -53.5,
+     "ringfix3": -92.5,
+     "taskplan": -57.5,
+     "yield": -49.5
+    }
+   },
+   {
+    "seed": 576,
+    "active_sides": 2,
+    "mean_delta": -17.4,
+    "opponent_deltas": {
+     "chopharvest": -14.5,
+     "race": -18,
+     "ringfix3": -15,
+     "taskplan": -18,
+     "yield": -21.5
+    }
+   },
+   {
+    "seed": 577,
+    "active_sides": 2,
+    "mean_delta": -5.3,
+    "opponent_deltas": {
+     "chopharvest": 22,
+     "race": -42.5,
+     "ringfix3": 47.5,
+     "taskplan": -35,
+     "yield": -18.5
+    }
+   },
+   {
+    "seed": 654,
+    "active_sides": 2,
+    "mean_delta": -39.8,
+    "opponent_deltas": {
+     "chopharvest": -13.0,
+     "race": -24,
+     "ringfix3": -63.0,
+     "taskplan": -44,
+     "yield": -55
+    }
+   },
+   {
+    "seed": 681,
+    "active_sides": 2,
+    "mean_delta": 105.4,
+    "opponent_deltas": {
+     "chopharvest": 94.5,
+     "race": 112.0,
+     "ringfix3": 105.0,
+     "taskplan": 123,
+     "yield": 92.5
+    }
+   },
+   {
+    "seed": 774,
+    "active_sides": 2,
+    "mean_delta": 93.3,
+    "opponent_deltas": {
+     "chopharvest": 186.0,
+     "race": 70.5,
+     "ringfix3": 137.5,
+     "taskplan": 46.5,
+     "yield": 26.0
+    }
+   },
+   {
+    "seed": 797,
+    "active_sides": 1,
+    "mean_delta": -6.1,
+    "opponent_deltas": {
+     "chopharvest": -10.0,
+     "race": -4,
+     "ringfix3": -10.0,
+     "taskplan": 0,
+     "yield": -6.5
+    }
+   },
+   {
+    "seed": 943,
+    "active_sides": 1,
+    "mean_delta": 11.1,
+    "opponent_deltas": {
+     "chopharvest": 26,
+     "race": 6.5,
+     "ringfix3": 20.0,
+     "taskplan": 1,
+     "yield": 2
+    }
+   },
+   {
+    "seed": 991,
+    "active_sides": 2,
+    "mean_delta": -27.9,
+    "opponent_deltas": {
+     "chopharvest": -1.5,
+     "race": -51.5,
+     "ringfix3": 18,
+     "taskplan": -51,
+     "yield": -53.5
+    }
+   }
+  ]
+ },
+ "all_active": {
+  "seed_count": 22,
+  "seed_summary": {
+   "n": 22,
+   "mean": -2.3909090909090907,
+   "median": -12.85,
+   "trimmed_5pct_mean": -4.63,
+   "standard_deviation": 43.442429436262834,
+   "standard_error": 9.261957076039293,
+   "ci95_normal": [
+    -20.544344959946105,
+    15.762526778127924
+   ],
+   "worst_decile_mean": -49.4,
+   "wins": 6,
+   "ties": 0,
+   "losses": 16,
+   "minimum": -65.4,
+   "maximum": 105.4
+  },
+  "cell_summary_nonindependent": {
+   "n": 110,
+   "mean": -2.390909090909091,
+   "median": -10.0,
+   "trimmed_5pct_mean": -4.595,
+   "standard_deviation": 49.75137183200049,
+   "standard_error": 4.743607180545942,
+   "ci95_normal": [
+    -11.688379164779136,
+    6.906560982960954
+   ],
+   "worst_decile_mean": -72.5909090909091,
+   "wins": 39,
+   "ties": 1,
+   "losses": 70,
+   "minimum": -123.5,
+   "maximum": 186.0
+  },
+  "opponent_means": {
+   "chopharvest": -3.0,
+   "race": -2.1818181818181817,
+   "ringfix3": -0.7045454545454546,
+   "taskplan": -0.29545454545454547,
+   "yield": -5.7727272727272725
+  },
+  "worst_opponent_mean": -5.7727272727272725,
+  "leave_one_seed_out_minimum_mean": -7.523809523809524,
+  "active_side_count_distribution": {
+   "1": 7,
+   "2": 15
+  },
+  "seeds": [
+   {
+    "seed": 4,
+    "active_sides": 2,
+    "mean_delta": 52.5,
+    "opponent_deltas": {
+     "chopharvest": 47.5,
+     "race": 40,
+     "ringfix3": 42,
+     "taskplan": 42,
+     "yield": 91
+    }
+   },
+   {
+    "seed": 44,
+    "active_sides": 2,
+    "mean_delta": 63.0,
+    "opponent_deltas": {
+     "chopharvest": 72.5,
+     "race": 69,
+     "ringfix3": 68.0,
+     "taskplan": 67,
+     "yield": 38.5
+    }
+   },
+   {
+    "seed": 118,
+    "active_sides": 1,
+    "mean_delta": -7.7,
+    "opponent_deltas": {
+     "chopharvest": -2,
+     "race": 3.5,
+     "ringfix3": -16.0,
+     "taskplan": -35.5,
+     "yield": 11.5
+    }
+   },
+   {
+    "seed": 122,
+    "active_sides": 2,
+    "mean_delta": -17.8,
+    "opponent_deltas": {
+     "chopharvest": -41.0,
+     "race": -22,
+     "ringfix3": 8,
+     "taskplan": -6.5,
+     "yield": -27.5
+    }
+   },
+   {
+    "seed": 158,
+    "active_sides": 1,
+    "mean_delta": -23.4,
+    "opponent_deltas": {
+     "chopharvest": -31,
+     "race": -48.5,
+     "ringfix3": -31.0,
+     "taskplan": -1.5,
+     "yield": -5
+    }
+   },
+   {
+    "seed": 174,
+    "active_sides": 2,
+    "mean_delta": -26.2,
+    "opponent_deltas": {
+     "chopharvest": -34.0,
+     "race": -18,
+     "ringfix3": -26,
+     "taskplan": -26.5,
+     "yield": -26.5
+    }
+   },
+   {
+    "seed": 221,
+    "active_sides": 1,
+    "mean_delta": 0.4,
+    "opponent_deltas": {
+     "chopharvest": -13.5,
+     "race": -2.0,
+     "ringfix3": -13.5,
+     "taskplan": 27.5,
+     "yield": 3.5
+    }
+   },
+   {
+    "seed": 243,
+    "active_sides": 2,
+    "mean_delta": -4.2,
+    "opponent_deltas": {
+     "chopharvest": 5.0,
+     "race": -9.5,
+     "ringfix3": -13.0,
+     "taskplan": 24.5,
+     "yield": -28.0
+    }
+   },
+   {
+    "seed": 272,
+    "active_sides": 1,
+    "mean_delta": -8.3,
+    "opponent_deltas": {
+     "chopharvest": -33.5,
+     "race": -2,
+     "ringfix3": -11.0,
+     "taskplan": -14,
+     "yield": 19.0
+    }
+   },
+   {
+    "seed": 280,
+    "active_sides": 2,
+    "mean_delta": -36.1,
+    "opponent_deltas": {
+     "chopharvest": -59.5,
+     "race": -42,
+     "ringfix3": -35.5,
+     "taskplan": -34.5,
+     "yield": -9
+    }
+   },
+   {
+    "seed": 400,
+    "active_sides": 2,
+    "mean_delta": -43.0,
+    "opponent_deltas": {
+     "chopharvest": -114.0,
+     "race": -6,
+     "ringfix3": -123.5,
+     "taskplan": 42.5,
+     "yield": -14
+    }
+   },
+   {
+    "seed": 485,
+    "active_sides": 1,
+    "mean_delta": -26.2,
+    "opponent_deltas": {
+     "chopharvest": -39,
+     "race": -10,
+     "ringfix3": 19.0,
+     "taskplan": -48.5,
+     "yield": -52.5
+    }
+   },
+   {
+    "seed": 494,
+    "active_sides": 2,
+    "mean_delta": -23.5,
+    "opponent_deltas": {
+     "chopharvest": -39.0,
+     "race": 4,
+     "ringfix3": -30.5,
+     "taskplan": -8,
+     "yield": -44
+    }
+   },
+   {
+    "seed": 532,
+    "active_sides": 2,
+    "mean_delta": -65.4,
+    "opponent_deltas": {
+     "chopharvest": -74.0,
+     "race": -53.5,
+     "ringfix3": -92.5,
+     "taskplan": -57.5,
+     "yield": -49.5
+    }
+   },
+   {
+    "seed": 576,
+    "active_sides": 2,
+    "mean_delta": -17.4,
+    "opponent_deltas": {
+     "chopharvest": -14.5,
+     "race": -18,
+     "ringfix3": -15,
+     "taskplan": -18,
+     "yield": -21.5
+    }
+   },
+   {
+    "seed": 577,
+    "active_sides": 2,
+    "mean_delta": -5.3,
+    "opponent_deltas": {
+     "chopharvest": 22,
+     "race": -42.5,
+     "ringfix3": 47.5,
+     "taskplan": -35,
+     "yield": -18.5
+    }
+   },
+   {
+    "seed": 654,
+    "active_sides": 2,
+    "mean_delta": -39.8,
+    "opponent_deltas": {
+     "chopharvest": -13.0,
+     "race": -24,
+     "ringfix3": -63.0,
+     "taskplan": -44,
+     "yield": -55
+    }
+   },
+   {
+    "seed": 681,
+    "active_sides": 2,
+    "mean_delta": 105.4,
+    "opponent_deltas": {
+     "chopharvest": 94.5,
+     "race": 112.0,
+     "ringfix3": 105.0,
+     "taskplan": 123,
+     "yield": 92.5
+    }
+   },
+   {
+    "seed": 774,
+    "active_sides": 2,
+    "mean_delta": 93.3,
+    "opponent_deltas": {
+     "chopharvest": 186.0,
+     "race": 70.5,
+     "ringfix3": 137.5,
+     "taskplan": 46.5,
+     "yield": 26.0
+    }
+   },
+   {
+    "seed": 797,
+    "active_sides": 1,
+    "mean_delta": -6.1,
+    "opponent_deltas": {
+     "chopharvest": -10.0,
+     "race": -4,
+     "ringfix3": -10.0,
+     "taskplan": 0,
+     "yield": -6.5
+    }
+   },
+   {
+    "seed": 943,
+    "active_sides": 1,
+    "mean_delta": 11.1,
+    "opponent_deltas": {
+     "chopharvest": 26,
+     "race": 6.5,
+     "ringfix3": 20.0,
+     "taskplan": 1,
+     "yield": 2
+    }
+   },
+   {
+    "seed": 991,
+    "active_sides": 2,
+    "mean_delta": -27.9,
+    "opponent_deltas": {
+     "chopharvest": -1.5,
+     "race": -51.5,
+     "ringfix3": 18,
+     "taskplan": -51,
+     "yield": -53.5
+    }
+   }
+  ]
+ },
+ "full_registry": {
+  "seed_summary": {
+   "n": 1000,
+   "mean": -0.052599999999999994,
+   "median": 0.0,
+   "trimmed_5pct_mean": 0.0,
+   "standard_deviation": 6.308322135732145,
+   "standard_error": 0.19948666162971443,
+   "ci95_normal": [
+    -0.44359385679424024,
+    0.3383938567942403
+   ],
+   "worst_decile_mean": -3.783,
+   "wins": 6,
+   "ties": 978,
+   "losses": 16,
+   "minimum": -65.4,
+   "maximum": 105.4
+  },
+  "opponent_means": {
+   "chopharvest": -0.066,
+   "race": -0.048,
+   "ringfix3": -0.0155,
+   "taskplan": -0.0065,
+   "yield": -0.127
+  },
+  "worst_opponent_mean": -0.127,
+  "activation_count": 22,
+  "activation_rate": 0.022
+ },
+ "roadmap_diagnostics": {
+  "positive_extension_mean": false,
+  "positive_extension_trimmed_mean": false,
+  "nonnegative_extension_worst_opponent": false,
+  "positive_full_registry_mean": false
+ }
+}

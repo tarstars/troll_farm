@@ -1,0 +1,1403 @@
+{
+ "schema": 1,
+ "scope": "consumed exact-map opponent-model calibration; not candidate evidence",
+ "games": 160,
+ "model_cells": 4960,
+ "catalog": [
+  "lean_m1c2h0k2",
+  "lean_m2c2h0k2",
+  "lean_m2c3h0k2",
+  "lean_m2c2h0k3",
+  "dual3_s20_h0_cap12",
+  "dual3_s20_h0_cap20",
+  "dual3_s20_h1_cap12",
+  "dual3_s20_h1_cap20",
+  "dual3_s60_h0_cap12",
+  "dual3_s60_h0_cap20",
+  "dual3_s60_h1_cap12",
+  "dual3_s60_h1_cap20",
+  "farm3_hold0_cap12",
+  "farm3_hold0_cap20",
+  "farm3_hold60_cap12",
+  "farm3_hold60_cap20",
+  "farm3_hold100_cap12",
+  "farm3_hold100_cap20",
+  "farm4_s30_hold0_cap18",
+  "farm4_s30_hold0_cap24",
+  "farm4_s30_hold80_cap18",
+  "farm4_s30_hold80_cap24",
+  "farm4_s30_hold120_cap18",
+  "farm4_s30_hold120_cap24",
+  "farm4_s60_hold0_cap18",
+  "farm4_s60_hold0_cap24",
+  "farm4_s60_hold80_cap18",
+  "farm4_s60_hold80_cap24",
+  "farm4_s60_hold120_cap18",
+  "farm4_s60_hold120_cap24",
+  "adaptive_density"
+ ],
+ "target_archetypes": [
+  "rich3plus:farm_wood:train_now",
+  "compact2:farm_wood:deferred",
+  "compact2:wood_only:deferred"
+ ],
+ "split_counts": {
+  "discovery": {
+   "games": 80,
+   "catastrophic": 12,
+   "worker_rich": 23,
+   "target_archetypes": {
+    "rich3plus:farm_wood:train_now": 12,
+    "compact2:farm_wood:deferred": 8,
+    "compact2:wood_only:deferred": 10
+   }
+  },
+  "confirmation": {
+   "games": 80,
+   "catastrophic": 19,
+   "worker_rich": 28,
+   "target_archetypes": {
+    "rich3plus:farm_wood:train_now": 9,
+    "compact2:farm_wood:deferred": 6,
+    "compact2:wood_only:deferred": 4
+   }
+  }
+ },
+ "selections": {
+  "rich3plus:farm_wood:train_now": {
+   "model": "lean_m2c3h0k2",
+   "games": 12,
+   "macro_covers": 1,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.08333333333333333,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4328595238095239
+  },
+  "compact2:farm_wood:deferred": {
+   "model": "lean_m2c2h0k3",
+   "games": 8,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "macro_coverage_rate": 0.5,
+   "full_coverage_rate": 0.375,
+   "mean_normalized_macro_distance": 0.6155952380952381
+  },
+  "compact2:wood_only:deferred": {
+   "model": "dual3_s20_h1_cap12",
+   "games": 10,
+   "macro_covers": 3,
+   "fully_covers": 2,
+   "macro_coverage_rate": 0.3,
+   "full_coverage_rate": 0.2,
+   "mean_normalized_macro_distance": 0.6416085714285714
+  }
+ },
+ "selected_models": [
+  "dual3_s20_h1_cap12",
+  "lean_m2c2h0k3",
+  "lean_m2c3h0k2"
+ ],
+ "discovery_rankings": {
+  "rich3plus:farm_wood:train_now": [
+   {
+    "model": "lean_m2c3h0k2",
+    "games": 12,
+    "macro_covers": 1,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.08333333333333333,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4328595238095239
+   },
+   {
+    "model": "farm3_hold100_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.196215873015873
+   },
+   {
+    "model": "farm3_hold60_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2023714285714286
+   },
+   {
+    "model": "farm3_hold60_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2186587301587302
+   },
+   {
+    "model": "farm3_hold100_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2322460317460318
+   },
+   {
+    "model": "farm3_hold0_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2649777777777778
+   },
+   {
+    "model": "farm3_hold0_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2729857142857144
+   },
+   {
+    "model": "lean_m2c2h0k3",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.404313492063492
+   },
+   {
+    "model": "farm4_s60_hold120_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4055269841269842
+   },
+   {
+    "model": "farm4_s60_hold120_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.425345238095238
+   },
+   {
+    "model": "farm4_s30_hold120_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.436320634920635
+   },
+   {
+    "model": "farm4_s30_hold120_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4430539682539683
+   },
+   {
+    "model": "farm4_s30_hold80_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4672
+   },
+   {
+    "model": "farm4_s30_hold80_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4672
+   },
+   {
+    "model": "farm4_s60_hold80_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4677015873015873
+   },
+   {
+    "model": "adaptive_density",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.472942857142857
+   },
+   {
+    "model": "farm4_s60_hold80_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4830238095238095
+   },
+   {
+    "model": "lean_m1c2h0k2",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4994190476190477
+   },
+   {
+    "model": "farm4_s60_hold0_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5483595238095238
+   },
+   {
+    "model": "farm4_s60_hold0_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5483595238095238
+   },
+   {
+    "model": "farm4_s30_hold0_cap18",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5597738095238096
+   },
+   {
+    "model": "farm4_s30_hold0_cap24",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5597738095238096
+   },
+   {
+    "model": "lean_m2c2h0k2",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5816825396825396
+   },
+   {
+    "model": "dual3_s20_h1_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.7691777777777777
+   },
+   {
+    "model": "dual3_s20_h1_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.7731722222222221
+   },
+   {
+    "model": "dual3_s20_h0_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.822129365079365
+   },
+   {
+    "model": "dual3_s20_h0_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.822129365079365
+   },
+   {
+    "model": "dual3_s60_h0_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.8507555555555555
+   },
+   {
+    "model": "dual3_s60_h0_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.8507555555555555
+   },
+   {
+    "model": "dual3_s60_h1_cap12",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.853907142857143
+   },
+   {
+    "model": "dual3_s60_h1_cap20",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.853907142857143
+   }
+  ],
+  "compact2:farm_wood:deferred": [
+   {
+    "model": "lean_m2c2h0k3",
+    "games": 8,
+    "macro_covers": 4,
+    "fully_covers": 3,
+    "macro_coverage_rate": 0.5,
+    "full_coverage_rate": 0.375,
+    "mean_normalized_macro_distance": 0.6155952380952381
+   },
+   {
+    "model": "lean_m2c3h0k2",
+    "games": 8,
+    "macro_covers": 2,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.25,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.8541190476190477
+   },
+   {
+    "model": "farm3_hold100_cap12",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.8973583333333334
+   },
+   {
+    "model": "farm3_hold100_cap20",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9004369047619047
+   },
+   {
+    "model": "farm4_s60_hold0_cap18",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9089476190476191
+   },
+   {
+    "model": "farm4_s60_hold0_cap24",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9089476190476191
+   },
+   {
+    "model": "farm3_hold60_cap20",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9296
+   },
+   {
+    "model": "farm3_hold60_cap12",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9472035714285714
+   },
+   {
+    "model": "farm3_hold0_cap20",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9797464285714286
+   },
+   {
+    "model": "farm3_hold0_cap12",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.9820297619047619
+   },
+   {
+    "model": "lean_m1c2h0k2",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7112833333333334
+   },
+   {
+    "model": "lean_m2c2h0k2",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.744252380952381
+   },
+   {
+    "model": "dual3_s60_h1_cap12",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.816075
+   },
+   {
+    "model": "dual3_s60_h1_cap20",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.816075
+   },
+   {
+    "model": "dual3_s60_h0_cap12",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8198642857142857
+   },
+   {
+    "model": "dual3_s60_h0_cap20",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8198642857142857
+   },
+   {
+    "model": "dual3_s20_h0_cap12",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8485809523809524
+   },
+   {
+    "model": "dual3_s20_h0_cap20",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8485809523809524
+   },
+   {
+    "model": "dual3_s20_h1_cap12",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8527761904761905
+   },
+   {
+    "model": "dual3_s20_h1_cap20",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8527761904761905
+   },
+   {
+    "model": "farm4_s60_hold80_cap18",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8797059523809524
+   },
+   {
+    "model": "farm4_s60_hold80_cap24",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8797059523809524
+   },
+   {
+    "model": "farm4_s30_hold80_cap18",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8967214285714286
+   },
+   {
+    "model": "farm4_s30_hold80_cap24",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8967214285714286
+   },
+   {
+    "model": "adaptive_density",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9284369047619048
+   },
+   {
+    "model": "farm4_s30_hold0_cap18",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9346202380952381
+   },
+   {
+    "model": "farm4_s30_hold0_cap24",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9346202380952381
+   },
+   {
+    "model": "farm4_s60_hold120_cap18",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9360702380952381
+   },
+   {
+    "model": "farm4_s60_hold120_cap24",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9360702380952381
+   },
+   {
+    "model": "farm4_s30_hold120_cap18",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9580214285714286
+   },
+   {
+    "model": "farm4_s30_hold120_cap24",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9580214285714286
+   }
+  ],
+  "compact2:wood_only:deferred": [
+   {
+    "model": "dual3_s20_h1_cap12",
+    "games": 10,
+    "macro_covers": 3,
+    "fully_covers": 2,
+    "macro_coverage_rate": 0.3,
+    "full_coverage_rate": 0.2,
+    "mean_normalized_macro_distance": 0.6416085714285714
+   },
+   {
+    "model": "dual3_s20_h1_cap20",
+    "games": 10,
+    "macro_covers": 3,
+    "fully_covers": 2,
+    "macro_coverage_rate": 0.3,
+    "full_coverage_rate": 0.2,
+    "mean_normalized_macro_distance": 0.6416085714285714
+   },
+   {
+    "model": "dual3_s60_h1_cap12",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 2,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.2,
+    "mean_normalized_macro_distance": 0.6640076190476191
+   },
+   {
+    "model": "dual3_s60_h1_cap20",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 2,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.2,
+    "mean_normalized_macro_distance": 0.6640076190476191
+   },
+   {
+    "model": "dual3_s20_h0_cap12",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.650667619047619
+   },
+   {
+    "model": "dual3_s20_h0_cap20",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.650667619047619
+   },
+   {
+    "model": "dual3_s60_h0_cap12",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.665527619047619
+   },
+   {
+    "model": "dual3_s60_h0_cap20",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.665527619047619
+   },
+   {
+    "model": "farm4_s30_hold0_cap18",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.7694333333333333
+   },
+   {
+    "model": "farm4_s30_hold0_cap24",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.7694333333333333
+   },
+   {
+    "model": "farm4_s60_hold0_cap18",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7855428571428571
+   },
+   {
+    "model": "farm4_s60_hold0_cap24",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7855428571428571
+   },
+   {
+    "model": "lean_m2c2h0k2",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7959066666666667
+   },
+   {
+    "model": "lean_m2c2h0k3",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8081057142857143
+   },
+   {
+    "model": "lean_m1c2h0k2",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.85518
+   },
+   {
+    "model": "lean_m2c3h0k2",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8677771428571428
+   },
+   {
+    "model": "farm4_s30_hold80_cap18",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8713942857142857
+   },
+   {
+    "model": "farm4_s30_hold80_cap24",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8713942857142857
+   },
+   {
+    "model": "farm4_s60_hold80_cap18",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8864295238095238
+   },
+   {
+    "model": "farm4_s60_hold80_cap24",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8907780952380953
+   },
+   {
+    "model": "adaptive_density",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9144666666666666
+   },
+   {
+    "model": "farm4_s60_hold120_cap18",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9612771428571428
+   },
+   {
+    "model": "farm4_s60_hold120_cap24",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9689190476190476
+   },
+   {
+    "model": "farm4_s30_hold120_cap18",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9808066666666667
+   },
+   {
+    "model": "farm4_s30_hold120_cap24",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9808066666666667
+   },
+   {
+    "model": "farm3_hold0_cap12",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0380114285714286
+   },
+   {
+    "model": "farm3_hold0_cap20",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0440047619047619
+   },
+   {
+    "model": "farm3_hold60_cap12",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0527942857142858
+   },
+   {
+    "model": "farm3_hold60_cap20",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0945552380952381
+   },
+   {
+    "model": "farm3_hold100_cap12",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1026714285714285
+   },
+   {
+    "model": "farm3_hold100_cap20",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1424114285714286
+   }
+  ]
+ },
+ "confirmation": {
+  "overall": {
+   "games": 80,
+   "baseline": {
+    "macro": 27,
+    "full": 15,
+    "exact_opening": 16,
+    "macro_rate": 0.3375,
+    "full_rate": 0.1875,
+    "exact_opening_rate": 0.2
+   },
+   "selected_catalog": {
+    "macro": 28,
+    "full": 14,
+    "exact_opening": 6,
+    "macro_rate": 0.35,
+    "full_rate": 0.175,
+    "exact_opening_rate": 0.075
+   },
+   "expanded": {
+    "macro": 36,
+    "full": 19,
+    "exact_opening": 16,
+    "macro_rate": 0.45,
+    "full_rate": 0.2375,
+    "exact_opening_rate": 0.2
+   },
+   "delta": {
+    "macro": 9,
+    "full": 4,
+    "exact_opening": 0,
+    "macro_rate": 0.1125,
+    "full_rate": 0.05,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "catastrophic": {
+   "games": 19,
+   "baseline": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "selected_catalog": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 3,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.15789473684210525
+   },
+   "expanded": {
+    "macro": 2,
+    "full": 2,
+    "exact_opening": 4,
+    "macro_rate": 0.10526315789473684,
+    "full_rate": 0.10526315789473684,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "delta": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 0,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "worker_rich": {
+   "games": 28,
+   "baseline": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "selected_catalog": {
+    "macro": 4,
+    "full": 1,
+    "exact_opening": 0,
+    "macro_rate": 0.14285714285714285,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 4,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.14285714285714285,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "delta": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.03571428571428571,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  }
+ },
+ "target_confirmation": {
+  "rich3plus:farm_wood:train_now": {
+   "games": 9,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "lean_m2c3h0k2",
+   "representative_macro": 0,
+   "representative_macro_rate": 0.0
+  },
+  "compact2:farm_wood:deferred": {
+   "games": 6,
+   "baseline": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 2,
+    "macro_rate": 0.16666666666666666,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.3333333333333333
+   },
+   "selected_catalog": {
+    "macro": 4,
+    "full": 3,
+    "exact_opening": 1,
+    "macro_rate": 0.6666666666666666,
+    "full_rate": 0.5,
+    "exact_opening_rate": 0.16666666666666666
+   },
+   "expanded": {
+    "macro": 4,
+    "full": 3,
+    "exact_opening": 2,
+    "macro_rate": 0.6666666666666666,
+    "full_rate": 0.5,
+    "exact_opening_rate": 0.3333333333333333
+   },
+   "delta": {
+    "macro": 3,
+    "full": 3,
+    "exact_opening": 0,
+    "macro_rate": 0.5,
+    "full_rate": 0.5,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "lean_m2c2h0k3",
+   "representative_macro": 3,
+   "representative_macro_rate": 0.5
+  },
+  "compact2:wood_only:deferred": {
+   "games": 4,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 3,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.75
+   },
+   "selected_catalog": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 2,
+    "macro_rate": 0.25,
+    "full_rate": 0.25,
+    "exact_opening_rate": 0.5
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 3,
+    "macro_rate": 0.25,
+    "full_rate": 0.25,
+    "exact_opening_rate": 0.75
+   },
+   "delta": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 0,
+    "macro_rate": 0.25,
+    "full_rate": 0.25,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "dual3_s20_h1_cap12",
+   "representative_macro": 0,
+   "representative_macro_rate": 0.0
+  }
+ },
+ "archetype_checks": {
+  "rich3plus:farm_wood:train_now": false,
+  "compact2:farm_wood:deferred": true,
+  "compact2:wood_only:deferred": false
+ },
+ "gates": {
+  "integrity": true,
+  "overall_macro_uplift": true,
+  "overall_full_uplift": true,
+  "catastrophic_macro_uplift": false,
+  "worker_rich_macro_uplift": false,
+  "target_archetype_confirmation": false
+ },
+ "macro_viable": false,
+ "catalog_useful": false,
+ "model_summary": {
+  "lean_m1c2h0k2": {
+   "confirmation_games": 80,
+   "macro_covers": 13,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9820988095238096
+  },
+  "lean_m2c2h0k2": {
+   "confirmation_games": 80,
+   "macro_covers": 12,
+   "fully_covers": 7,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9409215476190476
+  },
+  "lean_m2c3h0k2": {
+   "confirmation_games": 80,
+   "macro_covers": 13,
+   "fully_covers": 9,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0163392857142857
+  },
+  "lean_m2c2h0k3": {
+   "confirmation_games": 80,
+   "macro_covers": 12,
+   "fully_covers": 8,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9442842857142857
+  },
+  "dual3_s20_h0_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 17,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9781176190476191
+  },
+  "dual3_s20_h0_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 17,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9781176190476191
+  },
+  "dual3_s20_h1_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 16,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9740563095238095
+  },
+  "dual3_s20_h1_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 16,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9749679761904761
+  },
+  "dual3_s60_h0_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 15,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9719711904761905
+  },
+  "dual3_s60_h0_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 15,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9719711904761905
+  },
+  "dual3_s60_h1_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 15,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9724341666666667
+  },
+  "dual3_s60_h1_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 15,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 0.9724341666666667
+  },
+  "farm3_hold0_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 6,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 0.9813378571428572
+  },
+  "farm3_hold0_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 6,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 0.9724798809523809
+  },
+  "farm3_hold60_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 5,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0274958333333333
+  },
+  "farm3_hold60_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 5,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0280113095238095
+  },
+  "farm3_hold100_cap12": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0604454761904762
+  },
+  "farm3_hold100_cap20": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0683934523809524
+  },
+  "farm4_s30_hold0_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0165789285714286
+  },
+  "farm4_s30_hold0_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0161263095238096
+  },
+  "farm4_s30_hold80_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0282253571428572
+  },
+  "farm4_s30_hold80_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0287525
+  },
+  "farm4_s30_hold120_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0182034523809524
+  },
+  "farm4_s30_hold120_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0185263095238095
+  },
+  "farm4_s60_hold0_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0002214285714286
+  },
+  "farm4_s60_hold0_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 4,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0002214285714286
+  },
+  "farm4_s60_hold80_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0118264285714287
+  },
+  "farm4_s60_hold80_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0105523809523809
+  },
+  "farm4_s60_hold120_cap18": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0252234523809525
+  },
+  "farm4_s60_hold120_cap24": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0255769047619048
+  },
+  "adaptive_density": {
+   "confirmation_games": 80,
+   "macro_covers": 3,
+   "fully_covers": 3,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0164040476190477
+  }
+ },
+ "decision": "close parameter-only GoldElite calibration; build a structurally new field proxy"
+}

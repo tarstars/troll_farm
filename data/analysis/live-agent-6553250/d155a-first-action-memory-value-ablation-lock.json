@@ -1,0 +1,20 @@
+{
+  "schema": "troll-farm-d155a-first-action-memory-value-ablation-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d153b_oof_confidence_abstention.py": "dcc1666e4564997ccbd7dcc1d340fd060e94a4a4bac6b89d426f0ce1bf16e699",
+    "cgauto/build_d153a_conditional_value_dataset.py": "f5aa8c39d25f48edf5dd35adc653e96509fae722baadf4c88e8455f274cab67e",
+    "cgauto/build_d155a_first_action_memory_dataset.py": "79ccd8bf3000b39bb9e36a25d9bf3352ce3f3bec4525755defe48f8f7dcab3f3",
+    "cgauto/run_d153a_conditional_value_selection.py": "7f3c5925bb25be15ec8bde17d085547fac387f61b5b2b8be0a8996116ca1e454",
+    "cgauto/run_d154a_conditional_value_representation_ablation.py": "72f86c96f86fc128ed34bd49f76cdad3b362686c14594a92d98f659599df5bed",
+    "cgauto/run_d155a_first_action_memory_value_ablation.py": "2b0709b25de6e577b2e2c3b1db49fa53a74c5b1c376855530afc0c3585077bc6",
+    "cgauto/train_d153a_conditional_value_policy.py": "e9112e5a09d63095fd01ce697e98d6cd0c7b0d9e2570354d0bf11d0d0210cadb",
+    "cgauto/train_d154a_conditional_value_representations.py": "0724a058cb6f5af9493b41aabf074640a0045021f09b1a76caca0b34a19918ac",
+    "cgauto/train_d155a_first_action_memory_value_models.py": "980217895dcefcf3d0b4560b1c00272614a3255163e25a77693074c3a94c82ce",
+    "data/analysis/live-agent-6553250/d154a-conditional-value-representation-ablation-result.json": "a9383de96e9611c8de4fd8f9ac182e6c12082d2b4d0a77cea78958c3c4bceac4",
+    "data/analysis/live-agent-6553250/d154a-conditional-value-representation-ablation-selection-a.json": "c6caeb1acd0dd794c0730ff55dba64cb5fed29d74fc51ec1bb55672e376de059",
+    "data/analysis/live-agent-6553250/d155a-first-action-memory-value-ablation-protocol-2026-07-23.md": "cf3b1fba9e4af5f8db12c13f854d3724ce8d3d03a1ba6ebd33d3a5f86934000d",
+    "tests/test_build_d155a_first_action_memory_dataset.py": "eaa934bdd343778e616154c49d2b621bafce3b5c2c5f357410f95c717a7a4d9a",
+    "tests/test_run_d155a_first_action_memory_value_ablation.py": "947e40a179487958343af513fdd07b98b8ec126f6e8bd1671189fa21bc0bbd43",
+    "tests/test_train_d155a_first_action_memory_value_models.py": "ac01e272f17a6beffc9315eaf7a1a2589d30dccce469f94637267a61fdac8175"
+  }
+}

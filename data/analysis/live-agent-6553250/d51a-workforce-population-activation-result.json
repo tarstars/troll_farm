@@ -1,0 +1,53 @@
+{
+  "activation": {
+    "anchor_mismatches": 0,
+    "changed_cells": 2461,
+    "changed_rate": 0.2746651785714286,
+    "opening_mismatches": 0,
+    "switch_cells": 8960,
+    "trigger_integrity_failures": 0,
+    "triggered_cells": 2462,
+    "triggered_policies_on_at_least_16_maps": 56,
+    "triggered_rate": 0.2747767857142857
+  },
+  "audit": {
+    "outcome_fields_ignored": true,
+    "quarantined_accidental_output": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d51a-workforce-population-coverage-result.json",
+    "quarantined_accidental_output_sha256": "e3b545deaae72df7ff89668039cb53325bafc03700845ae873655d5f81187a7d"
+  },
+  "decision": "close D51 before support evaluation; field-supported early controllers do not reach the workforce trigger broadly enough",
+  "gates": {
+    "all_eight_anchors_exact": true,
+    "all_recorded_switches_satisfy_trigger": true,
+    "all_switch_openings_exact": true,
+    "at_least_35_percent_switch_cells_active": false,
+    "at_least_45_policies_trigger_on_16_maps": true,
+    "complete_byte_exact_repeat": true
+  },
+  "grid": {
+    "cells_per_run": 10240,
+    "games": 160,
+    "models": 64,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "analyzer_sha256": "678c1955344fcce5ea30d842fe6df3f8a23e2baa30ebeb7ce81564cb5c609f71",
+    "legacy_sha256": {
+      "d50a-current-baseline-phase21-local.tsv": "73d441becb6628a9fddd1bf57c1f9e406c9a36489a45141d3c2a924860d557c7",
+      "d50a-current-economy-phase21-local.tsv": "6fcbdc1057c1b81de47c58037ea309d5d7ca2e54b6d19248594e2ade1732d8c4",
+      "d50a-current-legend-v1-phase21-local.tsv": "c18ba0a3a056eb89ce3f9df06c23cc7d3dcf1949cf88e620ed67bb66b58e6a93",
+      "d50a-current-legend-v2-phase21-local.tsv": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b",
+      "d50a-current-structural-phase21-local.tsv": "29e85cb293cd527512260e6a083252f126f25557cbd491162abfd600d6fa5a2a"
+    },
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "fcfbd3553c2d953cb55842407300319abf62d3b8c7f16d69cf3e1c6af955aa47",
+    "run_b_sha256": "fcfbd3553c2d953cb55842407300319abf62d3b8c7f16d69cf3e1c6af955aa47",
+    "runner_sha256": "74dc0cca758f2e97902662a62656555ce790ec6b4aceaa225c37ae4b056bc3e4"
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d51a-workforce-history-opponent-population-protocol-2026-07-21.md",
+  "protocol_sha256": "99e87ea222d3762f368979274190d38ffe44c7e48ba52ef7dbfe201de8857224",
+  "schema": 1,
+  "scope": "activation/integrity only; outcome, support, distance, cohort, opponent, and coverage fields ignored"
+}

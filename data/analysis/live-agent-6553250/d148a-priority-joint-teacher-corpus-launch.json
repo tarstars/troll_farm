@@ -1,0 +1,163 @@
+{
+  "fresh_training_panel": [
+    9844136,
+    9844199
+  ],
+  "job_count": 16,
+  "launched_utc": "2026-07-22T23:34:09.100993+00:00",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "lock": {
+    "manifest_sha256": "961129312baa80d8057bc7095f86aa21fa70deddb8a7a3a13a5227af8233c4ea",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "ea0a020c-c8eb5ead-42e03e8-59b2f479",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722",
+    "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/records",
+    "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/specs"
+  },
+  "payload": {
+    "/home/tarstars/prj/troll_farm/cgauto/collect_d147a_selected_trajectory_features.py": "a9fd01e3e3e1f65b94503723d73fdbf811e6e61a5e133845f656b0e69a2c222d",
+    "/home/tarstars/prj/troll_farm/cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "/home/tarstars/prj/troll_farm/cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "/home/tarstars/prj/troll_farm/cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "/home/tarstars/prj/troll_farm/cgauto/run_d148a_priority_joint_teacher.py": "4e5381c02aed7b48cef5a483c44bd60383b10f0474947909decccc3dcb7ffc6e",
+    "/home/tarstars/prj/troll_farm/cgauto/yt_d148_priority_joint_teacher_mapper.py": "96267e32e79ebb45a5fa8696aecb9688904bcf8b55cc752855164fa0c0fff857",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "/home/tarstars/prj/troll_farm/rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "/home/tarstars/prj/troll_farm/rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-protocol-2026-07-22.md",
+  "reserved_validation_panel": [
+    9844200,
+    9844215
+  ],
+  "schema": "troll-farm-d148a-priority-joint-teacher-launch-v1",
+  "specs": [
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "kind": "joint",
+      "maps": 8,
+      "search_budget": 64,
+      "shard_id": "joint-07",
+      "start_seed": 9844192,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 8,
+      "shard_id": "exact-07",
+      "start_seed": 9844192,
+      "threads": 16
+    }
+  ]
+}

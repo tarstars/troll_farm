@@ -1,0 +1,32 @@
+{
+ "schema": 1,
+ "complete": true,
+ "rows_expected": 13440,
+ "rows_integrated": 13440,
+ "duplicate_integrated": 0,
+ "missing_integrated": 0,
+ "unexpected_integrated": 0,
+ "reached_failures": 0,
+ "maximum_raw_prediction_error": 0.00030899009374962816,
+ "decision_mismatches": 0,
+ "switches": 5438,
+ "switch_rate": 0.40461309523809524,
+ "branch_mismatches": 0,
+ "branch_mismatch_examples": [],
+ "selected_cell_mean_margin_delta": 38.315848214285715,
+ "selection_latency_ns": {
+  "median": 2451370,
+  "p95": 3770640,
+  "maximum": 28550272
+ },
+ "candidate": "/home/tarstars/prj/troll_farm/cgauto/submissions/candidate-agent6553250-d29b-spatial-option-critic.min.rs",
+ "candidate_bytes": 96414,
+ "candidate_sha256": "f074a553804a638d32cf97fe6e2e3cd2c718c4205ad79d6dfb2d6c7dde21c528",
+ "corpus_sha256": "bcf126bfabd9d4c4ceaac7c57c6197a1f0c69ebd40b9ff5b07d8d7d323af48db",
+ "integrated_sha256": "d70bf1dddb75f96c3a8c68b0e2518a3e9d3e7658cc92354de1ab4416c91c9c95",
+ "label_sha256": {
+  "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d29-option-labels-development-53000-53599.tsv": "1f8fbc8f4385c4939ab50da08de52a670683fb4ac9f4becaadf580c4f44c38ad",
+  "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d29-option-labels-confirmation-53600-53719.tsv": "0c19fc6e9c8bab5c21174edfc80c6a680866aa6a7a4e758ed59ad832e080dd58",
+  "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d29b-option-labels-confirmation-53720-53839.tsv": "f7cc0713203537c009c5ca8932a26c82ec9e2fb9d4e92855107827d8715eb303"
+ }
+}

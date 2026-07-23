@@ -1,0 +1,504 @@
+{
+ "schema": 1,
+ "experiment": "persistent_resident_local_job_bundle_oracle",
+ "summary": {
+  "resident_games": 160,
+  "roots": 480,
+  "rows": 3740,
+  "noncontrol_options": 3260,
+  "noncontrol_options_per_root": {
+   "minimum": 0,
+   "mean": 6.791666666666667,
+   "maximum": 15
+  },
+  "selected_noncontrol_roots": 286,
+  "selected_noncontrol_rate": 0.5958333333333333,
+  "mean_oracle_margin_delta": 11.072916666666666,
+  "oracle_margin_delta_distribution": {
+   "minimum": 0,
+   "median": 4.0,
+   "p75": 16,
+   "p90": 33,
+   "maximum": 114
+  },
+  "mean_selected_root_margin_delta": 18.583916083916083,
+  "selected_root_margin_delta_distribution": {
+   "minimum": 1,
+   "median": 11.5,
+   "p75": 24,
+   "p90": 44,
+   "maximum": 114
+  },
+  "mean_selected_own_score_delta": 5.993006993006993,
+  "mean_selected_opponent_score_delta": -12.590909090909092,
+  "selected_job_kinds": {
+   "bank": 31,
+   "fell_bank": 179,
+   "harvest_bank": 76
+  },
+  "selected_job_kind_metrics": {
+   "bank": {
+    "roots": 31,
+    "mean_margin_delta": 12.870967741935484,
+    "mean_own_score_delta": 4.129032258064516,
+    "mean_opponent_score_delta": -8.741935483870968,
+    "completed": 31
+   },
+   "fell_bank": {
+    "roots": 179,
+    "mean_margin_delta": 20.972067039106147,
+    "mean_own_score_delta": 5.5363128491620115,
+    "mean_opponent_score_delta": -15.435754189944134,
+    "completed": 155
+   },
+   "harvest_bank": {
+    "roots": 76,
+    "mean_margin_delta": 15.289473684210526,
+    "mean_own_score_delta": 7.828947368421052,
+    "mean_opponent_score_delta": -7.4605263157894735,
+    "completed": 76
+   }
+  },
+  "selected_status_counts": {
+   "completed": 262,
+   "target_missing": 24
+  },
+  "selected_score_mechanisms": {
+   "opponent_suppression_only": 85,
+   "own_gain_and_opponent_suppression": 110,
+   "own_gain_only": 91
+  },
+  "selected_with_negative_own_score": 58,
+  "opponent_mean_oracle_margin_delta": {
+   "compact_gold": 19.116666666666667,
+   "gold_adaptive": 17.3,
+   "gold_elite": 19.116666666666667,
+   "mybot": 5.983333333333333,
+   "printer_bot": 7.233333333333333,
+   "sched_bot": 4.566666666666666,
+   "script_boss": 8.1,
+   "silver_boss": 7.166666666666667
+  },
+  "checkpoint_mean_oracle_margin_delta": {
+   "50": 13.96875,
+   "100": 11.1625,
+   "150": 8.0875
+  },
+  "checkpoint_metrics": {
+   "50": {
+    "roots": 160,
+    "selected_noncontrol_roots": 104,
+    "selected_noncontrol_rate": 0.65,
+    "mean_oracle_margin_delta": 13.96875,
+    "mean_selected_root_margin_delta": 21.490384615384617
+   },
+   "100": {
+    "roots": 160,
+    "selected_noncontrol_roots": 98,
+    "selected_noncontrol_rate": 0.6125,
+    "mean_oracle_margin_delta": 11.1625,
+    "mean_selected_root_margin_delta": 18.224489795918366
+   },
+   "150": {
+    "roots": 160,
+    "selected_noncontrol_roots": 84,
+    "selected_noncontrol_rate": 0.525,
+    "mean_oracle_margin_delta": 8.0875,
+    "mean_selected_root_margin_delta": 15.404761904761905
+   }
+  },
+  "seat_mean_oracle_margin_delta": {
+   "0": 10.179166666666667,
+   "1": 11.966666666666667
+  },
+  "seed_mean_oracle_margin_delta": {
+   "0": 4.645833333333333,
+   "1": 8.208333333333334,
+   "2": 16.979166666666668,
+   "3": 8.020833333333334,
+   "4": 9.145833333333334,
+   "5": 5.333333333333333,
+   "6": 9.708333333333334,
+   "7": 18.6875,
+   "8": 21.104166666666668,
+   "9": 8.895833333333334
+  },
+  "job_status_counts": {
+   "completed": 2887,
+   "fruit_unavailable": 10,
+   "target_missing": 355,
+   "timeout": 8
+  },
+  "completed_noncontrol_options": 2887,
+  "completed_noncontrol_rate": 0.8855828220858896,
+  "largest_selected_examples": [
+   {
+    "seed": 2,
+    "seat": 1,
+    "opponent": "gold_adaptive",
+    "checkpoint": 50,
+    "root_turn": 51,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     6,
+     6
+    ],
+    "margin_delta": 114,
+    "own_score_delta": 14,
+    "opponent_score_delta": -100,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "compact_gold",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 0,
+    "target": [
+     16,
+     7
+    ],
+    "margin_delta": 108,
+    "own_score_delta": -20,
+    "opponent_score_delta": -128,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "gold_elite",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 0,
+    "target": [
+     16,
+     7
+    ],
+    "margin_delta": 108,
+    "own_score_delta": -20,
+    "opponent_score_delta": -128,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "gold_adaptive",
+    "checkpoint": 150,
+    "root_turn": 150,
+    "job_kind": "fell_bank",
+    "unit_id": 0,
+    "target": [
+     18,
+     2
+    ],
+    "margin_delta": 92,
+    "own_score_delta": -8,
+    "opponent_score_delta": -100,
+    "status": "completed"
+   },
+   {
+    "seed": 2,
+    "seat": 0,
+    "opponent": "gold_adaptive",
+    "checkpoint": 50,
+    "root_turn": 51,
+    "job_kind": "fell_bank",
+    "unit_id": 0,
+    "target": [
+     9,
+     6
+    ],
+    "margin_delta": 80,
+    "own_score_delta": -4,
+    "opponent_score_delta": -84,
+    "status": "completed"
+   },
+   {
+    "seed": 2,
+    "seat": 1,
+    "opponent": "gold_adaptive",
+    "checkpoint": 100,
+    "root_turn": 100,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     4,
+     4
+    ],
+    "margin_delta": 69,
+    "own_score_delta": 5,
+    "opponent_score_delta": -64,
+    "status": "target_missing"
+   },
+   {
+    "seed": 2,
+    "seat": 1,
+    "opponent": "gold_adaptive",
+    "checkpoint": 150,
+    "root_turn": 150,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     3,
+     6
+    ],
+    "margin_delta": 68,
+    "own_score_delta": 5,
+    "opponent_score_delta": -63,
+    "status": "target_missing"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "gold_adaptive",
+    "checkpoint": 100,
+    "root_turn": 100,
+    "job_kind": "fell_bank",
+    "unit_id": 0,
+    "target": [
+     17,
+     2
+    ],
+    "margin_delta": 68,
+    "own_score_delta": -16,
+    "opponent_score_delta": -84,
+    "status": "completed"
+   },
+   {
+    "seed": 4,
+    "seat": 0,
+    "opponent": "printer_bot",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 2,
+    "target": [
+     13,
+     5
+    ],
+    "margin_delta": 59,
+    "own_score_delta": 52,
+    "opponent_score_delta": -7,
+    "status": "completed"
+   },
+   {
+    "seed": 2,
+    "seat": 1,
+    "opponent": "compact_gold",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     5,
+     7
+    ],
+    "margin_delta": 56,
+    "own_score_delta": 8,
+    "opponent_score_delta": -48,
+    "status": "completed"
+   },
+   {
+    "seed": 2,
+    "seat": 1,
+    "opponent": "gold_elite",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     5,
+     7
+    ],
+    "margin_delta": 56,
+    "own_score_delta": 8,
+    "opponent_score_delta": -48,
+    "status": "completed"
+   },
+   {
+    "seed": 6,
+    "seat": 1,
+    "opponent": "compact_gold",
+    "checkpoint": 150,
+    "root_turn": 150,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     5,
+     7
+    ],
+    "margin_delta": 56,
+    "own_score_delta": 4,
+    "opponent_score_delta": -52,
+    "status": "completed"
+   },
+   {
+    "seed": 6,
+    "seat": 1,
+    "opponent": "gold_elite",
+    "checkpoint": 150,
+    "root_turn": 150,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     5,
+     7
+    ],
+    "margin_delta": 56,
+    "own_score_delta": 4,
+    "opponent_score_delta": -52,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "compact_gold",
+    "checkpoint": 100,
+    "root_turn": 100,
+    "job_kind": "fell_bank",
+    "unit_id": 3,
+    "target": [
+     14,
+     2
+    ],
+    "margin_delta": 56,
+    "own_score_delta": -16,
+    "opponent_score_delta": -72,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 0,
+    "opponent": "gold_elite",
+    "checkpoint": 100,
+    "root_turn": 100,
+    "job_kind": "fell_bank",
+    "unit_id": 3,
+    "target": [
+     14,
+     2
+    ],
+    "margin_delta": 56,
+    "own_score_delta": -16,
+    "opponent_score_delta": -72,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 1,
+    "opponent": "compact_gold",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     14,
+     2
+    ],
+    "margin_delta": 56,
+    "own_score_delta": -16,
+    "opponent_score_delta": -72,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 1,
+    "opponent": "gold_elite",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     14,
+     2
+    ],
+    "margin_delta": 56,
+    "own_score_delta": -16,
+    "opponent_score_delta": -72,
+    "status": "completed"
+   },
+   {
+    "seed": 0,
+    "seat": 0,
+    "opponent": "gold_adaptive",
+    "checkpoint": 50,
+    "root_turn": 50,
+    "job_kind": "harvest_bank",
+    "unit_id": 0,
+    "target": [
+     5,
+     7
+    ],
+    "margin_delta": 55,
+    "own_score_delta": -3,
+    "opponent_score_delta": -58,
+    "status": "completed"
+   },
+   {
+    "seed": 2,
+    "seat": 0,
+    "opponent": "gold_adaptive",
+    "checkpoint": 100,
+    "root_turn": 100,
+    "job_kind": "fell_bank",
+    "unit_id": 3,
+    "target": [
+     12,
+     5
+    ],
+    "margin_delta": 55,
+    "own_score_delta": 3,
+    "opponent_score_delta": -52,
+    "status": "completed"
+   },
+   {
+    "seed": 8,
+    "seat": 1,
+    "opponent": "compact_gold",
+    "checkpoint": 150,
+    "root_turn": 150,
+    "job_kind": "fell_bank",
+    "unit_id": 1,
+    "target": [
+     2,
+     9
+    ],
+    "margin_delta": 52,
+    "own_score_delta": -12,
+    "opponent_score_delta": -64,
+    "status": "completed"
+   }
+  ]
+ },
+ "integrity": {
+  "checks": {
+   "frozen_task_grid": true,
+   "unique_root_options": true,
+   "root_and_option_invariants": true,
+   "repeat_run_byte_identity": true
+  },
+  "violations": [],
+  "violation_count": 0,
+  "passed": true
+ },
+ "frozen_gate": {
+  "checks": {
+   "integrity": true,
+   "root_breadth": true,
+   "option_breadth": true,
+   "noncontrol_selection_rate": true,
+   "overall_oracle_delta": true,
+   "selected_root_delta": false,
+   "job_kind_breadth": true,
+   "opponent_breadth": true,
+   "weakest_opponent": true
+  },
+  "passed": false
+ },
+ "passed": false,
+ "decision": "close resident-local one-job target redirection"
+}

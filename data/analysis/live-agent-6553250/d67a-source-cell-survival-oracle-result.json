@@ -1,0 +1,155 @@
+{
+  "aggregate": {
+    "candidate_cells": 88,
+    "harvest_one_cells": 43,
+    "harvest_one_mean_safety_margin": 11.976744186046512,
+    "harvest_one_wet_rate": 0.6976744186046512,
+    "harvest_zero_cells": 45,
+    "harvest_zero_mean_safety_margin": 5.8,
+    "harvest_zero_wet_rate": 0.17777777777777778,
+    "invalidated_leases": 88,
+    "roots_present_after": 0,
+    "two_fruit_drops": 0,
+    "viable_cells": 0
+  },
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "multi_source_bill_capitalization_state_machine",
+    "open_confirmation": false,
+    "open_fresh_value": false,
+    "platform_action": false,
+    "select_cell_rule": false,
+    "status": "placement_closed"
+  },
+  "failed_seat_viable_cells": {
+    "9830002:0:resident": 0,
+    "9830002:1:resident": 0
+  },
+  "generated_at": "2026-07-21T12:26:31.211366+00:00",
+  "inputs": {
+    "analyzer": "4f226de5a8e06fc5934b7c728edca4988e56828010e221efe21fabb9df2c4d91",
+    "matrix_a": "5aa61fbcd49999ec1a2e4edfd0f15c67b21c0acb5d8608c40a85547db2bf0f41",
+    "matrix_b": "5aa61fbcd49999ec1a2e4edfd0f15c67b21c0acb5d8608c40a85547db2bf0f41",
+    "protocol": "96b47df66008f04d76cb8e2a6ebf6ed1c7882f349ef8d8e87b4e84a022823312",
+    "runner": "c372010a6474414a1eb1468c5530fafc1ccba054839bd7a3974e9f57c76cff4f"
+  },
+  "integrity": {
+    "candidate_count_failures": 0,
+    "cell_duplicate_failures": 0,
+    "command_setup_failures": 0,
+    "complete_grid": true,
+    "mechanical_failure_total": 0,
+    "original_target_failures": 0,
+    "prefix_mismatches": 0,
+    "rank_failures": 0,
+    "repeat_byte_identical": true,
+    "rows": 88,
+    "success_accounting_failures": 0,
+    "tasks": 4,
+    "trace_hash_failures": 0
+  },
+  "schema": "troll-farm-d67a-source-cell-survival-oracle-v1",
+  "scope": "consumed exhaustive placement feasibility only; no selector or value claim",
+  "tasks": {
+    "9830002:0:resident": {
+      "candidate_cells": 23,
+      "default_target": {
+        "cell": [
+          5,
+          2
+        ],
+        "drop_commands": 0,
+        "duration_turns": 18,
+        "harvest_commands": 1,
+        "success": false
+      },
+      "harvest_command_counts": {
+        "0": 18,
+        "1": 5
+      },
+      "invalidated_leases": 23,
+      "mean_duration_turns": 18.17391304347826,
+      "mean_wait_commands": 12.130434782608695,
+      "roots_present_after": 0,
+      "two_fruit_drops": 0,
+      "viable_cells": 0,
+      "viable_rate": 0.0,
+      "viable_targets": []
+    },
+    "9830002:1:resident": {
+      "candidate_cells": 23,
+      "default_target": {
+        "cell": [
+          9,
+          5
+        ],
+        "drop_commands": 0,
+        "duration_turns": 14,
+        "harvest_commands": 0,
+        "success": false
+      },
+      "harvest_command_counts": {
+        "0": 17,
+        "1": 6
+      },
+      "invalidated_leases": 23,
+      "mean_duration_turns": 20.304347826086957,
+      "mean_wait_commands": 13.0,
+      "roots_present_after": 0,
+      "two_fruit_drops": 0,
+      "viable_cells": 0,
+      "viable_rate": 0.0,
+      "viable_targets": []
+    },
+    "9830014:0:resident": {
+      "candidate_cells": 21,
+      "default_target": {
+        "cell": [
+          5,
+          5
+        ],
+        "drop_commands": 0,
+        "duration_turns": 24,
+        "harvest_commands": 1,
+        "success": false
+      },
+      "harvest_command_counts": {
+        "0": 5,
+        "1": 16
+      },
+      "invalidated_leases": 21,
+      "mean_duration_turns": 40.23809523809524,
+      "mean_wait_commands": 30.666666666666668,
+      "roots_present_after": 0,
+      "two_fruit_drops": 0,
+      "viable_cells": 0,
+      "viable_rate": 0.0,
+      "viable_targets": []
+    },
+    "9830014:1:resident": {
+      "candidate_cells": 21,
+      "default_target": {
+        "cell": [
+          14,
+          4
+        ],
+        "drop_commands": 0,
+        "duration_turns": 24,
+        "harvest_commands": 1,
+        "success": false
+      },
+      "harvest_command_counts": {
+        "0": 5,
+        "1": 16
+      },
+      "invalidated_leases": 21,
+      "mean_duration_turns": 40.19047619047619,
+      "mean_wait_commands": 30.61904761904762,
+      "roots_present_after": 0,
+      "two_fruit_drops": 0,
+      "viable_cells": 0,
+      "viable_rate": 0.0,
+      "viable_targets": []
+    }
+  }
+}

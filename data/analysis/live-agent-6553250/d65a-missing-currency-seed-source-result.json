@@ -1,0 +1,90 @@
+{
+  "consumed": {
+    "integrity": {
+      "action_accounting_failures": 0,
+      "complete_grid": true,
+      "control_parity_mismatch_count": 0,
+      "control_parity_mismatches": {},
+      "expected_rows": 8,
+      "mechanical_failure_total": 0,
+      "reward_identity_failures": 0,
+      "rows": 8
+    },
+    "paired_repair_vs_control": {
+      "mean_margin_delta": 45.0,
+      "mean_opponent_score_delta": -12.5,
+      "mean_own_score_delta": 32.5,
+      "strict_margin_improvements": 4,
+      "strict_margin_regressions": 0,
+      "tasks": 4
+    },
+    "pass": false,
+    "recovery": {
+      "crop_failures": [],
+      "missing_species_failures": [],
+      "pass": false,
+      "repair_bootstrap_after_worker_two": 0,
+      "repair_max_workers": 2,
+      "worker_two_failures": [
+        "9830002:0:resident",
+        "9830002:1:resident"
+      ]
+    },
+    "summaries": {
+      "d40_control": {
+        "activation_species": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 0
+        },
+        "activations": 0,
+        "catastrophic_losses": 4,
+        "crop_rate": 1.0,
+        "mean_margin": -136.75,
+        "mean_opponent_score": 171.75,
+        "mean_own_score": 35.0,
+        "tasks": 4,
+        "worker_two_rate": 0.0
+      },
+      "seed_source_repair": {
+        "activation_species": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 2,
+          "plum": 4
+        },
+        "activations": 6,
+        "catastrophic_losses": 2,
+        "crop_rate": 1.0,
+        "mean_margin": -91.75,
+        "mean_opponent_score": 159.25,
+        "mean_own_score": 67.5,
+        "tasks": 4,
+        "worker_two_rate": 0.5
+      }
+    }
+  },
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "missing_species_source_survival_audit",
+    "open_confirmation": false,
+    "platform_action": false,
+    "run_fresh": false,
+    "status": "closed_consumed_recovery_failure"
+  },
+  "fresh": {
+    "matrices_run": 0,
+    "status": "forbidden_by_protocol"
+  },
+  "generated_at": "2026-07-21T11:59:27.202659+00:00",
+  "inputs": {
+    "analyzer": "686d03e4d048768e8369bb07d31b8e10182f9f61a21ae32e7c09163184ea4562",
+    "consumed_matrix": "2bb4154c572b1abb32dc132255e9e31c015300416f4a38259a409773f55f4216",
+    "d64_baseline_matrix": "3ef63ac5245ae1fa83ee9290f8c1a6bffeb3e8c4fe37bee3137e184745f78576",
+    "protocol": "a02157119501e23e1f7b2413ad0241bdbac7153ac351e851441dde20784064e9",
+    "runner": "7ea09949c68237de6ce53b2457e6ee1c8aaff311290a177806a73d1d7d966224"
+  },
+  "schema": "troll-farm-d65a-missing-currency-seed-source-v1",
+  "scope": "consumed repair gate only; fresh value forbidden after recovery failure"
+}

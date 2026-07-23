@@ -1,0 +1,66 @@
+{
+  "activation": {
+    "active_opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "active_seats": [
+      0,
+      1
+    ],
+    "challenger_planes": [
+      5,
+      7
+    ],
+    "challenger_ranks": [
+      1,
+      2,
+      3
+    ],
+    "changed_action_hash_rate": 0.98828125,
+    "changed_action_hash_tasks": 253,
+    "intervention_tasks": 253
+  },
+  "audit": {
+    "complete_repeats": true,
+    "intervention_accounting_failures": 0,
+    "mechanics_and_numeric_failures": 0,
+    "nonintervention_parity_failure_examples": [],
+    "nonintervention_parity_failures": 0,
+    "rows": 512,
+    "tasks": 256
+  },
+  "decision": "stage_a_failure_close_one_shot_contested_top_four",
+  "inputs": {
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d80a-one-shot-contested-crop-a-9910000-9910015.tsv",
+    "run_a_sha256": "fbf3b4e2106b8db604edf3aa5c914e82f205f02ba2741591c2c191aa31a21c30",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d80a-one-shot-contested-crop-b-9910000-9910015.tsv",
+    "run_b_sha256": "fbf3b4e2106b8db604edf3aa5c914e82f205f02ba2741591c2c191aa31a21c30",
+    "runner_source_sha256": "11c1807772f5062a0301785b3ddcb08fd8b1f20f46ae443a6a7a206f0ff36456"
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d80a-one-shot-contested-crop-intervention-protocol-2026-07-21.md",
+  "protocol_sha256": "4c9670bfcddcbf2f7c39740c7db2c18daea12aefce4345bca42f99fb43c7f58e",
+  "scope": "prospective local mechanism test only; no candidate or platform authorization",
+  "stage_a_gates": {
+    "both_seats_and_six_opponents_active": true,
+    "changed_task_rate_between_10_and_90_percent": false,
+    "complete_byte_identical_2x256_repeats": true,
+    "intervention_equals_changed_task_count": true,
+    "intervention_tasks_between_32_and_230": false,
+    "nonintervention_exact_parity": true,
+    "two_challenger_ranks_and_planes_active": true,
+    "zero_intervention_accounting_failures": true,
+    "zero_mechanics_and_numeric_failures": true
+  },
+  "stage_a_pass": false,
+  "stage_b_gates": null,
+  "stage_b_pass": false,
+  "value_opened": false
+}

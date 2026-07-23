@@ -1,0 +1,3973 @@
+{
+  "confirmation_authorized": false,
+  "controllers": {
+    "accumulate4": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            89.85484208095065,
+            103.92640791904935
+          ],
+          "losses": 0,
+          "maximum": 157.8125,
+          "mean": 96.890625,
+          "median": 95.375,
+          "minimum": 47.75,
+          "n": 60,
+          "standard_deviation": 27.80558170715177,
+          "standard_error": 3.58968516278028,
+          "ties": 0,
+          "trimmed_5pct_mean": 96.21412037037037,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            279.6326774404394,
+            288.0027392262272
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 283.8177083333333,
+          "median": 288.125,
+          "minimum": 235.0625,
+          "n": 60,
+          "standard_deviation": 16.539341787287334,
+          "standard_error": 2.1352198433132084,
+          "ties": 0,
+          "trimmed_5pct_mean": 285.1608796296296,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            23.720847303173827,
+            28.86040269682617
+          ],
+          "losses": 0,
+          "maximum": 54.9375,
+          "mean": 26.290625,
+          "median": 24.0,
+          "minimum": 12.75,
+          "n": 60,
+          "standard_deviation": 10.155822676798996,
+          "standard_error": 1.3111110698092714,
+          "ties": 0,
+          "trimmed_5pct_mean": 25.488425925925927,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            -16.292615577354056,
+            9.778032244020721
+          ],
+          "losses": 35,
+          "maximum": 129.625,
+          "mean": -3.2572916666666667,
+          "median": -8.5,
+          "minimum": -99.5625,
+          "n": 60,
+          "standard_deviation": 51.51591063113428,
+          "standard_error": 6.650675464636423,
+          "ties": 0,
+          "trimmed_5pct_mean": -5.429398148148148,
+          "wins": 25
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            3.414003622523347,
+            3.5943297108099865
+          ],
+          "losses": 0,
+          "maximum": 4,
+          "mean": 3.504166666666667,
+          "median": 3.59375,
+          "minimum": 2.875,
+          "n": 60,
+          "standard_deviation": 0.3563264983780012,
+          "standard_error": 0.046001553134346757,
+          "ties": 0,
+          "trimmed_5pct_mean": 3.511574074074074,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            171.09465527020978,
+            192.00326139645688
+          ],
+          "losses": 0,
+          "maximum": 264.9375,
+          "mean": 181.54895833333333,
+          "median": 180.8125,
+          "minimum": 103.1875,
+          "n": 60,
+          "standard_deviation": 41.31565475477826,
+          "standard_error": 5.333828093430382,
+          "ties": 0,
+          "trimmed_5pct_mean": 181.10416666666666,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            20.97691935340946,
+            23.12099731325721
+          ],
+          "losses": 0,
+          "maximum": 32.625,
+          "mean": 22.048958333333335,
+          "median": 21.9375,
+          "minimum": 14.4375,
+          "n": 60,
+          "standard_deviation": 4.236723587479958,
+          "standard_error": 0.5469586632264672,
+          "ties": 0,
+          "trimmed_5pct_mean": 21.94675925925926,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            31.75553121318201,
+            37.06738545348466
+          ],
+          "losses": 0,
+          "maximum": 57.125,
+          "mean": 34.411458333333336,
+          "median": 33.59375,
+          "minimum": 15.5,
+          "n": 60,
+          "standard_deviation": 10.496287250088484,
+          "standard_error": 1.3550648572200648,
+          "ties": 0,
+          "trimmed_5pct_mean": 34.167824074074076,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            160.61861458916763,
+            195.96471874416568
+          ],
+          "losses": 0,
+          "maximum": 362.125,
+          "mean": 178.29166666666666,
+          "median": 163.5625,
+          "minimum": 80.9375,
+          "n": 60,
+          "standard_deviation": 69.84432282939807,
+          "standard_error": 9.01686330484644,
+          "ties": 0,
+          "trimmed_5pct_mean": 174.05671296296296,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            37.757034292129376,
+            46.995049041203956
+          ],
+          "losses": 0,
+          "maximum": 88.6875,
+          "mean": 42.376041666666666,
+          "median": 38.84375,
+          "minimum": 15.625,
+          "n": 60,
+          "standard_deviation": 18.25442718121651,
+          "standard_error": 2.3566364155802515,
+          "ties": 0,
+          "trimmed_5pct_mean": 41.342592592592595,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            10.281318603098038,
+            15.208264730235294
+          ],
+          "losses": 0,
+          "maximum": 40.875,
+          "mean": 12.744791666666666,
+          "median": 9.15625,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 9.735704233705981,
+          "standard_error": 1.25687401202481,
+          "ties": 0,
+          "trimmed_5pct_mean": 11.97337962962963,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            2.414003622523347,
+            2.5943297108099865
+          ],
+          "losses": 0,
+          "maximum": 3,
+          "mean": 2.504166666666667,
+          "median": 2.59375,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.3563264983780012,
+          "standard_error": 0.046001553134346757,
+          "ties": 0,
+          "trimmed_5pct_mean": 2.511574074074074,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "accumulate4",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": false,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -91.17647058823529,
+          "11": -104.9659090909091,
+          "8": -71.634375,
+          "9": -70.40625
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": -97.4375,
+          "12": -101.203125,
+          "14": -101.29166666666667,
+          "16": -98.58173076923077,
+          "18": -74.5909090909091,
+          "20": -18.892857142857142,
+          "22": 27.0625,
+          "24": -76.8125
+        },
+        "seed_correlation_height_with_margin_delta": -0.2109337478977749,
+        "seed_correlation_initial_plants_with_margin_delta": 0.3583812689628765
+      },
+      "nonnegative_opponent_means": 0,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -103.96666666666667,
+        "gold_adaptive": -134.66666666666666,
+        "legend_balanced": -83.925,
+        "mybot": -78.13333333333334,
+        "norx_native_three": -1.425,
+        "resident": -107.875,
+        "script_boss": -81.4,
+        "silver_boss": -72.9
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 115.95833333333333,
+        "gold_adaptive": 126.95833333333333,
+        "legend_balanced": 71.43333333333334,
+        "mybot": 40.8,
+        "norx_native_three": 14.541666666666666,
+        "resident": 33.833333333333336,
+        "script_boss": 57.325,
+        "silver_boss": 28.408333333333335
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -98.34617235837547,
+            -67.72674430829119
+          ],
+          "losses": 54,
+          "maximum": 95.9375,
+          "mean": -83.03645833333333,
+          "median": -90.0,
+          "minimum": -233.5,
+          "n": 60,
+          "standard_deviation": 60.50435454508813,
+          "standard_error": 7.811078584205178,
+          "ties": 0,
+          "trimmed_5pct_mean": -83.85879629629629,
+          "wins": 6
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.414003622523347,
+            1.5943297108099863
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.5041666666666667,
+          "median": 1.59375,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.3563264983780012,
+          "standard_error": 0.046001553134346757,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.5115740740740742,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            53.479277847366575,
+            68.83530548596676
+          ],
+          "losses": 0,
+          "maximum": 171.375,
+          "mean": 61.157291666666666,
+          "median": 59.4375,
+          "minimum": 12.375,
+          "n": 60,
+          "standard_deviation": 30.3436935245915,
+          "standard_error": 3.9173539894388236,
+          "ties": 0,
+          "trimmed_5pct_mean": 59.574074074074076,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            1.0318207231353824,
+            2.8556792768646178
+          ],
+          "losses": 20,
+          "maximum": 10.9375,
+          "mean": 1.94375,
+          "median": 1.5,
+          "minimum": -3.75,
+          "n": 60,
+          "standard_deviation": 3.6039662267506505,
+          "standard_error": 0.46527003921664173,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.7997685185185186,
+          "wins": 40
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            11.602130948497454,
+            15.399952384835881
+          ],
+          "losses": 0,
+          "maximum": 40.5,
+          "mean": 13.501041666666667,
+          "median": 13.09375,
+          "minimum": 2.25,
+          "n": 60,
+          "standard_deviation": 7.504540395310337,
+          "standard_error": 0.9688319990659253,
+          "ties": 0,
+          "trimmed_5pct_mean": 13.078703703703704,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            -39.34985095052574,
+            -4.408482382807591
+          ],
+          "losses": 40,
+          "maximum": 190.375,
+          "mean": -21.879166666666666,
+          "median": -32.71875,
+          "minimum": -160.375,
+          "n": 60,
+          "standard_deviation": 69.04456048799373,
+          "standard_error": 8.913614430540346,
+          "ties": 0,
+          "trimmed_5pct_mean": -24.56712962962963,
+          "wins": 20
+        },
+        "own_wood": {
+          "ci95_normal": [
+            -6.1863775501248,
+            1.7363775501248
+          ],
+          "losses": 39,
+          "maximum": 46.0625,
+          "mean": -2.225,
+          "median": -5.375,
+          "minimum": -30.6875,
+          "n": 60,
+          "standard_deviation": 15.655458448646215,
+          "standard_error": 2.021110994961633,
+          "ties": 0,
+          "trimmed_5pct_mean": -3.4502314814814814,
+          "wins": 21
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            -1.0749073502971058,
+            3.518657350297106
+          ],
+          "losses": 37,
+          "maximum": 27.0625,
+          "mean": 1.221875,
+          "median": -2.3125,
+          "minimum": -10.9375,
+          "n": 60,
+          "standard_deviation": 9.076938563840635,
+          "standard_error": 1.1718277297434214,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.4988425925925926,
+          "wins": 23
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -73.33888888888889,
+        "mean_opponent_score_delta": 70.97777777777777,
+        "mean_own_score_delta": -2.361111111111111
+      },
+      "seat_mean_margin_deltas": {
+        "0": -85.51666666666667,
+        "1": -80.55625
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.196875,
+        "candidate_catastrophes": 189,
+        "candidate_negative_margin_mass": 45567,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "gold_adaptive",
+      "worst_opponent_mean_margin_delta": -134.66666666666666
+    },
+    "gold_adaptive": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            94.75389107270573,
+            109.17110892729428
+          ],
+          "losses": 0,
+          "maximum": 164.75,
+          "mean": 101.9625,
+          "median": 96.625,
+          "minimum": 47.75,
+          "n": 60,
+          "standard_deviation": 28.488594208911046,
+          "standard_error": 3.677861697599118,
+          "ties": 0,
+          "trimmed_5pct_mean": 101.22222222222223,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            291.2702843180475,
+            295.35054901528576
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 293.31041666666664,
+          "median": 296.4375,
+          "minimum": 270.5,
+          "n": 60,
+          "standard_deviation": 8.06265164312347,
+          "standard_error": 1.0408838513363021,
+          "ties": 0,
+          "trimmed_5pct_mean": 294.0474537037037,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            34.73839496690188,
+            42.91577169976479
+          ],
+          "losses": 0,
+          "maximum": 77.875,
+          "mean": 38.827083333333334,
+          "median": 35.875,
+          "minimum": 16.6875,
+          "n": 60,
+          "standard_deviation": 16.158593827572474,
+          "standard_error": 2.0860654930772715,
+          "ties": 0,
+          "trimmed_5pct_mean": 37.9537037037037,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            11.990737186980379,
+            45.61551281301962
+          ],
+          "losses": 26,
+          "maximum": 196.625,
+          "mean": 28.803125,
+          "median": 13.71875,
+          "minimum": -67.1875,
+          "n": 60,
+          "standard_deviation": 66.44295715286279,
+          "standard_error": 8.577748884193685,
+          "ties": 0,
+          "trimmed_5pct_mean": 25.72800925925926,
+          "wins": 34
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            3.442469561740704,
+            3.697113771592629
+          ],
+          "losses": 0,
+          "maximum": 4,
+          "mean": 3.5697916666666667,
+          "median": 3.75,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 0,
+          "trimmed_5pct_mean": 3.6354166666666665,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            188.16680915268864,
+            214.31235751397804
+          ],
+          "losses": 0,
+          "maximum": 314.9375,
+          "mean": 201.23958333333334,
+          "median": 201.71875,
+          "minimum": 103.9375,
+          "n": 60,
+          "standard_deviation": 51.663914990170674,
+          "standard_error": 6.669782745226891,
+          "ties": 0,
+          "trimmed_5pct_mean": 200.4814814814815,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            20.328543990098396,
+            22.3777060099016
+          ],
+          "losses": 0,
+          "maximum": 29.5,
+          "mean": 21.353125,
+          "median": 21.75,
+          "minimum": 12.1875,
+          "n": 60,
+          "standard_deviation": 4.049168559376821,
+          "standard_error": 0.5227454132151035,
+          "ties": 0,
+          "trimmed_5pct_mean": 21.33101851851852,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            34.12510080931535,
+            40.449899190684654
+          ],
+          "losses": 0,
+          "maximum": 66.625,
+          "mean": 37.2875,
+          "median": 36.71875,
+          "minimum": 15.1875,
+          "n": 60,
+          "standard_deviation": 12.497876938348437,
+          "standard_error": 1.6134689748391078,
+          "ties": 0,
+          "trimmed_5pct_mean": 37.0462962962963,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            203.68179381654653,
+            256.40362285012014
+          ],
+          "losses": 0,
+          "maximum": 487.375,
+          "mean": 230.04270833333334,
+          "median": 206.6875,
+          "minimum": 80.9375,
+          "n": 60,
+          "standard_deviation": 104.17896215746183,
+          "standard_error": 13.449446182034078,
+          "ties": 0,
+          "trimmed_5pct_mean": 224.5787037037037,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            49.03941525914294,
+            62.59600140752373
+          ],
+          "losses": 0,
+          "maximum": 120.75,
+          "mean": 55.817708333333336,
+          "median": 50.28125,
+          "minimum": 15.625,
+          "n": 60,
+          "standard_deviation": 26.78797570617599,
+          "standard_error": 3.4583127929542825,
+          "ties": 0,
+          "trimmed_5pct_mean": 54.50694444444444,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            21.111369004329088,
+            29.984464329004243
+          ],
+          "losses": 0,
+          "maximum": 69.8125,
+          "mean": 25.547916666666666,
+          "median": 21.53125,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 17.533342051927438,
+          "standard_error": 2.263544725682438,
+          "ties": 0,
+          "trimmed_5pct_mean": 24.63425925925926,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            2.442469561740704,
+            2.697113771592629
+          ],
+          "losses": 0,
+          "maximum": 3,
+          "mean": 2.5697916666666667,
+          "median": 2.75,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 0,
+          "trimmed_5pct_mean": 2.6354166666666665,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "gold_adaptive",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": true,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -46.62132352941177,
+          "11": -77.5340909090909,
+          "8": -42.340625,
+          "9": -47.192708333333336
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 75.91666666666667,
+          "12": -75.0078125,
+          "14": -82.93333333333334,
+          "16": -78.19711538461539,
+          "18": -49.75568181818182,
+          "20": 27.205357142857142,
+          "22": 74.625,
+          "24": -71.71875
+        },
+        "seed_correlation_height_with_margin_delta": -0.1185200720454561,
+        "seed_correlation_initial_plants_with_margin_delta": 0.12612645844126583
+      },
+      "nonnegative_opponent_means": 1,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -69.96666666666667,
+        "gold_adaptive": -112.55833333333334,
+        "legend_balanced": -25.225,
+        "mybot": -66.76666666666667,
+        "norx_native_three": 45.166666666666664,
+        "resident": -112.55833333333334,
+        "script_boss": -32.59166666666667,
+        "silver_boss": -33.30833333333333
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 144.1,
+        "gold_adaptive": 166.975,
+        "legend_balanced": 70.50833333333334,
+        "mybot": 53.175,
+        "norx_native_three": 20.05,
+        "resident": 49.84166666666667,
+        "script_boss": 89.9,
+        "silver_boss": 52.233333333333334
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -72.89764845803339,
+            -29.05443487529995
+          ],
+          "losses": 43,
+          "maximum": 178.8125,
+          "mean": -50.97604166666667,
+          "median": -67.3125,
+          "minimum": -195.875,
+          "n": 60,
+          "standard_deviation": 86.6347122704803,
+          "standard_error": 11.184493260901386,
+          "ties": 0,
+          "trimmed_5pct_mean": -54.6099537037037,
+          "wins": 17
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.4424695617407044,
+            1.697113771592629
+          ],
+          "losses": 1,
+          "maximum": 2,
+          "mean": 1.5697916666666667,
+          "median": 1.75,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 2,
+          "trimmed_5pct_mean": 1.6354166666666667,
+          "wins": 57
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            70.984190984634,
+            90.71164234869933
+          ],
+          "losses": 0,
+          "maximum": 184,
+          "mean": 80.84791666666666,
+          "median": 73.65625,
+          "minimum": 13,
+          "n": 60,
+          "standard_deviation": 38.98167887558256,
+          "standard_error": 5.03251310307789,
+          "ties": 0,
+          "trimmed_5pct_mean": 79.54861111111111,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            0.3045423382742368,
+            2.1912909950590964
+          ],
+          "losses": 23,
+          "maximum": 10.1875,
+          "mean": 1.2479166666666666,
+          "median": 1.125,
+          "minimum": -5.3125,
+          "n": 60,
+          "standard_deviation": 3.7282378194933545,
+          "standard_error": 0.4813134328532805,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.1469907407407407,
+          "wins": 37
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            13.967689167353546,
+            18.786477499313122
+          ],
+          "losses": 0,
+          "maximum": 42.0625,
+          "mean": 16.377083333333335,
+          "median": 13.5,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 9.521983142131662,
+          "standard_error": 1.22928273774479,
+          "ties": 0,
+          "trimmed_5pct_mean": 16.01736111111111,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            3.7194533083678323,
+            56.024296691632166
+          ],
+          "losses": 27,
+          "maximum": 242.25,
+          "mean": 29.871875,
+          "median": 3.53125,
+          "minimum": -133.5,
+          "n": 60,
+          "standard_deviation": 103.35499354559693,
+          "standard_error": 13.343072291649065,
+          "ties": 0,
+          "trimmed_5pct_mean": 27.141203703703702,
+          "wins": 33
+        },
+        "own_wood": {
+          "ci95_normal": [
+            5.071338086953737,
+            17.361995246379596
+          ],
+          "losses": 24,
+          "maximum": 60.625,
+          "mean": 11.216666666666667,
+          "median": 3.5,
+          "minimum": -23.5625,
+          "n": 60,
+          "standard_deviation": 24.28648494510271,
+          "standard_error": 3.1353717243433317,
+          "ties": 0,
+          "trimmed_5pct_mean": 10.447916666666666,
+          "wins": 36
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            9.775405070317387,
+            18.274594929682614
+          ],
+          "losses": 17,
+          "maximum": 55.4375,
+          "mean": 14.025,
+          "median": 10.0625,
+          "minimum": -8.5625,
+          "n": 60,
+          "standard_deviation": 16.794500398763514,
+          "standard_error": 2.168160678409497,
+          "ties": 0,
+          "trimmed_5pct_mean": 13.064814814814815,
+          "wins": 43
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -30.872222222222224,
+        "mean_opponent_score_delta": 85.84444444444445,
+        "mean_own_score_delta": 54.97222222222222
+      },
+      "seat_mean_margin_deltas": {
+        "0": -54.93333333333333,
+        "1": -47.01875
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.18645833333333334,
+        "candidate_catastrophes": 179,
+        "candidate_negative_margin_mass": 40082,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "resident",
+      "worst_opponent_mean_margin_delta": -112.55833333333334
+    },
+    "hybrid3": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            94.11119807967384,
+            104.03255192032617
+          ],
+          "losses": 0,
+          "maximum": 144.6875,
+          "mean": 99.071875,
+          "median": 97.53125,
+          "minimum": 61.4375,
+          "n": 60,
+          "standard_deviation": 19.60471336565175,
+          "standard_error": 2.530957612411306,
+          "ties": 0,
+          "trimmed_5pct_mean": 98.45486111111111,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            277.28800383883777,
+            284.7869961611623
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 281.0375,
+          "median": 284.0,
+          "minimum": 245.8125,
+          "n": 60,
+          "standard_deviation": 14.818098151887881,
+          "standard_error": 1.9130082454909554,
+          "ties": 0,
+          "trimmed_5pct_mean": 281.818287037037,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            15.605244037223272,
+            19.77808929611006
+          ],
+          "losses": 0,
+          "maximum": 40.0625,
+          "mean": 17.691666666666666,
+          "median": 14.1875,
+          "minimum": 6.9375,
+          "n": 60,
+          "standard_deviation": 8.245591935698522,
+          "standard_error": 1.0645013415527518,
+          "ties": 0,
+          "trimmed_5pct_mean": 16.97685185185185,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            9.445309173368873,
+            23.271357493297796
+          ],
+          "losses": 16,
+          "maximum": 84.8125,
+          "mean": 16.358333333333334,
+          "median": 15.59375,
+          "minimum": -47.8125,
+          "n": 60,
+          "standard_deviation": 27.32043616680804,
+          "standard_error": 3.5270531428390113,
+          "ties": 0,
+          "trimmed_5pct_mean": 16.43634259259259,
+          "wins": 44
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            2.2381452993146906,
+            2.403521367351976
+          ],
+          "losses": 0,
+          "maximum": 3,
+          "mean": 2.3208333333333333,
+          "median": 2.28125,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.32678508029064757,
+          "standard_error": 0.04218777245849105,
+          "ties": 0,
+          "trimmed_5pct_mean": 2.3125,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            168.45513332449448,
+            192.62403334217217
+          ],
+          "losses": 0,
+          "maximum": 286.75,
+          "mean": 180.53958333333333,
+          "median": 178.34375,
+          "minimum": 88.125,
+          "n": 60,
+          "standard_deviation": 47.75803431868258,
+          "standard_error": 6.16553571879533,
+          "ties": 0,
+          "trimmed_5pct_mean": 179.41203703703704,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            21.42334221792555,
+            23.58915778207445
+          ],
+          "losses": 0,
+          "maximum": 34.75,
+          "mean": 22.50625,
+          "median": 22.75,
+          "minimum": 13.125,
+          "n": 60,
+          "standard_deviation": 4.279677352502806,
+          "standard_error": 0.5525039704461472,
+          "ties": 0,
+          "trimmed_5pct_mean": 22.42824074074074,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            31.46133918135169,
+            37.31157748531497
+          ],
+          "losses": 0,
+          "maximum": 62.375,
+          "mean": 34.38645833333333,
+          "median": 34.09375,
+          "minimum": 14.4375,
+          "n": 60,
+          "standard_deviation": 11.560140572752296,
+          "standard_error": 1.492407730602877,
+          "ties": 0,
+          "trimmed_5pct_mean": 34.09143518518518,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            184.81553296294888,
+            208.98030037038447
+          ],
+          "losses": 0,
+          "maximum": 326,
+          "mean": 196.89791666666667,
+          "median": 189.6875,
+          "minimum": 112.0625,
+          "n": 60,
+          "standard_deviation": 47.749868231619295,
+          "standard_error": 6.164481481488671,
+          "ties": 0,
+          "trimmed_5pct_mean": 194.5439814814815,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            43.05893599771621,
+            49.43898066895046
+          ],
+          "losses": 0,
+          "maximum": 79.8125,
+          "mean": 46.248958333333334,
+          "median": 43.40625,
+          "minimum": 24.25,
+          "n": 60,
+          "standard_deviation": 12.607044265178365,
+          "standard_error": 1.6275624161311841,
+          "ties": 0,
+          "trimmed_5pct_mean": 45.648148148148145,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            11.910960419653241,
+            17.397372913680094
+          ],
+          "losses": 0,
+          "maximum": 46,
+          "mean": 14.654166666666667,
+          "median": 11.4375,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 10.841216438668518,
+          "standard_error": 1.3995950239864416,
+          "ties": 0,
+          "trimmed_5pct_mean": 13.75462962962963,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            1.2381452993146909,
+            1.4035213673519757
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.3208333333333333,
+          "median": 1.28125,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.32678508029064757,
+          "standard_error": 0.04218777245849105,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.3125,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "hybrid3",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": false,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -63.220588235294116,
+          "11": -64.61363636363636,
+          "8": -62.50625,
+          "9": -64.13541666666667
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": -56.395833333333336,
+          "12": -60.6484375,
+          "14": -69.2875,
+          "16": -71.24038461538461,
+          "18": -48.00568181818182,
+          "20": -54.875,
+          "22": -48.875,
+          "24": -112.1875
+        },
+        "seed_correlation_height_with_margin_delta": -0.014330487932641732,
+        "seed_correlation_initial_plants_with_margin_delta": -0.01870557256277237
+      },
+      "nonnegative_opponent_means": 0,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -101.14166666666667,
+        "gold_adaptive": -119.49166666666666,
+        "legend_balanced": -82.05,
+        "mybot": -58.4,
+        "norx_native_three": -1.8,
+        "resident": -52.225,
+        "script_boss": -56.325,
+        "silver_boss": -35.93333333333333
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 110.36666666666666,
+        "gold_adaptive": 128.31666666666666,
+        "legend_balanced": 71.14166666666667,
+        "mybot": 42.78333333333333,
+        "norx_native_three": 14.65,
+        "resident": 23.766666666666666,
+        "script_boss": 61.36666666666667,
+        "silver_boss": 28.791666666666668
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -74.33928362906693,
+            -52.50238303759974
+          ],
+          "losses": 56,
+          "maximum": 28.8125,
+          "mean": -63.420833333333334,
+          "median": -57.6875,
+          "minimum": -212.25,
+          "n": 60,
+          "standard_deviation": 43.14997567527514,
+          "standard_error": 5.5706379059865245,
+          "ties": 0,
+          "trimmed_5pct_mean": -61.80902777777778,
+          "wins": 4
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            0.23814529931469092,
+            0.4035213673519758
+          ],
+          "losses": 4,
+          "maximum": 1,
+          "mean": 0.32083333333333336,
+          "median": 0.28125,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.32678508029064757,
+          "standard_error": 0.04218777245849105,
+          "ties": 14,
+          "trimmed_5pct_mean": 0.3125,
+          "wins": 42
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            51.08494361141792,
+            69.21088972191541
+          ],
+          "losses": 1,
+          "maximum": 168.375,
+          "mean": 60.14791666666667,
+          "median": 55.5625,
+          "minimum": -0.1875,
+          "n": 60,
+          "standard_deviation": 35.817085418474434,
+          "standard_error": 4.623965844514666,
+          "ties": 0,
+          "trimmed_5pct_mean": 58.34375,
+          "wins": 59
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            1.4292370133427659,
+            3.3728463199905674
+          ],
+          "losses": 13,
+          "maximum": 16.1875,
+          "mean": 2.4010416666666665,
+          "median": 1.6875,
+          "minimum": -3.6875,
+          "n": 60,
+          "standard_deviation": 3.8405951409085097,
+          "standard_error": 0.4958187006754595,
+          "ties": 3,
+          "trimmed_5pct_mean": 2.142361111111111,
+          "wins": 44
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            11.314739750837026,
+            15.637343582496309
+          ],
+          "losses": 0,
+          "maximum": 41.1875,
+          "mean": 13.476041666666667,
+          "median": 11.65625,
+          "minimum": 1.25,
+          "n": 60,
+          "standard_deviation": 8.541516659320802,
+          "standard_error": 1.1027050590967558,
+          "ties": 0,
+          "trimmed_5pct_mean": 12.950231481481481,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            -16.030439114941796,
+            9.484605781608462
+          ],
+          "losses": 28,
+          "maximum": 134.0625,
+          "mean": -3.2729166666666667,
+          "median": 1.21875,
+          "minimum": -145.625,
+          "n": 60,
+          "standard_deviation": 50.41803263371107,
+          "standard_error": 6.508940024630168,
+          "ties": 1,
+          "trimmed_5pct_mean": -2.4675925925925926,
+          "wins": 31
+        },
+        "own_wood": {
+          "ci95_normal": [
+            -0.8214235363061619,
+            4.117256869639496
+          ],
+          "losses": 30,
+          "maximum": 31.3125,
+          "mean": 1.6479166666666667,
+          "median": 0.21875,
+          "minimum": -16.75,
+          "n": 60,
+          "standard_deviation": 9.758891308402253,
+          "standard_error": 1.2598674504963412,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.3252314814814814,
+          "wins": 30
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            0.5579563606521876,
+            5.704543639347813
+          ],
+          "losses": 26,
+          "maximum": 31.625,
+          "mean": 3.13125,
+          "median": 0.1875,
+          "minimum": -9.4375,
+          "n": 60,
+          "standard_deviation": 10.169717765403625,
+          "standard_error": 1.3129049180345982,
+          "ties": 1,
+          "trimmed_5pct_mean": 2.3252314814814814,
+          "wins": 33
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -67.78055555555555,
+        "mean_opponent_score_delta": 71.36944444444444,
+        "mean_own_score_delta": 3.588888888888889
+      },
+      "seat_mean_margin_deltas": {
+        "0": -62.90208333333333,
+        "1": -63.93958333333333
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.13854166666666667,
+        "candidate_catastrophes": 133,
+        "candidate_negative_margin_mass": 32117,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "gold_adaptive",
+      "worst_opponent_mean_margin_delta": -119.49166666666666
+    },
+    "norx3": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            90.91050653302909,
+            102.8519934669709
+          ],
+          "losses": 0,
+          "maximum": 152.5625,
+          "mean": 96.88125,
+          "median": 97.0,
+          "minimum": 37.3125,
+          "n": 60,
+          "standard_deviation": 23.596520420464323,
+          "standard_error": 3.0462976872300516,
+          "ties": 0,
+          "trimmed_5pct_mean": 96.98032407407408,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            258.1519754298256,
+            271.6646912368411
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 264.90833333333336,
+          "median": 266.15625,
+          "minimum": 206.375,
+          "n": 60,
+          "standard_deviation": 26.701287389084133,
+          "standard_error": 3.447121379340699,
+          "ties": 0,
+          "trimmed_5pct_mean": 265.9050925925926,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            34.76868174062821,
+            43.03548492603845
+          ],
+          "losses": 0,
+          "maximum": 72.125,
+          "mean": 38.90208333333333,
+          "median": 33.125,
+          "minimum": 18.0625,
+          "n": 60,
+          "standard_deviation": 16.33530156299402,
+          "standard_error": 2.1088783636250605,
+          "ties": 0,
+          "trimmed_5pct_mean": 38.27546296296296,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            39.5348063886707,
+            59.54436027799596
+          ],
+          "losses": 6,
+          "maximum": 126.0625,
+          "mean": 49.53958333333333,
+          "median": 51.625,
+          "minimum": -50.125,
+          "n": 60,
+          "standard_deviation": 39.53911682571254,
+          "standard_error": 5.104478032991137,
+          "ties": 0,
+          "trimmed_5pct_mean": 50.41319444444444,
+          "wins": 54
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            2.8416680686685494,
+            2.8979152646647837
+          ],
+          "losses": 0,
+          "maximum": 3,
+          "mean": 2.8697916666666665,
+          "median": 2.875,
+          "minimum": 2.5625,
+          "n": 60,
+          "standard_deviation": 0.11114512926748975,
+          "standard_error": 0.014348774488835278,
+          "ties": 0,
+          "trimmed_5pct_mean": 2.877314814814815,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            131.15460106155086,
+            147.42873227178245
+          ],
+          "losses": 0,
+          "maximum": 250.8125,
+          "mean": 139.29166666666666,
+          "median": 138.0,
+          "minimum": 88.1875,
+          "n": 60,
+          "standard_deviation": 32.157877117970074,
+          "standard_error": 4.1515640842427555,
+          "ties": 0,
+          "trimmed_5pct_mean": 137.65277777777777,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            18.959085442845684,
+            20.717997890487652
+          ],
+          "losses": 0,
+          "maximum": 32.9375,
+          "mean": 19.838541666666668,
+          "median": 19.5625,
+          "minimum": 12.5,
+          "n": 60,
+          "standard_deviation": 3.4756319475276927,
+          "standard_error": 0.4487021550107068,
+          "ties": 0,
+          "trimmed_5pct_mean": 19.649305555555557,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            24.914970492627724,
+            28.639196174038943
+          ],
+          "losses": 0,
+          "maximum": 48.3125,
+          "mean": 26.777083333333334,
+          "median": 27.0,
+          "minimum": 14.75,
+          "n": 60,
+          "standard_deviation": 7.359114306950827,
+          "standard_error": 0.9500575717885763,
+          "ties": 0,
+          "trimmed_5pct_mean": 26.38773148148148,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            177.73966232375943,
+            199.9228376762406
+          ],
+          "losses": 0,
+          "maximum": 271.125,
+          "mean": 188.83125,
+          "median": 189.09375,
+          "minimum": 71.5625,
+          "n": 60,
+          "standard_deviation": 43.83421872763178,
+          "standard_error": 5.6589733042043715,
+          "ties": 0,
+          "trimmed_5pct_mean": 189.7037037037037,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            37.88101577662854,
+            42.787734223371466
+          ],
+          "losses": 0,
+          "maximum": 61.1875,
+          "mean": 40.334375,
+          "median": 41.125,
+          "minimum": 12.0625,
+          "n": 60,
+          "standard_deviation": 9.69573409630821,
+          "standard_error": 1.251713889475237,
+          "ties": 0,
+          "trimmed_5pct_mean": 40.460648148148145,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            2.505963542812325,
+            3.460703123854342
+          ],
+          "losses": 0,
+          "maximum": 8.75,
+          "mean": 2.9833333333333334,
+          "median": 2.8125,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 1.88657678435754,
+          "standard_error": 0.24355601557194312,
+          "ties": 1,
+          "trimmed_5pct_mean": 2.8587962962962963,
+          "wins": 59
+        },
+        "train_commands": {
+          "ci95_normal": [
+            1.8416680686685496,
+            1.8979152646647839
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.8697916666666667,
+          "median": 1.875,
+          "minimum": 1.5625,
+          "n": 60,
+          "standard_deviation": 0.11114512926748975,
+          "standard_error": 0.014348774488835278,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.8773148148148149,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "norx3",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": false,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -43.99632352941177,
+          "11": -32.83522727272727,
+          "8": -25.978125,
+          "9": -15.473958333333334
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": -60.916666666666664,
+          "12": -54.5078125,
+          "14": -41.858333333333334,
+          "16": -26.014423076923077,
+          "18": -14.465909090909092,
+          "20": -3.3214285714285716,
+          "22": 18.8125,
+          "24": -32.96875
+        },
+        "seed_correlation_height_with_margin_delta": -0.11729604199832663,
+        "seed_correlation_initial_plants_with_margin_delta": 0.3297560541972044
+      },
+      "nonnegative_opponent_means": 1,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -24.225,
+        "gold_adaptive": -59.291666666666664,
+        "legend_balanced": -41.208333333333336,
+        "mybot": -5.958333333333333,
+        "norx_native_three": 24.475,
+        "resident": -69.30833333333334,
+        "script_boss": -29.125,
+        "silver_boss": -37.275
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 13.8,
+        "gold_adaptive": 30.966666666666665,
+        "legend_balanced": 65.66666666666667,
+        "mybot": 6.058333333333334,
+        "norx_native_three": 2.2416666666666667,
+        "resident": 8.658333333333333,
+        "script_boss": 14.616666666666667,
+        "silver_boss": 9.191666666666666
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -42.440855012848544,
+            -18.038311653818123
+          ],
+          "losses": 44,
+          "maximum": 67.5,
+          "mean": -30.239583333333332,
+          "median": -26.5625,
+          "minimum": -190.75,
+          "n": 60,
+          "standard_deviation": 48.21971634419858,
+          "standard_error": 6.225138611997556,
+          "ties": 0,
+          "trimmed_5pct_mean": -28.516203703703702,
+          "wins": 16
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            0.8416680686685495,
+            0.8979152646647838
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 0.8697916666666666,
+          "median": 0.875,
+          "minimum": 0.5625,
+          "n": 60,
+          "standard_deviation": 0.11114512926748975,
+          "standard_error": 0.014348774488835278,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.8773148148148148,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            11.689189145548724,
+            26.110810854451273
+          ],
+          "losses": 13,
+          "maximum": 101.375,
+          "mean": 18.9,
+          "median": 18.15625,
+          "minimum": -59.3125,
+          "n": 60,
+          "standard_deviation": 28.497296277491284,
+          "standard_error": 3.6789851298220784,
+          "ties": 0,
+          "trimmed_5pct_mean": 18.489583333333332,
+          "wins": 47
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            -0.9920463229264977,
+            0.4587129895931645
+          ],
+          "losses": 37,
+          "maximum": 7.9375,
+          "mean": -0.26666666666666666,
+          "median": -0.5,
+          "minimum": -9.5,
+          "n": 60,
+          "standard_deviation": 2.8667176820122315,
+          "standard_error": 0.37009166135705673,
+          "ties": 0,
+          "trimmed_5pct_mean": -0.24421296296296297,
+          "wins": 23
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            4.431388659743858,
+            7.301944673589475
+          ],
+          "losses": 8,
+          "maximum": 23.3125,
+          "mean": 5.866666666666666,
+          "median": 5.5625,
+          "minimum": -7.9375,
+          "n": 60,
+          "standard_deviation": 5.672252875499806,
+          "standard_error": 0.732284697409596,
+          "ties": 1,
+          "trimmed_5pct_mean": 5.7719907407407405,
+          "wins": 51
+        },
+        "own_score": {
+          "ci95_normal": [
+            -22.958637388074663,
+            0.27947072140799634
+          ],
+          "losses": 35,
+          "maximum": 80.1875,
+          "mean": -11.339583333333334,
+          "median": -9.59375,
+          "minimum": -155.5,
+          "n": 60,
+          "standard_deviation": 45.91877842111932,
+          "standard_error": 5.928088803439454,
+          "ties": 1,
+          "trimmed_5pct_mean": -9.53587962962963,
+          "wins": 24
+        },
+        "own_wood": {
+          "ci95_normal": [
+            -6.843346901801347,
+            -1.6899864315319868
+          ],
+          "losses": 43,
+          "maximum": 24.6875,
+          "mean": -4.266666666666667,
+          "median": -4.78125,
+          "minimum": -22,
+          "n": 60,
+          "standard_deviation": 10.183101672631048,
+          "standard_error": 1.314632773027898,
+          "ties": 0,
+          "trimmed_5pct_mean": -4.581018518518518,
+          "wins": 17
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            -9.425516435232392,
+            -7.653650231434273
+          ],
+          "losses": 59,
+          "maximum": 0.0625,
+          "mean": -8.539583333333333,
+          "median": -9.0,
+          "minimum": -15.6875,
+          "n": 60,
+          "standard_deviation": 3.501228723988711,
+          "standard_error": 0.4520066846423774,
+          "ties": 0,
+          "trimmed_5pct_mean": -8.583333333333334,
+          "wins": 1
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -25.341666666666665,
+        "mean_opponent_score_delta": 32.958333333333336,
+        "mean_own_score_delta": 7.616666666666666
+      },
+      "seat_mean_margin_deltas": {
+        "0": -31.80625,
+        "1": -28.672916666666666
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.05416666666666667,
+        "candidate_catastrophes": 52,
+        "candidate_negative_margin_mass": 19119,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "resident",
+      "worst_opponent_mean_margin_delta": -69.30833333333334
+    },
+    "ownership2": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            113.34055303430428,
+            121.35736363236238
+          ],
+          "losses": 0,
+          "maximum": 144.4375,
+          "mean": 117.34895833333333,
+          "median": 120.5625,
+          "minimum": 60.625,
+          "n": 60,
+          "standard_deviation": 15.841313232641893,
+          "standard_error": 2.045104744402574,
+          "ties": 0,
+          "trimmed_5pct_mean": 118.41550925925925,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            294.1225923599973,
+            297.735740973336
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 295.9291666666667,
+          "median": 300.5625,
+          "minimum": 277.8125,
+          "n": 60,
+          "standard_deviation": 7.139624697363933,
+          "standard_error": 0.9217215850353894,
+          "ties": 0,
+          "trimmed_5pct_mean": 296.6134259259259,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            40.7986074747305,
+            45.62430919193616
+          ],
+          "losses": 0,
+          "maximum": 91.625,
+          "mean": 43.21145833333333,
+          "median": 42.6875,
+          "minimum": 27.5,
+          "n": 60,
+          "standard_deviation": 9.53564407372553,
+          "standard_error": 1.2310463564300143,
+          "ties": 0,
+          "trimmed_5pct_mean": 42.24768518518518,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            116.6261438708389,
+            137.6113561291611
+          ],
+          "losses": 0,
+          "maximum": 234.625,
+          "mean": 127.11875,
+          "median": 125.59375,
+          "minimum": 15.125,
+          "n": 60,
+          "standard_deviation": 41.467029384239595,
+          "standard_error": 5.3533704740617845,
+          "ties": 0,
+          "trimmed_5pct_mean": 127.2488425925926,
+          "wins": 60
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.9755999553970682,
+            1.995233377936265
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.9854166666666666,
+          "median": 2.0,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.9907407407407407,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            199.4984225740131,
+            223.45991075932022
+          ],
+          "losses": 0,
+          "maximum": 309.9375,
+          "mean": 211.47916666666666,
+          "median": 214.9375,
+          "minimum": 116.6875,
+          "n": 60,
+          "standard_deviation": 47.34818606736753,
+          "standard_error": 6.112624537068149,
+          "ties": 0,
+          "trimmed_5pct_mean": 211.42824074074073,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            20.08863135969132,
+            22.236368640308683
+          ],
+          "losses": 0,
+          "maximum": 29.5625,
+          "mean": 21.1625,
+          "median": 21.25,
+          "minimum": 12.0625,
+          "n": 60,
+          "standard_deviation": 4.243954448908092,
+          "standard_error": 0.5478921634227971,
+          "ties": 0,
+          "trimmed_5pct_mean": 21.144675925925927,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            36.37678817377441,
+            42.416961826225595
+          ],
+          "losses": 0,
+          "maximum": 65,
+          "mean": 39.396875,
+          "median": 39.53125,
+          "minimum": 15.1875,
+          "n": 60,
+          "standard_deviation": 11.935455083747081,
+          "standard_error": 1.5408606256253032,
+          "ties": 0,
+          "trimmed_5pct_mean": 39.31481481481482,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            326.21609430634936,
+            350.97973902698396
+          ],
+          "losses": 0,
+          "maximum": 444.5,
+          "mean": 338.59791666666666,
+          "median": 346.6875,
+          "minimum": 222.25,
+          "n": 60,
+          "standard_deviation": 48.93325693592595,
+          "standard_error": 6.317256306284325,
+          "ties": 0,
+          "trimmed_5pct_mean": 340.00694444444446,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            78.04475508513882,
+            85.11774491486118
+          ],
+          "losses": 0,
+          "maximum": 109.0625,
+          "mean": 81.58125,
+          "median": 83.28125,
+          "minimum": 39.75,
+          "n": 60,
+          "standard_deviation": 13.976312152249557,
+          "standard_error": 1.8043341402352957,
+          "ties": 0,
+          "trimmed_5pct_mean": 82.58217592592592,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            41.742588390813566,
+            46.16991160918643
+          ],
+          "losses": 0,
+          "maximum": 62.625,
+          "mean": 43.95625,
+          "median": 45.3125,
+          "minimum": 14.5,
+          "n": 60,
+          "standard_deviation": 8.748443414814055,
+          "standard_error": 1.1294191883604259,
+          "ties": 0,
+          "trimmed_5pct_mean": 44.40856481481482,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            0.9755999553970683,
+            0.9952333779362651
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 0.9854166666666667,
+          "median": 1.0,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.9907407407407407,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "ownership2",
+      "gates": {
+        "at_least_six_nonnegative_opponents": true,
+        "catastrophe_frequency_not_increased": true,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": true,
+        "mean_margin_delta_at_least_10": true,
+        "negative_mass_not_increased": true,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": true,
+        "rich_margin_nonnegative": true,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": 74.26838235294117,
+          "11": 55.01704545454545,
+          "8": 21.665625,
+          "9": 44.942708333333336
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 76.375,
+          "12": 30.75,
+          "14": 27.3125,
+          "16": 59.13461538461539,
+          "18": 85.8125,
+          "20": 29.321428571428573,
+          "22": 105.9375,
+          "24": -34.15625
+        },
+        "seed_correlation_height_with_margin_delta": 0.2620053988612437,
+        "seed_correlation_initial_plants_with_margin_delta": -0.00011300907810819297
+      },
+      "nonnegative_opponent_means": 7,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": 30.433333333333334,
+        "gold_adaptive": -24.383333333333333,
+        "legend_balanced": 48.708333333333336,
+        "mybot": 50.858333333333334,
+        "norx_native_three": 109.75,
+        "resident": 17.316666666666666,
+        "script_boss": 54.74166666666667,
+        "silver_boss": 91.29166666666667
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 138.69166666666666,
+        "gold_adaptive": 196.99166666666667,
+        "legend_balanced": 67.80833333333334,
+        "mybot": 57.083333333333336,
+        "norx_native_three": 27.891666666666666,
+        "resident": 60.825,
+        "script_boss": 110.75,
+        "silver_boss": 68.65833333333333
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            30.784455095569392,
+            63.89471157109727
+          ],
+          "losses": 10,
+          "maximum": 168.1875,
+          "mean": 47.33958333333333,
+          "median": 54.53125,
+          "minimum": -181.875,
+          "n": 60,
+          "standard_deviation": 65.42626118284477,
+          "standard_error": 8.446493998859152,
+          "ties": 0,
+          "trimmed_5pct_mean": 50.35300925925926,
+          "wins": 50
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            -0.024400044602931676,
+            -0.004766622063734991
+          ],
+          "losses": 8,
+          "maximum": 0,
+          "mean": -0.014583333333333334,
+          "median": 0.0,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 52,
+          "trimmed_5pct_mean": -0.009259259259259259,
+          "wins": 0
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            81.77942748915054,
+            100.39557251084948
+          ],
+          "losses": 0,
+          "maximum": 181.75,
+          "mean": 91.0875,
+          "median": 89.65625,
+          "minimum": 25.1875,
+          "n": 60,
+          "standard_deviation": 36.78572430592966,
+          "standard_error": 4.749016587168099,
+          "ties": 0,
+          "trimmed_5pct_mean": 90.23611111111111,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            0.031158394349995566,
+            2.083424938983338
+          ],
+          "losses": 25,
+          "maximum": 11,
+          "mean": 1.0572916666666667,
+          "median": 0.65625,
+          "minimum": -5.8125,
+          "n": 60,
+          "standard_deviation": 4.055303137420192,
+          "standard_error": 0.5235373838350363,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.9282407407407407,
+          "wins": 35
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            16.084438261064253,
+            20.888478405602417
+          ],
+          "losses": 0,
+          "maximum": 43.4375,
+          "mean": 18.486458333333335,
+          "median": 18.0625,
+          "minimum": 4.3125,
+          "n": 60,
+          "standard_deviation": 9.49284054811642,
+          "standard_error": 1.2255204450352462,
+          "ties": 0,
+          "trimmed_5pct_mean": 18.144675925925927,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            123.82733908164963,
+            153.02682758501706
+          ],
+          "losses": 1,
+          "maximum": 235,
+          "mean": 138.42708333333334,
+          "median": 147.40625,
+          "minimum": -98.375,
+          "n": 60,
+          "standard_deviation": 57.69853708740661,
+          "standard_error": 7.448849108001894,
+          "ties": 0,
+          "trimmed_5pct_mean": 141.62384259259258,
+          "wins": 59
+        },
+        "own_wood": {
+          "ci95_normal": [
+            32.83837587273336,
+            41.1220407939333
+          ],
+          "losses": 2,
+          "maximum": 70.9375,
+          "mean": 36.98020833333333,
+          "median": 40.84375,
+          "minimum": -13.875,
+          "n": 60,
+          "standard_deviation": 16.36862055376018,
+          "standard_error": 2.11317982683672,
+          "ties": 0,
+          "trimmed_5pct_mean": 37.75,
+          "wins": 58
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            30.31924114938272,
+            34.54742551728394
+          ],
+          "losses": 0,
+          "maximum": 51,
+          "mean": 32.43333333333333,
+          "median": 34.03125,
+          "minimum": 7.5,
+          "n": 60,
+          "standard_deviation": 8.354942674273444,
+          "standard_error": 1.0786184611992902,
+          "ties": 0,
+          "trimmed_5pct_mean": 32.76273148148148,
+          "wins": 60
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": 44.69166666666667,
+        "mean_opponent_score_delta": 97.56388888888888,
+        "mean_own_score_delta": 142.25555555555556
+      },
+      "seat_mean_margin_deltas": {
+        "0": 47.85625,
+        "1": 46.822916666666664
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.022916666666666665,
+        "candidate_catastrophes": 22,
+        "candidate_negative_margin_mass": 8016,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "gold_adaptive",
+      "worst_opponent_mean_margin_delta": -24.383333333333333
+    },
+    "prefruit2": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            111.6815258429067,
+            122.5059741570933
+          ],
+          "losses": 0,
+          "maximum": 148.8125,
+          "mean": 117.09375,
+          "median": 122.5,
+          "minimum": 56.25,
+          "n": 60,
+          "standard_deviation": 21.38923880241207,
+          "standard_error": 2.7613388556598473,
+          "ties": 0,
+          "trimmed_5pct_mean": 118.63773148148148,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            295.82423444752635,
+            298.86534888580695
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 297.34479166666665,
+          "median": 301.0,
+          "minimum": 278.25,
+          "n": 60,
+          "standard_deviation": 6.009278353760976,
+          "standard_error": 0.775794499561366,
+          "ties": 0,
+          "trimmed_5pct_mean": 298.0636574074074,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            35.9031284669043,
+            40.515621533095704
+          ],
+          "losses": 0,
+          "maximum": 92.25,
+          "mean": 38.209375,
+          "median": 37.28125,
+          "minimum": 26.1875,
+          "n": 60,
+          "standard_deviation": 9.114341239722714,
+          "standard_error": 1.1766563944365844,
+          "ties": 0,
+          "trimmed_5pct_mean": 37.116898148148145,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            48.44046615764324,
+            69.11161717569009
+          ],
+          "losses": 6,
+          "maximum": 150.625,
+          "mean": 58.776041666666664,
+          "median": 62.28125,
+          "minimum": -38.125,
+          "n": 60,
+          "standard_deviation": 40.84644063256833,
+          "standard_error": 5.273252810726237,
+          "ties": 0,
+          "trimmed_5pct_mean": 58.901620370370374,
+          "wins": 54
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.9755999553970682,
+            1.995233377936265
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.9854166666666666,
+          "median": 2.0,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.9907407407407407,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            185.1944881852434,
+            208.16592848142326
+          ],
+          "losses": 0,
+          "maximum": 295.5,
+          "mean": 196.68020833333333,
+          "median": 197.90625,
+          "minimum": 107,
+          "n": 60,
+          "standard_deviation": 45.391839645664575,
+          "standard_error": 5.860061300045882,
+          "ties": 0,
+          "trimmed_5pct_mean": 196.3622685185185,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            21.68143810415899,
+            24.31856189584101
+          ],
+          "losses": 0,
+          "maximum": 36.5625,
+          "mean": 23.0,
+          "median": 23.09375,
+          "minimum": 8.8125,
+          "n": 60,
+          "standard_deviation": 5.21098802401624,
+          "standard_error": 0.672735661143373,
+          "ties": 0,
+          "trimmed_5pct_mean": 22.943287037037038,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            34.183963919297774,
+            39.97645274736889
+          ],
+          "losses": 0,
+          "maximum": 63.5625,
+          "mean": 37.08020833333333,
+          "median": 36.53125,
+          "minimum": 15.6875,
+          "n": 60,
+          "standard_deviation": 11.446026920516289,
+          "standard_error": 1.4776757214467116,
+          "ties": 0,
+          "trimmed_5pct_mean": 36.914351851851855,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            246.4399307131348,
+            264.4725692868652
+          ],
+          "losses": 0,
+          "maximum": 310.125,
+          "mean": 255.45625,
+          "median": 267.375,
+          "minimum": 159.1875,
+          "n": 60,
+          "standard_deviation": 35.63270861440585,
+          "standard_error": 4.6001629014618475,
+          "ties": 0,
+          "trimmed_5pct_mean": 257.62268518518516,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            57.42983365064893,
+            62.482666349351064
+          ],
+          "losses": 0,
+          "maximum": 75.25,
+          "mean": 59.95625,
+          "median": 63.4375,
+          "minimum": 34.4375,
+          "n": 60,
+          "standard_deviation": 9.984457598594707,
+          "standard_error": 1.28898793334238,
+          "ties": 0,
+          "trimmed_5pct_mean": 60.541666666666664,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            34.13368121260477,
+            37.14340212072857
+          ],
+          "losses": 0,
+          "maximum": 44.5,
+          "mean": 35.63854166666667,
+          "median": 36.75,
+          "minimum": 16.5,
+          "n": 60,
+          "standard_deviation": 5.947244364232521,
+          "standard_error": 0.767785945949949,
+          "ties": 0,
+          "trimmed_5pct_mean": 35.99074074074074,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            0.9755999553970683,
+            0.9952333779362651
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 0.9854166666666667,
+          "median": 1.0,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.9907407407407407,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "prefruit2",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": true,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -0.8933823529411765,
+          "11": -12.744318181818182,
+          "8": -37.96875,
+          "9": -28.786458333333332
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 12.583333333333334,
+          "12": -26.8828125,
+          "14": -35.44166666666667,
+          "16": -2.9663461538461537,
+          "18": 15.676136363636363,
+          "20": -64.13392857142857,
+          "22": -99.9375,
+          "24": -68.125
+        },
+        "seed_correlation_height_with_margin_delta": 0.23614011406316748,
+        "seed_correlation_initial_plants_with_margin_delta": -0.1540028847876648
+      },
+      "nonnegative_opponent_means": 3,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -75.025,
+        "gold_adaptive": -70.25833333333334,
+        "legend_balanced": -94.16666666666667,
+        "mybot": -39.141666666666666,
+        "norx_native_three": -6.366666666666666,
+        "resident": 8.483333333333333,
+        "script_boss": 59.325,
+        "silver_boss": 49.125
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 79.79166666666667,
+        "gold_adaptive": 164.46666666666667,
+        "legend_balanced": 63.333333333333336,
+        "mybot": 57.125,
+        "norx_native_three": 21.908333333333335,
+        "resident": 67.91666666666667,
+        "script_boss": 90.39166666666667,
+        "silver_boss": 65.375
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -34.904207276768375,
+            -7.10204272323163
+          ],
+          "losses": 36,
+          "maximum": 84.8125,
+          "mean": -21.003125,
+          "median": -14.75,
+          "minimum": -185.75,
+          "n": 60,
+          "standard_deviation": 54.93740831855407,
+          "standard_error": 7.092388916718557,
+          "ties": 0,
+          "trimmed_5pct_mean": -19.721064814814813,
+          "wins": 24
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            -0.024400044602931676,
+            -0.004766622063734991
+          ],
+          "losses": 8,
+          "maximum": 0,
+          "mean": -0.014583333333333334,
+          "median": 0.0,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 52,
+          "trimmed_5pct_mean": -0.009259259259259259,
+          "wins": 0
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            67.3086700382078,
+            85.26841329512553
+          ],
+          "losses": 0,
+          "maximum": 178.3125,
+          "mean": 76.28854166666666,
+          "median": 72.25,
+          "minimum": 11.625,
+          "n": 60,
+          "standard_deviation": 35.48866660010375,
+          "standard_error": 4.581567157376973,
+          "ties": 0,
+          "trimmed_5pct_mean": 75.57638888888889,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            1.7328352289997697,
+            4.056748104333564
+          ],
+          "losses": 15,
+          "maximum": 18,
+          "mean": 2.894791666666667,
+          "median": 2.1875,
+          "minimum": -6.5,
+          "n": 60,
+          "standard_deviation": 4.592079522553458,
+          "standard_error": 0.5928349171769883,
+          "ties": 2,
+          "trimmed_5pct_mean": 2.6828703703703702,
+          "wins": 43
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            13.989186122195607,
+            18.35039721113772
+          ],
+          "losses": 0,
+          "maximum": 41.875,
+          "mean": 16.169791666666665,
+          "median": 16.53125,
+          "minimum": 0.625,
+          "n": 60,
+          "standard_deviation": 8.617805059575474,
+          "standard_error": 1.1125538492199276,
+          "ties": 0,
+          "trimmed_5pct_mean": 15.976851851851851,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            43.143600814100694,
+            67.42723251923265
+          ],
+          "losses": 6,
+          "maximum": 143.125,
+          "mean": 55.28541666666667,
+          "median": 60.34375,
+          "minimum": -111.6875,
+          "n": 60,
+          "standard_deviation": 47.984745499699216,
+          "standard_error": 6.1948040064112115,
+          "ties": 0,
+          "trimmed_5pct_mean": 58.263888888888886,
+          "wins": 54
+        },
+        "own_wood": {
+          "ci95_normal": [
+            12.489898603763269,
+            18.2205180629034
+          ],
+          "losses": 4,
+          "maximum": 40.1875,
+          "mean": 15.355208333333334,
+          "median": 15.09375,
+          "minimum": -15.0625,
+          "n": 60,
+          "standard_deviation": 11.323772310562182,
+          "standard_error": 1.4618927191684004,
+          "ties": 0,
+          "trimmed_5pct_mean": 15.681712962962964,
+          "wins": 56
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            22.719766772936797,
+            25.511483227063206
+          ],
+          "losses": 0,
+          "maximum": 35.125,
+          "mean": 24.115625,
+          "median": 24.4375,
+          "minimum": 9.5,
+          "n": 60,
+          "standard_deviation": 5.5164649664106085,
+          "standard_error": 0.7121725648281648,
+          "ties": 0,
+          "trimmed_5pct_mean": 24.32986111111111,
+          "wins": 60
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -56.93055555555556,
+        "mean_opponent_score_delta": 83.23611111111111,
+        "mean_own_score_delta": 26.305555555555557
+      },
+      "seat_mean_margin_deltas": {
+        "0": -17.429166666666667,
+        "1": -24.577083333333334
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.12395833333333334,
+        "candidate_catastrophes": 119,
+        "candidate_negative_margin_mass": 28212,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "legend_balanced",
+      "worst_opponent_mean_margin_delta": -94.16666666666667
+    },
+    "private2": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            113.69534507750959,
+            121.96923825582374
+          ],
+          "losses": 0,
+          "maximum": 144.8125,
+          "mean": 117.83229166666666,
+          "median": 121.65625,
+          "minimum": 64.75,
+          "n": 60,
+          "standard_deviation": 16.349311473423402,
+          "standard_error": 2.1106870352842226,
+          "ties": 0,
+          "trimmed_5pct_mean": 119.08564814814815,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            293.5086667416154,
+            297.4975832583846
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 295.503125,
+          "median": 300.40625,
+          "minimum": 264.3125,
+          "n": 60,
+          "standard_deviation": 7.882146550438196,
+          "standard_error": 1.017580744073779,
+          "ties": 0,
+          "trimmed_5pct_mean": 296.3796296296296,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            41.01734162726234,
+            45.715991706070994
+          ],
+          "losses": 0,
+          "maximum": 96.8125,
+          "mean": 43.36666666666667,
+          "median": 42.4375,
+          "minimum": 27.75,
+          "n": 60,
+          "standard_deviation": 9.28458852289901,
+          "standard_error": 1.1986352241858795,
+          "ties": 0,
+          "trimmed_5pct_mean": 42.45023148148148,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            110.48315388812507,
+            132.45642944520824
+          ],
+          "losses": 0,
+          "maximum": 240.8125,
+          "mean": 121.46979166666667,
+          "median": 115.59375,
+          "minimum": 28.5625,
+          "n": 60,
+          "standard_deviation": 43.419454231739635,
+          "standard_error": 5.605427438031425,
+          "ties": 0,
+          "trimmed_5pct_mean": 120.85532407407408,
+          "wins": 60
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.9755999553970682,
+            1.995233377936265
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 1.9854166666666666,
+          "median": 2.0,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.9907407407407407,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            203.26389654090136,
+            227.61110345909864
+          ],
+          "losses": 0,
+          "maximum": 325.875,
+          "mean": 215.4375,
+          "median": 219.0625,
+          "minimum": 123.1875,
+          "n": 60,
+          "standard_deviation": 48.110370877981694,
+          "standard_error": 6.211022173009513,
+          "ties": 0,
+          "trimmed_5pct_mean": 215.07175925925927,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            19.435781118385187,
+            21.762135548281478
+          ],
+          "losses": 0,
+          "maximum": 31.375,
+          "mean": 20.598958333333332,
+          "median": 20.34375,
+          "minimum": 11.8125,
+          "n": 60,
+          "standard_deviation": 4.596904063451123,
+          "standard_error": 0.5934577627286467,
+          "ties": 0,
+          "trimmed_5pct_mean": 20.502314814814813,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            36.81853931431333,
+            43.098127352353345
+          ],
+          "losses": 0,
+          "maximum": 67.75,
+          "mean": 39.958333333333336,
+          "median": 40.15625,
+          "minimum": 17.875,
+          "n": 60,
+          "standard_deviation": 12.40854076141444,
+          "standard_error": 1.6019357239898007,
+          "ties": 0,
+          "trimmed_5pct_mean": 39.748842592592595,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            324.0858452502926,
+            349.7287380830407
+          ],
+          "losses": 0,
+          "maximum": 444.5,
+          "mean": 336.90729166666665,
+          "median": 344.6875,
+          "minimum": 205.5,
+          "n": 60,
+          "standard_deviation": 50.670661678476975,
+          "standard_error": 6.541554294068389,
+          "ties": 0,
+          "trimmed_5pct_mean": 338.724537037037,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            77.53680345453229,
+            84.88402987880103
+          ],
+          "losses": 0,
+          "maximum": 109.0625,
+          "mean": 81.21041666666666,
+          "median": 82.8125,
+          "minimum": 26.6875,
+          "n": 60,
+          "standard_deviation": 14.51820692959585,
+          "standard_error": 1.8742924551705946,
+          "ties": 0,
+          "trimmed_5pct_mean": 82.2199074074074,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            42.11505801763532,
+            46.516191982364674
+          ],
+          "losses": 0,
+          "maximum": 62.625,
+          "mean": 44.315625,
+          "median": 45.25,
+          "minimum": 8.4375,
+          "n": 60,
+          "standard_deviation": 8.696693137665623,
+          "standard_error": 1.1227382563085093,
+          "ties": 0,
+          "trimmed_5pct_mean": 44.84375,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            0.9755999553970683,
+            0.9952333779362651
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 0.9854166666666667,
+          "median": 1.0,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.9907407407407407,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "private2",
+      "gates": {
+        "at_least_six_nonnegative_opponents": true,
+        "catastrophe_frequency_not_increased": true,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": true,
+        "mean_margin_delta_at_least_10": true,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": true,
+        "rich_margin_nonnegative": true,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": 69.84926470588235,
+          "11": 51.14204545454545,
+          "8": 17.659375,
+          "9": 33.1875
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 75.91666666666667,
+          "12": 26.390625,
+          "14": 23.591666666666665,
+          "16": 50.30769230769231,
+          "18": 84.13636363636364,
+          "20": 17.651785714285715,
+          "22": 107.1875,
+          "24": -50.78125
+        },
+        "seed_correlation_height_with_margin_delta": 0.2553457382216607,
+        "seed_correlation_initial_plants_with_margin_delta": -0.03126991617038753
+      },
+      "nonnegative_opponent_means": 7,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": 16.891666666666666,
+        "gold_adaptive": -25.7,
+        "legend_balanced": 42.9,
+        "mybot": 25.7,
+        "norx_native_three": 112.00833333333334,
+        "resident": 16.891666666666666,
+        "script_boss": 59.85,
+        "silver_boss": 84.98333333333333
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 149.93333333333334,
+        "gold_adaptive": 198.375,
+        "legend_balanced": 80.175,
+        "mybot": 68.15,
+        "norx_native_three": 25.625,
+        "resident": 61.525,
+        "script_boss": 108.675,
+        "silver_boss": 67.90833333333333
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            24.300267882957222,
+            59.08098211704277
+          ],
+          "losses": 16,
+          "maximum": 168.625,
+          "mean": 41.690625,
+          "median": 45.40625,
+          "minimum": -155.9375,
+          "n": 60,
+          "standard_deviation": 68.72710561112888,
+          "standard_error": 8.872631182164682,
+          "ties": 0,
+          "trimmed_5pct_mean": 44.36805555555556,
+          "wins": 44
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            -0.024400044602931676,
+            -0.004766622063734991
+          ],
+          "losses": 8,
+          "maximum": 0,
+          "mean": -0.014583333333333334,
+          "median": 0.0,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.03879587679763373,
+          "standard_error": 0.005008526157958338,
+          "ties": 52,
+          "trimmed_5pct_mean": -0.009259259259259259,
+          "wins": 0
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            85.05709415530086,
+            105.03457251136581
+          ],
+          "losses": 0,
+          "maximum": 194.3125,
+          "mean": 95.04583333333333,
+          "median": 92.25,
+          "minimum": 25.1875,
+          "n": 60,
+          "standard_deviation": 39.47573518992788,
+          "standard_error": 5.096295498996159,
+          "ties": 0,
+          "trimmed_5pct_mean": 94.24074074074075,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            -0.539457792686075,
+            1.526957792686075
+          ],
+          "losses": 30,
+          "maximum": 12.8125,
+          "mean": 0.49375,
+          "median": -0.125,
+          "minimum": -6.375,
+          "n": 60,
+          "standard_deviation": 4.0832618104539735,
+          "standard_error": 0.5271468330030995,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.28587962962962965,
+          "wins": 30
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            16.49551078422475,
+            21.600322549108583
+          ],
+          "losses": 0,
+          "maximum": 45.875,
+          "mean": 19.047916666666666,
+          "median": 17.90625,
+          "minimum": 4,
+          "n": 60,
+          "standard_deviation": 10.087168852509585,
+          "standard_error": 1.30224789920506,
+          "ties": 0,
+          "trimmed_5pct_mean": 18.78587962962963,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            121.86836561797286,
+            151.60455104869382
+          ],
+          "losses": 1,
+          "maximum": 236.1875,
+          "mean": 136.73645833333333,
+          "median": 145.65625,
+          "minimum": -75.125,
+          "n": 60,
+          "standard_deviation": 58.759056608631575,
+          "standard_error": 7.585761589469631,
+          "ties": 0,
+          "trimmed_5pct_mean": 139.94791666666666,
+          "wins": 59
+        },
+        "own_wood": {
+          "ci95_normal": [
+            32.3664293255237,
+            40.8523206744763
+          ],
+          "losses": 2,
+          "maximum": 70.9375,
+          "mean": 36.609375,
+          "median": 38.65625,
+          "minimum": -21.6875,
+          "n": 60,
+          "standard_deviation": 16.768222383785236,
+          "standard_error": 2.1647682012634215,
+          "ties": 0,
+          "trimmed_5pct_mean": 37.47453703703704,
+          "wins": 58
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            30.712380407773022,
+            34.873036258893634
+          ],
+          "losses": 0,
+          "maximum": 51,
+          "mean": 32.79270833333333,
+          "median": 34.40625,
+          "minimum": 1.4375,
+          "n": 60,
+          "standard_deviation": 8.221505520760505,
+          "standard_error": 1.061391798755259,
+          "ties": 0,
+          "trimmed_5pct_mean": 33.1712962962963,
+          "wins": 60
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": 43.06944444444444,
+        "mean_opponent_score_delta": 101.39166666666667,
+        "mean_own_score_delta": 144.4611111111111
+      },
+      "seat_mean_margin_deltas": {
+        "0": 40.11875,
+        "1": 43.2625
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.028125,
+        "candidate_catastrophes": 27,
+        "candidate_negative_margin_mass": 9272,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "gold_adaptive",
+      "worst_opponent_mean_margin_delta": -25.7
+    },
+    "resident": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            154.97970043410533,
+            176.86613289922803
+          ],
+          "losses": 0,
+          "maximum": 282.875,
+          "mean": 165.92291666666668,
+          "median": 158.59375,
+          "minimum": 101.3125,
+          "n": 60,
+          "standard_deviation": 43.24785124760895,
+          "standard_error": 5.583273588041504,
+          "ties": 0,
+          "trimmed_5pct_mean": 163.2523148148148,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            260.8085092786676,
+            276.0019073879991
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 268.40520833333335,
+          "median": 276.6875,
+          "minimum": 191.125,
+          "n": 60,
+          "standard_deviation": 30.022335637622614,
+          "standard_error": 3.8758668646253938,
+          "ties": 0,
+          "trimmed_5pct_mean": 270.45023148148147,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            11.160512913811264,
+            31.3811537528554
+          ],
+          "losses": 0,
+          "maximum": 126.8125,
+          "mean": 21.270833333333332,
+          "median": 1.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 39.956227152683425,
+          "standard_error": 5.158326744654117,
+          "ties": 11,
+          "trimmed_5pct_mean": 17.060185185185187,
+          "wins": 49
+        },
+        "margin": {
+          "ci95_normal": [
+            70.03934552343866,
+            89.51898780989468
+          ],
+          "losses": 1,
+          "maximum": 197,
+          "mean": 79.77916666666667,
+          "median": 74.59375,
+          "minimum": -8.4375,
+          "n": 60,
+          "standard_deviation": 38.49200518649082,
+          "standard_error": 4.969296501646949,
+          "ties": 0,
+          "trimmed_5pct_mean": 77.86458333333333,
+          "wins": 59
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            2.0,
+            2.0
+          ],
+          "losses": 0,
+          "maximum": 2,
+          "mean": 2,
+          "median": 2.0,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 0,
+          "trimmed_5pct_mean": 2,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            108.92891881897027,
+            131.85441451436304
+          ],
+          "losses": 0,
+          "maximum": 246.25,
+          "mean": 120.39166666666667,
+          "median": 123.03125,
+          "minimum": 28.875,
+          "n": 60,
+          "standard_deviation": 45.301052567247986,
+          "standard_error": 5.848340738620607,
+          "ties": 0,
+          "trimmed_5pct_mean": 119.00462962962963,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            19.01392926972313,
+            21.19648739694354
+          ],
+          "losses": 0,
+          "maximum": 34.625,
+          "mean": 20.105208333333334,
+          "median": 19.71875,
+          "minimum": 12.75,
+          "n": 60,
+          "standard_deviation": 4.312760856558311,
+          "standard_error": 0.5567750324541858,
+          "ties": 0,
+          "trimmed_5pct_mean": 19.77199074074074,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            18.48575297022488,
+            23.335080363108453
+          ],
+          "losses": 0,
+          "maximum": 52.75,
+          "mean": 20.910416666666666,
+          "median": 20.90625,
+          "minimum": 3.5625,
+          "n": 60,
+          "standard_deviation": 9.582328690278322,
+          "standard_error": 1.2370733145111157,
+          "ties": 0,
+          "trimmed_5pct_mean": 20.37615740740741,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            186.5310285998739,
+            213.81063806679273
+          ],
+          "losses": 0,
+          "maximum": 330.375,
+          "mean": 200.17083333333332,
+          "median": 199.5,
+          "minimum": 97.8125,
+          "n": 60,
+          "standard_deviation": 53.904833243070854,
+          "standard_error": 6.959084047683379,
+          "ties": 0,
+          "trimmed_5pct_mean": 198.93865740740742,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            41.56602457324102,
+            47.63605876009231
+          ],
+          "losses": 0,
+          "maximum": 80.0625,
+          "mean": 44.60104166666667,
+          "median": 45.90625,
+          "minimum": 22.375,
+          "n": 60,
+          "standard_deviation": 11.994459855400356,
+          "standard_error": 1.5484781088906332,
+          "ties": 0,
+          "trimmed_5pct_mean": 44.344907407407405,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            10.760379958356362,
+            12.285453374976973
+          ],
+          "losses": 0,
+          "maximum": 18.375,
+          "mean": 11.522916666666667,
+          "median": 11.625,
+          "minimum": 5.9375,
+          "n": 60,
+          "standard_deviation": 3.0135632368955463,
+          "standard_error": 0.38904934097464555,
+          "ties": 0,
+          "trimmed_5pct_mean": 11.518518518518519,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            1.0,
+            1.0
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 1,
+          "median": 1.0,
+          "minimum": 1,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 0,
+          "trimmed_5pct_mean": 1,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "resident",
+      "gates": {
+        "at_least_six_nonnegative_opponents": true,
+        "catastrophe_frequency_not_increased": true,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": true,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": true,
+        "opponent_score_delta_at_most_5": true,
+        "own_score_delta_at_least_25": false,
+        "rich_margin_nonnegative": true,
+        "rich_opponent_score_delta_at_most_10": true,
+        "worst_opponent_at_least_minus_10": true
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": 0,
+          "11": 0,
+          "8": 0,
+          "9": 0
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 0,
+          "12": 0,
+          "14": 0,
+          "16": 0,
+          "18": 0,
+          "20": 0,
+          "22": 0,
+          "24": 0
+        },
+        "seed_correlation_height_with_margin_delta": null,
+        "seed_correlation_initial_plants_with_margin_delta": null
+      },
+      "nonnegative_opponent_means": 8,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "own_score": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "own_wood": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 60,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 60,
+          "trimmed_5pct_mean": 0,
+          "wins": 0
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": 0,
+        "mean_opponent_score_delta": 0,
+        "mean_own_score_delta": 0
+      },
+      "seat_mean_margin_deltas": {
+        "0": 0,
+        "1": 0
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.035416666666666666,
+        "candidate_catastrophes": 34,
+        "candidate_negative_margin_mass": 8250,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "resident",
+      "worst_opponent_mean_margin_delta": 0
+    },
+    "separated_denial": {
+      "absolute": {
+        "chop_commands": {
+          "ci95_normal": [
+            88.46011882664182,
+            98.32738117335818
+          ],
+          "losses": 0,
+          "maximum": 132.3125,
+          "mean": 93.39375,
+          "median": 94.0,
+          "minimum": 47.75,
+          "n": 60,
+          "standard_deviation": 19.49782792933265,
+          "standard_error": 2.51715876191744,
+          "ties": 0,
+          "trimmed_5pct_mean": 93.62268518518519,
+          "wins": 60
+        },
+        "final_turn": {
+          "ci95_normal": [
+            291.1450556999491,
+            295.3611943000509
+          ],
+          "losses": 0,
+          "maximum": 301,
+          "mean": 293.253125,
+          "median": 296.59375,
+          "minimum": 268.3125,
+          "n": 60,
+          "standard_deviation": 8.331140093620675,
+          "standard_error": 1.0755455612504592,
+          "ties": 0,
+          "trimmed_5pct_mean": 294.037037037037,
+          "wins": 60
+        },
+        "harvest_commands": {
+          "ci95_normal": [
+            35.52577959096918,
+            43.43255374236415
+          ],
+          "losses": 0,
+          "maximum": 77.5,
+          "mean": 39.479166666666664,
+          "median": 37.6875,
+          "minimum": 16.75,
+          "n": 60,
+          "standard_deviation": 15.623879903355098,
+          "standard_error": 2.0170342222946345,
+          "ties": 0,
+          "trimmed_5pct_mean": 38.960648148148145,
+          "wins": 60
+        },
+        "margin": {
+          "ci95_normal": [
+            -5.0315799147177955,
+            18.169079914717795
+          ],
+          "losses": 28,
+          "maximum": 150.125,
+          "mean": 6.56875,
+          "median": 4.375,
+          "minimum": -78.3125,
+          "n": 60,
+          "standard_deviation": 45.84478017368748,
+          "standard_error": 5.918535670774386,
+          "ties": 0,
+          "trimmed_5pct_mean": 4.626157407407407,
+          "wins": 32
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            3.442469561740704,
+            3.697113771592629
+          ],
+          "losses": 0,
+          "maximum": 4,
+          "mean": 3.5697916666666667,
+          "median": 3.75,
+          "minimum": 1.875,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 0,
+          "trimmed_5pct_mean": 3.6354166666666665,
+          "wins": 60
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            185.54898492668875,
+            210.34893173997793
+          ],
+          "losses": 0,
+          "maximum": 303.75,
+          "mean": 197.94895833333334,
+          "median": 199.09375,
+          "minimum": 103.9375,
+          "n": 60,
+          "standard_deviation": 49.00499030341773,
+          "standard_error": 6.326517044206427,
+          "ties": 0,
+          "trimmed_5pct_mean": 197.4872685185185,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            20.634228229194594,
+            22.81785510413874
+          ],
+          "losses": 0,
+          "maximum": 30.8125,
+          "mean": 21.726041666666667,
+          "median": 21.96875,
+          "minimum": 12.3125,
+          "n": 60,
+          "standard_deviation": 4.314872714790627,
+          "standard_error": 0.5570476721796295,
+          "ties": 0,
+          "trimmed_5pct_mean": 21.703703703703702,
+          "wins": 60
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            33.61132138069647,
+            39.68867861930353
+          ],
+          "losses": 0,
+          "maximum": 64.0625,
+          "mean": 36.65,
+          "median": 36.78125,
+          "minimum": 14.75,
+          "n": 60,
+          "standard_deviation": 12.008930292897075,
+          "standard_error": 1.5503462343385375,
+          "ties": 0,
+          "trimmed_5pct_mean": 36.4375,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            185.92678560847583,
+            223.10863105819084
+          ],
+          "losses": 0,
+          "maximum": 357.25,
+          "mean": 204.51770833333333,
+          "median": 193.96875,
+          "minimum": 80.9375,
+          "n": 60,
+          "standard_deviation": 73.47176949387972,
+          "standard_error": 9.485164655539542,
+          "ties": 0,
+          "trimmed_5pct_mean": 202.88541666666666,
+          "wins": 60
+        },
+        "own_wood": {
+          "ci95_normal": [
+            44.038574069377155,
+            53.43434259728951
+          ],
+          "losses": 0,
+          "maximum": 87.25,
+          "mean": 48.73645833333333,
+          "median": 46.28125,
+          "minimum": 15.625,
+          "n": 60,
+          "standard_deviation": 18.566150527257307,
+          "standard_error": 2.3968797265082533,
+          "ties": 0,
+          "trimmed_5pct_mean": 48.4224537037037,
+          "wins": 60
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            19.830205406719813,
+            26.86562792661352
+          ],
+          "losses": 0,
+          "maximum": 49.75,
+          "mean": 23.347916666666666,
+          "median": 23.03125,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 13.9020787005515,
+          "standard_error": 1.7947506428300268,
+          "ties": 0,
+          "trimmed_5pct_mean": 23.08449074074074,
+          "wins": 60
+        },
+        "train_commands": {
+          "ci95_normal": [
+            2.442469561740704,
+            2.697113771592629
+          ],
+          "losses": 0,
+          "maximum": 3,
+          "mean": 2.5697916666666667,
+          "median": 2.75,
+          "minimum": 0.875,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 0,
+          "trimmed_5pct_mean": 2.6354166666666665,
+          "wins": 60
+        }
+      },
+      "cells": 960,
+      "controller": "separated_denial",
+      "gates": {
+        "at_least_six_nonnegative_opponents": false,
+        "catastrophe_frequency_not_increased": false,
+        "complete_grid": true,
+        "margin_ci_lower_nonnegative": false,
+        "mean_margin_delta_at_least_10": false,
+        "negative_mass_not_increased": false,
+        "opponent_score_delta_at_most_5": false,
+        "own_score_delta_at_least_25": false,
+        "rich_margin_nonnegative": false,
+        "rich_opponent_score_delta_at_most_10": false,
+        "worst_opponent_at_least_minus_10": false
+      },
+      "geometry": {
+        "height_mean_margin_deltas": {
+          "10": -64.80147058823529,
+          "11": -90.4715909090909,
+          "8": -70.475,
+          "9": -73.859375
+        },
+        "initial_plant_count_mean_margin_deltas": {
+          "10": 75.91666666666667,
+          "12": -86.109375,
+          "14": -101.3875,
+          "16": -88.5048076923077,
+          "18": -59.6875,
+          "20": -61.99107142857143,
+          "22": -11.9375,
+          "24": -78.84375
+        },
+        "seed_correlation_height_with_margin_delta": -0.06992101923282473,
+        "seed_correlation_initial_plants_with_margin_delta": -0.04498377527625136
+      },
+      "nonnegative_opponent_means": 1,
+      "opponent_mean_margin_deltas": {
+        "compact_gold": -122.2,
+        "gold_adaptive": -152.375,
+        "legend_balanced": -88.525,
+        "mybot": -63.34166666666667,
+        "norx_native_three": 15.875,
+        "resident": -111.63333333333334,
+        "script_boss": -31.975,
+        "silver_boss": -31.508333333333333
+      },
+      "opponent_mean_score_deltas": {
+        "compact_gold": 133.59166666666667,
+        "gold_adaptive": 156.61666666666667,
+        "legend_balanced": 67.35833333333333,
+        "mybot": 51.11666666666667,
+        "norx_native_three": 20.608333333333334,
+        "resident": 49.84166666666667,
+        "script_boss": 89.91666666666667,
+        "silver_boss": 51.40833333333333
+      },
+      "paired_vs_resident": {
+        "margin": {
+          "ci95_normal": [
+            -89.07051886853458,
+            -57.350314464798736
+          ],
+          "losses": 54,
+          "maximum": 116.75,
+          "mean": -73.21041666666666,
+          "median": -79.15625,
+          "minimum": -193.9375,
+          "n": 60,
+          "standard_deviation": 62.67950173161435,
+          "standard_error": 8.091888878504044,
+          "ties": 0,
+          "trimmed_5pct_mean": -75.58217592592592,
+          "wins": 6
+        },
+        "maximum_workers": {
+          "ci95_normal": [
+            1.4424695617407044,
+            1.697113771592629
+          ],
+          "losses": 1,
+          "maximum": 2,
+          "mean": 1.5697916666666667,
+          "median": 1.75,
+          "minimum": -0.125,
+          "n": 60,
+          "standard_deviation": 0.5031799918186997,
+          "standard_error": 0.06496025761528693,
+          "ties": 2,
+          "trimmed_5pct_mean": 1.6354166666666667,
+          "wins": 57
+        },
+        "opponent_score": {
+          "ci95_normal": [
+            67.9542680176427,
+            87.16031531569064
+          ],
+          "losses": 0,
+          "maximum": 186.3125,
+          "mean": 77.55729166666667,
+          "median": 70.9375,
+          "minimum": 13,
+          "n": 60,
+          "standard_deviation": 37.951378230516106,
+          "standard_error": 4.899501861746919,
+          "ties": 0,
+          "trimmed_5pct_mean": 75.98263888888889,
+          "wins": 60
+        },
+        "opponent_successful_plants": {
+          "ci95_normal": [
+            0.6243876834632517,
+            2.617278983203415
+          ],
+          "losses": 22,
+          "maximum": 10.1875,
+          "mean": 1.6208333333333333,
+          "median": 1.125,
+          "minimum": -5.0625,
+          "n": 60,
+          "standard_deviation": 3.9379769462731153,
+          "standard_error": 0.5083906376888172,
+          "ties": 0,
+          "trimmed_5pct_mean": 1.4907407407407407,
+          "wins": 38
+        },
+        "opponent_wood": {
+          "ci95_normal": [
+            13.388231596566737,
+            18.09093507009993
+          ],
+          "losses": 0,
+          "maximum": 42.25,
+          "mean": 15.739583333333334,
+          "median": 13.59375,
+          "minimum": 2,
+          "n": 60,
+          "standard_deviation": 9.292598079156036,
+          "standard_error": 1.1996692534523452,
+          "ties": 0,
+          "trimmed_5pct_mean": 15.380787037037036,
+          "wins": 60
+        },
+        "own_score": {
+          "ci95_normal": [
+            -15.04296326836971,
+            23.736713268369712
+          ],
+          "losses": 29,
+          "maximum": 210.5,
+          "mean": 4.346875,
+          "median": 1.46875,
+          "minimum": -133.5,
+          "n": 60,
+          "standard_deviation": 76.62910275413384,
+          "standard_error": 9.892774626719241,
+          "ties": 0,
+          "trimmed_5pct_mean": 0.7893518518518519,
+          "wins": 31
+        },
+        "own_wood": {
+          "ci95_normal": [
+            -0.19703248442269672,
+            8.467865817756032
+          ],
+          "losses": 27,
+          "maximum": 50.5625,
+          "mean": 4.135416666666667,
+          "median": 1.6875,
+          "minimum": -23.125,
+          "n": 60,
+          "standard_deviation": 17.12194225557099,
+          "standard_error": 2.2104332403517164,
+          "ties": 0,
+          "trimmed_5pct_mean": 3.216435185185185,
+          "wins": 33
+        },
+        "successful_plants": {
+          "ci95_normal": [
+            8.497277421520533,
+            15.152722578479466
+          ],
+          "losses": 16,
+          "maximum": 39.9375,
+          "mean": 11.825,
+          "median": 10.34375,
+          "minimum": -8.5625,
+          "n": 60,
+          "standard_deviation": 13.15123890535651,
+          "standard_error": 1.6978176420813609,
+          "ties": 0,
+          "trimmed_5pct_mean": 11.491898148148149,
+          "wins": 44
+        }
+      },
+      "passes_all_promotion_gates": false,
+      "rich_block": {
+        "cells": 360,
+        "mean_margin_delta": -75.00833333333334,
+        "mean_opponent_score_delta": 81.52777777777777,
+        "mean_own_score_delta": 6.519444444444445
+      },
+      "seat_mean_margin_deltas": {
+        "0": -77.01666666666667,
+        "1": -69.40416666666667
+      },
+      "seeds": 60,
+      "tail": {
+        "candidate_catastrophe_frequency": 0.23125,
+        "candidate_catastrophes": 222,
+        "candidate_negative_margin_mass": 51553,
+        "control_catastrophe_frequency": 0.035416666666666666,
+        "control_catastrophes": 34,
+        "control_negative_margin_mass": 8250
+      },
+      "worst_opponent": "gold_adaptive",
+      "worst_opponent_mean_margin_delta": -152.375
+    }
+  },
+  "decision": "close_frozen_witnesses_and_advance_selected_representation",
+  "denial_parent_comparisons": {
+    "prefruit2": {
+      "child_own_score_gain_vs_resident": 55.28541666666667,
+      "opponent_score_delta_child_minus_parent": -18.757291666666674,
+      "opponent_score_reduction_from_parent": 18.757291666666674,
+      "opponent_successful_plants_delta_child_minus_parent": 2.401041666666667,
+      "opponent_wood_delta_child_minus_parent": -2.8781250000000007,
+      "own_score_delta_child_minus_parent": -81.45104166666667,
+      "parent": "private2",
+      "parent_own_score_gain_vs_resident": 136.73645833333333,
+      "retained_parent_own_score_gain_fraction": 0.40432096414178736
+    },
+    "separated_denial": {
+      "child_own_score_gain_vs_resident": 4.346875,
+      "opponent_score_delta_child_minus_parent": -3.2906249999999915,
+      "opponent_score_reduction_from_parent": 3.2906249999999915,
+      "opponent_successful_plants_delta_child_minus_parent": 0.3729166666666668,
+      "opponent_wood_delta_child_minus_parent": -0.6375000000000011,
+      "own_score_delta_child_minus_parent": -25.525,
+      "parent": "gold_adaptive",
+      "parent_own_score_gain_vs_resident": 29.871875,
+      "retained_parent_own_score_gain_fraction": 0.1455173135265195
+    }
+  },
+  "development_passers": [],
+  "integrity": {
+    "actual_rows": 8640,
+    "actual_scenarios": 960,
+    "ambiguous_plants": 273,
+    "ambiguous_plants_reported_separately": true,
+    "bad_controller_sets": {},
+    "complete": true,
+    "controllers": [
+      "accumulate4",
+      "gold_adaptive",
+      "hybrid3",
+      "norx3",
+      "ownership2",
+      "prefruit2",
+      "private2",
+      "resident",
+      "separated_denial"
+    ],
+    "duplicate_rows": 0,
+    "expected_rows": 8640,
+    "expected_scenarios": 960,
+    "invalid_dimensions": 0,
+    "invalid_terminal_turns": 0,
+    "map_fields_consistent_within_seed": true,
+    "missing_rows": 0,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "seeds": [
+      9100000,
+      9100001,
+      9100002,
+      9100003,
+      9100004,
+      9100005,
+      9100006,
+      9100007,
+      9100008,
+      9100009,
+      9100010,
+      9100011,
+      9100012,
+      9100013,
+      9100014,
+      9100015,
+      9100016,
+      9100017,
+      9100018,
+      9100019,
+      9100020,
+      9100021,
+      9100022,
+      9100023,
+      9100024,
+      9100025,
+      9100026,
+      9100027,
+      9100028,
+      9100029,
+      9100030,
+      9100031,
+      9100032,
+      9100033,
+      9100034,
+      9100035,
+      9100036,
+      9100037,
+      9100038,
+      9100039,
+      9100040,
+      9100041,
+      9100042,
+      9100043,
+      9100044,
+      9100045,
+      9100046,
+      9100047,
+      9100048,
+      9100049,
+      9100050,
+      9100051,
+      9100052,
+      9100053,
+      9100054,
+      9100055,
+      9100056,
+      9100057,
+      9100058,
+      9100059
+    ],
+    "unexpected_rows": 0
+  },
+  "production_suppression_pareto_frontier": [
+    "ownership2",
+    "prefruit2",
+    "resident"
+  ],
+  "protocol": "D34 official-map complete-architecture transfer census",
+  "representation_decision": {
+    "destructive_denial_witnesses": [
+      "prefruit2"
+    ],
+    "preserved_denial_witnesses": [],
+    "productive_families": [
+      "private2",
+      "ownership2",
+      "prefruit2",
+      "gold_adaptive"
+    ],
+    "reason": "Productive families clear the own-score mechanism floor, while denial wrappers buy opponent suppression only by discarding more than half of their parent's production gain.",
+    "resident_pareto_dominant": false,
+    "selected_representation": "coherent_joint_production_suppression_scheduler"
+  },
+  "seed_count": 60,
+  "seed_start": 9100000
+}

@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-arms-a-9843100-9843107.tsv": "d097ad835d8ec2253c89b1558f3b3fb97eb3b71e32a8d952a8f0cf3297810032",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-arms-r1-a-9843100-9843107.tsv": "d097ad835d8ec2253c89b1558f3b3fb97eb3b71e32a8d952a8f0cf3297810032",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-arms-r1-b-9843100-9843107.tsv": "d097ad835d8ec2253c89b1558f3b3fb97eb3b71e32a8d952a8f0cf3297810032",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-baselines-a-9843100-9843107.tsv": "47da570ab128a87315aebe57c8285ed79bf27956ab1656ed1f173310ab095dad",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-baselines-r1-a-9843100-9843107.tsv": "47da570ab128a87315aebe57c8285ed79bf27956ab1656ed1f173310ab095dad",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-baselines-r1-b-9843100-9843107.tsv": "47da570ab128a87315aebe57c8285ed79bf27956ab1656ed1f173310ab095dad"
+  },
+  "decision": "repair_only",
+  "frozen_inputs": {
+    "declared": {
+      "excluded_smoke_seed": 9843000,
+      "frozen_at": "2026-07-22-before-repaired-signal-replicates-and-value-inspection",
+      "maps": 8,
+      "schema": "troll-farm-d112a-repair1-frozen-inputs-v1",
+      "sha256": {
+        "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+        "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-frozen-inputs.json": "0caf2e9c407a16fd2998791a10509b5e769e9b096c0160c76fbe94e517953ff6",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-protocol-2026-07-22.md": "ed047cabd2a36bb4982bc90d59cfb600c18a003c0c0b997bbc77adbfc2a09b13",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-repair1-2026-07-22.md": "3dda96fd57b581c7a66265e8f04b5c95744ceac6184c3af29bf5278b4a65ff2b",
+        "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-arms-a-9843100-9843107.tsv": "d097ad835d8ec2253c89b1558f3b3fb97eb3b71e32a8d952a8f0cf3297810032",
+        "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-baselines-a-9843100-9843107.tsv": "47da570ab128a87315aebe57c8285ed79bf27956ab1656ed1f173310ab095dad",
+        "rust/Cargo.lock": "afef49fbb1b34147c78cd8300b96d372c7064602eb244a914c53aef25773ab9d",
+        "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+        "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+        "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+        "rust/src/strategies/script_boss.rs": "716e52c0c9de0104efae24500202e851b56de9509fe194834f5d8af8d0c6eb1f",
+        "rust/src/strategies/silver_boss.rs": "fd13c13d23b652f9b48cddf81a134800a0bf738b90a7a3f0342bb0525f38cf4d",
+        "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+      },
+      "start_seed": 9843100,
+      "tasks": 128,
+      "threads": 20,
+      "unchanged_minimum_throughput": 12.0
+    },
+    "manifest_sha256": "1fb71574d2fc94467c65587d55a07f1c305bfac0940d3a9b8ddf5c5416cc170c",
+    "mismatches": {},
+    "pass": true
+  },
+  "full_pass": false,
+  "labels": {
+    "path": null,
+    "rows": 0,
+    "sha256": null
+  },
+  "mechanics": {
+    "details": {
+      "arms": 13377,
+      "baselines": 128,
+      "error_samples": {
+        "accounting": [],
+        "feature": [],
+        "paired": [],
+        "root": []
+      },
+      "expert_bank_hashes": [
+        "10190021983138339114"
+      ],
+      "maximum_boundaries_per_task": 18,
+      "maximum_paired_gain_error": 6.000000007944095e-08,
+      "maximum_proposals_per_root": 27,
+      "maximum_reward_identity_error": 2.3000000037853852e-07,
+      "mechanical_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "minimum_boundaries_per_task": 0,
+      "minimum_proposals_per_root": 4,
+      "roots": 827,
+      "tasks": 128,
+      "throughput_arms_per_second": {
+        "a": 20.72970032821638,
+        "b": 20.880355888550692
+      }
+    },
+    "gates": {
+      "at_least_6000_arms": true,
+      "at_least_one_boundary_per_task": false,
+      "both_runs_at_least_12_arms_per_second": true,
+      "complete_unique_arm_grid": true,
+      "feature_schema_and_finiteness": true,
+      "frozen_inputs_exact": true,
+      "nonzero_control_relative_actions": true,
+      "paired_gain_exact": true,
+      "prescribed_baseline_grid": true,
+      "repeated_outputs_byte_exact": true,
+      "reward_identity_below_1e_4": true,
+      "single_expert_bank_hash": true,
+      "single_intervention_accounting": true,
+      "zero_mechanical_failures": true
+    },
+    "pass": false
+  },
+  "panel": {
+    "maps": 8,
+    "smoke_seed_excluded": 9843000,
+    "start_seed": 9843100,
+    "tasks": 128
+  },
+  "protocol": "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-protocol-2026-07-22.md",
+  "repeated_byte_exact": {
+    "arms": true,
+    "baselines": true,
+    "pre_repair_arms_semantic": true,
+    "pre_repair_baselines_semantic": true
+  },
+  "schema": "troll-farm-d112a-dense-q6-counterfactual-teacher-v1",
+  "teacher": {
+    "not_interpreted": "mechanics failure",
+    "safety_pass": false,
+    "signal_pass": false
+  },
+  "timing_seconds": {
+    "a": 645.306,
+    "b": 640.65
+  }
+}

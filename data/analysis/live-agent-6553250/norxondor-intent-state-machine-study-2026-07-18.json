@@ -1,0 +1,282 @@
+{
+ "schema": 1,
+ "scope": "iterative discovery on consumed Norxondor replays; one row per movement episode; fivefold whole-game exclusion; predictor inputs are current state and previous completed action only; no future inputs, goal coordinates, counterfactual rollout, causal value, sealed holdout, or arena evidence",
+ "agent_id": 6480540,
+ "games": 30,
+ "unit_rows": 22177,
+ "episodes": 4427,
+ "episode_labels": {
+  "GO_CHOP": 722,
+  "GO_DROP": 1469,
+  "GO_END": 52,
+  "GO_FARM": 635,
+  "GO_HARVEST": 1423,
+  "GO_MINE": 126
+ },
+ "mean_moves_per_episode": 2.350576010842557,
+ "features": [
+  [
+   "phase",
+   "ordinal",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell",
+   "unit_count",
+   "score_bucket",
+   "nearest_ripe",
+   "nearest_tree",
+   "nearest_iron",
+   "cheap_train_affordable",
+   "previous_action"
+  ],
+  [
+   "phase",
+   "ordinal",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell",
+   "unit_count",
+   "previous_action"
+  ],
+  [
+   "phase",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell",
+   "previous_action"
+  ],
+  [
+   "role",
+   "carry_class",
+   "full",
+   "on_cell",
+   "previous_action"
+  ],
+  [
+   "carry_class",
+   "full",
+   "on_cell",
+   "previous_action"
+  ],
+  [
+   "carry_class",
+   "full",
+   "previous_action"
+  ],
+  [
+   "previous_action"
+  ]
+ ],
+ "held_game": {
+  "rows": 4427,
+  "accuracy": 0.7411339507567202,
+  "macro_f1": 0.5249370251352182,
+  "per_label": {
+   "GO_CHOP": {
+    "support": 722,
+    "precision": 0.6517482517482518,
+    "recall": 0.6454293628808865,
+    "f1": 0.6485734168406403
+   },
+   "GO_DROP": {
+    "support": 1469,
+    "precision": 0.8405524168236033,
+    "recall": 0.911504424778761,
+    "f1": 0.8745917700849117
+   },
+   "GO_END": {
+    "support": 52,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0
+   },
+   "GO_FARM": {
+    "support": 635,
+    "precision": 0.5654545454545454,
+    "recall": 0.48976377952755906,
+    "f1": 0.5248945147679325
+   },
+   "GO_HARVEST": {
+    "support": 1423,
+    "precision": 0.7672998643147897,
+    "recall": 0.7947997189037245,
+    "f1": 0.7808077321366931
+   },
+   "GO_MINE": {
+    "support": 126,
+    "precision": 0.3953488372093023,
+    "recall": 0.2698412698412698,
+    "f1": 0.32075471698113206
+   }
+  },
+  "folds": [
+   {
+    "fold": 0,
+    "training_games": 24,
+    "held_games": 6,
+    "held_episodes": 1030,
+    "accuracy": 0.7485436893203884,
+    "macro_f1": 0.5511468647920238,
+    "majority_accuracy": 0.30970873786407765
+   },
+   {
+    "fold": 1,
+    "training_games": 25,
+    "held_games": 5,
+    "held_episodes": 593,
+    "accuracy": 0.7234401349072512,
+    "macro_f1": 0.5079658822846483,
+    "majority_accuracy": 0.2900505902192243
+   },
+   {
+    "fold": 2,
+    "training_games": 24,
+    "held_games": 6,
+    "held_episodes": 933,
+    "accuracy": 0.7181136120042872,
+    "macro_f1": 0.5053104551273542,
+    "majority_accuracy": 0.32261521972132906
+   },
+   {
+    "fold": 3,
+    "training_games": 23,
+    "held_games": 7,
+    "held_episodes": 1038,
+    "accuracy": 0.7495183044315993,
+    "macro_f1": 0.5053990908705195,
+    "majority_accuracy": 0.3304431599229287
+   },
+   {
+    "fold": 4,
+    "training_games": 24,
+    "held_games": 6,
+    "held_episodes": 833,
+    "accuracy": 0.7599039615846338,
+    "macro_f1": 0.522215513266159,
+    "majority_accuracy": 0.3445378151260504
+   }
+  ],
+  "majority_baseline": {
+   "rows": 4427,
+   "accuracy": 0.3212107522023944,
+   "macro_f1": 0.11890657667338175,
+   "per_label": {
+    "GO_CHOP": {
+     "support": 722,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_DROP": {
+     "support": 1469,
+     "precision": 0.3246982631733883,
+     "recall": 0.7508509189925119,
+     "f1": 0.45334977394163584
+    },
+    "GO_END": {
+     "support": 52,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_FARM": {
+     "support": 635,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_HARVEST": {
+     "support": 1423,
+     "precision": 0.30970873786407765,
+     "recall": 0.2241742796907941,
+     "f1": 0.2600896860986547
+    },
+    "GO_MINE": {
+     "support": 126,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    }
+   }
+  },
+  "accuracy_gain": 0.41992319855432575,
+  "worst_fold_accuracy": 0.7181136120042872,
+  "worst_fold_macro_f1": 0.5053104551273542,
+  "coverage": {
+   "backoff_0": 1122,
+   "backoff_1": 2547,
+   "backoff_2": 475,
+   "backoff_3": 249,
+   "backoff_4": 19,
+   "backoff_5": 11,
+   "backoff_6": 4
+  }
+ },
+ "row_level_intent_accuracy": 0.7156448202959831,
+ "episode_accuracy_gain_over_row_level": 0.025489130460737086,
+ "minimum_common_label_f1": 0.5248945147679325,
+ "transitions": {
+  "CHOP": {
+   "GO_CHOP": 137,
+   "GO_DROP": 525,
+   "GO_END": 18,
+   "GO_FARM": 11,
+   "GO_HARVEST": 41,
+   "GO_MINE": 3
+  },
+  "DROP": {
+   "GO_CHOP": 484,
+   "GO_END": 33,
+   "GO_FARM": 19,
+   "GO_HARVEST": 817,
+   "GO_MINE": 105
+  },
+  "FARM": {
+   "GO_CHOP": 67,
+   "GO_DROP": 4,
+   "GO_END": 1,
+   "GO_FARM": 145,
+   "GO_HARVEST": 423,
+   "GO_MINE": 2
+  },
+  "HARVEST": {
+   "GO_CHOP": 7,
+   "GO_DROP": 824,
+   "GO_FARM": 434,
+   "GO_HARVEST": 99,
+   "GO_MINE": 13
+  },
+  "MINE": {
+   "GO_CHOP": 1,
+   "GO_DROP": 116,
+   "GO_HARVEST": 3,
+   "GO_MINE": 3
+  },
+  "START": {
+   "GO_CHOP": 26,
+   "GO_FARM": 26,
+   "GO_HARVEST": 40
+  }
+ },
+ "gate": {
+  "requirements": [
+   "held episode accuracy at least 0.72 and macro F1 at least 0.50",
+   "every fold accuracy at least 0.70 and macro F1 at least 0.45",
+   "accuracy beats fold-majority by at least 0.35",
+   "every intent with at least 500 episodes has F1 at least 0.50",
+   "episode formulation improves over row-level intent by at least 0.02"
+  ],
+  "passed": true
+ },
+ "decision": {
+  "state_machine_supported": true,
+  "authorize_goal_selector_study": true,
+  "build_submission_candidate": false
+ }
+}

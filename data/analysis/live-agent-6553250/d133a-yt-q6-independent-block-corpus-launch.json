@@ -1,0 +1,140 @@
+{
+  "job_count": 16,
+  "launched_utc": "2026-07-22T18:43:54.887193+00:00",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "lock": {
+    "manifest_sha256": "e6c6d554fdeddc961317e94b45972711a4dadbb9da20d9061eda91b385a118c1",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "f68fd8f9-83f2b344-42e03e8-a0934784",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722",
+    "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722/records",
+    "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722/specs"
+  },
+  "payload": {
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+  },
+  "schema": "troll-farm-d133a-yt-q6-teacher-corpus-launch-v1",
+  "spec_write_batch_size": 1,
+  "specs": [
+    {
+      "block_id": 0,
+      "maps": 4,
+      "shard_id": "block-00-shard-00",
+      "start_seed": 9844000,
+      "threads": 16
+    },
+    {
+      "block_id": 0,
+      "maps": 4,
+      "shard_id": "block-00-shard-01",
+      "start_seed": 9844004,
+      "threads": 16
+    },
+    {
+      "block_id": 0,
+      "maps": 4,
+      "shard_id": "block-00-shard-02",
+      "start_seed": 9844008,
+      "threads": 16
+    },
+    {
+      "block_id": 0,
+      "maps": 4,
+      "shard_id": "block-00-shard-03",
+      "start_seed": 9844012,
+      "threads": 16
+    },
+    {
+      "block_id": 1,
+      "maps": 4,
+      "shard_id": "block-01-shard-00",
+      "start_seed": 9844016,
+      "threads": 16
+    },
+    {
+      "block_id": 1,
+      "maps": 4,
+      "shard_id": "block-01-shard-01",
+      "start_seed": 9844020,
+      "threads": 16
+    },
+    {
+      "block_id": 1,
+      "maps": 4,
+      "shard_id": "block-01-shard-02",
+      "start_seed": 9844024,
+      "threads": 16
+    },
+    {
+      "block_id": 1,
+      "maps": 4,
+      "shard_id": "block-01-shard-03",
+      "start_seed": 9844028,
+      "threads": 16
+    },
+    {
+      "block_id": 2,
+      "maps": 4,
+      "shard_id": "block-02-shard-00",
+      "start_seed": 9844032,
+      "threads": 16
+    },
+    {
+      "block_id": 2,
+      "maps": 4,
+      "shard_id": "block-02-shard-01",
+      "start_seed": 9844036,
+      "threads": 16
+    },
+    {
+      "block_id": 2,
+      "maps": 4,
+      "shard_id": "block-02-shard-02",
+      "start_seed": 9844040,
+      "threads": 16
+    },
+    {
+      "block_id": 2,
+      "maps": 4,
+      "shard_id": "block-02-shard-03",
+      "start_seed": 9844044,
+      "threads": 16
+    },
+    {
+      "block_id": 3,
+      "maps": 4,
+      "shard_id": "block-03-shard-00",
+      "start_seed": 9844048,
+      "threads": 16
+    },
+    {
+      "block_id": 3,
+      "maps": 4,
+      "shard_id": "block-03-shard-01",
+      "start_seed": 9844052,
+      "threads": 16
+    },
+    {
+      "block_id": 3,
+      "maps": 4,
+      "shard_id": "block-03-shard-02",
+      "start_seed": 9844056,
+      "threads": 16
+    },
+    {
+      "block_id": 3,
+      "maps": 4,
+      "shard_id": "block-03-shard-03",
+      "start_seed": 9844060,
+      "threads": 16
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "artifacts": {
+    "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+    "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a"
+  },
+  "checkpoint": {
+    "bytes": 30579,
+    "gate_offset": 0.0,
+    "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+    "path": "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt",
+    "seed": 11901,
+    "sha256": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6"
+  },
+  "decision": "repair_held_coverage_only",
+  "held_lock": {
+    "declared": {
+      "collection": {
+        "collector": "rust/target/release/d112_q6_dense_counterfactual_teacher",
+        "expert_population": "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv",
+        "maps": 16,
+        "output_arms": "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv",
+        "output_baselines": "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv",
+        "start_seed": 9843700,
+        "tasks": 256,
+        "workers": 20
+      },
+      "environment": {
+        "numpy": "2.4.6",
+        "python": "3.11.15",
+        "torch": "2.13.0+cpu"
+      },
+      "frozen_at": "2026-07-22-after-d119-validation-selection-before-any-held-collection",
+      "held_gates": {
+        "activity": "0.10 <= intervention_rate <= 0.85",
+        "crop_rate": "== 1.0",
+        "directional_score_safety": "mean_own_score_delta >= 0 or mean_opponent_score_delta <= 0",
+        "mean_margin_delta": ">= 2.0",
+        "positive_families": ">= 6",
+        "strict_improvement_rate": ">= 0.40",
+        "worker_three_rate": ">= control_worker_three_rate - 0.05",
+        "worst_family": ">= -3.0"
+      },
+      "schema": "troll-farm-d119a-held-soft-value-q6-lock-v1",
+      "selected": {
+        "checkpoint_bytes": 30579,
+        "checkpoint_sha256": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+        "gate_offset": 0.0,
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_activity": 0.83984375,
+        "validation_mean_margin_delta": 2.94140625,
+        "validation_minimum_fold": 2.359375,
+        "validation_strict_improvement_rate": 0.421875,
+        "validation_worst_family": -3.375
+      },
+      "sha256": {
+        "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+        "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+        "cgauto/evaluate_d119a_held_soft_value_q6.py": "a838d56ee17c5a4954e63685d945e8bc7d508f249e8232d8d3f3426ae714c69a",
+        "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+        "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+        "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+        "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+        "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+        "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+        "data/analysis/live-agent-6553250/d119a-held-soft-value-q6-protocol-2026-07-22.md": "7499e26a702f36c0219563870cf74619cbed76c5369ae324c3a55aa754225354",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-frozen-inputs.json": "acc6be0ea4a1e02104283f6e87d461608d0940b7692718a1c2c7cd56f9ebba38",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-selection-lock.json": "57b34e83da198d8a945e10fd81d0336a8566e2de9c26ffa0dda9ea5a71752227",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+        "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+        "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+        "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+        "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+        "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+        "tests/test_evaluate_d119a_held_soft_value_q6.py": "6c3f4e9f662c512c74a768e6df79a8bf6cfe87c016dd08e6dce81e93ece0d786",
+        "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+      }
+    },
+    "manifest_sha256": "aa8dc801509263a846b1a3cd6fb6b0721c1048cf0009474d708c05e464548241",
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d119a-held-soft-value-q6-lock.json"
+  },
+  "held_panel": {
+    "admission": null,
+    "elapsed_seconds": 551.521,
+    "maps": 16,
+    "mechanics": {
+      "details": {
+        "arms": 18659,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 16,
+        "maximum_paired_gain_error": 1.0000000028043132e-07,
+        "maximum_proposals_per_root": 29,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 8,
+        "roots": 1165,
+        "supported_tasks": 220,
+        "task_support_rate": 0.859375,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 33.83189398046493,
+          "b": 33.83189398046493
+        },
+        "unsupported_forced_control_tasks": 36
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": false,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    },
+    "metrics": null,
+    "pass": false,
+    "seeds": "9843700--9843715",
+    "tasks": 256,
+    "teacher_signal": {
+      "backward_dp": {
+        "act_now_root_rate": 0.5364806866952789,
+        "act_now_roots": 625,
+        "arms": 18659,
+        "best_now_mean": 26.300429184549355,
+        "negative_arm_advantage_rate": 0.8353073583793343,
+        "negative_arm_advantages": 15586,
+        "positive_arm_advantage_rate": 0.14271933115386676,
+        "positive_arm_advantages": 2663,
+        "roots": 1165,
+        "target_maximum": 151,
+        "target_mean": -23.670025188916878,
+        "target_minimum": -315,
+        "target_standard_deviation": 28.696946351376596,
+        "wait_roots": 540,
+        "zero_arm_advantages": 410
+      },
+      "oracle": {
+        "control_worker_three_rate": 0.890625,
+        "crop_rate": 1.0,
+        "family_mean_margin_gain": {
+          "compact_gold": 45.09375,
+          "gold_adaptive": 53.375,
+          "legend_balanced": 35.21875,
+          "mybot": 24.9375,
+          "norx_native_three": 41.75,
+          "resident": 28.4375,
+          "script_boss": 40.0625,
+          "silver_boss": 37.75
+        },
+        "first_boundary_oracle_mean_gain": 32.484375,
+        "intervention_rate": 0.85546875,
+        "later_boundary_increment": 5.84375,
+        "mean_margin_gain": 38.328125,
+        "mean_opponent_score_delta": -16.109375,
+        "mean_own_score_gain": 22.21875,
+        "mean_selected_boundary": 1.0182648401826484,
+        "positive_families": 8,
+        "selected_kind_counts": {
+          "0": 37,
+          "1": 52,
+          "2": 22,
+          "3": 145
+        },
+        "strict_improvement_rate": 0.85546875,
+        "supported_tasks": 220,
+        "tasks": 256,
+        "worker_three_rate": 0.89453125,
+        "worst_family": 24.9375
+      },
+      "safety_gates": {
+        "oracle_crop_100pct": true,
+        "oracle_worker_three_within_5pp": true
+      },
+      "safety_pass": true,
+      "signal_gates": {
+        "act_now_roots_5_to_90pct": true,
+        "at_least_seven_positive_families": true,
+        "negative_arm_targets_at_least_40pct": true,
+        "oracle_mean_at_least_20": true,
+        "oracle_strict_at_least_75pct": true,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "positive_arm_targets_1_to_50pct": true,
+        "target_stddev_at_least_5": true,
+        "worst_family_at_least_8": true
+      },
+      "signal_pass": true
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d119a-held-soft-value-q6-protocol-2026-07-22.md",
+  "schema": "troll-farm-d119a-held-soft-value-q6-v1",
+  "validation_result": {
+    "decision": "open_conditional_dense_held_qualification",
+    "path": "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json",
+    "sha256": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8"
+  }
+}

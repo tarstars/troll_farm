@@ -1,0 +1,28 @@
+{
+  "schema": "troll-farm-d75b-two-batch-option-sequence-adjudication-v1",
+  "inputs": {
+    "protocol": "44b8949f7b1c84ac333653718b3207462dd59cdfc448933ec84ab606cbcae45a",
+    "machine_result": "42def0e5d4c7718b3b5e496c19f7c6a6e0a931f2a7991c7413e5c0c799cbc104",
+    "repeated_rows": "d8b7f5240f7826cf87f9402c8887877fbdef25e3887fa50d46a702dc15e85aef"
+  },
+  "evidence": {
+    "base_integrity_pass": true,
+    "activity_pass": false,
+    "failed_activity_gate": "sequence_mean_margin_span_at_least_15",
+    "observed_sequence_mean_margin_span": 3.4548611111111143,
+    "required_sequence_mean_margin_span": 15.0,
+    "active_nonprefix_sequences": 10,
+    "full_oracle_computed": false,
+    "incremental_oracle_computed": false
+  },
+  "interpretation": "The generic quarantine label says repair-only, but the sole failure is a deterministic representation-activity threshold, not an implementation defect. A byte-identical repeat cannot repair it; no value gate may be read or relaxed.",
+  "decision": {
+    "status": "two_batch_sequence_activity_failure",
+    "next_experiment": "whole_policy_search_new_controller_representation",
+    "repeat_unchanged": false,
+    "fit_sequence_labels": false,
+    "construct_candidate": false,
+    "open_confirmation": false,
+    "platform_action": false
+  }
+}

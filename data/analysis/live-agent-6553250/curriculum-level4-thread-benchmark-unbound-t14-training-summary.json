@@ -1,0 +1,277 @@
+{
+  "aggregate_host_cpu_percent": 69.32119224156304,
+  "config": {
+    "batch_size": 10000,
+    "clip_coef": 0.2,
+    "curriculum_level": 4,
+    "entropy_coef": 0.01,
+    "eval_episodes": 100,
+    "eval_seed_base": 90000000,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "gate_profile": "scratch",
+    "initial_checkpoint": "data/analysis/live-agent-6553250/curriculum-level4-random-recipe-renewable-confirmation-ppo-l4b.pt",
+    "initial_checkpoint_sha256": "b5daae9ecf81e52ebf35f9bcb9d0eb75110abf0cc5da570f136c5505d96c4882",
+    "learning_rate": 0.0,
+    "max_grad_norm": 0.5,
+    "max_turns": 240,
+    "minibatch_size": 1000,
+    "model_seed": 12345,
+    "no_stage_a_stop": true,
+    "num_envs": 100,
+    "parameter_count": 34926,
+    "protocol": "data/analysis/live-agent-6553250/curriculum-level4-confirmation-protocol-2026-07-19.md",
+    "protocol_sha256": "ea4c66a270effb9040db17b2476e61bcf88f1edf2719051f6ffea42571022596",
+    "random_baseline": "/tmp/troll-farm-thread-bench-random.json",
+    "random_baseline_sha256": "8be42ecaa7df4b7093319b85e16dcd5b3f76073f99ca8194c06ede9472819880",
+    "reward_scale": 0.01,
+    "rollout_steps": 100,
+    "run_name": "thread-benchmark-unbound-t14",
+    "stage_a_transitions": 30000,
+    "target_kl": 0.03,
+    "teacher_aux_coef": 0.1,
+    "teacher_aux_invalid_label_policy": "skip_undefined_off_teacher_targets",
+    "teacher_baseline": "/tmp/troll-farm-thread-bench-teacher.json",
+    "teacher_baseline_sha256": "433bfb25bfb5c7f238e9d74fa5b64bd6ed9f21541b872ef26263e1e6a44be5a1",
+    "threads": 14,
+    "torch_version": "2.13.0+cpu",
+    "total_transitions": 30000,
+    "train_seed_base": 91000000,
+    "update_epochs": 4,
+    "value_coef": 0.5
+  },
+  "elapsed_cpu_seconds": 431.421621966,
+  "elapsed_wall_seconds": 31.117585258965846,
+  "evaluations": [
+    {
+      "by_height": {
+        "10": {
+          "episodes": 25,
+          "success_rate": 1.0,
+          "successes": 25
+        },
+        "11": {
+          "episodes": 25,
+          "success_rate": 1.0,
+          "successes": 25
+        },
+        "8": {
+          "episodes": 25,
+          "success_rate": 1.0,
+          "successes": 25
+        },
+        "9": {
+          "episodes": 25,
+          "success_rate": 1.0,
+          "successes": 25
+        }
+      },
+      "by_recipe": {
+        "0": {
+          "episodes": 11,
+          "name": "cheap-planter",
+          "success_rate": 1.0,
+          "successes": 11,
+          "target": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "1": {
+          "episodes": 13,
+          "name": "compact-farmer",
+          "success_rate": 1.0,
+          "successes": 13,
+          "target": [
+            1,
+            2,
+            1,
+            1
+          ]
+        },
+        "2": {
+          "episodes": 13,
+          "name": "balanced-producer",
+          "success_rate": 1.0,
+          "successes": 13,
+          "target": [
+            2,
+            2,
+            1,
+            1
+          ]
+        },
+        "3": {
+          "episodes": 18,
+          "name": "harvest-producer",
+          "success_rate": 1.0,
+          "successes": 18,
+          "target": [
+            2,
+            2,
+            2,
+            1
+          ]
+        },
+        "4": {
+          "episodes": 7,
+          "name": "level1-anchor",
+          "success_rate": 1.0,
+          "successes": 7,
+          "target": [
+            1,
+            3,
+            0,
+            1
+          ]
+        },
+        "5": {
+          "episodes": 13,
+          "name": "lean-chopper",
+          "success_rate": 1.0,
+          "successes": 13,
+          "target": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "6": {
+          "episodes": 13,
+          "name": "standard-chopper",
+          "success_rate": 1.0,
+          "successes": 13,
+          "target": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "7": {
+          "episodes": 12,
+          "name": "hybrid-chopper",
+          "success_rate": 1.0,
+          "successes": 12,
+          "target": [
+            2,
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      "created_crop_rate": 1.0,
+      "elapsed_seconds": 1.325115168991033,
+      "episodes": 100,
+      "exact_seed_interval": true,
+      "gate": "L1A",
+      "gate_passed": true,
+      "global_step": 30000,
+      "height_success_floor": 1.0,
+      "median_score_gain": 16.0,
+      "median_success_turn": 52.5,
+      "median_training_turn": 14.0,
+      "nontrivial_success_rate": 1.0,
+      "paired_teacher_median_turn_delta": 0.0,
+      "path": "data/analysis/live-agent-6553250/curriculum-level4-thread-benchmark-unbound-t14-l1a-evaluation.json",
+      "random_success_rate": 0.0,
+      "recipe_success_floor": 1.0,
+      "renewable_harvest_rate": 1.0,
+      "required_score_gain": 12,
+      "seed_base": 90000000,
+      "seed_stop_exclusive": 90000100,
+      "success_rate": 1.0,
+      "successes": 100,
+      "target": null,
+      "teacher_success_rate": 1.0,
+      "transitions": 14300,
+      "transitions_per_second": 10791.514831792532
+    }
+  ],
+  "global_step": 30000,
+  "logs": [
+    {
+      "approx_kl": 0.0,
+      "clip_fraction": 0.0,
+      "entropy": 0.22882674634456635,
+      "episodes_recent": 70,
+      "epochs_run": 4,
+      "event": "update",
+      "explained_variance": 0.5355061888694763,
+      "global_step": 10000,
+      "learning_rate": 0.0,
+      "mean_return_recent": 39.84999520438058,
+      "median_turn_recent": 39.5,
+      "policy_loss": 5.7220459481754915e-09,
+      "rollout_sps": 5334.106864119616,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.9509999752044678,
+      "teacher_invalid_labels": 0,
+      "teacher_legal_rate": 1.0,
+      "teacher_loss": 0.15402810275554657,
+      "update": 1,
+      "update_sps": 1047.3391223364804,
+      "value_loss": 0.0002187241188948974
+    },
+    {
+      "approx_kl": 0.0,
+      "clip_fraction": 0.0,
+      "entropy": 0.16080981492996216,
+      "episodes_recent": 175,
+      "epochs_run": 4,
+      "event": "update",
+      "explained_variance": 0.5145543813705444,
+      "global_step": 20000,
+      "learning_rate": 0.0,
+      "mean_return_recent": 39.949766082763674,
+      "median_turn_recent": 46.0,
+      "policy_loss": 1.1444091896350983e-08,
+      "rollout_sps": 5100.0828139763335,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.9629999995231628,
+      "teacher_invalid_labels": 0,
+      "teacher_legal_rate": 1.0,
+      "teacher_loss": 0.11150459945201874,
+      "update": 2,
+      "update_sps": 964.3579496828573,
+      "value_loss": 0.0002640474704094231
+    },
+    {
+      "approx_kl": 0.0,
+      "clip_fraction": 0.0,
+      "entropy": 0.23242142796516418,
+      "episodes_recent": 278,
+      "epochs_run": 4,
+      "event": "update",
+      "explained_variance": 0.45822674036026,
+      "global_step": 30000,
+      "learning_rate": 0.0,
+      "mean_return_recent": 39.985822046403406,
+      "median_turn_recent": 49.0,
+      "policy_loss": -9.53674295089968e-09,
+      "rollout_sps": 6160.33273781327,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.9380000233650208,
+      "teacher_invalid_labels": 0,
+      "teacher_legal_rate": 1.0,
+      "teacher_loss": 0.17161592841148376,
+      "update": 3,
+      "update_sps": 1023.5524052282109,
+      "value_loss": 0.00023869980941526592
+    }
+  ],
+  "overall_transitions_per_second": 964.0850904829178,
+  "run_name": "thread-benchmark-unbound-t14",
+  "stage_a_passed": true,
+  "stage_b_passed": null,
+  "teacher_aux_label_stats": {
+    "invalid_labels": 0,
+    "labels": 30000,
+    "legal_rate": 1.0
+  },
+  "updates_completed": 3
+}

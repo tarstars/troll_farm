@@ -1,0 +1,17 @@
+{
+  "frozen_at": "2026-07-22-after-user-directed-yt-root-before-repair-operation",
+  "inherited_repair_lock": "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-repair1-lock.json",
+  "repair": "namespace-only change requested by user; use //home/delivery_ml/research/tarstars as base with troll_farm suffix",
+  "schema": "troll-farm-d132a-yt-q6-teacher-parity-repair2-lock-v1",
+  "yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+  "external_sha256": {
+    "/home/tarstars/prj/math_through_eml/src/math_through_eml/yt_utils.py": "ce5b7466bde3dfeb2ccf47836c9b18202750142f7c067c177d8ebb36c0340ccc"
+  },
+  "sha256": {
+    "cgauto/yt_d132_q6_teacher.py": "290cab3e34353ddf88ae3a2c23625b2957012d9c0dfbb07c623496fa51793028",
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-protocol-2026-07-22.md": "854e7b38230cd2077b3dbcf9421d967437ac28ae5abc413171ead3da451dd3b1",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-repair1-lock.json": "f73718a2e639858e2de73c15cd727d0f8f91d2afb222b072ea1a999be84cb7d0",
+    "tests/test_yt_d132_q6_teacher.py": "8e66b3e33488a8799b8d07455e9966049cb2c6056da4769fa47444009cfb7fa5"
+  }
+}

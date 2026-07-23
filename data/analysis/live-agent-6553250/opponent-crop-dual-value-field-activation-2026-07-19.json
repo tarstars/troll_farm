@@ -1,0 +1,6602 @@
+{
+ "schema": 1,
+ "scope": "read-only first-divergence audit on 131 fixed exact-resident official replays; historical suffixes are not candidate outcomes",
+ "expected_agent": 6560240,
+ "games": 131,
+ "fetch_or_audit_failures": [],
+ "source_rule_exact": true,
+ "aggregate": {
+  "games": 131,
+  "resident_full_stream_exact": 75,
+  "raw_candidate_divergences": 118,
+  "admissible_activated_games": 111,
+  "activation_rate": 0.8473282442748091,
+  "median_first_divergence_turn": 25,
+  "mean_opponent_crops": 26.15267175572519,
+  "mean_opponent_crop_wood": 32.55725190839695
+ },
+ "cohorts": {
+  "wins": {
+   "games": 68,
+   "resident_full_stream_exact": 37,
+   "raw_candidate_divergences": 61,
+   "admissible_activated_games": 59,
+   "activation_rate": 0.8676470588235294,
+   "median_first_divergence_turn": 19,
+   "mean_opponent_crops": 21.058823529411764,
+   "mean_opponent_crop_wood": 13.852941176470589
+  },
+  "ordinary_losses": {
+   "games": 38,
+   "resident_full_stream_exact": 25,
+   "raw_candidate_divergences": 33,
+   "admissible_activated_games": 32,
+   "activation_rate": 0.8421052631578947,
+   "median_first_divergence_turn": 34.5,
+   "mean_opponent_crops": 24.473684210526315,
+   "mean_opponent_crop_wood": 32.1578947368421
+  },
+  "catastrophic_losses": {
+   "games": 25,
+   "resident_full_stream_exact": 13,
+   "raw_candidate_divergences": 24,
+   "admissible_activated_games": 20,
+   "activation_rate": 0.8,
+   "median_first_divergence_turn": 25.0,
+   "mean_opponent_crops": 42.56,
+   "mean_opponent_crop_wood": 84.04
+  }
+ },
+ "admissible_activated_games": 111,
+ "explained_first_divergences": 111,
+ "catastrophic_activated_games": 20,
+ "catastrophic_activated_opponents": [
+  "Astrobytes",
+  "BoatBuilder",
+  "Kheopsian",
+  "MSz",
+  "Wld",
+  "gaha",
+  "putibuzu",
+  "siman",
+  "tsukammo",
+  "uta_ccc",
+  "viewlagoon"
+ ],
+ "prospective_gate_checks": {
+  "all_fixed_games_fetched_and_decoded": true,
+  "exact_source_rule": true,
+  "no_unknown_diff_updates": true,
+  "minimum_admissible_activations": true,
+  "minimum_catastrophic_activations": true,
+  "minimum_catastrophic_opponents": true,
+  "all_first_divergences_explained_by_doubled_active_eta6_crop": true,
+  "no_production_stderr": true
+ },
+ "prospective_gate_passed": true,
+ "rows": [
+  {
+   "game_id": 896278913,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Risen",
+   "margin": 23,
+   "turns": 297,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 30,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 19,
+   "opponent_crop_wood": 21
+  },
+  {
+   "game_id": 896278914,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Stounate",
+   "margin": 49,
+   "turns": 212,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 30,
+   "candidate_first_divergence_turn": 11,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 11,
+      "cell": [
+       10,
+       6
+      ],
+      "doubled_score": 250.0,
+      "inferred_resident_score": 125.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 4",
+     "MOVE 2 6 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 4",
+     "MOVE 2 8 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 6 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 5"
+    ]
+   },
+   "opponent_crops": 10,
+   "opponent_crop_wood": 5
+  },
+  {
+   "game_id": 896278915,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "FinkPloyd",
+   "margin": 23,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 42,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 42,
+      "cell": [
+       5,
+       2
+      ],
+      "doubled_score": 1150.0,
+      "inferred_resident_score": 575.0,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 3",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 10 7",
+     "MOVE 3 4 1"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "CHOP 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 10 7",
+     "MOVE 3 4 1"
+    ],
+    "added_candidate_actions": [
+     "CHOP 1",
+     "CHOP 3"
+    ]
+   },
+   "opponent_crops": 38,
+   "opponent_crop_wood": 32
+  },
+  {
+   "game_id": 896278916,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Pafin",
+   "margin": 37,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 19,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 19,
+      "cell": [
+       8,
+       0
+      ],
+      "doubled_score": 800.0,
+      "inferred_resident_score": 400.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 8 0",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 9 3",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 3",
+     "MOVE 2 9 0"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 9 0"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 20
+  },
+  {
+   "game_id": 896278917,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Wld",
+   "margin": -113,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 217,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 217,
+      "cell": [
+       15,
+       3
+      ],
+      "doubled_score": 133.333333333,
+      "inferred_resident_score": 66.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 15 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 6,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "DROP 0",
+     "MOVE 2 7 4"
+    ],
+    "candidate_actions": [
+     "DROP 0",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 7 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 4"
+    ]
+   },
+   "opponent_crops": 41,
+   "opponent_crop_wood": 68
+  },
+  {
+   "game_id": 896278918,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Kheopsian",
+   "margin": -101,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 88,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 88,
+      "cell": [
+       6,
+       0
+      ],
+      "doubled_score": 100.0,
+      "inferred_resident_score": 50.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 6 0",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 3",
+     "CHOP 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 7 3"
+    ]
+   },
+   "opponent_crops": 42,
+   "opponent_crop_wood": 66
+  },
+  {
+   "game_id": 896278919,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "OccitanieFreelancer",
+   "margin": 52,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 214,
+   "candidate_first_divergence_turn": 31,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 31,
+      "cell": [
+       12,
+       5
+      ],
+      "doubled_score": 742.857142857,
+      "inferred_resident_score": 371.428571429,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 12 5",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 9 4",
+     "MOVE 2 7 6"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 4",
+     "MOVE 2 8 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 7 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 5"
+    ]
+   },
+   "opponent_crops": 30,
+   "opponent_crop_wood": 28
+  },
+  {
+   "game_id": 896278920,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Ra07Ch",
+   "margin": 139,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 29,
+   "candidate_first_divergence_turn": 6,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 6,
+      "cell": [
+       11,
+       6
+      ],
+      "doubled_score": 11980.0,
+      "inferred_resident_score": 5990.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 11 6",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 8 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 8 5"
+    ]
+   },
+   "opponent_crops": 11,
+   "opponent_crop_wood": 8
+  },
+  {
+   "game_id": 896278921,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Regulus136",
+   "margin": 131,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 162,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       9,
+       7
+      ],
+      "doubled_score": 1066.666666667,
+      "inferred_resident_score": 533.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 9 7",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 9 6",
+     "MOVE 2 12 5"
+    ],
+    "candidate_actions": [
+     "MOVE 1 8 5",
+     "MOVE 2 10 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 9 6",
+     "MOVE 2 12 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 8 5",
+     "MOVE 2 10 3"
+    ]
+   },
+   "opponent_crops": 22,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896278922,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "margin": 7,
+   "turns": 160,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 8,
+   "opponent_crop_wood": 8
+  },
+  {
+   "game_id": 896278945,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "DaNinja",
+   "margin": 36,
+   "turns": 163,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 134,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 134,
+      "cell": [
+       9,
+       4
+      ],
+      "doubled_score": 83.333333333,
+      "inferred_resident_score": 41.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 9 4",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 134,
+      "cell": [
+       8,
+       5
+      ],
+      "doubled_score": 285.714285714,
+      "inferred_resident_score": 142.857142857,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 4",
+     "CHOP 2"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 5 4"
+    ]
+   },
+   "opponent_crops": 18,
+   "opponent_crop_wood": 13
+  },
+  {
+   "game_id": 896278960,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "skotz",
+   "margin": 82,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 28,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 28,
+      "cell": [
+       10,
+       2
+      ],
+      "doubled_score": 105.263157895,
+      "inferred_resident_score": 52.631578947,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 2 8 7"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 9 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 9 6"
+    ]
+   },
+   "opponent_crops": 7,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896278980,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Pafin",
+   "margin": 124,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 78,
+   "candidate_first_divergence_turn": 9,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 9,
+      "cell": [
+       7,
+       6
+      ],
+      "doubled_score": 11978.0,
+      "inferred_resident_score": 5989.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 7 6",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 0"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 4"
+    ],
+    "removed_resident_actions": [
+     "HARVEST 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 4"
+    ]
+   },
+   "opponent_crops": 42,
+   "opponent_crop_wood": 40
+  },
+  {
+   "game_id": 896279012,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "FredericBautista",
+   "margin": 2,
+   "turns": 169,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 0,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279034,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "gaha",
+   "margin": 38,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 15,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 15,
+      "cell": [
+       14,
+       1
+      ],
+      "doubled_score": 866.666666667,
+      "inferred_resident_score": 433.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 3",
+     "MOVE 2 12 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 3",
+     "MOVE 2 13 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 12 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 13 2"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279093,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": 1,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 120,
+   "candidate_first_divergence_turn": 12,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 12,
+      "cell": [
+       12,
+       6
+      ],
+      "doubled_score": 866.666666667,
+      "inferred_resident_score": 433.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 12 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 6",
+     "MOVE 2 9 5"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 6",
+     "MOVE 2 9 5"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 6"
+    ]
+   },
+   "opponent_crops": 21,
+   "opponent_crop_wood": 2
+  },
+  {
+   "game_id": 896279117,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": -232,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 13,
+   "opponent_crop_wood": 24
+  },
+  {
+   "game_id": 896279130,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "uta_ccc",
+   "margin": -293,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 110,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 110,
+      "cell": [
+       14,
+       3
+      ],
+      "doubled_score": 235.294117647,
+      "inferred_resident_score": 117.647058824,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 0",
+     "MOVE 2 4 3"
+    ],
+    "candidate_actions": [
+     "HARVEST 0",
+     "MOVE 2 5 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 4 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 5 4"
+    ]
+   },
+   "opponent_crops": 44,
+   "opponent_crop_wood": 116
+  },
+  {
+   "game_id": 896279140,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "bl4sterino",
+   "margin": 38,
+   "turns": 170,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 0,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279152,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "uta_ccc",
+   "margin": -482,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 118,
+   "candidate_first_divergence_turn": 151,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 53,
+   "opponent_crop_wood": 161
+  },
+  {
+   "game_id": 896279157,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "tsukammo",
+   "margin": -18,
+   "turns": 250,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 26,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 26,
+      "cell": [
+       9,
+       8
+      ],
+      "doubled_score": 1252.941176471,
+      "inferred_resident_score": 626.470588235,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 9 8",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 11 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 9 7",
+     "MOVE 3 11 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 9 7"
+    ]
+   },
+   "opponent_crops": 14,
+   "opponent_crop_wood": 19
+  },
+  {
+   "game_id": 896279168,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "margin": 107,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 207,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 207,
+      "cell": [
+       11,
+       2
+      ],
+      "doubled_score": 166.666666667,
+      "inferred_resident_score": 83.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 11 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 20,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 6",
+     "MOVE 2 8 1"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 6",
+     "MOVE 2 9 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 9 2"
+    ]
+   },
+   "opponent_crops": 56,
+   "opponent_crop_wood": 9
+  },
+  {
+   "game_id": 896279176,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "khanh-alice",
+   "margin": 112,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 71,
+   "candidate_first_divergence_turn": 13,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 13,
+      "cell": [
+       9,
+       1
+      ],
+      "doubled_score": 983.333333333,
+      "inferred_resident_score": 491.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 9 1",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 5",
+     "MOVE 2 8 7"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 5",
+     "MOVE 2 9 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 9 8"
+    ]
+   },
+   "opponent_crops": 9,
+   "opponent_crop_wood": 5
+  },
+  {
+   "game_id": 896279188,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "goq",
+   "margin": -55,
+   "turns": 270,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 26,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 26,
+      "cell": [
+       6,
+       1
+      ],
+      "doubled_score": 444.444444444,
+      "inferred_resident_score": 222.222222222,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 6 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 3 1",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 1",
+     "MOVE 2 6 1"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 1 3 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 5 1",
+     "MOVE 2 6 1"
+    ]
+   },
+   "opponent_crops": 29,
+   "opponent_crop_wood": 41
+  },
+  {
+   "game_id": 896279200,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "BoatBuilder",
+   "margin": -173,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 130,
+   "candidate_first_divergence_turn": 28,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 28,
+      "cell": [
+       2,
+       4
+      ],
+      "doubled_score": 1122.222222222,
+      "inferred_resident_score": 561.111111111,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 2 4",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 11 3",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 11 5",
+     "MOVE 2 11 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 1 11 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 11 5",
+     "MOVE 2 11 3"
+    ]
+   },
+   "opponent_crops": 44,
+   "opponent_crop_wood": 89
+  },
+  {
+   "game_id": 896279204,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "DoubtinGiyov",
+   "margin": 4,
+   "turns": 238,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 58,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 58,
+      "cell": [
+       8,
+       1
+      ],
+      "doubled_score": 250.0,
+      "inferred_resident_score": 125.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 8 1",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 12 4",
+     "MOVE 3 6 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 12 4",
+     "MOVE 3 6 1"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 6 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 6 1"
+    ]
+   },
+   "opponent_crops": 26,
+   "opponent_crop_wood": 26
+  },
+  {
+   "game_id": 896279210,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bubaptik",
+   "margin": -75,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 80,
+   "candidate_first_divergence_turn": 13,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 13,
+      "cell": [
+       4,
+       6
+      ],
+      "doubled_score": 222.222222222,
+      "inferred_resident_score": 111.111111111,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 4 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 3 6",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 6",
+     "MOVE 2 4 6"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 1 3 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 5 6",
+     "MOVE 2 4 6"
+    ]
+   },
+   "opponent_crops": 36,
+   "opponent_crop_wood": 47
+  },
+  {
+   "game_id": 896279219,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "margin": 133,
+   "turns": 290,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 48,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 48,
+      "cell": [
+       7,
+       3
+      ],
+      "doubled_score": 1000.0,
+      "inferred_resident_score": 500.0,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 1",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 48,
+      "cell": [
+       8,
+       5
+      ],
+      "doubled_score": 666.666666667,
+      "inferred_resident_score": 333.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 8 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 11 3"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 3 9 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 11 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 9 5"
+    ]
+   },
+   "opponent_crops": 30,
+   "opponent_crop_wood": 25
+  },
+  {
+   "game_id": 896279227,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bondo416",
+   "margin": -197,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 28,
+   "candidate_first_divergence_turn": 29,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 31,
+   "opponent_crop_wood": 42
+  },
+  {
+   "game_id": 896279251,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Ztrk",
+   "margin": 55,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 52,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 52,
+      "cell": [
+       6,
+       7
+      ],
+      "doubled_score": 1081.818181818,
+      "inferred_resident_score": 540.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 6 7",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 17 7",
+     "MOVE 2 16 6"
+    ],
+    "candidate_actions": [
+     "MOVE 1 18 6",
+     "MOVE 2 13 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 17 7",
+     "MOVE 2 16 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 18 6",
+     "MOVE 2 13 5"
+    ]
+   },
+   "opponent_crops": 14,
+   "opponent_crop_wood": 16
+  },
+  {
+   "game_id": 896279266,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "margin": -138,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 78,
+   "candidate_first_divergence_turn": 9,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 9,
+      "cell": [
+       16,
+       4
+      ],
+      "doubled_score": 1135.294117647,
+      "inferred_resident_score": 567.647058824,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 16 4",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 12 5",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 12 5"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 0 12 5"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 12 5"
+    ]
+   },
+   "opponent_crops": 63,
+   "opponent_crop_wood": 79
+  },
+  {
+   "game_id": 896279277,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "margin": 138,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 49,
+   "candidate_first_divergence_turn": 33,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 33,
+      "cell": [
+       10,
+       1
+      ],
+      "doubled_score": 181.818181818,
+      "inferred_resident_score": 90.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 2 10 0"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 10 1"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 10 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 10 1"
+    ]
+   },
+   "opponent_crops": 46,
+   "opponent_crop_wood": 11
+  },
+  {
+   "game_id": 896279286,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "bl4sterino",
+   "margin": 128,
+   "turns": 204,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 46,
+   "candidate_first_divergence_turn": 11,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 11,
+      "cell": [
+       6,
+       5
+      ],
+      "doubled_score": 363.636363636,
+      "inferred_resident_score": 181.818181818,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 6 5",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 8 2",
+     "MOVE 2 9 4"
+    ],
+    "candidate_actions": [
+     "MOVE 1 8 2",
+     "MOVE 2 8 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 9 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 3"
+    ]
+   },
+   "opponent_crops": 4,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279296,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "DoubtinGiyov",
+   "margin": -16,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 32,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 32,
+      "cell": [
+       4,
+       5
+      ],
+      "doubled_score": 363.636363636,
+      "inferred_resident_score": 181.818181818,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 4 4 5",
+      "unit_id": 4,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 13 7",
+     "MOVE 4 12 8"
+    ],
+    "candidate_actions": [
+     "MOVE 1 12 6",
+     "MOVE 4 9 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 13 7",
+     "MOVE 4 12 8"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 12 6",
+     "MOVE 4 9 5"
+    ]
+   },
+   "opponent_crops": 68,
+   "opponent_crop_wood": 56
+  },
+  {
+   "game_id": 896279307,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": -43,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 15,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 15,
+      "cell": [
+       9,
+       0
+      ],
+      "doubled_score": 485.714285714,
+      "inferred_resident_score": 242.857142857,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 9 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 8,
+      "within_fixed_eta": false
+     },
+     {
+      "turn": 15,
+      "cell": [
+       8,
+       1
+      ],
+      "doubled_score": 1150.0,
+      "inferred_resident_score": 575.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 8 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 6",
+     "MOVE 2 7 7"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 5",
+     "MOVE 2 8 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 8 6",
+     "MOVE 2 7 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 9 5",
+     "MOVE 2 8 6"
+    ]
+   },
+   "opponent_crops": 39,
+   "opponent_crop_wood": 62
+  },
+  {
+   "game_id": 896279315,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "skotz",
+   "margin": -152,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 15,
+   "candidate_first_divergence_turn": 48,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 55,
+   "opponent_crop_wood": 82
+  },
+  {
+   "game_id": 896279322,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "XSpace",
+   "margin": 115,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 60,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 60,
+      "cell": [
+       5,
+       0
+      ],
+      "doubled_score": 822.222222222,
+      "inferred_resident_score": 411.111111111,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 5 0",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 5 1",
+     "MOVE 2 8 6"
+    ],
+    "candidate_actions": [
+     "MOVE 1 6 2",
+     "MOVE 2 7 7"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 5 1",
+     "MOVE 2 8 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 6 2",
+     "MOVE 2 7 7"
+    ]
+   },
+   "opponent_crops": 8,
+   "opponent_crop_wood": 2
+  },
+  {
+   "game_id": 896279330,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FredericBautista",
+   "margin": -2,
+   "turns": 209,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 47,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 0,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279347,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "zasmu",
+   "margin": 64,
+   "turns": 162,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       4,
+       6
+      ],
+      "doubled_score": 878.571428571,
+      "inferred_resident_score": 439.285714286,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 4 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 7 4",
+     "MOVE 2 12 4"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 4",
+     "MOVE 2 11 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 12 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 11 5"
+    ]
+   },
+   "opponent_crops": 9,
+   "opponent_crop_wood": 13
+  },
+  {
+   "game_id": 896279364,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FinkPloyd",
+   "margin": 85,
+   "turns": 284,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 56,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 56,
+      "cell": [
+       14,
+       8
+      ],
+      "doubled_score": 200.0,
+      "inferred_resident_score": 100.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 8",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 0",
+     "MOVE 2 10 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 2",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 8 0",
+     "MOVE 2 10 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 8 2",
+     "MOVE 2 8 4"
+    ]
+   },
+   "opponent_crops": 4,
+   "opponent_crop_wood": 4
+  },
+  {
+   "game_id": 896279384,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "DoubtinGiyov",
+   "margin": 8,
+   "turns": 189,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 4,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 4,
+      "cell": [
+       7,
+       2
+      ],
+      "doubled_score": 333.333333333,
+      "inferred_resident_score": 166.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 7 2",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 6 2",
+     "CHOP 2"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 6 2"
+    ]
+   },
+   "opponent_crops": 12,
+   "opponent_crop_wood": 12
+  },
+  {
+   "game_id": 896279390,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "margin": -38,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 181,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 181,
+      "cell": [
+       13,
+       1
+      ],
+      "doubled_score": 52.631578947,
+      "inferred_resident_score": 26.315789474,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 13 1",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 181,
+      "cell": [
+       13,
+       3
+      ],
+      "doubled_score": 375.0,
+      "inferred_resident_score": 187.5,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 13 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 13 4",
+     "MOVE 2 11 5"
+    ],
+    "candidate_actions": [
+     "MOVE 0 14 3",
+     "MOVE 2 11 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 13 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 14 3"
+    ]
+   },
+   "opponent_crops": 27,
+   "opponent_crop_wood": 45
+  },
+  {
+   "game_id": 896279394,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "siman",
+   "margin": 90,
+   "turns": 207,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 58,
+   "candidate_first_divergence_turn": 23,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 23,
+      "cell": [
+       12,
+       9
+      ],
+      "doubled_score": 866.666666667,
+      "inferred_resident_score": 433.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 12 9",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 9 2",
+     "MOVE 2 9 5"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 2",
+     "MOVE 2 8 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 9 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 8"
+    ]
+   },
+   "opponent_crops": 5,
+   "opponent_crop_wood": 2
+  },
+  {
+   "game_id": 896279406,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "uta_ccc",
+   "margin": -547,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 13,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 13,
+      "cell": [
+       16,
+       4
+      ],
+      "doubled_score": 1073.913043478,
+      "inferred_resident_score": 536.956521739,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 16 4",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 15 4",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 15 6",
+     "MOVE 2 12 4"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 0 15 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 15 6",
+     "MOVE 2 12 4"
+    ]
+   },
+   "opponent_crops": 60,
+   "opponent_crop_wood": 165
+  },
+  {
+   "game_id": 896279433,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bondo416",
+   "margin": 29,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 25,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 25,
+      "cell": [
+       7,
+       2
+      ],
+      "doubled_score": 750.0,
+      "inferred_resident_score": 375.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 7 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 7 5",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 5",
+     "MOVE 2 7 2"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 7 2"
+    ]
+   },
+   "opponent_crops": 39,
+   "opponent_crop_wood": 44
+  },
+  {
+   "game_id": 896279486,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "uta_ccc",
+   "margin": 263,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       9,
+       2
+      ],
+      "doubled_score": 1263.636363636,
+      "inferred_resident_score": 631.818181818,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 9 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 9 2",
+     "MOVE 2 6 7"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 4",
+     "MOVE 2 8 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 9 2",
+     "MOVE 2 6 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 9 4",
+     "MOVE 2 8 5"
+    ]
+   },
+   "opponent_crops": 33,
+   "opponent_crop_wood": 2
+  },
+  {
+   "game_id": 896279500,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "goq",
+   "margin": 25,
+   "turns": 223,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 28,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 28,
+      "cell": [
+       14,
+       5
+      ],
+      "doubled_score": 307.692307692,
+      "inferred_resident_score": 153.846153846,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 5",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 7",
+     "MOVE 2 7 7"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 7",
+     "MOVE 2 7 7"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 4"
+    ]
+   },
+   "opponent_crops": 26,
+   "opponent_crop_wood": 25
+  },
+  {
+   "game_id": 896279510,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": -435,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 132,
+   "candidate_first_divergence_turn": 31,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 31,
+      "cell": [
+       15,
+       5
+      ],
+      "doubled_score": 666.666666667,
+      "inferred_resident_score": 333.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 15 5",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 7,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 11 4",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 5",
+     "CHOP 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 11 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 5"
+    ]
+   },
+   "opponent_crops": 38,
+   "opponent_crop_wood": 107
+  },
+  {
+   "game_id": 896279603,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "siman",
+   "margin": -108,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 160,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       8,
+       7
+      ],
+      "doubled_score": 11936.0,
+      "inferred_resident_score": 5968.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 8 7",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 1"
+    ],
+    "candidate_actions": [
+     "MOVE 1 12 7"
+    ],
+    "removed_resident_actions": [
+     "HARVEST 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 12 7"
+    ]
+   },
+   "opponent_crops": 38,
+   "opponent_crop_wood": 54
+  },
+  {
+   "game_id": 896279628,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Astrobytes",
+   "margin": -35,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       5,
+       6
+      ],
+      "doubled_score": 266.666666667,
+      "inferred_resident_score": 133.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 5 6",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 6 2",
+     "MOVE 3 12 4"
+    ],
+    "candidate_actions": [
+     "MOVE 1 6 2",
+     "MOVE 3 9 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 12 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 9 3"
+    ]
+   },
+   "opponent_crops": 46,
+   "opponent_crop_wood": 50
+  },
+  {
+   "game_id": 896279655,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "margin": -49,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 92,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 92,
+      "cell": [
+       8,
+       4
+      ],
+      "doubled_score": 71.428571429,
+      "inferred_resident_score": 35.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 8 4",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 13 2",
+     "MOVE 2 13 8"
+    ],
+    "candidate_actions": [
+     "MOVE 1 12 3",
+     "MOVE 2 13 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 13 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 12 3"
+    ]
+   },
+   "opponent_crops": 26,
+   "opponent_crop_wood": 41
+  },
+  {
+   "game_id": 896279672,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "XSpace",
+   "margin": 19,
+   "turns": 147,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 8,
+   "opponent_crop_wood": 8
+  },
+  {
+   "game_id": 896279681,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "XSpace",
+   "margin": 123,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 17,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 17,
+      "cell": [
+       13,
+       4
+      ],
+      "doubled_score": 915.789473684,
+      "inferred_resident_score": 457.894736842,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 13 4",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 7 5"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 3",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 7 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 9 3",
+     "MOVE 2 8 4"
+    ]
+   },
+   "opponent_crops": 6,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279696,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": 56,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 136,
+   "candidate_first_divergence_turn": 18,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 18,
+      "cell": [
+       12,
+       1
+      ],
+      "doubled_score": 478.571428571,
+      "inferred_resident_score": 239.285714286,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 12 1",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 11,
+      "within_fixed_eta": false
+     },
+     {
+      "turn": 18,
+      "cell": [
+       11,
+       2
+      ],
+      "doubled_score": 1081.818181818,
+      "inferred_resident_score": 540.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 11 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 5 4",
+     "MOVE 2 7 5"
+    ],
+    "candidate_actions": [
+     "MOVE 0 5 4",
+     "MOVE 2 6 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 7 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 6 3"
+    ]
+   },
+   "opponent_crops": 36,
+   "opponent_crop_wood": 41
+  },
+  {
+   "game_id": 896279706,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": -212,
+   "turns": 296,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 105,
+   "candidate_first_divergence_turn": 11,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 11,
+      "cell": [
+       11,
+       4
+      ],
+      "doubled_score": 690.909090909,
+      "inferred_resident_score": 345.454545455,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 11 4",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 5",
+     "MOVE 3 5 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 3",
+     "MOVE 3 4 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 7 5",
+     "MOVE 3 5 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 3",
+     "MOVE 3 4 3"
+    ]
+   },
+   "opponent_crops": 20,
+   "opponent_crop_wood": 47
+  },
+  {
+   "game_id": 896279715,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "putibuzu",
+   "margin": -86,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 40,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 40,
+      "cell": [
+       3,
+       6
+      ],
+      "doubled_score": 266.666666667,
+      "inferred_resident_score": 133.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 3 6",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 6 0",
+     "MOVE 3 14 7"
+    ],
+    "candidate_actions": [
+     "MOVE 1 6 0",
+     "MOVE 3 10 7"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 14 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 10 7"
+    ]
+   },
+   "opponent_crops": 39,
+   "opponent_crop_wood": 61
+  },
+  {
+   "game_id": 896279727,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FredericBautista",
+   "margin": -71,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 46,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 46,
+      "cell": [
+       14,
+       5
+      ],
+      "doubled_score": 133.333333333,
+      "inferred_resident_score": 66.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 5",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 6 8",
+     "MOVE 2 4 4"
+    ],
+    "candidate_actions": [
+     "MOVE 0 6 8",
+     "MOVE 2 7 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 4 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 7 5"
+    ]
+   },
+   "opponent_crops": 17,
+   "opponent_crop_wood": 17
+  },
+  {
+   "game_id": 896279739,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "yamo",
+   "margin": 44,
+   "turns": 252,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 15,
+   "opponent_crop_wood": 15
+  },
+  {
+   "game_id": 896279757,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "FredericBautista",
+   "margin": -6,
+   "turns": 199,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 0,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279769,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "siman",
+   "margin": 194,
+   "turns": 283,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 143,
+   "candidate_first_divergence_turn": 8,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 8,
+      "cell": [
+       8,
+       5
+      ],
+      "doubled_score": 11938.0,
+      "inferred_resident_score": 5969.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 8 5",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 11 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 9 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 11 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 9 2"
+    ]
+   },
+   "opponent_crops": 12,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279791,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Astrobytes",
+   "margin": -71,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 46,
+   "candidate_first_divergence_turn": 9,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 9,
+      "cell": [
+       13,
+       6
+      ],
+      "doubled_score": 521.428571429,
+      "inferred_resident_score": 260.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 13 6",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 6",
+     "CHOP 2"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 6"
+    ]
+   },
+   "opponent_crops": 23,
+   "opponent_crop_wood": 39
+  },
+  {
+   "game_id": 896279809,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "DoubtinGiyov",
+   "margin": -4,
+   "turns": 156,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 107,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 107,
+      "cell": [
+       10,
+       3
+      ],
+      "doubled_score": 133.333333333,
+      "inferred_resident_score": 66.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "PICK 2 APPLE"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 6"
+    ],
+    "removed_resident_actions": [
+     "PICK 2 APPLE"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 6"
+    ]
+   },
+   "opponent_crops": 14,
+   "opponent_crop_wood": 14
+  },
+  {
+   "game_id": 896279811,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": -39,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 14,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 14,
+      "cell": [
+       13,
+       6
+      ],
+      "doubled_score": 1135.294117647,
+      "inferred_resident_score": 567.647058824,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 13 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 2 12 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 13 5",
+     "MOVE 2 11 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0",
+     "MOVE 2 12 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 13 5",
+     "MOVE 2 11 3"
+    ]
+   },
+   "opponent_crops": 30,
+   "opponent_crop_wood": 50
+  },
+  {
+   "game_id": 896279816,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "siman",
+   "margin": 65,
+   "turns": 239,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 55,
+   "candidate_first_divergence_turn": 63,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 3,
+   "opponent_crop_wood": 1
+  },
+  {
+   "game_id": 896279819,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "margin": 17,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 60,
+   "candidate_first_divergence_turn": 24,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 24,
+      "cell": [
+       9,
+       6
+      ],
+      "doubled_score": 980.0,
+      "inferred_resident_score": 490.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 9 6",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 24,
+      "cell": [
+       11,
+       5
+      ],
+      "doubled_score": 1028.571428571,
+      "inferred_resident_score": 514.285714286,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 11 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 3",
+     "MOVE 3 6 6"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 3",
+     "MOVE 3 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 6 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 8 4"
+    ]
+   },
+   "opponent_crops": 82,
+   "opponent_crop_wood": 88
+  },
+  {
+   "game_id": 896279842,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "XSpace",
+   "margin": 92,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 88,
+   "candidate_first_divergence_turn": 13,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 13,
+      "cell": [
+       13,
+       0
+      ],
+      "doubled_score": 850.0,
+      "inferred_resident_score": 425.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 13 0",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 1",
+     "MOVE 2 7 4"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 2",
+     "MOVE 2 7 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 8 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 2"
+    ]
+   },
+   "opponent_crops": 7,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279847,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "gaha",
+   "margin": 226,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 109,
+   "candidate_first_divergence_turn": 17,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 17,
+      "cell": [
+       10,
+       3
+      ],
+      "doubled_score": 1000.0,
+      "inferred_resident_score": 500.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 10 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 10 3"
+    ]
+   },
+   "opponent_crops": 50,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279857,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "bl4sterino",
+   "margin": 81,
+   "turns": 285,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 85,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 85,
+      "cell": [
+       5,
+       5
+      ],
+      "doubled_score": 105.263157895,
+      "inferred_resident_score": 52.631578947,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 1",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 5 6",
+     "MOVE 2 10 7"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 2 10 7"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 5 6"
+    ],
+    "added_candidate_actions": [
+     "CHOP 1"
+    ]
+   },
+   "opponent_crops": 3,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896279863,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bubaptik",
+   "margin": 110,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 19,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 19,
+      "cell": [
+       5,
+       0
+      ],
+      "doubled_score": 986.956521739,
+      "inferred_resident_score": 493.47826087,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 5 0",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 19,
+      "cell": [
+       4,
+       0
+      ],
+      "doubled_score": 850.0,
+      "inferred_resident_score": 425.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 4 0",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 6 4",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 6 4",
+     "MOVE 3 4 0"
+    ],
+    "removed_resident_actions": [
+     "CHOP 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 4 0"
+    ]
+   },
+   "opponent_crops": 9,
+   "opponent_crop_wood": 6
+  },
+  {
+   "game_id": 896279867,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "siman",
+   "margin": -67,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 43,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 43,
+      "cell": [
+       6,
+       0
+      ],
+      "doubled_score": 668.965517241,
+      "inferred_resident_score": 334.482758621,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 6 0",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 43,
+      "cell": [
+       4,
+       2
+      ],
+      "doubled_score": 885.714285714,
+      "inferred_resident_score": 442.857142857,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 4 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 2 7 4"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 2",
+     "MOVE 2 7 4"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 5 2"
+    ]
+   },
+   "opponent_crops": 35,
+   "opponent_crop_wood": 70
+  },
+  {
+   "game_id": 896279870,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": -32,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 36,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 36,
+      "cell": [
+       8,
+       2
+      ],
+      "doubled_score": 173.913043478,
+      "inferred_resident_score": 86.956521739,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 8 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 6 4",
+     "MOVE 2 7 5"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 5",
+     "MOVE 2 6 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 6 4",
+     "MOVE 2 7 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 5",
+     "MOVE 2 6 4"
+    ]
+   },
+   "opponent_crops": 32,
+   "opponent_crop_wood": 9
+  },
+  {
+   "game_id": 896279919,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FredericBautista",
+   "margin": 37,
+   "turns": 296,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 11,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 11,
+      "cell": [
+       11,
+       1
+      ],
+      "doubled_score": 333.333333333,
+      "inferred_resident_score": 166.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 11 1",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 7",
+     "MOVE 3 10 10"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 7",
+     "MOVE 3 10 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 10 10"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 10 6"
+    ]
+   },
+   "opponent_crops": 13,
+   "opponent_crop_wood": 12
+  },
+  {
+   "game_id": 896279939,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "putibuzu",
+   "margin": -42,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 52,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 52,
+      "cell": [
+       8,
+       2
+      ],
+      "doubled_score": 363.636363636,
+      "inferred_resident_score": 181.818181818,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 8 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 2 6 7"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 2 8 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 6 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 5"
+    ]
+   },
+   "opponent_crops": 20,
+   "opponent_crop_wood": 32
+  },
+  {
+   "game_id": 896279951,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "therealbeef",
+   "margin": -4,
+   "turns": 144,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 11,
+   "opponent_crop_wood": 11
+  },
+  {
+   "game_id": 896279958,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Astrobytes",
+   "margin": -177,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 20,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 20,
+      "cell": [
+       13,
+       2
+      ],
+      "doubled_score": 986.956521739,
+      "inferred_resident_score": 493.47826087,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 13 3",
+     "MOVE 2 4 4"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 4 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 13 3"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0"
+    ]
+   },
+   "opponent_crops": 23,
+   "opponent_crop_wood": 62
+  },
+  {
+   "game_id": 896280010,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "tsukammo",
+   "margin": -21,
+   "turns": 293,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 122,
+   "candidate_first_divergence_turn": 45,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 45,
+      "cell": [
+       10,
+       0
+      ],
+      "doubled_score": 705.263157895,
+      "inferred_resident_score": 352.631578947,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 10 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 45,
+      "cell": [
+       12,
+       1
+      ],
+      "doubled_score": 400.0,
+      "inferred_resident_score": 200.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 12 1",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 3",
+     "MOVE 3 10 7"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 3",
+     "MOVE 3 11 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 10 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 11 6"
+    ]
+   },
+   "opponent_crops": 26,
+   "opponent_crop_wood": 35
+  },
+  {
+   "game_id": 896280123,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "zasmu",
+   "margin": -19,
+   "turns": 299,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 101,
+   "candidate_first_divergence_turn": 58,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 58,
+      "cell": [
+       10,
+       6
+      ],
+      "doubled_score": 700.0,
+      "inferred_resident_score": 350.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 9 4"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 10 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 9 4"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 10 5"
+    ]
+   },
+   "opponent_crops": 8,
+   "opponent_crop_wood": 11
+  },
+  {
+   "game_id": 896280231,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": -46,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 61,
+   "candidate_first_divergence_turn": 42,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 42,
+      "cell": [
+       11,
+       7
+      ],
+      "doubled_score": 74.074074074,
+      "inferred_resident_score": 37.037037037,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 11 7",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 42,
+      "cell": [
+       8,
+       6
+      ],
+      "doubled_score": 1361.538461538,
+      "inferred_resident_score": 680.769230769,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 8 6",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 3 6 0"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 6",
+     "MOVE 3 7 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0",
+     "MOVE 3 6 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 9 6",
+     "MOVE 3 7 3"
+    ]
+   },
+   "opponent_crops": 33,
+   "opponent_crop_wood": 50
+  },
+  {
+   "game_id": 896280320,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "siman",
+   "margin": 55,
+   "turns": 218,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 49,
+   "candidate_first_divergence_turn": 9,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 9,
+      "cell": [
+       11,
+       0
+      ],
+      "doubled_score": 733.333333333,
+      "inferred_resident_score": 366.666666667,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 11 0",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 12 3",
+     "MOVE 2 12 7"
+    ],
+    "candidate_actions": [
+     "MOVE 0 13 4",
+     "MOVE 2 12 7"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 12 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 13 4"
+    ]
+   },
+   "opponent_crops": 5,
+   "opponent_crop_wood": 3
+  },
+  {
+   "game_id": 896280359,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "goq",
+   "margin": 16,
+   "turns": 255,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 28,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 28,
+      "cell": [
+       10,
+       8
+      ],
+      "doubled_score": 444.444444444,
+      "inferred_resident_score": 222.222222222,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 10 8",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 3",
+     "MOVE 2 6 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 3",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 6 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 4"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 33
+  },
+  {
+   "game_id": 896280399,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "DoubtinGiyov",
+   "margin": -57,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 33,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 33,
+      "cell": [
+       11,
+       5
+      ],
+      "doubled_score": 100.0,
+      "inferred_resident_score": 50.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 11 5",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 5 6",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 6 5",
+     "CHOP 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 5 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 6 5"
+    ]
+   },
+   "opponent_crops": 22,
+   "opponent_crop_wood": 11
+  },
+  {
+   "game_id": 896280444,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FinkPloyd",
+   "margin": 36,
+   "turns": 279,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 94,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 94,
+      "cell": [
+       10,
+       7
+      ],
+      "doubled_score": 100.0,
+      "inferred_resident_score": 50.0,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 8",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "CHOP 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 8"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0"
+    ]
+   },
+   "opponent_crops": 8,
+   "opponent_crop_wood": 8
+  },
+  {
+   "game_id": 896280512,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "goq",
+   "margin": -72,
+   "turns": 274,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 136,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 136,
+      "cell": [
+       16,
+       8
+      ],
+      "doubled_score": 166.666666667,
+      "inferred_resident_score": 83.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 16 8",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 12 5",
+     "MOVE 2 17 8"
+    ],
+    "candidate_actions": [
+     "MOVE 0 12 5",
+     "MOVE 2 16 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 17 8"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 16 8"
+    ]
+   },
+   "opponent_crops": 29,
+   "opponent_crop_wood": 36
+  },
+  {
+   "game_id": 896280571,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "goq",
+   "margin": -99,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 76,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 76,
+      "cell": [
+       13,
+       1
+      ],
+      "doubled_score": 76.923076923,
+      "inferred_resident_score": 38.461538462,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 13 1",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 2 9 8"
+    ],
+    "candidate_actions": [
+     "MOVE 0 8 1",
+     "MOVE 2 9 8"
+    ],
+    "removed_resident_actions": [
+     "CHOP 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 8 1"
+    ]
+   },
+   "opponent_crops": 34,
+   "opponent_crop_wood": 57
+  },
+  {
+   "game_id": 896280673,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "yamo",
+   "margin": 0,
+   "turns": 149,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 18,
+   "opponent_crop_wood": 18
+  },
+  {
+   "game_id": 896280782,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "tsukammo",
+   "margin": -237,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 78,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 78,
+      "cell": [
+       6,
+       1
+      ],
+      "doubled_score": 166.666666667,
+      "inferred_resident_score": 83.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 6 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 1",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "HARVEST 1",
+     "MOVE 2 6 1"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 6 1"
+    ]
+   },
+   "opponent_crops": 51,
+   "opponent_crop_wood": 79
+  },
+  {
+   "game_id": 896280831,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "zasmu",
+   "margin": 8,
+   "turns": 189,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 81,
+   "candidate_first_divergence_turn": 17,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 17,
+      "cell": [
+       4,
+       5
+      ],
+      "doubled_score": 757.692307692,
+      "inferred_resident_score": 378.846153846,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 4 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 7 4",
+     "MOVE 3 8 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 4",
+     "MOVE 3 7 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 8 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 7 3"
+    ]
+   },
+   "opponent_crops": 16,
+   "opponent_crop_wood": 13
+  },
+  {
+   "game_id": 896280878,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "tsukammo",
+   "margin": -2,
+   "turns": 292,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 4,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 4,
+      "cell": [
+       8,
+       1
+      ],
+      "doubled_score": 1150.0,
+      "inferred_resident_score": 575.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 8 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 5 5",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 5",
+     "MOVE 2 7 6"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 7 6"
+    ]
+   },
+   "opponent_crops": 24,
+   "opponent_crop_wood": 24
+  },
+  {
+   "game_id": 896280966,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "bl4sterino",
+   "margin": 84,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 53,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 53,
+      "cell": [
+       9,
+       5
+      ],
+      "doubled_score": 285.714285714,
+      "inferred_resident_score": 142.857142857,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 9 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 7",
+     "MOVE 3 6 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 7",
+     "MOVE 3 7 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 6 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 7 4"
+    ]
+   },
+   "opponent_crops": 5,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896281022,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "skotz",
+   "margin": -7,
+   "turns": 234,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 21,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 21,
+      "cell": [
+       9,
+       7
+      ],
+      "doubled_score": 461.538461538,
+      "inferred_resident_score": 230.769230769,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 9 7",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 2 5",
+     "MOVE 2 5 0"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 7 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 2 5",
+     "MOVE 2 5 0"
+    ],
+    "added_candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 7 2"
+    ]
+   },
+   "opponent_crops": 24,
+   "opponent_crop_wood": 38
+  },
+  {
+   "game_id": 896281071,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "DoubtinGiyov",
+   "margin": 82,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 21,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 21,
+      "cell": [
+       6,
+       5
+      ],
+      "doubled_score": 166.666666667,
+      "inferred_resident_score": 83.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 6 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 10 3"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 3 8 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 10 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 8 3"
+    ]
+   },
+   "opponent_crops": 17,
+   "opponent_crop_wood": 16
+  },
+  {
+   "game_id": 896281144,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "goq",
+   "margin": 28,
+   "turns": 189,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 15,
+   "opponent_crop_wood": 12
+  },
+  {
+   "game_id": 896281196,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "tsukammo",
+   "margin": 2,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 214,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 214,
+      "cell": [
+       14,
+       4
+      ],
+      "doubled_score": 210.526315789,
+      "inferred_resident_score": 105.263157895,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 14 4",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "DROP 0",
+     "MOVE 3 12 5"
+    ],
+    "candidate_actions": [
+     "DROP 0",
+     "MOVE 3 13 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 12 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 13 4"
+    ]
+   },
+   "opponent_crops": 15,
+   "opponent_crop_wood": 16
+  },
+  {
+   "game_id": 896281272,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "uta_ccc",
+   "margin": 262,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 101,
+   "candidate_first_divergence_turn": 27,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 27,
+      "cell": [
+       10,
+       1
+      ],
+      "doubled_score": 1081.818181818,
+      "inferred_resident_score": 540.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 27,
+      "cell": [
+       9,
+       2
+      ],
+      "doubled_score": 400.0,
+      "inferred_resident_score": 200.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 9 2",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 3 6 5"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 3 8 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 6 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 8 3"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 1
+  },
+  {
+   "game_id": 896281317,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "MSz",
+   "margin": -191,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 89,
+   "candidate_first_divergence_turn": 19,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 19,
+      "cell": [
+       11,
+       8
+      ],
+      "doubled_score": 860.869565217,
+      "inferred_resident_score": 430.434782609,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 11 8",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "DROP 0",
+     "MOVE 2 8 6"
+    ],
+    "candidate_actions": [
+     "DROP 0",
+     "MOVE 2 7 7"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 7 7"
+    ]
+   },
+   "opponent_crops": 19,
+   "opponent_crop_wood": 55
+  },
+  {
+   "game_id": 896281411,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "margin": -34,
+   "turns": 247,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 83,
+   "candidate_first_divergence_turn": 58,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 58,
+      "cell": [
+       2,
+       3
+      ],
+      "doubled_score": 530.0,
+      "inferred_resident_score": 265.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 2 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 11 3",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 12 2",
+     "MOVE 2 2 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 1 11 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 12 2",
+     "MOVE 2 2 3"
+    ]
+   },
+   "opponent_crops": 18,
+   "opponent_crop_wood": 27
+  },
+  {
+   "game_id": 896281456,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "margin": 13,
+   "turns": 242,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 31,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 31,
+      "cell": [
+       12,
+       10
+      ],
+      "doubled_score": 966.666666667,
+      "inferred_resident_score": 483.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 12 10",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 31,
+      "cell": [
+       11,
+       9
+      ],
+      "doubled_score": 181.818181818,
+      "inferred_resident_score": 90.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 11 9",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 11 8",
+     "MOVE 3 12 10"
+    ],
+    "candidate_actions": [
+     "MOVE 0 13 8",
+     "MOVE 3 12 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 11 8",
+     "MOVE 3 12 10"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 13 8",
+     "MOVE 3 12 8"
+    ]
+   },
+   "opponent_crops": 23,
+   "opponent_crop_wood": 31
+  },
+  {
+   "game_id": 896281522,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "uta_ccc",
+   "margin": -227,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 66,
+   "candidate_first_divergence_turn": 40,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 40,
+      "cell": [
+       5,
+       0
+      ],
+      "doubled_score": 400.0,
+      "inferred_resident_score": 200.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 5 0",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 9 5",
+     "MOVE 3 8 5"
+    ],
+    "candidate_actions": [
+     "MOVE 1 9 5",
+     "MOVE 3 6 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 8 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 6 3"
+    ]
+   },
+   "opponent_crops": 56,
+   "opponent_crop_wood": 107
+  },
+  {
+   "game_id": 896281573,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "bl4sterino",
+   "margin": 4,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 61,
+   "candidate_first_divergence_turn": 83,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 5,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896281648,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "margin": 93,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 10,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 10,
+      "cell": [
+       13,
+       3
+      ],
+      "doubled_score": 1025.0,
+      "inferred_resident_score": 512.5,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 13 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 4",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 6",
+     "MOVE 2 9 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 0 10 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 6",
+     "MOVE 2 9 3"
+    ]
+   },
+   "opponent_crops": 43,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896281697,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": 162,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 136,
+   "candidate_first_divergence_turn": 19,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 19,
+      "cell": [
+       14,
+       5
+      ],
+      "doubled_score": 800.0,
+      "inferred_resident_score": 400.0,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 0",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 19,
+      "cell": [
+       13,
+       5
+      ],
+      "doubled_score": 400.0,
+      "inferred_resident_score": 200.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 13 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 3 8 5"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 3 11 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 8 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 11 4"
+    ]
+   },
+   "opponent_crops": 16,
+   "opponent_crop_wood": 4
+  },
+  {
+   "game_id": 896281740,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bubaptik",
+   "margin": -33,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 159,
+   "candidate_first_divergence_turn": 18,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 18,
+      "cell": [
+       7,
+       3
+      ],
+      "doubled_score": 986.956521739,
+      "inferred_resident_score": 493.47826087,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 7 3",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 18,
+      "cell": [
+       6,
+       2
+      ],
+      "doubled_score": 1400.0,
+      "inferred_resident_score": 700.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 6 2",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 9 5",
+     "MOVE 3 7 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 9 5",
+     "MOVE 3 7 1"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 7 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 7 1"
+    ]
+   },
+   "opponent_crops": 35,
+   "opponent_crop_wood": 50
+  },
+  {
+   "game_id": 896281790,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "margin": 104,
+   "turns": 296,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 63,
+   "candidate_first_divergence_turn": 33,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 33,
+      "cell": [
+       7,
+       5
+      ],
+      "doubled_score": 200.0,
+      "inferred_resident_score": 100.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 7 5",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 6 6",
+     "MOVE 3 10 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 5",
+     "MOVE 3 10 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 6 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 7 5"
+    ]
+   },
+   "opponent_crops": 30,
+   "opponent_crop_wood": 25
+  },
+  {
+   "game_id": 896281853,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "gaha",
+   "margin": -259,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 13,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 13,
+      "cell": [
+       5,
+       6
+      ],
+      "doubled_score": 990.909090909,
+      "inferred_resident_score": 495.454545455,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 1",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 4 6",
+     "MOVE 2 9 3"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 2 9 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 4 6"
+    ],
+    "added_candidate_actions": [
+     "CHOP 1"
+    ]
+   },
+   "opponent_crops": 49,
+   "opponent_crop_wood": 86
+  },
+  {
+   "game_id": 896281987,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "margin": 68,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 121,
+   "candidate_first_divergence_turn": 28,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 28,
+      "cell": [
+       9,
+       6
+      ],
+      "doubled_score": 461.538461538,
+      "inferred_resident_score": 230.769230769,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 9 6",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 0",
+     "MOVE 2 5 1"
+    ],
+    "candidate_actions": [
+     "CHOP 0",
+     "MOVE 2 8 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 5 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 8 2"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 30
+  },
+  {
+   "game_id": 896282035,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "tsukammo",
+   "margin": -20,
+   "turns": 258,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 7,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 7,
+      "cell": [
+       9,
+       7
+      ],
+      "doubled_score": 571.428571429,
+      "inferred_resident_score": 285.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 9 7",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 2 8 0"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 2 9 5"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 9 5"
+    ]
+   },
+   "opponent_crops": 14,
+   "opponent_crop_wood": 22
+  },
+  {
+   "game_id": 896282074,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Stounate",
+   "margin": 42,
+   "turns": 243,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 33,
+   "candidate_first_divergence_turn": 19,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 19,
+      "cell": [
+       6,
+       3
+      ],
+      "doubled_score": 307.692307692,
+      "inferred_resident_score": 153.846153846,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 6 3",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 10 1"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 3 9 1"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 10 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 9 1"
+    ]
+   },
+   "opponent_crops": 12,
+   "opponent_crop_wood": 17
+  },
+  {
+   "game_id": 896282139,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": 146,
+   "turns": 251,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 40,
+   "candidate_first_divergence_turn": 8,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 8,
+      "cell": [
+       12,
+       5
+      ],
+      "doubled_score": 11984.0,
+      "inferred_resident_score": 5992.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 12 5",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 10 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 9 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 10 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 9 3"
+    ]
+   },
+   "opponent_crops": 5,
+   "opponent_crop_wood": 3
+  },
+  {
+   "game_id": 896282192,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "putibuzu",
+   "margin": -33,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": null,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 13,
+   "opponent_crop_wood": 24
+  },
+  {
+   "game_id": 896282279,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "putibuzu",
+   "margin": -83,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 125,
+   "candidate_first_divergence_turn": 89,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 89,
+      "cell": [
+       14,
+       4
+      ],
+      "doubled_score": 71.428571429,
+      "inferred_resident_score": 35.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 14 4",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 11 6",
+     "MOVE 2 6 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 12 5",
+     "MOVE 2 6 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 11 6"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 12 5"
+    ]
+   },
+   "opponent_crops": 14,
+   "opponent_crop_wood": 22
+  },
+  {
+   "game_id": 896282312,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Risen",
+   "margin": 110,
+   "turns": 294,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 14,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 14,
+      "cell": [
+       9,
+       6
+      ],
+      "doubled_score": 666.666666667,
+      "inferred_resident_score": 333.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 9 6",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 7",
+     "MOVE 3 10 1"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 7",
+     "MOVE 3 8 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 10 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 8 3"
+    ]
+   },
+   "opponent_crops": 38,
+   "opponent_crop_wood": 45
+  },
+  {
+   "game_id": 896282354,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Astrobytes",
+   "margin": 51,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 101,
+   "candidate_first_divergence_turn": 15,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 15,
+      "cell": [
+       7,
+       0
+      ],
+      "doubled_score": 1060.0,
+      "inferred_resident_score": 530.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 7 0",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 11 7",
+     "MOVE 2 12 5"
+    ],
+    "candidate_actions": [
+     "MOVE 1 11 7",
+     "MOVE 2 11 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 12 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 11 6"
+    ]
+   },
+   "opponent_crops": 31,
+   "opponent_crop_wood": 19
+  },
+  {
+   "game_id": 896282472,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bubaptik",
+   "margin": 70,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 59,
+   "candidate_first_divergence_turn": 11,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 11,
+      "cell": [
+       2,
+       5
+      ],
+      "doubled_score": 322.727272727,
+      "inferred_resident_score": 161.363636364,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 2 5",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 16,
+      "within_fixed_eta": false
+     },
+     {
+      "turn": 11,
+      "cell": [
+       2,
+       4
+      ],
+      "doubled_score": 1011.111111111,
+      "inferred_resident_score": 505.555555556,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 2 4",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 11 1",
+     "MOVE 2 11 5"
+    ],
+    "candidate_actions": [
+     "MOVE 1 11 1",
+     "MOVE 2 10 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 11 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 10 2"
+    ]
+   },
+   "opponent_crops": 13,
+   "opponent_crop_wood": 2
+  },
+  {
+   "game_id": 896282515,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "laconic_pixel",
+   "margin": -253,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 57,
+   "candidate_first_divergence_turn": 71,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 51,
+   "opponent_crop_wood": 104
+  },
+  {
+   "game_id": 896282596,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "yaichi",
+   "margin": -4,
+   "turns": 256,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 137,
+   "candidate_first_divergence_turn": 20,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 20,
+      "cell": [
+       11,
+       5
+      ],
+      "doubled_score": 363.636363636,
+      "inferred_resident_score": 181.818181818,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 11 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 7 4",
+     "MOVE 3 5 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 4",
+     "MOVE 3 6 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 5 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 6 4"
+    ]
+   },
+   "opponent_crops": 21,
+   "opponent_crop_wood": 32
+  },
+  {
+   "game_id": 896282630,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Bubaptik",
+   "margin": 165,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 78,
+   "candidate_first_divergence_turn": 17,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 17,
+      "cell": [
+       12,
+       2
+      ],
+      "doubled_score": 686.956521739,
+      "inferred_resident_score": 343.47826087,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 12 2",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 17,
+      "cell": [
+       12,
+       3
+      ],
+      "doubled_score": 1471.428571429,
+      "inferred_resident_score": 735.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 9 4",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 3",
+     "CHOP 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 9 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 3"
+    ]
+   },
+   "opponent_crops": 47,
+   "opponent_crop_wood": 15
+  },
+  {
+   "game_id": 896282673,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "MSz",
+   "margin": 36,
+   "turns": 243,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 108,
+   "candidate_first_divergence_turn": 27,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 27,
+      "cell": [
+       9,
+       3
+      ],
+      "doubled_score": 742.857142857,
+      "inferred_resident_score": 371.428571429,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 9 3",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 7 1",
+     "DROP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 9 1",
+     "DROP 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 1 7 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 9 1"
+    ]
+   },
+   "opponent_crops": 25,
+   "opponent_crop_wood": 23
+  },
+  {
+   "game_id": 896282749,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "yaichi",
+   "margin": -2,
+   "turns": 274,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 110,
+   "candidate_first_divergence_turn": 21,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 21,
+      "cell": [
+       9,
+       1
+      ],
+      "doubled_score": 571.428571429,
+      "inferred_resident_score": 285.714285714,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 9 1",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 3 3",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 1 3 3",
+     "MOVE 3 9 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 9 3"
+    ]
+   },
+   "opponent_crops": 18,
+   "opponent_crop_wood": 22
+  },
+  {
+   "game_id": 896282829,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "tsukammo",
+   "margin": -106,
+   "turns": 279,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 65,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 65,
+      "cell": [
+       3,
+       3
+      ],
+      "doubled_score": 125.0,
+      "inferred_resident_score": 62.5,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 3 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 5 8",
+     "MOVE 2 8 8"
+    ],
+    "candidate_actions": [
+     "MOVE 1 5 8",
+     "MOVE 2 7 8"
+    ],
+    "removed_resident_actions": [
+     "MOVE 2 8 8"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 7 8"
+    ]
+   },
+   "opponent_crops": 21,
+   "opponent_crop_wood": 22
+  },
+  {
+   "game_id": 896282878,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "tsukammo",
+   "margin": -126,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 10,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 10,
+      "cell": [
+       11,
+       2
+      ],
+      "doubled_score": 11940.0,
+      "inferred_resident_score": 5970.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 11 2",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 0"
+    ],
+    "candidate_actions": [
+     "MOVE 0 11 7"
+    ],
+    "removed_resident_actions": [
+     "HARVEST 0"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 11 7"
+    ]
+   },
+   "opponent_crops": 32,
+   "opponent_crop_wood": 42
+  },
+  {
+   "game_id": 896282931,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "siman",
+   "margin": 95,
+   "turns": 209,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 119,
+   "candidate_first_divergence_turn": 22,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 22,
+      "cell": [
+       5,
+       6
+      ],
+      "doubled_score": 1005.263157895,
+      "inferred_resident_score": 502.631578947,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 5 6",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 4,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "DROP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 6 6",
+     "DROP 2"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 6 6"
+    ]
+   },
+   "opponent_crops": 12,
+   "opponent_crop_wood": 0
+  },
+  {
+   "game_id": 896283025,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "FredericBautista",
+   "margin": -69,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 92,
+   "candidate_first_divergence_turn": 69,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 69,
+      "cell": [
+       10,
+       6
+      ],
+      "doubled_score": 76.923076923,
+      "inferred_resident_score": 38.461538462,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 0 10 6",
+      "unit_id": 0,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 8 5",
+     "DROP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 6",
+     "DROP 3"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 8 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 6"
+    ]
+   },
+   "opponent_crops": 12,
+   "opponent_crop_wood": 11
+  },
+  {
+   "game_id": 896283117,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "Bondo416",
+   "margin": -12,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 82,
+   "candidate_first_divergence_turn": 108,
+   "admissible_first_divergence": false,
+   "first_divergence_explanation": null,
+   "displaced_actions": null,
+   "opponent_crops": 22,
+   "opponent_crop_wood": 13
+  },
+  {
+   "game_id": 896283251,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "viewlagoon",
+   "margin": -445,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 22,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 22,
+      "cell": [
+       11,
+       5
+      ],
+      "doubled_score": 850.0,
+      "inferred_resident_score": 425.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 11 5",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 12 4",
+     "CHOP 3"
+    ],
+    "candidate_actions": [
+     "MOVE 0 12 4",
+     "MOVE 3 11 4"
+    ],
+    "removed_resident_actions": [
+     "CHOP 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 11 4"
+    ]
+   },
+   "opponent_crops": 71,
+   "opponent_crop_wood": 156
+  },
+  {
+   "game_id": 896283328,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "putibuzu",
+   "margin": -143,
+   "turns": 299,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 98,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 98,
+      "cell": [
+       3,
+       3
+      ],
+      "doubled_score": 250.0,
+      "inferred_resident_score": 125.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 3 3",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 1,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 3,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 4 3",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 4 3",
+     "MOVE 2 3 3"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2"
+    ],
+    "added_candidate_actions": [
+     "MOVE 2 3 3"
+    ]
+   },
+   "opponent_crops": 41,
+   "opponent_crop_wood": 60
+  },
+  {
+   "game_id": 896283382,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "gaha",
+   "margin": -521,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 56,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 56,
+      "cell": [
+       14,
+       2
+      ],
+      "doubled_score": 592.857142857,
+      "inferred_resident_score": 296.428571429,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 14 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 6,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 11 5",
+     "MOVE 2 8 4"
+    ],
+    "candidate_actions": [
+     "MOVE 0 10 4",
+     "MOVE 2 8 4"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 11 5"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 10 4"
+    ]
+   },
+   "opponent_crops": 61,
+   "opponent_crop_wood": 169
+  },
+  {
+   "game_id": 896283481,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "goq",
+   "margin": 24,
+   "turns": 283,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 29,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 29,
+      "cell": [
+       4,
+       1
+      ],
+      "doubled_score": 1207.692307692,
+      "inferred_resident_score": 603.846153846,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 4 1",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 1 2 3",
+     "CHOP 2"
+    ],
+    "candidate_actions": [
+     "MOVE 1 1 4",
+     "MOVE 2 12 4"
+    ],
+    "removed_resident_actions": [
+     "CHOP 2",
+     "MOVE 1 2 3"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 1 4",
+     "MOVE 2 12 4"
+    ]
+   },
+   "opponent_crops": 25,
+   "opponent_crop_wood": 27
+  },
+  {
+   "game_id": 896283516,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "viewlagoon",
+   "margin": 95,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 4,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 4,
+      "cell": [
+       8,
+       5
+      ],
+      "doubled_score": 11936.0,
+      "inferred_resident_score": 5968.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 1 8 5",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 2,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 1,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "HARVEST 1"
+    ],
+    "candidate_actions": [
+     "MOVE 1 7 5"
+    ],
+    "removed_resident_actions": [
+     "HARVEST 1"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 7 5"
+    ]
+   },
+   "opponent_crops": 67,
+   "opponent_crop_wood": 54
+  },
+  {
+   "game_id": 896283573,
+   "agent_id": 6560240,
+   "seat": 0,
+   "opponent": "Astrobytes",
+   "margin": -101,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": false,
+   "resident_first_mismatch_turn": 81,
+   "candidate_first_divergence_turn": 5,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 5,
+      "cell": [
+       15,
+       2
+      ],
+      "doubled_score": 1066.666666667,
+      "inferred_resident_score": 533.333333333,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 2 15 2",
+      "unit_id": 2,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 3,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 2,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "MOVE 0 6 4",
+     "MOVE 2 10 4"
+    ],
+    "candidate_actions": [
+     "MOVE 0 7 5",
+     "MOVE 2 10 2"
+    ],
+    "removed_resident_actions": [
+     "MOVE 0 6 4",
+     "MOVE 2 10 4"
+    ],
+    "added_candidate_actions": [
+     "MOVE 0 7 5",
+     "MOVE 2 10 2"
+    ]
+   },
+   "opponent_crops": 47,
+   "opponent_crop_wood": 59
+  },
+  {
+   "game_id": 896283593,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "MSz",
+   "margin": 15,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 106,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 106,
+      "cell": [
+       7,
+       5
+      ],
+      "doubled_score": 181.818181818,
+      "inferred_resident_score": 90.909090909,
+      "score_is_exactly_doubled": true,
+      "command": "CHOP 1",
+      "unit_id": 1,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 0,
+      "within_fixed_eta": true
+     },
+     {
+      "turn": 106,
+      "cell": [
+       6,
+       6
+      ],
+      "doubled_score": 200.0,
+      "inferred_resident_score": 100.0,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 6 6",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 4,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 7,
+    "explained": true,
+    "explained_events": 2
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 9 8"
+    ],
+    "candidate_actions": [
+     "CHOP 1",
+     "MOVE 3 9 6"
+    ],
+    "removed_resident_actions": [
+     "MOVE 3 9 8"
+    ],
+    "added_candidate_actions": [
+     "MOVE 3 9 6"
+    ]
+   },
+   "opponent_crops": 28,
+   "opponent_crop_wood": 1
+  },
+  {
+   "game_id": 896283623,
+   "agent_id": 6560240,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "margin": -40,
+   "turns": 300,
+   "unknown_diff_updates": 0,
+   "resident_full_stream_exact": true,
+   "resident_first_mismatch_turn": null,
+   "candidate_first_divergence_turn": 33,
+   "admissible_first_divergence": true,
+   "first_divergence_explanation": {
+    "events": [
+     {
+      "turn": 33,
+      "cell": [
+       8,
+       2
+      ],
+      "doubled_score": 907.692307692,
+      "inferred_resident_score": 453.846153846,
+      "score_is_exactly_doubled": true,
+      "command": "MOVE 3 8 2",
+      "unit_id": 3,
+      "active_attributed_opponent_crop": true,
+      "current_eta": 5,
+      "within_fixed_eta": true
+     }
+    ],
+    "active_opponent_crops": 5,
+    "explained": true,
+    "explained_events": 1
+   },
+   "displaced_actions": {
+    "resident_actions": [
+     "CHOP 1",
+     "MOVE 3 15 7"
+    ],
+    "candidate_actions": [
+     "MOVE 1 8 3",
+     "MOVE 3 11 7"
+    ],
+    "removed_resident_actions": [
+     "CHOP 1",
+     "MOVE 3 15 7"
+    ],
+    "added_candidate_actions": [
+     "MOVE 1 8 3",
+     "MOVE 3 11 7"
+    ]
+   },
+   "opponent_crops": 39,
+   "opponent_crop_wood": 55
+  }
+ ],
+ "decision": "freeze a controlled arena protocol"
+}

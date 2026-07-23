@@ -1,0 +1,196 @@
+{
+  "captured": 5760,
+  "decisions": 272820,
+  "decisions_per_second": 12409.954170048428,
+  "dtype": "uint8",
+  "elapsed_seconds": 21.983965151011944,
+  "exporter": "cgauto/d18_resident_residual_observation_export.py",
+  "exporter_sha256": "ae20ba05b7112d8d921eb151a2f1625b577ff1e9b5437c6882a5010bf0a74d6b",
+  "labels": "data/analysis/live-agent-6553250/d17-resident-residual-mc-validation-scenarios384000-384479.tsv",
+  "labels_sha256": "f502253f1e72671ca9cc8dbd88b62d3ab28b09e480212e2b6ebfc342a9d52588",
+  "output": "data/analysis/live-agent-6553250/d18-resident-residual-observations-opened-validation384000-384479.npy",
+  "output_sha256": "b5162947d924f36bea5e37b27e2edf854045dca39ca4e16dd12b6d136a90494e",
+  "rows": 5760,
+  "samples_per_scenario": 12,
+  "scenario_start": 384000,
+  "scenario_stop_exclusive": 384480,
+  "scenarios": 480,
+  "schema": 1,
+  "shape": [
+    5760,
+    137,
+    11,
+    22
+  ],
+  "worker_reports": [
+    {
+      "captured": 720,
+      "decisions": 35154,
+      "decisions_per_second": 1690.622121178907,
+      "dtype": "uint8",
+      "elapsed_seconds": 20.793528938025702,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part0.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384000,
+      "scenario_stop_exclusive": 384060,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 33540,
+      "decisions_per_second": 1743.1559464658033,
+      "dtype": "uint8",
+      "elapsed_seconds": 19.24096353398636,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part1.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384060,
+      "scenario_stop_exclusive": 384120,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 34068,
+      "decisions_per_second": 1962.5276925634548,
+      "dtype": "uint8",
+      "elapsed_seconds": 17.359245491970796,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part2.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384120,
+      "scenario_stop_exclusive": 384180,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 35604,
+      "decisions_per_second": 1725.9402919390097,
+      "dtype": "uint8",
+      "elapsed_seconds": 20.62875533197075,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part3.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384180,
+      "scenario_stop_exclusive": 384240,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 34308,
+      "decisions_per_second": 1586.631211606179,
+      "dtype": "uint8",
+      "elapsed_seconds": 21.62317225895822,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part4.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384240,
+      "scenario_stop_exclusive": 384300,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 34176,
+      "decisions_per_second": 1612.8808919230248,
+      "dtype": "uint8",
+      "elapsed_seconds": 21.189413409971166,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part5.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384300,
+      "scenario_stop_exclusive": 384360,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 33678,
+      "decisions_per_second": 2157.3131184693257,
+      "dtype": "uint8",
+      "elapsed_seconds": 15.611085711978376,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part6.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384360,
+      "scenario_stop_exclusive": 384420,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    },
+    {
+      "captured": 720,
+      "decisions": 32292,
+      "decisions_per_second": 2048.547864408027,
+      "dtype": "uint8",
+      "elapsed_seconds": 15.76336123800138,
+      "output": "data/analysis/live-agent-6553250/.d18-resident-residual-observations-opened-validation384000-384479.npy.part7.npy",
+      "output_sha256": null,
+      "rows": 720,
+      "samples_per_scenario": 12,
+      "scenario_start": 384420,
+      "scenario_stop_exclusive": 384480,
+      "scenarios": 60,
+      "schema": 1,
+      "shape": [
+        720,
+        137,
+        11,
+        22
+      ]
+    }
+  ],
+  "workers": 8
+}

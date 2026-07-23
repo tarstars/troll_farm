@@ -1,0 +1,166 @@
+{
+  "design": {
+    "candidate_cells": 192,
+    "complete": true,
+    "games": 384,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident"
+    ],
+    "policies": [
+      "resident",
+      "native_second_idle_only"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "seeds": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "effect": {
+    "cell_margin_delta": {
+      "ci95_normal": [
+        -0.24772245856770037,
+        0.060222458567700365
+      ],
+      "losses": 6,
+      "maximum": 4,
+      "mean": -0.09375,
+      "median": 0.0,
+      "minimum": -12,
+      "n": 192,
+      "standard_deviation": 1.0885229436961261,
+      "standard_error": 0.07855737682025529,
+      "ties": 184,
+      "wins": 2,
+      "worst_decile_mean": -1.3
+    },
+    "cell_wood_delta": {
+      "ci95_normal": [
+        -0.0590151322342046,
+        0.01734846556753793
+      ],
+      "losses": 4,
+      "maximum": 1,
+      "mean": -0.020833333333333332,
+      "median": 0.0,
+      "minimum": -3,
+      "n": 192,
+      "standard_deviation": 0.2699298596762716,
+      "standard_error": 0.019480509643301665,
+      "ties": 186,
+      "wins": 2,
+      "worst_decile_mean": -0.3
+    },
+    "changed_cells": 8,
+    "changed_maps": [
+      10,
+      11,
+      14,
+      18,
+      19,
+      21,
+      22
+    ],
+    "changed_opponents": [
+      "gold_adaptive",
+      "legend_balanced",
+      "norx_native_three",
+      "resident"
+    ],
+    "largest_positive_map_share": 1.0,
+    "map_balanced_margin_delta": {
+      "ci95_normal": [
+        -0.2569982417238419,
+        0.06949824172384192
+      ],
+      "losses": 6,
+      "maximum": 0.6666666666666666,
+      "mean": -0.09375,
+      "median": 0.0,
+      "minimum": -1,
+      "n": 16,
+      "standard_deviation": 0.3331596769874325,
+      "standard_error": 0.08328991924685812,
+      "ties": 9,
+      "wins": 1,
+      "worst_decile_mean": -0.7083333333333334
+    },
+    "map_mean_deltas": {
+      "10": -0.08333333333333333,
+      "11": -0.25,
+      "12": 0,
+      "13": 0,
+      "14": -0.3333333333333333,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": -0.4166666666666667,
+      "19": 0.6666666666666666,
+      "20": 0,
+      "21": -0.08333333333333333,
+      "22": -1,
+      "23": 0,
+      "8": 0,
+      "9": 0
+    },
+    "negative_changed_cells": 6,
+    "opponent_mean_margin_deltas": {
+      "compact_gold": 0,
+      "gold_adaptive": -0.03125,
+      "legend_balanced": 0.125,
+      "mybot": 0,
+      "norx_native_three": 0.09375,
+      "resident": -0.75
+    },
+    "override_rate": 0.011547655768044417,
+    "overrides": 1198,
+    "positive_changed_cells": 2,
+    "worker_count_matches": 192,
+    "worst_opponent_mean_margin_delta": -0.75
+  },
+  "readiness": {
+    "authorization": "passing authorizes offline one-intervention labeling only; it does not authorize candidate construction, submission, or Arena activity",
+    "gates": {
+      "at_least_20_changed_cells": false,
+      "both_positive_and_negative_changed_cells": true,
+      "changed_against_at_least_3_opponents": true,
+      "changed_on_at_least_4_maps": true,
+      "complete_384_games": true,
+      "largest_positive_map_share_at_most_60_percent": false,
+      "map_mean_delta_positive": false,
+      "resident_worker_count_retained_192_of_192": true,
+      "worst_opponent_mean_at_least_minus2": true
+    },
+    "ready_for_counterfactual_labeling": false
+  },
+  "schema": 1,
+  "scope": "D12 resident-idle residual dataset-readiness replication on reused development seeds; not a candidate or Arena gate",
+  "source": {
+    "analyzer": "cgauto/d12_resident_idle_readiness.py",
+    "analyzer_sha256": "8acb5c4a6bf00c9dd43118197c1cb6830a8f51b491e466d938bf60627c2037a4",
+    "rows": "data/analysis/live-agent-6553250/d12-resident-idle-residual-readiness-seeds8-23.tsv",
+    "rows_sha256": "0fc28ce0db701db7cf79f90c68de9166e2c56b8d84cbacf73d199ef67b2fb5c0"
+  }
+}

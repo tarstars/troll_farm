@@ -1,0 +1,64 @@
+{
+  "decision": "authorize_frozen_multi_shard_teacher_corpus",
+  "gates": {
+    "active_collection_at_most_240_seconds": true,
+    "arm_bytes_exact": true,
+    "baseline_bytes_exact": true,
+    "exactly_16_baseline_rows": true,
+    "exactly_2232_arm_rows": true,
+    "operation_completed": true
+  },
+  "generated": {
+    "arms": {
+      "bytes": 12705141,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d132a-q6-teacher-parity/generated/arms.tsv",
+      "rows": 2232,
+      "sha256": "5047bebd4c68f6625ec688e4bc7cc50f5129556185a4cda95d58e6999ee43533"
+    },
+    "baselines": {
+      "bytes": 3963,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d132a-q6-teacher-parity/generated/baselines.tsv",
+      "rows": 16,
+      "sha256": "1e570ef934ee2e80201b3d10b0f6c938d08607f5e1de1589cb89089c3f1cccd4"
+    }
+  },
+  "lock": {
+    "manifest_sha256": "3973663789f87b2798373776c769312ce58d76ffa6061d0b7958f7ba3da3d403",
+    "mismatches": {},
+    "pass": true
+  },
+  "mapper_metadata": {
+    "arm_lines": 2233,
+    "baseline_lines": 17,
+    "collector_stderr": "saved 16 D112 baselines and 2232 exact arms in 112.588s total / 112.434s collection (19.824 arms/s end-to-end)",
+    "elapsed_seconds": 112.59425713121891,
+    "threads": 16
+  },
+  "operation": {
+    "operation_id": "95ab008a-17a0e104-42e03e8-6554149d",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 2251
+  },
+  "pass": true,
+  "protocol": "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-protocol-2026-07-22.md",
+  "reference": {
+    "arms": {
+      "bytes": 12705141,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d132a-q6-teacher-parity/reference/arms.tsv",
+      "rows": 2232,
+      "sha256": "5047bebd4c68f6625ec688e4bc7cc50f5129556185a4cda95d58e6999ee43533"
+    },
+    "baselines": {
+      "bytes": 3963,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d132a-q6-teacher-parity/reference/baselines.tsv",
+      "rows": 16,
+      "sha256": "1e570ef934ee2e80201b3d10b0f6c938d08607f5e1de1589cb89089c3f1cccd4"
+    }
+  },
+  "schema": "troll-farm-d132a-yt-q6-teacher-parity-v1"
+}

@@ -1,0 +1,440 @@
+{
+  "audit": {
+    "endpoint_accounting_failures": 0,
+    "incomplete_arm_sets": 0,
+    "latency_rows_per_repeat": 3072,
+    "mechanics_numeric_or_fallback_failures": 0,
+    "missing_truth_arms": 0,
+    "root_join_failures": 0,
+    "rooted_tasks": 449,
+    "signal_rows_per_repeat": 12288,
+    "tasks": 512,
+    "unavailable_parity_failures": 0
+  },
+  "decision": "reject_close_direct_online_threatened_response_monte_carlo",
+  "horizons": {
+    "1": {
+      "latency": {
+        "ideal_parallel_maximum_us": 6022,
+        "ideal_parallel_median_us": 929,
+        "ideal_parallel_p95_us": 3872,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 8622,
+        "serial_median_us": 1782,
+        "serial_p95_us": 6159
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": true,
+        "ideal_parallel_p95_at_most_35ms": true
+      },
+      "latency_pass": true,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 24,
+        "endpoint_turn_spread_mean": 0.775390625,
+        "mean_opponent_score_delta": -0.08203125,
+        "mean_own_score_delta": -0.8203125,
+        "mean_terminal_margin_gain": -0.73828125,
+        "nonnegative_opponent_families": 4,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": -2.03125,
+          "gold_adaptive": 1.453125,
+          "legend_balanced": 0.828125,
+          "mybot": -3.34375,
+          "norx_native_three": -2.0,
+          "resident": 0.359375,
+          "script_boss": 0.28125,
+          "silver_boss": -1.453125
+        },
+        "oracle_capture": -0.06568201563857515,
+        "rooted_intervention_rate": 0.22494432071269488,
+        "rooted_regression_rate": 0.11804008908685969,
+        "rooted_strict_improvement_rate": 0.10022271714922049,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 411,
+          "fell": 79,
+          "harvest": 22
+        },
+        "semantic_arms_selected_at_least_eight": 2,
+        "tasks": 512,
+        "worker_three_degradation": 0.001953125,
+        "worker_three_rate": 0.92578125,
+        "worst_opponent_family_mean": -3.34375
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "regression_at_most_25_percent": true,
+        "six_nonnegative_families_and_worst_at_least_minus_2": false,
+        "strict_improvement_at_least_30_percent": false,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    },
+    "16": {
+      "latency": {
+        "ideal_parallel_maximum_us": 77496,
+        "ideal_parallel_median_us": 15270,
+        "ideal_parallel_p95_us": 33019,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 133700,
+        "serial_median_us": 34791,
+        "serial_p95_us": 110359
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": false,
+        "ideal_parallel_p95_at_most_35ms": true
+      },
+      "latency_pass": false,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 23,
+        "endpoint_turn_spread_mean": 4.5859375,
+        "mean_opponent_score_delta": -1.1953125,
+        "mean_own_score_delta": -0.556640625,
+        "mean_terminal_margin_gain": 0.638671875,
+        "nonnegative_opponent_families": 7,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": 2.578125,
+          "gold_adaptive": 0.5,
+          "legend_balanced": 1.484375,
+          "mybot": 0.875,
+          "norx_native_three": 0.0,
+          "resident": -1.875,
+          "script_boss": 0.828125,
+          "silver_boss": 0.71875
+        },
+        "oracle_capture": 0.05682015638575152,
+        "rooted_intervention_rate": 0.6347438752783965,
+        "rooted_regression_rate": 0.2828507795100223,
+        "rooted_strict_improvement_rate": 0.3429844097995546,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 227,
+          "fell": 247,
+          "harvest": 26,
+          "renew": 12
+        },
+        "semantic_arms_selected_at_least_eight": 3,
+        "tasks": 512,
+        "worker_three_degradation": 0.001953125,
+        "worker_three_rate": 0.92578125,
+        "worst_opponent_family_mean": -1.875
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "regression_at_most_25_percent": false,
+        "six_nonnegative_families_and_worst_at_least_minus_2": true,
+        "strict_improvement_at_least_30_percent": true,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    },
+    "2": {
+      "latency": {
+        "ideal_parallel_maximum_us": 10814,
+        "ideal_parallel_median_us": 1778,
+        "ideal_parallel_p95_us": 5903,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 22540,
+        "serial_median_us": 4020,
+        "serial_p95_us": 12986
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": true,
+        "ideal_parallel_p95_at_most_35ms": true
+      },
+      "latency_pass": true,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 24,
+        "endpoint_turn_spread_mean": 0.876953125,
+        "mean_opponent_score_delta": 0.009765625,
+        "mean_own_score_delta": -1.158203125,
+        "mean_terminal_margin_gain": -1.16796875,
+        "nonnegative_opponent_families": 3,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": -1.59375,
+          "gold_adaptive": 1.078125,
+          "legend_balanced": 0.28125,
+          "mybot": -3.453125,
+          "norx_native_three": -2.3125,
+          "resident": 0.34375,
+          "script_boss": -0.671875,
+          "silver_boss": -3.015625
+        },
+        "oracle_capture": -0.10390964378801043,
+        "rooted_intervention_rate": 0.2650334075723831,
+        "rooted_regression_rate": 0.1447661469933185,
+        "rooted_strict_improvement_rate": 0.11358574610244988,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 393,
+          "fell": 93,
+          "harvest": 25,
+          "renew": 1
+        },
+        "semantic_arms_selected_at_least_eight": 2,
+        "tasks": 512,
+        "worker_three_degradation": 0.001953125,
+        "worker_three_rate": 0.92578125,
+        "worst_opponent_family_mean": -3.453125
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": false,
+        "regression_at_most_25_percent": true,
+        "six_nonnegative_families_and_worst_at_least_minus_2": false,
+        "strict_improvement_at_least_30_percent": false,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    },
+    "32": {
+      "latency": {
+        "ideal_parallel_maximum_us": 133114,
+        "ideal_parallel_median_us": 31129,
+        "ideal_parallel_p95_us": 64840,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 273314,
+        "serial_median_us": 70420,
+        "serial_p95_us": 210166
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": false,
+        "ideal_parallel_p95_at_most_35ms": false
+      },
+      "latency_pass": false,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 38,
+        "endpoint_turn_spread_mean": 5.80078125,
+        "mean_opponent_score_delta": -1.611328125,
+        "mean_own_score_delta": 1.548828125,
+        "mean_terminal_margin_gain": 3.16015625,
+        "nonnegative_opponent_families": 7,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": 5.703125,
+          "gold_adaptive": 3.328125,
+          "legend_balanced": 7.09375,
+          "mybot": 1.921875,
+          "norx_native_three": 2.25,
+          "resident": -0.359375,
+          "script_boss": 1.328125,
+          "silver_boss": 4.015625
+        },
+        "oracle_capture": 0.28114682884448305,
+        "rooted_intervention_rate": 0.5723830734966593,
+        "rooted_regression_rate": 0.22271714922049,
+        "rooted_strict_improvement_rate": 0.3429844097995546,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 255,
+          "fell": 217,
+          "harvest": 24,
+          "renew": 16
+        },
+        "semantic_arms_selected_at_least_eight": 3,
+        "tasks": 512,
+        "worker_three_degradation": 0.001953125,
+        "worker_three_rate": 0.92578125,
+        "worst_opponent_family_mean": -0.359375
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "regression_at_most_25_percent": true,
+        "six_nonnegative_families_and_worst_at_least_minus_2": true,
+        "strict_improvement_at_least_30_percent": true,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    },
+    "4": {
+      "latency": {
+        "ideal_parallel_maximum_us": 19545,
+        "ideal_parallel_median_us": 3953,
+        "ideal_parallel_p95_us": 9477,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 36938,
+        "serial_median_us": 8480,
+        "serial_p95_us": 24223
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": true,
+        "ideal_parallel_p95_at_most_35ms": true
+      },
+      "latency_pass": true,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 25,
+        "endpoint_turn_spread_mean": 2.162109375,
+        "mean_opponent_score_delta": -0.0078125,
+        "mean_own_score_delta": -1.27734375,
+        "mean_terminal_margin_gain": -1.26953125,
+        "nonnegative_opponent_families": 2,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": -4.609375,
+          "gold_adaptive": 0.578125,
+          "legend_balanced": -0.203125,
+          "mybot": -1.015625,
+          "norx_native_three": -1.984375,
+          "resident": -3.609375,
+          "script_boss": -1.671875,
+          "silver_boss": 2.359375
+        },
+        "oracle_capture": -0.11294526498696786,
+        "rooted_intervention_rate": 0.49665924276169265,
+        "rooted_regression_rate": 0.24276169265033407,
+        "rooted_strict_improvement_rate": 0.24498886414253898,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 289,
+          "fell": 180,
+          "harvest": 38,
+          "renew": 5
+        },
+        "semantic_arms_selected_at_least_eight": 2,
+        "tasks": 512,
+        "worker_three_degradation": 0.00390625,
+        "worker_three_rate": 0.923828125,
+        "worst_opponent_family_mean": -4.609375
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "regression_at_most_25_percent": true,
+        "six_nonnegative_families_and_worst_at_least_minus_2": false,
+        "strict_improvement_at_least_30_percent": false,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    },
+    "8": {
+      "latency": {
+        "ideal_parallel_maximum_us": 37318,
+        "ideal_parallel_median_us": 7814,
+        "ideal_parallel_p95_us": 17649,
+        "rooted_tasks": 113,
+        "serial_maximum_us": 60675,
+        "serial_median_us": 17066,
+        "serial_p95_us": 54942
+      },
+      "latency_gates": {
+        "ideal_parallel_maximum_at_most_45ms": true,
+        "ideal_parallel_p95_at_most_35ms": true
+      },
+      "latency_pass": true,
+      "pass": false,
+      "value": {
+        "control_worker_three_rate": 0.927734375,
+        "crop_rate": 1.0,
+        "endpoint_turn_spread_maximum": 27,
+        "endpoint_turn_spread_mean": 3.330078125,
+        "mean_opponent_score_delta": -1.197265625,
+        "mean_own_score_delta": -1.2734375,
+        "mean_terminal_margin_gain": -0.076171875,
+        "nonnegative_opponent_families": 4,
+        "opponent_family_mean_margin_gains": {
+          "compact_gold": 1.265625,
+          "gold_adaptive": 4.03125,
+          "legend_balanced": 3.421875,
+          "mybot": -1.1875,
+          "norx_native_three": -2.84375,
+          "resident": -3.078125,
+          "script_boss": 1.15625,
+          "silver_boss": -3.375
+        },
+        "oracle_capture": -0.0067767158992180715,
+        "rooted_intervention_rate": 0.6057906458797327,
+        "rooted_regression_rate": 0.2828507795100223,
+        "rooted_strict_improvement_rate": 0.311804008908686,
+        "rooted_tasks": 449,
+        "selected_arm_counts": {
+          "control": 240,
+          "fell": 235,
+          "harvest": 29,
+          "renew": 8
+        },
+        "semantic_arms_selected_at_least_eight": 3,
+        "tasks": 512,
+        "worker_three_degradation": 0.00390625,
+        "worker_three_rate": 0.923828125,
+        "worst_opponent_family_mean": -3.375
+      },
+      "value_gates": {
+        "crop_creation_100_percent": true,
+        "intervention_rate_10_to_70_percent": true,
+        "mean_gain_at_least_half_d82_oracle": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "regression_at_most_25_percent": false,
+        "six_nonnegative_families_and_worst_at_least_minus_2": false,
+        "strict_improvement_at_least_30_percent": true,
+        "two_semantic_arms_selected_at_least_eight": true,
+        "worker_three_degradation_at_most_5_points": true
+      },
+      "value_pass": false
+    }
+  },
+  "inputs": {
+    "d82_truth": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d82a-threatened-own-crop-rollout-a-9914000-9914031.tsv",
+    "d82_truth_sha256": "a2d9e12d12b550398f1b84946daccdf01da379dd9155083969ed22ca5bf1438b",
+    "latency_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d84a-truncated-counterfactual-latency-a-9914000-9914007.tsv",
+    "latency_a_sha256": "1dd61126a07789ab5371f48afe926950100febb29291c496a0fe94951a8dc1c1",
+    "latency_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d84a-truncated-counterfactual-latency-b-9914000-9914007.tsv",
+    "latency_b_sha256": "bdf774adc0e89865d9d667e5c3f0783f7203d39200e77f30752c89da62a21f63",
+    "runner": "/home/tarstars/prj/troll_farm/rust/src/bin/d84_truncated_counterfactual.rs",
+    "runner_sha256": "54a0b5212cdf1ccc69927d5c4f3b03484f5f0a8017e3248222c8db26a781ee87",
+    "signal_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d84a-truncated-counterfactual-signal-a-9914000-9914031.tsv",
+    "signal_a_sha256": "c1064164e468205fb28837825654404634783d427a3be24552815f60ffda8fcc",
+    "signal_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d84a-truncated-counterfactual-signal-b-9914000-9914031.tsv",
+    "signal_b_sha256": "8a44d97f79405a21b58bebeaee4af1d8e65c063eb4284e2ce0dd881cc97eb1ed"
+  },
+  "integrity_gates": {
+    "complete_arm_sets": true,
+    "complete_latency_4x128x6_repeats": true,
+    "complete_signal_4x512x6_repeats": true,
+    "exact_d82_root_and_arm_join": true,
+    "latency_structural_repeat_exact": true,
+    "latency_structure_matches_signal_subset": true,
+    "signal_structural_repeat_exact": true,
+    "unavailable_arms_match_control": true,
+    "unique_complete_keys": true,
+    "zero_endpoint_accounting_failures": true,
+    "zero_mechanics_numeric_or_fallback_failures": true
+  },
+  "integrity_pass": true,
+  "pass": false,
+  "passing_horizons": [],
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d84a-truncated-counterfactual-feasibility-protocol-2026-07-21.md",
+  "protocol_sha256": "13413dbff9fa4cbf6358ae0b0e6aaa9570935fe39311cf37533fb4b0f7de8c58",
+  "scope": "consumed-map actual-opponent optimistic truncated-lookahead feasibility only; no proxy, controller, candidate, sealed map, or platform action",
+  "shortest_passing_horizon": null
+}

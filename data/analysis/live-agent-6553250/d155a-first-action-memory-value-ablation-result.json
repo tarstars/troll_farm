@@ -1,0 +1,85 @@
+{
+  "architecture_summary": [
+    {
+      "architecture": "snapshot_compact",
+      "best_seed": 15302,
+      "eligible_seeds": 0,
+      "kind": "concat",
+      "median_harmful_negative_rate": 0.4581958195819582,
+      "median_mean_selected_value": 1.699119911991199,
+      "median_sign_balanced_accuracy": 0.52072175465333,
+      "parameters": 1873
+    },
+    {
+      "architecture": "history_concat_compact",
+      "best_seed": 15303,
+      "eligible_seeds": 0,
+      "kind": "concat",
+      "median_harmful_negative_rate": 0.44884488448844884,
+      "median_mean_selected_value": 1.0368536853685368,
+      "median_sign_balanced_accuracy": 0.5195108492555884,
+      "parameters": 2689
+    },
+    {
+      "architecture": "history_bilinear_compact",
+      "best_seed": 15302,
+      "eligible_seeds": 0,
+      "kind": "bilinear",
+      "median_harmful_negative_rate": 0.45544554455445546,
+      "median_mean_selected_value": 1.4053905390539054,
+      "median_sign_balanced_accuracy": 0.5189011872689915,
+      "parameters": 2688
+    },
+    {
+      "architecture": "history_concat_full",
+      "best_seed": 15304,
+      "eligible_seeds": 0,
+      "kind": "concat",
+      "median_harmful_negative_rate": 0.4471947194719472,
+      "median_mean_selected_value": 0.9125412541254125,
+      "median_sign_balanced_accuracy": 0.5136013140911172,
+      "parameters": 13185
+    },
+    {
+      "architecture": "history_bilinear_full",
+      "best_seed": 15304,
+      "eligible_seeds": 0,
+      "kind": "bilinear",
+      "median_harmful_negative_rate": 0.44224422442244227,
+      "median_mean_selected_value": 0.897139713971397,
+      "median_sign_balanced_accuracy": 0.5106479138297799,
+      "parameters": 13184
+    }
+  ],
+  "decision": "close_static_first_action_memory_value_models",
+  "differing_model_hashes": 0,
+  "eligible_cells": 0,
+  "integrity": {
+    "all_snapshot_seeds_reproduce_d154a": true,
+    "behavior_exact_repeat": true,
+    "exactly_160_fits_per_replica": true
+  },
+  "lock": {
+    "manifest_sha256": "092f1060ca4f1b883ad229b5d064f1cc61700d14a63c21a2b84b13174cc02944",
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d155a-first-action-memory-value-ablation-protocol-2026-07-23.md",
+  "schema": "troll-farm-d155a-first-action-memory-value-ablation-result-v1",
+  "selected": null,
+  "selection_a": {
+    "path": "data/analysis/live-agent-6553250/d155a-first-action-memory-value-ablation-selection-a.json",
+    "sha256": "811416e743b6e77eade2df0a584e404b748440d76caa99133bf11af2ef192224"
+  },
+  "selection_b": {
+    "path": "data/analysis/live-agent-6553250/d155a-first-action-memory-value-ablation-selection-b.json",
+    "sha256": "811416e743b6e77eade2df0a584e404b748440d76caa99133bf11af2ef192224"
+  },
+  "snapshot_reproduction": {
+    "15301": true,
+    "15302": true,
+    "15303": true,
+    "15304": true
+  }
+}

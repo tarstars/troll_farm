@@ -1,0 +1,2558 @@
+{
+ "schema": 1,
+ "scope": "60 reused discovery maps; terminal option/control deltas; one opponent policy held out from each selection; seed-clustered summaries",
+ "source": "data/analysis/live-agent-6553250/adaptive-max-bank-first-hp0-discovery-60-119.json",
+ "policy": "adaptivehp0",
+ "opponents": [
+  "chopharvest",
+  "race",
+  "ringfix3",
+  "taskplan",
+  "yield"
+ ],
+ "excluded_opponents": [
+  "motion"
+ ],
+ "seeds": [
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  87,
+  88,
+  89,
+  90,
+  91,
+  92,
+  93,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99,
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119
+ ],
+ "hindsight_oracle": {
+  "n": 60,
+  "mean": 6.221666666666667,
+  "median": 0.0,
+  "trimmed_5pct_mean": 1.3851851851851853,
+  "standard_deviation": 24.393352051200043,
+  "standard_error": 3.1491682084157433,
+  "ci95_normal": [
+   0.049296978171810224,
+   12.394036355161523
+  ],
+  "worst_decile_mean": 0.0,
+  "wins": 10,
+  "ties": 50,
+  "losses": 0,
+  "minimum": 0.0,
+  "maximum": 162.2
+ },
+ "positive_mean_selector": {
+  "rule": "positive-mean",
+  "threshold": 0.0,
+  "rollout_opponents_per_decision": 4,
+  "full_terminal_games_per_decision": 8,
+  "seed_clustered_summary": {
+   "n": 60,
+   "mean": 5.145,
+   "median": 0.0,
+   "trimmed_5pct_mean": 0.7629629629629631,
+   "standard_deviation": 24.82016283288342,
+   "standard_error": 3.204269243397126,
+   "ci95_normal": [
+    -1.135367717058367,
+    11.425367717058366
+   ],
+   "worst_decile_mean": -8.216666666666667,
+   "wins": 8,
+   "ties": 42,
+   "losses": 10,
+   "minimum": -14.1,
+   "maximum": 162.2
+  },
+  "selected_seed_count": 18,
+  "held_opponents": [
+   {
+    "held_opponent": "chopharvest",
+    "rollout_opponents": [
+     "race",
+     "ringfix3",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 11,
+    "summary": {
+     "n": 60,
+     "mean": 10.783333333333333,
+     "median": 0.0,
+     "trimmed_5pct_mean": 2.824074074074074,
+     "standard_deviation": 45.06730998604788,
+     "standard_error": 5.818164701144355,
+     "ci95_normal": [
+      -0.6202694809096023,
+      22.18693614757627
+     ],
+     "worst_decile_mean": -10.333333333333334,
+     "wins": 7,
+     "ties": 50,
+     "losses": 3,
+     "minimum": -30,
+     "maximum": 235.5
+    }
+   },
+   {
+    "held_opponent": "race",
+    "rollout_opponents": [
+     "chopharvest",
+     "ringfix3",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 12,
+    "summary": {
+     "n": 60,
+     "mean": 0.8166666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.0555555555555556,
+     "standard_deviation": 20.366965332031135,
+     "standard_error": 2.62936391812468,
+     "ci95_normal": [
+      -4.336886612857707,
+      5.9702199461910395
+     ],
+     "worst_decile_mean": -23.583333333333332,
+     "wins": 4,
+     "ties": 48,
+     "losses": 8,
+     "minimum": -41,
+     "maximum": 130.5
+    }
+   },
+   {
+    "held_opponent": "ringfix3",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 10,
+    "summary": {
+     "n": 60,
+     "mean": 11.075,
+     "median": 0.0,
+     "trimmed_5pct_mean": 2.925925925925926,
+     "standard_deviation": 42.1273115847182,
+     "standard_error": 5.438612539603479,
+     "ci95_normal": [
+      0.41531942237718056,
+      21.734680577622818
+     ],
+     "worst_decile_mean": -4.166666666666667,
+     "wins": 7,
+     "ties": 51,
+     "losses": 2,
+     "minimum": -16.5,
+     "maximum": 214.0
+    }
+   },
+   {
+    "held_opponent": "taskplan",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "ringfix3",
+     "yield"
+    ],
+    "selected_seed_count": 13,
+    "summary": {
+     "n": 60,
+     "mean": 1.55,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.6851851851851852,
+     "standard_deviation": 21.104401500915973,
+     "standard_error": 2.7245665181574124,
+     "ci95_normal": [
+      -3.790150375588528,
+      6.890150375588528
+     ],
+     "worst_decile_mean": -19.916666666666668,
+     "wins": 5,
+     "ties": 47,
+     "losses": 8,
+     "minimum": -30,
+     "maximum": 140.5
+    }
+   },
+   {
+    "held_opponent": "yield",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "ringfix3",
+     "taskplan"
+    ],
+    "selected_seed_count": 12,
+    "summary": {
+     "n": 60,
+     "mean": 1.5,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.6296296296296297,
+     "standard_deviation": 15.97508653593177,
+     "standard_error": 2.0623748035962026,
+     "ci95_normal": [
+      -2.5422546150485568,
+      5.542254615048557
+     ],
+     "worst_decile_mean": -15.083333333333334,
+     "wins": 5,
+     "ties": 48,
+     "losses": 7,
+     "minimum": -25,
+     "maximum": 101.5
+    }
+   }
+  ],
+  "worst_held_opponent_mean": 0.8166666666666667,
+  "seed_values": [
+   {
+    "seed": 62,
+    "cross_fitted_delta": -4.0
+   },
+   {
+    "seed": 67,
+    "cross_fitted_delta": -5.7
+   },
+   {
+    "seed": 68,
+    "cross_fitted_delta": -4.0
+   },
+   {
+    "seed": 71,
+    "cross_fitted_delta": 58.6
+   },
+   {
+    "seed": 72,
+    "cross_fitted_delta": -14.1
+   },
+   {
+    "seed": 73,
+    "cross_fitted_delta": -7.7
+   },
+   {
+    "seed": 74,
+    "cross_fitted_delta": -3.0
+   },
+   {
+    "seed": 83,
+    "cross_fitted_delta": 8.8
+   },
+   {
+    "seed": 88,
+    "cross_fitted_delta": -9.2
+   },
+   {
+    "seed": 92,
+    "cross_fitted_delta": 17.3
+   },
+   {
+    "seed": 97,
+    "cross_fitted_delta": 11.5
+   },
+   {
+    "seed": 100,
+    "cross_fitted_delta": 77.7
+   },
+   {
+    "seed": 101,
+    "cross_fitted_delta": 1.9
+   },
+   {
+    "seed": 103,
+    "cross_fitted_delta": 33.7
+   },
+   {
+    "seed": 108,
+    "cross_fitted_delta": -2.7
+   },
+   {
+    "seed": 109,
+    "cross_fitted_delta": -7.6
+   },
+   {
+    "seed": 115,
+    "cross_fitted_delta": -5.0
+   },
+   {
+    "seed": 116,
+    "cross_fitted_delta": 162.2
+   }
+  ]
+ },
+ "unanimous_positive_selector": {
+  "rule": "unanimous-positive",
+  "threshold": 0.0,
+  "rollout_opponents_per_decision": 4,
+  "full_terminal_games_per_decision": 8,
+  "seed_clustered_summary": {
+   "n": 60,
+   "mean": 3.5816666666666666,
+   "median": 0.0,
+   "trimmed_5pct_mean": 0.0,
+   "standard_deviation": 22.17402275886661,
+   "standard_error": 2.8626540287838207,
+   "ci95_normal": [
+    -2.0291352297496217,
+    9.192468563082954
+   ],
+   "worst_decile_mean": -1.3,
+   "wins": 3,
+   "ties": 55,
+   "losses": 2,
+   "minimum": -5.0,
+   "maximum": 162.2
+  },
+  "selected_seed_count": 5,
+  "held_opponents": [
+   {
+    "held_opponent": "chopharvest",
+    "rollout_opponents": [
+     "race",
+     "ringfix3",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 3,
+    "summary": {
+     "n": 60,
+     "mean": 4.916666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 31.154367795998713,
+     "standard_error": 4.022011587850789,
+     "ci95_normal": [
+      -2.9664760455208805,
+      12.799809378854214
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 3,
+     "ties": 57,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 235.5
+    }
+   },
+   {
+    "held_opponent": "race",
+    "rollout_opponents": [
+     "chopharvest",
+     "ringfix3",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 4,
+    "summary": {
+     "n": 60,
+     "mean": 2.9583333333333335,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 18.445589171588033,
+     "standard_error": 2.3813153224181436,
+     "ci95_normal": [
+      -1.709044698606228,
+      7.625711365272895
+     ],
+     "worst_decile_mean": -2.3333333333333335,
+     "wins": 3,
+     "ties": 56,
+     "losses": 1,
+     "minimum": -14,
+     "maximum": 130.5
+    }
+   },
+   {
+    "held_opponent": "ringfix3",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "taskplan",
+     "yield"
+    ],
+    "selected_seed_count": 3,
+    "summary": {
+     "n": 60,
+     "mean": 4.525,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 27.414802539961595,
+     "standard_error": 3.539235789227868,
+     "ci95_normal": [
+      -2.4119021468866206,
+      11.461902146886622
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 3,
+     "ties": 57,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 203.0
+    }
+   },
+   {
+    "held_opponent": "taskplan",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "ringfix3",
+     "yield"
+    ],
+    "selected_seed_count": 3,
+    "summary": {
+     "n": 60,
+     "mean": 3.35,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 19.57521348672467,
+     "standard_error": 2.5271491944179822,
+     "ci95_normal": [
+      -1.6032124210592449,
+      8.303212421059245
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 3,
+     "ties": 57,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 140.5
+    }
+   },
+   {
+    "held_opponent": "yield",
+    "rollout_opponents": [
+     "chopharvest",
+     "race",
+     "ringfix3",
+     "taskplan"
+    ],
+    "selected_seed_count": 4,
+    "summary": {
+     "n": 60,
+     "mean": 2.158333333333333,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 15.072843372921804,
+     "standard_error": 1.9458957121106326,
+     "ci95_normal": [
+      -1.6556222624035066,
+      5.972288929070173
+     ],
+     "worst_decile_mean": -4.166666666666667,
+     "wins": 3,
+     "ties": 56,
+     "losses": 1,
+     "minimum": -25,
+     "maximum": 101.5
+    }
+   }
+  ],
+  "worst_held_opponent_mean": 2.158333333333333,
+  "seed_values": [
+   {
+    "seed": 71,
+    "cross_fitted_delta": 58.6
+   },
+   {
+    "seed": 97,
+    "cross_fitted_delta": -2.8
+   },
+   {
+    "seed": 101,
+    "cross_fitted_delta": 1.9
+   },
+   {
+    "seed": 115,
+    "cross_fitted_delta": -5.0
+   },
+   {
+    "seed": 116,
+    "cross_fitted_delta": 162.2
+   }
+  ]
+ },
+ "unanimous_oracle_fraction": 0.5756763996785427,
+ "positive_mean_budget_curve": [
+  {
+   "rollout_opponent_count": 1,
+   "full_terminal_games_per_decision": 2,
+   "configuration_count": 5,
+   "configuration_mean_delta": {
+    "n": 5,
+    "mean": 2.6791666666666667,
+    "median": 2.4208333333333334,
+    "trimmed_5pct_mean": 2.6791666666666667,
+    "standard_deviation": 0.5438996441593491,
+    "standard_error": 0.2432393154556502,
+    "ci95_normal": [
+     2.2024176083735925,
+     3.155915724959741
+    ],
+    "worst_decile_mean": 2.252083333333333,
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 2.252083333333333,
+    "maximum": 3.589583333333333
+   },
+   "worst_configuration_mean": 2.252083333333333,
+   "best_configuration_mean": 3.589583333333333,
+   "worst_configuration_worst_decile": -18.9375,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 19,
+     "summary": {
+      "n": 60,
+      "mean": 2.3666666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.32175925925925924,
+      "standard_deviation": 21.99759071296539,
+      "standard_error": 2.839876749600063,
+      "ci95_normal": [
+       -3.199491762549457,
+       7.932825095882791
+      ],
+      "worst_decile_mean": -18.5625,
+      "wins": 7,
+      "ties": 41,
+      "losses": 12,
+      "minimum": -31.75,
+      "maximum": 143.875
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 13,
+     "summary": {
+      "n": 60,
+      "mean": 2.7666666666666666,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.32407407407407407,
+      "standard_deviation": 23.67306301325155,
+      "standard_error": 3.0561792934680674,
+      "ci95_normal": [
+       -3.2234447485307456,
+       8.756778081864079
+      ],
+      "worst_decile_mean": -10.979166666666666,
+      "wins": 4,
+      "ties": 47,
+      "losses": 9,
+      "minimum": -22.5,
+      "maximum": 170.125
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 3.589583333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.03009259259259259,
+      "standard_deviation": 22.000229819517383,
+      "standard_error": 2.8402174567908873,
+      "ci95_normal": [
+       -1.9772428819768062,
+       9.156409548643472
+      ],
+      "worst_decile_mean": -9.708333333333334,
+      "wins": 7,
+      "ties": 44,
+      "losses": 9,
+      "minimum": -20.0,
+      "maximum": 152.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 13,
+     "summary": {
+      "n": 60,
+      "mean": 2.4208333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.20833333333333334,
+      "standard_deviation": 24.208694581938573,
+      "standard_error": 3.1253290316423272,
+      "ci95_normal": [
+       -3.7048115686856278,
+       8.546478235352295
+      ],
+      "worst_decile_mean": -16.375,
+      "wins": 5,
+      "ties": 47,
+      "losses": 8,
+      "minimum": -51.0,
+      "maximum": 167.625
+     }
+    },
+    {
+     "rollout_opponents": [
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 15,
+     "summary": {
+      "n": 60,
+      "mean": 2.252083333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.4537037037037037,
+      "standard_deviation": 25.66376761202036,
+      "standard_error": 3.313178152076405,
+      "ci95_normal": [
+       -4.24174584473642,
+       8.745912511403088
+      ],
+      "worst_decile_mean": -18.9375,
+      "wins": 5,
+      "ties": 46,
+      "losses": 9,
+      "minimum": -54.875,
+      "maximum": 177.375
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 2,
+   "full_terminal_games_per_decision": 4,
+   "configuration_count": 10,
+   "configuration_mean_delta": {
+    "n": 10,
+    "mean": 3.7480555555555557,
+    "median": 4.433333333333334,
+    "trimmed_5pct_mean": 3.7480555555555557,
+    "standard_deviation": 1.5600387611255022,
+    "standard_error": 0.493327572330393,
+    "ci95_normal": [
+     2.7811335137879856,
+     4.714977597323126
+    ],
+    "worst_decile_mean": -0.1555555555555555,
+    "wins": 9,
+    "ties": 0,
+    "losses": 1,
+    "minimum": -0.1555555555555555,
+    "maximum": 5.102777777777778
+   },
+   "worst_configuration_mean": -0.1555555555555555,
+   "best_configuration_mean": 5.102777777777778,
+   "worst_configuration_worst_decile": -22.805555555555557,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 5.102777777777778,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.2685185185185186,
+      "standard_deviation": 22.352215891085216,
+      "standard_error": 2.885658663233527,
+      "ci95_normal": [
+       -0.5531132021599348,
+       10.75866875771549
+      ],
+      "worst_decile_mean": -5.944444444444445,
+      "wins": 8,
+      "ties": 46,
+      "losses": 6,
+      "minimum": -14.666666666666666,
+      "maximum": 148.33333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 17,
+     "summary": {
+      "n": 60,
+      "mean": -0.1555555555555555,
+      "median": 0.0,
+      "trimmed_5pct_mean": -1.9506172839506173,
+      "standard_deviation": 19.644363171002126,
+      "standard_error": 2.536076380271385,
+      "ci95_normal": [
+       -5.126265260887471,
+       4.815154149776359
+      ],
+      "worst_decile_mean": -22.805555555555557,
+      "wins": 4,
+      "ties": 43,
+      "losses": 13,
+      "minimum": -40.666666666666664,
+      "maximum": 124.16666666666667
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 4.675,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.7407407407407407,
+      "standard_deviation": 21.873855633236072,
+      "standard_error": 2.82390261949562,
+      "ci95_normal": [
+       -0.859849134211415,
+       10.209849134211414
+      ],
+      "worst_decile_mean": -6.111111111111111,
+      "wins": 8,
+      "ties": 44,
+      "losses": 8,
+      "minimum": -8.833333333333334,
+      "maximum": 145.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 4.786111111111111,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.9290123456790124,
+      "standard_deviation": 23.439228864881386,
+      "standard_error": 3.025991434720993,
+      "ci95_normal": [
+       -1.1448321009420344,
+       10.717054323164257
+      ],
+      "worst_decile_mean": -7.777777777777778,
+      "wins": 8,
+      "ties": 46,
+      "losses": 6,
+      "minimum": -17.833333333333332,
+      "maximum": 158.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 4.4944444444444445,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.5493827160493827,
+      "standard_deviation": 23.650447348019792,
+      "standard_error": 3.0532596236412006,
+      "ci95_normal": [
+       -1.4899444178923087,
+       10.478833306781198
+      ],
+      "worst_decile_mean": -9.13888888888889,
+      "wins": 7,
+      "ties": 46,
+      "losses": 7,
+      "minimum": -18.833333333333332,
+      "maximum": 159.16666666666666
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 12,
+     "summary": {
+      "n": 60,
+      "mean": 2.8111111111111113,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.404320987654321,
+      "standard_deviation": 25.06998615677352,
+      "standard_error": 3.236521295827811,
+      "ci95_normal": [
+       -3.532470628711398,
+       9.154692850933621
+      ],
+      "worst_decile_mean": -12.416666666666666,
+      "wins": 4,
+      "ties": 48,
+      "losses": 8,
+      "minimum": -36.666666666666664,
+      "maximum": 180.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 10,
+     "summary": {
+      "n": 60,
+      "mean": 3.0527777777777776,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.2716049382716049,
+      "standard_deviation": 26.627186375959116,
+      "standard_error": 3.437554979681689,
+      "ci95_normal": [
+       -3.6848299823983326,
+       9.790385537953888
+      ],
+      "worst_decile_mean": -12.61111111111111,
+      "wins": 4,
+      "ties": 50,
+      "losses": 6,
+      "minimum": -28.5,
+      "maximum": 193.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "yield"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 4.372222222222223,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.33641975308641975,
+      "standard_deviation": 23.281042429359015,
+      "standard_error": 3.005569653708524,
+      "ci95_normal": [
+       -1.5186942990464845,
+       10.26313874349093
+      ],
+      "worst_decile_mean": -9.38888888888889,
+      "wins": 8,
+      "ties": 44,
+      "losses": 8,
+      "minimum": -13.833333333333334,
+      "maximum": 155.83333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 4.508333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.5740740740740741,
+      "standard_deviation": 24.840250903961326,
+      "standard_error": 3.206862602221865,
+      "ci95_normal": [
+       -1.7771173670215212,
+       10.793784033688189
+      ],
+      "worst_decile_mean": -10.916666666666668,
+      "wins": 8,
+      "ties": 44,
+      "losses": 8,
+      "minimum": -23.0,
+      "maximum": 168.83333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3"
+     ],
+     "selected_seed_count": 10,
+     "summary": {
+      "n": 60,
+      "mean": 3.833333333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.040123456790123455,
+      "standard_deviation": 25.79799843328629,
+      "standard_error": 3.330507276586761,
+      "ci95_normal": [
+       -2.694460928776718,
+       10.361127595443385
+      ],
+      "worst_decile_mean": -6.472222222222222,
+      "wins": 5,
+      "ties": 50,
+      "losses": 5,
+      "minimum": -12.166666666666666,
+      "maximum": 189.66666666666666
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 3,
+   "full_terminal_games_per_decision": 6,
+   "configuration_count": 10,
+   "configuration_mean_delta": {
+    "n": 10,
+    "mean": 4.35375,
+    "median": 5.708333333333334,
+    "trimmed_5pct_mean": 4.35375,
+    "standard_deviation": 2.3468058884548633,
+    "standard_error": 0.7421251833812419,
+    "ci95_normal": [
+     2.8991846405727655,
+     5.808315359427234
+    ],
+    "worst_decile_mean": 0.8333333333333334,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 0.8333333333333334,
+    "maximum": 6.504166666666666
+   },
+   "worst_configuration_mean": 0.8333333333333334,
+   "best_configuration_mean": 6.504166666666666,
+   "worst_configuration_worst_decile": -19.833333333333332,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 15,
+     "summary": {
+      "n": 60,
+      "mean": 1.6458333333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.8657407407407407,
+      "standard_deviation": 18.083568465497283,
+      "standard_error": 2.334578650229086,
+      "ci95_normal": [
+       -2.929940821115676,
+       6.221607487782342
+      ],
+      "worst_decile_mean": -13.291666666666666,
+      "wins": 5,
+      "ties": 45,
+      "losses": 10,
+      "minimum": -19.0,
+      "maximum": 121.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 11,
+     "summary": {
+      "n": 60,
+      "mean": 6.020833333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.9814814814814814,
+      "standard_deviation": 26.106459509235346,
+      "standard_error": 3.3703294302568914,
+      "ci95_normal": [
+       -0.5850123499701736,
+       12.626679016636839
+      ],
+      "worst_decile_mean": -9.583333333333334,
+      "wins": 8,
+      "ties": 49,
+      "losses": 3,
+      "minimum": -35.5,
+      "maximum": 152.25
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "yield"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 6.5,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.837962962962963,
+      "standard_deviation": 27.667058059991042,
+      "standard_error": 3.5718018368299664,
+      "ci95_normal": [
+       -0.5007316001867341,
+       13.500731600186734
+      ],
+      "worst_decile_mean": -8.125,
+      "wins": 8,
+      "ties": 46,
+      "losses": 6,
+      "minimum": -21.5,
+      "maximum": 171.75
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "race",
+      "yield"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 0.8333333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": -1.5462962962962963,
+      "standard_deviation": 17.887576568116376,
+      "standard_error": 2.3092762050774915,
+      "ci95_normal": [
+       -3.6928480286185494,
+       5.359514695285216
+      ],
+      "worst_decile_mean": -17.208333333333332,
+      "wins": 4,
+      "ties": 44,
+      "losses": 12,
+      "minimum": -19.75,
+      "maximum": 116.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "taskplan"
+     ],
+     "selected_seed_count": 12,
+     "summary": {
+      "n": 60,
+      "mean": 1.2958333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.9351851851851852,
+      "standard_deviation": 20.43465669418108,
+      "standard_error": 2.638102835400974,
+      "ci95_normal": [
+       -3.8748482240525757,
+       6.4665148907192425
+      ],
+      "worst_decile_mean": -19.833333333333332,
+      "wins": 4,
+      "ties": 49,
+      "losses": 7,
+      "minimum": -35.25,
+      "maximum": 135.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3"
+     ],
+     "selected_seed_count": 11,
+     "summary": {
+      "n": 60,
+      "mean": 6.504166666666666,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.5833333333333333,
+      "standard_deviation": 26.660629723618438,
+      "standard_error": 3.441872497299222,
+      "ci95_normal": [
+       -0.2419034280398087,
+       13.250236761373142
+      ],
+      "worst_decile_mean": -3.5416666666666665,
+      "wins": 7,
+      "ties": 49,
+      "losses": 4,
+      "minimum": -12.0,
+      "maximum": 166.75
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "yield"
+     ],
+     "selected_seed_count": 12,
+     "summary": {
+      "n": 60,
+      "mean": 6.0125,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.6296296296296295,
+      "standard_deviation": 27.782578410500225,
+      "standard_error": 3.5867154499523033,
+      "ci95_normal": [
+       -1.0174622819065142,
+       13.042462281906515
+      ],
+      "worst_decile_mean": -11.291666666666666,
+      "wins": 8,
+      "ties": 48,
+      "losses": 4,
+      "minimum": -35.75,
+      "maximum": 168.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "taskplan"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 5.404166666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.8194444444444444,
+      "standard_deviation": 29.778671259907647,
+      "standard_error": 3.844409928726925,
+      "ci95_normal": [
+       -2.130876793638106,
+       12.939210126971439
+      ],
+      "worst_decile_mean": -15.791666666666666,
+      "wins": 8,
+      "ties": 46,
+      "losses": 6,
+      "minimum": -38.75,
+      "maximum": 188.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3"
+     ],
+     "selected_seed_count": 11,
+     "summary": {
+      "n": 60,
+      "mean": 3.1708333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.4861111111111111,
+      "standard_deviation": 30.573975711693254,
+      "standard_error": 3.9470832919579344,
+      "ci95_normal": [
+       -4.565449918904218,
+       10.907116585570884
+      ],
+      "worst_decile_mean": -19.791666666666668,
+      "wins": 4,
+      "ties": 50,
+      "losses": 6,
+      "minimum": -38.75,
+      "maximum": 219.25
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race"
+     ],
+     "selected_seed_count": 11,
+     "summary": {
+      "n": 60,
+      "mean": 6.15,
+      "median": 0.0,
+      "trimmed_5pct_mean": 1.2916666666666667,
+      "standard_deviation": 28.629100994072683,
+      "standard_error": 3.6960010455644565,
+      "ci95_normal": [
+       -1.094162049306334,
+       13.394162049306335
+      ],
+      "worst_decile_mean": -7.916666666666667,
+      "wins": 8,
+      "ties": 49,
+      "losses": 3,
+      "minimum": -20.5,
+      "maximum": 183.0
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 4,
+   "full_terminal_games_per_decision": 8,
+   "configuration_count": 5,
+   "configuration_mean_delta": {
+    "n": 5,
+    "mean": 5.145,
+    "median": 1.55,
+    "trimmed_5pct_mean": 5.145,
+    "standard_deviation": 5.2891450684922185,
+    "standard_error": 2.3653775832012762,
+    "ci95_normal": [
+     0.5088599369254982,
+     9.781140063074501
+    ],
+    "worst_decile_mean": 0.8166666666666667,
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 0.8166666666666667,
+    "maximum": 11.075
+   },
+   "worst_configuration_mean": 0.8166666666666667,
+   "best_configuration_mean": 11.075,
+   "worst_configuration_worst_decile": -23.583333333333332,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "yield"
+     ],
+     "selected_seed_count": 12,
+     "summary": {
+      "n": 60,
+      "mean": 1.5,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.6296296296296297,
+      "standard_deviation": 15.97508653593177,
+      "standard_error": 2.0623748035962026,
+      "ci95_normal": [
+       -2.5422546150485568,
+       5.542254615048557
+      ],
+      "worst_decile_mean": -15.083333333333334,
+      "wins": 5,
+      "ties": 48,
+      "losses": 7,
+      "minimum": -25,
+      "maximum": 101.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "taskplan"
+     ],
+     "selected_seed_count": 13,
+     "summary": {
+      "n": 60,
+      "mean": 1.55,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.6851851851851852,
+      "standard_deviation": 21.104401500915973,
+      "standard_error": 2.7245665181574124,
+      "ci95_normal": [
+       -3.790150375588528,
+       6.890150375588528
+      ],
+      "worst_decile_mean": -19.916666666666668,
+      "wins": 5,
+      "ties": 47,
+      "losses": 8,
+      "minimum": -30,
+      "maximum": 140.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "ringfix3"
+     ],
+     "selected_seed_count": 10,
+     "summary": {
+      "n": 60,
+      "mean": 11.075,
+      "median": 0.0,
+      "trimmed_5pct_mean": 2.925925925925926,
+      "standard_deviation": 42.1273115847182,
+      "standard_error": 5.438612539603479,
+      "ci95_normal": [
+       0.41531942237718056,
+       21.734680577622818
+      ],
+      "worst_decile_mean": -4.166666666666667,
+      "wins": 7,
+      "ties": 51,
+      "losses": 2,
+      "minimum": -16.5,
+      "maximum": 214.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "race"
+     ],
+     "selected_seed_count": 12,
+     "summary": {
+      "n": 60,
+      "mean": 0.8166666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": -1.0555555555555556,
+      "standard_deviation": 20.366965332031135,
+      "standard_error": 2.62936391812468,
+      "ci95_normal": [
+       -4.336886612857707,
+       5.9702199461910395
+      ],
+      "worst_decile_mean": -23.583333333333332,
+      "wins": 4,
+      "ties": 48,
+      "losses": 8,
+      "minimum": -41,
+      "maximum": 130.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest"
+     ],
+     "selected_seed_count": 11,
+     "summary": {
+      "n": 60,
+      "mean": 10.783333333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 2.824074074074074,
+      "standard_deviation": 45.06730998604788,
+      "standard_error": 5.818164701144355,
+      "ci95_normal": [
+       -0.6202694809096023,
+       22.18693614757627
+      ],
+      "worst_decile_mean": -10.333333333333334,
+      "wins": 7,
+      "ties": 50,
+      "losses": 3,
+      "minimum": -30,
+      "maximum": 235.5
+     }
+    }
+   ]
+  }
+ ],
+ "unanimous_positive_budget_curve": [
+  {
+   "rollout_opponent_count": 1,
+   "full_terminal_games_per_decision": 2,
+   "configuration_count": 5,
+   "configuration_mean_delta": {
+    "n": 5,
+    "mean": 2.6791666666666667,
+    "median": 2.4208333333333334,
+    "trimmed_5pct_mean": 2.6791666666666667,
+    "standard_deviation": 0.5438996441593491,
+    "standard_error": 0.2432393154556502,
+    "ci95_normal": [
+     2.2024176083735925,
+     3.155915724959741
+    ],
+    "worst_decile_mean": 2.252083333333333,
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 2.252083333333333,
+    "maximum": 3.589583333333333
+   },
+   "worst_configuration_mean": 2.252083333333333,
+   "best_configuration_mean": 3.589583333333333,
+   "worst_configuration_worst_decile": -18.9375,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 19,
+     "summary": {
+      "n": 60,
+      "mean": 2.3666666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.32175925925925924,
+      "standard_deviation": 21.99759071296539,
+      "standard_error": 2.839876749600063,
+      "ci95_normal": [
+       -3.199491762549457,
+       7.932825095882791
+      ],
+      "worst_decile_mean": -18.5625,
+      "wins": 7,
+      "ties": 41,
+      "losses": 12,
+      "minimum": -31.75,
+      "maximum": 143.875
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 13,
+     "summary": {
+      "n": 60,
+      "mean": 2.7666666666666666,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.32407407407407407,
+      "standard_deviation": 23.67306301325155,
+      "standard_error": 3.0561792934680674,
+      "ci95_normal": [
+       -3.2234447485307456,
+       8.756778081864079
+      ],
+      "worst_decile_mean": -10.979166666666666,
+      "wins": 4,
+      "ties": 47,
+      "losses": 9,
+      "minimum": -22.5,
+      "maximum": 170.125
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 16,
+     "summary": {
+      "n": 60,
+      "mean": 3.589583333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.03009259259259259,
+      "standard_deviation": 22.000229819517383,
+      "standard_error": 2.8402174567908873,
+      "ci95_normal": [
+       -1.9772428819768062,
+       9.156409548643472
+      ],
+      "worst_decile_mean": -9.708333333333334,
+      "wins": 7,
+      "ties": 44,
+      "losses": 9,
+      "minimum": -20.0,
+      "maximum": 152.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 13,
+     "summary": {
+      "n": 60,
+      "mean": 2.4208333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.20833333333333334,
+      "standard_deviation": 24.208694581938573,
+      "standard_error": 3.1253290316423272,
+      "ci95_normal": [
+       -3.7048115686856278,
+       8.546478235352295
+      ],
+      "worst_decile_mean": -16.375,
+      "wins": 5,
+      "ties": 47,
+      "losses": 8,
+      "minimum": -51.0,
+      "maximum": 167.625
+     }
+    },
+    {
+     "rollout_opponents": [
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 15,
+     "summary": {
+      "n": 60,
+      "mean": 2.252083333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.4537037037037037,
+      "standard_deviation": 25.66376761202036,
+      "standard_error": 3.313178152076405,
+      "ci95_normal": [
+       -4.24174584473642,
+       8.745912511403088
+      ],
+      "worst_decile_mean": -18.9375,
+      "wins": 5,
+      "ties": 46,
+      "losses": 9,
+      "minimum": -54.875,
+      "maximum": 177.375
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 2,
+   "full_terminal_games_per_decision": 4,
+   "configuration_count": 10,
+   "configuration_mean_delta": {
+    "n": 10,
+    "mean": 3.2316666666666665,
+    "median": 3.3152777777777778,
+    "trimmed_5pct_mean": 3.2316666666666665,
+    "standard_deviation": 0.8519939495009824,
+    "standard_error": 0.2694241433105583,
+    "ci95_normal": [
+     2.7035953457779724,
+     3.7597379875553605
+    ],
+    "worst_decile_mean": 1.0138888888888888,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 1.0138888888888888,
+    "maximum": 4.241666666666666
+   },
+   "worst_configuration_mean": 1.0138888888888888,
+   "best_configuration_mean": 4.241666666666666,
+   "worst_configuration_worst_decile": -15.777777777777779,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 5,
+     "summary": {
+      "n": 60,
+      "mean": 3.25,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 20.583542051596236,
+      "standard_error": 2.6573238523930756,
+      "ci95_normal": [
+       -1.958354750690428,
+       8.458354750690429
+      ],
+      "worst_decile_mean": -2.3333333333333335,
+      "wins": 3,
+      "ties": 55,
+      "losses": 2,
+      "minimum": -9.0,
+      "maximum": 148.33333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 14,
+     "summary": {
+      "n": 60,
+      "mean": 1.0138888888888888,
+      "median": 0.0,
+      "trimmed_5pct_mean": -1.2191358024691359,
+      "standard_deviation": 18.595614666058697,
+      "standard_error": 2.400683530471191,
+      "ci95_normal": [
+       -3.6914508308346448,
+       5.719228608612422
+      ],
+      "worst_decile_mean": -15.777777777777779,
+      "wins": 4,
+      "ties": 46,
+      "losses": 10,
+      "minimum": -21.0,
+      "maximum": 124.16666666666667
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 3.191666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 20.159248880912234,
+      "standard_error": 2.6025478395941195,
+      "ci95_normal": [
+       -1.909327098937807,
+       8.292660432271141
+      ],
+      "worst_decile_mean": -2.388888888888889,
+      "wins": 3,
+      "ties": 54,
+      "losses": 3,
+      "minimum": -8.833333333333334,
+      "maximum": 145.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 7,
+     "summary": {
+      "n": 60,
+      "mean": 3.077777777777778,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.027777777777777776,
+      "standard_deviation": 22.066614322796802,
+      "standard_error": 2.848787659312469,
+      "ci95_normal": [
+       -2.505846034474661,
+       8.661401590030216
+      ],
+      "worst_decile_mean": -6.361111111111111,
+      "wins": 4,
+      "ties": 53,
+      "losses": 3,
+      "minimum": -17.833333333333332,
+      "maximum": 158.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 3.5305555555555554,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 21.701503754874913,
+      "standard_error": 2.8016520876762754,
+      "ci95_normal": [
+       -1.9606825362899438,
+       9.021793647401054
+      ],
+      "worst_decile_mean": -0.8333333333333334,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -5,
+      "maximum": 159.16666666666666
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 8,
+     "summary": {
+      "n": 60,
+      "mean": 3.25,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.006172839506172838,
+      "standard_deviation": 24.944090023864252,
+      "standard_error": 3.2202681749574937,
+      "ci95_normal": [
+       -3.061725622916688,
+       9.561725622916688
+      ],
+      "worst_decile_mean": -8.88888888888889,
+      "wins": 4,
+      "ties": 52,
+      "losses": 4,
+      "minimum": -36.666666666666664,
+      "maximum": 180.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 9,
+     "summary": {
+      "n": 60,
+      "mean": 3.3805555555555555,
+      "median": 0.0,
+      "trimmed_5pct_mean": -0.12037037037037036,
+      "standard_deviation": 26.463315255274853,
+      "standard_error": 3.4163993089705396,
+      "ci95_normal": [
+       -3.3155870900267015,
+       10.076698201137813
+      ],
+      "worst_decile_mean": -9.333333333333334,
+      "wins": 4,
+      "ties": 51,
+      "losses": 5,
+      "minimum": -28.5,
+      "maximum": 193.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "yield"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 3.555555555555556,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.037037037037037035,
+      "standard_deviation": 21.358778669198273,
+      "standard_error": 2.757406469371171,
+      "ci95_normal": [
+       -1.848961124411939,
+       8.96007223552305
+      ],
+      "worst_decile_mean": -2.2222222222222223,
+      "wins": 4,
+      "ties": 54,
+      "losses": 2,
+      "minimum": -9.0,
+      "maximum": 155.83333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 3.825,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.040123456790123455,
+      "standard_deviation": 23.085006772032436,
+      "standard_error": 2.9802615591722352,
+      "ci95_normal": [
+       -2.016312655977581,
+       9.666312655977581
+      ],
+      "worst_decile_mean": -2.555555555555556,
+      "wins": 4,
+      "ties": 54,
+      "losses": 2,
+      "minimum": -13.333333333333334,
+      "maximum": 168.83333333333334
+     }
+    },
+    {
+     "rollout_opponents": [
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3"
+     ],
+     "selected_seed_count": 7,
+     "summary": {
+      "n": 60,
+      "mean": 4.241666666666666,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.11728395061728394,
+      "standard_deviation": 25.665243650478327,
+      "standard_error": 3.3133687078219403,
+      "ci95_normal": [
+       -2.2525360006643362,
+       10.73586933399767
+      ],
+      "worst_decile_mean": -2.388888888888889,
+      "wins": 5,
+      "ties": 53,
+      "losses": 2,
+      "minimum": -12.166666666666666,
+      "maximum": 189.66666666666666
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 3,
+   "full_terminal_games_per_decision": 6,
+   "configuration_count": 10,
+   "configuration_mean_delta": {
+    "n": 10,
+    "mean": 3.5183333333333335,
+    "median": 3.666666666666667,
+    "trimmed_5pct_mean": 3.5183333333333335,
+    "standard_deviation": 0.7224096978895967,
+    "standard_error": 0.22844600491252598,
+    "ci95_normal": [
+     3.0705791637047826,
+     3.9660875029618845
+    ],
+    "worst_decile_mean": 2.4125,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 2.4125,
+    "maximum": 4.341666666666667
+   },
+   "worst_configuration_mean": 2.4125,
+   "best_configuration_mean": 4.341666666666667,
+   "worst_configuration_worst_decile": -7.541666666666667,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3"
+     ],
+     "held_opponents": [
+      "taskplan",
+      "yield"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 2.8208333333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 17.159464680092576,
+      "standard_error": 2.2152773645277644,
+      "ci95_normal": [
+       -1.5211103011410851,
+       7.162776967807751
+      ],
+      "worst_decile_mean": -1.4166666666666667,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -8.5,
+      "maximum": 121.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "yield"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 3.3583333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 21.052163153612685,
+      "standard_error": 2.7178225765194446,
+      "ci95_normal": [
+       -1.968598916644778,
+       8.685265583311445
+      ],
+      "worst_decile_mean": -1.9166666666666667,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -11.5,
+      "maximum": 152.25
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "yield"
+     ],
+     "held_opponents": [
+      "ringfix3",
+      "taskplan"
+     ],
+     "selected_seed_count": 3,
+     "summary": {
+      "n": 60,
+      "mean": 3.9375,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 23.473191749998623,
+      "standard_error": 3.0303760243359332,
+      "ci95_normal": [
+       -2.002037007698429,
+       9.87703700769843
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 3,
+      "ties": 57,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 171.75
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "race",
+      "yield"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 2.4125,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 16.73078362667786,
+      "standard_error": 2.1599348785041026,
+      "ci95_normal": [
+       -1.8209723618680411,
+       6.645972361868042
+      ],
+      "worst_decile_mean": -4.708333333333333,
+      "wins": 3,
+      "ties": 54,
+      "losses": 3,
+      "minimum": -16.75,
+      "maximum": 116.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "taskplan"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 2.5166666666666666,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 19.648762557894,
+      "standard_error": 2.53664433867691,
+      "ci95_normal": [
+       -2.455156237140077,
+       7.48848957047341
+      ],
+      "worst_decile_mean": -7.541666666666667,
+      "wins": 3,
+      "ties": 55,
+      "losses": 2,
+      "minimum": -35.25,
+      "maximum": 135.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "race",
+      "ringfix3"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 3.779166666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 22.85650204503006,
+      "standard_error": 2.9507617257652394,
+      "ci95_normal": [
+       -2.004326315833202,
+       9.562659649166536
+      ],
+      "worst_decile_mean": -0.7916666666666666,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -4.75,
+      "maximum": 166.75
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "yield"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 3.5541666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 22.83559014476935,
+      "standard_error": 2.94806201105033,
+      "ci95_normal": [
+       -2.2240348749919803,
+       9.332368208325313
+      ],
+      "worst_decile_mean": -1.9166666666666667,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -11.5,
+      "maximum": 168.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "taskplan"
+     ],
+     "selected_seed_count": 3,
+     "summary": {
+      "n": 60,
+      "mean": 4.133333333333334,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 25.28316192322784,
+      "standard_error": 3.264042168937564,
+      "ci95_normal": [
+       -2.2641893177842913,
+       10.530855984450959
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 3,
+      "ties": 57,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 188.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "ringfix3"
+     ],
+     "selected_seed_count": 6,
+     "summary": {
+      "n": 60,
+      "mean": 4.341666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 29.432735964019443,
+      "standard_error": 3.79974987406558,
+      "ci95_normal": [
+       -3.10584308650187,
+       11.789176419835204
+      ],
+      "worst_decile_mean": -3.7916666666666665,
+      "wins": 3,
+      "ties": 55,
+      "losses": 2,
+      "minimum": -19.25,
+      "maximum": 219.25
+     }
+    },
+    {
+     "rollout_opponents": [
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest",
+      "race"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 4.329166666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.05092592592592592,
+      "standard_deviation": 24.684641989326945,
+      "standard_error": 3.186773577725186,
+      "ci95_normal": [
+       -1.9169095456746978,
+       10.57524287900803
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 4,
+      "ties": 56,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 183.0
+     }
+    }
+   ]
+  },
+  {
+   "rollout_opponent_count": 4,
+   "full_terminal_games_per_decision": 8,
+   "configuration_count": 5,
+   "configuration_mean_delta": {
+    "n": 5,
+    "mean": 3.581666666666667,
+    "median": 3.35,
+    "trimmed_5pct_mean": 3.581666666666667,
+    "standard_deviation": 1.1335998461146295,
+    "standard_error": 0.5069612630391225,
+    "ci95_normal": [
+     2.5880225911099872,
+     4.575310742223347
+    ],
+    "worst_decile_mean": 2.158333333333333,
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 2.158333333333333,
+    "maximum": 4.916666666666667
+   },
+   "worst_configuration_mean": 2.158333333333333,
+   "best_configuration_mean": 4.916666666666667,
+   "worst_configuration_worst_decile": -4.166666666666667,
+   "configurations": [
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "taskplan"
+     ],
+     "held_opponents": [
+      "yield"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 2.158333333333333,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 15.072843372921804,
+      "standard_error": 1.9458957121106326,
+      "ci95_normal": [
+       -1.6556222624035066,
+       5.972288929070173
+      ],
+      "worst_decile_mean": -4.166666666666667,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -25,
+      "maximum": 101.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "ringfix3",
+      "yield"
+     ],
+     "held_opponents": [
+      "taskplan"
+     ],
+     "selected_seed_count": 3,
+     "summary": {
+      "n": 60,
+      "mean": 3.35,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 19.57521348672467,
+      "standard_error": 2.5271491944179822,
+      "ci95_normal": [
+       -1.6032124210592449,
+       8.303212421059245
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 3,
+      "ties": 57,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 140.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "race",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "ringfix3"
+     ],
+     "selected_seed_count": 3,
+     "summary": {
+      "n": 60,
+      "mean": 4.525,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 27.414802539961595,
+      "standard_error": 3.539235789227868,
+      "ci95_normal": [
+       -2.4119021468866206,
+       11.461902146886622
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 3,
+      "ties": 57,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 203.0
+     }
+    },
+    {
+     "rollout_opponents": [
+      "chopharvest",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "race"
+     ],
+     "selected_seed_count": 4,
+     "summary": {
+      "n": 60,
+      "mean": 2.9583333333333335,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 18.445589171588033,
+      "standard_error": 2.3813153224181436,
+      "ci95_normal": [
+       -1.709044698606228,
+       7.625711365272895
+      ],
+      "worst_decile_mean": -2.3333333333333335,
+      "wins": 3,
+      "ties": 56,
+      "losses": 1,
+      "minimum": -14,
+      "maximum": 130.5
+     }
+    },
+    {
+     "rollout_opponents": [
+      "race",
+      "ringfix3",
+      "taskplan",
+      "yield"
+     ],
+     "held_opponents": [
+      "chopharvest"
+     ],
+     "selected_seed_count": 3,
+     "summary": {
+      "n": 60,
+      "mean": 4.916666666666667,
+      "median": 0.0,
+      "trimmed_5pct_mean": 0.0,
+      "standard_deviation": 31.154367795998713,
+      "standard_error": 4.022011587850789,
+      "ci95_normal": [
+       -2.9664760455208805,
+       12.799809378854214
+      ],
+      "worst_decile_mean": 0.0,
+      "wins": 3,
+      "ties": 57,
+      "losses": 0,
+      "minimum": 0.0,
+      "maximum": 235.5
+     }
+    }
+   ]
+  }
+ ],
+ "interpretation_limit": "The selector sees exact terminal outcomes under rollout continuations.  This is an offline option-level oracle and cross-continuation test, not a latency-feasible live implementation or an untouched-map estimate."
+}

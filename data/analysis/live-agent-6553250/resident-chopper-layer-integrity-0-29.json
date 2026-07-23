@@ -1,0 +1,306 @@
+{
+ "schema": 1,
+ "phase": "integrity",
+ "profiles": {
+  "lean_m2c2h0k2": {
+   "scenarios": 480,
+   "mean_score": 370.0833333333333,
+   "mean_opponent_score": 245.69166666666666,
+   "mean_margin": 124.39166666666667,
+   "mean_inventory_wood": 89.87083333333334,
+   "mean_opponent_inventory_wood": 50.3,
+   "mean_workers": 2,
+   "activated_cells": 0,
+   "mean_activation_turns": 0,
+   "mean_opponent_crops_seen": 0,
+   "provenance_assignment_rate": 0.9992325063096837,
+   "ambiguous_births": 40,
+   "base_command_mismatches": 0,
+   "wood": {
+    "own_from_natural": 3969,
+    "own_from_ours": 38872,
+    "own_from_opponent": 499,
+    "own_from_unknown": 23,
+    "opponent_from_natural": 3734,
+    "opponent_from_ours": 2838,
+    "opponent_from_opponent": 17789,
+    "opponent_from_unknown": 29
+   },
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 60,
+     "mean_margin": 0,
+     "mean_score": 392.26666666666665,
+     "mean_opponent_score": 392.26666666666665,
+     "activated_cells": 0
+    },
+    "gold_adaptive": {
+     "scenarios": 60,
+     "mean_margin": 15.266666666666667,
+     "mean_score": 390.18333333333334,
+     "mean_opponent_score": 374.9166666666667,
+     "activated_cells": 0
+    },
+    "gold_elite": {
+     "scenarios": 60,
+     "mean_margin": 0,
+     "mean_score": 392.26666666666665,
+     "mean_opponent_score": 392.26666666666665,
+     "activated_cells": 0
+    },
+    "mybot": {
+     "scenarios": 60,
+     "mean_margin": 165.61666666666667,
+     "mean_score": 346.15,
+     "mean_opponent_score": 180.53333333333333,
+     "activated_cells": 0
+    },
+    "printer_bot": {
+     "scenarios": 60,
+     "mean_margin": 258.3,
+     "mean_score": 392.4,
+     "mean_opponent_score": 134.1,
+     "activated_cells": 0
+    },
+    "sched_bot": {
+     "scenarios": 60,
+     "mean_margin": 177.08333333333334,
+     "mean_score": 305.3833333333333,
+     "mean_opponent_score": 128.3,
+     "activated_cells": 0
+    },
+    "script_boss": {
+     "scenarios": 60,
+     "mean_margin": 152.83333333333334,
+     "mean_score": 368.6166666666667,
+     "mean_opponent_score": 215.78333333333333,
+     "activated_cells": 0
+    },
+    "silver_boss": {
+     "scenarios": 60,
+     "mean_margin": 226.03333333333333,
+     "mean_score": 373.4,
+     "mean_opponent_score": 147.36666666666667,
+     "activated_cells": 0
+    }
+   }
+  },
+  "resident": {
+   "scenarios": 480,
+   "mean_score": 206.89375,
+   "mean_opponent_score": 165.01875,
+   "mean_margin": 41.875,
+   "mean_inventory_wood": 50.041666666666664,
+   "mean_opponent_inventory_wood": 33.22291666666667,
+   "mean_workers": 2,
+   "activated_cells": 0,
+   "mean_activation_turns": 0,
+   "mean_opponent_crops_seen": 0,
+   "provenance_assignment_rate": 1.0,
+   "ambiguous_births": 0,
+   "base_command_mismatches": 0,
+   "wood": {
+    "own_from_natural": 13894,
+    "own_from_ours": 5776,
+    "own_from_opponent": 4364,
+    "own_from_unknown": 0,
+    "opponent_from_natural": 3854,
+    "opponent_from_ours": 523,
+    "opponent_from_opponent": 11813,
+    "opponent_from_unknown": 0
+   },
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 60,
+     "mean_margin": -97.4,
+     "mean_score": 223.48333333333332,
+     "mean_opponent_score": 320.8833333333333,
+     "activated_cells": 0
+    },
+    "gold_adaptive": {
+     "scenarios": 60,
+     "mean_margin": 62.86666666666667,
+     "mean_score": 202.28333333333333,
+     "mean_opponent_score": 139.41666666666666,
+     "activated_cells": 0
+    },
+    "gold_elite": {
+     "scenarios": 60,
+     "mean_margin": -97.4,
+     "mean_score": 223.48333333333332,
+     "mean_opponent_score": 320.8833333333333,
+     "activated_cells": 0
+    },
+    "mybot": {
+     "scenarios": 60,
+     "mean_margin": 65.53333333333333,
+     "mean_score": 220.95,
+     "mean_opponent_score": 155.41666666666666,
+     "activated_cells": 0
+    },
+    "printer_bot": {
+     "scenarios": 60,
+     "mean_margin": 103.26666666666667,
+     "mean_score": 206.41666666666666,
+     "mean_opponent_score": 103.15,
+     "activated_cells": 0
+    },
+    "sched_bot": {
+     "scenarios": 60,
+     "mean_margin": 98.75,
+     "mean_score": 192.51666666666668,
+     "mean_opponent_score": 93.76666666666667,
+     "activated_cells": 0
+    },
+    "script_boss": {
+     "scenarios": 60,
+     "mean_margin": 110.86666666666666,
+     "mean_score": 202.7,
+     "mean_opponent_score": 91.83333333333333,
+     "activated_cells": 0
+    },
+    "silver_boss": {
+     "scenarios": 60,
+     "mean_margin": 88.51666666666667,
+     "mean_score": 183.31666666666666,
+     "mean_opponent_score": 94.8,
+     "activated_cells": 0
+    }
+   }
+  },
+  "resident_chopper_hybrid": {
+   "scenarios": 480,
+   "mean_score": 298.4458333333333,
+   "mean_opponent_score": 231.8375,
+   "mean_margin": 66.60833333333333,
+   "mean_inventory_wood": 72.85625,
+   "mean_opponent_inventory_wood": 47.675,
+   "mean_workers": 2,
+   "activated_cells": 480,
+   "mean_activation_turns": 137.97916666666666,
+   "mean_opponent_crops_seen": 0,
+   "provenance_assignment_rate": 0.9995879474633016,
+   "ambiguous_births": 13,
+   "base_command_mismatches": 0,
+   "wood": {
+    "own_from_natural": 4741,
+    "own_from_ours": 28920,
+    "own_from_opponent": 1422,
+    "own_from_unknown": 20,
+    "opponent_from_natural": 4227,
+    "opponent_from_ours": 1921,
+    "opponent_from_opponent": 16990,
+    "opponent_from_unknown": 4
+   },
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 60,
+     "mean_margin": -72.33333333333333,
+     "mean_score": 314.03333333333336,
+     "mean_opponent_score": 386.3666666666667,
+     "activated_cells": 60
+    },
+    "gold_adaptive": {
+     "scenarios": 60,
+     "mean_margin": -19.866666666666667,
+     "mean_score": 314.35,
+     "mean_opponent_score": 334.21666666666664,
+     "activated_cells": 60
+    },
+    "gold_elite": {
+     "scenarios": 60,
+     "mean_margin": -72.33333333333333,
+     "mean_score": 314.03333333333336,
+     "mean_opponent_score": 386.3666666666667,
+     "activated_cells": 60
+    },
+    "mybot": {
+     "scenarios": 60,
+     "mean_margin": 108.95,
+     "mean_score": 285.4166666666667,
+     "mean_opponent_score": 176.46666666666667,
+     "activated_cells": 60
+    },
+    "printer_bot": {
+     "scenarios": 60,
+     "mean_margin": 180.26666666666668,
+     "mean_score": 314.05,
+     "mean_opponent_score": 133.78333333333333,
+     "activated_cells": 60
+    },
+    "sched_bot": {
+     "scenarios": 60,
+     "mean_margin": 123.45,
+     "mean_score": 243.65,
+     "mean_opponent_score": 120.2,
+     "activated_cells": 60
+    },
+    "script_boss": {
+     "scenarios": 60,
+     "mean_margin": 129.33333333333334,
+     "mean_score": 311.55,
+     "mean_opponent_score": 182.21666666666667,
+     "activated_cells": 60
+    },
+    "silver_boss": {
+     "scenarios": 60,
+     "mean_margin": 155.4,
+     "mean_score": 290.48333333333335,
+     "mean_opponent_score": 135.08333333333334,
+     "activated_cells": 60
+    }
+   }
+  }
+ },
+ "hybrid_minus_resident": {
+  "scenarios": 480,
+  "mean_margin_delta": 24.733333333333334,
+  "trimmed_5pct_mean_margin_delta": 27.83564814814815,
+  "median_margin_delta": 24.0,
+  "minimum_margin_delta": -368,
+  "maximum_margin_delta": 261,
+  "mean_own_score_delta": 91.55208333333333,
+  "mean_opponent_score_delta": 66.81875,
+  "mean_own_inventory_wood_delta": 22.814583333333335,
+  "mean_opponent_inventory_wood_delta": 14.452083333333333,
+  "mean_own_from_opponent_delta": -6.129166666666666,
+  "mean_opponent_from_opponent_delta": 10.785416666666666
+ },
+ "hybrid_minus_farm": {
+  "scenarios": 480,
+  "mean_margin_delta": -57.78333333333333,
+  "trimmed_5pct_mean_margin_delta": -59.173611111111114,
+  "median_margin_delta": -57.0,
+  "minimum_margin_delta": -257,
+  "maximum_margin_delta": 272,
+  "mean_own_score_delta": -71.6375,
+  "mean_opponent_score_delta": -13.854166666666666,
+  "mean_own_inventory_wood_delta": -17.014583333333334,
+  "mean_opponent_inventory_wood_delta": -2.625,
+  "mean_own_from_opponent_delta": 1.9229166666666666,
+  "mean_opponent_from_opponent_delta": -1.6645833333333333
+ },
+ "hybrid_telemetry": {
+  "activated_cells": 480,
+  "mean_substitution_turns": 137.97916666666666,
+  "copied_verbs": {
+   "move": 38236,
+   "chop": 19848,
+   "drop": 2630,
+   "mine": 0,
+   "pick": 2724,
+   "harvest": 0,
+   "plant": 2792
+  }
+ },
+ "integrity_checks": {
+  "complete_grid": true,
+  "all_games_complete": true,
+  "provenance_assignment": true,
+  "same_build_farm_shadow_parity": true,
+  "substituted_cells": true,
+  "repeat_run_identity": true
+ },
+ "passed": true,
+ "decision": "open frozen discovery"
+}

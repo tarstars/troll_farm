@@ -1,0 +1,479 @@
+{
+  "design": {
+    "complete": true,
+    "evaluation_scenarios": 240,
+    "runs": 4,
+    "transitions_per_run": 131072
+  },
+  "per_run": [
+    {
+      "classification": "collapse_to_keep",
+      "evaluation": {
+        "catastrophic_count_delta": 0,
+        "cell_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "cell_wood_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "changed_maps": 0,
+        "changed_terminal_margins": 0,
+        "keep_catastrophic_count": 24,
+        "keep_map_balanced_margin": 59.2625,
+        "learned_catastrophic_count": 24,
+        "learned_map_balanced_margin": 59.2625,
+        "map_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 20,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 20,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "mean_overrides_per_episode": 0,
+        "opponent_mean_margin_delta": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 0,
+          "resident": 0
+        },
+        "override_episode_rate": 0.0,
+        "override_episodes": 0,
+        "rejected_actions": 0,
+        "total_overrides": 0,
+        "worst_opponent_mean_margin_delta": 0
+      },
+      "gates": {
+        "at_least_12_changed_terminal_margins": false,
+        "catastrophic_count_increase_at_most_2": true,
+        "complete_training_and_240_evaluations": true,
+        "map_mean_margin_delta_nonnegative": true,
+        "override_episode_rate_at_least_5_percent": false,
+        "worst_decile_cell_delta_at_least_minus20": true,
+        "worst_opponent_mean_delta_at_least_minus5": true
+      },
+      "keep_bias": 0.5,
+      "model_seed": 9101,
+      "parameter_count": 12646,
+      "run_name": "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9101",
+      "signal_positive": false,
+      "training": {
+        "episodes": 219,
+        "final_log": {
+          "approx_kl": 3.099045716226101e-05,
+          "clip_fraction": 0.0,
+          "entropy": 0.1070341020822525,
+          "episodes_recent": 219,
+          "explained_variance": 0.9202401041984558,
+          "global_step": 131072,
+          "mean_margin_recent": -13.132420091324201,
+          "mean_overrides_recent": 45.917808219178085,
+          "policy_loss": -0.00029449909925460815,
+          "rollout_sps": 1423.489145376865,
+          "update": 64,
+          "update_sps": 625.378606362886,
+          "value_loss": 0.003848014399409294
+        },
+        "transitions": 131072,
+        "wall_seconds": 365.8541522860178
+      }
+    },
+    {
+      "classification": "collapse_to_keep",
+      "evaluation": {
+        "catastrophic_count_delta": 0,
+        "cell_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "cell_wood_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "changed_maps": 0,
+        "changed_terminal_margins": 0,
+        "keep_catastrophic_count": 24,
+        "keep_map_balanced_margin": 59.2625,
+        "learned_catastrophic_count": 24,
+        "learned_map_balanced_margin": 59.2625,
+        "map_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 20,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 20,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "mean_overrides_per_episode": 0,
+        "opponent_mean_margin_delta": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 0,
+          "resident": 0
+        },
+        "override_episode_rate": 0.0,
+        "override_episodes": 0,
+        "rejected_actions": 0,
+        "total_overrides": 0,
+        "worst_opponent_mean_margin_delta": 0
+      },
+      "gates": {
+        "at_least_12_changed_terminal_margins": false,
+        "catastrophic_count_increase_at_most_2": true,
+        "complete_training_and_240_evaluations": true,
+        "map_mean_margin_delta_nonnegative": true,
+        "override_episode_rate_at_least_5_percent": false,
+        "worst_decile_cell_delta_at_least_minus20": true,
+        "worst_opponent_mean_delta_at_least_minus5": true
+      },
+      "keep_bias": 0.5,
+      "model_seed": 9102,
+      "parameter_count": 12646,
+      "run_name": "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9102",
+      "signal_positive": false,
+      "training": {
+        "episodes": 218,
+        "final_log": {
+          "approx_kl": 0.0014288811944425106,
+          "clip_fraction": 0.00390625,
+          "entropy": 0.3604206144809723,
+          "episodes_recent": 218,
+          "explained_variance": 0.8896721601486206,
+          "global_step": 131072,
+          "mean_margin_recent": -31.61467889908257,
+          "mean_overrides_recent": 60.35321100917431,
+          "policy_loss": -0.007981404662132263,
+          "rollout_sps": 1000.5758929861738,
+          "update": 64,
+          "update_sps": 448.6321547552512,
+          "value_loss": 0.011028371751308441
+        },
+        "transitions": 131072,
+        "wall_seconds": 365.61781573999906
+      }
+    },
+    {
+      "classification": "collapse_to_keep",
+      "evaluation": {
+        "catastrophic_count_delta": 0,
+        "cell_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "cell_wood_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "changed_maps": 0,
+        "changed_terminal_margins": 0,
+        "keep_catastrophic_count": 24,
+        "keep_map_balanced_margin": 59.2625,
+        "learned_catastrophic_count": 24,
+        "learned_map_balanced_margin": 59.2625,
+        "map_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 20,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 20,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "mean_overrides_per_episode": 0,
+        "opponent_mean_margin_delta": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 0,
+          "resident": 0
+        },
+        "override_episode_rate": 0.0,
+        "override_episodes": 0,
+        "rejected_actions": 0,
+        "total_overrides": 0,
+        "worst_opponent_mean_margin_delta": 0
+      },
+      "gates": {
+        "at_least_12_changed_terminal_margins": false,
+        "catastrophic_count_increase_at_most_2": true,
+        "complete_training_and_240_evaluations": true,
+        "map_mean_margin_delta_nonnegative": true,
+        "override_episode_rate_at_least_5_percent": false,
+        "worst_decile_cell_delta_at_least_minus20": true,
+        "worst_opponent_mean_delta_at_least_minus5": true
+      },
+      "keep_bias": 1.5,
+      "model_seed": 9201,
+      "parameter_count": 12646,
+      "run_name": "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9201",
+      "signal_positive": false,
+      "training": {
+        "episodes": 219,
+        "final_log": {
+          "approx_kl": 0.0008697120938450098,
+          "clip_fraction": 0.0016276041666666667,
+          "entropy": 0.12291410565376282,
+          "episodes_recent": 219,
+          "explained_variance": 0.8884979486465454,
+          "global_step": 131072,
+          "mean_margin_recent": -11.059360730593607,
+          "mean_overrides_recent": 36.77625570776256,
+          "policy_loss": -0.0004040636122226715,
+          "rollout_sps": 1033.1104743811875,
+          "update": 64,
+          "update_sps": 487.94280150444973,
+          "value_loss": 0.0054125539027154446
+        },
+        "transitions": 131072,
+        "wall_seconds": 365.08321978501044
+      }
+    },
+    {
+      "classification": "collapse_to_keep",
+      "evaluation": {
+        "catastrophic_count_delta": 0,
+        "cell_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "cell_wood_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 240,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 240,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "changed_maps": 0,
+        "changed_terminal_margins": 0,
+        "keep_catastrophic_count": 24,
+        "keep_map_balanced_margin": 59.2625,
+        "learned_catastrophic_count": 24,
+        "learned_map_balanced_margin": 59.2625,
+        "map_margin_delta": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0.0,
+          "minimum": 0,
+          "n": 20,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 20,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "mean_overrides_per_episode": 0,
+        "opponent_mean_margin_delta": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 0,
+          "resident": 0
+        },
+        "override_episode_rate": 0.0,
+        "override_episodes": 0,
+        "rejected_actions": 0,
+        "total_overrides": 0,
+        "worst_opponent_mean_margin_delta": 0
+      },
+      "gates": {
+        "at_least_12_changed_terminal_margins": false,
+        "catastrophic_count_increase_at_most_2": true,
+        "complete_training_and_240_evaluations": true,
+        "map_mean_margin_delta_nonnegative": true,
+        "override_episode_rate_at_least_5_percent": false,
+        "worst_decile_cell_delta_at_least_minus20": true,
+        "worst_opponent_mean_delta_at_least_minus5": true
+      },
+      "keep_bias": 1.5,
+      "model_seed": 9202,
+      "parameter_count": 12646,
+      "run_name": "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9202",
+      "signal_positive": false,
+      "training": {
+        "episodes": 218,
+        "final_log": {
+          "approx_kl": 0.00016977079212665558,
+          "clip_fraction": 0.00016276041666666666,
+          "entropy": 0.08038415014743805,
+          "episodes_recent": 218,
+          "explained_variance": 0.8973169922828674,
+          "global_step": 131072,
+          "mean_margin_recent": -6.541284403669724,
+          "mean_overrides_recent": 35.89908256880734,
+          "policy_loss": -0.0007453281432390213,
+          "rollout_sps": 1030.622245726294,
+          "update": 64,
+          "update_sps": 491.58931323144867,
+          "value_loss": 0.006695867516100407
+        },
+        "transitions": 131072,
+        "wall_seconds": 369.17936560796807
+      }
+    }
+  ],
+  "schema": 1,
+  "scope": "D15 short resident-residual PPO learning-signal study on development scenario streams; no candidate or Arena authorization",
+  "selection": {
+    "any_useful_signal": false,
+    "authorization": "positive runs may enter a larger local replication only; no candidate, submission, or Arena activity",
+    "signal_positive_runs": []
+  },
+  "source": {
+    "analyzer": "cgauto/d15_resident_residual_ppo_analysis.py",
+    "analyzer_sha256": "afd8f0a6162a00bd50a22260d177c2e1a31dfc37ba6fe8396feed5fc1a0a3cda",
+    "keep_baseline": "data/analysis/live-agent-6553250/d15-resident-residual-keep-baseline-scenarios240000-240239.json",
+    "keep_baseline_sha256": "15ac9c333a9ce674e0678e604311d3a6ca06536f324e064c01fca6afc8f03822",
+    "run_sha256": {
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9101.json": "150f8577d278d1d3ebdc1e6ac9016968d8adb398931762dccd140048994956ec",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9102.json": "06f5c0ba0a2e763a1686cbd4c7c53f29171067fc497e3c3b828bd7b0c884668e",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9201.json": "5dab85b86839b07d5f5fb2eeeddb028296787a32db3e297a8e650907085e0305",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9202.json": "7874f33cb58ee59099b4df6cff2d0cccb799e1b2b45a3645ef96bb5f8661f729"
+    },
+    "runs": [
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9101.json",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b05-s9102.json",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9201.json",
+      "data/analysis/live-agent-6553250/d15-resident-residual-ppo-b15-s9202.json"
+    ]
+  }
+}

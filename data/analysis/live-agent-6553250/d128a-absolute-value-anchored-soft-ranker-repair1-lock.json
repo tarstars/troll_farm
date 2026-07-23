@@ -1,0 +1,17 @@
+{
+  "frozen_at": "2026-07-22-after-d128-python-boolean-nameerror-before-any-result",
+  "inherited_protocol_lock": "data/analysis/live-agent-6553250/d128a-absolute-value-anchored-soft-ranker-lock.json",
+  "repair": "replace the result-metadata token false with Python False and verify this repair lock; no model, data, metric, threshold, seed, or decision change",
+  "schema": "troll-farm-d128a-absolute-value-anchored-soft-ranker-repair1-lock-v1",
+  "sha256": {
+    "cgauto/train_d128a_absolute_value_anchored_soft_ranker.py": "539cc9550d22d3a1c7caff08aa0677cf8ae1b3949f4c3c8d279ca85a693045c9",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-arms-9843780-9843795.tsv": "1c2f3b69f802e08b58119a8af728ea225c0560f9bcf88c182b3978b0b294a96d",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-result.json": "f34c32d9efdfab2ab8f1bccb762a99ba800319522a8b38d43da805cef218b8c6",
+    "data/analysis/live-agent-6553250/d128a-absolute-value-anchored-soft-ranker-lock.json": "6fd7f45c1d796624d670d00e6a020e061a6da09cb13fac8e1ba0db274c412a15",
+    "data/analysis/live-agent-6553250/d128a-absolute-value-anchored-soft-ranker-protocol-2026-07-22.md": "576c9a70312ab2f09b6502c380bb5c58fd9641e7fd48ff4e1a421fe3ffe4a902",
+    "tests/test_train_d128a_absolute_value_anchored_soft_ranker.py": "7dcfe55a9bde45f71a3fe0f4df40f06788da4ec217806407280259f9a135d143"
+  }
+}

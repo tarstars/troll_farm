@@ -1,0 +1,778 @@
+{
+ "schema": 1,
+ "scope": "consumed exact-map rich-opponent proxy calibration; not candidate evidence",
+ "games": 160,
+ "model_cells": 1280,
+ "catalog": [
+  "legend_v2_hp2_cheap_farm",
+  "legend_v2_hp2_cheap_late_chop",
+  "legend_v2_hp2_strong_farm",
+  "legend_v2_hp2_strong_late_chop",
+  "legend_v2_balanced_cheap_farm",
+  "legend_v2_balanced_cheap_late_chop",
+  "legend_v2_balanced_strong_farm",
+  "legend_v2_balanced_strong_late_chop"
+ ],
+ "split_counts": {
+  "discovery": {
+   "games": 80,
+   "catastrophic": 12,
+   "worker_rich": 23,
+   "rich_immediate": 12
+  },
+  "confirmation": {
+   "games": 80,
+   "catastrophic": 19,
+   "worker_rich": 28,
+   "rich_immediate": 9
+  }
+ },
+ "discovery_rankings": [
+  {
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.1437960317460316
+  },
+  {
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.1534349206349206
+  },
+  {
+   "model": "legend_v2_hp2_cheap_farm",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.2118785714285714
+  },
+  {
+   "model": "legend_v2_balanced_cheap_farm",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.2310880952380954
+  },
+  {
+   "model": "legend_v2_balanced_strong_late_chop",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3543349206349207
+  },
+  {
+   "model": "legend_v2_hp2_strong_late_chop",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3664404761904763
+  },
+  {
+   "model": "legend_v2_hp2_strong_farm",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4759238095238094
+  },
+  {
+   "model": "legend_v2_balanced_strong_farm",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4936547619047618
+  }
+ ],
+ "selected_model": "legend_v2_balanced_cheap_late_chop",
+ "confirmation": {
+  "overall": {
+   "games": 80,
+   "baseline": {
+    "macro": 27,
+    "full": 15,
+    "exact_opening": 16,
+    "macro_rate": 0.3375,
+    "full_rate": 0.1875,
+    "exact_opening_rate": 0.2
+   },
+   "selected_catalog": {
+    "macro": 7,
+    "full": 3,
+    "exact_opening": 1,
+    "macro_rate": 0.0875,
+    "full_rate": 0.0375,
+    "exact_opening_rate": 0.0125
+   },
+   "expanded": {
+    "macro": 30,
+    "full": 18,
+    "exact_opening": 17,
+    "macro_rate": 0.375,
+    "full_rate": 0.225,
+    "exact_opening_rate": 0.2125
+   },
+   "delta": {
+    "macro": 3,
+    "full": 3,
+    "exact_opening": 1,
+    "macro_rate": 0.0375,
+    "full_rate": 0.0375,
+    "exact_opening_rate": 0.0125
+   }
+  },
+  "catastrophic": {
+   "games": 19,
+   "baseline": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "worker_rich": {
+   "games": 28,
+   "baseline": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "rich_immediate": {
+   "games": 9,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_macro": 0,
+   "selected_macro_rate": 0.0,
+   "selected_full": 0,
+   "selected_final_worker_distribution": {
+    "2": 2,
+    "3": 7
+   },
+   "selected_residuals": {
+    "games": 9,
+    "checkpoints": {
+     "50": {
+      "score": {
+       "mean_signed": -6.444444444444445,
+       "mean_absolute": 7.777777777777778
+      },
+      "fruit": {
+       "mean_signed": 0.8888888888888888,
+       "mean_absolute": 8.88888888888889
+      },
+      "wood": {
+       "mean_signed": -0.7777777777777778,
+       "mean_absolute": 2.111111111111111
+      },
+      "workers": {
+       "mean_signed": 0.1111111111111111,
+       "mean_absolute": 0.3333333333333333
+      },
+      "plants": {
+       "mean_signed": 0.1111111111111111,
+       "mean_absolute": 1.8888888888888888
+      },
+      "harvested_fruit": {
+       "mean_signed": -3.2222222222222223,
+       "mean_absolute": 4.333333333333333
+      },
+      "chops": {
+       "mean_signed": -1.2222222222222223,
+       "mean_absolute": 3
+      },
+      "dropped_items": {
+       "mean_signed": -4.111111111111111,
+       "mean_absolute": 4.333333333333333
+      }
+     },
+     "100": {
+      "score": {
+       "mean_signed": -1.6666666666666667,
+       "mean_absolute": 35.22222222222222
+      },
+      "fruit": {
+       "mean_signed": -1.6666666666666667,
+       "mean_absolute": 11.88888888888889
+      },
+      "wood": {
+       "mean_signed": 1.1111111111111112,
+       "mean_absolute": 8
+      },
+      "workers": {
+       "mean_signed": -0.2222222222222222,
+       "mean_absolute": 0.4444444444444444
+      },
+      "plants": {
+       "mean_signed": -0.2222222222222222,
+       "mean_absolute": 5.555555555555555
+      },
+      "harvested_fruit": {
+       "mean_signed": -15.444444444444445,
+       "mean_absolute": 18.11111111111111
+      },
+      "chops": {
+       "mean_signed": 1.5555555555555556,
+       "mean_absolute": 16.22222222222222
+      },
+      "dropped_items": {
+       "mean_signed": -5.888888888888889,
+       "mean_absolute": 11.222222222222221
+      }
+     },
+     "final": {
+      "score": {
+       "mean_signed": -260.8888888888889,
+       "mean_absolute": 260.8888888888889
+      },
+      "fruit": {
+       "mean_signed": -11,
+       "mean_absolute": 36.77777777777778
+      },
+      "wood": {
+       "mean_signed": -62,
+       "mean_absolute": 62
+      },
+      "workers": {
+       "mean_signed": -0.8888888888888888,
+       "mean_absolute": 0.8888888888888888
+      },
+      "plants": {
+       "mean_signed": -10.555555555555555,
+       "mean_absolute": 17.22222222222222
+      },
+      "harvested_fruit": {
+       "mean_signed": -60.333333333333336,
+       "mean_absolute": 77.22222222222223
+      },
+      "chops": {
+       "mean_signed": 3.7777777777777777,
+       "mean_absolute": 75.77777777777777
+      },
+      "dropped_items": {
+       "mean_signed": -95.33333333333333,
+       "mean_absolute": 96.44444444444444
+      }
+     }
+    },
+    "terminal": {
+     "mean_signed": -4.222222222222222,
+     "mean_absolute": 4.666666666666667
+    }
+   }
+  }
+ },
+ "rich_catalog_summary": {
+  "legend_v2_hp2_cheap_farm": {
+   "discovery": {
+    "model": "legend_v2_hp2_cheap_farm",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2118785714285714
+   },
+   "confirmation": {
+    "model": "legend_v2_hp2_cheap_farm",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1172455026455026
+   }
+  },
+  "legend_v2_hp2_cheap_late_chop": {
+   "discovery": {
+    "model": "legend_v2_hp2_cheap_late_chop",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1534349206349206
+   },
+   "confirmation": {
+    "model": "legend_v2_hp2_cheap_late_chop",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.096741798941799
+   }
+  },
+  "legend_v2_hp2_strong_farm": {
+   "discovery": {
+    "model": "legend_v2_hp2_strong_farm",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4759238095238094
+   },
+   "confirmation": {
+    "model": "legend_v2_hp2_strong_farm",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.427895238095238
+   }
+  },
+  "legend_v2_hp2_strong_late_chop": {
+   "discovery": {
+    "model": "legend_v2_hp2_strong_late_chop",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3664404761904763
+   },
+   "confirmation": {
+    "model": "legend_v2_hp2_strong_late_chop",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3319714285714286
+   }
+  },
+  "legend_v2_balanced_cheap_farm": {
+   "discovery": {
+    "model": "legend_v2_balanced_cheap_farm",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2310880952380954
+   },
+   "confirmation": {
+    "model": "legend_v2_balanced_cheap_farm",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.313068783068783
+   }
+  },
+  "legend_v2_balanced_cheap_late_chop": {
+   "discovery": {
+    "model": "legend_v2_balanced_cheap_late_chop",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1437960317460316
+   },
+   "confirmation": {
+    "model": "legend_v2_balanced_cheap_late_chop",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.2216095238095237
+   }
+  },
+  "legend_v2_balanced_strong_farm": {
+   "discovery": {
+    "model": "legend_v2_balanced_strong_farm",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4936547619047618
+   },
+   "confirmation": {
+    "model": "legend_v2_balanced_strong_farm",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4475714285714285
+   }
+  },
+  "legend_v2_balanced_strong_late_chop": {
+   "discovery": {
+    "model": "legend_v2_balanced_strong_late_chop",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3543349206349207
+   },
+   "confirmation": {
+    "model": "legend_v2_balanced_strong_late_chop",
+    "games": 9,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3786380952380952
+   }
+  }
+ },
+ "rich_game_nearest": [
+  {
+   "game_id": 896284384,
+   "partition": "confirmation",
+   "opponent": "mikmak",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.610647619047619
+  },
+  {
+   "game_id": 896284389,
+   "partition": "confirmation",
+   "opponent": "Bulgot",
+   "model": "legend_v2_balanced_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.6076476190476191
+  },
+  {
+   "game_id": 896284405,
+   "partition": "discovery",
+   "opponent": "Pech1",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.1096380952380953
+  },
+  {
+   "game_id": 896284423,
+   "partition": "discovery",
+   "opponent": "daaskare",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.7641714285714286
+  },
+  {
+   "game_id": 896284442,
+   "partition": "discovery",
+   "opponent": "celeria",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.6115714285714285
+  },
+  {
+   "game_id": 896284534,
+   "partition": "discovery",
+   "opponent": "celeria",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.6730380952380952
+  },
+  {
+   "game_id": 896284653,
+   "partition": "confirmation",
+   "opponent": "Meruem",
+   "model": "legend_v2_balanced_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.0820095238095238
+  },
+  {
+   "game_id": 896284734,
+   "partition": "discovery",
+   "opponent": "Meruem",
+   "model": "legend_v2_balanced_strong_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.9426761904761904
+  },
+  {
+   "game_id": 896284933,
+   "partition": "discovery",
+   "opponent": "FredericBautista",
+   "model": "legend_v2_hp2_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.6607047619047619
+  },
+  {
+   "game_id": 896285393,
+   "partition": "discovery",
+   "opponent": "uta_ccc",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.1244761904761904
+  },
+  {
+   "game_id": 896285526,
+   "partition": "confirmation",
+   "opponent": "Bondo416",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.0139809523809524
+  },
+  {
+   "game_id": 896285620,
+   "partition": "confirmation",
+   "opponent": "MSz",
+   "model": "legend_v2_hp2_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.9872761904761905
+  },
+  {
+   "game_id": 896285646,
+   "partition": "confirmation",
+   "opponent": "gaha",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.8721428571428571
+  },
+  {
+   "game_id": 896286346,
+   "partition": "confirmation",
+   "opponent": "viewlagoon",
+   "model": "legend_v2_hp2_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.858047619047619
+  },
+  {
+   "game_id": 896286377,
+   "partition": "discovery",
+   "opponent": "Bondo416",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.1097619047619047
+  },
+  {
+   "game_id": 896286571,
+   "partition": "confirmation",
+   "opponent": "gaha",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.9728
+  },
+  {
+   "game_id": 896286624,
+   "partition": "confirmation",
+   "opponent": "xSkyline",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.6111047619047619
+  },
+  {
+   "game_id": 896286706,
+   "partition": "discovery",
+   "opponent": "MSz",
+   "model": "legend_v2_balanced_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.7246285714285714
+  },
+  {
+   "game_id": 896286793,
+   "partition": "discovery",
+   "opponent": "tsukammo",
+   "model": "legend_v2_hp2_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 0.7522571428571428
+  },
+  {
+   "game_id": 896287157,
+   "partition": "discovery",
+   "opponent": "viewlagoon",
+   "model": "legend_v2_hp2_cheap_farm",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.7514952380952382
+  },
+  {
+   "game_id": 896287281,
+   "partition": "discovery",
+   "opponent": "viewlagoon",
+   "model": "legend_v2_hp2_cheap_late_chop",
+   "macro_covers": false,
+   "fully_covers": false,
+   "normalized_macro_distance": 1.7406380952380953
+  }
+ ],
+ "model_summary": {
+  "legend_v2_hp2_cheap_farm": {
+   "macro_covers": 8,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.1437528571428572
+  },
+  "legend_v2_hp2_cheap_late_chop": {
+   "macro_covers": 7,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.0883461904761904
+  },
+  "legend_v2_hp2_strong_farm": {
+   "macro_covers": 8,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.2023913095238095
+  },
+  "legend_v2_hp2_strong_late_chop": {
+   "macro_covers": 8,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.1227540476190476
+  },
+  "legend_v2_balanced_cheap_farm": {
+   "macro_covers": 9,
+   "fully_covers": 4,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.1318684523809524
+  },
+  "legend_v2_balanced_cheap_late_chop": {
+   "macro_covers": 7,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.0822966666666667
+  },
+  "legend_v2_balanced_strong_farm": {
+   "macro_covers": 8,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.167750119047619
+  },
+  "legend_v2_balanced_strong_late_chop": {
+   "macro_covers": 8,
+   "fully_covers": 3,
+   "exact_opening": 1,
+   "mean_normalized_macro_distance": 1.1018384523809523
+  }
+ },
+ "gates": {
+  "integrity": true,
+  "rich_macro_coverage": false,
+  "rich_full_coverage": false,
+  "overall_macro_uplift": false,
+  "worker_rich_macro_uplift": false,
+  "catastrophic_macro_uplift": false
+ },
+ "passed": false,
+ "decision": "LegendFieldProxy v2 fails; use residuals for the next model hypothesis"
+}

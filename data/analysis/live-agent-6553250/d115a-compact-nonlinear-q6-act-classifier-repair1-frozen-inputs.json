@@ -1,0 +1,37 @@
+{
+  "schema": "troll-farm-d115a-compact-nonlinear-q6-act-classifier-repair1-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-repaired-validation-collection-or-first-d115-fit",
+  "repair": {
+    "reason": "original independent panel had 582 roots below unchanged 600-root floor",
+    "failed_panel_is_selection_quarantined": true,
+    "failed_panel_models_trained": 0,
+    "failed_panel_candidates_evaluated": 0,
+    "repaired_validation_seeds": "9843610--9843619",
+    "repaired_validation_maps": 10,
+    "repaired_validation_tasks": 160,
+    "architecture_training_grid_and_gates_unchanged": true
+  },
+  "data_isolation": {
+    "fit_only_seeds": "9843300--9843315",
+    "discarded_mechanics_failure_seeds": "9843600--9843607",
+    "untouched_repaired_validation_seeds": "9843610--9843619",
+    "conditional_untouched_held_seeds": "9843700--9843715",
+    "d114_validation_excluded": true
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6"
+  },
+  "train_elapsed_seconds": 855.033,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-frozen-inputs.json": "ecbf434b20cf7a846c3e75c9e099c3774f5d5b8bc6b4de9a5a69ecca97239bd2",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-protocol-2026-07-22.md": "2b08ad9d4562679898eb891b16f9f673cffd1fabed10c7c810f556fbca7d7dcf",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-repair1-2026-07-22.md": "abc19ee2e041d7408fd134f8f980e2ef767152281806f8b23ed76b92c2c61447",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "b7893ad8e0e2f65ecbab7d9fa0fd04b4eee0786767f6b518ea7be6dac8ba2e7e",
+    "tests/test_train_d115a_compact_nonlinear_q6_act_classifier.py": "0d33889923b519ec8d3131158c3a05c4b0c0dbc832e9792238ca921c91dde8b9",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-result.json": "b862a1c5eccbd920a46a1aa2e9432e3a6184d917f3262414ca3cf7e6d5a695b6",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-arms-9843600-9843607.tsv": "8861dffaba780745c2d43be3ec87fded18d8eeab45a8e57dff32db5d8d07844c",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-baselines-9843600-9843607.tsv": "6b385d2134c9dbdb13d478a2ca9157d847f32ea441b80c6a2c08474284c9265b"
+  }
+}

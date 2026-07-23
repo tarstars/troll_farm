@@ -1,0 +1,1176 @@
+{
+ "schema": 1,
+ "scope": "blocked-CV distillation of the frozen CompactGold >30 rollout decision; test seeds excluded from training labels and model selection",
+ "threshold": 30.0,
+ "train_rollouts": [
+  "data/analysis/live-agent-6553250/compact-gold-rollouts-0-119.tsv",
+  "data/analysis/live-agent-6553250/compact-gold-rollouts-180-999.tsv"
+ ],
+ "test_rollouts": "data/analysis/live-agent-6553250/local-model-rollouts-120-179.tsv",
+ "test_league": "data/analysis/live-agent-6553250/adaptive-max-bank-first-hp0-validation-120-179.json",
+ "training_cells": 1880,
+ "training_positive_cells": 128,
+ "test_cells": 120,
+ "test_positive_cells": 4,
+ "selected_config": {
+  "max_depth": 5,
+  "min_leaf": 8,
+  "negative_weight": 2.0
+ },
+ "selected_config_cross_validation": {
+  "true_positive": 3,
+  "false_positive": 9,
+  "false_negative": 125,
+  "true_negative": 1743,
+  "precision": 0.25,
+  "recall": 0.0234375,
+  "f0_5": 0.08522727272727272
+ },
+ "config_reports": [
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 3,
+    "false_positive": 9,
+    "false_negative": 125,
+    "true_negative": 1743,
+    "precision": 0.25,
+    "recall": 0.0234375,
+    "f0_5": 0.08522727272727272
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 3,
+    "false_positive": 17,
+    "false_negative": 125,
+    "true_negative": 1735,
+    "precision": 0.15,
+    "recall": 0.0234375,
+    "f0_5": 0.07211538461538462
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 2,
+    "false_positive": 2,
+    "false_negative": 126,
+    "true_negative": 1750,
+    "precision": 0.5,
+    "recall": 0.015625,
+    "f0_5": 0.06944444444444445
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 16,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 2,
+    "false_positive": 3,
+    "false_negative": 126,
+    "true_negative": 1749,
+    "precision": 0.4,
+    "recall": 0.015625,
+    "f0_5": 0.06756756756756756
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 2,
+    "false_positive": 12,
+    "false_negative": 126,
+    "true_negative": 1740,
+    "precision": 0.14285714285714285,
+    "recall": 0.015625,
+    "f0_5": 0.05434782608695651
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 4,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 1,
+    "false_negative": 127,
+    "true_negative": 1751,
+    "precision": 0.5,
+    "recall": 0.0078125,
+    "f0_5": 0.03676470588235294
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 1,
+    "false_negative": 127,
+    "true_negative": 1751,
+    "precision": 0.5,
+    "recall": 0.0078125,
+    "f0_5": 0.03676470588235294
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 1,
+    "false_negative": 127,
+    "true_negative": 1751,
+    "precision": 0.5,
+    "recall": 0.0078125,
+    "f0_5": 0.03676470588235294
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 4,
+    "false_negative": 127,
+    "true_negative": 1748,
+    "precision": 0.2,
+    "recall": 0.0078125,
+    "f0_5": 0.03378378378378378
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 4,
+    "false_negative": 127,
+    "true_negative": 1748,
+    "precision": 0.2,
+    "recall": 0.0078125,
+    "f0_5": 0.03378378378378378
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 4,
+    "false_negative": 127,
+    "true_negative": 1748,
+    "precision": 0.2,
+    "recall": 0.0078125,
+    "f0_5": 0.03378378378378378
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 4,
+    "false_negative": 127,
+    "true_negative": 1748,
+    "precision": 0.2,
+    "recall": 0.0078125,
+    "f0_5": 0.03378378378378378
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 6,
+    "false_negative": 127,
+    "true_negative": 1746,
+    "precision": 0.14285714285714285,
+    "recall": 0.0078125,
+    "f0_5": 0.03205128205128205
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 1,
+    "false_positive": 7,
+    "false_negative": 127,
+    "true_negative": 1745,
+    "precision": 0.125,
+    "recall": 0.0078125,
+    "f0_5": 0.03125
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 16,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 16,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 16,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 16,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 8,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 8,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 8,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 8,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 4,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 4,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 4,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 2,
+    "min_leaf": 4,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 16,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 16,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 16,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 16,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 8,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 8,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 8,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 8,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 4,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 4,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 3,
+    "min_leaf": 4,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 16,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 16,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 16,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 16,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 16,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 16,
+    "negative_weight": 4.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 12.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 8.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 0,
+    "false_negative": 128,
+    "true_negative": 1752,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_depth": 4,
+    "min_leaf": 16,
+    "negative_weight": 2.0
+   },
+   "cross_validation": {
+    "true_positive": 0,
+    "false_positive": 2,
+    "false_negative": 128,
+    "true_negative": 1750,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f0_5": 0.0
+   }
+  }
+ ],
+ "tree": {
+  "feature": "option_cost",
+  "threshold": 17.0,
+  "positive": 128,
+  "negative": 1752,
+  "left": {
+   "feature": "lemon_own_half",
+   "threshold": 1.5,
+   "positive": 117,
+   "negative": 1244,
+   "left": {
+    "feature": "own_lemon",
+    "threshold": 3.5,
+    "positive": 56,
+    "negative": 337,
+    "left": {
+     "feature": "banana_own_mean",
+     "threshold": 4.333333333333334,
+     "positive": 25,
+     "negative": 57,
+     "left": {
+      "feature": null,
+      "prediction": true,
+      "positive": 8,
+      "negative": 2
+     },
+     "right": {
+      "feature": "fruit_total",
+      "threshold": 17.0,
+      "positive": 17,
+      "negative": 55,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 9,
+       "negative": 48
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 8,
+       "negative": 7
+      }
+     }
+    },
+    "right": {
+     "feature": "apple_own_mean",
+     "threshold": 3.583333333333333,
+     "positive": 31,
+     "negative": 280,
+     "left": {
+      "feature": null,
+      "prediction": false,
+      "positive": 4,
+      "negative": 4
+     },
+     "right": {
+      "feature": "plum_own_mean",
+      "threshold": 3.416666666666667,
+      "positive": 27,
+      "negative": 276,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 3,
+       "negative": 5
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 24,
+       "negative": 271
+      }
+     }
+    }
+   },
+   "right": {
+    "feature": "plum_ripe_own_min",
+    "threshold": 7.5,
+    "positive": 61,
+    "negative": 907,
+    "left": {
+     "feature": "own_iron",
+     "threshold": 6.5,
+     "positive": 21,
+     "negative": 564,
+     "left": {
+      "feature": "water_adjacent_tree_count",
+      "threshold": 7.0,
+      "positive": 6,
+      "negative": 351,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 4,
+       "negative": 342
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 2,
+       "negative": 9
+      }
+     },
+     "right": {
+      "feature": "lemon_ripe_own_min",
+      "threshold": 0.5,
+      "positive": 15,
+      "negative": 213,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 4,
+       "negative": 11
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 11,
+       "negative": 202
+      }
+     }
+    },
+    "right": {
+     "feature": "own_plum",
+     "threshold": 4.5,
+     "positive": 40,
+     "negative": 343,
+     "left": {
+      "feature": "banana_own_mean",
+      "threshold": 6.75,
+      "positive": 30,
+      "negative": 103,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 17,
+       "negative": 25
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 13,
+       "negative": 78
+      }
+     },
+     "right": {
+      "feature": "orchard_candidate_count",
+      "threshold": 0.5,
+      "positive": 10,
+      "negative": 240,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 5,
+       "negative": 219
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 5,
+       "negative": 21
+      }
+     }
+    }
+   }
+  },
+  "right": {
+   "feature": "banana_own_min",
+   "threshold": 5.5,
+   "positive": 11,
+   "negative": 508,
+   "left": {
+    "feature": "lemon_own_min",
+    "threshold": 6.5,
+    "positive": 6,
+    "negative": 448,
+    "left": {
+     "feature": "banana_fruit",
+     "threshold": 7.0,
+     "positive": 2,
+     "negative": 403,
+     "left": {
+      "feature": null,
+      "prediction": false,
+      "positive": 0,
+      "negative": 361
+     },
+     "right": {
+      "feature": "lemon_own_mean",
+      "threshold": 5.25,
+      "positive": 2,
+      "negative": 42,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 2,
+       "negative": 6
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 0,
+       "negative": 36
+      }
+     }
+    },
+    "right": {
+     "feature": "own_door_count",
+     "threshold": 2.5,
+     "positive": 4,
+     "negative": 45,
+     "left": {
+      "feature": null,
+      "prediction": false,
+      "positive": 3,
+      "negative": 6
+     },
+     "right": {
+      "feature": "tree_own_min",
+      "threshold": 2.5,
+      "positive": 1,
+      "negative": 39,
+      "left": {
+       "feature": null,
+       "prediction": false,
+       "positive": 0,
+       "negative": 32
+      },
+      "right": {
+       "feature": null,
+       "prediction": false,
+       "positive": 1,
+       "negative": 7
+      }
+     }
+    }
+   },
+   "right": {
+    "feature": "lemon_ripe_own_min",
+    "threshold": 9.0,
+    "positive": 5,
+    "negative": 60,
+    "left": {
+     "feature": null,
+     "prediction": false,
+     "positive": 0,
+     "negative": 46
+    },
+    "right": {
+     "feature": "enemy_iron",
+     "threshold": 5.5,
+     "positive": 5,
+     "negative": 14,
+     "left": {
+      "feature": null,
+      "prediction": false,
+      "positive": 0,
+      "negative": 10
+     },
+     "right": {
+      "feature": null,
+      "prediction": false,
+      "positive": 5,
+      "negative": 4
+     }
+    }
+   }
+  }
+ },
+ "leaf_count": 23,
+ "rust_expression": "if f.option_cost<=17{if f.lemon_own_half<=1.5{if f.own_lemon<=3.5{if f.banana_own_mean<=4.33333{true}else{if f.fruit_total<=17{false}else{false}}}else{if f.apple_own_mean<=3.58333{false}else{if f.plum_own_mean<=3.41667{false}else{false}}}}else{if f.plum_ripe_own_min<=7.5{if f.own_iron<=6.5{if f.water_adjacent_tree_count<=7{false}else{false}}else{if f.lemon_ripe_own_min<=0.5{false}else{false}}}else{if f.own_plum<=4.5{if f.banana_own_mean<=6.75{false}else{false}}else{if f.orchard_candidate_count<=0.5{false}else{false}}}}}else{if f.banana_own_min<=5.5{if f.lemon_own_min<=6.5{if f.banana_fruit<=7{false}else{if f.lemon_own_mean<=5.25{false}else{false}}}else{if f.own_door_count<=2.5{false}else{if f.tree_own_min<=2.5{false}else{false}}}}else{if f.lemon_ripe_own_min<=9{false}else{if f.enemy_iron<=5.5{false}else{false}}}}",
+ "fit_confusion": {
+  "true_positive": 8,
+  "false_positive": 2,
+  "false_negative": 120,
+  "true_negative": 1750,
+  "precision": 0.8,
+  "recall": 0.0625,
+  "f0_5": 0.23809523809523808
+ },
+ "test_imitation_confusion": {
+  "true_positive": 0,
+  "false_positive": 2,
+  "false_negative": 4,
+  "true_negative": 114,
+  "precision": 0.0,
+  "recall": 0.0,
+  "f0_5": 0.0
+ },
+ "test_actual_distilled": {
+  "selected_cell_count": 2,
+  "selected_cells": [
+   {
+    "seed": 157,
+    "seat": 0
+   },
+   {
+    "seed": 157,
+    "seat": 1
+   }
+  ],
+  "seed_clustered_summary": {
+   "n": 60,
+   "mean": 0.17333333333333334,
+   "median": 0.0,
+   "trimmed_5pct_mean": 0.0,
+   "standard_deviation": 1.342634226685238,
+   "standard_error": 0.17333333333333334,
+   "ci95_normal": [
+    -0.1664,
+    0.5130666666666667
+   ],
+   "worst_decile_mean": 0.0,
+   "wins": 1,
+   "ties": 59,
+   "losses": 0,
+   "minimum": 0.0,
+   "maximum": 10.4
+  },
+  "opponent_means": {
+   "chopharvest": -0.225,
+   "race": 0.26666666666666666,
+   "ringfix3": -0.225,
+   "taskplan": 0.5666666666666667,
+   "yield": 0.48333333333333334
+  },
+  "worst_opponent_mean": -0.225
+ },
+ "test_actual_direct_rollout": {
+  "selected_cell_count": 4,
+  "selected_cells": [
+   {
+    "seed": 120,
+    "seat": 1
+   },
+   {
+    "seed": 143,
+    "seat": 1
+   },
+   {
+    "seed": 163,
+    "seat": 0
+   },
+   {
+    "seed": 179,
+    "seat": 0
+   }
+  ],
+  "seed_clustered_summary": {
+   "n": 60,
+   "mean": 2.716666666666667,
+   "median": 0.0,
+   "trimmed_5pct_mean": 0.0,
+   "standard_deviation": 13.026819358495382,
+   "standard_error": 1.6817551476501666,
+   "ci95_normal": [
+    -0.5795734227276599,
+    6.0129067560609935
+   ],
+   "worst_decile_mean": -0.43333333333333335,
+   "wins": 3,
+   "ties": 56,
+   "losses": 1,
+   "minimum": -2.6,
+   "maximum": 72.2
+  },
+  "opponent_means": {
+   "chopharvest": 2.65,
+   "race": 3.3333333333333335,
+   "ringfix3": 1.375,
+   "taskplan": 3.6083333333333334,
+   "yield": 2.6166666666666667
+  },
+  "worst_opponent_mean": 1.375
+ },
+ "interpretation_limit": "The tree imitates a local rollout guard. Its test outcome is offline evidence, not an arena estimate; no post-test tree or threshold tuning is permitted."
+}

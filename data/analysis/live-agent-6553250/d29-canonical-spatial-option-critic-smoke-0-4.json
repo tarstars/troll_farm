@@ -1,0 +1,71 @@
+{
+ "schema": 1,
+ "scope": "D29 canonical spatial resident/farm option critic; no candidate, submission, or Arena action",
+ "mode": "smoke",
+ "sources": {
+  "spatial": "data/analysis/live-agent-6553250/d29-spatial-features-smoke-0-4.tsv",
+  "scalar": "data/analysis/live-agent-6553250/d25-turn75-features-smoke-0-4.tsv",
+  "labels": [
+   "data/analysis/live-agent-6553250/d24-phase-handoff-smoke-0-4.tsv"
+  ]
+ },
+ "seed_start": 0,
+ "seed_count": 5,
+ "model": {
+  "seed": 2901,
+  "epochs": 30,
+  "batch_size": 256,
+  "quantile": 0.25,
+  "feature_count": 426,
+  "trainable_parameters": 7017
+ },
+ "integrity": {
+  "expected_cells": 80,
+  "joined_cells": 80,
+  "spatial_cells": 80,
+  "scalar_cells": 80,
+  "label_cells": 80,
+  "missing_spatial": 0,
+  "missing_scalars": 0,
+  "missing_labels": 0,
+  "unexpected_spatial": 0,
+  "unexpected_scalars": 0,
+  "unexpected_labels": 0,
+  "bad_label_branches": {},
+  "root_mismatch_count": 0,
+  "root_mismatches": [],
+  "reached_mismatch_count": 0,
+  "reached_mismatches": [],
+  "all_reached_cut": true,
+  "feature_count": 426,
+  "spatial_shape": [
+   36,
+   11,
+   22
+  ],
+  "spatial_checks": {
+   "bad_grid_lengths": 0,
+   "bad_grid_shapes": 0,
+   "bad_grid_hashes": 0,
+   "bad_canonical_orientations": 0
+  },
+  "rotated_by_seat": {
+   "0": 0,
+   "1": 40
+  },
+  "complete": true,
+  "trainable_parameters": 7017,
+  "parameter_ceiling_passed": true,
+  "repeat_spatial_path": "data/analysis/live-agent-6553250/d29-spatial-features-smoke-repeat-0-4.tsv",
+  "repeat_spatial_byte_identical": true,
+  "readiness_passed": true
+ },
+ "evaluation": null,
+ "folds": null,
+ "prediction_hash": null,
+ "checkpoint": null,
+ "decision": {
+  "open_development": true,
+  "train_on_smoke": false
+ }
+}

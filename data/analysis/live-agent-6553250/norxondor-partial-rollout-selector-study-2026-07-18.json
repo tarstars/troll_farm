@@ -1,0 +1,1211 @@
+{
+ "schema": 1,
+ "scope": "compatible-model partial exact-engine rollouts on already-consumed terminal-teacher cells; discovery seeds 302-311 select horizon/value/aggregate/buffer once and seeds 312-321 evaluate it unchanged",
+ "partial_rows": 512,
+ "training_cells": 160,
+ "test_cells": 160,
+ "configurations": 160,
+ "passing_discovery_configurations": 0,
+ "selected_discovery": null,
+ "validation": null,
+ "top_discovery": [
+  {
+   "config": {
+    "horizon": 120,
+    "metric": "liquid_delta",
+    "aggregate": "minimum",
+    "buffer": 10
+   },
+   "label": "h120-liquid_delta-minimum-b10",
+   "cells": 160,
+   "selected_cells": 5,
+   "selection_rate": 0.03125,
+   "selected_positive": 4,
+   "selected_negative": 1,
+   "selection_precision": 0.8,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 4.25625,
+    "median": 0.0,
+    "minimum": -10,
+    "maximum": 215,
+    "wins": 4,
+    "ties": 155,
+    "losses": 1
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.7125,
+    "median": 0.0,
+    "minimum": -5,
+    "maximum": 63,
+    "wins": 3,
+    "ties": 155,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 8.55,
+    "gold_adaptive": 16.95,
+    "gold_elite": 8.55,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 120,
+    "metric": "liquid_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 10
+   },
+   "label": "h120-liquid_delta-lower_quartile-b10",
+   "cells": 160,
+   "selected_cells": 5,
+   "selection_rate": 0.03125,
+   "selected_positive": 4,
+   "selected_negative": 1,
+   "selection_precision": 0.8,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 4.25625,
+    "median": 0.0,
+    "minimum": -10,
+    "maximum": 215,
+    "wins": 4,
+    "ties": 155,
+    "losses": 1
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.7125,
+    "median": 0.0,
+    "minimum": -5,
+    "maximum": 63,
+    "wins": 3,
+    "ties": 155,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 8.55,
+    "gold_adaptive": 16.95,
+    "gold_elite": 8.55,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 120,
+    "metric": "liquid_delta",
+    "aggregate": "median",
+    "buffer": 10
+   },
+   "label": "h120-liquid_delta-median-b10",
+   "cells": 160,
+   "selected_cells": 5,
+   "selection_rate": 0.03125,
+   "selected_positive": 4,
+   "selected_negative": 1,
+   "selection_precision": 0.8,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 4.25625,
+    "median": 0.0,
+    "minimum": -10,
+    "maximum": 215,
+    "wins": 4,
+    "ties": 155,
+    "losses": 1
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.7125,
+    "median": 0.0,
+    "minimum": -5,
+    "maximum": 63,
+    "wins": 3,
+    "ties": 155,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 8.55,
+    "gold_adaptive": 16.95,
+    "gold_elite": 8.55,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 120,
+    "metric": "liquid_delta",
+    "aggregate": "mean",
+    "buffer": 10
+   },
+   "label": "h120-liquid_delta-mean-b10",
+   "cells": 160,
+   "selected_cells": 5,
+   "selection_rate": 0.03125,
+   "selected_positive": 4,
+   "selected_negative": 1,
+   "selection_precision": 0.8,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 4.25625,
+    "median": 0.0,
+    "minimum": -10,
+    "maximum": 215,
+    "wins": 4,
+    "ties": 155,
+    "losses": 1
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.7125,
+    "median": 0.0,
+    "minimum": -5,
+    "maximum": 63,
+    "wins": 3,
+    "ties": 155,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 8.55,
+    "gold_adaptive": 16.95,
+    "gold_elite": 8.55,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 2
+   },
+   "label": "h80-margin_delta-minimum-b2",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 5
+   },
+   "label": "h80-margin_delta-minimum-b5",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 10
+   },
+   "label": "h80-margin_delta-minimum-b10",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 2
+   },
+   "label": "h80-margin_delta-lower_quartile-b2",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 5
+   },
+   "label": "h80-margin_delta-lower_quartile-b5",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 10
+   },
+   "label": "h80-margin_delta-lower_quartile-b10",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 2
+   },
+   "label": "h80-margin_delta-median-b2",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 5
+   },
+   "label": "h80-margin_delta-median-b5",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 10
+   },
+   "label": "h80-margin_delta-median-b10",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 2
+   },
+   "label": "h80-margin_delta-mean-b2",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 5
+   },
+   "label": "h80-margin_delta-mean-b5",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 10
+   },
+   "label": "h80-margin_delta-mean-b10",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "liquid_delta",
+    "aggregate": "minimum",
+    "buffer": 0
+   },
+   "label": "h80-liquid_delta-minimum-b0",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "liquid_delta",
+    "aggregate": "minimum",
+    "buffer": 2
+   },
+   "label": "h80-liquid_delta-minimum-b2",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "liquid_delta",
+    "aggregate": "minimum",
+    "buffer": 5
+   },
+   "label": "h80-liquid_delta-minimum-b5",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  },
+  {
+   "config": {
+    "horizon": 80,
+    "metric": "liquid_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 0
+   },
+   "label": "h80-liquid_delta-lower_quartile-b0",
+   "cells": 160,
+   "selected_cells": 1,
+   "selection_rate": 0.00625,
+   "selected_positive": 1,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.575,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 92,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 0.21875,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 35,
+    "wins": 1,
+    "ties": 159,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 0,
+    "sched_bot": 0,
+    "script_boss": 4.6,
+    "silver_boss": 0
+   },
+   "nonnegative_opponents": 8,
+   "worst_opponent_mean_margin_delta": 0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 282777.7625,
+    "median": 228560.5,
+    "minimum": 76268,
+    "maximum": 759284,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "complete_policy_gate": false,
+   "partial_gate": false
+  }
+ ],
+ "terminal_teacher_reference": {
+  "config": "turn 3 / maximum exact-prefix set / minimum terminal margin delta > 0",
+  "validation_margin_gain": 26.08125
+ },
+ "retained_terminal_teacher_fraction": 0,
+ "research_gate": {
+  "requirements": [
+   "discovery partial gate passes",
+   "unchanged validation partial gate passes",
+   "validation retains at least 25% of terminal teacher mean margin gain"
+  ],
+  "passed": false
+ },
+ "decision": {
+  "profile_online_partial_selector": false,
+  "build_online_prototype": false,
+  "build_submission_candidate": false
+ }
+}

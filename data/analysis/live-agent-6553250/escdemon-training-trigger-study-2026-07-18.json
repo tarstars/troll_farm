@@ -1,0 +1,1893 @@
+{
+ "schema": 1,
+ "scope": "observational Escdemon one-worker replays; timing conditional on the observed target spec plus nested held-game selection over a fixed Yamo opening-policy grid; no causal worker-value, continuation, holdout, or arena evidence",
+ "agent_id": 6483545,
+ "games": 26,
+ "worker_invariants": {
+  "one_successful_train": 26,
+  "harvest_zero": 26,
+  "max_affordable_hp0_at_actual_turn": 26
+ },
+ "conditional_trigger": {
+  "rule": "given the eventual target spec, train on its first affordable turn",
+  "exact_turn": 25,
+  "exact_rate": 0.9615384615384616,
+  "mean_absolute_turn_error": 0.3076923076923077,
+  "maximum_turn_error": 8,
+  "delay_distribution": {
+   "0": 25,
+   "8": 1
+  },
+  "outliers": [
+   {
+    "game_id": 895883201,
+    "turn": 9,
+    "spec": [
+     2,
+     1,
+     0,
+     2
+    ],
+    "is_max_affordable_hp0": true,
+    "first_affordable_turn": 1,
+    "delay_after_affordable": 8
+   }
+  ],
+  "gate": {
+   "requirements": [
+    "at least 90% exact first-affordability timing",
+    "mean absolute timing error at most one turn"
+   ],
+   "passed": true
+  },
+  "interpretation_limit": "The rule is conditional on an oracle eventual spec. It validates the trigger mechanism but cannot be deployed until target selection generalizes."
+ },
+ "target_policy_grid": {
+  "policies": 2750,
+  "unique_prediction_signatures": 334,
+  "baseline": {
+   "policy": "tuned_carry",
+   "games": 26,
+   "exact": 14,
+   "exact_rate": 0.5384615384615384,
+   "mean_talent_l1": 0.5384615384615384,
+   "maximum_talent_l1": 2,
+   "rows": [
+    {
+     "game_id": 892907456,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 892925601,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 893306189,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 893482868,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 894985308,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895437688,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895438179,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895446112,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895446191,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      1
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895447175,
+     "actual": [
+      1,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883193,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883201,
+     "actual": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883238,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895883268,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895883531,
+     "actual": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895925453,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895926280,
+     "actual": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895926466,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895926893,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      1,
+      0,
+      3
+     ],
+     "talent_l1": 2
+    },
+    {
+     "game_id": 895927004,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927052,
+     "actual": [
+      3,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      1
+     ],
+     "talent_l1": 2
+    },
+    {
+     "game_id": 895927061,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895927065,
+     "actual": [
+      1,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927156,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927159,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      1
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927166,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "talent_l1": 0
+    }
+   ]
+  },
+  "in_sample_best": {
+   "policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+   "parameters": {
+    "train_horizon": 15,
+    "preferred_min_carry": 1,
+    "max_carry_capacity": 3,
+    "preferred_min_chop": 2,
+    "max_chop_power": 2,
+    "require_preferred": 0,
+    "max_extra_eta": 15,
+    "hard_train_turn": 35,
+    "prefer_movement_ties": 0
+   },
+   "tied_policy_count": 12,
+   "games": 26,
+   "exact": 15,
+   "exact_rate": 0.5769230769230769,
+   "mean_talent_l1": 0.5,
+   "maximum_talent_l1": 2,
+   "rows": [
+    {
+     "game_id": 892907456,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 892925601,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 893306189,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 893482868,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "talent_l1": 2
+    },
+    {
+     "game_id": 894985308,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895437688,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895438179,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895446112,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895446191,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895447175,
+     "actual": [
+      1,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895883193,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883201,
+     "actual": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883238,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895883268,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895883531,
+     "actual": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895925453,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895926280,
+     "actual": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "predicted": [
+      2,
+      3,
+      0,
+      1
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895926466,
+     "actual": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      1,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895926893,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      1,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927004,
+     "actual": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 0
+    },
+    {
+     "game_id": 895927052,
+     "actual": [
+      3,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      3,
+      2,
+      0,
+      1
+     ],
+     "talent_l1": 2
+    },
+    {
+     "game_id": 895927061,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927065,
+     "actual": [
+      1,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927156,
+     "actual": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927159,
+     "actual": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      1
+     ],
+     "talent_l1": 1
+    },
+    {
+     "game_id": 895927166,
+     "actual": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "predicted": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "talent_l1": 1
+    }
+   ]
+  },
+  "leave_one_game_out_selection": {
+   "games": 26,
+   "exact": 8,
+   "exact_rate": 0.3076923076923077,
+   "mean_talent_l1": 0.8461538461538461,
+   "maximum_talent_l1": 2,
+   "folds": [
+    {
+     "fold": 0,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 1,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 2,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 3,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.44,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 2,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 4,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 5,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 6,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 7,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 8,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc2_mc3_pk1_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 9,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 10,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 11,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc2_mc3_pk1_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 12,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 13,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 14,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.44,
+      "maximum_talent_l1": 1
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 2,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 15,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.52,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 1,
+      "exact_rate": 1.0,
+      "mean_talent_l1": 0,
+      "maximum_talent_l1": 0
+     }
+    },
+    {
+     "fold": 16,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 14,
+      "exact_rate": 0.56,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 17,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 18,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.44,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 2,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 19,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 20,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.44,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 2,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 21,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 22,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 23,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 24,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 25,
+     "train_games": 25,
+     "test_games": 1,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 25,
+      "exact": 15,
+      "exact_rate": 0.6,
+      "mean_talent_l1": 0.48,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 1,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    }
+   ],
+   "selected_policy_game_counts": {
+    "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0": 18,
+    "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0": 4,
+    "h15_pc2_mc3_pk1_mk2_r1_e0_d35_m0": 2,
+    "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0": 2
+   },
+   "predictions": {
+    "892907456": [
+     3,
+     2,
+     0,
+     2
+    ],
+    "892925601": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "893306189": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "893482868": [
+     2,
+     1,
+     0,
+     2
+    ],
+    "894985308": [
+     2,
+     2,
+     0,
+     3
+    ],
+    "895437688": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895438179": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895446112": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895446191": [
+     2,
+     2,
+     0,
+     1
+    ],
+    "895447175": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895883193": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895883201": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895883238": [
+     3,
+     2,
+     0,
+     3
+    ],
+    "895883268": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895883531": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895925453": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895926280": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895926466": [
+     3,
+     1,
+     0,
+     2
+    ],
+    "895926893": [
+     2,
+     1,
+     0,
+     3
+    ],
+    "895927004": [
+     1,
+     2,
+     0,
+     3
+    ],
+    "895927052": [
+     3,
+     2,
+     0,
+     1
+    ],
+    "895927061": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895927065": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895927156": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895927159": [
+     2,
+     2,
+     0,
+     1
+    ],
+    "895927166": [
+     2,
+     2,
+     0,
+     2
+    ]
+   }
+  },
+  "five_fold_selection": {
+   "games": 26,
+   "exact": 9,
+   "exact_rate": 0.34615384615384615,
+   "mean_talent_l1": 0.7692307692307693,
+   "maximum_talent_l1": 2,
+   "folds": [
+    {
+     "fold": 0,
+     "train_games": 23,
+     "test_games": 3,
+     "selected_policy": "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 23,
+      "exact": 14,
+      "exact_rate": 0.6086956521739131,
+      "mean_talent_l1": 0.43478260869565216,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 3,
+      "exact": 0,
+      "exact_rate": 0.0,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 1
+     }
+    },
+    {
+     "fold": 1,
+     "train_games": 17,
+     "test_games": 9,
+     "selected_policy": "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0",
+     "training_metrics": {
+      "games": 17,
+      "exact": 11,
+      "exact_rate": 0.6470588235294118,
+      "mean_talent_l1": 0.35294117647058826,
+      "maximum_talent_l1": 1
+     },
+     "held_metrics": {
+      "games": 9,
+      "exact": 3,
+      "exact_rate": 0.3333333333333333,
+      "mean_talent_l1": 0.7777777777777778,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 2,
+     "train_games": 24,
+     "test_games": 2,
+     "selected_policy": "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 24,
+      "exact": 14,
+      "exact_rate": 0.5833333333333334,
+      "mean_talent_l1": 0.4583333333333333,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 2,
+      "exact": 1,
+      "exact_rate": 0.5,
+      "mean_talent_l1": 1,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 3,
+     "train_games": 18,
+     "test_games": 8,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 18,
+      "exact": 12,
+      "exact_rate": 0.6666666666666666,
+      "mean_talent_l1": 0.3888888888888889,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 8,
+      "exact": 3,
+      "exact_rate": 0.375,
+      "mean_talent_l1": 0.75,
+      "maximum_talent_l1": 2
+     }
+    },
+    {
+     "fold": 4,
+     "train_games": 22,
+     "test_games": 4,
+     "selected_policy": "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0",
+     "training_metrics": {
+      "games": 22,
+      "exact": 13,
+      "exact_rate": 0.5909090909090909,
+      "mean_talent_l1": 0.5,
+      "maximum_talent_l1": 2
+     },
+     "held_metrics": {
+      "games": 4,
+      "exact": 2,
+      "exact_rate": 0.5,
+      "mean_talent_l1": 0.5,
+      "maximum_talent_l1": 1
+     }
+    }
+   ],
+   "selected_policy_game_counts": {
+    "h15_pc2_mc3_pk2_mk2_r1_e0_d35_m0": 12,
+    "h15_pc1_mc3_pk2_mk3_r0_e15_d35_m0": 12,
+    "h15_pc1_mc3_pk2_mk2_r0_e15_d35_m0": 2
+   },
+   "predictions": {
+    "892907456": [
+     3,
+     2,
+     0,
+     2
+    ],
+    "892925601": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "893306189": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "893482868": [
+     2,
+     1,
+     0,
+     3
+    ],
+    "894985308": [
+     2,
+     2,
+     0,
+     3
+    ],
+    "895437688": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895438179": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895446112": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895446191": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895447175": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895883193": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895883201": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895883238": [
+     3,
+     2,
+     0,
+     3
+    ],
+    "895883268": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895883531": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895925453": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895926280": [
+     2,
+     3,
+     0,
+     2
+    ],
+    "895926466": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895926893": [
+     2,
+     1,
+     0,
+     3
+    ],
+    "895927004": [
+     1,
+     2,
+     0,
+     3
+    ],
+    "895927052": [
+     3,
+     2,
+     0,
+     1
+    ],
+    "895927061": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895927065": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "895927156": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "895927159": [
+     2,
+     2,
+     0,
+     1
+    ],
+    "895927166": [
+     2,
+     2,
+     0,
+     2
+    ]
+   }
+  },
+  "gate": {
+   "requirements": [
+    "nested leave-one-game-out exact count no worse than the pre-existing baseline",
+    "nested leave-one-game-out mean talent L1 no worse than baseline",
+    "nested five-fold exact count no worse than baseline",
+    "nested five-fold mean talent L1 no worse than baseline"
+   ],
+   "passed": false
+  }
+ },
+ "decision": {
+  "trigger_identified": true,
+  "target_selection_generalizes": false,
+  "build_candidate": false,
+  "next": "Retain the first-affordability trigger as a recovered component, but do not tune or deploy a new opening planner. Move to exact target/assignment recovery; the target-spec residual may become identifiable from that complete policy."
+ }
+}

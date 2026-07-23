@@ -1,0 +1,8044 @@
+{
+  "by_height": {
+    "10": {
+      "episodes": 250,
+      "success_rate": 0.932,
+      "successes": 233
+    },
+    "11": {
+      "episodes": 251,
+      "success_rate": 0.900398406374502,
+      "successes": 226
+    },
+    "8": {
+      "episodes": 248,
+      "success_rate": 0.9596774193548387,
+      "successes": 238
+    },
+    "9": {
+      "episodes": 251,
+      "success_rate": 0.9442231075697212,
+      "successes": 237
+    }
+  },
+  "elapsed_seconds": 9.089931307011284,
+  "episodes": 1000,
+  "exact_seed_interval": true,
+  "gate": "L1A",
+  "gate_passed": true,
+  "global_step": 250000,
+  "height_success_floor": 0.900398406374502,
+  "median_success_turn": 42.0,
+  "nontrivial_success_rate": 0.9249146757679181,
+  "paired_teacher_median_turn_delta": 0.0,
+  "random_success_rate": 0.119,
+  "rows": [
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 108.25996398925781,
+      "seed": 2002000,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 123.89989471435547,
+      "seed": 2002001,
+      "success": true,
+      "turns": 110
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 91.36001586914062,
+      "seed": 2002002,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002003,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 34.839996337890625,
+      "seed": 2002004,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.67999267578125,
+      "seed": 2002005,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 29.89999771118164,
+      "seed": 2002006,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002007,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 44.81999969482422,
+      "seed": 2002008,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 40.79999923706055,
+      "seed": 2002009,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 57.780006408691406,
+      "seed": 2002010,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 74.36003112792969,
+      "seed": 2002011,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 66.40001678466797,
+      "seed": 2002012,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 34.8599967956543,
+      "seed": 2002013,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002014,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 84.50005340576172,
+      "seed": 2002015,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002016,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 132.96987915039062,
+      "seed": 2002017,
+      "success": true,
+      "turns": 103
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 74.48001861572266,
+      "seed": 2002018,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002019,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.1800308227539,
+      "seed": 2002020,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 141.2699432373047,
+      "seed": 2002021,
+      "success": true,
+      "turns": 73
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002022,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 32.8599967956543,
+      "seed": 2002023,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002024,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 40.719993591308594,
+      "seed": 2002025,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002026,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002027,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.36001586914062,
+      "seed": 2002028,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 123.07990264892578,
+      "seed": 2002029,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 170.98007202148438,
+      "seed": 2002030,
+      "success": true,
+      "turns": 102
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 151.86985778808594,
+      "seed": 2002031,
+      "success": true,
+      "turns": 113
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 51.72999572753906,
+      "seed": 2002032,
+      "success": true,
+      "turns": 27
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 104.43997192382812,
+      "seed": 2002033,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 124.47994232177734,
+      "seed": 2002034,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002035,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 71.32005310058594,
+      "seed": 2002036,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 55.790000915527344,
+      "seed": 2002037,
+      "success": true,
+      "turns": 21
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 122.29988861083984,
+      "seed": 2002038,
+      "success": true,
+      "turns": 170
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 109.11996459960938,
+      "seed": 2002039,
+      "success": true,
+      "turns": 88
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.4999771118164,
+      "seed": 2002040,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 124.09990692138672,
+      "seed": 2002041,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 73.50003051757812,
+      "seed": 2002042,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002043,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002044,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 134.16989135742188,
+      "seed": 2002045,
+      "success": true,
+      "turns": 83
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 82.4200439453125,
+      "seed": 2002046,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 69.3000259399414,
+      "seed": 2002047,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 46.829994201660156,
+      "seed": 2002048,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 61.62001037597656,
+      "seed": 2002049,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 39.67999267578125,
+      "seed": 2002050,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 58.62000274658203,
+      "seed": 2002051,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 54.519996643066406,
+      "seed": 2002052,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": -21.799999237060547,
+      "seed": 2002053,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 114.23993682861328,
+      "seed": 2002054,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 41.779998779296875,
+      "seed": 2002055,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 29.89999771118164,
+      "seed": 2002056,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 84.4400405883789,
+      "seed": 2002057,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 62.660011291503906,
+      "seed": 2002058,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 80.47003173828125,
+      "seed": 2002059,
+      "success": true,
+      "turns": 53
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 46.73999786376953,
+      "seed": 2002060,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002061,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002062,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002063,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": -13.800040245056152,
+      "seed": 2002064,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 58.62000274658203,
+      "seed": 2002065,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 49.739994049072266,
+      "seed": 2002066,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 21.20023536682129,
+      "seed": 2002067,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 73.50003051757812,
+      "seed": 2002068,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 103.3399887084961,
+      "seed": 2002069,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002070,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.43997955322266,
+      "seed": 2002071,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 144.49986267089844,
+      "seed": 2002072,
+      "success": true,
+      "turns": 150
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 34.839996337890625,
+      "seed": 2002073,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 103.97994232177734,
+      "seed": 2002074,
+      "success": true,
+      "turns": 102
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002075,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 96.29995727539062,
+      "seed": 2002076,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002077,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 73.4200439453125,
+      "seed": 2002078,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 58.75000762939453,
+      "seed": 2002079,
+      "success": true,
+      "turns": 25
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 94.27001953125,
+      "seed": 2002080,
+      "success": true,
+      "turns": 73
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 105.3599624633789,
+      "seed": 2002081,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002082,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 64.70001220703125,
+      "seed": 2002083,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 49.67999267578125,
+      "seed": 2002084,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002085,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.69999694824219,
+      "seed": 2002086,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 25.919998168945312,
+      "seed": 2002087,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 42.86000061035156,
+      "seed": 2002088,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 107.17994689941406,
+      "seed": 2002089,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 91.34000396728516,
+      "seed": 2002090,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 137.6798553466797,
+      "seed": 2002091,
+      "success": true,
+      "turns": 132
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 76.57001495361328,
+      "seed": 2002092,
+      "success": true,
+      "turns": 43
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.579994201660156,
+      "seed": 2002093,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002094,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 30.87999725341797,
+      "seed": 2002095,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 55.52000427246094,
+      "seed": 2002096,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.59999084472656,
+      "seed": 2002097,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002098,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 68.30004119873047,
+      "seed": 2002099,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002100,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 37.79999923706055,
+      "seed": 2002101,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002102,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 55.75,
+      "seed": 2002103,
+      "success": true,
+      "turns": 25
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002104,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002105,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 187.490234375,
+      "seed": 2002106,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 75.50004577636719,
+      "seed": 2002107,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": -21.799999237060547,
+      "seed": 2002108,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 42.79999542236328,
+      "seed": 2002109,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": -5.800037384033203,
+      "seed": 2002110,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 61.56001281738281,
+      "seed": 2002111,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 50.81999588012695,
+      "seed": 2002112,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 63.610008239746094,
+      "seed": 2002113,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 179.79010009765625,
+      "seed": 2002114,
+      "success": true,
+      "turns": 121
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 76.5600357055664,
+      "seed": 2002115,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 40.849998474121094,
+      "seed": 2002116,
+      "success": true,
+      "turns": 15
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 103.3800048828125,
+      "seed": 2002117,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 95.34001159667969,
+      "seed": 2002118,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002119,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 139.18997192382812,
+      "seed": 2002120,
+      "success": true,
+      "turns": 81
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002121,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": -21.799999237060547,
+      "seed": 2002122,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 34.8699951171875,
+      "seed": 2002123,
+      "success": true,
+      "turns": 13
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 85.43003845214844,
+      "seed": 2002124,
+      "success": true,
+      "turns": 57
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 83.5000228881836,
+      "seed": 2002125,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 31.829998016357422,
+      "seed": 2002126,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 49.619998931884766,
+      "seed": 2002127,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 59.660003662109375,
+      "seed": 2002128,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002129,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 33.79999542236328,
+      "seed": 2002130,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 128.09991455078125,
+      "seed": 2002131,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 49.69999694824219,
+      "seed": 2002132,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 84.48003387451172,
+      "seed": 2002133,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 63.58000946044922,
+      "seed": 2002134,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 40.67999267578125,
+      "seed": 2002135,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 61.80000305175781,
+      "seed": 2002136,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": -3.8000411987304688,
+      "seed": 2002137,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.42000579833984,
+      "seed": 2002138,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 109.13997650146484,
+      "seed": 2002139,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 114.25994110107422,
+      "seed": 2002140,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 99.4000015258789,
+      "seed": 2002141,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 61.6400146484375,
+      "seed": 2002142,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002143,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 60.71000671386719,
+      "seed": 2002144,
+      "success": true,
+      "turns": 29
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 48.73999786376953,
+      "seed": 2002145,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 19.20023536682129,
+      "seed": 2002146,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 21.200258255004883,
+      "seed": 2002147,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 33.839996337890625,
+      "seed": 2002148,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 79.60003662109375,
+      "seed": 2002149,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 90.54000854492188,
+      "seed": 2002150,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 46.81999969482422,
+      "seed": 2002151,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": -12.800036430358887,
+      "seed": 2002152,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 33.8599967956543,
+      "seed": 2002153,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 82.40003967285156,
+      "seed": 2002154,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.50003051757812,
+      "seed": 2002155,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 64.46001434326172,
+      "seed": 2002156,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 56.720001220703125,
+      "seed": 2002157,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 54.62999725341797,
+      "seed": 2002158,
+      "success": true,
+      "turns": 37
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 37.839996337890625,
+      "seed": 2002159,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002160,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 85.38003540039062,
+      "seed": 2002161,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 92.44001770019531,
+      "seed": 2002162,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": -15.800041198730469,
+      "seed": 2002163,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 58.70000457763672,
+      "seed": 2002164,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 110.09996032714844,
+      "seed": 2002165,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 92.56999206542969,
+      "seed": 2002166,
+      "success": true,
+      "turns": 43
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 138.24990844726562,
+      "seed": 2002167,
+      "success": true,
+      "turns": 75
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 85.19988250732422,
+      "seed": 2002168,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 40.88999938964844,
+      "seed": 2002169,
+      "success": true,
+      "turns": 11
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 82.1600570678711,
+      "seed": 2002170,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 133.32997131347656,
+      "seed": 2002171,
+      "success": true,
+      "turns": 67
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 26.19968605041504,
+      "seed": 2002172,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 54.47999572753906,
+      "seed": 2002173,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 28.89999771118164,
+      "seed": 2002174,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 110.54997253417969,
+      "seed": 2002175,
+      "success": true,
+      "turns": 45
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002176,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 80.48004150390625,
+      "seed": 2002177,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 109.22996520996094,
+      "seed": 2002178,
+      "success": true,
+      "turns": 77
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 138.83985900878906,
+      "seed": 2002179,
+      "success": true,
+      "turns": 116
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 97.41999053955078,
+      "seed": 2002180,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 85.16006469726562,
+      "seed": 2002181,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 79.34004211425781,
+      "seed": 2002182,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 76.40003204345703,
+      "seed": 2002183,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 34.839996337890625,
+      "seed": 2002184,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 123.2999496459961,
+      "seed": 2002185,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 109.219970703125,
+      "seed": 2002186,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.44002532958984,
+      "seed": 2002187,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 64.56001281738281,
+      "seed": 2002188,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 58.56000518798828,
+      "seed": 2002189,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 82.16006469726562,
+      "seed": 2002190,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 77.51000213623047,
+      "seed": 2002191,
+      "success": true,
+      "turns": 49
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 175.3700408935547,
+      "seed": 2002192,
+      "success": true,
+      "turns": 63
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 49.69999694824219,
+      "seed": 2002193,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 108.89997100830078,
+      "seed": 2002194,
+      "success": true,
+      "turns": 110
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": -21.799999237060547,
+      "seed": 2002195,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 53.599998474121094,
+      "seed": 2002196,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 133.51988220214844,
+      "seed": 2002197,
+      "success": true,
+      "turns": 148
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 97.34000396728516,
+      "seed": 2002198,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 68.44002532958984,
+      "seed": 2002199,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 96.02000427246094,
+      "seed": 2002200,
+      "success": true,
+      "turns": 98
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 54.549964904785156,
+      "seed": 2002201,
+      "success": true,
+      "turns": 45
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 75.69001770019531,
+      "seed": 2002202,
+      "success": true,
+      "turns": 31
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 114.07996368408203,
+      "seed": 2002203,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002204,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 45.73999786376953,
+      "seed": 2002205,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 137.9498748779297,
+      "seed": 2002206,
+      "success": true,
+      "turns": 105
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 68.56002807617188,
+      "seed": 2002207,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 45.839996337890625,
+      "seed": 2002208,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 156.79989624023438,
+      "seed": 2002209,
+      "success": true,
+      "turns": 120
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 87.50001525878906,
+      "seed": 2002210,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 63.70001220703125,
+      "seed": 2002211,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 49.49999237060547,
+      "seed": 2002212,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002213,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 73.4000244140625,
+      "seed": 2002214,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 71.67001342773438,
+      "seed": 2002215,
+      "success": true,
+      "turns": 33
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 84.38005065917969,
+      "seed": 2002216,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 109.52999114990234,
+      "seed": 2002217,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 36.79999542236328,
+      "seed": 2002218,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 189.0801239013672,
+      "seed": 2002219,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 87.34004211425781,
+      "seed": 2002220,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 64.5000228881836,
+      "seed": 2002221,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 100.29994201660156,
+      "seed": 2002222,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": -16.80004119873047,
+      "seed": 2002223,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 33.8599967956543,
+      "seed": 2002224,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 85.54002380371094,
+      "seed": 2002225,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 26.939998626708984,
+      "seed": 2002226,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 79.4200439453125,
+      "seed": 2002227,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002228,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 8.199958801269531,
+      "seed": 2002229,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 66.61002349853516,
+      "seed": 2002230,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002231,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 124.18990325927734,
+      "seed": 2002232,
+      "success": true,
+      "turns": 81
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 82.4200439453125,
+      "seed": 2002233,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 59.660011291503906,
+      "seed": 2002234,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002235,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 63.49000549316406,
+      "seed": 2002236,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 54.69999694824219,
+      "seed": 2002237,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 33.8599967956543,
+      "seed": 2002238,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 75.50001525878906,
+      "seed": 2002239,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 79.24005889892578,
+      "seed": 2002240,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 64.64000701904297,
+      "seed": 2002241,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 61.82000732421875,
+      "seed": 2002242,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002243,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002244,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 74.65003967285156,
+      "seed": 2002245,
+      "success": true,
+      "turns": 35
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 74.36003112792969,
+      "seed": 2002246,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 71.50003051757812,
+      "seed": 2002247,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 73.64002227783203,
+      "seed": 2002248,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 110.47994232177734,
+      "seed": 2002249,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 102.4000015258789,
+      "seed": 2002250,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002251,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 68.56002044677734,
+      "seed": 2002252,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": -3.8000411987304688,
+      "seed": 2002253,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002254,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 66.70001983642578,
+      "seed": 2002255,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 82.42002868652344,
+      "seed": 2002256,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 29.89999771118164,
+      "seed": 2002257,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 91.34001159667969,
+      "seed": 2002258,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 85.49002075195312,
+      "seed": 2002259,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 52.67999267578125,
+      "seed": 2002260,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 28.919998168945312,
+      "seed": 2002261,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002262,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 132.03990173339844,
+      "seed": 2002263,
+      "success": true,
+      "turns": 96
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002264,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002265,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 82.4200439453125,
+      "seed": 2002266,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": -21.799999237060547,
+      "seed": 2002267,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 59.36000061035156,
+      "seed": 2002268,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 91.22000885009766,
+      "seed": 2002269,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 119.07994842529297,
+      "seed": 2002270,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 75.49002075195312,
+      "seed": 2002271,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002272,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 85.38005065917969,
+      "seed": 2002273,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002274,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002275,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.54003143310547,
+      "seed": 2002276,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 169.2008056640625,
+      "seed": 2002277,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 84.26004791259766,
+      "seed": 2002278,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 49.519989013671875,
+      "seed": 2002279,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 44.659996032714844,
+      "seed": 2002280,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 166.3699951171875,
+      "seed": 2002281,
+      "success": true,
+      "turns": 63
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 82.34003448486328,
+      "seed": 2002282,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 70.48002624511719,
+      "seed": 2002283,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 124.49991607666016,
+      "seed": 2002284,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 31.839996337890625,
+      "seed": 2002285,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002286,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 113.26996612548828,
+      "seed": 2002287,
+      "success": true,
+      "turns": 73
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 64.43003845214844,
+      "seed": 2002288,
+      "success": true,
+      "turns": 57
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": -12.800041198730469,
+      "seed": 2002289,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002290,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 63.58001708984375,
+      "seed": 2002291,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002292,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 46.60999298095703,
+      "seed": 2002293,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002294,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002295,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 79.43004608154297,
+      "seed": 2002296,
+      "success": true,
+      "turns": 57
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 44.719993591308594,
+      "seed": 2002297,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 75.56002044677734,
+      "seed": 2002298,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": -5.800041198730469,
+      "seed": 2002299,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": -21.799999237060547,
+      "seed": 2002300,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 43.839996337890625,
+      "seed": 2002301,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 55.52000427246094,
+      "seed": 2002302,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 138.2899627685547,
+      "seed": 2002303,
+      "success": true,
+      "turns": 71
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 139.1999053955078,
+      "seed": 2002304,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 53.73999786376953,
+      "seed": 2002305,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 58.70000457763672,
+      "seed": 2002306,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 42.69999694824219,
+      "seed": 2002307,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002308,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 37.719993591308594,
+      "seed": 2002309,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 119.0899429321289,
+      "seed": 2002310,
+      "success": true,
+      "turns": 91
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 38.779998779296875,
+      "seed": 2002311,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 110.37995910644531,
+      "seed": 2002312,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 49.639991760253906,
+      "seed": 2002313,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 132.84986877441406,
+      "seed": 2002314,
+      "success": true,
+      "turns": 115
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 24.939998626708984,
+      "seed": 2002315,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002316,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 40.6199951171875,
+      "seed": 2002317,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 40.75999450683594,
+      "seed": 2002318,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 70.5000228881836,
+      "seed": 2002319,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 193.75025939941406,
+      "seed": 2002320,
+      "success": true,
+      "turns": 125
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002321,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 64.56001281738281,
+      "seed": 2002322,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 63.56001281738281,
+      "seed": 2002323,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 28.8799991607666,
+      "seed": 2002324,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 85.50005340576172,
+      "seed": 2002325,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 139.23997497558594,
+      "seed": 2002326,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002327,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 68.56002044677734,
+      "seed": 2002328,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 82.52003479003906,
+      "seed": 2002329,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 98.39997863769531,
+      "seed": 2002330,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 20.19962501525879,
+      "seed": 2002331,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 120.79991912841797,
+      "seed": 2002332,
+      "success": true,
+      "turns": 120
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 10.199958801269531,
+      "seed": 2002333,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 28.87999725341797,
+      "seed": 2002334,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 32.81999969482422,
+      "seed": 2002335,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 45.73999786376953,
+      "seed": 2002336,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 182.84010314941406,
+      "seed": 2002337,
+      "success": true,
+      "turns": 116
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 85.38003540039062,
+      "seed": 2002338,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 34.81999588012695,
+      "seed": 2002339,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 73.48004150390625,
+      "seed": 2002340,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 55.63999938964844,
+      "seed": 2002341,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 109.52996826171875,
+      "seed": 2002342,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 44.75999450683594,
+      "seed": 2002343,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 62.70000457763672,
+      "seed": 2002344,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 109.48998260498047,
+      "seed": 2002345,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002346,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002347,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 59.44999694824219,
+      "seed": 2002348,
+      "success": true,
+      "turns": 55
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 47.69999694824219,
+      "seed": 2002349,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 132.4699249267578,
+      "seed": 2002350,
+      "success": true,
+      "turns": 53
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 137.89987182617188,
+      "seed": 2002351,
+      "success": true,
+      "turns": 110
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 134.3498992919922,
+      "seed": 2002352,
+      "success": true,
+      "turns": 65
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 55.660003662109375,
+      "seed": 2002353,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 34.8599967956543,
+      "seed": 2002354,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 46.66999435424805,
+      "seed": 2002355,
+      "success": true,
+      "turns": 33
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 76.5400390625,
+      "seed": 2002356,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 33.79999542236328,
+      "seed": 2002357,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 49.69999694824219,
+      "seed": 2002358,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 45.67999267578125,
+      "seed": 2002359,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.599998474121094,
+      "seed": 2002360,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 74.57002258300781,
+      "seed": 2002361,
+      "success": true,
+      "turns": 43
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 28.919998168945312,
+      "seed": 2002362,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002363,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 145.45989990234375,
+      "seed": 2002364,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 33.79999542236328,
+      "seed": 2002365,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002366,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 26.899999618530273,
+      "seed": 2002367,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002368,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 31.89999771118164,
+      "seed": 2002369,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 137.8398895263672,
+      "seed": 2002370,
+      "success": true,
+      "turns": 116
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 133.35997009277344,
+      "seed": 2002371,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 47.81999969482422,
+      "seed": 2002372,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 116.15990447998047,
+      "seed": 2002373,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": -13.800039291381836,
+      "seed": 2002374,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 71.42003631591797,
+      "seed": 2002375,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 71.4300308227539,
+      "seed": 2002376,
+      "success": true,
+      "turns": 57
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 41.75999450683594,
+      "seed": 2002377,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002378,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002379,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 54.379981994628906,
+      "seed": 2002380,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 43.52001190185547,
+      "seed": 2002381,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 32.8599967956543,
+      "seed": 2002382,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 49.69999313354492,
+      "seed": 2002383,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 57.83000183105469,
+      "seed": 2002384,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 114.28996276855469,
+      "seed": 2002385,
+      "success": true,
+      "turns": 71
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 31.199678421020508,
+      "seed": 2002386,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 124.91989135742188,
+      "seed": 2002387,
+      "success": true,
+      "turns": 108
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 34.75999450683594,
+      "seed": 2002388,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002389,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 91.34001159667969,
+      "seed": 2002390,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 72.57002258300781,
+      "seed": 2002391,
+      "success": true,
+      "turns": 43
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 32.8599967956543,
+      "seed": 2002392,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 133.53994750976562,
+      "seed": 2002393,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002394,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002395,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 49.649993896484375,
+      "seed": 2002396,
+      "success": true,
+      "turns": 35
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": -0.8000411987304688,
+      "seed": 2002397,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 88.49002075195312,
+      "seed": 2002398,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 55.63999938964844,
+      "seed": 2002399,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 65.58000946044922,
+      "seed": 2002400,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 31.79999542236328,
+      "seed": 2002401,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 93.22000122070312,
+      "seed": 2002402,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 28.87999725341797,
+      "seed": 2002403,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 56.70000457763672,
+      "seed": 2002404,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 111.33997344970703,
+      "seed": 2002405,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 97.0999984741211,
+      "seed": 2002406,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 25.939998626708984,
+      "seed": 2002407,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 70.48002624511719,
+      "seed": 2002408,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 47.719993591308594,
+      "seed": 2002409,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": -5.800039291381836,
+      "seed": 2002410,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 132.3399658203125,
+      "seed": 2002411,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 180.18003845214844,
+      "seed": 2002412,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 97.19999694824219,
+      "seed": 2002413,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 192.11012268066406,
+      "seed": 2002414,
+      "success": true,
+      "turns": 89
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002415,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 25.939998626708984,
+      "seed": 2002416,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 116.25993347167969,
+      "seed": 2002417,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 26.19964027404785,
+      "seed": 2002418,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": -14.800040245056152,
+      "seed": 2002419,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 84.38005065917969,
+      "seed": 2002420,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 124.09990692138672,
+      "seed": 2002421,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.75999450683594,
+      "seed": 2002422,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.2800064086914,
+      "seed": 2002423,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002424,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 36.79999542236328,
+      "seed": 2002425,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 55.660003662109375,
+      "seed": 2002426,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 53.779998779296875,
+      "seed": 2002427,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 22.959999084472656,
+      "seed": 2002428,
+      "success": true,
+      "turns": 4
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 138.99989318847656,
+      "seed": 2002429,
+      "success": true,
+      "turns": 100
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002430,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 91.55000305175781,
+      "seed": 2002431,
+      "success": true,
+      "turns": 45
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 138.80987548828125,
+      "seed": 2002432,
+      "success": true,
+      "turns": 119
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 29.839998245239258,
+      "seed": 2002433,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 33.86000061035156,
+      "seed": 2002434,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 44.66999816894531,
+      "seed": 2002435,
+      "success": true,
+      "turns": 33
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 2.1999855041503906,
+      "seed": 2002436,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 61.52000427246094,
+      "seed": 2002437,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 30.799999237060547,
+      "seed": 2002438,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.54003143310547,
+      "seed": 2002439,
+      "success": true,
+      "turns": 46
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 52.67999267578125,
+      "seed": 2002440,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 59.459999084472656,
+      "seed": 2002441,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 150.53981018066406,
+      "seed": 2002442,
+      "success": true,
+      "turns": 146
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002443,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 10.199958801269531,
+      "seed": 2002444,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 41.19969177246094,
+      "seed": 2002445,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.00004577636719,
+      "seed": 2002446,
+      "success": true,
+      "turns": 100
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 54.63999938964844,
+      "seed": 2002447,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002448,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 71.52001953125,
+      "seed": 2002449,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002450,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 32.8599967956543,
+      "seed": 2002451,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 139.39990234375,
+      "seed": 2002452,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 139.84982299804688,
+      "seed": 2002453,
+      "success": true,
+      "turns": 115
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 71.50003051757812,
+      "seed": 2002454,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 80.50003814697266,
+      "seed": 2002455,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 151.89987182617188,
+      "seed": 2002456,
+      "success": true,
+      "turns": 110
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 30.87999725341797,
+      "seed": 2002457,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 91.32001495361328,
+      "seed": 2002458,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 2.1999588012695312,
+      "seed": 2002459,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 82.22006225585938,
+      "seed": 2002460,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 39.719993591308594,
+      "seed": 2002461,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.12000274658203,
+      "seed": 2002462,
+      "success": true,
+      "turns": 88
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 29.89999771118164,
+      "seed": 2002463,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 55.660003662109375,
+      "seed": 2002464,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 85.38003540039062,
+      "seed": 2002465,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.46001434326172,
+      "seed": 2002466,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 114.95995330810547,
+      "seed": 2002467,
+      "success": true,
+      "turns": 104
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002468,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 127.18991088867188,
+      "seed": 2002469,
+      "success": true,
+      "turns": 81
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 82.52002716064453,
+      "seed": 2002470,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 170.95010375976562,
+      "seed": 2002471,
+      "success": true,
+      "turns": 105
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 73.56002044677734,
+      "seed": 2002472,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 75.50001525878906,
+      "seed": 2002473,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 61.40000915527344,
+      "seed": 2002474,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 76.36003875732422,
+      "seed": 2002475,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 153.85992431640625,
+      "seed": 2002476,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 91.32000732421875,
+      "seed": 2002477,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 52.719993591308594,
+      "seed": 2002478,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 37.589996337890625,
+      "seed": 2002479,
+      "success": true,
+      "turns": 41
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": -21.799999237060547,
+      "seed": 2002480,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 77.510009765625,
+      "seed": 2002481,
+      "success": true,
+      "turns": 49
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 122.71987915039062,
+      "seed": 2002482,
+      "success": true,
+      "turns": 128
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 138.09988403320312,
+      "seed": 2002483,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 129.93988037109375,
+      "seed": 2002484,
+      "success": true,
+      "turns": 106
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": -14.800041198730469,
+      "seed": 2002485,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002486,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 62.50000762939453,
+      "seed": 2002487,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002488,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 79.38005065917969,
+      "seed": 2002489,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 86.36002349853516,
+      "seed": 2002490,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.19998931884766,
+      "seed": 2002491,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 34.69999694824219,
+      "seed": 2002492,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002493,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": -21.799999237060547,
+      "seed": 2002494,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 46.69999694824219,
+      "seed": 2002495,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 76.42005157470703,
+      "seed": 2002496,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 57.56000518798828,
+      "seed": 2002497,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 87.43000793457031,
+      "seed": 2002498,
+      "success": true,
+      "turns": 57
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 122.57987213134766,
+      "seed": 2002499,
+      "success": true,
+      "turns": 142
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002500,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 30.20023536682129,
+      "seed": 2002501,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 107.00996398925781,
+      "seed": 2002502,
+      "success": true,
+      "turns": 99
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 59.660011291503906,
+      "seed": 2002503,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 59.68000793457031,
+      "seed": 2002504,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 114.38990783691406,
+      "seed": 2002505,
+      "success": true,
+      "turns": 61
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 123.36986541748047,
+      "seed": 2002506,
+      "success": true,
+      "turns": 163
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 37.75999450683594,
+      "seed": 2002507,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 148.05987548828125,
+      "seed": 2002508,
+      "success": true,
+      "turns": 94
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 110.13993072509766,
+      "seed": 2002509,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 71.22002410888672,
+      "seed": 2002510,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002511,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 76.56004333496094,
+      "seed": 2002512,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002513,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 48.79999542236328,
+      "seed": 2002514,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 96.44999694824219,
+      "seed": 2002515,
+      "success": true,
+      "turns": 55
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 41.719993591308594,
+      "seed": 2002516,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 97.61997985839844,
+      "seed": 2002517,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 138.85986328125,
+      "seed": 2002518,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 59.51000213623047,
+      "seed": 2002519,
+      "success": true,
+      "turns": 49
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": -13.800040245056152,
+      "seed": 2002520,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 74.48003387451172,
+      "seed": 2002521,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 56.64000701904297,
+      "seed": 2002522,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": -1.800039291381836,
+      "seed": 2002523,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 61.62001037597656,
+      "seed": 2002524,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 101.08000946044922,
+      "seed": 2002525,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 123.11991119384766,
+      "seed": 2002526,
+      "success": true,
+      "turns": 88
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 46.56999206542969,
+      "seed": 2002527,
+      "success": true,
+      "turns": 43
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 95.52999877929688,
+      "seed": 2002528,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002529,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.24002075195312,
+      "seed": 2002530,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002531,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 87.58000946044922,
+      "seed": 2002532,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002533,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 65.78001403808594,
+      "seed": 2002534,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 68.56001281738281,
+      "seed": 2002535,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 75.56002807617188,
+      "seed": 2002536,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 44.77999496459961,
+      "seed": 2002537,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 107.05997467041016,
+      "seed": 2002538,
+      "success": true,
+      "turns": 94
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 111.29994201660156,
+      "seed": 2002539,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 37.709999084472656,
+      "seed": 2002540,
+      "success": true,
+      "turns": 29
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 121.01994323730469,
+      "seed": 2002541,
+      "success": true,
+      "turns": 98
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 97.27999877929688,
+      "seed": 2002542,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": -21.799999237060547,
+      "seed": 2002543,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 46.73999786376953,
+      "seed": 2002544,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 111.40995788574219,
+      "seed": 2002545,
+      "success": true,
+      "turns": 59
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 13.20024299621582,
+      "seed": 2002546,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 35.869998931884766,
+      "seed": 2002547,
+      "success": true,
+      "turns": 13
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 94.35999298095703,
+      "seed": 2002548,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 10.199960708618164,
+      "seed": 2002549,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 132.63990783691406,
+      "seed": 2002550,
+      "success": true,
+      "turns": 136
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 107.15995788574219,
+      "seed": 2002551,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 29.839998245239258,
+      "seed": 2002552,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.58000183105469,
+      "seed": 2002553,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 40.769996643066406,
+      "seed": 2002554,
+      "success": true,
+      "turns": 23
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002555,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 43.52999496459961,
+      "seed": 2002556,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 84.53004455566406,
+      "seed": 2002557,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 44.829994201660156,
+      "seed": 2002558,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 130.9398956298828,
+      "seed": 2002559,
+      "success": true,
+      "turns": 106
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 43.87999725341797,
+      "seed": 2002560,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.5000228881836,
+      "seed": 2002561,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": -5.800039291381836,
+      "seed": 2002562,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002563,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 97.260009765625,
+      "seed": 2002564,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002565,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": -14.800077438354492,
+      "seed": 2002566,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 44.709999084472656,
+      "seed": 2002567,
+      "success": true,
+      "turns": 29
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002568,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 34.839996337890625,
+      "seed": 2002569,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 127.0998764038086,
+      "seed": 2002570,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 85.37002563476562,
+      "seed": 2002571,
+      "success": true,
+      "turns": 63
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 97.33999633789062,
+      "seed": 2002572,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 59.360008239746094,
+      "seed": 2002573,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 63.56001281738281,
+      "seed": 2002574,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 169.69996643066406,
+      "seed": 2002575,
+      "success": true,
+      "turns": 130
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 75.48003387451172,
+      "seed": 2002576,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 54.49999237060547,
+      "seed": 2002577,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": -13.800041198730469,
+      "seed": 2002578,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 123.01995086669922,
+      "seed": 2002579,
+      "success": true,
+      "turns": 98
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002580,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 55.660003662109375,
+      "seed": 2002581,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 34.8599967956543,
+      "seed": 2002582,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002583,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 68.46001434326172,
+      "seed": 2002584,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 52.31999206542969,
+      "seed": 2002585,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 61.40000915527344,
+      "seed": 2002586,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 44.739994049072266,
+      "seed": 2002587,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 41.81999969482422,
+      "seed": 2002588,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 34.70999526977539,
+      "seed": 2002589,
+      "success": true,
+      "turns": 29
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002590,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 64.22001647949219,
+      "seed": 2002591,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.69999694824219,
+      "seed": 2002592,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 33.86000061035156,
+      "seed": 2002593,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 94.26002502441406,
+      "seed": 2002594,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 79.56004333496094,
+      "seed": 2002595,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.67999267578125,
+      "seed": 2002596,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002597,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002598,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 129.28990173339844,
+      "seed": 2002599,
+      "success": true,
+      "turns": 71
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002600,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": -2.800039291381836,
+      "seed": 2002601,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 49.74999237060547,
+      "seed": 2002602,
+      "success": true,
+      "turns": 25
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002603,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 79.4400405883789,
+      "seed": 2002604,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 85.46002960205078,
+      "seed": 2002605,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 53.639991760253906,
+      "seed": 2002606,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 64.66000366210938,
+      "seed": 2002607,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 68.3000259399414,
+      "seed": 2002608,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 63.65001678466797,
+      "seed": 2002609,
+      "success": true,
+      "turns": 35
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002610,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 73.50003051757812,
+      "seed": 2002611,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 59.730010986328125,
+      "seed": 2002612,
+      "success": true,
+      "turns": 27
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 107.1799545288086,
+      "seed": 2002613,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 49.519989013671875,
+      "seed": 2002614,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 85.14006805419922,
+      "seed": 2002615,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 96.07999420166016,
+      "seed": 2002616,
+      "success": true,
+      "turns": 92
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 138.85987854003906,
+      "seed": 2002617,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002618,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002619,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 36.79999542236328,
+      "seed": 2002620,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": -5.800036430358887,
+      "seed": 2002621,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 42.82999801635742,
+      "seed": 2002622,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 121.26996612548828,
+      "seed": 2002623,
+      "success": true,
+      "turns": 73
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002624,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 54.6199951171875,
+      "seed": 2002625,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002626,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 55.599998474121094,
+      "seed": 2002627,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 70.64002227783203,
+      "seed": 2002628,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 28.85999870300293,
+      "seed": 2002629,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 36.81999969482422,
+      "seed": 2002630,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 192.1702423095703,
+      "seed": 2002631,
+      "success": true,
+      "turns": 83
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 114.47997283935547,
+      "seed": 2002632,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 54.659996032714844,
+      "seed": 2002633,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 83.52003479003906,
+      "seed": 2002634,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 61.52001190185547,
+      "seed": 2002635,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 137.9498748779297,
+      "seed": 2002636,
+      "success": true,
+      "turns": 105
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 75.18004608154297,
+      "seed": 2002637,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 58.480003356933594,
+      "seed": 2002638,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 42.779998779296875,
+      "seed": 2002639,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 95.68000030517578,
+      "seed": 2002640,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 7.199960708618164,
+      "seed": 2002641,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 85.38003540039062,
+      "seed": 2002642,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 151.71986389160156,
+      "seed": 2002643,
+      "success": true,
+      "turns": 128
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002644,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 64.56001281738281,
+      "seed": 2002645,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 101.27997589111328,
+      "seed": 2002646,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002647,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 71.44002532958984,
+      "seed": 2002648,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.59999084472656,
+      "seed": 2002649,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 68.47001647949219,
+      "seed": 2002650,
+      "success": true,
+      "turns": 53
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 59.58000183105469,
+      "seed": 2002651,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 96.27998352050781,
+      "seed": 2002652,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 74.48003387451172,
+      "seed": 2002653,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 3.199953079223633,
+      "seed": 2002654,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002655,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002656,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 44.69999313354492,
+      "seed": 2002657,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 103.29000854492188,
+      "seed": 2002658,
+      "success": true,
+      "turns": 71
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 100.34001159667969,
+      "seed": 2002659,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002660,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 74.530029296875,
+      "seed": 2002661,
+      "success": true,
+      "turns": 47
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 91.34001159667969,
+      "seed": 2002662,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 50.68999481201172,
+      "seed": 2002663,
+      "success": true,
+      "turns": 31
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 41.779998779296875,
+      "seed": 2002664,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002665,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 129.469970703125,
+      "seed": 2002666,
+      "success": true,
+      "turns": 53
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 37.68999099731445,
+      "seed": 2002667,
+      "success": true,
+      "turns": 31
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 58.58000183105469,
+      "seed": 2002668,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 59.660003662109375,
+      "seed": 2002669,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 79.4200439453125,
+      "seed": 2002670,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 133.50997924804688,
+      "seed": 2002671,
+      "success": true,
+      "turns": 49
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002672,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 32.839996337890625,
+      "seed": 2002673,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 75.36003875732422,
+      "seed": 2002674,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 34.8599967956543,
+      "seed": 2002675,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 44.75999450683594,
+      "seed": 2002676,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 65.84001159667969,
+      "seed": 2002677,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 30.759998321533203,
+      "seed": 2002678,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002679,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 54.63999938964844,
+      "seed": 2002680,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 139.3599090576172,
+      "seed": 2002681,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 44.60999298095703,
+      "seed": 2002682,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": -17.799999237060547,
+      "seed": 2002683,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 152.43995666503906,
+      "seed": 2002684,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 53.3399658203125,
+      "seed": 2002685,
+      "success": true,
+      "turns": 166
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 63.59001922607422,
+      "seed": 2002686,
+      "success": true,
+      "turns": 41
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 90.6399917602539,
+      "seed": 2002687,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002688,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 41.779998779296875,
+      "seed": 2002689,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 75.44002532958984,
+      "seed": 2002690,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002691,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 138.7798614501953,
+      "seed": 2002692,
+      "success": true,
+      "turns": 122
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002693,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 43.51999282836914,
+      "seed": 2002694,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 26.919998168945312,
+      "seed": 2002695,
+      "success": true,
+      "turns": 8
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 85.16006469726562,
+      "seed": 2002696,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 31.779996871948242,
+      "seed": 2002697,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002698,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 123.47982788085938,
+      "seed": 2002699,
+      "success": true,
+      "turns": 152
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002700,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 50.719993591308594,
+      "seed": 2002701,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 55.660003662109375,
+      "seed": 2002702,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 34.839996337890625,
+      "seed": 2002703,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 40.83000183105469,
+      "seed": 2002704,
+      "success": true,
+      "turns": 17
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 29.839998245239258,
+      "seed": 2002705,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002706,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 166.55003356933594,
+      "seed": 2002707,
+      "success": true,
+      "turns": 45
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 63.51000213623047,
+      "seed": 2002708,
+      "success": true,
+      "turns": 49
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 107.3599624633789,
+      "seed": 2002709,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002710,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 98.06002044677734,
+      "seed": 2002711,
+      "success": true,
+      "turns": 94
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 73.5000228881836,
+      "seed": 2002712,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 39.639991760253906,
+      "seed": 2002713,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002714,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 49.720001220703125,
+      "seed": 2002715,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 165.99005126953125,
+      "seed": 2002716,
+      "success": true,
+      "turns": 101
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 46.55998992919922,
+      "seed": 2002717,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 37.79999542236328,
+      "seed": 2002718,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 110.23994445800781,
+      "seed": 2002719,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 68.56002807617188,
+      "seed": 2002720,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002721,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 145.4199676513672,
+      "seed": 2002722,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 29.8799991607666,
+      "seed": 2002723,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 64.36001586914062,
+      "seed": 2002724,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 107.1799545288086,
+      "seed": 2002725,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 101.35995483398438,
+      "seed": 2002726,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002727,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002728,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 61.660003662109375,
+      "seed": 2002729,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 19.199670791625977,
+      "seed": 2002730,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 44.79999542236328,
+      "seed": 2002731,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 141.19993591308594,
+      "seed": 2002732,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 138.31991577148438,
+      "seed": 2002733,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 41.779998779296875,
+      "seed": 2002734,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": -21.799999237060547,
+      "seed": 2002735,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 61.69001007080078,
+      "seed": 2002736,
+      "success": true,
+      "turns": 31
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 60.660003662109375,
+      "seed": 2002737,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002738,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 47.579994201660156,
+      "seed": 2002739,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 85.72000885009766,
+      "seed": 2002740,
+      "success": true,
+      "turns": 28
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 64.48001098632812,
+      "seed": 2002741,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 84.38005065917969,
+      "seed": 2002742,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 84.38005065917969,
+      "seed": 2002743,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 54.49999237060547,
+      "seed": 2002744,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002745,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002746,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 135.23989868164062,
+      "seed": 2002747,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 103.01996612548828,
+      "seed": 2002748,
+      "success": true,
+      "turns": 98
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002749,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 33.86000061035156,
+      "seed": 2002750,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002751,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 97.260009765625,
+      "seed": 2002752,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 82.42003631591797,
+      "seed": 2002753,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 71.50003051757812,
+      "seed": 2002754,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 75.50001525878906,
+      "seed": 2002755,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 43.54997253417969,
+      "seed": 2002756,
+      "success": true,
+      "turns": 45
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002757,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002758,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 96.2800064086914,
+      "seed": 2002759,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 124.24991607666016,
+      "seed": 2002760,
+      "success": true,
+      "turns": 75
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 36.81999969482422,
+      "seed": 2002761,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 101.34998321533203,
+      "seed": 2002762,
+      "success": true,
+      "turns": 65
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 96.37999725341797,
+      "seed": 2002763,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 82.6700210571289,
+      "seed": 2002764,
+      "success": true,
+      "turns": 33
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 107.2399673461914,
+      "seed": 2002765,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002766,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 59.610015869140625,
+      "seed": 2002767,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 130.90989685058594,
+      "seed": 2002768,
+      "success": true,
+      "turns": 109
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 45.650001525878906,
+      "seed": 2002769,
+      "success": true,
+      "turns": 35
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 49.739994049072266,
+      "seed": 2002770,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002771,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 42.73999786376953,
+      "seed": 2002772,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 124.0699462890625,
+      "seed": 2002773,
+      "success": true,
+      "turns": 93
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 151.71981811523438,
+      "seed": 2002774,
+      "success": true,
+      "turns": 128
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 180.360107421875,
+      "seed": 2002775,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 66.52001953125,
+      "seed": 2002776,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002777,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 144.09986877441406,
+      "seed": 2002778,
+      "success": true,
+      "turns": 90
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 104.2300033569336,
+      "seed": 2002779,
+      "success": true,
+      "turns": 77
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 65.69001770019531,
+      "seed": 2002780,
+      "success": true,
+      "turns": 31
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002781,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 68.58002471923828,
+      "seed": 2002782,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 64.50001525878906,
+      "seed": 2002783,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 202.5702362060547,
+      "seed": 2002784,
+      "success": true,
+      "turns": 143
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 153.9999237060547,
+      "seed": 2002785,
+      "success": true,
+      "turns": 100
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002786,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 125.20991516113281,
+      "seed": 2002787,
+      "success": true,
+      "turns": 79
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 96.2800064086914,
+      "seed": 2002788,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002789,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 41.79999542236328,
+      "seed": 2002790,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 36.79999542236328,
+      "seed": 2002791,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 101.41997528076172,
+      "seed": 2002792,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 203.3601837158203,
+      "seed": 2002793,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 107.31995391845703,
+      "seed": 2002794,
+      "success": true,
+      "turns": 68
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 68.60002136230469,
+      "seed": 2002795,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 25.939998626708984,
+      "seed": 2002796,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 42.79999542236328,
+      "seed": 2002797,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 45.67999267578125,
+      "seed": 2002798,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 55.63999938964844,
+      "seed": 2002799,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 132.9398956298828,
+      "seed": 2002800,
+      "success": true,
+      "turns": 106
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 124.40999603271484,
+      "seed": 2002801,
+      "success": true,
+      "turns": 59
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 32.839996337890625,
+      "seed": 2002802,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 96.2800064086914,
+      "seed": 2002803,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 29.85999870300293,
+      "seed": 2002804,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002805,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 52.659996032714844,
+      "seed": 2002806,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 49.519989013671875,
+      "seed": 2002807,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 137.5598602294922,
+      "seed": 2002808,
+      "success": true,
+      "turns": 144
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002809,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 62.68000030517578,
+      "seed": 2002810,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 47.67999267578125,
+      "seed": 2002811,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002812,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 71.36003875732422,
+      "seed": 2002813,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 63.63999938964844,
+      "seed": 2002814,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002815,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 45.79999542236328,
+      "seed": 2002816,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002817,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002818,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 45.73999786376953,
+      "seed": 2002819,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 126.4599380493164,
+      "seed": 2002820,
+      "success": true,
+      "turns": 54
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 110.13996124267578,
+      "seed": 2002821,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 122.71988677978516,
+      "seed": 2002822,
+      "success": true,
+      "turns": 128
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 121.21992492675781,
+      "seed": 2002823,
+      "success": true,
+      "turns": 78
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 37.73999786376953,
+      "seed": 2002824,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 36.79999542236328,
+      "seed": 2002825,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 24.939998626708984,
+      "seed": 2002826,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 133.7498779296875,
+      "seed": 2002827,
+      "success": true,
+      "turns": 125
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 85.38005828857422,
+      "seed": 2002828,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 84.4000473022461,
+      "seed": 2002829,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.73999786376953,
+      "seed": 2002830,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 86.36003875732422,
+      "seed": 2002831,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 107.27991485595703,
+      "seed": 2002832,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 114.05996704101562,
+      "seed": 2002833,
+      "success": true,
+      "turns": 94
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 24.939998626708984,
+      "seed": 2002834,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002835,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002836,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 107.17996215820312,
+      "seed": 2002837,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 37.839996337890625,
+      "seed": 2002838,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 120.78990936279297,
+      "seed": 2002839,
+      "success": true,
+      "turns": 121
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 122.87989807128906,
+      "seed": 2002840,
+      "success": true,
+      "turns": 112
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002841,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 28.89999771118164,
+      "seed": 2002842,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 69.1998062133789,
+      "seed": 2002843,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": -7.800040245056152,
+      "seed": 2002844,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 36.81999969482422,
+      "seed": 2002845,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 122.7198715209961,
+      "seed": 2002846,
+      "success": true,
+      "turns": 128
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 44.75,
+      "seed": 2002847,
+      "success": true,
+      "turns": 25
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 180.2900390625,
+      "seed": 2002848,
+      "success": true,
+      "turns": 71
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 49.65999984741211,
+      "seed": 2002849,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 95.23004913330078,
+      "seed": 2002850,
+      "success": true,
+      "turns": 77
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 30.87999725341797,
+      "seed": 2002851,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 73.16004943847656,
+      "seed": 2002852,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 100.8599624633789,
+      "seed": 2002853,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002854,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 71.50003051757812,
+      "seed": 2002855,
+      "success": true,
+      "turns": 50
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002856,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002857,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 72.58003234863281,
+      "seed": 2002858,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 54.469993591308594,
+      "seed": 2002859,
+      "success": true,
+      "turns": 53
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 92.31000518798828,
+      "seed": 2002860,
+      "success": true,
+      "turns": 69
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 109.31000518798828,
+      "seed": 2002861,
+      "success": true,
+      "turns": 69
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002862,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 173.96011352539062,
+      "seed": 2002863,
+      "success": true,
+      "turns": 104
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002864,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002865,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": -0.8000411987304688,
+      "seed": 2002866,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002867,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 144.85986328125,
+      "seed": 2002868,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 34.87999725341797,
+      "seed": 2002869,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 30.859996795654297,
+      "seed": 2002870,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 64.56001281738281,
+      "seed": 2002871,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002872,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002873,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 64.56001281738281,
+      "seed": 2002874,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 132.16990661621094,
+      "seed": 2002875,
+      "success": true,
+      "turns": 83
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 32.86000061035156,
+      "seed": 2002876,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 84.38005828857422,
+      "seed": 2002877,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 43.439971923828125,
+      "seed": 2002878,
+      "success": true,
+      "turns": 56
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002879,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 109.19996643066406,
+      "seed": 2002880,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 45.73999786376953,
+      "seed": 2002881,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 57.70000457763672,
+      "seed": 2002882,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": 61.610008239746094,
+      "seed": 2002883,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 106.81995391845703,
+      "seed": 2002884,
+      "success": true,
+      "turns": 118
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 53.579994201660156,
+      "seed": 2002885,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002886,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 123.3399429321289,
+      "seed": 2002887,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 119.13996887207031,
+      "seed": 2002888,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 22.200014114379883,
+      "seed": 2002889,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 26.8799991607666,
+      "seed": 2002890,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002891,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 186.9501190185547,
+      "seed": 2002892,
+      "success": true,
+      "turns": 105
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 180.09022521972656,
+      "seed": 2002893,
+      "success": true,
+      "turns": 91
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 171.38003540039062,
+      "seed": 2002894,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 107.1799545288086,
+      "seed": 2002895,
+      "success": true,
+      "turns": 82
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002896,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 91.04003143310547,
+      "seed": 2002897,
+      "success": true,
+      "turns": 96
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 52.6199951171875,
+      "seed": 2002898,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 8,
+      "initial_deficit": 6,
+      "return": -15.800041198730469,
+      "seed": 2002899,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 196.05026245117188,
+      "seed": 2002900,
+      "success": true,
+      "turns": 95
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 39.779998779296875,
+      "seed": 2002901,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 82.40003967285156,
+      "seed": 2002902,
+      "success": true,
+      "turns": 60
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 122.34991455078125,
+      "seed": 2002903,
+      "success": true,
+      "turns": 65
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 91.34001922607422,
+      "seed": 2002904,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 59.490013122558594,
+      "seed": 2002905,
+      "success": true,
+      "turns": 51
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 49.69999694824219,
+      "seed": 2002906,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 73.64002227783203,
+      "seed": 2002907,
+      "success": true,
+      "turns": 36
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002908,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002909,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002910,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 99.3599853515625,
+      "seed": 2002911,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": -6.800037384033203,
+      "seed": 2002912,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002913,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 77.38004302978516,
+      "seed": 2002914,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 47.61997985839844,
+      "seed": 2002915,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 170.47998046875,
+      "seed": 2002916,
+      "success": true,
+      "turns": 152
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 58.360008239746094,
+      "seed": 2002917,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 31.89999771118164,
+      "seed": 2002918,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 97.14002227783203,
+      "seed": 2002919,
+      "success": true,
+      "turns": 86
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 84.26004791259766,
+      "seed": 2002920,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 123.99990844726562,
+      "seed": 2002921,
+      "success": true,
+      "turns": 100
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": -7.800040245056152,
+      "seed": 2002922,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 6,
+      "return": 97.16002655029297,
+      "seed": 2002923,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 94.280029296875,
+      "seed": 2002924,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 87.26005554199219,
+      "seed": 2002925,
+      "success": true,
+      "turns": 74
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002926,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 80.70001983642578,
+      "seed": 2002927,
+      "success": true,
+      "turns": 30
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 22.959999084472656,
+      "seed": 2002928,
+      "success": true,
+      "turns": 4
+    },
+    {
+      "height": 11,
+      "initial_deficit": 2,
+      "return": 41.81999588012695,
+      "seed": 2002929,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 8,
+      "initial_deficit": 1,
+      "return": 30.87999725341797,
+      "seed": 2002930,
+      "success": true,
+      "turns": 12
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 27.200227737426758,
+      "seed": 2002931,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 26.899999618530273,
+      "seed": 2002932,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 52.659996032714844,
+      "seed": 2002933,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 58.62000274658203,
+      "seed": 2002934,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 41.659996032714844,
+      "seed": 2002935,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 96.41998291015625,
+      "seed": 2002936,
+      "success": true,
+      "turns": 58
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 43.81999588012695,
+      "seed": 2002937,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 64.58001708984375,
+      "seed": 2002938,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 49.67999267578125,
+      "seed": 2002939,
+      "success": true,
+      "turns": 32
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 73.28004455566406,
+      "seed": 2002940,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 105.38997650146484,
+      "seed": 2002941,
+      "success": true,
+      "turns": 61
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 138.27987670898438,
+      "seed": 2002942,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 94.7099838256836,
+      "seed": 2002943,
+      "success": true,
+      "turns": 29
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 76.37002563476562,
+      "seed": 2002944,
+      "success": true,
+      "turns": 63
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": -12.800039291381836,
+      "seed": 2002945,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002946,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 37.81999969482422,
+      "seed": 2002947,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 34.839996337890625,
+      "seed": 2002948,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 8,
+      "initial_deficit": 5,
+      "return": 94.28001403808594,
+      "seed": 2002949,
+      "success": true,
+      "turns": 72
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": -11.800041198730469,
+      "seed": 2002950,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 10,
+      "initial_deficit": 3,
+      "return": 58.62000274658203,
+      "seed": 2002951,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 43.659996032714844,
+      "seed": 2002952,
+      "success": true,
+      "turns": 34
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.579994201660156,
+      "seed": 2002953,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 178.30003356933594,
+      "seed": 2002954,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 10,
+      "initial_deficit": 2,
+      "return": 45.73999786376953,
+      "seed": 2002955,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 9,
+      "initial_deficit": 8,
+      "return": 86.3600082397461,
+      "seed": 2002956,
+      "success": true,
+      "turns": 64
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 33.86000061035156,
+      "seed": 2002957,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 3,
+      "return": 70.56002044677734,
+      "seed": 2002958,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 95.37999725341797,
+      "seed": 2002959,
+      "success": true,
+      "turns": 62
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 41.79999542236328,
+      "seed": 2002960,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": -21.799999237060547,
+      "seed": 2002961,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 67.61000061035156,
+      "seed": 2002962,
+      "success": true,
+      "turns": 39
+    },
+    {
+      "height": 10,
+      "initial_deficit": 4,
+      "return": 47.73999786376953,
+      "seed": 2002963,
+      "success": true,
+      "turns": 26
+    },
+    {
+      "height": 9,
+      "initial_deficit": 1,
+      "return": 36.81999969482422,
+      "seed": 2002964,
+      "success": true,
+      "turns": 18
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 33.8599967956543,
+      "seed": 2002965,
+      "success": true,
+      "turns": 14
+    },
+    {
+      "height": 11,
+      "initial_deficit": 6,
+      "return": 116.40997314453125,
+      "seed": 2002966,
+      "success": true,
+      "turns": 59
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 94.1997299194336,
+      "seed": 2002967,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 9,
+      "initial_deficit": 4,
+      "return": 71.24002838134766,
+      "seed": 2002968,
+      "success": true,
+      "turns": 76
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 33.79999542236328,
+      "seed": 2002969,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 11,
+      "initial_deficit": 1,
+      "return": 30.84000015258789,
+      "seed": 2002970,
+      "success": true,
+      "turns": 16
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 121.2999267578125,
+      "seed": 2002971,
+      "success": true,
+      "turns": 70
+    },
+    {
+      "height": 9,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002972,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 9,
+      "initial_deficit": 2,
+      "return": 40.72999572753906,
+      "seed": 2002973,
+      "success": true,
+      "turns": 27
+    },
+    {
+      "height": 10,
+      "initial_deficit": 1,
+      "return": 38.75999450683594,
+      "seed": 2002974,
+      "success": true,
+      "turns": 24
+    },
+    {
+      "height": 11,
+      "initial_deficit": 7,
+      "return": 163.2300262451172,
+      "seed": 2002975,
+      "success": true,
+      "turns": 77
+    },
+    {
+      "height": 8,
+      "initial_deficit": 8,
+      "return": 4.199958801269531,
+      "seed": 2002976,
+      "success": false,
+      "turns": 180
+    },
+    {
+      "height": 8,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002977,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 47.59999084472656,
+      "seed": 2002978,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 10,
+      "initial_deficit": 5,
+      "return": 44.579994201660156,
+      "seed": 2002979,
+      "success": true,
+      "turns": 42
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 166.2000274658203,
+      "seed": 2002980,
+      "success": true,
+      "turns": 80
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 40.79999542236328,
+      "seed": 2002981,
+      "success": true,
+      "turns": 20
+    },
+    {
+      "height": 10,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002982,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 11,
+      "initial_deficit": 8,
+      "return": 123.01990509033203,
+      "seed": 2002983,
+      "success": true,
+      "turns": 98
+    },
+    {
+      "height": 8,
+      "initial_deficit": 7,
+      "return": 123.99990844726562,
+      "seed": 2002984,
+      "success": true,
+      "turns": 100
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 46.59999084472656,
+      "seed": 2002985,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 10,
+      "initial_deficit": 8,
+      "return": 138.85986328125,
+      "seed": 2002986,
+      "success": true,
+      "turns": 114
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002987,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 25.939998626708984,
+      "seed": 2002988,
+      "success": true,
+      "turns": 6
+    },
+    {
+      "height": 11,
+      "initial_deficit": 4,
+      "return": 87.34004211425781,
+      "seed": 2002989,
+      "success": true,
+      "turns": 66
+    },
+    {
+      "height": 8,
+      "initial_deficit": 3,
+      "return": 52.599998474121094,
+      "seed": 2002990,
+      "success": true,
+      "turns": 40
+    },
+    {
+      "height": 9,
+      "initial_deficit": 7,
+      "return": 138.15988159179688,
+      "seed": 2002991,
+      "success": true,
+      "turns": 84
+    },
+    {
+      "height": 10,
+      "initial_deficit": 7,
+      "return": 54.56000518798828,
+      "seed": 2002992,
+      "success": true,
+      "turns": 44
+    },
+    {
+      "height": 11,
+      "initial_deficit": 0,
+      "return": 19.989999771118164,
+      "seed": 2002993,
+      "success": true,
+      "turns": 1
+    },
+    {
+      "height": 8,
+      "initial_deficit": 2,
+      "return": 41.779998779296875,
+      "seed": 2002994,
+      "success": true,
+      "turns": 22
+    },
+    {
+      "height": 9,
+      "initial_deficit": 5,
+      "return": 64.62001037597656,
+      "seed": 2002995,
+      "success": true,
+      "turns": 38
+    },
+    {
+      "height": 10,
+      "initial_deficit": 6,
+      "return": 77.48003387451172,
+      "seed": 2002996,
+      "success": true,
+      "turns": 52
+    },
+    {
+      "height": 11,
+      "initial_deficit": 5,
+      "return": 64.52001190185547,
+      "seed": 2002997,
+      "success": true,
+      "turns": 48
+    },
+    {
+      "height": 8,
+      "initial_deficit": 4,
+      "return": 31.89999771118164,
+      "seed": 2002998,
+      "success": true,
+      "turns": 10
+    },
+    {
+      "height": 9,
+      "initial_deficit": 3,
+      "return": 58.62000274658203,
+      "seed": 2002999,
+      "success": true,
+      "turns": 38
+    }
+  ],
+  "seed_base": 2002000,
+  "seed_stop_exclusive": 2003000,
+  "success_rate": 0.934,
+  "successes": 934,
+  "teacher_success_rate": 1.0,
+  "transitions": 65800,
+  "transitions_per_second": 7238.778575724425
+}

@@ -1,0 +1,196 @@
+{
+ "schema": 1,
+ "scope": "generated-map exact-engine timing and observable-signature study; opponent names are used only as training labels, and fivefold predictions use first successful opponent TRAIN stats visible strictly before the third-worker commitment",
+ "rows": 480,
+ "seeds": 30,
+ "portfolio_labels": {
+  "compact_gold": "norx_three_worker_resident_challenge",
+  "gold_adaptive": "resident",
+  "gold_elite": "norx_three_worker_resident_challenge",
+  "mybot": "norx_three_worker_resident_challenge",
+  "printer_bot": "norx_three_worker_resident_challenge",
+  "sched_bot": "resident",
+  "script_boss": "resident",
+  "silver_boss": "resident"
+ },
+ "timing_by_opponent": {
+  "compact_gold": {
+   "portfolio_branch": "norx_three_worker_resident_challenge",
+   "rows": 60,
+   "signature_before_commitment": 60,
+   "coverage": 1.0,
+   "median_opponent_observation_turn": 19.0,
+   "median_third_worker_turn": 78.0,
+   "observed_specs": {
+    "2/2/0/2": 60
+   }
+  },
+  "gold_adaptive": {
+   "portfolio_branch": "resident",
+   "rows": 60,
+   "signature_before_commitment": 60,
+   "coverage": 1.0,
+   "median_opponent_observation_turn": 3.0,
+   "median_third_worker_turn": 80.0,
+   "observed_specs": {
+    "1/1/1/1": 60
+   }
+  },
+  "gold_elite": {
+   "portfolio_branch": "norx_three_worker_resident_challenge",
+   "rows": 60,
+   "signature_before_commitment": 60,
+   "coverage": 1.0,
+   "median_opponent_observation_turn": 19.0,
+   "median_third_worker_turn": 78.0,
+   "observed_specs": {
+    "2/2/0/2": 60
+   }
+  },
+  "mybot": {
+   "portfolio_branch": "norx_three_worker_resident_challenge",
+   "rows": 60,
+   "signature_before_commitment": 60,
+   "coverage": 1.0,
+   "median_opponent_observation_turn": 3.0,
+   "median_third_worker_turn": 81.0,
+   "observed_specs": {
+    "1/1/1/0": 20,
+    "1/2/2/0": 16,
+    "2/2/0/2": 14,
+    "2/2/2/0": 10
+   }
+  },
+  "printer_bot": {
+   "portfolio_branch": "norx_three_worker_resident_challenge",
+   "rows": 60,
+   "signature_before_commitment": 60,
+   "coverage": 1.0,
+   "median_opponent_observation_turn": 42.0,
+   "median_third_worker_turn": 79.5,
+   "observed_specs": {
+    "1/1/1/0": 35,
+    "2/2/2/1": 25
+   }
+  },
+  "sched_bot": {
+   "portfolio_branch": "resident",
+   "rows": 60,
+   "signature_before_commitment": 15,
+   "coverage": 0.25,
+   "median_opponent_observation_turn": -1.0,
+   "median_third_worker_turn": 87.0,
+   "observed_specs": {
+    "-1/-1/-1/-1": 44,
+    "2/2/0/2": 16
+   }
+  },
+  "script_boss": {
+   "portfolio_branch": "resident",
+   "rows": 60,
+   "signature_before_commitment": 56,
+   "coverage": 0.9333333333333333,
+   "median_opponent_observation_turn": 3.0,
+   "median_third_worker_turn": 79.5,
+   "observed_specs": {
+    "-1/-1/-1/-1": 1,
+    "1/1/1/2": 59
+   }
+  },
+  "silver_boss": {
+   "portfolio_branch": "resident",
+   "rows": 60,
+   "signature_before_commitment": 58,
+   "coverage": 0.9666666666666667,
+   "median_opponent_observation_turn": 3.0,
+   "median_third_worker_turn": 82.0,
+   "observed_specs": {
+    "-1/-1/-1/-1": 2,
+    "1/1/1/0": 20,
+    "1/2/1/2": 26,
+    "1/2/2/0": 4,
+    "2/2/2/0": 8
+   }
+  }
+ },
+ "alternative_signature_timing_coverage": 1.0,
+ "safe_selectors": {
+  "spec_only": {
+   "rows": 480,
+   "accuracy": 0.5520833333333334,
+   "alternative_recall": 0.10416666666666667,
+   "alternative_precision": 1.0,
+   "false_alternative_rate_on_resident": 0.0,
+   "selected_alternative": 25,
+   "true_alternative": 25,
+   "false_alternative": 0,
+   "paired_margin_delta_vs_resident": {
+    "n": 480,
+    "mean": 0.6,
+    "median": 0.0,
+    "minimum": -101,
+    "maximum": 100,
+    "wins": 17,
+    "ties": 455,
+    "losses": 8
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 0,
+    "printer_bot": 4.8,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "worst_opponent_mean_delta": 0
+  },
+  "turn_band_and_spec": {
+   "rows": 480,
+   "accuracy": 0.7583333333333333,
+   "alternative_recall": 0.5208333333333334,
+   "alternative_precision": 0.9920634920634921,
+   "false_alternative_rate_on_resident": 0.004166666666666667,
+   "selected_alternative": 126,
+   "true_alternative": 125,
+   "false_alternative": 1,
+   "paired_margin_delta_vs_resident": {
+    "n": 480,
+    "mean": 7.545833333333333,
+    "median": 0.0,
+    "minimum": -101,
+    "maximum": 152,
+    "wins": 86,
+    "ties": 354,
+    "losses": 40
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 14.883333333333333,
+    "gold_adaptive": 0,
+    "gold_elite": 15.433333333333334,
+    "mybot": 0,
+    "printer_bot": 30.433333333333334,
+    "sched_bot": -0.38333333333333336,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "worst_opponent_mean_delta": -0.38333333333333336
+  }
+ },
+ "research_gate": {
+  "requirements": [
+   "at least 95% of alternative-label signatures visible before worker three",
+   "positive cross-validated paired margin delta versus resident",
+   "false alternative rate on resident labels at most 5%",
+   "worst opponent mean margin delta at least -5"
+  ],
+  "passed": true
+ },
+ "decision": {
+  "build_delayed_common_prefix_prototype": true,
+  "build_online_selector": false,
+  "build_submission_candidate": false,
+  "reason": "A signature can authorize only the research common-prefix experiment. The standalone resident and Silver-based three-worker policy diverge before the classification point, so their label-aware portfolio gain is not directly deployable."
+ }
+}

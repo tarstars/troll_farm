@@ -1,0 +1,327 @@
+{
+  "binding_target_three": {
+    "cells": 732,
+    "deposited_deficit": {
+      "apple": {
+        "mean": 0.09289617486338798,
+        "mean_when_positive": 2.125,
+        "positive_cells": 32,
+        "positive_rate": 0.04371584699453552
+      },
+      "iron": {
+        "mean": 0.6830601092896175,
+        "mean_when_positive": 2.4038461538461537,
+        "positive_cells": 208,
+        "positive_rate": 0.28415300546448086
+      },
+      "lemon": {
+        "mean": 4.939890710382514,
+        "mean_when_positive": 6.696296296296296,
+        "positive_cells": 540,
+        "positive_rate": 0.7377049180327869
+      },
+      "plum": {
+        "mean": 1.4426229508196722,
+        "mean_when_positive": 3.3846153846153846,
+        "positive_cells": 312,
+        "positive_rate": 0.4262295081967213
+      }
+    },
+    "dominant_resource": "lemon",
+    "readiness": {
+      "carry_closes": {
+        "cells": 4,
+        "rate": 0.00546448087431694
+      },
+      "deposited_ready": {
+        "cells": 0,
+        "rate": 0.0
+      },
+      "ripe_closes": {
+        "cells": 60,
+        "rate": 0.08196721311475409
+      },
+      "source_unresolved": {
+        "cells": 668,
+        "rate": 0.912568306010929
+      }
+    },
+    "selected_mechanism": "resource-specific renewable/source acquisition: lemon",
+    "source_means": {
+      "apple": {
+        "harvested": 33.459016393442624,
+        "ripe": 31.295081967213115,
+        "standing": 11.595628415300547,
+        "successful_plants": 10.546448087431694
+      },
+      "banana": {
+        "harvested": 56.868852459016395,
+        "ripe": 30.51912568306011,
+        "standing": 11.027322404371585,
+        "successful_plants": 26.316939890710383
+      },
+      "lemon": {
+        "harvested": 9.524590163934427,
+        "ripe": 7.918032786885246,
+        "standing": 2.759562841530055,
+        "successful_plants": 2.2568306010928962
+      },
+      "plum": {
+        "harvested": 14.491803278688524,
+        "ripe": 13.442622950819672,
+        "standing": 4.7923497267759565,
+        "successful_plants": 4.355191256830601
+      }
+    }
+  },
+  "by_target": {
+    "2": {
+      "cells": 224,
+      "deposited_deficit": {
+        "apple": {
+          "mean": 0.17857142857142858,
+          "mean_when_positive": 1.4285714285714286,
+          "positive_cells": 28,
+          "positive_rate": 0.125
+        },
+        "iron": {
+          "mean": 0,
+          "mean_when_positive": null,
+          "positive_cells": 0,
+          "positive_rate": 0.0
+        },
+        "lemon": {
+          "mean": 1.0535714285714286,
+          "mean_when_positive": 1.903225806451613,
+          "positive_cells": 124,
+          "positive_rate": 0.5535714285714286
+        },
+        "plum": {
+          "mean": 0.7857142857142857,
+          "mean_when_positive": 1.5714285714285714,
+          "positive_cells": 112,
+          "positive_rate": 0.5
+        }
+      },
+      "dominant_resource": null,
+      "readiness": {
+        "carry_closes": {
+          "cells": 0,
+          "rate": 0.0
+        },
+        "deposited_ready": {
+          "cells": 0,
+          "rate": 0.0
+        },
+        "ripe_closes": {
+          "cells": 64,
+          "rate": 0.2857142857142857
+        },
+        "source_unresolved": {
+          "cells": 160,
+          "rate": 0.7142857142857143
+        }
+      },
+      "selected_mechanism": "exact deficit-vector renewable/source acquisition",
+      "source_means": {
+        "apple": {
+          "harvested": 15.017857142857142,
+          "ripe": 26.767857142857142,
+          "standing": 9.785714285714286,
+          "successful_plants": 9.25
+        },
+        "banana": {
+          "harvested": 28.964285714285715,
+          "ripe": 28.839285714285715,
+          "standing": 10.232142857142858,
+          "successful_plants": 20.232142857142858
+        },
+        "lemon": {
+          "harvested": 2.7857142857142856,
+          "ripe": 6.553571428571429,
+          "standing": 2.267857142857143,
+          "successful_plants": 1.6964285714285714
+        },
+        "plum": {
+          "harvested": 7.625,
+          "ripe": 12.428571428571429,
+          "standing": 4.642857142857143,
+          "successful_plants": 4.803571428571429
+        }
+      }
+    },
+    "3": {
+      "cells": 732,
+      "deposited_deficit": {
+        "apple": {
+          "mean": 0.09289617486338798,
+          "mean_when_positive": 2.125,
+          "positive_cells": 32,
+          "positive_rate": 0.04371584699453552
+        },
+        "iron": {
+          "mean": 0.6830601092896175,
+          "mean_when_positive": 2.4038461538461537,
+          "positive_cells": 208,
+          "positive_rate": 0.28415300546448086
+        },
+        "lemon": {
+          "mean": 4.939890710382514,
+          "mean_when_positive": 6.696296296296296,
+          "positive_cells": 540,
+          "positive_rate": 0.7377049180327869
+        },
+        "plum": {
+          "mean": 1.4426229508196722,
+          "mean_when_positive": 3.3846153846153846,
+          "positive_cells": 312,
+          "positive_rate": 0.4262295081967213
+        }
+      },
+      "dominant_resource": "lemon",
+      "readiness": {
+        "carry_closes": {
+          "cells": 4,
+          "rate": 0.00546448087431694
+        },
+        "deposited_ready": {
+          "cells": 0,
+          "rate": 0.0
+        },
+        "ripe_closes": {
+          "cells": 60,
+          "rate": 0.08196721311475409
+        },
+        "source_unresolved": {
+          "cells": 668,
+          "rate": 0.912568306010929
+        }
+      },
+      "selected_mechanism": "resource-specific renewable/source acquisition: lemon",
+      "source_means": {
+        "apple": {
+          "harvested": 33.459016393442624,
+          "ripe": 31.295081967213115,
+          "standing": 11.595628415300547,
+          "successful_plants": 10.546448087431694
+        },
+        "banana": {
+          "harvested": 56.868852459016395,
+          "ripe": 30.51912568306011,
+          "standing": 11.027322404371585,
+          "successful_plants": 26.316939890710383
+        },
+        "lemon": {
+          "harvested": 9.524590163934427,
+          "ripe": 7.918032786885246,
+          "standing": 2.759562841530055,
+          "successful_plants": 2.2568306010928962
+        },
+        "plum": {
+          "harvested": 14.491803278688524,
+          "ripe": 13.442622950819672,
+          "standing": 4.7923497267759565,
+          "successful_plants": 4.355191256830601
+        }
+      }
+    },
+    "4": {
+      "cells": 153,
+      "deposited_deficit": {
+        "apple": {
+          "mean": 0.7647058823529411,
+          "mean_when_positive": 2.659090909090909,
+          "positive_cells": 44,
+          "positive_rate": 0.2875816993464052
+        },
+        "iron": {
+          "mean": 4.444444444444445,
+          "mean_when_positive": 5.354330708661418,
+          "positive_cells": 127,
+          "positive_rate": 0.8300653594771242
+        },
+        "lemon": {
+          "mean": 8.006535947712418,
+          "mean_when_positive": 9.280303030303031,
+          "positive_cells": 132,
+          "positive_rate": 0.8627450980392157
+        },
+        "plum": {
+          "mean": 3.4379084967320264,
+          "mean_when_positive": 4.781818181818182,
+          "positive_cells": 110,
+          "positive_rate": 0.7189542483660131
+        }
+      },
+      "dominant_resource": null,
+      "readiness": {
+        "carry_closes": {
+          "cells": 0,
+          "rate": 0.0
+        },
+        "deposited_ready": {
+          "cells": 0,
+          "rate": 0.0
+        },
+        "ripe_closes": {
+          "cells": 4,
+          "rate": 0.026143790849673203
+        },
+        "source_unresolved": {
+          "cells": 149,
+          "rate": 0.9738562091503268
+        }
+      },
+      "selected_mechanism": "exact deficit-vector renewable/source acquisition",
+      "source_means": {
+        "apple": {
+          "harvested": 22.50326797385621,
+          "ripe": 23.84967320261438,
+          "standing": 9.718954248366012,
+          "successful_plants": 11.49673202614379
+        },
+        "banana": {
+          "harvested": 38.96078431372549,
+          "ripe": 28.477124183006534,
+          "standing": 10.50326797385621,
+          "successful_plants": 34.39869281045752
+        },
+        "lemon": {
+          "harvested": 14.660130718954248,
+          "ripe": 9.294117647058824,
+          "standing": 3.3006535947712417,
+          "successful_plants": 1.3333333333333333
+        },
+        "plum": {
+          "harvested": 12.901960784313726,
+          "ripe": 10.705882352941176,
+          "standing": 3.895424836601307,
+          "successful_plants": 4.42483660130719
+        }
+      }
+    }
+  },
+  "decision": "resource-specific renewable/source acquisition: lemon",
+  "inputs": {
+    "analyzer_sha256": "62b589a2aaaa8be9da8f407053f902f50cf5909797cd632fc90938c003f42c82",
+    "d54a_sha256": "66f99af783e855fc64e48df3990bf04469fe1dea07798ede6b95a4fea17a1263",
+    "diagnostic_sha256": "59240f763c285c5961be0eea417b5a66ad5e049ccb076f7835caeb67fdb766fa",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "runner_sha256": "6cb143cff5e329ce70c8c6468a6e2663268cd2d83794f66155f8109ac80eed40",
+    "strategy_sha256": "f5ec11f3ec8b480e82bbbc6c39e7caa77efdb2a678e0d5a190eaf0035c8e098d"
+  },
+  "integrity": {
+    "all_attempt_partitions_exact": true,
+    "all_below_cap_rows_have_positive_target": true,
+    "all_preexisting_fields_match_d54a": true,
+    "attempt_partition_failures": 0,
+    "common_field_mismatches": 0,
+    "exact_160_by_8_grid": true
+  },
+  "pass": true,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d55a-terminal-train-stock-flow-diagnostic-protocol-2026-07-21.md",
+  "protocol_sha256": "f3a9abf5d3932c38632ce1f10029d01fb54506b593a666321e0b721a4cd7bb91",
+  "schema": 1,
+  "scope": "terminal TRAIN stock-flow telemetry only on consumed maps; score, support, distance, cohort, opponent, candidate-value, and platform fields ignored"
+}

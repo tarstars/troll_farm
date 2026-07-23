@@ -1,0 +1,1984 @@
+{
+ "schema": "troll-farm-d159a-current-resident-refresh-result-v1",
+ "identity": {
+  "resident_agent_id": 6561795,
+  "resident_submission_id": 41015603,
+  "resident_source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "historical_artifact_sha256": "0567f474d44270cb97087a2254c3506f55f49ae122694d82d2fb1dd863cc5075",
+  "raw_artifact_sha256": "97dc82a730b5a691f2bf63036834b1a9ed23bc186b00d09b874ac092efddf443"
+ },
+ "platform_snapshot": {
+  "battle_rows_listed": 200,
+  "finished_requested": 200,
+  "parsed": 200,
+  "fetch_failures": [],
+  "resident_agent_id": 6561795,
+  "resident_rank": 40,
+  "resident_score": 22.26,
+  "resident_league": 5
+ },
+ "partition": {
+  "raw_rows": 200,
+  "raw_unique_ids": 200,
+  "exact_resident_rows": 200,
+  "historical80_rows": 80,
+  "suffix_rows": 120,
+  "identity_mismatch_ids": [],
+  "missing_historical_ids": [],
+  "duplicate_retained_ids": [],
+  "unknown_diff_game_ids": [],
+  "score_mismatch_game_ids": [
+   896349139
+  ]
+ },
+ "integrity": {
+  "gates": {
+   "leaderboard_exact_resident": true,
+   "at_least_160_exact_resident_games": true,
+   "at_least_80_suffix_games": true,
+   "all_80_historical_ids_once": true,
+   "no_duplicate_retained_ids": true,
+   "no_fetch_failures": true,
+   "no_identity_mismatches": true,
+   "zero_unknown_diff_updates": true,
+   "complete_terminal_effect_crop_telemetry": true,
+   "source_hash_exact": true,
+   "historical_artifact_hash_exact": true
+  },
+  "pass": true
+ },
+ "bootstrap": {
+  "seed": 15901,
+  "replicates": 10000,
+  "unit": "game ID"
+ },
+ "cohorts": {
+  "historical80": {
+   "games": 80,
+   "outcomes": {
+    "wins": 42,
+    "ties": 0,
+    "ordinary_losses": 31,
+    "catastrophic_losses": 7
+   },
+   "margin": {
+    "mean": 2.6375,
+    "median": 4.5,
+    "bootstrap_95pct_mean_ci": [
+     -19.401249999999997,
+     22.150937499999984
+    ],
+    "minimum": -459,
+    "maximum": 207
+   },
+   "all": {
+    "games": 80,
+    "wins": 42,
+    "ties": 0,
+    "mean_margin": 2.6375,
+    "minimum_margin": -459,
+    "maximum_margin": 207,
+    "my": {
+     "score": 182.65,
+     "fruit": 12.35,
+     "wood": 42.575,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.15,
+     "harvested_fruit": 11.375,
+     "chops_landed": 172.8625,
+     "dropped_items": 54.625
+    },
+    "opponent": {
+     "score": 180.0125,
+     "fruit": 25.8625,
+     "wood": 38.5375,
+     "workers": 2.425,
+     "successful_trains": 1.425,
+     "successful_plants": 23.9,
+     "harvested_fruit": 50.825,
+     "chops_landed": 101.9125,
+     "dropped_items": 85.4875
+    },
+    "opponent_crops": {
+     "crops": 23.9,
+     "our_contacted_crops": 10.15,
+     "our_interception_rate": 0.44698729706754525,
+     "our_chopped_crops": 10.1125,
+     "our_harvested_crops": 0.0375,
+     "our_wood_collected": 13.875,
+     "our_fruit_harvested": 0.0375,
+     "opponent_wood_collected": 26.1625,
+     "opponent_fruit_harvested": 34.6375,
+     "reachable_within_20_at_birth": 23.7625,
+     "reachable_20_contacted": 10.1375,
+     "opponent_harvested_before_our_contact": 4.65,
+     "median_our_eta_at_birth": 4.538461538461538
+    },
+    "timeline": {
+     "50": {
+      "games": 80,
+      "my_score": 38.15,
+      "opponent_score": 26.1625,
+      "my_wood": 6.05,
+      "opponent_wood": 2.4875,
+      "opponent_workers": 1.7875,
+      "opponent_plants": 4.1375
+     },
+     "75": {
+      "games": 80,
+      "my_score": 54.2375,
+      "opponent_score": 34.4375,
+      "my_wood": 9.8125,
+      "opponent_wood": 4.075,
+      "opponent_workers": 1.9375,
+      "opponent_plants": 5.5375
+     },
+     "100": {
+      "games": 80,
+      "my_score": 70.925,
+      "opponent_score": 45.325,
+      "my_wood": 13.8625,
+      "opponent_wood": 5.975,
+      "opponent_workers": 2.025,
+      "opponent_plants": 7.15
+     },
+     "150": {
+      "games": 72,
+      "my_score": 101.22222222222223,
+      "opponent_score": 68.95833333333333,
+      "my_wood": 20.61111111111111,
+      "opponent_wood": 10.722222222222221,
+      "opponent_workers": 2.2777777777777777,
+      "opponent_plants": 11.694444444444445
+     },
+     "200": {
+      "games": 68,
+      "my_score": 134.2941176470588,
+      "opponent_score": 110.32352941176471,
+      "my_wood": 28.426470588235293,
+      "opponent_wood": 20.38235294117647,
+      "opponent_workers": 2.4411764705882355,
+      "opponent_plants": 17.308823529411764
+     },
+     "225": {
+      "games": 65,
+      "my_score": 150.1846153846154,
+      "opponent_score": 132.03076923076924,
+      "my_wood": 32.16923076923077,
+      "opponent_wood": 25.753846153846155,
+      "opponent_workers": 2.4923076923076923,
+      "opponent_plants": 20.815384615384616
+     },
+     "300": {
+      "games": 50,
+      "my_score": 207.48,
+      "opponent_score": 204.06,
+      "my_wood": 47,
+      "opponent_wood": 42.14,
+      "opponent_workers": 2.44,
+      "opponent_plants": 30.92
+     }
+    }
+   },
+   "wins": {
+    "games": 42,
+    "wins": 42,
+    "ties": 0,
+    "mean_margin": 62.214285714285715,
+    "minimum_margin": 3,
+    "maximum_margin": 207,
+    "my": {
+     "score": 191,
+     "fruit": 13.857142857142858,
+     "wood": 44.285714285714285,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.69047619047619,
+     "harvested_fruit": 12.69047619047619,
+     "chops_landed": 186.11904761904762,
+     "dropped_items": 57.54761904761905
+    },
+    "opponent": {
+     "score": 128.78571428571428,
+     "fruit": 30.976190476190474,
+     "wood": 24.452380952380953,
+     "workers": 2.0952380952380953,
+     "successful_trains": 1.0952380952380953,
+     "successful_plants": 22.428571428571427,
+     "harvested_fruit": 47.88095238095238,
+     "chops_landed": 86.5952380952381,
+     "dropped_items": 68.28571428571429
+    },
+    "opponent_crops": {
+     "crops": 22.428571428571427,
+     "our_contacted_crops": 11.952380952380953,
+     "our_interception_rate": 0.5642655151078629,
+     "our_chopped_crops": 11.880952380952381,
+     "our_harvested_crops": 0.07142857142857142,
+     "our_wood_collected": 15.785714285714286,
+     "our_fruit_harvested": 0.07142857142857142,
+     "opponent_wood_collected": 16.5,
+     "opponent_fruit_harvested": 29.642857142857142,
+     "reachable_within_20_at_birth": 22.428571428571427,
+     "reachable_20_contacted": 11.952380952380953,
+     "opponent_harvested_before_our_contact": 3.9761904761904763,
+     "median_our_eta_at_birth": 3.5125
+    },
+    "timeline": {
+     "50": {
+      "games": 42,
+      "my_score": 39.404761904761905,
+      "opponent_score": 23.071428571428573,
+      "my_wood": 6.380952380952381,
+      "opponent_wood": 1.6904761904761905,
+      "opponent_workers": 1.6904761904761905,
+      "opponent_plants": 4.071428571428571
+     },
+     "75": {
+      "games": 42,
+      "my_score": 55.357142857142854,
+      "opponent_score": 29.642857142857142,
+      "my_wood": 10.071428571428571,
+      "opponent_wood": 2.880952380952381,
+      "opponent_workers": 1.8095238095238095,
+      "opponent_plants": 5.571428571428571
+     },
+     "100": {
+      "games": 42,
+      "my_score": 71.92857142857143,
+      "opponent_score": 38.92857142857143,
+      "my_wood": 14.023809523809524,
+      "opponent_wood": 4.166666666666667,
+      "opponent_workers": 1.8333333333333333,
+      "opponent_plants": 6.880952380952381
+     },
+     "150": {
+      "games": 41,
+      "my_score": 103.8048780487805,
+      "opponent_score": 58.63414634146341,
+      "my_wood": 21.4390243902439,
+      "opponent_wood": 7.804878048780488,
+      "opponent_workers": 1.951219512195122,
+      "opponent_plants": 10.585365853658537
+     },
+     "200": {
+      "games": 38,
+      "my_score": 137.6578947368421,
+      "opponent_score": 83.21052631578948,
+      "my_wood": 29.18421052631579,
+      "opponent_wood": 12.81578947368421,
+      "opponent_workers": 2.0526315789473686,
+      "opponent_plants": 15.394736842105264
+     },
+     "225": {
+      "games": 37,
+      "my_score": 153.3783783783784,
+      "opponent_score": 94,
+      "my_wood": 32.891891891891895,
+      "opponent_wood": 15.378378378378379,
+      "opponent_workers": 2.108108108108108,
+      "opponent_plants": 18.43243243243243
+     },
+     "300": {
+      "games": 30,
+      "my_score": 211.2,
+      "opponent_score": 142.93333333333334,
+      "my_wood": 48.06666666666667,
+      "opponent_wood": 25.866666666666667,
+      "opponent_workers": 2.1,
+      "opponent_plants": 27.2
+     }
+    }
+   },
+   "ordinary_losses": {
+    "games": 31,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -30.129032258064516,
+    "minimum_margin": -96,
+    "maximum_margin": -1,
+    "my": {
+     "score": 172.29032258064515,
+     "fruit": 7,
+     "wood": 41.32258064516129,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.774193548387096,
+     "harvested_fruit": 6.096774193548387,
+     "chops_landed": 161.38709677419354,
+     "dropped_items": 48.193548387096776
+    },
+    "opponent": {
+     "score": 202.41935483870967,
+     "fruit": 23.451612903225808,
+     "wood": 44.74193548387097,
+     "workers": 2.6451612903225805,
+     "successful_trains": 1.6451612903225807,
+     "successful_plants": 22.516129032258064,
+     "harvested_fruit": 50.58064516129032,
+     "chops_landed": 107.25806451612904,
+     "dropped_items": 91.7741935483871
+    },
+    "opponent_crops": {
+     "crops": 22.516129032258064,
+     "our_contacted_crops": 8.161290322580646,
+     "our_interception_rate": 0.33987190401453865,
+     "our_chopped_crops": 8.161290322580646,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 11.64516129032258,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 27.516129032258064,
+     "opponent_fruit_harvested": 38.45161290322581,
+     "reachable_within_20_at_birth": 22.258064516129032,
+     "reachable_20_contacted": 8.129032258064516,
+     "opponent_harvested_before_our_contact": 4.903225806451613,
+     "median_our_eta_at_birth": 5.048387096774194
+    },
+    "timeline": {
+     "50": {
+      "games": 31,
+      "my_score": 39.25806451612903,
+      "opponent_score": 32.41935483870968,
+      "my_wood": 6.32258064516129,
+      "opponent_wood": 4.129032258064516,
+      "opponent_workers": 1.903225806451613,
+      "opponent_plants": 4.32258064516129
+     },
+     "75": {
+      "games": 31,
+      "my_score": 56.32258064516129,
+      "opponent_score": 43.87096774193548,
+      "my_wood": 10.419354838709678,
+      "opponent_wood": 6.612903225806452,
+      "opponent_workers": 2.096774193548387,
+      "opponent_plants": 5.612903225806452
+     },
+     "100": {
+      "games": 31,
+      "my_score": 73.09677419354838,
+      "opponent_score": 58.354838709677416,
+      "my_wood": 14.741935483870968,
+      "opponent_wood": 9.419354838709678,
+      "opponent_workers": 2.193548387096774,
+      "opponent_plants": 7.645161290322581
+     },
+     "150": {
+      "games": 24,
+      "my_score": 100.95833333333333,
+      "opponent_score": 86.70833333333333,
+      "my_wood": 20.791666666666668,
+      "opponent_wood": 15.583333333333334,
+      "opponent_workers": 2.6666666666666665,
+      "opponent_plants": 13.25
+     },
+     "200": {
+      "games": 23,
+      "my_score": 133.6086956521739,
+      "opponent_score": 141.69565217391303,
+      "my_wood": 29.130434782608695,
+      "opponent_wood": 28.52173913043478,
+      "opponent_workers": 2.8260869565217392,
+      "opponent_plants": 18.956521739130434
+     },
+     "225": {
+      "games": 21,
+      "my_score": 150.61904761904762,
+      "opponent_score": 171.38095238095238,
+      "my_wood": 33.095238095238095,
+      "opponent_wood": 35.476190476190474,
+      "opponent_workers": 2.857142857142857,
+      "opponent_plants": 22.761904761904763
+     },
+     "300": {
+      "games": 15,
+      "my_score": 202.46666666666667,
+      "opponent_score": 247.06666666666666,
+      "my_wood": 47,
+      "opponent_wood": 52.4,
+      "opponent_workers": 2.8,
+      "opponent_plants": 34.333333333333336
+     }
+    }
+   },
+   "catastrophic_losses": {
+    "games": 7,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -209.71428571428572,
+    "minimum_margin": -459,
+    "maximum_margin": -108,
+    "my": {
+     "score": 178.42857142857142,
+     "fruit": 27,
+     "wood": 37.857142857142854,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.142857142857142,
+     "harvested_fruit": 26.857142857142858,
+     "chops_landed": 144.14285714285714,
+     "dropped_items": 65.57142857142857
+    },
+    "opponent": {
+     "score": 388.14285714285717,
+     "fruit": 5.857142857142857,
+     "wood": 95.57142857142857,
+     "workers": 3.4285714285714284,
+     "successful_trains": 2.4285714285714284,
+     "successful_plants": 38.857142857142854,
+     "harvested_fruit": 69.57142857142857,
+     "chops_landed": 170.14285714285714,
+     "dropped_items": 160.85714285714286
+    },
+    "opponent_crops": {
+     "crops": 38.857142857142854,
+     "our_contacted_crops": 8.142857142857142,
+     "our_interception_rate": 0.21768615806038338,
+     "our_chopped_crops": 8.142857142857142,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 12.285714285714286,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 78.14285714285714,
+     "opponent_fruit_harvested": 47.714285714285715,
+     "reachable_within_20_at_birth": 38.42857142857143,
+     "reachable_20_contacted": 8.142857142857142,
+     "opponent_harvested_before_our_contact": 7.571428571428571,
+     "median_our_eta_at_birth": 8.142857142857142
+    },
+    "timeline": {
+     "50": {
+      "games": 7,
+      "my_score": 25.714285714285715,
+      "opponent_score": 17,
+      "my_wood": 2.857142857142857,
+      "opponent_wood": 0,
+      "opponent_workers": 1.8571428571428572,
+      "opponent_plants": 3.7142857142857144
+     },
+     "75": {
+      "games": 7,
+      "my_score": 38.285714285714285,
+      "opponent_score": 21.428571428571427,
+      "my_wood": 5.571428571428571,
+      "opponent_wood": 0,
+      "opponent_workers": 2,
+      "opponent_plants": 5
+     },
+     "100": {
+      "games": 7,
+      "my_score": 55.285714285714285,
+      "opponent_score": 26,
+      "my_wood": 9,
+      "opponent_wood": 1.5714285714285714,
+      "opponent_workers": 2.4285714285714284,
+      "opponent_plants": 6.571428571428571
+     },
+     "150": {
+      "games": 7,
+      "my_score": 87,
+      "opponent_score": 68.57142857142857,
+      "my_wood": 15.142857142857142,
+      "opponent_wood": 11.142857142857142,
+      "opponent_workers": 2.857142857142857,
+      "opponent_plants": 12.857142857142858
+     },
+     "200": {
+      "games": 7,
+      "my_score": 118.28571428571429,
+      "opponent_score": 154.42857142857142,
+      "my_wood": 22,
+      "opponent_wood": 34.714285714285715,
+      "opponent_workers": 3.2857142857142856,
+      "opponent_plants": 22.285714285714285
+     },
+     "225": {
+      "games": 7,
+      "my_score": 132,
+      "opponent_score": 215,
+      "my_wood": 25.571428571428573,
+      "opponent_wood": 51.42857142857143,
+      "opponent_workers": 3.4285714285714284,
+      "opponent_plants": 27.571428571428573
+     },
+     "300": {
+      "games": 5,
+      "my_score": 200.2,
+      "opponent_score": 441.8,
+      "my_wood": 40.6,
+      "opponent_wood": 109,
+      "opponent_workers": 3.4,
+      "opponent_plants": 43
+     }
+    }
+   },
+   "catastrophic_tail": {
+    "definition": "terminal margin <= -100",
+    "games": 7,
+    "frequency": 0.0875,
+    "negative_margin_mass": 2402,
+    "catastrophic_negative_margin_mass": 1468,
+    "negative_margin_mass_share": 0.611157368859284,
+    "distinct_opponents": 5,
+    "mean_opponent_final_wood": 95.57142857142857,
+    "opponent_wood_gap_vs_noncatastrophic": 62.50293542074364,
+    "mean_opponent_crop_wood": 78.14285714285714,
+    "mean_our_crop_interception_rate": 0.21768615806038338,
+    "replication_conditions": {
+     "frequency_at_least_10pct": false,
+     "negative_mass_share_at_least_50pct": true,
+     "at_least_3_opponents": true,
+     "opponent_wood_gap_at_least_20": true
+    },
+    "signature_replicates": false
+   },
+   "turn100_early_lead_reversal": {
+    "definition": "positive resident score margin at turn 100, negative terminal margin",
+    "valid_games": 80,
+    "terminal_losses": 38,
+    "reversals": 27,
+    "share_of_losses": 0.7105263157894737,
+    "catastrophic_reversals": 7,
+    "distinct_opponents": 11,
+    "mean_terminal_margin": -79.51851851851852
+   },
+   "trajectory": {
+    "50": {
+     "games": 80,
+     "mean_score_margin": 11.987499999999997,
+     "my_score": 38.15,
+     "opponent_score": 26.1625,
+     "my_wood": 6.05,
+     "opponent_wood": 2.4875,
+     "my_workers": 2,
+     "opponent_workers": 1.7875,
+     "my_plants": 0.125,
+     "opponent_plants": 4.1375
+    },
+    "75": {
+     "games": 80,
+     "mean_score_margin": 19.799999999999997,
+     "my_score": 54.2375,
+     "opponent_score": 34.4375,
+     "my_wood": 9.8125,
+     "opponent_wood": 4.075,
+     "my_workers": 2,
+     "opponent_workers": 1.9375,
+     "my_plants": 0.2125,
+     "opponent_plants": 5.5375
+    },
+    "100": {
+     "games": 80,
+     "mean_score_margin": 25.599999999999994,
+     "my_score": 70.925,
+     "opponent_score": 45.325,
+     "my_wood": 13.8625,
+     "opponent_wood": 5.975,
+     "my_workers": 2,
+     "opponent_workers": 2.025,
+     "my_plants": 0.8125,
+     "opponent_plants": 7.15
+    },
+    "150": {
+     "games": 72,
+     "mean_score_margin": 32.2638888888889,
+     "my_score": 101.22222222222223,
+     "opponent_score": 68.95833333333333,
+     "my_wood": 20.61111111111111,
+     "opponent_wood": 10.722222222222221,
+     "my_workers": 2,
+     "opponent_workers": 2.2777777777777777,
+     "my_plants": 0.9305555555555556,
+     "opponent_plants": 11.694444444444445
+    },
+    "200": {
+     "games": 68,
+     "mean_score_margin": 23.9705882352941,
+     "my_score": 134.2941176470588,
+     "opponent_score": 110.32352941176471,
+     "my_wood": 28.426470588235293,
+     "opponent_wood": 20.38235294117647,
+     "my_workers": 2,
+     "opponent_workers": 2.4411764705882355,
+     "my_plants": 2,
+     "opponent_plants": 17.308823529411764
+    },
+    "225": {
+     "games": 65,
+     "mean_score_margin": 18.15384615384616,
+     "my_score": 150.1846153846154,
+     "opponent_score": 132.03076923076924,
+     "my_wood": 32.16923076923077,
+     "opponent_wood": 25.753846153846155,
+     "my_workers": 2,
+     "opponent_workers": 2.4923076923076923,
+     "my_plants": 2.7846153846153845,
+     "opponent_plants": 20.815384615384616
+    },
+    "300": {
+     "games": 50,
+     "mean_score_margin": 3.4199999999999875,
+     "my_score": 207.48,
+     "opponent_score": 204.06,
+     "my_wood": 47,
+     "opponent_wood": 42.14,
+     "my_workers": 2,
+     "opponent_workers": 2.44,
+     "my_plants": 11.72,
+     "opponent_plants": 30.92
+    }
+   }
+  },
+  "suffix": {
+   "games": 120,
+   "outcomes": {
+    "wins": 55,
+    "ties": 1,
+    "ordinary_losses": 51,
+    "catastrophic_losses": 13
+   },
+   "margin": {
+    "mean": 1.0166666666666666,
+    "median": -1.5,
+    "bootstrap_95pct_mean_ci": [
+     -14.466875,
+     16.45020833333333
+    ],
+    "minimum": -231,
+    "maximum": 248
+   },
+   "all": {
+    "games": 120,
+    "wins": 55,
+    "ties": 1,
+    "mean_margin": 1.0166666666666666,
+    "minimum_margin": -231,
+    "maximum_margin": 248,
+    "my": {
+     "score": 187.93333333333334,
+     "fruit": 13.566666666666666,
+     "wood": 43.59166666666667,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.925,
+     "harvested_fruit": 12.65,
+     "chops_landed": 167.14166666666668,
+     "dropped_items": 56.825
+    },
+    "opponent": {
+     "score": 187.10833333333332,
+     "fruit": 22.141666666666666,
+     "wood": 41.24166666666667,
+     "workers": 2.4166666666666665,
+     "successful_trains": 1.4166666666666667,
+     "successful_plants": 22.975,
+     "harvested_fruit": 46.05,
+     "chops_landed": 105.39166666666667,
+     "dropped_items": 82.69166666666666
+    },
+    "opponent_crops": {
+     "crops": 22.975,
+     "our_contacted_crops": 9.441666666666666,
+     "our_interception_rate": 0.42554930239423416,
+     "our_chopped_crops": 9.441666666666666,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 13.658333333333333,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 27.725,
+     "opponent_fruit_harvested": 29.3,
+     "reachable_within_20_at_birth": 22.883333333333333,
+     "reachable_20_contacted": 9.441666666666666,
+     "opponent_harvested_before_our_contact": 3.4833333333333334,
+     "median_our_eta_at_birth": 4.773504273504273
+    },
+    "timeline": {
+     "50": {
+      "games": 120,
+      "my_score": 39.00833333333333,
+      "opponent_score": 24.741666666666667,
+      "my_wood": 6.283333333333333,
+      "opponent_wood": 2.025,
+      "opponent_workers": 1.8083333333333333,
+      "opponent_plants": 3.425
+     },
+     "75": {
+      "games": 120,
+      "my_score": 57.24166666666667,
+      "opponent_score": 33.575,
+      "my_wood": 10.566666666666666,
+      "opponent_wood": 3.7416666666666667,
+      "opponent_workers": 1.95,
+      "opponent_plants": 4.883333333333334
+     },
+     "100": {
+      "games": 120,
+      "my_score": 74.83333333333333,
+      "opponent_score": 46.516666666666666,
+      "my_wood": 14.75,
+      "opponent_wood": 6.308333333333334,
+      "opponent_workers": 2.0416666666666665,
+      "opponent_plants": 6.341666666666667
+     },
+     "150": {
+      "games": 116,
+      "my_score": 110.44827586206897,
+      "opponent_score": 76.21551724137932,
+      "my_wood": 23.413793103448278,
+      "opponent_wood": 13.517241379310345,
+      "opponent_workers": 2.310344827586207,
+      "opponent_plants": 10.293103448275861
+     },
+     "200": {
+      "games": 103,
+      "my_score": 142.126213592233,
+      "opponent_score": 116.92233009708738,
+      "my_wood": 31.009708737864077,
+      "opponent_wood": 23.12621359223301,
+      "opponent_workers": 2.436893203883495,
+      "opponent_plants": 15.883495145631068
+     },
+     "225": {
+      "games": 93,
+      "my_score": 158.01075268817203,
+      "opponent_score": 141.61290322580646,
+      "my_wood": 34.53763440860215,
+      "opponent_wood": 29.473118279569892,
+      "opponent_workers": 2.4623655913978495,
+      "opponent_plants": 19.956989247311828
+     },
+     "300": {
+      "games": 65,
+      "my_score": 213.8153846153846,
+      "opponent_score": 221.7076923076923,
+      "my_wood": 47.58461538461538,
+      "opponent_wood": 48.87692307692308,
+      "opponent_workers": 2.5538461538461537,
+      "opponent_plants": 31.092307692307692
+     }
+    }
+   },
+   "wins": {
+    "games": 55,
+    "wins": 55,
+    "ties": 0,
+    "mean_margin": 67.38181818181818,
+    "minimum_margin": 2,
+    "maximum_margin": 248,
+    "my": {
+     "score": 184.63636363636363,
+     "fruit": 9.218181818181819,
+     "wood": 43.85454545454545,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.454545454545455,
+     "harvested_fruit": 7.818181818181818,
+     "chops_landed": 166.6,
+     "dropped_items": 52.03636363636364
+    },
+    "opponent": {
+     "score": 117.67272727272727,
+     "fruit": 22.181818181818183,
+     "wood": 23.87272727272727,
+     "workers": 2.018181818181818,
+     "successful_trains": 1.018181818181818,
+     "successful_plants": 18.581818181818182,
+     "harvested_fruit": 32.96363636363636,
+     "chops_landed": 80.01818181818182,
+     "dropped_items": 55.70909090909091
+    },
+    "opponent_crops": {
+     "crops": 18.581818181818182,
+     "our_contacted_crops": 10.127272727272727,
+     "our_interception_rate": 0.5333030007090263,
+     "our_chopped_crops": 10.127272727272727,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 14.436363636363636,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 14.272727272727273,
+     "opponent_fruit_harvested": 17.745454545454546,
+     "reachable_within_20_at_birth": 18.454545454545453,
+     "reachable_20_contacted": 10.127272727272727,
+     "opponent_harvested_before_our_contact": 2.6363636363636362,
+     "median_our_eta_at_birth": 4.278846153846154
+    },
+    "timeline": {
+     "50": {
+      "games": 55,
+      "my_score": 41.018181818181816,
+      "opponent_score": 24.509090909090908,
+      "my_wood": 6.909090909090909,
+      "opponent_wood": 2.109090909090909,
+      "opponent_workers": 1.709090909090909,
+      "opponent_plants": 3.272727272727273
+     },
+     "75": {
+      "games": 55,
+      "my_score": 59.127272727272725,
+      "opponent_score": 32.09090909090909,
+      "my_wood": 11.218181818181819,
+      "opponent_wood": 3.7818181818181817,
+      "opponent_workers": 1.7818181818181817,
+      "opponent_plants": 4.8545454545454545
+     },
+     "100": {
+      "games": 55,
+      "my_score": 76.78181818181818,
+      "opponent_score": 42.527272727272724,
+      "my_wood": 15.49090909090909,
+      "opponent_wood": 5.818181818181818,
+      "opponent_workers": 1.8181818181818181,
+      "opponent_plants": 6.2
+     },
+     "150": {
+      "games": 52,
+      "my_score": 113.5576923076923,
+      "opponent_score": 62.03846153846154,
+      "my_wood": 24.78846153846154,
+      "opponent_wood": 10.173076923076923,
+      "opponent_workers": 1.9615384615384615,
+      "opponent_plants": 9.346153846153847
+     },
+     "200": {
+      "games": 43,
+      "my_score": 143.95348837209303,
+      "opponent_score": 75.90697674418605,
+      "my_wood": 32.395348837209305,
+      "opponent_wood": 12.30232558139535,
+      "opponent_workers": 1.9767441860465116,
+      "opponent_plants": 13
+     },
+     "225": {
+      "games": 38,
+      "my_score": 160.3684210526316,
+      "opponent_score": 88.86842105263158,
+      "my_wood": 36.18421052631579,
+      "opponent_wood": 15.526315789473685,
+      "opponent_workers": 2,
+      "opponent_plants": 16.55263157894737
+     },
+     "300": {
+      "games": 29,
+      "my_score": 215.20689655172413,
+      "opponent_score": 132.13793103448276,
+      "my_wood": 50.310344827586206,
+      "opponent_wood": 26.93103448275862,
+      "opponent_workers": 2.0344827586206895,
+      "opponent_plants": 27.482758620689655
+     }
+    }
+   },
+   "ordinary_losses": {
+    "games": 51,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -29.627450980392158,
+    "minimum_margin": -90,
+    "maximum_margin": -1,
+    "my": {
+     "score": 182.3921568627451,
+     "fruit": 15.490196078431373,
+     "wood": 41.72549019607843,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.568627450980392,
+     "harvested_fruit": 15.470588235294118,
+     "chops_landed": 169.19607843137254,
+     "dropped_items": 57.90196078431372
+    },
+    "opponent": {
+     "score": 212.01960784313727,
+     "fruit": 18.529411764705884,
+     "wood": 48.372549019607845,
+     "workers": 2.7450980392156863,
+     "successful_trains": 1.7450980392156863,
+     "successful_plants": 22.529411764705884,
+     "harvested_fruit": 50.01960784313726,
+     "chops_landed": 122.3921568627451,
+     "dropped_items": 94.56862745098039
+    },
+    "opponent_crops": {
+     "crops": 22.529411764705884,
+     "our_contacted_crops": 7.96078431372549,
+     "our_interception_rate": 0.3393318875475811,
+     "our_chopped_crops": 7.96078431372549,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 11.372549019607844,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 30.058823529411764,
+     "opponent_fruit_harvested": 32.8235294117647,
+     "reachable_within_20_at_birth": 22.45098039215686,
+     "reachable_20_contacted": 7.96078431372549,
+     "opponent_harvested_before_our_contact": 3.4313725490196076,
+     "median_our_eta_at_birth": 5.078431372549019
+    },
+    "timeline": {
+     "50": {
+      "games": 51,
+      "my_score": 36.86274509803921,
+      "opponent_score": 25.333333333333332,
+      "my_wood": 5.764705882352941,
+      "opponent_wood": 2.019607843137255,
+      "opponent_workers": 1.8627450980392157,
+      "opponent_plants": 3.176470588235294
+     },
+     "75": {
+      "games": 51,
+      "my_score": 54.86274509803921,
+      "opponent_score": 33.98039215686274,
+      "my_wood": 9.980392156862745,
+      "opponent_wood": 3.6470588235294117,
+      "opponent_workers": 2.0588235294117645,
+      "opponent_plants": 4.450980392156863
+     },
+     "100": {
+      "games": 51,
+      "my_score": 71.72549019607843,
+      "opponent_score": 47.78431372549019,
+      "my_wood": 13.96078431372549,
+      "opponent_wood": 6.2745098039215685,
+      "opponent_workers": 2.196078431372549,
+      "opponent_plants": 5.627450980392157
+     },
+     "150": {
+      "games": 50,
+      "my_score": 105.46,
+      "opponent_score": 81.32,
+      "my_wood": 21.98,
+      "opponent_wood": 14.6,
+      "opponent_workers": 2.56,
+      "opponent_plants": 9.44
+     },
+     "200": {
+      "games": 46,
+      "my_score": 137.67391304347825,
+      "opponent_score": 131.7826086956522,
+      "my_wood": 29.565217391304348,
+      "opponent_wood": 27.217391304347824,
+      "opponent_workers": 2.760869565217391,
+      "opponent_plants": 15.065217391304348
+     },
+     "225": {
+      "games": 41,
+      "my_score": 151.82926829268294,
+      "opponent_score": 156.97560975609755,
+      "my_wood": 32.5609756097561,
+      "opponent_wood": 34.146341463414636,
+      "opponent_workers": 2.7804878048780486,
+      "opponent_plants": 18.902439024390244
+     },
+     "300": {
+      "games": 23,
+      "my_score": 205.47826086956522,
+      "opponent_score": 247.65217391304347,
+      "my_wood": 42.78260869565217,
+      "opponent_wood": 56.30434782608695,
+      "opponent_workers": 3.0869565217391304,
+      "opponent_plants": 29.391304347826086
+     }
+    }
+   },
+   "catastrophic_losses": {
+    "games": 13,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -159.46153846153845,
+    "minimum_margin": -231,
+    "maximum_margin": -100,
+    "my": {
+     "score": 216,
+     "fruit": 24.923076923076923,
+     "wood": 47.76923076923077,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.153846153846153,
+     "harvested_fruit": 23,
+     "chops_landed": 161.6153846153846,
+     "dropped_items": 71.61538461538461
+    },
+    "opponent": {
+     "score": 375.46153846153845,
+     "fruit": 37,
+     "wood": 84.61538461538461,
+     "workers": 2.8461538461538463,
+     "successful_trains": 1.8461538461538463,
+     "successful_plants": 40.61538461538461,
+     "harvested_fruit": 85.6923076923077,
+     "chops_landed": 144.07692307692307,
+     "dropped_items": 151.07692307692307
+    },
+    "opponent_crops": {
+     "crops": 40.61538461538461,
+     "our_contacted_crops": 10.846153846153847,
+     "our_interception_rate": 0.3021788448757707,
+     "our_chopped_crops": 10.846153846153847,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 17.076923076923077,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 73.3076923076923,
+     "opponent_fruit_harvested": 62.92307692307692,
+     "reachable_within_20_at_birth": 40.61538461538461,
+     "reachable_20_contacted": 10.846153846153847,
+     "opponent_harvested_before_our_contact": 7.076923076923077,
+     "median_our_eta_at_birth": 5.769230769230769
+    },
+    "timeline": {
+     "50": {
+      "games": 13,
+      "my_score": 38.15384615384615,
+      "opponent_score": 21.923076923076923,
+      "my_wood": 5.615384615384615,
+      "opponent_wood": 1.2307692307692308,
+      "opponent_workers": 2,
+      "opponent_plants": 4.615384615384615
+     },
+     "75": {
+      "games": 13,
+      "my_score": 58,
+      "opponent_score": 35.07692307692308,
+      "my_wood": 10.076923076923077,
+      "opponent_wood": 3,
+      "opponent_workers": 2.230769230769231,
+      "opponent_plants": 6
+     },
+     "100": {
+      "games": 13,
+      "my_score": 77.38461538461539,
+      "opponent_score": 53.76923076923077,
+      "my_wood": 14.461538461538462,
+      "opponent_wood": 7.153846153846154,
+      "opponent_workers": 2.3846153846153846,
+      "opponent_plants": 8.76923076923077
+     },
+     "150": {
+      "games": 13,
+      "my_score": 114.84615384615384,
+      "opponent_score": 107.23076923076923,
+      "my_wood": 22.923076923076923,
+      "opponent_wood": 21,
+      "opponent_workers": 2.769230769230769,
+      "opponent_plants": 15.846153846153847
+     },
+     "200": {
+      "games": 13,
+      "my_score": 148.53846153846155,
+      "opponent_score": 194,
+      "my_wood": 30.76923076923077,
+      "opponent_wood": 42.69230769230769,
+      "opponent_workers": 2.8461538461538463,
+      "opponent_plants": 26.46153846153846
+     },
+     "225": {
+      "games": 13,
+      "my_score": 166.3846153846154,
+      "opponent_score": 241.3846153846154,
+      "my_wood": 34.92307692307692,
+      "opponent_wood": 53.76923076923077,
+      "opponent_workers": 2.8461538461538463,
+      "opponent_plants": 31.307692307692307
+     },
+     "300": {
+      "games": 12,
+      "my_score": 220.33333333333334,
+      "opponent_score": 383,
+      "my_wood": 48.333333333333336,
+      "opponent_wood": 86,
+      "opponent_workers": 2.8333333333333335,
+      "opponent_plants": 40.833333333333336
+     }
+    }
+   },
+   "catastrophic_tail": {
+    "definition": "terminal margin <= -100",
+    "games": 13,
+    "frequency": 0.10833333333333334,
+    "negative_margin_mass": 3584,
+    "catastrophic_negative_margin_mass": 2073,
+    "negative_margin_mass_share": 0.5784040178571429,
+    "distinct_opponents": 12,
+    "mean_opponent_final_wood": 84.61538461538461,
+    "opponent_wood_gap_vs_noncatastrophic": 48.64342199856218,
+    "mean_opponent_crop_wood": 73.3076923076923,
+    "mean_our_crop_interception_rate": 0.3021788448757707,
+    "replication_conditions": {
+     "frequency_at_least_10pct": true,
+     "negative_mass_share_at_least_50pct": true,
+     "at_least_3_opponents": true,
+     "opponent_wood_gap_at_least_20": true
+    },
+    "signature_replicates": true
+   },
+   "turn100_early_lead_reversal": {
+    "definition": "positive resident score margin at turn 100, negative terminal margin",
+    "valid_games": 120,
+    "terminal_losses": 64,
+    "reversals": 52,
+    "share_of_losses": 0.8125,
+    "catastrophic_reversals": 9,
+    "distinct_opponents": 24,
+    "mean_terminal_margin": -50.23076923076923
+   },
+   "trajectory": {
+    "50": {
+     "games": 120,
+     "mean_score_margin": 14.266666666666666,
+     "my_score": 39.00833333333333,
+     "opponent_score": 24.741666666666667,
+     "my_wood": 6.283333333333333,
+     "opponent_wood": 2.025,
+     "my_workers": 2,
+     "opponent_workers": 1.8083333333333333,
+     "my_plants": 0.10833333333333334,
+     "opponent_plants": 3.425
+    },
+    "75": {
+     "games": 120,
+     "mean_score_margin": 23.666666666666664,
+     "my_score": 57.24166666666667,
+     "opponent_score": 33.575,
+     "my_wood": 10.566666666666666,
+     "opponent_wood": 3.7416666666666667,
+     "my_workers": 2,
+     "opponent_workers": 1.95,
+     "my_plants": 0.24166666666666667,
+     "opponent_plants": 4.883333333333334
+    },
+    "100": {
+     "games": 120,
+     "mean_score_margin": 28.316666666666663,
+     "my_score": 74.83333333333333,
+     "opponent_score": 46.516666666666666,
+     "my_wood": 14.75,
+     "opponent_wood": 6.308333333333334,
+     "my_workers": 2,
+     "opponent_workers": 2.0416666666666665,
+     "my_plants": 0.5333333333333333,
+     "opponent_plants": 6.341666666666667
+    },
+    "150": {
+     "games": 116,
+     "mean_score_margin": 34.23275862068965,
+     "my_score": 110.44827586206897,
+     "opponent_score": 76.21551724137932,
+     "my_wood": 23.413793103448278,
+     "opponent_wood": 13.517241379310345,
+     "my_workers": 2,
+     "opponent_workers": 2.310344827586207,
+     "my_plants": 2.25,
+     "opponent_plants": 10.293103448275861
+    },
+    "200": {
+     "games": 103,
+     "mean_score_margin": 25.203883495145618,
+     "my_score": 142.126213592233,
+     "opponent_score": 116.92233009708738,
+     "my_wood": 31.009708737864077,
+     "opponent_wood": 23.12621359223301,
+     "my_workers": 2,
+     "opponent_workers": 2.436893203883495,
+     "my_plants": 3.4271844660194173,
+     "opponent_plants": 15.883495145631068
+    },
+    "225": {
+     "games": 93,
+     "mean_score_margin": 16.39784946236557,
+     "my_score": 158.01075268817203,
+     "opponent_score": 141.61290322580646,
+     "my_wood": 34.53763440860215,
+     "opponent_wood": 29.473118279569892,
+     "my_workers": 2,
+     "opponent_workers": 2.4623655913978495,
+     "my_plants": 3.924731182795699,
+     "opponent_plants": 19.956989247311828
+    },
+    "300": {
+     "games": 65,
+     "mean_score_margin": -7.892307692307696,
+     "my_score": 213.8153846153846,
+     "opponent_score": 221.7076923076923,
+     "my_wood": 47.58461538461538,
+     "opponent_wood": 48.87692307692308,
+     "my_workers": 2,
+     "opponent_workers": 2.5538461538461537,
+     "my_plants": 9.876923076923077,
+     "opponent_plants": 31.092307692307692
+    }
+   }
+  },
+  "all_current": {
+   "games": 200,
+   "outcomes": {
+    "wins": 97,
+    "ties": 1,
+    "ordinary_losses": 82,
+    "catastrophic_losses": 20
+   },
+   "margin": {
+    "mean": 1.665,
+    "median": -1.0,
+    "bootstrap_95pct_mean_ci": [
+     -10.62025,
+     13.470249999999997
+    ],
+    "minimum": -459,
+    "maximum": 248
+   },
+   "all": {
+    "games": 200,
+    "wins": 97,
+    "ties": 1,
+    "mean_margin": 1.665,
+    "minimum_margin": -459,
+    "maximum_margin": 248,
+    "my": {
+     "score": 185.82,
+     "fruit": 13.08,
+     "wood": 43.185,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.015,
+     "harvested_fruit": 12.14,
+     "chops_landed": 169.43,
+     "dropped_items": 55.945
+    },
+    "opponent": {
+     "score": 184.27,
+     "fruit": 23.63,
+     "wood": 40.16,
+     "workers": 2.42,
+     "successful_trains": 1.42,
+     "successful_plants": 23.345,
+     "harvested_fruit": 47.96,
+     "chops_landed": 104,
+     "dropped_items": 83.81
+    },
+    "opponent_crops": {
+     "crops": 23.345,
+     "our_contacted_crops": 9.725,
+     "our_interception_rate": 0.4341245002635586,
+     "our_chopped_crops": 9.71,
+     "our_harvested_crops": 0.015,
+     "our_wood_collected": 13.745,
+     "our_fruit_harvested": 0.015,
+     "opponent_wood_collected": 27.1,
+     "opponent_fruit_harvested": 31.435,
+     "reachable_within_20_at_birth": 23.235,
+     "reachable_20_contacted": 9.72,
+     "opponent_harvested_before_our_contact": 3.95,
+     "median_our_eta_at_birth": 4.67948717948718
+    },
+    "timeline": {
+     "50": {
+      "games": 200,
+      "my_score": 38.665,
+      "opponent_score": 25.31,
+      "my_wood": 6.19,
+      "opponent_wood": 2.21,
+      "opponent_workers": 1.8,
+      "opponent_plants": 3.71
+     },
+     "75": {
+      "games": 200,
+      "my_score": 56.04,
+      "opponent_score": 33.92,
+      "my_wood": 10.265,
+      "opponent_wood": 3.875,
+      "opponent_workers": 1.945,
+      "opponent_plants": 5.145
+     },
+     "100": {
+      "games": 200,
+      "my_score": 73.27,
+      "opponent_score": 46.04,
+      "my_wood": 14.395,
+      "opponent_wood": 6.175,
+      "opponent_workers": 2.035,
+      "opponent_plants": 6.665
+     },
+     "150": {
+      "games": 188,
+      "my_score": 106.91489361702128,
+      "opponent_score": 73.43617021276596,
+      "my_wood": 22.340425531914892,
+      "opponent_wood": 12.446808510638299,
+      "opponent_workers": 2.297872340425532,
+      "opponent_plants": 10.829787234042554
+     },
+     "200": {
+      "games": 171,
+      "my_score": 139.01169590643275,
+      "opponent_score": 114.29824561403508,
+      "my_wood": 29.982456140350877,
+      "opponent_wood": 22.035087719298247,
+      "opponent_workers": 2.43859649122807,
+      "opponent_plants": 16.450292397660817
+     },
+     "225": {
+      "games": 158,
+      "my_score": 154.79113924050634,
+      "opponent_score": 137.67088607594937,
+      "my_wood": 33.563291139240505,
+      "opponent_wood": 27.943037974683545,
+      "opponent_workers": 2.4746835443037973,
+      "opponent_plants": 20.310126582278482
+     },
+     "300": {
+      "games": 115,
+      "my_score": 211.0608695652174,
+      "opponent_score": 214.03478260869565,
+      "my_wood": 47.3304347826087,
+      "opponent_wood": 45.947826086956525,
+      "opponent_workers": 2.5043478260869567,
+      "opponent_plants": 31.017391304347825
+     }
+    }
+   },
+   "wins": {
+    "games": 97,
+    "wins": 97,
+    "ties": 0,
+    "mean_margin": 65.14432989690722,
+    "minimum_margin": 2,
+    "maximum_margin": 248,
+    "my": {
+     "score": 187.39175257731958,
+     "fruit": 11.22680412371134,
+     "wood": 44.04123711340206,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.556701030927835,
+     "harvested_fruit": 9.927835051546392,
+     "chops_landed": 175.05154639175257,
+     "dropped_items": 54.422680412371136
+    },
+    "opponent": {
+     "score": 122.48453608247422,
+     "fruit": 25.989690721649485,
+     "wood": 24.123711340206185,
+     "workers": 2.051546391752577,
+     "successful_trains": 1.0515463917525774,
+     "successful_plants": 20.24742268041237,
+     "harvested_fruit": 39.422680412371136,
+     "chops_landed": 82.8659793814433,
+     "dropped_items": 61.154639175257735
+    },
+    "opponent_crops": {
+     "crops": 20.24742268041237,
+     "our_contacted_crops": 10.917525773195877,
+     "our_interception_rate": 0.5467094502425431,
+     "our_chopped_crops": 10.88659793814433,
+     "our_harvested_crops": 0.030927835051546393,
+     "our_wood_collected": 15.02061855670103,
+     "our_fruit_harvested": 0.030927835051546393,
+     "opponent_wood_collected": 15.237113402061855,
+     "opponent_fruit_harvested": 22.896907216494846,
+     "reachable_within_20_at_birth": 20.175257731958762,
+     "reachable_20_contacted": 10.917525773195877,
+     "opponent_harvested_before_our_contact": 3.216494845360825,
+     "median_our_eta_at_birth": 3.9456521739130435
+    },
+    "timeline": {
+     "50": {
+      "games": 97,
+      "my_score": 40.31958762886598,
+      "opponent_score": 23.88659793814433,
+      "my_wood": 6.680412371134021,
+      "opponent_wood": 1.9278350515463918,
+      "opponent_workers": 1.7010309278350515,
+      "opponent_plants": 3.618556701030928
+     },
+     "75": {
+      "games": 97,
+      "my_score": 57.49484536082474,
+      "opponent_score": 31.030927835051546,
+      "my_wood": 10.721649484536082,
+      "opponent_wood": 3.3917525773195876,
+      "opponent_workers": 1.7938144329896908,
+      "opponent_plants": 5.164948453608248
+     },
+     "100": {
+      "games": 97,
+      "my_score": 74.68041237113403,
+      "opponent_score": 40.96907216494845,
+      "my_wood": 14.855670103092784,
+      "opponent_wood": 5.103092783505154,
+      "opponent_workers": 1.824742268041237,
+      "opponent_plants": 6.494845360824742
+     },
+     "150": {
+      "games": 93,
+      "my_score": 109.25806451612904,
+      "opponent_score": 60.53763440860215,
+      "my_wood": 23.311827956989248,
+      "opponent_wood": 9.129032258064516,
+      "opponent_workers": 1.956989247311828,
+      "opponent_plants": 9.89247311827957
+     },
+     "200": {
+      "games": 81,
+      "my_score": 141,
+      "opponent_score": 79.33333333333333,
+      "my_wood": 30.88888888888889,
+      "opponent_wood": 12.54320987654321,
+      "opponent_workers": 2.0123456790123457,
+      "opponent_plants": 14.123456790123457
+     },
+     "225": {
+      "games": 75,
+      "my_score": 156.92,
+      "opponent_score": 91.4,
+      "my_wood": 34.56,
+      "opponent_wood": 15.453333333333333,
+      "opponent_workers": 2.0533333333333332,
+      "opponent_plants": 17.48
+     },
+     "300": {
+      "games": 59,
+      "my_score": 213.16949152542372,
+      "opponent_score": 137.6271186440678,
+      "my_wood": 49.16949152542373,
+      "opponent_wood": 26.389830508474578,
+      "opponent_workers": 2.0677966101694913,
+      "opponent_plants": 27.338983050847457
+     }
+    }
+   },
+   "ordinary_losses": {
+    "games": 82,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -29.817073170731707,
+    "minimum_margin": -96,
+    "maximum_margin": -1,
+    "my": {
+     "score": 178.5731707317073,
+     "fruit": 12.28048780487805,
+     "wood": 41.573170731707314,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 11.646341463414634,
+     "harvested_fruit": 11.926829268292684,
+     "chops_landed": 166.2439024390244,
+     "dropped_items": 54.23170731707317
+    },
+    "opponent": {
+     "score": 208.390243902439,
+     "fruit": 20.390243902439025,
+     "wood": 47,
+     "workers": 2.707317073170732,
+     "successful_trains": 1.7073170731707317,
+     "successful_plants": 22.524390243902438,
+     "harvested_fruit": 50.23170731707317,
+     "chops_landed": 116.67073170731707,
+     "dropped_items": 93.51219512195122
+    },
+    "opponent_crops": {
+     "crops": 22.524390243902438,
+     "our_contacted_crops": 8.036585365853659,
+     "our_interception_rate": 0.33953604011435773,
+     "our_chopped_crops": 8.036585365853659,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 11.475609756097562,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 29.097560975609756,
+     "opponent_fruit_harvested": 34.951219512195124,
+     "reachable_within_20_at_birth": 22.378048780487806,
+     "reachable_20_contacted": 8.024390243902438,
+     "opponent_harvested_before_our_contact": 3.9878048780487805,
+     "median_our_eta_at_birth": 5.067073170731708
+    },
+    "timeline": {
+     "50": {
+      "games": 82,
+      "my_score": 37.76829268292683,
+      "opponent_score": 28.01219512195122,
+      "my_wood": 5.975609756097561,
+      "opponent_wood": 2.817073170731707,
+      "opponent_workers": 1.8780487804878048,
+      "opponent_plants": 3.6097560975609757
+     },
+     "75": {
+      "games": 82,
+      "my_score": 55.41463414634146,
+      "opponent_score": 37.71951219512195,
+      "my_wood": 10.146341463414634,
+      "opponent_wood": 4.7682926829268295,
+      "opponent_workers": 2.073170731707317,
+      "opponent_plants": 4.890243902439025
+     },
+     "100": {
+      "games": 82,
+      "my_score": 72.2439024390244,
+      "opponent_score": 51.78048780487805,
+      "my_wood": 14.25609756097561,
+      "opponent_wood": 7.463414634146342,
+      "opponent_workers": 2.1951219512195124,
+      "opponent_plants": 6.390243902439025
+     },
+     "150": {
+      "games": 74,
+      "my_score": 104,
+      "opponent_score": 83.06756756756756,
+      "my_wood": 21.594594594594593,
+      "opponent_wood": 14.91891891891892,
+      "opponent_workers": 2.5945945945945947,
+      "opponent_plants": 10.675675675675675
+     },
+     "200": {
+      "games": 69,
+      "my_score": 136.31884057971016,
+      "opponent_score": 135.08695652173913,
+      "my_wood": 29.420289855072465,
+      "opponent_wood": 27.652173913043477,
+      "opponent_workers": 2.782608695652174,
+      "opponent_plants": 16.36231884057971
+     },
+     "225": {
+      "games": 62,
+      "my_score": 151.41935483870967,
+      "opponent_score": 161.8548387096774,
+      "my_wood": 32.74193548387097,
+      "opponent_wood": 34.596774193548384,
+      "opponent_workers": 2.806451612903226,
+      "opponent_plants": 20.20967741935484
+     },
+     "300": {
+      "games": 38,
+      "my_score": 204.28947368421052,
+      "opponent_score": 247.42105263157896,
+      "my_wood": 44.44736842105263,
+      "opponent_wood": 54.76315789473684,
+      "opponent_workers": 2.973684210526316,
+      "opponent_plants": 31.342105263157894
+     }
+    }
+   },
+   "catastrophic_losses": {
+    "games": 20,
+    "wins": 0,
+    "ties": 0,
+    "mean_margin": -177.05,
+    "minimum_margin": -459,
+    "maximum_margin": -100,
+    "my": {
+     "score": 202.85,
+     "fruit": 25.65,
+     "wood": 44.3,
+     "workers": 2,
+     "successful_trains": 1,
+     "successful_plants": 10.5,
+     "harvested_fruit": 24.35,
+     "chops_landed": 155.5,
+     "dropped_items": 69.5
+    },
+    "opponent": {
+     "score": 379.9,
+     "fruit": 26.1,
+     "wood": 88.45,
+     "workers": 3.05,
+     "successful_trains": 2.05,
+     "successful_plants": 40,
+     "harvested_fruit": 80.05,
+     "chops_landed": 153.2,
+     "dropped_items": 154.5
+    },
+    "opponent_crops": {
+     "crops": 40,
+     "our_contacted_crops": 9.9,
+     "our_interception_rate": 0.27260640449038515,
+     "our_chopped_crops": 9.9,
+     "our_harvested_crops": 0,
+     "our_wood_collected": 15.4,
+     "our_fruit_harvested": 0,
+     "opponent_wood_collected": 75,
+     "opponent_fruit_harvested": 57.6,
+     "reachable_within_20_at_birth": 39.85,
+     "reachable_20_contacted": 9.9,
+     "opponent_harvested_before_our_contact": 7.25,
+     "median_our_eta_at_birth": 6.6
+    },
+    "timeline": {
+     "50": {
+      "games": 20,
+      "my_score": 33.8,
+      "opponent_score": 20.2,
+      "my_wood": 4.65,
+      "opponent_wood": 0.8,
+      "opponent_workers": 1.95,
+      "opponent_plants": 4.3
+     },
+     "75": {
+      "games": 20,
+      "my_score": 51.1,
+      "opponent_score": 30.3,
+      "my_wood": 8.5,
+      "opponent_wood": 1.95,
+      "opponent_workers": 2.15,
+      "opponent_plants": 5.65
+     },
+     "100": {
+      "games": 20,
+      "my_score": 69.65,
+      "opponent_score": 44.05,
+      "my_wood": 12.55,
+      "opponent_wood": 5.2,
+      "opponent_workers": 2.4,
+      "opponent_plants": 8
+     },
+     "150": {
+      "games": 20,
+      "my_score": 105.1,
+      "opponent_score": 93.7,
+      "my_wood": 20.2,
+      "opponent_wood": 17.55,
+      "opponent_workers": 2.8,
+      "opponent_plants": 14.8
+     },
+     "200": {
+      "games": 20,
+      "my_score": 137.95,
+      "opponent_score": 180.15,
+      "my_wood": 27.7,
+      "opponent_wood": 39.9,
+      "opponent_workers": 3,
+      "opponent_plants": 25
+     },
+     "225": {
+      "games": 20,
+      "my_score": 154.35,
+      "opponent_score": 232.15,
+      "my_wood": 31.65,
+      "opponent_wood": 52.95,
+      "opponent_workers": 3.05,
+      "opponent_plants": 30
+     },
+     "300": {
+      "games": 17,
+      "my_score": 214.41176470588235,
+      "opponent_score": 400.29411764705884,
+      "my_wood": 46.05882352941177,
+      "opponent_wood": 92.76470588235294,
+      "opponent_workers": 3,
+      "opponent_plants": 41.470588235294116
+     }
+    }
+   },
+   "catastrophic_tail": {
+    "definition": "terminal margin <= -100",
+    "games": 20,
+    "frequency": 0.1,
+    "negative_margin_mass": 5986,
+    "catastrophic_negative_margin_mass": 3541,
+    "negative_margin_mass_share": 0.591546942866689,
+    "distinct_opponents": 15,
+    "mean_opponent_final_wood": 88.45,
+    "opponent_wood_gap_vs_noncatastrophic": 53.65555555555556,
+    "mean_opponent_crop_wood": 75,
+    "mean_our_crop_interception_rate": 0.27260640449038515,
+    "replication_conditions": {
+     "frequency_at_least_10pct": true,
+     "negative_mass_share_at_least_50pct": true,
+     "at_least_3_opponents": true,
+     "opponent_wood_gap_at_least_20": true
+    },
+    "signature_replicates": true
+   },
+   "turn100_early_lead_reversal": {
+    "definition": "positive resident score margin at turn 100, negative terminal margin",
+    "valid_games": 200,
+    "terminal_losses": 102,
+    "reversals": 79,
+    "share_of_losses": 0.7745098039215687,
+    "catastrophic_reversals": 16,
+    "distinct_opponents": 28,
+    "mean_terminal_margin": -60.24050632911393
+   },
+   "trajectory": {
+    "50": {
+     "games": 200,
+     "mean_score_margin": 13.355,
+     "my_score": 38.665,
+     "opponent_score": 25.31,
+     "my_wood": 6.19,
+     "opponent_wood": 2.21,
+     "my_workers": 2,
+     "opponent_workers": 1.8,
+     "my_plants": 0.115,
+     "opponent_plants": 3.71
+    },
+    "75": {
+     "games": 200,
+     "mean_score_margin": 22.119999999999997,
+     "my_score": 56.04,
+     "opponent_score": 33.92,
+     "my_wood": 10.265,
+     "opponent_wood": 3.875,
+     "my_workers": 2,
+     "opponent_workers": 1.945,
+     "my_plants": 0.23,
+     "opponent_plants": 5.145
+    },
+    "100": {
+     "games": 200,
+     "mean_score_margin": 27.229999999999997,
+     "my_score": 73.27,
+     "opponent_score": 46.04,
+     "my_wood": 14.395,
+     "opponent_wood": 6.175,
+     "my_workers": 2,
+     "opponent_workers": 2.035,
+     "my_plants": 0.645,
+     "opponent_plants": 6.665
+    },
+    "150": {
+     "games": 188,
+     "mean_score_margin": 33.47872340425532,
+     "my_score": 106.91489361702128,
+     "opponent_score": 73.43617021276596,
+     "my_wood": 22.340425531914892,
+     "opponent_wood": 12.446808510638299,
+     "my_workers": 2,
+     "opponent_workers": 2.297872340425532,
+     "my_plants": 1.7446808510638299,
+     "opponent_plants": 10.829787234042554
+    },
+    "200": {
+     "games": 171,
+     "mean_score_margin": 24.713450292397667,
+     "my_score": 139.01169590643275,
+     "opponent_score": 114.29824561403508,
+     "my_wood": 29.982456140350877,
+     "opponent_wood": 22.035087719298247,
+     "my_workers": 2,
+     "opponent_workers": 2.43859649122807,
+     "my_plants": 2.8596491228070176,
+     "opponent_plants": 16.450292397660817
+    },
+    "225": {
+     "games": 158,
+     "mean_score_margin": 17.12025316455697,
+     "my_score": 154.79113924050634,
+     "opponent_score": 137.67088607594937,
+     "my_wood": 33.563291139240505,
+     "opponent_wood": 27.943037974683545,
+     "my_workers": 2,
+     "opponent_workers": 2.4746835443037973,
+     "my_plants": 3.4556962025316458,
+     "opponent_plants": 20.310126582278482
+    },
+    "300": {
+     "games": 115,
+     "mean_score_margin": -2.9739130434782624,
+     "my_score": 211.0608695652174,
+     "opponent_score": 214.03478260869565,
+     "my_wood": 47.3304347826087,
+     "opponent_wood": 45.947826086956525,
+     "my_workers": 2,
+     "opponent_workers": 2.5043478260869567,
+     "my_plants": 10.678260869565218,
+     "opponent_plants": 31.017391304347825
+    }
+   }
+  }
+ },
+ "suffix_mechanism_evidence": {
+  "resident_fixed_two_workers": {
+   "games": 120,
+   "frequency": 1.0
+  },
+  "scaled_opponents_in_losses": {
+   "definition": "terminal opponent workforce >=3",
+   "games": 37,
+   "losses": 64,
+   "frequency": 0.578125,
+   "opponent_worker_gap_loss_vs_win": 0.7474431818181819
+  },
+  "crop_interaction": {
+   "our_interception_gap_loss_vs_win": -0.20151782495415665,
+   "catastrophic_opponent_crop_wood_gap_vs_noncatastrophic": 51.12077641984184,
+   "catastrophic_opponent_crop_count_gap_vs_noncatastrophic": 19.783608914450035
+  },
+  "turn100_early_lead_reversal": {
+   "definition": "positive resident score margin at turn 100, negative terminal margin",
+   "valid_games": 120,
+   "terminal_losses": 64,
+   "reversals": 52,
+   "share_of_losses": 0.8125,
+   "catastrophic_reversals": 9,
+   "distinct_opponents": 24,
+   "mean_terminal_margin": -50.23076923076923
+  }
+ },
+ "attack_angle_scoring": {
+  "scale": "1 weak to 5 strong",
+  "aggregation": "unweighted total, then suffix replication, then resident-preserving testability",
+  "angles": [
+   {
+    "angle": "field_native_bounded_midgame_probe_bank",
+    "mechanism": "turn-100 lead reversal into turn-200/225 opponent compounding",
+    "history_constraint": "must use finite resident-anchored probes; permanent farm D32 already failed",
+    "next_test": "small common-map TestSession A/B bank of bounded integrated scale/renew/intercept responses, with exact resident before/after each probe",
+    "scores": {
+     "suffix_replication": 5,
+     "resident_relative_upside": 4,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 5,
+     "implementation_tractability": 3,
+     "tail_safety": 5
+    },
+    "total": 27,
+    "rank": 1
+   },
+   {
+    "angle": "resident_anchored_integrated_scale_response",
+    "mechanism": "fixed two-worker resident versus scaled losing opponents",
+    "history_constraint": "isolated TRAIN and permanent farm are closed; funding, TRAIN, renewable supply, roles, and termination must be one option",
+    "next_test": "terminal paired value of one finite coherent response over exact resident",
+    "scores": {
+     "suffix_replication": 5,
+     "resident_relative_upside": 5,
+     "resident_preserving_testability": 4,
+     "field_fidelity": 4,
+     "implementation_tractability": 3,
+     "tail_safety": 4
+    },
+    "total": 25,
+    "rank": 2
+   },
+   {
+    "angle": "field_native_counterfactual_value_dataset",
+    "mechanism": "generated-map value models transfer poorly to official terrain",
+    "history_constraint": "D30 measured domain shift and D31 replay continuation lacked causal fidelity",
+    "next_test": "collect prospective common-map A/B labels rather than replay pseudo-labels",
+    "scores": {
+     "suffix_replication": 4,
+     "resident_relative_upside": 4,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 5,
+     "implementation_tractability": 2,
+     "tail_safety": 5
+    },
+    "total": 25,
+    "rank": 3
+   },
+   {
+    "angle": "resident_fallback_recurrent_macro_controller",
+    "mechanism": "long-horizon reversal requires repeated state-conditioned choices",
+    "history_constraint": "rebuild q6 around exact resident fallback; D158's D40 baseline is invalid",
+    "next_test": "mechanics and same-panel resident-dominance pilot before PPO scaling",
+    "scores": {
+     "suffix_replication": 5,
+     "resident_relative_upside": 5,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 3,
+     "implementation_tractability": 2,
+     "tail_safety": 4
+    },
+    "total": 24,
+    "rank": 4
+   },
+   {
+    "angle": "tail_triggered_safe_policy_portfolio",
+    "mechanism": "catastrophes dominate downside but early observable precision is limited",
+    "history_constraint": "D23/D29 field selectors lacked stable activation; prove option value before fitting a trigger",
+    "next_test": "defer selector training until a field-positive response option exists",
+    "scores": {
+     "suffix_replication": 5,
+     "resident_relative_upside": 4,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 4,
+     "implementation_tractability": 3,
+     "tail_safety": 2
+    },
+    "total": 23,
+    "rank": 5
+   },
+   {
+    "angle": "integrated_orchard_interception_response",
+    "mechanism": "losses contact fewer reachable opponent crops and yield crop wood",
+    "history_constraint": "crop-only priority patches are closed; denial must preserve own scale and resident suppression",
+    "next_test": "bounded joint scale-plus-interception option, never a scalar retune",
+    "scores": {
+     "suffix_replication": 5,
+     "resident_relative_upside": 4,
+     "resident_preserving_testability": 4,
+     "field_fidelity": 4,
+     "implementation_tractability": 3,
+     "tail_safety": 3
+    },
+    "total": 23,
+    "rank": 6
+   },
+   {
+    "angle": "opponent_archetype_portfolio",
+    "mechanism": "same opponents can produce both wins and catastrophes",
+    "history_constraint": "catastrophes span twelve suffix opponents; names are not a robust state",
+    "next_test": "use behavior/state features only after option value is established",
+    "scores": {
+     "suffix_replication": 3,
+     "resident_relative_upside": 3,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 5,
+     "implementation_tractability": 3,
+     "tail_safety": 3
+    },
+    "total": 22,
+    "rank": 7
+   },
+   {
+    "angle": "opening_or_first_move_selector",
+    "mechanism": "opening geometry may modulate risk",
+    "history_constraint": "most suffix losses lead at turn 100 and prior turn-one Monte Carlo found no robust activation",
+    "next_test": "do not reopen while the repeated reversal begins in midgame",
+    "scores": {
+     "suffix_replication": 1,
+     "resident_relative_upside": 2,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 4,
+     "implementation_tractability": 4,
+     "tail_safety": 4
+    },
+    "total": 20,
+    "rank": 8
+   },
+   {
+    "angle": "online_single_move_monte_carlo",
+    "mechanism": "local tactical mistakes may accumulate",
+    "history_constraint": "exact-resident prospective bank-only gain was +0.508 at 92.85 ms p95",
+    "next_test": "closed unless a new batched evaluator changes the value/latency frontier",
+    "scores": {
+     "suffix_replication": 2,
+     "resident_relative_upside": 2,
+     "resident_preserving_testability": 5,
+     "field_fidelity": 3,
+     "implementation_tractability": 2,
+     "tail_safety": 4
+    },
+    "total": 18,
+    "rank": 9
+   },
+   {
+    "angle": "unanchored_end_to_end_ppo",
+    "mechanism": "a complete controller could in principle learn the whole economy",
+    "history_constraint": "prior PPO eroded production and D158 showed nonresident baseline gates are invalid",
+    "next_test": "do not resume without exact-resident initialization/fallback and gates",
+    "scores": {
+     "suffix_replication": 3,
+     "resident_relative_upside": 5,
+     "resident_preserving_testability": 1,
+     "field_fidelity": 3,
+     "implementation_tractability": 2,
+     "tail_safety": 1
+    },
+    "total": 15,
+    "rank": 10
+   }
+  ]
+ },
+ "decision": {
+  "decision_bearing": true,
+  "anti_compounding_signature_replicates_in_suffix": true,
+  "selected_next_direction": "field_native_bounded_midgame_probe_bank",
+  "construct_candidate": false,
+  "submit": false,
+  "next_experiment": "freeze a small field-native common-map A/B bank of finite integrated midgame responses, each exact-resident anchored, before training another selector"
+ }
+}

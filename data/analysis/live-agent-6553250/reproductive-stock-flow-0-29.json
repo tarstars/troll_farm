@@ -1,0 +1,681 @@
+{
+ "schema": 1,
+ "scope": "consumed-map adaptive-Gold reproductive stock-flow diagnostic",
+ "seed_range": [
+  0,
+  29
+ ],
+ "profiles": {
+  "adaptive_density": {
+   "games": 60,
+   "mean_terminal_turn": 298.96666666666664,
+   "median_terminal_turn": 301.0,
+   "turn_limit_games": 56,
+   "post100_exposure_turns": 11878,
+   "flow_turns": {
+    "zero_immediate_seed_turns": 3133,
+    "zero_owned_seed_turns": 306,
+    "lineage_absent_turns": 170,
+    "low_redundancy_turns": 576
+   },
+   "flow_rates": {
+    "zero_immediate_seed": 0.2637649435931975,
+    "zero_owned_seed": 0.025761912779929282,
+    "lineage_absent": 0.014312173766627379,
+    "low_redundancy": 0.04849301229163159
+   },
+   "games_with_zero_owned_streak_at_least_5": 14,
+   "games_with_lineage_absence": 13,
+   "mean_max_zero_owned_streak": 3.433333333333333,
+   "minimum_owned_seed_stock_distribution": {
+    "mean": 2.65,
+    "median": 2.5,
+    "zero_games": 18
+   },
+   "mean_opponent_score": 362.55,
+   "mean_opponent_wood": 89.53333333333333,
+   "opponent_successful_plants": 2657,
+   "wood_assignment_rate": 0.9968721251149955,
+   "fruit_assignment_rate": 1.0,
+   "phase_planting": {
+    "1_100": {
+     "exposure_turns": 6000,
+     "opponent_successful_plants": 227,
+     "plants_per_exposed_turn": 0.03783333333333333
+    },
+    "101_150": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 304,
+     "plants_per_exposed_turn": 0.10133333333333333
+    },
+    "151_200": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 661,
+     "plants_per_exposed_turn": 0.22033333333333333
+    },
+    "201_250": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 793,
+     "plants_per_exposed_turn": 0.2643333333333333
+    },
+    "251_300": {
+     "exposure_turns": 2878,
+     "opponent_successful_plants": 672,
+     "plants_per_exposed_turn": 0.2334954829742877
+    }
+   },
+   "checkpoints": {
+    "100": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 16.75,
+      "opponent_wood": 0,
+      "opponent_workers": 3.066666666666667,
+      "opponent_successful_plants": 3.783333333333333,
+      "banked_banana": 3.3833333333333333,
+      "carried_banana": 0.1,
+      "opponent_banana_crops": 3.783333333333333,
+      "opponent_unfruited_banana_crops": 0.31666666666666665,
+      "opponent_crop_banana_fruits": 10.283333333333333,
+      "natural_banana_fruits": 15.6,
+      "our_crop_banana_fruits": 10.283333333333333
+     },
+     "medians": {
+      "opponent_score": 18.0,
+      "opponent_wood": 0.0,
+      "opponent_workers": 3.0,
+      "opponent_successful_plants": 2.0,
+      "banked_banana": 3.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 0.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 18.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "150": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 70.9,
+      "opponent_wood": 14.916666666666666,
+      "opponent_workers": 3.5166666666666666,
+      "opponent_successful_plants": 8.85,
+      "banked_banana": 2.3333333333333335,
+      "carried_banana": 0.45,
+      "opponent_banana_crops": 4.316666666666666,
+      "opponent_unfruited_banana_crops": 1.9166666666666667,
+      "opponent_crop_banana_fruits": 6.7,
+      "natural_banana_fruits": 6.1,
+      "our_crop_banana_fruits": 6.7
+     },
+     "medians": {
+      "opponent_score": 60.0,
+      "opponent_wood": 12.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 6.0,
+      "banked_banana": 1.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 3.0,
+      "opponent_unfruited_banana_crops": 0.5,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 6.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "200": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 156.48333333333332,
+      "opponent_wood": 37.916666666666664,
+      "opponent_workers": 3.85,
+      "opponent_successful_plants": 19.866666666666667,
+      "banked_banana": 0.8333333333333334,
+      "carried_banana": 0.9333333333333333,
+      "opponent_banana_crops": 5.566666666666666,
+      "opponent_unfruited_banana_crops": 2.95,
+      "opponent_crop_banana_fruits": 6.85,
+      "natural_banana_fruits": 3.8666666666666667,
+      "our_crop_banana_fruits": 6.85
+     },
+     "medians": {
+      "opponent_score": 148.0,
+      "opponent_wood": 37.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 20.0,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 6.0,
+      "opponent_unfruited_banana_crops": 3.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 3.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 1,
+     "lineage_absent_games": 1
+    },
+    "250": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 264.6,
+      "opponent_wood": 65.15,
+      "opponent_workers": 3.9166666666666665,
+      "opponent_successful_plants": 33.083333333333336,
+      "banked_banana": 0.4666666666666667,
+      "carried_banana": 0.75,
+      "opponent_banana_crops": 5.95,
+      "opponent_unfruited_banana_crops": 3.2666666666666666,
+      "opponent_crop_banana_fruits": 6.95,
+      "natural_banana_fruits": 2.3333333333333335,
+      "our_crop_banana_fruits": 6.95
+     },
+     "medians": {
+      "opponent_score": 268.5,
+      "opponent_wood": 67.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 32.0,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 6.0,
+      "opponent_unfruited_banana_crops": 4.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 0.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "300": {
+     "recorded_games": 56,
+     "means": {
+      "opponent_score": 379.5357142857143,
+      "opponent_wood": 93.92857142857143,
+      "opponent_workers": 3.9642857142857144,
+      "opponent_successful_plants": 47.017857142857146,
+      "banked_banana": 0.2857142857142857,
+      "carried_banana": 0.9642857142857143,
+      "opponent_banana_crops": 3.142857142857143,
+      "opponent_unfruited_banana_crops": 0.9821428571428571,
+      "opponent_crop_banana_fruits": 5.303571428571429,
+      "natural_banana_fruits": 2.2142857142857144,
+      "our_crop_banana_fruits": 5.303571428571429
+     },
+     "medians": {
+      "opponent_score": 377.0,
+      "opponent_wood": 94.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 45.0,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 1.0,
+      "opponent_crop_banana_fruits": 3.0,
+      "natural_banana_fruits": 0.0,
+      "our_crop_banana_fruits": 3.0
+     },
+     "zero_owned_seed_games": 12,
+     "lineage_absent_games": 11
+    }
+   }
+  },
+  "lean_m2c2h0k2": {
+   "games": 60,
+   "mean_terminal_turn": 301,
+   "median_terminal_turn": 301.0,
+   "turn_limit_games": 60,
+   "post100_exposure_turns": 12000,
+   "flow_turns": {
+    "zero_immediate_seed_turns": 2986,
+    "zero_owned_seed_turns": 254,
+    "lineage_absent_turns": 150,
+    "low_redundancy_turns": 492
+   },
+   "flow_rates": {
+    "zero_immediate_seed": 0.24883333333333332,
+    "zero_owned_seed": 0.021166666666666667,
+    "lineage_absent": 0.0125,
+    "low_redundancy": 0.041
+   },
+   "games_with_zero_owned_streak_at_least_5": 10,
+   "games_with_lineage_absence": 9,
+   "mean_max_zero_owned_streak": 3.1333333333333333,
+   "minimum_owned_seed_stock_distribution": {
+    "mean": 2.55,
+    "median": 2.0,
+    "zero_games": 18
+   },
+   "mean_opponent_score": 374.9166666666667,
+   "mean_opponent_wood": 92.88333333333334,
+   "opponent_successful_plants": 2787,
+   "wood_assignment_rate": 0.9987670629678556,
+   "fruit_assignment_rate": 0.9998484389208852,
+   "phase_planting": {
+    "1_100": {
+     "exposure_turns": 6000,
+     "opponent_successful_plants": 229,
+     "plants_per_exposed_turn": 0.03816666666666667
+    },
+    "101_150": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 318,
+     "plants_per_exposed_turn": 0.106
+    },
+    "151_200": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 702,
+     "plants_per_exposed_turn": 0.234
+    },
+    "201_250": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 809,
+     "plants_per_exposed_turn": 0.26966666666666667
+    },
+    "251_300": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 729,
+     "plants_per_exposed_turn": 0.243
+    }
+   },
+   "checkpoints": {
+    "100": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 16.133333333333333,
+      "opponent_wood": 0,
+      "opponent_workers": 3.1,
+      "opponent_successful_plants": 3.816666666666667,
+      "banked_banana": 3.3,
+      "carried_banana": 0.11666666666666667,
+      "opponent_banana_crops": 3.816666666666667,
+      "opponent_unfruited_banana_crops": 0.36666666666666664,
+      "opponent_crop_banana_fruits": 10.266666666666667,
+      "natural_banana_fruits": 12.266666666666667,
+      "our_crop_banana_fruits": 6.7
+     },
+     "medians": {
+      "opponent_score": 18.0,
+      "opponent_wood": 0.0,
+      "opponent_workers": 3.0,
+      "opponent_successful_plants": 2.0,
+      "banked_banana": 3.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 0.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 12.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "150": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 71.96666666666667,
+      "opponent_wood": 15.4,
+      "opponent_workers": 3.566666666666667,
+      "opponent_successful_plants": 9.116666666666667,
+      "banked_banana": 2.316666666666667,
+      "carried_banana": 0.5166666666666667,
+      "opponent_banana_crops": 4.55,
+      "opponent_unfruited_banana_crops": 2.0833333333333335,
+      "opponent_crop_banana_fruits": 6.866666666666666,
+      "natural_banana_fruits": 7.516666666666667,
+      "our_crop_banana_fruits": 7.466666666666667
+     },
+     "medians": {
+      "opponent_score": 58.5,
+      "opponent_wood": 12.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 7.0,
+      "banked_banana": 1.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 3.5,
+      "opponent_unfruited_banana_crops": 1.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 6.0,
+      "our_crop_banana_fruits": 6.0
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "200": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 162.23333333333332,
+      "opponent_wood": 39.4,
+      "opponent_workers": 3.8666666666666667,
+      "opponent_successful_plants": 20.816666666666666,
+      "banked_banana": 0.9333333333333333,
+      "carried_banana": 0.8166666666666667,
+      "opponent_banana_crops": 5.666666666666667,
+      "opponent_unfruited_banana_crops": 3.2333333333333334,
+      "opponent_crop_banana_fruits": 6.4,
+      "natural_banana_fruits": 6.116666666666666,
+      "our_crop_banana_fruits": 8.45
+     },
+     "medians": {
+      "opponent_score": 154.0,
+      "opponent_wood": 38.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 20.5,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 6.0,
+      "opponent_unfruited_banana_crops": 3.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 6.0,
+      "our_crop_banana_fruits": 6.5
+     },
+     "zero_owned_seed_games": 1,
+     "lineage_absent_games": 1
+    },
+    "250": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 274.1,
+      "opponent_wood": 67.53333333333333,
+      "opponent_workers": 3.9166666666666665,
+      "opponent_successful_plants": 34.3,
+      "banked_banana": 0.48333333333333334,
+      "carried_banana": 0.9,
+      "opponent_banana_crops": 5.6,
+      "opponent_unfruited_banana_crops": 3.3,
+      "opponent_crop_banana_fruits": 6.066666666666666,
+      "natural_banana_fruits": 5.183333333333334,
+      "our_crop_banana_fruits": 9
+     },
+     "medians": {
+      "opponent_score": 280.0,
+      "opponent_wood": 70.0,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 35.5,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 6.0,
+      "opponent_unfruited_banana_crops": 4.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 3.5,
+      "our_crop_banana_fruits": 6.5
+     },
+     "zero_owned_seed_games": 0,
+     "lineage_absent_games": 0
+    },
+    "300": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 374.9166666666667,
+      "opponent_wood": 92.88333333333334,
+      "opponent_workers": 3.966666666666667,
+      "opponent_successful_plants": 46.45,
+      "banked_banana": 0.21666666666666667,
+      "carried_banana": 1.1,
+      "opponent_banana_crops": 2.966666666666667,
+      "opponent_unfruited_banana_crops": 1.0166666666666666,
+      "opponent_crop_banana_fruits": 4.666666666666667,
+      "natural_banana_fruits": 3.95,
+      "our_crop_banana_fruits": 8.7
+     },
+     "medians": {
+      "opponent_score": 395.0,
+      "opponent_wood": 98.5,
+      "opponent_workers": 4.0,
+      "opponent_successful_plants": 49.0,
+      "banked_banana": 0.0,
+      "carried_banana": 1.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 1.0,
+      "opponent_crop_banana_fruits": 3.0,
+      "natural_banana_fruits": 3.0,
+      "our_crop_banana_fruits": 7.5
+     },
+     "zero_owned_seed_games": 7,
+     "lineage_absent_games": 6
+    }
+   }
+  },
+  "resident": {
+   "games": 60,
+   "mean_terminal_turn": 279.26666666666665,
+   "median_terminal_turn": 301.0,
+   "turn_limit_games": 35,
+   "post100_exposure_turns": 10696,
+   "flow_turns": {
+    "zero_immediate_seed_turns": 7226,
+    "zero_owned_seed_turns": 3425,
+    "lineage_absent_turns": 3188,
+    "low_redundancy_turns": 4391
+   },
+   "flow_rates": {
+    "zero_immediate_seed": 0.6755796559461481,
+    "zero_owned_seed": 0.3202131637995512,
+    "lineage_absent": 0.2980553477935677,
+    "low_redundancy": 0.4105272999252057
+   },
+   "games_with_zero_owned_streak_at_least_5": 42,
+   "games_with_lineage_absence": 41,
+   "mean_max_zero_owned_streak": 55,
+   "minimum_owned_seed_stock_distribution": {
+    "mean": 0.9666666666666667,
+    "median": 0.0,
+    "zero_games": 44
+   },
+   "mean_opponent_score": 139.41666666666666,
+   "mean_opponent_wood": 32.95,
+   "opponent_successful_plants": 1021,
+   "wood_assignment_rate": 1.0,
+   "fruit_assignment_rate": 1.0,
+   "phase_planting": {
+    "1_100": {
+     "exposure_turns": 6000,
+     "opponent_successful_plants": 275,
+     "plants_per_exposed_turn": 0.04583333333333333
+    },
+    "101_150": {
+     "exposure_turns": 3000,
+     "opponent_successful_plants": 168,
+     "plants_per_exposed_turn": 0.056
+    },
+    "151_200": {
+     "exposure_turns": 2994,
+     "opponent_successful_plants": 267,
+     "plants_per_exposed_turn": 0.08917835671342686
+    },
+    "201_250": {
+     "exposure_turns": 2674,
+     "opponent_successful_plants": 193,
+     "plants_per_exposed_turn": 0.07217651458489155
+    },
+    "251_300": {
+     "exposure_turns": 2028,
+     "opponent_successful_plants": 118,
+     "plants_per_exposed_turn": 0.05818540433925049
+    }
+   },
+   "checkpoints": {
+    "100": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 16.033333333333335,
+      "opponent_wood": 0,
+      "opponent_workers": 2.9,
+      "opponent_successful_plants": 4.583333333333333,
+      "banked_banana": 2.4166666666666665,
+      "carried_banana": 0.08333333333333333,
+      "opponent_banana_crops": 3.316666666666667,
+      "opponent_unfruited_banana_crops": 0.7333333333333333,
+      "opponent_crop_banana_fruits": 7.533333333333333,
+      "natural_banana_fruits": 6.7,
+      "our_crop_banana_fruits": 0
+     },
+     "medians": {
+      "opponent_score": 17.0,
+      "opponent_wood": 0.0,
+      "opponent_workers": 3.0,
+      "opponent_successful_plants": 3.0,
+      "banked_banana": 1.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 0.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 6.0,
+      "our_crop_banana_fruits": 0.0
+     },
+     "zero_owned_seed_games": 6,
+     "lineage_absent_games": 4
+    },
+    "150": {
+     "recorded_games": 60,
+     "means": {
+      "opponent_score": 50.7,
+      "opponent_wood": 9.65,
+      "opponent_workers": 3.216666666666667,
+      "opponent_successful_plants": 7.383333333333334,
+      "banked_banana": 1.5166666666666666,
+      "carried_banana": 0.23333333333333334,
+      "opponent_banana_crops": 2.7666666666666666,
+      "opponent_unfruited_banana_crops": 0.8833333333333333,
+      "opponent_crop_banana_fruits": 5.45,
+      "natural_banana_fruits": 1.9,
+      "our_crop_banana_fruits": 0
+     },
+     "medians": {
+      "opponent_score": 50.0,
+      "opponent_wood": 8.0,
+      "opponent_workers": 3.0,
+      "opponent_successful_plants": 6.0,
+      "banked_banana": 0.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 2.0,
+      "opponent_unfruited_banana_crops": 0.0,
+      "opponent_crop_banana_fruits": 6.0,
+      "natural_banana_fruits": 3.0,
+      "our_crop_banana_fruits": 0.0
+     },
+     "zero_owned_seed_games": 13,
+     "lineage_absent_games": 11
+    },
+    "200": {
+     "recorded_games": 59,
+     "means": {
+      "opponent_score": 86.86440677966101,
+      "opponent_wood": 19.64406779661017,
+      "opponent_workers": 3.389830508474576,
+      "opponent_successful_plants": 11.88135593220339,
+      "banked_banana": 0.23728813559322035,
+      "carried_banana": 0.288135593220339,
+      "opponent_banana_crops": 2.169491525423729,
+      "opponent_unfruited_banana_crops": 1,
+      "opponent_crop_banana_fruits": 3.1864406779661016,
+      "natural_banana_fruits": 0.6779661016949152,
+      "our_crop_banana_fruits": 0
+     },
+     "medians": {
+      "opponent_score": 74,
+      "opponent_wood": 15,
+      "opponent_workers": 3,
+      "opponent_successful_plants": 8,
+      "banked_banana": 0,
+      "carried_banana": 0,
+      "opponent_banana_crops": 2,
+      "opponent_unfruited_banana_crops": 0,
+      "opponent_crop_banana_fruits": 0,
+      "natural_banana_fruits": 0,
+      "our_crop_banana_fruits": 0
+     },
+     "zero_owned_seed_games": 24,
+     "lineage_absent_games": 22
+    },
+    "250": {
+     "recorded_games": 48,
+     "means": {
+      "opponent_score": 129.77083333333334,
+      "opponent_wood": 30.375,
+      "opponent_workers": 3.375,
+      "opponent_successful_plants": 16.9375,
+      "banked_banana": 0.020833333333333332,
+      "carried_banana": 0.25,
+      "opponent_banana_crops": 1.6458333333333333,
+      "opponent_unfruited_banana_crops": 0.7083333333333334,
+      "opponent_crop_banana_fruits": 2.3333333333333335,
+      "natural_banana_fruits": 0.5,
+      "our_crop_banana_fruits": 0
+     },
+     "medians": {
+      "opponent_score": 91.0,
+      "opponent_wood": 20.5,
+      "opponent_workers": 3.0,
+      "opponent_successful_plants": 10.0,
+      "banked_banana": 0.0,
+      "carried_banana": 0.0,
+      "opponent_banana_crops": 1.0,
+      "opponent_unfruited_banana_crops": 0.0,
+      "opponent_crop_banana_fruits": 1.0,
+      "natural_banana_fruits": 0.0,
+      "our_crop_banana_fruits": 0.0
+     },
+     "zero_owned_seed_games": 21,
+     "lineage_absent_games": 21
+    },
+    "300": {
+     "recorded_games": 35,
+     "means": {
+      "opponent_score": 175.2,
+      "opponent_wood": 41.714285714285715,
+      "opponent_workers": 3.3714285714285714,
+      "opponent_successful_plants": 22.942857142857143,
+      "banked_banana": 0,
+      "carried_banana": 0.34285714285714286,
+      "opponent_banana_crops": 1,
+      "opponent_unfruited_banana_crops": 0.05714285714285714,
+      "opponent_crop_banana_fruits": 2.6285714285714286,
+      "natural_banana_fruits": 0.6857142857142857,
+      "our_crop_banana_fruits": 0
+     },
+     "medians": {
+      "opponent_score": 101,
+      "opponent_wood": 24,
+      "opponent_workers": 3,
+      "opponent_successful_plants": 10,
+      "banked_banana": 0,
+      "carried_banana": 0,
+      "opponent_banana_crops": 1,
+      "opponent_unfruited_banana_crops": 0,
+      "opponent_crop_banana_fruits": 3,
+      "natural_banana_fruits": 0,
+      "our_crop_banana_fruits": 0
+     },
+     "zero_owned_seed_games": 16,
+     "lineage_absent_games": 16
+    }
+   }
+  }
+ },
+ "integrity_checks": {
+  "complete_grid": true,
+  "all_games_complete": true,
+  "phase_counts_sum_to_totals": true,
+  "checkpoint_presence_matches_terminal_exposure": true,
+  "checkpoint_plants_are_monotone": true,
+  "fruit_assignment_at_least_99pct": true,
+  "wood_assignment_at_least_95pct": true,
+  "repeat_run_identity": true
+ },
+ "seed_depletion_boundary_checks": {
+  "resident_zero_owned_seed_rate_at_least_15pct": true,
+  "resident_streak_breadth_at_least_30_games": true,
+  "resident_zero_owned_rate_10pp_above_both_farms": true
+ },
+ "lineage_absence_boundary_checks": {
+  "resident_lineage_absent_rate_at_least_5pct": true,
+  "resident_absence_breadth_at_least_20_games": true,
+  "resident_absence_rate_3pp_above_both_farms": true
+ },
+ "material_seed_depletion_boundary": true,
+ "material_lineage_absence_boundary": true,
+ "decision": "authorize one stock-state whole-scheduler experiment"
+}

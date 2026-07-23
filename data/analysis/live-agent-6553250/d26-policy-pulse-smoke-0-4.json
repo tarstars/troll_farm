@@ -1,0 +1,826 @@
+{
+ "schema": 1,
+ "scope": "exact generated-map common-state terminal continuations; bounded ownership2 pulse followed by a cold visible-state resident restart; no Arena or submission action",
+ "mode": "smoke",
+ "source": "data/analysis/live-agent-6553250/d26-policy-pulse-smoke-0-4.tsv",
+ "seed_start": 0,
+ "seed_count": 5,
+ "exits": [
+  100,
+  125,
+  150
+ ],
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "integrity": {
+  "expected_rows": 320,
+  "actual_rows": 320,
+  "expected_scenarios": 80,
+  "actual_scenarios": 80,
+  "missing_scenarios": 0,
+  "unexpected_scenarios": 0,
+  "bad_branch_sets": {},
+  "bad_exit_labels": [],
+  "root_fields_identical_across_branches": true,
+  "reached_cut_identical_across_branches": true,
+  "legal_terminal_shape": true,
+  "opponents": [
+   "compact_gold",
+   "gold_adaptive",
+   "gold_elite",
+   "mybot",
+   "printer_bot",
+   "sched_bot",
+   "script_boss",
+   "silver_boss"
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "complete": true,
+  "repeat_path": "data/analysis/live-agent-6553250/d26-policy-pulse-smoke-repeat-0-4.tsv",
+  "repeat_byte_identical": true,
+  "control_reference": {
+   "paths": [
+    "data/analysis/live-agent-6553250/d24-phase-handoff-smoke-0-4.tsv"
+   ],
+   "reference_controls": 80,
+   "expected_controls": 80,
+   "matched_controls": 80,
+   "duplicate_reference_keys": [],
+   "mismatches": [],
+   "mismatch_count": 0,
+   "complete_match": true
+  },
+  "all_exits_pass_20pct_activation": true,
+  "readiness_passed": true
+ },
+ "activation": {
+  "100": {
+   "reached_cut_cells": 80,
+   "difference_rate": 1.0,
+   "passes_20pct": true
+  },
+  "125": {
+   "reached_cut_cells": 80,
+   "difference_rate": 1.0,
+   "passes_20pct": true
+  },
+  "150": {
+   "reached_cut_cells": 80,
+   "difference_rate": 1.0,
+   "passes_20pct": true
+  }
+ },
+ "exits_analysis": [
+  {
+   "exit_turn": 100,
+   "scheduled_farm_turns": 25,
+   "cells": 80,
+   "seeds": 5,
+   "reached_cut_cells": 80,
+   "reached_cut_rate": 1.0,
+   "command_difference_rate_on_reached": 1.0,
+   "seed_clustered_margin_delta": {
+    "n": 5,
+    "mean": -3.7625,
+    "median": -3.375,
+    "trimmed_5pct_mean": -3.7625,
+    "standard_deviation": 8.466777906913586,
+    "standard_error": 3.786458190050433,
+    "ci95_normal": [
+     -11.183958052498848,
+     3.658958052498848
+    ],
+    "wins": 2,
+    "ties": 0,
+    "losses": 3,
+    "minimum": -17.3125,
+    "maximum": 5
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 5,
+    "mean": 8.95,
+    "median": 4.0625,
+    "trimmed_5pct_mean": 8.95,
+    "standard_deviation": 8.562659670044116,
+    "standard_error": 3.8293378180829127,
+    "ci95_normal": [
+     1.4444978765574907,
+     16.455502123442507
+    ],
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 3.625,
+    "maximum": 23.5
+   },
+   "cell_margin_delta": {
+    "n": 80,
+    "mean": -3.7625,
+    "median": -3.0,
+    "trimmed_5pct_mean": -3.5694444444444446,
+    "standard_deviation": 21.84018114984919,
+    "standard_error": 2.4418064845986156,
+    "ci95_normal": [
+     -8.548440709813287,
+     1.0234407098132863
+    ],
+    "wins": 35,
+    "ties": 2,
+    "losses": 43,
+    "minimum": -57,
+    "maximum": 45
+   },
+   "cell_opponent_score_delta": {
+    "n": 80,
+    "mean": 12.7125,
+    "median": 8.0,
+    "trimmed_5pct_mean": 11.48611111111111,
+    "standard_deviation": 21.287182659281623,
+    "standard_error": 2.3799793737804227,
+    "ci95_normal": [
+     8.047740427390373,
+     17.377259572609628
+    ],
+    "wins": 57,
+    "ties": 12,
+    "losses": 11,
+    "minimum": -44,
+    "maximum": 76
+   },
+   "cell_own_wood_delta": {
+    "n": 80,
+    "mean": 2.4375,
+    "median": 2.0,
+    "trimmed_5pct_mean": 2.388888888888889,
+    "standard_deviation": 3.5572843788343285,
+    "standard_error": 0.3977164843185836,
+    "ci95_normal": [
+     1.6579756907355763,
+     3.2170243092644237
+    ],
+    "wins": 55,
+    "ties": 11,
+    "losses": 14,
+    "minimum": -5,
+    "maximum": 13
+   },
+   "cell_opponent_wood_delta": {
+    "n": 80,
+    "mean": 2.925,
+    "median": 1.5,
+    "trimmed_5pct_mean": 2.5,
+    "standard_deviation": 5.808712356495743,
+    "standard_error": 0.6494337845433736,
+    "ci95_normal": [
+     1.6521097822949875,
+     4.197890217705012
+    ],
+    "wins": 45,
+    "ties": 22,
+    "losses": 13,
+    "minimum": -11,
+    "maximum": 20
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -18.4,
+    "gold_adaptive": 10.8,
+    "gold_elite": -18.4,
+    "mybot": -8,
+    "printer_bot": 11.6,
+    "sched_bot": -1.6,
+    "script_boss": -8.9,
+    "silver_boss": 2.8
+   },
+   "nonnegative_opponent_means": 3,
+   "worst_opponent": "compact_gold",
+   "worst_opponent_mean_delta": -18.4,
+   "control_catastrophic_cells": 12,
+   "control_catastrophic_cell_margin_delta": {
+    "n": 12,
+    "mean": 2.1666666666666665,
+    "median": 0.0,
+    "trimmed_5pct_mean": 2.1666666666666665,
+    "standard_deviation": 9.29157324317757,
+    "standard_error": 2.682246156571847,
+    "ci95_normal": [
+     -3.090535800214154,
+     7.423869133547488
+    ],
+    "wins": 5,
+    "ties": 2,
+    "losses": 5,
+    "minimum": -7,
+    "maximum": 22
+   },
+   "tail": {
+    "control_catastrophic_frequency": 0.15,
+    "candidate_catastrophic_frequency": 0.175,
+    "control_negative_margin_mass": 2493,
+    "candidate_negative_margin_mass": 2539,
+    "candidate_to_control_negative_mass_ratio": 1.0184516646610509
+   },
+   "phase_execution": {
+    "cells_executing_both_phases": 80,
+    "both_phase_rate": 1.0,
+    "mean_farm_turns": 25,
+    "mean_restart_turns": 187.85,
+    "full_scheduled_farm_rate": 1.0
+   },
+   "actions": {
+    "farm_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "farm_plant_commands": {
+     "n": 80,
+     "mean": 4.6375,
+     "median": 5.0,
+     "trimmed_5pct_mean": 4.694444444444445,
+     "standard_deviation": 1.105151916929827,
+     "standard_error": 0.12355974058596468,
+     "ci95_normal": [
+      4.39532290845151,
+      4.879677091548491
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 2,
+     "maximum": 7
+    },
+    "restart_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "restart_plant_commands": {
+     "n": 80,
+     "mean": 7.75,
+     "median": 8.0,
+     "trimmed_5pct_mean": 7.638888888888889,
+     "standard_deviation": 2.1018376528617386,
+     "standard_error": 0.23499259347337265,
+     "ci95_normal": [
+      7.289414516792189,
+      8.21058548320781
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 4,
+     "maximum": 14
+    }
+   },
+   "workforce": {
+    "control_mean_max_workers": 2,
+    "candidate_mean_max_workers": 2,
+    "candidate_mean_final_workers": 2
+   },
+   "gates": {
+    "mean_margin_at_least_5": false,
+    "trimmed_margin_at_least_3": false,
+    "ci95_lower_above_zero": false,
+    "own_score_at_least_5": true,
+    "six_of_eight_opponents_nonnegative": false,
+    "worst_opponent_at_least_minus_5": false,
+    "positive_control_catastrophe_delta": true,
+    "catastrophic_frequency_not_higher": false,
+    "negative_margin_mass_not_higher": false,
+    "both_phases_execute_at_least_95pct": true
+   },
+   "passed": false
+  },
+  {
+   "exit_turn": 125,
+   "scheduled_farm_turns": 50,
+   "cells": 80,
+   "seeds": 5,
+   "reached_cut_cells": 80,
+   "reached_cut_rate": 1.0,
+   "command_difference_rate_on_reached": 1.0,
+   "seed_clustered_margin_delta": {
+    "n": 5,
+    "mean": 1.875,
+    "median": 7.25,
+    "trimmed_5pct_mean": 1.875,
+    "standard_deviation": 13.1819449200412,
+    "standard_error": 5.89514498337403,
+    "ci95_normal": [
+     -9.679484167413099,
+     13.429484167413099
+    ],
+    "wins": 4,
+    "ties": 0,
+    "losses": 1,
+    "minimum": -20.9375,
+    "maximum": 10.5625
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 5,
+    "mean": 20.225,
+    "median": 20.125,
+    "trimmed_5pct_mean": 20.225,
+    "standard_deviation": 11.142945498161605,
+    "standard_error": 4.983276720692921,
+    "ci95_normal": [
+     10.457777627441876,
+     29.992222372558125
+    ],
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 9.875,
+    "maximum": 36.75
+   },
+   "cell_margin_delta": {
+    "n": 80,
+    "mean": 1.875,
+    "median": 6.0,
+    "trimmed_5pct_mean": 2.4027777777777777,
+    "standard_deviation": 29.65172311256639,
+    "standard_error": 3.3151634264850047,
+    "ci95_normal": [
+     -4.622720315910609,
+     8.372720315910609
+    ],
+    "wins": 51,
+    "ties": 0,
+    "losses": 29,
+    "minimum": -67,
+    "maximum": 65
+   },
+   "cell_opponent_score_delta": {
+    "n": 80,
+    "mean": 18.35,
+    "median": 7.5,
+    "trimmed_5pct_mean": 15.777777777777779,
+    "standard_deviation": 26.46617138628293,
+    "standard_error": 2.9590079161944236,
+    "ci95_normal": [
+     12.550344484258932,
+     24.14965551574107
+    ],
+    "wins": 59,
+    "ties": 11,
+    "losses": 10,
+    "minimum": -12,
+    "maximum": 96
+   },
+   "cell_own_wood_delta": {
+    "n": 80,
+    "mean": 5.2875,
+    "median": 4.5,
+    "trimmed_5pct_mean": 5.222222222222222,
+    "standard_deviation": 4.834458984300733,
+    "standard_error": 0.5405089461665513,
+    "ci95_normal": [
+     4.228102465513559,
+     6.34689753448644
+    ],
+    "wins": 70,
+    "ties": 2,
+    "losses": 8,
+    "minimum": -6,
+    "maximum": 20
+   },
+   "cell_opponent_wood_delta": {
+    "n": 80,
+    "mean": 4.5,
+    "median": 1.0,
+    "trimmed_5pct_mean": 3.7916666666666665,
+    "standard_deviation": 7.490077824881715,
+    "standard_error": 0.837416158659964,
+    "ci95_normal": [
+     2.8586643290264706,
+     6.141335670973529
+    ],
+    "wins": 47,
+    "ties": 20,
+    "losses": 13,
+    "minimum": -4,
+    "maximum": 28
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -15.4,
+    "gold_adaptive": 17,
+    "gold_elite": -15.4,
+    "mybot": -2.4,
+    "printer_bot": 21.8,
+    "sched_bot": 4.7,
+    "script_boss": -3.5,
+    "silver_boss": 8.2
+   },
+   "nonnegative_opponent_means": 4,
+   "worst_opponent": "compact_gold",
+   "worst_opponent_mean_delta": -15.4,
+   "control_catastrophic_cells": 12,
+   "control_catastrophic_cell_margin_delta": {
+    "n": 12,
+    "mean": 15,
+    "median": 12.0,
+    "trimmed_5pct_mean": 15,
+    "standard_deviation": 8.842048302391149,
+    "standard_error": 2.552479483786602,
+    "ci95_normal": [
+     9.99714021177826,
+     20.00285978822174
+    ],
+    "wins": 12,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 4,
+    "maximum": 28
+   },
+   "tail": {
+    "control_catastrophic_frequency": 0.15,
+    "candidate_catastrophic_frequency": 0.175,
+    "control_negative_margin_mass": 2493,
+    "candidate_negative_margin_mass": 2445,
+    "candidate_to_control_negative_mass_ratio": 0.9807460890493381
+   },
+   "phase_execution": {
+    "cells_executing_both_phases": 80,
+    "both_phase_rate": 1.0,
+    "mean_farm_turns": 50,
+    "mean_restart_turns": 165.5125,
+    "full_scheduled_farm_rate": 1.0
+   },
+   "actions": {
+    "farm_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "farm_plant_commands": {
+     "n": 80,
+     "mean": 9.3,
+     "median": 10.0,
+     "trimmed_5pct_mean": 9.319444444444445,
+     "standard_deviation": 1.2159280458391557,
+     "standard_error": 0.1359448883122416,
+     "ci95_normal": [
+      9.033548018908007,
+      9.566451981091994
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 7,
+     "maximum": 12
+    },
+    "restart_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "restart_plant_commands": {
+     "n": 80,
+     "mean": 6.2125,
+     "median": 7.5,
+     "trimmed_5pct_mean": 6.305555555555555,
+     "standard_deviation": 2.7773667065738383,
+     "standard_error": 0.3105190377171907,
+     "ci95_normal": [
+      5.603882686074306,
+      6.821117313925694
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 1,
+     "maximum": 11
+    }
+   },
+   "workforce": {
+    "control_mean_max_workers": 2,
+    "candidate_mean_max_workers": 2,
+    "candidate_mean_final_workers": 2
+   },
+   "gates": {
+    "mean_margin_at_least_5": false,
+    "trimmed_margin_at_least_3": false,
+    "ci95_lower_above_zero": false,
+    "own_score_at_least_5": true,
+    "six_of_eight_opponents_nonnegative": false,
+    "worst_opponent_at_least_minus_5": false,
+    "positive_control_catastrophe_delta": true,
+    "catastrophic_frequency_not_higher": false,
+    "negative_margin_mass_not_higher": true,
+    "both_phases_execute_at_least_95pct": true
+   },
+   "passed": false
+  },
+  {
+   "exit_turn": 150,
+   "scheduled_farm_turns": 75,
+   "cells": 80,
+   "seeds": 5,
+   "reached_cut_cells": 80,
+   "reached_cut_rate": 1.0,
+   "command_difference_rate_on_reached": 1.0,
+   "seed_clustered_margin_delta": {
+    "n": 5,
+    "mean": 7.55,
+    "median": 14.625,
+    "trimmed_5pct_mean": 7.55,
+    "standard_deviation": 19.249766638195904,
+    "standard_error": 8.608757350802728,
+    "ci95_normal": [
+     -9.323164407573344,
+     24.423164407573346
+    ],
+    "wins": 4,
+    "ties": 0,
+    "losses": 1,
+    "minimum": -26.5,
+    "maximum": 19.4375
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 5,
+    "mean": 36.4875,
+    "median": 36.0625,
+    "trimmed_5pct_mean": 36.4875,
+    "standard_deviation": 17.22707942818515,
+    "standard_error": 7.70418413104204,
+    "ci95_normal": [
+     21.3872991031576,
+     51.58770089684239
+    ],
+    "wins": 5,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 17.0625,
+    "maximum": 59.625
+   },
+   "cell_margin_delta": {
+    "n": 80,
+    "mean": 7.55,
+    "median": 14.0,
+    "trimmed_5pct_mean": 9.625,
+    "standard_deviation": 45.10126440170953,
+    "standard_error": 5.042474653670694,
+    "ci95_normal": [
+     -2.3332503211945594,
+     17.43325032119456
+    ],
+    "wins": 48,
+    "ties": 2,
+    "losses": 30,
+    "minimum": -125,
+    "maximum": 105
+   },
+   "cell_opponent_score_delta": {
+    "n": 80,
+    "mean": 28.9375,
+    "median": 18.0,
+    "trimmed_5pct_mean": 25.708333333333332,
+    "standard_deviation": 35.88636910223396,
+    "standard_error": 4.012218038912161,
+    "ci95_normal": [
+     21.073552643732164,
+     36.801447356267836
+    ],
+    "wins": 67,
+    "ties": 10,
+    "losses": 3,
+    "minimum": -44,
+    "maximum": 144
+   },
+   "cell_own_wood_delta": {
+    "n": 80,
+    "mean": 9.2625,
+    "median": 9.0,
+    "trimmed_5pct_mean": 9.055555555555555,
+    "standard_deviation": 6.60215490329397,
+    "standard_error": 0.7381433580874434,
+    "ci95_normal": [
+     7.81573901814861,
+     10.709260981851388
+    ],
+    "wins": 73,
+    "ties": 3,
+    "losses": 4,
+    "minimum": -5,
+    "maximum": 26
+   },
+   "cell_opponent_wood_delta": {
+    "n": 80,
+    "mean": 6.3125,
+    "median": 2.0,
+    "trimmed_5pct_mean": 5.402777777777778,
+    "standard_deviation": 10.165209655573866,
+    "standard_error": 1.1365049897700195,
+    "ci95_normal": [
+     4.084950220050762,
+     8.54004977994924
+    ],
+    "wins": 51,
+    "ties": 20,
+    "losses": 9,
+    "minimum": -11,
+    "maximum": 40
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -15.8,
+    "gold_adaptive": 36.6,
+    "gold_elite": -15.8,
+    "mybot": 6,
+    "printer_bot": 34.7,
+    "sched_bot": 19.8,
+    "script_boss": -11,
+    "silver_boss": 5.9
+   },
+   "nonnegative_opponent_means": 5,
+   "worst_opponent": "compact_gold",
+   "worst_opponent_mean_delta": -15.8,
+   "control_catastrophic_cells": 12,
+   "control_catastrophic_cell_margin_delta": {
+    "n": 12,
+    "mean": 30.5,
+    "median": 28.0,
+    "trimmed_5pct_mean": 30.5,
+    "standard_deviation": 8.501336793277119,
+    "standard_error": 2.4541245430351073,
+    "ci95_normal": [
+     25.68991589565119,
+     35.31008410434881
+    ],
+    "wins": 12,
+    "ties": 0,
+    "losses": 0,
+    "minimum": 17,
+    "maximum": 41
+   },
+   "tail": {
+    "control_catastrophic_frequency": 0.15,
+    "candidate_catastrophic_frequency": 0.15,
+    "control_negative_margin_mass": 2493,
+    "candidate_negative_margin_mass": 2357,
+    "candidate_to_control_negative_mass_ratio": 0.9454472523064581
+   },
+   "phase_execution": {
+    "cells_executing_both_phases": 80,
+    "both_phase_rate": 1.0,
+    "mean_farm_turns": 75,
+    "mean_restart_turns": 144.9125,
+    "full_scheduled_farm_rate": 1.0
+   },
+   "actions": {
+    "farm_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "farm_plant_commands": {
+     "n": 80,
+     "mean": 13.325,
+     "median": 14.0,
+     "trimmed_5pct_mean": 13.36111111111111,
+     "standard_deviation": 1.9407358646148969,
+     "standard_error": 0.2169808659825369,
+     "ci95_normal": [
+      12.899717502674227,
+      13.750282497325772
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 8,
+     "maximum": 19
+    },
+    "restart_train_commands": {
+     "n": 80,
+     "mean": 0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "wins": 0,
+     "ties": 80,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "restart_plant_commands": {
+     "n": 80,
+     "mean": 6.1,
+     "median": 7.0,
+     "trimmed_5pct_mean": 6.180555555555555,
+     "standard_deviation": 2.749453340372605,
+     "standard_error": 0.3073982285018506,
+     "ci95_normal": [
+      5.497499472136372,
+      6.702500527863627
+     ],
+     "wins": 80,
+     "ties": 0,
+     "losses": 0,
+     "minimum": 1,
+     "maximum": 11
+    }
+   },
+   "workforce": {
+    "control_mean_max_workers": 2,
+    "candidate_mean_max_workers": 2,
+    "candidate_mean_final_workers": 2
+   },
+   "gates": {
+    "mean_margin_at_least_5": true,
+    "trimmed_margin_at_least_3": true,
+    "ci95_lower_above_zero": false,
+    "own_score_at_least_5": true,
+    "six_of_eight_opponents_nonnegative": false,
+    "worst_opponent_at_least_minus_5": false,
+    "positive_control_catastrophe_delta": true,
+    "catastrophic_frequency_not_higher": true,
+    "negative_margin_mass_not_higher": true,
+    "both_phases_execute_at_least_95pct": true
+   },
+   "passed": false
+  }
+ ],
+ "decision": {
+  "open_discovery": true,
+  "select_from_smoke_outcomes": false,
+  "selected": null
+ }
+}

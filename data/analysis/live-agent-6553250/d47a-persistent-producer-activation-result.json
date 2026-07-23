@@ -1,0 +1,37 @@
+{
+  "activation": {
+    "changed_action_hash_rate": 0.82421875,
+    "changed_action_hash_tasks": 211,
+    "role_eligible_decisions": 9166,
+    "role_overrides": 2450,
+    "tasks": 256
+  },
+  "audit": {
+    "integrity_failures": 0,
+    "outcome_fields_ignored": true,
+    "repeat_byte_identical": true,
+    "tasks_per_arm": 256
+  },
+  "gates": {
+    "at_least_256_role_overrides": true,
+    "at_least_512_role_eligible_decisions": true,
+    "changed_action_hash_tasks_between_20_and_90_percent": true,
+    "complete_exact_deterministic_repeat": true,
+    "zero_integrity_failures": true
+  },
+  "inputs": {
+    "control": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d47a-d40-activation-control-9782000-9782015.tsv",
+    "control_sha256": "acb6d603305356fd9813fdb5a2593b015d8b6f1495925803e296020296aa9874",
+    "environment_source_sha256": "6e59965b6d020e9eb51cf41d0a12b72addf0cd776bf7c67a93ef055783788044",
+    "prior_source_sha256": "632f1b2c99c18073c4cd956863fcaa4b7e9773dd69bb745fc18f062337130f62",
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d47a-persistent-producer-activation-a-9782000-9782015.tsv",
+    "run_a_sha256": "12a6630aa1c08e6a5a18120ffc6ea104e05eecbe1b86550ed718081bc9ab3c4e",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d47a-persistent-producer-activation-b-9782000-9782015.tsv",
+    "run_b_sha256": "12a6630aa1c08e6a5a18120ffc6ea104e05eecbe1b86550ed718081bc9ab3c4e",
+    "runner_source_sha256": "aea0248247d8ebffd38a4d1d168f66b1c6455db63224f0f8d1157d73528deed9"
+  },
+  "pass": true,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d47-persistent-producer-role-protocol-2026-07-21.md",
+  "protocol_sha256": "d26bcdcaada549fd904090611f1ee358f1ce4934ca8e3c5932c6c6db4e1af3b2",
+  "scope": "activation/integrity audit only; scores and margins ignored; no policy selection or platform action"
+}

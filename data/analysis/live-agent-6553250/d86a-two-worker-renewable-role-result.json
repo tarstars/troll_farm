@@ -1,0 +1,6843 @@
+{
+ "schema": 1,
+ "scope": "D86a passive open-replay behavior audit; no platform or sealed access",
+ "agent_id": 6480541,
+ "input_hashes": {
+  "historical_analysis": "f869f12ef65c1971339e3d0676774fc11a7c951ad43bfaff7afb8641b91219be",
+  "rows_a": "64905dcda56e117d5ea173a60747e8db6fb1e2ef3311ef5a6de81bbca20cd65b",
+  "rows_b": "64905dcda56e117d5ea173a60747e8db6fb1e2ef3311ef5a6de81bbca20cd65b"
+ },
+ "counts": {
+  "historical": 25,
+  "discovery": 15,
+  "validation": 10,
+  "current_consumed": 10,
+  "discovery_renewable": 11,
+  "validation_renewable": 6,
+  "current_renewable": 6
+ },
+ "integrity": {
+  "gates": {
+   "all_35_games_present": true,
+   "repeat_rows_byte_identical": true,
+   "per_row_reconstruction_exact": true,
+   "historical_reference_exact": true
+  },
+  "reference": {
+   "checks": [
+    {
+     "game_id": 893174122,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 893407296,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 893412043,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 893876322,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 894397581,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895446276,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895446639,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895447009,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895447026,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895447237,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895883032,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895883103,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895883400,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895883571,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895924585,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895925001,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895926495,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895926546,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895926772,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927134,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927164,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927169,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927226,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927242,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    },
+    {
+     "game_id": 895927312,
+     "present": true,
+     "seat_exact": true,
+     "score_exact": true,
+     "final_inventory_exact": true,
+     "opening_exact": true
+    }
+   ],
+   "all_exact": true
+  }
+ },
+ "role_consistency": {
+  "historical_renewable_n": 17,
+  "historical_role_rate": 0.29411764705882354,
+  "current_renewable_n": 6,
+  "current_role_rate": 0.3333333333333333
+ },
+ "selector": {
+  "depth_two_fit": {
+   "model": {
+    "feature": "fruit_total",
+    "threshold": 19.0,
+    "left": {
+     "feature": "own_nearest_tree_distance",
+     "threshold": 2.5,
+     "left": {
+      "leaf": true
+     },
+     "right": {
+      "leaf": false
+     }
+    },
+    "right": {
+     "leaf": false
+    }
+   },
+   "weighted_correct": 0.9090909090909092,
+   "ordinary_correct": 13,
+   "balanced_accuracy_in_sample": 0.9090909090909092,
+   "accuracy_in_sample": 0.8666666666666667
+  },
+  "best_stump_fit": {
+   "model": {
+    "feature": "own_nearest_tree_distance",
+    "threshold": 2.5,
+    "left": {
+     "leaf": true
+    },
+    "right": {
+     "leaf": false
+    }
+   },
+   "weighted_correct": 0.8750000000000001,
+   "ordinary_correct": 14,
+   "balanced_accuracy_in_sample": 0.8750000000000001,
+   "accuracy_in_sample": 0.9333333333333333
+  },
+  "constant_fit": {
+   "model": {
+    "leaf": true
+   },
+   "weighted_correct": 0.5000000000000001,
+   "ordinary_correct": 11,
+   "balanced_accuracy_in_sample": 0.5000000000000001,
+   "accuracy_in_sample": 0.7333333333333333
+  },
+  "selected_reason": "depth_two_advantage_at_least_0.10",
+  "selected_model": {
+   "feature": "fruit_total",
+   "threshold": 19.0,
+   "left": {
+    "feature": "own_nearest_tree_distance",
+    "threshold": 2.5,
+    "left": {
+     "leaf": true
+    },
+    "right": {
+     "leaf": false
+    }
+   },
+   "right": {
+    "leaf": false
+   }
+  },
+  "discovery": {
+   "n": 15,
+   "confusion": {
+    "tp": 9,
+    "tn": 4,
+    "fp": 0,
+    "fn": 2
+   },
+   "accuracy": 0.8666666666666667,
+   "balanced_accuracy": 0.9090909090909092,
+   "renewable_precision": 1.0,
+   "renewable_recall": 0.8181818181818182,
+   "nonrenewable_recall": 1.0,
+   "intervals_95": {
+    "renewable_precision": [
+     0.7008549515804559,
+     1.0
+    ],
+    "renewable_recall": [
+     0.523019438039156,
+     0.9486323102539149
+    ],
+    "nonrenewable_recall": [
+     0.5101091635454027,
+     1.0
+    ]
+   },
+   "predictions": [
+    {
+     "game_id": 893174122,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 893407296,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 893412043,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 893876322,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 894397581,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 895446276,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895446639,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895447009,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895447026,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 895447237,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895883032,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 895883103,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 895883400,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895883571,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895924585,
+     "actual": false,
+     "predicted": false
+    }
+   ]
+  },
+  "validation": {
+   "n": 10,
+   "confusion": {
+    "tp": 4,
+    "tn": 2,
+    "fp": 2,
+    "fn": 2
+   },
+   "accuracy": 0.6,
+   "balanced_accuracy": 0.5833333333333333,
+   "renewable_precision": 0.6666666666666666,
+   "renewable_recall": 0.6666666666666666,
+   "nonrenewable_recall": 0.5,
+   "intervals_95": {
+    "renewable_precision": [
+     0.299993315138392,
+     0.9032285888942195
+    ],
+    "renewable_recall": [
+     0.299993315138392,
+     0.9032285888942195
+    ],
+    "nonrenewable_recall": [
+     0.15003898915214947,
+     0.8499610108478506
+    ]
+   },
+   "predictions": [
+    {
+     "game_id": 895925001,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895926495,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895926546,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895926772,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 895927134,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 895927164,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927169,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 895927226,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 895927242,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927312,
+     "actual": true,
+     "predicted": true
+    }
+   ]
+  },
+  "validation_constant": {
+   "n": 10,
+   "confusion": {
+    "tp": 6,
+    "tn": 0,
+    "fp": 4,
+    "fn": 0
+   },
+   "accuracy": 0.6,
+   "balanced_accuracy": 0.5,
+   "renewable_precision": 0.6,
+   "renewable_recall": 1.0,
+   "nonrenewable_recall": 0.0,
+   "intervals_95": {
+    "renewable_precision": [
+     0.31267376973365824,
+     0.8318196702937638
+    ],
+    "renewable_recall": [
+     0.6096657120978346,
+     1.0
+    ],
+    "nonrenewable_recall": [
+     0.0,
+     0.4898908364545973
+    ]
+   },
+   "predictions": [
+    {
+     "game_id": 895925001,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895926495,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895926546,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895926772,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927134,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895927164,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927169,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927226,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 895927242,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 895927312,
+     "actual": true,
+     "predicted": true
+    }
+   ]
+  },
+  "validation_balanced_accuracy_advantage": 0.08333333333333326,
+  "current_consumed_descriptive": {
+   "n": 10,
+   "confusion": {
+    "tp": 3,
+    "tn": 2,
+    "fp": 2,
+    "fn": 3
+   },
+   "accuracy": 0.5,
+   "balanced_accuracy": 0.5,
+   "renewable_precision": 0.6,
+   "renewable_recall": 0.5,
+   "nonrenewable_recall": 0.5,
+   "intervals_95": {
+    "renewable_precision": [
+     0.2307242812760128,
+     0.882379225767352
+    ],
+    "renewable_recall": [
+     0.1876163064826506,
+     0.8123836935173494
+    ],
+    "nonrenewable_recall": [
+     0.15003898915214947,
+     0.8499610108478506
+    ]
+   },
+   "predictions": [
+    {
+     "game_id": 896491202,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 896492419,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 896493461,
+     "actual": false,
+     "predicted": true
+    },
+    {
+     "game_id": 896493721,
+     "actual": false,
+     "predicted": false
+    },
+    {
+     "game_id": 896494122,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 896494214,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 896494703,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 896495136,
+     "actual": true,
+     "predicted": true
+    },
+    {
+     "game_id": 896495350,
+     "actual": true,
+     "predicted": false
+    },
+    {
+     "game_id": 896495475,
+     "actual": false,
+     "predicted": true
+    }
+   ]
+  },
+  "leaves_discovery": [
+   {
+    "path": "left/left",
+    "n": 9,
+    "renewable": 9,
+    "game_ids": [
+     893174122,
+     893412043,
+     893876322,
+     895446276,
+     895446639,
+     895447009,
+     895447237,
+     895883400,
+     895883571
+    ]
+   },
+   {
+    "path": "left/right",
+    "n": 3,
+    "renewable": 0,
+    "game_ids": [
+     893407296,
+     895883032,
+     895883103
+    ]
+   },
+   {
+    "path": "right",
+    "n": 3,
+    "renewable": 2,
+    "game_ids": [
+     894397581,
+     895447026,
+     895924585
+    ]
+   }
+  ],
+  "leaves_validation": [
+   {
+    "path": "left/left",
+    "n": 6,
+    "renewable": 4,
+    "game_ids": [
+     895925001,
+     895926495,
+     895926546,
+     895927164,
+     895927242,
+     895927312
+    ]
+   },
+   {
+    "path": "left/right",
+    "n": 2,
+    "renewable": 0,
+    "game_ids": [
+     895927134,
+     895927226
+    ]
+   },
+   {
+    "path": "right",
+    "n": 2,
+    "renewable": 2,
+    "game_ids": [
+     895926772,
+     895927169
+    ]
+   }
+  ]
+ },
+ "feature_distributions": {
+  "discovery": {
+   "initial_plum": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 4,
+     "minimum": 2,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 4.7272727272727275,
+     "minimum": 2,
+     "maximum": 9
+    }
+   },
+   "initial_lemon": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.25,
+     "minimum": 4,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 5.818181818181818,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "initial_apple": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.5,
+     "minimum": 4,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 5.090909090909091,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "initial_banana": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7,
+     "minimum": 4,
+     "maximum": 8
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 6.2727272727272725,
+     "minimum": 3,
+     "maximum": 8
+    }
+   },
+   "initial_iron": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 3.75,
+     "minimum": 2,
+     "maximum": 8
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 6,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "affordable_common_spec_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 2.25,
+     "minimum": 2,
+     "maximum": 3
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 2.4545454545454546,
+     "minimum": 2,
+     "maximum": 5
+    }
+   },
+   "tree_total": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 15.5,
+     "minimum": 10,
+     "maximum": 22
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 16.727272727272727,
+     "minimum": 10,
+     "maximum": 22
+    }
+   },
+   "fruit_total": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 12.5,
+     "minimum": 0,
+     "maximum": 24
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 14.727272727272727,
+     "minimum": 6,
+     "maximum": 24
+    }
+   },
+   "ripe_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6.5,
+     "minimum": 0,
+     "maximum": 14
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 6.909090909090909,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "own_private_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.75,
+     "minimum": 5,
+     "maximum": 11
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 7.909090909090909,
+     "minimum": 4,
+     "maximum": 11
+    }
+   },
+   "own_private_fruit": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6.25,
+     "minimum": 0,
+     "maximum": 12
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 6.909090909090909,
+     "minimum": 3,
+     "maximum": 12
+    }
+   },
+   "own_near_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.75,
+     "minimum": 3,
+     "maximum": 12
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 7.818181818181818,
+     "minimum": 4,
+     "maximum": 13
+    }
+   },
+   "own_near_fruit": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6,
+     "minimum": 0,
+     "maximum": 13
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 7.2727272727272725,
+     "minimum": 3,
+     "maximum": 16
+    }
+   },
+   "water_adjacent_base_cells": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.25,
+     "minimum": 2,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 7.454545454545454,
+     "minimum": 2,
+     "maximum": 13
+    }
+   },
+   "own_nearest_tree_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 2.25,
+     "minimum": 0,
+     "maximum": 3
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 0.6363636363636364,
+     "minimum": 0,
+     "maximum": 2
+    }
+   },
+   "own_nearest_iron_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 2.5,
+     "minimum": 0,
+     "maximum": 7
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 3.8181818181818183,
+     "minimum": 1,
+     "maximum": 8
+    }
+   },
+   "shack_door_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6,
+     "minimum": 3,
+     "maximum": 13
+    },
+    "renewable": {
+     "n": 11,
+     "mean": 8.363636363636363,
+     "minimum": 2,
+     "maximum": 12
+    }
+   }
+  },
+  "validation": {
+   "initial_plum": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.5,
+     "minimum": 3,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 4.666666666666667,
+     "minimum": 3,
+     "maximum": 7
+    }
+   },
+   "initial_lemon": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 5.75,
+     "minimum": 3,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 4.666666666666667,
+     "minimum": 2,
+     "maximum": 7
+    }
+   },
+   "initial_apple": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6,
+     "minimum": 3,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 6.333333333333333,
+     "minimum": 5,
+     "maximum": 8
+    }
+   },
+   "initial_banana": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 5.75,
+     "minimum": 3,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 7.5,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "initial_iron": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 8.25,
+     "minimum": 5,
+     "maximum": 10
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 7.166666666666667,
+     "minimum": 2,
+     "maximum": 10
+    }
+   },
+   "affordable_common_spec_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 3.75,
+     "minimum": 2,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 2.5,
+     "minimum": 2,
+     "maximum": 5
+    }
+   },
+   "tree_total": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 15.5,
+     "minimum": 12,
+     "maximum": 18
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 17.666666666666668,
+     "minimum": 14,
+     "maximum": 20
+    }
+   },
+   "fruit_total": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.5,
+     "minimum": 2,
+     "maximum": 12
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 17,
+     "minimum": 4,
+     "maximum": 30
+    }
+   },
+   "ripe_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 4,
+     "minimum": 2,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 10,
+     "minimum": 4,
+     "maximum": 16
+    }
+   },
+   "own_private_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 7.75,
+     "minimum": 6,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 8.166666666666666,
+     "minimum": 7,
+     "maximum": 9
+    }
+   },
+   "own_private_fruit": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 3.75,
+     "minimum": 1,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 8,
+     "minimum": 2,
+     "maximum": 13
+    }
+   },
+   "own_near_tree_count": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 5,
+     "minimum": 4,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 6.833333333333333,
+     "minimum": 4,
+     "maximum": 12
+    }
+   },
+   "own_near_fruit": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 2,
+     "minimum": 0,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 6.833333333333333,
+     "minimum": 2,
+     "maximum": 17
+    }
+   },
+   "water_adjacent_base_cells": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6,
+     "minimum": 4,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 3.8333333333333335,
+     "minimum": 0,
+     "maximum": 7
+    }
+   },
+   "own_nearest_tree_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 1.75,
+     "minimum": 0,
+     "maximum": 3
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 1,
+     "minimum": 0,
+     "maximum": 2
+    }
+   },
+   "own_nearest_iron_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 2.75,
+     "minimum": 1,
+     "maximum": 6
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 4.166666666666667,
+     "minimum": 0,
+     "maximum": 10
+    }
+   },
+   "shack_door_distance": {
+    "nonrenewable": {
+     "n": 4,
+     "mean": 6.75,
+     "minimum": 5,
+     "maximum": 9
+    },
+    "renewable": {
+     "n": 6,
+     "mean": 11.166666666666666,
+     "minimum": 6,
+     "maximum": 14
+    }
+   }
+  }
+ },
+ "outcomes_observational": {
+  "discovery": {
+   "nonrenewable": {
+    "n": 4,
+    "score_mean": 139,
+    "margin_mean": -31.5,
+    "wood_mean": 32.5,
+    "starter_reinvested_by_100_mean": 1.5
+   },
+   "renewable": {
+    "n": 11,
+    "score_mean": 290.6363636363636,
+    "margin_mean": 89.72727272727273,
+    "wood_mean": 71.0909090909091,
+    "starter_reinvested_by_100_mean": 8
+   }
+  },
+  "validation": {
+   "nonrenewable": {
+    "n": 4,
+    "score_mean": 137.25,
+    "margin_mean": -14.75,
+    "wood_mean": 32.5,
+    "starter_reinvested_by_100_mean": 1
+   },
+   "renewable": {
+    "n": 6,
+    "score_mean": 292.3333333333333,
+    "margin_mean": 120.5,
+    "wood_mean": 71.5,
+    "starter_reinvested_by_100_mean": 8.833333333333334
+   }
+  },
+  "current_consumed": {
+   "nonrenewable": {
+    "n": 4,
+    "score_mean": 227.5,
+    "margin_mean": 62,
+    "wood_mean": 55,
+    "starter_reinvested_by_100_mean": 0.25
+   },
+   "renewable": {
+    "n": 6,
+    "score_mean": 336,
+    "margin_mean": 73,
+    "wood_mean": 81.66666666666667,
+    "starter_reinvested_by_100_mean": 11
+   }
+  }
+ },
+ "support_gates": {
+  "discovery_at_least_4_each": true,
+  "validation_at_least_3_each": true,
+  "both_seats": true,
+  "at_least_6_opponents": true,
+  "historical_role_rate_at_least_0.80": false,
+  "current_role_rate_at_least_0.80": false
+ },
+ "transfer_gates": {
+  "validation_balanced_accuracy_at_least_0.75": false,
+  "validation_precision_at_least_0.75": false,
+  "validation_recall_at_least_0.75": false,
+  "validation_nonrenewable_recall_at_least_0.60": false,
+  "validation_constant_advantage_at_least_0.10": false
+ },
+ "decision": "reject_role_consistency",
+ "rows": [
+  {
+   "game_id": 896491202,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 167,
+   "opponent_score": 80,
+   "margin": 87,
+   "final_inventory": [
+    0,
+    4,
+    7,
+    0,
+    0,
+    39
+   ],
+   "final_wood": 39,
+   "opening": {
+    "initial_plum": 4,
+    "initial_lemon": 9,
+    "initial_apple": 8,
+    "initial_banana": 4,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 20,
+    "fruit_total": 22,
+    "ripe_tree_count": 10,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 11,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 9,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 4,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 16,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 94,
+      "DROP": 10,
+      "HARVEST": 1,
+      "MOVE": 187,
+      "PICK": 4,
+      "PLANT": 4
+     },
+     "successful": {
+      "CHOP": 84,
+      "DROP": 10,
+      "HARVEST": 1,
+      "PICK": 4,
+      "PLANT": 4
+     },
+     "successful_productive_nonmove": 103,
+     "successful_chop_share": 0.8155339805825242,
+     "gained": {
+      "PLUM": 1,
+      "BANANA": 4,
+      "WOOD": 9
+     },
+     "spent": {
+      "PLUM": 1,
+      "BANANA": 4,
+      "WOOD": 9
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 4,
+     "successful_plants_total": 4,
+     "first_successful_harvest": 8,
+     "first_successful_plant": 19,
+     "first_reinvestment": null
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 16,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 83,
+      "DROP": 15,
+      "MOVE": 186
+     },
+     "successful": {
+      "CHOP": 83,
+      "DROP": 15
+     },
+     "successful_productive_nonmove": 98,
+     "successful_chop_share": 0.8469387755102041,
+     "gained": {
+      "WOOD": 30
+     },
+     "spent": {
+      "WOOD": 30
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 0,
+   "total_reinvested_by_100": 0,
+   "starter_reinvestment_share": null,
+   "trained_chop_share": 0.8469387755102041,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": false,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896492419,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 1,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 308,
+   "opponent_score": 113,
+   "margin": 195,
+   "final_inventory": [
+    1,
+    3,
+    4,
+    0,
+    0,
+    75
+   ],
+   "final_wood": 75,
+   "opening": {
+    "initial_plum": 6,
+    "initial_lemon": 8,
+    "initial_apple": 5,
+    "initial_banana": 3,
+    "initial_iron": 4,
+    "affordable_common_spec_count": 3,
+    "tree_total": 20,
+    "fruit_total": 36,
+    "ripe_tree_count": 14,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 18,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 7,
+    "water_adjacent_base_cells": 16,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 7,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 18,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 26,
+      "DROP": 7,
+      "HARVEST": 41,
+      "MINE": 1,
+      "MOVE": 179,
+      "PICK": 3,
+      "PLANT": 43
+     },
+     "successful": {
+      "CHOP": 26,
+      "DROP": 7,
+      "HARVEST": 41,
+      "MINE": 1,
+      "PICK": 3,
+      "PLANT": 43
+     },
+     "successful_productive_nonmove": 121,
+     "successful_chop_share": 0.21487603305785125,
+     "gained": {
+      "BANANA": 44,
+      "IRON": 1,
+      "WOOD": 6
+     },
+     "spent": {
+      "BANANA": 43,
+      "IRON": 1,
+      "WOOD": 6
+     },
+     "reinvested_by_100": {
+      "BANANA": 10
+     },
+     "reinvested_total": {
+      "BANANA": 40
+     },
+     "successful_plants_by_100": 13,
+     "successful_plants_total": 43,
+     "first_successful_harvest": 31,
+     "first_successful_plant": 21,
+     "first_reinvestment": 33
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 18,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 139,
+      "DROP": 35,
+      "MOVE": 108
+     },
+     "successful": {
+      "CHOP": 135,
+      "DROP": 35
+     },
+     "successful_productive_nonmove": 170,
+     "successful_chop_share": 0.7941176470588235,
+     "gained": {
+      "WOOD": 69
+     },
+     "spent": {
+      "WOOD": 69
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 10,
+   "total_reinvested_by_100": 10,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7941176470588235,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896493461,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 160,
+   "opponent_score": 116,
+   "margin": 44,
+   "final_inventory": [
+    0,
+    0,
+    8,
+    0,
+    4,
+    38
+   ],
+   "final_wood": 38,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 5,
+    "initial_apple": 9,
+    "initial_banana": 2,
+    "initial_iron": 9,
+    "affordable_common_spec_count": 5,
+    "tree_total": 16,
+    "fruit_total": 12,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 3,
+    "water_adjacent_base_cells": 7,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 3,
+    "shack_door_distance": 14
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 89,
+      "DROP": 10,
+      "MOVE": 197,
+      "PICK": 2,
+      "PLANT": 2
+     },
+     "successful": {
+      "CHOP": 87,
+      "DROP": 10,
+      "PICK": 2,
+      "PLANT": 2
+     },
+     "successful_productive_nonmove": 101,
+     "successful_chop_share": 0.8613861386138614,
+     "gained": {
+      "BANANA": 2,
+      "WOOD": 10
+     },
+     "spent": {
+      "BANANA": 2,
+      "WOOD": 10
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 2,
+     "successful_plants_total": 2,
+     "first_successful_harvest": null,
+     "first_successful_plant": 3,
+     "first_reinvestment": null
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 82,
+      "DROP": 14,
+      "MOVE": 203
+     },
+     "successful": {
+      "CHOP": 78,
+      "DROP": 14
+     },
+     "successful_productive_nonmove": 92,
+     "successful_chop_share": 0.8478260869565217,
+     "gained": {
+      "WOOD": 30
+     },
+     "spent": {
+      "WOOD": 28
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 0,
+   "total_reinvested_by_100": 0,
+   "starter_reinvestment_share": null,
+   "trained_chop_share": 0.8478260869565217,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": false,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896493721,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 282,
+   "opponent_score": 235,
+   "margin": 47,
+   "final_inventory": [
+    0,
+    0,
+    2,
+    0,
+    2,
+    70
+   ],
+   "final_wood": 70,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 2,
+    "initial_apple": 3,
+    "initial_banana": 5,
+    "initial_iron": 7,
+    "affordable_common_spec_count": 2,
+    "tree_total": 16,
+    "fruit_total": 16,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 8,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 3,
+    "water_adjacent_base_cells": 3,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 3,
+    "shack_door_distance": 11
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 76,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 70,
+      "DROP": 4,
+      "HARVEST": 36,
+      "MOVE": 148,
+      "PICK": 5,
+      "PLANT": 37
+     },
+     "successful": {
+      "CHOP": 69,
+      "DROP": 4,
+      "HARVEST": 36,
+      "PICK": 5,
+      "PLANT": 37
+     },
+     "successful_productive_nonmove": 151,
+     "successful_chop_share": 0.45695364238410596,
+     "gained": {
+      "LEMON": 3,
+      "BANANA": 38,
+      "WOOD": 1
+     },
+     "spent": {
+      "LEMON": 3,
+      "BANANA": 37,
+      "WOOD": 1
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {
+      "BANANA": 32
+     },
+     "successful_plants_by_100": 5,
+     "successful_plants_total": 37,
+     "first_successful_harvest": 12,
+     "first_successful_plant": 79,
+     "first_reinvestment": 111
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 76,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 67,
+      "DROP": 36,
+      "MOVE": 121
+     },
+     "successful": {
+      "CHOP": 67,
+      "DROP": 36
+     },
+     "successful_productive_nonmove": 103,
+     "successful_chop_share": 0.6504854368932039,
+     "gained": {
+      "WOOD": 69
+     },
+     "spent": {
+      "WOOD": 69
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 0,
+   "total_reinvested_by_100": 0,
+   "starter_reinvestment_share": null,
+   "trained_chop_share": 0.6504854368932039,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": false,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896494122,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 282,
+   "opponent_score": 323,
+   "margin": -41,
+   "final_inventory": [
+    3,
+    3,
+    4,
+    0,
+    2,
+    68
+   ],
+   "final_wood": 68,
+   "opening": {
+    "initial_plum": 8,
+    "initial_lemon": 8,
+    "initial_apple": 5,
+    "initial_banana": 3,
+    "initial_iron": 7,
+    "affordable_common_spec_count": 5,
+    "tree_total": 20,
+    "fruit_total": 16,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 8,
+    "own_near_tree_count": 8,
+    "own_near_fruit": 5,
+    "water_adjacent_base_cells": 0,
+    "own_nearest_tree_distance": 2,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 8
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 62,
+      "DROP": 10,
+      "HARVEST": 30,
+      "MOVE": 162,
+      "PICK": 3,
+      "PLANT": 33
+     },
+     "successful": {
+      "CHOP": 59,
+      "DROP": 10,
+      "HARVEST": 30,
+      "PICK": 3,
+      "PLANT": 33
+     },
+     "successful_productive_nonmove": 135,
+     "successful_chop_share": 0.43703703703703706,
+     "gained": {
+      "BANANA": 33,
+      "WOOD": 10
+     },
+     "spent": {
+      "BANANA": 33,
+      "WOOD": 10
+     },
+     "reinvested_by_100": {
+      "BANANA": 9
+     },
+     "reinvested_total": {
+      "BANANA": 30
+     },
+     "successful_plants_by_100": 12,
+     "successful_plants_total": 33,
+     "first_successful_harvest": 36,
+     "first_successful_plant": 3,
+     "first_reinvestment": 38
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 135,
+      "DROP": 29,
+      "MOVE": 135
+     },
+     "successful": {
+      "CHOP": 132,
+      "DROP": 29
+     },
+     "successful_productive_nonmove": 161,
+     "successful_chop_share": 0.8198757763975155,
+     "gained": {
+      "WOOD": 58
+     },
+     "spent": {
+      "WOOD": 58
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 9,
+   "total_reinvested_by_100": 9,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8198757763975155,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896494214,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 405,
+   "opponent_score": 331,
+   "margin": 74,
+   "final_inventory": [
+    0,
+    0,
+    5,
+    0,
+    1,
+    100
+   ],
+   "final_wood": 100,
+   "opening": {
+    "initial_plum": 10,
+    "initial_lemon": 5,
+    "initial_apple": 6,
+    "initial_banana": 8,
+    "initial_iron": 6,
+    "affordable_common_spec_count": 5,
+    "tree_total": 20,
+    "fruit_total": 24,
+    "ripe_tree_count": 10,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 12,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 13,
+    "water_adjacent_base_cells": 5,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 5,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 1,
+      "HARVEST": 52,
+      "MOVE": 179,
+      "PICK": 8,
+      "PLANT": 60
+     },
+     "successful": {
+      "CHOP": 1,
+      "HARVEST": 52,
+      "PICK": 8,
+      "PLANT": 60
+     },
+     "successful_productive_nonmove": 121,
+     "successful_chop_share": 0.008264462809917356,
+     "gained": {
+      "BANANA": 60
+     },
+     "spent": {
+      "BANANA": 60
+     },
+     "reinvested_by_100": {
+      "BANANA": 13
+     },
+     "reinvested_total": {
+      "BANANA": 52
+     },
+     "successful_plants_by_100": 21,
+     "successful_plants_total": 60,
+     "first_successful_harvest": 32,
+     "first_successful_plant": 4,
+     "first_reinvestment": 34
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 150,
+      "DROP": 52,
+      "MOVE": 97
+     },
+     "successful": {
+      "CHOP": 150,
+      "DROP": 52
+     },
+     "successful_productive_nonmove": 202,
+     "successful_chop_share": 0.7425742574257426,
+     "gained": {
+      "WOOD": 100
+     },
+     "spent": {
+      "WOOD": 100
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 13,
+   "total_reinvested_by_100": 13,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7425742574257426,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896494703,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 279,
+   "opponent_score": 343,
+   "margin": -64,
+   "final_inventory": [
+    4,
+    2,
+    9,
+    0,
+    0,
+    66
+   ],
+   "final_wood": 66,
+   "opening": {
+    "initial_plum": 9,
+    "initial_lemon": 7,
+    "initial_apple": 10,
+    "initial_banana": 6,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 5,
+    "tree_total": 14,
+    "fruit_total": 4,
+    "ripe_tree_count": 2,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 2,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 2,
+    "water_adjacent_base_cells": 7,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 1,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 29,
+      "DROP": 6,
+      "HARVEST": 37,
+      "MOVE": 179,
+      "PICK": 6,
+      "PLANT": 43
+     },
+     "successful": {
+      "CHOP": 28,
+      "DROP": 6,
+      "HARVEST": 37,
+      "PICK": 6,
+      "PLANT": 43
+     },
+     "successful_productive_nonmove": 120,
+     "successful_chop_share": 0.23333333333333334,
+     "gained": {
+      "BANANA": 43,
+      "WOOD": 6
+     },
+     "spent": {
+      "BANANA": 43,
+      "WOOD": 6
+     },
+     "reinvested_by_100": {
+      "BANANA": 12
+     },
+     "reinvested_total": {
+      "BANANA": 37
+     },
+     "successful_plants_by_100": 18,
+     "successful_plants_total": 43,
+     "first_successful_harvest": 37,
+     "first_successful_plant": 3,
+     "first_reinvestment": 39
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 141,
+      "DROP": 30,
+      "MOVE": 128
+     },
+     "successful": {
+      "CHOP": 134,
+      "DROP": 30
+     },
+     "successful_productive_nonmove": 164,
+     "successful_chop_share": 0.8170731707317073,
+     "gained": {
+      "WOOD": 62
+     },
+     "spent": {
+      "WOOD": 60
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 12,
+   "total_reinvested_by_100": 12,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8170731707317073,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896495136,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 266,
+   "opponent_score": 329,
+   "margin": -63,
+   "final_inventory": [
+    1,
+    4,
+    9,
+    0,
+    3,
+    63
+   ],
+   "final_wood": 63,
+   "opening": {
+    "initial_plum": 6,
+    "initial_lemon": 9,
+    "initial_apple": 10,
+    "initial_banana": 8,
+    "initial_iron": 8,
+    "affordable_common_spec_count": 5,
+    "tree_total": 10,
+    "fruit_total": 12,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 5,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 5,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 6,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 0,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 44,
+      "DROP": 7,
+      "HARVEST": 22,
+      "MOVE": 189,
+      "PICK": 8,
+      "PLANT": 30
+     },
+     "successful": {
+      "CHOP": 41,
+      "DROP": 7,
+      "HARVEST": 22,
+      "PICK": 8,
+      "PLANT": 30
+     },
+     "successful_productive_nonmove": 108,
+     "successful_chop_share": 0.37962962962962965,
+     "gained": {
+      "BANANA": 30,
+      "WOOD": 7
+     },
+     "spent": {
+      "BANANA": 30,
+      "WOOD": 7
+     },
+     "reinvested_by_100": {
+      "BANANA": 12
+     },
+     "reinvested_total": {
+      "BANANA": 22
+     },
+     "successful_plants_by_100": 20,
+     "successful_plants_total": 30,
+     "first_successful_harvest": 35,
+     "first_successful_plant": 3,
+     "first_reinvestment": 37
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 111,
+      "DROP": 28,
+      "MOVE": 160
+     },
+     "successful": {
+      "CHOP": 110,
+      "DROP": 28
+     },
+     "successful_productive_nonmove": 138,
+     "successful_chop_share": 0.7971014492753623,
+     "gained": {
+      "WOOD": 56
+     },
+     "spent": {
+      "WOOD": 56
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 12,
+   "total_reinvested_by_100": 12,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7971014492753623,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896495350,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 1,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 476,
+   "opponent_score": 139,
+   "margin": 337,
+   "final_inventory": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    118
+   ],
+   "final_wood": 118,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 10,
+    "initial_apple": 5,
+    "initial_banana": 6,
+    "initial_iron": 3,
+    "affordable_common_spec_count": 3,
+    "tree_total": 16,
+    "fruit_total": 8,
+    "ripe_tree_count": 4,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 4,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 8
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 14,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      3,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 18,
+      "DROP": 6,
+      "HARVEST": 48,
+      "MINE": 2,
+      "MOVE": 166,
+      "PICK": 6,
+      "PLANT": 54
+     },
+     "successful": {
+      "CHOP": 18,
+      "DROP": 6,
+      "HARVEST": 48,
+      "MINE": 2,
+      "PICK": 6,
+      "PLANT": 54
+     },
+     "successful_productive_nonmove": 134,
+     "successful_chop_share": 0.13432835820895522,
+     "gained": {
+      "BANANA": 54,
+      "IRON": 2,
+      "WOOD": 4
+     },
+     "spent": {
+      "BANANA": 54,
+      "IRON": 2,
+      "WOOD": 4
+     },
+     "reinvested_by_100": {
+      "BANANA": 10
+     },
+     "reinvested_total": {
+      "BANANA": 48
+     },
+     "successful_plants_by_100": 16,
+     "successful_plants_total": 54,
+     "first_successful_harvest": 43,
+     "first_successful_plant": 17,
+     "first_reinvestment": 45
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 14,
+     "spec": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 147,
+      "DROP": 40,
+      "MOVE": 99
+     },
+     "successful": {
+      "CHOP": 146,
+      "DROP": 40
+     },
+     "successful_productive_nonmove": 186,
+     "successful_chop_share": 0.7849462365591398,
+     "gained": {
+      "WOOD": 117
+     },
+     "spent": {
+      "WOOD": 114
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 10,
+   "total_reinvested_by_100": 10,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7849462365591398,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 896495475,
+   "corpus": "current_consumed",
+   "split": "current",
+   "seat": 0,
+   "opponent_agent_id": 6565556,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 301,
+   "opponent_score": 231,
+   "margin": 70,
+   "final_inventory": [
+    0,
+    0,
+    9,
+    0,
+    4,
+    73
+   ],
+   "final_wood": 73,
+   "opening": {
+    "initial_plum": 10,
+    "initial_lemon": 3,
+    "initial_apple": 10,
+    "initial_banana": 10,
+    "initial_iron": 9,
+    "affordable_common_spec_count": 2,
+    "tree_total": 14,
+    "fruit_total": 10,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 5,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 4,
+    "water_adjacent_base_cells": 14,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 1
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 53,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 23,
+      "DROP": 9,
+      "HARVEST": 21,
+      "MOVE": 208,
+      "PICK": 10,
+      "PLANT": 29
+     },
+     "successful": {
+      "CHOP": 23,
+      "DROP": 9,
+      "HARVEST": 21,
+      "PICK": 10,
+      "PLANT": 29
+     },
+     "successful_productive_nonmove": 92,
+     "successful_chop_share": 0.25,
+     "gained": {
+      "LEMON": 2,
+      "BANANA": 29,
+      "WOOD": 7
+     },
+     "spent": {
+      "LEMON": 2,
+      "BANANA": 29,
+      "WOOD": 7
+     },
+     "reinvested_by_100": {
+      "BANANA": 1
+     },
+     "reinvested_total": {
+      "BANANA": 19
+     },
+     "successful_plants_by_100": 10,
+     "successful_plants_total": 29,
+     "first_successful_harvest": 19,
+     "first_successful_plant": 57,
+     "first_reinvestment": 84
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 53,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 124,
+      "DROP": 33,
+      "MOVE": 90
+     },
+     "successful": {
+      "CHOP": 120,
+      "DROP": 33
+     },
+     "successful_productive_nonmove": 153,
+     "successful_chop_share": 0.7843137254901961,
+     "gained": {
+      "WOOD": 66
+     },
+     "spent": {
+      "WOOD": 66
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 1,
+   "total_reinvested_by_100": 1,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7843137254901961,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 893174122,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6511570,
+   "opponent": "celeria",
+   "turns": 300,
+   "score": 215,
+   "opponent_score": 254,
+   "margin": -39,
+   "final_inventory": [
+    3,
+    0,
+    8,
+    0,
+    4,
+    51
+   ],
+   "final_wood": 51,
+   "opening": {
+    "initial_plum": 8,
+    "initial_lemon": 2,
+    "initial_apple": 9,
+    "initial_banana": 3,
+    "initial_iron": 9,
+    "affordable_common_spec_count": 2,
+    "tree_total": 14,
+    "fruit_total": 6,
+    "ripe_tree_count": 2,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 3,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 3,
+    "water_adjacent_base_cells": 10,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 4,
+    "shack_door_distance": 2
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 54,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 46,
+      "DROP": 20,
+      "HARVEST": 9,
+      "MOVE": 213,
+      "PICK": 3,
+      "PLANT": 9
+     },
+     "successful": {
+      "CHOP": 45,
+      "DROP": 20,
+      "HARVEST": 9,
+      "PICK": 3,
+      "PLANT": 9
+     },
+     "successful_productive_nonmove": 86,
+     "successful_chop_share": 0.5232558139534884,
+     "gained": {
+      "LEMON": 3,
+      "BANANA": 9,
+      "WOOD": 17
+     },
+     "spent": {
+      "LEMON": 3,
+      "BANANA": 9,
+      "WOOD": 17
+     },
+     "reinvested_by_100": {
+      "BANANA": 6
+     },
+     "reinvested_total": {
+      "BANANA": 6
+     },
+     "successful_plants_by_100": 9,
+     "successful_plants_total": 9,
+     "first_successful_harvest": 12,
+     "first_successful_plant": 59,
+     "first_reinvestment": 75
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 54,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 82,
+      "DROP": 17,
+      "MOVE": 147
+     },
+     "successful": {
+      "CHOP": 82,
+      "DROP": 17
+     },
+     "successful_productive_nonmove": 99,
+     "successful_chop_share": 0.8282828282828283,
+     "gained": {
+      "WOOD": 35
+     },
+     "spent": {
+      "WOOD": 34
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 6,
+   "total_reinvested_by_100": 6,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8282828282828283,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 893407296,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6513710,
+   "opponent": "goq",
+   "turns": 264,
+   "score": 127,
+   "opponent_score": 198,
+   "margin": -71,
+   "final_inventory": [
+    0,
+    4,
+    7,
+    0,
+    0,
+    29
+   ],
+   "final_wood": 29,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 9,
+    "initial_apple": 8,
+    "initial_banana": 8,
+    "initial_iron": 3,
+    "affordable_common_spec_count": 2,
+    "tree_total": 10,
+    "fruit_total": 0,
+    "ripe_tree_count": 0,
+    "own_private_tree_count": 5,
+    "own_private_fruit": 0,
+    "own_near_tree_count": 3,
+    "own_near_fruit": 0,
+    "water_adjacent_base_cells": 8,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 1,
+    "shack_door_distance": 13
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 40,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 47,
+      "DROP": 12,
+      "HARVEST": 4,
+      "MINE": 2,
+      "MOVE": 182,
+      "PICK": 8,
+      "PLANT": 9
+     },
+     "successful": {
+      "CHOP": 46,
+      "DROP": 12,
+      "HARVEST": 4,
+      "MINE": 2,
+      "PICK": 8,
+      "PLANT": 9
+     },
+     "successful_productive_nonmove": 81,
+     "successful_chop_share": 0.5679012345679012,
+     "gained": {
+      "PLUM": 3,
+      "BANANA": 9,
+      "IRON": 2,
+      "WOOD": 7
+     },
+     "spent": {
+      "PLUM": 3,
+      "BANANA": 9,
+      "IRON": 2,
+      "WOOD": 7
+     },
+     "reinvested_by_100": {
+      "BANANA": 1
+     },
+     "reinvested_total": {
+      "BANANA": 1
+     },
+     "successful_plants_by_100": 9,
+     "successful_plants_total": 9,
+     "first_successful_harvest": 19,
+     "first_successful_plant": 43,
+     "first_reinvestment": 77
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 40,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 44,
+      "DROP": 11,
+      "MOVE": 169
+     },
+     "successful": {
+      "CHOP": 44,
+      "DROP": 11
+     },
+     "successful_productive_nonmove": 55,
+     "successful_chop_share": 0.8,
+     "gained": {
+      "WOOD": 22
+     },
+     "spent": {
+      "WOOD": 22
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 1,
+   "total_reinvested_by_100": 1,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 893412043,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6513744,
+   "opponent": "goq",
+   "turns": 296,
+   "score": 230,
+   "opponent_score": 201,
+   "margin": 29,
+   "final_inventory": [
+    4,
+    0,
+    2,
+    0,
+    3,
+    56
+   ],
+   "final_wood": 56,
+   "opening": {
+    "initial_plum": 9,
+    "initial_lemon": 3,
+    "initial_apple": 3,
+    "initial_banana": 8,
+    "initial_iron": 8,
+    "affordable_common_spec_count": 2,
+    "tree_total": 18,
+    "fruit_total": 12,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 9,
+    "own_near_fruit": 5,
+    "water_adjacent_base_cells": 3,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 6,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 22,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 38,
+      "DROP": 10,
+      "HARVEST": 9,
+      "MOVE": 216,
+      "PICK": 8,
+      "PLANT": 15
+     },
+     "successful": {
+      "CHOP": 36,
+      "DROP": 10,
+      "HARVEST": 9,
+      "PICK": 8,
+      "PLANT": 15
+     },
+     "successful_productive_nonmove": 78,
+     "successful_chop_share": 0.46153846153846156,
+     "gained": {
+      "LEMON": 2,
+      "BANANA": 15,
+      "WOOD": 8
+     },
+     "spent": {
+      "LEMON": 2,
+      "BANANA": 15,
+      "WOOD": 8
+     },
+     "reinvested_by_100": {
+      "BANANA": 7
+     },
+     "reinvested_total": {
+      "BANANA": 7
+     },
+     "successful_plants_by_100": 15,
+     "successful_plants_total": 15,
+     "first_successful_harvest": 6,
+     "first_successful_plant": 25,
+     "first_reinvestment": 62
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 22,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 84,
+      "DROP": 24,
+      "MOVE": 166
+     },
+     "successful": {
+      "CHOP": 84,
+      "DROP": 24
+     },
+     "successful_productive_nonmove": 108,
+     "successful_chop_share": 0.7777777777777778,
+     "gained": {
+      "WOOD": 48
+     },
+     "spent": {
+      "WOOD": 48
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 7,
+   "total_reinvested_by_100": 7,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7777777777777778,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 893876322,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6519580,
+   "opponent": "FreZzz",
+   "turns": 300,
+   "score": 242,
+   "opponent_score": 170,
+   "margin": 72,
+   "final_inventory": [
+    0,
+    0,
+    6,
+    0,
+    0,
+    59
+   ],
+   "final_wood": 59,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 3,
+    "initial_apple": 7,
+    "initial_banana": 5,
+    "initial_iron": 3,
+    "affordable_common_spec_count": 2,
+    "tree_total": 16,
+    "fruit_total": 12,
+    "ripe_tree_count": 4,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 6,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 6,
+    "shack_door_distance": 12
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 38,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 50,
+      "DROP": 9,
+      "HARVEST": 21,
+      "MINE": 2,
+      "MOVE": 189,
+      "PICK": 5,
+      "PLANT": 24
+     },
+     "successful": {
+      "CHOP": 50,
+      "DROP": 9,
+      "HARVEST": 21,
+      "MINE": 2,
+      "PICK": 5,
+      "PLANT": 24
+     },
+     "successful_productive_nonmove": 111,
+     "successful_chop_share": 0.45045045045045046,
+     "gained": {
+      "LEMON": 2,
+      "BANANA": 24,
+      "IRON": 2,
+      "WOOD": 5
+     },
+     "spent": {
+      "LEMON": 2,
+      "BANANA": 24,
+      "IRON": 2,
+      "WOOD": 5
+     },
+     "reinvested_by_100": {
+      "BANANA": 6
+     },
+     "reinvested_total": {
+      "BANANA": 19
+     },
+     "successful_plants_by_100": 11,
+     "successful_plants_total": 24,
+     "first_successful_harvest": 31,
+     "first_successful_plant": 41,
+     "first_reinvestment": 72
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 38,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 100,
+      "DROP": 29,
+      "MOVE": 133
+     },
+     "successful": {
+      "CHOP": 100,
+      "DROP": 29
+     },
+     "successful_productive_nonmove": 129,
+     "successful_chop_share": 0.7751937984496124,
+     "gained": {
+      "WOOD": 54
+     },
+     "spent": {
+      "WOOD": 54
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 6,
+   "total_reinvested_by_100": 6,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7751937984496124,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 894397581,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6526682,
+   "opponent": "FreZzz",
+   "turns": 300,
+   "score": 321,
+   "opponent_score": 162,
+   "margin": 159,
+   "final_inventory": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    80
+   ],
+   "final_wood": 80,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 5,
+    "initial_apple": 2,
+    "initial_banana": 5,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 18,
+    "fruit_total": 20,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 10,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 4,
+    "water_adjacent_base_cells": 12,
+    "own_nearest_tree_distance": 2,
+    "own_nearest_iron_distance": 3,
+    "shack_door_distance": 12
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 26,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 8,
+      "DROP": 3,
+      "HARVEST": 53,
+      "MOVE": 176,
+      "PICK": 5,
+      "PLANT": 55
+     },
+     "successful": {
+      "CHOP": 7,
+      "DROP": 3,
+      "HARVEST": 53,
+      "PICK": 5,
+      "PLANT": 55
+     },
+     "successful_productive_nonmove": 123,
+     "successful_chop_share": 0.056910569105691054,
+     "gained": {
+      "PLUM": 3,
+      "BANANA": 55
+     },
+     "spent": {
+      "PLUM": 3,
+      "BANANA": 55
+     },
+     "reinvested_by_100": {
+      "BANANA": 10
+     },
+     "reinvested_total": {
+      "BANANA": 50
+     },
+     "successful_plants_by_100": 15,
+     "successful_plants_total": 55,
+     "first_successful_harvest": 5,
+     "first_successful_plant": 29,
+     "first_reinvestment": 51
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 26,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 104,
+      "DROP": 41,
+      "MOVE": 129
+     },
+     "successful": {
+      "CHOP": 104,
+      "DROP": 41
+     },
+     "successful_productive_nonmove": 145,
+     "successful_chop_share": 0.7172413793103448,
+     "gained": {
+      "WOOD": 82
+     },
+     "spent": {
+      "WOOD": 80
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 10,
+   "total_reinvested_by_100": 10,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7172413793103448,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895446276,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6542619,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 316,
+   "opponent_score": 371,
+   "margin": -55,
+   "final_inventory": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    78
+   ],
+   "final_wood": 78,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 10,
+    "initial_apple": 5,
+    "initial_banana": 5,
+    "initial_iron": 3,
+    "affordable_common_spec_count": 2,
+    "tree_total": 10,
+    "fruit_total": 18,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 4,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 5,
+    "own_near_fruit": 8,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 20,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      3,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 37,
+      "DROP": 10,
+      "HARVEST": 30,
+      "MINE": 2,
+      "MOVE": 184,
+      "PICK": 5,
+      "PLANT": 32
+     },
+     "successful": {
+      "CHOP": 36,
+      "DROP": 10,
+      "HARVEST": 30,
+      "MINE": 2,
+      "PICK": 5,
+      "PLANT": 32
+     },
+     "successful_productive_nonmove": 115,
+     "successful_chop_share": 0.3130434782608696,
+     "gained": {
+      "PLUM": 3,
+      "BANANA": 32,
+      "IRON": 2,
+      "WOOD": 6
+     },
+     "spent": {
+      "PLUM": 3,
+      "BANANA": 32,
+      "IRON": 2,
+      "WOOD": 5
+     },
+     "reinvested_by_100": {
+      "BANANA": 9
+     },
+     "reinvested_total": {
+      "BANANA": 27
+     },
+     "successful_plants_by_100": 14,
+     "successful_plants_total": 32,
+     "first_successful_harvest": 2,
+     "first_successful_plant": 24,
+     "first_reinvestment": 52
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 20,
+     "spec": [
+      2,
+      3,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 128,
+      "DROP": 25,
+      "MOVE": 127
+     },
+     "successful": {
+      "CHOP": 126,
+      "DROP": 25
+     },
+     "successful_productive_nonmove": 151,
+     "successful_chop_share": 0.8344370860927153,
+     "gained": {
+      "WOOD": 76
+     },
+     "spent": {
+      "WOOD": 73
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 9,
+   "total_reinvested_by_100": 9,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8344370860927153,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895446639,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6542619,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 291,
+   "opponent_score": 207,
+   "margin": 84,
+   "final_inventory": [
+    3,
+    3,
+    1,
+    0,
+    0,
+    71
+   ],
+   "final_wood": 71,
+   "opening": {
+    "initial_plum": 8,
+    "initial_lemon": 8,
+    "initial_apple": 2,
+    "initial_banana": 8,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 3,
+    "tree_total": 20,
+    "fruit_total": 8,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 4,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 3,
+    "water_adjacent_base_cells": 2,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 11
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 18,
+      "DROP": 3,
+      "HARVEST": 32,
+      "MOVE": 199,
+      "PICK": 8,
+      "PLANT": 40
+     },
+     "successful": {
+      "CHOP": 17,
+      "DROP": 3,
+      "HARVEST": 32,
+      "PICK": 8,
+      "PLANT": 40
+     },
+     "successful_productive_nonmove": 100,
+     "successful_chop_share": 0.17,
+     "gained": {
+      "BANANA": 40,
+      "WOOD": 3
+     },
+     "spent": {
+      "BANANA": 40,
+      "WOOD": 3
+     },
+     "reinvested_by_100": {
+      "BANANA": 6
+     },
+     "reinvested_total": {
+      "BANANA": 32
+     },
+     "successful_plants_by_100": 14,
+     "successful_plants_total": 40,
+     "first_successful_harvest": 47,
+     "first_successful_plant": 3,
+     "first_reinvestment": 55
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 146,
+      "DROP": 35,
+      "MOVE": 118
+     },
+     "successful": {
+      "CHOP": 146,
+      "DROP": 35
+     },
+     "successful_productive_nonmove": 181,
+     "successful_chop_share": 0.8066298342541437,
+     "gained": {
+      "WOOD": 70
+     },
+     "spent": {
+      "WOOD": 68
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 6,
+   "total_reinvested_by_100": 6,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8066298342541437,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895447009,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6542619,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 303,
+   "opponent_score": 213,
+   "margin": 90,
+   "final_inventory": [
+    0,
+    0,
+    3,
+    0,
+    0,
+    75
+   ],
+   "final_wood": 75,
+   "opening": {
+    "initial_plum": 3,
+    "initial_lemon": 2,
+    "initial_apple": 4,
+    "initial_banana": 6,
+    "initial_iron": 2,
+    "affordable_common_spec_count": 2,
+    "tree_total": 22,
+    "fruit_total": 18,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 9,
+    "own_near_tree_count": 13,
+    "own_near_fruit": 14,
+    "water_adjacent_base_cells": 10,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 1,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 39,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 21,
+      "DROP": 14,
+      "HARVEST": 44,
+      "MINE": 3,
+      "MOVE": 168,
+      "PICK": 6,
+      "PLANT": 44
+     },
+     "successful": {
+      "CHOP": 21,
+      "DROP": 14,
+      "HARVEST": 44,
+      "MINE": 3,
+      "PICK": 6,
+      "PLANT": 44
+     },
+     "successful_productive_nonmove": 132,
+     "successful_chop_share": 0.1590909090909091,
+     "gained": {
+      "PLUM": 2,
+      "LEMON": 3,
+      "BANANA": 45,
+      "IRON": 3,
+      "WOOD": 6
+     },
+     "spent": {
+      "PLUM": 2,
+      "LEMON": 3,
+      "BANANA": 44,
+      "IRON": 3,
+      "WOOD": 6
+     },
+     "reinvested_by_100": {
+      "BANANA": 5
+     },
+     "reinvested_total": {
+      "BANANA": 38
+     },
+     "successful_plants_by_100": 11,
+     "successful_plants_total": 44,
+     "first_successful_harvest": 2,
+     "first_successful_plant": 42,
+     "first_reinvestment": 69
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 39,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 141,
+      "DROP": 35,
+      "MOVE": 85
+     },
+     "successful": {
+      "CHOP": 140,
+      "DROP": 35
+     },
+     "successful_productive_nonmove": 175,
+     "successful_chop_share": 0.8,
+     "gained": {
+      "WOOD": 71
+     },
+     "spent": {
+      "WOOD": 69
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 5,
+   "total_reinvested_by_100": 5,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895447026,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6542619,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 447,
+   "opponent_score": 166,
+   "margin": 281,
+   "final_inventory": [
+    0,
+    2,
+    5,
+    0,
+    0,
+    110
+   ],
+   "final_wood": 110,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 7,
+    "initial_apple": 6,
+    "initial_banana": 6,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 16,
+    "fruit_total": 24,
+    "ripe_tree_count": 10,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 12,
+    "own_near_tree_count": 9,
+    "own_near_fruit": 16,
+    "water_adjacent_base_cells": 7,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 4,
+    "shack_door_distance": 10
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 14,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 8,
+      "DROP": 5,
+      "HARVEST": 55,
+      "MOVE": 169,
+      "PICK": 6,
+      "PLANT": 57
+     },
+     "successful": {
+      "CHOP": 8,
+      "DROP": 5,
+      "HARVEST": 55,
+      "PICK": 6,
+      "PLANT": 57
+     },
+     "successful_productive_nonmove": 131,
+     "successful_chop_share": 0.061068702290076333,
+     "gained": {
+      "PLUM": 3,
+      "BANANA": 58,
+      "WOOD": 2
+     },
+     "spent": {
+      "PLUM": 3,
+      "BANANA": 57,
+      "WOOD": 2
+     },
+     "reinvested_by_100": {
+      "BANANA": 10
+     },
+     "reinvested_total": {
+      "BANANA": 51
+     },
+     "successful_plants_by_100": 16,
+     "successful_plants_total": 57,
+     "first_successful_harvest": 3,
+     "first_successful_plant": 17,
+     "first_reinvestment": 47
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 14,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 122,
+      "DROP": 56,
+      "MOVE": 108
+     },
+     "successful": {
+      "CHOP": 122,
+      "DROP": 56
+     },
+     "successful_productive_nonmove": 178,
+     "successful_chop_share": 0.6853932584269663,
+     "gained": {
+      "WOOD": 108
+     },
+     "spent": {
+      "WOOD": 108
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 10,
+   "total_reinvested_by_100": 10,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.6853932584269663,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895447237,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6542619,
+   "opponent": "Bubaptik",
+   "turns": 300,
+   "score": 325,
+   "opponent_score": 50,
+   "margin": 275,
+   "final_inventory": [
+    0,
+    2,
+    3,
+    0,
+    0,
+    80
+   ],
+   "final_wood": 80,
+   "opening": {
+    "initial_plum": 3,
+    "initial_lemon": 7,
+    "initial_apple": 4,
+    "initial_banana": 8,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 2,
+    "tree_total": 14,
+    "fruit_total": 16,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 8,
+    "own_near_tree_count": 5,
+    "own_near_fruit": 9,
+    "water_adjacent_base_cells": 13,
+    "own_nearest_tree_distance": 2,
+    "own_nearest_iron_distance": 5,
+    "shack_door_distance": 7
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 14,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "DROP": 2,
+      "HARVEST": 46,
+      "MOVE": 193,
+      "PICK": 8,
+      "PLANT": 51
+     },
+     "successful": {
+      "DROP": 2,
+      "HARVEST": 46,
+      "PICK": 8,
+      "PLANT": 51
+     },
+     "successful_productive_nonmove": 107,
+     "successful_chop_share": 0.0,
+     "gained": {
+      "PLUM": 2,
+      "BANANA": 52
+     },
+     "spent": {
+      "PLUM": 2,
+      "BANANA": 51
+     },
+     "reinvested_by_100": {
+      "BANANA": 10
+     },
+     "reinvested_total": {
+      "BANANA": 43
+     },
+     "successful_plants_by_100": 18,
+     "successful_plants_total": 51,
+     "first_successful_harvest": 4,
+     "first_successful_plant": 17,
+     "first_reinvestment": 47
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 14,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 148,
+      "DROP": 40,
+      "MOVE": 98
+     },
+     "successful": {
+      "CHOP": 145,
+      "DROP": 40
+     },
+     "successful_productive_nonmove": 185,
+     "successful_chop_share": 0.7837837837837838,
+     "gained": {
+      "WOOD": 82
+     },
+     "spent": {
+      "WOOD": 80
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 10,
+   "total_reinvested_by_100": 10,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7837837837837838,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895883032,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6551808,
+   "opponent": "tass",
+   "turns": 223,
+   "score": 191,
+   "opponent_score": 208,
+   "margin": -17,
+   "final_inventory": [
+    0,
+    4,
+    7,
+    0,
+    0,
+    45
+   ],
+   "final_wood": 45,
+   "opening": {
+    "initial_plum": 10,
+    "initial_lemon": 9,
+    "initial_apple": 8,
+    "initial_banana": 8,
+    "initial_iron": 2,
+    "affordable_common_spec_count": 3,
+    "tree_total": 20,
+    "fruit_total": 12,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 10,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 10,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 2,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 0,
+    "shack_door_distance": 5
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 8,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 40,
+      "DROP": 9,
+      "HARVEST": 1,
+      "MINE": 3,
+      "MOVE": 153,
+      "PICK": 8,
+      "PLANT": 9
+     },
+     "successful": {
+      "CHOP": 40,
+      "DROP": 9,
+      "HARVEST": 1,
+      "MINE": 3,
+      "PICK": 8,
+      "PLANT": 9
+     },
+     "successful_productive_nonmove": 70,
+     "successful_chop_share": 0.5714285714285714,
+     "gained": {
+      "BANANA": 9,
+      "IRON": 3,
+      "WOOD": 6
+     },
+     "spent": {
+      "BANANA": 9,
+      "IRON": 3,
+      "WOOD": 6
+     },
+     "reinvested_by_100": {
+      "BANANA": 1
+     },
+     "reinvested_total": {
+      "BANANA": 1
+     },
+     "successful_plants_by_100": 9,
+     "successful_plants_total": 9,
+     "first_successful_harvest": 40,
+     "first_successful_plant": 11,
+     "first_reinvestment": 42
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 8,
+     "spec": [
+      3,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 88,
+      "DROP": 20,
+      "MOVE": 107
+     },
+     "successful": {
+      "CHOP": 87,
+      "DROP": 20
+     },
+     "successful_productive_nonmove": 107,
+     "successful_chop_share": 0.8130841121495327,
+     "gained": {
+      "WOOD": 39
+     },
+     "spent": {
+      "WOOD": 39
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 1,
+   "total_reinvested_by_100": 1,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8130841121495327,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895883103,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6551808,
+   "opponent": "tass",
+   "turns": 180,
+   "score": 109,
+   "opponent_score": 120,
+   "margin": -11,
+   "final_inventory": [
+    0,
+    0,
+    9,
+    0,
+    3,
+    25
+   ],
+   "final_wood": 25,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 4,
+    "initial_apple": 10,
+    "initial_banana": 8,
+    "initial_iron": 8,
+    "affordable_common_spec_count": 2,
+    "tree_total": 10,
+    "fruit_total": 14,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 5,
+    "own_private_fruit": 7,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 5,
+    "water_adjacent_base_cells": 9,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 3
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 34,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 19,
+      "DROP": 9,
+      "HARVEST": 6,
+      "MOVE": 128,
+      "PICK": 8,
+      "PLANT": 10
+     },
+     "successful": {
+      "CHOP": 19,
+      "DROP": 9,
+      "HARVEST": 6,
+      "PICK": 8,
+      "PLANT": 10
+     },
+     "successful_productive_nonmove": 52,
+     "successful_chop_share": 0.36538461538461536,
+     "gained": {
+      "PLUM": 3,
+      "LEMON": 1,
+      "BANANA": 10,
+      "WOOD": 5
+     },
+     "spent": {
+      "PLUM": 3,
+      "LEMON": 1,
+      "BANANA": 10,
+      "WOOD": 5
+     },
+     "reinvested_by_100": {
+      "BANANA": 2
+     },
+     "reinvested_total": {
+      "BANANA": 2
+     },
+     "successful_plants_by_100": 10,
+     "successful_plants_total": 10,
+     "first_successful_harvest": 5,
+     "first_successful_plant": 38,
+     "first_reinvestment": 76
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 34,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 50,
+      "DROP": 11,
+      "MOVE": 85
+     },
+     "successful": {
+      "CHOP": 50,
+      "DROP": 11
+     },
+     "successful_productive_nonmove": 61,
+     "successful_chop_share": 0.819672131147541,
+     "gained": {
+      "WOOD": 20
+     },
+     "spent": {
+      "WOOD": 20
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 2,
+   "total_reinvested_by_100": 2,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.819672131147541,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895883400,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6551808,
+   "opponent": "tass",
+   "turns": 190,
+   "score": 138,
+   "opponent_score": 136,
+   "margin": 2,
+   "final_inventory": [
+    0,
+    3,
+    3,
+    0,
+    1,
+    33
+   ],
+   "final_wood": 33,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 8,
+    "initial_apple": 4,
+    "initial_banana": 8,
+    "initial_iron": 6,
+    "affordable_common_spec_count": 3,
+    "tree_total": 14,
+    "fruit_total": 16,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 5,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 3,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 1,
+    "shack_door_distance": 12
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 25,
+      "DROP": 4,
+      "HARVEST": 6,
+      "MOVE": 133,
+      "PICK": 8,
+      "PLANT": 14
+     },
+     "successful": {
+      "CHOP": 25,
+      "DROP": 4,
+      "HARVEST": 6,
+      "PICK": 8,
+      "PLANT": 14
+     },
+     "successful_productive_nonmove": 57,
+     "successful_chop_share": 0.43859649122807015,
+     "gained": {
+      "BANANA": 14,
+      "WOOD": 4
+     },
+     "spent": {
+      "BANANA": 14,
+      "WOOD": 4
+     },
+     "reinvested_by_100": {
+      "BANANA": 6
+     },
+     "reinvested_total": {
+      "BANANA": 6
+     },
+     "successful_plants_by_100": 14,
+     "successful_plants_total": 14,
+     "first_successful_harvest": 33,
+     "first_successful_plant": 3,
+     "first_reinvestment": 35
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 58,
+      "DROP": 15,
+      "MOVE": 116
+     },
+     "successful": {
+      "CHOP": 58,
+      "DROP": 15
+     },
+     "successful_productive_nonmove": 73,
+     "successful_chop_share": 0.7945205479452054,
+     "gained": {
+      "WOOD": 29
+     },
+     "spent": {
+      "WOOD": 29
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 6,
+   "total_reinvested_by_100": 6,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7945205479452054,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895883571,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 0,
+   "opponent_agent_id": 6551808,
+   "opponent": "tass",
+   "turns": 300,
+   "score": 369,
+   "opponent_score": 280,
+   "margin": 89,
+   "final_inventory": [
+    0,
+    4,
+    9,
+    0,
+    0,
+    89
+   ],
+   "final_wood": 89,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 9,
+    "initial_apple": 10,
+    "initial_banana": 7,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 5,
+    "tree_total": 22,
+    "fruit_total": 12,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 11,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 13,
+    "own_near_fruit": 9,
+    "water_adjacent_base_cells": 11,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 8,
+    "shack_door_distance": 8
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 21,
+      "DROP": 2,
+      "HARVEST": 49,
+      "MOVE": 166,
+      "PICK": 7,
+      "PLANT": 55
+     },
+     "successful": {
+      "CHOP": 21,
+      "DROP": 2,
+      "HARVEST": 49,
+      "PICK": 7,
+      "PLANT": 55
+     },
+     "successful_productive_nonmove": 134,
+     "successful_chop_share": 0.15671641791044777,
+     "gained": {
+      "BANANA": 56,
+      "WOOD": 2
+     },
+     "spent": {
+      "BANANA": 55,
+      "WOOD": 2
+     },
+     "reinvested_by_100": {
+      "BANANA": 13
+     },
+     "reinvested_total": {
+      "BANANA": 48
+     },
+     "successful_plants_by_100": 20,
+     "successful_plants_total": 55,
+     "first_successful_harvest": 29,
+     "first_successful_plant": 3,
+     "first_reinvestment": 31
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 129,
+      "DROP": 45,
+      "MOVE": 125
+     },
+     "successful": {
+      "CHOP": 129,
+      "DROP": 45
+     },
+     "successful_productive_nonmove": 174,
+     "successful_chop_share": 0.7413793103448276,
+     "gained": {
+      "WOOD": 89
+     },
+     "spent": {
+      "WOOD": 87
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 13,
+   "total_reinvested_by_100": 13,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7413793103448276,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895924585,
+   "corpus": "historical",
+   "split": "discovery",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 272,
+   "score": 129,
+   "opponent_score": 156,
+   "margin": -27,
+   "final_inventory": [
+    0,
+    2,
+    3,
+    0,
+    0,
+    31
+   ],
+   "final_wood": 31,
+   "opening": {
+    "initial_plum": 2,
+    "initial_lemon": 7,
+    "initial_apple": 4,
+    "initial_banana": 4,
+    "initial_iron": 2,
+    "affordable_common_spec_count": 2,
+    "tree_total": 22,
+    "fruit_total": 24,
+    "ripe_tree_count": 14,
+    "own_private_tree_count": 11,
+    "own_private_fruit": 12,
+    "own_near_tree_count": 12,
+    "own_near_fruit": 13,
+    "water_adjacent_base_cells": 10,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 7,
+    "shack_door_distance": 3
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 50,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      1,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 59,
+      "DROP": 12,
+      "HARVEST": 2,
+      "MINE": 3,
+      "MOVE": 186,
+      "PICK": 4,
+      "PLANT": 6
+     },
+     "successful": {
+      "CHOP": 58,
+      "DROP": 12,
+      "HARVEST": 2,
+      "MINE": 3,
+      "PICK": 4,
+      "PLANT": 6
+     },
+     "successful_productive_nonmove": 85,
+     "successful_chop_share": 0.6823529411764706,
+     "gained": {
+      "BANANA": 6,
+      "IRON": 3,
+      "WOOD": 9
+     },
+     "spent": {
+      "BANANA": 6,
+      "IRON": 3,
+      "WOOD": 9
+     },
+     "reinvested_by_100": {
+      "BANANA": 2
+     },
+     "reinvested_total": {
+      "BANANA": 2
+     },
+     "successful_plants_by_100": 6,
+     "successful_plants_total": 6,
+     "first_successful_harvest": 88,
+     "first_successful_plant": 54,
+     "first_reinvestment": 90
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 50,
+     "spec": [
+      1,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 65,
+      "DROP": 11,
+      "MOVE": 146
+     },
+     "successful": {
+      "CHOP": 63,
+      "DROP": 11
+     },
+     "successful_productive_nonmove": 74,
+     "successful_chop_share": 0.8513513513513513,
+     "gained": {
+      "WOOD": 22
+     },
+     "spent": {
+      "WOOD": 22
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 2,
+   "total_reinvested_by_100": 2,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8513513513513513,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895925001,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 0,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 165,
+   "score": 100,
+   "opponent_score": 108,
+   "margin": -8,
+   "final_inventory": [
+    0,
+    1,
+    7,
+    0,
+    0,
+    23
+   ],
+   "final_wood": 23,
+   "opening": {
+    "initial_plum": 4,
+    "initial_lemon": 6,
+    "initial_apple": 8,
+    "initial_banana": 2,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 14,
+    "fruit_total": 14,
+    "ripe_tree_count": 8,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 7,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 7,
+    "water_adjacent_base_cells": 7,
+    "own_nearest_tree_distance": 2,
+    "own_nearest_iron_distance": 0,
+    "shack_door_distance": 11
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 10,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 33,
+      "DROP": 6,
+      "HARVEST": 6,
+      "MOVE": 111,
+      "PICK": 2,
+      "PLANT": 7
+     },
+     "successful": {
+      "CHOP": 32,
+      "DROP": 6,
+      "HARVEST": 6,
+      "PICK": 2,
+      "PLANT": 7
+     },
+     "successful_productive_nonmove": 53,
+     "successful_chop_share": 0.6037735849056604,
+     "gained": {
+      "PLUM": 1,
+      "BANANA": 7,
+      "WOOD": 5
+     },
+     "spent": {
+      "PLUM": 1,
+      "BANANA": 7,
+      "WOOD": 5
+     },
+     "reinvested_by_100": {
+      "BANANA": 5
+     },
+     "reinvested_total": {
+      "BANANA": 5
+     },
+     "successful_plants_by_100": 7,
+     "successful_plants_total": 7,
+     "first_successful_harvest": 5,
+     "first_successful_plant": 13,
+     "first_reinvestment": 49
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 10,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 37,
+      "DROP": 9,
+      "MOVE": 109
+     },
+     "successful": {
+      "CHOP": 37,
+      "DROP": 9
+     },
+     "successful_productive_nonmove": 46,
+     "successful_chop_share": 0.8043478260869565,
+     "gained": {
+      "WOOD": 18
+     },
+     "spent": {
+      "WOOD": 18
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 5,
+   "total_reinvested_by_100": 5,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8043478260869565,
+   "renewable_mode": true,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895926495,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 211,
+   "score": 125,
+   "opponent_score": 148,
+   "margin": -23,
+   "final_inventory": [
+    3,
+    2,
+    4,
+    0,
+    0,
+    29
+   ],
+   "final_wood": 29,
+   "opening": {
+    "initial_plum": 8,
+    "initial_lemon": 7,
+    "initial_apple": 5,
+    "initial_banana": 5,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 5,
+    "tree_total": 18,
+    "fruit_total": 2,
+    "ripe_tree_count": 2,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 1,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 0,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 7
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 30,
+      "DROP": 7,
+      "MOVE": 164,
+      "PICK": 5,
+      "PLANT": 5
+     },
+     "successful": {
+      "CHOP": 29,
+      "DROP": 7,
+      "PICK": 5,
+      "PLANT": 5
+     },
+     "successful_productive_nonmove": 46,
+     "successful_chop_share": 0.6304347826086957,
+     "gained": {
+      "BANANA": 5,
+      "WOOD": 7
+     },
+     "spent": {
+      "BANANA": 5,
+      "WOOD": 7
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 5,
+     "successful_plants_total": 5,
+     "first_successful_harvest": null,
+     "first_successful_plant": 3,
+     "first_reinvestment": null
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 41,
+      "DROP": 11,
+      "MOVE": 158
+     },
+     "successful": {
+      "CHOP": 41,
+      "DROP": 11
+     },
+     "successful_productive_nonmove": 52,
+     "successful_chop_share": 0.7884615384615384,
+     "gained": {
+      "WOOD": 22
+     },
+     "spent": {
+      "WOOD": 22
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 0,
+   "total_reinvested_by_100": 0,
+   "starter_reinvestment_share": null,
+   "trained_chop_share": 0.7884615384615384,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": false,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895926546,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 0,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 206,
+   "score": 114,
+   "opponent_score": 116,
+   "margin": -2,
+   "final_inventory": [
+    0,
+    0,
+    2,
+    0,
+    3,
+    28
+   ],
+   "final_wood": 28,
+   "opening": {
+    "initial_plum": 3,
+    "initial_lemon": 3,
+    "initial_apple": 3,
+    "initial_banana": 6,
+    "initial_iron": 8,
+    "affordable_common_spec_count": 2,
+    "tree_total": 14,
+    "fruit_total": 6,
+    "ripe_tree_count": 4,
+    "own_private_tree_count": 7,
+    "own_private_fruit": 3,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 0,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 1,
+    "shack_door_distance": 5
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 34,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 34,
+      "DROP": 8,
+      "HARVEST": 6,
+      "MOVE": 144,
+      "PICK": 6,
+      "PLANT": 8
+     },
+     "successful": {
+      "CHOP": 33,
+      "DROP": 8,
+      "HARVEST": 6,
+      "PICK": 6,
+      "PLANT": 8
+     },
+     "successful_productive_nonmove": 61,
+     "successful_chop_share": 0.5409836065573771,
+     "gained": {
+      "PLUM": 2,
+      "LEMON": 2,
+      "BANANA": 8,
+      "WOOD": 4
+     },
+     "spent": {
+      "PLUM": 2,
+      "LEMON": 2,
+      "BANANA": 8,
+      "WOOD": 4
+     },
+     "reinvested_by_100": {
+      "BANANA": 2
+     },
+     "reinvested_total": {
+      "BANANA": 2
+     },
+     "successful_plants_by_100": 8,
+     "successful_plants_total": 8,
+     "first_successful_harvest": 9,
+     "first_successful_plant": 37,
+     "first_reinvestment": 71
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 34,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 56,
+      "DROP": 12,
+      "MOVE": 104
+     },
+     "successful": {
+      "CHOP": 56,
+      "DROP": 12
+     },
+     "successful_productive_nonmove": 68,
+     "successful_chop_share": 0.8235294117647058,
+     "gained": {
+      "WOOD": 24
+     },
+     "spent": {
+      "WOOD": 24
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 2,
+   "total_reinvested_by_100": 2,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8235294117647058,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895926772,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 300,
+   "score": 307,
+   "opponent_score": 180,
+   "margin": 127,
+   "final_inventory": [
+    0,
+    2,
+    5,
+    0,
+    4,
+    75
+   ],
+   "final_wood": 75,
+   "opening": {
+    "initial_plum": 3,
+    "initial_lemon": 7,
+    "initial_apple": 6,
+    "initial_banana": 10,
+    "initial_iron": 9,
+    "affordable_common_spec_count": 2,
+    "tree_total": 18,
+    "fruit_total": 22,
+    "ripe_tree_count": 10,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 11,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 4,
+    "water_adjacent_base_cells": 2,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 3,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 22,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 12,
+      "DROP": 3,
+      "HARVEST": 36,
+      "MOVE": 195,
+      "PICK": 10,
+      "PLANT": 44
+     },
+     "successful": {
+      "CHOP": 12,
+      "DROP": 3,
+      "HARVEST": 36,
+      "PICK": 10,
+      "PLANT": 44
+     },
+     "successful_productive_nonmove": 105,
+     "successful_chop_share": 0.11428571428571428,
+     "gained": {
+      "PLUM": 2,
+      "BANANA": 44,
+      "WOOD": 1
+     },
+     "spent": {
+      "PLUM": 2,
+      "BANANA": 44,
+      "WOOD": 1
+     },
+     "reinvested_by_100": {
+      "BANANA": 8
+     },
+     "reinvested_total": {
+      "BANANA": 34
+     },
+     "successful_plants_by_100": 18,
+     "successful_plants_total": 44,
+     "first_successful_harvest": 11,
+     "first_successful_plant": 25,
+     "first_reinvestment": 59
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 22,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 102,
+      "DROP": 39,
+      "MOVE": 137
+     },
+     "successful": {
+      "CHOP": 102,
+      "DROP": 39
+     },
+     "successful_productive_nonmove": 141,
+     "successful_chop_share": 0.723404255319149,
+     "gained": {
+      "WOOD": 74
+     },
+     "spent": {
+      "WOOD": 74
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 8,
+   "total_reinvested_by_100": 8,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.723404255319149,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927134,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 0,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 266,
+   "score": 200,
+   "opponent_score": 216,
+   "margin": -16,
+   "final_inventory": [
+    0,
+    0,
+    8,
+    0,
+    0,
+    48
+   ],
+   "final_wood": 48,
+   "opening": {
+    "initial_plum": 10,
+    "initial_lemon": 10,
+    "initial_apple": 9,
+    "initial_banana": 9,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 6,
+    "tree_total": 18,
+    "fruit_total": 10,
+    "ripe_tree_count": 4,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 5,
+    "own_near_tree_count": 4,
+    "own_near_fruit": 2,
+    "water_adjacent_base_cells": 9,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 6,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      3,
+      3,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 51,
+      "DROP": 9,
+      "MOVE": 188,
+      "PICK": 9,
+      "PLANT": 9
+     },
+     "successful": {
+      "CHOP": 50,
+      "DROP": 9,
+      "PICK": 9,
+      "PLANT": 9
+     },
+     "successful_productive_nonmove": 77,
+     "successful_chop_share": 0.6493506493506493,
+     "gained": {
+      "BANANA": 9,
+      "WOOD": 9
+     },
+     "spent": {
+      "BANANA": 9,
+      "WOOD": 9
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 9,
+     "successful_plants_total": 9,
+     "first_successful_harvest": null,
+     "first_successful_plant": 3,
+     "first_reinvestment": null
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      3,
+      3,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 84,
+      "DROP": 21,
+      "MOVE": 160
+     },
+     "successful": {
+      "CHOP": 84,
+      "DROP": 21
+     },
+     "successful_productive_nonmove": 105,
+     "successful_chop_share": 0.8,
+     "gained": {
+      "WOOD": 39
+     },
+     "spent": {
+      "WOOD": 39
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 0,
+   "total_reinvested_by_100": 0,
+   "starter_reinvestment_share": null,
+   "trained_chop_share": 0.8,
+   "renewable_mode": false,
+   "role_split": false,
+   "threshold_labels": {
+    "1": false,
+    "2": false,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927164,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 0,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 300,
+   "score": 376,
+   "opponent_score": 170,
+   "margin": 206,
+   "final_inventory": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    93
+   ],
+   "final_wood": 93,
+   "opening": {
+    "initial_plum": 4,
+    "initial_lemon": 4,
+    "initial_apple": 5,
+    "initial_banana": 10,
+    "initial_iron": 5,
+    "affordable_common_spec_count": 2,
+    "tree_total": 16,
+    "fruit_total": 4,
+    "ripe_tree_count": 4,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 2,
+    "own_near_tree_count": 7,
+    "own_near_fruit": 2,
+    "water_adjacent_base_cells": 0,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 9,
+    "shack_door_distance": 13
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 28,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 14,
+      "DROP": 4,
+      "HARVEST": 45,
+      "MOVE": 175,
+      "PICK": 10,
+      "PLANT": 52
+     },
+     "successful": {
+      "CHOP": 14,
+      "DROP": 4,
+      "HARVEST": 45,
+      "PICK": 10,
+      "PLANT": 52
+     },
+     "successful_productive_nonmove": 125,
+     "successful_chop_share": 0.112,
+     "gained": {
+      "PLUM": 1,
+      "LEMON": 1,
+      "BANANA": 53,
+      "WOOD": 2
+     },
+     "spent": {
+      "PLUM": 1,
+      "LEMON": 1,
+      "BANANA": 52,
+      "WOOD": 2
+     },
+     "reinvested_by_100": {
+      "BANANA": 7
+     },
+     "reinvested_total": {
+      "BANANA": 42
+     },
+     "successful_plants_by_100": 17,
+     "successful_plants_total": 52,
+     "first_successful_harvest": 6,
+     "first_successful_plant": 31,
+     "first_reinvestment": 65
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 28,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 118,
+      "DROP": 46,
+      "MOVE": 108
+     },
+     "successful": {
+      "CHOP": 118,
+      "DROP": 46
+     },
+     "successful_productive_nonmove": 164,
+     "successful_chop_share": 0.7195121951219512,
+     "gained": {
+      "WOOD": 91
+     },
+     "spent": {
+      "WOOD": 91
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 7,
+   "total_reinvested_by_100": 7,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7195121951219512,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927169,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 196,
+   "score": 163,
+   "opponent_score": 172,
+   "margin": -9,
+   "final_inventory": [
+    2,
+    0,
+    5,
+    0,
+    0,
+    39
+   ],
+   "final_wood": 39,
+   "opening": {
+    "initial_plum": 7,
+    "initial_lemon": 2,
+    "initial_apple": 6,
+    "initial_banana": 7,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 20,
+    "fruit_total": 30,
+    "ripe_tree_count": 16,
+    "own_private_tree_count": 9,
+    "own_private_fruit": 13,
+    "own_near_tree_count": 12,
+    "own_near_fruit": 17,
+    "water_adjacent_base_cells": 6,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 3,
+    "shack_door_distance": 6
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 14,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 30,
+      "DROP": 8,
+      "HARVEST": 12,
+      "MOVE": 123,
+      "PICK": 7,
+      "PLANT": 16
+     },
+     "successful": {
+      "CHOP": 30,
+      "DROP": 8,
+      "HARVEST": 12,
+      "PICK": 7,
+      "PLANT": 16
+     },
+     "successful_productive_nonmove": 73,
+     "successful_chop_share": 0.410958904109589,
+     "gained": {
+      "LEMON": 3,
+      "BANANA": 16,
+      "WOOD": 5
+     },
+     "spent": {
+      "LEMON": 3,
+      "BANANA": 16,
+      "WOOD": 5
+     },
+     "reinvested_by_100": {
+      "BANANA": 9
+     },
+     "reinvested_total": {
+      "BANANA": 9
+     },
+     "successful_plants_by_100": 16,
+     "successful_plants_total": 16,
+     "first_successful_harvest": 3,
+     "first_successful_plant": 17,
+     "first_reinvestment": 50
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 14,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 62,
+      "DROP": 18,
+      "MOVE": 102
+     },
+     "successful": {
+      "CHOP": 62,
+      "DROP": 18
+     },
+     "successful_productive_nonmove": 80,
+     "successful_chop_share": 0.775,
+     "gained": {
+      "WOOD": 34
+     },
+     "spent": {
+      "WOOD": 34
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 9,
+   "total_reinvested_by_100": 9,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.775,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927226,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 0,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 196,
+   "score": 110,
+   "opponent_score": 128,
+   "margin": -18,
+   "final_inventory": [
+    4,
+    0,
+    6,
+    0,
+    0,
+    25
+   ],
+   "final_wood": 25,
+   "opening": {
+    "initial_plum": 9,
+    "initial_lemon": 3,
+    "initial_apple": 7,
+    "initial_banana": 3,
+    "initial_iron": 10,
+    "affordable_common_spec_count": 2,
+    "tree_total": 12,
+    "fruit_total": 12,
+    "ripe_tree_count": 6,
+    "own_private_tree_count": 6,
+    "own_private_fruit": 6,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 7,
+    "own_nearest_tree_distance": 3,
+    "own_nearest_iron_distance": 2,
+    "shack_door_distance": 9
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 26,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 0,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "CHOP": 30,
+      "DROP": 9,
+      "HARVEST": 4,
+      "MOVE": 145,
+      "PICK": 3,
+      "PLANT": 5
+     },
+     "successful": {
+      "CHOP": 27,
+      "DROP": 9,
+      "HARVEST": 4,
+      "PICK": 3,
+      "PLANT": 5
+     },
+     "successful_productive_nonmove": 48,
+     "successful_chop_share": 0.5625,
+     "gained": {
+      "LEMON": 2,
+      "BANANA": 5,
+      "WOOD": 7
+     },
+     "spent": {
+      "LEMON": 2,
+      "BANANA": 5,
+      "WOOD": 7
+     },
+     "reinvested_by_100": {
+      "BANANA": 2
+     },
+     "reinvested_total": {
+      "BANANA": 2
+     },
+     "successful_plants_by_100": 5,
+     "successful_plants_total": 5,
+     "first_successful_harvest": 7,
+     "first_successful_plant": 29,
+     "first_reinvestment": 65
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 26,
+     "spec": [
+      2,
+      2,
+      0,
+      3
+     ],
+     "issued": {
+      "CHOP": 37,
+      "DROP": 9,
+      "MOVE": 124
+     },
+     "successful": {
+      "CHOP": 37,
+      "DROP": 9
+     },
+     "successful_productive_nonmove": 46,
+     "successful_chop_share": 0.8043478260869565,
+     "gained": {
+      "WOOD": 18
+     },
+     "spent": {
+      "WOOD": 18
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 2,
+   "total_reinvested_by_100": 2,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.8043478260869565,
+   "renewable_mode": false,
+   "role_split": true,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": false,
+    "8": false
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927242,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 300,
+   "score": 415,
+   "opponent_score": 197,
+   "margin": 218,
+   "final_inventory": [
+    0,
+    1,
+    6,
+    0,
+    2,
+    102
+   ],
+   "final_wood": 102,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 6,
+    "initial_apple": 7,
+    "initial_banana": 6,
+    "initial_iron": 7,
+    "affordable_common_spec_count": 5,
+    "tree_total": 18,
+    "fruit_total": 16,
+    "ripe_tree_count": 12,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 7,
+    "own_near_tree_count": 6,
+    "own_near_fruit": 6,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 0,
+    "own_nearest_iron_distance": 10,
+    "shack_door_distance": 14
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 1,
+     "unit_id": 3,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "HARVEST": 63,
+      "MOVE": 162,
+      "PICK": 6,
+      "PLANT": 69
+     },
+     "successful": {
+      "HARVEST": 63,
+      "PICK": 6,
+      "PLANT": 69
+     },
+     "successful_productive_nonmove": 138,
+     "successful_chop_share": 0.0,
+     "gained": {
+      "BANANA": 69
+     },
+     "spent": {
+      "BANANA": 69
+     },
+     "reinvested_by_100": {
+      "BANANA": 16
+     },
+     "reinvested_total": {
+      "BANANA": 63
+     },
+     "successful_plants_by_100": 22,
+     "successful_plants_total": 69,
+     "first_successful_harvest": 29,
+     "first_successful_plant": 5,
+     "first_reinvestment": 31
+    },
+    {
+     "unit_id": 3,
+     "ordinal": 1,
+     "spawn_turn": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 137,
+      "DROP": 52,
+      "MOVE": 110
+     },
+     "successful": {
+      "CHOP": 137,
+      "DROP": 52
+     },
+     "successful_productive_nonmove": 189,
+     "successful_chop_share": 0.7248677248677249,
+     "gained": {
+      "WOOD": 102
+     },
+     "spent": {
+      "WOOD": 102
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 16,
+   "total_reinvested_by_100": 16,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7248677248677249,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  },
+  {
+   "game_id": 895927312,
+   "corpus": "historical",
+   "split": "validation",
+   "seat": 1,
+   "opponent_agent_id": 6553250,
+   "opponent": "tass",
+   "turns": 300,
+   "score": 393,
+   "opponent_score": 204,
+   "margin": 189,
+   "final_inventory": [
+    0,
+    0,
+    5,
+    0,
+    0,
+    97
+   ],
+   "final_wood": 97,
+   "opening": {
+    "initial_plum": 5,
+    "initial_lemon": 3,
+    "initial_apple": 6,
+    "initial_banana": 10,
+    "initial_iron": 2,
+    "affordable_common_spec_count": 2,
+    "tree_total": 20,
+    "fruit_total": 16,
+    "ripe_tree_count": 10,
+    "own_private_tree_count": 8,
+    "own_private_fruit": 8,
+    "own_near_tree_count": 5,
+    "own_near_fruit": 5,
+    "water_adjacent_base_cells": 4,
+    "own_nearest_tree_distance": 1,
+    "own_nearest_iron_distance": 0,
+    "shack_door_distance": 14
+   },
+   "successful_train_count": 1,
+   "final_worker_count": 2,
+   "training_events": [
+    {
+     "turn": 18,
+     "unit_id": 2,
+     "ordinal": 1,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ]
+    }
+   ],
+   "workers": [
+    {
+     "unit_id": 1,
+     "ordinal": 0,
+     "spawn_turn": 0,
+     "spec": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "issued": {
+      "DROP": 5,
+      "HARVEST": 57,
+      "MINE": 3,
+      "MOVE": 161,
+      "PICK": 10,
+      "PLANT": 64
+     },
+     "successful": {
+      "DROP": 5,
+      "HARVEST": 57,
+      "MINE": 3,
+      "PICK": 10,
+      "PLANT": 64
+     },
+     "successful_productive_nonmove": 139,
+     "successful_chop_share": 0.0,
+     "gained": {
+      "LEMON": 2,
+      "BANANA": 65,
+      "IRON": 3
+     },
+     "spent": {
+      "LEMON": 2,
+      "BANANA": 64,
+      "IRON": 3
+     },
+     "reinvested_by_100": {
+      "BANANA": 8
+     },
+     "reinvested_total": {
+      "BANANA": 54
+     },
+     "successful_plants_by_100": 18,
+     "successful_plants_total": 64,
+     "first_successful_harvest": 11,
+     "first_successful_plant": 21,
+     "first_reinvestment": 69
+    },
+    {
+     "unit_id": 2,
+     "ordinal": 1,
+     "spawn_turn": 18,
+     "spec": [
+      2,
+      2,
+      0,
+      2
+     ],
+     "issued": {
+      "CHOP": 125,
+      "DROP": 51,
+      "MOVE": 106
+     },
+     "successful": {
+      "CHOP": 125,
+      "DROP": 51
+     },
+     "successful_productive_nonmove": 176,
+     "successful_chop_share": 0.7102272727272727,
+     "gained": {
+      "WOOD": 97
+     },
+     "spent": {
+      "WOOD": 97
+     },
+     "reinvested_by_100": {},
+     "reinvested_total": {},
+     "successful_plants_by_100": 0,
+     "successful_plants_total": 0,
+     "first_successful_harvest": null,
+     "first_successful_plant": null,
+     "first_reinvestment": null
+    }
+   ],
+   "starter_reinvested_by_100": 8,
+   "total_reinvested_by_100": 8,
+   "starter_reinvestment_share": 1.0,
+   "trained_chop_share": 0.7102272727272727,
+   "renewable_mode": true,
+   "role_split": false,
+   "threshold_labels": {
+    "1": true,
+    "2": true,
+    "4": true,
+    "8": true
+   },
+   "integrity": {
+    "trajectory_matches_decoded_turns": true,
+    "unknown_diff_updates": 0,
+    "terminal_scores_exact": true,
+    "provenance_underflows": 0,
+    "raw_agent_valid": true
+   }
+  }
+ ]
+}

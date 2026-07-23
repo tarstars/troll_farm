@@ -1,0 +1,100 @@
+{
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "multi_source_bill_capitalization_state_machine",
+    "open_confirmation": false,
+    "open_fresh": false,
+    "platform_action": false,
+    "status": "closed_consumed_recovery_failure"
+  },
+  "fresh": {
+    "status": "forbidden_by_protocol"
+  },
+  "generated_at": "2026-07-21T12:18:12.612638+00:00",
+  "inputs": {
+    "analyzer": "feee65db2c7dec2ca5e441d99491b50b8ca5f11e0f1aac8b56acd465c86801d3",
+    "d64_baseline": "3ef63ac5245ae1fa83ee9290f8c1a6bffeb3e8c4fe37bee3137e184745f78576",
+    "matrix_a": "fd5ef3a95c4a76ee2b0c56318748456592655669837021743e9a13e4a64a6d45",
+    "matrix_b": "fd5ef3a95c4a76ee2b0c56318748456592655669837021743e9a13e4a64a6d45",
+    "protocol": "c9b3165d07f65b5394777fcc522be345aef06a277e5f21a5b3c4ab9e846a598a",
+    "runner": "ab742d7f7657f5a7e15c8079f00404ba95b83d470790a9c01fc1b26aa432d1df"
+  },
+  "integrity": {
+    "action_accounting_failures": 0,
+    "complete_grid": true,
+    "control_parity_mismatch_count": 0,
+    "control_parity_mismatches": {},
+    "expected_rows": 8,
+    "mechanical_failure_total": 0,
+    "repeat_byte_identical": true,
+    "reward_identity_failures": 0,
+    "rows": 8
+  },
+  "paired_lease_vs_control": {
+    "mean_margin_delta": 29.0,
+    "mean_opponent_score_delta": -23.75,
+    "mean_own_score_delta": 5.25,
+    "strict_margin_improvements": 4,
+    "strict_margin_regressions": 0,
+    "tasks": 4
+  },
+  "recovery": {
+    "bootstrap_failures": 1,
+    "crop_failures": [],
+    "lease_after_worker_two": 0,
+    "lease_failures": 6,
+    "max_workers": 2,
+    "missing_species_activation_failures": [],
+    "pass": false,
+    "successful_two_fruit_drops": 0,
+    "worker_two_failures": [
+      "9830002:0:resident",
+      "9830002:1:resident",
+      "9830014:1:resident"
+    ]
+  },
+  "schema": "troll-farm-d66a-source-net-surplus-lease-v1",
+  "scope": "consumed recovery gate only; fresh value forbidden after failure",
+  "summaries": {
+    "d40_control": {
+      "activations": 0,
+      "bootstrap_failures": 0,
+      "catastrophic_losses": 4,
+      "commands": {
+        "drop": 0,
+        "harvest": 0,
+        "pick": 0,
+        "plant": 0,
+        "wait": 0
+      },
+      "crop_rate": 1.0,
+      "lease_failures": 0,
+      "mean_lease_duration_turns": 0.0,
+      "mean_margin": -136.75,
+      "mean_opponent_score": 171.75,
+      "mean_own_score": 35.0,
+      "tasks": 4,
+      "worker_two_rate": 0.0
+    },
+    "source_surplus_lease": {
+      "activations": 6,
+      "bootstrap_failures": 1,
+      "catastrophic_losses": 3,
+      "commands": {
+        "drop": 0,
+        "harvest": 3,
+        "pick": 6,
+        "plant": 6,
+        "wait": 144
+      },
+      "crop_rate": 1.0,
+      "lease_failures": 6,
+      "mean_lease_duration_turns": 26.875,
+      "mean_margin": -107.75,
+      "mean_opponent_score": 148.0,
+      "mean_own_score": 40.25,
+      "tasks": 4,
+      "worker_two_rate": 0.25
+    }
+  }
+}

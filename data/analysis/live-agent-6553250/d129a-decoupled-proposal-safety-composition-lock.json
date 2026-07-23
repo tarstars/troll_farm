@@ -1,0 +1,42 @@
+{
+  "authority": "retrospective-abstraction-selection-only",
+  "fixed_rank_controller": {
+    "gate_offset": -0.10121648758649826,
+    "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+    "seed": 11903
+  },
+  "frozen_at": "2026-07-22-before-d129-safety-training-or-matrix-scoring",
+  "matrix": {
+    "compositions": ["winner_veto", "filter_rank", "safety_rerank"],
+    "safety_seeds": [12901, 12902, 12903, 12904],
+    "target_nonpositive_recalls": [0.70, 0.80, 0.90, 0.95, 0.98]
+  },
+  "safety_training": {
+    "batch_size": 1024,
+    "epochs": 40,
+    "parameters": 6097,
+    "training_threads": 1
+  },
+  "schema": "troll-farm-d129a-decoupled-proposal-safety-composition-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d129a_decoupled_proposal_safety.py": "b3a81d4b80c8e4648eed8b440cc91cac5253d00dffaafa23c93516c707d1009b",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "cgauto/train_d123a_task_balanced_soft_value_q6.py": "703413ef9af5b1b011c40ec029408221c7e964a68b7f28945d70f59991665145",
+    "cgauto/train_d125a_fit_activity_calibrated_q6.py": "8434e3321550f413bc45c150e492930af158f64f0bf06536041109a81bb76633",
+    "cgauto/train_d126a_rank_quality_selected_calibrated_q6.py": "4e477e6e220c00cad2153ebfaef34c6c9d48e4dc4262a328a2768d70607cfdbf",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-arms-9843780-9843795.tsv": "1c2f3b69f802e08b58119a8af728ea225c0560f9bcf88c182b3978b0b294a96d",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-result.json": "f34c32d9efdfab2ab8f1bccb762a99ba800319522a8b38d43da805cef218b8c6",
+    "data/analysis/live-agent-6553250/d129a-decoupled-proposal-safety-composition-protocol-2026-07-22.md": "7b36f350458f2b9c117ffe3ee356f7c6a33a8db2f22a06be6cad51228550424f",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "tests/test_analyze_d129a_decoupled_proposal_safety.py": "230694ac77f6e12ea02fab7d23df8079aca9355389e9def14507e21993e0c4c9",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

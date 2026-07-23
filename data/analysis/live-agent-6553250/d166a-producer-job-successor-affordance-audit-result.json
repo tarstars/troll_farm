@@ -1,0 +1,474 @@
+{
+  "decision": {
+    "arena_or_submission": false,
+    "construct_candidate": false,
+    "next_experiment": "freeze trajectory-conditioned semantic successor evaluation over KEEP, acquire-and-PLANT, and current-own-crop HARVEST jobs; preserve exact resident fallback and do not force one verb",
+    "overall_pass": false,
+    "reserved_maps_opened": false,
+    "verdict": "close_single_return_verb_and_use_state_conditioned_job_value",
+    "yt": false
+  },
+  "field": {
+    "cycles": 98,
+    "dominance_pass": false,
+    "generation_continuity": {
+      "rank_1_5": {
+        "cycles": 36,
+        "prior_generation_live_at_suppression": 14,
+        "return_generation_live_at_suppression": 15,
+        "return_reuses_prior_cell": 7,
+        "return_reuses_prior_generation": 1
+      },
+      "rank_6_20": {
+        "cycles": 41,
+        "prior_generation_live_at_suppression": 12,
+        "return_generation_live_at_suppression": 11,
+        "return_reuses_prior_cell": 12,
+        "return_reuses_prior_generation": 3
+      },
+      "resident": {
+        "cycles": 21,
+        "prior_generation_live_at_suppression": 0,
+        "return_generation_live_at_suppression": 0,
+        "return_reuses_prior_cell": 12,
+        "return_reuses_prior_generation": 0
+      }
+    },
+    "prior_to_return_cross_tab": {
+      "HARVEST->HARVEST": 11,
+      "HARVEST->PLANT": 17,
+      "PLANT->HARVEST": 17,
+      "PLANT->PLANT": 53
+    },
+    "return_verbs": {
+      "HARVEST": 28,
+      "PLANT": 70
+    },
+    "selected_verb": null,
+    "verb_summaries": {
+      "HARVEST": {
+        "cohorts": {
+          "rank_1_5": {
+            "agents": 5,
+            "cycles": 36,
+            "median_suppression_duration": 32,
+            "rate": 0.4166666666666667,
+            "returns": 15,
+            "seats": [
+              0,
+              1
+            ]
+          },
+          "rank_6_20": {
+            "agents": 7,
+            "cycles": 41,
+            "median_suppression_duration": 13,
+            "rate": 0.3170731707317073,
+            "returns": 13,
+            "seats": [
+              0,
+              1
+            ]
+          },
+          "resident": {
+            "agents": 0,
+            "cycles": 21,
+            "median_suppression_duration": null,
+            "rate": 0.0,
+            "returns": 0,
+            "seats": []
+          }
+        },
+        "gates": {
+          "at_least_four_top5_agents": true,
+          "both_top5_seats": true,
+          "rank6_20_rate_at_least_50pct": false,
+          "top5_median_duration_at_most_32": true,
+          "top5_rate_at_least_60pct": false
+        },
+        "pass": false,
+        "verb": "HARVEST"
+      },
+      "PLANT": {
+        "cohorts": {
+          "rank_1_5": {
+            "agents": 5,
+            "cycles": 36,
+            "median_suppression_duration": 15,
+            "rate": 0.5833333333333334,
+            "returns": 21,
+            "seats": [
+              0,
+              1
+            ]
+          },
+          "rank_6_20": {
+            "agents": 9,
+            "cycles": 41,
+            "median_suppression_duration": 24.0,
+            "rate": 0.6829268292682927,
+            "returns": 28,
+            "seats": [
+              0,
+              1
+            ]
+          },
+          "resident": {
+            "agents": 1,
+            "cycles": 21,
+            "median_suppression_duration": 20,
+            "rate": 1.0,
+            "returns": 21,
+            "seats": [
+              0,
+              1
+            ]
+          }
+        },
+        "gates": {
+          "at_least_four_top5_agents": true,
+          "both_top5_seats": true,
+          "rank6_20_rate_at_least_50pct": true,
+          "top5_median_duration_at_most_32": true,
+          "top5_rate_at_least_60pct": false
+        },
+        "pass": false,
+        "verb": "PLANT"
+      }
+    }
+  },
+  "input_hashes": {
+    "d161": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "field_extractor": "51190a7d81aeb5e651771ebe5c299ba882239c2f48e6d51a447fc10b9b920936",
+    "field_rows": "a6fe0d28199d2ad201fdaf75441bded0c50cc6de8c1e402479ad4769da990091",
+    "local_rows": "30d294bcaf620ddff3932e8d153b8315572b198192a9532d84e899ca44c16e9f",
+    "local_runner": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+    "lock": "d26b146eb826b5d82579d741ef529425c80e4d79843202a1bed25c72c540f0b0",
+    "protocol": "c9042a60c6fa96678ec5e87e6e87c89268d66035473a1187aae6d804a7d851ed"
+  },
+  "integrity": {
+    "field_bytes_identical": true,
+    "field_cohorts_reproduce_d164": true,
+    "field_cycles_reproduce_d164": true,
+    "field_rows_exact": true,
+    "field_state_and_birth_integrity": true,
+    "field_unique_exact": true,
+    "local_bytes_identical": true,
+    "local_d165_support_counts_reproduce": true,
+    "local_read_only_exact": true,
+    "local_resident_reproduces_d161": true,
+    "local_reward_and_ownership_integrity": true,
+    "local_rows_exact": true,
+    "local_schema_exact": true,
+    "local_unique_matrix_exact": true
+  },
+  "integrity_pass": true,
+  "local": {
+    "affordances": {
+      "H-live_diagnostic": {
+        "by_family": {
+          "compact_gold": 0,
+          "gold_adaptive": 1,
+          "legend_balanced": 1,
+          "mybot": 2,
+          "norx_native_three": 1,
+          "resident": 6,
+          "script_boss": 0,
+          "silver_boss": 3
+        },
+        "by_seat": {
+          "0": 5,
+          "1": 9
+        },
+        "distance_at_most_16": 14,
+        "distance_at_most_16_rate": 1.0,
+        "entry_rate": 0.05907172995780591,
+        "families": [
+          "gold_adaptive",
+          "legend_balanced",
+          "mybot",
+          "norx_native_three",
+          "resident",
+          "silver_boss"
+        ],
+        "family_count": 6,
+        "median_distance": 4.0,
+        "seats": [
+          0,
+          1
+        ],
+        "tasks": 14
+      },
+      "H-ripe": {
+        "by_family": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 1,
+          "resident": 0,
+          "script_boss": 0,
+          "silver_boss": 1
+        },
+        "by_seat": {
+          "0": 1,
+          "1": 1
+        },
+        "distance_at_most_16": 2,
+        "distance_at_most_16_rate": 1.0,
+        "entry_rate": 0.008438818565400843,
+        "families": [
+          "norx_native_three",
+          "silver_boss"
+        ],
+        "family_count": 2,
+        "median_distance": 3.0,
+        "seats": [
+          0,
+          1
+        ],
+        "tasks": 2
+      },
+      "P-carry": {
+        "by_family": {
+          "compact_gold": 0,
+          "gold_adaptive": 0,
+          "legend_balanced": 0,
+          "mybot": 0,
+          "norx_native_three": 0,
+          "resident": 0,
+          "script_boss": 0,
+          "silver_boss": 0
+        },
+        "by_seat": {
+          "0": 0,
+          "1": 0
+        },
+        "distance_at_most_16": 0,
+        "distance_at_most_16_rate": 0.0,
+        "entry_rate": 0.0,
+        "families": [],
+        "family_count": 0,
+        "median_distance": null,
+        "seats": [],
+        "tasks": 0
+      }
+    },
+    "entries": 237,
+    "entry_families": {
+      "compact_gold": 21,
+      "gold_adaptive": 11,
+      "legend_balanced": 16,
+      "mybot": 55,
+      "norx_native_three": 17,
+      "resident": 87,
+      "silver_boss": 30
+    },
+    "entry_rate": 0.2314453125,
+    "entry_seats": {
+      "0": 124,
+      "1": 113
+    },
+    "natural_continuation": {
+      "any_return_rate": 0.569620253164557,
+      "any_return_tasks": 135,
+      "families": [
+        "compact_gold",
+        "gold_adaptive",
+        "mybot",
+        "norx_native_three",
+        "resident",
+        "silver_boss"
+      ],
+      "median_latency": 16,
+      "reuses_prior_cell": 78,
+      "reuses_prior_generation": 0,
+      "seats": [
+        0,
+        1
+      ],
+      "verbs": {
+        "PLANT": 135
+      },
+      "within16_rate": 0.2911392405063291,
+      "within16_tasks": 69,
+      "within32_rate": 0.4430379746835443,
+      "within32_tasks": 105
+    },
+    "prior_target_live": 0,
+    "prior_verbs": {
+      "HARVEST": 15,
+      "PLANT": 222
+    },
+    "transport_by_field_verb": {
+      "HARVEST": {
+        "field_nonzero_cohorts": 2,
+        "gates": {
+          "at_least_64_tasks": false,
+          "at_least_half_distance_at_most_16": true,
+          "at_least_six_families": false,
+          "both_seats": true,
+          "exact_worker_and_target_integrity": true,
+          "nonzero_in_two_field_cohorts": true
+        },
+        "mapped_affordance": "H-ripe",
+        "pass": false,
+        "summary": {
+          "by_family": {
+            "compact_gold": 0,
+            "gold_adaptive": 0,
+            "legend_balanced": 0,
+            "mybot": 0,
+            "norx_native_three": 1,
+            "resident": 0,
+            "script_boss": 0,
+            "silver_boss": 1
+          },
+          "by_seat": {
+            "0": 1,
+            "1": 1
+          },
+          "distance_at_most_16": 2,
+          "distance_at_most_16_rate": 1.0,
+          "entry_rate": 0.008438818565400843,
+          "families": [
+            "norx_native_three",
+            "silver_boss"
+          ],
+          "family_count": 2,
+          "median_distance": 3.0,
+          "seats": [
+            0,
+            1
+          ],
+          "tasks": 2
+        }
+      },
+      "PLANT": {
+        "field_nonzero_cohorts": 3,
+        "gates": {
+          "at_least_64_tasks": false,
+          "at_least_half_distance_at_most_16": false,
+          "at_least_six_families": false,
+          "both_seats": false,
+          "exact_worker_and_target_integrity": true,
+          "nonzero_in_two_field_cohorts": true
+        },
+        "mapped_affordance": "P-carry",
+        "pass": false,
+        "summary": {
+          "by_family": {
+            "compact_gold": 0,
+            "gold_adaptive": 0,
+            "legend_balanced": 0,
+            "mybot": 0,
+            "norx_native_three": 0,
+            "resident": 0,
+            "script_boss": 0,
+            "silver_boss": 0
+          },
+          "by_seat": {
+            "0": 0,
+            "1": 0
+          },
+          "distance_at_most_16": 0,
+          "distance_at_most_16_rate": 0.0,
+          "entry_rate": 0.0,
+          "families": [],
+          "family_count": 0,
+          "median_distance": null,
+          "seats": [],
+          "tasks": 0
+        }
+      }
+    },
+    "worker_full_at_entry": 25,
+    "worker_hp": {
+      "0": 177,
+      "1": 60
+    }
+  },
+  "lock": {
+    "bulk_root": "artifacts/experiments/d166a-producer-job-successor-affordance",
+    "field_actor_occurrences": 392,
+    "field_cohorts": {
+      "rank_1_5": 50,
+      "rank_6_20": 150,
+      "resident": 192
+    },
+    "field_cycle_counts": {
+      "rank_1_5": 36,
+      "rank_6_20": 41,
+      "resident": 21
+    },
+    "files": {
+      "artifacts/experiments/d164a-current-field-macro-transition/d164a-occurrences-jobs20-v4.jsonl": "453d91741198e03f00519feca8fba4349b6adaa78ba621e3c33c864aab16fc21",
+      "cgauto/analyze_d101a_production_suppression.py": "9ffb10092180fa8a9ac848033650dc5d1c8fe95f83bff3a0aad9dc0dd37d4d30",
+      "cgauto/analyze_d164a_current_field_macro_transitions.py": "617908d5f1bc12d37b7113e2578a87062fc48c30aa37f07884067e8752353fb6",
+      "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+      "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-lock.json": "88f1775aee4fecda4ee88c6e17f10230bfc62c489a20840533617032fd9d2999",
+      "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-result.json": "6ed98a7c7547b3b1c27b2b96bf975b07109880198f9b38fb5725bb626af42e27",
+      "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-result.json": "f6bd6c346ee5d21f4cf5bc86f64fcef7782472ff5a11702c829584570b75243a",
+      "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-protocol-2026-07-23.md": "c9042a60c6fa96678ec5e87e6e87c89268d66035473a1187aae6d804a7d851ed",
+      "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/manifest.json": "2e5ed6b0e8cb486de57d2deddaf36a46074b6ddc58057e4042c017007afb0520",
+      "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/processed/manifest.json": "eef9d329192cc2655ab4c2d0398999feb4e1f7b36cb88b03b4e693103230570c",
+      "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+      "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+      "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+      "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+      "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+    },
+    "frozen_at_utc": "2026-07-23T08:40:22Z",
+    "local_map_start": 9844136,
+    "local_maps": 64,
+    "local_opponent_families": 8,
+    "local_seats": 2,
+    "local_tasks": 1024,
+    "prohibitions": {
+      "candidate_generation": true,
+      "fresh_maps": true,
+      "intervention": true,
+      "outcome_dependent_selection": true,
+      "platform": true,
+      "reserved_maps": true,
+      "resident_mutation": true,
+      "sealed_confirmation_reads": true,
+      "submission": true,
+      "yt": true
+    },
+    "reserved_maps": [
+      9844200,
+      9844215
+    ],
+    "schema": "troll-farm-d166a-producer-job-successor-affordance-lock-v1",
+    "snapshot_id": "20260723T074715Z-d164a",
+    "threads": [
+      1,
+      20
+    ]
+  },
+  "parity_mismatches": [],
+  "protocol": "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-protocol-2026-07-23.md",
+  "runs": {
+    "field_jobs1": {
+      "rows": 392,
+      "wall_seconds": 26.45
+    },
+    "field_jobs20": {
+      "rows": 392,
+      "wall_seconds": 3.95
+    },
+    "field_speedup": 6.696202531645569,
+    "local_jobs1": {
+      "rows": 1024,
+      "wall_seconds": 116.41
+    },
+    "local_jobs20": {
+      "rows": 1024,
+      "wall_seconds": 11.36
+    },
+    "local_speedup": 10.247359154929578
+  },
+  "schema": "troll-farm-d166a-producer-job-successor-affordance-v1"
+}

@@ -1,0 +1,77 @@
+{
+  "authorization": "run the frozen local 1M-transition D21 PPO pilot only",
+  "design": {
+    "episodes_per_policy": 480,
+    "main_control_episodes": 1440,
+    "max_turns": 300,
+    "seed_base": 8000000,
+    "seed_stop_exclusive": 8000480,
+    "teacher_repeat_episodes": 480
+  },
+  "gates": {
+    "actor_beats_random_by_20_mean_margin": true,
+    "actor_crop_creation_at_least_70_percent": true,
+    "actor_has_wins_and_losses": true,
+    "actor_opponent_and_recipe_coverage_at_least_40": true,
+    "actor_training_completion_at_least_90_percent": true,
+    "all_1440_complete_at_turn_300": true,
+    "at_least_four_finite_distinct_actor_opponent_means": true,
+    "no_illegal_selected_action": true,
+    "return_identity_within_1e_4_margin_points": true,
+    "teacher_beats_random_by_20_mean_margin": true,
+    "teacher_repeat_identical": true
+  },
+  "metrics": {
+    "actor_crop_creation_rate": 0.9833333333333333,
+    "actor_minimum_opponent_episodes": 73,
+    "actor_minimum_recipe_episodes": 56,
+    "actor_opponent_mean_margin": {
+      "complete_baseline": -60.827586206896555,
+      "crop_first_repeated_pressure_reacquire": -2.3333333333333335,
+      "funded_pair": -9.186666666666667,
+      "one_shot_reaper": 109.73972602739725,
+      "renewable_planter": 84.07692307692308,
+      "sustained_funded_trio": 39.76623376623377
+    },
+    "actor_renewable_harvest_rate": 0.9895833333333334,
+    "actor_training_completion_rate": 1.0,
+    "actor_win_rate": 0.6020833333333333,
+    "illegal_selected_actions": {
+      "actor": 0,
+      "random": 0,
+      "teacher_a": 0,
+      "teacher_b": 0
+    },
+    "maximum_return_margin_error": 1.1444091796875e-05,
+    "mean_margin": {
+      "actor": 23.833333333333332,
+      "random": -129.94166666666666,
+      "teacher": 22.020833333333332
+    },
+    "mean_margin_advantage_over_random": {
+      "actor": 153.775,
+      "teacher": 151.9625
+    }
+  },
+  "preflight_pass": true,
+  "schema": 1,
+  "scope": "D21 frozen full-length competitive preflight; passing opens only the preregistered local 1M-transition PPO pilot",
+  "source": {
+    "analyzer": "cgauto/d21_competitive_preflight_analysis.py",
+    "analyzer_sha256": "47cd6847d6d4ba18220e43580f9c99c32263d8f4e3f2d9c764d1c9b1ed83ce06",
+    "input_sha256": {
+      "actor": "29d6f09308e123057d640647cca71db5458eba6487ad4ca7f512a0483050d846",
+      "random": "bbd65a3702259d9bf641e15ec376b324060e209aba074fdcdc364bf8acfa8c46",
+      "teacher_a": "c9d54acd8ebc96a88d6cd129b49f9b450f1b07fe8305956c7af64d5ef9a639bb",
+      "teacher_b": "d101ad1a7ec755d25f0850804f4e9aad04f237ee01f9081de6997db1e3323db3"
+    },
+    "inputs": {
+      "actor": "data/analysis/live-agent-6553250/d21-competitive-actor-8000000-8000479.json",
+      "random": "data/analysis/live-agent-6553250/d21-competitive-random-8000000-8000479.json",
+      "teacher_a": "data/analysis/live-agent-6553250/d21-competitive-teacher-a-8000000-8000479.json",
+      "teacher_b": "data/analysis/live-agent-6553250/d21-competitive-teacher-b-8000000-8000479.json"
+    },
+    "protocol": "data/analysis/live-agent-6553250/d21-competitive-closed-loop-preflight-protocol-2026-07-20.md",
+    "protocol_sha256": "46d75aedbf6e3c36de26a09a835f9441398f123e8ec9de1619a8d7ebf5eedf06"
+  }
+}

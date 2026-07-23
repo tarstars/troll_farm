@@ -1,0 +1,211 @@
+{
+  "activity": {
+    "active_nonprefix_sequences": 10,
+    "gates": {
+      "all_second_modes_execute_at_least_2000": true,
+      "eight_nonprefix_sequences_change_at_least_10pct": true,
+      "every_sequence_reaches_second_boundary": true,
+      "sequence_mean_margin_span_at_least_15": false
+    },
+    "nonprefix_action_hash_change_counts": {
+      "balanced>fell": 264,
+      "balanced>harvest": 340,
+      "balanced>renew": 55,
+      "fell>fell": 280,
+      "fell>harvest": 325,
+      "fell>renew": 41,
+      "harvest>fell": 284,
+      "harvest>harvest": 352,
+      "harvest>renew": 64,
+      "renew>fell": 256,
+      "renew>harvest": 347,
+      "renew>renew": 74
+    },
+    "pass": false,
+    "second_executed_counts": {
+      "balanced": 2304,
+      "fell": 2304,
+      "harvest": 2304,
+      "renew": 2304
+    },
+    "second_illegal_counts": {},
+    "second_requested_counts": {
+      "balanced": 2304,
+      "fell": 2304,
+      "harvest": 2304,
+      "renew": 2304
+    },
+    "sequence_mean_margin_span": 3.4548611111111143,
+    "sequence_mean_margins": {
+      "balanced>balanced": 50.369791666666664,
+      "balanced>fell": 49.982638888888886,
+      "balanced>harvest": 47.359375,
+      "balanced>renew": 49.94444444444444,
+      "fell>balanced": 50.673611111111114,
+      "fell>fell": 50.201388888888886,
+      "fell>harvest": 48.41493055555556,
+      "fell>renew": 50.302083333333336,
+      "harvest>balanced": 50.494791666666664,
+      "harvest>fell": 49.55555555555556,
+      "harvest>harvest": 48.14756944444444,
+      "harvest>renew": 49.91319444444444,
+      "renew>balanced": 50.479166666666664,
+      "renew>fell": 50.395833333333336,
+      "renew>harvest": 47.21875,
+      "renew>renew": 49.673611111111114
+    }
+  },
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "repair_only_then_repeat_unchanged",
+    "platform_action": false,
+    "status": "integrity_failure"
+  },
+  "full_oracle": null,
+  "gates": {
+    "integrity": false
+  },
+  "generated_at": "2026-07-21T15:02:27.313330+00:00",
+  "incremental_oracle": null,
+  "inputs": {
+    "analyzer": "bd0a5fc081f64d8bf1b0570370977c06ef9faed88f98619924fd11823d53c627",
+    "base_analyzer": "563488ce1ee112bd39d403f6b62f20b0b2b78806d1e6edffde8eff451fd0d62c",
+    "generator": "49a14762103273b35693a4215b392d021d121c3eade5995806259145af2f9698",
+    "manifest": "e72457111564ea221559548e4a5f5afa59a4b8322ee5d2c6bff2545a9c241deb",
+    "manifest_summary": "3ede6c0882dd4707227a6ee906e9afdbb742ac988c76d6d817c0cc70ac9fc7f8",
+    "protocol": "44b8949f7b1c84ac333653718b3207462dd59cdfc448933ec84ab606cbcae45a",
+    "rows_a": "d8b7f5240f7826cf87f9402c8887877fbdef25e3887fa50d46a702dc15e85aef",
+    "rows_b": "d8b7f5240f7826cf87f9402c8887877fbdef25e3887fa50d46a702dc15e85aef",
+    "runner": "04619a7c829370cbfe2c530c7485285858d6709dea2607408122506a385ce803",
+    "time_a": "b62c9d5034e81f0d0b53f2f2c44d6ec93566d663566f84bdcfdefe309b8117cb",
+    "time_b": "e8a467f372f731f71152bde73f7370f4e46e0ee5a1a40c22f893613ac6842544"
+  },
+  "integrity": {
+    "base_pass": true,
+    "manifest": {
+      "feature_hash_failures": 0,
+      "horizon_failures": 0,
+      "maximum_eligible_turn_exclusive": 299,
+      "parse_failures": 0,
+      "partition_counts": {
+        "discovery": 288,
+        "validation": 288
+      },
+      "pass": true,
+      "rows": 576,
+      "sample_ids_exact": true,
+      "strata_exact": true,
+      "summary_manifest_hash_exact": true,
+      "summary_pass": true,
+      "unique_identities": 576
+    },
+    "pass": false,
+    "repeat_byte_exact": true,
+    "results_a": {
+      "baseline_task_consistency_failures": 0,
+      "baseline_tasks": 329,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "environmental_invalidated_jobs": 29562,
+      "expected_baseline_tasks": 329,
+      "failure_totals": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "identity_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "rows": 9216,
+      "second_executed_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_execution_failures": 0,
+      "second_feature_failures": 0,
+      "second_illegal_counts": {},
+      "second_reach_failures": 0,
+      "second_requested_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_turn_failures": 0,
+      "sequence_accounting_failures": 0,
+      "unexpected_rows": 0
+    },
+    "results_b": {
+      "baseline_task_consistency_failures": 0,
+      "baseline_tasks": 329,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "environmental_invalidated_jobs": 29562,
+      "expected_baseline_tasks": 329,
+      "failure_totals": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "identity_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "rows": 9216,
+      "second_executed_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_execution_failures": 0,
+      "second_feature_failures": 0,
+      "second_illegal_counts": {},
+      "second_reach_failures": 0,
+      "second_requested_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_turn_failures": 0,
+      "sequence_accounting_failures": 0,
+      "unexpected_rows": 0
+    },
+    "timings": [
+      {
+        "continuations": 9216,
+        "continuations_per_second": 22.432090351475026,
+        "effective_cpu_cores": 9.92624866127933,
+        "elapsed_seconds": 410.84000000000003,
+        "maximum_resident_kib": 16000,
+        "reported_cpu_percent": 992.0,
+        "system_seconds": 0.93,
+        "user_seconds": 4077.17
+      },
+      {
+        "continuations": 9216,
+        "continuations_per_second": 21.710247349823323,
+        "effective_cpu_cores": 9.542025912838634,
+        "elapsed_seconds": 424.5,
+        "maximum_resident_kib": 15840,
+        "reported_cpu_percent": 954.0,
+        "system_seconds": 0.91,
+        "user_seconds": 4049.68
+      }
+    ]
+  },
+  "prefix_oracle": null,
+  "repair": {
+    "d75a_result": "17b9ff7353bd3ed1ea439c8daf9aab5c6e0e3acb89279870af132cd6f203a4e2",
+    "only_change": "maximum eligible turn exclusive changed from 300 to 299"
+  },
+  "schema": "troll-farm-d75b-two-batch-option-sequences-v1",
+  "scope": "horizon-repaired paired two-batch ordinary-option sequence headroom",
+  "sequence_results": null
+}

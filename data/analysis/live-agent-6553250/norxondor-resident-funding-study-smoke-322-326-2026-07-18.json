@@ -1,0 +1,1761 @@
+{
+ "schema": 1,
+ "scope": "turn-three resident-prefix research policies evaluated by exact terminal outcomes on consumed discovery seeds",
+ "rows": 1600,
+ "scenarios": 80,
+ "seeds": [
+  322,
+  323,
+  324,
+  325,
+  326
+ ],
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "policy_count": 20,
+ "gate": {
+  "minimum_margin_delta": 2,
+  "minimum_score_delta": 2,
+  "minimum_mean_workers": 2.5,
+  "minimum_nonnegative_opponents": 5,
+  "minimum_worst_opponent_margin_delta": -5
+ },
+ "eligible_policies": [],
+ "ranking": [
+  "two_oldest_t10__role_repair",
+  "one_newest_t3__resident_continuation",
+  "one_newest_then_two_t15__resident_continuation",
+  "one_newest_then_two_t15__role_repair",
+  "two_oldest_t3__role_repair",
+  "one_newest_then_two_t10__role_repair",
+  "one_newest_then_two_t10__resident_continuation",
+  "two_oldest_t20__role_repair",
+  "two_oldest_t15__role_repair",
+  "two_oldest_t10__resident_continuation",
+  "two_oldest_t6__resident_continuation",
+  "one_newest_t3__role_repair",
+  "one_oldest_then_two_t10__resident_continuation",
+  "one_oldest_then_two_t10__role_repair",
+  "two_oldest_t6__role_repair",
+  "two_oldest_t3__resident_continuation",
+  "two_oldest_t15__resident_continuation",
+  "two_oldest_t20__resident_continuation",
+  "one_oldest_t3__role_repair",
+  "one_oldest_t3__resident_continuation"
+ ],
+ "policies": {
+  "one_newest_t3__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 8.9875,
+   "score_delta": 27.125,
+   "policy_margin": 26.475,
+   "policy_score": 228.5375,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 102.72,
+    "median": 100.0,
+    "minimum": 61,
+    "maximum": 166
+   },
+   "positive_cell_rate": 0.5125,
+   "nonnegative_opponents": 5,
+   "worst_opponent_margin_delta": -57.5,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 27.7,
+     "score_delta": 26.6,
+     "policy_margin": -108.4,
+     "policy_score": 230.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -57.5,
+     "score_delta": 38.1,
+     "policy_margin": -24.5,
+     "policy_score": 247
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 27.7,
+     "score_delta": 26.6,
+     "policy_margin": -108.4,
+     "policy_score": 230.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 27.1,
+     "score_delta": 30.8,
+     "policy_margin": 41.7,
+     "policy_score": 240.7
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 42.5,
+     "score_delta": 54.8,
+     "policy_margin": 138.9,
+     "policy_score": 246
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -9.7,
+     "score_delta": 0.4,
+     "policy_margin": 47.6,
+     "policy_score": 194.1
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -17,
+     "score_delta": 4.5,
+     "policy_margin": 96,
+     "policy_score": 218.9
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 31.1,
+     "score_delta": 35.2,
+     "policy_margin": 128.9,
+     "policy_score": 221.4
+    }
+   },
+   "gate_passed": false
+  },
+  "one_newest_t3__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 14.2,
+   "score_delta": 39.9,
+   "policy_margin": 31.6875,
+   "policy_score": 241.3125,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 102.72,
+    "median": 100.0,
+    "minimum": 61,
+    "maximum": 166
+   },
+   "positive_cell_rate": 0.55,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -77.6,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 29.5,
+     "score_delta": 31.6,
+     "policy_margin": -106.6,
+     "policy_score": 235.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -77.6,
+     "score_delta": 37.8,
+     "policy_margin": -44.6,
+     "policy_score": 246.7
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 29.5,
+     "score_delta": 31.6,
+     "policy_margin": -106.6,
+     "policy_score": 235.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 45.3,
+     "score_delta": 40.2,
+     "policy_margin": 59.9,
+     "policy_score": 250.1
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 24.8,
+     "score_delta": 45.6,
+     "policy_margin": 121.2,
+     "policy_score": 236.8
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 27.5,
+     "score_delta": 42.5,
+     "policy_margin": 84.8,
+     "policy_score": 236.2
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 5.4,
+     "score_delta": 47,
+     "policy_margin": 118.4,
+     "policy_score": 261.4
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 29.2,
+     "score_delta": 42.9,
+     "policy_margin": 127,
+     "policy_score": 229.1
+    }
+   },
+   "gate_passed": false
+  },
+  "one_newest_then_two_t10__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 13.9125,
+   "score_delta": 25.7375,
+   "policy_margin": 31.4,
+   "policy_score": 227.15,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 87.18,
+    "median": 90.0,
+    "minimum": 42,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.55,
+   "nonnegative_opponents": 6,
+   "worst_opponent_margin_delta": -67.1,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 48.2,
+     "score_delta": 33,
+     "policy_margin": -87.9,
+     "policy_score": 236.5
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -67.1,
+     "score_delta": 29,
+     "policy_margin": -34.1,
+     "policy_score": 237.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 48.2,
+     "score_delta": 33,
+     "policy_margin": -87.9,
+     "policy_score": 236.5
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 36.6,
+     "score_delta": 37.1,
+     "policy_margin": 51.2,
+     "policy_score": 247
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 32.7,
+     "score_delta": 42.2,
+     "policy_margin": 129.1,
+     "policy_score": 233.4
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -1.9,
+     "score_delta": 6.3,
+     "policy_margin": 55.4,
+     "policy_score": 200
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 0.9,
+     "score_delta": 6.8,
+     "policy_margin": 113.9,
+     "policy_score": 221.2
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 13.7,
+     "score_delta": 18.5,
+     "policy_margin": 111.5,
+     "policy_score": 204.7
+    }
+   },
+   "gate_passed": false
+  },
+  "one_newest_then_two_t10__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 33.3875,
+   "score_delta": 61.225,
+   "policy_margin": 50.875,
+   "policy_score": 262.6375,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 87.18,
+    "median": 90.0,
+    "minimum": 42,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5625,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -65.4,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 47.6,
+     "score_delta": 46.1,
+     "policy_margin": -88.5,
+     "policy_score": 249.6
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -65.4,
+     "score_delta": 61.1,
+     "policy_margin": -32.4,
+     "policy_score": 270
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 47.6,
+     "score_delta": 46.1,
+     "policy_margin": -88.5,
+     "policy_score": 249.6
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 47.9,
+     "score_delta": 42.7,
+     "policy_margin": 62.5,
+     "policy_score": 252.6
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 60.7,
+     "score_delta": 77.7,
+     "policy_margin": 157.1,
+     "policy_score": 268.9
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 47.2,
+     "score_delta": 61.7,
+     "policy_margin": 104.5,
+     "policy_score": 255.4
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 15,
+     "score_delta": 70.1,
+     "policy_margin": 128,
+     "policy_score": 284.5
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 66.5,
+     "score_delta": 84.3,
+     "policy_margin": 164.3,
+     "policy_score": 270.5
+    }
+   },
+   "gate_passed": false
+  },
+  "one_newest_then_two_t15__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 15.7,
+   "score_delta": 33.725,
+   "policy_margin": 33.1875,
+   "policy_score": 235.1375,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 91.26,
+    "median": 90.0,
+    "minimum": 54,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5625,
+   "nonnegative_opponents": 6,
+   "worst_opponent_margin_delta": -63.1,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 36.7,
+     "score_delta": 35.9,
+     "policy_margin": -99.4,
+     "policy_score": 239.4
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -63.1,
+     "score_delta": 39.7,
+     "policy_margin": -30.1,
+     "policy_score": 248.6
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 36.7,
+     "score_delta": 35.9,
+     "policy_margin": -99.4,
+     "policy_score": 239.4
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 31.4,
+     "score_delta": 37.9,
+     "policy_margin": 46,
+     "policy_score": 247.8
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 48.2,
+     "score_delta": 59.5,
+     "policy_margin": 144.6,
+     "policy_score": 250.7
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -1.6,
+     "score_delta": 6.6,
+     "policy_margin": 55.7,
+     "policy_score": 200.3
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 8.7,
+     "score_delta": 19.1,
+     "policy_margin": 121.7,
+     "policy_score": 233.5
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 28.6,
+     "score_delta": 35.2,
+     "policy_margin": 126.4,
+     "policy_score": 221.4
+    }
+   },
+   "gate_passed": false
+  },
+  "one_newest_then_two_t15__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 32.825,
+   "score_delta": 57.8,
+   "policy_margin": 50.3125,
+   "policy_score": 259.2125,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 91.26,
+    "median": 90.0,
+    "minimum": 54,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5375,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -63.9,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 57.7,
+     "score_delta": 55.4,
+     "policy_margin": -78.4,
+     "policy_score": 258.9
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -63.9,
+     "score_delta": 54,
+     "policy_margin": -30.9,
+     "policy_score": 262.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 57.7,
+     "score_delta": 55.4,
+     "policy_margin": -78.4,
+     "policy_score": 258.9
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 46.5,
+     "score_delta": 43.6,
+     "policy_margin": 61.1,
+     "policy_score": 253.5
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 35.9,
+     "score_delta": 51.2,
+     "policy_margin": 132.3,
+     "policy_score": 242.4
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 59.3,
+     "score_delta": 69.5,
+     "policy_margin": 116.6,
+     "policy_score": 263.2
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 10.2,
+     "score_delta": 61.5,
+     "policy_margin": 123.2,
+     "policy_score": 275.9
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 59.2,
+     "score_delta": 71.8,
+     "policy_margin": 157,
+     "policy_score": 258
+    }
+   },
+   "gate_passed": false
+  },
+  "one_oldest_t3__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": -46.35,
+   "score_delta": -14.4875,
+   "policy_margin": -28.8625,
+   "policy_score": 186.925,
+   "mean_workers": 2.175,
+   "three_worker_rate": 0.175,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.175,
+    "mean": 174.71428571428572,
+    "median": 175.5,
+    "minimum": 131,
+    "maximum": 204
+   },
+   "positive_cell_rate": 0.15,
+   "nonnegative_opponents": 0,
+   "worst_opponent_margin_delta": -142,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": -36.7,
+     "score_delta": -13.1,
+     "policy_margin": -172.8,
+     "policy_score": 190.4
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -142,
+     "score_delta": -12.7,
+     "policy_margin": -109,
+     "policy_score": 196.2
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": -36.7,
+     "score_delta": -13.1,
+     "policy_margin": -172.8,
+     "policy_score": 190.4
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": -15.9,
+     "score_delta": -7.2,
+     "policy_margin": -1.3,
+     "policy_score": 202.7
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": -24.8,
+     "score_delta": -6.7,
+     "policy_margin": 71.6,
+     "policy_score": 184.5
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -35,
+     "score_delta": -19.6,
+     "policy_margin": 22.3,
+     "policy_score": 174.1
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -56.6,
+     "score_delta": -35.3,
+     "policy_margin": 56.4,
+     "policy_score": 179.1
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": -23.1,
+     "score_delta": -8.2,
+     "policy_margin": 74.7,
+     "policy_score": 178
+    }
+   },
+   "gate_passed": false
+  },
+  "one_oldest_t3__role_repair": {
+   "scenarios": 80,
+   "margin_delta": -39.1875,
+   "score_delta": -8.6375,
+   "policy_margin": -21.7,
+   "policy_score": 192.775,
+   "mean_workers": 2.175,
+   "three_worker_rate": 0.175,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.175,
+    "mean": 174.71428571428572,
+    "median": 175.5,
+    "minimum": 131,
+    "maximum": 204
+   },
+   "positive_cell_rate": 0.1875,
+   "nonnegative_opponents": 0,
+   "worst_opponent_margin_delta": -134.9,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": -32,
+     "score_delta": -8.7,
+     "policy_margin": -168.1,
+     "policy_score": 194.8
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -134.9,
+     "score_delta": -12,
+     "policy_margin": -101.9,
+     "policy_score": 196.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": -32,
+     "score_delta": -8.7,
+     "policy_margin": -168.1,
+     "policy_score": 194.8
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": -5.9,
+     "score_delta": -4.1,
+     "policy_margin": 8.7,
+     "policy_score": 205.8
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": -21.7,
+     "score_delta": -3.6,
+     "policy_margin": 74.7,
+     "policy_score": 187.6
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -35,
+     "score_delta": -19.6,
+     "policy_margin": 22.3,
+     "policy_score": 174.1
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -36.9,
+     "score_delta": -12.1,
+     "policy_margin": 76.1,
+     "policy_score": 202.3
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": -15.1,
+     "score_delta": -0.3,
+     "policy_margin": 82.7,
+     "policy_score": 185.9
+    }
+   },
+   "gate_passed": false
+  },
+  "one_oldest_then_two_t10__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 3.0125,
+   "score_delta": 14.7875,
+   "policy_margin": 20.5,
+   "policy_score": 216.2,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 89.26,
+    "median": 90.0,
+    "minimum": 47,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.4875,
+   "nonnegative_opponents": 4,
+   "worst_opponent_margin_delta": -77.9,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 40.4,
+     "score_delta": 26,
+     "policy_margin": -95.7,
+     "policy_score": 229.5
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -77.9,
+     "score_delta": 5.8,
+     "policy_margin": -44.9,
+     "policy_score": 214.7
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 40.4,
+     "score_delta": 26,
+     "policy_margin": -95.7,
+     "policy_score": 229.5
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 41.6,
+     "score_delta": 40.3,
+     "policy_margin": 56.2,
+     "policy_score": 250.2
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 11.4,
+     "score_delta": 21.3,
+     "policy_margin": 107.8,
+     "policy_score": 212.5
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -4.7,
+     "score_delta": 7,
+     "policy_margin": 52.6,
+     "policy_score": 200.7
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -23.5,
+     "score_delta": -10.7,
+     "policy_margin": 89.5,
+     "policy_score": 203.7
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": -3.6,
+     "score_delta": 2.6,
+     "policy_margin": 94.2,
+     "policy_score": 188.8
+    }
+   },
+   "gate_passed": false
+  },
+  "one_oldest_then_two_t10__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 29.0625,
+   "score_delta": 58.825,
+   "policy_margin": 46.55,
+   "policy_score": 260.2375,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 89.26,
+    "median": 90.0,
+    "minimum": 47,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5375,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -79.7,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 43.2,
+     "score_delta": 49.3,
+     "policy_margin": -92.9,
+     "policy_score": 252.8
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -79.7,
+     "score_delta": 50,
+     "policy_margin": -46.7,
+     "policy_score": 258.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 43.2,
+     "score_delta": 49.3,
+     "policy_margin": -92.9,
+     "policy_score": 252.8
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 52.8,
+     "score_delta": 49.7,
+     "policy_margin": 67.4,
+     "policy_score": 259.6
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 41.1,
+     "score_delta": 60.9,
+     "policy_margin": 137.5,
+     "policy_score": 252.1
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 60.8,
+     "score_delta": 70.8,
+     "policy_margin": 118.1,
+     "policy_score": 264.5
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 8.5,
+     "score_delta": 63.4,
+     "policy_margin": 121.5,
+     "policy_score": 277.8
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 62.6,
+     "score_delta": 77.2,
+     "policy_margin": 160.4,
+     "policy_score": 263.4
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t10__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 9.6875,
+   "score_delta": 20.7625,
+   "policy_margin": 27.175,
+   "policy_score": 222.175,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 19.85,
+    "median": 11.0,
+    "minimum": 3,
+    "maximum": 43
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 88.81632653061224,
+    "median": 92,
+    "minimum": 49,
+    "maximum": 140
+   },
+   "positive_cell_rate": 0.55,
+   "nonnegative_opponents": 6,
+   "worst_opponent_margin_delta": -72.8,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 55.1,
+     "score_delta": 43.6,
+     "policy_margin": -81,
+     "policy_score": 247.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -72.8,
+     "score_delta": 7,
+     "policy_margin": -39.8,
+     "policy_score": 215.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 55.1,
+     "score_delta": 43.6,
+     "policy_margin": -81,
+     "policy_score": 247.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 35.7,
+     "score_delta": 41.3,
+     "policy_margin": 50.3,
+     "policy_score": 251.2
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 11.4,
+     "score_delta": 20.9,
+     "policy_margin": 107.8,
+     "policy_score": 212.1
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 2.7,
+     "score_delta": 11.6,
+     "policy_margin": 60,
+     "policy_score": 205.3
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -19,
+     "score_delta": -5.8,
+     "policy_margin": 94,
+     "policy_score": 208.6
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 9.3,
+     "score_delta": 3.9,
+     "policy_margin": 107.1,
+     "policy_score": 190.1
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t10__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 48.2125,
+   "score_delta": 73.9625,
+   "policy_margin": 65.7,
+   "policy_score": 275.375,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 19.85,
+    "median": 11.0,
+    "minimum": 3,
+    "maximum": 43
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 88.81632653061224,
+    "median": 92,
+    "minimum": 49,
+    "maximum": 140
+   },
+   "positive_cell_rate": 0.6,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -44.3,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 75.4,
+     "score_delta": 71.6,
+     "policy_margin": -60.7,
+     "policy_score": 275.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -44.3,
+     "score_delta": 73.3,
+     "policy_margin": -11.3,
+     "policy_score": 282.2
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 75.4,
+     "score_delta": 71.6,
+     "policy_margin": -60.7,
+     "policy_score": 275.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 41.5,
+     "score_delta": 44.1,
+     "policy_margin": 56.1,
+     "policy_score": 254
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 63.2,
+     "score_delta": 79.7,
+     "policy_margin": 159.6,
+     "policy_score": 270.9
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 72.1,
+     "score_delta": 82,
+     "policy_margin": 129.4,
+     "policy_score": 275.7
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 16.9,
+     "score_delta": 74.9,
+     "policy_margin": 129.9,
+     "policy_score": 289.3
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 85.5,
+     "score_delta": 94.5,
+     "policy_margin": 183.3,
+     "policy_score": 280.7
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t15__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": -1.65,
+   "score_delta": 16.6375,
+   "policy_margin": 15.8375,
+   "policy_score": 218.05,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 25.325,
+    "median": 16.0,
+    "minimum": 3,
+    "maximum": 63
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 98.79591836734694,
+    "median": 105,
+    "minimum": 57,
+    "maximum": 179
+   },
+   "positive_cell_rate": 0.5125,
+   "nonnegative_opponents": 5,
+   "worst_opponent_margin_delta": -106.3,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 37.1,
+     "score_delta": 37.2,
+     "policy_margin": -99,
+     "policy_score": 240.7
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -106.3,
+     "score_delta": 5.7,
+     "policy_margin": -73.3,
+     "policy_score": 214.6
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 37.1,
+     "score_delta": 37.2,
+     "policy_margin": -99,
+     "policy_score": 240.7
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 37.6,
+     "score_delta": 39.4,
+     "policy_margin": 52.2,
+     "policy_score": 249.3
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 1.7,
+     "score_delta": 17.8,
+     "policy_margin": 98.1,
+     "policy_score": 209
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -6,
+     "score_delta": 2.3,
+     "policy_margin": 51.3,
+     "policy_score": 196
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -18.5,
+     "score_delta": -10.1,
+     "policy_margin": 94.5,
+     "policy_score": 204.3
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 4.1,
+     "score_delta": 3.6,
+     "policy_margin": 101.9,
+     "policy_score": 189.8
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t15__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 39.3625,
+   "score_delta": 66.3875,
+   "policy_margin": 56.85,
+   "policy_score": 267.8,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 25.325,
+    "median": 16.0,
+    "minimum": 3,
+    "maximum": 63
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 98.79591836734694,
+    "median": 105,
+    "minimum": 57,
+    "maximum": 179
+   },
+   "positive_cell_rate": 0.5875,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -71.6,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 68.2,
+     "score_delta": 62.8,
+     "policy_margin": -67.9,
+     "policy_score": 266.3
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -71.6,
+     "score_delta": 63.9,
+     "policy_margin": -38.6,
+     "policy_score": 272.8
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 68.2,
+     "score_delta": 62.8,
+     "policy_margin": -67.9,
+     "policy_score": 266.3
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 38.1,
+     "score_delta": 40,
+     "policy_margin": 52.7,
+     "policy_score": 249.9
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 56,
+     "score_delta": 78,
+     "policy_margin": 152.4,
+     "policy_score": 269.2
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 61.7,
+     "score_delta": 73.2,
+     "policy_margin": 119,
+     "policy_score": 266.9
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 14.9,
+     "score_delta": 61.9,
+     "policy_margin": 127.9,
+     "policy_score": 276.3
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 79.4,
+     "score_delta": 88.5,
+     "policy_margin": 177.2,
+     "policy_score": 274.7
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t20__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": -5.575,
+   "score_delta": 15.4375,
+   "policy_margin": 11.9125,
+   "policy_score": 216.85,
+   "mean_workers": 2.6,
+   "three_worker_rate": 0.6,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 26.95,
+    "median": 21.0,
+    "minimum": 3,
+    "maximum": 61
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6,
+    "mean": 101.66666666666667,
+    "median": 105.0,
+    "minimum": 63,
+    "maximum": 144
+   },
+   "positive_cell_rate": 0.4875,
+   "nonnegative_opponents": 4,
+   "worst_opponent_margin_delta": -114.6,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 39.1,
+     "score_delta": 34.9,
+     "policy_margin": -97,
+     "policy_score": 238.4
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -114.6,
+     "score_delta": 9.4,
+     "policy_margin": -81.6,
+     "policy_score": 218.3
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 39.1,
+     "score_delta": 34.9,
+     "policy_margin": -97,
+     "policy_score": 238.4
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 25.5,
+     "score_delta": 34,
+     "policy_margin": 40.1,
+     "policy_score": 243.9
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 7.7,
+     "score_delta": 20.3,
+     "policy_margin": 104.1,
+     "policy_score": 211.5
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -9.8,
+     "score_delta": 2.6,
+     "policy_margin": 47.5,
+     "policy_score": 196.3
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -30.7,
+     "score_delta": -16.2,
+     "policy_margin": 82.3,
+     "policy_score": 198.2
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": -0.9,
+     "score_delta": 3.6,
+     "policy_margin": 96.9,
+     "policy_score": 189.8
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t20__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 40.2125,
+   "score_delta": 65.875,
+   "policy_margin": 57.7,
+   "policy_score": 267.2875,
+   "mean_workers": 2.6,
+   "three_worker_rate": 0.6,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 26.95,
+    "median": 21.0,
+    "minimum": 3,
+    "maximum": 61
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6,
+    "mean": 101.66666666666667,
+    "median": 105.0,
+    "minimum": 63,
+    "maximum": 144
+   },
+   "positive_cell_rate": 0.5375,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -67.8,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 84.6,
+     "score_delta": 70.6,
+     "policy_margin": -51.5,
+     "policy_score": 274.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -67.8,
+     "score_delta": 75.4,
+     "policy_margin": -34.8,
+     "policy_score": 284.3
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 84.6,
+     "score_delta": 70.6,
+     "policy_margin": -51.5,
+     "policy_score": 274.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 51.1,
+     "score_delta": 45.9,
+     "policy_margin": 65.7,
+     "policy_score": 255.8
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 53.7,
+     "score_delta": 77.6,
+     "policy_margin": 150.1,
+     "policy_score": 268.8
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 42.4,
+     "score_delta": 53.4,
+     "policy_margin": 99.7,
+     "policy_score": 247.1
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 2.7,
+     "score_delta": 47.8,
+     "policy_margin": 115.7,
+     "policy_score": 262.2
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 70.4,
+     "score_delta": 85.7,
+     "policy_margin": 168.2,
+     "policy_score": 271.9
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t3__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 3.1625,
+   "score_delta": 16.475,
+   "policy_margin": 20.65,
+   "policy_score": 217.8875,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 89.02,
+    "median": 90.0,
+    "minimum": 47,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5,
+   "nonnegative_opponents": 5,
+   "worst_opponent_margin_delta": -92.6,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 45.4,
+     "score_delta": 33,
+     "policy_margin": -90.7,
+     "policy_score": 236.5
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -92.6,
+     "score_delta": 8.7,
+     "policy_margin": -59.6,
+     "policy_score": 217.6
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 45.4,
+     "score_delta": 33,
+     "policy_margin": -90.7,
+     "policy_score": 236.5
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 37.7,
+     "score_delta": 38.7,
+     "policy_margin": 52.3,
+     "policy_score": 248.6
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 9.7,
+     "score_delta": 19.9,
+     "policy_margin": 106.1,
+     "policy_score": 211.1
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -3,
+     "score_delta": 8.2,
+     "policy_margin": 54.3,
+     "policy_score": 201.9
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -19.4,
+     "score_delta": -12.7,
+     "policy_margin": 93.6,
+     "policy_score": 201.7
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 2.1,
+     "score_delta": 3,
+     "policy_margin": 99.9,
+     "policy_score": 189.2
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t3__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 33.425,
+   "score_delta": 59.575,
+   "policy_margin": 50.9125,
+   "policy_score": 260.9875,
+   "mean_workers": 2.625,
+   "three_worker_rate": 0.625,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 16.65,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 39
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.625,
+    "mean": 89.02,
+    "median": 90.0,
+    "minimum": 47,
+    "maximum": 153
+   },
+   "positive_cell_rate": 0.5625,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -65,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 55.3,
+     "score_delta": 51.8,
+     "policy_margin": -80.8,
+     "policy_score": 255.3
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -65,
+     "score_delta": 58,
+     "policy_margin": -32,
+     "policy_score": 266.9
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 55.3,
+     "score_delta": 51.8,
+     "policy_margin": -80.8,
+     "policy_score": 255.3
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 41.1,
+     "score_delta": 36.7,
+     "policy_margin": 55.7,
+     "policy_score": 246.6
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 52.9,
+     "score_delta": 71.5,
+     "policy_margin": 149.3,
+     "policy_score": 262.7
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 45.8,
+     "score_delta": 54.8,
+     "policy_margin": 103.1,
+     "policy_score": 248.5
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 12.4,
+     "score_delta": 68.3,
+     "policy_margin": 125.4,
+     "policy_score": 282.7
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 69.6,
+     "score_delta": 83.7,
+     "policy_margin": 167.4,
+     "policy_score": 269.9
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t6__resident_continuation": {
+   "scenarios": 80,
+   "margin_delta": 11.4,
+   "score_delta": 21.025,
+   "policy_margin": 28.8875,
+   "policy_score": 222.4375,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 18.125,
+    "median": 7.0,
+    "minimum": 3,
+    "maximum": 43
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 87.73469387755102,
+    "median": 83,
+    "minimum": 47,
+    "maximum": 175
+   },
+   "positive_cell_rate": 0.55,
+   "nonnegative_opponents": 5,
+   "worst_opponent_margin_delta": -74.3,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 58,
+     "score_delta": 41.6,
+     "policy_margin": -78.1,
+     "policy_score": 245.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -74.3,
+     "score_delta": 8.6,
+     "policy_margin": -41.3,
+     "policy_score": 217.5
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 58,
+     "score_delta": 41.6,
+     "policy_margin": -78.1,
+     "policy_score": 245.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 50.6,
+     "score_delta": 46.8,
+     "policy_margin": 65.2,
+     "policy_score": 256.7
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 5.5,
+     "score_delta": 18.1,
+     "policy_margin": 101.9,
+     "policy_score": 209.3
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": -0.1,
+     "score_delta": 11.3,
+     "policy_margin": 57.2,
+     "policy_score": 205
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": -14.9,
+     "score_delta": -5.8,
+     "policy_margin": 98.1,
+     "policy_score": 208.6
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 8.4,
+     "score_delta": 6,
+     "policy_margin": 106.2,
+     "policy_score": 192.2
+    }
+   },
+   "gate_passed": false
+  },
+  "two_oldest_t6__role_repair": {
+   "scenarios": 80,
+   "margin_delta": 46.8,
+   "score_delta": 74.125,
+   "policy_margin": 64.2875,
+   "policy_score": 275.5375,
+   "mean_workers": 2.6125,
+   "three_worker_rate": 0.6125,
+   "second_worker_turn": {
+    "observed_rate": 1.0,
+    "mean": 18.125,
+    "median": 7.0,
+    "minimum": 3,
+    "maximum": 43
+   },
+   "third_worker_turn": {
+    "observed_rate": 0.6125,
+    "mean": 87.73469387755102,
+    "median": 83,
+    "minimum": 47,
+    "maximum": 175
+   },
+   "positive_cell_rate": 0.5875,
+   "nonnegative_opponents": 7,
+   "worst_opponent_margin_delta": -85.3,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 10,
+     "margin_delta": 78.2,
+     "score_delta": 73.6,
+     "policy_margin": -57.9,
+     "policy_score": 277.1
+    },
+    "gold_adaptive": {
+     "scenarios": 10,
+     "margin_delta": -85.3,
+     "score_delta": 54.3,
+     "policy_margin": -52.3,
+     "policy_score": 263.2
+    },
+    "gold_elite": {
+     "scenarios": 10,
+     "margin_delta": 78.2,
+     "score_delta": 73.6,
+     "policy_margin": -57.9,
+     "policy_score": 277.1
+    },
+    "mybot": {
+     "scenarios": 10,
+     "margin_delta": 66.2,
+     "score_delta": 57.7,
+     "policy_margin": 80.8,
+     "policy_score": 267.6
+    },
+    "printer_bot": {
+     "scenarios": 10,
+     "margin_delta": 70.4,
+     "score_delta": 89.5,
+     "policy_margin": 166.8,
+     "policy_score": 280.7
+    },
+    "sched_bot": {
+     "scenarios": 10,
+     "margin_delta": 77.9,
+     "score_delta": 89.2,
+     "policy_margin": 135.2,
+     "policy_score": 282.9
+    },
+    "script_boss": {
+     "scenarios": 10,
+     "margin_delta": 5.9,
+     "score_delta": 61.4,
+     "policy_margin": 118.9,
+     "policy_score": 275.8
+    },
+    "silver_boss": {
+     "scenarios": 10,
+     "margin_delta": 82.9,
+     "score_delta": 93.7,
+     "policy_margin": 180.7,
+     "policy_score": 279.9
+    }
+   },
+   "gate_passed": false
+  }
+ },
+ "decision": {
+  "expand_discovery": false,
+  "build_submission_candidate": false,
+  "reason": "no post-funding role policy clears the worst-opponent gate"
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "troll-farm-d119a-long-fit-soft-value-q6-selection-lock-v1",
+  "frozen_at": "2026-07-22-after-two-exact-fit-passes-before-validation-collection",
+  "fit": {
+    "repeated_full_artifact_sha256_a": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "repeated_full_artifact_sha256_b": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "byte_exact": true,
+    "eligible_candidates": 6,
+    "model_hashes": {
+      "11901": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+      "11902": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+      "11903": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+      "11904": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a"
+    }
+  },
+  "validation": {
+    "untouched_seeds": "9843670--9843685",
+    "maps": 16,
+    "tasks": 256,
+    "complete_candidate_grid": 24
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-frozen-inputs.json": "acc6be0ea4a1e02104283f6e87d461608d0940b7692718a1c2c7cd56f9ebba38",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-protocol-2026-07-22.md": "c454757a3a46de18cd3e7a882489690b36fd2e2b9c1661d7ab1500cf8e994cb9",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "tests/test_train_d119a_long_fit_soft_value_q6.py": "cc4c2ec25b997754409eec678d75f6687dcc71774bad7ec051cd06f297dd3bc3",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84"
+  }
+}

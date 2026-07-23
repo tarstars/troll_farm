@@ -1,0 +1,1375 @@
+{
+  "decision": {
+    "construct_submission": false,
+    "local_candidate_input": false,
+    "next_experiment": "evolved_recurrent_representation_or_new_controller",
+    "open_confirmation": false,
+    "platform_action": false,
+    "status": "recurrent_readout_activity_failure"
+  },
+  "gates": {
+    "activity": {
+      "at_least_two_nonbalanced_modes": false,
+      "final_readout_l2_at_least_point5": true,
+      "search_population_and_updates_exact": true,
+      "ten_complete_search_matrices": true,
+      "validation_nonbalanced_rate_at_least_20pct": false,
+      "validation_repeat_and_initial_anchor_exact": true,
+      "zero_search_and_validation_mechanical_failures": true
+    },
+    "activity_pass": false,
+    "full_pass": false,
+    "value": {
+      "crop_creation_exactly_100pct": true,
+      "mean_margin_delta_at_least_5": false,
+      "mean_own_score_delta_at_least_minus10": true,
+      "p10_margin_delta_at_least_minus60": true,
+      "six_positive_and_every_opponent_at_least_minus5": false,
+      "strict_improvement_at_least_55pct": false,
+      "worker_three_at_least_90pct": true
+    },
+    "value_pass": false
+  },
+  "generated_at": "2026-07-21T15:23:12.815160+00:00",
+  "inputs": {
+    "analyzer": "0e493913615c06b9ab6bdf093c686d68f2b133cd274c9840719b2850d2e76d40",
+    "evaluation_a": "8de5d3a474d8a814bbd8356baf26a511d66fb435af401fc87160b6463e35f8c1",
+    "evaluation_b": "8de5d3a474d8a814bbd8356baf26a511d66fb435af401fc87160b6463e35f8c1",
+    "evaluation_time_a": "408034f0acc5a4fa180d0f33e56a6a3063fae0000039bbc465bee7e665646baa",
+    "evaluation_time_b": "9a11f54079dfc3410bcd84fa5e631c0775e2bd8217af1f39bc672bd83f66eaa1",
+    "final_population": "2c8bd3347d5af1cd3818a61a2a5db7e805ad6952a1bf12a083d260c3a3be81f5",
+    "orchestrator": "9726c48790d505e8ac6f1ce36b803e513388200dd22dd9cbc10a49618ed7a19e",
+    "protocol": "590efc34367e84e24c3c25e57bb04da55d921ee48610a1788a84f427bc7cc59d",
+    "runner_source": "294c21946449214e49463e610fd7f914ebc6ce037aab1b6b762e43ad526db165",
+    "search_log": "08df58b6080bca1dd2341d0d7ccb771de981f7bd7b2adbc8937ce4cdab2896ee",
+    "total_time": "c22974a45e7fd6c2fd4cdd567652dc6240aa443ebab5150c9e71dfb6631d5f80",
+    "validation_population": "7b6dbea3c31b31e52cce8f4ebbd991e05d200820c0fad05ba8e3493e2ea21484"
+  },
+  "schema": "troll-farm-d76a-recurrent-readout-cem-result-v1",
+  "scope": "whole-policy fixed-reservoir recurrent-readout CEM and validation",
+  "search": {
+    "final_distribution_exact": true,
+    "final_mean": [
+      -0.21253916,
+      0.5930799,
+      0.53923026,
+      -0.35306751,
+      0.19537246,
+      0.0114147,
+      0.35643282,
+      -0.39361922,
+      -0.36098804,
+      -0.07763457,
+      -0.47486818,
+      0.5537273,
+      0.30628649,
+      -0.36136638,
+      -0.17175472,
+      0.43214252,
+      -0.11862449,
+      -0.13535322,
+      0.03906362,
+      -0.16104992,
+      0.3313127,
+      0.03741493,
+      0.25340474,
+      -0.19342516,
+      0.17798525,
+      -0.09808109,
+      -0.37091586,
+      0.27894191,
+      -0.04345993,
+      0.03414667,
+      0.50397703,
+      -0.06193253,
+      0.22406496,
+      -0.10628634,
+      -0.23674697,
+      -0.28048597,
+      -0.10977139,
+      0.00875022,
+      0.02362323,
+      0.19882852,
+      0.02157367,
+      0.02806374,
+      -0.13011802,
+      0.38121372,
+      0.53714649,
+      0.0700821,
+      -0.15463175,
+      0.29489384,
+      0.11400349,
+      -0.00616222,
+      0.03528206,
+      -0.01832875
+    ],
+    "final_mean_l2": 1.9654046310168651,
+    "final_std": [
+      0.23311291,
+      0.22899494,
+      0.40531259,
+      0.46720541,
+      0.29033209,
+      0.36587774,
+      0.40368705,
+      0.26880591,
+      0.29906617,
+      0.39521981,
+      0.34047401,
+      0.44727913,
+      0.53139367,
+      0.38683124,
+      0.44141149,
+      0.5297927,
+      0.34942524,
+      0.35142755,
+      0.25008238,
+      0.24735523,
+      0.28327433,
+      0.42454087,
+      0.29739805,
+      0.30167284,
+      0.39522441,
+      0.2034873,
+      0.33303715,
+      0.3197194,
+      0.31202287,
+      0.2986178,
+      0.44495413,
+      0.37011389,
+      0.3603733,
+      0.25192162,
+      0.19988611,
+      0.33466568,
+      0.27734857,
+      0.48922733,
+      0.59078316,
+      0.4497855,
+      0.30554797,
+      0.28883392,
+      0.18951558,
+      0.3554834,
+      0.35192945,
+      0.31620635,
+      0.23376832,
+      0.31961263,
+      0.13182652,
+      0.06713179,
+      0.1029263,
+      0.09401461
+    ],
+    "generations": [
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 0.0625,
+          "label": "g01_m00",
+          "mean_margin_delta": 0.0625,
+          "mean_own_score_delta": 0.125,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.5,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.015625,
+          "unlocked_action_counts": [
+            4470,
+            0,
+            34,
+            0
+          ],
+          "unlocked_decisions": 4504,
+          "worker_three_rate": 0.9375
+        },
+        "generation": 1,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 0.5534320628592302,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4509,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 4509,
+          "worker_three_rate": 0.9375
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.4524427388461539,
+        "timing": {
+          "effective_cpu_cores": 19.225735830698127,
+          "elapsed_seconds": 41.11,
+          "maximum_resident_kib": 8640,
+          "reported_cpu_percent": 1922.0,
+          "system_seconds": 0.37,
+          "user_seconds": 790.0
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 1.21875,
+          "label": "g02_p13",
+          "mean_margin_delta": 1.21875,
+          "mean_own_score_delta": 0.953125,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 1.5,
+            "gold_adaptive": 3.5,
+            "legend_balanced": 3.25,
+            "mybot": 0.0,
+            "norx_native_three": 1.5,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.09375,
+          "unlocked_action_counts": [
+            3759,
+            0,
+            311,
+            0
+          ],
+          "unlocked_decisions": 4070,
+          "worker_three_rate": 0.90625
+        },
+        "generation": 2,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 0.8548698538097886,
+        "mean_member": {
+          "eligible": true,
+          "fitness": -0.34375,
+          "mean_margin_delta": -0.0625,
+          "mean_own_score_delta": -0.0625,
+          "minimum_opponent_family_mean_delta": -0.5,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": -0.5,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4021,
+            0,
+            14,
+            0
+          ],
+          "unlocked_decisions": 4035,
+          "worker_three_rate": 0.90625
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.4322397861538462,
+        "timing": {
+          "effective_cpu_cores": 19.411135291984042,
+          "elapsed_seconds": 55.14,
+          "maximum_resident_kib": 9440,
+          "reported_cpu_percent": 1940.0,
+          "system_seconds": 0.38,
+          "user_seconds": 1069.95
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 0.0,
+          "label": "g03_mean",
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4067,
+            0,
+            1,
+            0
+          ],
+          "unlocked_decisions": 4068,
+          "worker_three_rate": 0.921875
+        },
+        "generation": 3,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.0704020170474955,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4067,
+            0,
+            1,
+            0
+          ],
+          "unlocked_decisions": 4068,
+          "worker_three_rate": 0.921875
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.4032546225000001,
+        "timing": {
+          "effective_cpu_cores": 19.560081053698077,
+          "elapsed_seconds": 49.35,
+          "maximum_resident_kib": 9440,
+          "reported_cpu_percent": 1955.0,
+          "system_seconds": 0.34,
+          "user_seconds": 964.95
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": false,
+          "fitness": -Infinity,
+          "label": "g04_p11",
+          "mean_margin_delta": 3.71875,
+          "mean_own_score_delta": 0.953125,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 6.375,
+            "mybot": 2.875,
+            "norx_native_three": 2.375,
+            "resident": 7.25,
+            "script_boss": 0.0,
+            "silver_boss": 10.875
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.140625,
+          "unlocked_action_counts": [
+            3978,
+            0,
+            73,
+            166
+          ],
+          "unlocked_decisions": 4217,
+          "worker_three_rate": 0.796875
+        },
+        "generation": 4,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.2849912469157385,
+        "mean_member": {
+          "eligible": false,
+          "fitness": -Infinity,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4325,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 4325,
+          "worker_three_rate": 0.796875
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.3770920978846154,
+        "timing": {
+          "effective_cpu_cores": 19.414551607445006,
+          "elapsed_seconds": 47.28,
+          "maximum_resident_kib": 9600,
+          "reported_cpu_percent": 1941.0,
+          "system_seconds": 0.51,
+          "user_seconds": 917.41
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 2.640625,
+          "label": "g05_m03",
+          "mean_margin_delta": 2.640625,
+          "mean_own_score_delta": 2.046875,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 11.25,
+            "gold_adaptive": 7.25,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 2.625,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.21875,
+          "unlocked_action_counts": [
+            3617,
+            0,
+            200,
+            204
+          ],
+          "unlocked_decisions": 4021,
+          "worker_three_rate": 0.90625
+        },
+        "generation": 5,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.466541113930077,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4070,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 4070,
+          "worker_three_rate": 0.90625
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.36134311596153845,
+        "timing": {
+          "effective_cpu_cores": 19.12997123032662,
+          "elapsed_seconds": 59.09,
+          "maximum_resident_kib": 9920,
+          "reported_cpu_percent": 1912.0,
+          "system_seconds": 0.49,
+          "user_seconds": 1129.9
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 6.65625,
+          "label": "g06_p11",
+          "mean_margin_delta": 6.78125,
+          "mean_own_score_delta": 6.625,
+          "minimum_opponent_family_mean_delta": -0.25,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 28.375,
+            "mybot": 5.75,
+            "norx_native_three": 20.375,
+            "resident": 0.0,
+            "script_boss": -0.25,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.1875,
+          "unlocked_action_counts": [
+            3637,
+            63,
+            2,
+            428
+          ],
+          "unlocked_decisions": 4130,
+          "worker_three_rate": 0.90625
+        },
+        "generation": 6,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.5207803975364536,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4211,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 4211,
+          "worker_three_rate": 0.90625
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.35124230826923086,
+        "timing": {
+          "effective_cpu_cores": 19.542729306487697,
+          "elapsed_seconds": 44.7,
+          "maximum_resident_kib": 9920,
+          "reported_cpu_percent": 1954.0,
+          "system_seconds": 0.48,
+          "user_seconds": 873.08
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 13.115625000000001,
+          "label": "g07_m02",
+          "mean_margin_delta": 16.890625,
+          "mean_own_score_delta": 7.53125,
+          "minimum_opponent_family_mean_delta": -0.5,
+          "opponent_family_mean_delta": {
+            "compact_gold": 47.375,
+            "gold_adaptive": 29.5,
+            "legend_balanced": 21.375,
+            "mybot": 12.75,
+            "norx_native_three": 17.375,
+            "resident": -0.5,
+            "script_boss": 5.5,
+            "silver_boss": 1.75
+          },
+          "p10_margin_delta": -14.099999999999998,
+          "strict_improvement_rate": 0.703125,
+          "unlocked_action_counts": [
+            1611,
+            42,
+            46,
+            1196
+          ],
+          "unlocked_decisions": 2895,
+          "worker_three_rate": 0.921875
+        },
+        "generation": 7,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.57310339894844,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            3438,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 3438,
+          "worker_three_rate": 0.921875
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.3521695253846155,
+        "timing": {
+          "effective_cpu_cores": 19.39762560220234,
+          "elapsed_seconds": 58.12,
+          "maximum_resident_kib": 9600,
+          "reported_cpu_percent": 1939.0,
+          "system_seconds": 0.54,
+          "user_seconds": 1126.85
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 3.484375,
+          "label": "g08_p15",
+          "mean_margin_delta": 3.484375,
+          "mean_own_score_delta": 2.8125,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 2.5,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.375,
+            "norx_native_three": 0.0,
+            "resident": 25.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.125,
+          "unlocked_action_counts": [
+            3373,
+            0,
+            174,
+            80
+          ],
+          "unlocked_decisions": 3627,
+          "worker_three_rate": 0.9375
+        },
+        "generation": 8,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.7267244591172706,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            3659,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 3659,
+          "worker_three_rate": 0.9375
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.3377037617307692,
+        "timing": {
+          "effective_cpu_cores": 17.712941808896655,
+          "elapsed_seconds": 74.41,
+          "maximum_resident_kib": 9440,
+          "reported_cpu_percent": 1771.0,
+          "system_seconds": 0.94,
+          "user_seconds": 1317.08
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 8.59375,
+          "label": "g09_p14",
+          "mean_margin_delta": 9.21875,
+          "mean_own_score_delta": 6.734375,
+          "minimum_opponent_family_mean_delta": -1.25,
+          "opponent_family_mean_delta": {
+            "compact_gold": 3.375,
+            "gold_adaptive": 19.625,
+            "legend_balanced": -1.25,
+            "mybot": 4.125,
+            "norx_native_three": 0.0,
+            "resident": 9.25,
+            "script_boss": 22.75,
+            "silver_boss": 15.875
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.4375,
+          "unlocked_action_counts": [
+            3206,
+            31,
+            48,
+            630
+          ],
+          "unlocked_decisions": 3915,
+          "worker_three_rate": 0.859375
+        },
+        "generation": 9,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.866730340092822,
+        "mean_member": {
+          "eligible": true,
+          "fitness": 0.0,
+          "mean_margin_delta": 0.0,
+          "mean_own_score_delta": 0.0,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": 0.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            4267,
+            0,
+            0,
+            0
+          ],
+          "unlocked_decisions": 4267,
+          "worker_three_rate": 0.859375
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.33413919865384606,
+        "timing": {
+          "effective_cpu_cores": 19.284313725490193,
+          "elapsed_seconds": 52.02,
+          "maximum_resident_kib": 8800,
+          "reported_cpu_percent": 1928.0,
+          "system_seconds": 0.53,
+          "user_seconds": 1002.64
+        },
+        "updates_exact": true
+      },
+      {
+        "best": {
+          "eligible": true,
+          "fitness": 1.765625,
+          "label": "g10_m08",
+          "mean_margin_delta": 1.765625,
+          "mean_own_score_delta": 0.984375,
+          "minimum_opponent_family_mean_delta": 0.0,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 4.125,
+            "mybot": 0.0,
+            "norx_native_three": 10.0,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.03125,
+          "unlocked_action_counts": [
+            3875,
+            0,
+            0,
+            60
+          ],
+          "unlocked_decisions": 3935,
+          "worker_three_rate": 0.90625
+        },
+        "generation": 10,
+        "hashes_exact": true,
+        "matrix": {
+          "action_count_failures": 0,
+          "complete_grid": true,
+          "crop_failures": 0,
+          "duplicate_rows": 0,
+          "expected_rows": 2176,
+          "failure_totals": {
+            "boundary_failures": 0,
+            "deposit_prediction_failures": 0,
+            "finite_feature_failures": 0,
+            "finite_recurrent_failures": 0,
+            "invalid_direct_commands": 0,
+            "legal_mask_failures": 0,
+            "provenance_failures": 0
+          },
+          "family_failures": 0,
+          "maximum_reward_identity_error": 0.0,
+          "missing_rows": 0,
+          "parse_failures": 0,
+          "pass": true,
+          "rows": 2176,
+          "unexpected_rows": 0,
+          "unlocked_count_failures": 0
+        },
+        "mean_l2": 1.9654046310168651,
+        "mean_member": {
+          "eligible": true,
+          "fitness": -0.34375,
+          "mean_margin_delta": -0.0625,
+          "mean_own_score_delta": -0.0625,
+          "minimum_opponent_family_mean_delta": -0.5,
+          "opponent_family_mean_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.0,
+            "mybot": 0.0,
+            "norx_native_three": -0.5,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.0
+          },
+          "p10_margin_delta": 0.0,
+          "strict_improvement_rate": 0.0,
+          "unlocked_action_counts": [
+            3938,
+            0,
+            0,
+            6
+          ],
+          "unlocked_decisions": 3944,
+          "worker_three_rate": 0.90625
+        },
+        "pass": true,
+        "population": {
+          "finite": true,
+          "geometry_exact": true,
+          "header_exact": true,
+          "labels_exact": true,
+          "parameters_exact": true,
+          "pass": true,
+          "reservoir_exact": true,
+          "rows": 33
+        },
+        "std_mean": 0.3255372771153846,
+        "timing": {
+          "effective_cpu_cores": 19.442554874431483,
+          "elapsed_seconds": 50.57,
+          "maximum_resident_kib": 9920,
+          "reported_cpu_percent": 1943.0,
+          "system_seconds": 0.46,
+          "user_seconds": 982.75
+        },
+        "updates_exact": true
+      }
+    ],
+    "pass": true,
+    "reservoir_hash_exact": true
+  },
+  "search_artifacts": {
+    "final_population": {
+      "finite": true,
+      "geometry_exact": true,
+      "header_exact": true,
+      "labels_exact": true,
+      "parameters_exact": true,
+      "pass": true,
+      "reservoir_exact": true,
+      "rows": 1
+    },
+    "metadata_exact": true,
+    "pass": true,
+    "validation_population": {
+      "finite": true,
+      "geometry_exact": true,
+      "header_exact": true,
+      "labels_exact": true,
+      "parameters_exact": true,
+      "pass": true,
+      "reservoir_exact": true,
+      "rows": 2
+    }
+  },
+  "validation": {
+    "crop_creation_rate": 1.0,
+    "distinct_nonbalanced_modes": 0,
+    "margin_delta": {
+      "maximum": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "minimum": 0.0,
+      "negative_rate": 0.0,
+      "p01": 0.0,
+      "p10": 0.0,
+      "p90": 0.0,
+      "p99": 0.0,
+      "positive_rate": 0.0,
+      "tie_rate": 1.0
+    },
+    "maximum_hidden_abs": 0.99999815,
+    "mean_opponent_score_delta": 0.0,
+    "mean_own_score_delta": 0.0,
+    "nonbalanced_rate": 0.0,
+    "opponent_mean_margin_delta": {
+      "compact_gold": 0.0,
+      "gold_adaptive": 0.0,
+      "legend_balanced": 0.0,
+      "mybot": 0.0,
+      "norx_native_three": 0.0,
+      "resident": 0.0,
+      "script_boss": 0.0,
+      "silver_boss": 0.0
+    },
+    "positive_opponent_families": 0,
+    "seat_mean_margin_delta": {
+      "0": 0.0,
+      "1": 0.0
+    },
+    "tasks": 256,
+    "unlocked_action_counts": [
+      17230,
+      0,
+      0,
+      0
+    ],
+    "unlocked_action_rates": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "unlocked_decisions": 17230,
+    "worker_three_rate": 0.91015625
+  },
+  "validation_integrity": {
+    "initial_anchor": {
+      "field_mismatches": 0,
+      "identities_exact": true,
+      "pass": true,
+      "tasks": 256
+    },
+    "matrix_a": {
+      "action_count_failures": 0,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "expected_rows": 768,
+      "failure_totals": {
+        "boundary_failures": 0,
+        "deposit_prediction_failures": 0,
+        "finite_feature_failures": 0,
+        "finite_recurrent_failures": 0,
+        "invalid_direct_commands": 0,
+        "legal_mask_failures": 0,
+        "provenance_failures": 0
+      },
+      "family_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "pass": true,
+      "rows": 768,
+      "unexpected_rows": 0,
+      "unlocked_count_failures": 0
+    },
+    "matrix_b": {
+      "action_count_failures": 0,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "expected_rows": 768,
+      "failure_totals": {
+        "boundary_failures": 0,
+        "deposit_prediction_failures": 0,
+        "finite_feature_failures": 0,
+        "finite_recurrent_failures": 0,
+        "invalid_direct_commands": 0,
+        "legal_mask_failures": 0,
+        "provenance_failures": 0
+      },
+      "family_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "pass": true,
+      "rows": 768,
+      "unexpected_rows": 0,
+      "unlocked_count_failures": 0
+    },
+    "pass": true,
+    "repeat_byte_exact": true,
+    "timings": [
+      {
+        "effective_cpu_cores": 19.147775423728813,
+        "elapsed_seconds": 18.88,
+        "maximum_resident_kib": 7840,
+        "reported_cpu_percent": 1914.0,
+        "system_seconds": 0.18,
+        "user_seconds": 361.33
+      },
+      {
+        "effective_cpu_cores": 17.72785119921684,
+        "elapsed_seconds": 20.43,
+        "maximum_resident_kib": 8320,
+        "reported_cpu_percent": 1772.0,
+        "system_seconds": 0.23,
+        "user_seconds": 361.95
+      }
+    ],
+    "total_timing": {
+      "effective_cpu_cores": 19.04904460823698,
+      "elapsed_seconds": 572.54,
+      "maximum_resident_kib": 61820,
+      "reported_cpu_percent": 1904.0,
+      "system_seconds": 5.6,
+      "user_seconds": 10900.74
+    }
+  }
+}

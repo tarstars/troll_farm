@@ -1,0 +1,50 @@
+{
+  "schema": "troll-farm-d116a-rootwise-q6-proposal-wait-choice-repair1-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-repaired-validation-collection-or-validation-candidate-score",
+  "repair": {
+    "reason": "original panel support 141/160 = 88.125% below unchanged 90% floor",
+    "failed_panel_validation_candidates": 0,
+    "failed_panel_is_selection_quarantined": true,
+    "repaired_validation_seeds": "9843650--9843665",
+    "repaired_validation_maps": 16,
+    "repaired_validation_tasks": 256,
+    "model_loss_training_grid_gates_and_selection_order_unchanged": true
+  },
+  "data_isolation": {
+    "fit_only_seeds": "9843300--9843315",
+    "discarded_mechanics_failure_seeds": "9843630--9843639",
+    "untouched_repaired_validation_seeds": "9843650--9843665",
+    "conditional_untouched_held_seeds": "9843700--9843715",
+    "d114_and_d115_validation_excluded": true
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6"
+  },
+  "train_elapsed_seconds": 855.033,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d116a-rootwise-q6-proposal-wait-choice-frozen-inputs.json": "f551c219c79d4cece3312e5cdc431919b9cef171871b3dc21b7ee55b216ff823",
+    "data/analysis/live-agent-6553250/d116a-rootwise-q6-proposal-wait-choice-protocol-2026-07-22.md": "fe61bb41df56a50bd5cb0561e966e92dfd1b6a3e17284043e383cc7ae0778b91",
+    "data/analysis/live-agent-6553250/d116a-rootwise-q6-proposal-wait-choice-repair1-2026-07-22.md": "7afeaa12989fc9e4fabb5a4f0c882ff95823525de73e2207d789ec1be6e1d468",
+    "cgauto/train_d116a_rootwise_q6_proposal_wait_choice.py": "29f7c6490c31ff21d4ad8f7d63f08ff1e2c6c0f6cac5f478c72d2bafdf864414",
+    "tests/test_train_d116a_rootwise_q6_proposal_wait_choice.py": "321570917272449fd92945ccd071d947612a0a355e48048fea3bc2be3649edb3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/make_d110a_antithetic_q6_linear_population.py": "13cbe478d2d725a25608d1a2e5dd6089a89ca0d1dc9ed4927857228af62d41f5",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d116a-rootwise-q6-proposal-wait-choice-result.json": "dd8fff9fbf3f041ec2d2b9e9bf8565cdf43ee96cc8e7e3a4f89367a616e0b536",
+    "data/analysis/live-agent-6553250/d116a-q6-validation-arms-9843630-9843639.tsv": "999bc3988efce31ea5df0c9a2086fce53452b3c724e4f60f7bf07c82ddcf660e",
+    "data/analysis/live-agent-6553250/d116a-q6-validation-baselines-9843630-9843639.tsv": "85e7c9d01604ac335923084f89dc2bcf15d19c89cb4b964651ba92fd54e0c4a5",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

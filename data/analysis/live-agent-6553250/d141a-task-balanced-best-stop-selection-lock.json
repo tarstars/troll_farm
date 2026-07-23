@@ -1,0 +1,18 @@
+{
+  "schema": "troll-farm-d141a-task-balanced-best-stop-selection-lock-v1",
+  "frozen_at": "2026-07-22-after-d140-closure-before-any-d141-fit",
+  "isolated_change": "replace D137 flattened root-weighted hard-stop BCE with equal-task and within-positive-task class-balanced hard-stop BCE",
+  "sha256": {
+    "cgauto/train_d141a_task_balanced_best_stop_selection.py": "7c65bbd736f3afd42025aad15882abaf63c0fd436227aa62abdfdbcad7ac6e13",
+    "tests/test_train_d141a_task_balanced_best_stop_selection.py": "d28e64831e0c4d9f0672429d9c8880fc68a7306c4590f2d6ae1624e441ca2310",
+    "data/analysis/live-agent-6553250/d141a-task-balanced-best-stop-selection-protocol-2026-07-22.md": "97cdd2ed561536de6f0d560d9903dba2387a5cbfa25d9a6e673429be49175090",
+    "cgauto/train_d140a_eight_block_best_stop_selection.py": "30f6333be5bcb020e23890cb7bca6d0af493388cb2ef49a556dae5a180aebc72",
+    "data/analysis/live-agent-6553250/d140a-eight-block-best-stop-selection-lock.json": "940f484dad1290d80df1a00e124d6b0894a41cd6f9069c3649b8301e02b2e727",
+    "data/analysis/live-agent-6553250/d140a-eight-block-best-stop-selection-a.json": "c74dc1b16e207671898379ffb70a0da5ca80073aea5790e0078628c3b4812fef",
+    "data/analysis/live-agent-6553250/d140a-eight-block-best-stop-selection-b.json": "c74dc1b16e207671898379ffb70a0da5ca80073aea5790e0078628c3b4812fef",
+    "data/analysis/live-agent-6553250/d140a-eight-block-best-stop-selection-result.json": "7929d2bc90721a240e09e20d71091bbe36b288754ddfb9a46a216e34381d2244",
+    "cgauto/train_d138a_best_stop_plus3pp_calibration_q6.py": "5da7c4b7c8993a1699c356207bf5b72e0309bc256d4e9734d2bc9d7456e09a71",
+    "data/analysis/live-agent-6553250/d138a-best-stop-plus3pp-calibration-q6-lock.json": "c3a6b1fd91fa5e9db2c534fe9620959604d3e4c1ca3ec21107a23e638d8e37d4",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-lock.json": "6647730a52c5f111e66b8db533a1c4982fce13bc807fcdc50f4568493d5c6f00"
+  }
+}

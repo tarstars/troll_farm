@@ -1,0 +1,438 @@
+{
+  "action_space": {
+    "local_productive_actions": {
+      "ci95_normal": [
+        1.0680814164368193,
+        1.0836576806147777
+      ],
+      "losses": 0,
+      "maximum": 6,
+      "mean": 1.0758695485257985,
+      "median": 1.0,
+      "minimum": 0,
+      "n": 104192,
+      "standard_deviation": 1.2826094180993304,
+      "standard_error": 0.003973536780091433,
+      "ties": 48028,
+      "wins": 56164,
+      "worst_decile_mean": 0
+    },
+    "local_productive_available_rate": 0.5390433046683046,
+    "poi_move_targets": {
+      "ci95_normal": [
+        31.080192414428705,
+        31.17435687918309
+      ],
+      "losses": 0,
+      "maximum": 60,
+      "mean": 31.127274646805898,
+      "median": 31.0,
+      "minimum": 15,
+      "n": 104192,
+      "standard_deviation": 7.7538636969940535,
+      "standard_error": 0.024021547131221465,
+      "ties": 0,
+      "wins": 104192,
+      "worst_decile_mean": 19.12667946257198
+    },
+    "poi_move_targets_p95_nearest_rank": 43,
+    "resident_directly_decodable_rate": 1,
+    "residual_options": {
+      "ci95_normal": [
+        32.15586449021681,
+        32.250423900446584
+      ],
+      "losses": 0,
+      "maximum": 63,
+      "mean": 32.203144195331696,
+      "median": 32.0,
+      "minimum": 16,
+      "n": 104192,
+      "standard_deviation": 7.786385024353679,
+      "standard_error": 0.024122298528004724,
+      "ties": 0,
+      "wins": 104192,
+      "worst_decile_mean": 20.442706333973128
+    },
+    "residual_options_p95_nearest_rank": 45
+  },
+  "coverage": {
+    "decisions_per_game": {
+      "ci95_normal": [
+        529.3501886926985,
+        555.9831446406348
+      ],
+      "losses": 0,
+      "maximum": 599,
+      "mean": 542.6666666666666,
+      "median": 588.0,
+      "minimum": 236,
+      "n": 192,
+      "standard_deviation": 94.14210787259115,
+      "standard_error": 6.794121415289911,
+      "ties": 0,
+      "wins": 192,
+      "worst_decile_mean": 312.8
+    },
+    "local_signature_unique_rate": 0.1437154484029484,
+    "opponent_decisions": {
+      "compact_gold": {
+        "count": 18110,
+        "rate": 0.1738137285012285
+      },
+      "gold_adaptive": {
+        "count": 17518,
+        "rate": 0.16813191031941033
+      },
+      "legend_balanced": {
+        "count": 18906,
+        "rate": 0.18145347051597052
+      },
+      "mybot": {
+        "count": 18906,
+        "rate": 0.18145347051597052
+      },
+      "norx_native_three": {
+        "count": 18906,
+        "rate": 0.18145347051597052
+      },
+      "resident": {
+        "count": 11846,
+        "rate": 0.11369394963144963
+      }
+    },
+    "roles": {
+      "later": {
+        "decisions": 0,
+        "local_productive_available_rate": null,
+        "rate": 0.0,
+        "verbs": {},
+        "wait_rate": null
+      },
+      "second": {
+        "decisions": 51214,
+        "local_productive_available_rate": 0.5609013160463936,
+        "rate": 0.49153485872235875,
+        "verbs": {
+          "CHOP": {
+            "count": 16258,
+            "rate": 0.31745225914788927
+          },
+          "DROP": {
+            "count": 4352,
+            "rate": 0.08497676416604835
+          },
+          "MOVE": {
+            "count": 26255,
+            "rate": 0.5126527902526653
+          },
+          "PICK": {
+            "count": 1516,
+            "rate": 0.029601280899753973
+          },
+          "PLANT": {
+            "count": 1515,
+            "rate": 0.02958175498887023
+          },
+          "WAIT": {
+            "count": 1318,
+            "rate": 0.025735150544772913
+          }
+        },
+        "wait_rate": 0.025735150544772913
+      },
+      "starter": {
+        "decisions": 52978,
+        "local_productive_available_rate": 0.5179130960021141,
+        "rate": 0.5084651412776413,
+        "verbs": {
+          "CHOP": {
+            "count": 15370,
+            "rate": 0.2901204273472007
+          },
+          "DROP": {
+            "count": 3339,
+            "rate": 0.06302616180301257
+          },
+          "HARVEST": {
+            "count": 1085,
+            "rate": 0.020480199328022954
+          },
+          "MINE": {
+            "count": 168,
+            "rate": 0.003171127637887425
+          },
+          "MOVE": {
+            "count": 29406,
+            "rate": 0.5550605911887954
+          },
+          "PICK": {
+            "count": 847,
+            "rate": 0.015987768507682434
+          },
+          "PLANT": {
+            "count": 847,
+            "rate": 0.015987768507682434
+          },
+          "WAIT": {
+            "count": 1916,
+            "rate": 0.03616595567971611
+          }
+        },
+        "wait_rate": 0.03616595567971611
+      }
+    },
+    "unique_local_signatures": 14974,
+    "unique_state_fingerprints": 52471,
+    "unique_state_unit_pairs": 103423,
+    "verbs": {
+      "CHOP": {
+        "count": 31628,
+        "rate": 0.30355497542997545
+      },
+      "DROP": {
+        "count": 7691,
+        "rate": 0.07381564803439804
+      },
+      "HARVEST": {
+        "count": 1085,
+        "rate": 0.010413467444717444
+      },
+      "MINE": {
+        "count": 168,
+        "rate": 0.0016124078624078623
+      },
+      "MOVE": {
+        "count": 55661,
+        "rate": 0.5342156787469288
+      },
+      "PICK": {
+        "count": 2363,
+        "rate": 0.022679284398034398
+      },
+      "PLANT": {
+        "count": 2362,
+        "rate": 0.022669686732186733
+      },
+      "WAIT": {
+        "count": 3234,
+        "rate": 0.03103885135135135
+      }
+    },
+    "worker_count_at_decision": {
+      "1": {
+        "count": 1764,
+        "rate": 0.016930282555282554
+      },
+      "2": {
+        "count": 102428,
+        "rate": 0.9830697174447175
+      }
+    },
+    "worker_specs": {
+      "1/1/0/2": {
+        "count": 3368,
+        "rate": 0.03232493857493857
+      },
+      "1/1/1/1": {
+        "count": 52978,
+        "rate": 0.5084651412776413
+      },
+      "1/2/0/3": {
+        "count": 6400,
+        "rate": 0.06142506142506143
+      },
+      "1/3/0/2": {
+        "count": 3412,
+        "rate": 0.03274723587223587
+      },
+      "1/3/0/3": {
+        "count": 6203,
+        "rate": 0.05953432125307125
+      },
+      "2/2/0/1": {
+        "count": 3556,
+        "rate": 0.034129299754299756
+      },
+      "2/2/0/2": {
+        "count": 6424,
+        "rate": 0.06165540540540541
+      },
+      "2/2/0/3": {
+        "count": 6172,
+        "rate": 0.05923679361179361
+      },
+      "2/3/0/2": {
+        "count": 3374,
+        "rate": 0.03238252457002457
+      },
+      "2/3/0/3": {
+        "count": 5983,
+        "rate": 0.05742283476658477
+      },
+      "3/1/0/2": {
+        "count": 3216,
+        "rate": 0.030866093366093365
+      },
+      "3/1/0/3": {
+        "count": 3106,
+        "rate": 0.029810350122850122
+      }
+    }
+  },
+  "descriptive_d11_shadow": {
+    "exact_agreement_rate": 0.09005489864864864,
+    "verb_agreement_rate": 0.3716216216216216,
+    "warning": "D11 is closed and these rates cannot define the new policy or a gate"
+  },
+  "design": {
+    "complete": true,
+    "decisions": 104192,
+    "games": 192,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "seeds": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ]
+  },
+  "intent": {
+    "consecutive_decisions": 103808,
+    "exact_command_persistence_rate": 0.26540343711467324,
+    "intent_age": {
+      "ci95_normal": [
+        2.1878231878014684,
+        2.229963206547426
+      ],
+      "losses": 0,
+      "maximum": 77,
+      "mean": 2.208893197174447,
+      "median": 1.0,
+      "minimum": 1,
+      "n": 104192,
+      "standard_deviation": 3.469970995929263,
+      "standard_error": 0.010750004782132064,
+      "ties": 0,
+      "wins": 104192,
+      "worst_decile_mean": 1
+    },
+    "intent_age_p95_nearest_rank": 8,
+    "move_target_eligible_decisions": 46724,
+    "move_target_persistence_rate": 0,
+    "multiworker_decisions": 102428,
+    "multiworker_rate": 0.9830697174447175,
+    "paired_target_collision_rate_with_multiworker": 0,
+    "target_eligible_decisions": 100512,
+    "target_persistence_rate": 0.4502248487742757,
+    "verb_persistence_rate": 0.7155036220715166
+  },
+  "interface_selection": {
+    "authorization": "environment construction and smoke testing only; no candidate, submission, or Arena activity",
+    "include_other_worker_intent": true,
+    "include_previous_resident_intent": true,
+    "retain_point_of_interest_moves_due_to_sparse_local_actions": false,
+    "rules": {
+      "other_worker_threshold": 0.1,
+      "previous_intent_threshold": 0.2,
+      "sparse_local_action_threshold": 0.2
+    },
+    "selected": "spatial_keep_plus_action",
+    "spatial_gate": {
+      "direct_decodability_at_least_95_percent": true,
+      "residual_options_p95_at_most_64": true
+    }
+  },
+  "schema": 1,
+  "scope": "D13 exact resident trajectory interface audit on reused development seeds; no candidate, prospective, submission, or Arena authorization",
+  "source": {
+    "analyzer": "cgauto/d13_resident_trajectory_analysis.py",
+    "analyzer_sha256": "7c380da8a3fd790da5e2b291b746352aeeb0cdffda487b3007314d1f3d8cfaf9",
+    "decisions": "data/analysis/live-agent-6553250/d13-resident-trajectory-interface-audit-decisions-seeds24-39.tsv",
+    "decisions_sha256": "d4184600ef9d7f5d10da0e13bab6443d99daea093600512c22db909b10b221e8",
+    "games": "data/analysis/live-agent-6553250/d13-resident-trajectory-interface-audit-games-seeds24-39.tsv",
+    "games_sha256": "2c74c019db2a6ae970f782559b90529a257535afbbe7e570111f992c34476060"
+  },
+  "terminal": {
+    "margin": {
+      "ci95_normal": [
+        24.771679969252446,
+        57.176236697414225
+      ],
+      "losses": 49,
+      "maximum": 360,
+      "mean": 40.973958333333336,
+      "median": 37.5,
+      "minimum": -275,
+      "n": 192,
+      "standard_deviation": 114.54354826515123,
+      "standard_error": 8.266468553102495,
+      "ties": 17,
+      "wins": 126,
+      "worst_decile_mean": -181.65
+    },
+    "turn": {
+      "ci95_normal": [
+        270.31940381804566,
+        283.53476284862097
+      ],
+      "losses": 0,
+      "maximum": 301,
+      "mean": 276.9270833333333,
+      "median": 301.0,
+      "minimum": 125,
+      "n": 192,
+      "standard_deviation": 46.71361894126677,
+      "standard_error": 3.3712650588202466,
+      "ties": 0,
+      "wins": 192,
+      "worst_decile_mean": 163.2
+    },
+    "wood_edge": {
+      "ci95_normal": [
+        12.407661043147186,
+        21.76942229018615
+      ],
+      "losses": 44,
+      "maximum": 100,
+      "mean": 17.088541666666668,
+      "median": 21.5,
+      "minimum": -69,
+      "n": 192,
+      "standard_deviation": 33.09193087387929,
+      "standard_error": 2.3882043997548372,
+      "ties": 18,
+      "wins": 130,
+      "worst_decile_mean": -46.2
+    },
+    "workers": {
+      "2": {
+        "count": 192,
+        "rate": 1.0
+      }
+    }
+  }
+}

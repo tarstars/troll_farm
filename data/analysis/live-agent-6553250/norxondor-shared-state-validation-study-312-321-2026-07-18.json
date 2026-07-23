@@ -1,0 +1,290 @@
+{
+ "schema": 1,
+ "mode": "validation",
+ "scope": "exact-engine generated-map shared-resident-prefix study; actual opponent labels are used only for evaluation, while selector conditioning uses replayed observable state transition mismatch and complete terminal macro-option rollouts",
+ "rows": 1280,
+ "scenarios": 160,
+ "seeds": 10,
+ "decision_turns": [
+  3
+ ],
+ "models": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "baselines": {
+  "3": {
+   "always_three_worker": {
+    "margin_delta": {
+     "n": 160,
+     "mean": 1.75625,
+     "median": -1.0,
+     "minimum": -215,
+     "maximum": 166,
+     "wins": 78,
+     "ties": 2,
+     "losses": 80
+    },
+    "score_delta": {
+     "n": 160,
+     "mean": 9.90625,
+     "median": 6.5,
+     "minimum": -83,
+     "maximum": 139,
+     "wins": 87,
+     "ties": 3,
+     "losses": 70
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 21.6,
+     "gold_adaptive": -24.95,
+     "gold_elite": 21.6,
+     "mybot": 18.75,
+     "printer_bot": 13.7,
+     "sched_bot": -9.05,
+     "script_boss": -33.5,
+     "silver_boss": 5.9
+    }
+   },
+   "cell_oracle": {
+    "margin_delta": {
+     "n": 160,
+     "mean": 27.51875,
+     "median": 0.0,
+     "minimum": 0,
+     "maximum": 166,
+     "wins": 78,
+     "ties": 82,
+     "losses": 0
+    },
+    "score_delta": {
+     "n": 160,
+     "mean": 15.6375,
+     "median": 0.0,
+     "minimum": -83,
+     "maximum": 110,
+     "wins": 64,
+     "ties": 82,
+     "losses": 14
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 45,
+     "gold_adaptive": 30.15,
+     "gold_elite": 45,
+     "mybot": 30.75,
+     "printer_bot": 26.9,
+     "sched_bot": 12.65,
+     "script_boss": 12,
+     "silver_boss": 17.7
+    }
+   }
+  }
+ },
+ "research_gate": {
+  "requirements": [
+   "alternative selected in at least 5% of cells",
+   "mean paired margin and score gains at least 2",
+   "at least five of eight opponent mean margin deltas nonnegative",
+   "worst opponent mean margin delta at least -5"
+  ],
+  "passing_configurations": 1,
+  "passed": true
+ },
+ "selected": {
+  "config": {
+   "decision_turn": 3,
+   "conditioning": "max_exact",
+   "metric": "margin_delta",
+   "aggregate": "minimum",
+   "buffer": 0
+  },
+  "label": "t3-max_exact-margin_delta-minimum-b0",
+  "cells": 160,
+  "selected_alternative": 72,
+  "selection_rate": 0.45,
+  "selected_positive": 72,
+  "selected_negative": 0,
+  "selection_precision": 1.0,
+  "oracle_classification_accuracy": 0.9625,
+  "margin_delta_vs_resident": {
+   "n": 160,
+   "mean": 26.08125,
+   "median": 0.0,
+   "minimum": 0,
+   "maximum": 166,
+   "wins": 72,
+   "ties": 88,
+   "losses": 0
+  },
+  "score_delta_vs_resident": {
+   "n": 160,
+   "mean": 15.19375,
+   "median": 0.0,
+   "minimum": -83,
+   "maximum": 110,
+   "wins": 60,
+   "ties": 88,
+   "losses": 12
+  },
+  "selected_margin": {
+   "n": 160,
+   "mean": 54.1,
+   "median": 64.5,
+   "minimum": -179,
+   "maximum": 254,
+   "wins": 119,
+   "ties": 0,
+   "losses": 41
+  },
+  "selected_score": {
+   "n": 160,
+   "mean": 223.175,
+   "median": 221.5,
+   "minimum": 128,
+   "maximum": 343,
+   "wins": 160,
+   "ties": 0,
+   "losses": 0
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 45,
+   "gold_adaptive": 30.15,
+   "gold_elite": 45,
+   "mybot": 22.8,
+   "printer_bot": 23.6,
+   "sched_bot": 12.4,
+   "script_boss": 12,
+   "silver_boss": 17.7
+  },
+  "opponent_mean_score_deltas": {
+   "compact_gold": 19.5,
+   "gold_adaptive": 3.35,
+   "gold_elite": 19.5,
+   "mybot": 16.6,
+   "printer_bot": 27.4,
+   "sched_bot": 5.55,
+   "script_boss": 8.75,
+   "silver_boss": 20.9
+  },
+  "nonnegative_opponent_margin_deltas": 8,
+  "worst_opponent_mean_margin_delta": 12,
+  "mean_compatible_models": 1.575,
+  "actual_model_compatible_rate": 1.0,
+  "serial_prediction_us": {
+   "n": 160,
+   "mean": 4350661.4375,
+   "median": 4302792.5,
+   "minimum": 1565057,
+   "maximum": 8131116,
+   "wins": 160,
+   "ties": 0,
+   "losses": 0
+  },
+  "gate_passed": true
+ },
+ "top_configurations": [
+  {
+   "config": {
+    "decision_turn": 3,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 0
+   },
+   "label": "t3-max_exact-margin_delta-minimum-b0",
+   "cells": 160,
+   "selected_alternative": 72,
+   "selection_rate": 0.45,
+   "selected_positive": 72,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.9625,
+   "margin_delta_vs_resident": {
+    "n": 160,
+    "mean": 26.08125,
+    "median": 0.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 72,
+    "ties": 88,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 160,
+    "mean": 15.19375,
+    "median": 0.0,
+    "minimum": -83,
+    "maximum": 110,
+    "wins": 60,
+    "ties": 88,
+    "losses": 12
+   },
+   "selected_margin": {
+    "n": 160,
+    "mean": 54.1,
+    "median": 64.5,
+    "minimum": -179,
+    "maximum": 254,
+    "wins": 119,
+    "ties": 0,
+    "losses": 41
+   },
+   "selected_score": {
+    "n": 160,
+    "mean": 223.175,
+    "median": 221.5,
+    "minimum": 128,
+    "maximum": 343,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 45,
+    "gold_adaptive": 30.15,
+    "gold_elite": 45,
+    "mybot": 22.8,
+    "printer_bot": 23.6,
+    "sched_bot": 12.4,
+    "script_boss": 12,
+    "silver_boss": 17.7
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 19.5,
+    "gold_adaptive": 3.35,
+    "gold_elite": 19.5,
+    "mybot": 16.6,
+    "printer_bot": 27.4,
+    "sched_bot": 5.55,
+    "script_boss": 8.75,
+    "silver_boss": 20.9
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 12,
+   "mean_compatible_models": 1.575,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 160,
+    "mean": 4350661.4375,
+    "median": 4302792.5,
+    "minimum": 1565057,
+    "maximum": 8131116,
+    "wins": 160,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  }
+ ],
+ "decision": {
+  "freeze_for_validation": false,
+  "build_online_prototype": false,
+  "build_submission_candidate": false
+ }
+}

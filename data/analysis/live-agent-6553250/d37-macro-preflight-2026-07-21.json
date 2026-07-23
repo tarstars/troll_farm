@@ -1,0 +1,266 @@
+{
+  "decision": "reject_initializer_before_learning",
+  "failed_gates": [
+    "heuristic_margin_advantage_at_least_50",
+    "heuristic_worker_two_rate_at_least_80pct",
+    "heuristic_worker_three_rate_at_least_15pct"
+  ],
+  "gates": {
+    "heuristic_crop_rate_at_least_60pct": true,
+    "heuristic_integrity": true,
+    "heuristic_margin_advantage_at_least_50": false,
+    "heuristic_median_nonidle_jobs_at_least_4": true,
+    "heuristic_repeat_byte_identical": true,
+    "heuristic_worker_three_rate_at_least_15pct": false,
+    "heuristic_worker_two_rate_at_least_80pct": false,
+    "random_integrity": true
+  },
+  "heuristic": {
+    "actions": {
+      "bank": 287,
+      "fell_bank": 2637,
+      "harvest_bank": 462,
+      "idle": 275,
+      "mine_bank": 40,
+      "renew": 7368,
+      "train_chopper": 4586,
+      "train_none": 1394,
+      "train_producer": 4812
+    },
+    "by_opponent": {
+      "compact_gold": {
+        "episodes": 32,
+        "mean_margin": -270.96875,
+        "mean_opponent_score": 335.3125,
+        "mean_own_score": 64.34375,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "gold_adaptive": {
+        "episodes": 32,
+        "mean_margin": -162.09375,
+        "mean_opponent_score": 244.6875,
+        "mean_own_score": 82.59375,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "legend_balanced": {
+        "episodes": 32,
+        "mean_margin": -114.21875,
+        "mean_opponent_score": 176.53125,
+        "mean_own_score": 62.3125,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "mybot": {
+        "episodes": 32,
+        "mean_margin": -96.59375,
+        "mean_opponent_score": 149.09375,
+        "mean_own_score": 52.5,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "norx_native_three": {
+        "episodes": 32,
+        "mean_margin": -49.625,
+        "mean_opponent_score": 107.0,
+        "mean_own_score": 57.375,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "resident": {
+        "episodes": 32,
+        "mean_margin": -128.3125,
+        "mean_opponent_score": 203.375,
+        "mean_own_score": 75.0625,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "script_boss": {
+        "episodes": 32,
+        "mean_margin": -37.46875,
+        "mean_opponent_score": 120.09375,
+        "mean_own_score": 82.625,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "silver_boss": {
+        "episodes": 32,
+        "mean_margin": -37.1875,
+        "mean_opponent_score": 122.40625,
+        "mean_own_score": 85.21875,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      }
+    },
+    "catastrophe_rate": 0.4296875,
+    "catastrophes": 110,
+    "completed_jobs": 9894,
+    "episodes": 256,
+    "invalidated_jobs": 839,
+    "mean_decisions": 85.39453125,
+    "mean_margin": -112.05859375,
+    "mean_nonidle_jobs": 42.1640625,
+    "mean_opponent_score": 182.3125,
+    "mean_own_score": 70.25390625,
+    "median_nonidle_jobs": 37.0,
+    "negative_margin_mass": 29585,
+    "renew_selection_rate": 1.0,
+    "renewable_crop_rate": 1.0,
+    "worker_three_rate": 0.0,
+    "worker_two_rate": 0.3125
+  },
+  "integrity": {
+    "heuristic": {
+      "action_count_errors": 0,
+      "complete": true,
+      "duplicate_keys": 0,
+      "empty_decision_episodes": 0,
+      "expected_rows": 256,
+      "invalid_direct_commands": 0,
+      "margin_identity_errors": 0,
+      "missing_keys": 0,
+      "provenance_failures": 0,
+      "return_identity_errors": 0,
+      "rows": 256,
+      "unexpected_keys": 0,
+      "unexpected_policy_rows": 0,
+      "worker_cap_errors": 0
+    },
+    "random": {
+      "action_count_errors": 0,
+      "complete": true,
+      "duplicate_keys": 0,
+      "empty_decision_episodes": 0,
+      "expected_rows": 256,
+      "invalid_direct_commands": 0,
+      "margin_identity_errors": 0,
+      "missing_keys": 0,
+      "provenance_failures": 0,
+      "return_identity_errors": 0,
+      "rows": 256,
+      "unexpected_keys": 0,
+      "unexpected_policy_rows": 0,
+      "worker_cap_errors": 0
+    },
+    "repeat_verified": true
+  },
+  "paired": {
+    "cells": 256,
+    "mean_margin_advantage": 18.3125,
+    "negative": 109,
+    "positive": 143,
+    "zero": 4
+  },
+  "preflight_pass": false,
+  "protocol": "D37 complete factorized macro PPO preflight",
+  "provenance": {
+    "heuristic_a": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d37-macro-heuristic-preflight-a-9600000-9600015.tsv",
+      "sha256": "d44d4096c753ea91c578fd9a33110eb6fba0635a1641280f415d0a49737abef2"
+    },
+    "heuristic_b": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d37-macro-heuristic-preflight-b-9600000-9600015.tsv",
+      "sha256": "d44d4096c753ea91c578fd9a33110eb6fba0635a1641280f415d0a49737abef2"
+    },
+    "random": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d37-macro-random-preflight-9600000-9600015.tsv",
+      "sha256": "bd6889a9bf0630fa0fb96d36350a7f177c16f83d64696e0bd4ca21cf26986716"
+    }
+  },
+  "random": {
+    "actions": {
+      "bank": 33,
+      "fell_bank": 1665,
+      "harvest_bank": 1381,
+      "idle": 1007,
+      "mine_bank": 1282,
+      "renew": 1246,
+      "train_chopper": 1699,
+      "train_none": 3037,
+      "train_producer": 1732
+    },
+    "by_opponent": {
+      "compact_gold": {
+        "episodes": 32,
+        "mean_margin": -314.78125,
+        "mean_opponent_score": 373.03125,
+        "mean_own_score": 58.25,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.40625
+      },
+      "gold_adaptive": {
+        "episodes": 32,
+        "mean_margin": -194.9375,
+        "mean_opponent_score": 255.40625,
+        "mean_own_score": 60.46875,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.40625
+      },
+      "legend_balanced": {
+        "episodes": 32,
+        "mean_margin": -126.03125,
+        "mean_opponent_score": 189.0625,
+        "mean_own_score": 63.03125,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.40625
+      },
+      "mybot": {
+        "episodes": 32,
+        "mean_margin": -95.5,
+        "mean_opponent_score": 156.53125,
+        "mean_own_score": 61.03125,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.375
+      },
+      "norx_native_three": {
+        "episodes": 32,
+        "mean_margin": -43.375,
+        "mean_opponent_score": 105.0,
+        "mean_own_score": 61.625,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.46875
+      },
+      "resident": {
+        "episodes": 32,
+        "mean_margin": -116.90625,
+        "mean_opponent_score": 161.78125,
+        "mean_own_score": 44.875,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.3125
+      },
+      "script_boss": {
+        "episodes": 32,
+        "mean_margin": -92.21875,
+        "mean_opponent_score": 150.59375,
+        "mean_own_score": 58.375,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.40625
+      },
+      "silver_boss": {
+        "episodes": 32,
+        "mean_margin": -59.21875,
+        "mean_opponent_score": 113.21875,
+        "mean_own_score": 54.0,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.53125
+      }
+    },
+    "catastrophe_rate": 0.48046875,
+    "catastrophes": 123,
+    "completed_jobs": 6086,
+    "episodes": 256,
+    "invalidated_jobs": 166,
+    "mean_decisions": 51.1015625,
+    "mean_margin": -130.37109375,
+    "mean_nonidle_jobs": 21.90234375,
+    "mean_opponent_score": 188.078125,
+    "mean_own_score": 57.70703125,
+    "median_nonidle_jobs": 16.0,
+    "negative_margin_mass": 33635,
+    "renew_selection_rate": 0.953125,
+    "renewable_crop_rate": 0.953125,
+    "worker_three_rate": 0.0,
+    "worker_two_rate": 0.4140625
+  }
+}

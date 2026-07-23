@@ -1,0 +1,300 @@
+{
+  "downloaded_utc": "2026-07-23T00:10:24.724895+00:00",
+  "lock": {
+    "manifest_sha256": "961129312baa80d8057bc7095f86aa21fa70deddb8a7a3a13a5227af8233c4ea",
+    "mismatches": {},
+    "pass": true
+  },
+  "mapper_metadata": [
+    {
+      "elapsed_seconds": 469.1226539919153,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 12065,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 12064 exact arms in 469.116s total / 467.875s collection (25.716 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 270.06028413027525,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 11360,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 11359 exact arms in 270.054s total / 269.295s collection (42.062 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 163.60924625396729,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 6568,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 6567 exact arms in 163.589s total / 163.084s collection (40.143 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 719.17191625759,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 13676,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 13675 exact arms in 718.420s total / 717.027s collection (19.035 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 405.17341912258416,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 10196,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 10195 exact arms in 405.167s total / 404.213s collection (25.162 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 579.8658334407955,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 12880,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 12879 exact arms in 579.851s total / 578.678s collection (22.211 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 318.50500507466495,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 9019,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 9018 exact arms in 318.499s total / 317.565s collection (28.314 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 438.9962553270161,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 12713,
+        "baselines": 129
+      },
+      "maps": 8,
+      "runner_stderr": "saved 128 D112 baselines and 12712 exact arms in 438.971s total / 437.669s collection (28.959 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-07",
+      "start_seed": 9844192,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 739.0278706224635,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 5220,
+        "manifest": 114,
+        "population": 8321,
+        "replays": 114
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844136, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 700.4103863229975, 'population_steps': 397, 'episodes_per_second': 11.878750176276217, 'replay_seconds': 36.500843674875796, 'replay_steps': 20, 'supported_tasks': 113, 'positive_over_control': 106, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1396769, 'sha256': 'd51625fffabfe22ee5c4c320e3e28bd4c16a23d06a598942bfa247c56a1760e8'}, 'manifest': {'path': 'manifest.tsv', 'rows': 113, 'bytes': 8817, 'sha256': 'f434f6809417222f0fcfc9f079d50a9758839c83b0f040231ddaca72bed58597'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5219, 'bytes': 28311975, 'sha256': '4a67200298fc21e542629e8634b8a7268c70394957c72ea237a4a32d99f85117'}, 'replays': {'path': 'replays.tsv', 'rows': 113, 'bytes': 21948, 'sha256': 'eae238f0ef0def48b9efbf297e03c71d96d7c655dfc2add743f86ebbbec3d4e4'}}}",
+      "shard_id": "joint-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 548.4149573668838,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 5978,
+        "manifest": 121,
+        "population": 8321,
+        "replays": 121
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844144, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 513.1993653997779, 'population_steps': 360, 'episodes_per_second': 16.212023164757408, 'replay_seconds': 33.434035301208496, 'replay_steps': 20, 'supported_tasks': 120, 'positive_over_control': 115, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1400228, 'sha256': '6c617ad41b45ed1fc0e76ed54b10527161df322dfbc34256b1a8ec8c493e214a'}, 'manifest': {'path': 'manifest.tsv', 'rows': 120, 'bytes': 9311, 'sha256': '93f86ad868cc12dbab95c7840186c10a87d7017a6c55e5b0cb57fbede87d060c'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5977, 'bytes': 32431284, 'sha256': '2ad5ed8c45ae9ccc08dcd879b47898ff2752ebf5c542f0db210936ea787c39da'}, 'replays': {'path': 'replays.tsv', 'rows': 120, 'bytes': 23155, 'sha256': 'cf512acab6f207d9ebb7a0638ceaca9310687ecf50f35272db5f82232f7c5615'}}}",
+      "shard_id": "joint-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 597.6721401950344,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 4337,
+        "manifest": 92,
+        "population": 8321,
+        "replays": 92
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844152, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 543.4506725920364, 'population_steps': 242, 'episodes_per_second': 15.309577151348472, 'replay_seconds': 52.337471016682684, 'replay_steps': 21, 'supported_tasks': 91, 'positive_over_control': 85, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1363777, 'sha256': '55c260bd85080fb06feb465c20533eff85e579e15354de651d60051c57226932'}, 'manifest': {'path': 'manifest.tsv', 'rows': 91, 'bytes': 7154, 'sha256': 'fde40411b2ecea04d4655cc840fd2b4997213c8cf9d2368b29ee6d4fc3174a9e'}, 'candidates': {'path': 'candidates.tsv', 'rows': 4336, 'bytes': 23529141, 'sha256': 'b2b6166313588e67cf3f2b98f2ab09b906468eaf443daeb063e9aa14d272803a'}, 'replays': {'path': 'replays.tsv', 'rows': 91, 'bytes': 17722, 'sha256': '4e0e9e3137014d34434e3277da1f30b9b7b98ceb771d8a9a63d4afdefbb6c2b7'}}}",
+      "shard_id": "joint-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 895.7002937309444,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 6268,
+        "manifest": 126,
+        "population": 8321,
+        "replays": 126
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844160, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 848.767808646895, 'population_steps': 420, 'episodes_per_second': 9.802445280369124, 'replay_seconds': 45.25555857899599, 'replay_steps': 19, 'supported_tasks': 125, 'positive_over_control': 122, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1408144, 'sha256': 'c3209910121c583a4924c2f8a6cae4a6cafe0da0e90d72ea68e4aedc4937e985'}, 'manifest': {'path': 'manifest.tsv', 'rows': 125, 'bytes': 9725, 'sha256': '9a83d35aeed638015bd27799a8fe1f112602a137a9d4a7c37dd8a2de1ee223ea'}, 'candidates': {'path': 'candidates.tsv', 'rows': 6267, 'bytes': 34007378, 'sha256': '3c68d9e079f1cdafe145419fcf22ab04e01cd4b139e0871a0f65c7853b9d917e'}, 'replays': {'path': 'replays.tsv', 'rows': 125, 'bytes': 24147, 'sha256': '24ab7f150d534a20b5a77affcd04506c425325d37becfa44d9572c2a78a32d68'}}}",
+      "shard_id": "joint-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 836.8199856719002,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 5227,
+        "manifest": 115,
+        "population": 8321,
+        "replays": 115
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844168, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 793.3856086675078, 'population_steps': 342, 'episodes_per_second': 10.486703954680312, 'replay_seconds': 41.92590900044888, 'replay_steps': 18, 'supported_tasks': 114, 'positive_over_control': 110, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1393571, 'sha256': 'b2fd49afaaaf46c485f210c77065cbe05cd80bf87eee5462c0ac49879ae67de1'}, 'manifest': {'path': 'manifest.tsv', 'rows': 114, 'bytes': 8872, 'sha256': 'd0e7be4fa805ac1a1f1af089282a71b41b7b9d2e8c2dcd582bc14bcb1e764223'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5226, 'bytes': 28349142, 'sha256': 'ee13836177ac7d0173f1b12ba2f90612863c64d0b916662b80f89caef6357da0'}, 'replays': {'path': 'replays.tsv', 'rows': 114, 'bytes': 22023, 'sha256': '82681e208cbb9ba26180bf07256caca843379195316024a42951099a2b4571f0'}}}",
+      "shard_id": "joint-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 860.8005041200668,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 6116,
+        "manifest": 119,
+        "population": 8321,
+        "replays": 119
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844176, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 806.6905707865953, 'population_steps': 425, 'episodes_per_second': 10.313743957472141, 'replay_seconds': 52.380650350824, 'replay_steps': 24, 'supported_tasks': 118, 'positive_over_control': 114, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1402818, 'sha256': '15bc6f9504bb78bafeedc4872ec7d891c864d4a206ae56f2ba689061a5efcfc0'}, 'manifest': {'path': 'manifest.tsv', 'rows': 118, 'bytes': 9135, 'sha256': 'efd0be32cda4bd9edcf507b26ae3e7de2a9ad5ba1d2102d591b2d53b20e217e4'}, 'candidates': {'path': 'candidates.tsv', 'rows': 6115, 'bytes': 33176495, 'sha256': 'cf6af7c898ddc4a65e28cd0d2fa83902e53abedf628a53b1b8ef7da37cdd5de9'}, 'replays': {'path': 'replays.tsv', 'rows': 118, 'bytes': 22757, 'sha256': 'c4a87e770728ebcc384d91445ee1ce7bcd598e127a8658aea76d195a362b018e'}}}",
+      "shard_id": "joint-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 555.9825239991769,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 5216,
+        "manifest": 109,
+        "population": 8321,
+        "replays": 109
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844184, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 521.0511590838432, 'population_steps': 306, 'episodes_per_second': 15.967721892470092, 'replay_seconds': 33.534631891176105, 'replay_steps': 18, 'supported_tasks': 108, 'positive_over_control': 103, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1386108, 'sha256': '7ea7fa4d63d30dc5d28e69aa11006683182bced2c4065b98233d81a2a3e738cf'}, 'manifest': {'path': 'manifest.tsv', 'rows': 108, 'bytes': 8456, 'sha256': '2befda5765a80e1498ad7991344762b1fe816e93542ad5924538112ffb1c31f4'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5215, 'bytes': 28297154, 'sha256': '198b74c3be642d0e20fe7db45ce291f82d8e229c970e79c010b558d8062b914f'}, 'replays': {'path': 'replays.tsv', 'rows': 108, 'bytes': 20937, 'sha256': '40005ffa0cb9b160b6bb1bcea9ea671139b2a029670169a39b00a16e719826d8'}}}",
+      "shard_id": "joint-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 789.6143233720213,
+      "kind": "joint",
+      "line_counts": {
+        "candidates": 5905,
+        "manifest": 121,
+        "population": 8321,
+        "replays": 121
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'start_seed': 9844192, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 744.375307184644, 'population_steps': 400, 'episodes_per_second': 11.177157436169768, 'replay_seconds': 43.42522513959557, 'replay_steps': 21, 'supported_tasks': 120, 'positive_over_control': 116, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1407779, 'sha256': '32d5aff101d98c58cc2bd6e2a80256600fc61ac46d2a4abc0c893acaa0184a10'}, 'manifest': {'path': 'manifest.tsv', 'rows': 120, 'bytes': 9372, 'sha256': '0955930ec76cc2b61f64a134dbad7a785f8a8ed0023e2c626c5eb808282953b0'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5904, 'bytes': 32034791, 'sha256': '04af8b8925a3c2ef43cea2c3f585acaabc3c27814b3d04f64363d056a09185d2'}, 'replays': {'path': 'replays.tsv', 'rows': 120, 'bytes': 23262, 'sha256': 'd04409f982fd6c6533c1b9154632adbd413ec25ffdfe6c22e39282b7bfc731b1'}}}",
+      "shard_id": "joint-07",
+      "start_seed": 9844192,
+      "threads": 16
+    }
+  ],
+  "operation": {
+    "operation_id": "ea0a020c-c8eb5ead-42e03e8-59b2f479",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 202194
+  },
+  "outputs": {
+    "arms": {
+      "bytes": 503096109,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-arms-9844136-9844199.tsv",
+      "rows": 88469,
+      "sha256": "77c072ff546aadbc2220e596b5b5e6313e1f0f96bbd9793f275c6edb517f1656"
+    },
+    "baselines": {
+      "bytes": 217628,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-baselines-9844136-9844199.tsv",
+      "rows": 1024,
+      "sha256": "68ff22a5de9ed07b2ff96170d9e1a8287061bb5f20612548e562975d7bd02e8b"
+    },
+    "candidates": {
+      "bytes": 240102906,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-candidates-9844136-9844199.tsv",
+      "rows": 44259,
+      "sha256": "0ea7aef2396a83e66c06b747e51aad136a9a05aa4ebc3f96d502a69c727097a5"
+    },
+    "manifest": {
+      "bytes": 69162,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-manifest-9844136-9844199.tsv",
+      "rows": 909,
+      "sha256": "3e2845e1468401a1c05afa33ff0644b7ae1ed12363d1730d40cc2e1440759d81"
+    },
+    "population": {
+      "bytes": 11155029,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-population-9844136-9844199.tsv",
+      "rows": 66560,
+      "sha256": "c02a607ca0b4f1084a541d03673c375a3f7238b2ccaf5911b3482e4ad6e8d162"
+    },
+    "replays": {
+      "bytes": 171723,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-replays-9844136-9844199.tsv",
+      "rows": 909,
+      "sha256": "434bac7fce2d5248857410444d8ffd321dab82ffa5107d169c14754adbabce71"
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-protocol-2026-07-22.md",
+  "schema": "troll-farm-d148a-priority-joint-teacher-download-v1"
+}

@@ -1,0 +1,207 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-19T17:50:28.082966+00:00",
+ "result_audit_completed_at": "2026-07-19T17:50:34.074679+00:00",
+ "role": "best-current-candidate-first-read",
+ "agent_id": 6561795,
+ "submission_id": 41015603,
+ "arena": {
+  "agent_id": 6561795,
+  "rank": 61,
+  "total": 107,
+  "score": 20.51,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6561795,
+  "rank": 48,
+  "score": 21.79,
+  "division_index": 5
+ },
+ "battle_rows_listed": 16,
+ "matching_rows": 16,
+ "matching_finished": 15,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 15,
+ "fetch_failures": [],
+ "summary": {
+  "games": 15,
+  "wins": 12,
+  "ties": 0,
+  "losses": 3,
+  "mean_margin": 36.333333333333336,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.06666666666666667,
+  "negative_margin_mass": 285.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 896347862,
+   "opponent": "GoodDevel",
+   "opponent_agent_id": 6541379,
+   "our_score": 128.0,
+   "opponent_score": 105.0,
+   "margin": 23.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347795,
+   "opponent": "aangairbender",
+   "opponent_agent_id": 6479532,
+   "our_score": 233.0,
+   "opponent_score": 53.0,
+   "margin": 180.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347649,
+   "opponent": "dabino",
+   "opponent_agent_id": 6480948,
+   "our_score": 140.0,
+   "opponent_score": 116.0,
+   "margin": 24.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347586,
+   "opponent": "Wld",
+   "opponent_agent_id": 6479553,
+   "our_score": 214.0,
+   "opponent_score": 238.0,
+   "margin": -24.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347518,
+   "opponent": "aangairbender",
+   "opponent_agent_id": 6479532,
+   "our_score": 210.0,
+   "opponent_score": 21.0,
+   "margin": 189.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347366,
+   "opponent": "sZoom",
+   "opponent_agent_id": 6493247,
+   "our_score": 236.0,
+   "opponent_score": 402.0,
+   "margin": -166.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347365,
+   "opponent": "LeRenard",
+   "opponent_agent_id": 6499915,
+   "our_score": 129.0,
+   "opponent_score": 60.0,
+   "margin": 69.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347364,
+   "opponent": "Renatys",
+   "opponent_agent_id": 6491198,
+   "our_score": 124.0,
+   "opponent_score": 48.0,
+   "margin": 76.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347363,
+   "opponent": "AndreMarasca",
+   "opponent_agent_id": 6481269,
+   "our_score": 136.0,
+   "opponent_score": 52.0,
+   "margin": 84.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347362,
+   "opponent": "Sequo",
+   "opponent_agent_id": 6481144,
+   "our_score": 180.0,
+   "opponent_score": 132.0,
+   "margin": 48.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347361,
+   "opponent": "VINCE_MX",
+   "opponent_agent_id": 6483491,
+   "our_score": 275.0,
+   "opponent_score": 208.0,
+   "margin": 67.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347360,
+   "opponent": "a76a44",
+   "opponent_agent_id": 6512056,
+   "our_score": 198.0,
+   "opponent_score": 155.0,
+   "margin": 43.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347359,
+   "opponent": "DoubtinGiyov",
+   "opponent_agent_id": 6482016,
+   "our_score": 132.0,
+   "opponent_score": 124.0,
+   "margin": 8.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347358,
+   "opponent": "Bubaptik",
+   "opponent_agent_id": 6557104,
+   "our_score": 220.0,
+   "opponent_score": 315.0,
+   "margin": -95.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896347357,
+   "opponent": "yaichi",
+   "opponent_agent_id": 6480541,
+   "our_score": 132.0,
+   "opponent_score": 113.0,
+   "margin": 19.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

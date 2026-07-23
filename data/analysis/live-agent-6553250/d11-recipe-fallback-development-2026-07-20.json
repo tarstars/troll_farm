@@ -1,0 +1,1870 @@
+{
+  "design": {
+    "complete": true,
+    "deadlines": [
+      40,
+      60,
+      80,
+      100,
+      120,
+      150,
+      180,
+      210
+    ],
+    "games": 768,
+    "known_recipe7_failure_cells": 5,
+    "known_recipe7_success_cells": 91,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "fixed_controls": {
+    "6": {
+      "game_margin": {
+        "ci95_normal": [
+          -53.62990709696314,
+          -4.6617595697035235
+        ],
+        "losses": 56,
+        "maximum": 211,
+        "mean": -29.145833333333332,
+        "median": -42.0,
+        "minimum": -292,
+        "n": 96,
+        "standard_deviation": 122.39487254195497,
+        "standard_error": 12.491874369198882,
+        "ties": 0,
+        "wins": 40,
+        "worst_decile_mean": -223.2
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -61.262092725751856,
+          2.970426059085188
+        ],
+        "losses": 5,
+        "maximum": 25.75,
+        "mean": -29.145833333333332,
+        "median": -28.25,
+        "minimum": -107.83333333333333,
+        "n": 8,
+        "standard_deviation": 46.3461730667863,
+        "standard_error": 16.38584662878496,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -107.83333333333333
+      },
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1
+      }
+    },
+    "7": {
+      "game_margin": {
+        "ci95_normal": [
+          -38.5984777726582,
+          12.785977772658196
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -12.90625,
+        "median": -29.0,
+        "minimum": -334,
+        "n": 96,
+        "standard_deviation": 128.4343844864803,
+        "standard_error": 13.108279475846018,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -209.1
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -45.166760606902294,
+          19.354260606902294
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -12.90625,
+        "median": -19.5,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.554338397308484,
+        "standard_error": 16.459444187195047,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "training_completion": {
+        "completed": 91,
+        "games": 96,
+        "rate": 0.9479166666666666
+      }
+    }
+  },
+  "per_deadline": {
+    "100": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          10.946654471043368,
+          27.720012195623298
+        ],
+        "losses": 27,
+        "maximum": 103,
+        "mean": 19.333333333333332,
+        "median": 26.5,
+        "minimum": -133,
+        "n": 96,
+        "standard_deviation": 41.92466091672604,
+        "standard_error": 4.2789177868826345,
+        "ties": 0,
+        "wins": 69,
+        "worst_decile_mean": -65.4
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -1.896885144970958,
+          8.084385144970959
+        ],
+        "losses": 8,
+        "maximum": 144,
+        "mean": 3.09375,
+        "median": 0.0,
+        "minimum": -53,
+        "n": 96,
+        "standard_deviation": 24.947978770570614,
+        "standard_error": 2.54624242090355,
+        "ties": 77,
+        "wins": 11,
+        "worst_decile_mean": -23.4
+      },
+      "deadline": 100,
+      "eligible": false,
+      "fallback_activation_rate": 0.17708333333333334,
+      "final_worker_specs": {
+        "2/2/0/2": 17,
+        "2/3/1/2": 77,
+        "none": 2
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -35.5798918259718,
+          15.954891825971796
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -9.8125,
+        "median": -23.5,
+        "minimum": -319,
+        "n": 96,
+        "standard_deviation": 128.8101264816184,
+        "standard_error": 13.146628482638672,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -203.4
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -66.69218425381655,
+            -23.707815746183456
+          ],
+          "losses": 5,
+          "maximum": -26,
+          "mean": -45.2,
+          "median": -36,
+          "minimum": -84,
+          "n": 5,
+          "standard_deviation": 24.51938009004306,
+          "standard_error": 10.965400129498239,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -84
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -2.956811880681542,
+            47.35681188068154
+          ],
+          "losses": 1,
+          "maximum": 68,
+          "mean": 22.2,
+          "median": 15,
+          "minimum": -3,
+          "n": 5,
+          "standard_deviation": 28.70017421549911,
+          "standard_error": 12.835108102388542,
+          "ties": 0,
+          "wins": 4,
+          "worst_decile_mean": -3
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            14.700396683535384,
+            31.057845074706375
+          ],
+          "losses": 22,
+          "maximum": 103,
+          "mean": 22.87912087912088,
+          "median": 29,
+          "minimum": -133,
+          "n": 91,
+          "standard_deviation": 39.80615116197081,
+          "standard_error": 4.172818467135457,
+          "ties": 0,
+          "wins": 69,
+          "worst_decile_mean": -56.7
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -2.9845621068414063,
+            7.072474194753494
+          ],
+          "losses": 7,
+          "maximum": 144,
+          "mean": 2.043956043956044,
+          "median": 0,
+          "minimum": -53,
+          "n": 91,
+          "standard_deviation": 24.473982597358855,
+          "standard_error": 2.5655704851007397,
+          "ties": 77,
+          "wins": 7,
+          "worst_decile_mean": -23.1
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -41.784806299966675,
+          22.159806299966675
+        ],
+        "losses": 5,
+        "maximum": 70.16666666666667,
+        "mean": -9.8125,
+        "median": -14.25,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.138437948734314,
+        "standard_error": 16.312401173452386,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          0.304549361559296,
+          38.36211730510737
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 19.333333333333332,
+        "median": 19.83333333333333,
+        "minimum": -25.166666666666668,
+        "n": 8,
+        "standard_deviation": 27.459963641174095,
+        "standard_error": 9.70856325090512,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -25.166666666666668
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.921398420703496,
+          7.108898420703496
+        ],
+        "losses": 0,
+        "maximum": 14.25,
+        "mean": 3.09375,
+        "median": 0.0,
+        "minimum": 0,
+        "n": 8,
+        "standard_deviation": 5.794160562754896,
+        "standard_error": 2.0485451126038243,
+        "ties": 5,
+        "wins": 3,
+        "worst_decile_mean": 0
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 25.75,
+        "gold_adaptive": 12.25,
+        "legend_balanced": 6.875,
+        "mybot": 28.125,
+        "norx_native_three": 32.8125,
+        "resident": 10.1875
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 0.1875,
+        "gold_adaptive": 12.125,
+        "legend_balanced": -2.375,
+        "mybot": -3.625,
+        "norx_native_three": 12.4375,
+        "resident": -0.1875
+      },
+      "training_completion": {
+        "completed": 94,
+        "games": 96,
+        "rate": 0.9791666666666666
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 6.875
+    },
+    "120": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          9.36815418558817,
+          26.923512481078497
+        ],
+        "losses": 26,
+        "maximum": 103,
+        "mean": 18.145833333333332,
+        "median": 26.5,
+        "minimum": -133,
+        "n": 96,
+        "standard_deviation": 43.879255179272576,
+        "standard_error": 4.478407728441409,
+        "ties": 0,
+        "wins": 70,
+        "worst_decile_mean": -66.7
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -2.115488586169228,
+          5.927988586169228
+        ],
+        "losses": 9,
+        "maximum": 117,
+        "mean": 1.90625,
+        "median": 0.0,
+        "minimum": -57,
+        "n": 96,
+        "standard_deviation": 20.104504928524168,
+        "standard_error": 2.0519074419230754,
+        "ties": 78,
+        "wins": 9,
+        "worst_decile_mean": -18.4
+      },
+      "deadline": 120,
+      "eligible": false,
+      "fallback_activation_rate": 0.16666666666666666,
+      "final_worker_specs": {
+        "2/2/0/2": 16,
+        "2/3/1/2": 77,
+        "none": 3
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -36.44113736699513,
+          14.441137366995129
+        ],
+        "losses": 55,
+        "maximum": 270,
+        "mean": -11,
+        "median": -23.5,
+        "minimum": -319,
+        "n": 96,
+        "standard_deviation": 127.17919392896407,
+        "standard_error": 12.980172126017923,
+        "ties": 1,
+        "wins": 40,
+        "worst_decile_mean": -202
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -96.0035075345795,
+            -17.996492465420502
+          ],
+          "losses": 5,
+          "maximum": -18,
+          "mean": -57,
+          "median": -35,
+          "minimum": -122,
+          "n": 5,
+          "standard_deviation": 44.49719092257398,
+          "standard_error": 19.8997487421324,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -122
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -4.405461694928665,
+            25.205461694928665
+          ],
+          "losses": 1,
+          "maximum": 38,
+          "mean": 10.4,
+          "median": 2,
+          "minimum": -3,
+          "n": 5,
+          "standard_deviation": 16.890825912311097,
+          "standard_error": 7.553806987208502,
+          "ties": 1,
+          "wins": 3,
+          "worst_decile_mean": -3
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            14.021824972861394,
+            30.527625576589152
+          ],
+          "losses": 21,
+          "maximum": 103,
+          "mean": 22.274725274725274,
+          "median": 29,
+          "minimum": -133,
+          "n": 91,
+          "standard_deviation": 40.16716899660051,
+          "standard_error": 4.210663419318307,
+          "ties": 0,
+          "wins": 70,
+          "worst_decile_mean": -54.1
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -2.719435368029136,
+            5.598556247150015
+          ],
+          "losses": 8,
+          "maximum": 117,
+          "mean": 1.4395604395604396,
+          "median": 0,
+          "minimum": -57,
+          "n": 91,
+          "standard_deviation": 20.241985405042982,
+          "standard_error": 2.1219366365252936,
+          "ties": 77,
+          "wins": 6,
+          "worst_decile_mean": -18.1
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -43.2343560678837,
+          21.234356067883702
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -11.0,
+        "median": -14.208333333333334,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.5165954342496,
+        "standard_error": 16.446100034634544,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -2.0241033333716203,
+          38.315770000038285
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 18.145833333333332,
+        "median": 19.83333333333333,
+        "minimum": -27.166666666666668,
+        "n": 8,
+        "standard_deviation": 29.10673263904135,
+        "standard_error": 10.290784013624975,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -27.166666666666668
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -1.069094547041756,
+          4.881594547041756
+        ],
+        "losses": 0,
+        "maximum": 12.25,
+        "mean": 1.90625,
+        "median": 0.0,
+        "minimum": 0,
+        "n": 8,
+        "standard_deviation": 4.293645521591107,
+        "standard_error": 1.5180329321641612,
+        "ties": 5,
+        "wins": 3,
+        "worst_decile_mean": 0
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 28.75,
+        "gold_adaptive": 8.1875,
+        "legend_balanced": 6.75,
+        "mybot": 27.3125,
+        "norx_native_three": 26.125,
+        "resident": 11.75
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 3.1875,
+        "gold_adaptive": 8.0625,
+        "legend_balanced": -2.5,
+        "mybot": -4.4375,
+        "norx_native_three": 5.75,
+        "resident": 1.375
+      },
+      "training_completion": {
+        "completed": 93,
+        "games": 96,
+        "rate": 0.96875
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 6.75
+    },
+    "150": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          6.323586129828616,
+          26.426413870171384
+        ],
+        "losses": 23,
+        "maximum": 103,
+        "mean": 16.375,
+        "median": 26.5,
+        "minimum": -152,
+        "n": 96,
+        "standard_deviation": 50.246602398884434,
+        "standard_error": 5.128272382740502,
+        "ties": 0,
+        "wins": 73,
+        "worst_decile_mean": -95.7
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.7623083566398915,
+          1.0331416899732249
+        ],
+        "losses": 5,
+        "maximum": 34,
+        "mean": 0.13541666666666666,
+        "median": 0.0,
+        "minimum": -18,
+        "n": 96,
+        "standard_deviation": 4.487690278426946,
+        "standard_error": 0.4580229710747746,
+        "ties": 88,
+        "wins": 3,
+        "worst_decile_mean": -4.2
+      },
+      "deadline": 150,
+      "eligible": false,
+      "fallback_activation_rate": 0.0625,
+      "final_worker_specs": {
+        "2/2/0/2": 6,
+        "2/3/1/2": 87,
+        "none": 3
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -38.406146241262256,
+          12.864479574595586
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -12.770833333333334,
+        "median": -31.5,
+        "minimum": -319,
+        "n": 96,
+        "standard_deviation": 128.1498694306308,
+        "standard_error": 13.079241279555571,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -209.4
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -98.53235026369158,
+            -24.66764973630842
+          ],
+          "losses": 5,
+          "maximum": -22,
+          "mean": -61.6,
+          "median": -55,
+          "minimum": -122,
+          "n": 5,
+          "standard_deviation": 42.134309060431974,
+          "standard_error": 18.843035848822236,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -122
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -11.403396873873483,
+            23.003396873873484
+          ],
+          "losses": 2,
+          "maximum": 34,
+          "mean": 5.8,
+          "median": 0,
+          "minimum": -18,
+          "n": 5,
+          "standard_deviation": 19.62651268055535,
+          "standard_error": 8.777243302996675,
+          "ties": 1,
+          "wins": 2,
+          "worst_decile_mean": -18
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            10.957317342704336,
+            30.361363975976985
+          ],
+          "losses": 18,
+          "maximum": 103,
+          "mean": 20.65934065934066,
+          "median": 29,
+          "minimum": -152,
+          "n": 91,
+          "standard_deviation": 47.220103953064495,
+          "standard_error": 4.950011896243023,
+          "ties": 0,
+          "wins": 73,
+          "worst_decile_mean": -82.6
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -0.48454212454212453,
+            0.13289377289377288
+          ],
+          "losses": 3,
+          "maximum": 6,
+          "mean": -0.17582417582417584,
+          "median": 0,
+          "minimum": -9,
+          "n": 91,
+          "standard_deviation": 1.5025415993014162,
+          "standard_error": 0.1575091575091575,
+          "ties": 87,
+          "wins": 1,
+          "worst_decile_mean": -2.2
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -44.967625368582915,
+          19.425958701916244
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -12.770833333333334,
+        "median": -20.083333333333332,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.46238771546532,
+        "standard_error": 16.42693471186203,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -5.822994091058465,
+          38.57299409105846
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 16.375,
+        "median": 19.83333333333333,
+        "minimum": -39.083333333333336,
+        "n": 8,
+        "standard_deviation": 32.03337173576807,
+        "standard_error": 11.325507189315545,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -39.083333333333336
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.5711213768557218,
+          0.8419547101890549
+        ],
+        "losses": 1,
+        "maximum": 2.25,
+        "mean": 0.13541666666666652,
+        "median": 0.0,
+        "minimum": -1.5,
+        "n": 8,
+        "standard_deviation": 1.0195874321244018,
+        "standard_error": 0.36047859363387164,
+        "ties": 5,
+        "wins": 2,
+        "worst_decile_mean": -1.5
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 26.5,
+        "gold_adaptive": 0.5,
+        "legend_balanced": 8.75,
+        "mybot": 31.4375,
+        "norx_native_three": 19.8125,
+        "resident": 11.25
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 0.9375,
+        "gold_adaptive": 0.375,
+        "legend_balanced": -0.5,
+        "mybot": -0.3125,
+        "norx_native_three": -0.5625,
+        "resident": 0.875
+      },
+      "training_completion": {
+        "completed": 93,
+        "games": 96,
+        "rate": 0.96875
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 0.5
+    },
+    "180": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          5.734869085281339,
+          26.098464248051993
+        ],
+        "losses": 23,
+        "maximum": 103,
+        "mean": 15.916666666666666,
+        "median": 26.5,
+        "minimum": -158,
+        "n": 96,
+        "standard_deviation": 50.89838518101618,
+        "standard_error": 5.194794684380269,
+        "ties": 0,
+        "wins": 73,
+        "worst_decile_mean": -96.6
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.9341653152976608,
+          0.28833198196432747
+        ],
+        "losses": 5,
+        "maximum": 16,
+        "mean": -0.3229166666666667,
+        "median": 0.0,
+        "minimum": -19,
+        "n": 96,
+        "standard_deviation": 3.0556067247177525,
+        "standard_error": 0.3118615554239766,
+        "ties": 90,
+        "wins": 1,
+        "worst_decile_mean": -4.7
+      },
+      "deadline": 180,
+      "eligible": false,
+      "fallback_activation_rate": 0.041666666666666664,
+      "final_worker_specs": {
+        "2/2/0/2": 4,
+        "2/3/1/2": 88,
+        "none": 4
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -38.872529772862364,
+          12.414196439529034
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -13.229166666666666,
+        "median": -33.0,
+        "minimum": -318,
+        "n": 96,
+        "standard_deviation": 128.1901120389611,
+        "standard_error": 13.083348523569235,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -207.9
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": false,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -98.86151126294209,
+            -31.938488737057924
+          ],
+          "losses": 5,
+          "maximum": -25,
+          "mean": -65.4,
+          "median": -56,
+          "minimum": -122,
+          "n": 5,
+          "standard_deviation": 38.174598884598645,
+          "standard_error": 17.07219962395004,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -122
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -5.01230917743934,
+            9.01230917743934
+          ],
+          "losses": 2,
+          "maximum": 16,
+          "mean": 2,
+          "median": 0,
+          "minimum": -4,
+          "n": 5,
+          "standard_deviation": 8.0,
+          "standard_error": 3.5777087639996634,
+          "ties": 2,
+          "wins": 1,
+          "worst_decile_mean": -4
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            10.56898760850991,
+            30.200243160720856
+          ],
+          "losses": 18,
+          "maximum": 103,
+          "mean": 20.384615384615383,
+          "median": 29,
+          "minimum": -158,
+          "n": 91,
+          "standard_deviation": 47.77302103134716,
+          "standard_error": 5.007973355155853,
+          "ties": 0,
+          "wins": 73,
+          "worst_decile_mean": -85
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -0.9821709637217328,
+            0.08107206262283179
+          ],
+          "losses": 3,
+          "maximum": 0,
+          "mean": -0.45054945054945056,
+          "median": 0,
+          "minimum": -19,
+          "n": 91,
+          "standard_deviation": 2.5874214374063023,
+          "standard_error": 0.2712354659042257,
+          "ties": 88,
+          "wins": 0,
+          "worst_decile_mean": -4.1
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -45.604732652710325,
+          19.146399319376986
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -13.229166666666668,
+        "median": -19.75,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.72037194588572,
+        "standard_error": 16.518145911246762,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -6.821011192878368,
+          38.6543445262117
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 15.916666666666666,
+        "median": 19.83333333333333,
+        "minimum": -39.583333333333336,
+        "n": 8,
+        "standard_deviation": 32.812175924325544,
+        "standard_error": 11.600856050788282,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -39.583333333333336
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.8229612827316302,
+          0.17712794939829535
+        ],
+        "losses": 3,
+        "maximum": 0.0,
+        "mean": -0.3229166666666674,
+        "median": 0.0,
+        "minimum": -2.0833333333333357,
+        "n": 8,
+        "standard_deviation": 0.7216019161537935,
+        "standard_error": 0.25512480411477695,
+        "ties": 5,
+        "wins": 0,
+        "worst_decile_mean": -2.0833333333333357
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 26.5625,
+        "gold_adaptive": 0.125,
+        "legend_balanced": 8.0625,
+        "mybot": 31.25,
+        "norx_native_three": 19.5,
+        "resident": 10
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 1,
+        "gold_adaptive": 0,
+        "legend_balanced": -1.1875,
+        "mybot": -0.5,
+        "norx_native_three": -0.875,
+        "resident": -0.375
+      },
+      "training_completion": {
+        "completed": 92,
+        "games": 96,
+        "rate": 0.9583333333333334
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 0.125
+    },
+    "210": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          6.4955904156652,
+          26.587742917668137
+        ],
+        "losses": 23,
+        "maximum": 103,
+        "mean": 16.541666666666668,
+        "median": 26.5,
+        "minimum": -158,
+        "n": 96,
+        "standard_deviation": 50.21991986131791,
+        "standard_error": 5.12554910765381,
+        "ties": 0,
+        "wins": 73,
+        "worst_decile_mean": -96
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.14768370960040222,
+          0.7518503762670689
+        ],
+        "losses": 1,
+        "maximum": 17,
+        "mean": 0.3020833333333333,
+        "median": 0.0,
+        "minimum": -2,
+        "n": 96,
+        "standard_deviation": 2.248366853690013,
+        "standard_error": 0.2294729810886406,
+        "ties": 93,
+        "wins": 2,
+        "worst_decile_mean": -0.2
+      },
+      "deadline": 210,
+      "eligible": false,
+      "fallback_activation_rate": 0.010416666666666666,
+      "final_worker_specs": {
+        "2/2/0/2": 1,
+        "2/3/1/2": 91,
+        "none": 4
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -38.183600678752526,
+          12.975267345419196
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -12.604166666666666,
+        "median": -29.0,
+        "minimum": -320,
+        "n": 96,
+        "standard_deviation": 127.87053314041525,
+        "standard_error": 13.050731638819318,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -206
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -99.03856535712873,
+            -24.16143464287127
+          ],
+          "losses": 5,
+          "maximum": -20,
+          "mean": -61.6,
+          "median": -56,
+          "minimum": -122,
+          "n": 5,
+          "standard_deviation": 42.71182506051456,
+          "standard_error": 19.101308855677924,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -122
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -2.049793882644308,
+            13.649793882644307
+          ],
+          "losses": 1,
+          "maximum": 17,
+          "mean": 5.8,
+          "median": 0,
+          "minimum": -2,
+          "n": 5,
+          "standard_deviation": 8.955445270895245,
+          "standard_error": 4.004996878900157,
+          "ties": 2,
+          "wins": 2,
+          "worst_decile_mean": -2
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            11.147363717620326,
+            30.522965952709345
+          ],
+          "losses": 18,
+          "maximum": 103,
+          "mean": 20.835164835164836,
+          "median": 29,
+          "minimum": -158,
+          "n": 91,
+          "standard_deviation": 47.15088398753369,
+          "standard_error": 4.942755672216586,
+          "ties": 0,
+          "wins": 73,
+          "worst_decile_mean": -81.9
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            0.0,
+            0.0
+          ],
+          "losses": 0,
+          "maximum": 0,
+          "mean": 0,
+          "median": 0,
+          "minimum": 0,
+          "n": 91,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 91,
+          "wins": 0,
+          "worst_decile_mean": 0
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -44.772922568162144,
+          19.564589234828805
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -12.604166666666668,
+        "median": -18.875,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.42192946996372,
+        "standard_error": 16.412630561987488,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -5.834808393340243,
+          38.91814172667357
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 16.541666666666664,
+        "median": 19.83333333333333,
+        "minimum": -39.583333333333336,
+        "n": 8,
+        "standard_deviation": 32.29093317139294,
+        "standard_error": 11.41656890816679,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -39.583333333333336
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -0.1255541120830173,
+          0.7297207787496824
+        ],
+        "losses": 1,
+        "maximum": 1.4166666666666643,
+        "mean": 0.3020833333333326,
+        "median": 0.0,
+        "minimum": -0.16666666666666785,
+        "n": 8,
+        "standard_deviation": 0.6171129337616186,
+        "standard_error": 0.2181823701103826,
+        "ties": 5,
+        "wins": 2,
+        "worst_decile_mean": -0.16666666666666785
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 26.4375,
+        "gold_adaptive": 0.125,
+        "legend_balanced": 9.25,
+        "mybot": 31.75,
+        "norx_native_three": 20.375,
+        "resident": 11.3125
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 0.875,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0.9375
+      },
+      "training_completion": {
+        "completed": 92,
+        "games": 96,
+        "rate": 0.9583333333333334
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 0.125
+    },
+    "40": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -5.476747121955743,
+          9.580913788622409
+        ],
+        "losses": 44,
+        "maximum": 103,
+        "mean": 2.0520833333333335,
+        "median": 0.0,
+        "minimum": -86,
+        "n": 96,
+        "standard_deviation": 37.63631219466162,
+        "standard_error": 3.8412400282087122,
+        "ties": 9,
+        "wins": 43,
+        "worst_decile_mean": -66
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -24.085879280990948,
+          -4.289120719009052
+        ],
+        "losses": 52,
+        "maximum": 158,
+        "mean": -14.1875,
+        "median": -12.5,
+        "minimum": -110,
+        "n": 96,
+        "standard_deviation": 49.48158881421399,
+        "standard_error": 5.050193510709668,
+        "ties": 26,
+        "wins": 18,
+        "worst_decile_mean": -90.1
+      },
+      "deadline": 40,
+      "eligible": false,
+      "fallback_activation_rate": 0.71875,
+      "final_worker_specs": {
+        "2/2/0/2": 69,
+        "2/3/1/2": 26,
+        "none": 1
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -53.3649418106168,
+          -0.8225581893831979
+        ],
+        "losses": 56,
+        "maximum": 270,
+        "mean": -27.09375,
+        "median": -30.5,
+        "minimum": -294,
+        "n": 96,
+        "standard_deviation": 131.32860177713323,
+        "standard_error": 13.403669291131022,
+        "ties": 0,
+        "wins": 40,
+        "worst_decile_mean": -227.2
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": false,
+        "not_below_fixed_recipe7": false,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": false
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -34.746247340822364,
+            -1.2537526591776391
+          ],
+          "losses": 4,
+          "maximum": 6,
+          "mean": -18,
+          "median": -27,
+          "minimum": -35,
+          "n": 5,
+          "standard_deviation": 19.1049731745428,
+          "standard_error": 8.54400374531753,
+          "ties": 0,
+          "wins": 1,
+          "worst_decile_mean": -35
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            6.037463911805155,
+            92.76253608819485
+          ],
+          "losses": 1,
+          "maximum": 105,
+          "mean": 49.4,
+          "median": 55,
+          "minimum": -4,
+          "n": 5,
+          "standard_deviation": 49.47019304591402,
+          "standard_error": 22.123742902140226,
+          "ties": 0,
+          "wins": 4,
+          "worst_decile_mean": -4
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -4.684533691898766,
+            10.992225999591072
+          ],
+          "losses": 40,
+          "maximum": 103,
+          "mean": 3.1538461538461537,
+          "median": 0,
+          "minimum": -86,
+          "n": 91,
+          "standard_deviation": 38.14968270639076,
+          "standard_error": 3.9991733906861833,
+          "ties": 9,
+          "wins": 42,
+          "worst_decile_mean": -66
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -27.402837965834404,
+            -7.959799396802961
+          ],
+          "losses": 51,
+          "maximum": 158,
+          "mean": -17.681318681318682,
+          "median": -18,
+          "minimum": -110,
+          "n": 91,
+          "standard_deviation": 47.31499154505288,
+          "standard_error": 4.95995881863047,
+          "ties": 26,
+          "wins": 14,
+          "worst_decile_mean": -90.1
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -67.30434482629823,
+          13.116844826298234
+        ],
+        "losses": 5,
+        "maximum": 70.16666666666667,
+        "mean": -27.09375,
+        "median": -36.70833333333333,
+        "minimum": -85,
+        "n": 8,
+        "standard_deviation": 58.02690668820446,
+        "standard_error": 20.515609605254202,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -85
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -17.801867194521314,
+          21.90603386118798
+        ],
+        "losses": 4,
+        "maximum": 56.00000000000001,
+        "mean": 2.052083333333334,
+        "median": -1.166666666666666,
+        "minimum": -39.166666666666664,
+        "n": 8,
+        "standard_deviation": 28.65074092160869,
+        "standard_error": 10.129566595844208,
+        "ties": 0,
+        "wins": 4,
+        "worst_decile_mean": -39.166666666666664
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -37.86217729746044,
+          9.487177297460441
+        ],
+        "losses": 4,
+        "maximum": 44.416666666666664,
+        "mean": -14.1875,
+        "median": -12.166666666666666,
+        "minimum": -53.41666666666667,
+        "n": 8,
+        "standard_deviation": 34.1643364478316,
+        "standard_error": 12.078916988500225,
+        "ties": 2,
+        "wins": 2,
+        "worst_decile_mean": -53.41666666666667
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 5.25,
+        "gold_adaptive": -7.5625,
+        "legend_balanced": -3.25,
+        "mybot": 8.375,
+        "norx_native_three": 6.625,
+        "resident": 2.875
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": -20.3125,
+        "gold_adaptive": -7.6875,
+        "legend_balanced": -12.5,
+        "mybot": -23.375,
+        "norx_native_three": -13.75,
+        "resident": -7.5
+      },
+      "training_completion": {
+        "completed": 95,
+        "games": 96,
+        "rate": 0.9895833333333334
+      },
+      "worst_opponent_mean_delta_vs_recipe6": -7.5625
+    },
+    "60": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          17.835005636176064,
+          31.227494363823936
+        ],
+        "losses": 18,
+        "maximum": 103,
+        "mean": 24.53125,
+        "median": 26.0,
+        "minimum": -84,
+        "n": 96,
+        "standard_deviation": 33.474248743584496,
+        "standard_error": 3.4164512060326215,
+        "ties": 9,
+        "wins": 69,
+        "worst_decile_mean": -34.5
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          2.0672949893181984,
+          14.516038344015133
+        ],
+        "losses": 10,
+        "maximum": 158,
+        "mean": 8.291666666666666,
+        "median": 0.0,
+        "minimum": -44,
+        "n": 96,
+        "standard_deviation": 31.115376691704483,
+        "standard_error": 3.1756998353818715,
+        "ties": 67,
+        "wins": 19,
+        "worst_decile_mean": -23.5
+      },
+      "deadline": 60,
+      "eligible": false,
+      "fallback_activation_rate": 0.2916666666666667,
+      "final_worker_specs": {
+        "2/2/0/2": 28,
+        "2/3/1/2": 67,
+        "none": 1
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -30.057465244671775,
+          20.82829857800511
+        ],
+        "losses": 50,
+        "maximum": 270,
+        "mean": -4.614583333333333,
+        "median": -15.5,
+        "minimum": -294,
+        "n": 96,
+        "standard_deviation": 127.18791483401463,
+        "standard_error": 12.981062199662471,
+        "ties": 1,
+        "wins": 45,
+        "worst_decile_mean": -193.3
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -58.774120917392025,
+            -4.025879082607968
+          ],
+          "losses": 5,
+          "maximum": -3,
+          "mean": -31.4,
+          "median": -27,
+          "minimum": -84,
+          "n": 5,
+          "standard_deviation": 31.229793467136474,
+          "standard_error": 13.9663882231592,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -84
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            1.9839755409307145,
+            70.01602445906929
+          ],
+          "losses": 1,
+          "maximum": 96,
+          "mean": 36,
+          "median": 38,
+          "minimum": -4,
+          "n": 5,
+          "standard_deviation": 38.80721582386451,
+          "standard_error": 17.35511451993331,
+          "ties": 0,
+          "wins": 4,
+          "worst_decile_mean": -4
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            21.25132179938904,
+            33.95746940940217
+          ],
+          "losses": 13,
+          "maximum": 103,
+          "mean": 27.604395604395606,
+          "median": 29,
+          "minimum": -46,
+          "n": 91,
+          "standard_deviation": 30.92064363311674,
+          "standard_error": 3.2413641862278406,
+          "ties": 9,
+          "wins": 69,
+          "worst_decile_mean": -24
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            0.5710850559783971,
+            12.967376482483141
+          ],
+          "losses": 9,
+          "maximum": 158,
+          "mean": 6.769230769230769,
+          "median": 0,
+          "minimum": -44,
+          "n": 91,
+          "standard_deviation": 30.16660291819302,
+          "standard_error": 3.162319241455292,
+          "ties": 67,
+          "wins": 15,
+          "worst_decile_mean": -23.1
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -37.8222587162968,
+          28.59309204963013
+        ],
+        "losses": 5,
+        "maximum": 70.16666666666667,
+        "mean": -4.614583333333334,
+        "median": -10.25,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 47.92116826680623,
+        "standard_error": 16.942691521920136,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          10.506273711398537,
+          38.556226288601465
+        ],
+        "losses": 1,
+        "maximum": 56.00000000000001,
+        "mean": 24.53125,
+        "median": 20.45833333333333,
+        "minimum": -0.33333333333333215,
+        "n": 8,
+        "standard_deviation": 20.239093550307416,
+        "standard_error": 7.155600147245645,
+        "ties": 0,
+        "wins": 7,
+        "worst_decile_mean": -0.33333333333333215
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -2.7584528651151796,
+          19.34178619844851
+        ],
+        "losses": 1,
+        "maximum": 44.416666666666664,
+        "mean": 8.291666666666666,
+        "median": 0.625,
+        "minimum": -0.0833333333333357,
+        "n": 8,
+        "standard_deviation": 15.946151946622166,
+        "standard_error": 5.637816087643799,
+        "ties": 3,
+        "wins": 4,
+        "worst_decile_mean": -0.0833333333333357
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 35.3125,
+        "gold_adaptive": 14.875,
+        "legend_balanced": 20.25,
+        "mybot": 30.125,
+        "norx_native_three": 34,
+        "resident": 12.625
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 9.75,
+        "gold_adaptive": 14.75,
+        "legend_balanced": 11,
+        "mybot": -1.625,
+        "norx_native_three": 13.625,
+        "resident": 2.25
+      },
+      "training_completion": {
+        "completed": 95,
+        "games": 96,
+        "rate": 0.9895833333333334
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 12.625
+    },
+    "80": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          15.506966746801346,
+          30.51386658653199
+        ],
+        "losses": 23,
+        "maximum": 103,
+        "mean": 23.010416666666668,
+        "median": 28.0,
+        "minimum": -133,
+        "n": 96,
+        "standard_deviation": 37.50943594734156,
+        "standard_error": 3.8282907754414905,
+        "ties": 0,
+        "wins": 73,
+        "worst_decile_mean": -48.3
+      },
+      "cell_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          1.220625008519713,
+          12.321041658146953
+        ],
+        "losses": 6,
+        "maximum": 175,
+        "mean": 6.770833333333333,
+        "median": 0.0,
+        "minimum": -40,
+        "n": 96,
+        "standard_deviation": 27.745261963144422,
+        "standard_error": 2.8317389412314387,
+        "ties": 78,
+        "wins": 12,
+        "worst_decile_mean": -11.6
+      },
+      "deadline": 80,
+      "eligible": false,
+      "fallback_activation_rate": 0.1875,
+      "final_worker_specs": {
+        "2/2/0/2": 18,
+        "2/3/1/2": 77,
+        "none": 1
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -31.60079214913472,
+          19.329958815801383
+        ],
+        "losses": 52,
+        "maximum": 270,
+        "mean": -6.135416666666667,
+        "median": -11.0,
+        "minimum": -294,
+        "n": 96,
+        "standard_deviation": 127.300359266179,
+        "standard_error": 12.992538511463291,
+        "ties": 1,
+        "wins": 43,
+        "worst_decile_mean": -197.2
+      },
+      "gates": {
+        "all_games_train": false,
+        "map_delta_vs_recipe6_at_least_5": true,
+        "not_below_fixed_recipe7": true,
+        "positive_delta_vs_recipe6_in_failure_cells": false,
+        "positive_delta_vs_recipe6_in_success_cells": true,
+        "worst_opponent_delta_vs_recipe6_at_least_minus5": true
+      },
+      "known_recipe7_failure_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            -46.02461835487868,
+            -17.97538164512132
+          ],
+          "losses": 5,
+          "maximum": -9,
+          "mean": -32,
+          "median": -34,
+          "minimum": -53,
+          "n": 5,
+          "standard_deviation": 16.0,
+          "standard_error": 7.155417527999327,
+          "ties": 0,
+          "wins": 0,
+          "worst_decile_mean": -53
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            4.579973783268773,
+            66.22002621673123
+          ],
+          "losses": 1,
+          "maximum": 69,
+          "mean": 35.4,
+          "median": 47,
+          "minimum": -4,
+          "n": 5,
+          "standard_deviation": 35.161058004559536,
+          "standard_error": 15.724503171801645,
+          "ties": 1,
+          "wins": 3,
+          "worst_decile_mean": -4
+        },
+        "n": 5
+      },
+      "known_recipe7_success_cells": {
+        "delta_vs_recipe6": {
+          "ci95_normal": [
+            18.635162685390448,
+            33.43077138054362
+          ],
+          "losses": 18,
+          "maximum": 103,
+          "mean": 26.032967032967033,
+          "median": 31,
+          "minimum": -133,
+          "n": 91,
+          "standard_deviation": 36.00538556921436,
+          "standard_error": 3.774389973253359,
+          "ties": 0,
+          "wins": 73,
+          "worst_decile_mean": -40.4
+        },
+        "delta_vs_recipe7": {
+          "ci95_normal": [
+            -0.2753417783383387,
+            10.670946173942735
+          ],
+          "losses": 5,
+          "maximum": 175,
+          "mean": 5.197802197802198,
+          "median": 0,
+          "minimum": -40,
+          "n": 91,
+          "standard_deviation": 26.637992825711585,
+          "standard_error": 2.79242039599007,
+          "ties": 77,
+          "wins": 9,
+          "worst_decile_mean": -11.2
+        },
+        "n": 91
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -38.54703047862971,
+          26.276197145296376
+        ],
+        "losses": 5,
+        "maximum": 70.16666666666667,
+        "mean": -6.135416666666667,
+        "median": -9.041666666666668,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.77239166456864,
+        "standard_error": 16.536537659164818,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          7.811624128505764,
+          38.20920920482757
+        ],
+        "losses": 1,
+        "maximum": 56.00000000000001,
+        "mean": 23.010416666666668,
+        "median": 19.83333333333333,
+        "minimum": -6.416666666666668,
+        "n": 8,
+        "standard_deviation": 21.93299850934913,
+        "standard_error": 7.754485988857604,
+        "ties": 0,
+        "wins": 7,
+        "worst_decile_mean": -6.416666666666668
+      },
+      "map_balanced_margin_delta_vs_recipe7": {
+        "ci95_normal": [
+          -2.1891229925150872,
+          15.730789659181752
+        ],
+        "losses": 0,
+        "maximum": 33.0,
+        "mean": 6.770833333333333,
+        "median": 0.0,
+        "minimum": 0,
+        "n": 8,
+        "standard_deviation": 12.929889545189226,
+        "standard_error": 4.5714062886981734,
+        "ties": 6,
+        "wins": 2,
+        "worst_decile_mean": 0
+      },
+      "opponent_mean_delta_vs_recipe6": {
+        "compact_gold": 34.25,
+        "gold_adaptive": 15.6875,
+        "legend_balanced": 12.125,
+        "mybot": 31.875,
+        "norx_native_three": 33.5625,
+        "resident": 10.5625
+      },
+      "opponent_mean_delta_vs_recipe7": {
+        "compact_gold": 8.6875,
+        "gold_adaptive": 15.5625,
+        "legend_balanced": 2.875,
+        "mybot": 0.125,
+        "norx_native_three": 13.1875,
+        "resident": 0.1875
+      },
+      "training_completion": {
+        "completed": 95,
+        "games": 96,
+        "rate": 0.9895833333333334
+      },
+      "worst_opponent_mean_delta_vs_recipe6": 10.5625
+    }
+  },
+  "schema": 1,
+  "scope": "D11 recipe-7 to recipe-6 fixed-turn fallback development sweep on reused seeds; exact paired engine outcomes; not Arena-calibrated",
+  "selection": {
+    "authorization": "development selection only; any selected deadline requires a frozen disjoint prospective protocol",
+    "eligible_deadlines": [],
+    "rule": "all six frozen gates; maximize map-balanced margin; among deadlines within one point of maximum select earliest",
+    "selected_deadline": null
+  },
+  "source": {
+    "analyzer": "cgauto/d11_recipe_fallback_analysis.py",
+    "analyzer_sha256": "076f790ba3cecd83e617d4ceb23ef4e43370a950b154d8c5c87c99c643504120",
+    "fallback_rows": "data/analysis/live-agent-6553250/d11-recipe-fallback-development-seeds0-7.tsv",
+    "fallback_rows_sha256": "da3615953fc7d5063d92485e448242e9feccbdad06f330d282c51a89d791cfe7",
+    "fixed_controls": "data/analysis/live-agent-6553250/d11-recipe-catalog-development-seeds0-7.tsv",
+    "fixed_controls_sha256": "9bd2e0ec8413ef2bfa911b3b94f8efffafab1b16def988f7a349d6611d0218b9"
+  }
+}

@@ -1,0 +1,24 @@
+{
+ "schema": 1,
+ "complete": true,
+ "seed_blocks": [
+  [
+   0,
+   5
+  ],
+  [
+   53720,
+   5
+  ]
+ ],
+ "cases": 160,
+ "mismatches": 0,
+ "mismatch_examples": [],
+ "command_lines": 45249,
+ "transcript_bytes": 896272,
+ "transcript_sha256": "1cf505111db30a6e2295e74ce8d26e8822d63c275bf6594b34aac5a87abb8549",
+ "candidate_source_bytes": 96414,
+ "candidate_source_sha256": "f074a553804a638d32cf97fe6e2e3cd2c718c4205ad79d6dfb2d6c7dde21c528",
+ "candidate_binary_sha256": "1ed92d58d1bf478dfa4911dfbdf296bb2e2e5974030ee4179c080bbec6b9e73b",
+ "reference_binary_sha256": "5b84ba96609e76c5c9cc5c9a1b8dfc8b7433ba4507591127d1ff4a6744d3e023"
+}

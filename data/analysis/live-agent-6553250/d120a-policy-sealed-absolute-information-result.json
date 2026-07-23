@@ -1,0 +1,272 @@
+{
+  "artifacts": {
+    "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+    "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6"
+  },
+  "checkpoint": {
+    "gate_offset": 0.0,
+    "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+    "path": "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt",
+    "seed": 11901,
+    "sha256": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6"
+  },
+  "decision": "close_on_absolute_information_failure",
+  "lock": {
+    "declared": {
+      "absolute_information_gates": {
+        "arms": ">= 80000",
+        "minimum_arms_per_opponent": ">= 8000",
+        "minimum_roots_per_opponent": ">= 500",
+        "minimum_supported_tasks_per_fold": ">= 512",
+        "minimum_supported_tasks_per_opponent": ">= 128",
+        "minimum_supported_tasks_per_seat": ">= 512",
+        "roots": ">= 5000",
+        "supported_tasks": ">= 1024"
+      },
+      "environment": {
+        "numpy": "2.4.6",
+        "python": "3.11.15",
+        "torch": "2.13.0+cpu"
+      },
+      "frozen_at": "2026-07-22-after-d119-mechanics-closure-before-any-aggregate-checkpoint-score",
+      "panel": {
+        "elapsed_seconds": 4035.188,
+        "end_seed": 9843779,
+        "maps": 80,
+        "policy_outcomes_observed": false,
+        "start_seed": 9843700,
+        "tasks": 1280
+      },
+      "policy_lock": {
+        "checkpoint_sha256": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+        "gate_offset": 0.0,
+        "held_policy_gates_unchanged": true,
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901
+      },
+      "schema": "troll-farm-d120a-policy-sealed-absolute-information-lock-v1",
+      "sha256": {
+        "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+        "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+        "cgauto/evaluate_d119a_held_coverage_repair.py": "2758648c31b335d4e557fab60d6540901f9c4da2cade177e80d46c4d1a0f6dfe",
+        "cgauto/evaluate_d119a_held_soft_value_q6.py": "a838d56ee17c5a4954e63685d945e8bc7d508f249e8232d8d3f3426ae714c69a",
+        "cgauto/evaluate_d120a_policy_sealed_absolute_information.py": "2191bf72781d4d2b4e8dc24d9683987c1fd6b6bbdfe63c2f6c42da6a837cf973",
+        "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+        "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+        "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+        "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+        "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+        "data/analysis/live-agent-6553250/d119a-held-coverage-repair-lock.json": "499ec3b163406af1c7c99595fe0bc0b452a22668e984109453b43d4e28cf33f2",
+        "data/analysis/live-agent-6553250/d119a-held-coverage-repair-result.json": "db72a199043de5e4b3281e4e77ebb1a5917d896952f728ece167c1057011e200",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+        "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+        "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6",
+        "data/analysis/live-agent-6553250/d120a-policy-sealed-absolute-information-protocol-2026-07-22.md": "caeffc5e3d969c2273b6e59c6b0c4bad1e9c326131bda874ba2a63720e340b9d",
+        "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+        "tests/test_evaluate_d120a_policy_sealed_absolute_information.py": "7667f5ecef2d55033da0f0c2b1c4a10b8cf27d23ecb4daf5a5e01440a97a3ce9",
+        "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+      }
+    },
+    "manifest_sha256": "a36d910efaa9cc0d84333dbb503431931e952b17d892b596c8d2d07b6ba4b570",
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d120a-policy-sealed-absolute-information-lock.json"
+  },
+  "panel": {
+    "admission": null,
+    "elapsed_seconds": 4035.188,
+    "end_seed": 9843779,
+    "information": {
+      "arms": 103602,
+      "arms_by_opponent": {
+        "compact_gold": 12218,
+        "gold_adaptive": 17109,
+        "legend_balanced": 7232,
+        "mybot": 7552,
+        "norx_native_three": 7536,
+        "resident": 16123,
+        "script_boss": 18293,
+        "silver_boss": 17539
+      },
+      "minimum_arms_per_opponent": 7232,
+      "minimum_roots_per_opponent": 395,
+      "minimum_supported_tasks_per_fold": 560,
+      "minimum_supported_tasks_per_opponent": 124,
+      "minimum_supported_tasks_per_seat": 564,
+      "roots": 6321,
+      "roots_by_opponent": {
+        "compact_gold": 710,
+        "gold_adaptive": 1004,
+        "legend_balanced": 395,
+        "mybot": 446,
+        "norx_native_three": 438,
+        "resident": 998,
+        "script_boss": 1211,
+        "silver_boss": 1119
+      },
+      "supported_task_rate": 0.88984375,
+      "supported_tasks": 1139,
+      "supported_tasks_by_fold": {
+        "0": 579,
+        "1": 560
+      },
+      "supported_tasks_by_opponent": {
+        "compact_gold": 146,
+        "gold_adaptive": 154,
+        "legend_balanced": 132,
+        "mybot": 124,
+        "norx_native_three": 132,
+        "resident": 140,
+        "script_boss": 159,
+        "silver_boss": 152
+      },
+      "supported_tasks_by_seat": {
+        "0": 575,
+        "1": 564
+      },
+      "tasks": 1280
+    },
+    "maps": 80,
+    "mechanics": {
+      "details": {
+        "arms": 103602,
+        "baselines": 1280,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 25,
+        "maximum_paired_gain_error": 1.1000000021965661e-07,
+        "maximum_proposals_per_root": 29,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 4,
+        "roots": 6321,
+        "supported_tasks": 1139,
+        "task_support_rate": 0.88984375,
+        "tasks": 1280,
+        "throughput_arms_per_second": {
+          "a": 25.6746401902464,
+          "b": 25.6746401902464
+        },
+        "unsupported_forced_control_tasks": 141
+      },
+      "gates": {
+        "at_least_5000_roots": true,
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "at_least_80000_arms": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "each_fold_at_least_512_supported": true,
+        "each_opponent_at_least_128_supported": false,
+        "each_opponent_at_least_500_roots": false,
+        "each_opponent_at_least_8000_arms": false,
+        "each_seat_at_least_512_supported": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_1024": true,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "information": {
+        "arms": 103602,
+        "arms_by_opponent": {
+          "compact_gold": 12218,
+          "gold_adaptive": 17109,
+          "legend_balanced": 7232,
+          "mybot": 7552,
+          "norx_native_three": 7536,
+          "resident": 16123,
+          "script_boss": 18293,
+          "silver_boss": 17539
+        },
+        "minimum_arms_per_opponent": 7232,
+        "minimum_roots_per_opponent": 395,
+        "minimum_supported_tasks_per_fold": 560,
+        "minimum_supported_tasks_per_opponent": 124,
+        "minimum_supported_tasks_per_seat": 564,
+        "roots": 6321,
+        "roots_by_opponent": {
+          "compact_gold": 710,
+          "gold_adaptive": 1004,
+          "legend_balanced": 395,
+          "mybot": 446,
+          "norx_native_three": 438,
+          "resident": 998,
+          "script_boss": 1211,
+          "silver_boss": 1119
+        },
+        "supported_task_rate": 0.88984375,
+        "supported_tasks": 1139,
+        "supported_tasks_by_fold": {
+          "0": 579,
+          "1": 560
+        },
+        "supported_tasks_by_opponent": {
+          "compact_gold": 146,
+          "gold_adaptive": 154,
+          "legend_balanced": 132,
+          "mybot": 124,
+          "norx_native_three": 132,
+          "resident": 140,
+          "script_boss": 159,
+          "silver_boss": 152
+        },
+        "supported_tasks_by_seat": {
+          "0": 575,
+          "1": 564
+        },
+        "tasks": 1280
+      },
+      "pass": false,
+      "removed_fractional_gate": {
+        "name": "supported_tasks_at_least_90pct",
+        "observed": false
+      },
+      "schema": "troll-farm-d120a-absolute-information-mechanics-v1"
+    },
+    "metrics": null,
+    "pass": false,
+    "start_seed": 9843700,
+    "tasks": 1280,
+    "teacher_signal": null
+  },
+  "protocol": "data/analysis/live-agent-6553250/d120a-policy-sealed-absolute-information-protocol-2026-07-22.md",
+  "schema": "troll-farm-d120a-policy-sealed-absolute-information-v1",
+  "scope": "post-mechanics policy-sealed diagnostic; not a retroactive D119 held pass"
+}

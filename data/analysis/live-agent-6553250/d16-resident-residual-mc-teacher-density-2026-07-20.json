@@ -1,0 +1,743 @@
+{
+  "density_gate": {
+    "authorization": "larger frozen train/validation label corpus only; no policy, candidate, submission, or Arena activity",
+    "eligible_for_larger_distillation_corpus": true,
+    "gates": {
+      "at_least_24_labels_plus2": true,
+      "at_least_2_positive_action_planes": true,
+      "at_least_48_positive_labels": true,
+      "clone_fidelity_240_of_240": true,
+      "complete_2400_labels": true,
+      "maximum_positive_map_share_at_most_30_percent": true,
+      "positive_against_at_least_4_opponents": true,
+      "positive_in_both_resident_roles": true,
+      "positive_on_at_least_8_maps": true
+    }
+  },
+  "design": {
+    "clone_fidelity": "runner aborts before output on any mismatch; complete output proves 240/240",
+    "complete": true,
+    "labels": 2400,
+    "maps": 20,
+    "samples_per_scenario": 10,
+    "scenario_start": 360000,
+    "scenario_stop_exclusive": 360240,
+    "scenarios": 240
+  },
+  "overall": {
+    "continuation_elapsed_us": {
+      "ci95_normal": [
+        118584.22088004007,
+        126130.43245329325
+      ],
+      "losses": 0,
+      "maximum": 515566,
+      "mean": 122357.32666666666,
+      "median": 107828.0,
+      "minimum": 5,
+      "n": 2400,
+      "standard_deviation": 94307.99921201733,
+      "standard_error": 1925.0539727686707,
+      "ties": 0,
+      "wins": 2400,
+      "worst_decile_mean": 10501.675
+    },
+    "labels_at_least_plus2": 388,
+    "margin_advantage": {
+      "ci95_normal": [
+        -1.0829192802512968,
+        -0.02208071974870318
+      ],
+      "losses": 516,
+      "maximum": 108,
+      "mean": -0.5525,
+      "median": 0.0,
+      "minimum": -179,
+      "n": 2400,
+      "standard_deviation": 13.257720268877422,
+      "standard_error": 0.2706220817608657,
+      "ties": 1455,
+      "wins": 429,
+      "worst_decile_mean": -22.720833333333335
+    },
+    "maximum_positive_map_share": 0.08624708624708624,
+    "negative_labels": 516,
+    "negative_rate": 0.215,
+    "new_catastrophes": 5,
+    "positive_action_planes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      9,
+      10,
+      11,
+      12
+    ],
+    "positive_labels": 429,
+    "positive_maps": 20,
+    "positive_opponents": 6,
+    "positive_rate": 0.17875,
+    "positive_roles": [
+      0,
+      1
+    ],
+    "tie_labels": 1455,
+    "tie_rate": 0.60625,
+    "wood_advantage": {
+      "ci95_normal": [
+        -0.26209582798775155,
+        -0.0012375053455817853
+      ],
+      "losses": 440,
+      "maximum": 30,
+      "mean": -0.13166666666666665,
+      "median": 0.0,
+      "minimum": -53,
+      "n": 2400,
+      "standard_deviation": 3.2600499266919374,
+      "standard_error": 0.06654549046994127,
+      "ties": 1585,
+      "wins": 375,
+      "worst_decile_mean": -5.383333333333334
+    }
+  },
+  "schema": 1,
+  "scope": "D16 exact one-intervention Monte Carlo teacher density audit on development scenarios; no runtime search, candidate, or Arena authorization",
+  "slices": {
+    "alternative_plane": {
+      "1": {
+        "at_least_plus2": 83,
+        "labels": 269,
+        "mean_margin_advantage": -4.698884758364312,
+        "mean_wood_advantage": -1.4907063197026023,
+        "positive": 96,
+        "positive_rate": 0.35687732342007433
+      },
+      "10": {
+        "at_least_plus2": 39,
+        "labels": 136,
+        "mean_margin_advantage": 0.38235294117647056,
+        "mean_wood_advantage": 0.03676470588235294,
+        "positive": 43,
+        "positive_rate": 0.3161764705882353
+      },
+      "11": {
+        "at_least_plus2": 97,
+        "labels": 418,
+        "mean_margin_advantage": 0.6698564593301436,
+        "mean_wood_advantage": 0.23444976076555024,
+        "positive": 105,
+        "positive_rate": 0.2511961722488038
+      },
+      "12": {
+        "at_least_plus2": 66,
+        "labels": 231,
+        "mean_margin_advantage": -0.6493506493506493,
+        "mean_wood_advantage": 0.1774891774891775,
+        "positive": 73,
+        "positive_rate": 0.31601731601731603
+      },
+      "2": {
+        "at_least_plus2": 38,
+        "labels": 897,
+        "mean_margin_advantage": -0.008918617614269788,
+        "mean_wood_advantage": 0.03567447045707915,
+        "positive": 40,
+        "positive_rate": 0.044593088071348944
+      },
+      "3": {
+        "at_least_plus2": 3,
+        "labels": 180,
+        "mean_margin_advantage": -0.38333333333333336,
+        "mean_wood_advantage": -0.1,
+        "positive": 3,
+        "positive_rate": 0.016666666666666666
+      },
+      "4": {
+        "at_least_plus2": 40,
+        "labels": 130,
+        "mean_margin_advantage": -1.0615384615384615,
+        "mean_wood_advantage": -0.46153846153846156,
+        "positive": 43,
+        "positive_rate": 0.33076923076923076
+      },
+      "5": {
+        "at_least_plus2": 1,
+        "labels": 7,
+        "mean_margin_advantage": 1,
+        "mean_wood_advantage": 0.42857142857142855,
+        "positive": 1,
+        "positive_rate": 0.14285714285714285
+      },
+      "6": {
+        "at_least_plus2": 1,
+        "labels": 3,
+        "mean_margin_advantage": 12.333333333333334,
+        "mean_wood_advantage": 3,
+        "positive": 1,
+        "positive_rate": 0.3333333333333333
+      },
+      "7": {
+        "at_least_plus2": 0,
+        "labels": 17,
+        "mean_margin_advantage": 0,
+        "mean_wood_advantage": 0,
+        "positive": 0,
+        "positive_rate": 0
+      },
+      "8": {
+        "at_least_plus2": 0,
+        "labels": 32,
+        "mean_margin_advantage": 0,
+        "mean_wood_advantage": 0,
+        "positive": 0,
+        "positive_rate": 0
+      },
+      "9": {
+        "at_least_plus2": 20,
+        "labels": 80,
+        "mean_margin_advantage": -0.9125,
+        "mean_wood_advantage": -0.3125,
+        "positive": 24,
+        "positive_rate": 0.3
+      }
+    },
+    "alternative_verb": {
+      "CHOP": {
+        "at_least_plus2": 38,
+        "labels": 897,
+        "mean_margin_advantage": -0.008918617614269788,
+        "mean_wood_advantage": 0.03567447045707915,
+        "positive": 40,
+        "positive_rate": 0.044593088071348944
+      },
+      "DROP": {
+        "at_least_plus2": 3,
+        "labels": 180,
+        "mean_margin_advantage": -0.38333333333333336,
+        "mean_wood_advantage": -0.1,
+        "positive": 3,
+        "positive_rate": 0.016666666666666666
+      },
+      "HARVEST": {
+        "at_least_plus2": 83,
+        "labels": 269,
+        "mean_margin_advantage": -4.698884758364312,
+        "mean_wood_advantage": -1.4907063197026023,
+        "positive": 96,
+        "positive_rate": 0.35687732342007433
+      },
+      "MINE": {
+        "at_least_plus2": 40,
+        "labels": 130,
+        "mean_margin_advantage": -1.0615384615384615,
+        "mean_wood_advantage": -0.46153846153846156,
+        "positive": 43,
+        "positive_rate": 0.33076923076923076
+      },
+      "PICK": {
+        "at_least_plus2": 222,
+        "labels": 865,
+        "mean_margin_advantage": 0.1260115606936416,
+        "mean_wood_advantage": 0.1375722543352601,
+        "positive": 245,
+        "positive_rate": 0.2832369942196532
+      },
+      "PLANT": {
+        "at_least_plus2": 2,
+        "labels": 59,
+        "mean_margin_advantage": 0.7457627118644068,
+        "mean_wood_advantage": 0.2033898305084746,
+        "positive": 2,
+        "positive_rate": 0.03389830508474576
+      }
+    },
+    "map": {
+      "30000": {
+        "at_least_plus2": 16,
+        "labels": 120,
+        "mean_margin_advantage": -2.566666666666667,
+        "mean_wood_advantage": -0.6,
+        "positive": 18,
+        "positive_rate": 0.15
+      },
+      "30001": {
+        "at_least_plus2": 36,
+        "labels": 120,
+        "mean_margin_advantage": 4.466666666666667,
+        "mean_wood_advantage": 0.8833333333333333,
+        "positive": 37,
+        "positive_rate": 0.30833333333333335
+      },
+      "30002": {
+        "at_least_plus2": 19,
+        "labels": 120,
+        "mean_margin_advantage": -2.1,
+        "mean_wood_advantage": -0.5833333333333334,
+        "positive": 23,
+        "positive_rate": 0.19166666666666668
+      },
+      "30003": {
+        "at_least_plus2": 28,
+        "labels": 120,
+        "mean_margin_advantage": 0.9833333333333333,
+        "mean_wood_advantage": -0.075,
+        "positive": 29,
+        "positive_rate": 0.24166666666666667
+      },
+      "30004": {
+        "at_least_plus2": 19,
+        "labels": 120,
+        "mean_margin_advantage": -2.525,
+        "mean_wood_advantage": -0.18333333333333332,
+        "positive": 23,
+        "positive_rate": 0.19166666666666668
+      },
+      "30005": {
+        "at_least_plus2": 14,
+        "labels": 120,
+        "mean_margin_advantage": -3.35,
+        "mean_wood_advantage": -0.875,
+        "positive": 18,
+        "positive_rate": 0.15
+      },
+      "30006": {
+        "at_least_plus2": 27,
+        "labels": 120,
+        "mean_margin_advantage": 0.3416666666666667,
+        "mean_wood_advantage": 0.1,
+        "positive": 27,
+        "positive_rate": 0.225
+      },
+      "30007": {
+        "at_least_plus2": 12,
+        "labels": 120,
+        "mean_margin_advantage": -4.208333333333333,
+        "mean_wood_advantage": -0.3333333333333333,
+        "positive": 12,
+        "positive_rate": 0.1
+      },
+      "30008": {
+        "at_least_plus2": 9,
+        "labels": 120,
+        "mean_margin_advantage": -1.8333333333333333,
+        "mean_wood_advantage": 0.075,
+        "positive": 12,
+        "positive_rate": 0.1
+      },
+      "30009": {
+        "at_least_plus2": 19,
+        "labels": 120,
+        "mean_margin_advantage": 1.1083333333333334,
+        "mean_wood_advantage": 0.25833333333333336,
+        "positive": 20,
+        "positive_rate": 0.16666666666666666
+      },
+      "30010": {
+        "at_least_plus2": 24,
+        "labels": 120,
+        "mean_margin_advantage": 2.2,
+        "mean_wood_advantage": 0.4666666666666667,
+        "positive": 24,
+        "positive_rate": 0.2
+      },
+      "30011": {
+        "at_least_plus2": 16,
+        "labels": 120,
+        "mean_margin_advantage": -4.458333333333333,
+        "mean_wood_advantage": -0.9333333333333333,
+        "positive": 20,
+        "positive_rate": 0.16666666666666666
+      },
+      "30012": {
+        "at_least_plus2": 22,
+        "labels": 120,
+        "mean_margin_advantage": 1.2416666666666667,
+        "mean_wood_advantage": 0,
+        "positive": 24,
+        "positive_rate": 0.2
+      },
+      "30013": {
+        "at_least_plus2": 22,
+        "labels": 120,
+        "mean_margin_advantage": 0.24166666666666667,
+        "mean_wood_advantage": 0.125,
+        "positive": 27,
+        "positive_rate": 0.225
+      },
+      "30014": {
+        "at_least_plus2": 22,
+        "labels": 120,
+        "mean_margin_advantage": -0.8083333333333333,
+        "mean_wood_advantage": -0.13333333333333333,
+        "positive": 23,
+        "positive_rate": 0.19166666666666668
+      },
+      "30015": {
+        "at_least_plus2": 25,
+        "labels": 120,
+        "mean_margin_advantage": 2.175,
+        "mean_wood_advantage": 0.2,
+        "positive": 27,
+        "positive_rate": 0.225
+      },
+      "30016": {
+        "at_least_plus2": 13,
+        "labels": 120,
+        "mean_margin_advantage": 1,
+        "mean_wood_advantage": 0.20833333333333334,
+        "positive": 16,
+        "positive_rate": 0.13333333333333333
+      },
+      "30017": {
+        "at_least_plus2": 17,
+        "labels": 120,
+        "mean_margin_advantage": 0.75,
+        "mean_wood_advantage": -0.008333333333333333,
+        "positive": 18,
+        "positive_rate": 0.15
+      },
+      "30018": {
+        "at_least_plus2": 14,
+        "labels": 120,
+        "mean_margin_advantage": -2.15,
+        "mean_wood_advantage": -0.675,
+        "positive": 17,
+        "positive_rate": 0.14166666666666666
+      },
+      "30019": {
+        "at_least_plus2": 14,
+        "labels": 120,
+        "mean_margin_advantage": -1.5583333333333333,
+        "mean_wood_advantage": -0.55,
+        "positive": 14,
+        "positive_rate": 0.11666666666666667
+      }
+    },
+    "opponent": {
+      "compact_gold": {
+        "at_least_plus2": 85,
+        "labels": 400,
+        "mean_margin_advantage": -0.435,
+        "mean_wood_advantage": -0.13,
+        "positive": 91,
+        "positive_rate": 0.2275
+      },
+      "gold_adaptive": {
+        "at_least_plus2": 74,
+        "labels": 400,
+        "mean_margin_advantage": -1.0275,
+        "mean_wood_advantage": -0.3,
+        "positive": 78,
+        "positive_rate": 0.195
+      },
+      "legend_balanced": {
+        "at_least_plus2": 44,
+        "labels": 400,
+        "mean_margin_advantage": -2.2975,
+        "mean_wood_advantage": -0.55,
+        "positive": 53,
+        "positive_rate": 0.1325
+      },
+      "mybot": {
+        "at_least_plus2": 56,
+        "labels": 400,
+        "mean_margin_advantage": -0.395,
+        "mean_wood_advantage": -0.1125,
+        "positive": 67,
+        "positive_rate": 0.1675
+      },
+      "norx_native_three": {
+        "at_least_plus2": 70,
+        "labels": 400,
+        "mean_margin_advantage": 1.1375,
+        "mean_wood_advantage": 0.2125,
+        "positive": 80,
+        "positive_rate": 0.2
+      },
+      "resident": {
+        "at_least_plus2": 59,
+        "labels": 400,
+        "mean_margin_advantage": -0.2975,
+        "mean_wood_advantage": 0.09,
+        "positive": 60,
+        "positive_rate": 0.15
+      }
+    },
+    "resident_verb": {
+      "CHOP": {
+        "at_least_plus2": 159,
+        "labels": 1385,
+        "mean_margin_advantage": -1.2382671480144405,
+        "mean_wood_advantage": -0.34296028880866425,
+        "positive": 184,
+        "positive_rate": 0.1328519855595668
+      },
+      "DROP": {
+        "at_least_plus2": 3,
+        "labels": 188,
+        "mean_margin_advantage": -0.0797872340425532,
+        "mean_wood_advantage": 0.12234042553191489,
+        "positive": 4,
+        "positive_rate": 0.02127659574468085
+      },
+      "HARVEST": {
+        "at_least_plus2": 8,
+        "labels": 60,
+        "mean_margin_advantage": -0.15,
+        "mean_wood_advantage": 0.3,
+        "positive": 8,
+        "positive_rate": 0.13333333333333333
+      },
+      "MINE": {
+        "at_least_plus2": 4,
+        "labels": 6,
+        "mean_margin_advantage": 6,
+        "mean_wood_advantage": 1,
+        "positive": 4,
+        "positive_rate": 0.6666666666666666
+      },
+      "MOVE": {
+        "at_least_plus2": 188,
+        "labels": 475,
+        "mean_margin_advantage": 0.7578947368421053,
+        "mean_wood_advantage": 0.20421052631578948,
+        "positive": 202,
+        "positive_rate": 0.42526315789473684
+      },
+      "PICK": {
+        "at_least_plus2": 5,
+        "labels": 104,
+        "mean_margin_advantage": -0.17307692307692307,
+        "mean_wood_advantage": -0.04807692307692308,
+        "positive": 5,
+        "positive_rate": 0.04807692307692308
+      },
+      "PLANT": {
+        "at_least_plus2": 15,
+        "labels": 127,
+        "mean_margin_advantage": -0.3779527559055118,
+        "mean_wood_advantage": -0.023622047244094488,
+        "positive": 16,
+        "positive_rate": 0.12598425196850394
+      },
+      "WAIT": {
+        "at_least_plus2": 6,
+        "labels": 55,
+        "mean_margin_advantage": 1.509090909090909,
+        "mean_wood_advantage": 0.41818181818181815,
+        "positive": 6,
+        "positive_rate": 0.10909090909090909
+      }
+    },
+    "role": {
+      "0": {
+        "at_least_plus2": 224,
+        "labels": 1271,
+        "mean_margin_advantage": -0.6805664830841857,
+        "mean_wood_advantage": -0.25413060582218727,
+        "positive": 248,
+        "positive_rate": 0.1951219512195122
+      },
+      "1": {
+        "at_least_plus2": 164,
+        "labels": 1129,
+        "mean_margin_advantage": -0.408325952170062,
+        "mean_wood_advantage": 0.006200177147918512,
+        "positive": 181,
+        "positive_rate": 0.16031886625332153
+      }
+    },
+    "seat": {
+      "0": {
+        "at_least_plus2": 195,
+        "labels": 1200,
+        "mean_margin_advantage": -1.015,
+        "mean_wood_advantage": -0.18666666666666668,
+        "positive": 216,
+        "positive_rate": 0.18
+      },
+      "1": {
+        "at_least_plus2": 193,
+        "labels": 1200,
+        "mean_margin_advantage": -0.09,
+        "mean_wood_advantage": -0.07666666666666666,
+        "positive": 213,
+        "positive_rate": 0.1775
+      }
+    },
+    "turn_quartile": {
+      "01-075": {
+        "at_least_plus2": 121,
+        "labels": 606,
+        "mean_margin_advantage": -1.0214521452145215,
+        "mean_wood_advantage": -0.27722772277227725,
+        "positive": 130,
+        "positive_rate": 0.2145214521452145
+      },
+      "076-150": {
+        "at_least_plus2": 106,
+        "labels": 569,
+        "mean_margin_advantage": -0.7170474516695958,
+        "mean_wood_advantage": -0.19156414762741653,
+        "positive": 116,
+        "positive_rate": 0.2038664323374341
+      },
+      "151-225": {
+        "at_least_plus2": 104,
+        "labels": 490,
+        "mean_margin_advantage": 0,
+        "mean_wood_advantage": 0.07959183673469387,
+        "positive": 111,
+        "positive_rate": 0.22653061224489796
+      },
+      "226-301": {
+        "at_least_plus2": 57,
+        "labels": 735,
+        "mean_margin_advantage": -0.40680272108843535,
+        "mean_wood_advantage": -0.10612244897959183,
+        "positive": 72,
+        "positive_rate": 0.09795918367346938
+      }
+    },
+    "worker_spec": {
+      "1/1/1/1": {
+        "at_least_plus2": 224,
+        "labels": 1271,
+        "mean_margin_advantage": -0.6805664830841857,
+        "mean_wood_advantage": -0.25413060582218727,
+        "positive": 248,
+        "positive_rate": 0.1951219512195122
+      },
+      "1/2/0/1": {
+        "at_least_plus2": 6,
+        "labels": 47,
+        "mean_margin_advantage": -1.574468085106383,
+        "mean_wood_advantage": -0.3829787234042553,
+        "positive": 6,
+        "positive_rate": 0.1276595744680851
+      },
+      "1/2/0/2": {
+        "at_least_plus2": 15,
+        "labels": 124,
+        "mean_margin_advantage": 0.4435483870967742,
+        "mean_wood_advantage": 0.11290322580645161,
+        "positive": 16,
+        "positive_rate": 0.12903225806451613
+      },
+      "1/2/0/3": {
+        "at_least_plus2": 14,
+        "labels": 57,
+        "mean_margin_advantage": 0.6842105263157895,
+        "mean_wood_advantage": 0.2631578947368421,
+        "positive": 17,
+        "positive_rate": 0.2982456140350877
+      },
+      "1/3/0/3": {
+        "at_least_plus2": 7,
+        "labels": 50,
+        "mean_margin_advantage": -4.3,
+        "mean_wood_advantage": -0.88,
+        "positive": 8,
+        "positive_rate": 0.16
+      },
+      "2/1/0/2": {
+        "at_least_plus2": 10,
+        "labels": 111,
+        "mean_margin_advantage": -1.8558558558558558,
+        "mean_wood_advantage": -0.2702702702702703,
+        "positive": 11,
+        "positive_rate": 0.0990990990990991
+      },
+      "2/1/0/3": {
+        "at_least_plus2": 2,
+        "labels": 53,
+        "mean_margin_advantage": -0.7735849056603774,
+        "mean_wood_advantage": -0.16981132075471697,
+        "positive": 2,
+        "positive_rate": 0.03773584905660377
+      },
+      "2/2/0/1": {
+        "at_least_plus2": 10,
+        "labels": 56,
+        "mean_margin_advantage": -1.5535714285714286,
+        "mean_wood_advantage": -0.07142857142857142,
+        "positive": 13,
+        "positive_rate": 0.23214285714285715
+      },
+      "2/2/0/2": {
+        "at_least_plus2": 32,
+        "labels": 197,
+        "mean_margin_advantage": 0.9593908629441624,
+        "mean_wood_advantage": 0.16751269035532995,
+        "positive": 35,
+        "positive_rate": 0.17766497461928935
+      },
+      "2/2/0/3": {
+        "at_least_plus2": 2,
+        "labels": 48,
+        "mean_margin_advantage": -4.5,
+        "mean_wood_advantage": -0.16666666666666666,
+        "positive": 5,
+        "positive_rate": 0.10416666666666667
+      },
+      "2/3/0/3": {
+        "at_least_plus2": 11,
+        "labels": 52,
+        "mean_margin_advantage": 2.673076923076923,
+        "mean_wood_advantage": 0.6346153846153846,
+        "positive": 11,
+        "positive_rate": 0.21153846153846154
+      },
+      "3/1/0/2": {
+        "at_least_plus2": 5,
+        "labels": 56,
+        "mean_margin_advantage": 0.17857142857142858,
+        "mean_wood_advantage": 0.05357142857142857,
+        "positive": 5,
+        "positive_rate": 0.08928571428571429
+      },
+      "3/1/0/3": {
+        "at_least_plus2": 13,
+        "labels": 58,
+        "mean_margin_advantage": 0.25862068965517243,
+        "mean_wood_advantage": 0.05172413793103448,
+        "positive": 13,
+        "positive_rate": 0.22413793103448276
+      },
+      "3/2/0/1": {
+        "at_least_plus2": 14,
+        "labels": 108,
+        "mean_margin_advantage": -2.7962962962962963,
+        "mean_wood_advantage": -0.2777777777777778,
+        "positive": 15,
+        "positive_rate": 0.1388888888888889
+      },
+      "3/2/0/2": {
+        "at_least_plus2": 9,
+        "labels": 61,
+        "mean_margin_advantage": 0.7540983606557377,
+        "mean_wood_advantage": 0.13114754098360656,
+        "positive": 9,
+        "positive_rate": 0.14754098360655737
+      },
+      "3/2/0/3": {
+        "at_least_plus2": 14,
+        "labels": 51,
+        "mean_margin_advantage": 3.6666666666666665,
+        "mean_wood_advantage": 0.803921568627451,
+        "positive": 15,
+        "positive_rate": 0.29411764705882354
+      }
+    }
+  },
+  "source": {
+    "analyzer": "cgauto/d16_resident_residual_mc_density.py",
+    "analyzer_sha256": "d05f63a754804ebd3303a607e113480b35486599da000ad043730e83c7f5f204",
+    "rows": "data/analysis/live-agent-6553250/d16-resident-residual-mc-teacher-density-scenarios360000-360239.tsv",
+    "rows_sha256": "a95bcf9e49dc7e7ea5dea9b02f7de144bdefc6d1de2cc49e9d1333eb1ed3431a"
+  }
+}

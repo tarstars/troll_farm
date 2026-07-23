@@ -1,0 +1,17 @@
+{
+  "schema": "troll-farm-d164a-lock-v1",
+  "frozen_at_utc": "2026-07-23T07:47:15Z",
+  "snapshot_id": "20260723T074715Z-d164a",
+  "resident_agent_id": 6561795,
+  "resident_submission_id": 41015603,
+  "external_raw_root": "data/external/arena-corpus",
+  "files": {
+    "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-protocol-2026-07-23.md": "cf7df0e136e13b1be1fd74e41c68ed818b778ea0c820c0af29edff7681517bf6",
+    "data/scripts/collect_snapshot.py": "1c5894f3c6f76d8568b418a55b871e08cacb428ff4fe47bd9e4f2b15557b6745",
+    "data/scripts/parse_snapshot.py": "6b5994299d8a47cbb3ec41e58de95ac0323cc4c53a553710e084b21ede51ee33",
+    "cgauto/replay_state.py": "4f38829baa533bc8af940fb0eeed6cf5a746357b74abe38f42f5060cb9101569",
+    "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+    "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "data/analysis/live-agent-6553250/d163a-resident-resource-control-components-result.json": "560e5651ae0f8079175db5d521cedf9021c807a4d69c2b8d2e6b2487fa69afe7"
+  }
+}

@@ -1,0 +1,1871 @@
+{
+ "schema": 1,
+ "scope": "controlled TestSession/play activation telemetry; never arena-submitted",
+ "started_at": "2026-07-16T08:57:41.389268+00:00",
+ "completed_at": "2026-07-16T09:01:41.678879+00:00",
+ "status": "complete",
+ "source": {
+  "path": "cgauto/submissions/diagnostic-agent6553250-idle-harvest-probe.min.rs",
+  "bytes": 90826,
+  "sha256": "3ada15b311ee58f798401dd8e9e3231d0c7dee2bc3055dcef99b808efce82c2c"
+ },
+ "jobs": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141
+  },
+  {
+   "repetition": 0,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540
+  },
+  {
+   "repetition": 0,
+   "opponent": "laconic",
+   "opponent_agent": 6482055
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141
+  },
+  {
+   "repetition": 1,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540
+  },
+  {
+   "repetition": 1,
+   "opponent": "laconic",
+   "opponent_agent": 6482055
+  }
+ ],
+ "rows": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "probe",
+   "game_id": 896019790,
+   "scores": [
+    150.0,
+    181.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     1,
+     1,
+     4,
+     0,
+     0,
+     36
+    ],
+    [
+     2,
+     0,
+     7,
+     0,
+     0,
+     43
+    ]
+   ],
+   "wood": [
+    36,
+    43
+   ],
+   "fruit": [
+    6,
+    9
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 348,
+     "CHOP": 111,
+     "DROP": 36,
+     "WAIT": 92,
+     "PICK": 6,
+     "PLANT": 6
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "probe",
+   "game_id": 896019824,
+   "scores": [
+    82.0,
+    89.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     2,
+     0,
+     2,
+     20
+    ],
+    [
+     0,
+     36,
+     3,
+     2,
+     7,
+     12
+    ]
+   ],
+   "wood": [
+    20,
+    12
+   ],
+   "fruit": [
+    2,
+    41
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 363,
+     "CHOP": 191,
+     "DROP": 20,
+     "PICK": 6,
+     "PLANT": 6,
+     "WAIT": 13
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "bot": "probe",
+   "game_id": 896019849,
+   "scores": [
+    128.0,
+    132.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     1,
+     32
+    ],
+    [
+     0,
+     1,
+     2,
+     1,
+     1,
+     32
+    ]
+   ],
+   "wood": [
+    32,
+    32
+   ],
+   "fruit": [
+    0,
+    4
+   ],
+   "turns": 171,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 135,
+     "CHOP": 116,
+     "DROP": 23,
+     "WAIT": 45,
+     "PICK": 11,
+     "PLANT": 11
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 342
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "probe",
+   "game_id": 896019865,
+   "scores": [
+    197.0,
+    188.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     5,
+     0,
+     1,
+     48
+    ],
+    [
+     32,
+     2,
+     26,
+     12,
+     1,
+     29
+    ]
+   ],
+   "wood": [
+    48,
+    29
+   ],
+   "fruit": [
+    5,
+    72
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 368,
+     "CHOP": 169,
+     "DROP": 27,
+     "PICK": 8,
+     "PLANT": 8,
+     "WAIT": 19
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "bot": "probe",
+   "game_id": 896019872,
+   "scores": [
+    252.0,
+    544.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     1,
+     139,
+     0,
+     0,
+     28
+    ],
+    [
+     2,
+     0,
+     0,
+     2,
+     0,
+     135
+    ]
+   ],
+   "wood": [
+    28,
+    135
+   ],
+   "fruit": [
+    140,
+    4
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 137,
+     "PICK": 6,
+     "PLANT": 6,
+     "WAIT": 15,
+     "CHOP": 140,
+     "HARVEST": 140,
+     "DROP": 155
+    },
+    "harvest_turns": [
+     22,
+     24,
+     26,
+     28,
+     30,
+     32,
+     34,
+     36,
+     38,
+     40,
+     42,
+     44,
+     46,
+     48,
+     50,
+     52,
+     54,
+     56,
+     58,
+     60,
+     62,
+     64,
+     66,
+     68,
+     70,
+     72,
+     74,
+     76,
+     78,
+     80,
+     82,
+     84,
+     86,
+     88,
+     90,
+     92,
+     94,
+     96,
+     98,
+     100,
+     102,
+     104,
+     106,
+     108,
+     110,
+     112,
+     114,
+     116,
+     118,
+     120,
+     122,
+     124,
+     126,
+     128,
+     130,
+     132,
+     134,
+     136,
+     138,
+     140,
+     142,
+     144,
+     146,
+     148,
+     150,
+     152,
+     154,
+     156,
+     158,
+     160,
+     162,
+     164,
+     166,
+     168,
+     170,
+     172,
+     174,
+     176,
+     178,
+     180,
+     182,
+     184,
+     186,
+     188,
+     190,
+     192,
+     194,
+     196,
+     198,
+     200,
+     202,
+     204,
+     206,
+     208,
+     210,
+     212,
+     214,
+     216,
+     218,
+     220,
+     222,
+     224,
+     226,
+     228,
+     230,
+     232,
+     234,
+     236,
+     238,
+     240,
+     242,
+     244,
+     246,
+     248,
+     250,
+     252,
+     254,
+     256,
+     258,
+     260,
+     262,
+     264,
+     266,
+     268,
+     270,
+     272,
+     274,
+     276,
+     278,
+     280,
+     282,
+     284,
+     286,
+     288,
+     290,
+     292,
+     294,
+     296,
+     298,
+     300
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 140
+    },
+    "select_turns": [],
+    "orchard_force_turns": [
+     22,
+     24,
+     26,
+     28,
+     30,
+     32,
+     34,
+     36,
+     38,
+     40,
+     42,
+     44,
+     46,
+     48,
+     50,
+     52,
+     54,
+     56,
+     58,
+     60,
+     62,
+     64,
+     66,
+     68,
+     70,
+     72,
+     74,
+     76,
+     78,
+     80,
+     82,
+     84,
+     86,
+     88,
+     90,
+     92,
+     94,
+     96,
+     98,
+     100,
+     102,
+     104,
+     106,
+     108,
+     110,
+     112,
+     114,
+     116,
+     118,
+     120,
+     122,
+     124,
+     126,
+     128,
+     130,
+     132,
+     134,
+     136,
+     138,
+     140,
+     142,
+     144,
+     146,
+     148,
+     150,
+     152,
+     154,
+     156,
+     158,
+     160,
+     162,
+     164,
+     166,
+     168,
+     170,
+     172,
+     174,
+     176,
+     178,
+     180,
+     182,
+     184,
+     186,
+     188,
+     190,
+     192,
+     194,
+     196,
+     198,
+     200,
+     202,
+     204,
+     206,
+     208,
+     210,
+     212,
+     214,
+     216,
+     218,
+     220,
+     222,
+     224,
+     226,
+     228,
+     230,
+     232,
+     234,
+     236,
+     238,
+     240,
+     242,
+     244,
+     246,
+     248,
+     250,
+     252,
+     254,
+     256,
+     258,
+     260,
+     262,
+     264,
+     266,
+     268,
+     270,
+     272,
+     274,
+     276,
+     278,
+     280,
+     282,
+     284,
+     286,
+     288,
+     290,
+     292,
+     294,
+     296,
+     298,
+     300
+    ],
+    "events": [
+     {
+      "kind": "orchard_force",
+      "turn": 22,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 24,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 26,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 28,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 30,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 32,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 34,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 36,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 38,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 40,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 42,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 44,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 46,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 48,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 50,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 52,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 54,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 56,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 58,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 60,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 62,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 64,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 66,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 68,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 70,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 72,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 74,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 76,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 78,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 80,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 82,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 84,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 86,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 88,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 90,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 92,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 94,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 96,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 98,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 100,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 102,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 104,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 106,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 108,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 110,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 112,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 114,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 116,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 118,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 120,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 122,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 124,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 126,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 128,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 130,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 132,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 134,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 136,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 138,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 140,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 142,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 144,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 146,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 148,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 150,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 152,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 154,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 156,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 158,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 160,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 162,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 164,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 166,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 168,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 170,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 172,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 174,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 176,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 178,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 180,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 182,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 184,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 186,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 188,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 190,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 192,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 194,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 196,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 198,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 200,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 202,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 204,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 206,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 208,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 210,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 212,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 214,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 216,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 218,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 220,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 222,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 224,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 226,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 228,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 230,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 232,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 234,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 236,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 238,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 240,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 242,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 244,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 246,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 248,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 250,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 252,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 254,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 256,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 258,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 260,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 262,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 264,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 266,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 268,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 270,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 272,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 274,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 276,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 278,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 280,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 282,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 284,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 286,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 288,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 290,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 292,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 294,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 296,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 298,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     },
+     {
+      "kind": "orchard_force",
+      "turn": 300,
+      "unit": 0,
+      "commands": "HARVEST 0"
+     }
+    ],
+    "stderr_bytes": 7421
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "probe",
+   "game_id": 896019891,
+   "scores": [
+    245.0,
+    665.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     5,
+     0,
+     2,
+     60
+    ],
+    [
+     0,
+     5,
+     8,
+     0,
+     2,
+     163
+    ]
+   ],
+   "wood": [
+    60,
+    163
+   ],
+   "fruit": [
+    5,
+    13
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 378,
+     "WAIT": 3,
+     "HARVEST": 2,
+     "DROP": 36,
+     "TRAIN": 1,
+     "CHOP": 148,
+     "PICK": 9,
+     "PLANT": 9
+    },
+    "harvest_turns": [
+     5,
+     11
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "probe",
+   "game_id": 896019901,
+   "scores": [
+    264.0,
+    421.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     66
+    ],
+    [
+     0,
+     0,
+     0,
+     1,
+     1,
+     105
+    ]
+   ],
+   "wood": [
+    66,
+    105
+   ],
+   "fruit": [
+    0,
+    1
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 348,
+     "HARVEST": 1,
+     "DROP": 44,
+     "TRAIN": 1,
+     "CHOP": 162,
+     "PICK": 12,
+     "PLANT": 12,
+     "WAIT": 11
+    },
+    "harvest_turns": [
+     5
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "bot": "probe",
+   "game_id": 896019922,
+   "scores": [
+    176.0,
+    154.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     4,
+     44
+    ],
+    [
+     4,
+     0,
+     6,
+     0,
+     4,
+     36
+    ]
+   ],
+   "wood": [
+    44,
+    36
+   ],
+   "fruit": [
+    0,
+    10
+   ],
+   "turns": 236,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 156,
+     "WAIT": 76,
+     "HARVEST": 1,
+     "DROP": 33,
+     "TRAIN": 1,
+     "CHOP": 158,
+     "PICK": 18,
+     "PLANT": 18
+    },
+    "harvest_turns": [
+     9
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 472
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "probe",
+   "game_id": 896019925,
+   "scores": [
+    228.0,
+    184.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     2,
+     57
+    ],
+    [
+     21,
+     0,
+     3,
+     0,
+     3,
+     40
+    ]
+   ],
+   "wood": [
+    57,
+    40
+   ],
+   "fruit": [
+    0,
+    24
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 343,
+     "CHOP": 176,
+     "DROP": 38,
+     "PICK": 11,
+     "PLANT": 11,
+     "WAIT": 20
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 600
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "bot": "probe",
+   "game_id": 896019934,
+   "scores": [
+    164.0,
+    145.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     41
+    ],
+    [
+     2,
+     0,
+     7,
+     0,
+     3,
+     34
+    ]
+   ],
+   "wood": [
+    41,
+    34
+   ],
+   "fruit": [
+    0,
+    9
+   ],
+   "turns": 218,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 252,
+     "CHOP": 110,
+     "DROP": 28,
+     "PICK": 13,
+     "PLANT": 13,
+     "WAIT": 19
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "telemetry": {
+    "counts": {
+     "cand": 0,
+     "select": 0,
+     "orchard_force": 0
+    },
+    "select_turns": [],
+    "orchard_force_turns": [],
+    "events": [],
+    "stderr_bytes": 436
+   }
+  }
+ ],
+ "stop_reason": null,
+ "aggregate": {
+  "games": 10,
+  "games_with_inner_selection": 0,
+  "games_with_orchard_force": 1,
+  "event_counts": {
+   "cand": 0,
+   "select": 0,
+   "orchard_force": 140
+  }
+ }
+}

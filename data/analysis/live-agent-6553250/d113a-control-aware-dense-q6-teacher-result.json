@@ -1,0 +1,171 @@
+{
+  "artifacts": {
+    "data/analysis/live-agent-6553250/d113a-q6-dense-counterfactual-arms-9843200-9843207.tsv": "56e80ebb1a418b0a9ea4461a49d8b80d344972b3ad407cda70865d1609a5e847",
+    "data/analysis/live-agent-6553250/d113a-q6-dense-counterfactual-baselines-9843200-9843207.tsv": "198c932e2d04243acf85d9035bb8cda716055a83d8ff2ebc38d9f8a85f50ee3a"
+  },
+  "decision": "open_d113b_new_map_scorer_fit",
+  "frozen_inputs": {
+    "declared": {
+      "frozen_at": "2026-07-22-before-d113-execution",
+      "maps": 8,
+      "schema": "troll-farm-d113a-frozen-inputs-v1",
+      "sha256": {
+        "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+        "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-repair1-frozen-inputs.json": "1fb71574d2fc94467c65587d55a07f1c305bfac0940d3a9b8ddf5c5416cc170c",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-result-2026-07-22.md": "574d306b22fd9841c34b45f60465932fefec2cb776edb6d04352afa6c0cf1e28",
+        "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-result.json": "4025860ee86f458659a07866a95795db572f2c8a1c361c758ce65d56fe14dd39",
+        "data/analysis/live-agent-6553250/d113a-control-aware-dense-q6-teacher-protocol-2026-07-22.md": "8a6e31ff154add22a97a45ee538655206ae183b92de98ed18519c03ce71a74cf",
+        "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+        "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+        "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+        "rust/src/strategies/script_boss.rs": "716e52c0c9de0104efae24500202e851b56de9509fe194834f5d8af8d0c6eb1f",
+        "rust/src/strategies/silver_boss.rs": "fd13c13d23b652f9b48cddf81a134800a0bf738b90a7a3f0342bb0525f38cf4d",
+        "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+      },
+      "start_seed": 9843200,
+      "tasks": 128,
+      "threads": 20
+    },
+    "manifest_sha256": "22950d827b69e37f4b0696898f69b46dc6fa6efb0a542067361705f9c66d657d",
+    "mismatches": {},
+    "pass": true
+  },
+  "full_pass": true,
+  "labels": {
+    "path": "data/analysis/live-agent-6553250/d113a-q6-dense-act-wait-labels-9843200-9843207.tsv",
+    "rows": 11980,
+    "sha256": "957b43167ea7b55af084215d198f57aaf980c438ceca848fcf5021a611a5cf57"
+  },
+  "mechanics": {
+    "details": {
+      "arms": 11980,
+      "baselines": 128,
+      "error_samples": {
+        "accounting": [],
+        "feature": [],
+        "paired": [],
+        "root": []
+      },
+      "expert_bank_hashes": [
+        "10190021983138339114"
+      ],
+      "maximum_boundaries_per_task": 27,
+      "maximum_paired_gain_error": 6.000000007944095e-08,
+      "maximum_proposals_per_root": 27,
+      "maximum_reward_identity_error": 2.3000000037853852e-07,
+      "mechanical_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "minimum_boundaries_per_task": 0,
+      "minimum_proposals_per_root": 6,
+      "roots": 736,
+      "supported_tasks": 116,
+      "task_support_rate": 0.90625,
+      "tasks": 128,
+      "throughput_arms_per_second": {
+        "a": 20.150879288159256,
+        "b": 20.150879288159256
+      },
+      "unsupported_forced_control_tasks": 12
+    },
+    "gates": {
+      "at_least_6000_arms": true,
+      "at_least_600_roots": true,
+      "both_runs_at_least_12_arms_per_second": true,
+      "complete_unique_arm_grid": true,
+      "d112_full_panel_reproducibility_inherited": true,
+      "feature_schema_and_finiteness": true,
+      "frozen_inputs_exact": true,
+      "nonzero_control_relative_actions": true,
+      "paired_gain_exact": true,
+      "prescribed_baseline_grid": true,
+      "reward_identity_below_1e_4": true,
+      "single_expert_bank_hash": true,
+      "single_intervention_accounting": true,
+      "supported_tasks_at_least_90pct": true,
+      "zero_boundary_is_valid_forced_control": true,
+      "zero_mechanical_failures": true
+    },
+    "pass": true
+  },
+  "panel": {
+    "maps": 8,
+    "start_seed": 9843200,
+    "tasks": 128
+  },
+  "protocol": "data/analysis/live-agent-6553250/d113a-control-aware-dense-q6-teacher-protocol-2026-07-22.md",
+  "schema": "troll-farm-d113a-control-aware-dense-q6-teacher-v1",
+  "teacher": {
+    "backward_dp": {
+      "act_now_root_rate": 0.4673913043478261,
+      "act_now_roots": 344,
+      "arms": 11980,
+      "best_now_mean": 21.04891304347826,
+      "negative_arm_advantage_rate": 0.8626043405676127,
+      "negative_arm_advantages": 10334,
+      "positive_arm_advantage_rate": 0.1197829716193656,
+      "positive_arm_advantages": 1435,
+      "roots": 736,
+      "target_maximum": 115,
+      "target_mean": -23.237228714524207,
+      "target_minimum": -250,
+      "target_standard_deviation": 26.00034640194521,
+      "wait_roots": 392,
+      "zero_arm_advantages": 211
+    },
+    "oracle": {
+      "control_worker_three_rate": 0.8984375,
+      "crop_rate": 1.0,
+      "family_mean_margin_gain": {
+        "compact_gold": 46.25,
+        "gold_adaptive": 61.8125,
+        "legend_balanced": 43.875,
+        "mybot": 18.3125,
+        "norx_native_three": 27.5,
+        "resident": 28.9375,
+        "script_boss": 32.8125,
+        "silver_boss": 34.625
+      },
+      "first_boundary_oracle_mean_gain": 30.875,
+      "intervention_rate": 0.8984375,
+      "later_boundary_increment": 5.890625,
+      "mean_margin_gain": 36.765625,
+      "mean_opponent_score_delta": -11.7265625,
+      "mean_own_score_gain": 25.0390625,
+      "mean_selected_boundary": 1.3391304347826087,
+      "positive_families": 8,
+      "selected_kind_counts": {
+        "0": 13,
+        "1": 16,
+        "2": 13,
+        "3": 86
+      },
+      "strict_improvement_rate": 0.8984375,
+      "supported_tasks": 116,
+      "tasks": 128,
+      "worker_three_rate": 0.8984375,
+      "worst_family": 18.3125
+    },
+    "safety_gates": {
+      "oracle_crop_100pct": true,
+      "oracle_worker_three_within_5pp": true
+    },
+    "safety_pass": true,
+    "signal_gates": {
+      "act_now_roots_5_to_90pct": true,
+      "at_least_seven_positive_families": true,
+      "negative_arm_targets_at_least_40pct": true,
+      "oracle_mean_at_least_20": true,
+      "oracle_strict_at_least_75pct": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "positive_arm_targets_1_to_50pct": true,
+      "target_stddev_at_least_5": true,
+      "worst_family_at_least_8": true
+    },
+    "signal_pass": true
+  },
+  "timing_seconds": 594.515
+}

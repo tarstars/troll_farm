@@ -1,0 +1,1035 @@
+{
+ "schema": 1,
+ "scope": "consumed exact-map opponent-model calibration; not candidate evidence",
+ "games": 160,
+ "model_cells": 1760,
+ "catalog": [
+  "boss4",
+  "boss5",
+  "boss_real",
+  "norx_native_full",
+  "norx_native_three",
+  "norx_compact",
+  "norx_silver",
+  "norx_funded_silver",
+  "norx_cooperative_silver",
+  "norx_soft_cooperative_silver",
+  "norx_three_worker_silver"
+ ],
+ "target_archetypes": [
+  "rich3plus:farm_wood:train_now",
+  "compact2:farm_wood:deferred",
+  "compact2:wood_only:deferred"
+ ],
+ "split_counts": {
+  "discovery": {
+   "games": 80,
+   "catastrophic": 12,
+   "worker_rich": 23,
+   "target_archetypes": {
+    "rich3plus:farm_wood:train_now": 12,
+    "compact2:farm_wood:deferred": 8,
+    "compact2:wood_only:deferred": 10
+   }
+  },
+  "confirmation": {
+   "games": 80,
+   "catastrophic": 19,
+   "worker_rich": 28,
+   "target_archetypes": {
+    "rich3plus:farm_wood:train_now": 9,
+    "compact2:farm_wood:deferred": 6,
+    "compact2:wood_only:deferred": 4
+   }
+  }
+ },
+ "selections": {
+  "rich3plus:farm_wood:train_now": {
+   "model": "norx_compact",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4081
+  },
+  "compact2:farm_wood:deferred": {
+   "model": "norx_compact",
+   "games": 8,
+   "macro_covers": 1,
+   "fully_covers": 1,
+   "macro_coverage_rate": 0.125,
+   "full_coverage_rate": 0.125,
+   "mean_normalized_macro_distance": 0.7558428571428571
+  },
+  "compact2:wood_only:deferred": {
+   "model": "norx_funded_silver",
+   "games": 10,
+   "macro_covers": 4,
+   "fully_covers": 1,
+   "macro_coverage_rate": 0.4,
+   "full_coverage_rate": 0.1,
+   "mean_normalized_macro_distance": 0.6046304761904762
+  }
+ },
+ "selected_models": [
+  "norx_compact",
+  "norx_funded_silver"
+ ],
+ "discovery_rankings": {
+  "rich3plus:farm_wood:train_now": [
+   {
+    "model": "norx_compact",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.4081
+   },
+   {
+    "model": "norx_native_full",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5968968253968254
+   },
+   {
+    "model": "norx_native_three",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.5968968253968254
+   },
+   {
+    "model": "norx_cooperative_silver",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.6387246031746032
+   },
+   {
+    "model": "norx_three_worker_silver",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.673323015873016
+   },
+   {
+    "model": "norx_soft_cooperative_silver",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.674395238095238
+   },
+   {
+    "model": "boss_real",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.6801666666666666
+   },
+   {
+    "model": "norx_silver",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.864645238095238
+   },
+   {
+    "model": "boss5",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.8778873015873017
+   },
+   {
+    "model": "norx_funded_silver",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.9182071428571428
+   },
+   {
+    "model": "boss4",
+    "games": 12,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 2.0065579365079365
+   }
+  ],
+  "compact2:farm_wood:deferred": [
+   {
+    "model": "norx_compact",
+    "games": 8,
+    "macro_covers": 1,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.125,
+    "full_coverage_rate": 0.125,
+    "mean_normalized_macro_distance": 0.7558428571428571
+   },
+   {
+    "model": "norx_cooperative_silver",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9287035714285714
+   },
+   {
+    "model": "norx_three_worker_silver",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9291285714285714
+   },
+   {
+    "model": "norx_soft_cooperative_silver",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9315238095238095
+   },
+   {
+    "model": "norx_funded_silver",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.9569535714285714
+   },
+   {
+    "model": "boss_real",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0736273809523809
+   },
+   {
+    "model": "boss4",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1091511904761904
+   },
+   {
+    "model": "norx_native_full",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1109761904761906
+   },
+   {
+    "model": "norx_native_three",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1109761904761906
+   },
+   {
+    "model": "norx_silver",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.1273083333333334
+   },
+   {
+    "model": "boss5",
+    "games": 8,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3372404761904761
+   }
+  ],
+  "compact2:wood_only:deferred": [
+   {
+    "model": "norx_funded_silver",
+    "games": 10,
+    "macro_covers": 4,
+    "fully_covers": 1,
+    "macro_coverage_rate": 0.4,
+    "full_coverage_rate": 0.1,
+    "mean_normalized_macro_distance": 0.6046304761904762
+   },
+   {
+    "model": "norx_three_worker_silver",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8545790476190476
+   },
+   {
+    "model": "norx_soft_cooperative_silver",
+    "games": 10,
+    "macro_covers": 2,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.2,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8555619047619047
+   },
+   {
+    "model": "norx_silver",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7505857142857143
+   },
+   {
+    "model": "norx_cooperative_silver",
+    "games": 10,
+    "macro_covers": 1,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.1,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.8938047619047619
+   },
+   {
+    "model": "boss4",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 0.7268733333333333
+   },
+   {
+    "model": "norx_compact",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.0196380952380952
+   },
+   {
+    "model": "boss5",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.183450476190476
+   },
+   {
+    "model": "boss_real",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.3099228571428572
+   },
+   {
+    "model": "norx_native_full",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.512997142857143
+   },
+   {
+    "model": "norx_native_three",
+    "games": 10,
+    "macro_covers": 0,
+    "fully_covers": 0,
+    "macro_coverage_rate": 0.0,
+    "full_coverage_rate": 0.0,
+    "mean_normalized_macro_distance": 1.512997142857143
+   }
+  ]
+ },
+ "confirmation": {
+  "overall": {
+   "games": 80,
+   "baseline": {
+    "macro": 27,
+    "full": 15,
+    "exact_opening": 16,
+    "macro_rate": 0.3375,
+    "full_rate": 0.1875,
+    "exact_opening_rate": 0.2
+   },
+   "selected_catalog": {
+    "macro": 10,
+    "full": 4,
+    "exact_opening": 7,
+    "macro_rate": 0.125,
+    "full_rate": 0.05,
+    "exact_opening_rate": 0.0875
+   },
+   "expanded": {
+    "macro": 31,
+    "full": 17,
+    "exact_opening": 17,
+    "macro_rate": 0.3875,
+    "full_rate": 0.2125,
+    "exact_opening_rate": 0.2125
+   },
+   "delta": {
+    "macro": 4,
+    "full": 2,
+    "exact_opening": 1,
+    "macro_rate": 0.05,
+    "full_rate": 0.025,
+    "exact_opening_rate": 0.0125
+   }
+  },
+  "catastrophic": {
+   "games": 19,
+   "baseline": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 3,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.15789473684210525
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "worker_rich": {
+   "games": 28,
+   "baseline": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "selected_catalog": {
+    "macro": 3,
+    "full": 2,
+    "exact_opening": 0,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.07142857142857142,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 4,
+    "full": 3,
+    "exact_opening": 1,
+    "macro_rate": 0.14285714285714285,
+    "full_rate": 0.10714285714285714,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "delta": {
+    "macro": 1,
+    "full": 2,
+    "exact_opening": 0,
+    "macro_rate": 0.03571428571428571,
+    "full_rate": 0.07142857142857142,
+    "exact_opening_rate": 0.0
+   }
+  }
+ },
+ "target_confirmation": {
+  "rich3plus:farm_wood:train_now": {
+   "games": 9,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "norx_compact",
+   "representative_macro": 0,
+   "representative_macro_rate": 0.0,
+   "representative_residuals": {
+    "games": 9,
+    "checkpoints": {
+     "50": {
+      "score": {
+       "mean_signed": -4.111111111111111,
+       "mean_absolute": 11
+      },
+      "fruit": {
+       "mean_signed": -4,
+       "mean_absolute": 13.11111111111111
+      },
+      "wood": {
+       "mean_signed": 0.4444444444444444,
+       "mean_absolute": 3.111111111111111
+      },
+      "workers": {
+       "mean_signed": -0.1111111111111111,
+       "mean_absolute": 0.1111111111111111
+      },
+      "plants": {
+       "mean_signed": 1.5555555555555556,
+       "mean_absolute": 4.444444444444445
+      },
+      "harvested_fruit": {
+       "mean_signed": -2,
+       "mean_absolute": 9.11111111111111
+      },
+      "chops": {
+       "mean_signed": 6.888888888888889,
+       "mean_absolute": 8.88888888888889
+      },
+      "dropped_items": {
+       "mean_signed": -7,
+       "mean_absolute": 7.888888888888889
+      }
+     },
+     "100": {
+      "score": {
+       "mean_signed": 9,
+       "mean_absolute": 18.555555555555557
+      },
+      "fruit": {
+       "mean_signed": -1.1111111111111112,
+       "mean_absolute": 19.77777777777778
+      },
+      "wood": {
+       "mean_signed": 3,
+       "mean_absolute": 5.888888888888889
+      },
+      "workers": {
+       "mean_signed": -0.5555555555555556,
+       "mean_absolute": 0.5555555555555556
+      },
+      "plants": {
+       "mean_signed": 3.3333333333333335,
+       "mean_absolute": 7.555555555555555
+      },
+      "harvested_fruit": {
+       "mean_signed": -7.222222222222222,
+       "mean_absolute": 17.666666666666668
+      },
+      "chops": {
+       "mean_signed": 15.88888888888889,
+       "mean_absolute": 21.666666666666668
+      },
+      "dropped_items": {
+       "mean_signed": -13.666666666666666,
+       "mean_absolute": 17.88888888888889
+      }
+     },
+     "final": {
+      "score": {
+       "mean_signed": -258.44444444444446,
+       "mean_absolute": 258.44444444444446
+      },
+      "fruit": {
+       "mean_signed": 6.555555555555555,
+       "mean_absolute": 42.111111111111114
+      },
+      "wood": {
+       "mean_signed": -65.77777777777777,
+       "mean_absolute": 65.77777777777777
+      },
+      "workers": {
+       "mean_signed": -1.6666666666666667,
+       "mean_absolute": 1.6666666666666667
+      },
+      "plants": {
+       "mean_signed": -4.222222222222222,
+       "mean_absolute": 18
+      },
+      "harvested_fruit": {
+       "mean_signed": -42.22222222222222,
+       "mean_absolute": 60.22222222222222
+      },
+      "chops": {
+       "mean_signed": -24.22222222222222,
+       "mean_absolute": 61.111111111111114
+      },
+      "dropped_items": {
+       "mean_signed": -103.44444444444444,
+       "mean_absolute": 103.44444444444444
+      }
+     }
+    },
+    "terminal": {
+     "mean_signed": 0.2222222222222222,
+     "mean_absolute": 0.2222222222222222
+    }
+   }
+  },
+  "compact2:farm_wood:deferred": {
+   "games": 6,
+   "baseline": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 2,
+    "macro_rate": 0.16666666666666666,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.3333333333333333
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 1,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.16666666666666666
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 2,
+    "macro_rate": 0.16666666666666666,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.3333333333333333
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "norx_compact",
+   "representative_macro": 0,
+   "representative_macro_rate": 0.0,
+   "representative_residuals": {
+    "games": 6,
+    "checkpoints": {
+     "50": {
+      "score": {
+       "mean_signed": -13.333333333333334,
+       "mean_absolute": 13.333333333333334
+      },
+      "fruit": {
+       "mean_signed": -4.333333333333333,
+       "mean_absolute": 6.666666666666667
+      },
+      "wood": {
+       "mean_signed": -1.5,
+       "mean_absolute": 1.5
+      },
+      "workers": {
+       "mean_signed": 0,
+       "mean_absolute": 0
+      },
+      "plants": {
+       "mean_signed": 4.666666666666667,
+       "mean_absolute": 5.666666666666667
+      },
+      "harvested_fruit": {
+       "mean_signed": -0.16666666666666666,
+       "mean_absolute": 4.833333333333333
+      },
+      "chops": {
+       "mean_signed": -2.5,
+       "mean_absolute": 3.1666666666666665
+      },
+      "dropped_items": {
+       "mean_signed": -4.5,
+       "mean_absolute": 4.833333333333333
+      }
+     },
+     "100": {
+      "score": {
+       "mean_signed": -25.333333333333332,
+       "mean_absolute": 25.333333333333332
+      },
+      "fruit": {
+       "mean_signed": -6.5,
+       "mean_absolute": 8.166666666666666
+      },
+      "wood": {
+       "mean_signed": -4.166666666666667,
+       "mean_absolute": 4.166666666666667
+      },
+      "workers": {
+       "mean_signed": 0,
+       "mean_absolute": 0
+      },
+      "plants": {
+       "mean_signed": 8.166666666666666,
+       "mean_absolute": 8.166666666666666
+      },
+      "harvested_fruit": {
+       "mean_signed": 1.8333333333333333,
+       "mean_absolute": 6.5
+      },
+      "chops": {
+       "mean_signed": 4.333333333333333,
+       "mean_absolute": 7.333333333333333
+      },
+      "dropped_items": {
+       "mean_signed": -6.166666666666667,
+       "mean_absolute": 10.833333333333334
+      }
+     },
+     "final": {
+      "score": {
+       "mean_signed": -59,
+       "mean_absolute": 61
+      },
+      "fruit": {
+       "mean_signed": -11.5,
+       "mean_absolute": 11.833333333333334
+      },
+      "wood": {
+       "mean_signed": -11.333333333333334,
+       "mean_absolute": 15
+      },
+      "workers": {
+       "mean_signed": 0,
+       "mean_absolute": 0
+      },
+      "plants": {
+       "mean_signed": 26.833333333333332,
+       "mean_absolute": 26.833333333333332
+      },
+      "harvested_fruit": {
+       "mean_signed": 15.666666666666666,
+       "mean_absolute": 16
+      },
+      "chops": {
+       "mean_signed": 23,
+       "mean_absolute": 23
+      },
+      "dropped_items": {
+       "mean_signed": -2,
+       "mean_absolute": 10.333333333333334
+      }
+     }
+    },
+    "terminal": {
+     "mean_signed": 15.666666666666666,
+     "mean_absolute": 15.666666666666666
+    }
+   }
+  },
+  "compact2:wood_only:deferred": {
+   "games": 4,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 3,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.75
+   },
+   "selected_catalog": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 1,
+    "macro_rate": 0.25,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.25
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 3,
+    "macro_rate": 0.25,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.75
+   },
+   "delta": {
+    "macro": 1,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.25,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "representative": "norx_funded_silver",
+   "representative_macro": 1,
+   "representative_macro_rate": 0.25,
+   "representative_residuals": {
+    "games": 4,
+    "checkpoints": {
+     "50": {
+      "score": {
+       "mean_signed": -6.75,
+       "mean_absolute": 6.75
+      },
+      "fruit": {
+       "mean_signed": 3.5,
+       "mean_absolute": 8
+      },
+      "wood": {
+       "mean_signed": -2.25,
+       "mean_absolute": 3.25
+      },
+      "workers": {
+       "mean_signed": 0.25,
+       "mean_absolute": 0.25
+      },
+      "plants": {
+       "mean_signed": -2.25,
+       "mean_absolute": 2.25
+      },
+      "harvested_fruit": {
+       "mean_signed": 3.75,
+       "mean_absolute": 3.75
+      },
+      "chops": {
+       "mean_signed": 3.75,
+       "mean_absolute": 11.75
+      },
+      "dropped_items": {
+       "mean_signed": -0.25,
+       "mean_absolute": 2.75
+      }
+     },
+     "100": {
+      "score": {
+       "mean_signed": -10.75,
+       "mean_absolute": 13.75
+      },
+      "fruit": {
+       "mean_signed": 7.25,
+       "mean_absolute": 13.25
+      },
+      "wood": {
+       "mean_signed": -3.5,
+       "mean_absolute": 6
+      },
+      "workers": {
+       "mean_signed": 0,
+       "mean_absolute": 0
+      },
+      "plants": {
+       "mean_signed": -3.25,
+       "mean_absolute": 3.25
+      },
+      "harvested_fruit": {
+       "mean_signed": 1,
+       "mean_absolute": 8
+      },
+      "chops": {
+       "mean_signed": -2,
+       "mean_absolute": 22.5
+      },
+      "dropped_items": {
+       "mean_signed": -0.75,
+       "mean_absolute": 5.75
+      }
+     },
+     "final": {
+      "score": {
+       "mean_signed": -31.25,
+       "mean_absolute": 32.25
+      },
+      "fruit": {
+       "mean_signed": 8.5,
+       "mean_absolute": 28.5
+      },
+      "wood": {
+       "mean_signed": -8.5,
+       "mean_absolute": 8.5
+      },
+      "workers": {
+       "mean_signed": 0,
+       "mean_absolute": 0
+      },
+      "plants": {
+       "mean_signed": -9.25,
+       "mean_absolute": 9.25
+      },
+      "harvested_fruit": {
+       "mean_signed": -5.25,
+       "mean_absolute": 21.75
+      },
+      "chops": {
+       "mean_signed": -18,
+       "mean_absolute": 30.5
+      },
+      "dropped_items": {
+       "mean_signed": -11.75,
+       "mean_absolute": 18.75
+      }
+     }
+    },
+    "terminal": {
+     "mean_signed": 11,
+     "mean_absolute": 64
+    }
+   }
+  }
+ },
+ "archetype_checks": {
+  "rich3plus:farm_wood:train_now": false,
+  "compact2:farm_wood:deferred": false,
+  "compact2:wood_only:deferred": true
+ },
+ "gates": {
+  "integrity": true,
+  "overall_macro_uplift": false,
+  "overall_full_uplift": false,
+  "catastrophic_macro_uplift": false,
+  "worker_rich_macro_uplift": false,
+  "target_archetype_confirmation": false
+ },
+ "macro_viable": false,
+ "catalog_useful": false,
+ "model_summary": {
+  "boss4": {
+   "confirmation_games": 80,
+   "macro_covers": 5,
+   "fully_covers": 2,
+   "exact_opening": 3,
+   "mean_normalized_macro_distance": 1.2200589285714285
+  },
+  "boss5": {
+   "confirmation_games": 80,
+   "macro_covers": 1,
+   "fully_covers": 1,
+   "exact_opening": 3,
+   "mean_normalized_macro_distance": 1.3547482142857143
+  },
+  "boss_real": {
+   "confirmation_games": 80,
+   "macro_covers": 7,
+   "fully_covers": 0,
+   "exact_opening": 0,
+   "mean_normalized_macro_distance": 1.1808733333333332
+  },
+  "norx_native_full": {
+   "confirmation_games": 80,
+   "macro_covers": 9,
+   "fully_covers": 6,
+   "exact_opening": 4,
+   "mean_normalized_macro_distance": 1.1977211904761904
+  },
+  "norx_native_three": {
+   "confirmation_games": 80,
+   "macro_covers": 9,
+   "fully_covers": 6,
+   "exact_opening": 4,
+   "mean_normalized_macro_distance": 1.1980461904761905
+  },
+  "norx_compact": {
+   "confirmation_games": 80,
+   "macro_covers": 2,
+   "fully_covers": 2,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0320795238095237
+  },
+  "norx_silver": {
+   "confirmation_games": 80,
+   "macro_covers": 5,
+   "fully_covers": 3,
+   "exact_opening": 3,
+   "mean_normalized_macro_distance": 1.2296675
+  },
+  "norx_funded_silver": {
+   "confirmation_games": 80,
+   "macro_covers": 8,
+   "fully_covers": 2,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0700815476190475
+  },
+  "norx_cooperative_silver": {
+   "confirmation_games": 80,
+   "macro_covers": 6,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0706189285714285
+  },
+  "norx_soft_cooperative_silver": {
+   "confirmation_games": 80,
+   "macro_covers": 6,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0693645238095237
+  },
+  "norx_three_worker_silver": {
+   "confirmation_games": 80,
+   "macro_covers": 6,
+   "fully_covers": 4,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0710765476190476
+  }
+ },
+ "decision": "close reuse of existing structural controllers; build a purpose-specific Legend proxy"
+}

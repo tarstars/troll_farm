@@ -1,0 +1,149 @@
+{
+  "audit": {
+    "arm_accounting_failures": 0,
+    "arm_set_failures": 0,
+    "baseline_classifications": {
+      "exact": 274,
+      "movement_rng_only": 19
+    },
+    "full_material_exact_rate": 1.0,
+    "parity_failures": 0,
+    "rows_per_repeat": 1172,
+    "target_local_exact_rate": 1.0,
+    "triggers": 293
+  },
+  "decision": "reject_one_turn_salvage_value_or_safety",
+  "fixed_salvage": {
+    "changed_interventions": 18,
+    "changed_regression_rate": 0.2222222222222222,
+    "changed_strict_improvement_rate": 0.7777777777777778,
+    "intervention_rate": 0.09183673469387756,
+    "mean_liquid_margin_gain": 0.05102040816326531,
+    "mean_opponent_liquid_delta": -0.061224489795918366,
+    "mean_own_liquid_delta": -0.01020408163265306,
+    "nonnegative_opponent_accounts": 14,
+    "opponent_account_mean_gains": {
+      "1327028": 0.0,
+      "2363657": 0.0,
+      "2373953": -0.05263157894736842,
+      "2729630": 0.0,
+      "3659194": 0.0,
+      "3686887": 0.0,
+      "3724738": 0.0,
+      "4316649": 0.0,
+      "5246622": 0.0,
+      "5872336": 1.6666666666666667,
+      "648751": 0.0,
+      "6662598": 0.0,
+      "7212247": 0.0,
+      "814862": 0.3333333333333333,
+      "880353": 0.029411764705882353
+    },
+    "treatment_only_crop_deaths": 0,
+    "validation_triggers": 196,
+    "worst_opponent_account_mean": -0.05263157894736842
+  },
+  "fixed_value_gates": {
+    "at_least_8_changed_validation_interventions": true,
+    "changed_regression_at_most_5_percent": false,
+    "changed_strict_improvement_at_least_50_percent": true,
+    "four_nonnegative_accounts_and_worst_nonnegative": false,
+    "mean_margin_gain_at_least_0_25": false,
+    "own_nonnegative_and_opponent_nonpositive": false,
+    "zero_treatment_only_crop_deaths": true
+  },
+  "fixed_value_pass": false,
+  "immediate_oracle": {
+    "mean_liquid_margin_gain": 0.11224489795918367,
+    "selected_arm_counts": {
+      "control": 182,
+      "harvest": 14
+    }
+  },
+  "inputs": {
+    "analyzer_sha256": "980c40fa3ad8e58349dd12e538b6a31721e0c04c71e0f6be48fa56d88113287b",
+    "manifest_a": "data/analysis/live-agent-6553250/d85a-field-defensive-salvage-manifest-a.json",
+    "manifest_a_sha256": "9945a3464119207456013b0769d96d0c9c383969684ffa570c777dfc6ffd0548",
+    "manifest_b": "data/analysis/live-agent-6553250/d85a-field-defensive-salvage-manifest-b.json",
+    "manifest_b_sha256": "9945a3464119207456013b0769d96d0c9c383969684ffa570c777dfc6ffd0548",
+    "rows_a": "data/analysis/live-agent-6553250/d85a-field-defensive-salvage-rows-a.tsv",
+    "rows_a_sha256": "2964b523202e6e808b58f3f5cb1e80341e040a98cbd335671870b2a20c56696c",
+    "rows_b": "data/analysis/live-agent-6553250/d85a-field-defensive-salvage-rows-b.tsv",
+    "rows_b_sha256": "2964b523202e6e808b58f3f5cb1e80341e040a98cbd335671870b2a20c56696c"
+  },
+  "integrity_gates": {
+    "all_selected_replays_exact": true,
+    "byte_identical_manifests": true,
+    "byte_identical_rows": true,
+    "complete_four_arm_sets": true,
+    "confirmation_products_read_false": true,
+    "full_material_exact_at_least_95_percent": true,
+    "target_local_exact_100_percent": true,
+    "unavailable_or_unchanged_arms_match_control": true,
+    "zero_arm_accounting_failures": true
+  },
+  "integrity_pass": true,
+  "observability_gates": {
+    "validation_attack_precision_at_least_85_percent": true
+  },
+  "observability_pass": true,
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d85a-field-defensive-salvage-protocol-2026-07-21.md",
+  "protocol_sha256": "87c4b0fecba10ba5b8aa1d2c870376a31b6762bdbf494e5c23c0ca59c746c655",
+  "schema": "troll-farm-d85a-field-defensive-salvage-result-v1",
+  "scope": "open current-field one-turn command counterfactual only; no terminal or candidate claim",
+  "semantic_arms": {
+    "harvest": {
+      "available_mean_liquid_margin_gain": 0.09722222222222222,
+      "available_triggers": 72,
+      "changed_interventions": 35,
+      "changed_regression_rate": 0.22857142857142856,
+      "changed_strict_improvement_rate": 0.7714285714285715
+    },
+    "joint_chop": {
+      "available_mean_liquid_margin_gain": 0.0,
+      "available_triggers": 221,
+      "changed_interventions": 0,
+      "changed_regression_rate": 0.0,
+      "changed_strict_improvement_rate": 0.0
+    }
+  },
+  "support": {
+    "partitions": {
+      "discovery": {
+        "attack_precision": 0.865979381443299,
+        "confirmed_attacks": 84,
+        "opponent_accounts": 15,
+        "seats": [
+          0,
+          1
+        ],
+        "triggers": 97
+      },
+      "validation": {
+        "attack_precision": 0.923469387755102,
+        "confirmed_attacks": 181,
+        "opponent_accounts": 15,
+        "seats": [
+          0,
+          1
+        ],
+        "triggers": 196
+      }
+    },
+    "salvage_interventions": 35,
+    "semantic_interventions": {
+      "harvest": 35,
+      "joint_chop": 0
+    }
+  },
+  "support_gates": {
+    "at_least_16_salvage_interventions": true,
+    "at_least_16_triggers_each_partition": true,
+    "at_least_4_accounts_each_partition": true,
+    "at_least_8_attacks_each_partition": true,
+    "both_seats_complete_corpus": true,
+    "one_semantic_has_at_least_8_interventions": true
+  },
+  "support_pass": true
+}

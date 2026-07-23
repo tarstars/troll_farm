@@ -1,0 +1,1369 @@
+{
+  "config": {
+    "adam_epsilon": 1e-05,
+    "clip_coef": 0.15,
+    "entropy_coef": 0.01,
+    "evaluation_maps": 16,
+    "evaluation_seed_base": 9811000,
+    "gae_lambda": 0.95,
+    "gamma": 1.0,
+    "learning_rate": 0.00025,
+    "max_grad_norm": 0.5,
+    "minibatch_sequences": 16,
+    "model_seed": 7301,
+    "num_envs": 64,
+    "probe_rows": 512,
+    "rollout_steps": 64,
+    "target_kl": 0.02,
+    "threads": 20,
+    "total_transitions": 131072,
+    "train_seed_base": 9810000,
+    "update_epochs": 4,
+    "value_coef": 0.5
+  },
+  "decision": {
+    "checkpoint_is_candidate": false,
+    "construct_candidate": false,
+    "next_experiment": "paired_online_option_values",
+    "open_confirmation": false,
+    "platform_action": false,
+    "status": "fixed_policy_value_or_safety_failure"
+  },
+  "evaluation": {
+    "final_versus_balanced": {
+      "baseline_tasks": 256,
+      "candidate_tasks": 256,
+      "identity_exact": true,
+      "mean_margin_delta": -1.7578125,
+      "mean_opponent_score_delta": -39.98046875,
+      "mean_own_score_delta": -41.73828125,
+      "opponent_mean_margin_delta": {
+        "compact_gold": 9.96875,
+        "gold_adaptive": 8.65625,
+        "legend_balanced": 21.53125,
+        "mybot": 7.6875,
+        "norx_native_three": 7.0,
+        "resident": -9.5,
+        "script_boss": -4.28125,
+        "silver_boss": -55.125
+      },
+      "positive_opponent_families": 5,
+      "regressions": 107,
+      "strict_improvement_rate": 0.51171875,
+      "strict_improvement_tasks": 131,
+      "ties": 18
+    },
+    "final_versus_initial": {
+      "baseline_tasks": 256,
+      "candidate_tasks": 256,
+      "identity_exact": true,
+      "mean_margin_delta": 17.15234375,
+      "mean_opponent_score_delta": -40.19921875,
+      "mean_own_score_delta": -23.046875,
+      "opponent_mean_margin_delta": {
+        "compact_gold": 60.25,
+        "gold_adaptive": 33.40625,
+        "legend_balanced": 51.9375,
+        "mybot": 28.0,
+        "norx_native_three": 20.5625,
+        "resident": -11.6875,
+        "script_boss": -1.78125,
+        "silver_boss": -43.46875
+      },
+      "positive_opponent_families": 5,
+      "regressions": 95,
+      "strict_improvement_rate": 0.58203125,
+      "strict_improvement_tasks": 149,
+      "ties": 12
+    },
+    "repeat_byte_exact": true,
+    "summaries": {
+      "balanced": {
+        "crop_tasks": 256,
+        "maximum_reward_identity_error": 8.955597877502441e-06,
+        "mean_margin": 57.45703125,
+        "mean_opponent_score": 176.51171875,
+        "mean_own_score": 233.96875,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "tasks": 256,
+        "unlocked_action_counts": {
+          "balanced": 18114,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0
+        },
+        "unlocked_decisions": 18114,
+        "unlocked_nonbalanced_rate": 0.0,
+        "used_unlocked_modes": 1,
+        "worker_three_rate": 0.9453125,
+        "worker_three_tasks": 242
+      },
+      "final": {
+        "crop_tasks": 256,
+        "maximum_reward_identity_error": 1.0870397090911865e-05,
+        "mean_margin": 55.69921875,
+        "mean_opponent_score": 136.53125,
+        "mean_own_score": 192.23046875,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "tasks": 256,
+        "unlocked_action_counts": {
+          "balanced": 4430,
+          "fell": 6248,
+          "harvest": 275,
+          "renew": 195
+        },
+        "unlocked_decisions": 11148,
+        "unlocked_nonbalanced_rate": 0.6026193039110155,
+        "used_unlocked_modes": 4,
+        "worker_three_rate": 0.9453125,
+        "worker_three_tasks": 242
+      },
+      "initial": {
+        "crop_tasks": 256,
+        "maximum_reward_identity_error": 9.462237358093262e-06,
+        "mean_margin": 38.546875,
+        "mean_opponent_score": 176.73046875,
+        "mean_own_score": 215.27734375,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "tasks": 256,
+        "unlocked_action_counts": {
+          "balanced": 8512,
+          "fell": 1117,
+          "harvest": 9455,
+          "renew": 59
+        },
+        "unlocked_decisions": 19143,
+        "unlocked_nonbalanced_rate": 0.5553466018910307,
+        "used_unlocked_modes": 4,
+        "worker_three_rate": 0.9453125,
+        "worker_three_tasks": 242
+      }
+    }
+  },
+  "gates": {
+    "full_pass": false,
+    "mechanics": {
+      "all_actions_at_least_2pct_unlocked": true,
+      "at_least_1500_episodes": true,
+      "effective_cpu_at_least_12": true,
+      "evaluation_complete": true,
+      "evaluation_repeat_byte_exact": true,
+      "evaluation_reward_identity_below_1e4": true,
+      "evaluation_zero_mechanical_failures": true,
+      "exact_budget_and_updates": true,
+      "final_only_checkpoint": true,
+      "finite_losses_and_parameters": true,
+      "parity_pass": true,
+      "throughput_at_least_400": true,
+      "training_reward_identity_below_1e4": true,
+      "training_zero_mechanical_failures": true,
+      "zero_illegal_actions": true
+    },
+    "mechanics_pass": true,
+    "safety": {
+      "final_crop_exactly_256": true,
+      "final_worker_three_at_least_90pct": true
+    },
+    "safety_pass": true,
+    "signal": {
+      "actor_l2_drift_at_least_010": true,
+      "final_nonbalanced_at_least_25pct_unlocked": true,
+      "final_uses_at_least_three_modes": true,
+      "probe_at_least_64_actions_change": true,
+      "probe_at_least_three_final_modes": true
+    },
+    "signal_pass": true,
+    "value": {
+      "at_least_six_positive_opponents": false,
+      "every_opponent_at_least_minus5": false,
+      "mean_margin_at_least_5_above_balanced": false,
+      "mean_margin_at_least_5_above_initial": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_improvement_at_least_45pct": true
+    },
+    "value_pass": false
+  },
+  "generated_at": "2026-07-21T14:19:21Z",
+  "inputs": {
+    "checkpoint": "7ef81f78b08fa0bc2cc9d218c48435f2a5fe37f5f6606ca4635bb6678e42fd42",
+    "evaluation_a": "f94b25ff6faa7d14e7aede5a66e2e49f034dfb468408cd0de9b2230ec74e2a13",
+    "evaluation_b": "f94b25ff6faa7d14e7aede5a66e2e49f034dfb468408cd0de9b2230ec74e2a13",
+    "prerequisite_hashes": {
+      "/home/tarstars/prj/troll_farm/cgauto/rl_opening_recurrent_env.py": "4e38680dfd024406772791d5577b2aff16f219168649d653eedf7f1d64224b50",
+      "/home/tarstars/prj/troll_farm/cgauto/validate_d73a_opening_recurrent_env.py": "b5c55b20833660e5c97e7d35f7af47ec0967c967b18948eef2da6efb507344fc",
+      "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d73a-four-mode-recurrent-ppo-signal-protocol-2026-07-21.md": "3a277b41072a9a22c49a72315f51760f248091d9b84adbc63d21c27e666bab13",
+      "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d73a-opening-recurrent-environment-parity.json": "815e228e10308458073879edfed4abbdab03b3d6b8ab1ce13947980e263d145c",
+      "/home/tarstars/prj/troll_farm/rust/src/rl_opening_portfolio.rs": "a83be1de2de000679da1e4216ebf87875ee84ad0c0b41fa165f2c7d3497c2e45",
+      "/home/tarstars/prj/troll_farm/rust/target/release/libtroll_farm.so": "223b8bd49960cfaea7f0f5a6ad1541fd4bf61ba87a460036f8437473e8206d17"
+    },
+    "trainer": "127e675d321ce78bf0d15aeb386911afa928bb7edab13f569abea0eddea26981"
+  },
+  "model": {
+    "actions": 4,
+    "actor_parameters": 1072,
+    "critic_parameters": 6785,
+    "features": 72,
+    "hidden": 12
+  },
+  "probe": {
+    "actor_l2_drift": 0.5853562355041504,
+    "changed_actions": 272,
+    "final_action_counts": [
+      267,
+      8,
+      0,
+      237
+    ],
+    "final_distinct_modes": 3,
+    "initial_action_counts": [
+      397,
+      114,
+      1,
+      0
+    ],
+    "rows": 512
+  },
+  "schema": "troll-farm-d73a-four-mode-recurrent-ppo-signal-v1",
+  "scope": "short recurrent PPO signal and prospective fixed-policy value preflight",
+  "training": {
+    "cpu_seconds": 3951.8607639499996,
+    "effective_cpu_cores": 17.17850301675388,
+    "episodes": {
+      "crop_rate": 1.0,
+      "episodes": 1900,
+      "invalidated_jobs": 5498,
+      "maximum_reward_identity_error": 1.093745231628418e-05,
+      "mean_margin": 42.10368421052632,
+      "mean_opponent_score": 146.10368421052632,
+      "mean_own_score": 188.20736842105262,
+      "mechanical_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "worker_three_rate": 0.8989473684210526
+    },
+    "global_step": 131072,
+    "illegal_actions": 0,
+    "logs": [
+      {
+        "approx_kl": 0.0010940198226307984,
+        "clip_fraction": 0.01104736328125,
+        "entropy": 0.82724604383111,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 12,
+          "invalidated_jobs": 31,
+          "maximum_reward_identity_error": 4.425644874572754e-06,
+          "mean_margin": -10.333333333333334,
+          "mean_opponent_score": 158.58333333333334,
+          "mean_own_score": 148.25,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 1.0
+        },
+        "epochs_run": 4,
+        "global_step": 4096,
+        "gradient_norm": 0.2327272742986679,
+        "policy_loss": -0.0015596237499266863,
+        "unlocked_action_counts": [
+          1307,
+          1084,
+          283,
+          383
+        ],
+        "update": 1,
+        "update_seconds": 7.630134231003467,
+        "value_loss": 0.09009109367616475
+      },
+      {
+        "approx_kl": 7.624792124261148e-05,
+        "clip_fraction": 0.0,
+        "entropy": 0.8244378045201302,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 60,
+          "invalidated_jobs": 175,
+          "maximum_reward_identity_error": 5.796551704406738e-06,
+          "mean_margin": 35.5,
+          "mean_opponent_score": 159.85,
+          "mean_own_score": 195.35,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9
+        },
+        "epochs_run": 4,
+        "global_step": 8192,
+        "gradient_norm": 0.26474614441394806,
+        "policy_loss": -0.00023918435908854008,
+        "unlocked_action_counts": [
+          1261,
+          1213,
+          266,
+          502
+        ],
+        "update": 2,
+        "update_seconds": 8.122304438031279,
+        "value_loss": 0.06547906319610775
+      },
+      {
+        "approx_kl": 0.0002705156948650256,
+        "clip_fraction": 0.00201416015625,
+        "entropy": 0.8486911915242672,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 65,
+          "invalidated_jobs": 143,
+          "maximum_reward_identity_error": 6.444752216339111e-06,
+          "mean_margin": 30.984615384615385,
+          "mean_opponent_score": 127.75384615384615,
+          "mean_own_score": 158.73846153846154,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8615384615384616
+        },
+        "epochs_run": 4,
+        "global_step": 12288,
+        "gradient_norm": 0.2879913840442896,
+        "policy_loss": -0.0010039159387815744,
+        "unlocked_action_counts": [
+          1425,
+          1199,
+          298,
+          380
+        ],
+        "update": 3,
+        "update_seconds": 7.592025879013818,
+        "value_loss": 0.06346962577663362
+      },
+      {
+        "approx_kl": 0.00027080188010586426,
+        "clip_fraction": 0.0003662109375,
+        "entropy": 0.7996043488383293,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 59,
+          "invalidated_jobs": 172,
+          "maximum_reward_identity_error": 5.505979061126709e-06,
+          "mean_margin": 39.847457627118644,
+          "mean_opponent_score": 150.66101694915255,
+          "mean_own_score": 190.5084745762712,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.847457627118644
+        },
+        "epochs_run": 4,
+        "global_step": 16384,
+        "gradient_norm": 0.21078066667541862,
+        "policy_loss": -0.0001887233229354024,
+        "unlocked_action_counts": [
+          1127,
+          1224,
+          265,
+          487
+        ],
+        "update": 4,
+        "update_seconds": 7.274059209041297,
+        "value_loss": 0.05855564423836768
+      },
+      {
+        "approx_kl": 0.0003236378979636356,
+        "clip_fraction": 0.00018310546875,
+        "entropy": 0.8776171058416367,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 51,
+          "invalidated_jobs": 136,
+          "maximum_reward_identity_error": 8.203089237213135e-06,
+          "mean_margin": 53.78431372549019,
+          "mean_opponent_score": 148.84313725490196,
+          "mean_own_score": 202.62745098039215,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9803921568627451
+        },
+        "epochs_run": 4,
+        "global_step": 20480,
+        "gradient_norm": 0.24152745539322495,
+        "policy_loss": -0.0007347825448960066,
+        "unlocked_action_counts": [
+          1153,
+          1358,
+          274,
+          551
+        ],
+        "update": 5,
+        "update_seconds": 6.107196988945361,
+        "value_loss": 0.05720594269223511
+      },
+      {
+        "approx_kl": 0.0009060161501110997,
+        "clip_fraction": 0.01300048828125,
+        "entropy": 0.8527869246900082,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 56,
+          "invalidated_jobs": 138,
+          "maximum_reward_identity_error": 6.645917892456055e-06,
+          "mean_margin": 57.642857142857146,
+          "mean_opponent_score": 140.55357142857142,
+          "mean_own_score": 198.19642857142858,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8928571428571429
+        },
+        "epochs_run": 4,
+        "global_step": 24576,
+        "gradient_norm": 0.19548445753753185,
+        "policy_loss": -0.001732777338474989,
+        "unlocked_action_counts": [
+          1185,
+          1069,
+          278,
+          598
+        ],
+        "update": 6,
+        "update_seconds": 5.599622813053429,
+        "value_loss": 0.052130978321656585
+      },
+      {
+        "approx_kl": 0.0006440152101276908,
+        "clip_fraction": 0.004150390625,
+        "entropy": 0.8955700919032097,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 62,
+          "invalidated_jobs": 172,
+          "maximum_reward_identity_error": 4.731118679046631e-06,
+          "mean_margin": 21.580645161290324,
+          "mean_opponent_score": 141.83870967741936,
+          "mean_own_score": 163.41935483870967,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8064516129032258
+        },
+        "epochs_run": 4,
+        "global_step": 28672,
+        "gradient_norm": 0.18167676078155637,
+        "policy_loss": -0.001538121170597151,
+        "unlocked_action_counts": [
+          1197,
+          1129,
+          234,
+          755
+        ],
+        "update": 7,
+        "update_seconds": 7.447775495995302,
+        "value_loss": 0.06292896065860987
+      },
+      {
+        "approx_kl": 0.00041937531204894185,
+        "clip_fraction": 0.000244140625,
+        "entropy": 0.8646377399563789,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 49,
+          "invalidated_jobs": 161,
+          "maximum_reward_identity_error": 7.27921724319458e-06,
+          "mean_margin": 14.755102040816327,
+          "mean_opponent_score": 170.0408163265306,
+          "mean_own_score": 184.79591836734693,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9387755102040817
+        },
+        "epochs_run": 4,
+        "global_step": 32768,
+        "gradient_norm": 0.2081259610131383,
+        "policy_loss": -0.0007852996350266039,
+        "unlocked_action_counts": [
+          1034,
+          1180,
+          278,
+          697
+        ],
+        "update": 8,
+        "update_seconds": 6.770519582962152,
+        "value_loss": 0.058564551873132586
+      },
+      {
+        "approx_kl": 0.00011220686428714544,
+        "clip_fraction": 0.0,
+        "entropy": 0.8542841821908951,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 64,
+          "invalidated_jobs": 199,
+          "maximum_reward_identity_error": 7.286667823791504e-06,
+          "mean_margin": 38.921875,
+          "mean_opponent_score": 152.0,
+          "mean_own_score": 190.921875,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.90625
+        },
+        "epochs_run": 4,
+        "global_step": 36864,
+        "gradient_norm": 0.18998396024107933,
+        "policy_loss": -0.0002883851993829012,
+        "unlocked_action_counts": [
+          1107,
+          1194,
+          272,
+          675
+        ],
+        "update": 9,
+        "update_seconds": 6.634399870003108,
+        "value_loss": 0.04502595658414066
+      },
+      {
+        "approx_kl": 5.7509198086336255e-05,
+        "clip_fraction": 0.0,
+        "entropy": 0.8041726090013981,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 60,
+          "invalidated_jobs": 138,
+          "maximum_reward_identity_error": 7.696449756622314e-06,
+          "mean_margin": 45.916666666666664,
+          "mean_opponent_score": 148.03333333333333,
+          "mean_own_score": 193.95,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9833333333333333
+        },
+        "epochs_run": 4,
+        "global_step": 40960,
+        "gradient_norm": 0.156834966968745,
+        "policy_loss": -0.0003139582695439458,
+        "unlocked_action_counts": [
+          892,
+          1153,
+          252,
+          752
+        ],
+        "update": 10,
+        "update_seconds": 9.334273047046736,
+        "value_loss": 0.04088768479414284
+      },
+      {
+        "approx_kl": 0.0004970686204615049,
+        "clip_fraction": 0.00054931640625,
+        "entropy": 0.8058591037988663,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 55,
+          "invalidated_jobs": 219,
+          "maximum_reward_identity_error": 8.128583431243896e-06,
+          "mean_margin": 27.545454545454547,
+          "mean_opponent_score": 179.29090909090908,
+          "mean_own_score": 206.83636363636364,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9636363636363636
+        },
+        "epochs_run": 4,
+        "global_step": 45056,
+        "gradient_norm": 0.17458943044766784,
+        "policy_loss": -0.0009696024644654244,
+        "unlocked_action_counts": [
+          866,
+          912,
+          231,
+          957
+        ],
+        "update": 11,
+        "update_seconds": 6.415293638012372,
+        "value_loss": 0.048702068626880646
+      },
+      {
+        "approx_kl": 0.0004127030151721556,
+        "clip_fraction": 0.0,
+        "entropy": 0.8850607983767986,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 51,
+          "invalidated_jobs": 198,
+          "maximum_reward_identity_error": 7.12275505065918e-06,
+          "mean_margin": 35.11764705882353,
+          "mean_opponent_score": 168.2156862745098,
+          "mean_own_score": 203.33333333333334,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9803921568627451
+        },
+        "epochs_run": 4,
+        "global_step": 49152,
+        "gradient_norm": 0.1674720817245543,
+        "policy_loss": -0.0003265636623837054,
+        "unlocked_action_counts": [
+          1011,
+          935,
+          285,
+          937
+        ],
+        "update": 12,
+        "update_seconds": 5.836215346993413,
+        "value_loss": 0.04313060862477869
+      },
+      {
+        "approx_kl": 7.720236317254603e-05,
+        "clip_fraction": 0.0,
+        "entropy": 0.7773391306400299,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 65,
+          "invalidated_jobs": 210,
+          "maximum_reward_identity_error": 7.107853889465332e-06,
+          "mean_margin": 36.323076923076925,
+          "mean_opponent_score": 157.3846153846154,
+          "mean_own_score": 193.7076923076923,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9230769230769231
+        },
+        "epochs_run": 4,
+        "global_step": 53248,
+        "gradient_norm": 0.1310407160781324,
+        "policy_loss": -0.000227301410632208,
+        "unlocked_action_counts": [
+          910,
+          879,
+          320,
+          753
+        ],
+        "update": 13,
+        "update_seconds": 6.847488438012078,
+        "value_loss": 0.03870384348556399
+      },
+      {
+        "approx_kl": 0.00018477377307135612,
+        "clip_fraction": 0.0,
+        "entropy": 0.8741507679224014,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 55,
+          "invalidated_jobs": 106,
+          "maximum_reward_identity_error": 6.593763828277588e-06,
+          "mean_margin": 21.163636363636364,
+          "mean_opponent_score": 139.72727272727272,
+          "mean_own_score": 160.8909090909091,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9636363636363636
+        },
+        "epochs_run": 4,
+        "global_step": 57344,
+        "gradient_norm": 0.18176821945235133,
+        "policy_loss": -0.000496651220601052,
+        "unlocked_action_counts": [
+          1128,
+          905,
+          424,
+          749
+        ],
+        "update": 14,
+        "update_seconds": 7.400046188966371,
+        "value_loss": 0.04181407333817333
+      },
+      {
+        "approx_kl": 0.00016145536937983707,
+        "clip_fraction": 0.0,
+        "entropy": 0.8748981542885303,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 55,
+          "invalidated_jobs": 148,
+          "maximum_reward_identity_error": 1.093745231628418e-05,
+          "mean_margin": 51.236363636363635,
+          "mean_opponent_score": 155.9090909090909,
+          "mean_own_score": 207.14545454545456,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9454545454545454
+        },
+        "epochs_run": 4,
+        "global_step": 61440,
+        "gradient_norm": 0.16529040643945336,
+        "policy_loss": -0.00049954341375269,
+        "unlocked_action_counts": [
+          976,
+          839,
+          391,
+          930
+        ],
+        "update": 15,
+        "update_seconds": 4.292187394050416,
+        "value_loss": 0.04767385614104569
+      },
+      {
+        "approx_kl": 0.0002263860915263649,
+        "clip_fraction": 0.0,
+        "entropy": 0.8018466532230377,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 55,
+          "invalidated_jobs": 205,
+          "maximum_reward_identity_error": 6.362795829772949e-06,
+          "mean_margin": 48.018181818181816,
+          "mean_opponent_score": 170.1090909090909,
+          "mean_own_score": 218.12727272727273,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8909090909090909
+        },
+        "epochs_run": 4,
+        "global_step": 65536,
+        "gradient_norm": 0.17337716976180673,
+        "policy_loss": -0.0006206911784829572,
+        "unlocked_action_counts": [
+          773,
+          741,
+          297,
+          1071
+        ],
+        "update": 16,
+        "update_seconds": 5.485872575023677,
+        "value_loss": 0.0391314992448315
+      },
+      {
+        "approx_kl": 0.0002539636661822442,
+        "clip_fraction": 0.0,
+        "entropy": 0.8688910827040672,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 60,
+          "invalidated_jobs": 190,
+          "maximum_reward_identity_error": 7.577240467071533e-06,
+          "mean_margin": 59.03333333333333,
+          "mean_opponent_score": 163.6,
+          "mean_own_score": 222.63333333333333,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9666666666666667
+        },
+        "epochs_run": 4,
+        "global_step": 69632,
+        "gradient_norm": 0.15160163957625628,
+        "policy_loss": -0.0003992175043094903,
+        "unlocked_action_counts": [
+          950,
+          832,
+          221,
+          1162
+        ],
+        "update": 17,
+        "update_seconds": 7.20733610203024,
+        "value_loss": 0.05709693836979568
+      },
+      {
+        "approx_kl": 0.00020860315635218285,
+        "clip_fraction": 0.0,
+        "entropy": 0.7939686924219131,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 62,
+          "invalidated_jobs": 209,
+          "maximum_reward_identity_error": 8.597970008850098e-06,
+          "mean_margin": 38.596774193548384,
+          "mean_opponent_score": 160.56451612903226,
+          "mean_own_score": 199.16129032258064,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9032258064516129
+        },
+        "epochs_run": 4,
+        "global_step": 73728,
+        "gradient_norm": 0.16798790358006954,
+        "policy_loss": -0.0006808973848819733,
+        "unlocked_action_counts": [
+          853,
+          657,
+          276,
+          1119
+        ],
+        "update": 18,
+        "update_seconds": 8.098737978958525,
+        "value_loss": 0.049809742951765656
+      },
+      {
+        "approx_kl": 0.0006951011673663743,
+        "clip_fraction": 0.00469970703125,
+        "entropy": 0.8255181349813938,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 66,
+          "invalidated_jobs": 170,
+          "maximum_reward_identity_error": 7.02589750289917e-06,
+          "mean_margin": 46.92424242424242,
+          "mean_opponent_score": 132.83333333333334,
+          "mean_own_score": 179.75757575757575,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9090909090909091
+        },
+        "epochs_run": 4,
+        "global_step": 77824,
+        "gradient_norm": 0.14919432811439037,
+        "policy_loss": -0.0013244303409010172,
+        "unlocked_action_counts": [
+          938,
+          891,
+          314,
+          856
+        ],
+        "update": 19,
+        "update_seconds": 7.518537231022492,
+        "value_loss": 0.036853747675195336
+      },
+      {
+        "approx_kl": 0.0003892780114256311,
+        "clip_fraction": 0.0008544921875,
+        "entropy": 0.8197214789688587,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 62,
+          "invalidated_jobs": 143,
+          "maximum_reward_identity_error": 7.450580596923828e-06,
+          "mean_margin": 28.903225806451612,
+          "mean_opponent_score": 134.51612903225808,
+          "mean_own_score": 163.41935483870967,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8064516129032258
+        },
+        "epochs_run": 4,
+        "global_step": 81920,
+        "gradient_norm": 0.17625247221440077,
+        "policy_loss": -0.0005403244867920876,
+        "unlocked_action_counts": [
+          790,
+          792,
+          281,
+          1111
+        ],
+        "update": 20,
+        "update_seconds": 6.836981220985763,
+        "value_loss": 0.0460238098166883
+      },
+      {
+        "approx_kl": 0.00019302667715237476,
+        "clip_fraction": 0.0,
+        "entropy": 0.7628200985491276,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 72,
+          "invalidated_jobs": 229,
+          "maximum_reward_identity_error": 7.539987564086914e-06,
+          "mean_margin": 34.958333333333336,
+          "mean_opponent_score": 137.38888888888889,
+          "mean_own_score": 172.34722222222223,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9027777777777778
+        },
+        "epochs_run": 4,
+        "global_step": 86016,
+        "gradient_norm": 0.14501777105033398,
+        "policy_loss": -0.00045544171007350087,
+        "unlocked_action_counts": [
+          751,
+          603,
+          290,
+          1131
+        ],
+        "update": 21,
+        "update_seconds": 8.940203093981836,
+        "value_loss": 0.037509115994907916
+      },
+      {
+        "approx_kl": 0.0001484538588556461,
+        "clip_fraction": 0.0,
+        "entropy": 0.8796896114945412,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 63,
+          "invalidated_jobs": 184,
+          "maximum_reward_identity_error": 5.27501106262207e-06,
+          "mean_margin": 26.666666666666668,
+          "mean_opponent_score": 145.31746031746033,
+          "mean_own_score": 171.984126984127,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.873015873015873
+        },
+        "epochs_run": 4,
+        "global_step": 90112,
+        "gradient_norm": 0.17656263103708625,
+        "policy_loss": -0.00047080806689336896,
+        "unlocked_action_counts": [
+          900,
+          805,
+          344,
+          1120
+        ],
+        "update": 22,
+        "update_seconds": 9.437461187015288,
+        "value_loss": 0.04252318385988474
+      },
+      {
+        "approx_kl": 0.00013400279203779064,
+        "clip_fraction": 0.0,
+        "entropy": 0.8046698458492756,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 59,
+          "invalidated_jobs": 157,
+          "maximum_reward_identity_error": 7.666647434234619e-06,
+          "mean_margin": 55.728813559322035,
+          "mean_opponent_score": 145.08474576271186,
+          "mean_own_score": 200.8135593220339,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8135593220338984
+        },
+        "epochs_run": 4,
+        "global_step": 94208,
+        "gradient_norm": 0.12294512055814266,
+        "policy_loss": -0.0002561949659138918,
+        "unlocked_action_counts": [
+          624,
+          919,
+          323,
+          1151
+        ],
+        "update": 23,
+        "update_seconds": 5.5157989370054565,
+        "value_loss": 0.03818286641035229
+      },
+      {
+        "approx_kl": 0.00015674851965741254,
+        "clip_fraction": 0.0,
+        "entropy": 0.8481054231524467,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 63,
+          "invalidated_jobs": 164,
+          "maximum_reward_identity_error": 7.547438144683838e-06,
+          "mean_margin": 48.20634920634921,
+          "mean_opponent_score": 138.8095238095238,
+          "mean_own_score": 187.015873015873,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8571428571428571
+        },
+        "epochs_run": 4,
+        "global_step": 98304,
+        "gradient_norm": 0.15670619253069162,
+        "policy_loss": -0.0007207929302239791,
+        "unlocked_action_counts": [
+          785,
+          645,
+          433,
+          1176
+        ],
+        "update": 24,
+        "update_seconds": 6.166682461975142,
+        "value_loss": 0.036322180763818324
+      },
+      {
+        "approx_kl": 0.00021709959037252702,
+        "clip_fraction": 0.0,
+        "entropy": 0.7990744858980179,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 56,
+          "invalidated_jobs": 167,
+          "maximum_reward_identity_error": 6.206333637237549e-06,
+          "mean_margin": 31.357142857142858,
+          "mean_opponent_score": 127.89285714285714,
+          "mean_own_score": 159.25,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.7857142857142857
+        },
+        "epochs_run": 4,
+        "global_step": 102400,
+        "gradient_norm": 0.18983002193272114,
+        "policy_loss": -0.0003767122980207205,
+        "unlocked_action_counts": [
+          743,
+          640,
+          322,
+          1272
+        ],
+        "update": 25,
+        "update_seconds": 8.912184151995461,
+        "value_loss": 0.04908975458238274
+      },
+      {
+        "approx_kl": 0.0001732636446831748,
+        "clip_fraction": 0.0,
+        "entropy": 0.7365870848298073,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 64,
+          "invalidated_jobs": 200,
+          "maximum_reward_identity_error": 8.188188076019287e-06,
+          "mean_margin": 72.046875,
+          "mean_opponent_score": 131.34375,
+          "mean_own_score": 203.390625,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.96875
+        },
+        "epochs_run": 4,
+        "global_step": 106496,
+        "gradient_norm": 0.15352712012827396,
+        "policy_loss": -0.00045013357885181904,
+        "unlocked_action_counts": [
+          729,
+          486,
+          271,
+          1273
+        ],
+        "update": 26,
+        "update_seconds": 7.519742247997783,
+        "value_loss": 0.042050234973430634
+      },
+      {
+        "approx_kl": 0.0001735294863465242,
+        "clip_fraction": 0.0,
+        "entropy": 0.7121775299310684,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 74,
+          "invalidated_jobs": 259,
+          "maximum_reward_identity_error": 6.660819053649902e-06,
+          "mean_margin": 35.608108108108105,
+          "mean_opponent_score": 147.04054054054055,
+          "mean_own_score": 182.64864864864865,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.972972972972973
+        },
+        "epochs_run": 4,
+        "global_step": 110592,
+        "gradient_norm": 0.14934948133304715,
+        "policy_loss": -0.0005802605301141739,
+        "unlocked_action_counts": [
+          657,
+          448,
+          305,
+          1269
+        ],
+        "update": 27,
+        "update_seconds": 7.955644682981074,
+        "value_loss": 0.05650529800914228
+      },
+      {
+        "approx_kl": 0.00015519520457019098,
+        "clip_fraction": 0.0,
+        "entropy": 0.7648272216320038,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 78,
+          "invalidated_jobs": 196,
+          "maximum_reward_identity_error": 8.195638656616211e-06,
+          "mean_margin": 43.94871794871795,
+          "mean_opponent_score": 135.39743589743588,
+          "mean_own_score": 179.34615384615384,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8717948717948718
+        },
+        "epochs_run": 4,
+        "global_step": 114688,
+        "gradient_norm": 0.13313721492886543,
+        "policy_loss": -0.00031814420071896166,
+        "unlocked_action_counts": [
+          862,
+          492,
+          337,
+          1129
+        ],
+        "update": 28,
+        "update_seconds": 8.052216643991414,
+        "value_loss": 0.03975269861984998
+      },
+      {
+        "approx_kl": 0.0001727051130728796,
+        "clip_fraction": 0.0,
+        "entropy": 0.839053563773632,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 56,
+          "invalidated_jobs": 153,
+          "maximum_reward_identity_error": 8.367002010345459e-06,
+          "mean_margin": 65.41071428571429,
+          "mean_opponent_score": 138.94642857142858,
+          "mean_own_score": 204.35714285714286,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.9107142857142857
+        },
+        "epochs_run": 4,
+        "global_step": 118784,
+        "gradient_norm": 0.17826515948399901,
+        "policy_loss": -0.0005048925522714853,
+        "unlocked_action_counts": [
+          920,
+          519,
+          366,
+          1299
+        ],
+        "update": 29,
+        "update_seconds": 6.639767702028621,
+        "value_loss": 0.033021076349541545
+      },
+      {
+        "approx_kl": 0.00013870748080080375,
+        "clip_fraction": 0.0,
+        "entropy": 0.7784122303128242,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 58,
+          "invalidated_jobs": 174,
+          "maximum_reward_identity_error": 7.636845111846924e-06,
+          "mean_margin": 69.1896551724138,
+          "mean_opponent_score": 142.9655172413793,
+          "mean_own_score": 212.1551724137931,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8275862068965517
+        },
+        "epochs_run": 4,
+        "global_step": 122880,
+        "gradient_norm": 0.13393880939111114,
+        "policy_loss": -0.00047990179155021906,
+        "unlocked_action_counts": [
+          863,
+          579,
+          266,
+          1243
+        ],
+        "update": 30,
+        "update_seconds": 7.458392144006211,
+        "value_loss": 0.03415759396739304
+      },
+      {
+        "approx_kl": 0.0003337509224365931,
+        "clip_fraction": 0.0001220703125,
+        "entropy": 0.8157114572823048,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 69,
+          "invalidated_jobs": 190,
+          "maximum_reward_identity_error": 6.161630153656006e-06,
+          "mean_margin": 41.289855072463766,
+          "mean_opponent_score": 129.82608695652175,
+          "mean_own_score": 171.1159420289855,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.8115942028985508
+        },
+        "epochs_run": 4,
+        "global_step": 126976,
+        "gradient_norm": 0.14898450812324882,
+        "policy_loss": -0.0008280909969471395,
+        "unlocked_action_counts": [
+          944,
+          505,
+          357,
+          1263
+        ],
+        "update": 31,
+        "update_seconds": 7.886471023957711,
+        "value_loss": 0.0362006010254845
+      },
+      {
+        "approx_kl": 0.00039799413571017794,
+        "clip_fraction": 0.00030517578125,
+        "entropy": 0.7645998038351536,
+        "episodes": {
+          "crop_rate": 1.0,
+          "episodes": 64,
+          "invalidated_jobs": 162,
+          "maximum_reward_identity_error": 8.791685104370117e-06,
+          "mean_margin": 58.703125,
+          "mean_opponent_score": 127.421875,
+          "mean_own_score": 186.125,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "worker_three_rate": 0.921875
+        },
+        "epochs_run": 4,
+        "global_step": 131072,
+        "gradient_norm": 0.14421781431883574,
+        "policy_loss": -0.0006646158581133932,
+        "unlocked_action_counts": [
+          962,
+          463,
+          253,
+          1229
+        ],
+        "update": 32,
+        "update_seconds": 7.074025641020853,
+        "value_loss": 0.04154808260500431
+      }
+    ],
+    "losses": {
+      "approx_kl": {
+        "finite": true,
+        "maximum": 0.002815449144691229,
+        "mean": 0.00030235495660235756
+      },
+      "clip_fraction": {
+        "finite": true,
+        "maximum": 0.0595703125,
+        "mean": 0.0011730194091796875
+      },
+      "entropy": {
+        "finite": true,
+        "maximum": 0.9844180345535278,
+        "mean": 0.8213134498801082
+      },
+      "gradient_norm": {
+        "finite": true,
+        "maximum": 0.6354567408561707,
+        "mean": 0.1762792263616575
+      },
+      "policy_loss": {
+        "finite": true,
+        "maximum": 0.40088576078414917,
+        "mean": -0.0006429995023609081
+      },
+      "value_loss": {
+        "finite": true,
+        "maximum": 0.11959657818078995,
+        "mean": 0.047816949288971955
+      }
+    },
+    "parameter_nonfinite_events": 0,
+    "terminal_stream_sha256": "f88a6df4c36089ecbc37b88d4b3d201fabb87ae13f60c8fa64b37a1f20f8f94f",
+    "transitions_per_second": 569.7621656997359,
+    "unlocked_action_counts": [
+      30623,
+      27290,
+      9607,
+      29980
+    ],
+    "unlocked_action_rates": [
+      0.3140820512820513,
+      0.2798974358974359,
+      0.09853333333333333,
+      0.30748717948717946
+    ],
+    "unlocked_transitions": 97500,
+    "updates": 32,
+    "wall_seconds": 230.04686497396324
+  }
+}

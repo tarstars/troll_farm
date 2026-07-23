@@ -1,0 +1,256 @@
+{
+  "downloaded_utc": "2026-07-22T20:25:35.274434+00:00",
+  "lock": {
+    "manifest_sha256": "6cfcbcdc74f1e942c1ce331478e8aa194808ec928a5f2120bc8ac773f2383521",
+    "mismatches": {},
+    "pass": true
+  },
+  "mapper_metadata": [
+    {
+      "arm_lines": 4367,
+      "baseline_lines": 65,
+      "block_id": 0,
+      "collector_stderr": "saved 64 D112 baselines and 4366 exact arms in 90.476s total / 90.173s collection (48.256 arms/s end-to-end)",
+      "elapsed_seconds": 90.48155403602868,
+      "maps": 4,
+      "shard_id": "block-00-shard-00",
+      "start_seed": 9844064,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5141,
+      "baseline_lines": 65,
+      "block_id": 0,
+      "collector_stderr": "saved 64 D112 baselines and 5140 exact arms in 255.000s total / 254.057s collection (20.157 arms/s end-to-end)",
+      "elapsed_seconds": 255.00674047879875,
+      "maps": 4,
+      "shard_id": "block-00-shard-01",
+      "start_seed": 9844068,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5203,
+      "baseline_lines": 65,
+      "block_id": 0,
+      "collector_stderr": "saved 64 D112 baselines and 5202 exact arms in 181.596s total / 181.062s collection (28.646 arms/s end-to-end)",
+      "elapsed_seconds": 181.60703905578703,
+      "maps": 4,
+      "shard_id": "block-00-shard-02",
+      "start_seed": 9844072,
+      "threads": 16
+    },
+    {
+      "arm_lines": 4739,
+      "baseline_lines": 65,
+      "block_id": 0,
+      "collector_stderr": "saved 64 D112 baselines and 4738 exact arms in 117.359s total / 116.863s collection (40.372 arms/s end-to-end)",
+      "elapsed_seconds": 117.3729153079912,
+      "maps": 4,
+      "shard_id": "block-00-shard-03",
+      "start_seed": 9844076,
+      "threads": 16
+    },
+    {
+      "arm_lines": 4506,
+      "baseline_lines": 65,
+      "block_id": 1,
+      "collector_stderr": "saved 64 D112 baselines and 4505 exact arms in 115.224s total / 114.763s collection (39.098 arms/s end-to-end)",
+      "elapsed_seconds": 115.22811775282025,
+      "maps": 4,
+      "shard_id": "block-01-shard-00",
+      "start_seed": 9844080,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5111,
+      "baseline_lines": 65,
+      "block_id": 1,
+      "collector_stderr": "saved 64 D112 baselines and 5110 exact arms in 352.688s total / 351.966s collection (14.489 arms/s end-to-end)",
+      "elapsed_seconds": 352.69437488075346,
+      "maps": 4,
+      "shard_id": "block-01-shard-01",
+      "start_seed": 9844084,
+      "threads": 16
+    },
+    {
+      "arm_lines": 8050,
+      "baseline_lines": 65,
+      "block_id": 1,
+      "collector_stderr": "saved 64 D112 baselines and 8049 exact arms in 550.965s total / 550.145s collection (14.609 arms/s end-to-end)",
+      "elapsed_seconds": 550.9835032911506,
+      "maps": 4,
+      "shard_id": "block-01-shard-02",
+      "start_seed": 9844088,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5479,
+      "baseline_lines": 65,
+      "block_id": 1,
+      "collector_stderr": "saved 64 D112 baselines and 5478 exact arms in 206.995s total / 206.511s collection (26.464 arms/s end-to-end)",
+      "elapsed_seconds": 206.99960251152515,
+      "maps": 4,
+      "shard_id": "block-01-shard-03",
+      "start_seed": 9844092,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5508,
+      "baseline_lines": 65,
+      "block_id": 2,
+      "collector_stderr": "saved 64 D112 baselines and 5507 exact arms in 148.968s total / 148.591s collection (36.968 arms/s end-to-end)",
+      "elapsed_seconds": 148.97597785666585,
+      "maps": 4,
+      "shard_id": "block-02-shard-00",
+      "start_seed": 9844096,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5463,
+      "baseline_lines": 65,
+      "block_id": 2,
+      "collector_stderr": "saved 64 D112 baselines and 5462 exact arms in 350.470s total / 350.097s collection (15.585 arms/s end-to-end)",
+      "elapsed_seconds": 350.47487115859985,
+      "maps": 4,
+      "shard_id": "block-02-shard-01",
+      "start_seed": 9844100,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5424,
+      "baseline_lines": 65,
+      "block_id": 2,
+      "collector_stderr": "saved 64 D112 baselines and 5423 exact arms in 181.206s total / 180.649s collection (29.927 arms/s end-to-end)",
+      "elapsed_seconds": 181.22956147417426,
+      "maps": 4,
+      "shard_id": "block-02-shard-02",
+      "start_seed": 9844104,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5942,
+      "baseline_lines": 65,
+      "block_id": 2,
+      "collector_stderr": "saved 64 D112 baselines and 5941 exact arms in 389.243s total / 388.632s collection (15.263 arms/s end-to-end)",
+      "elapsed_seconds": 389.2478227522224,
+      "maps": 4,
+      "shard_id": "block-02-shard-03",
+      "start_seed": 9844108,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5194,
+      "baseline_lines": 65,
+      "block_id": 3,
+      "collector_stderr": "saved 64 D112 baselines and 5193 exact arms in 129.146s total / 128.790s collection (40.210 arms/s end-to-end)",
+      "elapsed_seconds": 129.1504989010282,
+      "maps": 4,
+      "shard_id": "block-03-shard-00",
+      "start_seed": 9844112,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5365,
+      "baseline_lines": 65,
+      "block_id": 3,
+      "collector_stderr": "saved 64 D112 baselines and 5364 exact arms in 224.895s total / 224.167s collection (23.851 arms/s end-to-end)",
+      "elapsed_seconds": 224.9012435078621,
+      "maps": 4,
+      "shard_id": "block-03-shard-01",
+      "start_seed": 9844116,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5430,
+      "baseline_lines": 65,
+      "block_id": 3,
+      "collector_stderr": "saved 64 D112 baselines and 5429 exact arms in 139.322s total / 138.845s collection (38.967 arms/s end-to-end)",
+      "elapsed_seconds": 139.32609454542398,
+      "maps": 4,
+      "shard_id": "block-03-shard-02",
+      "start_seed": 9844120,
+      "threads": 16
+    },
+    {
+      "arm_lines": 5220,
+      "baseline_lines": 65,
+      "block_id": 3,
+      "collector_stderr": "saved 64 D112 baselines and 5219 exact arms in 192.708s total / 192.353s collection (27.082 arms/s end-to-end)",
+      "elapsed_seconds": 192.71299523394555,
+      "maps": 4,
+      "shard_id": "block-03-shard-03",
+      "start_seed": 9844124,
+      "threads": 16
+    }
+  ],
+  "operation": {
+    "operation_id": "ded9b633-d229c8cd-42e03e8-9fe8f069",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d139a_q6_second_corpus_9844064_9844127_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d139a_q6_second_corpus_9844064_9844127_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d139a_q6_second_corpus_9844064_9844127_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 87198
+  },
+  "outputs": {
+    "0": {
+      "arms": {
+        "bytes": 110559099,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-00-arms-9844064-9844079.tsv",
+        "rows": 19446,
+        "sha256": "1c664bd9788e46558b9f6192c9fb6d0a6b471cb6624652e851ff3cdd3e21285b"
+      },
+      "baselines": {
+        "bytes": 54725,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-00-baselines-9844064-9844079.tsv",
+        "rows": 256,
+        "sha256": "6768fd92a81edf29a96f391b5bf18f65d64aa3fba199efae4ba9a8a708c9f1fe"
+      }
+    },
+    "1": {
+      "arms": {
+        "bytes": 131608741,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-01-arms-9844080-9844095.tsv",
+        "rows": 23142,
+        "sha256": "21ee66964804804579fc76ed956213ebc16b869bc040b9c769fe99b99be40a94"
+      },
+      "baselines": {
+        "bytes": 54910,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-01-baselines-9844080-9844095.tsv",
+        "rows": 256,
+        "sha256": "7675f5f00a7495bf8feb49aa015790f25cc8cccabc8cf8d97642fd717be40012"
+      }
+    },
+    "2": {
+      "arms": {
+        "bytes": 127000111,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-02-arms-9844096-9844111.tsv",
+        "rows": 22333,
+        "sha256": "fa47f1ef7aacd1fe5daa44c516dc35995a4d8095432ceb9c160b82dcaf25c64f"
+      },
+      "baselines": {
+        "bytes": 54855,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-02-baselines-9844096-9844111.tsv",
+        "rows": 256,
+        "sha256": "6c893b242994773bbc6e9032480d637724e44656a806a29d18b86efe31f79579"
+      }
+    },
+    "3": {
+      "arms": {
+        "bytes": 120568852,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-03-arms-9844112-9844127.tsv",
+        "rows": 21205,
+        "sha256": "a97f06d81949ebb7b8b51b9e3b3756d699c08a2ef10843c22f684b4376bf6981"
+      },
+      "baselines": {
+        "bytes": 54805,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d139a-q6-second-independent-corpus/block-03-baselines-9844112-9844127.tsv",
+        "rows": 256,
+        "sha256": "0dbd2ce1ac808a7269dc8f3e88f968af6d50fb33fcc1dc8be8db52c9a4a22e83"
+      }
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d139a-yt-q6-second-independent-corpus-protocol-2026-07-22.md",
+  "schema": "troll-farm-d139a-yt-q6-second-independent-corpus-download-v1"
+}

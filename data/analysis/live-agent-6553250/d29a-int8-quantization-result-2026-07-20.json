@@ -1,0 +1,546 @@
+{
+ "schema": 1,
+ "scope": "D29a sole int8 numerical conversion; no Rust integration, candidate, submission, or Arena action",
+ "sources": {
+  "source_checkpoint": "data/analysis/live-agent-6553250/d29-spatial-option-critic-development-53000-53599.checkpoint.json",
+  "source_checkpoint_sha256": "765e3bc5707ced9053a76d2735232e873003baccff6500bd8c1377b3c28721c9",
+  "converted_checkpoint": "data/analysis/live-agent-6553250/d29a-option-critic-int8-verification.checkpoint.json",
+  "converted_checkpoint_sha256": "9d4ef336880ac2ae57e868f05cb99646f94bb2e92a7d1aedd0ad1a22d12b33ba",
+  "payload": "data/analysis/live-agent-6553250/d29a-option-critic-int8.payload",
+  "payload_sha256": "acf192cf6b2225de01b12e0507120866f20c7b2e8296a026aa85dfae288be87f",
+  "manifest": "data/analysis/live-agent-6553250/d29a-option-critic-int8-manifest.json",
+  "manifest_sha256": "16535ae78ab9a0105c89c3ac0b46098b80fc5a604d10c5cb2b00c130070699c4"
+ },
+ "reproducibility": {
+  "payload_byte_identical": true,
+  "manifest_byte_identical": true,
+  "verification_checkpoint_byte_identical": true
+ },
+ "development": {
+  "name": "development_full_checkpoint",
+  "seed_start": 53000,
+  "seed_count": 600,
+  "cells": 9600,
+  "integrity": {
+   "expected_cells": 9600,
+   "joined_cells": 9600,
+   "spatial_cells": 9600,
+   "scalar_cells": 9600,
+   "label_cells": 9600,
+   "missing_spatial": 0,
+   "missing_scalars": 0,
+   "missing_labels": 0,
+   "unexpected_spatial": 0,
+   "unexpected_scalars": 0,
+   "unexpected_labels": 0,
+   "bad_label_branches": {},
+   "root_mismatch_count": 0,
+   "root_mismatches": [],
+   "reached_mismatch_count": 0,
+   "reached_mismatches": [],
+   "all_reached_cut": true,
+   "feature_count": 426,
+   "spatial_shape": [
+    36,
+    11,
+    22
+   ],
+   "spatial_checks": {
+    "bad_grid_lengths": 0,
+    "bad_grid_shapes": 0,
+    "bad_grid_hashes": 0,
+    "bad_canonical_orientations": 0
+   },
+   "rotated_by_seat": {
+    "0": 0,
+    "1": 4800
+   },
+   "complete": true
+  },
+  "source_evaluation": {
+   "cells": 9600,
+   "seeds": 600,
+   "switches": 4038,
+   "switch_rate": 0.420625,
+   "positive_cell_precision": 0.9271916790490342,
+   "selected_positive": 3744,
+   "selected_zero": 9,
+   "selected_negative": 285,
+   "seed_clustered_margin_delta": {
+    "n": 600,
+    "mean": 40.24166666666667,
+    "median": 23.5,
+    "trimmed_5pct_mean": 36.95868055555555,
+    "standard_deviation": 43.98055110564763,
+    "standard_error": 1.7954984802539204,
+    "ci95_normal": [
+     36.72248964536898,
+     43.76084368796435
+    ],
+    "wins": 450,
+    "ties": 133,
+    "losses": 17,
+    "minimum": -22.0,
+    "maximum": 195.8125
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 600,
+    "mean": 51.993229166666666,
+    "median": 33.4375,
+    "trimmed_5pct_mean": 49.000347222222224,
+    "standard_deviation": 51.404967337663095,
+    "standard_error": 2.0985990036951674,
+    "ci95_normal": [
+     47.87997511942414,
+     56.10648321390919
+    ],
+    "wins": 458,
+    "ties": 133,
+    "losses": 9,
+    "minimum": -21.9375,
+    "maximum": 206.9375
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 39.36416666666667,
+    "gold_adaptive": 30.926666666666666,
+    "gold_elite": 39.36416666666667,
+    "mybot": 36.3625,
+    "printer_bot": 70.36166666666666,
+    "sched_bot": 37.11416666666667,
+    "script_boss": 36.19166666666667,
+    "silver_boss": 32.248333333333335
+   },
+   "nonnegative_opponent_means": 8,
+   "worst_opponent": "gold_adaptive",
+   "worst_opponent_mean_delta": 30.926666666666666,
+   "map_block_mean_margin_deltas": {
+    "0": 37.788125,
+    "1": 45.036875,
+    "2": 37.604375,
+    "3": 44.255,
+    "4": 41.140625,
+    "5": 35.625
+   },
+   "all_map_blocks_nonnegative": true,
+   "tail": {
+    "resident_catastrophic_frequency": 0.1578125,
+    "selected_catastrophic_frequency": 0.08916666666666667,
+    "resident_negative_margin_mass": 302261,
+    "selected_negative_margin_mass": 205447,
+    "selected_to_resident_negative_mass_ratio": 0.6797006560555282
+   },
+   "oracle": {
+    "positive_cell_seed_mean": 53.00447916666667,
+    "captured_fraction": 0.7592125665480315
+   },
+   "prediction": {
+    "mean": -15.882314682006836,
+    "standard_deviation": 82.70136260986328,
+    "minimum": -351.8686828613281,
+    "maximum": 207.70314025878906
+   },
+   "gates": {
+    "switch_rate_5_to_55pct": true,
+    "precision_at_least_78pct": true,
+    "mean_margin_at_least_8": true,
+    "trimmed_margin_at_least_5": true,
+    "ci95_lower_above_zero": true,
+    "six_of_eight_opponents_nonnegative": true,
+    "worst_opponent_at_least_minus_5": true,
+    "all_map_blocks_nonnegative": true,
+    "catastrophic_frequency_not_higher": true,
+    "negative_margin_mass_not_higher": true,
+    "oracle_capture_at_least_25pct": true
+   },
+   "passed": true
+  },
+  "converted_evaluation": {
+   "cells": 9600,
+   "seeds": 600,
+   "switches": 4027,
+   "switch_rate": 0.4194791666666667,
+   "positive_cell_precision": 0.9274894462378942,
+   "selected_positive": 3735,
+   "selected_zero": 9,
+   "selected_negative": 283,
+   "seed_clustered_margin_delta": {
+    "n": 600,
+    "mean": 40.14364583333333,
+    "median": 23.09375,
+    "trimmed_5pct_mean": 36.85868055555556,
+    "standard_deviation": 43.990209393985545,
+    "standard_error": 1.7958927782241967,
+    "ci95_normal": [
+     36.62369598801391,
+     43.663595678652754
+    ],
+    "wins": 449,
+    "ties": 133,
+    "losses": 18,
+    "minimum": -22.0,
+    "maximum": 195.8125
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 600,
+    "mean": 51.9059375,
+    "median": 33.34375,
+    "trimmed_5pct_mean": 48.90428240740741,
+    "standard_deviation": 51.44470539597483,
+    "standard_error": 2.1002213031323795,
+    "ci95_normal": [
+     47.789503745860536,
+     56.022371254139465
+    ],
+    "wins": 456,
+    "ties": 133,
+    "losses": 11,
+    "minimum": -21.9375,
+    "maximum": 206.9375
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 39.3275,
+    "gold_adaptive": 30.506666666666668,
+    "gold_elite": 39.3275,
+    "mybot": 36.3025,
+    "printer_bot": 70.385,
+    "sched_bot": 37.04,
+    "script_boss": 36.00833333333333,
+    "silver_boss": 32.251666666666665
+   },
+   "nonnegative_opponent_means": 8,
+   "worst_opponent": "gold_adaptive",
+   "worst_opponent_mean_delta": 30.506666666666668,
+   "map_block_mean_margin_deltas": {
+    "0": 37.68375,
+    "1": 45.051875,
+    "2": 37.499375,
+    "3": 43.97875,
+    "4": 41.05625,
+    "5": 35.591875
+   },
+   "all_map_blocks_nonnegative": true,
+   "tail": {
+    "resident_catastrophic_frequency": 0.1578125,
+    "selected_catastrophic_frequency": 0.08916666666666667,
+    "resident_negative_margin_mass": 302261,
+    "selected_negative_margin_mass": 205672,
+    "selected_to_resident_negative_mass_ratio": 0.6804450458378686
+   },
+   "oracle": {
+    "positive_cell_seed_mean": 53.00447916666667,
+    "captured_fraction": 0.7573632731510505
+   },
+   "prediction": {
+    "mean": -15.944768905639648,
+    "standard_deviation": 82.72615051269531,
+    "minimum": -352.9848937988281,
+    "maximum": 209.04420471191406
+   },
+   "gates": {
+    "switch_rate_5_to_55pct": true,
+    "precision_at_least_78pct": true,
+    "mean_margin_at_least_8": true,
+    "trimmed_margin_at_least_5": true,
+    "ci95_lower_above_zero": true,
+    "six_of_eight_opponents_nonnegative": true,
+    "worst_opponent_at_least_minus_5": true,
+    "all_map_blocks_nonnegative": true,
+    "catastrophic_frequency_not_higher": true,
+    "negative_margin_mass_not_higher": true,
+    "oracle_capture_at_least_25pct": true
+   },
+   "passed": true
+  },
+  "comparison": {
+   "decision_disagreements": 21,
+   "decision_disagreement_rate": 0.0021875,
+   "source_switches": 4038,
+   "converted_switches": 4027,
+   "source_selected_seed_mean": 40.24166666666667,
+   "converted_selected_seed_mean": 40.14364583333333,
+   "converted_minus_source_selected_seed_mean": -0.09802083333333655,
+   "maximum_raw_prediction_absolute_error": 3.044464111328125,
+   "mean_raw_prediction_absolute_error": 0.4832342565059662,
+   "maximum_normalized_prediction_absolute_error": 0.03086090460419655,
+   "mean_normalized_prediction_absolute_error": 0.0048984140157699585
+  },
+  "gates": {
+   "finite_predictions": true,
+   "decision_disagreement_at_most_1pct": true,
+   "selected_seed_mean_loss_at_most_1": true,
+   "catastrophic_frequency_not_above_f32": true,
+   "negative_margin_mass_not_above_f32": false,
+   "converted_retains_partition_gates": true
+  },
+  "passed": false
+ },
+ "confirmation": {
+  "name": "prospective_confirmation",
+  "seed_start": 53600,
+  "seed_count": 120,
+  "cells": 1920,
+  "integrity": {
+   "expected_cells": 1920,
+   "joined_cells": 1920,
+   "spatial_cells": 1920,
+   "scalar_cells": 1920,
+   "label_cells": 1920,
+   "missing_spatial": 0,
+   "missing_scalars": 0,
+   "missing_labels": 0,
+   "unexpected_spatial": 0,
+   "unexpected_scalars": 0,
+   "unexpected_labels": 0,
+   "bad_label_branches": {},
+   "root_mismatch_count": 0,
+   "root_mismatches": [],
+   "reached_mismatch_count": 0,
+   "reached_mismatches": [],
+   "all_reached_cut": true,
+   "feature_count": 426,
+   "spatial_shape": [
+    36,
+    11,
+    22
+   ],
+   "spatial_checks": {
+    "bad_grid_lengths": 0,
+    "bad_grid_shapes": 0,
+    "bad_grid_hashes": 0,
+    "bad_canonical_orientations": 0
+   },
+   "rotated_by_seat": {
+    "0": 0,
+    "1": 960
+   },
+   "complete": true
+  },
+  "source_evaluation": {
+   "cells": 1920,
+   "seeds": 120,
+   "switches": 787,
+   "switch_rate": 0.40989583333333335,
+   "positive_cell_precision": 0.8856416772554002,
+   "selected_positive": 697,
+   "selected_zero": 0,
+   "selected_negative": 90,
+   "seed_clustered_margin_delta": {
+    "n": 120,
+    "mean": 35.225,
+    "median": 16.90625,
+    "trimmed_5pct_mean": 32.442129629629626,
+    "standard_deviation": 41.08201519112549,
+    "standard_error": 3.7502577379915567,
+    "ci95_normal": [
+     27.874494833536552,
+     42.57550516646345
+    ],
+    "wins": 87,
+    "ties": 27,
+    "losses": 6,
+    "minimum": -18.25,
+    "maximum": 136.875
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 120,
+    "mean": 46.524479166666666,
+    "median": 27.09375,
+    "trimmed_5pct_mean": 43.3912037037037,
+    "standard_deviation": 49.32971762493117,
+    "standard_error": 4.503166516422495,
+    "ci95_normal": [
+     37.69827279447858,
+     55.350685538854755
+    ],
+    "wins": 88,
+    "ties": 27,
+    "losses": 5,
+    "minimum": -12.875,
+    "maximum": 166.875
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 36.30416666666667,
+    "gold_adaptive": 25.508333333333333,
+    "gold_elite": 36.30416666666667,
+    "mybot": 34.108333333333334,
+    "printer_bot": 62.90416666666667,
+    "sched_bot": 26.341666666666665,
+    "script_boss": 34.075,
+    "silver_boss": 26.254166666666666
+   },
+   "nonnegative_opponent_means": 8,
+   "worst_opponent": "gold_adaptive",
+   "worst_opponent_mean_delta": 25.508333333333333,
+   "map_block_mean_margin_deltas": {
+    "0": 34.4625,
+    "1": 32.6,
+    "2": 38.18125,
+    "3": 23.334375,
+    "4": 39.6625,
+    "5": 43.109375
+   },
+   "all_map_blocks_nonnegative": true,
+   "tail": {
+    "resident_catastrophic_frequency": 0.159375,
+    "selected_catastrophic_frequency": 0.09322916666666667,
+    "resident_negative_margin_mass": 59375,
+    "selected_negative_margin_mass": 40790,
+    "selected_to_resident_negative_mass_ratio": 0.6869894736842105
+   },
+   "oracle": {
+    "positive_cell_seed_mean": 51.770833333333336,
+    "captured_fraction": 0.6804024144869215
+   },
+   "prediction": {
+    "mean": -15.861401557922363,
+    "standard_deviation": 79.90753936767578,
+    "minimum": -291.57427978515625,
+    "maximum": 195.2738800048828
+   },
+   "gates": {
+    "switch_rate_5_to_55pct": true,
+    "precision_at_least_75pct": true,
+    "mean_margin_at_least_8": true,
+    "trimmed_margin_at_least_5": true,
+    "ci95_lower_above_zero": true,
+    "six_of_eight_opponents_nonnegative": true,
+    "worst_opponent_at_least_minus_5": true,
+    "all_map_blocks_nonnegative": true,
+    "catastrophic_frequency_not_higher": true,
+    "negative_margin_mass_not_higher": true,
+    "oracle_capture_at_least_25pct": true
+   },
+   "passed": true
+  },
+  "converted_evaluation": {
+   "cells": 1920,
+   "seeds": 120,
+   "switches": 785,
+   "switch_rate": 0.4088541666666667,
+   "positive_cell_precision": 0.8866242038216561,
+   "selected_positive": 696,
+   "selected_zero": 0,
+   "selected_negative": 89,
+   "seed_clustered_margin_delta": {
+    "n": 120,
+    "mean": 35.209375,
+    "median": 16.375,
+    "trimmed_5pct_mean": 32.402199074074076,
+    "standard_deviation": 41.07090262154107,
+    "standard_error": 3.7492433038193513,
+    "ci95_normal": [
+     27.860858124514074,
+     42.55789187548593
+    ],
+    "wins": 87,
+    "ties": 27,
+    "losses": 6,
+    "minimum": -15.8125,
+    "maximum": 136.875
+   },
+   "seed_clustered_own_score_delta": {
+    "n": 120,
+    "mean": 46.47708333333333,
+    "median": 27.09375,
+    "trimmed_5pct_mean": 43.31886574074074,
+    "standard_deviation": 49.35264753944474,
+    "standard_error": 4.505259721659286,
+    "ci95_normal": [
+     37.64677427888113,
+     55.307392387785534
+    ],
+    "wins": 88,
+    "ties": 27,
+    "losses": 5,
+    "minimum": -10.75,
+    "maximum": 166.875
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 36.30416666666667,
+    "gold_adaptive": 25.508333333333333,
+    "gold_elite": 36.30416666666667,
+    "mybot": 34.108333333333334,
+    "printer_bot": 62.90416666666667,
+    "sched_bot": 26.216666666666665,
+    "script_boss": 34.075,
+    "silver_boss": 26.254166666666666
+   },
+   "nonnegative_opponent_means": 8,
+   "worst_opponent": "gold_adaptive",
+   "worst_opponent_mean_delta": 25.508333333333333,
+   "map_block_mean_margin_deltas": {
+    "0": 34.4625,
+    "1": 32.721875,
+    "2": 38.18125,
+    "3": 23.11875,
+    "4": 39.6625,
+    "5": 43.109375
+   },
+   "all_map_blocks_nonnegative": true,
+   "tail": {
+    "resident_catastrophic_frequency": 0.159375,
+    "selected_catastrophic_frequency": 0.09322916666666667,
+    "resident_negative_margin_mass": 59375,
+    "selected_negative_margin_mass": 40790,
+    "selected_to_resident_negative_mass_ratio": 0.6869894736842105
+   },
+   "oracle": {
+    "positive_cell_seed_mean": 51.770833333333336,
+    "captured_fraction": 0.6801006036217304
+   },
+   "prediction": {
+    "mean": -15.918566703796387,
+    "standard_deviation": 79.96052551269531,
+    "minimum": -291.8653564453125,
+    "maximum": 195.990234375
+   },
+   "gates": {
+    "switch_rate_5_to_55pct": true,
+    "precision_at_least_75pct": true,
+    "mean_margin_at_least_8": true,
+    "trimmed_margin_at_least_5": true,
+    "ci95_lower_above_zero": true,
+    "six_of_eight_opponents_nonnegative": true,
+    "worst_opponent_at_least_minus_5": true,
+    "all_map_blocks_nonnegative": true,
+    "catastrophic_frequency_not_higher": true,
+    "negative_margin_mass_not_higher": true,
+    "oracle_capture_at_least_25pct": true
+   },
+   "passed": true
+  },
+  "comparison": {
+   "decision_disagreements": 2,
+   "decision_disagreement_rate": 0.0010416666666666667,
+   "source_switches": 787,
+   "converted_switches": 785,
+   "source_selected_seed_mean": 35.225,
+   "converted_selected_seed_mean": 35.209375,
+   "converted_minus_source_selected_seed_mean": -0.015625,
+   "maximum_raw_prediction_absolute_error": 2.6168556213378906,
+   "mean_raw_prediction_absolute_error": 0.46136775612831116,
+   "maximum_normalized_prediction_absolute_error": 0.026526354253292084,
+   "mean_normalized_prediction_absolute_error": 0.004676759708672762
+  },
+  "gates": {
+   "finite_predictions": true,
+   "decision_disagreement_at_most_1pct": true,
+   "selected_seed_mean_loss_at_most_1": true,
+   "catastrophic_frequency_not_above_f32": true,
+   "negative_margin_mass_not_above_f32": true,
+   "converted_retains_partition_gates": true
+  },
+  "passed": true
+ },
+ "gates": {
+  "conversion_artifacts_exact_on_repeat": true,
+  "development_preserved": false,
+  "confirmation_preserved": true
+ },
+ "passed": false,
+ "decision": {
+  "open_rust_kernel": false,
+  "build_submission_candidate": false,
+  "authorize_arena": false
+ }
+}

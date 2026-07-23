@@ -1,0 +1,238 @@
+{
+ "schema": 1,
+ "started_at": "2026-07-19T04:18:49.271190+00:00",
+ "completed_at": "2026-07-19T04:19:18.282072+00:00",
+ "status": "complete",
+ "requested_game_options": "seed=-5687447269333978810\n",
+ "sources": {
+  "baseline": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+   "bytes": 62725,
+   "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "candidate": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+   "bytes": 62725,
+   "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  }
+ },
+ "jobs": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate"
+  }
+ ],
+ "rows": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline",
+   "game_id": 896299140,
+   "referee_input": "seed=-5687447269333978810\n",
+   "scores": [
+    340.0,
+    391.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     4,
+     0,
+     0,
+     84
+    ],
+    [
+     19,
+     0,
+     8,
+     0,
+     1,
+     91
+    ]
+   ],
+   "wood": [
+    84,
+    91
+   ],
+   "fruit": [
+    4,
+    27
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 259,
+     "HARVEST": 6,
+     "DROP": 52,
+     "TRAIN": 1,
+     "CHOP": 227,
+     "PICK": 5,
+     "PLANT": 27,
+     "WAIT": 10
+    },
+    "harvest_turns": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12
+    ],
+    "train_attempts": [
+     {
+      "turn": 14,
+      "spec": [
+       "3",
+       "3",
+       "0",
+       "1"
+      ]
+     }
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     2
+    ],
+    "training_turns": [
+     [
+      14
+     ],
+     [
+      4,
+      83
+     ]
+    ],
+    "max": [
+     2,
+     3
+    ],
+    "final": [
+     2,
+     3
+    ]
+   },
+   "diagnostics": []
+  },
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate",
+   "game_id": 896299148,
+   "referee_input": "seed=-5687447269333978810\n",
+   "scores": [
+    340.0,
+    391.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     4,
+     0,
+     0,
+     84
+    ],
+    [
+     19,
+     0,
+     8,
+     0,
+     1,
+     91
+    ]
+   ],
+   "wood": [
+    84,
+    91
+   ],
+   "fruit": [
+    4,
+    27
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 259,
+     "HARVEST": 6,
+     "DROP": 52,
+     "TRAIN": 1,
+     "CHOP": 227,
+     "PICK": 5,
+     "PLANT": 27,
+     "WAIT": 10
+    },
+    "harvest_turns": [
+     2,
+     4,
+     6,
+     8,
+     10,
+     12
+    ],
+    "train_attempts": [
+     {
+      "turn": 14,
+      "spec": [
+       "3",
+       "3",
+       "0",
+       "1"
+      ]
+     }
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   },
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     2
+    ],
+    "training_turns": [
+     [
+      14
+     ],
+     [
+      4,
+      83
+     ]
+    ],
+    "max": [
+     2,
+     3
+    ],
+    "final": [
+     2,
+     3
+    ]
+   },
+   "diagnostics": []
+  }
+ ],
+ "stop_reason": null
+}

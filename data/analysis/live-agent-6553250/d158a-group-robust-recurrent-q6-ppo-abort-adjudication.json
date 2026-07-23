@@ -1,0 +1,30 @@
+{
+  "schema": "troll-farm-d158a-group-robust-recurrent-q6-ppo-abort-v1",
+  "decision": "abort_before_result_baseline_relative_gate_invalid",
+  "completed_common_update": 6,
+  "completed_common_transitions": 7200,
+  "planned_transitions_per_variant": 64800,
+  "variants": [
+    "pooled_margin",
+    "capped_margin",
+    "own_protected",
+    "group_dro_own"
+  ],
+  "process_exit_code": 130,
+  "checkpoint_files_written": 0,
+  "evaluation_files_written": 0,
+  "result_files_written": 0,
+  "reserved_maps_read": false,
+  "arena_interaction": false,
+  "platform_interaction": false,
+  "baseline_audit": {
+    "d40_minus_resident_mean_margin": -48.396,
+    "d148_exact_one_use_over_d40": 37.103,
+    "d148_second_use_increment_over_one_use": 4.1103515625,
+    "d148_combined_hindsight_over_d40": 41.2133515625,
+    "panels_are_distinct": true,
+    "conclusion": "The +1/+2 D158 admission gates do not establish competitiveness with the current resident."
+  },
+  "partial_training_is_value_uninterpreted": true,
+  "next_requirement": "Anchor every new controller and its gates to the exact Yamo/Orchard resident, or first prove a nonresident fallback closes the resident gap on the same panel."
+}

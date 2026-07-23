@@ -1,0 +1,1305 @@
+{
+ "schema": 1,
+ "scope": "consumed discovery seeds; exact terminal control/option deltas for both seats; 27 fixed harvest-0 first workers, dynamic max-bank anchor, exact resident abstention; not prospective or arena evidence",
+ "source": "data/analysis/live-agent-6553250/robust-first-option-discovery-0-59.tsv",
+ "cells": 120,
+ "seeds": 60,
+ "models": [
+  "boss_real",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "options": [
+  "control",
+  "m1c1k1",
+  "m1c1k2",
+  "m1c1k3",
+  "m1c2k1",
+  "m1c2k2",
+  "m1c2k3",
+  "m1c3k1",
+  "m1c3k2",
+  "m1c3k3",
+  "m2c1k1",
+  "m2c1k2",
+  "m2c1k3",
+  "m2c2k1",
+  "m2c2k2",
+  "m2c2k3",
+  "m2c3k1",
+  "m2c3k2",
+  "m2c3k3",
+  "m3c1k1",
+  "m3c1k2",
+  "m3c1k3",
+  "m3c2k1",
+  "m3c2k2",
+  "m3c2k3",
+  "m3c3k1",
+  "m3c3k2",
+  "m3c3k3",
+  "max_bank_hp0"
+ ],
+ "active_cell_counts": {
+  "control": 0,
+  "m1c1k1": 120,
+  "m1c1k2": 79,
+  "m1c1k3": 17,
+  "m1c2k1": 81,
+  "m1c2k2": 48,
+  "m1c2k3": 10,
+  "m1c3k1": 8,
+  "m1c3k2": 5,
+  "m1c3k3": 1,
+  "m2c1k1": 88,
+  "m2c1k2": 51,
+  "m2c1k3": 12,
+  "m2c2k1": 48,
+  "m2c2k2": 24,
+  "m2c2k3": 6,
+  "m2c3k1": 8,
+  "m2c3k2": 5,
+  "m2c3k3": 1,
+  "m3c1k1": 20,
+  "m3c1k2": 10,
+  "m3c1k3": 3,
+  "m3c2k1": 13,
+  "m3c2k2": 5,
+  "m3c2k3": 1,
+  "m3c3k1": 2,
+  "m3c3k2": 1,
+  "m3c3k3": 0,
+  "max_bank_hp0": 90
+ },
+ "strict_original_four": {
+  "models": [
+   "gold_elite",
+   "sched_bot",
+   "mybot",
+   "silver_boss"
+  ],
+  "full_information": {
+   "rule": {
+    "allowed_nonpositive": 0,
+    "floor": 0.0,
+    "minimum_mean": 0.0,
+    "choice": "maximize worst model delta, then mean delta, then prefer lower first-train quadratic talent cost, then canonical option name"
+   },
+   "selected_cell_count": 1,
+   "selected_seed_count": 1,
+   "option_counts": {
+    "max_bank_hp0": 1
+   },
+   "overall_seed_balanced": {
+    "n": 60,
+    "mean": 0.16875,
+    "median": 0.0,
+    "worst_decile_mean": 0,
+    "wins": 1,
+    "ties": 59,
+    "losses": 0,
+    "minimum": 0,
+    "maximum": 10.125
+   },
+   "by_model": {
+    "gold_elite": {
+     "n": 60,
+     "mean": 0.38333333333333336,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 1,
+     "ties": 59,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 23
+    },
+    "sched_bot": {
+     "n": 60,
+     "mean": 0.05,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 1,
+     "ties": 59,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 3
+    },
+    "mybot": {
+     "n": 60,
+     "mean": 0.05,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 1,
+     "ties": 59,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 3
+    },
+    "silver_boss": {
+     "n": 60,
+     "mean": 0.19166666666666668,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 1,
+     "ties": 59,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 11.5
+    }
+   },
+   "worst_model_mean": 0.05,
+   "selected_cells": [
+    {
+     "seed": 29,
+     "seat": 0,
+     "option": "max_bank_hp0",
+     "first_train": "TRAIN 2 1 0 2",
+     "selection_worst_delta": 6,
+     "selection_mean_delta": 20.25,
+     "deltas": {
+      "gold_elite": 46,
+      "sched_bot": 6,
+      "mybot": 6,
+      "silver_boss": 23,
+      "boss_real": -19,
+      "script_boss": 5,
+      "printer_bot": -24,
+      "gold_adaptive": 70
+     }
+    }
+   ]
+  },
+  "leave_one_model_out": {
+   "held_models": [
+    {
+     "held_model": "gold_elite",
+     "visible_models": [
+      "sched_bot",
+      "mybot",
+      "silver_boss"
+     ],
+     "selected_cell_count": 5,
+     "selected_seed_count": 5,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": -0.2916666666666667,
+      "median": 0.0,
+      "worst_decile_mean": -6.75,
+      "wins": 1,
+      "ties": 55,
+      "losses": 4,
+      "minimum": -20,
+      "maximum": 23
+     }
+    },
+    {
+     "held_model": "sched_bot",
+     "visible_models": [
+      "gold_elite",
+      "mybot",
+      "silver_boss"
+     ],
+     "selected_cell_count": 4,
+     "selected_seed_count": 4,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": -0.10833333333333334,
+      "median": 0.0,
+      "worst_decile_mean": -1.5833333333333333,
+      "wins": 1,
+      "ties": 56,
+      "losses": 3,
+      "minimum": -4.5,
+      "maximum": 3
+     }
+    },
+    {
+     "held_model": "mybot",
+     "visible_models": [
+      "gold_elite",
+      "sched_bot",
+      "silver_boss"
+     ],
+     "selected_cell_count": 6,
+     "selected_seed_count": 6,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": -2.075,
+      "median": 0.0,
+      "worst_decile_mean": -21.25,
+      "wins": 1,
+      "ties": 54,
+      "losses": 5,
+      "minimum": -52.5,
+      "maximum": 3
+     }
+    },
+    {
+     "held_model": "silver_boss",
+     "visible_models": [
+      "gold_elite",
+      "sched_bot",
+      "mybot"
+     ],
+     "selected_cell_count": 1,
+     "selected_seed_count": 1,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0.19166666666666668,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 11.5
+     }
+    }
+   ],
+   "total_selected_cells": 16,
+   "total_held_loss_seeds": 12,
+   "worst_held_model_mean": -2.075,
+   "worst_held_seed_delta": -52.5
+  }
+ },
+ "strict_expanded": {
+  "models": [
+   "boss_real",
+   "gold_adaptive",
+   "gold_elite",
+   "mybot",
+   "printer_bot",
+   "sched_bot",
+   "script_boss",
+   "silver_boss"
+  ],
+  "full_information": {
+   "rule": {
+    "allowed_nonpositive": 0,
+    "floor": 0.0,
+    "minimum_mean": 0.0,
+    "choice": "maximize worst model delta, then mean delta, then prefer lower first-train quadratic talent cost, then canonical option name"
+   },
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "option_counts": {},
+   "overall_seed_balanced": {
+    "n": 60,
+    "mean": 0,
+    "median": 0.0,
+    "worst_decile_mean": 0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0,
+    "maximum": 0
+   },
+   "by_model": {
+    "boss_real": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "gold_adaptive": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "gold_elite": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "mybot": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "printer_bot": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "sched_bot": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "script_boss": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "silver_boss": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    }
+   },
+   "worst_model_mean": 0,
+   "selected_cells": []
+  },
+  "leave_one_model_out": {
+   "held_models": [
+    {
+     "held_model": "boss_real",
+     "visible_models": [
+      "gold_adaptive",
+      "gold_elite",
+      "mybot",
+      "printer_bot",
+      "sched_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "gold_adaptive",
+     "visible_models": [
+      "boss_real",
+      "gold_elite",
+      "mybot",
+      "printer_bot",
+      "sched_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "gold_elite",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "mybot",
+      "printer_bot",
+      "sched_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "mybot",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "gold_elite",
+      "printer_bot",
+      "sched_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "printer_bot",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "gold_elite",
+      "mybot",
+      "sched_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "sched_bot",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "gold_elite",
+      "mybot",
+      "printer_bot",
+      "script_boss",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "script_boss",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "gold_elite",
+      "mybot",
+      "printer_bot",
+      "sched_bot",
+      "silver_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    {
+     "held_model": "silver_boss",
+     "visible_models": [
+      "boss_real",
+      "gold_adaptive",
+      "gold_elite",
+      "mybot",
+      "printer_bot",
+      "sched_bot",
+      "script_boss"
+     ],
+     "selected_cell_count": 0,
+     "selected_seed_count": 0,
+     "held_model_seed_balanced": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    }
+   ],
+   "total_selected_cells": 0,
+   "total_held_loss_seeds": 0,
+   "worst_held_model_mean": 0,
+   "worst_held_seed_delta": 0
+  }
+ },
+ "relaxation_diagnostics": {
+  "one_veto": {
+   "models": [
+    "boss_real",
+    "gold_adaptive",
+    "gold_elite",
+    "mybot",
+    "printer_bot",
+    "sched_bot",
+    "script_boss",
+    "silver_boss"
+   ],
+   "full_information": {
+    "rule": {
+     "allowed_nonpositive": 1,
+     "floor": -10.0,
+     "minimum_mean": 10.0,
+     "choice": "maximize worst model delta, then mean delta, then prefer lower first-train quadratic talent cost, then canonical option name"
+    },
+    "selected_cell_count": 0,
+    "selected_seed_count": 0,
+    "option_counts": {},
+    "overall_seed_balanced": {
+     "n": 60,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 60,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 60,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_model_mean": 0,
+    "selected_cells": []
+   },
+   "leave_one_model_out": {
+    "held_models": [
+     {
+      "held_model": "boss_real",
+      "visible_models": [
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "gold_adaptive",
+      "visible_models": [
+       "boss_real",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "gold_elite",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "mybot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "printer_bot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "sched_bot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "script_boss",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "silver_boss",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     }
+    ],
+    "total_selected_cells": 0,
+    "total_held_loss_seeds": 0,
+    "worst_held_model_mean": 0,
+    "worst_held_seed_delta": 0
+   }
+  },
+  "two_veto": {
+   "models": [
+    "boss_real",
+    "gold_adaptive",
+    "gold_elite",
+    "mybot",
+    "printer_bot",
+    "sched_bot",
+    "script_boss",
+    "silver_boss"
+   ],
+   "full_information": {
+    "rule": {
+     "allowed_nonpositive": 2,
+     "floor": -30.0,
+     "minimum_mean": 10.0,
+     "choice": "maximize worst model delta, then mean delta, then prefer lower first-train quadratic talent cost, then canonical option name"
+    },
+    "selected_cell_count": 1,
+    "selected_seed_count": 1,
+    "option_counts": {
+     "max_bank_hp0": 1
+    },
+    "overall_seed_balanced": {
+     "n": 60,
+     "mean": 0.11770833333333333,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 1,
+     "ties": 59,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 7.0625
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 60,
+      "mean": -0.15833333333333333,
+      "median": 0.0,
+      "worst_decile_mean": -1.5833333333333333,
+      "wins": 0,
+      "ties": 59,
+      "losses": 1,
+      "minimum": -9.5,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 60,
+      "mean": 0.5833333333333334,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 35
+     },
+     "gold_elite": {
+      "n": 60,
+      "mean": 0.38333333333333336,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 23
+     },
+     "mybot": {
+      "n": 60,
+      "mean": 0.05,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 3
+     },
+     "printer_bot": {
+      "n": 60,
+      "mean": -0.2,
+      "median": 0.0,
+      "worst_decile_mean": -2,
+      "wins": 0,
+      "ties": 59,
+      "losses": 1,
+      "minimum": -12,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 60,
+      "mean": 0.05,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 3
+     },
+     "script_boss": {
+      "n": 60,
+      "mean": 0.041666666666666664,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 2.5
+     },
+     "silver_boss": {
+      "n": 60,
+      "mean": 0.19166666666666668,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 1,
+      "ties": 59,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 11.5
+     }
+    },
+    "worst_model_mean": -0.2,
+    "selected_cells": [
+     {
+      "seed": 29,
+      "seat": 0,
+      "option": "max_bank_hp0",
+      "first_train": "TRAIN 2 1 0 2",
+      "selection_worst_delta": -24,
+      "selection_mean_delta": 14.125,
+      "deltas": {
+       "gold_elite": 46,
+       "sched_bot": 6,
+       "mybot": 6,
+       "silver_boss": 23,
+       "boss_real": -19,
+       "script_boss": 5,
+       "printer_bot": -24,
+       "gold_adaptive": 70
+      }
+     }
+    ]
+   },
+   "leave_one_model_out": {
+    "held_models": [
+     {
+      "held_model": "boss_real",
+      "visible_models": [
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": -0.275,
+       "median": 0.0,
+       "worst_decile_mean": -2.75,
+       "wins": 0,
+       "ties": 58,
+       "losses": 2,
+       "minimum": -9.5,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "gold_adaptive",
+      "visible_models": [
+       "boss_real",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 60,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "gold_elite",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 1,
+      "selected_seed_count": 1,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": -0.35,
+       "median": 0.0,
+       "worst_decile_mean": -3.5,
+       "wins": 0,
+       "ties": 59,
+       "losses": 1,
+       "minimum": -21,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "mybot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "printer_bot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 4,
+      "selected_seed_count": 3,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": -1.2666666666666666,
+       "median": 0.0,
+       "worst_decile_mean": -13.166666666666666,
+       "wins": 1,
+       "ties": 57,
+       "losses": 2,
+       "minimum": -52.5,
+       "maximum": 3
+      }
+     },
+     {
+      "held_model": "printer_bot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "sched_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 1,
+      "selected_seed_count": 1,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": -0.2,
+       "median": 0.0,
+       "worst_decile_mean": -2,
+       "wins": 0,
+       "ties": 59,
+       "losses": 1,
+       "minimum": -12,
+       "maximum": 0
+      }
+     },
+     {
+      "held_model": "sched_bot",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "script_boss",
+       "silver_boss"
+      ],
+      "selected_cell_count": 1,
+      "selected_seed_count": 1,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0.05,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 1,
+       "ties": 59,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 3
+      }
+     },
+     {
+      "held_model": "script_boss",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "silver_boss"
+      ],
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": -0.20833333333333334,
+       "median": 0.0,
+       "worst_decile_mean": -2.5,
+       "wins": 1,
+       "ties": 58,
+       "losses": 1,
+       "minimum": -15,
+       "maximum": 2.5
+      }
+     },
+     {
+      "held_model": "silver_boss",
+      "visible_models": [
+       "boss_real",
+       "gold_adaptive",
+       "gold_elite",
+       "mybot",
+       "printer_bot",
+       "sched_bot",
+       "script_boss"
+      ],
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_model_seed_balanced": {
+       "n": 60,
+       "mean": 0.0,
+       "median": 0.0,
+       "worst_decile_mean": -1.9166666666666667,
+       "wins": 1,
+       "ties": 58,
+       "losses": 1,
+       "minimum": -11.5,
+       "maximum": 11.5
+      }
+     }
+    ],
+    "total_selected_cells": 13,
+    "total_held_loss_seeds": 8,
+    "worst_held_model_mean": -1.2666666666666666,
+    "worst_held_seed_delta": -52.5
+   }
+  }
+ },
+ "discovery_gate": {
+  "requirements": [
+   "strict expanded rule selects at least two seeds",
+   "leave-one-model-out selection is non-inert",
+   "worst held-model mean is nonnegative",
+   "worst held seed is at least -10"
+  ],
+  "passed": false
+ },
+ "interpretation_limit": "All option and rule inspection occurred on consumed discovery maps.  Failure prevents opening a holdout; success would only authorize a frozen validation run."
+}

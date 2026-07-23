@@ -1,0 +1,17 @@
+{
+  "schema": "troll-farm-d137a-task-sequence-best-stop-gate-q6-lock-v1",
+  "frozen_at": "2026-07-22-after-d136-interpretation-before-any-d137-fit",
+  "isolated_change": "replace independent root-sign BCE with task-sequence soft value plus one-best-stop learning",
+  "sha256": {
+    "cgauto/train_d137a_task_sequence_best_stop_gate_q6.py": "243d1a7ea4585139a8c02b9ab6ea95c7e32279e36ef83edb7438563b959c8c08",
+    "tests/test_train_d137a_task_sequence_best_stop_gate_q6.py": "6232af4b2e01c5c0b36a63ebc28548c5b6a8b0c500b6f098f571a91a18455e55",
+    "data/analysis/live-agent-6553250/d137a-task-sequence-best-stop-gate-q6-protocol-2026-07-22.md": "4a5cf5b233ed4dd9a5ab8b502bbe83c2a29deb3d235894b1a60638ff79dfccee",
+    "cgauto/train_d135a_winner_conditioned_action_gate_q6.py": "eb9469d4141c2ec991adf1e07f02254b2e6c5c8546dffbcad5371cfefd144d91",
+    "cgauto/analyze_d136a_d135_all_pair_transfer.py": "9973ae305e9c3dbf08ea6985e4525ee995fdb85cbe4d82c563b87a214222e1a1",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-lock.json": "6647730a52c5f111e66b8db533a1c4982fce13bc807fcdc50f4568493d5c6f00",
+    "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-lock.json": "ff379ce751d7e9cc1c9c39dbf23cd1631707b950c0bb9bee9d62b20618f95122",
+    "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-a.json": "23b7eccb342e0a3ba3319bfe1242404af495b5afe051a7e46c87d8ff5a196541",
+    "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-b.json": "23b7eccb342e0a3ba3319bfe1242404af495b5afe051a7e46c87d8ff5a196541",
+    "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-result.json": "20434c90c379dc63ad0eb12226c3d9adb60d40f35443f8653aa4197d8b31a17c"
+  }
+}

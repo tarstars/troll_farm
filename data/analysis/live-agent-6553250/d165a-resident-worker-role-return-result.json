@@ -1,0 +1,337 @@
+{
+  "causal_value": {
+    "active_subgroup_descriptive": {
+      "best_margin_delta": null,
+      "family_mean_margin_delta": {},
+      "map_clustered_normal_95pct_interval": null,
+      "mean_margin_delta": 0.0,
+      "mean_opponent_score_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "median_margin_delta": null,
+      "p10_margin_delta": null,
+      "seat_mean_margin_delta": {},
+      "strict_improvements": 0,
+      "strict_regressions": 0,
+      "tasks": 0,
+      "ties": 0,
+      "worst_margin_delta": null
+    },
+    "completed_subgroup_descriptive": {
+      "best_margin_delta": null,
+      "family_mean_margin_delta": {},
+      "map_clustered_normal_95pct_interval": null,
+      "mean_margin_delta": 0.0,
+      "mean_opponent_score_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "median_margin_delta": null,
+      "p10_margin_delta": null,
+      "seat_mean_margin_delta": {},
+      "strict_improvements": 0,
+      "strict_regressions": 0,
+      "tasks": 0,
+      "ties": 0,
+      "worst_margin_delta": null
+    },
+    "intention_to_treat_descriptive": {
+      "best_margin_delta": 0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 0.0,
+        "silver_boss": 0.0
+      },
+      "map_clustered_normal_95pct_interval": [
+        0.0,
+        0.0
+      ],
+      "mean_margin_delta": 0.0,
+      "mean_opponent_score_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "median_margin_delta": 0.0,
+      "p10_margin_delta": 0.0,
+      "seat_mean_margin_delta": {
+        "0": 0.0,
+        "1": 0.0
+      },
+      "strict_improvements": 0,
+      "strict_regressions": 0,
+      "tasks": 1024,
+      "ties": 1024,
+      "worst_margin_delta": 0
+    },
+    "interpretable": false,
+    "not_interpreted_reason": "the frozen mechanism-support gate fails before any intervention",
+    "resident_own_crop_creation_rate": 1.0,
+    "resident_tail": {
+      "catastrophe_count": 22,
+      "negative_margin_mass": 5001
+    },
+    "treatment_own_crop_creation_rate": 1.0,
+    "treatment_tail": {
+      "catastrophe_count": 22,
+      "negative_margin_mass": 5001
+    }
+  },
+  "d161_parity_mismatches": [],
+  "decision": {
+    "arena_or_submission": false,
+    "construct_candidate": false,
+    "next_experiment": "freeze a distinct producer-job successor audit: use the observable historical producer-to-suppressor transition, but define return as one current production affordance rather than a vanished cell; do not tune D165 or open new maps",
+    "reserved_maps_opened": false,
+    "verdict": "close_exact_live_target_return_grammar_at_support_gate",
+    "yt": false
+  },
+  "input_hashes": {
+    "build_script": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "d161_resident_panel": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "jobs1": "6d316bfed80c897af1bab538042789735221c687c9aa2c72a60ab43856075b7d",
+    "jobs20": "6d316bfed80c897af1bab538042789735221c687c9aa2c72a60ab43856075b7d",
+    "lock": "1ddfe62b97ea12915faba26ff64e7700f3e444bb59102ef3ebfd9437a1969561",
+    "protocol": "73bad4a268d3b2b8097fd5ba07b86939488b2671d5cfbee57bf4c508c584b7d9",
+    "runner": "b0b7e784b0b904b504a8737cae661e5ec825b1eb460a02bc5e121a4720b7c8e6"
+  },
+  "integrity": {
+    "active_prefixes_exact": true,
+    "all_games_done": true,
+    "catalog_and_task_matrix_exact": true,
+    "controller_grammar_pure": true,
+    "crop_ownership_exact": true,
+    "episode_bound_exact": true,
+    "inactive_treatments_exact": true,
+    "one_and_twenty_worker_bytes_identical": true,
+    "resident_called_every_turn": true,
+    "resident_reproduces_d161": true,
+    "reward_identity_exact": true,
+    "row_count_exact": true,
+    "schema_exact": true,
+    "unique_rows_exact": true,
+    "workforce_pairs_exact": true,
+    "zero_failure_telemetry": true
+  },
+  "integrity_pass": true,
+  "lock": {
+    "bulk_root": "artifacts/experiments/d165a-resident-worker-role-return",
+    "expected_rows": 2048,
+    "files": {
+      "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+      "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-result.json": "6ed98a7c7547b3b1c27b2b96bf975b07109880198f9b38fb5725bb626af42e27",
+      "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-protocol-2026-07-23.md": "73bad4a268d3b2b8097fd5ba07b86939488b2671d5cfbee57bf4c508c584b7d9",
+      "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+      "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+      "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+      "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+      "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+    },
+    "frozen_at_utc": "2026-07-23T08:15:49Z",
+    "map_start": 9844136,
+    "maps": 64,
+    "opponent_families": 8,
+    "policies": [
+      "resident",
+      "producer_suppressor_return_h016"
+    ],
+    "prohibitions": {
+      "candidate_generation": true,
+      "fresh_maps": true,
+      "outcome_dependent_selection": true,
+      "platform": true,
+      "reserved_maps": true,
+      "resident_mutation": true,
+      "submission": true,
+      "yt": true
+    },
+    "question": "causal value of one same-worker producer-to-suppressor-to-remembered-producer return",
+    "reserved_maps": [
+      9844200,
+      9844215
+    ],
+    "return_horizon": 16,
+    "schema": "troll-farm-d165a-resident-worker-role-return-lock-v1",
+    "seats": 2,
+    "threads": [
+      1,
+      20
+    ]
+  },
+  "mechanism": {
+    "activated_tasks": 0,
+    "activation_families": [],
+    "activation_rate": 0.0,
+    "activation_seats": [],
+    "completed_tasks": 0,
+    "completion_rate": 0.0,
+    "gates": {
+      "at_least_32_activations": false,
+      "at_least_90pct_legal_generated_commands": false,
+      "at_least_six_families": false,
+      "both_seats": false,
+      "completion_rate_at_least_60pct": false,
+      "same_worker_and_target_exact": true,
+      "zero_generated_command_failures": true
+    },
+    "generated_commands": 0,
+    "pass": false
+  },
+  "protocol": "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-protocol-2026-07-23.md",
+  "runs": {
+    "jobs1": {
+      "path": "artifacts/experiments/d165a-resident-worker-role-return/d165a-resident-worker-role-return-jobs1-9844136-9844199.tsv",
+      "rows": 2048,
+      "wall_seconds": 239.59
+    },
+    "jobs20": {
+      "path": "artifacts/experiments/d165a-resident-worker-role-return/d165a-resident-worker-role-return-jobs20-9844136-9844199.tsv",
+      "rows": 2048,
+      "wall_seconds": 24.34
+    },
+    "speedup": 9.843467543138866
+  },
+  "schema": "troll-farm-d165a-resident-worker-role-return-v1",
+  "support_diagnosis": {
+    "interpretation": "The local panel exercises production and suppression broadly, and 237 tasks contain opponent-crop suppression by a worker that produced earlier. None retains the exact remembered own crop at suppression entry, so D165's stale-cell return precondition has zero support.",
+    "opponent_crop_chop": {
+      "events": 44049,
+      "events_by_family": {
+        "compact_gold": 3932,
+        "gold_adaptive": 2605,
+        "legend_balanced": 12210,
+        "mybot": 6697,
+        "norx_native_three": 13877,
+        "resident": 757,
+        "script_boss": 2659,
+        "silver_boss": 1312
+      },
+      "events_by_seat": {
+        "0": 21997,
+        "1": 22052
+      },
+      "task_rate": 0.91015625,
+      "tasks": 932,
+      "tasks_by_family": {
+        "compact_gold": 128,
+        "gold_adaptive": 128,
+        "legend_balanced": 128,
+        "mybot": 128,
+        "norx_native_three": 128,
+        "resident": 93,
+        "script_boss": 116,
+        "silver_boss": 83
+      },
+      "tasks_by_seat": {
+        "0": 471,
+        "1": 461
+      }
+    },
+    "opponent_crop_chop_by_historical_producer": {
+      "events": 1976,
+      "events_by_family": {
+        "compact_gold": 121,
+        "gold_adaptive": 27,
+        "legend_balanced": 67,
+        "mybot": 695,
+        "norx_native_three": 188,
+        "resident": 616,
+        "script_boss": 0,
+        "silver_boss": 262
+      },
+      "events_by_seat": {
+        "0": 961,
+        "1": 1015
+      },
+      "task_rate": 0.2314453125,
+      "tasks": 237,
+      "tasks_by_family": {
+        "compact_gold": 21,
+        "gold_adaptive": 11,
+        "legend_balanced": 16,
+        "mybot": 55,
+        "norx_native_three": 17,
+        "resident": 87,
+        "script_boss": 0,
+        "silver_boss": 30
+      },
+      "tasks_by_seat": {
+        "0": 124,
+        "1": 113
+      }
+    },
+    "opponent_crop_chop_with_post_step_live_target": {
+      "events": 0,
+      "events_by_family": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "events_by_seat": {
+        "0": 0,
+        "1": 0
+      },
+      "task_rate": 0.0,
+      "tasks": 0,
+      "tasks_by_family": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "tasks_by_seat": {
+        "0": 0,
+        "1": 0
+      }
+    },
+    "opponent_crop_chop_with_remembered_live_target": {
+      "events": 0,
+      "events_by_family": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "events_by_seat": {
+        "0": 0,
+        "1": 0
+      },
+      "task_rate": 0.0,
+      "tasks": 0,
+      "tasks_by_family": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0,
+        "script_boss": 0,
+        "silver_boss": 0
+      },
+      "tasks_by_seat": {
+        "0": 0,
+        "1": 0
+      }
+    },
+    "production": {
+      "events": 23440,
+      "successful_harvests": 11077,
+      "successful_plants": 12363,
+      "task_rate": 1.0,
+      "tasks": 1024
+    }
+  }
+}

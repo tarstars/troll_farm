@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "games": 32,
+  "seeds": [0, 16],
+  "seats_per_seed": 2,
+  "forced_turns_per_game": 300,
+  "total_lines": 9600,
+  "minimum_lines_per_game": 300,
+  "maximum_own_workers": 2,
+  "stderr_failures": 0,
+  "syntax_failures": 0,
+  "source_sha256": "078929c1649b48225fd281656755bc7e21e79bb096177c6645b5166044902aa8",
+  "protocol_sha256": "428c2f00a27214d01be73a2c8486f71b4e87acfb92c4c5691238875eb45d288d"
+}

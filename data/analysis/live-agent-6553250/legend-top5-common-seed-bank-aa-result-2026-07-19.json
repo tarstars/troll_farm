@@ -1,0 +1,432 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-19T04:26:18.978136+00:00",
+ "protocol": "legend-top5-common-seed-bank-aa-protocol-2026-07-19.md",
+ "bank": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/legend-top5-common-seed-bank-v1.json",
+ "bank_sha256": "47f4bb7e2c993623bb19bd9e58603a07898df9f7f7429d08686980dd4d890dc6",
+ "panel": "/home/tarstars/prj/troll_farm/data/panels/legend-top5-common-seed-bank-v1-aa-20260719.json",
+ "integrity": {
+  "panel_complete": true,
+  "ten_rows": true,
+  "bank_hash_exact": true,
+  "bank_blocks_exact": true,
+  "identical_exact_resident_sources": true,
+  "unique_game_ids": true,
+  "zero_diagnostics": true
+ },
+ "per_block": [
+  {
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "seed": 9213838685008738669,
+   "game_ids": [
+    896299239,
+    896299244
+   ],
+   "scores": [
+    148.0,
+    92.0
+   ],
+   "wood": [
+    37,
+    23
+   ],
+   "turns": 194,
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     1
+    ],
+    "training_turns": [
+     [
+      22
+     ],
+     [
+      23
+     ]
+    ],
+    "max": [
+     2,
+     2
+    ],
+    "final": [
+     2,
+     2
+    ]
+   },
+   "turn_one_bytes": [
+    491,
+    491
+   ],
+   "turn_one_sha256": [
+    "9797204d5d5db3bca8a0aa61299b5c15ddca5239d9a62018e1a1ca15ac7da445",
+    "9797204d5d5db3bca8a0aa61299b5c15ddca5239d9a62018e1a1ca15ac7da445"
+   ],
+   "stdout_frames": [
+    [
+     194,
+     194
+    ],
+    [
+     194,
+     194
+    ]
+   ],
+   "stdout_sha256": [
+    [
+     "8a0ad953725654f8a89343ae22fd5ab96e9cb9fc747f4b82c94e88a4cbc878e8",
+     "91ac0fe15fb6d30b2743408e559eb1b07938969a535be7cf8c1b9b5c6720eab2"
+    ],
+    [
+     "8a0ad953725654f8a89343ae22fd5ab96e9cb9fc747f4b82c94e88a4cbc878e8",
+     "91ac0fe15fb6d30b2743408e559eb1b07938969a535be7cf8c1b9b5c6720eab2"
+    ]
+   ],
+   "gates": {
+    "row_identity_exact": true,
+    "exact_options_echo": true,
+    "turn_one_identical": true,
+    "scores_identical": true,
+    "final_inventories_identical": true,
+    "turn_counts_identical": true,
+    "workforce_histories_identical": true,
+    "player_0_stdout_identical": true,
+    "player_1_stdout_identical": true
+   },
+   "pass": true
+  },
+  {
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "seed": 28014042445828892,
+   "game_ids": [
+    896299247,
+    896299254
+   ],
+   "scores": [
+    107.0,
+    258.0
+   ],
+   "wood": [
+    26,
+    64
+   ],
+   "turns": 300,
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     3
+    ],
+    "training_turns": [
+     [
+      1
+     ],
+     [
+      1,
+      100,
+      174
+     ]
+    ],
+    "max": [
+     2,
+     4
+    ],
+    "final": [
+     2,
+     4
+    ]
+   },
+   "turn_one_bytes": [
+    494,
+    494
+   ],
+   "turn_one_sha256": [
+    "d1bcb785ee143a80564b0fd60c7ec676c52963182aada353f49cc85a6f6766bf",
+    "d1bcb785ee143a80564b0fd60c7ec676c52963182aada353f49cc85a6f6766bf"
+   ],
+   "stdout_frames": [
+    [
+     300,
+     300
+    ],
+    [
+     300,
+     300
+    ]
+   ],
+   "stdout_sha256": [
+    [
+     "2bee20b5c3fb90f26801a752b71bd87cc07b16c4d48d6bc97bf298eb11afdb84",
+     "c5fcc630f1eb84436dc24a1f854035c65c95c0ee4db0988b0c26331ca9e924d4"
+    ],
+    [
+     "2bee20b5c3fb90f26801a752b71bd87cc07b16c4d48d6bc97bf298eb11afdb84",
+     "57fc146ef6cd7fd305cf4356cf6aea7100756e2df675576270ab482f84ab26fb"
+    ]
+   ],
+   "gates": {
+    "row_identity_exact": true,
+    "exact_options_echo": true,
+    "turn_one_identical": true,
+    "scores_identical": true,
+    "final_inventories_identical": true,
+    "turn_counts_identical": true,
+    "workforce_histories_identical": true,
+    "player_0_stdout_identical": true,
+    "player_1_stdout_identical": false
+   },
+   "pass": false
+  },
+  {
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "seed": 3002842037145134940,
+   "game_ids": [
+    896299258,
+    896299260
+   ],
+   "scores": [
+    124.0,
+    232.0
+   ],
+   "wood": [
+    31,
+    38
+   ],
+   "turns": 300,
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     1
+    ],
+    "training_turns": [
+     [
+      14
+     ],
+     [
+      58
+     ]
+    ],
+    "max": [
+     2,
+     2
+    ],
+    "final": [
+     2,
+     2
+    ]
+   },
+   "turn_one_bytes": [
+    726,
+    726
+   ],
+   "turn_one_sha256": [
+    "b8d0529d39a3d0526cbb9431157400d3efe9a52ad5a29e08bc7d5bf8ada097bc",
+    "b8d0529d39a3d0526cbb9431157400d3efe9a52ad5a29e08bc7d5bf8ada097bc"
+   ],
+   "stdout_frames": [
+    [
+     300,
+     300
+    ],
+    [
+     300,
+     300
+    ]
+   ],
+   "stdout_sha256": [
+    [
+     "f362672133ce7bbf38f3fcf2e81275142a9600ba5b1f2fc7af1317703650b511",
+     "d1a2506fd0aaf353685cf41b7bb61faf73373815e28556d43c058d44d33b9c90"
+    ],
+    [
+     "620b47613d7e42cdd9a09b730b64aab82a396ce8674567f5e334ff8b11d74c74",
+     "b268ec21b00c8d63229ce8147777cb61f70bbba6dea9444e1449f2aaccb1c953"
+    ]
+   ],
+   "gates": {
+    "row_identity_exact": true,
+    "exact_options_echo": true,
+    "turn_one_identical": true,
+    "scores_identical": false,
+    "final_inventories_identical": false,
+    "turn_counts_identical": true,
+    "workforce_histories_identical": false,
+    "player_0_stdout_identical": false,
+    "player_1_stdout_identical": false
+   },
+   "pass": false
+  },
+  {
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "seed": 995889697906457104,
+   "game_ids": [
+    896299263,
+    896299265
+   ],
+   "scores": [
+    225.0,
+    249.0
+   ],
+   "wood": [
+    53,
+    60
+   ],
+   "turns": 300,
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     1
+    ],
+    "training_turns": [
+     [
+      1
+     ],
+     [
+      24
+     ]
+    ],
+    "max": [
+     2,
+     2
+    ],
+    "final": [
+     2,
+     2
+    ]
+   },
+   "turn_one_bytes": [
+    610,
+    610
+   ],
+   "turn_one_sha256": [
+    "eb329658d012b78f8581115aca3424c973dd5d041629ce4afa7a42b456843257",
+    "eb329658d012b78f8581115aca3424c973dd5d041629ce4afa7a42b456843257"
+   ],
+   "stdout_frames": [
+    [
+     300,
+     300
+    ],
+    [
+     300,
+     300
+    ]
+   ],
+   "stdout_sha256": [
+    [
+     "dd64bb53af9defc797f6ac605fab697d733cbd3a0e6f34a1528c10a1985577b3",
+     "b667983729fa3bff64637279f03c154040715898bf7e141e476a4e8d94e22bc4"
+    ],
+    [
+     "dd64bb53af9defc797f6ac605fab697d733cbd3a0e6f34a1528c10a1985577b3",
+     "b667983729fa3bff64637279f03c154040715898bf7e141e476a4e8d94e22bc4"
+    ]
+   ],
+   "gates": {
+    "row_identity_exact": true,
+    "exact_options_echo": true,
+    "turn_one_identical": true,
+    "scores_identical": true,
+    "final_inventories_identical": true,
+    "turn_counts_identical": true,
+    "workforce_histories_identical": true,
+    "player_0_stdout_identical": true,
+    "player_1_stdout_identical": true
+   },
+   "pass": true
+  },
+  {
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "seed": -1363387433195008244,
+   "game_ids": [
+    896299268,
+    896299271
+   ],
+   "scores": [
+    165.0,
+    193.0
+   ],
+   "wood": [
+    41,
+    46
+   ],
+   "turns": 300,
+   "workforce": {
+    "source": "referee_summary",
+    "snapshots": 0,
+    "training_events": [
+     1,
+     1
+    ],
+    "training_turns": [
+     [
+      35
+     ],
+     [
+      16
+     ]
+    ],
+    "max": [
+     2,
+     2
+    ],
+    "final": [
+     2,
+     2
+    ]
+   },
+   "turn_one_bytes": [
+    418,
+    418
+   ],
+   "turn_one_sha256": [
+    "505f40f4b9d826a2f8bf37ddf7039c302d00fe7fea4afc4ca0c70fd6799d34d5",
+    "505f40f4b9d826a2f8bf37ddf7039c302d00fe7fea4afc4ca0c70fd6799d34d5"
+   ],
+   "stdout_frames": [
+    [
+     300,
+     300
+    ],
+    [
+     300,
+     300
+    ]
+   ],
+   "stdout_sha256": [
+    [
+     "aea8fc2a6ecd0463207a25f22ed84192b697fd653c7211b1e1a5e178e12174a6",
+     "23a812abba64c340a249474ee161c2a302767c7db530f154498f340225b574e9"
+    ],
+    [
+     "aea8fc2a6ecd0463207a25f22ed84192b697fd653c7211b1e1a5e178e12174a6",
+     "23a812abba64c340a249474ee161c2a302767c7db530f154498f340225b574e9"
+    ]
+   ],
+   "gates": {
+    "row_identity_exact": true,
+    "exact_options_echo": true,
+    "turn_one_identical": true,
+    "scores_identical": true,
+    "final_inventories_identical": true,
+    "turn_counts_identical": true,
+    "workforce_histories_identical": true,
+    "player_0_stdout_identical": true,
+    "player_1_stdout_identical": true
+   },
+   "pass": true
+  }
+ ],
+ "bank_validated": false
+}

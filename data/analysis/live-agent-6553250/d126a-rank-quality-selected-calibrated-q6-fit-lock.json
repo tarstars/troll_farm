@@ -1,0 +1,39 @@
+{
+  "calibration": {
+    "active_tasks": 215,
+    "target_activity": 0.84,
+    "threshold": "unchanged-d125-task-maximum-logit-quantile"
+  },
+  "frozen_at": "2026-07-22-before-d126-rank-quality-selection",
+  "fresh_validation_if_fit_repeats": {
+    "maps": 16,
+    "seeds": "9843780--9843795",
+    "tasks": 256,
+    "untouched": true
+  },
+  "isolated_change": "eligible-seed-selection-by-minimum-proposal-regret",
+  "schema": "troll-farm-d126a-rank-quality-selected-calibrated-q6-fit-lock-v1",
+  "selection_key": [
+    "minimum-train-mean-proposal-regret",
+    "maximum-train-within-ten-rate",
+    "minimum-fixed-seed"
+  ],
+  "sha256": {
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "cgauto/train_d123a_task_balanced_soft_value_q6.py": "703413ef9af5b1b011c40ec029408221c7e964a68b7f28945d70f59991665145",
+    "cgauto/train_d125a_fit_activity_calibrated_q6.py": "8434e3321550f413bc45c150e492930af158f64f0bf06536041109a81bb76633",
+    "cgauto/train_d126a_rank_quality_selected_calibrated_q6.py": "4e477e6e220c00cad2153ebfaef34c6c9d48e4dc4262a328a2768d70607cfdbf",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d125a-fit-activity-calibrated-q6-fit-result.json": "515a2ed60194627bd28faff06e611a77b04c241f3e43f19d181a01d5a0d34b68",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-protocol-2026-07-22.md": "d23c7d004b6652e88e40d3822c2e99c2ef664709f81535ec183ac11c01dd7c12",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "tests/test_train_d126a_rank_quality_selected_calibrated_q6.py": "221f147ee38cd572a29a7d3e5f2c69086ae2d4114215fb763063a744523d3dc0",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

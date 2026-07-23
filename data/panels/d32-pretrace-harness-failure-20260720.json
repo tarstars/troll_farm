@@ -1,0 +1,92 @@
+{
+ "schema": 1,
+ "started_at": "2026-07-20T20:05:39.010884+00:00",
+ "completed_at": "2026-07-20T20:07:13+00:00",
+ "status": "harness-failed-before-row-persistence",
+ "requested_game_options": "",
+ "seed_bank": {
+  "path": "data/analysis/live-agent-6553250/d32-deterministic-field-option-bank.json",
+  "sha256": "58260acf1327c3b57c2de36fd3a7efc57480dda47bda1fda67be086f5e7eab2d",
+  "blocks": [
+   {
+    "opponent": "delineate",
+    "opponent_agent": 6479768,
+    "seed": 9213838685008738669
+   },
+   {
+    "opponent": "escdemon",
+    "opponent_agent": 6483545,
+    "seed": 995889697906457104
+   },
+   {
+    "opponent": "laconic",
+    "opponent_agent": 6482055,
+    "seed": -1363387433195008244
+   }
+  ]
+ },
+ "sources": {
+  "baseline": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+   "bytes": 62725,
+   "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "candidate": {
+   "path": "cgauto/submissions/diagnostic-agent6553250-d32-forced-turn75-farm.min.rs",
+   "bytes": 96426,
+   "sha256": "5138066175177a9b198c2c3f51deeef30d13d6207bee316227fae607662a6f82"
+  }
+ },
+ "jobs": [
+  {
+   "block": 0,
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "seed": 9213838685008738669,
+   "bot": "baseline"
+  },
+  {
+   "block": 0,
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "seed": 9213838685008738669,
+   "bot": "candidate"
+  },
+  {
+   "block": 1,
+   "repetition": 0,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "seed": 995889697906457104,
+   "bot": "baseline"
+  },
+  {
+   "block": 1,
+   "repetition": 0,
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "seed": 995889697906457104,
+   "bot": "candidate"
+  },
+  {
+   "block": 2,
+   "repetition": 0,
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "seed": -1363387433195008244,
+   "bot": "baseline"
+  },
+  {
+   "block": 2,
+   "repetition": 0,
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "seed": -1363387433195008244,
+   "bot": "candidate"
+  }
+ ],
+ "rows": [],
+ "stop_reason": "ModuleNotFoundError in local trace_evidence import after the first baseline TestSession response returned; no game id, score, stdout, map, or candidate result was persisted or inspected"
+}

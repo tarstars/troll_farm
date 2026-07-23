@@ -1,0 +1,1630 @@
+{
+  "decision": "close source investment while only two workers exist; freeze a labor-preserving representation from the pending-bill action/progress evidence",
+  "decision_evidence": {
+    "capitalization_share_decreases_in_v6_and_v7": true,
+    "net_progress_per_worker_turn_decreases_in_v6_and_v7": true,
+    "source_and_travel_share_increases_in_v6_and_v7": true
+  },
+  "inputs": {
+    "analyzer_sha256": "6ff54c06a4ade44e69787f9696891f050c0742a4e4e6fefef6743a68f8c9d1dc",
+    "d57_result_sha256": "5f3ad4745d2012d40289733e007c0a909a29c75920122a38ddc0ede152959eda",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "runner_sha256": "bbfd6a0732cf2d531d359247f33b41b508c9d37b71e46a7531a4f301aa45519d",
+    "strategy_sha256": "394548bc6000826d1d2cdcc12cda1c696ad1c92ca15c525626d872e9c5448309",
+    "v5_diagnostic_sha256": "a2f44c821b94382e5ba67f086977153903f9efd98b973e21271df3468b98c0f8",
+    "v5_old_sha256": "66f99af783e855fc64e48df3990bf04469fe1dea07798ede6b95a4fea17a1263",
+    "v6_diagnostic_sha256": "771638f409639d74294d0ef7812f328c694ef2a2c0667fbbafaaec526bd8bbdd",
+    "v6_old_sha256": "90ac87e0f5140192bafb346d161a116d84821fa317f3b6d30880acc9b443a912",
+    "v7_diagnostic_sha256": "bdd98ea34abd2208fb5c03c6c4f81dd3c1d8c89f0b55410ecc674e28602a3128",
+    "v7_old_sha256": "58382e713123931f207d37c539bd96a7a7a9e53f1243f577ea88968ad14f7704"
+  },
+  "integrity": {
+    "v5": {
+      "action_sum_mismatches": 0,
+      "cells": 1280,
+      "common_field_mismatches": 0,
+      "identities": 1280,
+      "minimum_vector_order_mismatches": 0,
+      "pass": true,
+      "progress_partition_mismatches": 0,
+      "train_partition_mismatches": 0,
+      "worker_two_mismatches": 0
+    },
+    "v6": {
+      "action_sum_mismatches": 0,
+      "cells": 1280,
+      "common_field_mismatches": 0,
+      "identities": 1280,
+      "minimum_vector_order_mismatches": 0,
+      "pass": true,
+      "progress_partition_mismatches": 0,
+      "train_partition_mismatches": 0,
+      "worker_two_mismatches": 0
+    },
+    "v7": {
+      "action_sum_mismatches": 0,
+      "cells": 1280,
+      "common_field_mismatches": 0,
+      "identities": 1280,
+      "minimum_vector_order_mismatches": 0,
+      "pass": true,
+      "progress_partition_mismatches": 0,
+      "train_partition_mismatches": 0,
+      "worker_two_mismatches": 0
+    }
+  },
+  "paired_deltas_from_v5": {
+    "v6": {
+      "pending3_action_chop": {
+        "mean_delta": 0.0265625,
+        "total_delta": 34
+      },
+      "pending3_action_drop": {
+        "mean_delta": 1.328125,
+        "total_delta": 1700
+      },
+      "pending3_action_harvest": {
+        "mean_delta": -3,
+        "total_delta": -3840
+      },
+      "pending3_action_idle": {
+        "mean_delta": 0.003125,
+        "total_delta": 4
+      },
+      "pending3_action_mine": {
+        "mean_delta": 0.028125,
+        "total_delta": 36
+      },
+      "pending3_action_move": {
+        "mean_delta": 17.5953125,
+        "total_delta": 22522
+      },
+      "pending3_action_pick": {
+        "mean_delta": 5.990625,
+        "total_delta": 7668
+      },
+      "pending3_action_plant": {
+        "mean_delta": 1.765625,
+        "total_delta": 2260
+      },
+      "pending3_increased_units": {
+        "mean_delta": 2.375,
+        "total_delta": 3040
+      },
+      "pending3_reduced_units": {
+        "mean_delta": 2.246875,
+        "total_delta": 2876
+      },
+      "pending3_turns": {
+        "mean_delta": 11.86875,
+        "total_delta": 15192
+      },
+      "pending3_worker_turns": {
+        "mean_delta": 23.7375,
+        "total_delta": 30384
+      }
+    },
+    "v7": {
+      "pending3_action_chop": {
+        "mean_delta": -0.0859375,
+        "total_delta": -110
+      },
+      "pending3_action_drop": {
+        "mean_delta": -0.990625,
+        "total_delta": -1268
+      },
+      "pending3_action_harvest": {
+        "mean_delta": -5.4703125,
+        "total_delta": -7002
+      },
+      "pending3_action_idle": {
+        "mean_delta": -0.021875,
+        "total_delta": -28
+      },
+      "pending3_action_mine": {
+        "mean_delta": 0.371875,
+        "total_delta": 476
+      },
+      "pending3_action_move": {
+        "mean_delta": 15.834375,
+        "total_delta": 20268
+      },
+      "pending3_action_pick": {
+        "mean_delta": 4.2875,
+        "total_delta": 5488
+      },
+      "pending3_action_plant": {
+        "mean_delta": -0.0125,
+        "total_delta": -16
+      },
+      "pending3_increased_units": {
+        "mean_delta": 2.64375,
+        "total_delta": 3384
+      },
+      "pending3_reduced_units": {
+        "mean_delta": 1.80625,
+        "total_delta": 2312
+      },
+      "pending3_turns": {
+        "mean_delta": 6.95625,
+        "total_delta": 8904
+      },
+      "pending3_worker_turns": {
+        "mean_delta": 13.9125,
+        "total_delta": 17808
+      }
+    }
+  },
+  "pass": true,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d58a-pending-bill-labor-progress-diagnostic-protocol-2026-07-21.md",
+  "protocol_sha256": "4e66064ecbb2d97c93ecb179fd3b9283b0c252417443cb4f1ec62b592e7ee99b",
+  "schema": 1,
+  "scope": "pending worker-three bill labor and exact stock progress only on consumed maps; all score, support, distance, opponent, candidate-value, and platform outcomes ignored",
+  "summaries": {
+    "v5": {
+      "all": {
+        "actions": {
+          "chop": {
+            "count": 154,
+            "share": 0.00034375613850247324
+          },
+          "drop": {
+            "count": 65292,
+            "share": 0.14574367399417848
+          },
+          "harvest": {
+            "count": 80666,
+            "share": 0.18006125109376953
+          },
+          "idle": {
+            "count": 28,
+            "share": 6.250111609135878e-05
+          },
+          "mine": {
+            "count": 1948,
+            "share": 0.004348291933784532
+          },
+          "move": {
+            "count": 253378,
+            "share": 0.5655859926070108
+          },
+          "pick": {
+            "count": 12938,
+            "share": 0.02887997999964285
+          },
+          "plant": {
+            "count": 33588,
+            "share": 0.07497455311701995
+          }
+        },
+        "capitalization_share": 0.3301532170217325,
+        "cells": 1280,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.121875,
+            "initial_to_last_mean": 0.121875,
+            "initial_to_minimum_mean": 0.121875,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 1.90625,
+            "initial_to_last_mean": 1.51875,
+            "initial_to_minimum_mean": 1.51875,
+            "last_mean": 0.3875,
+            "minimum_mean": 0.3875
+          },
+          "lemon": {
+            "initial_mean": 3.1875,
+            "initial_to_last_mean": 1.165625,
+            "initial_to_minimum_mean": 1.9625,
+            "last_mean": 2.021875,
+            "minimum_mean": 1.225
+          },
+          "plum": {
+            "initial_mean": 0.8125,
+            "initial_to_last_mean": 0.159375,
+            "initial_to_minimum_mean": 0.48125,
+            "last_mean": 0.653125,
+            "minimum_mean": 0.33125
+          }
+        },
+        "pending_turns": {
+          "mean": 174.996875,
+          "median": 214.0,
+          "total": 223996
+        },
+        "pending_worker_turns": 447992,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 150,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 60424,
+            "progress_rate": 0.01085661326625182,
+            "progress_turns": 656,
+            "regress_rate": 0.004236727128293393,
+            "regress_turns": 256
+          },
+          "harvest": {
+            "observed_turns": 73586,
+            "progress_rate": 0.019405865246106595,
+            "progress_turns": 1428,
+            "regress_rate": 0.00413122061261653,
+            "regress_turns": 304
+          },
+          "idle": {
+            "observed_turns": 28,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 1948,
+            "progress_rate": 0.9876796714579056,
+            "progress_turns": 1924,
+            "regress_rate": 0.01026694045174538,
+            "regress_turns": 20
+          },
+          "move": {
+            "observed_turns": 177522,
+            "progress_rate": 0.017485156769301832,
+            "progress_turns": 3104,
+            "regress_rate": 0.004461418866394024,
+            "regress_turns": 792
+          },
+          "pick": {
+            "observed_turns": 12316,
+            "progress_rate": 0.03670022734654108,
+            "progress_turns": 452,
+            "regress_rate": 0.003897369275738876,
+            "regress_turns": 48
+          },
+          "plant": {
+            "observed_turns": 30192,
+            "progress_rate": 0.02053524112347642,
+            "progress_turns": 620,
+            "regress_rate": 0.003842077371489136,
+            "regress_turns": 116
+          }
+        },
+        "progress": {
+          "decrease_turns": 4512,
+          "equal_turns": 218208,
+          "increase_turns": 952,
+          "increased_units": 1972,
+          "net_units": 3796,
+          "net_units_per_worker_turn": 0.00847336559581421,
+          "noncompletion_turns": 223672,
+          "reduced_units": 5768
+        },
+        "reached_worker_three": 324,
+        "source_and_travel_share": 0.6694405257236736,
+        "species": {
+          "apple": {
+            "harvested": 36244,
+            "successful_plants": 14447
+          },
+          "banana": {
+            "harvested": 60548,
+            "successful_plants": 34364
+          },
+          "lemon": {
+            "harvested": 12528,
+            "successful_plants": 2991
+          },
+          "plum": {
+            "harvested": 16436,
+            "successful_plants": 5865
+          }
+        }
+      },
+      "blocked_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 104,
+            "share": 0.0002800758359186487
+          },
+          "drop": {
+            "count": 56688,
+            "share": 0.15266287487073424
+          },
+          "harvest": {
+            "count": 70512,
+            "share": 0.18989141675284385
+          },
+          "idle": {
+            "count": 28,
+            "share": 7.54050327473285e-05
+          },
+          "mine": {
+            "count": 1296,
+            "share": 0.0034901758014477765
+          },
+          "move": {
+            "count": 205240,
+            "share": 0.552718890037918
+          },
+          "pick": {
+            "count": 9712,
+            "share": 0.02615477421578766
+          },
+          "plant": {
+            "count": 27748,
+            "share": 0.07472638745260254
+          }
+        },
+        "capitalization_share": 0.34604446742502587,
+        "cells": 732,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.09289617486338798,
+            "initial_to_last_mean": 0.09289617486338798,
+            "initial_to_minimum_mean": 0.09289617486338798,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 2.448087431693989,
+            "initial_to_last_mean": 1.7704918032786885,
+            "initial_to_minimum_mean": 1.7704918032786885,
+            "last_mean": 0.6775956284153005,
+            "minimum_mean": 0.6775956284153005
+          },
+          "lemon": {
+            "initial_mean": 3.8360655737704916,
+            "initial_to_last_mean": 0.3005464480874317,
+            "initial_to_minimum_mean": 1.6939890710382515,
+            "last_mean": 3.5355191256830603,
+            "minimum_mean": 2.1420765027322406
+          },
+          "plum": {
+            "initial_mean": 1.2349726775956285,
+            "initial_to_last_mean": 0.09289617486338798,
+            "initial_to_minimum_mean": 0.6557377049180327,
+            "last_mean": 1.1420765027322404,
+            "minimum_mean": 0.5792349726775956
+          }
+        },
+        "pending_turns": {
+          "mean": 253.63934426229508,
+          "median": 272.0,
+          "total": 185664
+        },
+        "pending_worker_turns": 371328,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 100,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 52384,
+            "progress_rate": 0.00855222968845449,
+            "progress_turns": 448,
+            "regress_rate": 0.004276114844227245,
+            "regress_turns": 224
+          },
+          "harvest": {
+            "observed_turns": 64168,
+            "progress_rate": 0.01614511906246104,
+            "progress_turns": 1036,
+            "regress_rate": 0.0036778456551552177,
+            "regress_turns": 236
+          },
+          "idle": {
+            "observed_turns": 28,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 1296,
+            "progress_rate": 0.9845679012345679,
+            "progress_turns": 1276,
+            "regress_rate": 0.015432098765432098,
+            "regress_turns": 20
+          },
+          "move": {
+            "observed_turns": 144780,
+            "progress_rate": 0.013150987705484183,
+            "progress_turns": 1904,
+            "regress_rate": 0.004669153197955519,
+            "regress_turns": 676
+          },
+          "pick": {
+            "observed_turns": 9240,
+            "progress_rate": 0.026406926406926406,
+            "progress_turns": 244,
+            "regress_rate": 0.003896103896103896,
+            "regress_turns": 36
+          },
+          "plant": {
+            "observed_turns": 24680,
+            "progress_rate": 0.015559157212317666,
+            "progress_turns": 384,
+            "regress_rate": 0.004213938411669368,
+            "regress_turns": 104
+          }
+        },
+        "progress": {
+          "decrease_turns": 2856,
+          "equal_turns": 182004,
+          "increase_turns": 804,
+          "increased_units": 1796,
+          "net_units": 1652,
+          "net_units_per_worker_turn": 0.0044488969320923815,
+          "noncompletion_turns": 185664,
+          "reduced_units": 3448
+        },
+        "reached_worker_three": 0,
+        "source_and_travel_share": 0.6536000517063082,
+        "species": {
+          "apple": {
+            "harvested": 24492,
+            "successful_plants": 7720
+          },
+          "banana": {
+            "harvested": 41628,
+            "successful_plants": 19264
+          },
+          "lemon": {
+            "harvested": 6972,
+            "successful_plants": 1652
+          },
+          "plum": {
+            "harvested": 10608,
+            "successful_plants": 3188
+          }
+        }
+      },
+      "reached_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 50,
+            "share": 0.0006521965981425441
+          },
+          "drop": {
+            "count": 8604,
+            "share": 0.11222999060836898
+          },
+          "harvest": {
+            "count": 10154,
+            "share": 0.13244808515078785
+          },
+          "idle": {
+            "count": 0,
+            "share": 0.0
+          },
+          "mine": {
+            "count": 652,
+            "share": 0.008504643639778774
+          },
+          "move": {
+            "count": 48138,
+            "share": 0.6279087968277157
+          },
+          "pick": {
+            "count": 3226,
+            "share": 0.04207972451215695
+          },
+          "plant": {
+            "count": 5840,
+            "share": 0.07617656266304915
+          }
+        },
+        "capitalization_share": 0.2531827193989356,
+        "cells": 324,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.2716049382716049,
+            "initial_to_last_mean": 0.2716049382716049,
+            "initial_to_minimum_mean": 0.2716049382716049,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 2,
+            "initial_to_last_mean": 2,
+            "initial_to_minimum_mean": 2,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "lemon": {
+            "initial_mean": 3.925925925925926,
+            "initial_to_last_mean": 3.925925925925926,
+            "initial_to_minimum_mean": 3.925925925925926,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "plum": {
+            "initial_mean": 0.41975308641975306,
+            "initial_to_last_mean": 0.41975308641975306,
+            "initial_to_minimum_mean": 0.41975308641975306,
+            "last_mean": 0,
+            "minimum_mean": 0
+          }
+        },
+        "pending_turns": {
+          "mean": 118.30864197530865,
+          "median": 106.0,
+          "total": 38332
+        },
+        "pending_worker_turns": 76664,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 50,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 8040,
+            "progress_rate": 0.025870646766169153,
+            "progress_turns": 208,
+            "regress_rate": 0.003980099502487562,
+            "regress_turns": 32
+          },
+          "harvest": {
+            "observed_turns": 9418,
+            "progress_rate": 0.04162242514334254,
+            "progress_turns": 392,
+            "regress_rate": 0.007220216606498195,
+            "regress_turns": 68
+          },
+          "idle": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 652,
+            "progress_rate": 0.9938650306748467,
+            "progress_turns": 648,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "move": {
+            "observed_turns": 32742,
+            "progress_rate": 0.03665017408832692,
+            "progress_turns": 1200,
+            "regress_rate": 0.0035428501618716022,
+            "regress_turns": 116
+          },
+          "pick": {
+            "observed_turns": 3076,
+            "progress_rate": 0.06762028608582575,
+            "progress_turns": 208,
+            "regress_rate": 0.0039011703511053317,
+            "regress_turns": 12
+          },
+          "plant": {
+            "observed_turns": 5512,
+            "progress_rate": 0.04281567489114659,
+            "progress_turns": 236,
+            "regress_rate": 0.0021770682148040637,
+            "regress_turns": 12
+          }
+        },
+        "progress": {
+          "decrease_turns": 1656,
+          "equal_turns": 36204,
+          "increase_turns": 148,
+          "increased_units": 176,
+          "net_units": 2144,
+          "net_units_per_worker_turn": 0.02796619012835229,
+          "noncompletion_turns": 38008,
+          "reduced_units": 2320
+        },
+        "reached_worker_three": 324,
+        "source_and_travel_share": 0.7461650840029218,
+        "species": {
+          "apple": {
+            "harvested": 8388,
+            "successful_plants": 4655
+          },
+          "banana": {
+            "harvested": 12432,
+            "successful_plants": 10568
+          },
+          "lemon": {
+            "harvested": 4932,
+            "successful_plants": 959
+          },
+          "plum": {
+            "harvested": 4120,
+            "successful_plants": 1601
+          }
+        }
+      }
+    },
+    "v6": {
+      "all": {
+        "actions": {
+          "chop": {
+            "count": 188,
+            "share": 0.0003929963041624162
+          },
+          "drop": {
+            "count": 66992,
+            "share": 0.14004047025770525
+          },
+          "harvest": {
+            "count": 76826,
+            "share": 0.16059752161479673
+          },
+          "idle": {
+            "count": 32,
+            "share": 6.689298794253893e-05
+          },
+          "mine": {
+            "count": 1984,
+            "share": 0.004147365252437413
+          },
+          "move": {
+            "count": 275900,
+            "share": 0.5767429804170778
+          },
+          "pick": {
+            "count": 20606,
+            "share": 0.043074903423248656
+          },
+          "plant": {
+            "count": 35848,
+            "share": 0.07493686974262923
+          }
+        },
+        "capitalization_share": 0.30478535712493937,
+        "cells": 1280,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.121875,
+            "initial_to_last_mean": 0.121875,
+            "initial_to_minimum_mean": 0.121875,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 1.90625,
+            "initial_to_last_mean": 1.540625,
+            "initial_to_minimum_mean": 1.540625,
+            "last_mean": 0.365625,
+            "minimum_mean": 0.365625
+          },
+          "lemon": {
+            "initial_mean": 3.1875,
+            "initial_to_last_mean": 1.040625,
+            "initial_to_minimum_mean": 2.0875,
+            "last_mean": 2.146875,
+            "minimum_mean": 1.1
+          },
+          "plum": {
+            "initial_mean": 0.8125,
+            "initial_to_last_mean": 0.134375,
+            "initial_to_minimum_mean": 0.46875,
+            "last_mean": 0.678125,
+            "minimum_mean": 0.34375
+          }
+        },
+        "pending_turns": {
+          "mean": 186.865625,
+          "median": 232.0,
+          "total": 239188
+        },
+        "pending_worker_turns": 478376,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 168,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 61440,
+            "progress_rate": 0.01640625,
+            "progress_turns": 1008,
+            "regress_rate": 0.005533854166666667,
+            "regress_turns": 340
+          },
+          "harvest": {
+            "observed_turns": 72262,
+            "progress_rate": 0.03957820154438017,
+            "progress_turns": 2860,
+            "regress_rate": 0.008801306357421605,
+            "regress_turns": 636
+          },
+          "idle": {
+            "observed_turns": 32,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 1984,
+            "progress_rate": 0.969758064516129,
+            "progress_turns": 1924,
+            "regress_rate": 0.0020161290322580645,
+            "regress_turns": 4
+          },
+          "move": {
+            "observed_turns": 191282,
+            "progress_rate": 0.028167835969929216,
+            "progress_turns": 5388,
+            "regress_rate": 0.013216089334072208,
+            "regress_turns": 2528
+          },
+          "pick": {
+            "observed_turns": 19912,
+            "progress_rate": 0.03214142225793491,
+            "progress_turns": 640,
+            "regress_rate": 0.01687424668541583,
+            "regress_turns": 336
+          },
+          "plant": {
+            "observed_turns": 32380,
+            "progress_rate": 0.02458307597282273,
+            "progress_turns": 796,
+            "regress_rate": 0.08634959851760346,
+            "regress_turns": 2796
+          }
+        },
+        "progress": {
+          "decrease_turns": 7264,
+          "equal_turns": 227816,
+          "increase_turns": 3804,
+          "increased_units": 5012,
+          "net_units": 3632,
+          "net_units_per_worker_turn": 0.007592354131478168,
+          "noncompletion_turns": 238884,
+          "reduced_units": 8644
+        },
+        "reached_worker_three": 304,
+        "source_and_travel_share": 0.6947547535829557,
+        "species": {
+          "apple": {
+            "harvested": 27114,
+            "successful_plants": 10776
+          },
+          "banana": {
+            "harvested": 53696,
+            "successful_plants": 29702
+          },
+          "lemon": {
+            "harvested": 22933,
+            "successful_plants": 11357
+          },
+          "plum": {
+            "harvested": 13358,
+            "successful_plants": 4649
+          }
+        }
+      },
+      "blocked_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 140,
+            "share": 0.0003621239084550759
+          },
+          "drop": {
+            "count": 57924,
+            "share": 0.14982618052394156
+          },
+          "harvest": {
+            "count": 65412,
+            "share": 0.1691946364275959
+          },
+          "idle": {
+            "count": 32,
+            "share": 8.277117907544593e-05
+          },
+          "mine": {
+            "count": 1316,
+            "share": 0.0034039647394777136
+          },
+          "move": {
+            "count": 216704,
+            "share": 0.5605264246989199
+          },
+          "pick": {
+            "count": 16756,
+            "share": 0.04334105864338037
+          },
+          "plant": {
+            "count": 28324,
+            "share": 0.07326283987915408
+          }
+        },
+        "capitalization_share": 0.3224247816910152,
+        "cells": 752,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.13297872340425532,
+            "initial_to_last_mean": 0.13297872340425532,
+            "initial_to_minimum_mean": 0.13297872340425532,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 2.372340425531915,
+            "initial_to_last_mean": 1.75,
+            "initial_to_minimum_mean": 1.75,
+            "last_mean": 0.6223404255319149,
+            "minimum_mean": 0.6223404255319149
+          },
+          "lemon": {
+            "initial_mean": 4.191489361702128,
+            "initial_to_last_mean": 0.5372340425531915,
+            "initial_to_minimum_mean": 2.3191489361702127,
+            "last_mean": 3.654255319148936,
+            "minimum_mean": 1.872340425531915
+          },
+          "plum": {
+            "initial_mean": 1.1542553191489362,
+            "initial_to_last_mean": 0,
+            "initial_to_minimum_mean": 0.5691489361702128,
+            "last_mean": 1.1542553191489362,
+            "minimum_mean": 0.5851063829787234
+          }
+        },
+        "pending_turns": {
+          "mean": 257.0531914893617,
+          "median": 274.0,
+          "total": 193304
+        },
+        "pending_worker_turns": 386608,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 120,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 52876,
+            "progress_rate": 0.014524547999092216,
+            "progress_turns": 768,
+            "regress_rate": 0.005219759437173765,
+            "regress_turns": 276
+          },
+          "harvest": {
+            "observed_turns": 61408,
+            "progress_rate": 0.037584679520583635,
+            "progress_turns": 2308,
+            "regress_rate": 0.008272537780093799,
+            "regress_turns": 508
+          },
+          "idle": {
+            "observed_turns": 32,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 1316,
+            "progress_rate": 0.9696048632218845,
+            "progress_turns": 1276,
+            "regress_rate": 0.00303951367781155,
+            "regress_turns": 4
+          },
+          "move": {
+            "observed_turns": 151636,
+            "progress_rate": 0.02624706534068427,
+            "progress_turns": 3980,
+            "regress_rate": 0.01398084887493735,
+            "regress_turns": 2120
+          },
+          "pick": {
+            "observed_turns": 16172,
+            "progress_rate": 0.027454860252287903,
+            "progress_turns": 444,
+            "regress_rate": 0.01805589908483799,
+            "regress_turns": 292
+          },
+          "plant": {
+            "observed_turns": 25328,
+            "progress_rate": 0.01958307012002527,
+            "progress_turns": 496,
+            "regress_rate": 0.09222994314592546,
+            "regress_turns": 2336
+          }
+        },
+        "progress": {
+          "decrease_turns": 5324,
+          "equal_turns": 184776,
+          "increase_turns": 3204,
+          "increased_units": 4324,
+          "net_units": 1820,
+          "net_units_per_worker_turn": 0.004707610809915988,
+          "noncompletion_turns": 193304,
+          "reduced_units": 6144
+        },
+        "reached_worker_three": 0,
+        "source_and_travel_share": 0.6771303232214543,
+        "species": {
+          "apple": {
+            "harvested": 17912,
+            "successful_plants": 5820
+          },
+          "banana": {
+            "harvested": 37788,
+            "successful_plants": 17144
+          },
+          "lemon": {
+            "harvested": 12932,
+            "successful_plants": 6292
+          },
+          "plum": {
+            "harvested": 9052,
+            "successful_plants": 2912
+          }
+        }
+      },
+      "reached_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 48,
+            "share": 0.0005230581466306338
+          },
+          "drop": {
+            "count": 9068,
+            "share": 0.0988144015343039
+          },
+          "harvest": {
+            "count": 11414,
+            "share": 0.12437886845087612
+          },
+          "idle": {
+            "count": 0,
+            "share": 0.0
+          },
+          "mine": {
+            "count": 668,
+            "share": 0.007279225873942987
+          },
+          "move": {
+            "count": 59196,
+            "share": 0.6450614593322291
+          },
+          "pick": {
+            "count": 3850,
+            "share": 0.04195362217766542
+          },
+          "plant": {
+            "count": 7524,
+            "share": 0.08198936448435185
+          }
+        },
+        "capitalization_share": 0.230472495859123,
+        "cells": 304,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.18421052631578946,
+            "initial_to_last_mean": 0.18421052631578946,
+            "initial_to_minimum_mean": 0.18421052631578946,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 2.1578947368421053,
+            "initial_to_last_mean": 2.1578947368421053,
+            "initial_to_minimum_mean": 2.1578947368421053,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "lemon": {
+            "initial_mean": 3.0526315789473686,
+            "initial_to_last_mean": 3.0526315789473686,
+            "initial_to_minimum_mean": 3.0526315789473686,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "plum": {
+            "initial_mean": 0.5657894736842105,
+            "initial_to_last_mean": 0.5657894736842105,
+            "initial_to_minimum_mean": 0.5657894736842105,
+            "last_mean": 0,
+            "minimum_mean": 0
+          }
+        },
+        "pending_turns": {
+          "mean": 150.93421052631578,
+          "median": 142.5,
+          "total": 45884
+        },
+        "pending_worker_turns": 91768,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 48,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 8564,
+            "progress_rate": 0.02802428771602055,
+            "progress_turns": 240,
+            "regress_rate": 0.007473143390938813,
+            "regress_turns": 64
+          },
+          "harvest": {
+            "observed_turns": 10854,
+            "progress_rate": 0.05085682697622996,
+            "progress_turns": 552,
+            "regress_rate": 0.011792887414777962,
+            "regress_turns": 128
+          },
+          "idle": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 668,
+            "progress_rate": 0.9700598802395209,
+            "progress_turns": 648,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "move": {
+            "observed_turns": 39646,
+            "progress_rate": 0.03551430156888463,
+            "progress_turns": 1408,
+            "regress_rate": 0.010291076022801797,
+            "regress_turns": 408
+          },
+          "pick": {
+            "observed_turns": 3740,
+            "progress_rate": 0.052406417112299465,
+            "progress_turns": 196,
+            "regress_rate": 0.011764705882352941,
+            "regress_turns": 44
+          },
+          "plant": {
+            "observed_turns": 7052,
+            "progress_rate": 0.04254112308564946,
+            "progress_turns": 300,
+            "regress_rate": 0.0652297220646625,
+            "regress_turns": 460
+          }
+        },
+        "progress": {
+          "decrease_turns": 1940,
+          "equal_turns": 43040,
+          "increase_turns": 600,
+          "increased_units": 688,
+          "net_units": 1812,
+          "net_units_per_worker_turn": 0.019745445035306425,
+          "noncompletion_turns": 45580,
+          "reduced_units": 2500
+        },
+        "reached_worker_three": 304,
+        "source_and_travel_share": 0.7690044459942463,
+        "species": {
+          "apple": {
+            "harvested": 5838,
+            "successful_plants": 2884
+          },
+          "banana": {
+            "harvested": 9420,
+            "successful_plants": 8026
+          },
+          "lemon": {
+            "harvested": 9377,
+            "successful_plants": 4685
+          },
+          "plum": {
+            "harvested": 2598,
+            "successful_plants": 661
+          }
+        }
+      }
+    },
+    "v7": {
+      "all": {
+        "actions": {
+          "chop": {
+            "count": 44,
+            "share": 9.446114212108201e-05
+          },
+          "drop": {
+            "count": 64024,
+            "share": 0.13744954916273078
+          },
+          "harvest": {
+            "count": 73664,
+            "share": 0.1581451266638042
+          },
+          "idle": {
+            "count": 0,
+            "share": 0.0
+          },
+          "mine": {
+            "count": 2424,
+            "share": 0.0052039501932159725
+          },
+          "move": {
+            "count": 273646,
+            "share": 0.5874753112924002
+          },
+          "pick": {
+            "count": 18426,
+            "share": 0.03955775010734221
+          },
+          "plant": {
+            "count": 33572,
+            "share": 0.07207385143838557
+          }
+        },
+        "capitalization_share": 0.300798626019751,
+        "cells": 1280,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.121875,
+            "initial_to_last_mean": 0.103125,
+            "initial_to_minimum_mean": 0.121875,
+            "last_mean": 0.01875,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 1.90625,
+            "initial_to_last_mean": 1.89375,
+            "initial_to_minimum_mean": 1.89375,
+            "last_mean": 0.0125,
+            "minimum_mean": 0.0125
+          },
+          "lemon": {
+            "initial_mean": 3.1875,
+            "initial_to_last_mean": 0.471875,
+            "initial_to_minimum_mean": 2.06875,
+            "last_mean": 2.715625,
+            "minimum_mean": 1.11875
+          },
+          "plum": {
+            "initial_mean": 0.8125,
+            "initial_to_last_mean": -0.340625,
+            "initial_to_minimum_mean": 0.471875,
+            "last_mean": 1.153125,
+            "minimum_mean": 0.340625
+          }
+        },
+        "pending_turns": {
+          "mean": 181.953125,
+          "median": 232.0,
+          "total": 232900
+        },
+        "pending_worker_turns": 465800,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 44,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 59404,
+            "progress_rate": 0.016429870042421385,
+            "progress_turns": 976,
+            "regress_rate": 0.006666217763113595,
+            "regress_turns": 396
+          },
+          "harvest": {
+            "observed_turns": 68916,
+            "progress_rate": 0.028440420221719196,
+            "progress_turns": 1960,
+            "regress_rate": 0.008474084392593883,
+            "regress_turns": 584
+          },
+          "idle": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 2420,
+            "progress_rate": 0.9636363636363636,
+            "progress_turns": 2332,
+            "regress_rate": 0.009917355371900827,
+            "regress_turns": 24
+          },
+          "move": {
+            "observed_turns": 187274,
+            "progress_rate": 0.027873596975554533,
+            "progress_turns": 5220,
+            "regress_rate": 0.013392141995151489,
+            "regress_turns": 2508
+          },
+          "pick": {
+            "observed_turns": 17806,
+            "progress_rate": 0.03257328990228013,
+            "progress_turns": 580,
+            "regress_rate": 0.01572503650454903,
+            "regress_turns": 280
+          },
+          "plant": {
+            "observed_turns": 30156,
+            "progress_rate": 0.019896538002387585,
+            "progress_turns": 600,
+            "regress_rate": 0.07136224963523013,
+            "regress_turns": 2152
+          }
+        },
+        "progress": {
+          "decrease_turns": 6672,
+          "equal_turns": 222396,
+          "increase_turns": 3560,
+          "increased_units": 5356,
+          "net_units": 2724,
+          "net_units_per_worker_turn": 0.0058480034349506224,
+          "noncompletion_turns": 232628,
+          "reduced_units": 8080
+        },
+        "reached_worker_three": 272,
+        "source_and_travel_share": 0.699106912838128,
+        "species": {
+          "apple": {
+            "harvested": 33799,
+            "successful_plants": 13980
+          },
+          "banana": {
+            "harvested": 49711,
+            "successful_plants": 28992
+          },
+          "lemon": {
+            "harvested": 13341,
+            "successful_plants": 4715
+          },
+          "plum": {
+            "harvested": 15569,
+            "successful_plants": 6210
+          }
+        }
+      },
+      "blocked_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 0,
+            "share": 0.0
+          },
+          "drop": {
+            "count": 57448,
+            "share": 0.14300507816389524
+          },
+          "harvest": {
+            "count": 65784,
+            "share": 0.16375584984566366
+          },
+          "idle": {
+            "count": 0,
+            "share": 0.0
+          },
+          "mine": {
+            "count": 2024,
+            "share": 0.005038335158817087
+          },
+          "move": {
+            "count": 232012,
+            "share": 0.5775465498357064
+          },
+          "pick": {
+            "count": 15704,
+            "share": 0.03909190480931993
+          },
+          "plant": {
+            "count": 28748,
+            "share": 0.07156228218659763
+          }
+        },
+        "capitalization_share": 0.311799263168376,
+        "cells": 784,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.12244897959183673,
+            "initial_to_last_mean": 0.09183673469387756,
+            "initial_to_minimum_mean": 0.12244897959183673,
+            "last_mean": 0.030612244897959183,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 2.6020408163265305,
+            "initial_to_last_mean": 2.5816326530612246,
+            "initial_to_minimum_mean": 2.5816326530612246,
+            "last_mean": 0.02040816326530612,
+            "minimum_mean": 0.02040816326530612
+          },
+          "lemon": {
+            "initial_mean": 3.877551020408163,
+            "initial_to_last_mean": -0.5561224489795918,
+            "initial_to_minimum_mean": 2.0510204081632653,
+            "last_mean": 4.433673469387755,
+            "minimum_mean": 1.8265306122448979
+          },
+          "plum": {
+            "initial_mean": 1.2040816326530612,
+            "initial_to_last_mean": -0.6785714285714286,
+            "initial_to_minimum_mean": 0.6479591836734694,
+            "last_mean": 1.8826530612244898,
+            "minimum_mean": 0.5561224489795918
+          }
+        },
+        "pending_turns": {
+          "mean": 256.19897959183675,
+          "median": 272.0,
+          "total": 200860
+        },
+        "pending_worker_turns": 401720,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 53068,
+            "progress_rate": 0.014245873219265848,
+            "progress_turns": 756,
+            "regress_rate": 0.0064068741991407255,
+            "regress_turns": 340
+          },
+          "harvest": {
+            "observed_turns": 61480,
+            "progress_rate": 0.025699414443721535,
+            "progress_turns": 1580,
+            "regress_rate": 0.008067664281067014,
+            "regress_turns": 496
+          },
+          "idle": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 2020,
+            "progress_rate": 0.9603960396039604,
+            "progress_turns": 1940,
+            "regress_rate": 0.011881188118811881,
+            "regress_turns": 24
+          },
+          "move": {
+            "observed_turns": 159436,
+            "progress_rate": 0.024937906119069722,
+            "progress_turns": 3976,
+            "regress_rate": 0.013974259263905267,
+            "regress_turns": 2228
+          },
+          "pick": {
+            "observed_turns": 15148,
+            "progress_rate": 0.028518616318986004,
+            "progress_turns": 432,
+            "regress_rate": 0.01637179825719567,
+            "regress_turns": 248
+          },
+          "plant": {
+            "observed_turns": 25676,
+            "progress_rate": 0.01698083813678143,
+            "progress_turns": 436,
+            "regress_rate": 0.07415485278080698,
+            "regress_turns": 1904
+          }
+        },
+        "progress": {
+          "decrease_turns": 5156,
+          "equal_turns": 192552,
+          "increase_turns": 3152,
+          "increased_units": 4900,
+          "net_units": 1128,
+          "net_units_per_worker_turn": 0.002807925918550234,
+          "noncompletion_turns": 200860,
+          "reduced_units": 6028
+        },
+        "reached_worker_three": 0,
+        "source_and_travel_share": 0.688200736831624,
+        "species": {
+          "apple": {
+            "harvested": 24068,
+            "successful_plants": 8224
+          },
+          "banana": {
+            "harvested": 34824,
+            "successful_plants": 17076
+          },
+          "lemon": {
+            "harvested": 8768,
+            "successful_plants": 3456
+          },
+          "plum": {
+            "harvested": 10844,
+            "successful_plants": 4056
+          }
+        }
+      },
+      "reached_worker_three": {
+        "actions": {
+          "chop": {
+            "count": 44,
+            "share": 0.0006866416978776529
+          },
+          "drop": {
+            "count": 6576,
+            "share": 0.10262172284644194
+          },
+          "harvest": {
+            "count": 7880,
+            "share": 0.1229712858926342
+          },
+          "idle": {
+            "count": 0,
+            "share": 0.0
+          },
+          "mine": {
+            "count": 400,
+            "share": 0.006242197253433208
+          },
+          "move": {
+            "count": 41634,
+            "share": 0.6497191011235955
+          },
+          "pick": {
+            "count": 2722,
+            "share": 0.042478152309612986
+          },
+          "plant": {
+            "count": 4824,
+            "share": 0.07528089887640449
+          }
+        },
+        "capitalization_share": 0.23183520599250937,
+        "cells": 272,
+        "deficit": {
+          "apple": {
+            "initial_mean": 0.22058823529411764,
+            "initial_to_last_mean": 0.22058823529411764,
+            "initial_to_minimum_mean": 0.22058823529411764,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "iron": {
+            "initial_mean": 1.4705882352941178,
+            "initial_to_last_mean": 1.4705882352941178,
+            "initial_to_minimum_mean": 1.4705882352941178,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "lemon": {
+            "initial_mean": 3.823529411764706,
+            "initial_to_last_mean": 3.823529411764706,
+            "initial_to_minimum_mean": 3.823529411764706,
+            "last_mean": 0,
+            "minimum_mean": 0
+          },
+          "plum": {
+            "initial_mean": 0.35294117647058826,
+            "initial_to_last_mean": 0.35294117647058826,
+            "initial_to_minimum_mean": 0.35294117647058826,
+            "last_mean": 0,
+            "minimum_mean": 0
+          }
+        },
+        "pending_turns": {
+          "mean": 117.79411764705883,
+          "median": 114.0,
+          "total": 32040
+        },
+        "pending_worker_turns": 64080,
+        "per_action_next_state": {
+          "chop": {
+            "observed_turns": 44,
+            "progress_rate": 0.0,
+            "progress_turns": 0,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "drop": {
+            "observed_turns": 6336,
+            "progress_rate": 0.034722222222222224,
+            "progress_turns": 220,
+            "regress_rate": 0.008838383838383838,
+            "regress_turns": 56
+          },
+          "harvest": {
+            "observed_turns": 7436,
+            "progress_rate": 0.05110274341043572,
+            "progress_turns": 380,
+            "regress_rate": 0.011834319526627219,
+            "regress_turns": 88
+          },
+          "idle": {
+            "observed_turns": 0,
+            "progress_rate": null,
+            "progress_turns": 0,
+            "regress_rate": null,
+            "regress_turns": 0
+          },
+          "mine": {
+            "observed_turns": 400,
+            "progress_rate": 0.98,
+            "progress_turns": 392,
+            "regress_rate": 0.0,
+            "regress_turns": 0
+          },
+          "move": {
+            "observed_turns": 27838,
+            "progress_rate": 0.04468711832746605,
+            "progress_turns": 1244,
+            "regress_rate": 0.010058193835764064,
+            "regress_turns": 280
+          },
+          "pick": {
+            "observed_turns": 2658,
+            "progress_rate": 0.05568096313017306,
+            "progress_turns": 148,
+            "regress_rate": 0.012039127163280662,
+            "regress_turns": 32
+          },
+          "plant": {
+            "observed_turns": 4480,
+            "progress_rate": 0.03660714285714286,
+            "progress_turns": 164,
+            "regress_rate": 0.055357142857142855,
+            "regress_turns": 248
+          }
+        },
+        "progress": {
+          "decrease_turns": 1516,
+          "equal_turns": 29844,
+          "increase_turns": 408,
+          "increased_units": 456,
+          "net_units": 1596,
+          "net_units_per_worker_turn": 0.0249063670411985,
+          "noncompletion_turns": 31768,
+          "reduced_units": 2052
+        },
+        "reached_worker_three": 272,
+        "source_and_travel_share": 0.767478152309613,
+        "species": {
+          "apple": {
+            "harvested": 6367,
+            "successful_plants": 3684
+          },
+          "banana": {
+            "harvested": 8399,
+            "successful_plants": 7384
+          },
+          "lemon": {
+            "harvested": 3949,
+            "successful_plants": 879
+          },
+          "plum": {
+            "harvested": 3017,
+            "successful_plants": 1078
+          }
+        }
+      }
+    }
+  }
+}

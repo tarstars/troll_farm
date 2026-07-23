@@ -1,0 +1,194 @@
+{
+  "artifacts": {
+    "arms": {
+      "bytes": 62813775,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv",
+      "rows": 11046,
+      "sha256": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838"
+    },
+    "baselines": {
+      "bytes": 27679,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv",
+      "rows": 128,
+      "sha256": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+    },
+    "mc-a": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    },
+    "mc-b": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-b-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    }
+  },
+  "decision": "open_two_intervention_trajectory_teacher_and_policy_fit",
+  "exact_one_use_teacher": {
+    "backward_dp": {
+      "act_now_root_rate": 0.502283105022831,
+      "act_now_roots": 330,
+      "arms": 11046,
+      "best_now_mean": 23.901065449010655,
+      "negative_arm_advantage_rate": 0.8515299655984067,
+      "negative_arm_advantages": 9406,
+      "positive_arm_advantage_rate": 0.12909650552236104,
+      "positive_arm_advantages": 1426,
+      "roots": 657,
+      "target_maximum": 165,
+      "target_mean": -23.95482527611805,
+      "target_minimum": -251,
+      "target_standard_deviation": 28.156282603147673,
+      "wait_roots": 327,
+      "zero_arm_advantages": 214
+    },
+    "oracle": {
+      "control_worker_three_rate": 0.875,
+      "crop_rate": 1.0,
+      "family_mean_margin_gain": {
+        "compact_gold": 51.6875,
+        "gold_adaptive": 60.25,
+        "legend_balanced": 41.875,
+        "mybot": 38.375,
+        "norx_native_three": 38.6875,
+        "resident": 16.75,
+        "script_boss": 29.5,
+        "silver_boss": 30.375
+      },
+      "first_boundary_oracle_mean_gain": 32.265625,
+      "intervention_rate": 0.90625,
+      "later_boundary_increment": 6.171875,
+      "mean_margin_gain": 38.4375,
+      "mean_opponent_score_delta": -12.4140625,
+      "mean_own_score_gain": 26.0234375,
+      "mean_selected_boundary": 1.293103448275862,
+      "positive_families": 8,
+      "selected_kind_counts": {
+        "0": 12,
+        "1": 27,
+        "2": 7,
+        "3": 82
+      },
+      "strict_improvement_rate": 0.90625,
+      "supported_tasks": 118,
+      "tasks": 128,
+      "worker_three_rate": 0.875,
+      "worst_family": 16.75
+    },
+    "safety_gates": {
+      "oracle_crop_100pct": true,
+      "oracle_worker_three_within_5pp": true
+    },
+    "safety_pass": true,
+    "signal_gates": {
+      "act_now_roots_5_to_90pct": true,
+      "at_least_seven_positive_families": true,
+      "negative_arm_targets_at_least_40pct": true,
+      "oracle_mean_at_least_20": true,
+      "oracle_strict_at_least_75pct": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "positive_arm_targets_1_to_50pct": true,
+      "target_stddev_at_least_5": true,
+      "worst_family_at_least_8": true
+    },
+    "signal_pass": true
+  },
+  "full_pass": true,
+  "incremental_oracle": {
+    "safety_gates": {
+      "combined_worker_three_within_5pp": true,
+      "no_new_crop_failures_vs_one_use": true
+    },
+    "safety_pass": true,
+    "signal_gates": {
+      "at_least_six_positive_families": true,
+      "increment_mean_at_least_3": true,
+      "strict_increment_at_least_20pct": true,
+      "worst_family_increment_nonnegative": true
+    },
+    "signal_pass": true,
+    "summary": {
+      "combined_crop_rate": 1.0,
+      "combined_worker_three_rate": 0.875,
+      "family_mean_increment": {
+        "compact_gold": 3.1875,
+        "gold_adaptive": 6.1875,
+        "legend_balanced": 4.625,
+        "mybot": 3.625,
+        "norx_native_three": 1.75,
+        "resident": 3.75,
+        "script_boss": 4.75,
+        "silver_boss": 5.3125
+      },
+      "mean_combined_oracle_gain": 42.5859375,
+      "mean_increment_beyond_one_use": 4.1484375,
+      "mean_one_use_oracle_gain": 38.4375,
+      "mean_opponent_score_increment": -0.546875,
+      "mean_own_score_increment": 3.6015625,
+      "mean_two_intervention_samples_per_task": 69.1953125,
+      "minimum_two_intervention_samples_per_task": 0,
+      "new_crop_failures": 0,
+      "one_use_crop_rate": 1.0,
+      "one_use_worker_three_rate": 0.875,
+      "positive_families": 8,
+      "selected_double_rate": 0.4453125,
+      "strict_increment_rate": 0.4453125,
+      "strict_increment_tasks": 57,
+      "tasks": 128,
+      "worst_family_increment": 1.75
+    }
+  },
+  "lock": {
+    "manifest_sha256": "8ec8f6bb4cd49ae9e7b0778f9c92d2940208959f725c59e640225d17c31fdf2d",
+    "mismatches": {},
+    "pass": true
+  },
+  "original_d144": {
+    "decision": "repair_d144_infrastructure_or_mechanics_only",
+    "path": "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-result.json",
+    "sha256": "a13375a38a6e0ecf68b9d14fa5241790f0d45c632bd1e6299ff155b0391ca3aa"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-protocol-2026-07-22.md",
+  "repair": {
+    "details": {
+      "forced_control_error_samples": [],
+      "supported_task_rate": 0.921875,
+      "supported_task_two_use_coverage": 1.0,
+      "supported_tasks": 118,
+      "tasks": 128,
+      "tasks_with_two_intervention_sample": 118,
+      "unsupported_episode_rows": 1280,
+      "unsupported_forced_control_tasks": 10
+    },
+    "failed_original_mc_gates": [
+      "at_least_95pct_tasks_have_sampled_two_interventions"
+    ],
+    "gates": {
+      "all_other_mc_gates_passed": true,
+      "at_least_one_supported_task": true,
+      "baseline_grid_is_complete": true,
+      "d144_infrastructure_passed": true,
+      "every_supported_task_has_two_intervention_sample": true,
+      "exact_one_use_mechanics_passed": true,
+      "only_failed_mc_gate_was_raw_task_coverage": true,
+      "raw_two_use_coverage_equals_q6_support_rate": true,
+      "unsupported_tasks_are_exact_forced_control": true
+    },
+    "inherited_other_mc_gates": {
+      "at_least_40pct_double_episodes_reach_two_interventions": true,
+      "complete_unique_episode_grid": true,
+      "control_exactly_matches_dense_baseline": true,
+      "exact_mc_schema": true,
+      "exact_mode_counts": true,
+      "exact_per_task_mode_counts": true,
+      "schedule_mapping_hash_and_caps_exact": true,
+      "selected_single_episodes_match_dense_arms": true,
+      "zero_mechanical_failures": true
+    },
+    "pass": true,
+    "removed_gate": "at_least_95pct_tasks_have_sampled_two_interventions"
+  },
+  "schema": "troll-farm-d144b-two-intervention-support-semantics-v1"
+}

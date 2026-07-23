@@ -1,0 +1,208 @@
+{
+  "aggregate_host_cpu_percent": 69.1526145945472,
+  "config": {
+    "batch_size": 10000,
+    "clip_coef": 0.2,
+    "curriculum_level": 3,
+    "entropy_coef": 0.01,
+    "eval_episodes": 500,
+    "eval_seed_base": 0,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "gate_profile": "level3",
+    "initial_checkpoint": "data/analysis/live-agent-6553250/curriculum-level3-renewable-run1-bc.pt",
+    "initial_checkpoint_sha256": "6ea48c4e65d8bb5d786e8b47966bc60bcdd8684cc9de9e580e4e3de5ca2a2a8d",
+    "learning_rate": 0.00025,
+    "max_grad_norm": 0.5,
+    "max_turns": 240,
+    "minibatch_size": 1000,
+    "model_seed": 71,
+    "no_stage_a_stop": true,
+    "num_envs": 100,
+    "parameter_count": 34926,
+    "protocol": "data/analysis/live-agent-6553250/curriculum-level3-renewable-protocol-2026-07-19.md",
+    "protocol_sha256": "b43a586e2e8593b5044a219271721ece9c9d273f7cbf4d2b63d7cd86e59f896d",
+    "random_baseline": "data/analysis/live-agent-6553250/curriculum-level3-development-random-0-499.json",
+    "random_baseline_sha256": "7def758f07e45d5b19e83b2712053688d5ebd319a531977a2a783486734acf4c",
+    "reward_scale": 0.01,
+    "rollout_steps": 100,
+    "run_name": "renewable-ppo-tooling-smoke",
+    "stage_a_transitions": 10000,
+    "target_kl": 0.03,
+    "teacher_aux_coef": 0.1,
+    "teacher_baseline": "data/analysis/live-agent-6553250/curriculum-level3-development-teacher-0-499.json",
+    "teacher_baseline_sha256": "d8062ff3116acc2969e0326f56ad3ec5d7e4acba73c1af493cfe4e97f726c2b1",
+    "threads": 14,
+    "torch_version": "2.13.0+cpu",
+    "total_transitions": 20000,
+    "train_seed_base": 200000,
+    "update_epochs": 1,
+    "value_coef": 0.5
+  },
+  "elapsed_cpu_seconds": 338.083561712,
+  "elapsed_wall_seconds": 24.444741800019983,
+  "evaluations": [
+    {
+      "by_height": {
+        "10": {
+          "episodes": 126,
+          "success_rate": 0.8015873015873016,
+          "successes": 101
+        },
+        "11": {
+          "episodes": 126,
+          "success_rate": 0.753968253968254,
+          "successes": 95
+        },
+        "8": {
+          "episodes": 123,
+          "success_rate": 0.7723577235772358,
+          "successes": 95
+        },
+        "9": {
+          "episodes": 125,
+          "success_rate": 0.768,
+          "successes": 96
+        }
+      },
+      "by_recipe": null,
+      "created_crop_rate": 0.776,
+      "elapsed_seconds": 9.645224017003784,
+      "episodes": 500,
+      "exact_seed_interval": true,
+      "gate": "L3A",
+      "gate_passed": true,
+      "global_step": 10000,
+      "height_success_floor": 0.753968253968254,
+      "median_score_gain": 16.0,
+      "median_success_turn": 51.0,
+      "median_training_turn": 20.0,
+      "nontrivial_success_rate": 0.7648725212464589,
+      "paired_teacher_median_turn_delta": 2.0,
+      "path": "data/analysis/live-agent-6553250/curriculum-level3-renewable-ppo-tooling-smoke-l3a-evaluation.json",
+      "random_success_rate": 0.0,
+      "recipe_success_floor": null,
+      "renewable_harvest_rate": 0.782,
+      "required_score_gain": 12,
+      "seed_base": 0,
+      "seed_stop_exclusive": 500,
+      "success_rate": 0.774,
+      "successes": 387,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "teacher_success_rate": 1.0,
+      "transitions": 115800,
+      "transitions_per_second": 12005.941987024205
+    },
+    {
+      "by_height": {
+        "10": {
+          "episodes": 126,
+          "success_rate": 0.9682539682539683,
+          "successes": 122
+        },
+        "11": {
+          "episodes": 126,
+          "success_rate": 0.9285714285714286,
+          "successes": 117
+        },
+        "8": {
+          "episodes": 123,
+          "success_rate": 0.926829268292683,
+          "successes": 114
+        },
+        "9": {
+          "episodes": 125,
+          "success_rate": 0.952,
+          "successes": 119
+        }
+      },
+      "by_recipe": null,
+      "created_crop_rate": 0.944,
+      "elapsed_seconds": 7.5615267640096135,
+      "episodes": 500,
+      "exact_seed_interval": true,
+      "gate": "L3B",
+      "gate_passed": true,
+      "global_step": 20000,
+      "height_success_floor": 0.926829268292683,
+      "median_score_gain": 16.0,
+      "median_success_turn": 49.0,
+      "median_training_turn": 19.0,
+      "nontrivial_success_rate": 0.9405099150141643,
+      "paired_teacher_median_turn_delta": 0.0,
+      "path": "data/analysis/live-agent-6553250/curriculum-level3-renewable-ppo-tooling-smoke-l3b-evaluation.json",
+      "random_success_rate": 0.0,
+      "recipe_success_floor": null,
+      "renewable_harvest_rate": 0.95,
+      "required_score_gain": 12,
+      "seed_base": 0,
+      "seed_stop_exclusive": 500,
+      "success_rate": 0.944,
+      "successes": 472,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "teacher_success_rate": 1.0,
+      "transitions": 88000,
+      "transitions_per_second": 11637.861340232388
+    }
+  ],
+  "global_step": 20000,
+  "logs": [
+    {
+      "approx_kl": 0.06865747272968292,
+      "clip_fraction": 0.06099999956786632,
+      "entropy": 0.20567665994167328,
+      "episodes_recent": 75,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": -1.6770484447479248,
+      "global_step": 10000,
+      "learning_rate": 0.000125,
+      "mean_return_recent": 40.12399571736653,
+      "median_turn_recent": 39.0,
+      "policy_loss": -0.001039649941958487,
+      "rollout_sps": 5502.561392481228,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.9240000247955322,
+      "teacher_loss": 0.3109622895717621,
+      "update": 1,
+      "update_sps": 2705.7134106994126,
+      "value_loss": 0.012673494406044483
+    },
+    {
+      "approx_kl": 0.07976646721363068,
+      "clip_fraction": 0.04060000013560057,
+      "entropy": 0.2212591916322708,
+      "episodes_recent": 177,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": -0.6782723665237427,
+      "global_step": 20000,
+      "learning_rate": 0.0,
+      "mean_return_recent": 40.12570186119295,
+      "median_turn_recent": 41.0,
+      "policy_loss": 0.012872246094048023,
+      "rollout_sps": 6835.738673427667,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.878000020980835,
+      "teacher_loss": 0.6058762073516846,
+      "update": 2,
+      "update_sps": 2963.834532291829,
+      "value_loss": 0.008635061793029308
+    }
+  ],
+  "overall_transitions_per_second": 818.1718654923019,
+  "run_name": "renewable-ppo-tooling-smoke",
+  "stage_a_passed": true,
+  "stage_b_passed": true,
+  "updates_completed": 2
+}

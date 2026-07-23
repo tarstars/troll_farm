@@ -1,0 +1,432 @@
+{
+  "active_root_floor": 59,
+  "activity_boundary": {
+    "expert_48": {
+      "expert": "four_10",
+      "noncontrol_roots": 52,
+      "rate": 0.22317596566523606
+    },
+    "expert_49": {
+      "expert": "four_25",
+      "noncontrol_roots": 45,
+      "rate": 0.19313304721030042
+    },
+    "experts_at_or_above_floor": 47
+  },
+  "decision": "close_d105b_q4_fresh_map_readout_before_outcomes",
+  "expert_activity": [
+    {
+      "expert": "four_05",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_07",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_11",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_15",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_17",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_20",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_23",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_29",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_32",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_33",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_34",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_36",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_50",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_51",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_53",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_55",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_56",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_58",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_60",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_63",
+      "noncontrol_roots": 233,
+      "rate": 1.0
+    },
+    {
+      "expert": "four_12",
+      "noncontrol_roots": 232,
+      "rate": 0.9957081545064378
+    },
+    {
+      "expert": "four_21",
+      "noncontrol_roots": 232,
+      "rate": 0.9957081545064378
+    },
+    {
+      "expert": "four_40",
+      "noncontrol_roots": 232,
+      "rate": 0.9957081545064378
+    },
+    {
+      "expert": "four_04",
+      "noncontrol_roots": 231,
+      "rate": 0.9914163090128756
+    },
+    {
+      "expert": "four_19",
+      "noncontrol_roots": 230,
+      "rate": 0.9871244635193133
+    },
+    {
+      "expert": "four_27",
+      "noncontrol_roots": 230,
+      "rate": 0.9871244635193133
+    },
+    {
+      "expert": "four_48",
+      "noncontrol_roots": 226,
+      "rate": 0.9699570815450643
+    },
+    {
+      "expert": "four_57",
+      "noncontrol_roots": 225,
+      "rate": 0.9656652360515021
+    },
+    {
+      "expert": "four_26",
+      "noncontrol_roots": 220,
+      "rate": 0.944206008583691
+    },
+    {
+      "expert": "four_01",
+      "noncontrol_roots": 218,
+      "rate": 0.9356223175965666
+    },
+    {
+      "expert": "four_16",
+      "noncontrol_roots": 218,
+      "rate": 0.9356223175965666
+    },
+    {
+      "expert": "four_06",
+      "noncontrol_roots": 215,
+      "rate": 0.9227467811158798
+    },
+    {
+      "expert": "four_46",
+      "noncontrol_roots": 211,
+      "rate": 0.9055793991416309
+    },
+    {
+      "expert": "four_59",
+      "noncontrol_roots": 207,
+      "rate": 0.8884120171673819
+    },
+    {
+      "expert": "four_02",
+      "noncontrol_roots": 206,
+      "rate": 0.8841201716738197
+    },
+    {
+      "expert": "four_35",
+      "noncontrol_roots": 199,
+      "rate": 0.8540772532188842
+    },
+    {
+      "expert": "four_52",
+      "noncontrol_roots": 195,
+      "rate": 0.8369098712446352
+    },
+    {
+      "expert": "four_61",
+      "noncontrol_roots": 192,
+      "rate": 0.8240343347639485
+    },
+    {
+      "expert": "four_44",
+      "noncontrol_roots": 172,
+      "rate": 0.7381974248927039
+    },
+    {
+      "expert": "four_03",
+      "noncontrol_roots": 162,
+      "rate": 0.6952789699570815
+    },
+    {
+      "expert": "four_22",
+      "noncontrol_roots": 157,
+      "rate": 0.6738197424892703
+    },
+    {
+      "expert": "four_49",
+      "noncontrol_roots": 149,
+      "rate": 0.6394849785407726
+    },
+    {
+      "expert": "four_43",
+      "noncontrol_roots": 140,
+      "rate": 0.6008583690987125
+    },
+    {
+      "expert": "four_39",
+      "noncontrol_roots": 130,
+      "rate": 0.5579399141630901
+    },
+    {
+      "expert": "four_38",
+      "noncontrol_roots": 116,
+      "rate": 0.4978540772532189
+    },
+    {
+      "expert": "four_14",
+      "noncontrol_roots": 98,
+      "rate": 0.4206008583690987
+    },
+    {
+      "expert": "four_45",
+      "noncontrol_roots": 64,
+      "rate": 0.27467811158798283
+    },
+    {
+      "expert": "four_10",
+      "noncontrol_roots": 52,
+      "rate": 0.22317596566523606
+    },
+    {
+      "expert": "four_25",
+      "noncontrol_roots": 45,
+      "rate": 0.19313304721030042
+    },
+    {
+      "expert": "four_30",
+      "noncontrol_roots": 44,
+      "rate": 0.1888412017167382
+    },
+    {
+      "expert": "four_18",
+      "noncontrol_roots": 40,
+      "rate": 0.17167381974248927
+    },
+    {
+      "expert": "four_09",
+      "noncontrol_roots": 33,
+      "rate": 0.14163090128755365
+    },
+    {
+      "expert": "four_00",
+      "noncontrol_roots": 29,
+      "rate": 0.12446351931330472
+    },
+    {
+      "expert": "four_41",
+      "noncontrol_roots": 26,
+      "rate": 0.11158798283261803
+    },
+    {
+      "expert": "four_42",
+      "noncontrol_roots": 25,
+      "rate": 0.1072961373390558
+    },
+    {
+      "expert": "four_62",
+      "noncontrol_roots": 17,
+      "rate": 0.07296137339055794
+    },
+    {
+      "expert": "four_24",
+      "noncontrol_roots": 15,
+      "rate": 0.06437768240343347
+    },
+    {
+      "expert": "four_54",
+      "noncontrol_roots": 12,
+      "rate": 0.05150214592274678
+    },
+    {
+      "expert": "four_28",
+      "noncontrol_roots": 11,
+      "rate": 0.04721030042918455
+    },
+    {
+      "expert": "four_08",
+      "noncontrol_roots": 6,
+      "rate": 0.02575107296137339
+    },
+    {
+      "expert": "four_31",
+      "noncontrol_roots": 1,
+      "rate": 0.004291845493562232
+    },
+    {
+      "expert": "four_13",
+      "noncontrol_roots": 0,
+      "rate": 0.0
+    },
+    {
+      "expert": "four_37",
+      "noncontrol_roots": 0,
+      "rate": 0.0
+    },
+    {
+      "expert": "four_47",
+      "noncontrol_roots": 0,
+      "rate": 0.0
+    }
+  ],
+  "failed_support_gates": [
+    "at_least_48_experts_active_on_25pct_roots"
+  ],
+  "integrity_gates": {
+    "adapter_exact_233_to_240": true,
+    "filtered_rows_reproduce": true,
+    "immutable_hashes_match": true,
+    "lock_reproduced": true,
+    "outcomes_unread": true,
+    "stripped_grid_exact": true,
+    "terminal_outputs_absent": true
+  },
+  "integrity_pass": true,
+  "pass": false,
+  "protocol": "D105b fresh-map proposal readout",
+  "provenance": {
+    "amendment_sha256": "2a9ef21225c0eee4bee3fb51ce5c0bd400b6430761f7a43214239732113efac1",
+    "analyzer_sha256": "46eeee78bb3346fe20b27f1a89643b72510b2f8ce8a3b69a35f5126f3fd02f5f",
+    "lock_sha256": "7644971cb739b8c38365aa63a69c2964801d75df9b2d4210d3f74b3f1c83f1fa",
+    "protocol_sha256": "42b5dd0f689b8d8d7e110d7babf6bcf4ea41b21811c3a28017cbbd8c3720962a"
+  },
+  "readout_fit_opened": false,
+  "scope": "fresh-map outcome-blind q4 proposal support only; no terminal continuation, value, fit, candidate, or platform action",
+  "source_hashes": {
+    "cgauto/d105b_d104_cardinality_adapter.py": "6f5c8e062e7449ed30f5701c1a9b73609fe250a4f3102ccce5ac8427f3866546",
+    "cgauto/make_d105b_proposal_union_manifest.py": "e2872dcaadd8826210ee2e902daf7dec4e5522f2910fcf4117fb7699e9bf8a96",
+    "data/analysis/live-agent-6553250/d105a-q4-expert-population.tsv": "d32a0c0b6de7856e86ef55090e07807dc52bb676db626e5e2e7d69dd72d50b90",
+    "data/analysis/live-agent-6553250/d105b-d104-cardinality-adapter.json": "65f9f8edb053b7a6b61499d7e959e6b4ee28c1aeca35f94112ffcda8d013a17b",
+    "data/analysis/live-agent-6553250/d105b-d104-cardinality-measurement-amendment-2026-07-22.md": "2a9ef21225c0eee4bee3fb51ce5c0bd400b6430761f7a43214239732113efac1",
+    "data/analysis/live-agent-6553250/d105b-d104-padded-manifest-9826000-9826015.tsv": "050256b9bac0f58d05c8a0ca5e347ec80615fafe02a977c48ce5e087edd96acd",
+    "data/analysis/live-agent-6553250/d105b-fresh-map-proposal-readout-protocol-2026-07-22.md": "42b5dd0f689b8d8d7e110d7babf6bcf4ea41b21811c3a28017cbbd8c3720962a",
+    "data/analysis/live-agent-6553250/d105b-full-d97-manifest-9826000-9826015.tsv": "389d5a3111e5232dbbea85f051b46babad9d370072599c37fe44b0e6aa0cb81b",
+    "data/analysis/live-agent-6553250/d105b-proposal-union-lock.json": "7644971cb739b8c38365aa63a69c2964801d75df9b2d4210d3f74b3f1c83f1fa",
+    "data/analysis/live-agent-6553250/d105b-q4-proposals-9826000-9826015.tsv": "e93a427677ef2fb18b25246bd5b5e9e4e0ad35d47785b9d747880f219e1345f0",
+    "data/analysis/live-agent-6553250/d105b-q4-proposals-raw-padded-9826000-9826015.tsv": "b5ae93d3fe444ab062a1a9a9ec547a4b5653d0d4fba58e6c615fff694969dade",
+    "data/analysis/live-agent-6553250/d105b-q4-union-manifest-9826000-9826015.tsv": "d7087fb6ec219ee9ad7afa229dda69368d1ddb72eba52bab07ec708237e5b5d2",
+    "rust/src/bin/d104_d98_expert_proposal_coverage.rs": "c68652529212d9d5067d533d3abee8865667aa821b544b8adce2b7aaff096393",
+    "rust/src/bin/d97_joint_concrete_continuations.rs": "e7dd8a8d743c320548897ad264a515223fdb40e05571e01569654aeafafb68e4",
+    "rust/src/bin/d97_joint_concrete_manifest.rs": "f39748d916be4634b9c2e48dc2e0460fbf3d7c56985d4339786b2b39f2276b23"
+  },
+  "support": {
+    "arm_kind_counts": {
+      "control": 233,
+      "joint": 2720,
+      "single_first": 787,
+      "single_second": 524
+    },
+    "experts_noncontrol_in_at_least_25pct_roots": 47,
+    "full_manifest_arms": 11909,
+    "job_kinds": [
+      "fell",
+      "harvest",
+      "mine",
+      "renew"
+    ],
+    "maximum_unique_noncontrol_proposals_per_root": 28,
+    "mean_unique_noncontrol_proposals_per_root": 17.300429184549355,
+    "minimum_unique_noncontrol_proposals_per_root": 8,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "provenance_classes": [
+      "ambiguous",
+      "natural",
+      "opponent",
+      "own"
+    ],
+    "reversed_role_order_present": true,
+    "roots": 233,
+    "roots_with_joint": 233,
+    "seats": [
+      0,
+      1
+    ],
+    "selected_arms": 4264
+  },
+  "support_gates": {
+    "at_least_220_roots": true,
+    "at_least_48_experts_active_on_25pct_roots": false,
+    "joint_at_every_root": true,
+    "mean_unique_noncontrol_at_least_14": true,
+    "minimum_unique_noncontrol_at_least_6": true,
+    "semantic_breadth": true
+  },
+  "support_pass": false,
+  "terminal_value_opened": false
+}

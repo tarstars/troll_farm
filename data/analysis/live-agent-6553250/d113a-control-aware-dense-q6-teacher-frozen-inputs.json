@@ -1,0 +1,22 @@
+{
+  "schema": "troll-farm-d113a-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-d113-execution",
+  "start_seed": 9843200,
+  "maps": 8,
+  "tasks": 128,
+  "threads": 20,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d113a-control-aware-dense-q6-teacher-protocol-2026-07-22.md": "8a6e31ff154add22a97a45ee538655206ae183b92de98ed18519c03ce71a74cf",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/src/strategies/script_boss.rs": "716e52c0c9de0104efae24500202e851b56de9509fe194834f5d8af8d0c6eb1f",
+    "rust/src/strategies/silver_boss.rs": "fd13c13d23b652f9b48cddf81a134800a0bf738b90a7a3f0342bb0525f38cf4d",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-result.json": "4025860ee86f458659a07866a95795db572f2c8a1c361c758ce65d56fe14dd39",
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-result-2026-07-22.md": "574d306b22fd9841c34b45f60465932fefec2cb776edb6d04352afa6c0cf1e28",
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-repair1-frozen-inputs.json": "1fb71574d2fc94467c65587d55a07f1c305bfac0940d3a9b8ddf5c5416cc170c"
+  }
+}

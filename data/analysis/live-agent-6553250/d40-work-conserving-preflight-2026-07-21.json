@@ -1,0 +1,407 @@
+{
+  "decision": "open_behavior_learning_protocol",
+  "evacuation_ablation": {
+    "actions": {
+      "bank": 2,
+      "fell_bank": 4525,
+      "harvest_bank": 2751,
+      "idle": 31211,
+      "mine_bank": 717,
+      "renew": 4846,
+      "train_chopper": 28678,
+      "train_none": 9164,
+      "train_producer": 2526
+    },
+    "by_opponent": {
+      "compact_gold": {
+        "episodes": 32,
+        "mean_margin": -166.46875,
+        "mean_opponent_score": 316.28125,
+        "mean_own_score": 149.8125,
+        "worker_three_rate": 0.59375,
+        "worker_two_rate": 1.0
+      },
+      "gold_adaptive": {
+        "episodes": 32,
+        "mean_margin": -52.625,
+        "mean_opponent_score": 226.625,
+        "mean_own_score": 174.0,
+        "worker_three_rate": 0.65625,
+        "worker_two_rate": 1.0
+      },
+      "legend_balanced": {
+        "episodes": 32,
+        "mean_margin": -72.0,
+        "mean_opponent_score": 200.40625,
+        "mean_own_score": 128.40625,
+        "worker_three_rate": 0.5625,
+        "worker_two_rate": 1.0
+      },
+      "mybot": {
+        "episodes": 32,
+        "mean_margin": -55.09375,
+        "mean_opponent_score": 170.84375,
+        "mean_own_score": 115.75,
+        "worker_three_rate": 0.4375,
+        "worker_two_rate": 1.0
+      },
+      "norx_native_three": {
+        "episodes": 32,
+        "mean_margin": -16.53125,
+        "mean_opponent_score": 118.25,
+        "mean_own_score": 101.71875,
+        "worker_three_rate": 0.5,
+        "worker_two_rate": 1.0
+      },
+      "resident": {
+        "episodes": 32,
+        "mean_margin": -125.15625,
+        "mean_opponent_score": 183.34375,
+        "mean_own_score": 58.1875,
+        "worker_three_rate": 0.15625,
+        "worker_two_rate": 0.8125
+      },
+      "script_boss": {
+        "episodes": 32,
+        "mean_margin": -7.9375,
+        "mean_opponent_score": 161.84375,
+        "mean_own_score": 153.90625,
+        "worker_three_rate": 0.59375,
+        "worker_two_rate": 1.0
+      },
+      "silver_boss": {
+        "episodes": 32,
+        "mean_margin": -4.9375,
+        "mean_opponent_score": 135.5,
+        "mean_own_score": 130.5625,
+        "worker_three_rate": 0.46875,
+        "worker_two_rate": 1.0
+      }
+    },
+    "catastrophe_rate": 0.41796875,
+    "catastrophes": 107,
+    "completed_jobs": 42786,
+    "episodes": 256,
+    "invalidated_jobs": 633,
+    "mean_decisions": 329.765625,
+    "mean_margin": -62.59375,
+    "mean_nonidle_jobs": 50.16015625,
+    "mean_opponent_score": 189.13671875,
+    "mean_own_score": 126.54296875,
+    "median_nonidle_jobs": 27.5,
+    "negative_margin_mass": 23800,
+    "renew_selection_rate": 0.9453125,
+    "renewable_crop_rate": 0.9453125,
+    "worker_three_rate": 0.49609375,
+    "worker_two_rate": 0.9765625
+  },
+  "failed_gates": [],
+  "gates": {
+    "at_least_6_nonnegative_opponent_families": true,
+    "crop_rate_at_least_60pct": true,
+    "evacuation_ablation_integrity": true,
+    "idle_at_most_half_evacuation": true,
+    "margin_advantage_over_evacuation_at_least_20": true,
+    "margin_advantage_over_random_at_least_50": true,
+    "median_nonidle_jobs_at_least_4": true,
+    "no_opponent_family_below_minus_10": true,
+    "random_integrity": true,
+    "work_conserving_integrity": true,
+    "work_conserving_repeat_byte_identical": true,
+    "worker_three_improvement_over_evacuation_at_least_15pp": true,
+    "worker_three_rate_at_least_50pct": true,
+    "worker_two_rate_at_least_90pct": true
+  },
+  "idle_ratio_vs_evacuation": 0.029765146903335364,
+  "integrity": {
+    "evacuation_ablation": {
+      "action_count_errors": 0,
+      "complete": true,
+      "deposit_prediction_failures": 0,
+      "duplicate_keys": 0,
+      "empty_decision_episodes": 0,
+      "expected_rows": 256,
+      "invalid_direct_commands": 0,
+      "margin_identity_errors": 0,
+      "missing_keys": 0,
+      "provenance_failures": 0,
+      "return_identity_errors": 0,
+      "rows": 256,
+      "unexpected_keys": 0,
+      "unexpected_policy_rows": 0,
+      "worker_cap_errors": 0
+    },
+    "random": {
+      "action_count_errors": 0,
+      "complete": true,
+      "deposit_prediction_failures": 0,
+      "duplicate_keys": 0,
+      "empty_decision_episodes": 0,
+      "expected_rows": 256,
+      "invalid_direct_commands": 0,
+      "margin_identity_errors": 0,
+      "missing_keys": 0,
+      "provenance_failures": 0,
+      "return_identity_errors": 0,
+      "rows": 256,
+      "unexpected_keys": 0,
+      "unexpected_policy_rows": 0,
+      "worker_cap_errors": 0
+    },
+    "repeat_verified": true,
+    "work_conserving": {
+      "action_count_errors": 0,
+      "complete": true,
+      "deposit_prediction_failures": 0,
+      "duplicate_keys": 0,
+      "empty_decision_episodes": 0,
+      "expected_rows": 256,
+      "invalid_direct_commands": 0,
+      "margin_identity_errors": 0,
+      "missing_keys": 0,
+      "provenance_failures": 0,
+      "return_identity_errors": 0,
+      "rows": 256,
+      "unexpected_keys": 0,
+      "unexpected_policy_rows": 0,
+      "worker_cap_errors": 0
+    }
+  },
+  "minimum_opponent_family_advantage": 67.53125,
+  "nonnegative_opponent_families": 8,
+  "opponent_family_advantages_vs_random": {
+    "compact_gold": 250.75,
+    "gold_adaptive": 233.28125,
+    "legend_balanced": 132.875,
+    "mybot": 162.40625,
+    "norx_native_three": 102.5,
+    "resident": 67.53125,
+    "script_boss": 207.71875,
+    "silver_boss": 176.84375
+  },
+  "paired_vs_evacuation": {
+    "cells": 256,
+    "mean_margin_advantage": 94.62109375,
+    "negative": 72,
+    "positive": 178,
+    "zero": 6
+  },
+  "paired_vs_random": {
+    "cells": 256,
+    "mean_margin_advantage": 166.73828125,
+    "negative": 13,
+    "positive": 241,
+    "zero": 2
+  },
+  "preflight_pass": true,
+  "protocol": "D40 work-conserving deficit macro teacher preflight",
+  "provenance": {
+    "evacuation": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d40-macro-evacuation-ablation-9670000-9670015.tsv",
+      "sha256": "47474b7ac52151ae86159bbd392485b3c1f32cb0e6ae2fd1010ac834442a13a6"
+    },
+    "random": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d40-macro-random-preflight-9670000-9670015.tsv",
+      "sha256": "d56d09a3e4b6822c2f047ec0c06eb914ece9a31ccf1e2f10c9f53a830f436536"
+    },
+    "work_a": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d40-macro-work-conserving-preflight-a-9670000-9670015.tsv",
+      "sha256": "653dee375b1922bd43b74e6e9aa1b27503d8017350f3b8dcf3baed197827b8a5"
+    },
+    "work_b": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d40-macro-work-conserving-preflight-b-9670000-9670015.tsv",
+      "sha256": "653dee375b1922bd43b74e6e9aa1b27503d8017350f3b8dcf3baed197827b8a5"
+    }
+  },
+  "random": {
+    "actions": {
+      "bank": 1,
+      "fell_bank": 2066,
+      "harvest_bank": 1494,
+      "idle": 912,
+      "mine_bank": 1475,
+      "renew": 1423,
+      "train_chopper": 1938,
+      "train_none": 3295,
+      "train_producer": 1972
+    },
+    "by_opponent": {
+      "compact_gold": {
+        "episodes": 32,
+        "mean_margin": -289.75,
+        "mean_opponent_score": 367.25,
+        "mean_own_score": 77.5,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.53125
+      },
+      "gold_adaptive": {
+        "episodes": 32,
+        "mean_margin": -198.28125,
+        "mean_opponent_score": 273.0,
+        "mean_own_score": 74.71875,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.5625
+      },
+      "legend_balanced": {
+        "episodes": 32,
+        "mean_margin": -140.90625,
+        "mean_opponent_score": 226.375,
+        "mean_own_score": 85.46875,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.5625
+      },
+      "mybot": {
+        "episodes": 32,
+        "mean_margin": -109.90625,
+        "mean_opponent_score": 176.65625,
+        "mean_own_score": 66.75,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.5625
+      },
+      "norx_native_three": {
+        "episodes": 32,
+        "mean_margin": -44.0625,
+        "mean_opponent_score": 116.46875,
+        "mean_own_score": 72.40625,
+        "worker_three_rate": 0.03125,
+        "worker_two_rate": 0.59375
+      },
+      "resident": {
+        "episodes": 32,
+        "mean_margin": -122.84375,
+        "mean_opponent_score": 171.875,
+        "mean_own_score": 49.03125,
+        "worker_three_rate": 0.0,
+        "worker_two_rate": 0.5625
+      },
+      "script_boss": {
+        "episodes": 32,
+        "mean_margin": -105.84375,
+        "mean_opponent_score": 173.28125,
+        "mean_own_score": 67.4375,
+        "worker_three_rate": 0.0625,
+        "worker_two_rate": 0.53125
+      },
+      "silver_boss": {
+        "episodes": 32,
+        "mean_margin": -66.09375,
+        "mean_opponent_score": 127.34375,
+        "mean_own_score": 61.25,
+        "worker_three_rate": 0.03125,
+        "worker_two_rate": 0.5
+      }
+    },
+    "catastrophe_rate": 0.5703125,
+    "catastrophes": 146,
+    "completed_jobs": 6833,
+    "episodes": 256,
+    "invalidated_jobs": 137,
+    "mean_decisions": 56.9375,
+    "mean_margin": -134.7109375,
+    "mean_nonidle_jobs": 25.23046875,
+    "mean_opponent_score": 204.03125,
+    "mean_own_score": 69.3203125,
+    "median_nonidle_jobs": 24.0,
+    "negative_margin_mass": 35109,
+    "renew_selection_rate": 0.96875,
+    "renewable_crop_rate": 0.96484375,
+    "worker_three_rate": 0.015625,
+    "worker_two_rate": 0.55078125
+  },
+  "work_conserving": {
+    "actions": {
+      "bank": 14,
+      "fell_bank": 8125,
+      "harvest_bank": 2961,
+      "idle": 929,
+      "mine_bank": 731,
+      "renew": 8634,
+      "train_chopper": 3928,
+      "train_none": 14742,
+      "train_producer": 959
+    },
+    "by_opponent": {
+      "compact_gold": {
+        "episodes": 32,
+        "mean_margin": -39.0,
+        "mean_opponent_score": 266.625,
+        "mean_own_score": 227.625,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      },
+      "gold_adaptive": {
+        "episodes": 32,
+        "mean_margin": 35.0,
+        "mean_opponent_score": 209.59375,
+        "mean_own_score": 244.59375,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      },
+      "legend_balanced": {
+        "episodes": 32,
+        "mean_margin": -8.03125,
+        "mean_opponent_score": 205.8125,
+        "mean_own_score": 197.78125,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      },
+      "mybot": {
+        "episodes": 32,
+        "mean_margin": 52.5,
+        "mean_opponent_score": 151.9375,
+        "mean_own_score": 204.4375,
+        "worker_three_rate": 0.96875,
+        "worker_two_rate": 1.0
+      },
+      "norx_native_three": {
+        "episodes": 32,
+        "mean_margin": 58.4375,
+        "mean_opponent_score": 120.03125,
+        "mean_own_score": 178.46875,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      },
+      "resident": {
+        "episodes": 32,
+        "mean_margin": -55.3125,
+        "mean_opponent_score": 212.125,
+        "mean_own_score": 156.8125,
+        "worker_three_rate": 0.4375,
+        "worker_two_rate": 0.8125
+      },
+      "script_boss": {
+        "episodes": 32,
+        "mean_margin": 101.875,
+        "mean_opponent_score": 142.0625,
+        "mean_own_score": 243.9375,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      },
+      "silver_boss": {
+        "episodes": 32,
+        "mean_margin": 110.75,
+        "mean_opponent_score": 130.90625,
+        "mean_own_score": 241.65625,
+        "worker_three_rate": 1.0,
+        "worker_two_rate": 1.0
+      }
+    },
+    "catastrophe_rate": 0.0859375,
+    "catastrophes": 22,
+    "completed_jobs": 19753,
+    "episodes": 256,
+    "invalidated_jobs": 898,
+    "mean_decisions": 160.24609375,
+    "mean_margin": 32.02734375,
+    "mean_nonidle_jobs": 79.94140625,
+    "mean_opponent_score": 179.88671875,
+    "mean_own_score": 211.9140625,
+    "median_nonidle_jobs": 81.0,
+    "negative_margin_mass": 6673,
+    "renew_selection_rate": 1.0,
+    "renewable_crop_rate": 0.99609375,
+    "worker_three_rate": 0.92578125,
+    "worker_two_rate": 0.9765625
+  },
+  "worker_three_improvement_over_evacuation": 0.4296875
+}

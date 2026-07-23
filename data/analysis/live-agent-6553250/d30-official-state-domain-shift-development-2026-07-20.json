@@ -1,0 +1,901 @@
+{
+ "schema": 1,
+ "complete": true,
+ "scope": "D30 development-only decomposition; no threshold tuning or Arena action",
+ "integrity": {
+  "field_rows": 80,
+  "generated_rows": 1920,
+  "scalar_features": 426,
+  "spatial_shape": [
+   36,
+   11,
+   22
+  ],
+  "grid_hash_mismatches": [],
+  "maximum_field_raw_prediction_error": 0.00012207074999537326,
+  "maximum_generated_raw_prediction_error": 5.340576171875e-05
+ },
+ "paired_prediction_means": {
+  "generated": -13.689763069152832,
+  "field": -91.7348861694336,
+  "field_minus_generated": -78.04512310028076
+ },
+ "independent_branch_factorial_raw_means": {
+  "generated_spatial__generated_scalar": -13.688994588664112,
+  "field_spatial__generated_scalar": -18.69532772121951,
+  "generated_spatial__field_scalar": -85.81056014513597,
+  "field_spatial__field_scalar": -91.64455402508378
+ },
+ "factorial_attribution": {
+  "spatial_marginal_at_generated_scalars": -5.0063331325553975,
+  "scalar_marginal_at_generated_spatial": -72.12156555647185,
+  "factorial_interaction": -0.8276607473924109,
+  "generated_pairing_effect": -0.0007684804887198027,
+  "field_pairing_effect": -0.09033214434981574,
+  "leading_branch_by_frozen_2x_rule": "scalar"
+ },
+ "scalar_support": {
+  "field_feature_values_outside_generated_support": 707,
+  "field_rows_with_any_value_outside_generated_support": 80,
+  "top25_single_feature_replacement_effects": [
+   {
+    "feature": "map_water_count",
+    "field_mean": 37.0,
+    "generated_mean": 6.0,
+    "generated_median": 6.0,
+    "standardized_mean_shift": 31.0,
+    "field_outside_generated_support": 80,
+    "replacement_raw_mean_delta": 27.590065002441406
+   },
+   {
+    "feature": "t75_near_my_3_fruits",
+    "field_mean": 2.174999952316284,
+    "generated_mean": 1.4786458015441895,
+    "generated_median": 0.0,
+    "standardized_mean_shift": 0.2670682668685913,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -7.376029968261719
+   },
+   {
+    "feature": "map_shack_manhattan",
+    "field_mean": 9.675000190734863,
+    "generated_mean": 14.858333587646484,
+    "generated_median": 14.5,
+    "standardized_mean_shift": -0.8231572508811951,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": 6.20135498046875
+   },
+   {
+    "feature": "t1_opponent_other_shack_distance_sum",
+    "field_mean": 9.675000190734863,
+    "generated_mean": 14.858333587646484,
+    "generated_median": 14.5,
+    "standardized_mean_shift": -0.8231572508811951,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": 6.158164978027344
+   },
+   {
+    "feature": "t1_my_other_shack_distance_sum",
+    "field_mean": 9.675000190734863,
+    "generated_mean": 14.858333587646484,
+    "generated_median": 14.5,
+    "standardized_mean_shift": -0.8231572508811951,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": 5.98651123046875
+   },
+   {
+    "feature": "t75_near_my_3",
+    "field_mean": 0.8500000238418579,
+    "generated_mean": 0.5619791746139526,
+    "generated_median": 0.0,
+    "standardized_mean_shift": 0.30912184715270996,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 5.160591125488281
+   },
+   {
+    "feature": "d50_75_plant_health",
+    "field_mean": -18.875,
+    "generated_mean": -27.827604293823242,
+    "generated_median": -28.0,
+    "standardized_mean_shift": 0.6634840369224548,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": 4.319160461425781
+   },
+   {
+    "feature": "t75_my_chop_max",
+    "field_mean": 2.0875000953674316,
+    "generated_mean": 2.2249999046325684,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.1973455548286438,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 4.222969055175781
+   },
+   {
+    "feature": "t50_my_chop_max",
+    "field_mean": 2.0875000953674316,
+    "generated_mean": 2.2249999046325684,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.1973455548286438,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 4.1751861572265625
+   },
+   {
+    "feature": "t50_my_chop_sum",
+    "field_mean": 3.0875000953674316,
+    "generated_mean": 3.2249999046325684,
+    "generated_median": 3.0,
+    "standardized_mean_shift": -0.1973455548286438,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 3.8535385131835938
+   },
+   {
+    "feature": "d1_75_plant_health",
+    "field_mean": -3.75,
+    "generated_mean": -39.32500076293945,
+    "generated_median": -41.0,
+    "standardized_mean_shift": 0.9838593006134033,
+    "field_outside_generated_support": 3,
+    "replacement_raw_mean_delta": 3.8377761840820312
+   },
+   {
+    "feature": "t75_my_chop_sum",
+    "field_mean": 3.0875000953674316,
+    "generated_mean": 3.2249999046325684,
+    "generated_median": 3.0,
+    "standardized_mean_shift": -0.1973455548286438,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 3.7318954467773438
+   },
+   {
+    "feature": "t75_opponent_chop_sum",
+    "field_mean": 2.375,
+    "generated_mean": 2.4286458492279053,
+    "generated_median": 3.0,
+    "standardized_mean_shift": -0.04984940588474274,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -3.5243148803710938
+   },
+   {
+    "feature": "t25_my_chop_max",
+    "field_mean": 2.075000047683716,
+    "generated_mean": 2.190624952316284,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.15910030901432037,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 3.4432601928710938
+   },
+   {
+    "feature": "t75_opponent_chop_max",
+    "field_mean": 1.524999976158142,
+    "generated_mean": 1.6229166984558105,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.19824886322021484,
+    "field_outside_generated_support": 7,
+    "replacement_raw_mean_delta": -3.3524932861328125
+   },
+   {
+    "feature": "t25_my_chop_sum",
+    "field_mean": 3.0625,
+    "generated_mean": 3.1484375,
+    "generated_median": 3.0,
+    "standardized_mean_shift": -0.10460592806339264,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 3.332855224609375
+   },
+   {
+    "feature": "t50_near_my_3_fruits",
+    "field_mean": 3.3375000953674316,
+    "generated_mean": 2.4755208492279053,
+    "generated_median": 1.0,
+    "standardized_mean_shift": 0.26005205512046814,
+    "field_outside_generated_support": 1,
+    "replacement_raw_mean_delta": -3.1763381958007812
+   },
+   {
+    "feature": "t25_opponent_carry_lemon",
+    "field_mean": 0.32499998807907104,
+    "generated_mean": 0.1588541716337204,
+    "generated_median": 0.0,
+    "standardized_mean_shift": 0.41729843616485596,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": -2.8386764526367188
+   },
+   {
+    "feature": "t50_opponent_chop_sum",
+    "field_mean": 2.075000047683716,
+    "generated_mean": 2.324479103088379,
+    "generated_median": 3.0,
+    "standardized_mean_shift": -0.24306441843509674,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -2.6536788940429688
+   },
+   {
+    "feature": "t75_inv_gap_apple",
+    "field_mean": 2.612499952316284,
+    "generated_mean": 1.1036458015441895,
+    "generated_median": 0.0,
+    "standardized_mean_shift": 0.28115957975387573,
+    "field_outside_generated_support": 1,
+    "replacement_raw_mean_delta": 2.63470458984375
+   },
+   {
+    "feature": "t75_opponent_carry_iron",
+    "field_mean": 0.13750000298023224,
+    "generated_mean": 0.04531250149011612,
+    "generated_median": 0.0,
+    "standardized_mean_shift": 0.3274959921836853,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -2.55584716796875
+   },
+   {
+    "feature": "t50_inv_gap_banana",
+    "field_mean": 0.2874999940395355,
+    "generated_mean": 1.7322916984558105,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.464024156332016,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -2.4660110473632812
+   },
+   {
+    "feature": "t50_opponent_chop_max",
+    "field_mean": 1.3875000476837158,
+    "generated_mean": 1.5786458253860474,
+    "generated_median": 2.0,
+    "standardized_mean_shift": -0.38263389468193054,
+    "field_outside_generated_support": 6,
+    "replacement_raw_mean_delta": -2.4186172485351562
+   },
+   {
+    "feature": "t1_lemon_size",
+    "field_mean": 12.149999618530273,
+    "generated_mean": 15.300000190734863,
+    "generated_median": 16.0,
+    "standardized_mean_shift": -0.6755386590957642,
+    "field_outside_generated_support": 4,
+    "replacement_raw_mean_delta": -2.3885116577148438
+   },
+   {
+    "feature": "t25_opponent_ms_max",
+    "field_mean": 1.4500000476837158,
+    "generated_mean": 1.3468749523162842,
+    "generated_median": 1.0,
+    "standardized_mean_shift": 0.22398659586906433,
+    "field_outside_generated_support": 2,
+    "replacement_raw_mean_delta": -2.3369674682617188
+   }
+  ],
+  "top25_absolute_standardized_mean_shifts": [
+   {
+    "feature": "map_water_count",
+    "field_mean": 37.0,
+    "generated_mean": 6.0,
+    "generated_median": 6.0,
+    "standardized_mean_shift": 31.0,
+    "field_outside_generated_support": 80,
+    "replacement_raw_mean_delta": 27.590065002441406
+   },
+   {
+    "feature": "t1_plants",
+    "field_mean": 16.100000381469727,
+    "generated_mean": 19.549999237060547,
+    "generated_median": 20.0,
+    "standardized_mean_shift": -1.690167784690857,
+    "field_outside_generated_support": 28,
+    "replacement_raw_mean_delta": -1.2046432495117188
+   },
+   {
+    "feature": "t1_closer_my",
+    "field_mean": 7.574999809265137,
+    "generated_mean": 9.416666984558105,
+    "generated_median": 10.0,
+    "standardized_mean_shift": -1.3330110311508179,
+    "field_outside_generated_support": 6,
+    "replacement_raw_mean_delta": 1.839569091796875
+   },
+   {
+    "feature": "t1_closer_opponent",
+    "field_mean": 7.574999809265137,
+    "generated_mean": 9.416666984558105,
+    "generated_median": 10.0,
+    "standardized_mean_shift": -1.3330110311508179,
+    "field_outside_generated_support": 6,
+    "replacement_raw_mean_delta": -0.14363861083984375
+   },
+   {
+    "feature": "t1_plant_cooldown",
+    "field_mean": 59.599998474121094,
+    "generated_mean": 83.46666717529297,
+    "generated_median": 82.0,
+    "standardized_mean_shift": -1.3328791856765747,
+    "field_outside_generated_support": 24,
+    "replacement_raw_mean_delta": -1.4512710571289062
+   },
+   {
+    "feature": "t1_plant_health",
+    "field_mean": 175.02499389648438,
+    "generated_mean": 209.46665954589844,
+    "generated_median": 208.0,
+    "standardized_mean_shift": -1.2326914072036743,
+    "field_outside_generated_support": 29,
+    "replacement_raw_mean_delta": 0.34564971923828125
+   },
+   {
+    "feature": "map_iron_count",
+    "field_mean": 2.799999952316284,
+    "generated_mean": 4.0,
+    "generated_median": 4.0,
+    "standardized_mean_shift": -1.2000000476837158,
+    "field_outside_generated_support": 48,
+    "replacement_raw_mean_delta": 0.5607833862304688
+   },
+   {
+    "feature": "t1_banana_count",
+    "field_mean": 3.799999952316284,
+    "generated_mean": 4.983333110809326,
+    "generated_median": 4.0,
+    "standardized_mean_shift": -1.1833397150039673,
+    "field_outside_generated_support": 28,
+    "replacement_raw_mean_delta": 0.47154998779296875
+   },
+   {
+    "feature": "t1_plant_size",
+    "field_mean": 50.724998474121094,
+    "generated_mean": 60.93333435058594,
+    "generated_median": 60.0,
+    "standardized_mean_shift": -1.0891093015670776,
+    "field_outside_generated_support": 21,
+    "replacement_raw_mean_delta": 0.16968536376953125
+   },
+   {
+    "feature": "t75_banana_count",
+    "field_mean": 2.3375000953674316,
+    "generated_mean": 4.8338541984558105,
+    "generated_median": 5.0,
+    "standardized_mean_shift": -1.073199987411499,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -2.2942581176757812
+   },
+   {
+    "feature": "t75_banana_size",
+    "field_mean": 8.862500190734863,
+    "generated_mean": 17.435937881469727,
+    "generated_median": 16.0,
+    "standardized_mean_shift": -1.0438871383666992,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 1.7973175048828125
+   },
+   {
+    "feature": "t75_banana_health",
+    "field_mean": 13.399999618530273,
+    "generated_mean": 26.42447853088379,
+    "generated_median": 24.0,
+    "standardized_mean_shift": -1.0367239713668823,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 0.0986175537109375
+   },
+   {
+    "feature": "t50_banana_count",
+    "field_mean": 3.0374999046325684,
+    "generated_mean": 5.182812690734863,
+    "generated_median": 5.0,
+    "standardized_mean_shift": -1.008722186088562,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 0.2944793701171875
+   },
+   {
+    "feature": "d1_75_plant_health",
+    "field_mean": -3.75,
+    "generated_mean": -39.32500076293945,
+    "generated_median": -41.0,
+    "standardized_mean_shift": 0.9838593006134033,
+    "field_outside_generated_support": 3,
+    "replacement_raw_mean_delta": 3.8377761840820312
+   },
+   {
+    "feature": "t50_banana_health",
+    "field_mean": 17.399999618530273,
+    "generated_mean": 28.641145706176758,
+    "generated_median": 28.0,
+    "standardized_mean_shift": -0.9797713160514832,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -1.09930419921875
+   },
+   {
+    "feature": "t50_banana_size",
+    "field_mean": 11.675000190734863,
+    "generated_mean": 18.76770782470703,
+    "generated_median": 18.0,
+    "standardized_mean_shift": -0.9479378461837769,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -0.7208023071289062
+   },
+   {
+    "feature": "t25_banana_count",
+    "field_mean": 3.5,
+    "generated_mean": 5.1171875,
+    "generated_median": 5.0,
+    "standardized_mean_shift": -0.9150665402412415,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -0.3166046142578125
+   },
+   {
+    "feature": "t25_banana_health",
+    "field_mean": 20.524999618530273,
+    "generated_mean": 28.829166412353516,
+    "generated_median": 29.0,
+    "standardized_mean_shift": -0.9148716926574707,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 1.2057342529296875
+   },
+   {
+    "feature": "t1_apple_count",
+    "field_mean": 4.025000095367432,
+    "generated_mean": 4.933333396911621,
+    "generated_median": 4.0,
+    "standardized_mean_shift": -0.9093239903450012,
+    "field_outside_generated_support": 23,
+    "replacement_raw_mean_delta": 0.04622650146484375
+   },
+   {
+    "feature": "t1_banana_health",
+    "field_mean": 19.75,
+    "generated_mean": 25.41666603088379,
+    "generated_median": 24.0,
+    "standardized_mean_shift": -0.8848552107810974,
+    "field_outside_generated_support": 12,
+    "replacement_raw_mean_delta": 0.21643829345703125
+   },
+   {
+    "feature": "t25_banana_size",
+    "field_mean": 13.875,
+    "generated_mean": 18.930728912353516,
+    "generated_median": 19.0,
+    "standardized_mean_shift": -0.8806105256080627,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 1.277740478515625
+   },
+   {
+    "feature": "t25_plant_size",
+    "field_mean": 64.23750305175781,
+    "generated_mean": 72.76614379882812,
+    "generated_median": 72.0,
+    "standardized_mean_shift": -0.8681182265281677,
+    "field_outside_generated_support": 6,
+    "replacement_raw_mean_delta": -0.2928466796875
+   },
+   {
+    "feature": "d25_50_plant_health",
+    "field_mean": -14.0625,
+    "generated_mean": -26.634374618530273,
+    "generated_median": -27.0,
+    "standardized_mean_shift": 0.8547074794769287,
+    "field_outside_generated_support": 5,
+    "replacement_raw_mean_delta": 0.1297607421875
+   },
+   {
+    "feature": "t75_banana_fruits",
+    "field_mean": 6.324999809265137,
+    "generated_mean": 10.884896278381348,
+    "generated_median": 10.0,
+    "standardized_mean_shift": -0.8368200063705444,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": -0.122802734375
+   },
+   {
+    "feature": "d1_25_plants",
+    "field_mean": 0.612500011920929,
+    "generated_mean": -0.8223958611488342,
+    "generated_median": -1.0,
+    "standardized_mean_shift": 0.8283827304840088,
+    "field_outside_generated_support": 0,
+    "replacement_raw_mean_delta": 1.7132949829101562
+   }
+  ]
+ },
+ "spatial_support": {
+  "field_plane_totals_outside_generated_support": 179,
+  "top20_single_plane_replacement_effects": [
+   {
+    "plane": "walkable",
+    "field_total_mean": 140.275,
+    "generated_total_mean": 170.68333333333334,
+    "field_outside_generated_total_support": 20,
+    "replacement_raw_mean_delta": -4.3622894287109375
+   },
+   {
+    "plane": "water",
+    "field_total_mean": 37.0,
+    "generated_total_mean": 6.0,
+    "field_outside_generated_total_support": 80,
+    "replacement_raw_mean_delta": 4.2730712890625
+   },
+   {
+    "plane": "plant_size",
+    "field_total_mean": 51.35,
+    "generated_total_mean": 55.100520833333334,
+    "field_outside_generated_total_support": 4,
+    "replacement_raw_mean_delta": 3.9685440063476562
+   },
+   {
+    "plane": "plant_health",
+    "field_total_mean": 171.275,
+    "generated_total_mean": 170.14166666666668,
+    "field_outside_generated_total_support": 5,
+    "replacement_raw_mean_delta": 2.6024398803710938
+   },
+   {
+    "plane": "plant_fruits",
+    "field_total_mean": 34.525,
+    "generated_total_mean": 37.96875,
+    "field_outside_generated_total_support": 4,
+    "replacement_raw_mean_delta": 2.2685165405273438
+   },
+   {
+    "plane": "map_mask",
+    "field_total_mean": 191.05,
+    "generated_total_mean": 182.68333333333334,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -1.3721771240234375
+   },
+   {
+    "plane": "lemon",
+    "field_total_mean": 3.675,
+    "generated_total_mean": 2.53125,
+    "field_outside_generated_total_support": 7,
+    "replacement_raw_mean_delta": 1.3179092407226562
+   },
+   {
+    "plane": "opponent_unit",
+    "field_total_mean": 1.925,
+    "generated_total_mean": 2.1296875,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 1.1330337524414062
+   },
+   {
+    "plane": "own_unit",
+    "field_total_mean": 2.0,
+    "generated_total_mean": 2.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 1.0959854125976562
+   },
+   {
+    "plane": "plum",
+    "field_total_mean": 3.1,
+    "generated_total_mean": 2.578125,
+    "field_outside_generated_total_support": 5,
+    "replacement_raw_mean_delta": 0.9286880493164062
+   },
+   {
+    "plane": "opponent_shack",
+    "field_total_mean": 1.0,
+    "generated_total_mean": 1.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.8861160278320312
+   },
+   {
+    "plane": "apple",
+    "field_total_mean": 4.175,
+    "generated_total_mean": 4.349479166666667,
+    "field_outside_generated_total_support": 1,
+    "replacement_raw_mean_delta": 0.8433609008789062
+   },
+   {
+    "plane": "own_movement",
+    "field_total_mean": 2.95,
+    "generated_total_mean": 2.8916666666666666,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.64105224609375
+   },
+   {
+    "plane": "own_chop",
+    "field_total_mean": 3.0875,
+    "generated_total_mean": 3.225,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.6158676147460938
+   },
+   {
+    "plane": "opponent_chop",
+    "field_total_mean": 2.375,
+    "generated_total_mean": 2.4286458333333334,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.5893478393554688
+   },
+   {
+    "plane": "opponent_movement",
+    "field_total_mean": 2.7875,
+    "generated_total_mean": 2.6557291666666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.512908935546875
+   },
+   {
+    "plane": "plant_cooldown",
+    "field_total_mean": 10.45,
+    "generated_total_mean": 9.183333333333334,
+    "field_outside_generated_total_support": 1,
+    "replacement_raw_mean_delta": 0.49393463134765625
+   },
+   {
+    "plane": "opponent_capacity",
+    "field_total_mean": 2.9125,
+    "generated_total_mean": 2.7588541666666666,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.48876953125
+   },
+   {
+    "plane": "own_capacity",
+    "field_total_mean": 2.875,
+    "generated_total_mean": 3.158333333333333,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.37357330322265625
+   },
+   {
+    "plane": "opponent_harvest",
+    "field_total_mean": 1.9375,
+    "generated_total_mean": 1.7921875,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.34702301025390625
+   }
+  ],
+  "planes": [
+   {
+    "plane": "map_mask",
+    "field_total_mean": 191.05,
+    "generated_total_mean": 182.68333333333334,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -1.3721771240234375
+   },
+   {
+    "plane": "walkable",
+    "field_total_mean": 140.275,
+    "generated_total_mean": 170.68333333333334,
+    "field_outside_generated_total_support": 20,
+    "replacement_raw_mean_delta": -4.3622894287109375
+   },
+   {
+    "plane": "water",
+    "field_total_mean": 37.0,
+    "generated_total_mean": 6.0,
+    "field_outside_generated_total_support": 80,
+    "replacement_raw_mean_delta": 4.2730712890625
+   },
+   {
+    "plane": "iron",
+    "field_total_mean": 2.8,
+    "generated_total_mean": 4.0,
+    "field_outside_generated_total_support": 48,
+    "replacement_raw_mean_delta": 0.0101776123046875
+   },
+   {
+    "plane": "own_shack",
+    "field_total_mean": 1.0,
+    "generated_total_mean": 1.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -0.000457763671875
+   },
+   {
+    "plane": "opponent_shack",
+    "field_total_mean": 1.0,
+    "generated_total_mean": 1.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.8861160278320312
+   },
+   {
+    "plane": "plum",
+    "field_total_mean": 3.1,
+    "generated_total_mean": 2.578125,
+    "field_outside_generated_total_support": 5,
+    "replacement_raw_mean_delta": 0.9286880493164062
+   },
+   {
+    "plane": "lemon",
+    "field_total_mean": 3.675,
+    "generated_total_mean": 2.53125,
+    "field_outside_generated_total_support": 7,
+    "replacement_raw_mean_delta": 1.3179092407226562
+   },
+   {
+    "plane": "apple",
+    "field_total_mean": 4.175,
+    "generated_total_mean": 4.349479166666667,
+    "field_outside_generated_total_support": 1,
+    "replacement_raw_mean_delta": 0.8433609008789062
+   },
+   {
+    "plane": "banana",
+    "field_total_mean": 2.3375,
+    "generated_total_mean": 4.833854166666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.34336090087890625
+   },
+   {
+    "plane": "plant_size",
+    "field_total_mean": 51.35,
+    "generated_total_mean": 55.100520833333334,
+    "field_outside_generated_total_support": 4,
+    "replacement_raw_mean_delta": 3.9685440063476562
+   },
+   {
+    "plane": "plant_health",
+    "field_total_mean": 171.275,
+    "generated_total_mean": 170.14166666666668,
+    "field_outside_generated_total_support": 5,
+    "replacement_raw_mean_delta": 2.6024398803710938
+   },
+   {
+    "plane": "plant_fruits",
+    "field_total_mean": 34.525,
+    "generated_total_mean": 37.96875,
+    "field_outside_generated_total_support": 4,
+    "replacement_raw_mean_delta": 2.2685165405273438
+   },
+   {
+    "plane": "plant_cooldown",
+    "field_total_mean": 10.45,
+    "generated_total_mean": 9.183333333333334,
+    "field_outside_generated_total_support": 1,
+    "replacement_raw_mean_delta": 0.49393463134765625
+   },
+   {
+    "plane": "own_unit",
+    "field_total_mean": 2.0,
+    "generated_total_mean": 2.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 1.0959854125976562
+   },
+   {
+    "plane": "own_movement",
+    "field_total_mean": 2.95,
+    "generated_total_mean": 2.8916666666666666,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.64105224609375
+   },
+   {
+    "plane": "own_capacity",
+    "field_total_mean": 2.875,
+    "generated_total_mean": 3.158333333333333,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.37357330322265625
+   },
+   {
+    "plane": "own_harvest",
+    "field_total_mean": 1.0,
+    "generated_total_mean": 1.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.1558837890625
+   },
+   {
+    "plane": "own_chop",
+    "field_total_mean": 3.0875,
+    "generated_total_mean": 3.225,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.6158676147460938
+   },
+   {
+    "plane": "own_carry_plum",
+    "field_total_mean": 0.0,
+    "generated_total_mean": 0.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.0
+   },
+   {
+    "plane": "own_carry_lemon",
+    "field_total_mean": 0.0,
+    "generated_total_mean": 0.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.0
+   },
+   {
+    "plane": "own_carry_apple",
+    "field_total_mean": 0.075,
+    "generated_total_mean": 0.03854166666666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.018035888671875
+   },
+   {
+    "plane": "own_carry_banana",
+    "field_total_mean": 0.025,
+    "generated_total_mean": 0.0,
+    "field_outside_generated_total_support": 2,
+    "replacement_raw_mean_delta": -6.866455078125e-05
+   },
+   {
+    "plane": "own_carry_iron",
+    "field_total_mean": 0.0,
+    "generated_total_mean": 0.0,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.0
+   },
+   {
+    "plane": "own_carry_wood",
+    "field_total_mean": 0.95,
+    "generated_total_mean": 1.1411458333333333,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.26087188720703125
+   },
+   {
+    "plane": "opponent_unit",
+    "field_total_mean": 1.925,
+    "generated_total_mean": 2.1296875,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 1.1330337524414062
+   },
+   {
+    "plane": "opponent_movement",
+    "field_total_mean": 2.7875,
+    "generated_total_mean": 2.6557291666666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.512908935546875
+   },
+   {
+    "plane": "opponent_capacity",
+    "field_total_mean": 2.9125,
+    "generated_total_mean": 2.7588541666666666,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.48876953125
+   },
+   {
+    "plane": "opponent_harvest",
+    "field_total_mean": 1.9375,
+    "generated_total_mean": 1.7921875,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.34702301025390625
+   },
+   {
+    "plane": "opponent_chop",
+    "field_total_mean": 2.375,
+    "generated_total_mean": 2.4286458333333334,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.5893478393554688
+   },
+   {
+    "plane": "opponent_carry_plum",
+    "field_total_mean": 0.275,
+    "generated_total_mean": 0.13854166666666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.00732421875
+   },
+   {
+    "plane": "opponent_carry_lemon",
+    "field_total_mean": 0.2625,
+    "generated_total_mean": 0.15677083333333333,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -0.182891845703125
+   },
+   {
+    "plane": "opponent_carry_apple",
+    "field_total_mean": 0.1,
+    "generated_total_mean": 0.11197916666666667,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": 0.0492706298828125
+   },
+   {
+    "plane": "opponent_carry_banana",
+    "field_total_mean": 0.15,
+    "generated_total_mean": 0.2625,
+    "field_outside_generated_total_support": 2,
+    "replacement_raw_mean_delta": -0.00576019287109375
+   },
+   {
+    "plane": "opponent_carry_iron",
+    "field_total_mean": 0.1375,
+    "generated_total_mean": 0.0453125,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -0.0743865966796875
+   },
+   {
+    "plane": "opponent_carry_wood",
+    "field_total_mean": 0.225,
+    "generated_total_mean": 0.4114583333333333,
+    "field_outside_generated_total_support": 0,
+    "replacement_raw_mean_delta": -0.00792694091796875
+   }
+  ]
+ },
+ "artifacts": {
+  "field_features": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d30-field-features-development-first80.json",
+  "field_features_sha256": "c8f155f5f3489780e57ab1a7a3ab0e3d948ed44b774436520ef8e7ad4db97b0e",
+  "model_sha256": "9d4ef336880ac2ae57e868f05cb99646f94bb2e92a7d1aedd0ad1a22d12b33ba",
+  "binary_sha256": "bd042ba86488c3d64fe2ea38f445100f4c811049ad52d1c75bdf5e600dc4ff12",
+  "checkpoint_sha256": "a8d43f58b5150bb42c0d5630cb02e1c342a04a7c34d1ca0d708aa1b1fc2aef38"
+ }
+}

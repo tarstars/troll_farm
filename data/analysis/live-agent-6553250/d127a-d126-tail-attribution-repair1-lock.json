@@ -1,0 +1,16 @@
+{
+  "frozen_at": "2026-07-22-after-d127-json-serialization-failure-before-any-result",
+  "inherited_protocol_lock": "data/analysis/live-agent-6553250/d127a-d126-tail-attribution-lock.json",
+  "repair": "cast three recorded NumPy gate logits to built-in float before JSON serialization",
+  "schema": "troll-farm-d127a-d126-tail-attribution-repair1-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d127a_d126_tail_attribution.py": "e593d23cc44d0deb4083d2afa0eb046f516bc729a6d7c7b8b10e44d00ef2ff11",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-arms-9843780-9843795.tsv": "1c2f3b69f802e08b58119a8af728ea225c0560f9bcf88c182b3978b0b294a96d",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-fit-result.json": "80a2a8045dc4449d8b93f288de7ea5119a86ca3312d3f16e8443b48513574265",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-result.json": "f34c32d9efdfab2ab8f1bccb762a99ba800319522a8b38d43da805cef218b8c6",
+    "data/analysis/live-agent-6553250/d127a-d126-tail-attribution-lock.json": "fb7bc776056695e8ec36d8e838c618a8ff625e8fc65da46e9702f2975fd07c94",
+    "data/analysis/live-agent-6553250/d127a-d126-tail-attribution-protocol-2026-07-22.md": "6a5129f2560e7ec5baa6a1a890f4674f677deba7cad8186ebfa94cd0709d719f",
+    "tests/test_analyze_d127a_d126_tail_attribution.py": "e9cc3d993f5c03518aa9415841c5a312fac1b34c67b0998d164ed59a25b0df14"
+  }
+}

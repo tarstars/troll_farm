@@ -1,0 +1,19 @@
+{
+  "schema": "troll-farm-d149a-joint-two-stage-crossfit-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d148a_priority_joint_teacher.py": "671d649ca482101fa375c0209f3eb5b8929f50451ae81547b16d763f5baf330f",
+    "cgauto/analyze_d148b_priority_joint_support_semantics.py": "61bc214a88253c5a28c5c31b7a8ca94a802388fde064c183d286fcff0ee8126d",
+    "cgauto/build_d149a_joint_two_stage_dataset.py": "8183157e51e3d86417499a1cbcaa32d94821d2459b8a5bf0bdc2cef175e8fa27",
+    "cgauto/collect_d147a_selected_trajectory_features.py": "a9fd01e3e3e1f65b94503723d73fdbf811e6e61a5e133845f656b0e69a2c222d",
+    "cgauto/run_d148a_priority_joint_teacher.py": "4e5381c02aed7b48cef5a483c44bd60383b10f0474947909decccc3dcb7ffc6e",
+    "cgauto/run_d149a_joint_two_stage_selection.py": "cf28c4ce298cf483d2786364537ef8348108fd75222a76e89373b2abb8e46e65",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d135a_winner_conditioned_action_gate_q6.py": "eb9469d4141c2ec991adf1e07f02254b2e6c5c8546dffbcad5371cfefd144d91",
+    "cgauto/train_d149a_joint_two_stage_policy.py": "f24367ed6a6a7c7cd23f17fe0573224d465e10cacbf2361678cbf1c07e282277",
+    "data/analysis/live-agent-6553250/d148a-joint-trajectory-targets-9844136-9844199.tsv": "525e53b9a43e84eafed81592254ed84a5853586137ed3335400a5d83dc642dad",
+    "data/analysis/live-agent-6553250/d148b-priority-joint-support-semantics-result.json": "df8c045096518762f9189238cf9bdf87113e1561a01c48baee410bc3cf2607c2",
+    "data/analysis/live-agent-6553250/d149a-joint-two-stage-crossfit-protocol-2026-07-23.md": "3d96de25b9b1b1b1085f48190c66d5e8fff216c6c7d06ceee4187f02f52b0714",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-candidates-9844136-9844199.tsv": "0ea7aef2396a83e66c06b747e51aad136a9a05aa4ebc3f96d502a69c727097a5"
+  }
+}

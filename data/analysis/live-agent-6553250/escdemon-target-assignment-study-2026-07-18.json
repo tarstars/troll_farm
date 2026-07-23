@@ -1,0 +1,231 @@
+{
+ "schema": 1,
+ "scope": "observational Escdemon trajectories with five-fold held-game objective prediction; exact target rendering uses only the model's own prior target commitment or a singleton semantic target; excludes TRAIN and does not establish causal value",
+ "agent_id": 6483545,
+ "games": 26,
+ "quality": {
+  "turn_count_matches": 26,
+  "unknown_diff_updates": 0
+ },
+ "rows": 11009,
+ "objective_held_game": {
+  "rows": 11009,
+  "accuracy": 0.7768189663002998,
+  "macro_f1": 0.5407720346382449,
+  "per_label": {
+   "CHOP": {
+    "support": 3430,
+    "precision": 0.9520369835307715,
+    "recall": 0.9606413994169096,
+    "f1": 0.9563198374691626
+   },
+   "DROP": {
+    "support": 647,
+    "precision": 0.9708141321044547,
+    "recall": 0.9768160741885626,
+    "f1": 0.9738058551617874
+   },
+   "HARVEST": {
+    "support": 44,
+    "precision": 0.7948717948717948,
+    "recall": 0.7045454545454546,
+    "f1": 0.746987951807229
+   },
+   "MINE": {
+    "support": 11,
+    "precision": 0.125,
+    "recall": 0.18181818181818182,
+    "f1": 0.14814814814814814
+   },
+   "MOVE_BANK": {
+    "support": 2387,
+    "precision": 0.8933070866141732,
+    "recall": 0.9505655634687893,
+    "f1": 0.9210472904404303
+   },
+   "MOVE_IRON": {
+    "support": 23,
+    "precision": 0.2857142857142857,
+    "recall": 0.08695652173913043,
+    "f1": 0.13333333333333333
+   },
+   "MOVE_OTHER": {
+    "support": 561,
+    "precision": 0.3717105263157895,
+    "recall": 0.2014260249554367,
+    "f1": 0.261271676300578
+   },
+   "MOVE_TREE": {
+    "support": 1313,
+    "precision": 0.4055884843353091,
+    "recall": 0.3648134044173648,
+    "f1": 0.38412189254210105
+   },
+   "MOVE_TREE_RIPE": {
+    "support": 2044,
+    "precision": 0.6041209995615958,
+    "recall": 0.6741682974559687,
+    "f1": 0.6372254335260117
+   },
+   "PICK_BANANA": {
+    "support": 166,
+    "precision": 0.5469613259668509,
+    "recall": 0.5963855421686747,
+    "f1": 0.5706051873198849
+   },
+   "PICK_LEMON": {
+    "support": 5,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0
+   },
+   "PLANT_BANANA": {
+    "support": 166,
+    "precision": 0.9940119760479041,
+    "recall": 1.0,
+    "f1": 0.996996996996997
+   },
+   "PLANT_LEMON": {
+    "support": 5,
+    "precision": 0.4,
+    "recall": 0.4,
+    "f1": 0.4000000000000001
+   },
+   "WAIT": {
+    "support": 207,
+    "precision": 0.4827586206896552,
+    "recall": 0.4057971014492754,
+    "f1": 0.44094488188976383
+   }
+  }
+ },
+ "target_persistence": {
+  "move_rows": 6328,
+  "consecutive_exact_target_repeats": 4761,
+  "repeat_rate": 0.752370417193426,
+  "teacher_forced_recoverable": 5415,
+  "teacher_forced_recoverable_rate": 0.8557206068268015,
+  "hard_new_targets": 913,
+  "hard_new_target_labels": {
+   "MOVE_IRON": 10,
+   "MOVE_OTHER": 270,
+   "MOVE_TREE": 217,
+   "MOVE_TREE_RIPE": 416
+  },
+  "interpretation_limit": "Teacher-forced recovery assumes the previous observed target is known. The autoregressive result below keeps only targets the renderer itself recovered."
+ },
+ "autoregressive_command_rendering": {
+  "unit_rows": 11009,
+  "unit_command_exact": 7040,
+  "unit_command_exact_rate": 0.6394767917158688,
+  "move_rows": 6328,
+  "move_target_exact": 2729,
+  "move_target_exact_rate": 0.43125790139064474,
+  "unit_turns": 5668,
+  "all_worker_commands_exact": 2379,
+  "all_worker_commands_exact_rate": 0.4197247706422018
+ },
+ "assignment": {
+  "by_ordinal": {
+   "0": {
+    "rows": 5668,
+    "verbs": {
+     "CHOP": 1755,
+     "DROP": 357,
+     "HARVEST": 44,
+     "MINE": 11,
+     "MOVE": 2959,
+     "PICK": 171,
+     "PLANT": 171,
+     "WAIT": 200
+    },
+    "non_wood_carry_turns": 298,
+    "wood_carry_turns": 1468
+   },
+   "1": {
+    "rows": 5341,
+    "verbs": {
+     "CHOP": 1675,
+     "DROP": 290,
+     "MOVE": 3369,
+     "WAIT": 7
+    },
+    "non_wood_carry_turns": 0,
+    "wood_carry_turns": 2012
+   }
+  },
+  "trained_worker_is_pure_wood_converter": true
+ },
+ "folds": [
+  {
+   "fold": 0,
+   "train_games": 23,
+   "held_games": 3,
+   "held_rows": 1567,
+   "objective_accuracy": 0.7606892150606254,
+   "objective_macro_f1": 0.6009206432698676,
+   "unit_command_exact_rate": 0.6624122527121888,
+   "move_target_exact_rate": 0.49246231155778897,
+   "all_worker_commands_exact_rate": 0.43734335839599
+  },
+  {
+   "fold": 1,
+   "train_games": 17,
+   "held_games": 9,
+   "held_rows": 3425,
+   "objective_accuracy": 0.7816058394160584,
+   "objective_macro_f1": 0.4786808512490118,
+   "unit_command_exact_rate": 0.6437956204379562,
+   "move_target_exact_rate": 0.4218993253762325,
+   "all_worker_commands_exact_rate": 0.42792792792792794
+  },
+  {
+   "fold": 2,
+   "train_games": 24,
+   "held_games": 2,
+   "held_rows": 1042,
+   "objective_accuracy": 0.7476007677543186,
+   "objective_macro_f1": 0.4863524060369902,
+   "unit_command_exact_rate": 0.5902111324376199,
+   "move_target_exact_rate": 0.3807266982622433,
+   "all_worker_commands_exact_rate": 0.3277777777777778
+  },
+  {
+   "fold": 3,
+   "train_games": 18,
+   "held_games": 8,
+   "held_rows": 3176,
+   "objective_accuracy": 0.7827455919395466,
+   "objective_macro_f1": 0.5732459874758161,
+   "unit_command_exact_rate": 0.6322418136020151,
+   "move_target_exact_rate": 0.3962478681068789,
+   "all_worker_commands_exact_rate": 0.42053789731051344
+  },
+  {
+   "fold": 4,
+   "train_games": 22,
+   "held_games": 4,
+   "held_rows": 1799,
+   "objective_accuracy": 0.7882156753752084,
+   "objective_macro_f1": 0.615555112226638,
+   "unit_command_exact_rate": 0.6525847693162868,
+   "move_target_exact_rate": 0.4812623274161736,
+   "all_worker_commands_exact_rate": 0.4411764705882353
+  }
+ ],
+ "exact_layer_gate": {
+  "requirements": [
+   "held-game objective accuracy at least 0.70",
+   "autoregressive unit-command exact rate at least 0.65",
+   "autoregressive MOVE-target exact rate at least 0.60",
+   "all-worker command exact rate at least 0.45",
+   "every fold unit-command exact rate at least 0.60",
+   "trained-worker assignment is purely wood conversion"
+  ],
+  "passed": false
+ },
+ "decision": {
+  "build_complete_research_policy": false,
+  "next": "If the exact layer passes, compare teacher-forced commands from local policy skeletons and then implement the smallest matching two-role controller. If it fails, learn only hard new-tree selection; do not alter the resident."
+ }
+}

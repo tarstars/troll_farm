@@ -1,0 +1,215 @@
+{
+ "schema": 1,
+ "scope": "consumed generated seeds only; paired complete-policy comparison; never candidate-qualification evidence",
+ "rows": 960,
+ "seed_range": [
+  1300,
+  1359
+ ],
+ "seed_count": 60,
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "primary_comparison": "harvest_contact_minus_b100_e6",
+ "prospective_gate": {
+  "minimum_activated_cells": 80,
+  "minimum_harvest_rewrites": 100,
+  "minimum_activated_opponents": 8,
+  "strictly_positive_mean_margin_delta": true,
+  "strictly_positive_trimmed_5pct_mean_margin_delta": true,
+  "minimum_favorable_to_unfavorable_ratio": 1.0,
+  "strictly_positive_seed_mean_margin_delta": true,
+  "strictly_positive_trimmed_seed_mean_margin_delta": true,
+  "minimum_mean_score_delta": 0,
+  "minimum_mean_wood_delta": 0,
+  "maximum_mean_opponent_score_delta": 0,
+  "minimum_nonnegative_opponents": 6,
+  "minimum_worst_opponent_mean_margin_delta": -2
+ },
+ "activation": {
+  "cells": 349,
+  "rate": 0.36354166666666665,
+  "opponents": 8,
+  "harvest_rewrites": 612,
+  "mean_rewrites_per_active_cell": 1.7535816618911175,
+  "first_divergence_turn": {
+   "n": 349,
+   "mean": 109.42406876790831,
+   "median": 97,
+   "trimmed_5pct_mean": 107.08888888888889,
+   "standard_deviation": 57.95423377228956,
+   "positive": 349,
+   "zero": 0,
+   "negative": 0,
+   "minimum": 21,
+   "maximum": 256
+  }
+ },
+ "harvest_minus_b100": {
+  "margin_delta": {
+   "n": 960,
+   "mean": -2.325,
+   "median": 0.0,
+   "trimmed_5pct_mean": -1.3356481481481481,
+   "standard_deviation": 15.027212021763324,
+   "positive": 118,
+   "zero": 630,
+   "negative": 212,
+   "minimum": -170,
+   "maximum": 96
+  },
+  "mean_score_delta": 0.44895833333333335,
+  "mean_opponent_score_delta": 2.7739583333333333,
+  "mean_wood_delta": -0.013541666666666667,
+  "mean_opponent_wood_delta": 0.5604166666666667
+ },
+ "seed_mean_margin_delta": {
+  "n": 60,
+  "mean": -2.325,
+  "median": -0.65625,
+  "trimmed_5pct_mean": -2.0520833333333335,
+  "standard_deviation": 4.882827266926823,
+  "positive": 15,
+  "zero": 4,
+  "negative": 41,
+  "minimum": -15.75,
+  "maximum": 5.4375
+ },
+ "opponent_reports": {
+  "compact_gold": {
+   "scenarios": 120,
+   "activated_cells": 46,
+   "harvest_rewrites": 67,
+   "mean_margin_delta": -2.45,
+   "mean_score_delta": 0.6416666666666667,
+   "mean_opponent_score_delta": 3.091666666666667,
+   "mean_wood_delta": 0.10833333333333334
+  },
+  "gold_adaptive": {
+   "scenarios": 120,
+   "activated_cells": 59,
+   "harvest_rewrites": 90,
+   "mean_margin_delta": -7.108333333333333,
+   "mean_score_delta": 2.8666666666666667,
+   "mean_opponent_score_delta": 9.975,
+   "mean_wood_delta": 0.45
+  },
+  "gold_elite": {
+   "scenarios": 120,
+   "activated_cells": 46,
+   "harvest_rewrites": 67,
+   "mean_margin_delta": -2.45,
+   "mean_score_delta": 0.6416666666666667,
+   "mean_opponent_score_delta": 3.091666666666667,
+   "mean_wood_delta": 0.10833333333333334
+  },
+  "mybot": {
+   "scenarios": 120,
+   "activated_cells": 90,
+   "harvest_rewrites": 201,
+   "mean_margin_delta": -3.0083333333333333,
+   "mean_score_delta": 0.475,
+   "mean_opponent_score_delta": 3.4833333333333334,
+   "mean_wood_delta": -0.31666666666666665
+  },
+  "printer_bot": {
+   "scenarios": 120,
+   "activated_cells": 29,
+   "harvest_rewrites": 46,
+   "mean_margin_delta": -0.4083333333333333,
+   "mean_score_delta": -0.5333333333333333,
+   "mean_opponent_score_delta": -0.125,
+   "mean_wood_delta": -0.175
+  },
+  "sched_bot": {
+   "scenarios": 120,
+   "activated_cells": 14,
+   "harvest_rewrites": 52,
+   "mean_margin_delta": 0.275,
+   "mean_score_delta": -0.30833333333333335,
+   "mean_opponent_score_delta": -0.5833333333333334,
+   "mean_wood_delta": -0.15
+  },
+  "script_boss": {
+   "scenarios": 120,
+   "activated_cells": 50,
+   "harvest_rewrites": 69,
+   "mean_margin_delta": -2.7333333333333334,
+   "mean_score_delta": -0.058333333333333334,
+   "mean_opponent_score_delta": 2.675,
+   "mean_wood_delta": -0.09166666666666666
+  },
+  "silver_boss": {
+   "scenarios": 120,
+   "activated_cells": 15,
+   "harvest_rewrites": 20,
+   "mean_margin_delta": -0.7166666666666667,
+   "mean_score_delta": -0.13333333333333333,
+   "mean_opponent_score_delta": 0.5833333333333334,
+   "mean_wood_delta": -0.041666666666666664
+  }
+ },
+ "nonnegative_opponents": 1,
+ "worst_opponent_mean_margin_delta": -7.108333333333333,
+ "favorable_to_unfavorable_ratio": 0.5566037735849056,
+ "b100_minus_resident": {
+  "margin_delta": {
+   "n": 960,
+   "mean": 5.516666666666667,
+   "median": 0.0,
+   "trimmed_5pct_mean": 5.059027777777778,
+   "standard_deviation": 30.7742585261538,
+   "positive": 450,
+   "zero": 231,
+   "negative": 279,
+   "minimum": -261,
+   "maximum": 211
+  },
+  "mean_score_delta": -0.06458333333333334,
+  "mean_opponent_score_delta": -5.58125,
+  "mean_wood_delta": -0.027083333333333334,
+  "mean_opponent_wood_delta": -1.2302083333333333
+ },
+ "harvest_minus_resident": {
+  "margin_delta": {
+   "n": 960,
+   "mean": 3.191666666666667,
+   "median": 0.0,
+   "trimmed_5pct_mean": 3.384259259259259,
+   "standard_deviation": 31.405596715234886,
+   "positive": 449,
+   "zero": 221,
+   "negative": 290,
+   "minimum": -278,
+   "maximum": 211
+  },
+  "mean_score_delta": 0.384375,
+  "mean_opponent_score_delta": -2.8072916666666665,
+  "mean_wood_delta": -0.040625,
+  "mean_opponent_wood_delta": -0.6697916666666667
+ },
+ "gate_checks": {
+  "activated_cells": true,
+  "harvest_rewrites": true,
+  "activated_opponents": true,
+  "mean_margin_delta": false,
+  "trimmed_margin_delta": false,
+  "favorable_to_unfavorable": false,
+  "seed_mean_margin_delta": false,
+  "trimmed_seed_mean_margin_delta": false,
+  "mean_score_delta": true,
+  "mean_wood_delta": false,
+  "mean_opponent_score_delta": false,
+  "nonnegative_opponents": false,
+  "worst_opponent": false
+ },
+ "gate_passed": false,
+ "decision": "close the one-action harvest-on-contact residual without retuning"
+}

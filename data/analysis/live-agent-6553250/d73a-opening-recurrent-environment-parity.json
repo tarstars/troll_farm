@@ -1,0 +1,22 @@
+{
+  "comparisons": 64,
+  "differences": [],
+  "gates": {
+    "64_mode_task_comparisons": true,
+    "exact_d62_terminal_parity": true,
+    "repeat_terminal_exact": true,
+    "reward_identity_below_1e4": true
+  },
+  "hashes": {
+    "library": "223b8bd49960cfaea7f0f5a6ad1541fd4bf61ba87a460036f8437473e8206d17",
+    "opening_environment": "a83be1de2de000679da1e4216ebf87875ee84ad0c0b41fa165f2c7d3497c2e45",
+    "validator": "b5c55b20833660e5c97e7d35f7af47ec0967c967b18948eef2da6efb507344fc",
+    "wrapper": "4e38680dfd024406772791d5577b2aff16f219168649d653eedf7f1d64224b50"
+  },
+  "maximum_reward_identity_error": 7.294118404388428e-06,
+  "pass": true,
+  "repeat_differences": [],
+  "schema": "troll-farm-d73a-opening-recurrent-parity-v1",
+  "scope": "mechanics parity only; seed excluded from training and value",
+  "seed_base": 9810999
+}

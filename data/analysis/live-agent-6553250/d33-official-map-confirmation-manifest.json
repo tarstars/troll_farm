@@ -1,0 +1,971 @@
+{
+ "schema": 1,
+ "frozen_on": "2026-07-20",
+ "selection": "ascending game id; outcome-blind Legend-map eligibility",
+ "source_commit": "290129129db7a7539d98739ebdb0ed63ee6ceb50",
+ "checkpoint_sha256": "a8d43f58b5150bb42c0d5630cb02e1c342a04a7c34d1ca0d708aa1b1fc2aef38",
+ "d32_panel_sha256": "fd9e1c019cc82c90c7b8cbcedcf320db87e4f30301d5959ce8517b5315387798",
+ "excluded_game_ids": 177,
+ "games": [
+  {
+   "game_id": 892621271,
+   "seed": -2410583558055565000,
+   "path": "data/raw/games/892621271.json",
+   "raw_sha256": "caabc96169a9ecd708e0538a52dc74d3305fac58f1f38bee038e778984f1c531",
+   "turn_one_bytes": 649,
+   "turn_one_sha256": "aeb9413a99b39461b65a80b162c637ec973060ad61072f2845acd33241f06346"
+  },
+  {
+   "game_id": 892874069,
+   "seed": 3337743594412048000,
+   "path": "data/raw/games/892874069.json",
+   "raw_sha256": "2f7f336d3a279fb699c5ccdf9473a878db6b041011e5cb31837526b9759ac61c",
+   "turn_one_bytes": 456,
+   "turn_one_sha256": "b61fb04a17f6407f7f843615a2f0f1d03de27dc0b7719dff7f34ce11fe812c5b"
+  },
+  {
+   "game_id": 892881842,
+   "seed": 1639524202997560000,
+   "path": "data/raw/games/892881842.json",
+   "raw_sha256": "d1ed0407bc95b9bd7a0431c4ef9d6654b56a54b820723ee9a10ee0858240d5b7",
+   "turn_one_bytes": 612,
+   "turn_one_sha256": "4c77c5aff3c42308d004df71f04b5dad9c6fdff8ef83c58f30779bc21613b930"
+  },
+  {
+   "game_id": 892907456,
+   "seed": -209128215362389120,
+   "path": "data/raw/games/892907456.json",
+   "raw_sha256": "f2965312e618846d70172d4254e975bdb2bc66fde155b72fe2849d2d25b2a12a",
+   "turn_one_bytes": 569,
+   "turn_one_sha256": "3c0529c9e0ead08f23c7b58dda7a54c1705b08986d258652792dc06fd80c2c80"
+  },
+  {
+   "game_id": 892925601,
+   "seed": -4199481529934146600,
+   "path": "data/raw/games/892925601.json",
+   "raw_sha256": "920cde1d7331e59c87685264f66928edb43a3abd91cbbd3a53bd33fc66691126",
+   "turn_one_bytes": 655,
+   "turn_one_sha256": "80d9f9cd67a07534fa0aee871ff314df4d488d40f3c1f3c5cc77cd3bc471f282"
+  },
+  {
+   "game_id": 892992658,
+   "seed": -522928777531540700,
+   "path": "data/raw/games/892992658.json",
+   "raw_sha256": "18485983c78e19bc09e0e47f19b3181e881cbef7762a59ea401e0760723b093e",
+   "turn_one_bytes": 614,
+   "turn_one_sha256": "91da4b0c30160e785496776ebdbe98f18d8413f738fd4acd432677428a5082b4"
+  },
+  {
+   "game_id": 893001832,
+   "seed": 3189661009429436400,
+   "path": "data/raw/games/893001832.json",
+   "raw_sha256": "90b5ba878956a7572cc4be3e9736ddbaf88e1ca2c9012089c3ce3abbdb0b805e",
+   "turn_one_bytes": 573,
+   "turn_one_sha256": "dc3161765bffca2ad4a0693e8cecc71670fd62197658b72b7b4038b9cd68c891"
+  },
+  {
+   "game_id": 893004231,
+   "seed": 1665708580793842200,
+   "path": "data/raw/games/893004231.json",
+   "raw_sha256": "9702be962141cee80420500b008c723645bd7e97b7e017288f587188f8994a9c",
+   "turn_one_bytes": 642,
+   "turn_one_sha256": "76f414d08060d9a46946d19b391479eaad92c81081f18fd925a6a56e80cf8895"
+  },
+  {
+   "game_id": 893009790,
+   "seed": 3111770213596303000,
+   "path": "data/raw/games/893009790.json",
+   "raw_sha256": "0a89fb5e6cf616c8517394bb293b187bd6a51d0dca48608a6a7fc75c38dee04b",
+   "turn_one_bytes": 644,
+   "turn_one_sha256": "210e494ad32afb282381cbfb2c4346af48dc1827ea02c2232eef9007a0ccb307"
+  },
+  {
+   "game_id": 893050129,
+   "seed": 2285884438743712000,
+   "path": "data/raw/games/893050129.json",
+   "raw_sha256": "05b0237abb2b09c364f9d8609c7613246eafbd744911e61105894c724f61825d",
+   "turn_one_bytes": 599,
+   "turn_one_sha256": "5981bb6cdfb585456627905af887a5042936fbfea487b0caf9ebcae72bd22e8c"
+  },
+  {
+   "game_id": 893172014,
+   "seed": 8032161113724701000,
+   "path": "data/raw/games/893172014.json",
+   "raw_sha256": "b76ed254d41f506ba6d7b460f4322f4ab5cdadb32454df07ac3366cdab501647",
+   "turn_one_bytes": 649,
+   "turn_one_sha256": "7f47e7cba4491897d9128b0e92151fd395369d93232642db35a6a5c3303a2a4c"
+  },
+  {
+   "game_id": 893174122,
+   "seed": -7449819417300646000,
+   "path": "data/raw/games/893174122.json",
+   "raw_sha256": "fe3698581548f49fad5074254cec5cc859317466c8c2b383d67f298319c160a0",
+   "turn_one_bytes": 490,
+   "turn_one_sha256": "a864e4a6aead5538faab4ad94ecea857e008b50693aa3cb95e734a31e7ce2858"
+  },
+  {
+   "game_id": 893202307,
+   "seed": 2297675337147814400,
+   "path": "data/raw/games/893202307.json",
+   "raw_sha256": "a4f8fa745c2df700342401d3f7eac119aa8fdcd321e60c6d53efc0a6da2a4e1d",
+   "turn_one_bytes": 686,
+   "turn_one_sha256": "6b20d86870f644cd6f9fcf1d76cce8b3c6de4f8f1e063a7a111e5d5abfa4706e"
+  },
+  {
+   "game_id": 893254039,
+   "seed": 1208593009979105800,
+   "path": "data/raw/games/893254039.json",
+   "raw_sha256": "199d162b65ede8cc2774f6706e0be07d734a3c947bbd469e7f7f042d99023483",
+   "turn_one_bytes": 494,
+   "turn_one_sha256": "509c9c75a8b81fd629c6214f9704d1819d890198f705bc9db810d0b7f304a561"
+  },
+  {
+   "game_id": 893255095,
+   "seed": 8250277503439533000,
+   "path": "data/raw/games/893255095.json",
+   "raw_sha256": "7571a6e2634c04ea58a9a1ae21fa6bf5f386ed2196efcb7cf42fbbb22b6cbc1a",
+   "turn_one_bytes": 608,
+   "turn_one_sha256": "53288412add1833945bdb63a088aa281477116173d0662a8e3840f451398d6a9"
+  },
+  {
+   "game_id": 893255096,
+   "seed": -8703655754651190000,
+   "path": "data/raw/games/893255096.json",
+   "raw_sha256": "b74e44b0d794cd8884c6a5f61770394d61962789fe179970f1b1fd18d26d321b",
+   "turn_one_bytes": 698,
+   "turn_one_sha256": "0b9bc701540ac48f81fb46586df5b91a7cac53e4b0ef3b927c64014be3b202cd"
+  },
+  {
+   "game_id": 893255452,
+   "seed": 5605493642197476000,
+   "path": "data/raw/games/893255452.json",
+   "raw_sha256": "c3887daedc67bdaaa14974958eb69a8d5ffa8242d443c63738773b7030ddd77c",
+   "turn_one_bytes": 534,
+   "turn_one_sha256": "bd7a48ae5c6034e48c3ea9cd87792e69cea80eee384702fb3a25cd7b8b0f89de"
+  },
+  {
+   "game_id": 893306189,
+   "seed": -774599788102633500,
+   "path": "data/raw/games/893306189.json",
+   "raw_sha256": "570dbe1624b4fd060e27790c9a02e60cefb638c9c3ac402aa25298e702496b85",
+   "turn_one_bytes": 568,
+   "turn_one_sha256": "e703c066e59fa53d946184321d0c3ce930a026da2d657112505e123a965e61d1"
+  },
+  {
+   "game_id": 893396225,
+   "seed": -4804783042201063000,
+   "path": "data/raw/games/893396225.json",
+   "raw_sha256": "4044ffa8bb99424776681b5eb8d04b0b5249116102afe2828006455aa1e34ed1",
+   "turn_one_bytes": 529,
+   "turn_one_sha256": "bcb5857d0efe78b20793d8b174ab3813679bedfa92fb1cb60aa1d7d9909a0bc9"
+  },
+  {
+   "game_id": 893404526,
+   "seed": -60206467921755040,
+   "path": "data/raw/games/893404526.json",
+   "raw_sha256": "260c7a4dcbe8b961f7a013f5f47d302165915c2eeaf7ec2a0c6a6a27a63c53d5",
+   "turn_one_bytes": 725,
+   "turn_one_sha256": "37c7c065b7858472279e4aa777981cc47793c7b6cd5186da1f6c2b4cc911f3f6"
+  },
+  {
+   "game_id": 893407296,
+   "seed": -6667295622785172000,
+   "path": "data/raw/games/893407296.json",
+   "raw_sha256": "a93e7990af835d8c11c8e92794121f8cc537d34dd210a973d924000bba8e4169",
+   "turn_one_bytes": 447,
+   "turn_one_sha256": "e2f7f53cb313237df2998328dcf5af7949db1bcbdbb88a574261f201f9f5fc09"
+  },
+  {
+   "game_id": 893412043,
+   "seed": 2726250601461633500,
+   "path": "data/raw/games/893412043.json",
+   "raw_sha256": "47f33a45838a8c53c8a4fef7c79cbeecd7ab79e20736cac0cd16dd0f9e90d1fa",
+   "turn_one_bytes": 561,
+   "turn_one_sha256": "0460377aa371ee7cad90fc79c42c7bb508789faef9ebf739878c7d8e9682386f"
+  },
+  {
+   "game_id": 893466386,
+   "seed": 8719411567404905000,
+   "path": "data/raw/games/893466386.json",
+   "raw_sha256": "4962252334117333ea29e510b7b409579306e0a2404d2d957a970cf784db4037",
+   "turn_one_bytes": 533,
+   "turn_one_sha256": "1dc15b52f62b4d5ec0c391c842bf068c8e4e848c9abc3c0c615aa6e9fd60ca5d"
+  },
+  {
+   "game_id": 893466920,
+   "seed": 4975362965648948000,
+   "path": "data/raw/games/893466920.json",
+   "raw_sha256": "c33e050c63d2fc7ee040cdd779e1a5c33a9292acc7c0dc572508beb329cea6ad",
+   "turn_one_bytes": 571,
+   "turn_one_sha256": "57e293c29581b2fc36beeaff58705d428c57d90da54490fe0317393b6ae95782"
+  },
+  {
+   "game_id": 893469455,
+   "seed": 4348182855136495600,
+   "path": "data/raw/games/893469455.json",
+   "raw_sha256": "ac220d093686f5f96808e808c91e82c75bf16ddbef34cfe885e6f5561b93321e",
+   "turn_one_bytes": 698,
+   "turn_one_sha256": "0a117d1a5ca44032051add3071a5958542ff1efcd87a3fd63937e768eb50fbf8"
+  },
+  {
+   "game_id": 893482868,
+   "seed": 5645095119414461000,
+   "path": "data/raw/games/893482868.json",
+   "raw_sha256": "76e06c1c32654cc529c119356698a82823c725928be333ad09f8f2f501798b3e",
+   "turn_one_bytes": 530,
+   "turn_one_sha256": "df8e2b5239524a9fdb48e0ff0ca0447dbf306c969d45cf0ff1cffdaec1af5b04"
+  },
+  {
+   "game_id": 893509519,
+   "seed": -4448127245930633000,
+   "path": "data/raw/games/893509519.json",
+   "raw_sha256": "5db31811ff41af4da8a8bf6adeaba2cf11051b544f566119aa9d16922662f983",
+   "turn_one_bytes": 655,
+   "turn_one_sha256": "8313e1fb5a8324f5ce24c4acfa318f2bad3b53e00820dc2d071334768bdb7de6"
+  },
+  {
+   "game_id": 893510324,
+   "seed": 1494014843408496600,
+   "path": "data/raw/games/893510324.json",
+   "raw_sha256": "1ad0dc5b9fd76bae6182b69596dcf2d9266f6e5f2723ea1509c203b5050292dc",
+   "turn_one_bytes": 568,
+   "turn_one_sha256": "deb75c91c8d962749f03f6af3808837afcd876450f2e755ccc9f6eef012e9f8b"
+  },
+  {
+   "game_id": 893510823,
+   "seed": 4032274508962514400,
+   "path": "data/raw/games/893510823.json",
+   "raw_sha256": "70d98b94d4845161bdb348312dbbcf2261da83425a39fa208d15918f0bc607dc",
+   "turn_one_bytes": 567,
+   "turn_one_sha256": "54b32211c7d7904609bdb832862641ca3d722e6228f580c69e24a7957df81fe8"
+  },
+  {
+   "game_id": 893586127,
+   "seed": 8609735832409158000,
+   "path": "data/raw/games/893586127.json",
+   "raw_sha256": "10f2e25941dbbb5c17ee5e3966b7c471bb47082d6425987f03d8dc7ee6df2552",
+   "turn_one_bytes": 492,
+   "turn_one_sha256": "887b69a67b4cae1a90c99d5b364ae4f646cbb17e1e6af295dab1d38c2dc85063"
+  },
+  {
+   "game_id": 893586128,
+   "seed": -3024969246058941000,
+   "path": "data/raw/games/893586128.json",
+   "raw_sha256": "1a0a2b063ef47cf1e9c9ba1a55dbe3a165c88a1fab796fce0824e75fb923005c",
+   "turn_one_bytes": 656,
+   "turn_one_sha256": "c335fe91959f1ce27b9854ef512b9dd733028384525e0bd844de7d04c7658290"
+  },
+  {
+   "game_id": 893607640,
+   "seed": 1813200953141582300,
+   "path": "data/raw/games/893607640.json",
+   "raw_sha256": "7578cb6fb09753dbef097fa051d48c9442c936f990d7f6d3f0a220207bfe6b89",
+   "turn_one_bytes": 491,
+   "turn_one_sha256": "6516a875e24e66027688eff104a5beead728e8260bee4f59e82fc4b0e32d45bc"
+  },
+  {
+   "game_id": 893607641,
+   "seed": -7574588596685002000,
+   "path": "data/raw/games/893607641.json",
+   "raw_sha256": "eb79d07e3bcf3b96f6807e04a880262f980ec001a2330430a129e04cd5bcda54",
+   "turn_one_bytes": 612,
+   "turn_one_sha256": "66d4ca923170b9c57511a43a8c3da790abecb0f83ae851e386139918379f9745"
+  },
+  {
+   "game_id": 893693185,
+   "seed": 7814726044103797000,
+   "path": "data/raw/games/893693185.json",
+   "raw_sha256": "9df0b0b0cecee24895d7d6f005985759ba03a76ac8cc2c1ea9a6eaad6a9dbe9d",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "b3223da5c193e44541181bbfd8019999d8914fd3c2bb1ecf1652929ea4cce9cc"
+  },
+  {
+   "game_id": 893696571,
+   "seed": 6524002078316254000,
+   "path": "data/raw/games/893696571.json",
+   "raw_sha256": "47068319cfeae65eb87231b4874bcb28af84fb8e269e0f0e5562bcb4d6051a2b",
+   "turn_one_bytes": 527,
+   "turn_one_sha256": "0add08e9e5ff2c918fc007e91f8d79e3d3cc48538b942200c63c0a0fa933bfde"
+  },
+  {
+   "game_id": 893718276,
+   "seed": -7116986398863071000,
+   "path": "data/raw/games/893718276.json",
+   "raw_sha256": "b949ab08002d31055fb3391f56c441136e3fa344cd6d56a237f3260905bac3ae",
+   "turn_one_bytes": 489,
+   "turn_one_sha256": "4c391fd8b9e17e822656ed4ff24f3fbd7b3b072ae95ac930d1f2f25ec70a7532"
+  },
+  {
+   "game_id": 893718277,
+   "seed": -4909227589143609000,
+   "path": "data/raw/games/893718277.json",
+   "raw_sha256": "b28b3b226ae751b13478e179a7f509ed43c9b8017d07b444b99eaf4e01c45c42",
+   "turn_one_bytes": 619,
+   "turn_one_sha256": "513ebd140bc6a71619538df4e0681768359ca1f6168a2d31cc29663d50aa787e"
+  },
+  {
+   "game_id": 893876322,
+   "seed": 8659749149208823000,
+   "path": "data/raw/games/893876322.json",
+   "raw_sha256": "bcb7682ea7ad4dadb6299366eee0c76d8f741b6b6c62896140bf393d3d7c3cf5",
+   "turn_one_bytes": 528,
+   "turn_one_sha256": "12b3c520c4b8d2eaac8422a11958f745296ebd3af5fa7d22dd4eed4ab2017383"
+  },
+  {
+   "game_id": 893962248,
+   "seed": 7288493022467707000,
+   "path": "data/raw/games/893962248.json",
+   "raw_sha256": "17b4b2e5249d4c597894fe77ede597f47588830e9b79afa59bb46f6207e63103",
+   "turn_one_bytes": 681,
+   "turn_one_sha256": "b34f641c3c2abc7dd2fa67dfb8879a8e4f2213a84c425fe114489fb15fd3e28c"
+  },
+  {
+   "game_id": 893988700,
+   "seed": 3954052312400938000,
+   "path": "data/raw/games/893988700.json",
+   "raw_sha256": "392d7d69d4b9cdc0a150a68e7afa1b006e2fff911bf8d7a50139e6bb30e378e2",
+   "turn_one_bytes": 606,
+   "turn_one_sha256": "6fde11032e805b64857b4d4ad4f610fd3c516f7b18059d941849a8f3901320f4"
+  },
+  {
+   "game_id": 893988701,
+   "seed": 7677058754399186000,
+   "path": "data/raw/games/893988701.json",
+   "raw_sha256": "ce0551431932a8d9a328a9b593d6ac439106b56d0485a8c0350b44d3b4dee08d",
+   "turn_one_bytes": 606,
+   "turn_one_sha256": "78b49e248847e9db2815197839106650306d2bd0ad3eeb93d1188b258b84f337"
+  },
+  {
+   "game_id": 893996642,
+   "seed": -7489337927035951000,
+   "path": "data/raw/games/893996642.json",
+   "raw_sha256": "a044eb63ba9fd2eba0b2f5d4c79eef787c01605f136f99c59c157392c92c3101",
+   "turn_one_bytes": 604,
+   "turn_one_sha256": "40fc994f9ab4a81e4702ba963a270ca43a51b7857b23ab5e1a8e24adb8abd9b0"
+  },
+  {
+   "game_id": 893999013,
+   "seed": -2013940294186536200,
+   "path": "data/raw/games/893999013.json",
+   "raw_sha256": "1a4c73b45d83d7d1fcc8b1758e47f53d3382fbacbf69741d352158114176f948",
+   "turn_one_bytes": 574,
+   "turn_one_sha256": "670b1f9fd4bc20cb1d17292800fbe0e6d1e4aa6a246275b359048744705ba6d0"
+  },
+  {
+   "game_id": 893999322,
+   "seed": -2293677488265667000,
+   "path": "data/raw/games/893999322.json",
+   "raw_sha256": "0a1ef161330bd2ae960347ccdf7d5afb8c1a79ff07f504b203d3dda3377db7a6",
+   "turn_one_bytes": 486,
+   "turn_one_sha256": "9469b5f29035fd9c27fe7a3df25dc8bc66f5162ea5b8e03f0ae39c51c0d5d5a8"
+  },
+  {
+   "game_id": 893999352,
+   "seed": 3420413541525236000,
+   "path": "data/raw/games/893999352.json",
+   "raw_sha256": "afdba9f8801307457a5347bb4b71d372ceee9e923b362209139e6d27eb9c94f5",
+   "turn_one_bytes": 735,
+   "turn_one_sha256": "1ebba2b49810b83f09d3248b9bbdf40939a4167642b9ac41100d473ef6195ea6"
+  },
+  {
+   "game_id": 893999459,
+   "seed": -709220411178727400,
+   "path": "data/raw/games/893999459.json",
+   "raw_sha256": "12909bf6c7a0c607ea335d1e0e338db32ec0a05a147e799411234534945874d5",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "e3a2d8195124f5602b3dd9801f67692173ef5c651e9e0dfcec5825fad6055cce"
+  },
+  {
+   "game_id": 893999537,
+   "seed": -5566870616755930000,
+   "path": "data/raw/games/893999537.json",
+   "raw_sha256": "2776a64e81dc1484f1ac3609f29cbde1add3de5f2220c255cef097f5a815c7ac",
+   "turn_one_bytes": 725,
+   "turn_one_sha256": "83dda9a7247202e5f245a86c31f0361b40f363c1dfc8140853a7bc14d3d87449"
+  },
+  {
+   "game_id": 893999566,
+   "seed": -1764303818933904600,
+   "path": "data/raw/games/893999566.json",
+   "raw_sha256": "51efb341111a2e27fd47ef3fd5cab9152b2c210a4cfe8183748d8c7633aababa",
+   "turn_one_bytes": 488,
+   "turn_one_sha256": "15023b63ccd1eedfd33e854e716390d7d23ee63ff9b8563d4bf7eafcb2367e19"
+  },
+  {
+   "game_id": 893999587,
+   "seed": -4840045933733223000,
+   "path": "data/raw/games/893999587.json",
+   "raw_sha256": "c65175b81116355e6cbf9f0f0386d097254adf39e95de973b585ae6ca9b387c3",
+   "turn_one_bytes": 568,
+   "turn_one_sha256": "3ac47af216a5551dd872004d2400a5854b7b339a0d722400c0c1705ddbc05bf2"
+  },
+  {
+   "game_id": 893999637,
+   "seed": -7312704603184370000,
+   "path": "data/raw/games/893999637.json",
+   "raw_sha256": "e31d71fda5e1af1923923d178378d78b2e51130441a1c6de73a8c8a1537a899f",
+   "turn_one_bytes": 491,
+   "turn_one_sha256": "d6ae2890a77ebd7ffb3efa6ae8d7c451f322e5c13b9a96bb2925cca1bfbc7908"
+  },
+  {
+   "game_id": 894182213,
+   "seed": 7519692733881504000,
+   "path": "data/raw/games/894182213.json",
+   "raw_sha256": "24dfa9aae725e5e9c7c49d7d85e050adf2d5f2b880c47d85cdbe95c9c2ed3046",
+   "turn_one_bytes": 562,
+   "turn_one_sha256": "a56ff4dc745f3b3f514d5caa2a6c293f64524bc7a9e33de57f4271c00de78db7"
+  },
+  {
+   "game_id": 894193042,
+   "seed": 2711797477244750300,
+   "path": "data/raw/games/894193042.json",
+   "raw_sha256": "46b440fbbc0013ea0a821009840a40254582fae577177d5d01b59cb1c019e76e",
+   "turn_one_bytes": 610,
+   "turn_one_sha256": "8f5c44da638e65512d442a7fb4055135659e35966867e8442ba89fbb7c4aceb4"
+  },
+  {
+   "game_id": 894196843,
+   "seed": -6062541479785837000,
+   "path": "data/raw/games/894196843.json",
+   "raw_sha256": "ef7d4597aed46c83d52814336b90c878ed093ef6bbf4e57c7ea8afddae928ae6",
+   "turn_one_bytes": 604,
+   "turn_one_sha256": "773592ffafe4938d393725a0862c9757e972b7e0200527f17baccdbd12fcd040"
+  },
+  {
+   "game_id": 894196844,
+   "seed": 8894541992261538000,
+   "path": "data/raw/games/894196844.json",
+   "raw_sha256": "07167b8cfa562f27d33b12e4e50029a9e40e315f31c97a07b51cd5c554fa9142",
+   "turn_one_bytes": 602,
+   "turn_one_sha256": "2bd2042f5282a332ea6ddb44bfc84220ee3594a57f7cd93864e1a55e705a51d1"
+  },
+  {
+   "game_id": 894198524,
+   "seed": 846576909632132200,
+   "path": "data/raw/games/894198524.json",
+   "raw_sha256": "cf583251ccec14bef4f87fcdd4993f4b346554ffcfa755ae37cac830700a5be1",
+   "turn_one_bytes": 458,
+   "turn_one_sha256": "0b98a0aea9698e5c0ac88cbf298013d25e07ed4ae46c86140773d9d9114b6c20"
+  },
+  {
+   "game_id": 894198525,
+   "seed": -5782714905806459000,
+   "path": "data/raw/games/894198525.json",
+   "raw_sha256": "22527387924076fe0bbf0adbdc7b4dca7259006efe5532da0c43c9c9b54fcba2",
+   "turn_one_bytes": 569,
+   "turn_one_sha256": "5fbf34f378a79b70e49d51dd897b6148c903970a744800ac5dc1a378ab7fd22c"
+  },
+  {
+   "game_id": 894199896,
+   "seed": 4415400205870581000,
+   "path": "data/raw/games/894199896.json",
+   "raw_sha256": "448b10bfe19fc86e94f289401667d799efbe13ad7b85dcd1a343830e35bf5081",
+   "turn_one_bytes": 613,
+   "turn_one_sha256": "af6fe5ca0160adbc383732e720e9172d2794439b488e16df892541ed36e3df5b"
+  },
+  {
+   "game_id": 894397581,
+   "seed": 6892383239386071000,
+   "path": "data/raw/games/894397581.json",
+   "raw_sha256": "e79d0f8b28d08ffabda2199dad093b3dd33399b80840780b12ba66bb5113f3b5",
+   "turn_one_bytes": 647,
+   "turn_one_sha256": "bb9ac6d818b4ac168ce04d848623b02df5b71148b970b20243956632a02a47bc"
+  },
+  {
+   "game_id": 894397582,
+   "seed": 6579151491296007000,
+   "path": "data/raw/games/894397582.json",
+   "raw_sha256": "c9b5d1226c3a9425ee2c4346edef472f3c10ec78109fa16c03814e5ce9e3d674",
+   "turn_one_bytes": 651,
+   "turn_one_sha256": "5e9ea69799a67863f87498485df7bbb80533f347844d96566f942c2439e77c06"
+  },
+  {
+   "game_id": 894419355,
+   "seed": 1382328175347691500,
+   "path": "data/raw/games/894419355.json",
+   "raw_sha256": "36d4548a455442ee22b6926f064309c03307018804c7f9fb661a1638134bc9d5",
+   "turn_one_bytes": 568,
+   "turn_one_sha256": "9f0131fe16e2837be8028f0e1b5db7fbbf5481558c80b3c6f4872df52dcf16d7"
+  },
+  {
+   "game_id": 894419356,
+   "seed": 2076560399449777000,
+   "path": "data/raw/games/894419356.json",
+   "raw_sha256": "f8566daca79635a3c25676d5c4136f5f2cee7945077401b1cf627658d18729c6",
+   "turn_one_bytes": 721,
+   "turn_one_sha256": "68f8b934d0990898c12116b4db85a17373a5b5ab81ade08838d4c42b794d049d"
+  },
+  {
+   "game_id": 894576036,
+   "seed": -1826516737510282800,
+   "path": "data/raw/games/894576036.json",
+   "raw_sha256": "7d56cfb8c6fc72a643d780b931394b59cc97dfa949fd7e7a3c6083334540009b",
+   "turn_one_bytes": 567,
+   "turn_one_sha256": "a5e2cadd292f3a73fa4f788d0b15af133d4a2bd12353ee67fc15cedf88c83d5a"
+  },
+  {
+   "game_id": 894576037,
+   "seed": -1371222485866441200,
+   "path": "data/raw/games/894576037.json",
+   "raw_sha256": "4d5562052d74632328391fd074c545b9e7ac532c313cdb1a74fd1c83efba311f",
+   "turn_one_bytes": 732,
+   "turn_one_sha256": "6e3cef9f9edd435351dbe4fc15413daf43842a77caa0f93f4b50dbe0816b7063"
+  },
+  {
+   "game_id": 894577644,
+   "seed": 1481999321745398500,
+   "path": "data/raw/games/894577644.json",
+   "raw_sha256": "37351f35053bf2377120fa9916d1de825fd07230f61c0962c2f908ff57357a46",
+   "turn_one_bytes": 494,
+   "turn_one_sha256": "3409a50de86081a43be14df13ea9e771fd8df80bcb18b3293df16ae768d25e58"
+  },
+  {
+   "game_id": 894579124,
+   "seed": 1580715116235179500,
+   "path": "data/raw/games/894579124.json",
+   "raw_sha256": "9e5aafb7192203b58db597931ec50a751737119c73fa3ec690860225ce38dc4c",
+   "turn_one_bytes": 569,
+   "turn_one_sha256": "cebaa0467ea4a1313ccdf1e05ea8ec12c2875ba97155f5ee99dba35776562a80"
+  },
+  {
+   "game_id": 894579125,
+   "seed": 1639708183515172600,
+   "path": "data/raw/games/894579125.json",
+   "raw_sha256": "de5946a0513d454e4df0fb677eee67b87bf053bde996b9e78b0c32112afd9e2b",
+   "turn_one_bytes": 535,
+   "turn_one_sha256": "bd283872749f74ccde1040982f9e5da9504c476a4533a263dce78b42e920c2fd"
+  },
+  {
+   "game_id": 894635116,
+   "seed": -129331506981397970,
+   "path": "data/raw/games/894635116.json",
+   "raw_sha256": "b0edec3cfdd5575debd291b052cdc6e6360c1230d93bf7b07825ffe1de250e28",
+   "turn_one_bytes": 567,
+   "turn_one_sha256": "9b2a67764192908f98be8a695b177ed6e2b799e81435347c04fcc302e37b17cb"
+  },
+  {
+   "game_id": 894635117,
+   "seed": -7531013419641335000,
+   "path": "data/raw/games/894635117.json",
+   "raw_sha256": "cd0014345ff4d4b790d443985b73681c515d55f324942b425d139ec94d20a2a0",
+   "turn_one_bytes": 642,
+   "turn_one_sha256": "3642b3a1a0c6de462991ba4ea33b5c3bdeabb7b5f24fd5db066f9288f29d9a01"
+  },
+  {
+   "game_id": 894975115,
+   "seed": -7258457988664513000,
+   "path": "data/raw/games/894975115.json",
+   "raw_sha256": "0c3facd3ffaeb90bc16c1bf3d692e8088d7eac894d321bf7da0b50af132d4b6d",
+   "turn_one_bytes": 602,
+   "turn_one_sha256": "151021aeea520083df31e42c44acb88b08e8999d4b5c0c0cd58d589dd4b25302"
+  },
+  {
+   "game_id": 894975255,
+   "seed": 7998148690421072000,
+   "path": "data/raw/games/894975255.json",
+   "raw_sha256": "5e124222180614a0ae1a9c9b1be5e4767ee23a4b68d6f80520124129b0cdc118",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "efea534acbbe80b629cbb2fa644ad95098aa105c6d430f1b43ef8287d2af4b19"
+  },
+  {
+   "game_id": 894975401,
+   "seed": -6626259082861049000,
+   "path": "data/raw/games/894975401.json",
+   "raw_sha256": "3c0ec2e850875fe6b7fbf573205a1ea48c48c84aa6581972907726a26b3f2614",
+   "turn_one_bytes": 531,
+   "turn_one_sha256": "e3e768c73710de197808870d4decb349654a40994017a6357417c36482ff0db4"
+  },
+  {
+   "game_id": 894975958,
+   "seed": 8440424444204168000,
+   "path": "data/raw/games/894975958.json",
+   "raw_sha256": "1392927126ce0873b4dd88ad447374edd9a58972f95805e1cb2116b07479fa7b",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "288edf9104ec1698d828e04139379311f2e314321e08f04d8971845612cec25b"
+  },
+  {
+   "game_id": 894976005,
+   "seed": 4540370994245722000,
+   "path": "data/raw/games/894976005.json",
+   "raw_sha256": "c4b600b1a32b9aaebe205eecec4e52d5a0af2c4b8e1c2020ea158294aed5677d",
+   "turn_one_bytes": 607,
+   "turn_one_sha256": "743cc04fa3054e3955d6cd27e6f0751d12e7bf5955b5865bdfc34b18368eea9d"
+  },
+  {
+   "game_id": 894976058,
+   "seed": 8169240955730889000,
+   "path": "data/raw/games/894976058.json",
+   "raw_sha256": "d86f012006aabf4782a30444b1f58b966cef633bbc1f22543d683b7ca7e19b08",
+   "turn_one_bytes": 571,
+   "turn_one_sha256": "fc738963776cf0c5903cdfdf301d6c6ab46ac27f79f788dc3a60e0a1e05af96a"
+  },
+  {
+   "game_id": 894976307,
+   "seed": -2715791061362501600,
+   "path": "data/raw/games/894976307.json",
+   "raw_sha256": "750758395fe8224b99e41341f65ca078ef10b4ac57b0fa315db56cc156dc77b4",
+   "turn_one_bytes": 653,
+   "turn_one_sha256": "79dfa872efa007a67f88e867e9ab253e52b7085d892c3aa5e94e3f34018fcac1"
+  },
+  {
+   "game_id": 894976432,
+   "seed": -4879104511684490000,
+   "path": "data/raw/games/894976432.json",
+   "raw_sha256": "f4132607f197f864806ef7d90b63c20d0298a569fd319f5d57285902860dcb1e",
+   "turn_one_bytes": 529,
+   "turn_one_sha256": "58e3562a1f04989bd381a681fa6cdddd14d0510e43ebf751ec990f444cfeb62c"
+  },
+  {
+   "game_id": 894976760,
+   "seed": -549668451161284400,
+   "path": "data/raw/games/894976760.json",
+   "raw_sha256": "7a5bdf737ca7b7e053b4693fc4f7524a263acfe621a0b2d963f2efa65cd66817",
+   "turn_one_bytes": 576,
+   "turn_one_sha256": "daea1ceb6baf5fea6c601a8456ffbe4efa727edda67bc5f9b0ae1754481126bc"
+  },
+  {
+   "game_id": 894976884,
+   "seed": 3397560875152497000,
+   "path": "data/raw/games/894976884.json",
+   "raw_sha256": "41e75983efb76961dd8c03c3a9488ee5d9cdcc33d345b9e1184ae33172e96ee2",
+   "turn_one_bytes": 565,
+   "turn_one_sha256": "ab1f3e970d883d2a52c6e052a7af95a6fda3bac14a751215998a6890b6d545ec"
+  },
+  {
+   "game_id": 894976897,
+   "seed": 1830939744533987300,
+   "path": "data/raw/games/894976897.json",
+   "raw_sha256": "f1b3fdbae1a756295057f77292db4d0585012d9be9576619a49ecff06584b3d0",
+   "turn_one_bytes": 684,
+   "turn_one_sha256": "26d1a91abb1d1be3d3dd7ba217ce7f592b11326e39b4cccbd108d331518d59f8"
+  },
+  {
+   "game_id": 894976908,
+   "seed": -6171439039415375000,
+   "path": "data/raw/games/894976908.json",
+   "raw_sha256": "badaf1215562dba62f67fc53f14189591edaa73c92dfe8d462b6b224c65de8bd",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "331303348de853831fe899c6b64c1b3ee36656c56eb4613649cc4898c1df30d7"
+  },
+  {
+   "game_id": 894976917,
+   "seed": 420987543472537100,
+   "path": "data/raw/games/894976917.json",
+   "raw_sha256": "fcd893cb8a5c2838f90e6130424e995ee435e5a84796bf3e2d4dce69c18c3ae0",
+   "turn_one_bytes": 576,
+   "turn_one_sha256": "e916fc824fa48236154e1a7a678016df4531e9b227511b81ea9939666995eb32"
+  },
+  {
+   "game_id": 894976932,
+   "seed": 5263284970947046000,
+   "path": "data/raw/games/894976932.json",
+   "raw_sha256": "a505f61086f4f85faec2d605d920870160cfe521d83538c47333d9b5b18ebf41",
+   "turn_one_bytes": 573,
+   "turn_one_sha256": "dab587f7df4ba210e9dca9418a9279cb0a63babce71f0e83041037643ec3a2df"
+  },
+  {
+   "game_id": 894976946,
+   "seed": 3133416509231830000,
+   "path": "data/raw/games/894976946.json",
+   "raw_sha256": "850dcd61ef9d1f438eb9e4cdd7a9022475445d6c825692dc2839ae4c0328b4c6",
+   "turn_one_bytes": 604,
+   "turn_one_sha256": "527ca662e3bb073e6f6aace0d6a5ed9b2fb1c1b53da6a44a45a813f485aad973"
+  },
+  {
+   "game_id": 894976955,
+   "seed": -3044807659360184000,
+   "path": "data/raw/games/894976955.json",
+   "raw_sha256": "a2355019767130aa04aaf28fdf9c872925dcf550360f2e83b9d4c7f9633e7665",
+   "turn_one_bytes": 659,
+   "turn_one_sha256": "f37c9e9efa893e7aea728c5054c1ec535aae9b1112f2b9f45a9ee7e87e9ab81e"
+  },
+  {
+   "game_id": 894976973,
+   "seed": -7920421950303768000,
+   "path": "data/raw/games/894976973.json",
+   "raw_sha256": "360da10b7ee08063dfee2e0dff39ea4a4628d9711b3f29906f19723fc3ac06a3",
+   "turn_one_bytes": 617,
+   "turn_one_sha256": "6dd8f681cdc5368ea0e7061281e9f44c4b0f15fc72443062e696488ffce1df59"
+  },
+  {
+   "game_id": 894976998,
+   "seed": -442560427863328100,
+   "path": "data/raw/games/894976998.json",
+   "raw_sha256": "8e6dbcb89a681d5f3b4c3ffea38a9a6237aa2367bf9f8e1f96ca0b7089957910",
+   "turn_one_bytes": 609,
+   "turn_one_sha256": "ea0497e0b490f36b4698049b94eaa76f5394d948ea55e30fdeadb726c633d7e1"
+  },
+  {
+   "game_id": 894976999,
+   "seed": 2083294294812686600,
+   "path": "data/raw/games/894976999.json",
+   "raw_sha256": "7621fff9fef031dd0ad6c906989b16fa0d45b21e7ab9b6f374052b6b8dd20ecd",
+   "turn_one_bytes": 771,
+   "turn_one_sha256": "49048c12ee1619cfd3eddae301253c245e1dd4017dd95983e7ffa9e04799f523"
+  },
+  {
+   "game_id": 894980131,
+   "seed": -1814362139018766600,
+   "path": "data/raw/games/894980131.json",
+   "raw_sha256": "f26a59487e91a3b9a98aefa704febf40179494bfd2fd869ec953fdcb92caeb4b",
+   "turn_one_bytes": 534,
+   "turn_one_sha256": "339fdb650d4ab4150caf93e9bad13327526853167f3fe3f8efe33157b911e392"
+  },
+  {
+   "game_id": 894980132,
+   "seed": -2316866014306171000,
+   "path": "data/raw/games/894980132.json",
+   "raw_sha256": "47ad4846ce4804818f9c924324c5a8a99d86d6bdf595c54bd14ac54df04b0e1f",
+   "turn_one_bytes": 695,
+   "turn_one_sha256": "5834de35cfc403b27a5bc7208a3d58eb269cd6cc6e3f8b9bceea0eb69fcd4732"
+  },
+  {
+   "game_id": 894981863,
+   "seed": 821550045235301200,
+   "path": "data/raw/games/894981863.json",
+   "raw_sha256": "31a0dc29731221d8077dc40d7ca799839e4a61106dcf51e4a07206906be4b8ce",
+   "turn_one_bytes": 568,
+   "turn_one_sha256": "1b464ceb2efa239d556ff02ff28faa9ec097077f6dfe00545be134a7667208a3"
+  },
+  {
+   "game_id": 894985308,
+   "seed": 6285948665807333000,
+   "path": "data/raw/games/894985308.json",
+   "raw_sha256": "098370cff210c9b6ae8658c725742ab747503004839e1f223cba371f250bd84f",
+   "turn_one_bytes": 655,
+   "turn_one_sha256": "aecddb6c759d2bcdd32c96b78251915b1e293e284e454215aaf6eecce03f0a4e"
+  },
+  {
+   "game_id": 894985309,
+   "seed": 7780225130384360000,
+   "path": "data/raw/games/894985309.json",
+   "raw_sha256": "516ab6c1c7ea533918884a02219967e35f27b7838c3a26f82b268d9f49517e79",
+   "turn_one_bytes": 603,
+   "turn_one_sha256": "339c447dcd0579e268228b69b73d8a2e9b7ef603c66471cbe0d1950c6cb31b9b"
+  },
+  {
+   "game_id": 894985358,
+   "seed": 446501433117210300,
+   "path": "data/raw/games/894985358.json",
+   "raw_sha256": "740df8d1628aa9b36a14c438605b9bf3bf4d92ca59a9f997dd92bb9bf4449940",
+   "turn_one_bytes": 682,
+   "turn_one_sha256": "a6dc54cb3a76b12581c3d39aafab05b44617c9228a43ad598278295930ed77cd"
+  },
+  {
+   "game_id": 894986254,
+   "seed": 9072766377902002000,
+   "path": "data/raw/games/894986254.json",
+   "raw_sha256": "787dab78a93a3ebcdd3b8b59596de976ca73d1c9faa781b2b00b3bce05b6dc74",
+   "turn_one_bytes": 699,
+   "turn_one_sha256": "cdd75c8e27006d835e05b6c49cf081a62f989663f5a8ca822154a09f5dd65686"
+  },
+  {
+   "game_id": 894986266,
+   "seed": -6259143847521454000,
+   "path": "data/raw/games/894986266.json",
+   "raw_sha256": "1aadacd5660f2d89f9bbe18dd2f559439af44cda4911abb8e2e83e0b806676cc",
+   "turn_one_bytes": 565,
+   "turn_one_sha256": "ea2b6572ea0fe8e00954a781f3780f481c4e80e042f0374b24a5a2e8538019ef"
+  },
+  {
+   "game_id": 894986288,
+   "seed": -3559085872972895700,
+   "path": "data/raw/games/894986288.json",
+   "raw_sha256": "a4a62ddb30f5e2da0a60eb72eee54ba9691cadfa9ce5aad81e0461ef0b3b522e",
+   "turn_one_bytes": 644,
+   "turn_one_sha256": "fa088eab49e78780f9609f83e75c7781e4ca9739937c9d6dd163dff76798e209"
+  },
+  {
+   "game_id": 894986356,
+   "seed": -1581909853922699300,
+   "path": "data/raw/games/894986356.json",
+   "raw_sha256": "412ec33f503cc1eba859387e3cc447aaf27c7df21790a2769714bc77d514c28f",
+   "turn_one_bytes": 456,
+   "turn_one_sha256": "2e50ee90402b9ae4b9cc9bc38da2e382e452b08e2d764b43d9e285d7bdbbadb8"
+  },
+  {
+   "game_id": 894986405,
+   "seed": 6310049814680630000,
+   "path": "data/raw/games/894986405.json",
+   "raw_sha256": "588a7b62e553b2581dd7b05e76effbd421ea8d493f05601918f9bcd7c62d7861",
+   "turn_one_bytes": 571,
+   "turn_one_sha256": "d90a7f7f97ef8c4853374456d8896a656ac6f0312ba6c3dfbd5304746cc6326c"
+  },
+  {
+   "game_id": 894986429,
+   "seed": 5487414815374204000,
+   "path": "data/raw/games/894986429.json",
+   "raw_sha256": "496b7bb3981830fce54d522fcefdd599f700007628d9181b5c5bd0e5c0f44092",
+   "turn_one_bytes": 572,
+   "turn_one_sha256": "bbd469620eb24393cc0153c75798edfabf713905d22faef8c57011613760444f"
+  },
+  {
+   "game_id": 894986468,
+   "seed": -4301582198032742000,
+   "path": "data/raw/games/894986468.json",
+   "raw_sha256": "ae36e13107d0a9d1223ca7e047e1591d6a0589e90a122640294d510f711b7158",
+   "turn_one_bytes": 569,
+   "turn_one_sha256": "7eaf8ce9a63235f42cbfc193ddecd69708083179f474e5fbbb0a7cbf074b00dd"
+  },
+  {
+   "game_id": 894986479,
+   "seed": -3755497853231258600,
+   "path": "data/raw/games/894986479.json",
+   "raw_sha256": "2c6958609b1936b1f7370ca7007df04622f8b1bdc2d5028127bd0b729d15b3be",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "3d8ce8876438b40bd6c549fc6709872fc8a5a4a886b32b1f9c2a759b27efd4a6"
+  },
+  {
+   "game_id": 894986517,
+   "seed": -5672150120672863000,
+   "path": "data/raw/games/894986517.json",
+   "raw_sha256": "98c3e590ceb527c8f972b856b660c93a5d1b67290947db51ea4f13e7abe188f5",
+   "turn_one_bytes": 569,
+   "turn_one_sha256": "b70bd9cae98eaf124d3efcf552971e3066a7d7afad7757c0e99cec541dd60071"
+  },
+  {
+   "game_id": 894986523,
+   "seed": 2348016542936232400,
+   "path": "data/raw/games/894986523.json",
+   "raw_sha256": "4339ecfdb48880b18ae5c0f0621974ff6b079a4b335a4789f1467508d766464c",
+   "turn_one_bytes": 648,
+   "turn_one_sha256": "9de50b824426774bfc5bcdff92052cce05f673b6b2c44ff2ac7b8634bd90041b"
+  },
+  {
+   "game_id": 894986580,
+   "seed": -7213346772588684000,
+   "path": "data/raw/games/894986580.json",
+   "raw_sha256": "723fa0c2bf76c3da791eae986f32a33e519d78e8528fd38c3226bcebb8c4db0f",
+   "turn_one_bytes": 454,
+   "turn_one_sha256": "6567fbe7a5ea86b3060a2d27533e232550de315d202c316a7133aeb05ee82aab"
+  },
+  {
+   "game_id": 894986601,
+   "seed": 7684398634659400000,
+   "path": "data/raw/games/894986601.json",
+   "raw_sha256": "c7671ef2b7df91880289620c4e4655aeeb8d8b687dbcb9c1b9f00bf5e16b59f7",
+   "turn_one_bytes": 533,
+   "turn_one_sha256": "df3ebb6fa956c6b99d72fded46ce6e4f364a881083217f07e83edda5ac7f517e"
+  },
+  {
+   "game_id": 894986626,
+   "seed": 3745025681328236500,
+   "path": "data/raw/games/894986626.json",
+   "raw_sha256": "b4a1a0f59e35d1f8022d385c9e751f654a68bb24d033bd41516e711c29d99561",
+   "turn_one_bytes": 617,
+   "turn_one_sha256": "ea92053ff320a173b7df457e68097682468066297f2165da602f9b750dc35ceb"
+  },
+  {
+   "game_id": 894986640,
+   "seed": 9177196172657189000,
+   "path": "data/raw/games/894986640.json",
+   "raw_sha256": "7fc44fd1e093bd005142041edfdfadf360c78f7e6567f1aecaabef12631d0e0c",
+   "turn_one_bytes": 528,
+   "turn_one_sha256": "aa50adfed8eb135293957e14c67d54970bcdce535ccdb5c8c030f3868a4d56ab"
+  },
+  {
+   "game_id": 894986651,
+   "seed": -7131885394215259000,
+   "path": "data/raw/games/894986651.json",
+   "raw_sha256": "3e3ca2d7714142a8220b35c4072489a8a44259127be9ec37cf08d8b557ee29e7",
+   "turn_one_bytes": 641,
+   "turn_one_sha256": "3dde7ce6647c80cabd3627b08d73414d5e161e634d034a2e6ab9830d87185127"
+  },
+  {
+   "game_id": 894986718,
+   "seed": 262773492779707070,
+   "path": "data/raw/games/894986718.json",
+   "raw_sha256": "b5d5182771301a611725e8e0ede7d5a9adb75fd9c71a99f71517befaf23aa333",
+   "turn_one_bytes": 416,
+   "turn_one_sha256": "e5942f2dcb72de8313f85acf722efa9b3504345e144cc7963471234313f8581c"
+  },
+  {
+   "game_id": 894986765,
+   "seed": -3472620617669487600,
+   "path": "data/raw/games/894986765.json",
+   "raw_sha256": "4dde67de6653fbeb059aba85790fd91314f6abae1335fb7b6585036f1965957c",
+   "turn_one_bytes": 572,
+   "turn_one_sha256": "5dfbfb94b7eee5f10ca20f3de30287a82dbc35372745b9adc64639fe2d11ba16"
+  },
+  {
+   "game_id": 894986778,
+   "seed": -5510438705240361000,
+   "path": "data/raw/games/894986778.json",
+   "raw_sha256": "6f090bb87fd17b2e2d2d7efc986e6d7d7949fcee87cc5387e43611141c211334",
+   "turn_one_bytes": 651,
+   "turn_one_sha256": "7bac6793e2897be9bf0778866a8187180f9e9452790ea0b351196eb6b3e255ff"
+  },
+  {
+   "game_id": 894986790,
+   "seed": 6117229642546729000,
+   "path": "data/raw/games/894986790.json",
+   "raw_sha256": "e26dc057d2fee5ef0256e8ddd9def97f4336a5539a3760b5e14bd232f7803f19",
+   "turn_one_bytes": 529,
+   "turn_one_sha256": "c6537542e882bdb0a8edc820adc91bd389b1c03e30c315fd219d59b16dc32dc3"
+  },
+  {
+   "game_id": 894986834,
+   "seed": -1280720819798970600,
+   "path": "data/raw/games/894986834.json",
+   "raw_sha256": "5e77e9f920c029cc54294e0d57ddcd450bfc39523a606c38244612067fe3ba6a",
+   "turn_one_bytes": 694,
+   "turn_one_sha256": "568305c84717556dcb4fda178a9a575b08147f44fb29649856a145ea56fd8915"
+  },
+  {
+   "game_id": 894986850,
+   "seed": -7627201550111641000,
+   "path": "data/raw/games/894986850.json",
+   "raw_sha256": "17c463190c30a657333c9bcb0fd09b11ef30ce09cb00a701429984be95e5cc4f",
+   "turn_one_bytes": 724,
+   "turn_one_sha256": "df17114dd765eb167df5c9bb87bcd8376d56594af7b299ee8c4942077b2a0f6e"
+  },
+  {
+   "game_id": 894986876,
+   "seed": 7424398183510230000,
+   "path": "data/raw/games/894986876.json",
+   "raw_sha256": "169de498096ea5538acdc4308226f1d39fe5d03cf93eaea070c6bc08b0b59d69",
+   "turn_one_bytes": 607,
+   "turn_one_sha256": "e9d63e0b35c8ca59359651144ab7670c052b7fa426f5e54847b174c73d477887"
+  },
+  {
+   "game_id": 894986884,
+   "seed": 788631037204040700,
+   "path": "data/raw/games/894986884.json",
+   "raw_sha256": "d9b2dcd7ea12bf3fc0fc5e015f418c6e71fc3eb39d4c11745870612cf0b90184",
+   "turn_one_bytes": 684,
+   "turn_one_sha256": "f544a5ed8f867db1bceb4c62ea861dc69022e098e921c42642bf1b5f56aa203a"
+  },
+  {
+   "game_id": 894986898,
+   "seed": 4319846323054280700,
+   "path": "data/raw/games/894986898.json",
+   "raw_sha256": "e484199156db906232272b17822abcdd9be9d1d008fafd5d5884c47ab463b574",
+   "turn_one_bytes": 538,
+   "turn_one_sha256": "bdab78214b3cd23cbc85e0b6072bfa86e1a5a8f0eb9b77212a4b3f4a533f4cbc"
+  },
+  {
+   "game_id": 894986911,
+   "seed": -4033169926800581600,
+   "path": "data/raw/games/894986911.json",
+   "raw_sha256": "bac81691f3c2bc41d81e75947964b92241cca944d430ee533ab0acb19377e448",
+   "turn_one_bytes": 490,
+   "turn_one_sha256": "0997511b5a429528e9bd9485171ef69ed9c2268be81d5774ece04a8b05f7f8a6"
+  },
+  {
+   "game_id": 894986919,
+   "seed": -7779099781242903000,
+   "path": "data/raw/games/894986919.json",
+   "raw_sha256": "3865e45e07a1ee825bd4d80d2f0043fbb1634e3a69d3559e82495ee9d8f8ed83",
+   "turn_one_bytes": 616,
+   "turn_one_sha256": "e483bc77f8a153745c31dae5058188ecdc2a39bd4aca5e8d39997250e8b20bba"
+  },
+  {
+   "game_id": 894986933,
+   "seed": -5680864268505747000,
+   "path": "data/raw/games/894986933.json",
+   "raw_sha256": "ce8cea0fa27daa2bde9eb3625dd404589ece09330de775548eb5cf18273d9024",
+   "turn_one_bytes": 645,
+   "turn_one_sha256": "a645d3800fb74ad2d1bea2643436cbf6c67b061e8b681ce1443c24c21b30c04c"
+  }
+ ]
+}

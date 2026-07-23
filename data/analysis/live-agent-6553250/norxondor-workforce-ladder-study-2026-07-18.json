@@ -1,0 +1,4163 @@
+{
+ "schema": 1,
+ "scope": "observational teacher-forced official replay states for one archived agent; successful TRAIN timing and specs only; stage minima and caps inferred without held games; worker productivity and direct score-cost payback are descriptive, not counterfactual or causal; sealed holdout and arena untouched",
+ "agent_id": 6480540,
+ "games": 30,
+ "decision_rows": 8738,
+ "successful_train_events": 62,
+ "wins": 19,
+ "mean_margin": 64.4,
+ "inferred_full_ladder": {
+  "1": {
+   "base": [
+    2,
+    2,
+    1,
+    1
+   ],
+   "cap": [
+    3,
+    3,
+    2,
+    2
+   ]
+  },
+  "2": {
+   "base": [
+    2,
+    3,
+    1,
+    2
+   ],
+   "cap": [
+    4,
+    5,
+    2,
+    2
+   ]
+  },
+  "3": {
+   "base": [
+    2,
+    3,
+    0,
+    3
+   ],
+   "cap": [
+    3,
+    3,
+    1,
+    3
+   ]
+  },
+  "4": {
+   "base": [
+    2,
+    4,
+    0,
+    3
+   ],
+   "cap": [
+    3,
+    4,
+    1,
+    3
+   ]
+  }
+ },
+ "stage_summary": {
+  "1": {
+   "events": 28,
+   "turn_median": 6.0,
+   "turn_min": 1,
+   "turn_max": 92,
+   "zero_delay_after_base_affordable": 28,
+   "uncapped_max_affordable_matches": 20,
+   "capped_max_affordable_matches": 28,
+   "roles": {
+    "hybrid_chopper": 17,
+    "harvest_specialist": 9,
+    "generalist": 2
+   },
+   "specs": {
+    "2/2/2/2": 8,
+    "2/2/2/1": 8,
+    "2/2/1/2": 5,
+    "2/2/1/1": 2,
+    "3/2/2/2": 2,
+    "2/3/2/2": 2,
+    "2/3/2/1": 1
+   }
+  },
+  "2": {
+   "events": 21,
+   "turn_median": 101,
+   "turn_min": 43,
+   "turn_max": 177,
+   "zero_delay_after_base_affordable": 21,
+   "uncapped_max_affordable_matches": 19,
+   "capped_max_affordable_matches": 21,
+   "roles": {
+    "hybrid_chopper": 21
+   },
+   "specs": {
+    "2/3/1/2": 12,
+    "3/3/1/2": 4,
+    "2/3/2/2": 2,
+    "2/4/1/2": 1,
+    "4/3/1/2": 1,
+    "2/5/1/2": 1
+   }
+  },
+  "3": {
+   "events": 10,
+   "turn_median": 113.0,
+   "turn_min": 76,
+   "turn_max": 152,
+   "zero_delay_after_base_affordable": 10,
+   "uncapped_max_affordable_matches": 10,
+   "capped_max_affordable_matches": 10,
+   "roles": {
+    "wood_specialist": 5,
+    "hybrid_chopper": 5
+   },
+   "specs": {
+    "2/3/1/3": 5,
+    "2/3/0/3": 4,
+    "3/3/0/3": 1
+   }
+  },
+  "4": {
+   "events": 3,
+   "turn_median": 133,
+   "turn_min": 119,
+   "turn_max": 150,
+   "zero_delay_after_base_affordable": 3,
+   "uncapped_max_affordable_matches": 3,
+   "capped_max_affordable_matches": 3,
+   "roles": {
+    "wood_specialist": 2,
+    "hybrid_chopper": 1
+   },
+   "specs": {
+    "2/4/0/3": 1,
+    "2/4/1/3": 1,
+    "3/4/0/3": 1
+   }
+  }
+ },
+ "full_data_reproduction": {
+  "decision_rows": 8738,
+  "trigger_exact": 8738,
+  "trigger_accuracy": 1.0,
+  "actual_events": 62,
+  "predicted_events": 62,
+  "exact_specs": 62,
+  "spec_exact_rate": 1.0,
+  "false_positive_events": 0,
+  "missed_events": 0,
+  "wrong_spec_events": 0,
+  "sequence_exact_games": 30,
+  "games": 30,
+  "stage_counts": {
+   "1": {
+    "decisions": 1165,
+    "actual_events": 28,
+    "predicted_events": 28,
+    "exact_specs": 28
+   },
+   "2": {
+    "decisions": 3679,
+    "actual_events": 21,
+    "predicted_events": 21,
+    "exact_specs": 21
+   },
+   "3": {
+    "decisions": 2293,
+    "actual_events": 10,
+    "predicted_events": 10,
+    "exact_specs": 10
+   },
+   "4": {
+    "decisions": 1230,
+    "actual_events": 3,
+    "predicted_events": 3,
+    "exact_specs": 3
+   },
+   "5": {
+    "decisions": 371,
+    "actual_events": 0,
+    "predicted_events": 0
+   }
+  },
+  "mismatches": []
+ },
+ "fivefold_held_game": {
+  "decision_rows": 8738,
+  "trigger_exact": 8738,
+  "trigger_accuracy": 1.0,
+  "actual_events": 62,
+  "predicted_events": 62,
+  "exact_specs": 57,
+  "spec_exact_rate": 0.9193548387096774,
+  "false_positive_events": 0,
+  "missed_events": 0,
+  "wrong_spec_events": 5,
+  "sequence_exact_games": 26,
+  "games": 30,
+  "stage_counts": {
+   "1": {
+    "decisions": 1165,
+    "actual_events": 28,
+    "predicted_events": 28,
+    "exact_specs": 28
+   },
+   "2": {
+    "decisions": 3679,
+    "actual_events": 21,
+    "predicted_events": 21,
+    "exact_specs": 19
+   },
+   "3": {
+    "decisions": 2293,
+    "actual_events": 10,
+    "predicted_events": 10,
+    "exact_specs": 9
+   },
+   "4": {
+    "decisions": 1230,
+    "actual_events": 3,
+    "predicted_events": 3,
+    "exact_specs": 1
+   },
+   "5": {
+    "decisions": 371,
+    "actual_events": 0,
+    "predicted_events": 0
+   }
+  },
+  "mismatches": [
+   {
+    "game_id": 895447039,
+    "turn": 119,
+    "stage": 4,
+    "actual": [
+     2,
+     4,
+     1,
+     3
+    ],
+    "predicted": [
+     2,
+     4,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895883068,
+    "turn": 107,
+    "stage": 2,
+    "actual": [
+     4,
+     3,
+     1,
+     2
+    ],
+    "predicted": [
+     3,
+     3,
+     1,
+     2
+    ]
+   },
+   {
+    "game_id": 895926756,
+    "turn": 92,
+    "stage": 3,
+    "actual": [
+     3,
+     3,
+     0,
+     3
+    ],
+    "predicted": [
+     2,
+     3,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895926756,
+    "turn": 133,
+    "stage": 4,
+    "actual": [
+     3,
+     4,
+     0,
+     3
+    ],
+    "predicted": [
+     2,
+     4,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895927124,
+    "turn": 162,
+    "stage": 2,
+    "actual": [
+     2,
+     5,
+     1,
+     2
+    ],
+    "predicted": [
+     2,
+     4,
+     1,
+     2
+    ]
+   }
+  ],
+  "folds": [
+   {
+    "fold": 0,
+    "training_games": 24,
+    "held_games": 6,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 1729,
+     "trigger_exact": 1729,
+     "trigger_accuracy": 1.0,
+     "actual_events": 15,
+     "predicted_events": 15,
+     "exact_specs": 15,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 6,
+     "games": 6,
+     "stage_counts": {
+      "1": {
+       "decisions": 163,
+       "actual_events": 6,
+       "predicted_events": 6,
+       "exact_specs": 6
+      },
+      "2": {
+       "decisions": 438,
+       "actual_events": 6,
+       "predicted_events": 6,
+       "exact_specs": 6
+      },
+      "3": {
+       "decisions": 667,
+       "actual_events": 3,
+       "predicted_events": 3,
+       "exact_specs": 3
+      },
+      "4": {
+       "decisions": 461,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 1,
+    "training_games": 25,
+    "held_games": 5,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       2,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       2,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 1467,
+     "trigger_exact": 1467,
+     "trigger_accuracy": 1.0,
+     "actual_events": 9,
+     "predicted_events": 9,
+     "exact_specs": 7,
+     "spec_exact_rate": 0.7777777777777778,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 2,
+     "sequence_exact_games": 4,
+     "games": 5,
+     "stage_counts": {
+      "1": {
+       "decisions": 361,
+       "actual_events": 4,
+       "predicted_events": 4,
+       "exact_specs": 4
+      },
+      "2": {
+       "decisions": 545,
+       "actual_events": 3,
+       "predicted_events": 3,
+       "exact_specs": 3
+      },
+      "3": {
+       "decisions": 386,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "4": {
+       "decisions": 41,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "5": {
+       "decisions": 134,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895926756,
+       "turn": 92,
+       "stage": 3,
+       "actual": [
+        3,
+        3,
+        0,
+        3
+       ],
+       "predicted": [
+        2,
+        3,
+        0,
+        3
+       ]
+      },
+      {
+       "game_id": 895926756,
+       "turn": 133,
+       "stage": 4,
+       "actual": [
+        3,
+        4,
+        0,
+        3
+       ],
+       "predicted": [
+        2,
+        4,
+        0,
+        3
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 2,
+    "training_games": 24,
+    "held_games": 6,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 1779,
+     "trigger_exact": 1779,
+     "trigger_accuracy": 1.0,
+     "actual_events": 14,
+     "predicted_events": 14,
+     "exact_specs": 14,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 6,
+     "games": 6,
+     "stage_counts": {
+      "1": {
+       "decisions": 84,
+       "actual_events": 6,
+       "predicted_events": 6,
+       "exact_specs": 6
+      },
+      "2": {
+       "decisions": 943,
+       "actual_events": 4,
+       "predicted_events": 4,
+       "exact_specs": 4
+      },
+      "3": {
+       "decisions": 218,
+       "actual_events": 3,
+       "predicted_events": 3,
+       "exact_specs": 3
+      },
+      "4": {
+       "decisions": 384,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "5": {
+       "decisions": 150,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 3,
+    "training_games": 23,
+    "held_games": 7,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       3,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 2098,
+     "trigger_exact": 2098,
+     "trigger_accuracy": 1.0,
+     "actual_events": 11,
+     "predicted_events": 11,
+     "exact_specs": 10,
+     "spec_exact_rate": 0.9090909090909091,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 1,
+     "sequence_exact_games": 6,
+     "games": 7,
+     "stage_counts": {
+      "1": {
+       "decisions": 504,
+       "actual_events": 6,
+       "predicted_events": 6,
+       "exact_specs": 6
+      },
+      "2": {
+       "decisions": 824,
+       "actual_events": 4,
+       "predicted_events": 4,
+       "exact_specs": 3
+      },
+      "3": {
+       "decisions": 576,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 194,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895883068,
+       "turn": 107,
+       "stage": 2,
+       "actual": [
+        4,
+        3,
+        1,
+        2
+       ],
+       "predicted": [
+        3,
+        3,
+        1,
+        2
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 4,
+    "training_games": 24,
+    "held_games": 6,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       4,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       0,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 1665,
+     "trigger_exact": 1665,
+     "trigger_accuracy": 1.0,
+     "actual_events": 13,
+     "predicted_events": 13,
+     "exact_specs": 11,
+     "spec_exact_rate": 0.8461538461538461,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 2,
+     "sequence_exact_games": 4,
+     "games": 6,
+     "stage_counts": {
+      "1": {
+       "decisions": 53,
+       "actual_events": 6,
+       "predicted_events": 6,
+       "exact_specs": 6
+      },
+      "2": {
+       "decisions": 929,
+       "actual_events": 4,
+       "predicted_events": 4,
+       "exact_specs": 3
+      },
+      "3": {
+       "decisions": 446,
+       "actual_events": 2,
+       "predicted_events": 2,
+       "exact_specs": 2
+      },
+      "4": {
+       "decisions": 150,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "5": {
+       "decisions": 87,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895447039,
+       "turn": 119,
+       "stage": 4,
+       "actual": [
+        2,
+        4,
+        1,
+        3
+       ],
+       "predicted": [
+        2,
+        4,
+        0,
+        3
+       ]
+      },
+      {
+       "game_id": 895927124,
+       "turn": 162,
+       "stage": 2,
+       "actual": [
+        2,
+        5,
+        1,
+        2
+       ],
+       "predicted": [
+        2,
+        4,
+        1,
+        2
+       ]
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "leave_one_game_out": {
+  "decision_rows": 8738,
+  "trigger_exact": 8738,
+  "trigger_accuracy": 1.0,
+  "actual_events": 62,
+  "predicted_events": 62,
+  "exact_specs": 57,
+  "spec_exact_rate": 0.9193548387096774,
+  "false_positive_events": 0,
+  "missed_events": 0,
+  "wrong_spec_events": 5,
+  "sequence_exact_games": 26,
+  "games": 30,
+  "stage_counts": {
+   "1": {
+    "decisions": 1165,
+    "actual_events": 28,
+    "predicted_events": 28,
+    "exact_specs": 28
+   },
+   "2": {
+    "decisions": 3679,
+    "actual_events": 21,
+    "predicted_events": 21,
+    "exact_specs": 19
+   },
+   "3": {
+    "decisions": 2293,
+    "actual_events": 10,
+    "predicted_events": 10,
+    "exact_specs": 9
+   },
+   "4": {
+    "decisions": 1230,
+    "actual_events": 3,
+    "predicted_events": 3,
+    "exact_specs": 1
+   },
+   "5": {
+    "decisions": 371,
+    "actual_events": 0,
+    "predicted_events": 0
+   }
+  },
+  "mismatches": [
+   {
+    "game_id": 895447039,
+    "turn": 119,
+    "stage": 4,
+    "actual": [
+     2,
+     4,
+     1,
+     3
+    ],
+    "predicted": [
+     2,
+     4,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895883068,
+    "turn": 107,
+    "stage": 2,
+    "actual": [
+     4,
+     3,
+     1,
+     2
+    ],
+    "predicted": [
+     3,
+     3,
+     1,
+     2
+    ]
+   },
+   {
+    "game_id": 895926756,
+    "turn": 92,
+    "stage": 3,
+    "actual": [
+     3,
+     3,
+     0,
+     3
+    ],
+    "predicted": [
+     2,
+     3,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895926756,
+    "turn": 133,
+    "stage": 4,
+    "actual": [
+     3,
+     4,
+     0,
+     3
+    ],
+    "predicted": [
+     2,
+     4,
+     0,
+     3
+    ]
+   },
+   {
+    "game_id": 895927124,
+    "turn": 162,
+    "stage": 2,
+    "actual": [
+     2,
+     5,
+     1,
+     2
+    ],
+    "predicted": [
+     2,
+     4,
+     1,
+     2
+    ]
+   }
+  ],
+  "folds": [
+   {
+    "fold": 0,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 254,
+     "trigger_exact": 254,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 42,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 64,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 32,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 116,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 1,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 34,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 71,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 23,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 172,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 2,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 105,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 194,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 3,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 58,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 118,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 124,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 4,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 298,
+     "trigger_exact": 298,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 26,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 38,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 40,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 194,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 5,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 259,
+     "trigger_exact": 259,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 70,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 81,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 107,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 6,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 275,
+     "trigger_exact": 275,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 16,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 72,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 187,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 7,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 4,
+     "predicted_events": 4,
+     "exact_specs": 4,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 73,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 33,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 43,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "5": {
+       "decisions": 150,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 8,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 34,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 56,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 49,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 161,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 9,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       0,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 206,
+     "trigger_exact": 206,
+     "trigger_accuracy": 1.0,
+     "actual_events": 4,
+     "predicted_events": 4,
+     "exact_specs": 3,
+     "spec_exact_rate": 0.75,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 1,
+     "sequence_exact_games": 0,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 42,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 33,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 43,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "5": {
+       "decisions": 87,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895447039,
+       "turn": 119,
+       "stage": 4,
+       "actual": [
+        2,
+        4,
+        1,
+        3
+       ],
+       "predicted": [
+        2,
+        4,
+        0,
+        3
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 10,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 299,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 11,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 46,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 254,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 12,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       3,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 1,
+     "spec_exact_rate": 0.5,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 1,
+     "sequence_exact_games": 0,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 6,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 101,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "3": {
+       "decisions": 193,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895883068,
+       "turn": 107,
+       "stage": 2,
+       "actual": [
+        4,
+        3,
+        1,
+        2
+       ],
+       "predicted": [
+        3,
+        3,
+        1,
+        2
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 13,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 92,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 64,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 144,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 14,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 0,
+     "predicted_events": 0,
+     "exact_specs": 0,
+     "spec_exact_rate": null,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 300,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 15,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 52,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 248,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 16,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 6,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 294,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 17,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 279,
+     "trigger_exact": 279,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 70,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 39,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 169,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 18,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 22,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 79,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 199,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 19,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       2,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       2,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 267,
+     "trigger_exact": 267,
+     "trigger_accuracy": 1.0,
+     "actual_events": 4,
+     "predicted_events": 4,
+     "exact_specs": 2,
+     "spec_exact_rate": 0.5,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 2,
+     "sequence_exact_games": 0,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 42,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 49,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "4": {
+       "decisions": 41,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "5": {
+       "decisions": 134,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895926756,
+       "turn": 92,
+       "stage": 3,
+       "actual": [
+        3,
+        3,
+        0,
+        3
+       ],
+       "predicted": [
+        2,
+        3,
+        0,
+        3
+       ]
+      },
+      {
+       "game_id": 895926756,
+       "turn": 133,
+       "stage": 4,
+       "actual": [
+        3,
+        4,
+        0,
+        3
+       ],
+       "predicted": [
+        2,
+        4,
+        0,
+        3
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 20,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 86,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 213,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 21,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 299,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 22,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 0,
+     "predicted_events": 0,
+     "exact_specs": 0,
+     "spec_exact_rate": null,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 300,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 23,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 22,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 101,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 177,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 24,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       4,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 1,
+     "spec_exact_rate": 0.5,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 1,
+     "sequence_exact_games": 0,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 161,
+       "actual_events": 1,
+       "predicted_events": 1
+      },
+      "3": {
+       "decisions": 138,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": [
+      {
+       "game_id": 895927124,
+       "turn": 162,
+       "stage": 2,
+       "actual": [
+        2,
+        5,
+        1,
+        2
+       ],
+       "predicted": [
+        2,
+        4,
+        1,
+        2
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "fold": 25,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 3,
+     "predicted_events": 3,
+     "exact_specs": 3,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 77,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 38,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "4": {
+       "decisions": 184,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 26,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 176,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 123,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 27,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 48,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 252,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 28,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 1,
+     "predicted_events": 1,
+     "exact_specs": 1,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 1,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 299,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   },
+   {
+    "fold": 29,
+    "training_games": 29,
+    "held_games": 1,
+    "inferred_ladder": {
+     "1": {
+      "base": [
+       2,
+       2,
+       1,
+       1
+      ],
+      "cap": [
+       3,
+       3,
+       2,
+       2
+      ]
+     },
+     "2": {
+      "base": [
+       2,
+       3,
+       1,
+       2
+      ],
+      "cap": [
+       4,
+       5,
+       2,
+       2
+      ]
+     },
+     "3": {
+      "base": [
+       2,
+       3,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       3,
+       1,
+       3
+      ]
+     },
+     "4": {
+      "base": [
+       2,
+       4,
+       0,
+       3
+      ],
+      "cap": [
+       3,
+       4,
+       1,
+       3
+      ]
+     }
+    },
+    "held_metrics": {
+     "decision_rows": 300,
+     "trigger_exact": 300,
+     "trigger_accuracy": 1.0,
+     "actual_events": 2,
+     "predicted_events": 2,
+     "exact_specs": 2,
+     "spec_exact_rate": 1.0,
+     "false_positive_events": 0,
+     "missed_events": 0,
+     "wrong_spec_events": 0,
+     "sequence_exact_games": 1,
+     "games": 1,
+     "stage_counts": {
+      "1": {
+       "decisions": 48,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "2": {
+       "decisions": 68,
+       "actual_events": 1,
+       "predicted_events": 1,
+       "exact_specs": 1
+      },
+      "3": {
+       "decisions": 184,
+       "actual_events": 0,
+       "predicted_events": 0
+      }
+     },
+     "mismatches": []
+    }
+   }
+  ]
+ },
+ "workforce_observation": {
+  "final_worker_count_distribution": {
+   "1": 2,
+   "2": 7,
+   "3": 11,
+   "4": 7,
+   "5": 3
+  },
+  "trained_workers": 62,
+  "direct_payback": 62,
+  "direct_payback_rate": 1.0,
+  "by_ordinal": {
+   "0": {
+    "workers": 30,
+    "active_turns": 8738,
+    "productive_turns": 8472,
+    "productive_rate": 0.9695582513160906,
+    "mean_direct_banked_value": 67.83333333333333,
+    "direct_payback": 0,
+    "direct_payback_eligible": 0
+   },
+   "1": {
+    "workers": 28,
+    "active_turns": 7573,
+    "productive_turns": 7509,
+    "productive_rate": 0.9915489238082662,
+    "mean_direct_banked_value": 116.71428571428571,
+    "direct_payback": 28,
+    "direct_payback_eligible": 28
+   },
+   "2": {
+    "workers": 21,
+    "active_turns": 3894,
+    "productive_turns": 3855,
+    "productive_rate": 0.9899845916795069,
+    "mean_direct_banked_value": 135.61904761904762,
+    "direct_payback": 21,
+    "direct_payback_eligible": 21
+   },
+   "3": {
+    "workers": 10,
+    "active_turns": 1601,
+    "productive_turns": 1573,
+    "productive_rate": 0.9825109306683323,
+    "mean_direct_banked_value": 150.8,
+    "direct_payback": 10,
+    "direct_payback_eligible": 10
+   },
+   "4": {
+    "workers": 3,
+    "active_turns": 371,
+    "productive_turns": 371,
+    "productive_rate": 1.0,
+    "mean_direct_banked_value": 130.66666666666666,
+    "direct_payback": 3,
+    "direct_payback_eligible": 3
+   }
+  }
+ },
+ "gate": {
+  "requirements": [
+   "fivefold trigger exact on every decision row with no false or missed TRAIN",
+   "fivefold held-spec exact rate at least 0.90",
+   "each event-bearing fivefold split has held-spec exact rate at least 0.75",
+   "every trained worker directly repays its fruit-score cost",
+   "each trained-worker ordinal is productive on at least 95% of active turns"
+  ],
+  "worst_fold_spec_exact_rate": 0.7777777777777778,
+  "passed": true
+ },
+ "decision": {
+  "workforce_architecture_recovered": true,
+  "authorize_research_controller": true,
+  "build_submission_candidate": false,
+  "reason": "The online ladder generalizes, but replay states are supplied by Norxondor's unrecovered continuation policy.  A local controller must demonstrate that it can fund and productively assign the ladder before any candidate is built."
+ }
+}

@@ -1,0 +1,162 @@
+{
+  "aggregate_host_cpu_percent": 88.86806803141617,
+  "config": {
+    "batch_size": 10000,
+    "clip_coef": 0.2,
+    "entropy_coef": 0.01,
+    "eval_episodes": 100,
+    "eval_seed_base": 5000,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "learning_rate": 0.00025,
+    "max_grad_norm": 0.5,
+    "minibatch_size": 1000,
+    "model_seed": 17,
+    "no_stage_a_stop": true,
+    "num_envs": 100,
+    "parameter_count": 34926,
+    "protocol_sha256": "aa11c492a3df7aa857a9de37d6164e5130b610e68b5fd6038bf01249bd2b64ff",
+    "random_baseline_sha256": "3bdd77f2d1b60410aa3c919baf312e0f6164d9fd5af0b7e1641dc5922fbfec2f",
+    "rollout_steps": 100,
+    "run_name": "smoke",
+    "stage_a_transitions": 10000,
+    "target_kl": 0.03,
+    "teacher_baseline_sha256": "8b4053bd74dd7e2248b671802e371c82e19bff1ec447cc8725d2ba289aa3a1c1",
+    "threads": 20,
+    "torch_version": "2.13.0+cpu",
+    "total_transitions": 20000,
+    "train_seed_base": 0,
+    "update_epochs": 1,
+    "value_coef": 0.5
+  },
+  "elapsed_cpu_seconds": 1748.618700368,
+  "elapsed_wall_seconds": 98.38284656699398,
+  "evaluations": [
+    {
+      "by_height": {
+        "10": {
+          "episodes": 26,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "11": {
+          "episodes": 24,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "8": {
+          "episodes": 24,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "9": {
+          "episodes": 26,
+          "success_rate": 0.0,
+          "successes": 0
+        }
+      },
+      "elapsed_seconds": 2.121054365998134,
+      "episodes": 100,
+      "gate": "L1A",
+      "gate_passed": false,
+      "global_step": 10000,
+      "height_success_floor": 0.0,
+      "median_success_turn": null,
+      "paired_teacher_median_turn_delta": null,
+      "path": "data/analysis/live-agent-6553250/curriculum-level1-smoke-l1a-evaluation.json",
+      "random_success_rate": 0.109,
+      "seed_base": 5000,
+      "success_rate": 0.0,
+      "successes": 0,
+      "teacher_success_rate": 0.998,
+      "transitions": 18000,
+      "transitions_per_second": 8486.345417897617
+    },
+    {
+      "by_height": {
+        "10": {
+          "episodes": 26,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "11": {
+          "episodes": 24,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "8": {
+          "episodes": 24,
+          "success_rate": 0.0,
+          "successes": 0
+        },
+        "9": {
+          "episodes": 26,
+          "success_rate": 0.0,
+          "successes": 0
+        }
+      },
+      "elapsed_seconds": 2.268985631992109,
+      "episodes": 100,
+      "gate": "L1B",
+      "gate_passed": false,
+      "global_step": 20000,
+      "height_success_floor": 0.0,
+      "median_success_turn": null,
+      "paired_teacher_median_turn_delta": null,
+      "path": "data/analysis/live-agent-6553250/curriculum-level1-smoke-l1b-evaluation.json",
+      "random_success_rate": 0.109,
+      "seed_base": 5000,
+      "success_rate": 0.0,
+      "successes": 0,
+      "teacher_success_rate": 0.998,
+      "transitions": 18000,
+      "transitions_per_second": 7933.060371209349
+    }
+  ],
+  "global_step": 20000,
+  "logs": [
+    {
+      "approx_kl": 2.150535692635458e-06,
+      "clip_fraction": 0.0,
+      "entropy": 3.280249834060669,
+      "episodes_recent": 16,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": 0.0001055598258972168,
+      "global_step": 10000,
+      "learning_rate": 0.000125,
+      "mean_return_recent": 19.988749742507935,
+      "median_turn_recent": 1.0,
+      "policy_loss": 1.876449641713407e-05,
+      "rollout_sps": 235.46794863016478,
+      "success_rate_recent": 1.0,
+      "update": 1,
+      "update_sps": 204.46645128728042,
+      "value_loss": 142.3535919189453
+    },
+    {
+      "approx_kl": 1.797139589143626e-06,
+      "clip_fraction": 0.0,
+      "entropy": 3.2881686687469482,
+      "episodes_recent": 128,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": 0.00036334991455078125,
+      "global_step": 20000,
+      "learning_rate": 0.0,
+      "mean_return_recent": -25.908874228596687,
+      "median_turn_recent": 1.0,
+      "policy_loss": -4.785251439898275e-05,
+      "rollout_sps": 265.2610748210004,
+      "success_rate_recent": 0.21875,
+      "update": 2,
+      "update_sps": 222.97477312121532,
+      "value_loss": 138.189208984375
+    }
+  ],
+  "overall_transitions_per_second": 203.2874703049069,
+  "run_name": "smoke",
+  "stage_a_passed": false,
+  "stage_b_passed": false,
+  "updates_completed": 2
+}

@@ -1,0 +1,93 @@
+{
+ "schema": 1,
+ "scope": "five-fold held-game objective lookup plus five-fold held-game 20-epoch tree ranker; autoregressive own target commitments; unit-command rendering only, excluding TRAIN, arbitrary MOVE_OTHER waypoints, counterfactual play, and causal value",
+ "agent_id": 6483545,
+ "games": 26,
+ "rows": 11009,
+ "hard_tree_training_events": 633,
+ "commitment_singleton_baseline": {
+  "unit_rows": 11009,
+  "unit_command_exact": 7040,
+  "unit_command_exact_rate": 0.6394767917158688,
+  "move_rows": 6328,
+  "move_target_exact": 2729,
+  "move_target_exact_rate": 0.43125790139064474,
+  "unit_turns": 5668,
+  "all_worker_commands_exact": 2379,
+  "all_worker_commands_exact_rate": 0.4197247706422018
+ },
+ "integrated_tree_ranker": {
+  "unit_rows": 11009,
+  "unit_command_exact": 7609,
+  "unit_command_exact_rate": 0.6911617767281315,
+  "move_rows": 6328,
+  "move_target_exact": 3298,
+  "move_target_exact_rate": 0.5211757269279393,
+  "unit_turns": 5668,
+  "all_worker_commands_exact": 2742,
+  "all_worker_commands_exact_rate": 0.4837685250529287,
+  "move_target_exact_rate_gain": 0.0899178255372946
+ },
+ "folds": [
+  {
+   "fold": 0,
+   "games": 3,
+   "rows": 1567,
+   "baseline_move_target_exact_rate": 0.49246231155778897,
+   "ranker_move_target_exact_rate": 0.5577889447236181,
+   "ranker_unit_command_exact_rate": 0.7038927887683472,
+   "ranker_all_worker_commands_exact_rate": 0.48872180451127817
+  },
+  {
+   "fold": 1,
+   "games": 9,
+   "rows": 3425,
+   "baseline_move_target_exact_rate": 0.4218993253762325,
+   "ranker_move_target_exact_rate": 0.49558899844317594,
+   "ranker_unit_command_exact_rate": 0.6852554744525547,
+   "ranker_all_worker_commands_exact_rate": 0.47015765765765766
+  },
+  {
+   "fold": 2,
+   "games": 2,
+   "rows": 1042,
+   "baseline_move_target_exact_rate": 0.3807266982622433,
+   "ranker_move_target_exact_rate": 0.46919431279620855,
+   "ranker_unit_command_exact_rate": 0.6439539347408829,
+   "ranker_all_worker_commands_exact_rate": 0.4111111111111111
+  },
+  {
+   "fold": 3,
+   "games": 8,
+   "rows": 3176,
+   "baseline_move_target_exact_rate": 0.3962478681068789,
+   "ranker_move_target_exact_rate": 0.5218874360432064,
+   "ranker_unit_command_exact_rate": 0.7018261964735516,
+   "ranker_all_worker_commands_exact_rate": 0.5018337408312958
+  },
+  {
+   "fold": 4,
+   "games": 4,
+   "rows": 1799,
+   "baseline_move_target_exact_rate": 0.4812623274161736,
+   "ranker_move_target_exact_rate": 0.5650887573964497,
+   "ranker_unit_command_exact_rate": 0.6998332406892718,
+   "ranker_all_worker_commands_exact_rate": 0.5163398692810458
+  }
+ ],
+ "policy_skeleton_gate": {
+  "requirements": [
+   "autoregressive MOVE-target exact rate at least 0.55",
+   "unit-command exact rate at least 0.68",
+   "all-worker command exact rate at least 0.48",
+   "MOVE-target gain over commitment/singleton baseline at least 0.10",
+   "every held fold MOVE-target exact rate at least 0.50"
+  ],
+  "passed": false
+ },
+ "decision": {
+  "tree_ranker_integrates": false,
+  "build_complete_candidate": false,
+  "next": "Even a passing skeleton remains offline until opening-spec prediction and MOVE_OTHER routing are recovered. A failing skeleton retires learned exact-tree rendering as insufficient despite its conditional gate."
+ }
+}

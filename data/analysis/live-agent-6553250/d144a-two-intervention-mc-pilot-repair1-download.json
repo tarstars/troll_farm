@@ -1,0 +1,102 @@
+{
+  "downloaded_utc": "2026-07-22T22:57:23.126266+00:00",
+  "lock": {
+    "manifest_sha256": "48966d54bbd3c1ef3cbac40450091c2c7c2bf4ad4c64dbec7bf20eb8a4fd21a6",
+    "mismatches": {},
+    "pass": true
+  },
+  "mapper_metadata": [
+    {
+      "elapsed_seconds": 224.8287116708234,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 5640,
+        "baselines": 65
+      },
+      "maps": 4,
+      "runner_stderr": "saved 64 D112 baselines and 5639 exact arms in 224.823s total / 224.313s collection (25.082 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-00",
+      "start_seed": 9844128,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 294.1615456836298,
+      "kind": "exact",
+      "line_counts": {
+        "arms": 5408,
+        "baselines": 65
+      },
+      "maps": 4,
+      "runner_stderr": "saved 64 D112 baselines and 5407 exact arms in 294.147s total / 293.605s collection (18.382 arms/s end-to-end)",
+      "runner_stdout": "",
+      "shard_id": "exact-01",
+      "start_seed": 9844132,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 1543.877923188731,
+      "kind": "mc",
+      "line_counts": {
+        "mc": 16385
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'path': 'episodes.tsv', 'bytes': 2709513, 'sha256': 'e8af304a9b1be8522c7938741b339ed8d7ca15eca2b7f408242d93a73b9717e7', 'start_seed': 9844128, 'maps': 8, 'pool_tasks': 128, 'replicas': 128, 'single_replicas': 16, 'episodes': 16384, 'steps': 677, 'elapsed_seconds': 1543.5393165992573, 'episodes_per_second': 10.614566032627797, 'zero_intervention': 2769, 'one_intervention': 4758, 'two_interventions': 8857}",
+      "shard_id": "mc-a",
+      "start_seed": 9844128,
+      "threads": 16
+    },
+    {
+      "elapsed_seconds": 1595.7549787722528,
+      "kind": "mc",
+      "line_counts": {
+        "mc": 16385
+      },
+      "maps": 8,
+      "runner_stderr": "",
+      "runner_stdout": "{'path': 'episodes.tsv', 'bytes': 2709513, 'sha256': 'e8af304a9b1be8522c7938741b339ed8d7ca15eca2b7f408242d93a73b9717e7', 'start_seed': 9844128, 'maps': 8, 'pool_tasks': 128, 'replicas': 128, 'single_replicas': 16, 'episodes': 16384, 'steps': 677, 'elapsed_seconds': 1595.3810715023428, 'episodes_per_second': 10.26964672745645, 'zero_intervention': 2769, 'one_intervention': 4758, 'two_interventions': 8857}",
+      "shard_id": "mc-b",
+      "start_seed": 9844128,
+      "threads": 16
+    }
+  ],
+  "operation": {
+    "operation_id": "d29f4ba8-8e972d8c-42e03e8-c28f4f16",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 43952
+  },
+  "outputs": {
+    "arms": {
+      "bytes": 62813775,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv",
+      "rows": 11046,
+      "sha256": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838"
+    },
+    "baselines": {
+      "bytes": 27679,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv",
+      "rows": 128,
+      "sha256": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+    },
+    "mc-a": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    },
+    "mc-b": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-b-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-protocol-2026-07-22.md",
+  "schema": "troll-farm-d144a-two-intervention-mc-download-v1"
+}

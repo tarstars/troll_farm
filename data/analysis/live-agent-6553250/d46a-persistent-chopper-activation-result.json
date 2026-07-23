@@ -1,0 +1,39 @@
+{
+  "activation": {
+    "changed_action_hash_rate": 0.0,
+    "changed_action_hash_tasks": 0,
+    "role_eligible_decisions": 11525,
+    "role_overrides": 0,
+    "tasks": 512
+  },
+  "amendment": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d46a-seed-quarantine-and-activation-amendment-2026-07-21.md",
+  "amendment_sha256": "c3834dd7b56194fe57a98e21c354d36ce925857fb9891966ca9fc414e085b139",
+  "audit": {
+    "integrity_failures": 0,
+    "outcome_fields_ignored": true,
+    "repeat_byte_identical": true,
+    "tasks_per_arm": 512
+  },
+  "gates": {
+    "at_least_256_role_overrides": false,
+    "at_least_512_role_eligible_decisions": true,
+    "changed_action_hash_tasks_between_20_and_90_percent": false,
+    "complete_exact_deterministic_repeat": true,
+    "zero_integrity_failures": true
+  },
+  "inputs": {
+    "control": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d46a-d40-activation-control-9778000-9778031.tsv",
+    "control_sha256": "8803fb92a40d770f4e44fb84d6fa9f20cf38da0d751688e040ecd90ee4f84d50",
+    "environment_source_sha256": "6e59965b6d020e9eb51cf41d0a12b72addf0cd776bf7c67a93ef055783788044",
+    "prior_source_sha256": "632f1b2c99c18073c4cd956863fcaa4b7e9773dd69bb745fc18f062337130f62",
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d46a-persistent-chopper-activation-a-9778000-9778031.tsv",
+    "run_a_sha256": "ac3a304f12f6626a7cc21712ffc02469582becbb91d05847a52a776942865e5a",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d46a-persistent-chopper-activation-b-9778000-9778031.tsv",
+    "run_b_sha256": "ac3a304f12f6626a7cc21712ffc02469582becbb91d05847a52a776942865e5a",
+    "runner_source_sha256": "d48e5066cbdcdefd33df1e43034163b37bd2811c70a300588958a9ffcef716f4"
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d46-persistent-chopper-role-protocol-2026-07-21.md",
+  "protocol_sha256": "eca41e6e85edcea6ee0aa0e7d5bed3bb1cb6ef327ecc471c7b148fc1748a8d53",
+  "scope": "quarantined activation/integrity audit only; scores and margins ignored; no policy selection or platform action"
+}

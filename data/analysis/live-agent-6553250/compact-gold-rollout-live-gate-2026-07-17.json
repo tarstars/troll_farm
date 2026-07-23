@@ -1,0 +1,141 @@
+{
+ "schema": 1,
+ "scope": "local exact-engine deployment gate; frozen 120..179 Gold labels; not an arena result",
+ "sources": {
+  "candidate": {
+   "path": "cgauto/submissions/candidate-agent6553250-compact-gold-rollout30.min.rs",
+   "sha256": "f5df1f760791a21ad0193469c132fea02ebaa2856b33f62213765205b3b59370"
+  },
+  "control": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+   "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "option": {
+   "path": "cgauto/submissions/candidate-agent6553250-adaptive-max-bank-first-hp0.min.rs",
+   "sha256": "e09dc57d1ba9192a0d46d22a09c37cec40319dd34bde6fa8733204fca77db9b7"
+  },
+  "labels": "data/analysis/live-agent-6553250/local-model-rollouts-120-179.tsv"
+ },
+ "source_bytes": 90643,
+ "source_limit_bytes": 100000,
+ "first_turn_limit_ms": 1000,
+ "internal_rollout_deadline_ms": 700,
+ "selector": {
+  "model": "CompactGold (exact GoldElite::new command parity)",
+  "rule": "option terminal margin - control terminal margin > 30",
+  "frozen_cells": 120,
+  "selected_cells": [
+   [
+    120,
+    1
+   ],
+   [
+    143,
+    1
+   ],
+   [
+    163,
+    0
+   ],
+   [
+    179,
+    0
+   ]
+  ],
+  "command_mismatches": [],
+  "first_command_distinguished_cells": 89
+ },
+ "first_turn_wall_ms": {
+  "n": 120,
+  "mean": 147.40627858324538,
+  "p50": 144.0283999982057,
+  "p95": 184.06668299576268,
+  "maximum": 193.95578900002874
+ },
+ "dynamic_stream_gate": {
+  "cases": [
+   {
+    "seed": 120,
+    "seat": 1,
+    "expected_policy": "option",
+    "opponent": "ringfix3",
+    "turns": 233,
+    "exact": true
+   },
+   {
+    "seed": 143,
+    "seat": 1,
+    "expected_policy": "option",
+    "opponent": "taskplan",
+    "turns": 297,
+    "exact": true
+   },
+   {
+    "seed": 163,
+    "seat": 0,
+    "expected_policy": "option",
+    "opponent": "ringfix3",
+    "turns": 207,
+    "exact": true
+   },
+   {
+    "seed": 179,
+    "seat": 0,
+    "expected_policy": "option",
+    "opponent": "taskplan",
+    "turns": 300,
+    "exact": true
+   },
+   {
+    "seed": 121,
+    "seat": 0,
+    "expected_policy": "control",
+    "opponent": "ringfix3",
+    "turns": 246,
+    "exact": true
+   },
+   {
+    "seed": 121,
+    "seat": 1,
+    "expected_policy": "control",
+    "opponent": "taskplan",
+    "turns": 251,
+    "exact": true
+   },
+   {
+    "seed": 157,
+    "seat": 0,
+    "expected_policy": "control",
+    "opponent": "ringfix3",
+    "turns": 222,
+    "exact": true
+   },
+   {
+    "seed": 157,
+    "seat": 1,
+    "expected_policy": "control",
+    "opponent": "taskplan",
+    "turns": 204,
+    "exact": true
+   },
+   {
+    "seed": 178,
+    "seat": 0,
+    "expected_policy": "control",
+    "opponent": "ringfix3",
+    "turns": 181,
+    "exact": true
+   },
+   {
+    "seed": 179,
+    "seat": 1,
+    "expected_policy": "control",
+    "opponent": "taskplan",
+    "turns": 300,
+    "exact": true
+   }
+  ],
+  "exact_cases": 10
+ },
+ "verdict": "PASS"
+}

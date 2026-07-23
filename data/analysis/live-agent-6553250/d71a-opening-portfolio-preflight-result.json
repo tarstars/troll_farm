@@ -1,0 +1,313 @@
+{
+  "decision": {
+    "analyze_probe_value": false,
+    "construct_candidate": false,
+    "next_experiment": "recurrent_random_policy_upper_bound_population",
+    "open_confirmation": false,
+    "platform_action": false,
+    "status": "pass",
+    "train_ppo": false
+  },
+  "gates": {
+    "all_actions_and_boundary_limit": true,
+    "complete_repeat_byte_identical_grid": true,
+    "cyclic_recurrence_and_death_retry": true,
+    "each_species_assigned_and_created_at_least_100": true,
+    "exact_anchor_parity": true,
+    "mask_and_pre_crop_source_coverage": true,
+    "species_probe_crop_rate_at_least_0_99_and_cyclic_1_00": true,
+    "throughput_and_cpu": true,
+    "zero_mechanical_failures": true
+  },
+  "generated_at": "2026-07-21T13:40:41.114924+00:00",
+  "inputs": {
+    "analyzer": "e2a2ada7798a32c2c82b8d1e2eeb235df60770d97620066fa2482c6b259c15f1",
+    "anchor": "0927762014c5e363dc01a3bb332539f27b7e80e91d424d609c5489630b5f8e8d",
+    "batch_environment": "7cbc1255f74cafc166d19965813ad496e0d5db347eede3a2dc960e478bf0024d",
+    "d62_reference": "e58501488df46edbdc77b3b2caf5409aafe43fa1deab14212aa17e2e20883ae7",
+    "grid_a": "c60d2791a9aa5120cc400a6e487a07610b573fe4d629ca27aee6b61c1fa2d34c",
+    "grid_b": "c60d2791a9aa5120cc400a6e487a07610b573fe4d629ca27aee6b61c1fa2d34c",
+    "macro_environment": "19d54cc89051c43a4a002c595b52a6403075581125d31e4fb152f6fb3cb70ede",
+    "opening_environment": "ea399520b8d130c561d5674b00208e9d48e6625f29d4439421c5d5974b611d98",
+    "protocol": "eb006f6c4b8332aad4e78559b8b062cfebb1ce56339a8dfc0e71805a91b3e7c4",
+    "runner": "bd74b609192bbc6202983934c93fc778ca03a9a8244f121ddba316907739ec76",
+    "time_a": "6ba0893d28b220bfe574cc02a1740c72821dfe02ce88fcaad7d869e82e619706",
+    "time_b": "1ce89fe097895314e2c97f02af4ef852f7e070fd0c5d208720fef8a75885e183"
+  },
+  "integrity": {
+    "anchor": {
+      "actual_rows": 16,
+      "field_differences": [],
+      "pass": true,
+      "reference_rows": 16,
+      "task_identity_exact": true
+    },
+    "grid": {
+      "complete_grid": true,
+      "duplicate_rows": 0,
+      "environmental_invalidated_jobs": 10198,
+      "failure_totals": {
+        "boundary_failures": 0,
+        "deposit_prediction_failures": 0,
+        "finite_feature_failures": 0,
+        "invalid_direct_commands": 0,
+        "legal_mask_failures": 0,
+        "provenance_failures": 0,
+        "source_assignment_failures": 0
+      },
+      "maximum_boundary_decisions": 137,
+      "maximum_reward_identity_error": 0.0,
+      "option_count_failures": 0,
+      "rows": 3072,
+      "source_count_failures": 0
+    },
+    "pass": true,
+    "repeat_byte_identical": true,
+    "timings": [
+      {
+        "boundary_transitions": 249593,
+        "boundary_transitions_per_second": 3309.3741713073455,
+        "effective_cpu_cores": 19.5177671705118,
+        "elapsed_seconds": 75.42,
+        "maximum_resident_kib": 9760,
+        "reported_cpu_percent": 1951.0,
+        "system_seconds": 0.33,
+        "user_seconds": 1471.7
+      },
+      {
+        "boundary_transitions": 249593,
+        "boundary_transitions_per_second": 3299.3126239259745,
+        "effective_cpu_cores": 19.565895571711827,
+        "elapsed_seconds": 75.65,
+        "maximum_resident_kib": 10080,
+        "reported_cpu_percent": 1956.0,
+        "system_seconds": 0.34,
+        "user_seconds": 1479.82
+      }
+    ]
+  },
+  "representation": {
+    "action_counts": {
+      "balanced": 210252,
+      "fell": 9443,
+      "harvest": 9208,
+      "renew": 9568,
+      "seed_apple": 2560,
+      "seed_banana": 2421,
+      "seed_lemon": 3069,
+      "seed_plum": 3072
+    },
+    "boundary_transitions": 249593,
+    "pre_crop_boundaries": 8393,
+    "pre_crop_two_seed_legal": 8195,
+    "pre_crop_two_seed_legal_rate": 0.9764089121887287,
+    "probes": {
+      "balanced": {
+        "action_counts": {
+          "balanced": 41150,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0,
+          "seed_apple": 0,
+          "seed_banana": 0,
+          "seed_lemon": 0,
+          "seed_plum": 0
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 472,
+        "reinvested_generations": 12591,
+        "renewable_receipt_units": 10134,
+        "source_attempts": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_creations": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_retry_after_death_tasks": 0,
+        "tasks": 512,
+        "two_source_attempt_tasks": 0
+      },
+      "cyclic": {
+        "action_counts": {
+          "balanced": 9821,
+          "fell": 9443,
+          "harvest": 9208,
+          "renew": 9568,
+          "seed_apple": 512,
+          "seed_banana": 512,
+          "seed_lemon": 1024,
+          "seed_plum": 1024
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 482,
+        "reinvested_generations": 9421,
+        "renewable_receipt_units": 14033,
+        "source_attempts": {
+          "apple": 512,
+          "banana": 512,
+          "lemon": 1024,
+          "plum": 1024
+        },
+        "source_creations": {
+          "apple": 512,
+          "banana": 512,
+          "lemon": 1024,
+          "plum": 1024
+        },
+        "source_retry_after_death_tasks": 70,
+        "tasks": 512,
+        "two_source_attempt_tasks": 512
+      },
+      "seed_apple": {
+        "action_counts": {
+          "balanced": 37226,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0,
+          "seed_apple": 2048,
+          "seed_banana": 0,
+          "seed_lemon": 0,
+          "seed_plum": 0
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 459,
+        "reinvested_generations": 13815,
+        "renewable_receipt_units": 10787,
+        "source_attempts": {
+          "apple": 2048,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_creations": {
+          "apple": 2048,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_retry_after_death_tasks": 6,
+        "tasks": 512,
+        "two_source_attempt_tasks": 512
+      },
+      "seed_banana": {
+        "action_counts": {
+          "balanced": 40123,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0,
+          "seed_apple": 0,
+          "seed_banana": 1909,
+          "seed_lemon": 0,
+          "seed_plum": 0
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 494,
+        "reinvested_generations": 13775,
+        "renewable_receipt_units": 10414,
+        "source_attempts": {
+          "apple": 0,
+          "banana": 1909,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_creations": {
+          "apple": 0,
+          "banana": 1905,
+          "lemon": 0,
+          "plum": 0
+        },
+        "source_retry_after_death_tasks": 21,
+        "tasks": 512,
+        "two_source_attempt_tasks": 512
+      },
+      "seed_lemon": {
+        "action_counts": {
+          "balanced": 40916,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0,
+          "seed_apple": 0,
+          "seed_banana": 0,
+          "seed_lemon": 2045,
+          "seed_plum": 0
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 469,
+        "reinvested_generations": 16949,
+        "renewable_receipt_units": 14183,
+        "source_attempts": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 2045,
+          "plum": 0
+        },
+        "source_creations": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 2045,
+          "plum": 0
+        },
+        "source_retry_after_death_tasks": 18,
+        "tasks": 512,
+        "two_source_attempt_tasks": 512
+      },
+      "seed_plum": {
+        "action_counts": {
+          "balanced": 41016,
+          "fell": 0,
+          "harvest": 0,
+          "renew": 0,
+          "seed_apple": 0,
+          "seed_banana": 0,
+          "seed_lemon": 0,
+          "seed_plum": 2048
+        },
+        "crop_creating_tasks": 512,
+        "crop_creation_rate": 1.0,
+        "ended_generation_tasks": 469,
+        "reinvested_generations": 16818,
+        "renewable_receipt_units": 13876,
+        "source_attempts": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 2048
+        },
+        "source_creations": {
+          "apple": 0,
+          "banana": 0,
+          "lemon": 0,
+          "plum": 2048
+        },
+        "source_retry_after_death_tasks": 10,
+        "tasks": 512,
+        "two_source_attempt_tasks": 512
+      }
+    },
+    "source_assignments": {
+      "apple": 2560,
+      "banana": 2421,
+      "lemon": 3069,
+      "plum": 3072
+    },
+    "source_creations": {
+      "apple": 2560,
+      "banana": 2417,
+      "lemon": 3069,
+      "plum": 3072
+    }
+  },
+  "schema": "troll-farm-d71a-opening-portfolio-preflight-v1",
+  "scope": "mechanics-only closed-loop opening portfolio representation; scores used only for exact anchor equality and never aggregated by probe"
+}

@@ -1,0 +1,29 @@
+{
+  "authority": "consumed-panel-diagnosis-only",
+  "frozen_at": "2026-07-22-after-d130-failure-before-unselected-d130-development-scores",
+  "models": {
+    "seeds": [13001, 13002, 13003, 13004],
+    "thresholds": "exact-d130-training-calibrated-offsets"
+  },
+  "schema": "troll-farm-d131a-d130-all-seed-transfer-audit-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d131a_d130_all_seed_transfer.py": "f9eff6e47771d685906cd58f31d4afd0248c62ee1e8c0e3d2165ad027e3e6c77",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "cgauto/train_d123a_task_balanced_soft_value_q6.py": "703413ef9af5b1b011c40ec029408221c7e964a68b7f28945d70f59991665145",
+    "cgauto/train_d125a_fit_activity_calibrated_q6.py": "8434e3321550f413bc45c150e492930af158f64f0bf06536041109a81bb76633",
+    "cgauto/train_d126a_rank_quality_selected_calibrated_q6.py": "4e477e6e220c00cad2153ebfaef34c6c9d48e4dc4262a328a2768d70607cfdbf",
+    "cgauto/train_d130a_cross_sign_pairwise_soft_ranker.py": "29d97fbec7f659315cba0611c75f1ab9a71fc771f4b9e1d0b5103b446a018b56",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-arms-9843780-9843795.tsv": "1c2f3b69f802e08b58119a8af728ea225c0560f9bcf88c182b3978b0b294a96d",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+    "data/analysis/live-agent-6553250/d126a-rank-quality-selected-calibrated-q6-result.json": "f34c32d9efdfab2ab8f1bccb762a99ba800319522a8b38d43da805cef218b8c6",
+    "data/analysis/live-agent-6553250/d130a-cross-sign-pairwise-soft-ranker-result.json": "d8ef59a0dc8dcc234f883ed5ec2ad4b1551c135756260ece8c443a1d9ab3dbdf",
+    "data/analysis/live-agent-6553250/d131a-d130-all-seed-transfer-audit-protocol-2026-07-22.md": "37eaa17caea649b928777251e07b7bfd5fe597b156b3927f48e15e035ad63327",
+    "tests/test_analyze_d131a_d130_all_seed_transfer.py": "9e38e2c841d30650266d29cd5b9228d721e3e20c23233c83b81776bbf21b1097"
+  }
+}

@@ -1,0 +1,9557 @@
+{
+  "by_height": {
+    "10": {
+      "episodes": 126,
+      "success_rate": 0.9682539682539683,
+      "successes": 122
+    },
+    "11": {
+      "episodes": 126,
+      "success_rate": 0.9285714285714286,
+      "successes": 117
+    },
+    "8": {
+      "episodes": 123,
+      "success_rate": 0.926829268292683,
+      "successes": 114
+    },
+    "9": {
+      "episodes": 125,
+      "success_rate": 0.952,
+      "successes": 119
+    }
+  },
+  "by_recipe": null,
+  "created_crop_rate": 0.944,
+  "elapsed_seconds": 7.5615267640096135,
+  "episodes": 500,
+  "exact_seed_interval": true,
+  "gate": "L3B",
+  "gate_passed": true,
+  "global_step": 20000,
+  "height_success_floor": 0.926829268292683,
+  "median_score_gain": 16.0,
+  "median_success_turn": 49.0,
+  "median_training_turn": 19.0,
+  "nontrivial_success_rate": 0.9405099150141643,
+  "paired_teacher_median_turn_delta": 0.0,
+  "random_success_rate": 0.0,
+  "recipe_success_floor": null,
+  "renewable_harvest_rate": 0.95,
+  "required_score_gain": 12,
+  "rows": [
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.029998779296875,
+      "score_gain": 15,
+      "seed": 0,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 57
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.06999588012695,
+      "score_gain": 15,
+      "seed": 1,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.63999557495117,
+      "score_gain": 16,
+      "seed": 2,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 30,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.499996185302734,
+      "score_gain": 15,
+      "seed": 3,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 2,
+      "return": 41.33999252319336,
+      "score_gain": 18,
+      "seed": 4,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 64,
+      "turns": 106
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.02999496459961,
+      "score_gain": 23,
+      "seed": 5,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 23,
+      "seed": 6,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 0,
+      "return": -14.200013160705566,
+      "score_gain": 7,
+      "seed": 7,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.72999572753906,
+      "score_gain": 16,
+      "seed": 8,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 27
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 2,
+      "return": 41.519989013671875,
+      "score_gain": 18,
+      "seed": 9,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 88
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.48999786376953,
+      "score_gain": 16,
+      "seed": 10,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.219993591308594,
+      "score_gain": 18,
+      "seed": 11,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 58,
+      "turns": 98
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": -6.400049209594727,
+      "score_gain": 29,
+      "seed": 12,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.68999481201172,
+      "score_gain": 16,
+      "seed": 13,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.72999572753906,
+      "score_gain": 15,
+      "seed": 14,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.839988708496094,
+      "score_gain": 26,
+      "seed": 15,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 35,
+      "turns": 96
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 16,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 17,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.54999542236328,
+      "score_gain": 15,
+      "seed": 18,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.589996337890625,
+      "score_gain": 18,
+      "seed": 19,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.67999267578125,
+      "score_gain": 12,
+      "seed": 20,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 32
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 16,
+      "seed": 21,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.529998779296875,
+      "score_gain": 16,
+      "seed": 22,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 4,
+      "return": 40.47998809814453,
+      "score_gain": 12,
+      "seed": 23,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 72
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.88999557495117,
+      "score_gain": 15,
+      "seed": 24,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 31
+    },
+    {
+      "created_crop": false,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 0,
+      "return": -16.799999237060547,
+      "score_gain": 4,
+      "seed": 25,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 240
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 0,
+      "return": -21.999998092651367,
+      "score_gain": 0,
+      "seed": 26,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 0,
+      "return": -20.999998092651367,
+      "score_gain": 1,
+      "seed": 27,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.12999725341797,
+      "score_gain": 16,
+      "seed": 28,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 41,
+      "turns": 67
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 0,
+      "return": -20.799997329711914,
+      "score_gain": 0,
+      "seed": 29,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.1099967956543,
+      "score_gain": 15,
+      "seed": 30,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 29
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.43999481201172,
+      "score_gain": 15,
+      "seed": 31,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 36
+    },
+    {
+      "created_crop": false,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": -5.200044631958008,
+      "score_gain": 43,
+      "seed": 32,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.29999542236328,
+      "score_gain": 16,
+      "seed": 33,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 70
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.279998779296875,
+      "score_gain": 15,
+      "seed": 34,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.02999496459961,
+      "score_gain": 15,
+      "seed": 35,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.56999969482422,
+      "score_gain": 18,
+      "seed": 36,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 37,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.68999481201172,
+      "score_gain": 12,
+      "seed": 38,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.04999542236328,
+      "score_gain": 15,
+      "seed": 39,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.799991607666016,
+      "score_gain": 19,
+      "seed": 40,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 80
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.93999481201172,
+      "score_gain": 15,
+      "seed": 41,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 7,
+      "initial_total_deficit": 7,
+      "renewable_harvests": 1,
+      "return": 41.63999938964844,
+      "score_gain": 15,
+      "seed": 42,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 96,
+      "turns": 116
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.97999572753906,
+      "score_gain": 15,
+      "seed": 43,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.159996032714844,
+      "score_gain": 16,
+      "seed": 44,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 84
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.019996643066406,
+      "score_gain": 16,
+      "seed": 45,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.44999694824219,
+      "score_gain": 15,
+      "seed": 46,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 15,
+      "seed": 47,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.16999435424805,
+      "score_gain": 15,
+      "seed": 48,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.769996643066406,
+      "score_gain": 15,
+      "seed": 49,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.56999969482422,
+      "score_gain": 18,
+      "seed": 50,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 51,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.849998474121094,
+      "score_gain": 15,
+      "seed": 52,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.749996185302734,
+      "score_gain": 12,
+      "seed": 53,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.639991760253906,
+      "score_gain": 15,
+      "seed": 54,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.589988708496094,
+      "score_gain": 17,
+      "seed": 55,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 4,
+      "return": 40.279991149902344,
+      "score_gain": 12,
+      "seed": 56,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.53999710083008,
+      "score_gain": 19,
+      "seed": 57,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.719993591308594,
+      "score_gain": 19,
+      "seed": 58,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 88
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.66999816894531,
+      "score_gain": 18,
+      "seed": 59,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.48999786376953,
+      "score_gain": 16,
+      "seed": 60,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 71
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.999996185302734,
+      "score_gain": 16,
+      "seed": 61,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 78,
+      "turns": 100
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.59999084472656,
+      "score_gain": 18,
+      "seed": 62,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.78999328613281,
+      "score_gain": 15,
+      "seed": 63,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.279998779296875,
+      "score_gain": 16,
+      "seed": 64,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 72
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.619991302490234,
+      "score_gain": 19,
+      "seed": 65,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 56,
+      "turns": 98
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 3,
+      "return": 39.21999740600586,
+      "score_gain": 19,
+      "seed": 66,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 72,
+      "turns": 118
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 67,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.46999740600586,
+      "score_gain": 15,
+      "seed": 68,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 73
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.1199951171875,
+      "score_gain": 16,
+      "seed": 69,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 68
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.7599983215332,
+      "score_gain": 15,
+      "seed": 70,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -10.400032997131348,
+      "score_gain": 53,
+      "seed": 71,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.76999282836914,
+      "score_gain": 16,
+      "seed": 72,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 86,
+      "turns": 123
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.56999969482422,
+      "score_gain": 19,
+      "seed": 73,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.56999969482422,
+      "score_gain": 19,
+      "seed": 74,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.70999526977539,
+      "score_gain": 15,
+      "seed": 75,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 29
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.219993591308594,
+      "score_gain": 15,
+      "seed": 76,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 58
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.659996032714844,
+      "score_gain": 16,
+      "seed": 77,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 112,
+      "turns": 134
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.1099967956543,
+      "score_gain": 15,
+      "seed": 78,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 29
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 2,
+      "return": 40.16999053955078,
+      "score_gain": 18,
+      "seed": 79,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 17,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.719993591308594,
+      "score_gain": 23,
+      "seed": 80,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 68
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.60999298095703,
+      "score_gain": 23,
+      "seed": 81,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.499996185302734,
+      "score_gain": 15,
+      "seed": 82,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 50,
+      "turns": 70
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 83,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.399993896484375,
+      "score_gain": 15,
+      "seed": 84,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 58,
+      "turns": 80
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 5,
+      "return": 40.58999252319336,
+      "score_gain": 12,
+      "seed": 85,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 25,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.06999588012695,
+      "score_gain": 16,
+      "seed": 86,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.349998474121094,
+      "score_gain": 15,
+      "seed": 87,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 2,
+      "return": 41.10999298095703,
+      "score_gain": 18,
+      "seed": 88,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 50,
+      "turns": 89
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 3,
+      "return": 41.17999267578125,
+      "score_gain": 18,
+      "seed": 89,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 82
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.99999237060547,
+      "score_gain": 15,
+      "seed": 90,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 80
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.63999938964844,
+      "score_gain": 16,
+      "seed": 91,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.149993896484375,
+      "score_gain": 15,
+      "seed": 92,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 39,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.68999481201172,
+      "score_gain": 15,
+      "seed": 93,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.839996337890625,
+      "score_gain": 16,
+      "seed": 94,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 31,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.96999740600586,
+      "score_gain": 15,
+      "seed": 95,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 5,
+      "return": 40.6199951171875,
+      "score_gain": 12,
+      "seed": 96,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 57,
+      "turns": 98
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.84999084472656,
+      "score_gain": 16,
+      "seed": 97,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 95
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 98,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.8699951171875,
+      "score_gain": 16,
+      "seed": 99,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 53
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 40.409996032714844,
+      "score_gain": 17,
+      "seed": 100,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 9,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.54999542236328,
+      "score_gain": 19,
+      "seed": 101,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.659996032714844,
+      "score_gain": 16,
+      "seed": 102,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 103,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 4,
+      "return": 40.53999328613281,
+      "score_gain": 12,
+      "seed": 104,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.16999816894531,
+      "score_gain": 15,
+      "seed": 105,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 63
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 0,
+      "return": -8.800045013427734,
+      "score_gain": 64,
+      "seed": 106,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 31,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.739994049072266,
+      "score_gain": 23,
+      "seed": 107,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": false,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 0,
+      "return": -21.599998474121094,
+      "score_gain": 0,
+      "seed": 108,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 2,
+      "return": 40.269996643066406,
+      "score_gain": 16,
+      "seed": 109,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 53
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.43999099731445,
+      "score_gain": 17,
+      "seed": 110,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.78999710083008,
+      "score_gain": 15,
+      "seed": 111,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 21
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.24999237060547,
+      "score_gain": 16,
+      "seed": 112,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 128,
+      "turns": 175
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.50999450683594,
+      "score_gain": 16,
+      "seed": 113,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.13999557495117,
+      "score_gain": 15,
+      "seed": 114,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 3,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.449989318847656,
+      "score_gain": 18,
+      "seed": 115,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 33,
+      "turns": 75
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.56999969482422,
+      "score_gain": 16,
+      "seed": 116,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.839996337890625,
+      "score_gain": 16,
+      "seed": 117,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.839996337890625,
+      "score_gain": 15,
+      "seed": 118,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.839996337890625,
+      "score_gain": 18,
+      "seed": 119,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75,
+      "score_gain": 15,
+      "seed": 120,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 16,
+      "seed": 121,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 2,
+      "return": 41.329994201660156,
+      "score_gain": 17,
+      "seed": 122,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 15,
+      "seed": 123,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.18999481201172,
+      "score_gain": 15,
+      "seed": 124,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 39,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 7,
+      "initial_total_deficit": 7,
+      "renewable_harvests": 1,
+      "return": 41.94999694824219,
+      "score_gain": 15,
+      "seed": 125,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 65,
+      "turns": 85
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.87998962402344,
+      "score_gain": 17,
+      "seed": 126,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 127,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.78999328613281,
+      "score_gain": 15,
+      "seed": 128,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.05999755859375,
+      "score_gain": 15,
+      "seed": 129,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 34
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 0,
+      "return": -21.19999885559082,
+      "score_gain": 0,
+      "seed": 130,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.139991760253906,
+      "score_gain": 16,
+      "seed": 131,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.40998077392578,
+      "score_gain": 56,
+      "seed": 132,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 99
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 3,
+      "return": 41.119991302490234,
+      "score_gain": 19,
+      "seed": 133,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 88
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 39.35996627807617,
+      "score_gain": 41,
+      "seed": 134,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 72,
+      "turns": 224
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 5,
+      "return": 40.15999221801758,
+      "score_gain": 12,
+      "seed": 135,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 64
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.459991455078125,
+      "score_gain": 16,
+      "seed": 136,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 74
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.089996337890625,
+      "score_gain": 16,
+      "seed": 137,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 30,
+      "turns": 51
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 138,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 39.76999282836914,
+      "score_gain": 19,
+      "seed": 139,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 59,
+      "turns": 103
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.209991455078125,
+      "score_gain": 16,
+      "seed": 140,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 59
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.00999450683594,
+      "score_gain": 15,
+      "seed": 141,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 59
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.13999557495117,
+      "score_gain": 16,
+      "seed": 142,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 2,
+      "return": 40.399993896484375,
+      "score_gain": 17,
+      "seed": 143,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.79999542236328,
+      "score_gain": 16,
+      "seed": 144,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.54999542236328,
+      "score_gain": 16,
+      "seed": 145,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.97999572753906,
+      "score_gain": 16,
+      "seed": 146,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 70,
+      "turns": 102
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.87999725341797,
+      "score_gain": 15,
+      "seed": 147,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.029998779296875,
+      "score_gain": 15,
+      "seed": 148,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 16,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.459991455078125,
+      "score_gain": 19,
+      "seed": 149,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 74
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.679996490478516,
+      "score_gain": 15,
+      "seed": 150,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 32
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.589996337890625,
+      "score_gain": 15,
+      "seed": 151,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 39,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.88999557495117,
+      "score_gain": 16,
+      "seed": 152,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 7,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.659996032714844,
+      "score_gain": 18,
+      "seed": 153,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 34
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.12998962402344,
+      "score_gain": 16,
+      "seed": 154,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 60,
+      "turns": 107
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.7599983215332,
+      "score_gain": 15,
+      "seed": 155,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.36998748779297,
+      "score_gain": 47,
+      "seed": 156,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 16,
+      "seed": 157,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.71999740600586,
+      "score_gain": 15,
+      "seed": 158,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 28
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 5,
+      "return": 40.6199951171875,
+      "score_gain": 12,
+      "seed": 159,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 58
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -10.400052070617676,
+      "score_gain": 31,
+      "seed": 160,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.03999710083008,
+      "score_gain": 16,
+      "seed": 161,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 16,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 162,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.459999084472656,
+      "score_gain": 15,
+      "seed": 163,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 74
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.97999572753906,
+      "score_gain": 15,
+      "seed": 164,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.69999694824219,
+      "score_gain": 15,
+      "seed": 165,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 30,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.53999328613281,
+      "score_gain": 16,
+      "seed": 166,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 167,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.53999710083008,
+      "score_gain": 15,
+      "seed": 168,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 5,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.56999969482422,
+      "score_gain": 19,
+      "seed": 169,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 170,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 0,
+      "return": -9.600031852722168,
+      "score_gain": 24,
+      "seed": 171,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.54999542236328,
+      "score_gain": 19,
+      "seed": 172,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 40.15999221801758,
+      "score_gain": 19,
+      "seed": 173,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 64
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.66999816894531,
+      "score_gain": 23,
+      "seed": 174,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 50,
+      "turns": 73
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.429996490478516,
+      "score_gain": 15,
+      "seed": 175,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 37
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 0,
+      "return": -20.799999237060547,
+      "score_gain": 0,
+      "seed": 176,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.119991302490234,
+      "score_gain": 17,
+      "seed": 177,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 86,
+      "turns": 128
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -10.400044441223145,
+      "score_gain": 36,
+      "seed": 178,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 40.00999069213867,
+      "score_gain": 19,
+      "seed": 179,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 37,
+      "turns": 79
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.30998992919922,
+      "score_gain": 16,
+      "seed": 180,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 88,
+      "turns": 129
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.529991149902344,
+      "score_gain": 16,
+      "seed": 181,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 107,
+      "turns": 147
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 182,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.749996185302734,
+      "score_gain": 16,
+      "seed": 183,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 23,
+      "seed": 184,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 8,
+      "initial_total_deficit": 8,
+      "renewable_harvests": 3,
+      "return": 41.87998962402344,
+      "score_gain": 19,
+      "seed": 185,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 90,
+      "turns": 132
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.97999572753906,
+      "score_gain": 15,
+      "seed": 186,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 21,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 16,
+      "seed": 187,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 3,
+      "return": 40.799991607666016,
+      "score_gain": 19,
+      "seed": 188,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 74,
+      "turns": 120
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.70999526977539,
+      "score_gain": 23,
+      "seed": 189,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 29
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.559993743896484,
+      "score_gain": 16,
+      "seed": 190,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 64
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.649993896484375,
+      "score_gain": 17,
+      "seed": 191,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.50999450683594,
+      "score_gain": 16,
+      "seed": 192,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.3699951171875,
+      "score_gain": 23,
+      "seed": 193,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 194,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.50999450683594,
+      "score_gain": 15,
+      "seed": 195,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.50999450683594,
+      "score_gain": 15,
+      "seed": 196,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 197,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.04999542236328,
+      "score_gain": 15,
+      "seed": 198,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 51,
+      "turns": 75
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.29999542236328,
+      "score_gain": 16,
+      "seed": 199,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.69999694824219,
+      "score_gain": 16,
+      "seed": 200,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.6099967956543,
+      "score_gain": 16,
+      "seed": 201,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.02999496459961,
+      "score_gain": 15,
+      "seed": 202,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.14999771118164,
+      "score_gain": 15,
+      "seed": 203,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 64,
+      "turns": 85
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 4,
+      "return": 39.959991455078125,
+      "score_gain": 12,
+      "seed": 204,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 44
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.97999572753906,
+      "score_gain": 16,
+      "seed": 205,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.589996337890625,
+      "score_gain": 18,
+      "seed": 206,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.199989318847656,
+      "score_gain": 17,
+      "seed": 207,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 56,
+      "turns": 100
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.78999710083008,
+      "score_gain": 15,
+      "seed": 208,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 21
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.44999694824219,
+      "score_gain": 16,
+      "seed": 209,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 210,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.329994201660156,
+      "score_gain": 15,
+      "seed": 211,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.529998779296875,
+      "score_gain": 19,
+      "seed": 212,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.16999053955078,
+      "score_gain": 17,
+      "seed": 213,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 37,
+      "turns": 83
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.29999542236328,
+      "score_gain": 17,
+      "seed": 214,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 90
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.149993896484375,
+      "score_gain": 16,
+      "seed": 215,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 97,
+      "turns": 125
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.63999938964844,
+      "score_gain": 15,
+      "seed": 216,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 5,
+      "return": 39.9799919128418,
+      "score_gain": 12,
+      "seed": 217,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 82
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 218,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.649993896484375,
+      "score_gain": 17,
+      "seed": 219,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.93999481201172,
+      "score_gain": 17,
+      "seed": 220,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.35999298095703,
+      "score_gain": 12,
+      "seed": 221,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 84
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 15,
+      "seed": 222,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.34999465942383,
+      "score_gain": 16,
+      "seed": 223,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 55,
+      "turns": 85
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.899993896484375,
+      "score_gain": 15,
+      "seed": 224,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 70
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.62999725341797,
+      "score_gain": 16,
+      "seed": 225,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 57
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.67999267578125,
+      "score_gain": 18,
+      "seed": 226,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 62,
+      "turns": 92
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.899993896484375,
+      "score_gain": 16,
+      "seed": 227,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 228,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.43999481201172,
+      "score_gain": 15,
+      "seed": 229,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.49999237060547,
+      "score_gain": 17,
+      "seed": 230,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 66,
+      "turns": 110
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.909996032714844,
+      "score_gain": 15,
+      "seed": 231,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 69
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 8,
+      "initial_total_deficit": 8,
+      "renewable_harvests": 0,
+      "return": -21.599998474121094,
+      "score_gain": 0,
+      "seed": 232,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.839996337890625,
+      "score_gain": 16,
+      "seed": 233,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.659996032714844,
+      "score_gain": 17,
+      "seed": 234,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 34
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 235,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.18999481201172,
+      "score_gain": 15,
+      "seed": 236,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 237,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.519989013671875,
+      "score_gain": 19,
+      "seed": 238,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 68
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.65998840332031,
+      "score_gain": 32,
+      "seed": 239,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 58,
+      "turns": 114
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.10999298095703,
+      "score_gain": 17,
+      "seed": 240,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.3699951171875,
+      "score_gain": 15,
+      "seed": 241,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 16,
+      "seed": 242,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": false,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -10.40005111694336,
+      "score_gain": 23,
+      "seed": 243,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.69999694824219,
+      "score_gain": 16,
+      "seed": 244,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.99999237060547,
+      "score_gain": 16,
+      "seed": 245,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 4,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.219993591308594,
+      "score_gain": 19,
+      "seed": 246,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 98
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.62999725341797,
+      "score_gain": 18,
+      "seed": 247,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.719993591308594,
+      "score_gain": 16,
+      "seed": 248,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 48
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.56999588012695,
+      "score_gain": 19,
+      "seed": 249,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.68999481201172,
+      "score_gain": 16,
+      "seed": 250,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.81999588012695,
+      "score_gain": 18,
+      "seed": 251,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 58
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.66999816894531,
+      "score_gain": 18,
+      "seed": 252,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.3699951171875,
+      "score_gain": 15,
+      "seed": 253,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.639991760253906,
+      "score_gain": 16,
+      "seed": 254,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 56,
+      "turns": 96
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.639991760253906,
+      "score_gain": 16,
+      "seed": 255,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 49,
+      "turns": 96
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.8799934387207,
+      "score_gain": 16,
+      "seed": 256,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.47999572753906,
+      "score_gain": 15,
+      "seed": 257,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 5,
+      "turns": 32
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 4,
+      "return": 39.719993591308594,
+      "score_gain": 12,
+      "seed": 258,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 62,
+      "turns": 108
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.16999435424805,
+      "score_gain": 15,
+      "seed": 259,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 7,
+      "initial_total_deficit": 7,
+      "renewable_harvests": 1,
+      "return": 41.909996032714844,
+      "score_gain": 15,
+      "seed": 260,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 66,
+      "turns": 89
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.3699951171875,
+      "score_gain": 16,
+      "seed": 261,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 62,
+      "turns": 103
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 3,
+      "return": 39.859989166259766,
+      "score_gain": 19,
+      "seed": 262,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 54
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": -5.600048065185547,
+      "score_gain": 83,
+      "seed": 263,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 264,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.54999542236328,
+      "score_gain": 15,
+      "seed": 265,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.38999557495117,
+      "score_gain": 16,
+      "seed": 266,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 5,
+      "return": 39.60999298095703,
+      "score_gain": 12,
+      "seed": 267,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.8799934387207,
+      "score_gain": 16,
+      "seed": 268,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.41999816894531,
+      "score_gain": 15,
+      "seed": 269,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.649993896484375,
+      "score_gain": 16,
+      "seed": 270,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.80998992919922,
+      "score_gain": 19,
+      "seed": 271,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 37,
+      "turns": 79
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.589996337890625,
+      "score_gain": 16,
+      "seed": 272,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 31,
+      "turns": 61
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 0,
+      "return": -22.39999771118164,
+      "score_gain": 0,
+      "seed": 273,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.60999298095703,
+      "score_gain": 16,
+      "seed": 274,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.79999542236328,
+      "score_gain": 15,
+      "seed": 275,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 53,
+      "turns": 80
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.64999771118164,
+      "score_gain": 12,
+      "seed": 276,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 277,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.47999572753906,
+      "score_gain": 15,
+      "seed": 278,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 72
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.019996643066406,
+      "score_gain": 16,
+      "seed": 279,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 280,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.05999755859375,
+      "score_gain": 16,
+      "seed": 281,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 34
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.679996490478516,
+      "score_gain": 15,
+      "seed": 282,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.20999526977539,
+      "score_gain": 15,
+      "seed": 283,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 59
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.8599967956543,
+      "score_gain": 15,
+      "seed": 284,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 34
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -10.400001525878906,
+      "score_gain": 13,
+      "seed": 285,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.41999053955078,
+      "score_gain": 19,
+      "seed": 286,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 78
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 4,
+      "return": 41.18999481201172,
+      "score_gain": 12,
+      "seed": 287,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 49,
+      "turns": 81
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.93999481201172,
+      "score_gain": 15,
+      "seed": 288,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.8599967956543,
+      "score_gain": 15,
+      "seed": 289,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 34
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.30999755859375,
+      "score_gain": 15,
+      "seed": 290,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 3,
+      "return": 39.779991149902344,
+      "score_gain": 19,
+      "seed": 291,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.25999450683594,
+      "score_gain": 15,
+      "seed": 292,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 74
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 3,
+      "return": 39.779991149902344,
+      "score_gain": 19,
+      "seed": 293,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.54999542236328,
+      "score_gain": 23,
+      "seed": 294,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.56999969482422,
+      "score_gain": 18,
+      "seed": 295,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.30999755859375,
+      "score_gain": 15,
+      "seed": 296,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.53999710083008,
+      "score_gain": 16,
+      "seed": 297,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.159996032714844,
+      "score_gain": 16,
+      "seed": 298,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 64
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 16,
+      "seed": 299,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.48999786376953,
+      "score_gain": 15,
+      "seed": 300,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 3,
+      "return": 40.9799919128418,
+      "score_gain": 19,
+      "seed": 301,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 60,
+      "turns": 102
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.2299919128418,
+      "score_gain": 16,
+      "seed": 302,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 76,
+      "turns": 117
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 303,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.28999710083008,
+      "score_gain": 15,
+      "seed": 304,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 51
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.50999069213867,
+      "score_gain": 19,
+      "seed": 305,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 23,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.78999710083008,
+      "score_gain": 15,
+      "seed": 306,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 21
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.959991455078125,
+      "score_gain": 16,
+      "seed": 307,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 44
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.149993896484375,
+      "score_gain": 23,
+      "seed": 308,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.12999725341797,
+      "score_gain": 15,
+      "seed": 309,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 4,
+      "turns": 27
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.09999465942383,
+      "score_gain": 24,
+      "seed": 310,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.88999557495117,
+      "score_gain": 15,
+      "seed": 311,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 51
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 40.279991149902344,
+      "score_gain": 18,
+      "seed": 312,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 5,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.1099967956543,
+      "score_gain": 15,
+      "seed": 313,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.72999572753906,
+      "score_gain": 15,
+      "seed": 314,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.05999755859375,
+      "score_gain": 16,
+      "seed": 315,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 23,
+      "seed": 316,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 23,
+      "seed": 317,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.56999969482422,
+      "score_gain": 19,
+      "seed": 318,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.72999572753906,
+      "score_gain": 15,
+      "seed": 319,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 27
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.53999710083008,
+      "score_gain": 15,
+      "seed": 320,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.54999542236328,
+      "score_gain": 15,
+      "seed": 321,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.8699951171875,
+      "score_gain": 15,
+      "seed": 322,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 49,
+      "turns": 73
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 323,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.44999694824219,
+      "score_gain": 23,
+      "seed": 324,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 75
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 16,
+      "seed": 325,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.639991760253906,
+      "score_gain": 23,
+      "seed": 326,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 3,
+      "return": 40.59999084472656,
+      "score_gain": 19,
+      "seed": 327,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 58,
+      "turns": 100
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.459991455078125,
+      "score_gain": 19,
+      "seed": 328,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 30,
+      "turns": 74
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.03999328613281,
+      "score_gain": 16,
+      "seed": 329,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.6199951171875,
+      "score_gain": 16,
+      "seed": 330,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 38.919960021972656,
+      "score_gain": 87,
+      "seed": 331,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 39,
+      "turns": 228
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.099998474121094,
+      "score_gain": 15,
+      "seed": 332,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 30
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 0,
+      "return": -21.599998474121094,
+      "score_gain": 0,
+      "seed": 333,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 0,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.72999572753906,
+      "score_gain": 23,
+      "seed": 334,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.75999450683594,
+      "score_gain": 16,
+      "seed": 335,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 49,
+      "turns": 84
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.12999725341797,
+      "score_gain": 16,
+      "seed": 336,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.67999267578125,
+      "score_gain": 16,
+      "seed": 337,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 32
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 16,
+      "seed": 338,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.78999710083008,
+      "score_gain": 15,
+      "seed": 339,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 21
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.77999496459961,
+      "score_gain": 18,
+      "seed": 340,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 4,
+      "return": 40.83999252319336,
+      "score_gain": 12,
+      "seed": 341,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.72999572753906,
+      "score_gain": 16,
+      "seed": 342,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 27
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.849998474121094,
+      "score_gain": 15,
+      "seed": 343,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 55
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.969993591308594,
+      "score_gain": 15,
+      "seed": 344,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 83
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.639991760253906,
+      "score_gain": 16,
+      "seed": 345,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.94999694824219,
+      "score_gain": 15,
+      "seed": 346,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 347,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.639991760253906,
+      "score_gain": 16,
+      "seed": 348,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.25999450683594,
+      "score_gain": 16,
+      "seed": 349,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.19999313354492,
+      "score_gain": 17,
+      "seed": 350,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.349998474121094,
+      "score_gain": 16,
+      "seed": 351,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.94999694824219,
+      "score_gain": 15,
+      "seed": 352,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.91999053955078,
+      "score_gain": 16,
+      "seed": 353,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 48
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 0,
+      "return": -14.200042724609375,
+      "score_gain": 7,
+      "seed": 354,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 355,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.69999694824219,
+      "score_gain": 16,
+      "seed": 356,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 357,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 2,
+      "return": 40.59999084472656,
+      "score_gain": 16,
+      "seed": 358,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 144,
+      "turns": 180
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.149993896484375,
+      "score_gain": 15,
+      "seed": 359,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 4,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.37999725341797,
+      "score_gain": 23,
+      "seed": 360,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.71999740600586,
+      "score_gain": 15,
+      "seed": 361,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 28
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.999996185302734,
+      "score_gain": 16,
+      "seed": 362,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 363,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.649993896484375,
+      "score_gain": 23,
+      "seed": 364,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.1199951171875,
+      "score_gain": 16,
+      "seed": 365,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 68
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.78999710083008,
+      "score_gain": 15,
+      "seed": 366,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 21
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.90998840332031,
+      "score_gain": 16,
+      "seed": 367,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 2,
+      "return": 41.469993591308594,
+      "score_gain": 18,
+      "seed": 368,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 53,
+      "turns": 93
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.54999542236328,
+      "score_gain": 16,
+      "seed": 369,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 45
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 0,
+      "return": -21.19999885559082,
+      "score_gain": -1,
+      "seed": 370,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 96,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.959991455078125,
+      "score_gain": 16,
+      "seed": 371,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 44
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.70999526977539,
+      "score_gain": 15,
+      "seed": 372,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 29
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 39.91999053955078,
+      "score_gain": 15,
+      "seed": 373,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 49,
+      "turns": 88
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 2,
+      "return": 40.87998962402344,
+      "score_gain": 18,
+      "seed": 374,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 30,
+      "turns": 72
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.56999206542969,
+      "score_gain": 15,
+      "seed": 375,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 63
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 15,
+      "seed": 376,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.74999237060547,
+      "score_gain": 15,
+      "seed": 377,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 23,
+      "seed": 378,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 379,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.65999221801758,
+      "score_gain": 18,
+      "seed": 380,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 4,
+      "return": 40.19999313354492,
+      "score_gain": 12,
+      "seed": 381,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.41999816894531,
+      "score_gain": 15,
+      "seed": 382,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.6299934387207,
+      "score_gain": 18,
+      "seed": 383,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.70999526977539,
+      "score_gain": 17,
+      "seed": 384,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.019996643066406,
+      "score_gain": 16,
+      "seed": 385,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 386,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.7599983215332,
+      "score_gain": 15,
+      "seed": 387,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.78999328613281,
+      "score_gain": 15,
+      "seed": 388,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.97999572753906,
+      "score_gain": 16,
+      "seed": 389,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 39.91999053955078,
+      "score_gain": 19,
+      "seed": 390,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 88
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999435424805,
+      "score_gain": 16,
+      "seed": 391,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.56999969482422,
+      "score_gain": 18,
+      "seed": 392,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 4,
+      "return": 39.69999694824219,
+      "score_gain": 12,
+      "seed": 393,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 76,
+      "turns": 110
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.8799934387207,
+      "score_gain": 17,
+      "seed": 394,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 72
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.639991760253906,
+      "score_gain": 23,
+      "seed": 395,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.529998779296875,
+      "score_gain": 19,
+      "seed": 396,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 47
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 0,
+      "return": -8.000011444091797,
+      "score_gain": 34,
+      "seed": 397,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 46,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.59999465942383,
+      "score_gain": 16,
+      "seed": 398,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.54999542236328,
+      "score_gain": 19,
+      "seed": 399,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.089996337890625,
+      "score_gain": 15,
+      "seed": 400,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.719993591308594,
+      "score_gain": 15,
+      "seed": 401,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 27,
+      "turns": 48
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 40.90998840332031,
+      "score_gain": 16,
+      "seed": 402,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 106,
+      "turns": 149
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.97999572753906,
+      "score_gain": 16,
+      "seed": 403,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.6199951171875,
+      "score_gain": 16,
+      "seed": 404,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 58
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.749996185302734,
+      "score_gain": 16,
+      "seed": 405,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.92999267578125,
+      "score_gain": 15,
+      "seed": 406,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 407,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 40.79999542236328,
+      "score_gain": 16,
+      "seed": 408,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 136,
+      "turns": 160
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.19999694824219,
+      "score_gain": 15,
+      "seed": 409,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 32,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 15,
+      "seed": 410,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 4,
+      "return": 39.779991149902344,
+      "score_gain": 12,
+      "seed": 411,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 16,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.659996032714844,
+      "score_gain": 17,
+      "seed": 412,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.78999328613281,
+      "score_gain": 18,
+      "seed": 413,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 61
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 5,
+      "return": 39.59999084472656,
+      "score_gain": 12,
+      "seed": 414,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 40
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 0,
+      "return": -14.400022506713867,
+      "score_gain": 8,
+      "seed": 415,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 2,
+      "return": 39.589996337890625,
+      "score_gain": 18,
+      "seed": 416,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 41
+    },
+    {
+      "created_crop": false,
+      "height": 9,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 0,
+      "return": -12.000038146972656,
+      "score_gain": 8,
+      "seed": 417,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 61,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 3,
+      "return": 40.31999588012695,
+      "score_gain": 17,
+      "seed": 418,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 48
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.089996337890625,
+      "score_gain": 15,
+      "seed": 419,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 62,
+      "turns": 91
+    },
+    {
+      "created_crop": false,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 0,
+      "return": -9.200003623962402,
+      "score_gain": 19,
+      "seed": 420,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.989990234375,
+      "score_gain": 16,
+      "seed": 421,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.71999740600586,
+      "score_gain": 15,
+      "seed": 422,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 28
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 2,
+      "return": 40.639991760253906,
+      "score_gain": 18,
+      "seed": 423,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 58,
+      "turns": 96
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.81999588012695,
+      "score_gain": 23,
+      "seed": 424,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 16,
+      "turns": 38
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.72999572753906,
+      "score_gain": 23,
+      "seed": 425,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.37999725341797,
+      "score_gain": 15,
+      "seed": 426,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 42
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.52999496459961,
+      "score_gain": 16,
+      "seed": 427,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.50999450683594,
+      "score_gain": 15,
+      "seed": 428,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 69
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.57999038696289,
+      "score_gain": 19,
+      "seed": 429,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 2,
+      "return": 39.8799934387207,
+      "score_gain": 17,
+      "seed": 430,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 52
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.78999328613281,
+      "score_gain": 23,
+      "seed": 431,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.899993896484375,
+      "score_gain": 15,
+      "seed": 432,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 70
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.329994201660156,
+      "score_gain": 15,
+      "seed": 433,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 80,
+      "turns": 107
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.66999816894531,
+      "score_gain": 16,
+      "seed": 434,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 6,
+      "initial_total_deficit": 6,
+      "renewable_harvests": 1,
+      "return": 41.75999450683594,
+      "score_gain": 16,
+      "seed": 435,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 64
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.529998779296875,
+      "score_gain": 19,
+      "seed": 436,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 47
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.139991760253906,
+      "score_gain": 16,
+      "seed": 437,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.97999572753906,
+      "score_gain": 15,
+      "seed": 438,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.649993896484375,
+      "score_gain": 16,
+      "seed": 439,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.029998779296875,
+      "score_gain": 15,
+      "seed": 440,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 76,
+      "turns": 97
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 4,
+      "return": 40.579994201660156,
+      "score_gain": 19,
+      "seed": 441,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 28,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 2,
+      "return": 40.78999328613281,
+      "score_gain": 16,
+      "seed": 442,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 56,
+      "turns": 81
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 443,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.37999725341797,
+      "score_gain": 15,
+      "seed": 444,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 40,
+      "turns": 62
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 4,
+      "return": 38.969993591308594,
+      "score_gain": 19,
+      "seed": 445,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 92,
+      "turns": 143
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.00999450683594,
+      "score_gain": 16,
+      "seed": 446,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.099998474121094,
+      "score_gain": 15,
+      "seed": 447,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.649993896484375,
+      "score_gain": 16,
+      "seed": 448,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 35
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 2,
+      "return": 40.78999328613281,
+      "score_gain": 17,
+      "seed": 449,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 81
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.639991760253906,
+      "score_gain": 16,
+      "seed": 450,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 26,
+      "turns": 56
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.599998474121094,
+      "score_gain": 15,
+      "seed": 451,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 39,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.24999237060547,
+      "score_gain": 16,
+      "seed": 452,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 50,
+      "turns": 95
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.299991607666016,
+      "score_gain": 18,
+      "seed": 453,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 50,
+      "turns": 90
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.659996032714844,
+      "score_gain": 23,
+      "seed": 454,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 25,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 4,
+      "return": 39.94999313354492,
+      "score_gain": 18,
+      "seed": 455,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 45
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.159996032714844,
+      "score_gain": 15,
+      "seed": 456,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 4,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 3,
+      "return": 39.56999969482422,
+      "score_gain": 19,
+      "seed": 457,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 43
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.43999481201172,
+      "score_gain": 15,
+      "seed": 458,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 36
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.029998779296875,
+      "score_gain": 15,
+      "seed": 459,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.749996185302734,
+      "score_gain": 15,
+      "seed": 460,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 25
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.85999298095703,
+      "score_gain": 23,
+      "seed": 461,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 3,
+      "turns": 54
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.79999542236328,
+      "score_gain": 15,
+      "seed": 462,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 3,
+      "return": 41.239990234375,
+      "score_gain": 19,
+      "seed": 463,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 34,
+      "turns": 76
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.6099967956543,
+      "score_gain": 15,
+      "seed": 464,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 38,
+      "turns": 59
+    },
+    {
+      "created_crop": false,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 0,
+      "return": -18.19999885559082,
+      "score_gain": 3,
+      "seed": 465,
+      "success": false,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 7,
+      "turns": 240
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.779998779296875,
+      "score_gain": 15,
+      "seed": 466,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 22
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.649993896484375,
+      "score_gain": 16,
+      "seed": 467,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 95
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.6099967956543,
+      "score_gain": 16,
+      "seed": 468,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 39
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.299991607666016,
+      "score_gain": 16,
+      "seed": 469,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 16,
+      "seed": 470,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.339996337890625,
+      "score_gain": 16,
+      "seed": 471,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 46
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.73999786376953,
+      "score_gain": 15,
+      "seed": 472,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 26
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.06999588012695,
+      "score_gain": 15,
+      "seed": 473,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.1199951171875,
+      "score_gain": 15,
+      "seed": 474,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 6,
+      "turns": 28
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.029998779296875,
+      "score_gain": 23,
+      "seed": 475,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 37
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.299991607666016,
+      "score_gain": 19,
+      "seed": 476,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 48,
+      "turns": 90
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.06999588012695,
+      "score_gain": 15,
+      "seed": 477,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 12,
+      "turns": 33
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.48999786376953,
+      "score_gain": 15,
+      "seed": 478,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 10,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 2,
+      "return": 40.25999069213867,
+      "score_gain": 18,
+      "seed": 479,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 54,
+      "turns": 94
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.12998962402344,
+      "score_gain": 16,
+      "seed": 480,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 23,
+      "turns": 67
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 4,
+      "return": 39.50999450683594,
+      "score_gain": 12,
+      "seed": 481,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 49
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.79999542236328,
+      "score_gain": 23,
+      "seed": 482,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 22,
+      "turns": 60
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.44999694824219,
+      "score_gain": 15,
+      "seed": 483,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 52,
+      "turns": 75
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 484,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 40.089996337890625,
+      "score_gain": 15,
+      "seed": 485,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 8,
+      "turns": 31
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 1,
+      "initial_total_deficit": 1,
+      "renewable_harvests": 1,
+      "return": 39.82999038696289,
+      "score_gain": 16,
+      "seed": 486,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 14,
+      "turns": 57
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.29999542236328,
+      "score_gain": 16,
+      "seed": 487,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 50
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.69999694824219,
+      "score_gain": 15,
+      "seed": 488,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 30
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.769996643066406,
+      "score_gain": 15,
+      "seed": 489,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 23
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.13999557495117,
+      "score_gain": 16,
+      "seed": 490,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 44,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 41.16999053955078,
+      "score_gain": 17,
+      "seed": 491,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 42,
+      "turns": 83
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 5,
+      "initial_total_deficit": 5,
+      "renewable_harvests": 1,
+      "return": 40.98999786376953,
+      "score_gain": 15,
+      "seed": 492,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 80,
+      "turns": 101
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 40.40999221801758,
+      "score_gain": 17,
+      "seed": 493,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 82,
+      "turns": 119
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 1,
+      "return": 40.54999542236328,
+      "score_gain": 16,
+      "seed": 494,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 65
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 0,
+      "initial_total_deficit": 0,
+      "renewable_harvests": 1,
+      "return": 39.75999450683594,
+      "score_gain": 15,
+      "seed": 495,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 1,
+      "turns": 24
+    },
+    {
+      "created_crop": true,
+      "height": 9,
+      "initial_deficit": 4,
+      "initial_total_deficit": 4,
+      "renewable_harvests": 1,
+      "return": 41.19999694824219,
+      "score_gain": 15,
+      "seed": 496,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 20,
+      "turns": 40
+    },
+    {
+      "created_crop": true,
+      "height": 8,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 1,
+      "return": 40.38999938964844,
+      "score_gain": 15,
+      "seed": 497,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 18,
+      "turns": 41
+    },
+    {
+      "created_crop": true,
+      "height": 11,
+      "initial_deficit": 3,
+      "initial_total_deficit": 3,
+      "renewable_harvests": 3,
+      "return": 40.53999328613281,
+      "score_gain": 19,
+      "seed": 498,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 24,
+      "turns": 66
+    },
+    {
+      "created_crop": true,
+      "height": 10,
+      "initial_deficit": 2,
+      "initial_total_deficit": 2,
+      "renewable_harvests": 4,
+      "return": 40.09999084472656,
+      "score_gain": 12,
+      "seed": 499,
+      "success": true,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_turn": 36,
+      "turns": 70
+    }
+  ],
+  "seed_base": 0,
+  "seed_stop_exclusive": 500,
+  "success_rate": 0.944,
+  "successes": 472,
+  "target": [
+    2,
+    2,
+    0,
+    2
+  ],
+  "teacher_success_rate": 1.0,
+  "transitions": 88000,
+  "transitions_per_second": 11637.861340232388
+}

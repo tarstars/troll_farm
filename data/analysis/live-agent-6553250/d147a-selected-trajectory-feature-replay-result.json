@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "candidate-a": {
+      "bytes": 14807063,
+      "path": "data/analysis/live-agent-6553250/d147a-selected-trajectory-candidates-a.tsv",
+      "sha256": "1e7487ba30d2e2c325668cef6a6d196ee449e0e28eaba3f774996c2600a32fa0"
+    },
+    "candidate-b": {
+      "bytes": 14807063,
+      "path": "data/analysis/live-agent-6553250/d147a-selected-trajectory-candidates-b.tsv",
+      "sha256": "1e7487ba30d2e2c325668cef6a6d196ee449e0e28eaba3f774996c2600a32fa0"
+    },
+    "replay-a": {
+      "bytes": 8068,
+      "path": "data/analysis/live-agent-6553250/d147a-selected-trajectory-replays-a.tsv",
+      "sha256": "b8aafdd1d5f278b7b81a48dc67b9705217b77f0879dbc3bb1a1d02ac1b9f4506"
+    },
+    "replay-b": {
+      "bytes": 8068,
+      "path": "data/analysis/live-agent-6553250/d147a-selected-trajectory-replays-b.tsv",
+      "sha256": "b8aafdd1d5f278b7b81a48dc67b9705217b77f0879dbc3bb1a1d02ac1b9f4506"
+    }
+  },
+  "candidate_integrity": {
+    "action_feature_columns": 379,
+    "chosen_decisions": 153,
+    "columns": 455,
+    "decision_groups": 153,
+    "feature_columns": 443,
+    "group_failures": {},
+    "nonfinite_values": 0,
+    "parse_failures": 0,
+    "pass": true,
+    "rows": 2726,
+    "schema_exact": true,
+    "stage_counts": {
+      "first": 57,
+      "second": 57,
+      "wait_before_first": 12,
+      "wait_before_second": 27
+    },
+    "state_feature_columns": 64
+  },
+  "decision": "open_d148_new_map_64_priority_joint_two_stage_corpus",
+  "gates": {
+    "all_57_terminals_exact_and_safe": true,
+    "candidate_repeats_byte_exact": true,
+    "candidate_schema_and_values_valid": true,
+    "exactly_153_decision_groups": true,
+    "exactly_57_first_and_second_actions": true,
+    "locked_inputs_exact": true,
+    "replay_repeats_byte_exact": true
+  },
+  "locks": {
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": true,
+  "protocol": "data/analysis/live-agent-6553250/d147a-selected-trajectory-feature-replay-protocol-2026-07-22.md",
+  "replay_integrity": {
+    "environmental_invalidated_jobs": 137,
+    "failures": {},
+    "missing_selected_tasks": 0,
+    "pass": true,
+    "rows": 57,
+    "safety_totals": {
+      "deposit_prediction_failures": 0,
+      "invalid_direct_commands": 0,
+      "provenance_failures": 0
+    },
+    "schema_exact": true,
+    "unique_tasks": 57
+  },
+  "schema": "troll-farm-d147a-selected-trajectory-feature-replay-v1"
+}

@@ -1,0 +1,2469 @@
+{
+  "attack_matrix": [
+    {
+      "eligible_new_primitive": true,
+      "field_stable_missing": true,
+      "history": {
+        "open": true,
+        "reason": "per-worker stateful return differs from the rejected global fixed-duration handoffs",
+        "references": [
+          "D24",
+          "D26",
+          "D95"
+        ],
+        "status": "potentially_new_coordination_primitive"
+      },
+      "motif": "bidirectional_producer_suppressor_handoff",
+      "rank6_20_rate": 0.2733333333333333,
+      "resident_gap": 0.610625,
+      "resident_rate": 0.109375,
+      "scores": {
+        "breadth": 2,
+        "causal_isolatability": 3,
+        "exact_resident_fallback_compatibility": 4,
+        "resident_gap": 5,
+        "tail_safety": 3,
+        "total": 17
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.72
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "banking/routing without the complete competitive schedule did not transport",
+        "references": [
+          "D89",
+          "D163"
+        ],
+        "status": "closed_as_resource_route"
+      },
+      "motif": "same_worker_reap_bank_cycle",
+      "rank6_20_rate": 0.7266666666666667,
+      "resident_gap": 0.8810416666666666,
+      "resident_rate": 0.09895833333333333,
+      "scores": {
+        "breadth": 5,
+        "causal_isolatability": 4,
+        "exact_resident_fallback_compatibility": 3,
+        "resident_gap": 5,
+        "tail_safety": 3,
+        "total": 20
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.98
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "renewal exists and can be valuable, but fixed/unconditional transfer is unsafe",
+        "references": [
+          "D87",
+          "D89",
+          "D102"
+        ],
+        "status": "closed_as_standalone"
+      },
+      "motif": "own_crop_reaping",
+      "rank6_20_rate": 0.7666666666666667,
+      "resident_gap": 0.8810416666666666,
+      "resident_rate": 0.09895833333333333,
+      "scores": {
+        "breadth": 5,
+        "causal_isolatability": 4,
+        "exact_resident_fallback_compatibility": 2,
+        "resident_gap": 5,
+        "tail_safety": 3,
+        "total": 19
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.98
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "the exact one-action harvest residual lost margin and increased opponent score",
+        "references": [
+          "opponent-crop-harvest-on-contact"
+        ],
+        "status": "causally_rejected"
+      },
+      "motif": "opponent_crop_reaping",
+      "rank6_20_rate": 0.24,
+      "resident_gap": 0.564375,
+      "resident_rate": 0.015625,
+      "scores": {
+        "breadth": 2,
+        "causal_isolatability": 5,
+        "exact_resident_fallback_compatibility": 5,
+        "resident_gap": 4,
+        "tail_safety": 2,
+        "total": 18
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.58
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "fixed pulses, immediate regeneration, and wholesale productive transfer all failed safety",
+        "references": [
+          "D26",
+          "D87",
+          "D89",
+          "D102"
+        ],
+        "status": "closed_as_fixed_cycle"
+      },
+      "motif": "same_worker_renewal_cycle",
+      "rank6_20_rate": 0.7466666666666667,
+      "resident_gap": 0.9339583333333333,
+      "resident_rate": 0.026041666666666668,
+      "scores": {
+        "breadth": 5,
+        "causal_isolatability": 3,
+        "exact_resident_fallback_compatibility": 2,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 17
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.96
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "joint funding is real, but reserve/bridge implementations starved productive work",
+        "references": [
+          "D94",
+          "D95",
+          "D162"
+        ],
+        "status": "closed_as_serialized_funding"
+      },
+      "motif": "coordinated_later_training",
+      "rank6_20_rate": 0.4066666666666667,
+      "resident_gap": 0.86,
+      "resident_rate": 0.0,
+      "scores": {
+        "breadth": 3,
+        "causal_isolatability": 3,
+        "exact_resident_fallback_compatibility": 2,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 15
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.86
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "static targeting and complete role schedulers did not preserve resident value",
+        "references": [
+          "D92",
+          "D101",
+          "D102"
+        ],
+        "status": "closed_as_static_role_split"
+      },
+      "motif": "strict_producer_suppressor_separation",
+      "rank6_20_rate": 0.6466666666666666,
+      "resident_gap": 0.68625,
+      "resident_rate": 0.09375,
+      "scores": {
+        "breadth": 5,
+        "causal_isolatability": 2,
+        "exact_resident_fallback_compatibility": 1,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 15
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.78
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "the architecture is established, but complete D40 transfer raised opponent output",
+        "references": [
+          "D101",
+          "D102"
+        ],
+        "status": "closed_as_wholesale_scheduler"
+      },
+      "motif": "production_suppression_overlap",
+      "rank6_20_rate": 0.5933333333333334,
+      "resident_gap": 0.6114583333333333,
+      "resident_rate": 0.08854166666666667,
+      "scores": {
+        "breadth": 4,
+        "causal_isolatability": 2,
+        "exact_resident_fallback_compatibility": 1,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 14
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.7
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": true,
+      "history": {
+        "open": false,
+        "reason": "the invariant is known; the complete resident transfer failed value and tail gates",
+        "references": [
+          "D95",
+          "D101",
+          "D102"
+        ],
+        "status": "closed_as_complete_scaler"
+      },
+      "motif": "foundation_production_with_later_suppression",
+      "rank6_20_rate": 0.2733333333333333,
+      "resident_gap": 0.62,
+      "resident_rate": 0.0,
+      "scores": {
+        "breadth": 2,
+        "causal_isolatability": 2,
+        "exact_resident_fallback_compatibility": 1,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 12
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.62
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": false,
+      "history": {
+        "open": true,
+        "reason": "a state-triggered per-worker lifecycle differs from a global turn-cut policy swap",
+        "references": [
+          "D24",
+          "D26",
+          "D95"
+        ],
+        "status": "potentially_new_coordination_primitive"
+      },
+      "motif": "one_way_producer_to_suppressor_handoff",
+      "rank6_20_rate": 0.23333333333333334,
+      "resident_gap": 0.06645833333333337,
+      "resident_rate": 0.21354166666666666,
+      "scores": {
+        "breadth": 2,
+        "causal_isolatability": 4,
+        "exact_resident_fallback_compatibility": 4,
+        "resident_gap": 1,
+        "tail_safety": 3,
+        "total": 14
+      },
+      "top5_agent_support": 2,
+      "top5_rate": 0.28
+    },
+    {
+      "eligible_new_primitive": false,
+      "field_stable_missing": false,
+      "history": {
+        "open": false,
+        "reason": "known field invariant; existing fixed and wholesale controllers failed resident-relative value",
+        "references": [
+          "D94",
+          "D95",
+          "D102"
+        ],
+        "status": "closed_as_fixed_complete_transfer"
+      },
+      "motif": "pre_scale_renewal_and_coordinated_training",
+      "rank6_20_rate": 0.15333333333333332,
+      "resident_gap": 0.64,
+      "resident_rate": 0.0,
+      "scores": {
+        "breadth": 1,
+        "causal_isolatability": 2,
+        "exact_resident_fallback_compatibility": 1,
+        "resident_gap": 5,
+        "tail_safety": 2,
+        "total": 11
+      },
+      "top5_agent_support": 5,
+      "top5_rate": 0.64
+    }
+  ],
+  "cohorts": {
+    "rank_1_5": {
+      "agents": 5,
+      "bidirectional_handoff": {
+        "both_seats": true,
+        "distinct_agents": 5,
+        "games": 36,
+        "mean_margin_descriptive_only": 98.08333333333333,
+        "producer_turn": {
+          "count": 36,
+          "maximum": 180,
+          "mean": 66.11111111111111,
+          "median": 42.0,
+          "minimum": 3
+        },
+        "rate": 0.72,
+        "return_turn": {
+          "count": 36,
+          "maximum": 300,
+          "mean": 203.72222222222223,
+          "median": 217.5,
+          "minimum": 71
+        },
+        "suppression_duration": {
+          "count": 36,
+          "maximum": 148,
+          "mean": 33.583333333333336,
+          "median": 15.5,
+          "minimum": 4
+        },
+        "suppressor_turn": {
+          "count": 36,
+          "maximum": 273,
+          "mean": 170.13888888888889,
+          "median": 179.0,
+          "minimum": 17
+        },
+        "worker_ordinals": {
+          "0": 7,
+          "1": 18,
+          "2": 8,
+          "3": 3
+        },
+        "workforce_at_suppression": {
+          "2": 11,
+          "3": 10,
+          "4": 14,
+          "5": 1
+        }
+      },
+      "cut_states": {
+        "100": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 23.54,
+            "bank_iron": 5.96,
+            "bank_score": 31.22,
+            "bank_wood": 1.92,
+            "carry_fruit": 1.26,
+            "carry_iron": 0.36,
+            "carry_wood": 0.16,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 14.88,
+            "opponent_live_crop_fruit": 11.22,
+            "opponent_live_crop_health": 63.3,
+            "opponent_live_crops": 5.46,
+            "opponent_workers": 2.3,
+            "own_live_crop_fruit": 11.14,
+            "own_live_crop_health": 70,
+            "own_live_crops": 6.64,
+            "roles_other": 0.18,
+            "roles_producer_and_suppressor": 0.28,
+            "roles_producer_only": 1.66,
+            "roles_suppressor_only": 0.12,
+            "workers": 2.24
+          }
+        },
+        "125": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 25.24,
+            "bank_iron": 5.62,
+            "bank_score": 42.04,
+            "bank_wood": 4.2,
+            "carry_fruit": 1.14,
+            "carry_iron": 0.28,
+            "carry_wood": 0.2,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 14.42,
+            "opponent_live_crop_fruit": 12.28,
+            "opponent_live_crop_health": 64.02,
+            "opponent_live_crops": 5.64,
+            "opponent_workers": 2.48,
+            "own_live_crop_fruit": 12.88,
+            "own_live_crop_health": 78.88,
+            "own_live_crops": 7.62,
+            "roles_other": 0.26,
+            "roles_producer_and_suppressor": 0.34,
+            "roles_producer_only": 1.84,
+            "roles_suppressor_only": 0.14,
+            "workers": 2.58
+          }
+        },
+        "150": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 26.3,
+            "bank_iron": 4.64,
+            "bank_score": 67.66,
+            "bank_wood": 10.34,
+            "carry_fruit": 1.3,
+            "carry_iron": 0.54,
+            "carry_wood": 0.74,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 13.34,
+            "opponent_live_crop_fruit": 12.14,
+            "opponent_live_crop_health": 68.26,
+            "opponent_live_crops": 6.2,
+            "opponent_workers": 2.82,
+            "own_live_crop_fruit": 13.7,
+            "own_live_crop_health": 81.5,
+            "own_live_crops": 8,
+            "roles_other": 0.34,
+            "roles_producer_and_suppressor": 0.48,
+            "roles_producer_only": 1.88,
+            "roles_suppressor_only": 0.18,
+            "workers": 2.88
+          }
+        },
+        "175": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 24,
+            "bank_iron": 3.5,
+            "bank_score": 109.92,
+            "bank_wood": 21.48,
+            "carry_fruit": 0.94,
+            "carry_iron": 0.16,
+            "carry_wood": 1.6,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 11.9,
+            "opponent_live_crop_fruit": 12.62,
+            "opponent_live_crop_health": 72.04,
+            "opponent_live_crops": 6.72,
+            "opponent_workers": 3.14,
+            "own_live_crop_fruit": 12.14,
+            "own_live_crop_health": 80.76,
+            "own_live_crops": 7.94,
+            "roles_other": 0.4,
+            "roles_producer_and_suppressor": 0.6,
+            "roles_producer_only": 1.92,
+            "roles_suppressor_only": 0.22,
+            "workers": 3.14
+          }
+        },
+        "200": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 27.62,
+            "bank_iron": 4.14,
+            "bank_score": 169.14,
+            "bank_wood": 35.38,
+            "carry_fruit": 0.94,
+            "carry_iron": 0.16,
+            "carry_wood": 1.18,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 10.76,
+            "opponent_live_crop_fruit": 11.68,
+            "opponent_live_crop_health": 71.72,
+            "opponent_live_crops": 6.98,
+            "opponent_workers": 3.34,
+            "own_live_crop_fruit": 10.48,
+            "own_live_crop_health": 74.8,
+            "own_live_crops": 7.54,
+            "roles_other": 0.26,
+            "roles_producer_and_suppressor": 0.84,
+            "roles_producer_only": 1.82,
+            "roles_suppressor_only": 0.24,
+            "workers": 3.16
+          }
+        },
+        "225": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 29.14,
+            "bank_iron": 3.64,
+            "bank_score": 226.42,
+            "bank_wood": 49.32,
+            "carry_fruit": 1.08,
+            "carry_iron": 0.12,
+            "carry_wood": 1.5,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 9.68,
+            "opponent_live_crop_fruit": 10.2,
+            "opponent_live_crop_health": 72.76,
+            "opponent_live_crops": 7.18,
+            "opponent_workers": 3.42,
+            "own_live_crop_fruit": 9.68,
+            "own_live_crop_health": 72.96,
+            "own_live_crops": 6.98,
+            "roles_other": 0.22,
+            "roles_producer_and_suppressor": 1.04,
+            "roles_producer_only": 1.72,
+            "roles_suppressor_only": 0.26,
+            "workers": 3.24
+          }
+        },
+        "75": {
+          "games": 50,
+          "mean": {
+            "bank_fruit": 22.2,
+            "bank_iron": 6.1,
+            "bank_score": 27.72,
+            "bank_wood": 1.38,
+            "carry_fruit": 1.02,
+            "carry_iron": 0.12,
+            "carry_wood": 0.06,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 15.26,
+            "opponent_live_crop_fruit": 8.9,
+            "opponent_live_crop_health": 60.48,
+            "opponent_live_crops": 5.26,
+            "opponent_workers": 2.08,
+            "own_live_crop_fruit": 9.16,
+            "own_live_crop_health": 58.48,
+            "own_live_crops": 5.58,
+            "roles_other": 0.06,
+            "roles_producer_and_suppressor": 0.2,
+            "roles_producer_only": 1.58,
+            "roles_suppressor_only": 0.12,
+            "workers": 1.96
+          }
+        }
+      },
+      "cut_transitions": {
+        "100-125": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": 1.6999999999999993,
+            "bank_iron": -0.33999999999999986,
+            "bank_score": 10.82,
+            "bank_wood": 2.2800000000000002,
+            "carry_fruit": -0.1200000000000001,
+            "carry_iron": -0.07999999999999996,
+            "carry_wood": 0.04000000000000001,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.46000000000000085,
+            "opponent_live_crop_fruit": 1.0599999999999987,
+            "opponent_live_crop_health": 0.7199999999999989,
+            "opponent_live_crops": 0.17999999999999972,
+            "opponent_workers": 0.18000000000000016,
+            "own_live_crop_fruit": 1.7400000000000002,
+            "own_live_crop_health": 8.879999999999995,
+            "own_live_crops": 0.9800000000000004,
+            "roles_other": 0.08000000000000002,
+            "roles_producer_and_suppressor": 0.06,
+            "roles_producer_only": 0.18000000000000016,
+            "roles_suppressor_only": 0.020000000000000018,
+            "workers": 0.33999999999999986
+          }
+        },
+        "125-150": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": 1.0600000000000023,
+            "bank_iron": -0.9800000000000004,
+            "bank_score": 25.619999999999997,
+            "bank_wood": 6.14,
+            "carry_fruit": 0.16000000000000014,
+            "carry_iron": 0.26,
+            "carry_wood": 0.54,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.08,
+            "opponent_live_crop_fruit": -0.1399999999999988,
+            "opponent_live_crop_health": 4.240000000000009,
+            "opponent_live_crops": 0.5600000000000005,
+            "opponent_workers": 0.33999999999999986,
+            "own_live_crop_fruit": 0.8199999999999985,
+            "own_live_crop_health": 2.6200000000000045,
+            "own_live_crops": 0.3799999999999999,
+            "roles_other": 0.08000000000000002,
+            "roles_producer_and_suppressor": 0.13999999999999996,
+            "roles_producer_only": 0.039999999999999813,
+            "roles_suppressor_only": 0.03999999999999998,
+            "workers": 0.2999999999999998
+          }
+        },
+        "150-175": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": -2.3000000000000007,
+            "bank_iron": -1.1399999999999997,
+            "bank_score": 42.260000000000005,
+            "bank_wood": 11.14,
+            "carry_fruit": -0.3600000000000001,
+            "carry_iron": -0.38,
+            "carry_wood": 0.8600000000000001,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.4399999999999995,
+            "opponent_live_crop_fruit": 0.47999999999999865,
+            "opponent_live_crop_health": 3.780000000000001,
+            "opponent_live_crops": 0.5199999999999996,
+            "opponent_workers": 0.3200000000000003,
+            "own_live_crop_fruit": -1.5599999999999987,
+            "own_live_crop_health": -0.7399999999999949,
+            "own_live_crops": -0.05999999999999961,
+            "roles_other": 0.06,
+            "roles_producer_and_suppressor": 0.12,
+            "roles_producer_only": 0.040000000000000036,
+            "roles_suppressor_only": 0.04000000000000001,
+            "workers": 0.26000000000000023
+          }
+        },
+        "175-200": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": 3.620000000000001,
+            "bank_iron": 0.6399999999999997,
+            "bank_score": 59.219999999999985,
+            "bank_wood": 13.900000000000002,
+            "carry_fruit": 0.0,
+            "carry_iron": 0.0,
+            "carry_wood": -0.42000000000000015,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.1400000000000006,
+            "opponent_live_crop_fruit": -0.9399999999999995,
+            "opponent_live_crop_health": -0.3200000000000074,
+            "opponent_live_crops": 0.2600000000000007,
+            "opponent_workers": 0.19999999999999973,
+            "own_live_crop_fruit": -1.6600000000000001,
+            "own_live_crop_health": -5.960000000000008,
+            "own_live_crops": -0.40000000000000036,
+            "roles_other": -0.14,
+            "roles_producer_and_suppressor": 0.24,
+            "roles_producer_only": -0.09999999999999987,
+            "roles_suppressor_only": 0.01999999999999999,
+            "workers": 0.020000000000000018
+          }
+        },
+        "200-225": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": 1.5199999999999996,
+            "bank_iron": -0.49999999999999956,
+            "bank_score": 57.28,
+            "bank_wood": 13.939999999999998,
+            "carry_fruit": 0.14000000000000012,
+            "carry_iron": -0.04000000000000001,
+            "carry_wood": 0.32000000000000006,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.08,
+            "opponent_live_crop_fruit": -1.4800000000000004,
+            "opponent_live_crop_health": 1.0400000000000063,
+            "opponent_live_crops": 0.1999999999999993,
+            "opponent_workers": 0.08000000000000007,
+            "own_live_crop_fruit": -0.8000000000000007,
+            "own_live_crop_health": -1.8400000000000034,
+            "own_live_crops": -0.5599999999999996,
+            "roles_other": -0.04000000000000001,
+            "roles_producer_and_suppressor": 0.20000000000000007,
+            "roles_producer_only": -0.10000000000000009,
+            "roles_suppressor_only": 0.020000000000000018,
+            "workers": 0.08000000000000007
+          }
+        },
+        "75-100": {
+          "games_at_end": 50,
+          "games_at_start": 50,
+          "mean_delta": {
+            "bank_fruit": 1.3399999999999999,
+            "bank_iron": -0.13999999999999968,
+            "bank_score": 3.5,
+            "bank_wood": 0.54,
+            "carry_fruit": 0.24,
+            "carry_iron": 0.24,
+            "carry_wood": 0.1,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.379999999999999,
+            "opponent_live_crop_fruit": 2.3200000000000003,
+            "opponent_live_crop_health": 2.8200000000000003,
+            "opponent_live_crops": 0.20000000000000018,
+            "opponent_workers": 0.21999999999999975,
+            "own_live_crop_fruit": 1.9800000000000004,
+            "own_live_crop_health": 11.520000000000003,
+            "own_live_crops": 1.0599999999999996,
+            "roles_other": 0.12,
+            "roles_producer_and_suppressor": 0.08000000000000002,
+            "roles_producer_only": 0.07999999999999985,
+            "roles_suppressor_only": 0.0,
+            "workers": 0.28000000000000025
+          }
+        }
+      },
+      "games": 50,
+      "mean_final_workers": 3.3,
+      "mean_margin": 87.02,
+      "mean_opponent_score": 307.62,
+      "mean_score": 394.64,
+      "motif_agent_support": {
+        "bidirectional_producer_suppressor_handoff": 5,
+        "coordinated_later_training": 5,
+        "foundation_production_with_later_suppression": 5,
+        "one_way_producer_to_suppressor_handoff": 2,
+        "opponent_crop_reaping": 5,
+        "own_crop_reaping": 5,
+        "pre_scale_renewal_and_coordinated_training": 5,
+        "production_suppression_overlap": 5,
+        "same_worker_reap_bank_cycle": 5,
+        "same_worker_renewal_cycle": 5,
+        "strict_producer_suppressor_separation": 5
+      },
+      "motif_counts": {
+        "bidirectional_producer_suppressor_handoff": 36,
+        "coordinated_later_training": 43,
+        "foundation_production_with_later_suppression": 31,
+        "one_way_producer_to_suppressor_handoff": 14,
+        "opponent_crop_reaping": 29,
+        "own_crop_reaping": 49,
+        "pre_scale_renewal_and_coordinated_training": 32,
+        "production_suppression_overlap": 35,
+        "same_worker_reap_bank_cycle": 49,
+        "same_worker_renewal_cycle": 48,
+        "strict_producer_suppressor_separation": 39
+      },
+      "motif_rates": {
+        "bidirectional_producer_suppressor_handoff": 0.72,
+        "coordinated_later_training": 0.86,
+        "foundation_production_with_later_suppression": 0.62,
+        "one_way_producer_to_suppressor_handoff": 0.28,
+        "opponent_crop_reaping": 0.58,
+        "own_crop_reaping": 0.98,
+        "pre_scale_renewal_and_coordinated_training": 0.64,
+        "production_suppression_overlap": 0.7,
+        "same_worker_reap_bank_cycle": 0.98,
+        "same_worker_renewal_cycle": 0.96,
+        "strict_producer_suppressor_separation": 0.78
+      },
+      "per_agent": {
+        "6479460": {
+          "agent": "MSz",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.6,
+            "coordinated_later_training": 0.8,
+            "foundation_production_with_later_suppression": 0.4,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.8,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.7,
+            "production_suppression_overlap": 0.7,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.7
+          },
+          "source_rank": 3
+        },
+        "6479768": {
+          "agent": "delineate",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.8,
+            "coordinated_later_training": 0.6,
+            "foundation_production_with_later_suppression": 0.6,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.4,
+            "own_crop_reaping": 0.9,
+            "pre_scale_renewal_and_coordinated_training": 0.3,
+            "production_suppression_overlap": 0.8,
+            "same_worker_reap_bank_cycle": 0.9,
+            "same_worker_renewal_cycle": 0.9,
+            "strict_producer_suppressor_separation": 0.8
+          },
+          "source_rank": 1
+        },
+        "6480540": {
+          "agent": "norxondor_gorgonax",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.8,
+            "coordinated_later_training": 1.0,
+            "foundation_production_with_later_suppression": 0.9,
+            "one_way_producer_to_suppressor_handoff": 0.6,
+            "opponent_crop_reaping": 0.4,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.8,
+            "production_suppression_overlap": 0.6,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 0.9,
+            "strict_producer_suppressor_separation": 1.0
+          },
+          "source_rank": 2
+        },
+        "6481397": {
+          "agent": "gaha",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.5,
+            "coordinated_later_training": 0.9,
+            "foundation_production_with_later_suppression": 0.5,
+            "one_way_producer_to_suppressor_handoff": 0.3,
+            "opponent_crop_reaping": 0.6,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.7,
+            "production_suppression_overlap": 0.5,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.5
+          },
+          "source_rank": 5
+        },
+        "6481504": {
+          "agent": "viewlagoon",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.9,
+            "coordinated_later_training": 1.0,
+            "foundation_production_with_later_suppression": 0.7,
+            "one_way_producer_to_suppressor_handoff": 0.1,
+            "opponent_crop_reaping": 0.7,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.7,
+            "production_suppression_overlap": 0.9,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.9
+          },
+          "source_rank": 4
+        }
+      },
+      "seat_counts": {
+        "0": 22,
+        "1": 28
+      }
+    },
+    "rank_6_20": {
+      "agents": 15,
+      "bidirectional_handoff": {
+        "both_seats": true,
+        "distinct_agents": 11,
+        "games": 41,
+        "mean_margin_descriptive_only": 11.951219512195122,
+        "producer_turn": {
+          "count": 41,
+          "maximum": 269,
+          "mean": 89.82926829268293,
+          "median": 74,
+          "minimum": 3
+        },
+        "rate": 0.2733333333333333,
+        "return_turn": {
+          "count": 41,
+          "maximum": 300,
+          "mean": 200.9268292682927,
+          "median": 207,
+          "minimum": 78
+        },
+        "suppression_duration": {
+          "count": 41,
+          "maximum": 169,
+          "mean": 38.68292682926829,
+          "median": 23,
+          "minimum": 3
+        },
+        "suppressor_turn": {
+          "count": 41,
+          "maximum": 283,
+          "mean": 162.2439024390244,
+          "median": 159,
+          "minimum": 14
+        },
+        "worker_ordinals": {
+          "0": 3,
+          "1": 23,
+          "2": 12,
+          "3": 2,
+          "4": 1
+        },
+        "workforce_at_suppression": {
+          "2": 15,
+          "3": 13,
+          "4": 8,
+          "5": 5
+        }
+      },
+      "cut_states": {
+        "100": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 15,
+            "bank_iron": 2.3666666666666667,
+            "bank_score": 45.906666666666666,
+            "bank_wood": 7.726666666666667,
+            "carry_fruit": 0.6866666666666666,
+            "carry_iron": 0.17333333333333334,
+            "carry_wood": 0.9333333333333333,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 12.973333333333333,
+            "opponent_live_crop_fruit": 9.76,
+            "opponent_live_crop_health": 61.413333333333334,
+            "opponent_live_crops": 5.693333333333333,
+            "opponent_workers": 2.28,
+            "own_live_crop_fruit": 7.02,
+            "own_live_crop_health": 39.6,
+            "own_live_crops": 4.166666666666667,
+            "roles_other": 0.24666666666666667,
+            "roles_producer_and_suppressor": 0.06,
+            "roles_producer_only": 1.26,
+            "roles_suppressor_only": 0.72,
+            "workers": 2.2866666666666666
+          }
+        },
+        "125": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 17.06,
+            "bank_iron": 2.7733333333333334,
+            "bank_score": 64.98,
+            "bank_wood": 11.98,
+            "carry_fruit": 0.6333333333333333,
+            "carry_iron": 0.09333333333333334,
+            "carry_wood": 0.8933333333333333,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 12.073333333333334,
+            "opponent_live_crop_fruit": 11.013333333333334,
+            "opponent_live_crop_health": 63.2,
+            "opponent_live_crops": 5.9,
+            "opponent_workers": 2.58,
+            "own_live_crop_fruit": 7.953333333333333,
+            "own_live_crop_health": 43.16,
+            "own_live_crops": 4.586666666666667,
+            "roles_other": 0.21333333333333335,
+            "roles_producer_and_suppressor": 0.1,
+            "roles_producer_only": 1.32,
+            "roles_suppressor_only": 0.7533333333333333,
+            "workers": 2.3866666666666667
+          }
+        },
+        "150": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 17.573333333333334,
+            "bank_iron": 2.2333333333333334,
+            "bank_score": 88.08,
+            "bank_wood": 17.626666666666665,
+            "carry_fruit": 0.6066666666666667,
+            "carry_iron": 0.14,
+            "carry_wood": 1.0133333333333334,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 10.946666666666667,
+            "opponent_live_crop_fruit": 11.393333333333333,
+            "opponent_live_crop_health": 64.70666666666666,
+            "opponent_live_crops": 6.173333333333333,
+            "opponent_workers": 2.8266666666666667,
+            "own_live_crop_fruit": 8.373333333333333,
+            "own_live_crop_health": 46.77333333333333,
+            "own_live_crops": 5.006666666666667,
+            "roles_other": 0.20666666666666667,
+            "roles_producer_and_suppressor": 0.19333333333333333,
+            "roles_producer_only": 1.3,
+            "roles_suppressor_only": 0.7866666666666666,
+            "workers": 2.486666666666667
+          }
+        },
+        "175": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 17.473333333333333,
+            "bank_iron": 1.8133333333333332,
+            "bank_score": 114.80666666666667,
+            "bank_wood": 24.333333333333332,
+            "carry_fruit": 0.56,
+            "carry_iron": 0.08,
+            "carry_wood": 1.0466666666666666,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 9.68,
+            "opponent_live_crop_fruit": 10.586666666666666,
+            "opponent_live_crop_health": 65.07333333333334,
+            "opponent_live_crops": 6.3533333333333335,
+            "opponent_workers": 3.06,
+            "own_live_crop_fruit": 8.52,
+            "own_live_crop_health": 48.74,
+            "own_live_crops": 5.233333333333333,
+            "roles_other": 0.23333333333333334,
+            "roles_producer_and_suppressor": 0.29333333333333333,
+            "roles_producer_only": 1.2533333333333334,
+            "roles_suppressor_only": 0.7933333333333333,
+            "workers": 2.5733333333333333
+          }
+        },
+        "200": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 18.273333333333333,
+            "bank_iron": 1.5933333333333333,
+            "bank_score": 146.7,
+            "bank_wood": 32.10666666666667,
+            "carry_fruit": 0.5933333333333334,
+            "carry_iron": 0,
+            "carry_wood": 1.36,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 8.406666666666666,
+            "opponent_live_crop_fruit": 10.026666666666667,
+            "opponent_live_crop_health": 64.02666666666667,
+            "opponent_live_crops": 6.346666666666667,
+            "opponent_workers": 3.1733333333333333,
+            "own_live_crop_fruit": 8.313333333333333,
+            "own_live_crop_health": 47.626666666666665,
+            "own_live_crops": 5.14,
+            "roles_other": 0.16666666666666666,
+            "roles_producer_and_suppressor": 0.3933333333333333,
+            "roles_producer_only": 1.2133333333333334,
+            "roles_suppressor_only": 0.84,
+            "workers": 2.6133333333333333
+          }
+        },
+        "225": {
+          "games": 149,
+          "mean": {
+            "bank_fruit": 19.624161073825505,
+            "bank_iron": 1.4161073825503356,
+            "bank_score": 180.6711409395973,
+            "bank_wood": 40.261744966442954,
+            "carry_fruit": 0.5906040268456376,
+            "carry_iron": 0,
+            "carry_wood": 1.2348993288590604,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 7.422818791946309,
+            "opponent_live_crop_fruit": 10.026845637583893,
+            "opponent_live_crop_health": 60.060402684563755,
+            "opponent_live_crops": 5.932885906040268,
+            "opponent_workers": 3.221476510067114,
+            "own_live_crop_fruit": 7.751677852348993,
+            "own_live_crop_health": 47.42953020134228,
+            "own_live_crops": 5.067114093959732,
+            "roles_other": 0.18120805369127516,
+            "roles_producer_and_suppressor": 0.5167785234899329,
+            "roles_producer_only": 1.1275167785234899,
+            "roles_suppressor_only": 0.8120805369127517,
+            "workers": 2.6375838926174495
+          }
+        },
+        "75": {
+          "games": 150,
+          "mean": {
+            "bank_fruit": 14.88,
+            "bank_iron": 2.6733333333333333,
+            "bank_score": 33.28,
+            "bank_wood": 4.6,
+            "carry_fruit": 0.6133333333333333,
+            "carry_iron": 0.1,
+            "carry_wood": 0.8666666666666667,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 13.813333333333333,
+            "opponent_live_crop_fruit": 7.553333333333334,
+            "opponent_live_crop_health": 57,
+            "opponent_live_crops": 5.36,
+            "opponent_workers": 2.1,
+            "own_live_crop_fruit": 5.526666666666666,
+            "own_live_crop_health": 34.20666666666666,
+            "own_live_crops": 3.62,
+            "roles_other": 0.21333333333333335,
+            "roles_producer_and_suppressor": 0.04,
+            "roles_producer_only": 1.1933333333333334,
+            "roles_suppressor_only": 0.64,
+            "workers": 2.0866666666666664
+          }
+        }
+      },
+      "cut_transitions": {
+        "100-125": {
+          "games_at_end": 150,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": 2.0599999999999987,
+            "bank_iron": 0.40666666666666673,
+            "bank_score": 19.073333333333338,
+            "bank_wood": 4.253333333333334,
+            "carry_fruit": -0.053333333333333344,
+            "carry_iron": -0.08,
+            "carry_wood": -0.040000000000000036,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.8999999999999986,
+            "opponent_live_crop_fruit": 1.2533333333333339,
+            "opponent_live_crop_health": 1.7866666666666688,
+            "opponent_live_crops": 0.206666666666667,
+            "opponent_workers": 0.30000000000000027,
+            "own_live_crop_fruit": 0.9333333333333336,
+            "own_live_crop_health": 3.559999999999995,
+            "own_live_crops": 0.41999999999999993,
+            "roles_other": -0.033333333333333326,
+            "roles_producer_and_suppressor": 0.04000000000000001,
+            "roles_producer_only": 0.06000000000000005,
+            "roles_suppressor_only": 0.033333333333333326,
+            "workers": 0.10000000000000009
+          }
+        },
+        "125-150": {
+          "games_at_end": 150,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": 0.5133333333333354,
+            "bank_iron": -0.54,
+            "bank_score": 23.099999999999994,
+            "bank_wood": 5.646666666666665,
+            "carry_fruit": -0.026666666666666616,
+            "carry_iron": 0.046666666666666676,
+            "carry_wood": 0.1200000000000001,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.126666666666667,
+            "opponent_live_crop_fruit": 0.379999999999999,
+            "opponent_live_crop_health": 1.5066666666666606,
+            "opponent_live_crops": 0.27333333333333254,
+            "opponent_workers": 0.2466666666666666,
+            "own_live_crop_fruit": 0.41999999999999993,
+            "own_live_crop_health": 3.613333333333337,
+            "own_live_crops": 0.41999999999999993,
+            "roles_other": -0.006666666666666682,
+            "roles_producer_and_suppressor": 0.09333333333333332,
+            "roles_producer_only": -0.020000000000000018,
+            "roles_suppressor_only": 0.033333333333333326,
+            "workers": 0.10000000000000009
+          }
+        },
+        "150-175": {
+          "games_at_end": 150,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": -0.10000000000000142,
+            "bank_iron": -0.42000000000000015,
+            "bank_score": 26.726666666666674,
+            "bank_wood": 6.706666666666667,
+            "carry_fruit": -0.046666666666666634,
+            "carry_iron": -0.06000000000000001,
+            "carry_wood": 0.033333333333333215,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.2666666666666675,
+            "opponent_live_crop_fruit": -0.8066666666666666,
+            "opponent_live_crop_health": 0.36666666666667425,
+            "opponent_live_crops": 0.1800000000000006,
+            "opponent_workers": 0.2333333333333334,
+            "own_live_crop_fruit": 0.1466666666666665,
+            "own_live_crop_health": 1.9666666666666686,
+            "own_live_crops": 0.22666666666666657,
+            "roles_other": 0.026666666666666672,
+            "roles_producer_and_suppressor": 0.1,
+            "roles_producer_only": -0.046666666666666634,
+            "roles_suppressor_only": 0.00666666666666671,
+            "workers": 0.08666666666666645
+          }
+        },
+        "175-200": {
+          "games_at_end": 150,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": 0.8000000000000007,
+            "bank_iron": -0.21999999999999997,
+            "bank_score": 31.893333333333317,
+            "bank_wood": 7.773333333333337,
+            "carry_fruit": 0.033333333333333326,
+            "carry_iron": -0.08,
+            "carry_wood": 0.31333333333333346,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.2733333333333334,
+            "opponent_live_crop_fruit": -0.5599999999999987,
+            "opponent_live_crop_health": -1.0466666666666669,
+            "opponent_live_crops": -0.006666666666666821,
+            "opponent_workers": 0.11333333333333329,
+            "own_live_crop_fruit": -0.206666666666667,
+            "own_live_crop_health": -1.1133333333333368,
+            "own_live_crops": -0.09333333333333371,
+            "roles_other": -0.06666666666666668,
+            "roles_producer_and_suppressor": 0.09999999999999998,
+            "roles_producer_only": -0.040000000000000036,
+            "roles_suppressor_only": 0.046666666666666634,
+            "workers": 0.040000000000000036
+          }
+        },
+        "200-225": {
+          "games_at_end": 149,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": 1.3508277404921714,
+            "bank_iron": -0.17722595078299763,
+            "bank_score": 33.97114093959732,
+            "bank_wood": 8.155078299776285,
+            "carry_fruit": -0.0027293064876957596,
+            "carry_iron": 0,
+            "carry_wood": -0.1251006711409397,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.9838478747203574,
+            "opponent_live_crop_fruit": 0.00017897091722574032,
+            "opponent_live_crop_health": -3.966263982102916,
+            "opponent_live_crops": -0.41378076062639835,
+            "opponent_workers": 0.048143176733780546,
+            "own_live_crop_fruit": -0.5616554809843395,
+            "own_live_crop_health": -0.1971364653243839,
+            "own_live_crops": -0.07288590604026801,
+            "roles_other": 0.014541387024608499,
+            "roles_producer_and_suppressor": 0.1234451901565996,
+            "roles_producer_only": -0.08581655480984351,
+            "roles_suppressor_only": -0.027919463087248242,
+            "workers": 0.024250559284116235
+          }
+        },
+        "75-100": {
+          "games_at_end": 150,
+          "games_at_start": 150,
+          "mean_delta": {
+            "bank_fruit": 0.11999999999999922,
+            "bank_iron": -0.30666666666666664,
+            "bank_score": 12.626666666666665,
+            "bank_wood": 3.126666666666667,
+            "carry_fruit": 0.07333333333333336,
+            "carry_iron": 0.07333333333333333,
+            "carry_wood": 0.06666666666666665,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.8399999999999999,
+            "opponent_live_crop_fruit": 2.206666666666666,
+            "opponent_live_crop_health": 4.413333333333334,
+            "opponent_live_crops": 0.33333333333333304,
+            "opponent_workers": 0.17999999999999972,
+            "own_live_crop_fruit": 1.4933333333333332,
+            "own_live_crop_health": 5.393333333333338,
+            "own_live_crops": 0.5466666666666669,
+            "roles_other": 0.033333333333333326,
+            "roles_producer_and_suppressor": 0.019999999999999997,
+            "roles_producer_only": 0.06666666666666665,
+            "roles_suppressor_only": 0.07999999999999996,
+            "workers": 0.20000000000000018
+          }
+        }
+      },
+      "games": 150,
+      "mean_final_workers": 2.6333333333333333,
+      "mean_margin": -3.18,
+      "mean_opponent_score": 286.3,
+      "mean_score": 283.12,
+      "motif_counts": {
+        "bidirectional_producer_suppressor_handoff": 41,
+        "coordinated_later_training": 61,
+        "foundation_production_with_later_suppression": 41,
+        "one_way_producer_to_suppressor_handoff": 35,
+        "opponent_crop_reaping": 36,
+        "own_crop_reaping": 115,
+        "pre_scale_renewal_and_coordinated_training": 23,
+        "production_suppression_overlap": 89,
+        "same_worker_reap_bank_cycle": 109,
+        "same_worker_renewal_cycle": 112,
+        "strict_producer_suppressor_separation": 97
+      },
+      "motif_rates": {
+        "bidirectional_producer_suppressor_handoff": 0.2733333333333333,
+        "coordinated_later_training": 0.4066666666666667,
+        "foundation_production_with_later_suppression": 0.2733333333333333,
+        "one_way_producer_to_suppressor_handoff": 0.23333333333333334,
+        "opponent_crop_reaping": 0.24,
+        "own_crop_reaping": 0.7666666666666667,
+        "pre_scale_renewal_and_coordinated_training": 0.15333333333333332,
+        "production_suppression_overlap": 0.5933333333333334,
+        "same_worker_reap_bank_cycle": 0.7266666666666667,
+        "same_worker_renewal_cycle": 0.7466666666666667,
+        "strict_producer_suppressor_separation": 0.6466666666666666
+      },
+      "per_agent": {
+        "6479420": {
+          "agent": "Risen",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.1,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.0,
+            "opponent_crop_reaping": 0.1,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 1.0,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 1.0
+          },
+          "source_rank": 17
+        },
+        "6479779": {
+          "agent": "putibuzu",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.7,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.5,
+            "own_crop_reaping": 0.9,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.8,
+            "same_worker_reap_bank_cycle": 0.9,
+            "same_worker_renewal_cycle": 0.8,
+            "strict_producer_suppressor_separation": 0.9
+          },
+          "source_rank": 16
+        },
+        "6479814": {
+          "agent": "yamo",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.1,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.0,
+            "own_crop_reaping": 0.0,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.0,
+            "same_worker_reap_bank_cycle": 0.0,
+            "same_worker_renewal_cycle": 0.0,
+            "strict_producer_suppressor_separation": 0.0
+          },
+          "source_rank": 15
+        },
+        "6480520": {
+          "agent": "skotz",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.1,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.1,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 1.0,
+            "same_worker_reap_bank_cycle": 0.8,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 1.0
+          },
+          "source_rank": 10
+        },
+        "6480541": {
+          "agent": "yaichi",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.0,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.3,
+            "opponent_crop_reaping": 0.0,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 1.0,
+            "same_worker_reap_bank_cycle": 0.7,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 1.0
+          },
+          "source_rank": 7
+        },
+        "6480543": {
+          "agent": "tsukammo",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.4,
+            "coordinated_later_training": 0.9,
+            "foundation_production_with_later_suppression": 0.4,
+            "one_way_producer_to_suppressor_handoff": 0.3,
+            "opponent_crop_reaping": 0.3,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.4,
+            "production_suppression_overlap": 0.5,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 0.9,
+            "strict_producer_suppressor_separation": 0.7
+          },
+          "source_rank": 18
+        },
+        "6480941": {
+          "agent": "Bondo416",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.9,
+            "coordinated_later_training": 1.0,
+            "foundation_production_with_later_suppression": 1.0,
+            "one_way_producer_to_suppressor_handoff": 0.4,
+            "opponent_crop_reaping": 0.3,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.1,
+            "production_suppression_overlap": 1.0,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 1.0
+          },
+          "source_rank": 20
+        },
+        "6481141": {
+          "agent": "wala",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.0,
+            "coordinated_later_training": 1.0,
+            "foundation_production_with_later_suppression": 0.7,
+            "one_way_producer_to_suppressor_handoff": 0.3,
+            "opponent_crop_reaping": 0.5,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.3,
+            "production_suppression_overlap": 0.6,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.7
+          },
+          "source_rank": 14
+        },
+        "6481142": {
+          "agent": "XSpace",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.0,
+            "coordinated_later_training": 1.0,
+            "foundation_production_with_later_suppression": 0.1,
+            "one_way_producer_to_suppressor_handoff": 0.0,
+            "opponent_crop_reaping": 0.4,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.1,
+            "production_suppression_overlap": 0.0,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.2
+          },
+          "source_rank": 19
+        },
+        "6482055": {
+          "agent": "laconic_pixel",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.2,
+            "coordinated_later_training": 0.6,
+            "foundation_production_with_later_suppression": 0.5,
+            "one_way_producer_to_suppressor_handoff": 0.5,
+            "opponent_crop_reaping": 0.2,
+            "own_crop_reaping": 0.7,
+            "pre_scale_renewal_and_coordinated_training": 0.5,
+            "production_suppression_overlap": 0.6,
+            "same_worker_reap_bank_cycle": 0.7,
+            "same_worker_renewal_cycle": 0.7,
+            "strict_producer_suppressor_separation": 0.7
+          },
+          "source_rank": 9
+        },
+        "6482167": {
+          "agent": "Astrobytes",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.9,
+            "coordinated_later_training": 0.9,
+            "foundation_production_with_later_suppression": 0.9,
+            "one_way_producer_to_suppressor_handoff": 0.7,
+            "opponent_crop_reaping": 0.9,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.3,
+            "production_suppression_overlap": 0.9,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.9
+          },
+          "source_rank": 13
+        },
+        "6483545": {
+          "agent": "Escdemon",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.1,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.0,
+            "opponent_crop_reaping": 0.0,
+            "own_crop_reaping": 0.1,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.0,
+            "same_worker_reap_bank_cycle": 0.1,
+            "same_worker_renewal_cycle": 0.0,
+            "strict_producer_suppressor_separation": 0.1
+          },
+          "source_rank": 11
+        },
+        "6491563": {
+          "agent": "Stounate",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.0,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.1,
+            "opponent_crop_reaping": 0.1,
+            "own_crop_reaping": 0.8,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.8,
+            "same_worker_reap_bank_cycle": 0.7,
+            "same_worker_renewal_cycle": 0.8,
+            "strict_producer_suppressor_separation": 0.8
+          },
+          "source_rank": 8
+        },
+        "6559862": {
+          "agent": "therealbeef",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.1,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.2,
+            "opponent_crop_reaping": 0.0,
+            "own_crop_reaping": 0.0,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.0,
+            "same_worker_reap_bank_cycle": 0.0,
+            "same_worker_renewal_cycle": 0.0,
+            "strict_producer_suppressor_separation": 0.0
+          },
+          "source_rank": 12
+        },
+        "6568138": {
+          "agent": "Bubaptik",
+          "games": 10,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.5,
+            "coordinated_later_training": 0.7,
+            "foundation_production_with_later_suppression": 0.5,
+            "one_way_producer_to_suppressor_handoff": 0.1,
+            "opponent_crop_reaping": 0.2,
+            "own_crop_reaping": 1.0,
+            "pre_scale_renewal_and_coordinated_training": 0.6,
+            "production_suppression_overlap": 0.7,
+            "same_worker_reap_bank_cycle": 1.0,
+            "same_worker_renewal_cycle": 1.0,
+            "strict_producer_suppressor_separation": 0.7
+          },
+          "source_rank": 6
+        }
+      },
+      "seat_counts": {
+        "0": 79,
+        "1": 71
+      }
+    },
+    "resident": {
+      "agents": 1,
+      "bidirectional_handoff": {
+        "both_seats": true,
+        "distinct_agents": 1,
+        "games": 21,
+        "mean_margin_descriptive_only": -17.285714285714285,
+        "producer_turn": {
+          "count": 21,
+          "maximum": 227,
+          "mean": 154.33333333333334,
+          "median": 177,
+          "minimum": 3
+        },
+        "rate": 0.109375,
+        "return_turn": {
+          "count": 21,
+          "maximum": 271,
+          "mean": 212.0952380952381,
+          "median": 210,
+          "minimum": 101
+        },
+        "suppression_duration": {
+          "count": 21,
+          "maximum": 64,
+          "mean": 23.19047619047619,
+          "median": 20,
+          "minimum": 4
+        },
+        "suppressor_turn": {
+          "count": 21,
+          "maximum": 257,
+          "mean": 188.9047619047619,
+          "median": 191,
+          "minimum": 57
+        },
+        "worker_ordinals": {
+          "0": 8,
+          "1": 13
+        },
+        "workforce_at_suppression": {
+          "2": 21
+        }
+      },
+      "cut_states": {
+        "100": {
+          "games": 192,
+          "mean": {
+            "bank_fruit": 15.588541666666666,
+            "bank_iron": 0.6822916666666666,
+            "bank_score": 73.859375,
+            "bank_wood": 14.567708333333334,
+            "carry_fruit": 0.11458333333333333,
+            "carry_iron": 0,
+            "carry_wood": 0.9270833333333334,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 8.536458333333334,
+            "opponent_live_crop_fruit": 4.15625,
+            "opponent_live_crop_health": 30.3125,
+            "opponent_live_crops": 2.8020833333333335,
+            "opponent_workers": 2.046875,
+            "own_live_crop_fruit": 0.010416666666666666,
+            "own_live_crop_health": 2.1927083333333335,
+            "own_live_crops": 0.16145833333333334,
+            "roles_other": 0.4739583333333333,
+            "roles_producer_and_suppressor": 0.041666666666666664,
+            "roles_producer_only": 0.23958333333333334,
+            "roles_suppressor_only": 1.2447916666666667,
+            "workers": 2
+          }
+        },
+        "125": {
+          "games": 190,
+          "mean": {
+            "bank_fruit": 16.13684210526316,
+            "bank_iron": 0.6894736842105263,
+            "bank_score": 91.8,
+            "bank_wood": 18.91578947368421,
+            "carry_fruit": 0.02631578947368421,
+            "carry_iron": 0,
+            "carry_wood": 0.8473684210526315,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 6.978947368421053,
+            "opponent_live_crop_fruit": 4.757894736842105,
+            "opponent_live_crop_health": 32.14736842105263,
+            "opponent_live_crops": 3.0526315789473686,
+            "opponent_workers": 2.1736842105263157,
+            "own_live_crop_fruit": 0.08421052631578947,
+            "own_live_crop_health": 2.3842105263157896,
+            "own_live_crops": 0.20526315789473684,
+            "roles_other": 0.2578947368421053,
+            "roles_producer_and_suppressor": 0.07894736842105263,
+            "roles_producer_only": 0.3263157894736842,
+            "roles_suppressor_only": 1.3368421052631578,
+            "workers": 2
+          }
+        },
+        "150": {
+          "games": 182,
+          "mean": {
+            "bank_fruit": 17.26923076923077,
+            "bank_iron": 0.6923076923076923,
+            "bank_score": 107.73076923076923,
+            "bank_wood": 22.615384615384617,
+            "carry_fruit": 0.11538461538461539,
+            "carry_iron": 0,
+            "carry_wood": 0.9945054945054945,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 5.873626373626373,
+            "opponent_live_crop_fruit": 4.758241758241758,
+            "opponent_live_crop_health": 33.77472527472528,
+            "opponent_live_crops": 3.2747252747252746,
+            "opponent_workers": 2.3076923076923075,
+            "own_live_crop_fruit": 0.01098901098901099,
+            "own_live_crop_health": 2.5274725274725274,
+            "own_live_crops": 0.24175824175824176,
+            "roles_other": 0.13736263736263737,
+            "roles_producer_and_suppressor": 0.18681318681318682,
+            "roles_producer_only": 0.2802197802197802,
+            "roles_suppressor_only": 1.3956043956043955,
+            "workers": 2
+          }
+        },
+        "175": {
+          "games": 176,
+          "mean": {
+            "bank_fruit": 18.15340909090909,
+            "bank_iron": 0.7159090909090909,
+            "bank_score": 123.69886363636364,
+            "bank_wood": 26.386363636363637,
+            "carry_fruit": 0.0625,
+            "carry_iron": 0,
+            "carry_wood": 0.9147727272727273,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 4.7727272727272725,
+            "opponent_live_crop_fruit": 5.1875,
+            "opponent_live_crop_health": 35.44886363636363,
+            "opponent_live_crops": 3.5511363636363638,
+            "opponent_workers": 2.409090909090909,
+            "own_live_crop_fruit": 0.08522727272727272,
+            "own_live_crop_health": 2.4545454545454546,
+            "own_live_crops": 0.23295454545454544,
+            "roles_other": 0.07954545454545454,
+            "roles_producer_and_suppressor": 0.3125,
+            "roles_producer_only": 0.25,
+            "roles_suppressor_only": 1.3579545454545454,
+            "workers": 2
+          }
+        },
+        "200": {
+          "games": 166,
+          "mean": {
+            "bank_fruit": 18.5,
+            "bank_iron": 0.7289156626506024,
+            "bank_score": 139.8975903614458,
+            "bank_wood": 30.349397590361445,
+            "carry_fruit": 0.14457831325301204,
+            "carry_iron": 0,
+            "carry_wood": 0.8674698795180723,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 3.9457831325301207,
+            "opponent_live_crop_fruit": 5.216867469879518,
+            "opponent_live_crop_health": 34.07831325301205,
+            "opponent_live_crops": 3.5481927710843375,
+            "opponent_workers": 2.4518072289156625,
+            "own_live_crop_fruit": 0.012048192771084338,
+            "own_live_crop_health": 2.5542168674698793,
+            "own_live_crops": 0.29518072289156627,
+            "roles_other": 0.04819277108433735,
+            "roles_producer_and_suppressor": 0.5,
+            "roles_producer_only": 0.21686746987951808,
+            "roles_suppressor_only": 1.2349397590361446,
+            "workers": 2
+          }
+        },
+        "225": {
+          "games": 153,
+          "mean": {
+            "bank_fruit": 19.836601307189543,
+            "bank_iron": 0.7189542483660131,
+            "bank_score": 155.5751633986928,
+            "bank_wood": 33.93464052287582,
+            "carry_fruit": 0.058823529411764705,
+            "carry_iron": 0,
+            "carry_wood": 0.934640522875817,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 3.4052287581699345,
+            "opponent_live_crop_fruit": 5.333333333333333,
+            "opponent_live_crop_health": 33.35294117647059,
+            "opponent_live_crops": 3.679738562091503,
+            "opponent_workers": 2.4901960784313726,
+            "own_live_crop_fruit": 0.0718954248366013,
+            "own_live_crop_health": 3.3594771241830066,
+            "own_live_crops": 0.41830065359477125,
+            "roles_other": 0.013071895424836602,
+            "roles_producer_and_suppressor": 0.6601307189542484,
+            "roles_producer_only": 0.20261437908496732,
+            "roles_suppressor_only": 1.1241830065359477,
+            "workers": 2
+          }
+        },
+        "75": {
+          "games": 192,
+          "mean": {
+            "bank_fruit": 14.911458333333334,
+            "bank_iron": 0.6822916666666666,
+            "bank_score": 56.494791666666664,
+            "bank_wood": 10.395833333333334,
+            "carry_fruit": 0.005208333333333333,
+            "carry_iron": 0,
+            "carry_wood": 1.0416666666666667,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": 10.348958333333334,
+            "opponent_live_crop_fruit": 3.4583333333333335,
+            "opponent_live_crop_health": 27.385416666666668,
+            "opponent_live_crops": 2.515625,
+            "opponent_workers": 1.953125,
+            "own_live_crop_fruit": 0.08333333333333333,
+            "own_live_crop_health": 1.9583333333333333,
+            "own_live_crops": 0.125,
+            "roles_other": 0.6979166666666666,
+            "roles_producer_and_suppressor": 0.020833333333333332,
+            "roles_producer_only": 0.140625,
+            "roles_suppressor_only": 1.140625,
+            "workers": 2
+          }
+        }
+      },
+      "cut_transitions": {
+        "100-125": {
+          "games_at_end": 190,
+          "games_at_start": 192,
+          "mean_delta": {
+            "bank_fruit": 0.5483004385964936,
+            "bank_iron": 0.00718201754385972,
+            "bank_score": 17.940624999999997,
+            "bank_wood": 4.348081140350876,
+            "carry_fruit": -0.08826754385964912,
+            "carry_iron": 0,
+            "carry_wood": -0.07971491228070182,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.5575109649122814,
+            "opponent_live_crop_fruit": 0.601644736842105,
+            "opponent_live_crop_health": 1.834868421052633,
+            "opponent_live_crops": 0.2505482456140351,
+            "opponent_workers": 0.12680921052631566,
+            "own_live_crop_fruit": 0.0737938596491228,
+            "own_live_crop_health": 0.19150219298245608,
+            "own_live_crops": 0.0438048245614035,
+            "roles_other": -0.21606359649122803,
+            "roles_producer_and_suppressor": 0.03728070175438596,
+            "roles_producer_only": 0.08673245614035088,
+            "roles_suppressor_only": 0.09205043859649109,
+            "workers": 0
+          }
+        },
+        "125-150": {
+          "games_at_end": 182,
+          "games_at_start": 190,
+          "mean_delta": {
+            "bank_fruit": 1.1323886639676104,
+            "bank_iron": 0.002834008097165941,
+            "bank_score": 15.93076923076923,
+            "bank_wood": 3.6995951417004065,
+            "carry_fruit": 0.08906882591093118,
+            "carry_iron": 0,
+            "carry_wood": 0.14713707345286298,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.1053209947946794,
+            "opponent_live_crop_fruit": 0.00034702139965325784,
+            "opponent_live_crop_health": 1.6273568536726444,
+            "opponent_live_crops": 0.22209369577790605,
+            "opponent_workers": 0.13400809716599182,
+            "own_live_crop_fruit": -0.07322151532677848,
+            "own_live_crop_health": 0.14326200115673782,
+            "own_live_crops": 0.03649508386350492,
+            "roles_other": -0.12053209947946791,
+            "roles_producer_and_suppressor": 0.10786581839213419,
+            "roles_producer_only": -0.046096009253904,
+            "roles_suppressor_only": 0.0587622903412377,
+            "workers": 0
+          }
+        },
+        "150-175": {
+          "games_at_end": 176,
+          "games_at_start": 182,
+          "mean_delta": {
+            "bank_fruit": 0.8841783216783199,
+            "bank_iron": 0.02360139860139865,
+            "bank_score": 15.968094405594414,
+            "bank_wood": 3.77097902097902,
+            "carry_fruit": -0.05288461538461539,
+            "carry_iron": 0,
+            "carry_wood": -0.07973276723276723,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.1008991008991007,
+            "opponent_live_crop_fruit": 0.4292582417582418,
+            "opponent_live_crop_health": 1.6741383616383558,
+            "opponent_live_crops": 0.2764110889110891,
+            "opponent_workers": 0.10139860139860168,
+            "own_live_crop_fruit": 0.07423826173826173,
+            "own_live_crop_health": -0.07292707292707279,
+            "own_live_crops": -0.008803696303696318,
+            "roles_other": -0.05781718281718283,
+            "roles_producer_and_suppressor": 0.12568681318681318,
+            "roles_producer_only": -0.030219780219780223,
+            "roles_suppressor_only": -0.03764985014985012,
+            "workers": 0
+          }
+        },
+        "175-200": {
+          "games_at_end": 166,
+          "games_at_start": 176,
+          "mean_delta": {
+            "bank_fruit": 0.34659090909091006,
+            "bank_iron": 0.01300657174151143,
+            "bank_score": 16.198726725082153,
+            "bank_wood": 3.963033953997808,
+            "carry_fruit": 0.08207831325301204,
+            "carry_iron": 0,
+            "carry_wood": -0.047302847754654986,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.8269441401971518,
+            "opponent_live_crop_fruit": 0.029367469879518104,
+            "opponent_live_crop_health": -1.3705503833515849,
+            "opponent_live_crops": -0.002943592552026253,
+            "opponent_workers": 0.042716319824753324,
+            "own_live_crop_fruit": -0.07317907995618839,
+            "own_live_crop_health": 0.09967141292442472,
+            "own_live_crops": 0.06222617743702083,
+            "roles_other": -0.03135268346111719,
+            "roles_producer_and_suppressor": 0.1875,
+            "roles_producer_only": -0.03313253012048192,
+            "roles_suppressor_only": -0.1230147864184008,
+            "workers": 0
+          }
+        },
+        "200-225": {
+          "games_at_end": 153,
+          "games_at_start": 166,
+          "mean_delta": {
+            "bank_fruit": 1.336601307189543,
+            "bank_iron": -0.009961414284589298,
+            "bank_score": 15.677573037247015,
+            "bank_wood": 3.5852429325143724,
+            "carry_fruit": -0.08575478384124734,
+            "carry_iron": 0,
+            "carry_wood": 0.0671706433577447,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -0.5405543743601862,
+            "opponent_live_crop_fruit": 0.11646586345381493,
+            "opponent_live_crop_health": -0.7253720765414613,
+            "opponent_live_crops": 0.13154579100716557,
+            "opponent_workers": 0.03838884951571009,
+            "own_live_crop_fruit": 0.05984723206551697,
+            "own_live_crop_health": 0.8052602567131273,
+            "own_live_crops": 0.12311993070320498,
+            "roles_other": -0.03512087565950075,
+            "roles_producer_and_suppressor": 0.16013071895424835,
+            "roles_producer_only": -0.014253090794550755,
+            "roles_suppressor_only": -0.1107567525001969,
+            "workers": 0
+          }
+        },
+        "75-100": {
+          "games_at_end": 192,
+          "games_at_start": 192,
+          "mean_delta": {
+            "bank_fruit": 0.6770833333333321,
+            "bank_iron": 0.0,
+            "bank_score": 17.364583333333336,
+            "bank_wood": 4.171875,
+            "carry_fruit": 0.109375,
+            "carry_iron": 0,
+            "carry_wood": -0.11458333333333337,
+            "joint_live_crop_fruit": 0,
+            "joint_live_crops": 0,
+            "natural_live_plants": -1.8125,
+            "opponent_live_crop_fruit": 0.6979166666666665,
+            "opponent_live_crop_health": 2.927083333333332,
+            "opponent_live_crops": 0.2864583333333335,
+            "opponent_workers": 0.09375,
+            "own_live_crop_fruit": -0.07291666666666666,
+            "own_live_crop_health": 0.23437500000000022,
+            "own_live_crops": 0.03645833333333334,
+            "roles_other": -0.22395833333333331,
+            "roles_producer_and_suppressor": 0.020833333333333332,
+            "roles_producer_only": 0.09895833333333334,
+            "roles_suppressor_only": 0.10416666666666674,
+            "workers": 0
+          }
+        }
+      },
+      "games": 192,
+      "mean_final_workers": 2,
+      "mean_margin": 1.4427083333333333,
+      "mean_opponent_score": 185.6875,
+      "mean_score": 187.13020833333334,
+      "motif_counts": {
+        "bidirectional_producer_suppressor_handoff": 21,
+        "coordinated_later_training": 0,
+        "foundation_production_with_later_suppression": 0,
+        "one_way_producer_to_suppressor_handoff": 41,
+        "opponent_crop_reaping": 3,
+        "own_crop_reaping": 19,
+        "pre_scale_renewal_and_coordinated_training": 0,
+        "production_suppression_overlap": 17,
+        "same_worker_reap_bank_cycle": 19,
+        "same_worker_renewal_cycle": 5,
+        "strict_producer_suppressor_separation": 18
+      },
+      "motif_rates": {
+        "bidirectional_producer_suppressor_handoff": 0.109375,
+        "coordinated_later_training": 0.0,
+        "foundation_production_with_later_suppression": 0.0,
+        "one_way_producer_to_suppressor_handoff": 0.21354166666666666,
+        "opponent_crop_reaping": 0.015625,
+        "own_crop_reaping": 0.09895833333333333,
+        "pre_scale_renewal_and_coordinated_training": 0.0,
+        "production_suppression_overlap": 0.08854166666666667,
+        "same_worker_reap_bank_cycle": 0.09895833333333333,
+        "same_worker_renewal_cycle": 0.026041666666666668,
+        "strict_producer_suppressor_separation": 0.09375
+      },
+      "per_agent": {
+        "6561795": {
+          "agent": "tass",
+          "games": 192,
+          "motif_rates": {
+            "bidirectional_producer_suppressor_handoff": 0.109375,
+            "coordinated_later_training": 0.0,
+            "foundation_production_with_later_suppression": 0.0,
+            "one_way_producer_to_suppressor_handoff": 0.21354166666666666,
+            "opponent_crop_reaping": 0.015625,
+            "own_crop_reaping": 0.09895833333333333,
+            "pre_scale_renewal_and_coordinated_training": 0.0,
+            "production_suppression_overlap": 0.08854166666666667,
+            "same_worker_reap_bank_cycle": 0.09895833333333333,
+            "same_worker_renewal_cycle": 0.026041666666666668,
+            "strict_producer_suppressor_separation": 0.09375
+          },
+          "source_rank": 43
+        }
+      },
+      "seat_counts": {
+        "0": 97,
+        "1": 95
+      }
+    }
+  },
+  "decision": {
+    "arena_or_submission": false,
+    "construct_candidate": false,
+    "next_experiment": "exact-resident bounded per-worker producer/suppressor handoff on consumed maps; activate from observable role history, return to the warmed resident, and require activation, parity, mean, own-score, breadth, and tail gates",
+    "selected_motif": "bidirectional_producer_suppressor_handoff",
+    "verdict": "freeze_bounded_per_worker_stateful_handoff_hypothesis"
+  },
+  "input_hashes": {
+    "analyzer": "e9ed056c7d5ba1595bc52a563a917d785807219788c8473901d3ee8e242b71df",
+    "d164_analyzer": "617908d5f1bc12d37b7113e2578a87062fc48c30aa37f07884067e8752353fb6",
+    "d164_lock": "88f1775aee4fecda4ee88c6e17f10230bfc62c489a20840533617032fd9d2999",
+    "d164_protocol": "cf7df0e136e13b1be1fd74e41c68ed818b778ea0c820c0af29edff7681517bf6",
+    "open_games": "0576f9c01a3fc969cfbb7f0948204d6493f3710d47799dcd7c4ebbdf317f4f38",
+    "processed_manifest": "eef9d329192cc2655ab4c2d0398999feb4e1f7b36cb88b03b4e693103230570c",
+    "protocol": "e181bc9d43021eed988f897e3e0bf58b61a54ababf4acfb7b1e694edf2a6c617",
+    "qa": "f203353545e28d5f4271635fa34714115544e4d68e96594fc0901d7bddc6b3c6",
+    "snapshot_manifest": "2e5ed6b0e8cb486de57d2deddaf36a46074b6ddc58057e4042c017007afb0520",
+    "split_manifest": "c4ceb5f993e0252e55e8a3bc1b3dde199454a1dab534a72c149ab8e08d811921"
+  },
+  "integrity": {
+    "all_state_streams_exact": true,
+    "all_workers_and_training_events_agree": true,
+    "at_least_150_top20_appearances": true,
+    "at_least_15_top20_agents": true,
+    "at_least_160_resident_games": true,
+    "at_most_10_appearances_per_top_agent": true,
+    "both_seats_in_every_cohort": true,
+    "confirmation_products_unread": true,
+    "resident_identity_exact": true,
+    "snapshot_qa_pass": true,
+    "unique_actor_game_occurrences": true,
+    "zero_unknown_or_ambiguous_births": true
+  },
+  "integrity_pass": true,
+  "lock": {
+    "external_raw_root": "data/external/arena-corpus",
+    "files": {
+      "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+      "cgauto/replay_state.py": "4f38829baa533bc8af940fb0eeed6cf5a746357b74abe38f42f5060cb9101569",
+      "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+      "data/analysis/live-agent-6553250/d163a-resident-resource-control-components-result.json": "560e5651ae0f8079175db5d521cedf9021c807a4d69c2b8d2e6b2487fa69afe7",
+      "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-protocol-2026-07-23.md": "cf7df0e136e13b1be1fd74e41c68ed818b778ea0c820c0af29edff7681517bf6",
+      "data/scripts/collect_snapshot.py": "1c5894f3c6f76d8568b418a55b871e08cacb428ff4fe47bd9e4f2b15557b6745",
+      "data/scripts/parse_snapshot.py": "6b5994299d8a47cbb3ec41e58de95ac0323cc4c53a553710e084b21ede51ee33"
+    },
+    "frozen_at_utc": "2026-07-23T07:47:15Z",
+    "resident_agent_id": 6561795,
+    "resident_submission_id": 41015603,
+    "schema": "troll-farm-d164a-lock-v1",
+    "snapshot_id": "20260723T074715Z-d164a"
+  },
+  "population": {
+    "actor_occurrences": 392,
+    "resident_games": 192,
+    "top20_agents": 20,
+    "top20_appearances": 200,
+    "top_appearances_per_agent": {
+      "6479420": 10,
+      "6479460": 10,
+      "6479768": 10,
+      "6479779": 10,
+      "6479814": 10,
+      "6480520": 10,
+      "6480540": 10,
+      "6480541": 10,
+      "6480543": 10,
+      "6480941": 10,
+      "6481141": 10,
+      "6481142": 10,
+      "6481397": 10,
+      "6481504": 10,
+      "6482055": 10,
+      "6482167": 10,
+      "6483545": 10,
+      "6491563": 10,
+      "6559862": 10,
+      "6568138": 10
+    }
+  },
+  "rows_artifact": {
+    "path": "artifacts/experiments/d164a-current-field-macro-transition/d164a-occurrences-jobs20-v4.jsonl",
+    "rows": 392,
+    "sha256": "453d91741198e03f00519feca8fba4349b6adaa78ba621e3c33c864aab16fc21"
+  },
+  "schema": "troll-farm-d164a-current-field-macro-transition-v1",
+  "scope": "open-only immutable public replay diagnosis; no platform mutation",
+  "selected_motif_diagnostics": {
+    "cohort_handoff_timing": {
+      "rank_1_5": {
+        "both_seats": true,
+        "distinct_agents": 5,
+        "games": 36,
+        "mean_margin_descriptive_only": 98.08333333333333,
+        "producer_turn": {
+          "count": 36,
+          "maximum": 180,
+          "mean": 66.11111111111111,
+          "median": 42.0,
+          "minimum": 3
+        },
+        "rate": 0.72,
+        "return_turn": {
+          "count": 36,
+          "maximum": 300,
+          "mean": 203.72222222222223,
+          "median": 217.5,
+          "minimum": 71
+        },
+        "suppression_duration": {
+          "count": 36,
+          "maximum": 148,
+          "mean": 33.583333333333336,
+          "median": 15.5,
+          "minimum": 4
+        },
+        "suppressor_turn": {
+          "count": 36,
+          "maximum": 273,
+          "mean": 170.13888888888889,
+          "median": 179.0,
+          "minimum": 17
+        },
+        "worker_ordinals": {
+          "0": 7,
+          "1": 18,
+          "2": 8,
+          "3": 3
+        },
+        "workforce_at_suppression": {
+          "2": 11,
+          "3": 10,
+          "4": 14,
+          "5": 1
+        }
+      },
+      "rank_6_20": {
+        "both_seats": true,
+        "distinct_agents": 11,
+        "games": 41,
+        "mean_margin_descriptive_only": 11.951219512195122,
+        "producer_turn": {
+          "count": 41,
+          "maximum": 269,
+          "mean": 89.82926829268293,
+          "median": 74,
+          "minimum": 3
+        },
+        "rate": 0.2733333333333333,
+        "return_turn": {
+          "count": 41,
+          "maximum": 300,
+          "mean": 200.9268292682927,
+          "median": 207,
+          "minimum": 78
+        },
+        "suppression_duration": {
+          "count": 41,
+          "maximum": 169,
+          "mean": 38.68292682926829,
+          "median": 23,
+          "minimum": 3
+        },
+        "suppressor_turn": {
+          "count": 41,
+          "maximum": 283,
+          "mean": 162.2439024390244,
+          "median": 159,
+          "minimum": 14
+        },
+        "worker_ordinals": {
+          "0": 3,
+          "1": 23,
+          "2": 12,
+          "3": 2,
+          "4": 1
+        },
+        "workforce_at_suppression": {
+          "2": 15,
+          "3": 13,
+          "4": 8,
+          "5": 5
+        }
+      },
+      "resident": {
+        "both_seats": true,
+        "distinct_agents": 1,
+        "games": 21,
+        "mean_margin_descriptive_only": -17.285714285714285,
+        "producer_turn": {
+          "count": 21,
+          "maximum": 227,
+          "mean": 154.33333333333334,
+          "median": 177,
+          "minimum": 3
+        },
+        "rate": 0.109375,
+        "return_turn": {
+          "count": 21,
+          "maximum": 271,
+          "mean": 212.0952380952381,
+          "median": 210,
+          "minimum": 101
+        },
+        "suppression_duration": {
+          "count": 21,
+          "maximum": 64,
+          "mean": 23.19047619047619,
+          "median": 20,
+          "minimum": 4
+        },
+        "suppressor_turn": {
+          "count": 21,
+          "maximum": 257,
+          "mean": 188.9047619047619,
+          "median": 191,
+          "minimum": 57
+        },
+        "worker_ordinals": {
+          "0": 8,
+          "1": 13
+        },
+        "workforce_at_suppression": {
+          "2": 21
+        }
+      }
+    },
+    "motif": "bidirectional_producer_suppressor_handoff",
+    "top5_cut_state_contrast_descriptive_only": {
+      "100": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": 3.924603174603174,
+          "bank_iron": 0.2420634920634921,
+          "bank_score": -0.8849206349206362,
+          "bank_wood": -1.2023809523809523,
+          "carry_fruit": 0.26190476190476186,
+          "carry_iron": 0.5,
+          "carry_wood": 0.023809523809523808,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": 0.7261904761904763,
+          "opponent_live_crop_fruit": -1.4801587301587311,
+          "opponent_live_crop_health": -9.900793650793652,
+          "opponent_live_crops": -0.8492063492063489,
+          "opponent_workers": 0.11904761904761907,
+          "own_live_crop_fruit": -1.6904761904761916,
+          "own_live_crop_health": 0,
+          "own_live_crops": -0.8968253968253963,
+          "roles_other": 0.0515873015873016,
+          "roles_producer_and_suppressor": 0.3888888888888889,
+          "roles_producer_only": -0.17460317460317465,
+          "roles_suppressor_only": -0.031746031746031744,
+          "workers": 0.23412698412698374
+        },
+        "motif_games": 36
+      },
+      "125": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": 7.4761904761904745,
+          "bank_iron": -0.13095238095238138,
+          "bank_score": 0.25396825396826017,
+          "bank_wood": -1.8055555555555554,
+          "carry_fruit": -0.20238095238095255,
+          "carry_iron": -0.3055555555555556,
+          "carry_wood": 0.07936507936507936,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": 1.079365079365079,
+          "opponent_live_crop_fruit": -2.7857142857142865,
+          "opponent_live_crop_health": -11.976190476190474,
+          "opponent_live_crops": -0.996031746031746,
+          "opponent_workers": 0.07142857142857162,
+          "own_live_crop_fruit": -2.25,
+          "own_live_crop_health": -2.25,
+          "own_live_crops": -1.1230158730158735,
+          "roles_other": 0.06349206349206352,
+          "roles_producer_and_suppressor": 0.373015873015873,
+          "roles_producer_only": -0.12301587301587302,
+          "roles_suppressor_only": -0.003968253968253954,
+          "workers": 0.3095238095238093
+        },
+        "motif_games": 36
+      },
+      "150": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": 0.5158730158730158,
+          "bank_iron": -0.20238095238095255,
+          "bank_score": 4.388888888888886,
+          "bank_wood": 0.9682539682539684,
+          "carry_fruit": 0.11904761904761907,
+          "carry_iron": 0.253968253968254,
+          "carry_wood": -0.6587301587301586,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": 0.5714285714285712,
+          "opponent_live_crop_fruit": -4.269841269841269,
+          "opponent_live_crop_health": -7.9722222222222285,
+          "opponent_live_crops": -0.6150793650793656,
+          "opponent_workers": 0.3452380952380949,
+          "own_live_crop_fruit": -2.2023809523809526,
+          "own_live_crop_health": -3.0753968253968225,
+          "own_live_crops": -1.1904761904761907,
+          "roles_other": -0.023809523809523836,
+          "roles_producer_and_suppressor": 0.4682539682539683,
+          "roles_producer_only": 0.03174603174603163,
+          "roles_suppressor_only": 0.0515873015873016,
+          "workers": 0.5277777777777777
+        },
+        "motif_games": 36
+      },
+      "175": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": 0,
+          "bank_iron": 1.2896825396825395,
+          "bank_score": 16.952380952380963,
+          "bank_wood": 4.238095238095241,
+          "carry_fruit": 0.3134920634920634,
+          "carry_iron": -0.1746031746031746,
+          "carry_wood": -0.059523809523809534,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": -0.337301587301587,
+          "opponent_live_crop_fruit": -2.6111111111111107,
+          "opponent_live_crop_health": -10.460317460317455,
+          "opponent_live_crops": -1.083333333333333,
+          "opponent_workers": 0.29365079365079394,
+          "own_live_crop_fruit": -4.36904761904762,
+          "own_live_crop_health": -2.2182539682539755,
+          "own_live_crops": -0.7777777777777777,
+          "roles_other": -0.1388888888888889,
+          "roles_producer_and_suppressor": 0.6349206349206349,
+          "roles_producer_only": -0.011904761904761862,
+          "roles_suppressor_only": 0.007936507936507936,
+          "workers": 0.4920634920634921
+        },
+        "motif_games": 36
+      },
+      "200": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": -0.3293650793650791,
+          "bank_iron": 1.4841269841269837,
+          "bank_score": 28.36904761904762,
+          "bank_wood": 7.17460317460317,
+          "carry_fruit": 0.015873015873015817,
+          "carry_iron": -0.1746031746031746,
+          "carry_wood": 0.6468253968253969,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": -1.0277777777777786,
+          "opponent_live_crop_fruit": -2.8253968253968242,
+          "opponent_live_crop_health": -5.349206349206341,
+          "opponent_live_crops": -0.02777777777777768,
+          "opponent_workers": 0.373015873015873,
+          "own_live_crop_fruit": -3.996031746031747,
+          "own_live_crop_health": -5.535714285714292,
+          "own_live_crops": -1.333333333333333,
+          "roles_other": -0.0357142857142857,
+          "roles_producer_and_suppressor": 0.869047619047619,
+          "roles_producer_only": -0.3492063492063493,
+          "roles_suppressor_only": 0.035714285714285726,
+          "workers": 0.5198412698412698
+        },
+        "motif_games": 36
+      },
+      "225": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": -3.87301587301587,
+          "bank_iron": 0.591269841269841,
+          "bank_score": 32.428571428571416,
+          "bank_wood": 9.07539682539683,
+          "carry_fruit": 0.011904761904761862,
+          "carry_iron": -0.031746031746031744,
+          "carry_wood": 0.49603174603174605,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": -0.7420634920634921,
+          "opponent_live_crop_fruit": -3.6904761904761916,
+          "opponent_live_crop_health": 2.047619047619037,
+          "opponent_live_crops": 0.746031746031746,
+          "opponent_workers": 0.3849206349206349,
+          "own_live_crop_fruit": -3.519841269841269,
+          "own_live_crop_health": 0.7380952380952408,
+          "own_live_crops": -0.42460317460317487,
+          "roles_other": 0.007936507936507936,
+          "roles_producer_and_suppressor": 1.0476190476190474,
+          "roles_producer_only": -0.5873015873015872,
+          "roles_suppressor_only": 0.06349206349206352,
+          "workers": 0.5317460317460316
+        },
+        "motif_games": 36
+      },
+      "75": {
+        "comparison_games": 14,
+        "mean_difference": {
+          "bank_fruit": 1.7658730158730158,
+          "bank_iron": -0.0595238095238102,
+          "bank_score": -2.075396825396826,
+          "bank_wood": -0.9603174603174605,
+          "carry_fruit": 0.42460317460317454,
+          "carry_iron": 0.06746031746031747,
+          "carry_wood": -0.11507936507936507,
+          "joint_live_crop_fruit": 0,
+          "joint_live_crops": 0,
+          "natural_live_plants": 0.46031746031746046,
+          "opponent_live_crop_fruit": -2.321428571428571,
+          "opponent_live_crop_health": -8.857142857142861,
+          "opponent_live_crops": -0.6309523809523814,
+          "opponent_workers": 0.11111111111111116,
+          "own_live_crop_fruit": -0.37301587301587347,
+          "own_live_crop_health": 4.932539682539684,
+          "own_live_crops": -0.4841269841269842,
+          "roles_other": 0.08333333333333333,
+          "roles_producer_and_suppressor": 0.2777777777777778,
+          "roles_producer_only": -0.1865079365079365,
+          "roles_suppressor_only": -0.031746031746031744,
+          "workers": 0.1428571428571428
+        },
+        "motif_games": 36
+      }
+    }
+  },
+  "snapshot_id": "20260723T074715Z-d164a"
+}

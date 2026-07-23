@@ -1,0 +1,13 @@
+{
+  "schema": "troll-farm-d158a-group-robust-recurrent-q6-ppo-lock-v1",
+  "sha256": {
+    "cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "cgauto/train_d108a_recurrent_q6_ppo.py": "ed4ff4d23c88a7df0152334f739d169e6254a53d4111aa5f3c7c06f274669086",
+    "cgauto/train_d109a_long_recurrent_q6_ppo.py": "ac8b64ff0729c201db539d64da1e5efca62519f5653052ccf9b7b601ecec952a",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d109a-duration-only-recurrent-q6-ppo-result.json": "22ebe0a9bf3f992e0ed88d92cbbbf1e4b7a8fb1ed635e8d8737a804eeb469e1f",
+    "data/analysis/live-agent-6553250/d158a-group-robust-recurrent-q6-ppo-protocol-2026-07-23.md": "b20f4f4783a63b7a5b04c8dc65d01bf22eb227333dffd9b77f43659d052e3985",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf"
+  }
+}

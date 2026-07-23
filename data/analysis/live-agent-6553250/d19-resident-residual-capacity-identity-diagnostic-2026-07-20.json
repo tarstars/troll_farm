@@ -1,0 +1,3444 @@
+{
+  "capacity_diagnostic": {
+    "candidates": [
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1901",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.9333333333333333,
+              "selected": 15
+            },
+            "gold_adaptive": {
+              "mean_advantage": -9.0,
+              "selected": 10
+            },
+            "legend_balanced": {
+              "mean_advantage": -12.1,
+              "selected": 20
+            },
+            "mybot": {
+              "mean_advantage": 0.6428571428571429,
+              "selected": 14
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.3157894736842106,
+              "selected": 38
+            },
+            "resident": {
+              "mean_advantage": -2.0,
+              "selected": 19
+            }
+          },
+          "conditional_mean_advantage": -3.793103448275862,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.16927951388888887,
+              -0.001736111111111109
+            ],
+            "maps": 40,
+            "mean_contribution": -0.07638888888888888
+          },
+          "negative": 41,
+          "new_catastrophes": 1,
+          "positive": 47,
+          "positive_maps": 26,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4051724137931034,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 28
+        },
+        "target_selection_rate": 0.02,
+        "threshold": 0.9301064610481262
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1901",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 1.4838709677419355,
+              "selected": 31
+            },
+            "gold_adaptive": {
+              "mean_advantage": -4.708333333333333,
+              "selected": 24
+            },
+            "legend_balanced": {
+              "mean_advantage": -8.409090909090908,
+              "selected": 44
+            },
+            "mybot": {
+              "mean_advantage": 4.5,
+              "selected": 30
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.15873015873015872,
+              "selected": 63
+            },
+            "resident": {
+              "mean_advantage": -1.7692307692307692,
+              "selected": 39
+            }
+          },
+          "conditional_mean_advantage": -1.6493506493506493,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.1779513888888889,
+              0.03281684027777772
+            ],
+            "maps": 40,
+            "mean_contribution": -0.06614583333333333
+          },
+          "negative": 81,
+          "new_catastrophes": 1,
+          "positive": 103,
+          "positive_maps": 37,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4458874458874459,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 47
+        },
+        "target_selection_rate": 0.04,
+        "threshold": 0.8917851448059082
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1901",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -4.208333333333333,
+              "selected": 72
+            },
+            "gold_adaptive": {
+              "mean_advantage": -2.1372549019607843,
+              "selected": 51
+            },
+            "legend_balanced": {
+              "mean_advantage": -8.328947368421053,
+              "selected": 76
+            },
+            "mybot": {
+              "mean_advantage": 2.4,
+              "selected": 65
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.5555555555555556,
+              "selected": 99
+            },
+            "resident": {
+              "mean_advantage": -1.489795918367347,
+              "selected": 98
+            }
+          },
+          "conditional_mean_advantage": -2.579175704989154,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.34131944444444445,
+              -0.07742621527777785
+            ],
+            "maps": 40,
+            "mean_contribution": -0.20642361111111107
+          },
+          "negative": 176,
+          "new_catastrophes": 5,
+          "positive": 182,
+          "positive_maps": 39,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3947939262472885,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 103
+        },
+        "target_selection_rate": 0.08,
+        "threshold": 0.8311622142791748
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1902",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -2.176470588235294,
+              "selected": 17
+            },
+            "gold_adaptive": {
+              "mean_advantage": -19.0,
+              "selected": 10
+            },
+            "legend_balanced": {
+              "mean_advantage": 2.0,
+              "selected": 23
+            },
+            "mybot": {
+              "mean_advantage": -1.3157894736842106,
+              "selected": 19
+            },
+            "norx_native_three": {
+              "mean_advantage": -4.3,
+              "selected": 30
+            },
+            "resident": {
+              "mean_advantage": -1.2941176470588236,
+              "selected": 17
+            }
+          },
+          "conditional_mean_advantage": -3.0775862068965516,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.15486545138888888,
+              0.013368055555555553
+            ],
+            "maps": 40,
+            "mean_contribution": -0.061979166666666675
+          },
+          "negative": 38,
+          "new_catastrophes": 1,
+          "positive": 48,
+          "positive_maps": 24,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.41379310344827586,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 30
+        },
+        "target_selection_rate": 0.02,
+        "threshold": 0.9566347599029541
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1902",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -6.714285714285714,
+              "selected": 35
+            },
+            "gold_adaptive": {
+              "mean_advantage": -12.772727272727273,
+              "selected": 22
+            },
+            "legend_balanced": {
+              "mean_advantage": -2.8297872340425534,
+              "selected": 47
+            },
+            "mybot": {
+              "mean_advantage": -0.5945945945945946,
+              "selected": 37
+            },
+            "norx_native_three": {
+              "mean_advantage": -3.581818181818182,
+              "selected": 55
+            },
+            "resident": {
+              "mean_advantage": -2.342857142857143,
+              "selected": 35
+            }
+          },
+          "conditional_mean_advantage": -4.112554112554113,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.28576822916666667,
+              -0.05538194444444444
+            ],
+            "maps": 40,
+            "mean_contribution": -0.16493055555555552
+          },
+          "negative": 90,
+          "new_catastrophes": 2,
+          "positive": 82,
+          "positive_maps": 33,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.354978354978355,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 59
+        },
+        "target_selection_rate": 0.04,
+        "threshold": 0.9187154769897461
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "geometry_large_s1902",
+        "parameters": 33153,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -4.140845070422535,
+              "selected": 71
+            },
+            "gold_adaptive": {
+              "mean_advantage": -2.683333333333333,
+              "selected": 60
+            },
+            "legend_balanced": {
+              "mean_advantage": -5.21978021978022,
+              "selected": 91
+            },
+            "mybot": {
+              "mean_advantage": 0.2571428571428571,
+              "selected": 70
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.8681318681318682,
+              "selected": 91
+            },
+            "resident": {
+              "mean_advantage": -1.1153846153846154,
+              "selected": 78
+            }
+          },
+          "conditional_mean_advantage": -2.5357917570498913,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.38680989583333336,
+              -0.042708333333333334
+            ],
+            "maps": 40,
+            "mean_contribution": -0.20295138888888892
+          },
+          "negative": 174,
+          "new_catastrophes": 5,
+          "positive": 177,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3839479392624729,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 110
+        },
+        "target_selection_rate": 0.08,
+        "threshold": 0.8663164377212524
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1901",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -14.0,
+              "selected": 11
+            },
+            "gold_adaptive": {
+              "mean_advantage": -21.266666666666666,
+              "selected": 15
+            },
+            "legend_balanced": {
+              "mean_advantage": -2.84,
+              "selected": 25
+            },
+            "mybot": {
+              "mean_advantage": -1.8235294117647058,
+              "selected": 17
+            },
+            "norx_native_three": {
+              "mean_advantage": 0.16,
+              "selected": 25
+            },
+            "resident": {
+              "mean_advantage": 0.43478260869565216,
+              "selected": 23
+            }
+          },
+          "conditional_mean_advantage": -4.836206896551724,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2036458333333333,
+              -0.02134982638888895
+            ],
+            "maps": 40,
+            "mean_contribution": -0.09739583333333332
+          },
+          "negative": 47,
+          "new_catastrophes": 2,
+          "positive": 40,
+          "positive_maps": 20,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3448275862068966,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 29
+        },
+        "target_selection_rate": 0.02,
+        "threshold": 0.8543482422828674
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1901",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -8.333333333333334,
+              "selected": 24
+            },
+            "gold_adaptive": {
+              "mean_advantage": -3.7916666666666665,
+              "selected": 24
+            },
+            "legend_balanced": {
+              "mean_advantage": -3.1702127659574466,
+              "selected": 47
+            },
+            "mybot": {
+              "mean_advantage": -0.8205128205128205,
+              "selected": 39
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.75,
+              "selected": 48
+            },
+            "resident": {
+              "mean_advantage": -0.3877551020408163,
+              "selected": 49
+            }
+          },
+          "conditional_mean_advantage": -2.2813852813852815,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.21442274305555556,
+              0.012330729166666604
+            ],
+            "maps": 40,
+            "mean_contribution": -0.09149305555555556
+          },
+          "negative": 95,
+          "new_catastrophes": 2,
+          "positive": 84,
+          "positive_maps": 32,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.36363636363636365,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 52
+        },
+        "target_selection_rate": 0.04,
+        "threshold": 0.7954941987991333
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1901",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -3.640625,
+              "selected": 64
+            },
+            "gold_adaptive": {
+              "mean_advantage": -0.19298245614035087,
+              "selected": 57
+            },
+            "legend_balanced": {
+              "mean_advantage": -3.2989690721649483,
+              "selected": 97
+            },
+            "mybot": {
+              "mean_advantage": -0.4189189189189189,
+              "selected": 74
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.2911392405063291,
+              "selected": 79
+            },
+            "resident": {
+              "mean_advantage": -0.5,
+              "selected": 90
+            }
+          },
+          "conditional_mean_advantage": -1.438177874186551,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2939279513888889,
+              0.04513888888888888
+            ],
+            "maps": 40,
+            "mean_contribution": -0.11510416666666667
+          },
+          "negative": 186,
+          "new_catastrophes": 3,
+          "positive": 177,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3839479392624729,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 98
+        },
+        "target_selection_rate": 0.08,
+        "threshold": 0.7251919507980347
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1902",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 0.07692307692307693,
+              "selected": 13
+            },
+            "gold_adaptive": {
+              "mean_advantage": -15.421052631578947,
+              "selected": 19
+            },
+            "legend_balanced": {
+              "mean_advantage": -6.423076923076923,
+              "selected": 26
+            },
+            "mybot": {
+              "mean_advantage": -1.4705882352941178,
+              "selected": 17
+            },
+            "norx_native_three": {
+              "mean_advantage": 3.2413793103448274,
+              "selected": 29
+            },
+            "resident": {
+              "mean_advantage": 0.3333333333333333,
+              "selected": 12
+            }
+          },
+          "conditional_mean_advantage": -3.3275862068965516,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.18159722222222222,
+              0.03142795138888881
+            ],
+            "maps": 40,
+            "mean_contribution": -0.06701388888888889
+          },
+          "negative": 49,
+          "new_catastrophes": 1,
+          "positive": 46,
+          "positive_maps": 23,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.39655172413793105,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 21
+        },
+        "target_selection_rate": 0.02,
+        "threshold": 0.9388692378997803
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1902",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -2.3225806451612905,
+              "selected": 31
+            },
+            "gold_adaptive": {
+              "mean_advantage": -14.972972972972974,
+              "selected": 37
+            },
+            "legend_balanced": {
+              "mean_advantage": -6.958333333333333,
+              "selected": 48
+            },
+            "mybot": {
+              "mean_advantage": 1.25,
+              "selected": 32
+            },
+            "norx_native_three": {
+              "mean_advantage": 2.5517241379310347,
+              "selected": 58
+            },
+            "resident": {
+              "mean_advantage": 0.64,
+              "selected": 25
+            }
+          },
+          "conditional_mean_advantage": -3.272727272727273,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.34635416666666663,
+              0.06250434027777774
+            ],
+            "maps": 40,
+            "mean_contribution": -0.13125000000000003
+          },
+          "negative": 92,
+          "new_catastrophes": 5,
+          "positive": 95,
+          "positive_maps": 34,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.41125541125541126,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 44
+        },
+        "target_selection_rate": 0.04,
+        "threshold": 0.899255633354187
+      },
+      {
+        "gates": {
+          "conditional_mean_positive": false,
+          "map_ci_lower_positive": false,
+          "no_new_catastrophe": false,
+          "positive_against_at_least_4_opponents": true,
+          "positive_in_both_roles": true,
+          "positive_on_at_least_12_maps": true,
+          "precision_at_least_65_percent": false,
+          "selected_at_least_72": true
+        },
+        "model": "spatial_large_s1902",
+        "parameters": 22301,
+        "passed": false,
+        "report": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.3285714285714285,
+              "selected": 70
+            },
+            "gold_adaptive": {
+              "mean_advantage": -6.666666666666667,
+              "selected": 72
+            },
+            "legend_balanced": {
+              "mean_advantage": -4.662650602409639,
+              "selected": 83
+            },
+            "mybot": {
+              "mean_advantage": 1.1388888888888888,
+              "selected": 72
+            },
+            "norx_native_three": {
+              "mean_advantage": 1.9425287356321839,
+              "selected": 87
+            },
+            "resident": {
+              "mean_advantage": -0.2857142857142857,
+              "selected": 77
+            }
+          },
+          "conditional_mean_advantage": -1.5856832971800434,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.3671918402777778,
+              0.0987847222222222
+            ],
+            "maps": 40,
+            "mean_contribution": -0.12690972222222224
+          },
+          "negative": 193,
+          "new_catastrophes": 5,
+          "positive": 189,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.40997830802603036,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 79
+        },
+        "target_selection_rate": 0.08,
+        "threshold": 0.8295195698738098
+      }
+    ],
+    "passed": false
+  },
+  "corpus": {
+    "train_maps": 200,
+    "train_rows": 28800,
+    "validation_maps": 40,
+    "validation_rows": 5760
+  },
+  "decision": {
+    "authorize_arena": false,
+    "authorize_candidate": false,
+    "authorize_locked_test": false,
+    "authorize_policy": false,
+    "authorize_submission": false,
+    "close_single_state_terminal_advantage_distillation": true,
+    "freeze_large_teacher_compression_experiment": false,
+    "freeze_observable_opponent_history_experiment": false
+  },
+  "identity_diagnostic": {
+    "comparisons": [
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -14.0,
+              "selected": 11
+            },
+            "gold_adaptive": {
+              "mean_advantage": -21.266666666666666,
+              "selected": 15
+            },
+            "legend_balanced": {
+              "mean_advantage": -2.84,
+              "selected": 25
+            },
+            "mybot": {
+              "mean_advantage": -1.8235294117647058,
+              "selected": 17
+            },
+            "norx_native_three": {
+              "mean_advantage": 0.16,
+              "selected": 25
+            },
+            "resident": {
+              "mean_advantage": 0.43478260869565216,
+              "selected": 23
+            }
+          },
+          "conditional_mean_advantage": -4.836206896551724,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2036458333333333,
+              -0.02134982638888895
+            ],
+            "maps": 40,
+            "mean_contribution": -0.09739583333333332
+          },
+          "negative": 47,
+          "new_catastrophes": 2,
+          "positive": 40,
+          "positive_maps": 20,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3448275862068966,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 29
+        },
+        "base_model": "spatial_large_s1901",
+        "conditional_mean_gain": 0.3275862068965516,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 6.533333333333333,
+              "selected": 15
+            },
+            "gold_adaptive": {
+              "mean_advantage": -14.666666666666666,
+              "selected": 6
+            },
+            "legend_balanced": {
+              "mean_advantage": -13.352941176470589,
+              "selected": 34
+            },
+            "mybot": {
+              "mean_advantage": 1.5238095238095237,
+              "selected": 21
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.5,
+              "selected": 30
+            },
+            "resident": {
+              "mean_advantage": -6.6,
+              "selected": 10
+            }
+          },
+          "conditional_mean_advantage": -4.508620689655173,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.23194878472222222,
+              0.04027777777777778
+            ],
+            "maps": 40,
+            "mean_contribution": -0.09079861111111112
+          },
+          "negative": 41,
+          "new_catastrophes": 1,
+          "positive": 51,
+          "positive_maps": 26,
+          "positive_opponents": 5,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4396551724137931,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 24
+        },
+        "oracle_model": "spatial_oracle_s1901",
+        "passed": false,
+        "precision_gain": 0.09482758620689652,
+        "seed": 1901,
+        "target_selection_rate": 0.02
+      },
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -8.333333333333334,
+              "selected": 24
+            },
+            "gold_adaptive": {
+              "mean_advantage": -3.7916666666666665,
+              "selected": 24
+            },
+            "legend_balanced": {
+              "mean_advantage": -3.1702127659574466,
+              "selected": 47
+            },
+            "mybot": {
+              "mean_advantage": -0.8205128205128205,
+              "selected": 39
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.75,
+              "selected": 48
+            },
+            "resident": {
+              "mean_advantage": -0.3877551020408163,
+              "selected": 49
+            }
+          },
+          "conditional_mean_advantage": -2.2813852813852815,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.21442274305555556,
+              0.012330729166666604
+            ],
+            "maps": 40,
+            "mean_contribution": -0.09149305555555556
+          },
+          "negative": 95,
+          "new_catastrophes": 2,
+          "positive": 84,
+          "positive_maps": 32,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.36363636363636365,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 52
+        },
+        "base_model": "spatial_large_s1901",
+        "conditional_mean_gain": -1.0216450216450217,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 1.206896551724138,
+              "selected": 29
+            },
+            "gold_adaptive": {
+              "mean_advantage": -11.5,
+              "selected": 18
+            },
+            "legend_balanced": {
+              "mean_advantage": -7.803030303030303,
+              "selected": 66
+            },
+            "mybot": {
+              "mean_advantage": -0.030303030303030304,
+              "selected": 33
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.9152542372881356,
+              "selected": 59
+            },
+            "resident": {
+              "mean_advantage": -0.8076923076923077,
+              "selected": 26
+            }
+          },
+          "conditional_mean_advantage": -3.303030303030303,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.31615017361111114,
+              0.0447960069444444
+            ],
+            "maps": 40,
+            "mean_contribution": -0.13246527777777778
+          },
+          "negative": 83,
+          "new_catastrophes": 2,
+          "positive": 103,
+          "positive_maps": 33,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4458874458874459,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 45
+        },
+        "oracle_model": "spatial_oracle_s1901",
+        "passed": false,
+        "precision_gain": 0.08225108225108224,
+        "seed": 1901,
+        "target_selection_rate": 0.04
+      },
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 0.07692307692307693,
+              "selected": 13
+            },
+            "gold_adaptive": {
+              "mean_advantage": -15.421052631578947,
+              "selected": 19
+            },
+            "legend_balanced": {
+              "mean_advantage": -6.423076923076923,
+              "selected": 26
+            },
+            "mybot": {
+              "mean_advantage": -1.4705882352941178,
+              "selected": 17
+            },
+            "norx_native_three": {
+              "mean_advantage": 3.2413793103448274,
+              "selected": 29
+            },
+            "resident": {
+              "mean_advantage": 0.3333333333333333,
+              "selected": 12
+            }
+          },
+          "conditional_mean_advantage": -3.3275862068965516,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.18159722222222222,
+              0.03142795138888881
+            ],
+            "maps": 40,
+            "mean_contribution": -0.06701388888888889
+          },
+          "negative": 49,
+          "new_catastrophes": 1,
+          "positive": 46,
+          "positive_maps": 23,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.39655172413793105,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 21
+        },
+        "base_model": "spatial_large_s1902",
+        "conditional_mean_gain": 0.9827586206896552,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 2.1875,
+              "selected": 16
+            },
+            "gold_adaptive": {
+              "mean_advantage": 9.363636363636363,
+              "selected": 11
+            },
+            "legend_balanced": {
+              "mean_advantage": -13.206896551724139,
+              "selected": 29
+            },
+            "mybot": {
+              "mean_advantage": 5.166666666666667,
+              "selected": 12
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.5833333333333333,
+              "selected": 36
+            },
+            "resident": {
+              "mean_advantage": -2.6666666666666665,
+              "selected": 12
+            }
+          },
+          "conditional_mean_advantage": -2.3448275862068964,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.13542100694444445,
+              0.030907118055555502
+            ],
+            "maps": 40,
+            "mean_contribution": -0.04722222222222223
+          },
+          "negative": 43,
+          "new_catastrophes": 2,
+          "positive": 53,
+          "positive_maps": 31,
+          "positive_opponents": 5,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.45689655172413796,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 20
+        },
+        "oracle_model": "spatial_oracle_s1902",
+        "passed": false,
+        "precision_gain": 0.060344827586206906,
+        "seed": 1902,
+        "target_selection_rate": 0.02
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.9333333333333333,
+              "selected": 15
+            },
+            "gold_adaptive": {
+              "mean_advantage": -9.0,
+              "selected": 10
+            },
+            "legend_balanced": {
+              "mean_advantage": -12.1,
+              "selected": 20
+            },
+            "mybot": {
+              "mean_advantage": 0.6428571428571429,
+              "selected": 14
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.3157894736842106,
+              "selected": 38
+            },
+            "resident": {
+              "mean_advantage": -2.0,
+              "selected": 19
+            }
+          },
+          "conditional_mean_advantage": -3.793103448275862,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.16927951388888887,
+              -0.001736111111111109
+            ],
+            "maps": 40,
+            "mean_contribution": -0.07638888888888888
+          },
+          "negative": 41,
+          "new_catastrophes": 1,
+          "positive": 47,
+          "positive_maps": 26,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4051724137931034,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 28
+        },
+        "base_model": "geometry_large_s1901",
+        "conditional_mean_gain": -0.0344827586206895,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 3.6666666666666665,
+              "selected": 12
+            },
+            "gold_adaptive": {
+              "mean_advantage": -0.3125,
+              "selected": 16
+            },
+            "legend_balanced": {
+              "mean_advantage": -12.5,
+              "selected": 28
+            },
+            "mybot": {
+              "mean_advantage": -9.25,
+              "selected": 8
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.34285714285714286,
+              "selected": 35
+            },
+            "resident": {
+              "mean_advantage": -2.764705882352941,
+              "selected": 17
+            }
+          },
+          "conditional_mean_advantage": -3.8275862068965516,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.1692751736111111,
+              -0.004340277777777778
+            ],
+            "maps": 40,
+            "mean_contribution": -0.07708333333333334
+          },
+          "negative": 44,
+          "new_catastrophes": 1,
+          "positive": 53,
+          "positive_maps": 27,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.45689655172413796,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 19
+        },
+        "oracle_model": "geometry_oracle_s1901",
+        "passed": false,
+        "precision_gain": 0.05172413793103453,
+        "seed": 1901,
+        "target_selection_rate": 0.02
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -6.714285714285714,
+              "selected": 35
+            },
+            "gold_adaptive": {
+              "mean_advantage": -12.772727272727273,
+              "selected": 22
+            },
+            "legend_balanced": {
+              "mean_advantage": -2.8297872340425534,
+              "selected": 47
+            },
+            "mybot": {
+              "mean_advantage": -0.5945945945945946,
+              "selected": 37
+            },
+            "norx_native_three": {
+              "mean_advantage": -3.581818181818182,
+              "selected": 55
+            },
+            "resident": {
+              "mean_advantage": -2.342857142857143,
+              "selected": 35
+            }
+          },
+          "conditional_mean_advantage": -4.112554112554113,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.28576822916666667,
+              -0.05538194444444444
+            ],
+            "maps": 40,
+            "mean_contribution": -0.16493055555555552
+          },
+          "negative": 90,
+          "new_catastrophes": 2,
+          "positive": 82,
+          "positive_maps": 33,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.354978354978355,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 59
+        },
+        "base_model": "geometry_large_s1902",
+        "conditional_mean_gain": 0.6277056277056281,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.4,
+              "selected": 40
+            },
+            "gold_adaptive": {
+              "mean_advantage": -0.7428571428571429,
+              "selected": 35
+            },
+            "legend_balanced": {
+              "mean_advantage": -10.431818181818182,
+              "selected": 44
+            },
+            "mybot": {
+              "mean_advantage": -3.2972972972972974,
+              "selected": 37
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.4666666666666666,
+              "selected": 45
+            },
+            "resident": {
+              "mean_advantage": -2.533333333333333,
+              "selected": 30
+            }
+          },
+          "conditional_mean_advantage": -3.484848484848485,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2682335069444445,
+              -0.023953993055555622
+            ],
+            "maps": 40,
+            "mean_contribution": -0.13975694444444448
+          },
+          "negative": 99,
+          "new_catastrophes": 1,
+          "positive": 91,
+          "positive_maps": 36,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3939393939393939,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 41
+        },
+        "oracle_model": "geometry_oracle_s1902",
+        "passed": false,
+        "precision_gain": 0.03896103896103892,
+        "seed": 1902,
+        "target_selection_rate": 0.04
+      },
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -3.640625,
+              "selected": 64
+            },
+            "gold_adaptive": {
+              "mean_advantage": -0.19298245614035087,
+              "selected": 57
+            },
+            "legend_balanced": {
+              "mean_advantage": -3.2989690721649483,
+              "selected": 97
+            },
+            "mybot": {
+              "mean_advantage": -0.4189189189189189,
+              "selected": 74
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.2911392405063291,
+              "selected": 79
+            },
+            "resident": {
+              "mean_advantage": -0.5,
+              "selected": 90
+            }
+          },
+          "conditional_mean_advantage": -1.438177874186551,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2939279513888889,
+              0.04513888888888888
+            ],
+            "maps": 40,
+            "mean_contribution": -0.11510416666666667
+          },
+          "negative": 186,
+          "new_catastrophes": 3,
+          "positive": 177,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3839479392624729,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 98
+        },
+        "base_model": "spatial_large_s1901",
+        "conditional_mean_gain": -1.8633405639913232,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.6,
+              "selected": 65
+            },
+            "gold_adaptive": {
+              "mean_advantage": -13.770833333333334,
+              "selected": 48
+            },
+            "legend_balanced": {
+              "mean_advantage": -7.715596330275229,
+              "selected": 109
+            },
+            "mybot": {
+              "mean_advantage": 2.4266666666666667,
+              "selected": 75
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.3883495145631068,
+              "selected": 103
+            },
+            "resident": {
+              "mean_advantage": -0.9508196721311475,
+              "selected": 61
+            }
+          },
+          "conditional_mean_advantage": -3.301518438177874,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.5291753472222221,
+              -0.019774305555555816
+            ],
+            "maps": 40,
+            "mean_contribution": -0.26423611111111106
+          },
+          "negative": 180,
+          "new_catastrophes": 5,
+          "positive": 192,
+          "positive_maps": 39,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4164859002169197,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 89
+        },
+        "oracle_model": "spatial_oracle_s1901",
+        "passed": false,
+        "precision_gain": 0.03253796095444683,
+        "seed": 1901,
+        "target_selection_rate": 0.08
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -4.140845070422535,
+              "selected": 71
+            },
+            "gold_adaptive": {
+              "mean_advantage": -2.683333333333333,
+              "selected": 60
+            },
+            "legend_balanced": {
+              "mean_advantage": -5.21978021978022,
+              "selected": 91
+            },
+            "mybot": {
+              "mean_advantage": 0.2571428571428571,
+              "selected": 70
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.8681318681318682,
+              "selected": 91
+            },
+            "resident": {
+              "mean_advantage": -1.1153846153846154,
+              "selected": 78
+            }
+          },
+          "conditional_mean_advantage": -2.5357917570498913,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.38680989583333336,
+              -0.042708333333333334
+            ],
+            "maps": 40,
+            "mean_contribution": -0.20295138888888892
+          },
+          "negative": 174,
+          "new_catastrophes": 5,
+          "positive": 177,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3839479392624729,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 110
+        },
+        "base_model": "geometry_large_s1902",
+        "conditional_mean_gain": -0.2993492407809111,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.9375,
+              "selected": 80
+            },
+            "gold_adaptive": {
+              "mean_advantage": -1.1805555555555556,
+              "selected": 72
+            },
+            "legend_balanced": {
+              "mean_advantage": -8.891566265060241,
+              "selected": 83
+            },
+            "mybot": {
+              "mean_advantage": -2.418918918918919,
+              "selected": 74
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.39603960396039606,
+              "selected": 101
+            },
+            "resident": {
+              "mean_advantage": -2.156862745098039,
+              "selected": 51
+            }
+          },
+          "conditional_mean_advantage": -2.8351409978308024,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.46805555555555556,
+              -0.01769531250000018
+            ],
+            "maps": 40,
+            "mean_contribution": -0.22690972222222222
+          },
+          "negative": 202,
+          "new_catastrophes": 7,
+          "positive": 184,
+          "positive_maps": 40,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.39913232104121477,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 75
+        },
+        "oracle_model": "geometry_oracle_s1902",
+        "passed": false,
+        "precision_gain": 0.015184381778741873,
+        "seed": 1902,
+        "target_selection_rate": 0.08
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -4.208333333333333,
+              "selected": 72
+            },
+            "gold_adaptive": {
+              "mean_advantage": -2.1372549019607843,
+              "selected": 51
+            },
+            "legend_balanced": {
+              "mean_advantage": -8.328947368421053,
+              "selected": 76
+            },
+            "mybot": {
+              "mean_advantage": 2.4,
+              "selected": 65
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.5555555555555556,
+              "selected": 99
+            },
+            "resident": {
+              "mean_advantage": -1.489795918367347,
+              "selected": 98
+            }
+          },
+          "conditional_mean_advantage": -2.579175704989154,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.34131944444444445,
+              -0.07742621527777785
+            ],
+            "maps": 40,
+            "mean_contribution": -0.20642361111111107
+          },
+          "negative": 176,
+          "new_catastrophes": 5,
+          "positive": 182,
+          "positive_maps": 39,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3947939262472885,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 103
+        },
+        "base_model": "geometry_large_s1901",
+        "conditional_mean_gain": -0.3362255965292844,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 0.4520547945205479,
+              "selected": 73
+            },
+            "gold_adaptive": {
+              "mean_advantage": -0.94,
+              "selected": 50
+            },
+            "legend_balanced": {
+              "mean_advantage": -9.781609195402298,
+              "selected": 87
+            },
+            "mybot": {
+              "mean_advantage": -1.9666666666666666,
+              "selected": 60
+            },
+            "norx_native_three": {
+              "mean_advantage": -2.14,
+              "selected": 100
+            },
+            "resident": {
+              "mean_advantage": -1.6153846153846154,
+              "selected": 91
+            }
+          },
+          "conditional_mean_advantage": -2.9154013015184383,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.4267361111111111,
+              -0.0532942708333334
+            ],
+            "maps": 40,
+            "mean_contribution": -0.2333333333333333
+          },
+          "negative": 193,
+          "new_catastrophes": 7,
+          "positive": 183,
+          "positive_maps": 39,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.3969631236442516,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 85
+        },
+        "oracle_model": "geometry_oracle_s1901",
+        "passed": false,
+        "precision_gain": 0.0021691973969631406,
+        "seed": 1901,
+        "target_selection_rate": 0.08
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 1.4838709677419355,
+              "selected": 31
+            },
+            "gold_adaptive": {
+              "mean_advantage": -4.708333333333333,
+              "selected": 24
+            },
+            "legend_balanced": {
+              "mean_advantage": -8.409090909090908,
+              "selected": 44
+            },
+            "mybot": {
+              "mean_advantage": 4.5,
+              "selected": 30
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.15873015873015872,
+              "selected": 63
+            },
+            "resident": {
+              "mean_advantage": -1.7692307692307692,
+              "selected": 39
+            }
+          },
+          "conditional_mean_advantage": -1.6493506493506493,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.1779513888888889,
+              0.03281684027777772
+            ],
+            "maps": 40,
+            "mean_contribution": -0.06614583333333333
+          },
+          "negative": 81,
+          "new_catastrophes": 1,
+          "positive": 103,
+          "positive_maps": 37,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.4458874458874459,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 47
+        },
+        "base_model": "geometry_large_s1901",
+        "conditional_mean_gain": -0.891774891774892,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 1.625,
+              "selected": 32
+            },
+            "gold_adaptive": {
+              "mean_advantage": 1.6333333333333333,
+              "selected": 30
+            },
+            "legend_balanced": {
+              "mean_advantage": -11.511111111111111,
+              "selected": 45
+            },
+            "mybot": {
+              "mean_advantage": -3.8181818181818183,
+              "selected": 22
+            },
+            "norx_native_three": {
+              "mean_advantage": -0.0625,
+              "selected": 64
+            },
+            "resident": {
+              "mean_advantage": -2.1578947368421053,
+              "selected": 38
+            }
+          },
+          "conditional_mean_advantage": -2.5411255411255413,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.23107638888888887,
+              0.00990017361111105
+            ],
+            "maps": 40,
+            "mean_contribution": -0.1019097222222222
+          },
+          "negative": 96,
+          "new_catastrophes": 3,
+          "positive": 101,
+          "positive_maps": 35,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.43722943722943725,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 34
+        },
+        "oracle_model": "geometry_oracle_s1901",
+        "passed": false,
+        "precision_gain": -0.008658008658008642,
+        "seed": 1901,
+        "target_selection_rate": 0.04
+      },
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -2.3225806451612905,
+              "selected": 31
+            },
+            "gold_adaptive": {
+              "mean_advantage": -14.972972972972974,
+              "selected": 37
+            },
+            "legend_balanced": {
+              "mean_advantage": -6.958333333333333,
+              "selected": 48
+            },
+            "mybot": {
+              "mean_advantage": 1.25,
+              "selected": 32
+            },
+            "norx_native_three": {
+              "mean_advantage": 2.5517241379310347,
+              "selected": 58
+            },
+            "resident": {
+              "mean_advantage": 0.64,
+              "selected": 25
+            }
+          },
+          "conditional_mean_advantage": -3.272727272727273,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.34635416666666663,
+              0.06250434027777774
+            ],
+            "maps": 40,
+            "mean_contribution": -0.13125000000000003
+          },
+          "negative": 92,
+          "new_catastrophes": 5,
+          "positive": 95,
+          "positive_maps": 34,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.41125541125541126,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 44
+        },
+        "base_model": "spatial_large_s1902",
+        "conditional_mean_gain": 0.025974025974026205,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": 1.3235294117647058,
+              "selected": 34
+            },
+            "gold_adaptive": {
+              "mean_advantage": 8.909090909090908,
+              "selected": 22
+            },
+            "legend_balanced": {
+              "mean_advantage": -15.576923076923077,
+              "selected": 52
+            },
+            "mybot": {
+              "mean_advantage": 3.9583333333333335,
+              "selected": 24
+            },
+            "norx_native_three": {
+              "mean_advantage": -3.2837837837837838,
+              "selected": 74
+            },
+            "resident": {
+              "mean_advantage": -1.32,
+              "selected": 25
+            }
+          },
+          "conditional_mean_advantage": -3.2467532467532467,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.2977473958333334,
+              0.011284722222222227
+            ],
+            "maps": 40,
+            "mean_contribution": -0.13020833333333334
+          },
+          "negative": 94,
+          "new_catastrophes": 2,
+          "positive": 90,
+          "positive_maps": 35,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.38961038961038963,
+          "selected": 231,
+          "selection_rate": 0.04010416666666667,
+          "ties": 47
+        },
+        "oracle_model": "spatial_oracle_s1902",
+        "passed": false,
+        "precision_gain": -0.021645021645021634,
+        "seed": 1902,
+        "target_selection_rate": 0.04
+      },
+      {
+        "architecture": "spatial",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.3285714285714285,
+              "selected": 70
+            },
+            "gold_adaptive": {
+              "mean_advantage": -6.666666666666667,
+              "selected": 72
+            },
+            "legend_balanced": {
+              "mean_advantage": -4.662650602409639,
+              "selected": 83
+            },
+            "mybot": {
+              "mean_advantage": 1.1388888888888888,
+              "selected": 72
+            },
+            "norx_native_three": {
+              "mean_advantage": 1.9425287356321839,
+              "selected": 87
+            },
+            "resident": {
+              "mean_advantage": -0.2857142857142857,
+              "selected": 77
+            }
+          },
+          "conditional_mean_advantage": -1.5856832971800434,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.3671918402777778,
+              0.0987847222222222
+            ],
+            "maps": 40,
+            "mean_contribution": -0.12690972222222224
+          },
+          "negative": 193,
+          "new_catastrophes": 5,
+          "positive": 189,
+          "positive_maps": 38,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.40997830802603036,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 79
+        },
+        "base_model": "spatial_large_s1902",
+        "conditional_mean_gain": -1.9739696312364423,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -1.0625,
+              "selected": 64
+            },
+            "gold_adaptive": {
+              "mean_advantage": 0.27450980392156865,
+              "selected": 51
+            },
+            "legend_balanced": {
+              "mean_advantage": -11.446428571428571,
+              "selected": 112
+            },
+            "mybot": {
+              "mean_advantage": -0.16666666666666666,
+              "selected": 60
+            },
+            "norx_native_three": {
+              "mean_advantage": -1.7863247863247864,
+              "selected": 117
+            },
+            "resident": {
+              "mean_advantage": -1.5087719298245614,
+              "selected": 57
+            }
+          },
+          "conditional_mean_advantage": -3.5596529284164857,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.5456770833333333,
+              -0.05121527777777779
+            ],
+            "maps": 40,
+            "mean_contribution": -0.28489583333333335
+          },
+          "negative": 189,
+          "new_catastrophes": 7,
+          "positive": 171,
+          "positive_maps": 40,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.37093275488069416,
+          "selected": 461,
+          "selection_rate": 0.08003472222222222,
+          "ties": 101
+        },
+        "oracle_model": "spatial_oracle_s1902",
+        "passed": false,
+        "precision_gain": -0.0390455531453362,
+        "seed": 1902,
+        "target_selection_rate": 0.08
+      },
+      {
+        "architecture": "geometry",
+        "base": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -2.176470588235294,
+              "selected": 17
+            },
+            "gold_adaptive": {
+              "mean_advantage": -19.0,
+              "selected": 10
+            },
+            "legend_balanced": {
+              "mean_advantage": 2.0,
+              "selected": 23
+            },
+            "mybot": {
+              "mean_advantage": -1.3157894736842106,
+              "selected": 19
+            },
+            "norx_native_three": {
+              "mean_advantage": -4.3,
+              "selected": 30
+            },
+            "resident": {
+              "mean_advantage": -1.2941176470588236,
+              "selected": 17
+            }
+          },
+          "conditional_mean_advantage": -3.0775862068965516,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.15486545138888888,
+              0.013368055555555553
+            ],
+            "maps": 40,
+            "mean_contribution": -0.061979166666666675
+          },
+          "negative": 38,
+          "new_catastrophes": 1,
+          "positive": 48,
+          "positive_maps": 24,
+          "positive_opponents": 6,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.41379310344827586,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 30
+        },
+        "base_model": "geometry_large_s1902",
+        "conditional_mean_gain": -1.387931034482759,
+        "gates": {
+          "conditional_mean_gain_at_least_plus1": false,
+          "oracle_map_ci_lower_positive": false,
+          "oracle_no_new_catastrophe": false,
+          "precision_gain_at_least_10pp": false
+        },
+        "oracle": {
+          "by_opponent": {
+            "compact_gold": {
+              "mean_advantage": -3.6470588235294117,
+              "selected": 17
+            },
+            "gold_adaptive": {
+              "mean_advantage": 1.3571428571428572,
+              "selected": 14
+            },
+            "legend_balanced": {
+              "mean_advantage": -11.35483870967742,
+              "selected": 31
+            },
+            "mybot": {
+              "mean_advantage": -2.2857142857142856,
+              "selected": 7
+            },
+            "norx_native_three": {
+              "mean_advantage": -2.0714285714285716,
+              "selected": 28
+            },
+            "resident": {
+              "mean_advantage": -2.5789473684210527,
+              "selected": 19
+            }
+          },
+          "conditional_mean_advantage": -4.4655172413793105,
+          "conditional_median_advantage": 0.0,
+          "map_bootstrap": {
+            "ci95": [
+              -0.19774305555555555,
+              0.013372395833333283
+            ],
+            "maps": 40,
+            "mean_contribution": -0.08993055555555556
+          },
+          "negative": 57,
+          "new_catastrophes": 1,
+          "positive": 41,
+          "positive_maps": 23,
+          "positive_opponents": 5,
+          "positive_roles": [
+            0,
+            1
+          ],
+          "precision": 0.35344827586206895,
+          "selected": 116,
+          "selection_rate": 0.02013888888888889,
+          "ties": 18
+        },
+        "oracle_model": "geometry_oracle_s1902",
+        "passed": false,
+        "precision_gain": -0.060344827586206906,
+        "seed": 1902,
+        "target_selection_rate": 0.02
+      }
+    ],
+    "passed": false
+  },
+  "models": {
+    "geometry_large_s1901": {
+      "parameters": 33153
+    },
+    "geometry_large_s1902": {
+      "parameters": 33153
+    },
+    "geometry_oracle_s1901": {
+      "parameters": 33921
+    },
+    "geometry_oracle_s1902": {
+      "parameters": 33921
+    },
+    "spatial_large_s1901": {
+      "parameters": 22301
+    },
+    "spatial_large_s1902": {
+      "parameters": 22301
+    },
+    "spatial_oracle_s1901": {
+      "parameters": 22685
+    },
+    "spatial_oracle_s1902": {
+      "parameters": 22685
+    }
+  },
+  "schema": 1,
+  "scope": "D19 nondeployable research-capacity and oracle-opponent diagnostic on already-open D18 data; no held-out or policy authorization",
+  "source": {
+    "analyzer": "cgauto/d19_resident_residual_capacity_identity_diagnostic.py",
+    "analyzer_sha256": "44a9e6caaf71c4854ef6ee1c990e17c71a49573737229cf4b03b75a8a2a7c8d6",
+    "train_labels": [
+      "data/analysis/live-agent-6553250/d17-resident-residual-mc-train-scenarios372000-373919.tsv",
+      "data/analysis/live-agent-6553250/d17-resident-residual-mc-validation-scenarios384000-384479.tsv"
+    ],
+    "train_observations": [
+      "data/analysis/live-agent-6553250/d18-resident-residual-observations-train372000-373919.npy",
+      "data/analysis/live-agent-6553250/d18-resident-residual-observations-opened-validation384000-384479.npy"
+    ],
+    "validation_labels": "data/analysis/live-agent-6553250/d18-resident-residual-mc-validation-scenarios408000-408479.tsv",
+    "validation_observations": "data/analysis/live-agent-6553250/d18-resident-residual-observations-fresh-validation408000-408479.npy"
+  },
+  "top_reports": [
+    {
+      "model": "spatial_oracle_s1902",
+      "parameters": 22685,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 2.1875,
+            "selected": 16
+          },
+          "gold_adaptive": {
+            "mean_advantage": 9.363636363636363,
+            "selected": 11
+          },
+          "legend_balanced": {
+            "mean_advantage": -13.206896551724139,
+            "selected": 29
+          },
+          "mybot": {
+            "mean_advantage": 5.166666666666667,
+            "selected": 12
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.5833333333333333,
+            "selected": 36
+          },
+          "resident": {
+            "mean_advantage": -2.6666666666666665,
+            "selected": 12
+          }
+        },
+        "conditional_mean_advantage": -2.3448275862068964,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.13542100694444445,
+            0.030907118055555502
+          ],
+          "maps": 40,
+          "mean_contribution": -0.04722222222222223
+        },
+        "negative": 43,
+        "new_catastrophes": 2,
+        "positive": 53,
+        "positive_maps": 31,
+        "positive_opponents": 5,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.45689655172413796,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 20
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9509876370429993
+    },
+    {
+      "model": "geometry_large_s1902",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -2.176470588235294,
+            "selected": 17
+          },
+          "gold_adaptive": {
+            "mean_advantage": -19.0,
+            "selected": 10
+          },
+          "legend_balanced": {
+            "mean_advantage": 2.0,
+            "selected": 23
+          },
+          "mybot": {
+            "mean_advantage": -1.3157894736842106,
+            "selected": 19
+          },
+          "norx_native_three": {
+            "mean_advantage": -4.3,
+            "selected": 30
+          },
+          "resident": {
+            "mean_advantage": -1.2941176470588236,
+            "selected": 17
+          }
+        },
+        "conditional_mean_advantage": -3.0775862068965516,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.15486545138888888,
+            0.013368055555555553
+          ],
+          "maps": 40,
+          "mean_contribution": -0.061979166666666675
+        },
+        "negative": 38,
+        "new_catastrophes": 1,
+        "positive": 48,
+        "positive_maps": 24,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.41379310344827586,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 30
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9566347599029541
+    },
+    {
+      "model": "geometry_oracle_s1901",
+      "parameters": 33921,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 3.6666666666666665,
+            "selected": 12
+          },
+          "gold_adaptive": {
+            "mean_advantage": -0.3125,
+            "selected": 16
+          },
+          "legend_balanced": {
+            "mean_advantage": -12.5,
+            "selected": 28
+          },
+          "mybot": {
+            "mean_advantage": -9.25,
+            "selected": 8
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.34285714285714286,
+            "selected": 35
+          },
+          "resident": {
+            "mean_advantage": -2.764705882352941,
+            "selected": 17
+          }
+        },
+        "conditional_mean_advantage": -3.8275862068965516,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.1692751736111111,
+            -0.004340277777777778
+          ],
+          "maps": 40,
+          "mean_contribution": -0.07708333333333334
+        },
+        "negative": 44,
+        "new_catastrophes": 1,
+        "positive": 53,
+        "positive_maps": 27,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.45689655172413796,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 19
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9674370288848877
+    },
+    {
+      "model": "geometry_large_s1901",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -1.9333333333333333,
+            "selected": 15
+          },
+          "gold_adaptive": {
+            "mean_advantage": -9.0,
+            "selected": 10
+          },
+          "legend_balanced": {
+            "mean_advantage": -12.1,
+            "selected": 20
+          },
+          "mybot": {
+            "mean_advantage": 0.6428571428571429,
+            "selected": 14
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.3157894736842106,
+            "selected": 38
+          },
+          "resident": {
+            "mean_advantage": -2.0,
+            "selected": 19
+          }
+        },
+        "conditional_mean_advantage": -3.793103448275862,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.16927951388888887,
+            -0.001736111111111109
+          ],
+          "maps": 40,
+          "mean_contribution": -0.07638888888888888
+        },
+        "negative": 41,
+        "new_catastrophes": 1,
+        "positive": 47,
+        "positive_maps": 26,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.4051724137931034,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 28
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9301064610481262
+    },
+    {
+      "model": "geometry_large_s1901",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 1.4838709677419355,
+            "selected": 31
+          },
+          "gold_adaptive": {
+            "mean_advantage": -4.708333333333333,
+            "selected": 24
+          },
+          "legend_balanced": {
+            "mean_advantage": -8.409090909090908,
+            "selected": 44
+          },
+          "mybot": {
+            "mean_advantage": 4.5,
+            "selected": 30
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.15873015873015872,
+            "selected": 63
+          },
+          "resident": {
+            "mean_advantage": -1.7692307692307692,
+            "selected": 39
+          }
+        },
+        "conditional_mean_advantage": -1.6493506493506493,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.1779513888888889,
+            0.03281684027777772
+          ],
+          "maps": 40,
+          "mean_contribution": -0.06614583333333333
+        },
+        "negative": 81,
+        "new_catastrophes": 1,
+        "positive": 103,
+        "positive_maps": 37,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.4458874458874459,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 47
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.8917851448059082
+    },
+    {
+      "model": "spatial_large_s1902",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 0.07692307692307693,
+            "selected": 13
+          },
+          "gold_adaptive": {
+            "mean_advantage": -15.421052631578947,
+            "selected": 19
+          },
+          "legend_balanced": {
+            "mean_advantage": -6.423076923076923,
+            "selected": 26
+          },
+          "mybot": {
+            "mean_advantage": -1.4705882352941178,
+            "selected": 17
+          },
+          "norx_native_three": {
+            "mean_advantage": 3.2413793103448274,
+            "selected": 29
+          },
+          "resident": {
+            "mean_advantage": 0.3333333333333333,
+            "selected": 12
+          }
+        },
+        "conditional_mean_advantage": -3.3275862068965516,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.18159722222222222,
+            0.03142795138888881
+          ],
+          "maps": 40,
+          "mean_contribution": -0.06701388888888889
+        },
+        "negative": 49,
+        "new_catastrophes": 1,
+        "positive": 46,
+        "positive_maps": 23,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.39655172413793105,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 21
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9388692378997803
+    },
+    {
+      "model": "geometry_oracle_s1902",
+      "parameters": 33921,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -3.6470588235294117,
+            "selected": 17
+          },
+          "gold_adaptive": {
+            "mean_advantage": 1.3571428571428572,
+            "selected": 14
+          },
+          "legend_balanced": {
+            "mean_advantage": -11.35483870967742,
+            "selected": 31
+          },
+          "mybot": {
+            "mean_advantage": -2.2857142857142856,
+            "selected": 7
+          },
+          "norx_native_three": {
+            "mean_advantage": -2.0714285714285716,
+            "selected": 28
+          },
+          "resident": {
+            "mean_advantage": -2.5789473684210527,
+            "selected": 19
+          }
+        },
+        "conditional_mean_advantage": -4.4655172413793105,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.19774305555555555,
+            0.013372395833333283
+          ],
+          "maps": 40,
+          "mean_contribution": -0.08993055555555556
+        },
+        "negative": 57,
+        "new_catastrophes": 1,
+        "positive": 41,
+        "positive_maps": 23,
+        "positive_opponents": 5,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.35344827586206895,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 18
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9772927761077881
+    },
+    {
+      "model": "spatial_large_s1901",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -14.0,
+            "selected": 11
+          },
+          "gold_adaptive": {
+            "mean_advantage": -21.266666666666666,
+            "selected": 15
+          },
+          "legend_balanced": {
+            "mean_advantage": -2.84,
+            "selected": 25
+          },
+          "mybot": {
+            "mean_advantage": -1.8235294117647058,
+            "selected": 17
+          },
+          "norx_native_three": {
+            "mean_advantage": 0.16,
+            "selected": 25
+          },
+          "resident": {
+            "mean_advantage": 0.43478260869565216,
+            "selected": 23
+          }
+        },
+        "conditional_mean_advantage": -4.836206896551724,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.2036458333333333,
+            -0.02134982638888895
+          ],
+          "maps": 40,
+          "mean_contribution": -0.09739583333333332
+        },
+        "negative": 47,
+        "new_catastrophes": 2,
+        "positive": 40,
+        "positive_maps": 20,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.3448275862068966,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 29
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.8543482422828674
+    },
+    {
+      "model": "spatial_large_s1901",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -8.333333333333334,
+            "selected": 24
+          },
+          "gold_adaptive": {
+            "mean_advantage": -3.7916666666666665,
+            "selected": 24
+          },
+          "legend_balanced": {
+            "mean_advantage": -3.1702127659574466,
+            "selected": 47
+          },
+          "mybot": {
+            "mean_advantage": -0.8205128205128205,
+            "selected": 39
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.75,
+            "selected": 48
+          },
+          "resident": {
+            "mean_advantage": -0.3877551020408163,
+            "selected": 49
+          }
+        },
+        "conditional_mean_advantage": -2.2813852813852815,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.21442274305555556,
+            0.012330729166666604
+          ],
+          "maps": 40,
+          "mean_contribution": -0.09149305555555556
+        },
+        "negative": 95,
+        "new_catastrophes": 2,
+        "positive": 84,
+        "positive_maps": 32,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.36363636363636365,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 52
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.7954941987991333
+    },
+    {
+      "model": "geometry_oracle_s1901",
+      "parameters": 33921,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 1.625,
+            "selected": 32
+          },
+          "gold_adaptive": {
+            "mean_advantage": 1.6333333333333333,
+            "selected": 30
+          },
+          "legend_balanced": {
+            "mean_advantage": -11.511111111111111,
+            "selected": 45
+          },
+          "mybot": {
+            "mean_advantage": -3.8181818181818183,
+            "selected": 22
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.0625,
+            "selected": 64
+          },
+          "resident": {
+            "mean_advantage": -2.1578947368421053,
+            "selected": 38
+          }
+        },
+        "conditional_mean_advantage": -2.5411255411255413,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.23107638888888887,
+            0.00990017361111105
+          ],
+          "maps": 40,
+          "mean_contribution": -0.1019097222222222
+        },
+        "negative": 96,
+        "new_catastrophes": 3,
+        "positive": 101,
+        "positive_maps": 35,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.43722943722943725,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 34
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.9376457333564758
+    },
+    {
+      "model": "spatial_oracle_s1901",
+      "parameters": 22685,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 6.533333333333333,
+            "selected": 15
+          },
+          "gold_adaptive": {
+            "mean_advantage": -14.666666666666666,
+            "selected": 6
+          },
+          "legend_balanced": {
+            "mean_advantage": -13.352941176470589,
+            "selected": 34
+          },
+          "mybot": {
+            "mean_advantage": 1.5238095238095237,
+            "selected": 21
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.5,
+            "selected": 30
+          },
+          "resident": {
+            "mean_advantage": -6.6,
+            "selected": 10
+          }
+        },
+        "conditional_mean_advantage": -4.508620689655173,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.23194878472222222,
+            0.04027777777777778
+          ],
+          "maps": 40,
+          "mean_contribution": -0.09079861111111112
+        },
+        "negative": 41,
+        "new_catastrophes": 1,
+        "positive": 51,
+        "positive_maps": 26,
+        "positive_opponents": 5,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.4396551724137931,
+        "selected": 116,
+        "selection_rate": 0.02013888888888889,
+        "ties": 24
+      },
+      "target_selection_rate": 0.02,
+      "threshold": 0.9329798817634583
+    },
+    {
+      "model": "geometry_oracle_s1902",
+      "parameters": 33921,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -1.4,
+            "selected": 40
+          },
+          "gold_adaptive": {
+            "mean_advantage": -0.7428571428571429,
+            "selected": 35
+          },
+          "legend_balanced": {
+            "mean_advantage": -10.431818181818182,
+            "selected": 44
+          },
+          "mybot": {
+            "mean_advantage": -3.2972972972972974,
+            "selected": 37
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.4666666666666666,
+            "selected": 45
+          },
+          "resident": {
+            "mean_advantage": -2.533333333333333,
+            "selected": 30
+          }
+        },
+        "conditional_mean_advantage": -3.484848484848485,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.2682335069444445,
+            -0.023953993055555622
+          ],
+          "maps": 40,
+          "mean_contribution": -0.13975694444444448
+        },
+        "negative": 99,
+        "new_catastrophes": 1,
+        "positive": 91,
+        "positive_maps": 36,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.3939393939393939,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 41
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.9596675038337708
+    },
+    {
+      "model": "geometry_large_s1902",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -6.714285714285714,
+            "selected": 35
+          },
+          "gold_adaptive": {
+            "mean_advantage": -12.772727272727273,
+            "selected": 22
+          },
+          "legend_balanced": {
+            "mean_advantage": -2.8297872340425534,
+            "selected": 47
+          },
+          "mybot": {
+            "mean_advantage": -0.5945945945945946,
+            "selected": 37
+          },
+          "norx_native_three": {
+            "mean_advantage": -3.581818181818182,
+            "selected": 55
+          },
+          "resident": {
+            "mean_advantage": -2.342857142857143,
+            "selected": 35
+          }
+        },
+        "conditional_mean_advantage": -4.112554112554113,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.28576822916666667,
+            -0.05538194444444444
+          ],
+          "maps": 40,
+          "mean_contribution": -0.16493055555555552
+        },
+        "negative": 90,
+        "new_catastrophes": 2,
+        "positive": 82,
+        "positive_maps": 33,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.354978354978355,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 59
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.9187154769897461
+    },
+    {
+      "model": "spatial_large_s1901",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -3.640625,
+            "selected": 64
+          },
+          "gold_adaptive": {
+            "mean_advantage": -0.19298245614035087,
+            "selected": 57
+          },
+          "legend_balanced": {
+            "mean_advantage": -3.2989690721649483,
+            "selected": 97
+          },
+          "mybot": {
+            "mean_advantage": -0.4189189189189189,
+            "selected": 74
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.2911392405063291,
+            "selected": 79
+          },
+          "resident": {
+            "mean_advantage": -0.5,
+            "selected": 90
+          }
+        },
+        "conditional_mean_advantage": -1.438177874186551,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.2939279513888889,
+            0.04513888888888888
+          ],
+          "maps": 40,
+          "mean_contribution": -0.11510416666666667
+        },
+        "negative": 186,
+        "new_catastrophes": 3,
+        "positive": 177,
+        "positive_maps": 38,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.3839479392624729,
+        "selected": 461,
+        "selection_rate": 0.08003472222222222,
+        "ties": 98
+      },
+      "target_selection_rate": 0.08,
+      "threshold": 0.7251919507980347
+    },
+    {
+      "model": "spatial_oracle_s1902",
+      "parameters": 22685,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 1.3235294117647058,
+            "selected": 34
+          },
+          "gold_adaptive": {
+            "mean_advantage": 8.909090909090908,
+            "selected": 22
+          },
+          "legend_balanced": {
+            "mean_advantage": -15.576923076923077,
+            "selected": 52
+          },
+          "mybot": {
+            "mean_advantage": 3.9583333333333335,
+            "selected": 24
+          },
+          "norx_native_three": {
+            "mean_advantage": -3.2837837837837838,
+            "selected": 74
+          },
+          "resident": {
+            "mean_advantage": -1.32,
+            "selected": 25
+          }
+        },
+        "conditional_mean_advantage": -3.2467532467532467,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.2977473958333334,
+            0.011284722222222227
+          ],
+          "maps": 40,
+          "mean_contribution": -0.13020833333333334
+        },
+        "negative": 94,
+        "new_catastrophes": 2,
+        "positive": 90,
+        "positive_maps": 35,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.38961038961038963,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 47
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.8926119208335876
+    },
+    {
+      "model": "spatial_oracle_s1901",
+      "parameters": 22685,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": 1.206896551724138,
+            "selected": 29
+          },
+          "gold_adaptive": {
+            "mean_advantage": -11.5,
+            "selected": 18
+          },
+          "legend_balanced": {
+            "mean_advantage": -7.803030303030303,
+            "selected": 66
+          },
+          "mybot": {
+            "mean_advantage": -0.030303030303030304,
+            "selected": 33
+          },
+          "norx_native_three": {
+            "mean_advantage": -0.9152542372881356,
+            "selected": 59
+          },
+          "resident": {
+            "mean_advantage": -0.8076923076923077,
+            "selected": 26
+          }
+        },
+        "conditional_mean_advantage": -3.303030303030303,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.31615017361111114,
+            0.0447960069444444
+          ],
+          "maps": 40,
+          "mean_contribution": -0.13246527777777778
+        },
+        "negative": 83,
+        "new_catastrophes": 2,
+        "positive": 103,
+        "positive_maps": 33,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.4458874458874459,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 45
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.8880398273468018
+    },
+    {
+      "model": "geometry_large_s1901",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -4.208333333333333,
+            "selected": 72
+          },
+          "gold_adaptive": {
+            "mean_advantage": -2.1372549019607843,
+            "selected": 51
+          },
+          "legend_balanced": {
+            "mean_advantage": -8.328947368421053,
+            "selected": 76
+          },
+          "mybot": {
+            "mean_advantage": 2.4,
+            "selected": 65
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.5555555555555556,
+            "selected": 99
+          },
+          "resident": {
+            "mean_advantage": -1.489795918367347,
+            "selected": 98
+          }
+        },
+        "conditional_mean_advantage": -2.579175704989154,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.34131944444444445,
+            -0.07742621527777785
+          ],
+          "maps": 40,
+          "mean_contribution": -0.20642361111111107
+        },
+        "negative": 176,
+        "new_catastrophes": 5,
+        "positive": 182,
+        "positive_maps": 39,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.3947939262472885,
+        "selected": 461,
+        "selection_rate": 0.08003472222222222,
+        "ties": 103
+      },
+      "target_selection_rate": 0.08,
+      "threshold": 0.8311622142791748
+    },
+    {
+      "model": "spatial_large_s1902",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -2.3225806451612905,
+            "selected": 31
+          },
+          "gold_adaptive": {
+            "mean_advantage": -14.972972972972974,
+            "selected": 37
+          },
+          "legend_balanced": {
+            "mean_advantage": -6.958333333333333,
+            "selected": 48
+          },
+          "mybot": {
+            "mean_advantage": 1.25,
+            "selected": 32
+          },
+          "norx_native_three": {
+            "mean_advantage": 2.5517241379310347,
+            "selected": 58
+          },
+          "resident": {
+            "mean_advantage": 0.64,
+            "selected": 25
+          }
+        },
+        "conditional_mean_advantage": -3.272727272727273,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.34635416666666663,
+            0.06250434027777774
+          ],
+          "maps": 40,
+          "mean_contribution": -0.13125000000000003
+        },
+        "negative": 92,
+        "new_catastrophes": 5,
+        "positive": 95,
+        "positive_maps": 34,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.41125541125541126,
+        "selected": 231,
+        "selection_rate": 0.04010416666666667,
+        "ties": 44
+      },
+      "target_selection_rate": 0.04,
+      "threshold": 0.899255633354187
+    },
+    {
+      "model": "spatial_large_s1902",
+      "parameters": 22301,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -1.3285714285714285,
+            "selected": 70
+          },
+          "gold_adaptive": {
+            "mean_advantage": -6.666666666666667,
+            "selected": 72
+          },
+          "legend_balanced": {
+            "mean_advantage": -4.662650602409639,
+            "selected": 83
+          },
+          "mybot": {
+            "mean_advantage": 1.1388888888888888,
+            "selected": 72
+          },
+          "norx_native_three": {
+            "mean_advantage": 1.9425287356321839,
+            "selected": 87
+          },
+          "resident": {
+            "mean_advantage": -0.2857142857142857,
+            "selected": 77
+          }
+        },
+        "conditional_mean_advantage": -1.5856832971800434,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.3671918402777778,
+            0.0987847222222222
+          ],
+          "maps": 40,
+          "mean_contribution": -0.12690972222222224
+        },
+        "negative": 193,
+        "new_catastrophes": 5,
+        "positive": 189,
+        "positive_maps": 38,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.40997830802603036,
+        "selected": 461,
+        "selection_rate": 0.08003472222222222,
+        "ties": 79
+      },
+      "target_selection_rate": 0.08,
+      "threshold": 0.8295195698738098
+    },
+    {
+      "model": "geometry_large_s1902",
+      "parameters": 33153,
+      "report": {
+        "by_opponent": {
+          "compact_gold": {
+            "mean_advantage": -4.140845070422535,
+            "selected": 71
+          },
+          "gold_adaptive": {
+            "mean_advantage": -2.683333333333333,
+            "selected": 60
+          },
+          "legend_balanced": {
+            "mean_advantage": -5.21978021978022,
+            "selected": 91
+          },
+          "mybot": {
+            "mean_advantage": 0.2571428571428571,
+            "selected": 70
+          },
+          "norx_native_three": {
+            "mean_advantage": -1.8681318681318682,
+            "selected": 91
+          },
+          "resident": {
+            "mean_advantage": -1.1153846153846154,
+            "selected": 78
+          }
+        },
+        "conditional_mean_advantage": -2.5357917570498913,
+        "conditional_median_advantage": 0.0,
+        "map_bootstrap": {
+          "ci95": [
+            -0.38680989583333336,
+            -0.042708333333333334
+          ],
+          "maps": 40,
+          "mean_contribution": -0.20295138888888892
+        },
+        "negative": 174,
+        "new_catastrophes": 5,
+        "positive": 177,
+        "positive_maps": 38,
+        "positive_opponents": 6,
+        "positive_roles": [
+          0,
+          1
+        ],
+        "precision": 0.3839479392624729,
+        "selected": 461,
+        "selection_rate": 0.08003472222222222,
+        "ties": 110
+      },
+      "target_selection_rate": 0.08,
+      "threshold": 0.8663164377212524
+    }
+  ]
+}

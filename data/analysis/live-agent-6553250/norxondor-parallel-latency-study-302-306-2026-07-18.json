@@ -1,0 +1,102 @@
+{
+ "schema": 1,
+ "scope": "naive inner-parallel execution of both frozen 240-turn branches for every maximum-exact-prefix-compatible opponent model; consumed discovery seeds only",
+ "scenarios": 80,
+ "seed_range": [
+  302,
+  306
+ ],
+ "decision_turn": [
+  3
+ ],
+ "compatible_model_count": {
+  "n": 80,
+  "mean": 1.6,
+  "median": 1.0,
+  "p95": 3,
+  "minimum": 1,
+  "maximum": 3
+ },
+ "compatibility_us": {
+  "n": 80,
+  "mean": 1687.325,
+  "median": 1556.5,
+  "p95": 3051,
+  "minimum": 1056,
+  "maximum": 4966
+ },
+ "parallel_rollout_us": {
+  "n": 80,
+  "mean": 210213.675,
+  "median": 207871.5,
+  "p95": 278014,
+  "minimum": 122998,
+  "maximum": 398819
+ },
+ "total_prediction_us": {
+  "n": 80,
+  "mean": 211903.0625,
+  "median": 209487.0,
+  "p95": 279460,
+  "minimum": 124152,
+  "maximum": 403787
+ },
+ "branch_elapsed_sum_us": {
+  "n": 80,
+  "mean": 557139.3625,
+  "median": 467936.0,
+  "p95": 957100,
+  "minimum": 201538,
+  "maximum": 1339650
+ },
+ "slowest_branch_us": {
+  "n": 80,
+  "mean": 209917.9875,
+  "median": 207544.0,
+  "p95": 277674,
+  "minimum": 122619,
+  "maximum": 398652
+ },
+ "parallel_speedup": {
+  "mean": 2.688578101917007,
+  "median": 1.8235803978748848
+ },
+ "total_prediction_by_compatible_count": {
+  "1": {
+   "n": 44,
+   "mean": 212189.4090909091,
+   "median": 213167.5,
+   "p95": 279146,
+   "minimum": 124152,
+   "maximum": 291009
+  },
+  "2": {
+   "n": 24,
+   "mean": 227006.29166666666,
+   "median": 220587.5,
+   "p95": 296276,
+   "minimum": 153186,
+   "maximum": 403787
+  },
+  "3": {
+   "n": 12,
+   "mean": 180646.66666666666,
+   "median": 176506.0,
+   "p95": 266036,
+   "minimum": 139621,
+   "maximum": 266036
+  }
+ },
+ "selected_scenarios": 24,
+ "latency_gate": {
+  "budget_us": 50000,
+  "within_budget": 0,
+  "within_budget_rate": 0.0,
+  "p95_us": 279460,
+  "passed": false
+ },
+ "decision": {
+  "build_online_rollout_selector": false,
+  "reason": "p95 inner-parallel prediction time exceeds the 50 ms turn budget"
+ }
+}

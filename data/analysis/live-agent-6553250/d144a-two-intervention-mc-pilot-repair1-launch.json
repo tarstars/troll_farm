@@ -1,0 +1,65 @@
+{
+  "job_count": 4,
+  "launched_utc": "2026-07-22T22:28:52.819504+00:00",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "lock": {
+    "manifest_sha256": "48966d54bbd3c1ef3cbac40450091c2c7c2bf4ad4c64dbec7bf20eb8a4fd21a6",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "d29f4ba8-8e972d8c-42e03e8-c28f4f16",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722",
+    "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/records",
+    "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/specs"
+  },
+  "payload": {
+    "cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "cgauto/yt_d144_two_intervention_mc_mapper.py": "34aa9b0898113d96610bee70b2cece8c71d204fbd8b0467acbda36ded526041d",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-protocol-2026-07-22.md",
+  "schema": "troll-farm-d144a-two-intervention-mc-launch-v1",
+  "specs": [
+    {
+      "kind": "mc",
+      "maps": 8,
+      "replicas": 128,
+      "shard_id": "mc-a",
+      "single_replicas": 16,
+      "start_seed": 9844128,
+      "threads": 16
+    },
+    {
+      "kind": "mc",
+      "maps": 8,
+      "replicas": 128,
+      "shard_id": "mc-b",
+      "single_replicas": 16,
+      "start_seed": 9844128,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 4,
+      "shard_id": "exact-00",
+      "start_seed": 9844128,
+      "threads": 16
+    },
+    {
+      "kind": "exact",
+      "maps": 4,
+      "shard_id": "exact-01",
+      "start_seed": 9844132,
+      "threads": 16
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "troll-farm-d153a-conditional-value-policy-crossfit-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d151a_conditional_second_corpus.py": "289951277d02947c1b86699a85a87223aa009df248aed8dff684b488d0821e83",
+    "cgauto/analyze_d152a_conditional_second_value.py": "81d07b307d04011e40c1ae3c3ef975d8b4c32b67817d974d408fcda25a72e9a5",
+    "cgauto/build_d149a_joint_two_stage_dataset.py": "8183157e51e3d86417499a1cbcaa32d94821d2459b8a5bf0bdc2cef175e8fa27",
+    "cgauto/build_d153a_conditional_value_dataset.py": "f5aa8c39d25f48edf5dd35adc653e96509fae722baadf4c88e8455f274cab67e",
+    "cgauto/run_d148a_priority_joint_teacher.py": "4e5381c02aed7b48cef5a483c44bd60383b10f0474947909decccc3dcb7ffc6e",
+    "cgauto/run_d151a_conditional_second_counterfactual.py": "f92ab636cc7a11b8ca3de6ce6c652cc350ca79cfafec28abce3cb77990172813",
+    "cgauto/run_d153a_conditional_value_selection.py": "7f3c5925bb25be15ec8bde17d085547fac387f61b5b2b8be0a8996116ca1e454",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d153a_conditional_value_policy.py": "e9112e5a09d63095fd01ce697e98d6cd0c7b0d9e2570354d0bf11d0d0210cadb",
+    "data/analysis/live-agent-6553250/d152a-conditional-second-value-analysis-result.json": "ab76f84419738e51f661b1f1c4a18fd70d26b0650fad78cd5964d28fd803ea8f",
+    "data/analysis/live-agent-6553250/d152a-exact-conditional-second-values-9844136-9844199.tsv": "28c6b74f43cb7d180eab8d215d24828b55d4669238390d22966a67474b2f2b5b",
+    "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-protocol-2026-07-23.md": "8a6d133eaceedb0cacccc869b4094f236f0782baf5f222a9767ec982c20f2e5f",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-candidates-9844136-9844199.tsv": "0ea7aef2396a83e66c06b747e51aad136a9a05aa4ebc3f96d502a69c727097a5",
+    "data/analysis/live-agent-6553250/yt/d151a-conditional-second-counterfactual-corpus/d151a-branches-a-9844136-9844199.tsv": "103cead63915ce6fef2b8d9a552cb828cc031370b60bec8a96ece5bd0fd41392",
+    "tests/test_build_d153a_conditional_value_dataset.py": "0a95600197e0e30defa8725bb4fd03cf077feabaadd184684088ac5715ca933d",
+    "tests/test_run_d153a_conditional_value_selection.py": "34e45e9d0f10eedac1368b390d3f634164de3dd743de54221292de807ada229c",
+    "tests/test_train_d153a_conditional_value_policy.py": "34e10a8aedae69cc1af44fe3990b73611da472150ae13aa41f0832a58eeba481"
+  }
+}

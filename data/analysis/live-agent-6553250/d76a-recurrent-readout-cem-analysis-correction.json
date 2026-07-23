@@ -1,0 +1,10 @@
+{
+  "schema": "troll-farm-d76a-analysis-correction-v1",
+  "superseded_result": "31163ad0bc01f008b5a2c2209455a49b7240c9bff09b961052d242cae091dfca",
+  "corrected_result": "911eeb42cbb49d6a150542749d1c4d47a9d84d844b9d0dea0d4bf29de26ebaae",
+  "defect": "The first analyzer compared serialized population reservoir bits to the once-rounded float32 reservoir. Population writing applies the protocol's final eight-decimal normalization to the complete vector, which is not bit-idempotent for every float32 coordinate.",
+  "repair": "Compare population reservoir coordinates to the same complete-vector serialization function used by the frozen writer. A focused regression test reproduces the boundary.",
+  "experiment_rerun": false,
+  "outcome_or_gate_change": false,
+  "corrected_decision": "recurrent_readout_activity_failure"
+}

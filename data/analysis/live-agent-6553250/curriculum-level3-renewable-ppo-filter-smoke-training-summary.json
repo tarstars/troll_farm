@@ -1,0 +1,218 @@
+{
+  "aggregate_host_cpu_percent": 69.32706526190057,
+  "config": {
+    "batch_size": 10000,
+    "clip_coef": 0.2,
+    "curriculum_level": 3,
+    "entropy_coef": 0.01,
+    "eval_episodes": 500,
+    "eval_seed_base": 0,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "gate_profile": "level3",
+    "initial_checkpoint": "data/analysis/live-agent-6553250/curriculum-level3-renewable-run1-bc.pt",
+    "initial_checkpoint_sha256": "6ea48c4e65d8bb5d786e8b47966bc60bcdd8684cc9de9e580e4e3de5ca2a2a8d",
+    "learning_rate": 0.00025,
+    "max_grad_norm": 0.5,
+    "max_turns": 240,
+    "minibatch_size": 1000,
+    "model_seed": 71,
+    "no_stage_a_stop": true,
+    "num_envs": 100,
+    "parameter_count": 34926,
+    "protocol": "data/analysis/live-agent-6553250/curriculum-level3-renewable-protocol-2026-07-19.md",
+    "protocol_sha256": "b43a586e2e8593b5044a219271721ece9c9d273f7cbf4d2b63d7cd86e59f896d",
+    "random_baseline": "data/analysis/live-agent-6553250/curriculum-level3-development-random-0-499.json",
+    "random_baseline_sha256": "7def758f07e45d5b19e83b2712053688d5ebd319a531977a2a783486734acf4c",
+    "reward_scale": 0.01,
+    "rollout_steps": 100,
+    "run_name": "renewable-ppo-filter-smoke",
+    "stage_a_transitions": 10000,
+    "target_kl": 0.03,
+    "teacher_aux_coef": 0.1,
+    "teacher_aux_invalid_label_policy": "skip_undefined_off_teacher_targets",
+    "teacher_baseline": "data/analysis/live-agent-6553250/curriculum-level3-development-teacher-0-499.json",
+    "teacher_baseline_sha256": "d8062ff3116acc2969e0326f56ad3ec5d7e4acba73c1af493cfe4e97f726c2b1",
+    "threads": 14,
+    "torch_version": "2.13.0+cpu",
+    "total_transitions": 20000,
+    "train_seed_base": 300000,
+    "update_epochs": 1,
+    "value_coef": 0.5
+  },
+  "elapsed_cpu_seconds": 302.718321464,
+  "elapsed_wall_seconds": 21.83262195799034,
+  "evaluations": [
+    {
+      "by_height": {
+        "10": {
+          "episodes": 126,
+          "success_rate": 0.9603174603174603,
+          "successes": 121
+        },
+        "11": {
+          "episodes": 126,
+          "success_rate": 0.9365079365079365,
+          "successes": 118
+        },
+        "8": {
+          "episodes": 123,
+          "success_rate": 0.967479674796748,
+          "successes": 119
+        },
+        "9": {
+          "episodes": 125,
+          "success_rate": 0.96,
+          "successes": 120
+        }
+      },
+      "by_recipe": null,
+      "created_crop_rate": 0.958,
+      "elapsed_seconds": 7.139827234990662,
+      "episodes": 500,
+      "exact_seed_interval": true,
+      "gate": "L3A",
+      "gate_passed": true,
+      "global_step": 10000,
+      "height_success_floor": 0.9365079365079365,
+      "median_score_gain": 16.0,
+      "median_success_turn": 50.0,
+      "median_training_turn": 20.0,
+      "nontrivial_success_rate": 0.9461756373937678,
+      "paired_teacher_median_turn_delta": 0.0,
+      "path": "data/analysis/live-agent-6553250/curriculum-level3-renewable-ppo-filter-smoke-l3a-evaluation.json",
+      "random_success_rate": 0.0,
+      "recipe_success_floor": null,
+      "renewable_harvest_rate": 0.96,
+      "required_score_gain": 12,
+      "seed_base": 0,
+      "seed_stop_exclusive": 500,
+      "success_rate": 0.956,
+      "successes": 478,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "teacher_success_rate": 1.0,
+      "transitions": 87500,
+      "transitions_per_second": 12255.198497126443
+    },
+    {
+      "by_height": {
+        "10": {
+          "episodes": 126,
+          "success_rate": 0.9444444444444444,
+          "successes": 119
+        },
+        "11": {
+          "episodes": 126,
+          "success_rate": 0.9365079365079365,
+          "successes": 118
+        },
+        "8": {
+          "episodes": 123,
+          "success_rate": 0.943089430894309,
+          "successes": 116
+        },
+        "9": {
+          "episodes": 125,
+          "success_rate": 0.944,
+          "successes": 118
+        }
+      },
+      "by_recipe": null,
+      "created_crop_rate": 0.946,
+      "elapsed_seconds": 7.5236348760081455,
+      "episodes": 500,
+      "exact_seed_interval": true,
+      "gate": "L3B",
+      "gate_passed": true,
+      "global_step": 20000,
+      "height_success_floor": 0.9365079365079365,
+      "median_score_gain": 16.0,
+      "median_success_turn": 50.0,
+      "median_training_turn": 20.0,
+      "nontrivial_success_rate": 0.9320113314447592,
+      "paired_teacher_median_turn_delta": 0.0,
+      "path": "data/analysis/live-agent-6553250/curriculum-level3-renewable-ppo-filter-smoke-l3b-evaluation.json",
+      "random_success_rate": 0.0,
+      "recipe_success_floor": null,
+      "renewable_harvest_rate": 0.946,
+      "required_score_gain": 12,
+      "seed_base": 0,
+      "seed_stop_exclusive": 500,
+      "success_rate": 0.942,
+      "successes": 471,
+      "target": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "teacher_success_rate": 1.0,
+      "transitions": 90700,
+      "transitions_per_second": 12055.343127991237
+    }
+  ],
+  "global_step": 20000,
+  "logs": [
+    {
+      "approx_kl": 0.017911521717905998,
+      "clip_fraction": 0.05320000015199185,
+      "entropy": 0.20018930733203888,
+      "episodes_recent": 68,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": -1.418733835220337,
+      "global_step": 10000,
+      "learning_rate": 0.000125,
+      "mean_return_recent": 40.131760372835046,
+      "median_turn_recent": 41.5,
+      "policy_loss": 0.004158466123044491,
+      "rollout_sps": 5728.680769571069,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.9010000228881836,
+      "teacher_invalid_labels": 0,
+      "teacher_legal_rate": 1.0,
+      "teacher_loss": 0.4410131871700287,
+      "update": 1,
+      "update_sps": 2691.153835686366,
+      "value_loss": 0.016088927164673805
+    },
+    {
+      "approx_kl": 0.013176695443689823,
+      "clip_fraction": 0.018700000026728957,
+      "entropy": 0.19288963079452515,
+      "episodes_recent": 184,
+      "epochs_run": 1,
+      "event": "update",
+      "explained_variance": -0.3811839818954468,
+      "global_step": 20000,
+      "learning_rate": 0.0,
+      "mean_return_recent": 40.195484410161555,
+      "median_turn_recent": 47.0,
+      "policy_loss": 0.00044689656351692975,
+      "rollout_sps": 7055.865025247422,
+      "success_rate_recent": 1.0,
+      "teacher_accuracy": 0.906000018119812,
+      "teacher_invalid_labels": 0,
+      "teacher_legal_rate": 1.0,
+      "teacher_loss": 0.4553956091403961,
+      "update": 2,
+      "update_sps": 2987.5070935077997,
+      "value_loss": 0.01023971475660801
+    }
+  ],
+  "overall_transitions_per_second": 916.0603815008286,
+  "run_name": "renewable-ppo-filter-smoke",
+  "stage_a_passed": true,
+  "stage_b_passed": true,
+  "teacher_aux_label_stats": {
+    "invalid_labels": 0,
+    "labels": 20000,
+    "legal_rate": 1.0
+  },
+  "updates_completed": 2
+}

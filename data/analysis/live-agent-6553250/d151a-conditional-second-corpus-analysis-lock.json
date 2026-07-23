@@ -1,0 +1,15 @@
+{
+  "schema": "troll-farm-d151a-conditional-second-corpus-analysis-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d151a_conditional_second_corpus.py": "289951277d02947c1b86699a85a87223aa009df248aed8dff684b488d0821e83",
+    "cgauto/run_d151a_conditional_second_counterfactual.py": "f92ab636cc7a11b8ca3de6ce6c652cc350ca79cfafec28abce3cb77990172813",
+    "cgauto/yt_d151_conditional_second_corpus.py": "209d4f8409481c410f1b6327c3405a7ae246fab6f544349eb96f71b3de9724c9",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-branch-plan-9844136-9844199.tsv": "dc83762d469728ce5810b2a1949ba01386b92b5a416ea5f1dbf9287a15e6b8b1",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-counterfactual-corpus-download.json": "4de09d4b2f0a5967bf431b4ac70d01277a2345981e12a2f819933eaa8eee7ecb",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-counterfactual-corpus-lock.json": "da7a45937a5945cd6dd25843077da42d123e520505e05b8e117a4988741c4bac",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-counterfactual-corpus-protocol-2026-07-23.md": "e1bf894edbf10bdcff72456e26fdf9f3bd02b1a0911adf0244094d7c01e8f0ed",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-replays-9844136-9844199.tsv": "434bac7fce2d5248857410444d8ffd321dab82ffa5107d169c14754adbabce71",
+    "data/analysis/live-agent-6553250/yt/d151a-conditional-second-counterfactual-corpus/d151a-branches-a-9844136-9844199.tsv": "103cead63915ce6fef2b8d9a552cb828cc031370b60bec8a96ece5bd0fd41392",
+    "data/analysis/live-agent-6553250/yt/d151a-conditional-second-counterfactual-corpus/d151a-branches-b-9844136-9844199.tsv": "103cead63915ce6fef2b8d9a552cb828cc031370b60bec8a96ece5bd0fd41392"
+  }
+}

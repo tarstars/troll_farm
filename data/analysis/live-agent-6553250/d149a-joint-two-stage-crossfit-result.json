@@ -1,0 +1,23 @@
+{
+  "checkpoint": null,
+  "decision": "close_d149_supervised_joint_controller_on_crossfit",
+  "full_fit": null,
+  "lock": {
+    "manifest_sha256": "c8175e0bf561a743c704a7ba9c76c709dcfef4fd23094e277b48ce376bb02e6c",
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d149a-joint-two-stage-crossfit-protocol-2026-07-23.md",
+  "schema": "troll-farm-d149a-joint-two-stage-crossfit-result-v1",
+  "selected": null,
+  "selection_a": {
+    "path": "data/analysis/live-agent-6553250/d149a-joint-two-stage-crossfit-selection-a.json",
+    "sha256": "7f590a53a62bf3fd108445f7e9a86e88131f223a8c5145fae158de075ea706cd"
+  },
+  "selection_b": {
+    "path": "data/analysis/live-agent-6553250/d149a-joint-two-stage-crossfit-selection-b.json",
+    "sha256": "7f590a53a62bf3fd108445f7e9a86e88131f223a8c5145fae158de075ea706cd"
+  },
+  "selection_exact_repeat": true
+}

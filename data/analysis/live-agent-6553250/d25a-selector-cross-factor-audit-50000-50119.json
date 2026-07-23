@@ -1,0 +1,213 @@
+{
+ "schema": 1,
+ "scope": "no-retuning audit of the frozen D25 random_forest_d4_l40_b30 selector; behavioral-alias structural-family and simultaneous unseen-map/unseen-family folds",
+ "source": "data/analysis/live-agent-6553250/d25-turn75-regime-selector-development-50000-50119.json",
+ "config": {
+  "family": "random_forest",
+  "trees": 256,
+  "max_depth": 4,
+  "min_leaf": 40,
+  "label": "random_forest_d4_l40"
+ },
+ "buffer": 30.0,
+ "rows": 1920,
+ "features": 359,
+ "structural_families": [
+  [
+   "compact_gold",
+   "gold_elite"
+  ],
+  [
+   "gold_adaptive"
+  ],
+  [
+   "mybot"
+  ],
+  [
+   "printer_bot"
+  ],
+  [
+   "sched_bot"
+  ],
+  [
+   "script_boss"
+  ],
+  [
+   "silver_boss"
+  ]
+ ],
+ "structural_family_holdout": {
+  "buffer": 30.0,
+  "prediction_hash": "6cfa4c3b01c3182e00e147538918515e1625a488d9ce13772e75c9bf6fd8ce96",
+  "selected_cells": 951,
+  "selection_rate": 0.4953125,
+  "selected_positive": 769,
+  "selected_negative": 177,
+  "selected_ties": 5,
+  "precision": 0.8086225026288117,
+  "seed_clustered_margin_delta": {
+   "n": 120,
+   "mean": 36.103125,
+   "median": 5.875,
+   "trimmed_5pct_mean": 33.035300925925924,
+   "standard_deviation": 49.38681690977909,
+   "standard_error": 4.5083789441439315,
+   "ci95_normal": [
+    27.266702269477893,
+    44.93954773052211
+   ],
+   "wins": 67,
+   "ties": 41,
+   "losses": 12,
+   "minimum": -29.3125,
+   "maximum": 169.5625
+  },
+  "seed_clustered_own_score_delta": {
+   "n": 120,
+   "mean": 55.05885416666667,
+   "median": 34.0625,
+   "trimmed_5pct_mean": 51.91608796296296,
+   "standard_deviation": 59.925431437514504,
+   "standard_error": 5.470418427759321,
+   "ci95_normal": [
+    44.3368340482584,
+    65.78087428507494
+   ],
+   "wins": 76,
+   "ties": 41,
+   "losses": 3,
+   "minimum": -15.5625,
+   "maximum": 194.0
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 39.708333333333336,
+   "gold_adaptive": 21.016666666666666,
+   "gold_elite": 39.708333333333336,
+   "mybot": 29.85,
+   "printer_bot": 49.295833333333334,
+   "sched_bot": 35.07083333333333,
+   "script_boss": 40.020833333333336,
+   "silver_boss": 34.15416666666667
+  },
+  "nonnegative_opponent_means": 8,
+  "worst_opponent": "gold_adaptive",
+  "worst_opponent_mean_delta": 21.016666666666666,
+  "tail": {
+   "control_catastrophic_frequency": 0.15,
+   "selected_policy_catastrophic_frequency": 0.0953125,
+   "control_negative_margin_mass": 59015.0,
+   "selected_policy_negative_margin_mass": 41518.0,
+   "negative_mass_ratio": 0.7035160552401931
+  },
+  "positive_cell_oracle_seed_clustered_mean": 50.4765625,
+  "oracle_fraction": 0.7152453180622195,
+  "gates": {
+   "selection_rate_5_to_60pct": true,
+   "precision_at_least_75pct": true,
+   "mean_margin_at_least_5": true,
+   "trimmed_margin_at_least_3": true,
+   "ci_lower_above_zero": true,
+   "six_of_eight_opponents_nonnegative": true,
+   "worst_opponent_at_least_minus_5": true,
+   "catastrophic_frequency_not_higher": true,
+   "negative_margin_mass_not_higher": true,
+   "oracle_fraction_at_least_20pct": true
+  },
+  "passed": true
+ },
+ "crossed_map_structural_family_holdout": {
+  "buffer": 30.0,
+  "prediction_hash": "3b7b847723692f47f7c58b6a32f28228957af3a68141737627a669478f9625d7",
+  "selected_cells": 960,
+  "selection_rate": 0.5,
+  "selected_positive": 703,
+  "selected_negative": 253,
+  "selected_ties": 4,
+  "precision": 0.7322916666666667,
+  "seed_clustered_margin_delta": {
+   "n": 120,
+   "mean": 28.8875,
+   "median": 5.71875,
+   "trimmed_5pct_mean": 25.880208333333332,
+   "standard_deviation": 48.20706647243899,
+   "standard_error": 4.4006829563509715,
+   "ci95_normal": [
+    20.262161405552096,
+    37.5128385944479
+   ],
+   "wins": 67,
+   "ties": 33,
+   "losses": 20,
+   "minimum": -57.4375,
+   "maximum": 169.5625
+  },
+  "seed_clustered_own_score_delta": {
+   "n": 120,
+   "mean": 47.50416666666667,
+   "median": 23.09375,
+   "trimmed_5pct_mean": 44.339120370370374,
+   "standard_deviation": 57.40996829740427,
+   "standard_error": 5.240789110357462,
+   "ci95_normal": [
+    37.23222001036604,
+    57.7761133229673
+   ],
+   "wins": 75,
+   "ties": 33,
+   "losses": 12,
+   "minimum": -36.6875,
+   "maximum": 194.0
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 30.3125,
+   "gold_adaptive": 18.4,
+   "gold_elite": 30.3125,
+   "mybot": 24.091666666666665,
+   "printer_bot": 43.266666666666666,
+   "sched_bot": 27.866666666666667,
+   "script_boss": 31.0875,
+   "silver_boss": 25.7625
+  },
+  "nonnegative_opponent_means": 8,
+  "worst_opponent": "gold_adaptive",
+  "worst_opponent_mean_delta": 18.4,
+  "tail": {
+   "control_catastrophic_frequency": 0.15,
+   "selected_policy_catastrophic_frequency": 0.109375,
+   "control_negative_margin_mass": 59015.0,
+   "selected_policy_negative_margin_mass": 46321.0,
+   "negative_mass_ratio": 0.7849021435228332
+  },
+  "positive_cell_oracle_seed_clustered_mean": 50.4765625,
+  "oracle_fraction": 0.5722953103234794,
+  "gates": {
+   "selection_rate_5_to_60pct": true,
+   "precision_at_least_75pct": false,
+   "mean_margin_at_least_5": true,
+   "trimmed_margin_at_least_3": true,
+   "ci_lower_above_zero": true,
+   "six_of_eight_opponents_nonnegative": true,
+   "worst_opponent_at_least_minus_5": true,
+   "catastrophic_frequency_not_higher": true,
+   "negative_margin_mass_not_higher": true,
+   "oracle_fraction_at_least_20pct": true
+  },
+  "passed": false
+ },
+ "repeat": {
+  "structural_predictions_exact": true,
+  "crossed_predictions_exact": true,
+  "structural_hash": "6cfa4c3b01c3182e00e147538918515e1625a488d9ce13772e75c9bf6fd8ce96",
+  "structural_repeat_hash": "6cfa4c3b01c3182e00e147538918515e1625a488d9ce13772e75c9bf6fd8ce96",
+  "crossed_hash": "3b7b847723692f47f7c58b6a32f28228957af3a68141737627a669478f9625d7",
+  "crossed_repeat_hash": "3b7b847723692f47f7c58b6a32f28228957af3a68141737627a669478f9625d7",
+  "passed": true
+ },
+ "passed": false,
+ "decision": {
+  "open_prospective_seeds_50120_50179": false,
+  "retune": false,
+  "build_candidate": false,
+  "submit": false
+ }
+}

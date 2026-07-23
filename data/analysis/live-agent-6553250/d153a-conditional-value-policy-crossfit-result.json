@@ -1,0 +1,23 @@
+{
+  "checkpoint": null,
+  "decision": "close_d153_compact_conditional_value_policy",
+  "full_fit": null,
+  "lock": {
+    "manifest_sha256": "914805093ef8060d9cd49dc7a9c56371beda2bb68159e6b1660d27603af47025",
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-protocol-2026-07-23.md",
+  "schema": "troll-farm-d153a-conditional-value-policy-crossfit-result-v1",
+  "selected": null,
+  "selection_a": {
+    "path": "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-selection-a.json",
+    "sha256": "6ca53bff7d7891bc4376c50b7ab585d22da9b626d3e98c53b8f125c5d5084545"
+  },
+  "selection_b": {
+    "path": "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-selection-b.json",
+    "sha256": "d8d27fb5a963b49d2fe32b2f87ff4cfc31a3e7ee604a3f048d2a0d6d9c244923"
+  },
+  "selection_exact_repeat": false
+}

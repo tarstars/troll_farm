@@ -1,0 +1,32 @@
+{
+  "external_sha256": {},
+  "frozen_utc": "2026-07-23T00:45:33Z",
+  "reserved_validation_seed_interval": [
+    9844200,
+    9844215
+  ],
+  "schema": "troll-farm-d151a-conditional-second-counterfactual-corpus-lock-v1",
+  "sha256": {
+    "cgauto/build_d151a_conditional_second_plan.py": "4c0b01754e1c09973733b6a7d091642a0db40b424ef7f791981e9809224e2d56",
+    "cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "cgauto/run_d151a_conditional_second_counterfactual.py": "f92ab636cc7a11b8ca3de6ce6c652cc350ca79cfafec28abce3cb77990172813",
+    "cgauto/yt_d151_conditional_second_corpus.py": "209d4f8409481c410f1b6327c3405a7ae246fab6f544349eb96f71b3de9724c9",
+    "cgauto/yt_d151_conditional_second_mapper.py": "ccc2c4361702ef4c5f0dbfb195f000fa21f805193dce59974d05ecdc443657a9",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d150a-population-value-support-audit-result.json": "29a53c700796a7b08e50c555beffced5565928c47b9ce3bbed96ac1b35d25a5d",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-branch-plan-9844136-9844199.tsv": "dc83762d469728ce5810b2a1949ba01386b92b5a416ea5f1dbf9287a15e6b8b1",
+    "data/analysis/live-agent-6553250/d151a-conditional-second-counterfactual-corpus-protocol-2026-07-23.md": "e1bf894edbf10bdcff72456e26fdf9f3bd02b1a0911adf0244094d7c01e8f0ed",
+    "data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-replays-9844136-9844199.tsv": "434bac7fce2d5248857410444d8ffd321dab82ffa5107d169c14754adbabce71",
+    "rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf",
+    "tests/test_run_d151a_conditional_second_counterfactual.py": "c4595c8c0eca49d4e14d319e8a67d2017174b50b342e58864e6c1e5128e72627",
+    "tests/test_yt_d151_conditional_second_corpus.py": "9f51e2b91ce288de4f2ea5f9de854bbe38477884961e766c505f133e7b252ef9"
+  },
+  "training_seed_interval": [
+    9844136,
+    9844199
+  ],
+  "yt_root": "//home/delivery_ml/research/tarstars/troll_farm"
+}

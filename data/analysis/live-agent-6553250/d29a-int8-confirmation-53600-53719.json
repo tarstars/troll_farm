@@ -1,0 +1,192 @@
+{
+ "schema": 1,
+ "scope": "D29 canonical spatial resident/farm option critic; no candidate, submission, or Arena action",
+ "mode": "confirmation",
+ "sources": {
+  "spatial": "data/analysis/live-agent-6553250/d29-spatial-features-confirmation-53600-53719.tsv",
+  "scalar": "data/analysis/live-agent-6553250/d29-scalar-features-confirmation-53600-53719.tsv",
+  "labels": [
+   "data/analysis/live-agent-6553250/d29-option-labels-confirmation-53600-53719.tsv"
+  ]
+ },
+ "seed_start": 53600,
+ "seed_count": 120,
+ "model": {
+  "seed": 2901,
+  "epochs": 30,
+  "batch_size": 256,
+  "quantile": 0.25,
+  "feature_count": 426,
+  "trainable_parameters": 7017
+ },
+ "integrity": {
+  "expected_cells": 1920,
+  "joined_cells": 1920,
+  "spatial_cells": 1920,
+  "scalar_cells": 1920,
+  "label_cells": 1920,
+  "missing_spatial": 0,
+  "missing_scalars": 0,
+  "missing_labels": 0,
+  "unexpected_spatial": 0,
+  "unexpected_scalars": 0,
+  "unexpected_labels": 0,
+  "bad_label_branches": {},
+  "root_mismatch_count": 0,
+  "root_mismatches": [],
+  "reached_mismatch_count": 0,
+  "reached_mismatches": [],
+  "all_reached_cut": true,
+  "feature_count": 426,
+  "spatial_shape": [
+   36,
+   11,
+   22
+  ],
+  "spatial_checks": {
+   "bad_grid_lengths": 0,
+   "bad_grid_shapes": 0,
+   "bad_grid_hashes": 0,
+   "bad_canonical_orientations": 0
+  },
+  "rotated_by_seat": {
+   "0": 0,
+   "1": 960
+  },
+  "complete": true,
+  "trainable_parameters": 7017,
+  "parameter_ceiling_passed": true,
+  "repeat_spatial_path": null,
+  "repeat_spatial_byte_identical": null,
+  "readiness_passed": true
+ },
+ "evaluation": {
+  "cells": 1920,
+  "seeds": 120,
+  "switches": 785,
+  "switch_rate": 0.4088541666666667,
+  "positive_cell_precision": 0.8866242038216561,
+  "selected_positive": 696,
+  "selected_zero": 0,
+  "selected_negative": 89,
+  "seed_clustered_margin_delta": {
+   "n": 120,
+   "mean": 35.209375,
+   "median": 16.375,
+   "trimmed_5pct_mean": 32.402199074074076,
+   "standard_deviation": 41.07090262154107,
+   "standard_error": 3.7492433038193513,
+   "ci95_normal": [
+    27.860858124514074,
+    42.55789187548593
+   ],
+   "wins": 87,
+   "ties": 27,
+   "losses": 6,
+   "minimum": -15.8125,
+   "maximum": 136.875
+  },
+  "seed_clustered_own_score_delta": {
+   "n": 120,
+   "mean": 46.47708333333333,
+   "median": 27.09375,
+   "trimmed_5pct_mean": 43.31886574074074,
+   "standard_deviation": 49.35264753944474,
+   "standard_error": 4.505259721659286,
+   "ci95_normal": [
+    37.64677427888113,
+    55.307392387785534
+   ],
+   "wins": 88,
+   "ties": 27,
+   "losses": 5,
+   "minimum": -10.75,
+   "maximum": 166.875
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 36.30416666666667,
+   "gold_adaptive": 25.508333333333333,
+   "gold_elite": 36.30416666666667,
+   "mybot": 34.108333333333334,
+   "printer_bot": 62.90416666666667,
+   "sched_bot": 26.216666666666665,
+   "script_boss": 34.075,
+   "silver_boss": 26.254166666666666
+  },
+  "nonnegative_opponent_means": 8,
+  "worst_opponent": "gold_adaptive",
+  "worst_opponent_mean_delta": 25.508333333333333,
+  "map_block_mean_margin_deltas": {
+   "0": 34.4625,
+   "1": 32.721875,
+   "2": 38.18125,
+   "3": 23.11875,
+   "4": 39.6625,
+   "5": 43.109375
+  },
+  "all_map_blocks_nonnegative": true,
+  "tail": {
+   "resident_catastrophic_frequency": 0.159375,
+   "selected_catastrophic_frequency": 0.09322916666666667,
+   "resident_negative_margin_mass": 59375,
+   "selected_negative_margin_mass": 40790,
+   "selected_to_resident_negative_mass_ratio": 0.6869894736842105
+  },
+  "oracle": {
+   "positive_cell_seed_mean": 51.770833333333336,
+   "captured_fraction": 0.6801006036217304
+  },
+  "prediction": {
+   "mean": -15.918566703796387,
+   "standard_deviation": 79.96052551269531,
+   "minimum": -291.8653564453125,
+   "maximum": 195.990234375
+  },
+  "gates": {
+   "switch_rate_5_to_55pct": true,
+   "precision_at_least_75pct": true,
+   "mean_margin_at_least_8": true,
+   "trimmed_margin_at_least_5": true,
+   "ci95_lower_above_zero": true,
+   "six_of_eight_opponents_nonnegative": true,
+   "worst_opponent_at_least_minus_5": true,
+   "all_map_blocks_nonnegative": true,
+   "catastrophic_frequency_not_higher": true,
+   "negative_margin_mass_not_higher": true,
+   "oracle_capture_at_least_25pct": true
+  },
+  "passed": true,
+  "confirmation_20_map_block_means": {
+   "0": 34.4625,
+   "1": 32.721875,
+   "2": 38.18125,
+   "3": 23.11875,
+   "4": 39.6625,
+   "5": 43.109375
+  },
+  "confirmation_gates": {
+   "switch_rate_5_to_55pct": true,
+   "precision_at_least_75pct": true,
+   "mean_margin_at_least_8": true,
+   "trimmed_margin_at_least_5": true,
+   "ci95_lower_above_zero": true,
+   "six_of_eight_opponents_nonnegative": true,
+   "worst_opponent_at_least_minus_5": true,
+   "all_map_blocks_nonnegative": true,
+   "catastrophic_frequency_not_higher": true,
+   "negative_margin_mass_not_higher": true,
+   "oracle_capture_at_least_25pct": true
+  },
+  "confirmation_passed": true
+ },
+ "folds": null,
+ "prediction_hash": "f3e9b561f0b37c89880e8c286372e211916683e27c094a50b9013d014e5cc066",
+ "checkpoint": {
+  "path": "data/analysis/live-agent-6553250/d29a-option-critic-int8-verification.checkpoint.json",
+  "sha256": "9d4ef336880ac2ae57e868f05cb99646f94bb2e92a7d1aedd0ad1a22d12b33ba",
+  "model_seed": 2901
+ },
+ "decision": {
+  "deployment_feasibility_authorized": true
+ }
+}

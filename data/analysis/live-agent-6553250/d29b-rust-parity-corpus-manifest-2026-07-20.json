@@ -1,0 +1,55 @@
+{
+ "schema": 1,
+ "format": "troll-farm-d29b-rust-parity-v1",
+ "magic": "D29BPRT1",
+ "threshold": 4.0,
+ "rows": 13440,
+ "spatial_values_per_row": 8712,
+ "scalar_values_per_row": 426,
+ "row_bytes": 19133,
+ "header_bytes": 24,
+ "corpus": "data/analysis/live-agent-6553250/d29b-rust-parity-corpus-2026-07-20.bin",
+ "corpus_bytes": 257147544,
+ "corpus_sha256": "bcf126bfabd9d4c4ceaac7c57c6197a1f0c69ebd40b9ff5b07d8d7d323af48db",
+ "checkpoint": "data/analysis/live-agent-6553250/d29a-option-critic-int8-verification.checkpoint.json",
+ "checkpoint_sha256": "9d4ef336880ac2ae57e868f05cb99646f94bb2e92a7d1aedd0ad1a22d12b33ba",
+ "feature_name_sha256": "d1105851c0f132b5bbd14a20c743617fb92373282be0870e369792a289a4b207",
+ "partitions": [
+  {
+   "name": "d29_development",
+   "seed_start": 53000,
+   "seed_count": 600,
+   "row_start": 0,
+   "row_stop": 9600,
+   "rows": 9600,
+   "prediction_decision_hash": "7bee05468838c272cdc081b0b1a795da0345353e6363f419e95f755a16a539c2",
+   "spatial_sha256": "67cc6916c0da948587541f304a0edd16a4e0c283552b957b384f7f13632afcfc",
+   "scalar_sha256": "89198d2e392d680cf9f79c04b9f4446972ed36a9233b1e71d8e00fce3e215068",
+   "labels_sha256": "1f8fbc8f4385c4939ab50da08de52a670683fb4ac9f4becaadf580c4f44c38ad"
+  },
+  {
+   "name": "d29_confirmation",
+   "seed_start": 53600,
+   "seed_count": 120,
+   "row_start": 9600,
+   "row_stop": 11520,
+   "rows": 1920,
+   "prediction_decision_hash": "88317a0922e6f152841d00fcdec66b9d2b5c9d2c570c1a0c7f4ab31a0b5bb3fe",
+   "spatial_sha256": "055a0047bd58ee37a6abf8f159897cd561c84ad042ebc34331db5700efb36e71",
+   "scalar_sha256": "b88f05e4ffee7b05b5a87bf17da80f31e58c53c81600bb78af7175c488dbcd7d",
+   "labels_sha256": "0c19fc6e9c8bab5c21174edfc80c6a680866aa6a7a4e758ed59ad832e080dd58"
+  },
+  {
+   "name": "d29b_confirmation",
+   "seed_start": 53720,
+   "seed_count": 120,
+   "row_start": 11520,
+   "row_stop": 13440,
+   "rows": 1920,
+   "prediction_decision_hash": "cd6dc28eea2dc1c3ad9390d84ad69090f4fbd80f2aebb8ba2c4bd6bb33e38a5e",
+   "spatial_sha256": "35c498743739446cc194a542040a653e7f7149b1e0d9a3814d410a2b13d79a15",
+   "scalar_sha256": "e6accc905076253cbbabf05cb809fdea2282b9213187e477ab51fded2c2a949e",
+   "labels_sha256": "f7cc0713203537c009c5ca8932a26c82ec9e2fb9d4e92855107827d8715eb303"
+  }
+ ]
+}

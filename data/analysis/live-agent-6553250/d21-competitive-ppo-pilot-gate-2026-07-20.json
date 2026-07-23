@@ -1,0 +1,170 @@
+{
+  "authorization": "close this D21 pilot; do not qualify or promote the checkpoint",
+  "design": {
+    "intermediate_evaluations": 0,
+    "training_transitions": 1000000,
+    "validation_episodes": 960,
+    "validation_seed_base": 8100000,
+    "validation_seed_stop_exclusive": 8100960
+  },
+  "gates": {
+    "at_least_four_of_six_opponent_means_improve": false,
+    "exact_frozen_1m_training_without_intermediate_validation": true,
+    "final_crop_creation_at_least_70_percent": true,
+    "final_training_completion_at_least_90_percent": true,
+    "finite_legal_and_checkpoint_integrity": true,
+    "mean_margin_gain_at_least_5": false,
+    "no_opponent_mean_regression_below_minus_15": true
+  },
+  "metrics": {
+    "catastrophic_margin_at_most_minus_100": {
+      "final_d21": 86,
+      "initial_d11": 71
+    },
+    "final_crop_creation_rate": 0.89375,
+    "final_illegal_selected_actions": 0,
+    "final_renewable_harvest_rate": 0.9489583333333333,
+    "final_training_completion_rate": 0.9833333333333333,
+    "final_win_rate": 0.5864583333333333,
+    "improved_opponent_count": 1,
+    "improved_opponents": [
+      "sustained_funded_trio"
+    ],
+    "mean_margin": {
+      "final_d21": 16.209375,
+      "initial_d11": 18.894791666666666
+    },
+    "mean_margin_gain": -2.685416666666665,
+    "mean_opponent_score_delta": -0.1510416666666572,
+    "mean_own_score_delta": -2.8364583333333258,
+    "model_weight_drift": {
+      "by_group": {
+        "actor": {
+          "delta_l2": 0.3170805643660615,
+          "initial_l2": 1.4651567862136345,
+          "parameters": 221,
+          "relative_delta_l2": 0.21641408438306753
+        },
+        "critic": {
+          "delta_l2": 0.5620321578608121,
+          "initial_l2": 5.728574819121355,
+          "parameters": 1153,
+          "relative_delta_l2": 0.09811029367807335
+        },
+        "stem": {
+          "delta_l2": 1.4032702466036069,
+          "initial_l2": 14.592950069959382,
+          "parameters": 14992,
+          "relative_delta_l2": 0.09616083381881349
+        },
+        "tower": {
+          "delta_l2": 1.315590330284761,
+          "initial_l2": 17.441160341688658,
+          "parameters": 18560,
+          "relative_delta_l2": 0.07543020673573976
+        }
+      },
+      "overall_relative_delta_l2": 0.08634626614868589
+    },
+    "opponent_mean_margin_delta": {
+      "complete_baseline": -6.234939759036152,
+      "crop_first_repeated_pressure_reacquire": -5.077464788732394,
+      "funded_pair": -1.9880239520958085,
+      "one_shot_reaper": -2.630136986301366,
+      "renewable_planter": -1.4879518072289244,
+      "sustained_funded_trio": 0.8150289017341095
+    },
+    "opponent_score_decomposition": {
+      "complete_baseline": {
+        "opponent_score_delta": -0.41566265060242813,
+        "own_score_delta": -6.650602409638566
+      },
+      "crop_first_repeated_pressure_reacquire": {
+        "opponent_score_delta": 1.4718309859154886,
+        "own_score_delta": -3.6056338028168966
+      },
+      "funded_pair": {
+        "opponent_score_delta": -0.7724550898203688,
+        "own_score_delta": -2.76047904191617
+      },
+      "one_shot_reaper": {
+        "opponent_score_delta": 1.4520547945205493,
+        "own_score_delta": -1.1780821917808169
+      },
+      "renewable_planter": {
+        "opponent_score_delta": -1.1024096385542208,
+        "own_score_delta": -2.590361445783117
+      },
+      "sustained_funded_trio": {
+        "opponent_score_delta": -1.0693641618497196,
+        "own_score_delta": -0.25433526011562435
+      }
+    },
+    "paired_margin_delta": {
+      "improved_seeds": 449,
+      "large_improvements_at_least_50": 38,
+      "large_regressions_at_most_minus_50": 72,
+      "maximum": 153.0,
+      "mean": -2.685416666666667,
+      "median": 0.0,
+      "minimum": -210.0,
+      "normal_approximation_95_percent_interval": [
+        -4.902077099411775,
+        -0.46875623392155896
+      ],
+      "quantiles": {
+        "q05": -66.0,
+        "q10": -37.099999999999994,
+        "q25": -9.0,
+        "q50": 0.0,
+        "q75": 9.0,
+        "q90": 27.0,
+        "q95": 40.0
+      },
+      "regressed_seeds": 429,
+      "standard_deviation": 35.041179347831545,
+      "standard_error": 1.1309492003801571,
+      "tied_seeds": 82
+    },
+    "recipe_mean_margin_delta": {
+      "0": 1.0076923076923059,
+      "1": -4.300813008130081,
+      "2": -2.470085470085472,
+      "3": -2.359375,
+      "4": 2.69047619047619,
+      "5": -1.3482142857142865,
+      "6": -7.559999999999999,
+      "7": -8.233870967741943
+    },
+    "teacher_auxiliary": {
+      "invalid_labels": 0,
+      "labels": 1000000,
+      "legal_rate": 1.0
+    },
+    "training_illegal_actor_actions": 0,
+    "worst_opponent_mean_delta": -6.234939759036152
+  },
+  "pilot_pass": false,
+  "schema": 1,
+  "scope": "D21 frozen local PPO pilot gate; pass authorizes only exact-engine paired qualification, not a candidate, submission, or Arena",
+  "source": {
+    "analyzer": "cgauto/d21_competitive_pilot_analysis.py",
+    "analyzer_sha256": "ebced8b8e3ccec2db4434100e1730248683810e07a3bbce9b9ca47a59780b2ab",
+    "paths": {
+      "checkpoint": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d21-competitive-ppo-pilot-seed2107-final.pt",
+      "final": "data/analysis/live-agent-6553250/d21-validation-final-seed2107-8100000-8100959.json",
+      "initial": "data/analysis/live-agent-6553250/d21-validation-initial-d11-8100000-8100959.json",
+      "initial_checkpoint": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-ppo-final-local-l5b.pt",
+      "training": "data/analysis/live-agent-6553250/d21-competitive-ppo-pilot-seed2107-training-summary.json"
+    },
+    "protocol": "data/analysis/live-agent-6553250/d21-competitive-closed-loop-preflight-protocol-2026-07-20.md",
+    "protocol_sha256": "46d75aedbf6e3c36de26a09a835f9441398f123e8ec9de1619a8d7ebf5eedf06",
+    "sha256": {
+      "checkpoint": "d51dd99260aa33b447c1371a8f1857a0771f7421c9b90a13322d9bf01f78c8cb",
+      "final": "e231952dbda1d03652d9f1cbe77130cc72065c5d8869b717a4995f7f4054adbb",
+      "initial": "58c2b59c12ceb76317eb2e4f16679f702c1e2fe07415f595f20c46614a4f4f86",
+      "initial_checkpoint": "44c9a9ed3a232c01fccf9b99b16c3c785b26a1e2c656cb6c40674137138d8de6",
+      "training": "f1f2b10250d521495afad3220f39fcc71e1264227c70a48ec3820536f390ca9b"
+    }
+  }
+}

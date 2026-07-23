@@ -1,0 +1,91 @@
+{
+  "audit": {
+    "byte_repeat_export": true,
+    "control_rows": 512,
+    "deterministic_repeat_fit": true,
+    "feature_count": 169,
+    "feature_rows": 1168,
+    "integrity_failures": 0,
+    "semantic_rows": 656
+  },
+  "decision": "reject_close_pooled_snapshot_value_model",
+  "diagnostics": {
+    "oracle_capture": 0.1056472632493484,
+    "pearson": 0.018528730043676344,
+    "predicted_positive_precision": 0.5397350993377483,
+    "predicted_positive_rows": 302,
+    "prediction_mean": -1.5357667735673042,
+    "prediction_standard_deviation": 14.991815770144255,
+    "rows": 656,
+    "spearman": 0.045960013885369674,
+    "target_mean": -0.4695121951219512
+  },
+  "gates": {
+    "intervention_rate_between_10_and_70_percent": true,
+    "mean_margin_gain_at_least_2": false,
+    "own_nonnegative_or_opponent_nonpositive": true,
+    "regression_at_most_30_percent": true,
+    "six_nonnegative_families_and_worst_at_least_minus_3": false,
+    "six_nonnegative_folds_and_worst_at_least_minus_5": true,
+    "strict_improvement_at_least_30_percent": false,
+    "two_semantic_arms_selected_at_least_8": true
+  },
+  "inputs": {
+    "d82_rows": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d82a-threatened-own-crop-rollout-a-9914000-9914031.tsv",
+    "d82_rows_sha256": "a2d9e12d12b550398f1b84946daccdf01da379dd9155083969ed22ca5bf1438b",
+    "exporter_sha256": "5fc03ded5aac52d27ea3f20612a3acffe5ad5008a024dcf38b74c4824a855a73",
+    "feature_export": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d83a-threatened-response-features-a-9914000-9914031.tsv",
+    "feature_export_sha256": "17d2ca501204baa026e2c388a8d550b5251479e4b75206317a04bca93f15bbeb"
+  },
+  "model": null,
+  "oof_policy": {
+    "fold_mean_margin_gains": {
+      "0": -0.5625,
+      "1": 0.171875,
+      "2": 2.328125,
+      "3": 1.46875,
+      "4": 2.921875,
+      "5": -1.71875,
+      "6": 4.578125,
+      "7": 0.3125
+    },
+    "intervention_rate_on_rooted_tasks": 0.45879732739420936,
+    "mean_margin_gain": 1.1875,
+    "mean_opponent_score_delta": -1.525390625,
+    "mean_own_score_delta": -0.337890625,
+    "opponent_family_mean_margin_gains": {
+      "compact_gold": 1.59375,
+      "gold_adaptive": 2.21875,
+      "legend_balanced": 5.78125,
+      "mybot": -0.671875,
+      "norx_native_three": 1.359375,
+      "resident": -3.3125,
+      "script_boss": -0.140625,
+      "silver_boss": 2.671875
+    },
+    "rooted_regression_rate": 0.20044543429844097,
+    "rooted_strict_improvement_rate": 0.24721603563474387,
+    "rooted_tasks": 449,
+    "selected_arm_counts": {
+      "control": 306,
+      "fell": 158,
+      "harvest": 18,
+      "renew": 30
+    },
+    "strict_selected_arm_counts": {
+      "fell": 81,
+      "harvest": 9,
+      "renew": 21
+    },
+    "tasks": 512
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d83a-threatened-response-value-predictability-protocol-2026-07-21.md",
+  "protocol_sha256": "7f44611f0f38dd272ab7ee4daf30dd3c3d2e0e740f99e9e13381265fc5ef5e41",
+  "recipe": {
+    "fold_rule": "map_seed mod 8",
+    "folds": 8,
+    "ridge_lambda": 10.0
+  },
+  "scope": "consumed D82 held-map predictability only; no candidate or platform action"
+}

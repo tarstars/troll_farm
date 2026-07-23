@@ -1,0 +1,46 @@
+{
+  "schema": "troll-farm-d144a-two-intervention-mc-pilot-repair1-lock-v1",
+  "frozen_at": "2026-07-22-after-zero-row-numpy-import-failure-before-repair1-yt-path-or-operation",
+  "yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+  "failed_operation": {
+    "operation_id": "ada44f3b-2c9a7e95-42e03e8-501288eb",
+    "state": "failed",
+    "failure": "worker Python 3.10 lacks numpy; mc-b exited before environment creation",
+    "records": 0
+  },
+  "repair": "add only the pinned NumPy 2.2.6 Python 3.10 runtime archive to the worker child PYTHONPATH and use a new YT namespace",
+  "inherited_lock": "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-lock.json",
+  "unchanged_design": {
+    "start_seed": 9844128,
+    "maps": 8,
+    "tasks": 128,
+    "replicas": 128,
+    "single_replicas": 16,
+    "double_replicas": 111,
+    "mc_repeats": 2,
+    "exact_shards": 2
+  },
+  "external_sha256": {
+    "/home/tarstars/prj/math_through_eml/src/math_through_eml/yt_utils.py": "ce5b7466bde3dfeb2ccf47836c9b18202750142f7c067c177d8ebb36c0340ccc"
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-repair1-protocol-2026-07-22.md": "cc3a8d395539a331f329c21b96094e87e46cbbc847dae6514cbba08cfe269677",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-protocol-2026-07-22.md": "83ca87f5140a4971834393dc94f2091265197aa0692c1d0075ab5eda0f77c89a",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-lock.json": "5c32cf9dadb867ec45fa67337788b01f5cf235bea781730e523941364f19bd0c",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-launch.json": "fe2c150f58c211615aa45eb2e31857c0a850ee82a20402128b64bb43619d3225",
+    "cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "cgauto/yt_d144_two_intervention_mc_mapper.py": "34aa9b0898113d96610bee70b2cece8c71d204fbd8b0467acbda36ded526041d",
+    "cgauto/yt_d144_two_intervention_mc.py": "f36acf9c5ca4254d44f65606db8f346f936d54e9e026653293f48f164e8fcaec",
+    "cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "tests/test_run_d144a_two_intervention_mc_pilot.py": "bf0c69a348dc70d00f4a5b6d73bac1ed8534813597ee7405c8a708db6b1e9624",
+    "tests/test_yt_d144_two_intervention_mc.py": "19299499f15dd0cd4a37ae3f88c3ab12461dd2a2c7254855d20fd1203176135e",
+    "tests/test_rl_q6_proposal_env.py": "ba2e8c1b158f8af8b04857bae2d9120f6749e72780f252b1b636ef95a952152b",
+    "data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8"
+  }
+}

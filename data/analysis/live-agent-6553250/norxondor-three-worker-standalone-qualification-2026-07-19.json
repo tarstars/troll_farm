@@ -1,0 +1,157 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-19T03:46:50.910378+00:00",
+ "source": {
+  "path": "/home/tarstars/prj/troll_farm/cgauto/submissions/candidate-agent6553250-norxondor-three-worker-silver.min.rs",
+  "bytes": 21798,
+  "sha256": "69237902e54232cdf31ef8e8bc0e6c25066a4c152bde36479ffb8e1ee92f8377",
+  "sidecar_sha256": "69237902e54232cdf31ef8e8bc0e6c25066a4c152bde36479ffb8e1ee92f8377"
+ },
+ "formatted_binary": "/home/tarstars/prj/troll_farm/rust/target/release/norxondor_three_worker_live",
+ "compile": {
+  "returncode": 0,
+  "stderr": ""
+ },
+ "protocol_streams": [
+  {
+   "seed": 0,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.021199443988734856,
+   "formatted_seconds": 0.021392830996774137
+  },
+  {
+   "seed": 1,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.022204543987754732,
+   "formatted_seconds": 0.021689891000278294
+  },
+  {
+   "seed": 2,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.02542865599389188,
+   "formatted_seconds": 0.048930741992080584
+  },
+  {
+   "seed": 3,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.02546426499611698,
+   "formatted_seconds": 0.04259528999682516
+  },
+  {
+   "seed": 4,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.024639612005557865,
+   "formatted_seconds": 0.04624422997585498
+  },
+  {
+   "seed": 5,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.06698923802468926,
+   "formatted_seconds": 0.07085418800124899
+  },
+  {
+   "seed": 6,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.05583950100117363,
+   "formatted_seconds": 0.06878064101329073
+  },
+  {
+   "seed": 7,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.0277701249870006,
+   "formatted_seconds": 0.024171717988792807
+  },
+  {
+   "seed": 8,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.02099470398388803,
+   "formatted_seconds": 0.04663426399929449
+  },
+  {
+   "seed": 9,
+   "turns": 300,
+   "candidate_returncode": 0,
+   "formatted_returncode": 0,
+   "candidate_stderr": "",
+   "formatted_stderr": "",
+   "stdout_identical": true,
+   "candidate_seconds": 0.05574235098902136,
+   "formatted_seconds": 0.0413218520116061
+  }
+ ],
+ "protocol_candidate_seconds_p95": 0.06698923802468926,
+ "complete_match_parity": {
+  "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/norxondor-three-worker-parity-0-29.tsv",
+  "rows": 480,
+  "unique_rows": 480,
+  "expected_grid": true,
+  "decisions": 131347,
+  "weighted_mean_decision_ms": 0.22727980859098418,
+  "median_match_p95_ms": 0.279196,
+  "maximum_match_p95_ms": 0.926195,
+  "maximum_decision_ms": 15.212502,
+  "three_worker_terminal_matches": 480,
+  "minimum_terminal_workers": 3,
+  "maximum_terminal_workers": 3,
+  "gates": {
+   "exact_480_grid": true,
+   "p95_at_most_5ms": true,
+   "maximum_at_most_50ms": true
+  }
+ },
+ "gates": {
+  "rustc_2021_compile": true,
+  "source_at_most_100000_bytes": true,
+  "sidecar_matches": true,
+  "ten_stream_stdout_parity": true,
+  "complete_match_grid_and_command_parity": true,
+  "decision_p95_at_most_5ms": true,
+  "decision_maximum_at_most_50ms": true
+ },
+ "pass": true
+}

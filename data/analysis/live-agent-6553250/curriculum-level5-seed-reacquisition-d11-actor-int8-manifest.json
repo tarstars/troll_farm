@@ -1,0 +1,285 @@
+{
+  "action_shape": [
+    13,
+    11,
+    22
+  ],
+  "actor_parameter_count": 33773,
+  "critic_parameter_count_omitted": 1153,
+  "dequantized_actor_tensor_sha256": "7af90af5a53238f06b0e21c1a7ecb8b603026cc8c8bf1fa39b9c0c2030ae7e10",
+  "format": "troll-farm-spatial-actor-int8-per-output-v1",
+  "layers": [
+    {
+      "bias_bytes": 64,
+      "bias_name": "stem.0.bias",
+      "bias_offset": 15040,
+      "index": 0,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.007541030645370483,
+      "name": "stem.0",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 14976,
+      "weight_bytes": 14976,
+      "weight_count": 14976,
+      "weight_name": "stem.0.weight",
+      "weight_offset": 0,
+      "weight_shape": [
+        16,
+        104,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.0.conv1.bias",
+      "bias_offset": 17472,
+      "index": 1,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.003012940287590027,
+      "name": "tower.0.conv1",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 17408,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.0.conv1.weight",
+      "weight_offset": 15104,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.0.conv2.bias",
+      "bias_offset": 19904,
+      "index": 2,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.002101358026266098,
+      "name": "tower.0.conv2",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 19840,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.0.conv2.weight",
+      "weight_offset": 17536,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.1.conv1.bias",
+      "bias_offset": 22336,
+      "index": 3,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.002069130539894104,
+      "name": "tower.1.conv1",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 22272,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.1.conv1.weight",
+      "weight_offset": 19968,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.1.conv2.bias",
+      "bias_offset": 24768,
+      "index": 4,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.0016783103346824646,
+      "name": "tower.1.conv2",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 24704,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.1.conv2.weight",
+      "weight_offset": 22400,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.2.conv1.bias",
+      "bias_offset": 27200,
+      "index": 5,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.002179384231567383,
+      "name": "tower.2.conv1",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 27136,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.2.conv1.weight",
+      "weight_offset": 24832,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.2.conv2.bias",
+      "bias_offset": 29632,
+      "index": 6,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.0019344687461853027,
+      "name": "tower.2.conv2",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 29568,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.2.conv2.weight",
+      "weight_offset": 27264,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.3.conv1.bias",
+      "bias_offset": 32064,
+      "index": 7,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.0021072793751955032,
+      "name": "tower.3.conv1",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 32000,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.3.conv1.weight",
+      "weight_offset": 29696,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 64,
+      "bias_name": "tower.3.conv2.bias",
+      "bias_offset": 34496,
+      "index": 8,
+      "kernel": [
+        3,
+        3
+      ],
+      "maximum_absolute_weight_error": 0.0017832443118095398,
+      "name": "tower.3.conv2",
+      "output_channels": 16,
+      "scale_bytes": 64,
+      "scale_offset": 34432,
+      "weight_bytes": 2304,
+      "weight_count": 2304,
+      "weight_name": "tower.3.conv2.weight",
+      "weight_offset": 32128,
+      "weight_shape": [
+        16,
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "bias_bytes": 52,
+      "bias_name": "actor.bias",
+      "bias_offset": 34820,
+      "index": 9,
+      "kernel": [
+        1,
+        1
+      ],
+      "maximum_absolute_weight_error": 0.0015514474362134933,
+      "name": "actor",
+      "output_channels": 13,
+      "scale_bytes": 52,
+      "scale_offset": 34768,
+      "weight_bytes": 208,
+      "weight_count": 208,
+      "weight_name": "actor.weight",
+      "weight_offset": 34560,
+      "weight_shape": [
+        13,
+        16,
+        1,
+        1
+      ]
+    }
+  ],
+  "maximum_absolute_weight_error": 0.007541030645370483,
+  "observation_shape": [
+    104,
+    11,
+    22
+  ],
+  "payload_bytes": 34872,
+  "payload_sha256": "eda4899464bde95b28691db89fe2ee171d7de50c585d2595a80c8d2d0c816832",
+  "quantization": {
+    "bias": "unaltered little-endian f32",
+    "clip": [
+      -127,
+      127
+    ],
+    "rounding": "numpy.rint nearest-even",
+    "runtime_accumulation": "f32 after dequantization",
+    "scale": "f32 max_abs/127; all-zero channel scale 1",
+    "weights": "signed-int8 symmetric per output channel"
+  },
+  "source_actor_tensor_sha256": "01925fd4c70f1330c8453928a107158e9fa8a36517c31417f5bc05a451c6d5ce",
+  "source_checkpoint": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-ppo-final-local-l5b.pt",
+  "source_checkpoint_sha256": "44c9a9ed3a232c01fccf9b99b16c3c785b26a1e2c656cb6c40674137138d8de6"
+}

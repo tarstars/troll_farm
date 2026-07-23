@@ -1,0 +1,17 @@
+{
+  "schema": "troll-farm-d153b-oof-confidence-abstention-diagnostic-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d153b_oof_confidence_abstention.py": "dcc1666e4564997ccbd7dcc1d340fd060e94a4a4bac6b89d426f0ce1bf16e699",
+    "cgauto/build_d153a_conditional_value_dataset.py": "f5aa8c39d25f48edf5dd35adc653e96509fae722baadf4c88e8455f274cab67e",
+    "cgauto/export_d153b_oof_confidence_scores.py": "a63accc873e069d9faca385f4865dd7e34b25c89a6e40084ead301969dad21ec",
+    "cgauto/run_d153a_conditional_value_selection.py": "7f3c5925bb25be15ec8bde17d085547fac387f61b5b2b8be0a8996116ca1e454",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d153a_conditional_value_policy.py": "e9112e5a09d63095fd01ce697e98d6cd0c7b0d9e2570354d0bf11d0d0210cadb",
+    "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-lock.json": "914805093ef8060d9cd49dc7a9c56371beda2bb68159e6b1660d27603af47025",
+    "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-result.json": "0db54ee05cf4d1f3226a03cc9e7cc7fdb1da8a55db38b8154d58abdda73f4d0d",
+    "data/analysis/live-agent-6553250/d153a-conditional-value-policy-crossfit-selection-a.json": "6ca53bff7d7891bc4376c50b7ab585d22da9b626d3e98c53b8f125c5d5084545",
+    "data/analysis/live-agent-6553250/d153b-oof-confidence-abstention-diagnostic-protocol-2026-07-23.md": "85369da7ee29fe3eb5f5e55a88fbcb4bd1404bb590f6e02529b64f40c99620a4",
+    "tests/test_analyze_d153b_oof_confidence_abstention.py": "f11d10dea7c86ec28386b2b666827ed17fa2598cd16c034534dcb2f69abee5ca",
+    "tests/test_export_d153b_oof_confidence_scores.py": "25d163659936706a27d51e602991689851ad85ac31bc7f53359d93a1abe51f6a"
+  }
+}

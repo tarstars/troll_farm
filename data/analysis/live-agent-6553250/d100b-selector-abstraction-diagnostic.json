@@ -1,0 +1,246 @@
+{
+  "analyzer_sha256": "9ec75e0bd86b5fff748bb9641d2441840c6f7083f3ad2d93491219c6da59a08f",
+  "conclusion": "most parent-oracle value is task-specific and unstable; static map, seat, or opponent-family selection is not the next representation",
+  "d40_mean_margin": 47.3125,
+  "held_selection": {
+    "cross_seat_map_and_opponent_identity": {
+      "mean_margin": 49.3828125,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 0.25,
+        "gold_adaptive": 4.875,
+        "legend_balanced": 6.625,
+        "mybot": -1.6875,
+        "norx_native_three": -11.0,
+        "resident": 17.375,
+        "script_boss": 10.75,
+        "silver_boss": -10.625
+      },
+      "optimism": "same map and opponent, but choice uses only the opposite seat outcome",
+      "paired_mean_margin_gain_vs_d40": 2.0703125,
+      "selected_policy_count": 44,
+      "strict_improvement_rate_vs_d40": 0.515625,
+      "task_oracle_gain_captured": 0.04244074311338885,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -11.0
+    },
+    "leave_one_map_out_global": {
+      "folds": 8,
+      "mean_margin": 50.40625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": -9.9375,
+        "gold_adaptive": 7.75,
+        "legend_balanced": 16.8125,
+        "mybot": 10.8125,
+        "norx_native_three": -2.125,
+        "resident": 9.375,
+        "script_boss": 1.625,
+        "silver_boss": -9.5625
+      },
+      "paired_mean_margin_gain_vs_d40": 3.09375,
+      "selected_policy_count": 2,
+      "strict_improvement_rate_vs_d40": 0.515625,
+      "task_oracle_gain_captured": 0.06342088404868675,
+      "uses_opponent_identity": false,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -9.9375
+    },
+    "leave_one_map_out_opponent_identity": {
+      "folds": 8,
+      "mean_margin": 45.890625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": -17.5625,
+        "gold_adaptive": 1.75,
+        "legend_balanced": 19.0,
+        "mybot": -6.8125,
+        "norx_native_three": 8.8125,
+        "resident": -0.6875,
+        "script_boss": -7.875,
+        "silver_boss": -8.0
+      },
+      "paired_mean_margin_gain_vs_d40": -1.421875,
+      "selected_policy_count": 19,
+      "strict_improvement_rate_vs_d40": 0.3984375,
+      "task_oracle_gain_captured": -0.02914798206278027,
+      "uses_opponent_identity": true,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -17.5625
+    }
+  },
+  "in_sample_groupings": {
+    "full_task": {
+      "group_count": 128,
+      "mean_margin": 96.09375,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 57.0625,
+        "gold_adaptive": 45.375,
+        "legend_balanced": 78.6875,
+        "mybot": 47.9375,
+        "norx_native_three": 39.375,
+        "resident": 39.4375,
+        "script_boss": 42.5625,
+        "silver_boss": 39.8125
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 48.78125,
+      "selected_policy_count": 44,
+      "strict_improvement_rate_vs_d40": 0.9921875,
+      "task_oracle_gain_captured": 1.0,
+      "worst_opponent_family_mean_margin_gain_vs_d40": 39.375
+    },
+    "global": {
+      "group_count": 1,
+      "mean_margin": 53.890625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": -3.1875,
+        "gold_adaptive": 14.5625,
+        "legend_balanced": 19.25,
+        "mybot": 10.3125,
+        "norx_native_three": 4.375,
+        "resident": 12.6875,
+        "script_boss": 4.0,
+        "silver_boss": -9.375
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 6.578125,
+      "selected_policy_count": 1,
+      "strict_improvement_rate_vs_d40": 0.5703125,
+      "task_oracle_gain_captured": 0.13484945547725816,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -9.375
+    },
+    "map_seed": {
+      "group_count": 8,
+      "mean_margin": 62.3828125,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 15.375,
+        "gold_adaptive": 16.5,
+        "legend_balanced": 35.5,
+        "mybot": 14.375,
+        "norx_native_three": 10.5625,
+        "resident": 20.0,
+        "script_boss": 13.1875,
+        "silver_boss": -4.9375
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 15.0703125,
+      "selected_policy_count": 7,
+      "strict_improvement_rate_vs_d40": 0.640625,
+      "task_oracle_gain_captured": 0.3089365791159513,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -4.9375
+    },
+    "map_seed_and_opponent_identity": {
+      "group_count": 64,
+      "mean_margin": 83.6015625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 43.3125,
+        "gold_adaptive": 35.9375,
+        "legend_balanced": 56.5,
+        "mybot": 35.625,
+        "norx_native_three": 25.4375,
+        "resident": 32.6875,
+        "script_boss": 32.0625,
+        "silver_boss": 28.75
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 36.2890625,
+      "selected_policy_count": 33,
+      "strict_improvement_rate_vs_d40": 0.8671875,
+      "task_oracle_gain_captured": 0.7439141575912877,
+      "worst_opponent_family_mean_margin_gain_vs_d40": 25.4375
+    },
+    "map_seed_and_seat": {
+      "group_count": 16,
+      "mean_margin": 67.515625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 26.5,
+        "gold_adaptive": 17.5625,
+        "legend_balanced": 50.8125,
+        "mybot": 20.0,
+        "norx_native_three": 10.5625,
+        "resident": 19.1875,
+        "script_boss": 11.5,
+        "silver_boss": 5.5
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 20.203125,
+      "selected_policy_count": 10,
+      "strict_improvement_rate_vs_d40": 0.625,
+      "task_oracle_gain_captured": 0.41415759128763613,
+      "worst_opponent_family_mean_margin_gain_vs_d40": 5.5
+    },
+    "opponent_identity": {
+      "group_count": 8,
+      "mean_margin": 60.515625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 11.5,
+        "gold_adaptive": 16.8125,
+        "legend_balanced": 26.75,
+        "mybot": 13.3125,
+        "norx_native_three": 8.8125,
+        "resident": 13.625,
+        "script_boss": 9.8125,
+        "silver_boss": 5.0
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 13.203125,
+      "selected_policy_count": 7,
+      "strict_improvement_rate_vs_d40": 0.5546875,
+      "task_oracle_gain_captured": 0.27065983344010247,
+      "worst_opponent_family_mean_margin_gain_vs_d40": 5.0
+    },
+    "opponent_identity_and_seat": {
+      "group_count": 16,
+      "mean_margin": 66.9453125,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 18.1875,
+        "gold_adaptive": 22.8125,
+        "legend_balanced": 33.5,
+        "mybot": 21.625,
+        "norx_native_three": 20.4375,
+        "resident": 15.625,
+        "script_boss": 17.0,
+        "silver_boss": 7.875
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 19.6328125,
+      "selected_policy_count": 13,
+      "strict_improvement_rate_vs_d40": 0.6953125,
+      "task_oracle_gain_captured": 0.4024663677130045,
+      "worst_opponent_family_mean_margin_gain_vs_d40": 7.875
+    },
+    "seat": {
+      "group_count": 2,
+      "mean_margin": 55.9765625,
+      "opponent_family_mean_margin_gains_vs_d40": {
+        "compact_gold": 8.1875,
+        "gold_adaptive": 14.5625,
+        "legend_balanced": 23.3125,
+        "mybot": 13.8125,
+        "norx_native_three": 6.375,
+        "resident": 9.8125,
+        "script_boss": -6.3125,
+        "silver_boss": -0.4375
+      },
+      "optimism": "same outcomes choose and evaluate each grouping",
+      "paired_mean_margin_gain_vs_d40": 8.6640625,
+      "selected_policy_count": 2,
+      "strict_improvement_rate_vs_d40": 0.5859375,
+      "task_oracle_gain_captured": 0.17761050608584242,
+      "worst_opponent_family_mean_margin_gain_vs_d40": -6.3125
+    }
+  },
+  "inputs": {
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d100a-d98-anchored-pair-residual-baselines-a-9823000-9823007.tsv": "b9cf5ffda4f853efe0441f5d72f75876dac8497bbb610bd730ce2994d828b01d",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d100a-d98-anchored-pair-residual-population-a-9823000-9823007.tsv": "c27bacd7122ef536c084b43e3168062e1a0afcdc9308245962dc0ef307c56182",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d100a-d98-anchored-pair-residual-result.json": "3ca4e6289823e2725a985bb4854e384f534a33fcf4ed0089f09fb56fb3db98f7"
+  },
+  "parent_task_oracle_gain_vs_d40": 48.78125,
+  "parent_task_oracle_mean_margin": 96.09375,
+  "policies": 65,
+  "policy_order_stability": {
+    "map_pair_spearman_maximum": 0.6366134928118191,
+    "map_pair_spearman_mean": 0.21737191251962065,
+    "map_pair_spearman_minimum": -0.1467859435243581,
+    "same_map_opponent_cross_seat_spearman_maximum": 0.743742602151515,
+    "same_map_opponent_cross_seat_spearman_mean": 0.10349868978117664,
+    "same_map_opponent_cross_seat_spearman_minimum": -0.4698326593353163
+  },
+  "scope": "post-result consumed-map diagnosis only; every grouping except held folds is an optimistic hindsight ceiling and no policy is selectable",
+  "tasks": 128
+}

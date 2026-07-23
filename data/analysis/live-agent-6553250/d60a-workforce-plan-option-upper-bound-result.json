@@ -1,0 +1,2839 @@
+{
+  "audit": {
+    "anchor_parity_failures": 0,
+    "integrity_failures": 0,
+    "plans": 17,
+    "repeat_byte_identical": true,
+    "rows": 4352,
+    "tasks_per_plan": 256
+  },
+  "best_fixed_plan_descriptive_only": {
+    "changed_action_hash_rate": 0.9921875,
+    "changed_action_hash_tasks": 254,
+    "crop_rate": 0.53515625,
+    "mean_margin": 44.6796875,
+    "mean_opponent_score": 103.1796875,
+    "mean_own_score": 147.859375,
+    "paired_mean_margin_delta": 9.34765625,
+    "paired_mean_opponent_score_delta": -64.84765625,
+    "paired_mean_own_score_delta": -55.5,
+    "plan": "pre3_fell__post3_fell",
+    "post3_eligible_decisions": 4794,
+    "post3_overrides": 1985,
+    "post3_rate_decisions": 7254,
+    "pre3_eligible_decisions": 924,
+    "pre3_overrides": 705,
+    "pre3_rate_decisions": 1158,
+    "strict_margin_improvements": 156,
+    "strict_margin_regressions": 97,
+    "tasks": 256,
+    "worker_three_rate": 0.89453125,
+    "worker_two_rate": 0.9921875
+  },
+  "gates": {
+    "all_opponent_oracle_gains_at_least_8": true,
+    "all_semantic_modes_override_in_both_phases": true,
+    "at_least_12_active_nonanchor_plans": true,
+    "at_least_four_nonanchor_plans_have_four_strict_gains": true,
+    "balanced_anchor_exact_direct_d40_parity": true,
+    "complete_byte_identical_17x256_repeats": true,
+    "nonanchor_mean_margin_range_at_least_25": true,
+    "oracle_crop_rate_at_least_95pct": false,
+    "oracle_mean_margin_gain_at_least_20": true,
+    "oracle_mean_opponent_score_nonpositive": true,
+    "oracle_mean_own_score_nonnegative": true,
+    "oracle_strictly_improves_at_least_30pct": true,
+    "oracle_worker_three_rate_at_least_85pct": true,
+    "zero_integrity_failures": true
+  },
+  "inputs": {
+    "environment_source_sha256": "c53388b444ae010a6a298b6ccc32be63badf20bfe4f8b8aa78b38767108d5360",
+    "prior_source_sha256": "632f1b2c99c18073c4cd956863fcaa4b7e9773dd69bb745fc18f062337130f62",
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d60a-workforce-plan-option-upper-bound-a-9800000-9800015.tsv",
+    "run_a_sha256": "00416deba0b37c3c81de4db9fce9c2665f4617ae4f2dac9d2ee14ce350794aed",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d60a-workforce-plan-option-upper-bound-b-9800000-9800015.tsv",
+    "run_b_sha256": "00416deba0b37c3c81de4db9fce9c2665f4617ae4f2dac9d2ee14ce350794aed",
+    "runner_source_sha256": "b6031b1f809b95cdc4a69597b908a8efefcb7504750ca165dd3cd3834ec86dad"
+  },
+  "oracle": {
+    "crop_rate": 0.8828125,
+    "details": [
+      {
+        "map_seed": 9800000,
+        "margin_delta": 18,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 2,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 0,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 103,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -47,
+        "own_score_delta": 56,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 0,
+        "opponent": "mybot",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 62,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -43,
+        "own_score_delta": 19,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 10,
+        "opponent": "resident",
+        "opponent_score_delta": -7,
+        "own_score_delta": 3,
+        "plan": "pre3_balanced__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 27,
+        "opponent": "script_boss",
+        "opponent_score_delta": -165,
+        "own_score_delta": -138,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 22,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -17,
+        "own_score_delta": 5,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 0,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 19,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -15,
+        "own_score_delta": 4,
+        "plan": "pre3_balanced__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 116,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -26,
+        "own_score_delta": 90,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 10,
+        "opponent": "mybot",
+        "opponent_score_delta": -28,
+        "own_score_delta": -18,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 53,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -30,
+        "own_score_delta": 23,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 0,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 24,
+        "opponent": "script_boss",
+        "opponent_score_delta": -34,
+        "own_score_delta": -10,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800000,
+        "margin_delta": 1,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 2,
+        "own_score_delta": 3,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 122,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -96,
+        "own_score_delta": 26,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 192,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -189,
+        "own_score_delta": 3,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 0,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 43,
+        "opponent": "mybot",
+        "opponent_score_delta": -19,
+        "own_score_delta": 24,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 120,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -81,
+        "own_score_delta": 39,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 7,
+        "opponent": "resident",
+        "opponent_score_delta": 1,
+        "own_score_delta": 8,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 118,
+        "opponent": "script_boss",
+        "opponent_score_delta": -212,
+        "own_score_delta": -94,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 120,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -101,
+        "own_score_delta": 19,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 137,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -186,
+        "own_score_delta": -49,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 153,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -124,
+        "own_score_delta": 29,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 75,
+        "opponent": "mybot",
+        "opponent_score_delta": -36,
+        "own_score_delta": 39,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 0,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 2,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 2,
+        "plan": "pre3_balanced__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 74,
+        "opponent": "script_boss",
+        "opponent_score_delta": -117,
+        "own_score_delta": -43,
+        "plan": "pre3_harvest__post3_harvest",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800001,
+        "margin_delta": 23,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -5,
+        "own_score_delta": 18,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 11,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 17,
+        "own_score_delta": 28,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 44,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": 0,
+        "own_score_delta": 44,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 154,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -23,
+        "own_score_delta": 131,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 144,
+        "opponent": "mybot",
+        "opponent_score_delta": -121,
+        "own_score_delta": 23,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 165,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -69,
+        "own_score_delta": 96,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 93,
+        "opponent": "resident",
+        "opponent_score_delta": -130,
+        "own_score_delta": -37,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 30,
+        "opponent": "script_boss",
+        "opponent_score_delta": 5,
+        "own_score_delta": 35,
+        "plan": "pre3_renew__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 45,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -87,
+        "own_score_delta": -42,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 9,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -45,
+        "own_score_delta": -36,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 4,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -144,
+        "own_score_delta": -140,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 193,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -54,
+        "own_score_delta": 139,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 33,
+        "opponent": "mybot",
+        "opponent_score_delta": -24,
+        "own_score_delta": 9,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 16,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -16,
+        "own_score_delta": 0,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 112,
+        "opponent": "resident",
+        "opponent_score_delta": -137,
+        "own_score_delta": -25,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 40,
+        "opponent": "script_boss",
+        "opponent_score_delta": -2,
+        "own_score_delta": 38,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800002,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 64,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -8,
+        "own_score_delta": 56,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 4,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -96,
+        "own_score_delta": -92,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 92,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -19,
+        "own_score_delta": 73,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 57,
+        "opponent": "mybot",
+        "opponent_score_delta": -37,
+        "own_score_delta": 20,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 96,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -28,
+        "own_score_delta": 68,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 51,
+        "opponent": "resident",
+        "opponent_score_delta": -57,
+        "own_score_delta": -6,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 38,
+        "opponent": "script_boss",
+        "opponent_score_delta": -131,
+        "own_score_delta": -93,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 20,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -8,
+        "own_score_delta": 12,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 46,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -143,
+        "own_score_delta": -97,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 0,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 41,
+        "own_score_delta": 41,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 35,
+        "opponent": "mybot",
+        "opponent_score_delta": -15,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 77,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 1,
+        "own_score_delta": 78,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 49,
+        "opponent": "resident",
+        "opponent_score_delta": -52,
+        "own_score_delta": -3,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 69,
+        "opponent": "script_boss",
+        "opponent_score_delta": -128,
+        "own_score_delta": -59,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800003,
+        "margin_delta": 5,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 7,
+        "own_score_delta": 12,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 36,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -24,
+        "own_score_delta": 12,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 5,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -8,
+        "own_score_delta": -3,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 36,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -8,
+        "own_score_delta": 28,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 16,
+        "opponent": "mybot",
+        "opponent_score_delta": -12,
+        "own_score_delta": 4,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 16,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -7,
+        "own_score_delta": 9,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 34,
+        "opponent": "resident",
+        "opponent_score_delta": -8,
+        "own_score_delta": 26,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 61,
+        "opponent": "script_boss",
+        "opponent_score_delta": -1,
+        "own_score_delta": 60,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 3,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 3,
+        "own_score_delta": 6,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 57,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -40,
+        "own_score_delta": 17,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 0,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 22,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -6,
+        "own_score_delta": 16,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 35,
+        "opponent": "mybot",
+        "opponent_score_delta": -15,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 21,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -1,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 15,
+        "opponent": "resident",
+        "opponent_score_delta": 3,
+        "own_score_delta": 18,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800004,
+        "margin_delta": 9,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -5,
+        "own_score_delta": 4,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 49,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -89,
+        "own_score_delta": -40,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 44,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -144,
+        "own_score_delta": -100,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 170,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -126,
+        "own_score_delta": 44,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 55,
+        "opponent": "mybot",
+        "opponent_score_delta": -1,
+        "own_score_delta": 54,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 45,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -21,
+        "own_score_delta": 24,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 86,
+        "opponent": "resident",
+        "opponent_score_delta": -77,
+        "own_score_delta": 9,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 31,
+        "opponent": "script_boss",
+        "opponent_score_delta": 2,
+        "own_score_delta": 33,
+        "plan": "pre3_renew__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 13,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -3,
+        "own_score_delta": 10,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 110,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -25,
+        "own_score_delta": 85,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 32,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -120,
+        "own_score_delta": -88,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 63,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -7,
+        "own_score_delta": 56,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 40,
+        "opponent": "mybot",
+        "opponent_score_delta": -11,
+        "own_score_delta": 29,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 61,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 15,
+        "own_score_delta": 76,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 96,
+        "opponent": "resident",
+        "opponent_score_delta": -71,
+        "own_score_delta": 25,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 31,
+        "opponent": "script_boss",
+        "opponent_score_delta": -1,
+        "own_score_delta": 30,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800005,
+        "margin_delta": 72,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 2,
+        "own_score_delta": 74,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 24,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -40,
+        "own_score_delta": -16,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 24,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -40,
+        "own_score_delta": -16,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 22,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -11,
+        "own_score_delta": 11,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 52,
+        "opponent": "mybot",
+        "opponent_score_delta": -20,
+        "own_score_delta": 32,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 18,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -4,
+        "own_score_delta": 14,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 0,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 52,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 52,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 5,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -4,
+        "own_score_delta": 1,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 57,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -45,
+        "own_score_delta": 12,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 57,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -45,
+        "own_score_delta": 12,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 31,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -3,
+        "own_score_delta": 28,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 30,
+        "opponent": "mybot",
+        "opponent_score_delta": -2,
+        "own_score_delta": 28,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 16,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 1,
+        "own_score_delta": 17,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 0,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800006,
+        "margin_delta": 14,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 14,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 0,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 38,
+        "own_score_delta": 38,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 33,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -219,
+        "own_score_delta": -186,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 70,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 27,
+        "own_score_delta": 97,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 0,
+        "opponent": "mybot",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 12,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 20,
+        "own_score_delta": 32,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 72,
+        "opponent": "resident",
+        "opponent_score_delta": -137,
+        "own_score_delta": -65,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 56,
+        "opponent": "script_boss",
+        "opponent_score_delta": 22,
+        "own_score_delta": 78,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 47,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -25,
+        "own_score_delta": 22,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 9,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -5,
+        "own_score_delta": 4,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 132,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -302,
+        "own_score_delta": -170,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 61,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -36,
+        "own_score_delta": 25,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 27,
+        "opponent": "mybot",
+        "opponent_score_delta": -22,
+        "own_score_delta": 5,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 82,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -62,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 83,
+        "opponent": "resident",
+        "opponent_score_delta": -128,
+        "own_score_delta": -45,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 45,
+        "opponent": "script_boss",
+        "opponent_score_delta": 18,
+        "own_score_delta": 63,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800007,
+        "margin_delta": 25,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 1,
+        "own_score_delta": 26,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 30,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 1,
+        "own_score_delta": 31,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 35,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -16,
+        "own_score_delta": 19,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 29,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -9,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 77,
+        "opponent": "mybot",
+        "opponent_score_delta": -17,
+        "own_score_delta": 60,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 37,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 5,
+        "own_score_delta": 42,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 2,
+        "opponent": "resident",
+        "opponent_score_delta": -32,
+        "own_score_delta": -30,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 36,
+        "opponent": "script_boss",
+        "opponent_score_delta": -2,
+        "own_score_delta": 34,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 2,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -7,
+        "own_score_delta": -5,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 25,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -23,
+        "own_score_delta": 2,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 27,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -8,
+        "own_score_delta": 19,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 97,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -42,
+        "own_score_delta": 55,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 9,
+        "opponent": "mybot",
+        "opponent_score_delta": -37,
+        "own_score_delta": -28,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 17,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -34,
+        "own_score_delta": -17,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 77,
+        "opponent": "resident",
+        "opponent_score_delta": -101,
+        "own_score_delta": -24,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800008,
+        "margin_delta": 7,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -25,
+        "own_score_delta": -18,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 72,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -36,
+        "own_score_delta": 36,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 47,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -51,
+        "own_score_delta": -4,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 43,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -4,
+        "own_score_delta": 39,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 52,
+        "opponent": "mybot",
+        "opponent_score_delta": -20,
+        "own_score_delta": 32,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 57,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -123,
+        "own_score_delta": -66,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 5,
+        "opponent": "resident",
+        "opponent_score_delta": -25,
+        "own_score_delta": -20,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 39,
+        "opponent": "script_boss",
+        "opponent_score_delta": -87,
+        "own_score_delta": -48,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 37,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -4,
+        "own_score_delta": 33,
+        "plan": "pre3_balanced__post3_harvest",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 95,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -47,
+        "own_score_delta": 48,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 40,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -24,
+        "own_score_delta": 16,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 33,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -5,
+        "own_score_delta": 28,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 39,
+        "opponent": "mybot",
+        "opponent_score_delta": -19,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 11,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 0,
+        "own_score_delta": 11,
+        "plan": "pre3_balanced__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 8,
+        "opponent": "resident",
+        "opponent_score_delta": -24,
+        "own_score_delta": -16,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 77,
+        "opponent": "script_boss",
+        "opponent_score_delta": -63,
+        "own_score_delta": 14,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800009,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 98,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -130,
+        "own_score_delta": -32,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 44,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -15,
+        "own_score_delta": 29,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 95,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -8,
+        "own_score_delta": 87,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 76,
+        "opponent": "mybot",
+        "opponent_score_delta": -24,
+        "own_score_delta": 52,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 69,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -62,
+        "own_score_delta": 7,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 20,
+        "opponent": "resident",
+        "opponent_score_delta": -71,
+        "own_score_delta": -51,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 26,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 26,
+        "plan": "pre3_balanced__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 38,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 1,
+        "own_score_delta": 39,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 107,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -87,
+        "own_score_delta": 20,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 41,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -35,
+        "own_score_delta": 6,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 99,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -44,
+        "own_score_delta": 55,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 85,
+        "opponent": "mybot",
+        "opponent_score_delta": -25,
+        "own_score_delta": 60,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 77,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -15,
+        "own_score_delta": 62,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 21,
+        "opponent": "resident",
+        "opponent_score_delta": -70,
+        "own_score_delta": -49,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 91,
+        "opponent": "script_boss",
+        "opponent_score_delta": -48,
+        "own_score_delta": 43,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800010,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 10,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -10,
+        "own_score_delta": 0,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 32,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -91,
+        "own_score_delta": -59,
+        "plan": "pre3_renew__post3_harvest",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 52,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 0,
+        "own_score_delta": 52,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 0,
+        "opponent": "mybot",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 5,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 19,
+        "own_score_delta": 24,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 63,
+        "opponent": "resident",
+        "opponent_score_delta": -164,
+        "own_score_delta": -101,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 5,
+        "opponent": "script_boss",
+        "opponent_score_delta": -10,
+        "own_score_delta": -5,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 60,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -83,
+        "own_score_delta": -23,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 115,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -6,
+        "own_score_delta": 109,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 46,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -203,
+        "own_score_delta": -157,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 68,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -10,
+        "own_score_delta": 58,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 126,
+        "opponent": "mybot",
+        "opponent_score_delta": -56,
+        "own_score_delta": 70,
+        "plan": "pre3_fell__post3_harvest",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 21,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -8,
+        "own_score_delta": 13,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 30,
+        "opponent": "resident",
+        "opponent_score_delta": -123,
+        "own_score_delta": -93,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800011,
+        "margin_delta": 32,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -71,
+        "own_score_delta": -39,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 121,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -21,
+        "own_score_delta": 100,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 127,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -251,
+        "own_score_delta": -124,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 78,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -53,
+        "own_score_delta": 25,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 20,
+        "opponent": "mybot",
+        "opponent_score_delta": -32,
+        "own_score_delta": -12,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 73,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -40,
+        "own_score_delta": 33,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 0,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 14,
+        "opponent": "script_boss",
+        "opponent_score_delta": 1,
+        "own_score_delta": 15,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 89,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -33,
+        "own_score_delta": 56,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 182,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -76,
+        "own_score_delta": 106,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 80,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -236,
+        "own_score_delta": -156,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 65,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 7,
+        "own_score_delta": 72,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 10,
+        "opponent": "mybot",
+        "opponent_score_delta": 26,
+        "own_score_delta": 36,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 102,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -54,
+        "own_score_delta": 48,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 51,
+        "opponent": "resident",
+        "opponent_score_delta": -30,
+        "own_score_delta": 21,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800012,
+        "margin_delta": 53,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -25,
+        "own_score_delta": 28,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 0,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 25,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -141,
+        "own_score_delta": -116,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 136,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -105,
+        "own_score_delta": 31,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 112,
+        "opponent": "mybot",
+        "opponent_score_delta": -24,
+        "own_score_delta": 88,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 32,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 6,
+        "own_score_delta": 38,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 8,
+        "opponent": "resident",
+        "opponent_score_delta": -1,
+        "own_score_delta": 7,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 0,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 152,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -100,
+        "own_score_delta": 52,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 55,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -143,
+        "own_score_delta": -88,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 37,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -3,
+        "own_score_delta": 34,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 58,
+        "opponent": "mybot",
+        "opponent_score_delta": 18,
+        "own_score_delta": 76,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 37,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 6,
+        "own_score_delta": 43,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 30,
+        "opponent": "resident",
+        "opponent_score_delta": -34,
+        "own_score_delta": -4,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 34,
+        "opponent": "script_boss",
+        "opponent_score_delta": -18,
+        "own_score_delta": 16,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800013,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 65,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -46,
+        "own_score_delta": 19,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 33,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -44,
+        "own_score_delta": -11,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 210,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -130,
+        "own_score_delta": 80,
+        "plan": "pre3_renew__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 19,
+        "opponent": "mybot",
+        "opponent_score_delta": 50,
+        "own_score_delta": 69,
+        "plan": "pre3_fell__post3_renew",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 86,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -53,
+        "own_score_delta": 33,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 21,
+        "opponent": "resident",
+        "opponent_score_delta": -238,
+        "own_score_delta": -217,
+        "plan": "pre3_fell__post3_harvest",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 32,
+        "opponent": "script_boss",
+        "opponent_score_delta": 4,
+        "own_score_delta": 36,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 0,
+        "opponent": "silver_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 18,
+        "opponent": "compact_gold",
+        "opponent_score_delta": 18,
+        "own_score_delta": 36,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 1,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": 28,
+        "own_score_delta": 29,
+        "plan": "pre3_renew__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 0,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": 0,
+        "own_score_delta": 0,
+        "plan": "pre3_balanced__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 83,
+        "opponent": "mybot",
+        "opponent_score_delta": -47,
+        "own_score_delta": 36,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 34,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": 2,
+        "own_score_delta": 36,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 40,
+        "opponent": "resident",
+        "opponent_score_delta": -233,
+        "own_score_delta": -193,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 40,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 40,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800014,
+        "margin_delta": 15,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -2,
+        "own_score_delta": 13,
+        "plan": "pre3_harvest__post3_renew",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 87,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -32,
+        "own_score_delta": 55,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 98,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -160,
+        "own_score_delta": -62,
+        "plan": "pre3_balanced__post3_harvest",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 50,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -18,
+        "own_score_delta": 32,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 36,
+        "opponent": "mybot",
+        "opponent_score_delta": -8,
+        "own_score_delta": 28,
+        "plan": "pre3_renew__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 37,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -27,
+        "own_score_delta": 10,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 15,
+        "opponent": "resident",
+        "opponent_score_delta": 0,
+        "own_score_delta": 15,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 88,
+        "opponent": "script_boss",
+        "opponent_score_delta": 1,
+        "own_score_delta": 89,
+        "plan": "pre3_harvest__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 23,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -28,
+        "own_score_delta": -5,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 104,
+        "opponent": "compact_gold",
+        "opponent_score_delta": -68,
+        "own_score_delta": 36,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 55,
+        "opponent": "gold_adaptive",
+        "opponent_score_delta": -121,
+        "own_score_delta": -66,
+        "plan": "pre3_harvest__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 50,
+        "opponent": "legend_balanced",
+        "opponent_score_delta": -5,
+        "own_score_delta": 45,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 64,
+        "opponent": "mybot",
+        "opponent_score_delta": -20,
+        "own_score_delta": 44,
+        "plan": "pre3_fell__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 31,
+        "opponent": "norx_native_three",
+        "opponent_score_delta": -11,
+        "own_score_delta": 20,
+        "plan": "pre3_balanced__post3_fell",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 19,
+        "opponent": "resident",
+        "opponent_score_delta": -23,
+        "own_score_delta": -4,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 93,
+        "opponent": "script_boss",
+        "opponent_score_delta": 0,
+        "own_score_delta": 93,
+        "plan": "pre3_renew__post3_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9800015,
+        "margin_delta": 25,
+        "opponent": "silver_boss",
+        "opponent_score_delta": -36,
+        "own_score_delta": -11,
+        "plan": "pre3_fell__post3_balanced",
+        "seat": 1
+      }
+    ],
+    "nonanchor_plans_with_at_least_four_strict_gains": 11,
+    "opponent_family_mean_margin_deltas": {
+      "compact_gold": 62.09375,
+      "gold_adaptive": 48.71875,
+      "legend_balanced": 75.875,
+      "mybot": 47.4375,
+      "norx_native_three": 49.5625,
+      "resident": 35.0,
+      "script_boss": 39.71875,
+      "silver_boss": 20.78125
+    },
+    "paired_mean_margin_delta": 47.3984375,
+    "paired_mean_opponent_score_delta": -38.421875,
+    "paired_mean_own_score_delta": 8.9765625,
+    "selected_plan_counts": {
+      "pre3_balanced__post3_balanced": 28,
+      "pre3_balanced__post3_fell": 26,
+      "pre3_balanced__post3_harvest": 2,
+      "pre3_balanced__post3_renew": 5,
+      "pre3_fell__post3_balanced": 43,
+      "pre3_fell__post3_fell": 45,
+      "pre3_fell__post3_harvest": 2,
+      "pre3_fell__post3_renew": 7,
+      "pre3_harvest__post3_balanced": 24,
+      "pre3_harvest__post3_fell": 19,
+      "pre3_harvest__post3_harvest": 1,
+      "pre3_harvest__post3_renew": 6,
+      "pre3_renew__post3_balanced": 24,
+      "pre3_renew__post3_fell": 19,
+      "pre3_renew__post3_harvest": 1,
+      "pre3_renew__post3_renew": 4
+    },
+    "strict_gain_selection_counts": {
+      "pre3_balanced__post3_fell": 25,
+      "pre3_balanced__post3_harvest": 2,
+      "pre3_balanced__post3_renew": 5,
+      "pre3_fell__post3_balanced": 43,
+      "pre3_fell__post3_fell": 45,
+      "pre3_fell__post3_harvest": 2,
+      "pre3_fell__post3_renew": 7,
+      "pre3_harvest__post3_balanced": 24,
+      "pre3_harvest__post3_fell": 19,
+      "pre3_harvest__post3_harvest": 1,
+      "pre3_harvest__post3_renew": 6,
+      "pre3_renew__post3_balanced": 23,
+      "pre3_renew__post3_fell": 19,
+      "pre3_renew__post3_harvest": 1,
+      "pre3_renew__post3_renew": 4
+    },
+    "strict_margin_improvement_rate": 0.8828125,
+    "strict_margin_improvements": 226,
+    "tasks": 256,
+    "ties": 30,
+    "worker_three_rate": 0.8984375,
+    "worst_opponent_family_mean_margin_delta": 20.78125
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d60a-workforce-plan-option-upper-bound-protocol-2026-07-21.md",
+  "protocol_sha256": "5e204108ca6fef181aa16e5b8479895815564eac75c517853c34fb18e83497b9",
+  "scope": "representation upper bound only; no plan selection, candidate, TestSession, submission, or Arena action",
+  "summaries": {
+    "d40_control": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1.0,
+      "mean_margin": 35.33203125,
+      "mean_opponent_score": 168.02734375,
+      "mean_own_score": 203.359375,
+      "paired_mean_margin_delta": 0.0,
+      "paired_mean_opponent_score_delta": 0.0,
+      "paired_mean_own_score_delta": 0.0,
+      "post3_eligible_decisions": 0,
+      "post3_overrides": 0,
+      "post3_rate_decisions": 16022,
+      "pre3_eligible_decisions": 0,
+      "pre3_overrides": 0,
+      "pre3_rate_decisions": 2391,
+      "strict_margin_improvements": 0,
+      "strict_margin_regressions": 0,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_balanced__post3_balanced": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1.0,
+      "mean_margin": 35.33203125,
+      "mean_opponent_score": 168.02734375,
+      "mean_own_score": 203.359375,
+      "paired_mean_margin_delta": 0.0,
+      "paired_mean_opponent_score_delta": 0.0,
+      "paired_mean_own_score_delta": 0.0,
+      "post3_eligible_decisions": 0,
+      "post3_overrides": 0,
+      "post3_rate_decisions": 16022,
+      "pre3_eligible_decisions": 0,
+      "pre3_overrides": 0,
+      "pre3_rate_decisions": 2391,
+      "strict_margin_improvements": 0,
+      "strict_margin_regressions": 0,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_balanced__post3_fell": {
+      "changed_action_hash_rate": 0.89453125,
+      "changed_action_hash_tasks": 229,
+      "crop_rate": 0.9140625,
+      "mean_margin": 40.27734375,
+      "mean_opponent_score": 115.37109375,
+      "mean_own_score": 155.6484375,
+      "paired_mean_margin_delta": 4.9453125,
+      "paired_mean_opponent_score_delta": -52.65625,
+      "paired_mean_own_score_delta": -47.7109375,
+      "post3_eligible_decisions": 5399,
+      "post3_overrides": 2273,
+      "post3_rate_decisions": 7768,
+      "pre3_eligible_decisions": 0,
+      "pre3_overrides": 0,
+      "pre3_rate_decisions": 2391,
+      "strict_margin_improvements": 130,
+      "strict_margin_regressions": 95,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_balanced__post3_harvest": {
+      "changed_action_hash_rate": 0.89453125,
+      "changed_action_hash_tasks": 229,
+      "crop_rate": 0.90234375,
+      "mean_margin": -16.14453125,
+      "mean_opponent_score": 161.3828125,
+      "mean_own_score": 145.23828125,
+      "paired_mean_margin_delta": -51.4765625,
+      "paired_mean_opponent_score_delta": -6.64453125,
+      "paired_mean_own_score_delta": -58.12109375,
+      "post3_eligible_decisions": 8293,
+      "post3_overrides": 8196,
+      "post3_rate_decisions": 14581,
+      "pre3_eligible_decisions": 0,
+      "pre3_overrides": 0,
+      "pre3_rate_decisions": 2391,
+      "strict_margin_improvements": 26,
+      "strict_margin_regressions": 198,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_balanced__post3_renew": {
+      "changed_action_hash_rate": 0.80859375,
+      "changed_action_hash_tasks": 207,
+      "crop_rate": 1.0,
+      "mean_margin": 15.59765625,
+      "mean_opponent_score": 176.64453125,
+      "mean_own_score": 192.2421875,
+      "paired_mean_margin_delta": -19.734375,
+      "paired_mean_opponent_score_delta": 8.6171875,
+      "paired_mean_own_score_delta": -11.1171875,
+      "post3_eligible_decisions": 8763,
+      "post3_overrides": 2219,
+      "post3_rate_decisions": 16731,
+      "pre3_eligible_decisions": 0,
+      "pre3_overrides": 0,
+      "pre3_rate_decisions": 2391,
+      "strict_margin_improvements": 63,
+      "strict_margin_regressions": 138,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_fell__post3_balanced": {
+      "changed_action_hash_rate": 0.91796875,
+      "changed_action_hash_tasks": 235,
+      "crop_rate": 0.96875,
+      "mean_margin": 44.19140625,
+      "mean_opponent_score": 153.9375,
+      "mean_own_score": 198.12890625,
+      "paired_mean_margin_delta": 8.859375,
+      "paired_mean_opponent_score_delta": -14.08984375,
+      "paired_mean_own_score_delta": -5.23046875,
+      "post3_eligible_decisions": 0,
+      "post3_overrides": 0,
+      "post3_rate_decisions": 15662,
+      "pre3_eligible_decisions": 924,
+      "pre3_overrides": 705,
+      "pre3_rate_decisions": 1158,
+      "strict_margin_improvements": 137,
+      "strict_margin_regressions": 90,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_fell__post3_fell": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.53515625,
+      "mean_margin": 44.6796875,
+      "mean_opponent_score": 103.1796875,
+      "mean_own_score": 147.859375,
+      "paired_mean_margin_delta": 9.34765625,
+      "paired_mean_opponent_score_delta": -64.84765625,
+      "paired_mean_own_score_delta": -55.5,
+      "post3_eligible_decisions": 4794,
+      "post3_overrides": 1985,
+      "post3_rate_decisions": 7254,
+      "pre3_eligible_decisions": 924,
+      "pre3_overrides": 705,
+      "pre3_rate_decisions": 1158,
+      "strict_margin_improvements": 156,
+      "strict_margin_regressions": 97,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_fell__post3_harvest": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.46875,
+      "mean_margin": -1.59375,
+      "mean_opponent_score": 142.921875,
+      "mean_own_score": 141.328125,
+      "paired_mean_margin_delta": -36.92578125,
+      "paired_mean_opponent_score_delta": -25.10546875,
+      "paired_mean_own_score_delta": -62.03125,
+      "post3_eligible_decisions": 7572,
+      "post3_overrides": 7503,
+      "post3_rate_decisions": 13804,
+      "pre3_eligible_decisions": 924,
+      "pre3_overrides": 705,
+      "pre3_rate_decisions": 1158,
+      "strict_margin_improvements": 77,
+      "strict_margin_regressions": 175,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_fell__post3_renew": {
+      "changed_action_hash_rate": 0.984375,
+      "changed_action_hash_tasks": 252,
+      "crop_rate": 0.96875,
+      "mean_margin": 25.22265625,
+      "mean_opponent_score": 163.15234375,
+      "mean_own_score": 188.375,
+      "paired_mean_margin_delta": -10.109375,
+      "paired_mean_opponent_score_delta": -4.875,
+      "paired_mean_own_score_delta": -14.984375,
+      "post3_eligible_decisions": 8800,
+      "post3_overrides": 2354,
+      "post3_rate_decisions": 16377,
+      "pre3_eligible_decisions": 924,
+      "pre3_overrides": 705,
+      "pre3_rate_decisions": 1158,
+      "strict_margin_improvements": 103,
+      "strict_margin_regressions": 140,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_harvest__post3_balanced": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.96484375,
+      "mean_margin": 27.703125,
+      "mean_opponent_score": 166.703125,
+      "mean_own_score": 194.40625,
+      "paired_mean_margin_delta": -7.62890625,
+      "paired_mean_opponent_score_delta": -1.32421875,
+      "paired_mean_own_score_delta": -8.953125,
+      "post3_eligible_decisions": 0,
+      "post3_overrides": 0,
+      "post3_rate_decisions": 15733,
+      "pre3_eligible_decisions": 1913,
+      "pre3_overrides": 1913,
+      "pre3_rate_decisions": 2259,
+      "strict_margin_improvements": 114,
+      "strict_margin_regressions": 139,
+      "tasks": 256,
+      "worker_three_rate": 0.890625,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_harvest__post3_fell": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.5546875,
+      "mean_margin": 33.0703125,
+      "mean_opponent_score": 113.5390625,
+      "mean_own_score": 146.609375,
+      "paired_mean_margin_delta": -2.26171875,
+      "paired_mean_opponent_score_delta": -54.48828125,
+      "paired_mean_own_score_delta": -56.75,
+      "post3_eligible_decisions": 5303,
+      "post3_overrides": 2304,
+      "post3_rate_decisions": 7616,
+      "pre3_eligible_decisions": 1913,
+      "pre3_overrides": 1913,
+      "pre3_rate_decisions": 2259,
+      "strict_margin_improvements": 131,
+      "strict_margin_regressions": 120,
+      "tasks": 256,
+      "worker_three_rate": 0.890625,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_harvest__post3_harvest": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.46875,
+      "mean_margin": -24.48828125,
+      "mean_opponent_score": 160.33203125,
+      "mean_own_score": 135.84375,
+      "paired_mean_margin_delta": -59.8203125,
+      "paired_mean_opponent_score_delta": -7.6953125,
+      "paired_mean_own_score_delta": -67.515625,
+      "post3_eligible_decisions": 7793,
+      "post3_overrides": 7736,
+      "post3_rate_decisions": 13707,
+      "pre3_eligible_decisions": 1913,
+      "pre3_overrides": 1913,
+      "pre3_rate_decisions": 2259,
+      "strict_margin_improvements": 35,
+      "strict_margin_regressions": 218,
+      "tasks": 256,
+      "worker_three_rate": 0.890625,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_harvest__post3_renew": {
+      "changed_action_hash_rate": 0.9921875,
+      "changed_action_hash_tasks": 254,
+      "crop_rate": 0.96484375,
+      "mean_margin": 9.01171875,
+      "mean_opponent_score": 175.57421875,
+      "mean_own_score": 184.5859375,
+      "paired_mean_margin_delta": -26.3203125,
+      "paired_mean_opponent_score_delta": 7.546875,
+      "paired_mean_own_score_delta": -18.7734375,
+      "post3_eligible_decisions": 8848,
+      "post3_overrides": 2547,
+      "post3_rate_decisions": 16739,
+      "pre3_eligible_decisions": 1913,
+      "pre3_overrides": 1913,
+      "pre3_rate_decisions": 2259,
+      "strict_margin_improvements": 73,
+      "strict_margin_regressions": 179,
+      "tasks": 256,
+      "worker_three_rate": 0.890625,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_renew__post3_balanced": {
+      "changed_action_hash_rate": 0.62890625,
+      "changed_action_hash_tasks": 161,
+      "crop_rate": 1.0,
+      "mean_margin": 35.7890625,
+      "mean_opponent_score": 170.00390625,
+      "mean_own_score": 205.79296875,
+      "paired_mean_margin_delta": 0.45703125,
+      "paired_mean_opponent_score_delta": 1.9765625,
+      "paired_mean_own_score_delta": 2.43359375,
+      "post3_eligible_decisions": 0,
+      "post3_overrides": 0,
+      "post3_rate_decisions": 16145,
+      "pre3_eligible_decisions": 1957,
+      "pre3_overrides": 367,
+      "pre3_rate_decisions": 2513,
+      "strict_margin_improvements": 85,
+      "strict_margin_regressions": 72,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_renew__post3_fell": {
+      "changed_action_hash_rate": 0.94921875,
+      "changed_action_hash_tasks": 243,
+      "crop_rate": 1.0,
+      "mean_margin": 40.1171875,
+      "mean_opponent_score": 120.32421875,
+      "mean_own_score": 160.44140625,
+      "paired_mean_margin_delta": 4.78515625,
+      "paired_mean_opponent_score_delta": -47.703125,
+      "paired_mean_own_score_delta": -42.91796875,
+      "post3_eligible_decisions": 5824,
+      "post3_overrides": 2494,
+      "post3_rate_decisions": 8102,
+      "pre3_eligible_decisions": 1957,
+      "pre3_overrides": 367,
+      "pre3_rate_decisions": 2513,
+      "strict_margin_improvements": 139,
+      "strict_margin_regressions": 102,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_renew__post3_harvest": {
+      "changed_action_hash_rate": 0.94921875,
+      "changed_action_hash_tasks": 243,
+      "crop_rate": 1.0,
+      "mean_margin": -20.3671875,
+      "mean_opponent_score": 169.54296875,
+      "mean_own_score": 149.17578125,
+      "paired_mean_margin_delta": -55.69921875,
+      "paired_mean_opponent_score_delta": 1.515625,
+      "paired_mean_own_score_delta": -54.18359375,
+      "post3_eligible_decisions": 9250,
+      "post3_overrides": 9153,
+      "post3_rate_decisions": 15569,
+      "pre3_eligible_decisions": 1957,
+      "pre3_overrides": 367,
+      "pre3_rate_decisions": 2513,
+      "strict_margin_improvements": 38,
+      "strict_margin_regressions": 205,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    },
+    "pre3_renew__post3_renew": {
+      "changed_action_hash_rate": 0.9140625,
+      "changed_action_hash_tasks": 234,
+      "crop_rate": 1.0,
+      "mean_margin": 17.5546875,
+      "mean_opponent_score": 176.87109375,
+      "mean_own_score": 194.42578125,
+      "paired_mean_margin_delta": -17.77734375,
+      "paired_mean_opponent_score_delta": 8.84375,
+      "paired_mean_own_score_delta": -8.93359375,
+      "post3_eligible_decisions": 8634,
+      "post3_overrides": 2502,
+      "post3_rate_decisions": 16878,
+      "pre3_eligible_decisions": 1957,
+      "pre3_overrides": 367,
+      "pre3_rate_decisions": 2513,
+      "strict_margin_improvements": 83,
+      "strict_margin_regressions": 148,
+      "tasks": 256,
+      "worker_three_rate": 0.89453125,
+      "worker_two_rate": 0.9921875
+    }
+  },
+  "surface": {
+    "active_nonanchor_plan_count": 15,
+    "active_nonanchor_plans": [
+      "pre3_balanced__post3_harvest",
+      "pre3_balanced__post3_renew",
+      "pre3_balanced__post3_fell",
+      "pre3_harvest__post3_balanced",
+      "pre3_harvest__post3_harvest",
+      "pre3_harvest__post3_renew",
+      "pre3_harvest__post3_fell",
+      "pre3_renew__post3_balanced",
+      "pre3_renew__post3_harvest",
+      "pre3_renew__post3_renew",
+      "pre3_renew__post3_fell",
+      "pre3_fell__post3_balanced",
+      "pre3_fell__post3_harvest",
+      "pre3_fell__post3_renew",
+      "pre3_fell__post3_fell"
+    ],
+    "nonanchor_mean_margin_maximum": 44.6796875,
+    "nonanchor_mean_margin_minimum": -24.48828125,
+    "nonanchor_mean_margin_range": 69.16796875,
+    "semantic_overrides": {
+      "fell": {
+        "post3": 9056,
+        "pre3": 2820
+      },
+      "harvest": {
+        "post3": 32588,
+        "pre3": 7652
+      },
+      "renew": {
+        "post3": 9622,
+        "pre3": 1468
+      }
+    }
+  }
+}

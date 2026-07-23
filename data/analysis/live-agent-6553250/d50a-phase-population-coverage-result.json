@@ -1,0 +1,1050 @@
+{
+  "activation": {
+    "anchor_mismatches": 0,
+    "changed_from_early_anchor_cells": 15665,
+    "changed_from_early_anchor_rate": 0.8741629464285714,
+    "opening_mismatches": 0,
+    "policies_active_on_at_least_16_maps": 108,
+    "switch_cells": 17920,
+    "switch_policies": 112
+  },
+  "amendment": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d50a-current-substrate-baseline-amendment-2026-07-21.md",
+  "amendment_sha256": "dd117c80446f4e613b3f1daa35897445ded1b13dcd48ed6b913bbbfcbb0aa536",
+  "confirmation_per_opponent": {
+    "BoatBuilder": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 1,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "Bondo416": {
+      "augmented": {
+        "full": 1,
+        "macro": 2
+      },
+      "games": 4,
+      "increment": {
+        "full": 1,
+        "macro": 2
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 1,
+        "macro": 2
+      }
+    },
+    "Bubaptik": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "Bulgot": {
+      "augmented": {
+        "full": 0,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 1
+      }
+    },
+    "DaNinja": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "DoubtinGiyov": {
+      "augmented": {
+        "full": 0,
+        "macro": 1
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "FreZzz": {
+      "augmented": {
+        "full": 2,
+        "macro": 2
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 2,
+        "macro": 2
+      },
+      "phase": {
+        "full": 2,
+        "macro": 2
+      }
+    },
+    "FredericBautista": {
+      "augmented": {
+        "full": 2,
+        "macro": 4
+      },
+      "games": 4,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 2,
+        "macro": 4
+      },
+      "phase": {
+        "full": 2,
+        "macro": 4
+      }
+    },
+    "GoodDevel": {
+      "augmented": {
+        "full": 2,
+        "macro": 2
+      },
+      "games": 2,
+      "increment": {
+        "full": 1,
+        "macro": 1
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "IlyaPol": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "Konstant": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "MSz": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "Meruem": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "Pech1": {
+      "augmented": {
+        "full": 0,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 1
+      }
+    },
+    "RinSakamichi": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "Risen": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "Stounate": {
+      "augmented": {
+        "full": 3,
+        "macro": 3
+      },
+      "games": 3,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 3,
+        "macro": 3
+      },
+      "phase": {
+        "full": 2,
+        "macro": 3
+      }
+    },
+    "a76a44": {
+      "augmented": {
+        "full": 0,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 1
+      }
+    },
+    "bl4sterino": {
+      "augmented": {
+        "full": 2,
+        "macro": 2
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 2,
+        "macro": 2
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "cedricdd": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "gaha": {
+      "augmented": {
+        "full": 3,
+        "macro": 3
+      },
+      "games": 9,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 3,
+        "macro": 3
+      },
+      "phase": {
+        "full": 3,
+        "macro": 3
+      }
+    },
+    "hello_me_world": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "icecuber": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "laconic_pixel": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "mehdi_ayari": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "mikmak": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 2,
+      "increment": {
+        "full": 1,
+        "macro": 1
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "norxondor_gorgonax": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "putibuzu": {
+      "augmented": {
+        "full": 4,
+        "macro": 4
+      },
+      "games": 5,
+      "increment": {
+        "full": 2,
+        "macro": 1
+      },
+      "legacy": {
+        "full": 2,
+        "macro": 3
+      },
+      "phase": {
+        "full": 4,
+        "macro": 4
+      }
+    },
+    "sZoom": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "siman": {
+      "augmented": {
+        "full": 1,
+        "macro": 2
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 1,
+        "macro": 2
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "tsukammo": {
+      "augmented": {
+        "full": 1,
+        "macro": 1
+      },
+      "games": 2,
+      "increment": {
+        "full": 1,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 1,
+        "macro": 1
+      }
+    },
+    "uta_ccc": {
+      "augmented": {
+        "full": 5,
+        "macro": 5
+      },
+      "games": 6,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 5,
+        "macro": 5
+      },
+      "phase": {
+        "full": 5,
+        "macro": 5
+      }
+    },
+    "viewlagoon": {
+      "augmented": {
+        "full": 0,
+        "macro": 0
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 0
+      },
+      "phase": {
+        "full": 0,
+        "macro": 0
+      }
+    },
+    "xSkyline": {
+      "augmented": {
+        "full": 0,
+        "macro": 1
+      },
+      "games": 1,
+      "increment": {
+        "full": 0,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 1
+      }
+    },
+    "yamo": {
+      "augmented": {
+        "full": 4,
+        "macro": 8
+      },
+      "games": 8,
+      "increment": {
+        "full": 2,
+        "macro": 0
+      },
+      "legacy": {
+        "full": 2,
+        "macro": 8
+      },
+      "phase": {
+        "full": 2,
+        "macro": 6
+      }
+    },
+    "zasmu": {
+      "augmented": {
+        "full": 0,
+        "macro": 2
+      },
+      "games": 2,
+      "increment": {
+        "full": 0,
+        "macro": 1
+      },
+      "legacy": {
+        "full": 0,
+        "macro": 1
+      },
+      "phase": {
+        "full": 0,
+        "macro": 2
+      }
+    }
+  },
+  "decision": "close fixed phase recombination and require state/history-conditioned opponent generation",
+  "gates": {
+    "all_eight_anchors_exact": true,
+    "all_switch_openings_exact": true,
+    "at_least_40_percent_switch_cells_active": true,
+    "at_least_80_switch_policies_active_on_10_percent_maps": true,
+    "catastrophic_macro_at_least_7_of_19": true,
+    "catastrophic_macro_increment_at_least_3": true,
+    "complete_byte_exact_repeat": true,
+    "no_previously_covered_confirmation_game_lost": true,
+    "overall_full_at_least_36_of_80": true,
+    "overall_full_increment_at_least_3": true,
+    "overall_macro_at_least_56_of_80": true,
+    "overall_macro_increment_at_least_5": true,
+    "rich_full_at_least_1_of_9": false,
+    "rich_full_increment_at_least_1": false,
+    "rich_macro_at_least_4_of_9": false,
+    "rich_macro_increment_at_least_2": false,
+    "worker_rich_macro_at_least_12_of_28": false,
+    "worker_rich_macro_increment_at_least_4": false
+  },
+  "grid": {
+    "cells_per_run": 19200,
+    "games": 160,
+    "models": 120,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "analyzer_sha256": "035fe188256e23fa1421070ff7d20f28f4f679b591a65c6f35e22ab504ca7a5b",
+    "legacy_sha256": {
+      "d50a-current-baseline-phase21-local.tsv": "73d441becb6628a9fddd1bf57c1f9e406c9a36489a45141d3c2a924860d557c7",
+      "d50a-current-economy-phase21-local.tsv": "6fcbdc1057c1b81de47c58037ea309d5d7ca2e54b6d19248594e2ade1732d8c4",
+      "d50a-current-legend-v1-phase21-local.tsv": "c18ba0a3a056eb89ce3f9df06c23cc7d3dcf1949cf88e620ed67bb66b58e6a93",
+      "d50a-current-legend-v2-phase21-local.tsv": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b",
+      "d50a-current-structural-phase21-local.tsv": "29e85cb293cd527512260e6a083252f126f25557cbd491162abfd600d6fa5a2a"
+    },
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "8c5c40c11cd7a3d28510be9b57e5f850b72c85ef154513a4fc57fd8b752a8598",
+    "run_b_sha256": "8c5c40c11cd7a3d28510be9b57e5f850b72c85ef154513a4fc57fd8b752a8598",
+    "runner_sha256": "03f640c48b268c4d49d36503dce2cdf7c32ffbfe0775df6d5421641c27ed1b8e"
+  },
+  "manifest_sha256": "0fa8c83d345e300983a4d59c92be0ba73d342d324fcdb4c0dc7d338af1e2e9a3",
+  "nearest_distance": {
+    "confirmation": {
+      "catastrophic": {
+        "augmented_mean": 0.8241869674185464,
+        "improved_games": 8,
+        "legacy_mean": 0.8865172932330827,
+        "mean_delta": -0.06233032581453635
+      },
+      "overall": {
+        "augmented_mean": 0.5154163095238096,
+        "improved_games": 40,
+        "legacy_mean": 0.5618979761904762,
+        "mean_delta": -0.04648166666666664
+      },
+      "rich_immediate": {
+        "augmented_mean": 0.8357576719576719,
+        "improved_games": 5,
+        "legacy_mean": 0.8996550264550265,
+        "mean_delta": -0.06389735449735456
+      },
+      "worker_rich": {
+        "augmented_mean": 0.7637363945578232,
+        "improved_games": 16,
+        "legacy_mean": 0.8154704081632653,
+        "mean_delta": -0.051734013605442164
+      }
+    },
+    "discovery": {
+      "catastrophic": {
+        "augmented_mean": 0.8596428571428572,
+        "improved_games": 8,
+        "legacy_mean": 0.9376285714285715,
+        "mean_delta": -0.07798571428571432
+      },
+      "overall": {
+        "augmented_mean": 0.48701535714285715,
+        "improved_games": 45,
+        "legacy_mean": 0.5321933333333333,
+        "mean_delta": -0.04517797619047614
+      },
+      "rich_immediate": {
+        "augmented_mean": 0.8639222222222223,
+        "improved_games": 9,
+        "legacy_mean": 0.9281722222222223,
+        "mean_delta": -0.06425000000000003
+      },
+      "worker_rich": {
+        "augmented_mean": 0.7112144927536233,
+        "improved_games": 16,
+        "legacy_mean": 0.7843958592132505,
+        "mean_delta": -0.07318136645962725
+      }
+    }
+  },
+  "new_confirmation_macro_support": [
+    {
+      "catastrophic": false,
+      "covering_phase_policies": [
+        "d50_t100_farm3_to_farm4",
+        "d50_t100_farm4_to_v2_bal_farm",
+        "d50_t100_farm4_to_v2_hp2_farm",
+        "d50_t100_farm4_to_v2_hp2_late",
+        "d50_t150_farm3_to_farm4",
+        "d50_t150_farm3_to_norx_funded",
+        "d50_t150_farm4_to_v2_bal_farm",
+        "d50_t150_farm4_to_v2_hp2_farm",
+        "d50_t150_farm4_to_v2_hp2_late"
+      ],
+      "game_id": 896284611,
+      "opponent": "GoodDevel",
+      "rich_immediate": false,
+      "worker_rich": false
+    },
+    {
+      "catastrophic": true,
+      "covering_phase_policies": [
+        "d50_t100_farm4_to_lean",
+        "d50_t100_farm4_to_norx_compact"
+      ],
+      "game_id": 896284632,
+      "opponent": "mikmak",
+      "rich_immediate": false,
+      "worker_rich": true
+    },
+    {
+      "catastrophic": false,
+      "covering_phase_policies": [
+        "d50_t100_lean_to_v2_hp2_late",
+        "d50_t150_lean_to_v2_hp2_late",
+        "d50_t150_norx_funded_to_v2_hp2_late"
+      ],
+      "game_id": 896284831,
+      "opponent": "zasmu",
+      "rich_immediate": false,
+      "worker_rich": true
+    },
+    {
+      "catastrophic": true,
+      "covering_phase_policies": [
+        "d50_t100_farm3_to_v2_hp2_late"
+      ],
+      "game_id": 896285526,
+      "opponent": "Bondo416",
+      "rich_immediate": true,
+      "worker_rich": true
+    },
+    {
+      "catastrophic": false,
+      "covering_phase_policies": [
+        "d50_t100_norx_funded_to_v2_hp2_late",
+        "d50_t150_farm3_to_farm4",
+        "d50_t150_farm3_to_norx_funded",
+        "d50_t150_norx_compact_to_norx_funded",
+        "d50_t150_norx_compact_to_v2_hp2_late"
+      ],
+      "game_id": 896286240,
+      "opponent": "Bondo416",
+      "rich_immediate": false,
+      "worker_rich": false
+    },
+    {
+      "catastrophic": true,
+      "covering_phase_policies": [
+        "d50_t150_farm3_to_norx_funded"
+      ],
+      "game_id": 896286436,
+      "opponent": "putibuzu",
+      "rich_immediate": false,
+      "worker_rich": false
+    }
+  ],
+  "pass": false,
+  "phase_covering_multiplicity": {
+    "confirmation": {
+      "games_with_phase_macro_support": 49,
+      "max_phase_macro_coverers": 91,
+      "mean_phase_macro_coverers": 11.1625,
+      "median_phase_macro_coverers": 3.5
+    },
+    "discovery": {
+      "games_with_phase_macro_support": 51,
+      "max_phase_macro_coverers": 98,
+      "mean_phase_macro_coverers": 11.475,
+      "median_phase_macro_coverers": 4.0
+    }
+  },
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d50a-phase-recombined-opponent-population-protocol-2026-07-21.md",
+  "protocol_sha256": "d04d2b1621d1ea933bbc07b7f3fc5b33b33d0d0be6282d82cc77178d5b583608",
+  "schema": 1,
+  "scope": "consumed-map opponent-population coverage only; no candidate, fresh-map, TestSession, submission, or Arena evidence",
+  "support": {
+    "confirmation": {
+      "catastrophic": {
+        "augmented": {
+          "full": 4,
+          "macro": 7
+        },
+        "games": 19,
+        "increment": {
+          "full": 2,
+          "macro": 3
+        },
+        "legacy": {
+          "full": 2,
+          "macro": 4
+        },
+        "phase": {
+          "full": 4,
+          "macro": 7
+        }
+      },
+      "overall": {
+        "augmented": {
+          "full": 41,
+          "macro": 56
+        },
+        "games": 80,
+        "increment": {
+          "full": 9,
+          "macro": 6
+        },
+        "legacy": {
+          "full": 32,
+          "macro": 50
+        },
+        "phase": {
+          "full": 35,
+          "macro": 49
+        }
+      },
+      "rich_immediate": {
+        "augmented": {
+          "full": 0,
+          "macro": 3
+        },
+        "games": 9,
+        "increment": {
+          "full": 0,
+          "macro": 1
+        },
+        "legacy": {
+          "full": 0,
+          "macro": 2
+        },
+        "phase": {
+          "full": 0,
+          "macro": 3
+        }
+      },
+      "worker_rich": {
+        "augmented": {
+          "full": 4,
+          "macro": 11
+        },
+        "games": 28,
+        "increment": {
+          "full": 1,
+          "macro": 3
+        },
+        "legacy": {
+          "full": 3,
+          "macro": 8
+        },
+        "phase": {
+          "full": 3,
+          "macro": 9
+        }
+      }
+    },
+    "discovery": {
+      "catastrophic": {
+        "augmented": {
+          "full": 1,
+          "macro": 1
+        },
+        "games": 12,
+        "increment": {
+          "full": 0,
+          "macro": 0
+        },
+        "legacy": {
+          "full": 1,
+          "macro": 1
+        },
+        "phase": {
+          "full": 1,
+          "macro": 1
+        }
+      },
+      "overall": {
+        "augmented": {
+          "full": 43,
+          "macro": 55
+        },
+        "games": 80,
+        "increment": {
+          "full": 8,
+          "macro": 7
+        },
+        "legacy": {
+          "full": 35,
+          "macro": 48
+        },
+        "phase": {
+          "full": 35,
+          "macro": 51
+        }
+      },
+      "rich_immediate": {
+        "augmented": {
+          "full": 0,
+          "macro": 2
+        },
+        "games": 12,
+        "increment": {
+          "full": 0,
+          "macro": 1
+        },
+        "legacy": {
+          "full": 0,
+          "macro": 1
+        },
+        "phase": {
+          "full": 0,
+          "macro": 2
+        }
+      },
+      "worker_rich": {
+        "augmented": {
+          "full": 4,
+          "macro": 7
+        },
+        "games": 23,
+        "increment": {
+          "full": 1,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 3,
+          "macro": 5
+        },
+        "phase": {
+          "full": 2,
+          "macro": 7
+        }
+      }
+    }
+  }
+}

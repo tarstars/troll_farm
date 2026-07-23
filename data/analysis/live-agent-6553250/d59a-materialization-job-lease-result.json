@@ -1,0 +1,599 @@
+{
+  "audit": {
+    "actual_total_immediate_trains": 468,
+    "cap_violations": 0,
+    "expected_total_immediate_trains": 468,
+    "opening_mismatches": 0,
+    "outcome_fields_ignored": true,
+    "pending_integrity_run_a": {
+      "action_sum_mismatches": 0,
+      "minimum_vector_order_mismatches": 0,
+      "progress_partition_mismatches": 0,
+      "train_partition_mismatches": 0
+    },
+    "pending_integrity_run_b": {
+      "action_sum_mismatches": 0,
+      "minimum_vector_order_mismatches": 0,
+      "progress_partition_mismatches": 0,
+      "train_partition_mismatches": 0
+    },
+    "pending_pick_commands": 202,
+    "pending_plant_commands": 36,
+    "support_not_evaluated": true,
+    "train_partition_failures": 0,
+    "worker_two_invariance_by_config": {
+      "legend_v8_balanced_m3_p1": {
+        "actual": 134,
+        "exact": true,
+        "expected": 134
+      },
+      "legend_v8_balanced_m3_p2": {
+        "actual": 134,
+        "exact": true,
+        "expected": 134
+      },
+      "legend_v8_balanced_m4_p1": {
+        "actual": 134,
+        "exact": true,
+        "expected": 134
+      },
+      "legend_v8_balanced_m4_p2": {
+        "actual": 134,
+        "exact": true,
+        "expected": 134
+      },
+      "legend_v8_hp2_m3_p1": {
+        "actual": 130,
+        "exact": true,
+        "expected": 130
+      },
+      "legend_v8_hp2_m3_p2": {
+        "actual": 130,
+        "exact": true,
+        "expected": 130
+      },
+      "legend_v8_hp2_m4_p1": {
+        "actual": 130,
+        "exact": true,
+        "expected": 130
+      },
+      "legend_v8_hp2_m4_p2": {
+        "actual": 130,
+        "exact": true,
+        "expected": 130
+      }
+    }
+  },
+  "decision": "reject V8 before workforce interpretation and trace the exact regression",
+  "gates": {
+    "aggregate_max4_worker_four_at_least_15_percent": false,
+    "aggregate_successful_crop_at_least_95_percent": false,
+    "aggregate_worker_three_at_least_70_percent": false,
+    "at_least_50_percent_cells_change_from_v2_parent": true,
+    "complete_byte_exact_repeat": true,
+    "configured_worker_caps_exact": true,
+    "each_config_successful_crop_at_least_90_percent": false,
+    "each_config_worker_three_at_least_55_percent": false,
+    "each_config_worker_two_at_least_90_percent": false,
+    "each_max4_config_worker_four_at_least_5_percent": false,
+    "every_config_worker_two_reach_exactly_matches_d54": true,
+    "every_train_attempt_partition_exact": true,
+    "parent_conditioned_first_train_exact": true,
+    "pending_action_progress_partitions_exact": true,
+    "target_three_four_failures_are_shack_only": true,
+    "zero_budget_inclusive_train_failures": true,
+    "zero_pending_worker_three_pick_commands": false,
+    "zero_pending_worker_three_plant_commands": false,
+    "zero_unexplained_train_failures": true
+  },
+  "grid": {
+    "all_checkpoints_complete": true,
+    "cells_per_run": 1280,
+    "games": 160,
+    "models": 8,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "analyzer_sha256": "9fc4cdbc6b5c88ee21e0e31184f2c34c449a04dd86bf946ecf8d52f47d93a293",
+    "d58_result_sha256": "c75325a23c37b042c109346b4145ef62eec29514de28e2004f3bbd6c008370c5",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "5ab3816fa573582cd69e940a83e8d1fd062ba4418fe39aca4c366d03ef943d43",
+    "run_b_sha256": "5ab3816fa573582cd69e940a83e8d1fd062ba4418fe39aca4c366d03ef943d43",
+    "runner_sha256": "b4759483c03752b46aa1822a125599d6b46d70c7f66d5581c752b6f027e6a9c2",
+    "strategy_sha256": "8334d99b0dcb5d508c02329e91e68af0cccfb8115244249d2f227be8fb322a73",
+    "v2_parents_sha256": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b",
+    "v5_matrix_sha256": "a2f44c821b94382e5ba67f086977153903f9efd98b973e21271df3468b98c0f8"
+  },
+  "lease_active": true,
+  "pass": false,
+  "pending_labor": {
+    "v5": {
+      "actions": {
+        "chop": {
+          "count": 154,
+          "share": 0.00034375613850247324
+        },
+        "drop": {
+          "count": 65292,
+          "share": 0.14574367399417848
+        },
+        "harvest": {
+          "count": 80666,
+          "share": 0.18006125109376953
+        },
+        "idle": {
+          "count": 28,
+          "share": 6.250111609135878e-05
+        },
+        "mine": {
+          "count": 1948,
+          "share": 0.004348291933784532
+        },
+        "move": {
+          "count": 253378,
+          "share": 0.5655859926070108
+        },
+        "pick": {
+          "count": 12938,
+          "share": 0.02887997999964285
+        },
+        "plant": {
+          "count": 33588,
+          "share": 0.07497455311701995
+        }
+      },
+      "capitalization_share": 0.3301532170217325,
+      "cells": 1280,
+      "deficit": {
+        "apple": {
+          "initial_mean": 0.121875,
+          "initial_to_last_mean": 0.121875,
+          "initial_to_minimum_mean": 0.121875,
+          "last_mean": 0,
+          "minimum_mean": 0
+        },
+        "iron": {
+          "initial_mean": 1.90625,
+          "initial_to_last_mean": 1.51875,
+          "initial_to_minimum_mean": 1.51875,
+          "last_mean": 0.3875,
+          "minimum_mean": 0.3875
+        },
+        "lemon": {
+          "initial_mean": 3.1875,
+          "initial_to_last_mean": 1.165625,
+          "initial_to_minimum_mean": 1.9625,
+          "last_mean": 2.021875,
+          "minimum_mean": 1.225
+        },
+        "plum": {
+          "initial_mean": 0.8125,
+          "initial_to_last_mean": 0.159375,
+          "initial_to_minimum_mean": 0.48125,
+          "last_mean": 0.653125,
+          "minimum_mean": 0.33125
+        }
+      },
+      "pending_turns": {
+        "mean": 174.996875,
+        "median": 214.0,
+        "total": 223996
+      },
+      "pending_worker_turns": 447992,
+      "per_action_next_state": {
+        "chop": {
+          "observed_turns": 150,
+          "progress_rate": 0.0,
+          "progress_turns": 0,
+          "regress_rate": 0.0,
+          "regress_turns": 0
+        },
+        "drop": {
+          "observed_turns": 60424,
+          "progress_rate": 0.01085661326625182,
+          "progress_turns": 656,
+          "regress_rate": 0.004236727128293393,
+          "regress_turns": 256
+        },
+        "harvest": {
+          "observed_turns": 73586,
+          "progress_rate": 0.019405865246106595,
+          "progress_turns": 1428,
+          "regress_rate": 0.00413122061261653,
+          "regress_turns": 304
+        },
+        "idle": {
+          "observed_turns": 28,
+          "progress_rate": 0.0,
+          "progress_turns": 0,
+          "regress_rate": 0.0,
+          "regress_turns": 0
+        },
+        "mine": {
+          "observed_turns": 1948,
+          "progress_rate": 0.9876796714579056,
+          "progress_turns": 1924,
+          "regress_rate": 0.01026694045174538,
+          "regress_turns": 20
+        },
+        "move": {
+          "observed_turns": 177522,
+          "progress_rate": 0.017485156769301832,
+          "progress_turns": 3104,
+          "regress_rate": 0.004461418866394024,
+          "regress_turns": 792
+        },
+        "pick": {
+          "observed_turns": 12316,
+          "progress_rate": 0.03670022734654108,
+          "progress_turns": 452,
+          "regress_rate": 0.003897369275738876,
+          "regress_turns": 48
+        },
+        "plant": {
+          "observed_turns": 30192,
+          "progress_rate": 0.02053524112347642,
+          "progress_turns": 620,
+          "regress_rate": 0.003842077371489136,
+          "regress_turns": 116
+        }
+      },
+      "progress": {
+        "decrease_turns": 4512,
+        "equal_turns": 218208,
+        "increase_turns": 952,
+        "increased_units": 1972,
+        "net_units": 3796,
+        "net_units_per_worker_turn": 0.00847336559581421,
+        "noncompletion_turns": 223672,
+        "reduced_units": 5768
+      },
+      "reached_worker_three": 324,
+      "source_and_travel_share": 0.6694405257236736,
+      "species": {
+        "apple": {
+          "harvested": 36244,
+          "successful_plants": 14447
+        },
+        "banana": {
+          "harvested": 60548,
+          "successful_plants": 34364
+        },
+        "lemon": {
+          "harvested": 12528,
+          "successful_plants": 2991
+        },
+        "plum": {
+          "harvested": 16436,
+          "successful_plants": 5865
+        }
+      }
+    },
+    "v8": {
+      "actions": {
+        "chop": {
+          "count": 6,
+          "share": 1.536853752996865e-05
+        },
+        "drop": {
+          "count": 13640,
+          "share": 0.03493780865146206
+        },
+        "harvest": {
+          "count": 10392,
+          "share": 0.0266183070019057
+        },
+        "idle": {
+          "count": 217256,
+          "share": 0.5564844982684781
+        },
+        "mine": {
+          "count": 2580,
+          "share": 0.0066084711378865185
+        },
+        "move": {
+          "count": 146296,
+          "share": 0.3747259277473822
+        },
+        "pick": {
+          "count": 202,
+          "share": 0.0005174074301756112
+        },
+        "plant": {
+          "count": 36,
+          "share": 9.221122517981189e-05
+        }
+      },
+      "capitalization_share": 0.06816458679125428,
+      "cells": 1280,
+      "deficit": {
+        "apple": {
+          "initial_mean": 0.121875,
+          "initial_to_last_mean": 0.11875,
+          "initial_to_minimum_mean": 0.121875,
+          "last_mean": 0.003125,
+          "minimum_mean": 0
+        },
+        "iron": {
+          "initial_mean": 1.90625,
+          "initial_to_last_mean": 1.8875,
+          "initial_to_minimum_mean": 1.8875,
+          "last_mean": 0.01875,
+          "minimum_mean": 0.01875
+        },
+        "lemon": {
+          "initial_mean": 3.1875,
+          "initial_to_last_mean": 1.41875,
+          "initial_to_minimum_mean": 2.140625,
+          "last_mean": 1.76875,
+          "minimum_mean": 1.046875
+        },
+        "plum": {
+          "initial_mean": 0.8125,
+          "initial_to_last_mean": 0.015625,
+          "initial_to_minimum_mean": 0.484375,
+          "last_mean": 0.796875,
+          "minimum_mean": 0.328125
+        }
+      },
+      "pending_turns": {
+        "mean": 152.503125,
+        "median": 198.5,
+        "total": 195204
+      },
+      "pending_worker_turns": 390408,
+      "per_action_next_state": {
+        "chop": {
+          "observed_turns": 6,
+          "progress_rate": 0.0,
+          "progress_turns": 0,
+          "regress_rate": 0.0,
+          "regress_turns": 0
+        },
+        "drop": {
+          "observed_turns": 13412,
+          "progress_rate": 0.05129734566060245,
+          "progress_turns": 688,
+          "regress_rate": 0.017894422904861318,
+          "regress_turns": 240
+        },
+        "harvest": {
+          "observed_turns": 10034,
+          "progress_rate": 0.13832967909109029,
+          "progress_turns": 1388,
+          "regress_rate": 0.01754036276659358,
+          "regress_turns": 176
+        },
+        "idle": {
+          "observed_turns": 135444,
+          "progress_rate": 0.006083695106464664,
+          "progress_turns": 824,
+          "regress_rate": 0.0004429875077522814,
+          "regress_turns": 60
+        },
+        "mine": {
+          "observed_turns": 2580,
+          "progress_rate": 0.9333333333333333,
+          "progress_turns": 2408,
+          "regress_rate": 0.0031007751937984496,
+          "regress_turns": 8
+        },
+        "move": {
+          "observed_turns": 109430,
+          "progress_rate": 0.03878278351457553,
+          "progress_turns": 4244,
+          "regress_rate": 0.010052088092844741,
+          "regress_turns": 1100
+        },
+        "pick": {
+          "observed_turns": 194,
+          "progress_rate": 0.0,
+          "progress_turns": 0,
+          "regress_rate": 0.0,
+          "regress_turns": 0
+        },
+        "plant": {
+          "observed_turns": 36,
+          "progress_rate": 0.0,
+          "progress_turns": 0,
+          "regress_rate": 0.0,
+          "regress_turns": 0
+        }
+      },
+      "progress": {
+        "decrease_turns": 5324,
+        "equal_turns": 188432,
+        "increase_turns": 1140,
+        "increased_units": 2168,
+        "net_units": 4404,
+        "net_units_per_worker_turn": 0.011280506546996989,
+        "noncompletion_turns": 194896,
+        "reduced_units": 6572
+      },
+      "reached_worker_three": 308,
+      "source_and_travel_share": 0.37533554640273764,
+      "species": {
+        "apple": {
+          "harvested": 14789,
+          "successful_plants": 7883
+        },
+        "banana": {
+          "harvested": 11897,
+          "successful_plants": 12029
+        },
+        "lemon": {
+          "harvested": 11486,
+          "successful_plants": 1976
+        },
+        "plum": {
+          "harvested": 9810,
+          "successful_plants": 3931
+        }
+      }
+    }
+  },
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d59a-materialization-job-lease-preflight-protocol-2026-07-21.md",
+  "protocol_sha256": "79e35939cdffb71521e8d06e593fac2733d661389572d76e14a7d5020da4ce8b",
+  "schema": 1,
+  "scope": "materialization-lease activation, pending labor, workforce, and TRAIN integrity on consumed maps only; score direction, support, distance, opponent identity, candidate value, and platform outcomes ignored",
+  "train_transactions_by_target": {
+    "2": {
+      "attempts": 1524,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 468,
+      "failures": 468,
+      "successes": 1056
+    },
+    "3": {
+      "attempts": 308,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "failures": 0,
+      "successes": 308
+    },
+    "4": {
+      "attempts": 5,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "failures": 0,
+      "successes": 5
+    }
+  },
+  "transaction_pass": true,
+  "workforce": {
+    "aggregate": {
+      "successful_crop": 956,
+      "successful_crop_rate": 0.746875,
+      "worker_four_max4": 5,
+      "worker_four_max4_rate": 0.0078125,
+      "worker_three": 308,
+      "worker_three_rate": 0.240625,
+      "worker_two": 1056,
+      "worker_two_rate": 0.825
+    },
+    "by_config": {
+      "legend_v8_balanced_m3_p1": {
+        "cells": 160,
+        "successful_crop": 108,
+        "successful_crop_rate": 0.675,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 32,
+        "worker_three_rate": 0.2,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v8_balanced_m3_p2": {
+        "cells": 160,
+        "successful_crop": 108,
+        "successful_crop_rate": 0.675,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 32,
+        "worker_three_rate": 0.2,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v8_balanced_m4_p1": {
+        "cells": 160,
+        "successful_crop": 108,
+        "successful_crop_rate": 0.675,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 32,
+        "worker_three_rate": 0.2,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v8_balanced_m4_p2": {
+        "cells": 160,
+        "successful_crop": 108,
+        "successful_crop_rate": 0.675,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 32,
+        "worker_three_rate": 0.2,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v8_hp2_m3_p1": {
+        "cells": 160,
+        "successful_crop": 131,
+        "successful_crop_rate": 0.81875,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 45,
+        "worker_three_rate": 0.28125,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v8_hp2_m3_p2": {
+        "cells": 160,
+        "successful_crop": 131,
+        "successful_crop_rate": 0.81875,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 45,
+        "worker_three_rate": 0.28125,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v8_hp2_m4_p1": {
+        "cells": 160,
+        "successful_crop": 131,
+        "successful_crop_rate": 0.81875,
+        "worker_four": 3,
+        "worker_four_rate": 0.01875,
+        "worker_three": 45,
+        "worker_three_rate": 0.28125,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v8_hp2_m4_p2": {
+        "cells": 160,
+        "successful_crop": 131,
+        "successful_crop_rate": 0.81875,
+        "worker_four": 2,
+        "worker_four_rate": 0.0125,
+        "worker_three": 45,
+        "worker_three_rate": 0.28125,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      }
+    },
+    "changed_from_v2_parent": 1056,
+    "changed_from_v2_parent_rate": 0.825,
+    "changed_from_v5": 1056,
+    "changed_from_v5_rate": 0.825,
+    "v5_transition": {
+      "cells": 1280,
+      "demoted_cells": 153,
+      "net_worker_delta": -20,
+      "promoted_cells": 138,
+      "transitions": {
+        "1_to_1": 224,
+        "2_to_2": 596,
+        "2_to_3": 135,
+        "2_to_4": 1,
+        "3_to_2": 146,
+        "3_to_3": 167,
+        "3_to_4": 2,
+        "4_to_2": 6,
+        "4_to_3": 1,
+        "4_to_4": 2
+      },
+      "unchanged_cells": 989
+    }
+  },
+  "workforce_pass": false
+}

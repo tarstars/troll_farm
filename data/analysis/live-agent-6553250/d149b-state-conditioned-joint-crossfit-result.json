@@ -1,0 +1,23 @@
+{
+  "checkpoint": null,
+  "decision": "close_exact_pair_imitation_after_state_conditioning",
+  "full_fit": null,
+  "lock": {
+    "manifest_sha256": "4389af95d20e8cff41a413fce11b33032c39d12a360d47b1d111830c5d0f8587",
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d149b-state-conditioned-joint-crossfit-protocol-2026-07-23.md",
+  "schema": "troll-farm-d149b-state-conditioned-joint-crossfit-result-v1",
+  "selected": null,
+  "selection_a": {
+    "path": "data/analysis/live-agent-6553250/d149b-state-conditioned-joint-crossfit-selection-a.json",
+    "sha256": "b556d387932f9fc2f1727dd0f8e1dc47ea549333082507a6442d21071c34df2f"
+  },
+  "selection_b": {
+    "path": "data/analysis/live-agent-6553250/d149b-state-conditioned-joint-crossfit-selection-b.json",
+    "sha256": "b556d387932f9fc2f1727dd0f8e1dc47ea549333082507a6442d21071c34df2f"
+  },
+  "selection_exact_repeat": true
+}

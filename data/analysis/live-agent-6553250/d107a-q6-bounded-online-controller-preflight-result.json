@@ -1,0 +1,240 @@
+{
+  "activity": {
+    "gates": {
+      "controller_activity": {
+        "pass": true,
+        "threshold": ">=32 medium and >=48 ever active",
+        "value": {
+          "ever_active": 63,
+          "medium": 44
+        }
+      },
+      "eligible_tasks": {
+        "pass": true,
+        "threshold": ">=110/128",
+        "value": 119
+      },
+      "matched_budget_separation": {
+        "pass": true,
+        "threshold": ">=24 pairs",
+        "value": 62
+      },
+      "proposal_support": {
+        "pass": true,
+        "threshold": "mean>=14, min>=6, expert mean=64",
+        "value": {
+          "eligible_boundaries": 647,
+          "mean_expert_occurrences": 64.0,
+          "mean_unique_noncontrol": 15.910355486862443,
+          "minimum_unique_noncontrol": 6
+        }
+      },
+      "repeated_activity": {
+        "pass": true,
+        "threshold": ">=24 controllers",
+        "value": 50
+      },
+      "selection_breadth": {
+        "pass": true,
+        "threshold": "joint, 4 jobs, 3 provenance, 2 seats, 8 opponents",
+        "value": {
+          "jobs": [
+            "concrete_fell",
+            "concrete_harvest",
+            "concrete_mine",
+            "concrete_renew"
+          ],
+          "joint_batches": 10699,
+          "opponents": [
+            "compact_gold",
+            "gold_adaptive",
+            "legend_balanced",
+            "mybot",
+            "norx_native_three",
+            "resident",
+            "script_boss",
+            "silver_boss"
+          ],
+          "owners": [
+            "owner_natural",
+            "owner_opponent",
+            "owner_own"
+          ],
+          "seats": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "pass": true
+  },
+  "decision": "open_d108a_recurrent_masked_controller",
+  "experiment": "D107a",
+  "hashes": {
+    "cgauto/make_d107a_q6_proposal_controller_population.py": "ec2d216e307c8999895d7ea5c8ac0a013bfe8c237018638c37473018a873db0f",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d107a-minimum-support-measurement-amendment-2026-07-22.md": "b4be5b5d8481a60cfafc785ab9273861dab42555e4c9bf584c6b0c532ebce5b4",
+    "data/analysis/live-agent-6553250/d107a-q6-bounded-online-controller-preflight-protocol-2026-07-22.md": "ddf4c814dbb309e9280eba110e9a88937f4f0614280ae4b6a8cb558b6c8427b0",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-baselines-a-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-baselines-b-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-population-a-9829000-9829007.tsv": "115d820e9f79efb80d794211a4e1a1aea740bfdf8656dbf6322c6f78601d26dd",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-population-b-9829000-9829007.tsv": "115d820e9f79efb80d794211a4e1a1aea740bfdf8656dbf6322c6f78601d26dd",
+    "data/analysis/live-agent-6553250/d107a-q6-proposal-controller-population.tsv": "aae1a417cce5ba76b47e461f51a5859c98891df1fba13baa4dce7d8791779d94",
+    "data/analysis/live-agent-6553250/d107a-q6-zero-support-audit-9829000-9829007.tsv": "06d53fd74fb6d602d02874e6d9ddab0b99e663051e6de855cff02247ef21ba69",
+    "data/analysis/live-agent-6553250/d107a-q6-zero-support-baselines-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c",
+    "rust/src/bin/d107_q6_proposal_controller_population.rs": "2bd7e3c5628cf048af61082aba848bb6ea6f66d3967e4ee056823679693d0514"
+  },
+  "headroom": {
+    "gates": {
+      "family_floor": {
+        "pass": true,
+        "threshold": "every family>=8",
+        "value": {
+          "compact_gold": 49.5,
+          "gold_adaptive": 49.25,
+          "legend_balanced": 26.9375,
+          "mybot": 20.6875,
+          "norx_native_three": 41.5625,
+          "resident": 17.625,
+          "script_boss": 45.8125,
+          "silver_boss": 30.4375
+        }
+      },
+      "four_oracle_gain": {
+        "pass": true,
+        "threshold": "mean>=20 and strict>=70%",
+        "value": {
+          "mean": 35.2265625,
+          "strict_rate": 0.90625
+        }
+      },
+      "oracle_safety": {
+        "pass": true,
+        "threshold": "100% crops and worker3 within 5pp of D40",
+        "value": {
+          "crop_rate": 1.0,
+          "worker3_rate": 0.8984375
+        }
+      },
+      "repeated_increment": {
+        "pass": true,
+        "threshold": "mean>=3 and strict>=20%",
+        "value": {
+          "mean": 3.7578125,
+          "strict_rate": 0.453125
+        }
+      },
+      "score_decomposition": {
+        "pass": true,
+        "threshold": "own>=0 and opponent<=0",
+        "value": {
+          "opponent_delta": -13.640625,
+          "own_delta": 21.5859375
+        }
+      },
+      "winner_breadth": {
+        "pass": true,
+        "threshold": ">=16 controllers, 2 seats, 8 opponents, joint, >=3 jobs, >=2 provenance",
+        "value": {
+          "controllers": 49,
+          "jobs": [
+            "concrete_fell",
+            "concrete_harvest",
+            "concrete_mine",
+            "concrete_renew"
+          ],
+          "joint_batches": 203,
+          "opponents": [
+            "compact_gold",
+            "gold_adaptive",
+            "legend_balanced",
+            "mybot",
+            "norx_native_three",
+            "resident",
+            "script_boss",
+            "silver_boss"
+          ],
+          "owners": [
+            "owner_natural",
+            "owner_opponent",
+            "owner_own"
+          ],
+          "seats": [
+            0,
+            1
+          ]
+        }
+      }
+    },
+    "one_oracle_mean_gain": 31.46875,
+    "opened": true,
+    "pass": true
+  },
+  "integrity": {
+    "gates": {
+      "complete_repeated_grid": {
+        "pass": true,
+        "threshold": "16,512 rows, 128 baselines, complete grids, byte-identical repeats",
+        "value": {
+          "baseline_bytes_equal": true,
+          "baselines": 128,
+          "row_bytes_equal": true,
+          "rows": 16512
+        }
+      },
+      "counter_reconciliation": {
+        "pass": true,
+        "threshold": "zero violations",
+        "value": 0
+      },
+      "crop_and_worker_safety": {
+        "pass": true,
+        "threshold": "100% crops and worker3 no more than 5pp below D40",
+        "value": {
+          "baseline_crop_rate": 1.0,
+          "baseline_worker3_rate": 0.8984375,
+          "four_crop_rate": 1.0,
+          "four_worker3_rate": 0.8984375,
+          "one_crop_rate": 1.0,
+          "one_worker3_rate": 0.8984375
+        }
+      },
+      "finite_safe_mechanics": {
+        "pass": true,
+        "threshold": "finite; reward error <=1e-5; zero mechanical failures",
+        "value": {
+          "finite": true,
+          "maximum_reward_identity_error": 0.0,
+          "mechanics_failures": 0
+        }
+      },
+      "minimum_support_amendment": {
+        "pass": true,
+        "threshold": "128 rows and all shared fields/baselines exact",
+        "value": true
+      },
+      "source_hashes_and_population": {
+        "pass": true,
+        "threshold": "all immutable hashes and exact generator reconstruction",
+        "value": true
+      },
+      "zero_exact_d40": {
+        "pass": true,
+        "threshold": "all 128 terminal/action fields exact",
+        "value": true
+      }
+    },
+    "pass": true,
+    "violations": []
+  },
+  "original_runner_hash": "b15214ee87ca925cb43b565f31815f169d6e18c4105abbb4d776a3cc687e860a",
+  "output_hashes": {
+    "data/analysis/live-agent-6553250/d107a-q6-controller-baselines-a-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-baselines-b-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-population-a-9829000-9829007.tsv": "115d820e9f79efb80d794211a4e1a1aea740bfdf8656dbf6322c6f78601d26dd",
+    "data/analysis/live-agent-6553250/d107a-q6-controller-population-b-9829000-9829007.tsv": "115d820e9f79efb80d794211a4e1a1aea740bfdf8656dbf6322c6f78601d26dd",
+    "data/analysis/live-agent-6553250/d107a-q6-zero-support-audit-9829000-9829007.tsv": "06d53fd74fb6d602d02874e6d9ddab0b99e663051e6de855cff02247ef21ba69",
+    "data/analysis/live-agent-6553250/d107a-q6-zero-support-baselines-9829000-9829007.tsv": "513a5f47b386993d34a6e4005891043b8eac2b9f2711515c994c34e64d3cee7c"
+  }
+}

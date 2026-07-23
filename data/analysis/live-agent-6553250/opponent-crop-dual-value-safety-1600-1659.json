@@ -1,0 +1,189 @@
+{
+ "schema": 1,
+ "scope": "fresh generated-map safety rejection gate; not field-value evidence",
+ "seed_range": [
+  1600,
+  1659
+ ],
+ "scenarios_per_profile": 960,
+ "profiles": {
+  "dual_value_e6": {
+   "scenarios": 960,
+   "activated_cells": 771,
+   "mean_margin_delta": 2.234375,
+   "trimmed_5pct_mean_margin_delta": 1.9861111111111112,
+   "median_margin_delta": 0.0,
+   "minimum_margin_delta": -270,
+   "maximum_margin_delta": 190,
+   "mean_score_delta": -0.7145833333333333,
+   "mean_opponent_score_delta": -2.948958333333333,
+   "mean_wood_delta": -0.1625,
+   "mean_opponent_wood_delta": -0.7229166666666667,
+   "mean_divergence_turns": 20.26875,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 120,
+     "mean_margin_delta": 5.091666666666667,
+     "mean_score_delta": -0.875,
+     "mean_wood_delta": -0.275,
+     "activated_cells": 114
+    },
+    "gold_adaptive": {
+     "scenarios": 120,
+     "mean_margin_delta": 3.9,
+     "mean_score_delta": -3.9583333333333335,
+     "mean_wood_delta": -0.48333333333333334,
+     "activated_cells": 112
+    },
+    "gold_elite": {
+     "scenarios": 120,
+     "mean_margin_delta": 5.091666666666667,
+     "mean_score_delta": -0.875,
+     "mean_wood_delta": -0.275,
+     "activated_cells": 114
+    },
+    "mybot": {
+     "scenarios": 120,
+     "mean_margin_delta": 3.4,
+     "mean_score_delta": -3.2916666666666665,
+     "mean_wood_delta": -0.7916666666666666,
+     "activated_cells": 119
+    },
+    "printer_bot": {
+     "scenarios": 120,
+     "mean_margin_delta": 0.7416666666666667,
+     "mean_score_delta": 5.725,
+     "mean_wood_delta": 1.2666666666666666,
+     "activated_cells": 106
+    },
+    "sched_bot": {
+     "scenarios": 120,
+     "mean_margin_delta": -1.0083333333333333,
+     "mean_score_delta": -1.9666666666666666,
+     "mean_wood_delta": -0.55,
+     "activated_cells": 37
+    },
+    "script_boss": {
+     "scenarios": 120,
+     "mean_margin_delta": 1.6916666666666667,
+     "mean_score_delta": -1.2333333333333334,
+     "mean_wood_delta": -0.425,
+     "activated_cells": 98
+    },
+    "silver_boss": {
+     "scenarios": 120,
+     "mean_margin_delta": -1.0333333333333334,
+     "mean_score_delta": 0.7583333333333333,
+     "mean_wood_delta": 0.23333333333333334,
+     "activated_cells": 71
+    }
+   }
+  },
+  "b100_e6": {
+   "scenarios": 960,
+   "activated_cells": 746,
+   "mean_margin_delta": 3.609375,
+   "trimmed_5pct_mean_margin_delta": 3.002314814814815,
+   "median_margin_delta": 0.0,
+   "minimum_margin_delta": -257,
+   "maximum_margin_delta": 192,
+   "mean_score_delta": -0.3885416666666667,
+   "mean_opponent_score_delta": -3.997916666666667,
+   "mean_wood_delta": -0.07708333333333334,
+   "mean_opponent_wood_delta": -1.00625,
+   "mean_divergence_turns": 21.369791666666668,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 120,
+     "mean_margin_delta": 8.583333333333334,
+     "mean_score_delta": -1.125,
+     "mean_wood_delta": -0.3,
+     "activated_cells": 114
+    },
+    "gold_adaptive": {
+     "scenarios": 120,
+     "mean_margin_delta": 6.541666666666667,
+     "mean_score_delta": -3.966666666666667,
+     "mean_wood_delta": -0.8,
+     "activated_cells": 113
+    },
+    "gold_elite": {
+     "scenarios": 120,
+     "mean_margin_delta": 8.583333333333334,
+     "mean_score_delta": -1.125,
+     "mean_wood_delta": -0.3,
+     "activated_cells": 114
+    },
+    "mybot": {
+     "scenarios": 120,
+     "mean_margin_delta": 4.725,
+     "mean_score_delta": -1.5916666666666666,
+     "mean_wood_delta": -0.35833333333333334,
+     "activated_cells": 119
+    },
+    "printer_bot": {
+     "scenarios": 120,
+     "mean_margin_delta": -0.016666666666666666,
+     "mean_score_delta": 7.341666666666667,
+     "mean_wood_delta": 1.6583333333333334,
+     "activated_cells": 109
+    },
+    "sched_bot": {
+     "scenarios": 120,
+     "mean_margin_delta": 0.225,
+     "mean_score_delta": -1.6333333333333333,
+     "mean_wood_delta": -0.225,
+     "activated_cells": 37
+    },
+    "script_boss": {
+     "scenarios": 120,
+     "mean_margin_delta": 1.5083333333333333,
+     "mean_score_delta": -0.43333333333333335,
+     "mean_wood_delta": -0.11666666666666667,
+     "activated_cells": 73
+    },
+    "silver_boss": {
+     "scenarios": 120,
+     "mean_margin_delta": -1.275,
+     "mean_score_delta": -0.575,
+     "mean_wood_delta": -0.175,
+     "activated_cells": 67
+    }
+   }
+  }
+ },
+ "dual_minus_flat": {
+  "scenarios": 960,
+  "mean_margin_delta": -1.375,
+  "trimmed_5pct_mean_margin_delta": -0.9710648148148148,
+  "median_margin_delta": 0.0,
+  "dual_better": 265,
+  "equal": 384,
+  "dual_worse": 311,
+  "mean_score_delta": -0.3260416666666667,
+  "mean_opponent_score_delta": 1.0489583333333334,
+  "mean_wood_delta": -0.08541666666666667,
+  "mean_opponent_wood_delta": 0.2833333333333333
+ },
+ "prospective_gate": {
+  "minimum_mean_margin_delta": -2.0,
+  "minimum_trimmed_5pct_mean_margin_delta": -2.0,
+  "minimum_mean_score_delta": -2.0,
+  "minimum_mean_wood_delta": -1.0,
+  "minimum_opponents_above_floor": 6,
+  "opponent_mean_margin_floor": -5.0,
+  "minimum_worst_opponent_mean_margin_delta": -15.0
+ },
+ "opponents_above_floor": 8,
+ "worst_opponent_mean_margin_delta": -1.0333333333333334,
+ "gate_checks": {
+  "mean_margin": true,
+  "trimmed_margin": true,
+  "own_score": true,
+  "own_wood": true,
+  "opponent_breadth": true,
+  "worst_opponent": true
+ },
+ "gate_passed": true,
+ "decision": "continue to official-prefix mechanism audit"
+}

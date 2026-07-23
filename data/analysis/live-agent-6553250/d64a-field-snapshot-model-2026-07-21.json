@@ -1,0 +1,336 @@
+{
+  "features": [
+    {
+      "mean": 7.864864864864865,
+      "name": "bank_score_gap",
+      "scale": 27.31909752987099,
+      "standardized_coefficient": -0.0015335973435586805
+    },
+    {
+      "mean": 2.945945945945946,
+      "name": "bank_wood_gap",
+      "scale": 7.061298961530036,
+      "standardized_coefficient": -0.03147855958056645
+    },
+    {
+      "mean": 4.77027027027027,
+      "name": "board_apple_count",
+      "scale": 2.333928930211524,
+      "standardized_coefficient": -0.0009860231099572386
+    },
+    {
+      "mean": 12.662162162162161,
+      "name": "board_apple_fruit",
+      "scale": 5.712189496031123,
+      "standardized_coefficient": 0.023019852148964196
+    },
+    {
+      "mean": 5.702702702702703,
+      "name": "board_banana_count",
+      "scale": 4.036086309210707,
+      "standardized_coefficient": -0.01344995839182004
+    },
+    {
+      "mean": 13.364864864864865,
+      "name": "board_banana_fruit",
+      "scale": 9.53737218656071,
+      "standardized_coefficient": 0.01335265378778645
+    },
+    {
+      "mean": 49.58108108108108,
+      "name": "board_fruit_total",
+      "scale": 19.038372884112416,
+      "standardized_coefficient": 0.07323082024601008
+    },
+    {
+      "mean": 243.06756756756758,
+      "name": "board_health_total",
+      "scale": 86.5863623056571,
+      "standardized_coefficient": 0.06776369996378176
+    },
+    {
+      "mean": 4.27027027027027,
+      "name": "board_lemon_count",
+      "scale": 3.7858102681478165,
+      "standardized_coefficient": 0.09351456890519903
+    },
+    {
+      "mean": 9.81081081081081,
+      "name": "board_lemon_fruit",
+      "scale": 8.924118058742252,
+      "standardized_coefficient": 0.09251673205363974
+    },
+    {
+      "mean": 20.85135135135135,
+      "name": "board_plant_count",
+      "scale": 7.142719658491118,
+      "standardized_coefficient": 0.0608213733455951
+    },
+    {
+      "mean": 6.108108108108108,
+      "name": "board_plum_count",
+      "scale": 2.8878476393869255,
+      "standardized_coefficient": 0.04743605680154146
+    },
+    {
+      "mean": 13.743243243243244,
+      "name": "board_plum_fruit",
+      "scale": 7.515858568514563,
+      "standardized_coefficient": 0.041209189060159024
+    },
+    {
+      "mean": 17.864864864864863,
+      "name": "board_ripe_count",
+      "scale": 6.842483199328286,
+      "standardized_coefficient": 0.0692713654960941
+    },
+    {
+      "mean": 79.08108108108108,
+      "name": "board_size_total",
+      "scale": 28.720346284875387,
+      "standardized_coefficient": 0.06880473784306772
+    },
+    {
+      "mean": 2.5135135135135136,
+      "name": "opponent_bank_apple",
+      "scale": 2.5587330228552205,
+      "standardized_coefficient": -0.0108779341288074
+    },
+    {
+      "mean": 6.3108108108108105,
+      "name": "opponent_bank_banana",
+      "scale": 3.114593703387398,
+      "standardized_coefficient": 0.003233372401955491
+    },
+    {
+      "mean": 4.418918918918919,
+      "name": "opponent_bank_iron",
+      "scale": 3.71631449501496,
+      "standardized_coefficient": 0.039367735212182405
+    },
+    {
+      "mean": 3.3378378378378377,
+      "name": "opponent_bank_lemon",
+      "scale": 3.6364410394179227,
+      "standardized_coefficient": 0.0893235697618907
+    },
+    {
+      "mean": 7.918918918918919,
+      "name": "opponent_bank_plum",
+      "scale": 6.360258274453183,
+      "standardized_coefficient": 0.02413531407009362
+    },
+    {
+      "mean": 39.108108108108105,
+      "name": "opponent_bank_score",
+      "scale": 18.121636737402245,
+      "standardized_coefficient": -0.04430849580291172
+    },
+    {
+      "mean": 4.756756756756757,
+      "name": "opponent_bank_wood",
+      "scale": 5.1982606519582655,
+      "standardized_coefficient": -0.060765811290330256
+    },
+    {
+      "mean": 0.20270270270270271,
+      "name": "opponent_carry_apple",
+      "scale": 0.6362841819996515,
+      "standardized_coefficient": -0.00014190799064294523
+    },
+    {
+      "mean": 0.013513513513513514,
+      "name": "opponent_carry_banana",
+      "scale": 0.11545951007185874,
+      "standardized_coefficient": -0.009439194417298393
+    },
+    {
+      "mean": 0.35135135135135137,
+      "name": "opponent_carry_iron",
+      "scale": 0.9069168505709465,
+      "standardized_coefficient": 0.03886024989952325
+    },
+    {
+      "mean": 0.32432432432432434,
+      "name": "opponent_carry_lemon",
+      "scale": 0.5952085282579793,
+      "standardized_coefficient": 0.03608553827607405
+    },
+    {
+      "mean": 0.36486486486486486,
+      "name": "opponent_carry_plum",
+      "scale": 0.5829636381114325,
+      "standardized_coefficient": -0.059665721986082776
+    },
+    {
+      "mean": 0.5675675675675675,
+      "name": "opponent_carry_wood",
+      "scale": 0.9311585501055254,
+      "standardized_coefficient": 0.039048053078821664
+    },
+    {
+      "mean": 1.135135135135135,
+      "name": "opponent_carrying_workers",
+      "scale": 0.7767625871999951,
+      "standardized_coefficient": 0.02022418395876696
+    },
+    {
+      "mean": 2.1216216216216215,
+      "name": "opponent_worker_count",
+      "scale": 0.4334868900633906,
+      "standardized_coefficient": 0.04420372790064522
+    },
+    {
+      "mean": 5.675675675675675,
+      "name": "own_bank_apple",
+      "scale": 5.470085991982081,
+      "standardized_coefficient": 0.05529562098250879
+    },
+    {
+      "mean": 4.635135135135135,
+      "name": "own_bank_banana",
+      "scale": 4.406918161758985,
+      "standardized_coefficient": 0.014338916782042596
+    },
+    {
+      "mean": 2.4054054054054053,
+      "name": "own_bank_iron",
+      "scale": 3.4832375392105224,
+      "standardized_coefficient": 0.16879764077503945
+    },
+    {
+      "mean": 3.2162162162162162,
+      "name": "own_bank_lemon",
+      "scale": 5.570846580989839,
+      "standardized_coefficient": 0.1089088444977774
+    },
+    {
+      "mean": 2.635135135135135,
+      "name": "own_bank_plum",
+      "scale": 3.5964484144715194,
+      "standardized_coefficient": 0.09326104134962727
+    },
+    {
+      "mean": 46.972972972972975,
+      "name": "own_bank_score",
+      "scale": 25.692028931575084,
+      "standardized_coefficient": -0.03288331034389485
+    },
+    {
+      "mean": 7.702702702702703,
+      "name": "own_bank_wood",
+      "scale": 7.018758128641497,
+      "standardized_coefficient": -0.07667396938719162
+    },
+    {
+      "mean": 0.06756756756756757,
+      "name": "own_carry_apple",
+      "scale": 0.25100237325684704,
+      "standardized_coefficient": -0.0040667651469033905
+    },
+    {
+      "mean": 0.17567567567567569,
+      "name": "own_carry_banana",
+      "scale": 0.3805439956845599,
+      "standardized_coefficient": -0.03953088544656729
+    },
+    {
+      "mean": 0.013513513513513514,
+      "name": "own_carry_iron",
+      "scale": 0.11545951007185871,
+      "standardized_coefficient": 0.03877175041294822
+    },
+    {
+      "mean": 0.22972972972972974,
+      "name": "own_carry_lemon",
+      "scale": 0.5586493677998476,
+      "standardized_coefficient": 0.12798067566035176
+    },
+    {
+      "mean": 0.12162162162162163,
+      "name": "own_carry_plum",
+      "scale": 0.3658644965048892,
+      "standardized_coefficient": 0.11137159883330586
+    },
+    {
+      "mean": 0.918918918918919,
+      "name": "own_carry_wood",
+      "scale": 1.1120562492670811,
+      "standardized_coefficient": -0.09266818212595883
+    },
+    {
+      "mean": 1.0405405405405406,
+      "name": "own_carrying_workers",
+      "scale": 0.6865343673448943,
+      "standardized_coefficient": 0.027586003260561983
+    }
+  ],
+  "fit": {
+    "converged": true,
+    "feature_count": 44,
+    "intercept": -1.607386855101485,
+    "iterations": 6,
+    "maximum_step": 3.5594644452184045e-12,
+    "metrics": {
+      "discovery": {
+        "balanced_accuracy_at_0_5": 0.8125,
+        "brier_score": 0.06650716130771976,
+        "confusion": {
+          "fn": 6,
+          "fp": 0,
+          "tn": 58,
+          "tp": 10
+        },
+        "negatives": 58,
+        "positives": 16,
+        "prevalence": 0.21621621621621623,
+        "roc_auc": 0.9967672413793104,
+        "rows": 74,
+        "sensitivity_at_0_5": 0.625,
+        "specificity_at_0_5": 1.0
+      },
+      "validation": {
+        "balanced_accuracy_at_0_5": 0.65,
+        "brier_score": 0.1371276214938174,
+        "confusion": {
+          "fn": 21,
+          "fp": 0,
+          "tn": 46,
+          "tp": 9
+        },
+        "negatives": 46,
+        "positives": 30,
+        "prevalence": 0.39473684210526316,
+        "roc_auc": 0.9927536231884058,
+        "rows": 76,
+        "sensitivity_at_0_5": 0.3,
+        "specificity_at_0_5": 1.0
+      }
+    },
+    "parity": {
+      "discovery_balanced_accuracy_at_0_5": true,
+      "discovery_brier_score": true,
+      "discovery_roc_auc": true,
+      "validation_balanced_accuracy_at_0_5": true,
+      "validation_brier_score": true,
+      "validation_roc_auc": true
+    }
+  },
+  "generated_at": "2026-07-21T11:23:07.961983+00:00",
+  "schema": "troll-farm-d64a-snapshot-model-v1",
+  "sources": {
+    "d63a": "58be23c7a7e6b5995bcaa5b7a209a412f7a06a0231b66a8c9eb83013b5a98ef2",
+    "d63b": "6970d5ae2949c71f32bcade6f992d39b2f1f984c15d73b1f4593cbceaf5db059",
+    "exporter": "db7888b797072f50064f440f369268653fbb3b0e3f9384400c0bcb16edcbc92c",
+    "protocol": "563a8c4cf4447db50699dfab7cc8789384abb2dc77646a41e7176b8f41a331ad"
+  },
+  "support_radius_rms_z_p95": 1.7150125620098253,
+  "support_reference": {
+    "maximum": 4.025323555456808,
+    "median": 0.9952704710948042,
+    "minimum": 0.5508825766736308,
+    "nearest_rank": "ceil(0.95*n)-1",
+    "rows": 76
+  },
+  "threshold": 0.5
+}

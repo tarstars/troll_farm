@@ -1,0 +1,314 @@
+{
+ "schema": 1,
+ "scope": "exact-engine generated-map information-value study; the opponent identity used by the upper-bound selector is not supplied to an arena bot and must be replaced by state-observable opening evidence before implementation",
+ "policies": {
+  "resident": "resident",
+  "alternative": "norx_three_worker_resident_challenge"
+ },
+ "split": {
+  "discovery_seeds": [
+   150,
+   179
+  ],
+  "validation_seeds": [
+   180,
+   209
+  ]
+ },
+ "frozen_selector": {
+  "compact_gold": "resident",
+  "gold_adaptive": "resident",
+  "gold_elite": "resident",
+  "mybot": "norx_three_worker_resident_challenge",
+  "printer_bot": "norx_three_worker_resident_challenge",
+  "sched_bot": "resident",
+  "script_boss": "resident",
+  "silver_boss": "resident"
+ },
+ "selector_fit": {
+  "method": "positive seed-balanced normal 95% lower bound",
+  "evidence": {
+   "compact_gold": {
+    "seeds": 30,
+    "mean_delta": 22.983333333333334,
+    "standard_error": 12.841327932310353,
+    "normal_95_lower": -2.185669413994958
+   },
+   "gold_adaptive": {
+    "seeds": 30,
+    "mean_delta": -27.05,
+    "standard_error": 17.758296587824784,
+    "normal_95_lower": -61.85626131213658
+   },
+   "gold_elite": {
+    "seeds": 30,
+    "mean_delta": 22.983333333333334,
+    "standard_error": 12.841327932310353,
+    "normal_95_lower": -2.185669413994958
+   },
+   "mybot": {
+    "seeds": 30,
+    "mean_delta": 36.13333333333333,
+    "standard_error": 9.455337643981087,
+    "normal_95_lower": 17.600871551130403
+   },
+   "printer_bot": {
+    "seeds": 30,
+    "mean_delta": 29.783333333333335,
+    "standard_error": 9.461284794449737,
+    "normal_95_lower": 11.23921513621185
+   },
+   "sched_bot": {
+    "seeds": 30,
+    "mean_delta": 2.0,
+    "standard_error": 10.311471125964966,
+    "normal_95_lower": -18.21048340689133
+   },
+   "script_boss": {
+    "seeds": 30,
+    "mean_delta": -17.466666666666665,
+    "standard_error": 12.78129320290781,
+    "normal_95_lower": -42.51800134436597
+   },
+   "silver_boss": {
+    "seeds": 30,
+    "mean_delta": 9.116666666666667,
+    "standard_error": 8.824947765575391,
+    "normal_95_lower": -8.180230953861098
+   }
+  }
+ },
+ "validation_refit_selector": {
+  "compact_gold": "resident",
+  "gold_adaptive": "resident",
+  "gold_elite": "resident",
+  "mybot": "norx_three_worker_resident_challenge",
+  "printer_bot": "resident",
+  "sched_bot": "resident",
+  "script_boss": "resident",
+  "silver_boss": "resident"
+ },
+ "discovery": {
+  "cells": 480,
+  "seeds": 30,
+  "resident_margin": {
+   "n": 480,
+   "mean": 32.89791666666667,
+   "median": 63.0,
+   "minimum": -301,
+   "maximum": 369,
+   "wins": 353,
+   "ties": 0,
+   "losses": 127
+  },
+  "three_worker_margin": {
+   "n": 480,
+   "mean": 42.708333333333336,
+   "median": 52.5,
+   "minimum": -253,
+   "maximum": 283,
+   "wins": 347,
+   "ties": 0,
+   "losses": 133
+  },
+  "three_worker_delta_vs_resident": {
+   "n": 480,
+   "mean": 9.810416666666667,
+   "median": 10.5,
+   "minimum": -258,
+   "maximum": 282,
+   "wins": 267,
+   "ties": 1,
+   "losses": 212
+  },
+  "three_worker_opponent_mean_deltas": {
+   "compact_gold": 22.983333333333334,
+   "gold_adaptive": -27.05,
+   "gold_elite": 22.983333333333334,
+   "mybot": 36.13333333333333,
+   "printer_bot": 29.783333333333335,
+   "sched_bot": 2,
+   "script_boss": -17.466666666666665,
+   "silver_boss": 9.116666666666667
+  },
+  "cell_oracle": {
+   "margin": {
+    "n": 480,
+    "mean": 67.8125,
+    "median": 86.0,
+    "minimum": -237,
+    "maximum": 369,
+    "wins": 389,
+    "ties": 0,
+    "losses": 91
+   },
+   "mean_gain_vs_resident": 34.91458333333333,
+   "selected_three_worker": 267,
+   "selected_resident": 212,
+   "ties": 1
+  },
+  "frozen_opponent_selector": {
+   "mapping": {
+    "compact_gold": "resident",
+    "gold_adaptive": "resident",
+    "gold_elite": "resident",
+    "mybot": "norx_three_worker_resident_challenge",
+    "printer_bot": "norx_three_worker_resident_challenge",
+    "sched_bot": "resident",
+    "script_boss": "resident",
+    "silver_boss": "resident"
+   },
+   "margin": {
+    "n": 480,
+    "mean": 41.1375,
+    "median": 73.0,
+    "minimum": -301,
+    "maximum": 249,
+    "wins": 367,
+    "ties": 0,
+    "losses": 113
+   },
+   "delta_vs_resident": {
+    "n": 480,
+    "mean": 8.239583333333334,
+    "median": 0.0,
+    "minimum": -258,
+    "maximum": 154,
+    "wins": 96,
+    "ties": 360,
+    "losses": 24
+   },
+   "opponent_mean_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 36.13333333333333,
+    "printer_bot": 29.783333333333335,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "worst_opponent_mean_delta": 0,
+   "nonnegative_opponents": 8
+  }
+ },
+ "validation": {
+  "cells": 480,
+  "seeds": 30,
+  "resident_margin": {
+   "n": 480,
+   "mean": 33.016666666666666,
+   "median": 68.0,
+   "minimum": -288,
+   "maximum": 230,
+   "wins": 349,
+   "ties": 1,
+   "losses": 130
+  },
+  "three_worker_margin": {
+   "n": 480,
+   "mean": 35.25416666666667,
+   "median": 54.0,
+   "minimum": -316,
+   "maximum": 221,
+   "wins": 340,
+   "ties": 2,
+   "losses": 138
+  },
+  "three_worker_delta_vs_resident": {
+   "n": 480,
+   "mean": 2.2375,
+   "median": 4.0,
+   "minimum": -385,
+   "maximum": 214,
+   "wins": 255,
+   "ties": 1,
+   "losses": 224
+  },
+  "three_worker_opponent_mean_deltas": {
+   "compact_gold": 27.066666666666666,
+   "gold_adaptive": -37.13333333333333,
+   "gold_elite": 27.066666666666666,
+   "mybot": 30.6,
+   "printer_bot": 13.133333333333333,
+   "sched_bot": -15.183333333333334,
+   "script_boss": -20.616666666666667,
+   "silver_boss": -7.033333333333333
+  },
+  "cell_oracle": {
+   "margin": {
+    "n": 480,
+    "mean": 63.77916666666667,
+    "median": 86.5,
+    "minimum": -235,
+    "maximum": 230,
+    "wins": 384,
+    "ties": 3,
+    "losses": 93
+   },
+   "mean_gain_vs_resident": 30.762500000000003,
+   "selected_three_worker": 255,
+   "selected_resident": 224,
+   "ties": 1
+  },
+  "frozen_opponent_selector": {
+   "mapping": {
+    "compact_gold": "resident",
+    "gold_adaptive": "resident",
+    "gold_elite": "resident",
+    "mybot": "norx_three_worker_resident_challenge",
+    "printer_bot": "norx_three_worker_resident_challenge",
+    "sched_bot": "resident",
+    "script_boss": "resident",
+    "silver_boss": "resident"
+   },
+   "margin": {
+    "n": 480,
+    "mean": 38.483333333333334,
+    "median": 71.0,
+    "minimum": -288,
+    "maximum": 230,
+    "wins": 355,
+    "ties": 1,
+    "losses": 124
+   },
+   "delta_vs_resident": {
+    "n": 480,
+    "mean": 5.466666666666667,
+    "median": 0.0,
+    "minimum": -249,
+    "maximum": 193,
+    "wins": 77,
+    "ties": 360,
+    "losses": 43
+   },
+   "opponent_mean_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": 30.6,
+    "printer_bot": 13.133333333333333,
+    "sched_bot": 0,
+    "script_boss": 0,
+    "silver_boss": 0
+   },
+   "worst_opponent_mean_delta": 0,
+   "nonnegative_opponents": 8
+  }
+ },
+ "opening_signature_gate": {
+  "requirements": [
+   "positive frozen-selector mean margin delta on later seeds",
+   "nonnegative mean delta for every opponent under the frozen mapping",
+   "worst opponent mean delta at least -5",
+   "every alternative branch selected by the discovery lower bound remains positive on validation"
+  ],
+  "passed": true
+ },
+ "decision": {
+  "build_observable_opening_signature_study": true,
+  "build_online_selector": false,
+  "build_submission_candidate": false,
+  "reason": "The label-aware selector is an information ceiling, not deployable evidence. Continue only by proving that the needed archetypes can be classified from commands and state observed before the workforce commitment becomes irreversible."
+ }
+}

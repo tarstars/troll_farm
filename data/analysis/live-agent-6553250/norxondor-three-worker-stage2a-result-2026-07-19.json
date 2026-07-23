@@ -1,0 +1,389 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-19T03:57:52.999016+00:00",
+ "panel": "/home/tarstars/prj/troll_farm/data/panels/norxondor-three-worker-stage2a-top5-20260719.json",
+ "source_integrity": {
+  "baseline_expected_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "candidate_expected_sha256": "69237902e54232cdf31ef8e8bc0e6c25066a4c152bde36479ffb8e1ee92f8377",
+  "baseline_observed_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "candidate_observed_sha256": "69237902e54232cdf31ef8e8bc0e6c25066a4c152bde36479ffb8e1ee92f8377",
+  "pass": true
+ },
+ "baseline": {
+  "games": 5,
+  "mean_score": 245.4,
+  "mean_opponent_score": 342.4,
+  "mean_margin": -97.0,
+  "mean_wood": 56,
+  "mean_fruit": 21.4,
+  "wins": 1,
+  "three_worker_games": 0,
+  "terminal_workers": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "third_worker_turns": [],
+  "median_third_worker_turn": null,
+  "diagnostics": []
+ },
+ "candidate": {
+  "games": 5,
+  "mean_score": 150.0,
+  "mean_opponent_score": 277.2,
+  "mean_margin": -127.2,
+  "mean_wood": 29,
+  "mean_fruit": 34,
+  "wins": 0,
+  "three_worker_games": 3,
+  "terminal_workers": [
+   3,
+   3,
+   3,
+   2,
+   2
+  ],
+  "third_worker_turns": [
+   77,
+   98,
+   84
+  ],
+  "median_third_worker_turn": 84,
+  "diagnostics": []
+ },
+ "candidate_minus_baseline": {
+  "mean_score": -95.4,
+  "mean_opponent_score": -65.19999999999999,
+  "mean_margin": -30.200000000000003,
+  "mean_wood": -27,
+  "mean_fruit": 12.600000000000001,
+  "wins": -1
+ },
+ "unpaired_bootstrap": {
+  "score_delta": {
+   "repetitions": 20000,
+   "p2_5": -189.0,
+   "median": -95.4,
+   "p97_5": 1.200000000000017
+  },
+  "margin_delta": {
+   "repetitions": 20000,
+   "p2_5": -157.2,
+   "median": -29.799999999999997,
+   "p97_5": 94.0
+  }
+ },
+ "candidate_activation_split": {
+  "reached_three": {
+   "games": 3,
+   "mean_score": 217.0,
+   "mean_opponent_score": 402.3333333333333,
+   "mean_margin": -185.33333333333334,
+   "mean_wood": 44.333333333333336,
+   "mean_fruit": 39.666666666666664,
+   "wins": 0,
+   "three_worker_games": 3,
+   "terminal_workers": [
+    3,
+    3,
+    3
+   ],
+   "third_worker_turns": [
+    77,
+    98,
+    84
+   ],
+   "median_third_worker_turn": 84,
+   "diagnostics": []
+  },
+  "missed_three": {
+   "games": 2,
+   "mean_score": 49.5,
+   "mean_opponent_score": 89.5,
+   "mean_margin": -40.0,
+   "mean_wood": 6,
+   "mean_fruit": 25.5,
+   "wins": 0,
+   "three_worker_games": 0,
+   "terminal_workers": [
+    2,
+    2
+   ],
+   "third_worker_turns": [],
+   "median_third_worker_turn": null,
+   "diagnostics": []
+  }
+ },
+ "per_opponent": {
+  "delineate": {
+   "baseline": {
+    "game_id": 896298152,
+    "score": 256.0,
+    "opponent_score": 269.0,
+    "margin": -13.0,
+    "wood": 64,
+    "workers": 2,
+    "successful_training_turns": [
+     1
+    ],
+    "training_attempts": [
+     {
+      "turn": 1,
+      "spec": [
+       "3",
+       "2",
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "candidate": {
+    "game_id": 896298158,
+    "score": 224.0,
+    "opponent_score": 469.0,
+    "margin": -245.0,
+    "wood": 43,
+    "workers": 3,
+    "successful_training_turns": [
+     4,
+     77
+    ],
+    "training_attempts": [
+     {
+      "turn": 4,
+      "spec": [
+       "2",
+       "3",
+       "2",
+       "1"
+      ]
+     },
+     {
+      "turn": 77,
+      "spec": [
+       "2",
+       "3",
+       "1",
+       "2"
+      ]
+     }
+    ]
+   }
+  },
+  "escdemon": {
+   "baseline": {
+    "game_id": 896298197,
+    "score": 124.0,
+    "opponent_score": 103.0,
+    "margin": 21.0,
+    "wood": 31,
+    "workers": 2,
+    "successful_training_turns": [
+     1
+    ],
+    "training_attempts": [
+     {
+      "turn": 1,
+      "spec": [
+       "2",
+       "2",
+       "0",
+       "2"
+      ]
+     }
+    ]
+   },
+   "candidate": {
+    "game_id": 896298204,
+    "score": 44.0,
+    "opponent_score": 91.0,
+    "margin": -47.0,
+    "wood": 4,
+    "workers": 2,
+    "successful_training_turns": [
+     20
+    ],
+    "training_attempts": [
+     {
+      "turn": 20,
+      "spec": [
+       "2",
+       "2",
+       "2",
+       "1"
+      ]
+     }
+    ]
+   }
+  },
+  "laconic": {
+   "baseline": {
+    "game_id": 896298208,
+    "score": 338.0,
+    "opponent_score": 494.0,
+    "margin": -156.0,
+    "wood": 84,
+    "workers": 2,
+    "successful_training_turns": [
+     10
+    ],
+    "training_attempts": [
+     {
+      "turn": 10,
+      "spec": [
+       "2",
+       "3",
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "candidate": {
+    "game_id": 896298211,
+    "score": 55.0,
+    "opponent_score": 88.0,
+    "margin": -33.0,
+    "wood": 8,
+    "workers": 2,
+    "successful_training_turns": [
+     1
+    ],
+    "training_attempts": [
+     {
+      "turn": 1,
+      "spec": [
+       "2",
+       "2",
+       "2",
+       "1"
+      ]
+     }
+    ]
+   }
+  },
+  "norxondor": {
+   "baseline": {
+    "game_id": 896298188,
+    "score": 240.0,
+    "opponent_score": 492.0,
+    "margin": -252.0,
+    "wood": 34,
+    "workers": 2,
+    "successful_training_turns": [
+     10
+    ],
+    "training_attempts": [
+     {
+      "turn": 10,
+      "spec": [
+       "1",
+       "2",
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "candidate": {
+    "game_id": 896298192,
+    "score": 194.0,
+    "opponent_score": 240.0,
+    "margin": -46.0,
+    "wood": 45,
+    "workers": 3,
+    "successful_training_turns": [
+     20,
+     84
+    ],
+    "training_attempts": [
+     {
+      "turn": 20,
+      "spec": [
+       "2",
+       "2",
+       "1",
+       "2"
+      ]
+     },
+     {
+      "turn": 84,
+      "spec": [
+       "2",
+       "3",
+       "1",
+       "2"
+      ]
+     }
+    ]
+   }
+  },
+  "wala": {
+   "baseline": {
+    "game_id": 896298169,
+    "score": 269.0,
+    "opponent_score": 354.0,
+    "margin": -85.0,
+    "wood": 67,
+    "workers": 2,
+    "successful_training_turns": [
+     31
+    ],
+    "training_attempts": [
+     {
+      "turn": 31,
+      "spec": [
+       "2",
+       "3",
+       "0",
+       "3"
+      ]
+     }
+    ]
+   },
+   "candidate": {
+    "game_id": 896298179,
+    "score": 233.0,
+    "opponent_score": 498.0,
+    "margin": -265.0,
+    "wood": 45,
+    "workers": 3,
+    "successful_training_turns": [
+     1,
+     98
+    ],
+    "training_attempts": [
+     {
+      "turn": 1,
+      "spec": [
+       "2",
+       "2",
+       "1",
+       "1"
+      ]
+     },
+     {
+      "turn": 98,
+      "spec": [
+       "2",
+       "3",
+       "1",
+       "2"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "gates": {
+  "ten_valid_games": true,
+  "candidate_three_workers_at_least_4_of_5": false,
+  "candidate_mean_score_not_below_baseline": false,
+  "candidate_mean_margin_no_more_than_10_below_baseline": false
+ },
+ "stage2a_pass": false,
+ "stage2b_eligible": false
+}

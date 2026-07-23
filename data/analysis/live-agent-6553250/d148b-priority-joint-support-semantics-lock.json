@@ -1,0 +1,24 @@
+{
+  "schema": "troll-farm-d148b-priority-joint-support-semantics-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/analyze_d133b_q6_support_semantics.py": "2e77b2d41444faefcd4e6b7853b0c076b9560af18cc3526a616dd5f0f17b54b9",
+    "cgauto/analyze_d148a_priority_joint_teacher.py": "671d649ca482101fa375c0209f3eb5b8929f50451ae81547b16d763f5baf330f",
+    "cgauto/analyze_d148b_priority_joint_support_semantics.py": "61bc214a88253c5a28c5c31b7a8ca94a802388fde064c183d286fcff0ee8126d",
+    "cgauto/collect_d147a_selected_trajectory_features.py": "a9fd01e3e3e1f65b94503723d73fdbf811e6e61a5e133845f656b0e69a2c222d",
+    "cgauto/run_d148a_priority_joint_teacher.py": "4e5381c02aed7b48cef5a483c44bd60383b10f0474947909decccc3dcb7ffc6e",
+    "cgauto/yt_d133_q6_teacher_corpus.py": "6c0382d0392aa0741e26cfe32bc039bea24bc78c20d1dd008aac30e0d741d8fc",
+    "cgauto/yt_d148_priority_joint_teacher.py": "a6cdbd29bc85fac2a36e0550cc7e61f6a1928750e7080c64d8268b78bbeb4fb5",
+    "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-download.json": "4d42410478481f2ad3a31f6160addd9c0d0fb9e137f82b499a499c77e0171ec3",
+    "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-protocol-2026-07-22.md": "cfd8043eae3971577aca0fa6783f224784fc9a83b26f70c58af1847115f1deb8",
+    "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-result.json": "11b0572366c5c0e253ad027bf51e79f74e7893aaf0f678d3bec069143ba86611",
+    "data/analysis/live-agent-6553250/d148b-priority-joint-support-semantics-protocol-2026-07-22.md": "52c2576d87f0f71d5b90d76da3ad93d4be82cb551c0cee4a1f0415f8624cc9cb",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-arms-9844136-9844199.tsv": "77c072ff546aadbc2220e596b5b5e6313e1f0f96bbd9793f275c6edb517f1656",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-baselines-9844136-9844199.tsv": "68ff22a5de9ed07b2ff96170d9e1a8287061bb5f20612548e562975d7bd02e8b",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-candidates-9844136-9844199.tsv": "0ea7aef2396a83e66c06b747e51aad136a9a05aa4ebc3f96d502a69c727097a5",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-manifest-9844136-9844199.tsv": "3e2845e1468401a1c05afa33ff0644b7ae1ed12363d1730d40cc2e1440759d81",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-population-9844136-9844199.tsv": "c02a607ca0b4f1084a541d03673c375a3f7238b2ccaf5911b3482e4ad6e8d162",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-replays-9844136-9844199.tsv": "434bac7fce2d5248857410444d8ffd321dab82ffa5107d169c14754adbabce71"
+  }
+}

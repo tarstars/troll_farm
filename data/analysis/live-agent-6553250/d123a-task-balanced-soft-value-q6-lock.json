@@ -1,0 +1,39 @@
+{
+  "audit": {
+    "consumed_maps": 80,
+    "fresh_simulation": false,
+    "offsets": [-1.0, -0.5, 0.0, 0.5, 1.0, 1.5],
+    "qualification_authority": false,
+    "seeds": [12301, 12302, 12303, 12304]
+  },
+  "frozen_at": "2026-07-22-before-d123-task-balanced-training-or-scoring",
+  "isolated_change": "equal-total-loss-per-supported-task",
+  "schema": "troll-farm-d123a-task-balanced-soft-value-q6-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d121a_d119_retrospective_grid.py": "d4fbfd300280cc4da1125cc0c8e51a957b12d62452a94f167e6080c69d546917",
+    "cgauto/evaluate_d119a_held_coverage_repair.py": "2758648c31b335d4e557fab60d6540901f9c4da2cade177e80d46c4d1a0f6dfe",
+    "cgauto/evaluate_d120a_policy_sealed_absolute_information.py": "2191bf72781d4d2b4e8dc24d9683987c1fd6b6bbdfe63c2f6c42da6a837cf973",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "cgauto/train_d123a_task_balanced_soft_value_q6.py": "703413ef9af5b1b011c40ec029408221c7e964a68b7f28945d70f59991665145",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+    "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6",
+    "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-result.json": "a8dd3842c87fbff226ea26e5b78c1b969689e34785ff3dace78f22a195fc7c6d",
+    "data/analysis/live-agent-6553250/d122a-d119-crop-failure-trace-result.json": "0f667bbb70b841b525e9795ba1a0dd9c8421baa3bd7800763dcf84ef26f93138",
+    "data/analysis/live-agent-6553250/d123a-task-balanced-soft-value-q6-protocol-2026-07-22.md": "97ae0e9161cb2521d9c1d8ee3d8a83cde4f1688f3e340078558aad5706c87a8f",
+    "tests/test_train_d123a_task_balanced_soft_value_q6.py": "7dde1a11683e365cfc809724c54285103af38eeda5792f98c6c71c918dd35e43"
+  }
+}

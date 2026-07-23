@@ -1,0 +1,70 @@
+{
+  "aggregate_host_cpu_percent": 67.97301358227047,
+  "checkpoint": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/curriculum-level3-renewable-tooling-smoke.pt",
+  "checkpoint_sha256": "23d9907a464acf00f28606c24cb541af302861e824bc1a7d023e2d784b8f5cd6",
+  "config": {
+    "chunk_size": 1000,
+    "chunk_steps": 10,
+    "chunks": 1,
+    "curriculum_level": 3,
+    "epochs": 1,
+    "eval_episodes": 500,
+    "eval_seed_base": 0,
+    "final_learning_rate": 0.0001,
+    "initial_checkpoint": "data/analysis/live-agent-6553250/curriculum-level2-random-recipes-confirmation-ppo-l2b.pt",
+    "initial_checkpoint_sha256": "8a831f6f7878eef898af4377530c291e577cc58750860c20c89a9005a5e19926",
+    "learning_rate": 0.001,
+    "max_turns": 240,
+    "minibatch_size": 1000,
+    "model_seed": 71,
+    "num_envs": 100,
+    "parameter_count": 34926,
+    "protocol": "data/analysis/live-agent-6553250/curriculum-level3-renewable-protocol-2026-07-19.md",
+    "protocol_sha256": "b43a586e2e8593b5044a219271721ece9c9d273f7cbf4d2b63d7cd86e59f896d",
+    "run_name": "renewable-tooling-smoke",
+    "samples": 1000,
+    "teacher_baseline": "data/analysis/live-agent-6553250/curriculum-level3-development-teacher-0-499.json",
+    "teacher_baseline_sha256": "d8062ff3116acc2969e0326f56ad3ec5d7e4acba73c1af493cfe4e97f726c2b1",
+    "threads": 14,
+    "torch_version": "2.13.0+cpu",
+    "train_seed_base": 100000
+  },
+  "elapsed_cpu_seconds": 221.54615362799998,
+  "elapsed_wall_seconds": 16.29662581899902,
+  "evaluation": {
+    "created_crop_rate": 0.01,
+    "functional_gate": false,
+    "height_floor": 0.0,
+    "median_score_gain": 0.0,
+    "median_success_turn": null,
+    "median_training_turn": 1.0,
+    "nontrivial_success_rate": 0.0,
+    "paired_teacher_median_turn_delta": null,
+    "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/curriculum-level3-renewable-tooling-smoke-evaluation.json",
+    "recipe_floor": null,
+    "renewable_harvest_rate": 0.002,
+    "success_rate": 0.0
+  },
+  "label_planes": {
+    "0": 734,
+    "1": 42,
+    "12": 41,
+    "2": 78,
+    "3": 46,
+    "4": 43,
+    "8": 16
+  },
+  "logs": [
+    {
+      "accuracy": 0.38999998569488525,
+      "chunk": 1,
+      "collect_sps": 88369.05101949882,
+      "event": "chunk",
+      "learning_rate": 0.0001,
+      "loss": 13.053450584411621,
+      "samples": 1000,
+      "train_samples_per_second": 1177.9748662853715
+    }
+  ],
+  "teacher_generation": {}
+}

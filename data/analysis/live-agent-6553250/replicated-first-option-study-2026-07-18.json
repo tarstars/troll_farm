@@ -1,0 +1,1565 @@
+{
+ "schema": 1,
+ "scope": "consumed discovery maps only; independent process-level realizations of the same complete first-turn option grid; exact resident abstention; not prospective or arena evidence",
+ "sources": [
+  "data/analysis/live-agent-6553250/robust-first-option-discovery-0-59.tsv",
+  "data/analysis/live-agent-6553250/robust-first-option-repeat-0-19.tsv",
+  "data/analysis/live-agent-6553250/robust-first-option-replicate-02-0-19.tsv",
+  "data/analysis/live-agent-6553250/robust-first-option-replicate-03-0-19.tsv",
+  "data/analysis/live-agent-6553250/robust-first-option-replicate-04-0-19.tsv",
+  "data/analysis/live-agent-6553250/robust-first-option-replicate-05-0-19.tsv"
+ ],
+ "replicates": 6,
+ "cells": 40,
+ "seeds": 20,
+ "models": [
+  "boss_real",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "options": [
+  "control",
+  "m1c1k1",
+  "m1c1k2",
+  "m1c1k3",
+  "m1c2k1",
+  "m1c2k2",
+  "m1c2k3",
+  "m1c3k1",
+  "m1c3k2",
+  "m1c3k3",
+  "m2c1k1",
+  "m2c1k2",
+  "m2c1k3",
+  "m2c2k1",
+  "m2c2k2",
+  "m2c2k3",
+  "m2c3k1",
+  "m2c3k2",
+  "m2c3k3",
+  "m3c1k1",
+  "m3c1k2",
+  "m3c1k3",
+  "m3c2k1",
+  "m3c2k2",
+  "m3c2k3",
+  "m3c3k1",
+  "m3c3k2",
+  "m3c3k3",
+  "max_bank_hp0"
+ ],
+ "rules": {
+  "empirical_minimax": {
+   "definition": "every observed model/replicate delta is positive",
+   "full_information": {
+    "selected_cell_count": 0,
+    "selected_seed_count": 0,
+    "option_counts": {},
+    "overall_seed_balanced": {
+     "n": 20,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_model_mean": 0,
+    "selected_cells": []
+   },
+   "leave_one_repetition_out": {
+    "folds": [
+     {
+      "held_replicate": 0,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 1,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 2,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 3,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 4,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 5,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     }
+    ],
+    "total_selected_cells": 0,
+    "overall_held_seed_balanced": {
+     "n": 120,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 120,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_held_model_mean": 0,
+    "worst_held_seed_delta": 0,
+    "total_held_loss_seeds": 0
+   }
+  },
+  "model_mean_minimax": {
+   "definition": "every continuation model has positive replicate mean",
+   "full_information": {
+    "selected_cell_count": 0,
+    "selected_seed_count": 0,
+    "option_counts": {},
+    "overall_seed_balanced": {
+     "n": 20,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_model_mean": 0,
+    "selected_cells": []
+   },
+   "leave_one_repetition_out": {
+    "folds": [
+     {
+      "held_replicate": 0,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 1,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 2,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 3,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 4,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 5,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     }
+    ],
+    "total_selected_cells": 0,
+    "overall_held_seed_balanced": {
+     "n": 120,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 120,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_held_model_mean": 0,
+    "worst_held_seed_delta": 0,
+    "total_held_loss_seeds": 0
+   }
+  },
+  "model_lcb90_minimax": {
+   "definition": "every continuation model has positive one-sided 90% LCB",
+   "full_information": {
+    "selected_cell_count": 0,
+    "selected_seed_count": 0,
+    "option_counts": {},
+    "overall_seed_balanced": {
+     "n": 20,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 20,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 20,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_model_mean": 0,
+    "selected_cells": []
+   },
+   "leave_one_repetition_out": {
+    "folds": [
+     {
+      "held_replicate": 0,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 1,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 2,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 3,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 4,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     },
+     {
+      "held_replicate": 5,
+      "selected_cell_count": 0,
+      "selected_seed_count": 0,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 0,
+       "ties": 20,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 0
+      }
+     }
+    ],
+    "total_selected_cells": 0,
+    "overall_held_seed_balanced": {
+     "n": 120,
+     "mean": 0,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 0,
+     "ties": 120,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 0
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_adaptive": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "gold_elite": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "mybot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "sched_bot": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "script_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     },
+     "silver_boss": {
+      "n": 120,
+      "mean": 0,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 0,
+      "ties": 120,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 0
+     }
+    },
+    "worst_held_model_mean": 0,
+    "worst_held_seed_delta": 0,
+    "total_held_loss_seeds": 0
+   }
+  },
+  "pooled_lcb90_floor30_diagnostic": {
+   "definition": "pooled model/replicate 90% LCB is positive and no observation is below -30; diagnostic only because model pooling can hide opponent-specific losses",
+   "full_information": {
+    "selected_cell_count": 2,
+    "selected_seed_count": 2,
+    "option_counts": {
+     "m2c1k2": 1,
+     "max_bank_hp0": 1
+    },
+    "overall_seed_balanced": {
+     "n": 20,
+     "mean": 0.7348958333333333,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 2,
+     "ties": 18,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 12.010416666666666
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 20,
+      "mean": -0.325,
+      "median": 0.0,
+      "worst_decile_mean": -5.5,
+      "wins": 1,
+      "ties": 18,
+      "losses": 1,
+      "minimum": -11,
+      "maximum": 4.5
+     },
+     "gold_adaptive": {
+      "n": 20,
+      "mean": 6.7,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 2,
+      "ties": 18,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 122
+     },
+     "gold_elite": {
+      "n": 20,
+      "mean": -0.15,
+      "median": 0.0,
+      "worst_decile_mean": -7,
+      "wins": 1,
+      "ties": 18,
+      "losses": 1,
+      "minimum": -14,
+      "maximum": 11
+     },
+     "mybot": {
+      "n": 20,
+      "mean": -0.25833333333333336,
+      "median": 0.0,
+      "worst_decile_mean": -2.5833333333333335,
+      "wins": 0,
+      "ties": 18,
+      "losses": 2,
+      "minimum": -4,
+      "maximum": 0
+     },
+     "printer_bot": {
+      "n": 20,
+      "mean": -0.11666666666666665,
+      "median": 0.0,
+      "worst_decile_mean": -4,
+      "wins": 1,
+      "ties": 18,
+      "losses": 1,
+      "minimum": -8,
+      "maximum": 5.666666666666667
+     },
+     "sched_bot": {
+      "n": 20,
+      "mean": 0.125,
+      "median": 0.0,
+      "worst_decile_mean": -3.25,
+      "wins": 1,
+      "ties": 18,
+      "losses": 1,
+      "minimum": -6.5,
+      "maximum": 9
+     },
+     "script_boss": {
+      "n": 20,
+      "mean": -0.0708333333333333,
+      "median": 0.0,
+      "worst_decile_mean": -5.125,
+      "wins": 1,
+      "ties": 18,
+      "losses": 1,
+      "minimum": -10.25,
+      "maximum": 8.833333333333334
+     },
+     "silver_boss": {
+      "n": 20,
+      "mean": -0.025,
+      "median": 0.0,
+      "worst_decile_mean": -0.25,
+      "wins": 0,
+      "ties": 19,
+      "losses": 1,
+      "minimum": -0.5,
+      "maximum": 0
+     }
+    },
+    "worst_model_mean": -0.325,
+    "selected_cells": [
+     {
+      "seed": 2,
+      "seat": 1,
+      "option": "max_bank_hp0",
+      "first_train": "TRAIN 1 2 0 1",
+      "selection_score": 7.90488383751477,
+      "pooled_mean": 24.020833333333332,
+      "evidence": {
+       "by_model": {
+        "boss_real": {
+         "n": 6,
+         "mean": -22,
+         "stdev": 0.0,
+         "lcb90": -22.0,
+         "minimum": -22,
+         "maximum": -22,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        },
+        "gold_adaptive": {
+         "n": 6,
+         "mean": 244,
+         "stdev": 0.0,
+         "lcb90": 244.0,
+         "minimum": 244,
+         "maximum": 244,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "gold_elite": {
+         "n": 6,
+         "mean": 22,
+         "stdev": 0.0,
+         "lcb90": 22.0,
+         "minimum": 22,
+         "maximum": 22,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "mybot": {
+         "n": 6,
+         "mean": -2.3333333333333335,
+         "stdev": 12.242004193213898,
+         "lcb90": -9.709472861955401,
+         "minimum": -11,
+         "maximum": 22,
+         "positive": 1,
+         "zero": 0,
+         "negative": 5
+        },
+        "printer_bot": {
+         "n": 6,
+         "mean": -16,
+         "stdev": 2.1908902300206643,
+         "lcb90": -17.32007078036172,
+         "minimum": -18,
+         "maximum": -14,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        },
+        "sched_bot": {
+         "n": 6,
+         "mean": -13,
+         "stdev": 0.0,
+         "lcb90": -13.0,
+         "minimum": -13,
+         "maximum": -13,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        },
+        "script_boss": {
+         "n": 6,
+         "mean": -20.5,
+         "stdev": 1.6431676725154984,
+         "lcb90": -21.490053085271292,
+         "minimum": -22,
+         "maximum": -19,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        },
+        "silver_boss": {
+         "n": 6,
+         "mean": 0,
+         "stdev": 0.0,
+         "lcb90": 0.0,
+         "minimum": 0,
+         "maximum": 0,
+         "positive": 0,
+         "zero": 6,
+         "negative": 0
+        }
+       },
+       "pooled": {
+        "n": 48,
+        "mean": 24.020833333333332,
+        "stdev": 85.20550616093918,
+        "lcb90": 7.90488383751477,
+        "minimum": -22,
+        "maximum": 244,
+        "positive": 13,
+        "zero": 6,
+        "negative": 29
+       },
+       "worst_sample": -22,
+       "worst_model_mean": -22,
+       "worst_model_lcb90": -22.0
+      }
+     },
+     {
+      "seed": 15,
+      "seat": 1,
+      "option": "m2c1k2",
+      "first_train": "TRAIN 2 1 0 2",
+      "selection_score": 2.259586565691373,
+      "pooled_mean": 5.375,
+      "evidence": {
+       "by_model": {
+        "boss_real": {
+         "n": 6,
+         "mean": 9,
+         "stdev": 0.0,
+         "lcb90": 9.0,
+         "minimum": 9,
+         "maximum": 9,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "gold_adaptive": {
+         "n": 6,
+         "mean": 24,
+         "stdev": 0.0,
+         "lcb90": 24.0,
+         "minimum": 24,
+         "maximum": 24,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "gold_elite": {
+         "n": 6,
+         "mean": -28,
+         "stdev": 0.0,
+         "lcb90": -28.0,
+         "minimum": -28,
+         "maximum": -28,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        },
+        "mybot": {
+         "n": 6,
+         "mean": -8,
+         "stdev": 8.717797887081348,
+         "lcb90": -13.25270965297366,
+         "minimum": -21,
+         "maximum": 6,
+         "positive": 1,
+         "zero": 0,
+         "negative": 5
+        },
+        "printer_bot": {
+         "n": 6,
+         "mean": 11.333333333333334,
+         "stdev": 0.5163977794943222,
+         "lcb90": 11.022189666520005,
+         "minimum": 11,
+         "maximum": 12,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "sched_bot": {
+         "n": 6,
+         "mean": 18,
+         "stdev": 0.0,
+         "lcb90": 18.0,
+         "minimum": 18,
+         "maximum": 18,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "script_boss": {
+         "n": 6,
+         "mean": 17.666666666666668,
+         "stdev": 5.163977794943222,
+         "lcb90": 14.555229998533369,
+         "minimum": 11,
+         "maximum": 21,
+         "positive": 6,
+         "zero": 0,
+         "negative": 0
+        },
+        "silver_boss": {
+         "n": 6,
+         "mean": -1,
+         "stdev": 0.0,
+         "lcb90": -1.0,
+         "minimum": -1,
+         "maximum": -1,
+         "positive": 0,
+         "zero": 0,
+         "negative": 6
+        }
+       },
+       "pooled": {
+        "n": 48,
+        "mean": 5.375,
+        "stdev": 16.471283844599416,
+        "lcb90": 2.259586565691373,
+        "minimum": -28,
+        "maximum": 24,
+        "positive": 31,
+        "zero": 0,
+        "negative": 17
+       },
+       "worst_sample": -28,
+       "worst_model_mean": -28,
+       "worst_model_lcb90": -28.0
+      }
+     }
+    ]
+   },
+   "leave_one_repetition_out": {
+    "folds": [
+     {
+      "held_replicate": 0,
+      "selected_cell_count": 3,
+      "selected_seed_count": 3,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.825,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 3,
+       "ties": 17,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 11.875
+      }
+     },
+     {
+      "held_replicate": 1,
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.721875,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 2,
+       "ties": 18,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 11.75
+      }
+     },
+     {
+      "held_replicate": 2,
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.746875,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 2,
+       "ties": 18,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 11.9375
+      }
+     },
+     {
+      "held_replicate": 3,
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.865625,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 2,
+       "ties": 18,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 13.5625
+      }
+     },
+     {
+      "held_replicate": 4,
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.715625,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 2,
+       "ties": 18,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 11.5
+      }
+     },
+     {
+      "held_replicate": 5,
+      "selected_cell_count": 2,
+      "selected_seed_count": 2,
+      "held_overall_seed_balanced": {
+       "n": 20,
+       "mean": 0.646875,
+       "median": 0.0,
+       "worst_decile_mean": 0,
+       "wins": 2,
+       "ties": 18,
+       "losses": 0,
+       "minimum": 0,
+       "maximum": 11.4375
+      }
+     }
+    ],
+    "total_selected_cells": 13,
+    "overall_held_seed_balanced": {
+     "n": 120,
+     "mean": 0.7536458333333333,
+     "median": 0.0,
+     "worst_decile_mean": 0,
+     "wins": 13,
+     "ties": 107,
+     "losses": 0,
+     "minimum": 0,
+     "maximum": 13.5625
+    },
+    "by_model": {
+     "boss_real": {
+      "n": 120,
+      "mean": -0.29583333333333334,
+      "median": 0.0,
+      "worst_decile_mean": -5.5,
+      "wins": 7,
+      "ties": 107,
+      "losses": 6,
+      "minimum": -11,
+      "maximum": 4.5
+     },
+     "gold_adaptive": {
+      "n": 120,
+      "mean": 6.733333333333333,
+      "median": 0.0,
+      "worst_decile_mean": 0,
+      "wins": 13,
+      "ties": 107,
+      "losses": 0,
+      "minimum": 0,
+      "maximum": 122
+     },
+     "gold_elite": {
+      "n": 120,
+      "mean": -0.11666666666666667,
+      "median": 0.0,
+      "worst_decile_mean": -7,
+      "wins": 7,
+      "ties": 107,
+      "losses": 6,
+      "minimum": -14,
+      "maximum": 11
+     },
+     "mybot": {
+      "n": 120,
+      "mean": -0.39166666666666666,
+      "median": 0.0,
+      "worst_decile_mean": -5.083333333333333,
+      "wins": 2,
+      "ties": 107,
+      "losses": 11,
+      "minimum": -16,
+      "maximum": 11
+     },
+     "printer_bot": {
+      "n": 120,
+      "mean": -0.12083333333333333,
+      "median": 0.0,
+      "worst_decile_mean": -4.041666666666667,
+      "wins": 6,
+      "ties": 107,
+      "losses": 7,
+      "minimum": -9,
+      "maximum": 6
+     },
+     "sched_bot": {
+      "n": 120,
+      "mean": 0.15833333333333333,
+      "median": 0.0,
+      "worst_decile_mean": -3.25,
+      "wins": 7,
+      "ties": 107,
+      "losses": 6,
+      "minimum": -6.5,
+      "maximum": 9
+     },
+     "script_boss": {
+      "n": 120,
+      "mean": 0.0125,
+      "median": 0.0,
+      "worst_decile_mean": -5.125,
+      "wins": 7,
+      "ties": 107,
+      "losses": 6,
+      "minimum": -11,
+      "maximum": 10.5
+     },
+     "silver_boss": {
+      "n": 120,
+      "mean": 0.05,
+      "median": 0.0,
+      "worst_decile_mean": -0.25,
+      "wins": 1,
+      "ties": 113,
+      "losses": 6,
+      "minimum": -0.5,
+      "maximum": 9
+     }
+    },
+    "worst_held_model_mean": -0.39166666666666666,
+    "worst_held_seed_delta": -16,
+    "total_held_loss_seeds": 48
+   }
+  }
+ },
+ "discovery_gate": {
+  "primary_rule": "model_lcb90_minimax",
+  "requirements": [
+   "primary rule selects at least two discovery seeds",
+   "leave-one-repetition-out selection is non-inert",
+   "worst held-model mean is nonnegative",
+   "worst held seed is at least -10"
+  ],
+  "passed": false
+ },
+ "interpretation_limit": "The repetitions estimate process-sensitive continuation noise but do not create new map evidence. Failure keeps the untouched holdout sealed. A pooled-model signal cannot override a failed opponent-robust rule."
+}

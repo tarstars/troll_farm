@@ -1,0 +1,393 @@
+{
+  "comparisons": {
+    "priority32_mean_minus_uniform32": 1.734375,
+    "priority32_strict_minus_uniform32": 0.125,
+    "priority64_fraction_of_full_mean": 0.9491525423728814,
+    "priority64_mean_minus_uniform64": 0.828125,
+    "priority64_strict_minus_uniform64": 0.09375
+  },
+  "decision": "scale_breadth_at_64_schedule_priority_for_joint_two_stage_teacher",
+  "gates": {
+    "priority32_adds_at_least_0_5_vs_uniform32": true,
+    "priority32_at_least_six_positive_families": true,
+    "priority32_strict_not_below_uniform32": true,
+    "priority64_mean_not_below_uniform64": true,
+    "priority64_retains_at_least_80pct_full_mean": true,
+    "priority64_strict_not_below_uniform64": true
+  },
+  "lock": {
+    "manifest_sha256": "e2810e0991f0d3755a3e2a9f8996ac0ea3bdedb1be7df38d30b342e1cd287bd5",
+    "mismatches": {},
+    "pass": true
+  },
+  "parents": {
+    "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-result.json": "0afef524f4f037dc8aa8e3603c5e549df7d799f09637562d51ca21f7b17e61ae",
+    "data/analysis/live-agent-6553250/d145a-two-intervention-population-decomposition-result.json": "25ce7d1ab5ef1819ffe5e8ae3b4b577f5c4d20c78108e3cbadd2b067e511e37d"
+  },
+  "pass": true,
+  "priority_views": {
+    "32": {
+      "episode_rows": 4096,
+      "executed_two_rows": 3383,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "early_delayed": 612,
+        "early_immediate": 3484
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": true,
+        "increment_mean_at_least_3": true,
+        "strict_increment_at_least_20pct": true,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": true,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 3.0,
+          "gold_adaptive": 4.1875,
+          "legend_balanced": 2.8125,
+          "mybot": 2.0,
+          "norx_native_three": 1.4375,
+          "resident": 3.625,
+          "script_boss": 3.1875,
+          "silver_boss": 4.8125
+        },
+        "mean_combined_oracle_gain": 41.5703125,
+        "mean_increment_beyond_one_use": 3.1328125,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": -0.7109375,
+        "mean_own_score_increment": 2.421875,
+        "mean_two_intervention_samples_per_task": 26.4296875,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 8,
+        "selected_double_rate": 0.3203125,
+        "strict_increment_rate": 0.3203125,
+        "strict_increment_tasks": 41,
+        "tasks": 128,
+        "worst_family_increment": 1.4375
+      }
+    },
+    "64": {
+      "episode_rows": 8192,
+      "executed_two_rows": 5997,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "early_delayed": 3550,
+        "early_immediate": 3522,
+        "later_immediate": 1120
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": true,
+        "increment_mean_at_least_3": true,
+        "strict_increment_at_least_20pct": true,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": true,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 3.125,
+          "gold_adaptive": 5.875,
+          "legend_balanced": 4.4375,
+          "mybot": 3.625,
+          "norx_native_three": 1.75,
+          "resident": 3.625,
+          "script_boss": 3.75,
+          "silver_boss": 5.3125
+        },
+        "mean_combined_oracle_gain": 42.375,
+        "mean_increment_beyond_one_use": 3.9375,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": -0.5078125,
+        "mean_own_score_increment": 3.4296875,
+        "mean_two_intervention_samples_per_task": 46.8515625,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 8,
+        "selected_double_rate": 0.40625,
+        "strict_increment_rate": 0.40625,
+        "strict_increment_tasks": 52,
+        "tasks": 128,
+        "worst_family_increment": 1.75
+      }
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d146a-two-intervention-schedule-priority-protocol-2026-07-22.md",
+  "schedule_class_views": {
+    "early_delayed": {
+      "episode_rows": 3559,
+      "executed_two_rows": 2258,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "early_delayed": 3559
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": true,
+        "increment_mean_at_least_3": false,
+        "strict_increment_at_least_20pct": false,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": false,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 0.5625,
+          "gold_adaptive": 2.0625,
+          "legend_balanced": 1.9375,
+          "mybot": 1.3125,
+          "norx_native_three": 1.0625,
+          "resident": 0.9375,
+          "script_boss": 0.9375,
+          "silver_boss": 1.9375
+        },
+        "mean_combined_oracle_gain": 39.78125,
+        "mean_increment_beyond_one_use": 1.34375,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": -0.1640625,
+        "mean_own_score_increment": 1.1796875,
+        "mean_two_intervention_samples_per_task": 17.640625,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 8,
+        "selected_double_rate": 0.1484375,
+        "strict_increment_rate": 0.1484375,
+        "strict_increment_tasks": 19,
+        "tasks": 128,
+        "worst_family_increment": 0.5625
+      }
+    },
+    "early_immediate": {
+      "episode_rows": 3522,
+      "executed_two_rows": 2942,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "early_immediate": 3522
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": true,
+        "increment_mean_at_least_3": true,
+        "strict_increment_at_least_20pct": true,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": true,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 3.0,
+          "gold_adaptive": 4.1875,
+          "legend_balanced": 2.625,
+          "mybot": 2.625,
+          "norx_native_three": 0.8125,
+          "resident": 3.625,
+          "script_boss": 3.3125,
+          "silver_boss": 4.8125
+        },
+        "mean_combined_oracle_gain": 41.5625,
+        "mean_increment_beyond_one_use": 3.125,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": -0.734375,
+        "mean_own_score_increment": 2.390625,
+        "mean_two_intervention_samples_per_task": 22.984375,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 8,
+        "selected_double_rate": 0.3125,
+        "strict_increment_rate": 0.3125,
+        "strict_increment_tasks": 40,
+        "tasks": 128,
+        "worst_family_increment": 0.8125
+      }
+    },
+    "later_delayed": {
+      "episode_rows": 3568,
+      "executed_two_rows": 1481,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "later_delayed": 3568
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": false,
+        "increment_mean_at_least_3": false,
+        "strict_increment_at_least_20pct": false,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": false,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 0.0625,
+          "gold_adaptive": 0.3125,
+          "legend_balanced": 0.0,
+          "mybot": 0.0,
+          "norx_native_three": 0.0,
+          "resident": 0.3125,
+          "script_boss": 1.3125,
+          "silver_boss": 0.1875
+        },
+        "mean_combined_oracle_gain": 38.7109375,
+        "mean_increment_beyond_one_use": 0.2734375,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": -0.15625,
+        "mean_own_score_increment": 0.1171875,
+        "mean_two_intervention_samples_per_task": 11.5703125,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 5,
+        "selected_double_rate": 0.0546875,
+        "strict_increment_rate": 0.0546875,
+        "strict_increment_tasks": 7,
+        "tasks": 128,
+        "worst_family_increment": 0.0
+      }
+    },
+    "later_immediate": {
+      "episode_rows": 3559,
+      "executed_two_rows": 2176,
+      "safety_gates": {
+        "combined_worker_three_within_5pp": true,
+        "no_new_crop_failures_vs_one_use": true
+      },
+      "safety_pass": true,
+      "schedule_class_counts": {
+        "later_immediate": 3559
+      },
+      "signal_gates": {
+        "at_least_six_positive_families": true,
+        "increment_mean_at_least_3": false,
+        "strict_increment_at_least_20pct": false,
+        "worst_family_increment_nonnegative": true
+      },
+      "signal_pass": false,
+      "summary": {
+        "combined_crop_rate": 1.0,
+        "combined_worker_three_rate": 0.875,
+        "family_mean_increment": {
+          "compact_gold": 0.125,
+          "gold_adaptive": 1.3125,
+          "legend_balanced": 0.375,
+          "mybot": 0.375,
+          "norx_native_three": 0.0,
+          "resident": 0.125,
+          "script_boss": 0.4375,
+          "silver_boss": 0.6875
+        },
+        "mean_combined_oracle_gain": 38.8671875,
+        "mean_increment_beyond_one_use": 0.4296875,
+        "mean_one_use_oracle_gain": 38.4375,
+        "mean_opponent_score_increment": 0.046875,
+        "mean_own_score_increment": 0.4765625,
+        "mean_two_intervention_samples_per_task": 17.0,
+        "minimum_two_intervention_samples_per_task": 0,
+        "new_crop_failures": 0,
+        "one_use_crop_rate": 1.0,
+        "one_use_worker_three_rate": 0.875,
+        "positive_families": 7,
+        "selected_double_rate": 0.09375,
+        "strict_increment_rate": 0.09375,
+        "strict_increment_tasks": 12,
+        "tasks": 128,
+        "worst_family_increment": 0.0
+      }
+    }
+  },
+  "schema": "troll-farm-d146a-two-intervention-schedule-priority-v1",
+  "uniform_references": {
+    "32": {
+      "combined_crop_rate": 1.0,
+      "combined_worker_three_rate": 0.875,
+      "family_mean_increment": {
+        "compact_gold": 0.875,
+        "gold_adaptive": 4.4375,
+        "legend_balanced": 0.375,
+        "mybot": 0.875,
+        "norx_native_three": 0.6875,
+        "resident": 0.75,
+        "script_boss": 2.625,
+        "silver_boss": 0.5625
+      },
+      "mean_combined_oracle_gain": 39.8359375,
+      "mean_increment_beyond_one_use": 1.3984375,
+      "mean_one_use_oracle_gain": 38.4375,
+      "mean_opponent_score_increment": -0.7578125,
+      "mean_own_score_increment": 0.640625,
+      "mean_two_intervention_samples_per_task": 20.0390625,
+      "minimum_two_intervention_samples_per_task": 0,
+      "new_crop_failures": 0,
+      "one_use_crop_rate": 1.0,
+      "one_use_worker_three_rate": 0.875,
+      "positive_families": 8,
+      "selected_double_rate": 0.1953125,
+      "strict_increment_rate": 0.1953125,
+      "strict_increment_tasks": 25,
+      "tasks": 128,
+      "worst_family_increment": 0.375
+    },
+    "64": {
+      "combined_crop_rate": 1.0,
+      "combined_worker_three_rate": 0.875,
+      "family_mean_increment": {
+        "compact_gold": 3.125,
+        "gold_adaptive": 5.125,
+        "legend_balanced": 4.125,
+        "mybot": 1.3125,
+        "norx_native_three": 1.5625,
+        "resident": 1.0625,
+        "script_boss": 3.625,
+        "silver_boss": 4.9375
+      },
+      "mean_combined_oracle_gain": 41.546875,
+      "mean_increment_beyond_one_use": 3.109375,
+      "mean_one_use_oracle_gain": 38.4375,
+      "mean_opponent_score_increment": -0.6015625,
+      "mean_own_score_increment": 2.5078125,
+      "mean_two_intervention_samples_per_task": 39.8046875,
+      "minimum_two_intervention_samples_per_task": 0,
+      "new_crop_failures": 0,
+      "one_use_crop_rate": 1.0,
+      "one_use_worker_three_rate": 0.875,
+      "positive_families": 8,
+      "selected_double_rate": 0.3125,
+      "strict_increment_rate": 0.3125,
+      "strict_increment_tasks": 40,
+      "tasks": 128,
+      "worst_family_increment": 1.0625
+    }
+  }
+}

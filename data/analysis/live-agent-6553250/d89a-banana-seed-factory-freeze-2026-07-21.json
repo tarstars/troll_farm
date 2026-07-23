@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "experiment": "D89a banana seed-factory",
+  "frozen_before_prospective_discovery": true,
+  "discovery_maps": {
+    "seed_start": 9914032,
+    "seed_end_inclusive": 9914047,
+    "seats": [0, 1],
+    "opponents": "all eight frozen complete-economy opponents",
+    "pairs": 256,
+    "rows_per_repeat": 512,
+    "repeat_threads": [1, 20]
+  },
+  "sealed_confirmation_maps": {
+    "seed_start": 9914048,
+    "seed_end_inclusive": 9914063
+  },
+  "hashes": {
+    "blueprint": "c3956d3bf33e51fb6a8a9b398a69bcdeea74b66c952eff1ced5144e200fbab04",
+    "protocol": "65bb19bf438848c6f10cfb974a5687f4277eb4527fc63e8b0ef813714486af06",
+    "candidate_source": "35f90defee007dab79de553d84475273019a8d54f144445bf81b2215448940d4",
+    "panel_source": "6932e123614755d476b1c4f2800dbe88815a48793267e28651974c2bcd5c9088",
+    "analyzer": "6a4bb8971310d74777ef1491a73f95e40d72e89bd0355eddac6983ca1c6c75c8",
+    "analyzer_tests": "ac6cdb21d743ce8de158c67502756da421fc3b0b1e23ee0eec84c148e0910861",
+    "release_panel_binary": "5d2827ff0840c566212f406365768314fda740463b51fa5b49ca4cb6ca877f38"
+  },
+  "preflight": {
+    "rust_tests": "25 passed",
+    "d89_analyzer_tests": "5 passed",
+    "consumed_seed_zero_smoke": "both seats activated, bootstrap 5/5, sustained renewal, zero preactivation mismatch, zero trained forbidden command"
+  }
+}

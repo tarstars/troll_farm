@@ -1,0 +1,33 @@
+{
+ "schema": 1,
+ "bank_id": "legend-top5-common-seed-bank-v1",
+ "frozen_at": "2026-07-19",
+ "generation": "signed big-endian int64 from first 8 bytes of SHA-256('legend-top3-field-bank-v1|' + opponent)",
+ "blocks": [
+  {
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "seed": 9213838685008738669
+  },
+  {
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "seed": 28014042445828892
+  },
+  {
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "seed": 3002842037145134940
+  },
+  {
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "seed": 995889697906457104
+  },
+  {
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "seed": -1363387433195008244
+  }
+ ]
+}

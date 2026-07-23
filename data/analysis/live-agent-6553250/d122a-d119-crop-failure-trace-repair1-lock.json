@@ -1,0 +1,40 @@
+{
+  "frozen_at": "2026-07-22-after-choice-none-exception-before-successful-d122-trace",
+  "repair": {
+    "change": "represent non-intervened crop failures with inapplicable action alternatives",
+    "first_run_result_written": false,
+    "models_data_focus_and_trace_unchanged": true
+  },
+  "schema": "troll-farm-d122a-d119-crop-failure-trace-repair1-lock-v1",
+  "sha256": {
+    "cgauto/analyze_d121a_d119_retrospective_grid.py": "d4fbfd300280cc4da1125cc0c8e51a957b12d62452a94f167e6080c69d546917",
+    "cgauto/analyze_d122a_d119_crop_failure_trace.py": "fe68a2d96dfcbe0364d8582edbece56c4d6b6626967cb77d069ce4acc51ab477",
+    "cgauto/evaluate_d119a_held_coverage_repair.py": "2758648c31b335d4e557fab60d6540901f9c4da2cade177e80d46c4d1a0f6dfe",
+    "cgauto/evaluate_d119a_held_soft_value_q6.py": "a838d56ee17c5a4954e63685d945e8bc7d508f249e8232d8d3f3426ae714c69a",
+    "cgauto/evaluate_d120a_policy_sealed_absolute_information.py": "2191bf72781d4d2b4e8dc24d9683987c1fd6b6bbdfe63c2f6c42da6a837cf973",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+    "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6",
+    "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-lock.json": "04d7cd158afd70b5e0c14d919ffad275d8c5a64eea041feac4ba5c9ea3f28e07",
+    "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-result.json": "a8dd3842c87fbff226ea26e5b78c1b969689e34785ff3dace78f22a195fc7c6d",
+    "data/analysis/live-agent-6553250/d122a-d119-crop-failure-trace-lock.json": "945b90f5f15c6554a11f71680566e58d97f395da8bdb9ad78a026b99fadc8e5f",
+    "data/analysis/live-agent-6553250/d122a-d119-crop-failure-trace-protocol-2026-07-22.md": "a20a7b64f7b16f8368f4643d645be8d8d1d5df48da44e4b0e7af530c1c326a96",
+    "data/analysis/live-agent-6553250/d122a-d119-crop-failure-trace-repair1-protocol-2026-07-22.md": "63e2c41311848bd91010ea1800c9ea85c8439eacf60d94f9d187b46cfd4f39f5",
+    "tests/test_analyze_d122a_d119_crop_failure_trace.py": "11386c5744920bd4644973da9e96809f84ab36d8962bf3df64bc5cb38f5fdf2f"
+  }
+}

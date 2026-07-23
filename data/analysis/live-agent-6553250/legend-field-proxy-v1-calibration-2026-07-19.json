@@ -1,0 +1,421 @@
+{
+ "schema": 1,
+ "scope": "consumed exact-map rich-opponent proxy calibration; not candidate evidence",
+ "games": 160,
+ "model_cells": 1280,
+ "catalog": [
+  "legend_hp2_f1_fell1",
+  "legend_hp2_f1_fell100",
+  "legend_hp2_f2_fell1",
+  "legend_hp2_f2_fell100",
+  "legend_balanced_f1_fell1",
+  "legend_balanced_f1_fell100",
+  "legend_balanced_f2_fell1",
+  "legend_balanced_f2_fell100"
+ ],
+ "split_counts": {
+  "discovery": {
+   "games": 80,
+   "catastrophic": 12,
+   "worker_rich": 23,
+   "rich_immediate": 12
+  },
+  "confirmation": {
+   "games": 80,
+   "catastrophic": 19,
+   "worker_rich": 28,
+   "rich_immediate": 9
+  }
+ },
+ "discovery_rankings": [
+  {
+   "model": "legend_balanced_f2_fell100",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3265214285714286
+  },
+  {
+   "model": "legend_balanced_f1_fell100",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3397880952380952
+  },
+  {
+   "model": "legend_balanced_f2_fell1",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3919714285714286
+  },
+  {
+   "model": "legend_balanced_f1_fell1",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.3991206349206349
+  },
+  {
+   "model": "legend_hp2_f1_fell100",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.416395238095238
+  },
+  {
+   "model": "legend_hp2_f2_fell100",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4171396825396825
+  },
+  {
+   "model": "legend_hp2_f2_fell1",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4464722222222222
+  },
+  {
+   "model": "legend_hp2_f1_fell1",
+   "games": 12,
+   "macro_covers": 0,
+   "fully_covers": 0,
+   "macro_coverage_rate": 0.0,
+   "full_coverage_rate": 0.0,
+   "mean_normalized_macro_distance": 1.4566158730158731
+  }
+ ],
+ "selected_model": "legend_balanced_f2_fell100",
+ "confirmation": {
+  "overall": {
+   "games": 80,
+   "baseline": {
+    "macro": 27,
+    "full": 15,
+    "exact_opening": 16,
+    "macro_rate": 0.3375,
+    "full_rate": 0.1875,
+    "exact_opening_rate": 0.2
+   },
+   "selected_catalog": {
+    "macro": 4,
+    "full": 4,
+    "exact_opening": 5,
+    "macro_rate": 0.05,
+    "full_rate": 0.05,
+    "exact_opening_rate": 0.0625
+   },
+   "expanded": {
+    "macro": 27,
+    "full": 15,
+    "exact_opening": 16,
+    "macro_rate": 0.3375,
+    "full_rate": 0.1875,
+    "exact_opening_rate": 0.2
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "catastrophic": {
+   "games": 19,
+   "baseline": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 3,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.15789473684210525
+   },
+   "expanded": {
+    "macro": 1,
+    "full": 1,
+    "exact_opening": 4,
+    "macro_rate": 0.05263157894736842,
+    "full_rate": 0.05263157894736842,
+    "exact_opening_rate": 0.21052631578947367
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "worker_rich": {
+   "games": 28,
+   "baseline": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 3,
+    "full": 1,
+    "exact_opening": 1,
+    "macro_rate": 0.10714285714285714,
+    "full_rate": 0.03571428571428571,
+    "exact_opening_rate": 0.03571428571428571
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   }
+  },
+  "rich_immediate": {
+   "games": 9,
+   "baseline": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_catalog": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "expanded": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "delta": {
+    "macro": 0,
+    "full": 0,
+    "exact_opening": 0,
+    "macro_rate": 0.0,
+    "full_rate": 0.0,
+    "exact_opening_rate": 0.0
+   },
+   "selected_macro": 0,
+   "selected_macro_rate": 0.0,
+   "selected_full": 0,
+   "selected_residuals": {
+    "games": 9,
+    "checkpoints": {
+     "50": {
+      "score": {
+       "mean_signed": 0.7777777777777778,
+       "mean_absolute": 6.111111111111111
+      },
+      "fruit": {
+       "mean_signed": 12.333333333333334,
+       "mean_absolute": 13.222222222222221
+      },
+      "wood": {
+       "mean_signed": -1.4444444444444444,
+       "mean_absolute": 1.4444444444444444
+      },
+      "workers": {
+       "mean_signed": -0.1111111111111111,
+       "mean_absolute": 0.1111111111111111
+      },
+      "plants": {
+       "mean_signed": -7.111111111111111,
+       "mean_absolute": 7.111111111111111
+      },
+      "harvested_fruit": {
+       "mean_signed": -3.5555555555555554,
+       "mean_absolute": 5.555555555555555
+      },
+      "chops": {
+       "mean_signed": -2.2222222222222223,
+       "mean_absolute": 2.2222222222222223
+      },
+      "dropped_items": {
+       "mean_signed": -6,
+       "mean_absolute": 6
+      }
+     },
+     "100": {
+      "score": {
+       "mean_signed": -13.444444444444445,
+       "mean_absolute": 19
+      },
+      "fruit": {
+       "mean_signed": 6.666666666666667,
+       "mean_absolute": 12.88888888888889
+      },
+      "wood": {
+       "mean_signed": -3.4444444444444446,
+       "mean_absolute": 3.4444444444444446
+      },
+      "workers": {
+       "mean_signed": -0.2222222222222222,
+       "mean_absolute": 0.6666666666666666
+      },
+      "plants": {
+       "mean_signed": -6.111111111111111,
+       "mean_absolute": 6.555555555555555
+      },
+      "harvested_fruit": {
+       "mean_signed": -12.88888888888889,
+       "mean_absolute": 14.444444444444445
+      },
+      "chops": {
+       "mean_signed": -7.111111111111111,
+       "mean_absolute": 7.333333333333333
+      },
+      "dropped_items": {
+       "mean_signed": -19.77777777777778,
+       "mean_absolute": 22.666666666666668
+      }
+     },
+     "final": {
+      "score": {
+       "mean_signed": -328.55555555555554,
+       "mean_absolute": 328.55555555555554
+      },
+      "fruit": {
+       "mean_signed": 11,
+       "mean_absolute": 41.44444444444444
+      },
+      "wood": {
+       "mean_signed": -83.33333333333333,
+       "mean_absolute": 83.33333333333333
+      },
+      "workers": {
+       "mean_signed": -1.2222222222222223,
+       "mean_absolute": 1.2222222222222223
+      },
+      "plants": {
+       "mean_signed": -31.22222222222222,
+       "mean_absolute": 31.22222222222222
+      },
+      "harvested_fruit": {
+       "mean_signed": -65.44444444444444,
+       "mean_absolute": 67.88888888888889
+      },
+      "chops": {
+       "mean_signed": 21.666666666666668,
+       "mean_absolute": 92.11111111111111
+      },
+      "dropped_items": {
+       "mean_signed": -145,
+       "mean_absolute": 145
+      }
+     }
+    },
+    "terminal": {
+     "mean_signed": -8,
+     "mean_absolute": 8
+    }
+   }
+  }
+ },
+ "model_summary": {
+  "legend_hp2_f1_fell1": {
+   "macro_covers": 6,
+   "fully_covers": 6,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.0773889285714287
+  },
+  "legend_hp2_f1_fell100": {
+   "macro_covers": 5,
+   "fully_covers": 5,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.1163219047619048
+  },
+  "legend_hp2_f2_fell1": {
+   "macro_covers": 5,
+   "fully_covers": 5,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.096692023809524
+  },
+  "legend_hp2_f2_fell100": {
+   "macro_covers": 5,
+   "fully_covers": 5,
+   "exact_opening": 6,
+   "mean_normalized_macro_distance": 1.1251352380952382
+  },
+  "legend_balanced_f1_fell1": {
+   "macro_covers": 5,
+   "fully_covers": 5,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0314076190476191
+  },
+  "legend_balanced_f1_fell100": {
+   "macro_covers": 5,
+   "fully_covers": 5,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0467257142857143
+  },
+  "legend_balanced_f2_fell1": {
+   "macro_covers": 4,
+   "fully_covers": 4,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0372195238095239
+  },
+  "legend_balanced_f2_fell100": {
+   "macro_covers": 4,
+   "fully_covers": 4,
+   "exact_opening": 5,
+   "mean_normalized_macro_distance": 1.0491215476190476
+  }
+ },
+ "gates": {
+  "integrity": true,
+  "rich_macro_coverage": false,
+  "rich_full_coverage": false,
+  "overall_macro_uplift": false,
+  "worker_rich_macro_uplift": false,
+  "catastrophic_macro_uplift": false
+ },
+ "passed": false,
+ "decision": "LegendFieldProxy v1 fails; use residuals for a new scheduler hypothesis"
+}

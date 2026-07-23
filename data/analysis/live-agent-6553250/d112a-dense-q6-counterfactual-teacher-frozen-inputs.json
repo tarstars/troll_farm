@@ -1,0 +1,18 @@
+{
+  "schema": "troll-farm-d112a-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-signal-panel",
+  "start_seed": 9843100,
+  "maps": 8,
+  "tasks": 128,
+  "threads": 20,
+  "excluded_smoke_seed": 9843000,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-protocol-2026-07-22.md": "ed047cabd2a36bb4982bc90d59cfb600c18a003c0c0b997bbc77adbfc2a09b13",
+    "rust/src/rl_q6_proposal.rs": "ba1ad6c75e1089d7d89a46fa36e487332921427e756f437a10098c98974ecab2",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "1f9841fdc2c716e54ca2aca4e3d270c17fa07a1717b67bb7e96a1d405a72a58c",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "d13abdb6e2ae9334e6d639385385d83ac5bab49d7c3a7f76b87ac38391450071",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "rust/Cargo.lock": "afef49fbb1b34147c78cd8300b96d372c7064602eb244a914c53aef25773ab9d"
+  }
+}

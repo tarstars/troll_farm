@@ -1,0 +1,3757 @@
+{
+ "schema": 1,
+ "scope": "exact Python league maps; exact promoted Yamo control and global immediate max-bank harvest-0 option; four in-process Rust continuation models; both seats",
+ "league_sources": [
+  "data/analysis/live-agent-6553250/adaptive-max-bank-first-hp0-discovery-60-119.json"
+ ],
+ "rollout_source": "data/analysis/live-agent-6553250/local-model-rollouts-0-119.tsv",
+ "policy": "adaptivehp0",
+ "excluded_opponents": [
+  "motion"
+ ],
+ "seeds": [
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  87,
+  88,
+  89,
+  90,
+  91,
+  92,
+  93,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99,
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119
+ ],
+ "opponents": [
+  "chopharvest",
+  "race",
+  "ringfix3",
+  "taskplan",
+  "yield"
+ ],
+ "rollout_models": [
+  "gold_elite",
+  "sched_bot",
+  "mybot",
+  "silver_boss"
+ ],
+ "ignored_rollout_cell_count": 120,
+ "terminal_games_per_live_decision": 8,
+ "prediction_diagnostics": {
+  "actual_option_delta": {
+   "n": 120,
+   "mean": -8.866666666666667,
+   "median": -4.300000000000001,
+   "trimmed_5pct_mean": -11.137037037037038,
+   "standard_deviation": 37.50777473092887,
+   "standard_error": 3.423975716992001,
+   "ci95_normal": [
+    -15.577659071970988,
+    -2.1556742613623454
+   ],
+   "worst_decile_mean": -69.93333333333334,
+   "wins": 20,
+   "ties": 27,
+   "losses": 73,
+   "minimum": -112.4,
+   "maximum": 168.2
+  },
+  "ensemble_mean_delta": {
+   "n": 120,
+   "mean": -15.85,
+   "median": -11.0,
+   "trimmed_5pct_mean": -15.030092592592593,
+   "standard_deviation": 21.47348863798601,
+   "standard_error": 1.9602523525593039,
+   "ci95_normal": [
+    -19.692094611016234,
+    -12.007905388983765
+   ],
+   "worst_decile_mean": -59.791666666666664,
+   "wins": 13,
+   "ties": 25,
+   "losses": 82,
+   "minimum": -73.75,
+   "maximum": 44.25
+  },
+  "ensemble_mean_pearson_with_actual_delta": 0.4826798506773591,
+  "ensemble_mean_sign_agreement": 0.825,
+  "models": {
+   "gold_elite": {
+    "delta_summary": {
+     "n": 120,
+     "mean": -17.316666666666666,
+     "median": -8.0,
+     "trimmed_5pct_mean": -20.333333333333332,
+     "standard_deviation": 54.56088778777776,
+     "standard_error": 4.98070483314567,
+     "ci95_normal": [
+      -27.07884813963218,
+      -7.554485193701153
+     ],
+     "worst_decile_mean": -98.0,
+     "wins": 23,
+     "ties": 28,
+     "losses": 69,
+     "minimum": -136.0,
+     "maximum": 296.0
+    },
+    "pearson_with_actual_delta": 0.6807544363835097,
+    "sign_agreement": 0.775
+   },
+   "sched_bot": {
+    "delta_summary": {
+     "n": 120,
+     "mean": -11.225,
+     "median": -3.0,
+     "trimmed_5pct_mean": -10.37962962962963,
+     "standard_deviation": 20.536690879226565,
+     "standard_error": 1.874734808510499,
+     "ci95_normal": [
+      -14.899480224680577,
+      -7.550519775319422
+     ],
+     "worst_decile_mean": -52.833333333333336,
+     "wins": 23,
+     "ties": 33,
+     "losses": 64,
+     "minimum": -83.0,
+     "maximum": 29.0
+    },
+    "pearson_with_actual_delta": 0.10231063114373991,
+    "sign_agreement": 0.725
+   },
+   "mybot": {
+    "delta_summary": {
+     "n": 120,
+     "mean": -24.833333333333332,
+     "median": -15.0,
+     "trimmed_5pct_mean": -22.02777777777778,
+     "standard_deviation": 33.80600447221396,
+     "standard_error": 3.0860518714253518,
+     "ci95_normal": [
+      -30.88199500132702,
+      -18.784671665339644
+     ],
+     "worst_decile_mean": -96.66666666666667,
+     "wins": 19,
+     "ties": 25,
+     "losses": 76,
+     "minimum": -179.0,
+     "maximum": 22.0
+    },
+    "pearson_with_actual_delta": 0.09594988698132209,
+    "sign_agreement": 0.725
+   },
+   "silver_boss": {
+    "delta_summary": {
+     "n": 120,
+     "mean": -10.025,
+     "median": -3.0,
+     "trimmed_5pct_mean": -9.63888888888889,
+     "standard_deviation": 22.48303281823612,
+     "standard_error": 2.0524107059461447,
+     "ci95_normal": [
+      -14.047724983654444,
+      -6.002275016345557
+     ],
+     "worst_decile_mean": -54.333333333333336,
+     "wins": 28,
+     "ties": 28,
+     "losses": 64,
+     "minimum": -70.0,
+     "maximum": 51.0
+    },
+    "pearson_with_actual_delta": -0.045727343793004555,
+    "sign_agreement": 0.7
+   }
+  }
+ },
+ "seat_hindsight_oracle": {
+  "n": 60,
+  "mean": 6.866666666666666,
+  "median": 0.0,
+  "trimmed_5pct_mean": 2.088888888888889,
+  "standard_deviation": 24.421466430148495,
+  "standard_error": 3.1527977591309537,
+  "ci95_normal": [
+   0.687183058769997,
+   13.046150274563335
+  ],
+  "worst_decile_mean": 0.0,
+  "wins": 17,
+  "ties": 43,
+  "losses": 0,
+  "minimum": 0,
+  "maximum": 162.2
+ },
+ "selectors": {
+  "gold_elite": {
+   "rule": "gold_elite",
+   "threshold": 0.0,
+   "selected_cell_count": 23,
+   "selected_seed_count": 19,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 2.8116666666666665,
+    "median": 0.0,
+    "trimmed_5pct_mean": -0.3925925925925926,
+    "standard_deviation": 23.000811272845127,
+    "standard_error": 2.9693919669663,
+    "ci95_normal": [
+     -3.008341588587281,
+     8.631674921920613
+    ],
+    "worst_decile_mean": -13.033333333333333,
+    "wins": 7,
+    "ties": 41,
+    "losses": 12,
+    "minimum": -20.3,
+    "maximum": 162.2
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 2.8116666666666665,
+    "median": 0.0,
+    "trimmed_5pct_mean": -0.4037037037037037,
+    "standard_deviation": 24.607524924566572,
+    "standard_error": 2.2463494142592872,
+    "ci95_normal": [
+     -1.591178185281536,
+     7.214511518614869
+    ],
+    "worst_decile_mean": -15.233333333333334,
+    "wins": 8,
+    "ties": 97,
+    "losses": 15,
+    "minimum": -28.6,
+    "maximum": 168.2
+   },
+   "worst_opponent_mean": 1.075,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 4.45,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.24074074074074073,
+     "standard_deviation": 32.52804526579424,
+     "standard_error": 4.199352586636737,
+     "ci95_normal": [
+      -3.780731069808003,
+      12.680731069808004
+     ],
+     "worst_decile_mean": -16.666666666666668,
+     "wins": 8,
+     "ties": 43,
+     "losses": 9,
+     "minimum": -24.0,
+     "maximum": 235.5
+    },
+    "race": {
+     "n": 60,
+     "mean": 1.075,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.2592592592592593,
+     "standard_deviation": 19.6505110555874,
+     "standard_error": 2.536870068758491,
+     "ci95_normal": [
+      -3.897265334766642,
+      6.047265334766642
+     ],
+     "worst_decile_mean": -18.083333333333332,
+     "wins": 5,
+     "ties": 43,
+     "losses": 12,
+     "minimum": -26.5,
+     "maximum": 130.5
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 4.391666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.12037037037037036,
+     "standard_deviation": 30.626521638665004,
+     "standard_error": 3.9538669419603547,
+     "ci95_normal": [
+      -3.3579125395756284,
+      12.14124587290896
+     ],
+     "worst_decile_mean": -19.833333333333332,
+     "wins": 7,
+     "ties": 42,
+     "losses": 11,
+     "minimum": -51.5,
+     "maximum": 203
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 1.85,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.5185185185185185,
+     "standard_deviation": 21.453595961074146,
+     "standard_error": 2.7696473291167623,
+     "ci95_normal": [
+      -3.5785087650688534,
+      7.278508765068853
+     ],
+     "worst_decile_mean": -21.333333333333332,
+     "wins": 9,
+     "ties": 42,
+     "losses": 9,
+     "minimum": -37.0,
+     "maximum": 140.5
+    },
+    "yield": {
+     "n": 60,
+     "mean": 2.2916666666666665,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.4074074074074074,
+     "standard_deviation": 16.509445592911675,
+     "standard_error": 2.131360261215478,
+     "ci95_normal": [
+      -1.8857994453156706,
+      6.469132778649003
+     ],
+     "worst_decile_mean": -12.666666666666666,
+     "wins": 9,
+     "ties": 42,
+     "losses": 9,
+     "minimum": -43.5,
+     "maximum": 101.5
+    }
+   },
+   "selected_cells": [
+    {
+     "seed": 62,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 16.0,
+      "sched_bot": -10.0,
+      "mybot": -58.0,
+      "silver_boss": 1.0
+     },
+     "rollout_mean": -12.75,
+     "actual_mean_delta": -4.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -40,
+      "race": -12,
+      "ringfix3": -4,
+      "taskplan": 48,
+      "yield": -14
+     }
+    },
+    {
+     "seed": 64,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 12.0,
+      "sched_bot": -18.0,
+      "mybot": -15.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": -3.0,
+     "actual_mean_delta": -11.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 18,
+      "race": -28,
+      "ringfix3": -24,
+      "taskplan": -12,
+      "yield": -10
+     }
+    },
+    {
+     "seed": 66,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 19.0,
+      "sched_bot": -9.0,
+      "mybot": -40.0,
+      "silver_boss": 12.0
+     },
+     "rollout_mean": -4.5,
+     "actual_mean_delta": -8.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -48,
+      "race": -12,
+      "ringfix3": 16,
+      "taskplan": 7,
+      "yield": -4
+     }
+    },
+    {
+     "seed": 67,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": -12.0,
+      "mybot": 4.0,
+      "silver_boss": -13.0
+     },
+     "rollout_mean": -4.0,
+     "actual_mean_delta": 2,
+     "actual_opponent_deltas": {
+      "chopharvest": -16,
+      "race": -10,
+      "ringfix3": 47,
+      "taskplan": -16,
+      "yield": 5
+     }
+    },
+    {
+     "seed": 71,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 157.0,
+      "sched_bot": -21.0,
+      "mybot": -68.0,
+      "silver_boss": -56.0
+     },
+     "rollout_mean": 3.0,
+     "actual_mean_delta": 118.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 115,
+      "race": 116,
+      "ringfix3": 133,
+      "taskplan": 123,
+      "yield": 106
+     }
+    },
+    {
+     "seed": 71,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 4.0,
+      "sched_bot": -2.0,
+      "mybot": 2.0,
+      "silver_boss": -5.0
+     },
+     "rollout_mean": -0.25,
+     "actual_mean_delta": -1.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -1,
+      "race": 0,
+      "ringfix3": -1,
+      "taskplan": -4,
+      "yield": -1
+     }
+    },
+    {
+     "seed": 72,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 28.0,
+      "sched_bot": 19.0,
+      "mybot": -58.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": -5.0,
+     "actual_mean_delta": -26.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 18,
+      "race": -33,
+      "ringfix3": -1,
+      "taskplan": -30,
+      "yield": -87
+     }
+    },
+    {
+     "seed": 73,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 16.0,
+      "sched_bot": -4.0,
+      "mybot": 6.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": -1,
+     "actual_opponent_deltas": {
+      "chopharvest": -20,
+      "race": -16,
+      "ringfix3": -22,
+      "taskplan": 12,
+      "yield": 41
+     }
+    },
+    {
+     "seed": 77,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": 0.0,
+      "mybot": 2.0,
+      "silver_boss": 0.0
+     },
+     "rollout_mean": 1.75,
+     "actual_mean_delta": -4.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -6,
+      "race": -9,
+      "ringfix3": -6,
+      "taskplan": 0,
+      "yield": 0
+     }
+    },
+    {
+     "seed": 81,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 28.0,
+      "sched_bot": -46.0,
+      "mybot": -15.0,
+      "silver_boss": -3.0
+     },
+     "rollout_mean": -9.0,
+     "actual_mean_delta": -10,
+     "actual_opponent_deltas": {
+      "chopharvest": -41,
+      "race": -4,
+      "ringfix3": -8,
+      "taskplan": 12,
+      "yield": -9
+     }
+    },
+    {
+     "seed": 83,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 26.0,
+      "sched_bot": -7.0,
+      "mybot": -15.0,
+      "silver_boss": -30.0
+     },
+     "rollout_mean": -6.5,
+     "actual_mean_delta": 17.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 0,
+      "race": 22,
+      "ringfix3": 0,
+      "taskplan": 18,
+      "yield": 48
+     }
+    },
+    {
+     "seed": 90,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 9.0,
+      "sched_bot": -2.0,
+      "mybot": -72.0,
+      "silver_boss": 17.0
+     },
+     "rollout_mean": -12.0,
+     "actual_mean_delta": 6.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 16,
+      "race": 0,
+      "ringfix3": 16,
+      "taskplan": -24,
+      "yield": 25
+     }
+    },
+    {
+     "seed": 92,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 10.0,
+      "sched_bot": -2.0,
+      "mybot": -4.0,
+      "silver_boss": -10.0
+     },
+     "rollout_mean": -1.5,
+     "actual_mean_delta": 46.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 104,
+      "race": -24,
+      "ringfix3": 160,
+      "taskplan": -1,
+      "yield": -5
+     }
+    },
+    {
+     "seed": 93,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 1.0,
+      "sched_bot": 4.0,
+      "mybot": -11.0,
+      "silver_boss": -5.0
+     },
+     "rollout_mean": -2.75,
+     "actual_mean_delta": -2.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 1,
+      "ringfix3": -7,
+      "taskplan": 1,
+      "yield": 1
+     }
+    },
+    {
+     "seed": 101,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 10.0,
+      "sched_bot": 5.0,
+      "mybot": -18.0,
+      "silver_boss": 16.0
+     },
+     "rollout_mean": 3.25,
+     "actual_mean_delta": 8.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 10,
+      "race": 9,
+      "ringfix3": 10,
+      "taskplan": 9,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 107,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 15.0,
+      "sched_bot": 29.0,
+      "mybot": -17.0,
+      "silver_boss": -13.0
+     },
+     "rollout_mean": 3.5,
+     "actual_mean_delta": -16,
+     "actual_opponent_deltas": {
+      "chopharvest": -4,
+      "race": 4,
+      "ringfix3": -97,
+      "taskplan": 0,
+      "yield": 17
+     }
+    },
+    {
+     "seed": 107,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 12.0,
+      "sched_bot": -9.0,
+      "mybot": -4.0,
+      "silver_boss": -27.0
+     },
+     "rollout_mean": -7.0,
+     "actual_mean_delta": -24.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 13,
+      "race": -57,
+      "ringfix3": -6,
+      "taskplan": -32,
+      "yield": -41
+     }
+    },
+    {
+     "seed": 109,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 60.0,
+      "sched_bot": 25.0,
+      "mybot": -38.0,
+      "silver_boss": 3.0
+     },
+     "rollout_mean": 12.5,
+     "actual_mean_delta": -9.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 0,
+      "race": 0,
+      "ringfix3": -4,
+      "taskplan": -36,
+      "yield": -8
+     }
+    },
+    {
+     "seed": 111,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": -34.0,
+      "mybot": 9.0,
+      "silver_boss": -34.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -28.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -13,
+      "race": -31,
+      "ringfix3": -31,
+      "taskplan": -74,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 114,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 8.0,
+      "sched_bot": -27.0,
+      "mybot": -22.0,
+      "silver_boss": -12.0
+     },
+     "rollout_mean": -13.25,
+     "actual_mean_delta": -15.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -2,
+      "race": -4,
+      "ringfix3": -24,
+      "taskplan": -28,
+      "yield": -20
+     }
+    },
+    {
+     "seed": 114,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 4.0,
+      "sched_bot": -76.0,
+      "mybot": 13.0,
+      "silver_boss": 5.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -23.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -33,
+      "race": -44,
+      "ringfix3": -26,
+      "taskplan": -32,
+      "yield": 16
+     }
+    },
+    {
+     "seed": 116,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 242.0,
+      "sched_bot": -19.0,
+      "mybot": -40.0,
+      "silver_boss": -33.0
+     },
+     "rollout_mean": 37.5,
+     "actual_mean_delta": 168.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 246,
+      "race": 147,
+      "ringfix3": 189,
+      "taskplan": 151,
+      "yield": 108
+     }
+    },
+    {
+     "seed": 116,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 296.0,
+      "sched_bot": -41.0,
+      "mybot": -48.0,
+      "silver_boss": -30.0
+     },
+     "rollout_mean": 44.25,
+     "actual_mean_delta": 156.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 225,
+      "race": 114,
+      "ringfix3": 217,
+      "taskplan": 130,
+      "yield": 95
+     }
+    }
+   ]
+  },
+  "sched_bot": {
+   "rule": "sched_bot",
+   "threshold": 0.0,
+   "selected_cell_count": 23,
+   "selected_seed_count": 18,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": -2.961666666666667,
+    "median": 0.0,
+    "trimmed_5pct_mean": -1.8944444444444446,
+    "standard_deviation": 8.50118818548159,
+    "standard_error": 1.0974986755115148,
+    "ci95_normal": [
+     -5.112764070669236,
+     -0.8105692626640981
+    ],
+    "worst_decile_mean": -23.666666666666668,
+    "wins": 2,
+    "ties": 42,
+    "losses": 16,
+    "minimum": -48.7,
+    "maximum": 14.3
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": -2.961666666666667,
+    "median": 0.0,
+    "trimmed_5pct_mean": -1.3703703703703705,
+    "standard_deviation": 12.52467268116449,
+    "standard_error": 1.1433409588070835,
+    "ci95_normal": [
+     -5.20261494592855,
+     -0.7207183874047831
+    ],
+    "worst_decile_mean": -32.5,
+    "wins": 5,
+    "ties": 97,
+    "losses": 18,
+    "minimum": -97.4,
+    "maximum": 28.6
+   },
+   "worst_opponent_mean": -3.966666666666667,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": -2.2083333333333335,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.4074074074074074,
+     "standard_deviation": 11.87908419209738,
+     "standard_error": 1.533583174806298,
+     "ci95_normal": [
+      -5.214156355953678,
+      0.7974896892870107
+     ],
+     "worst_decile_mean": -29.5,
+     "wins": 6,
+     "ties": 43,
+     "losses": 11,
+     "minimum": -63.0,
+     "maximum": 30.5
+    },
+    "race": {
+     "n": 60,
+     "mean": -3.433333333333333,
+     "median": 0.0,
+     "trimmed_5pct_mean": -2.138888888888889,
+     "standard_deviation": 9.665799688376499,
+     "standard_error": 1.2478493740286338,
+     "ci95_normal": [
+      -5.8791181064294555,
+      -0.9875485602372107
+     ],
+     "worst_decile_mean": -29.0,
+     "wins": 5,
+     "ties": 43,
+     "losses": 12,
+     "minimum": -42.0,
+     "maximum": 8.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": -3.7916666666666665,
+     "median": 0.0,
+     "trimmed_5pct_mean": -2.1203703703703702,
+     "standard_deviation": 12.842029667801759,
+     "standard_error": 1.6578989011632592,
+     "ci95_normal": [
+      -7.041148512946655,
+      -0.5421848203866784
+     ],
+     "worst_decile_mean": -38.166666666666664,
+     "wins": 5,
+     "ties": 42,
+     "losses": 13,
+     "minimum": -63.0,
+     "maximum": 17
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": -3.966666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -3.1203703703703702,
+     "standard_deviation": 12.081596407404628,
+     "standard_error": 1.5597273893825827,
+     "ci95_normal": [
+      -7.0237323498565285,
+      -0.9096009834768046
+     ],
+     "worst_decile_mean": -32.916666666666664,
+     "wins": 4,
+     "ties": 43,
+     "losses": 13,
+     "minimum": -44.5,
+     "maximum": 38.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": -1.4083333333333334,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.6851851851851852,
+     "standard_deviation": 7.475095184852088,
+     "standard_error": 0.9650306387415796,
+     "ci95_normal": [
+      -3.2997933852668293,
+      0.48312671860016243
+     ],
+     "worst_decile_mean": -20.916666666666668,
+     "wins": 9,
+     "ties": 42,
+     "losses": 9,
+     "minimum": -31.0,
+     "maximum": 15.0
+    }
+   },
+   "selected_cells": [
+    {
+     "seed": 60,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -56.0,
+      "sched_bot": 8.0,
+      "mybot": 22.0,
+      "silver_boss": 36.0
+     },
+     "rollout_mean": 2.5,
+     "actual_mean_delta": 2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 20,
+      "ringfix3": -7,
+      "taskplan": -4,
+      "yield": 12
+     }
+    },
+    {
+     "seed": 60,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -31.0,
+      "sched_bot": 4.0,
+      "mybot": -54.0,
+      "silver_boss": 42.0
+     },
+     "rollout_mean": -9.75,
+     "actual_mean_delta": -43.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -24,
+      "race": -59,
+      "ringfix3": -63,
+      "taskplan": -51,
+      "yield": -19
+     }
+    },
+    {
+     "seed": 63,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -97.0,
+      "sched_bot": 8.0,
+      "mybot": -68.0,
+      "silver_boss": 10.0
+     },
+     "rollout_mean": -36.75,
+     "actual_mean_delta": -19.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -15,
+      "race": -16,
+      "ringfix3": -21,
+      "taskplan": -24,
+      "yield": -20
+     }
+    },
+    {
+     "seed": 63,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -69.0,
+      "sched_bot": 8.0,
+      "mybot": -43.0,
+      "silver_boss": -67.0
+     },
+     "rollout_mean": -42.75,
+     "actual_mean_delta": -26.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -49,
+      "race": -8,
+      "ringfix3": -47,
+      "taskplan": -16,
+      "yield": -11
+     }
+    },
+    {
+     "seed": 66,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -51.0,
+      "sched_bot": 10.0,
+      "mybot": -60.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": -20.25,
+     "actual_mean_delta": -7.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -13,
+      "race": -9,
+      "ringfix3": -10,
+      "taskplan": -8,
+      "yield": 3
+     }
+    },
+    {
+     "seed": 70,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -62.0,
+      "sched_bot": 18.0,
+      "mybot": 5.0,
+      "silver_boss": -17.0
+     },
+     "rollout_mean": -14.0,
+     "actual_mean_delta": -97.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -126,
+      "race": -84,
+      "ringfix3": -126,
+      "taskplan": -89,
+      "yield": -62
+     }
+    },
+    {
+     "seed": 72,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 28.0,
+      "sched_bot": 19.0,
+      "mybot": -58.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": -5.0,
+     "actual_mean_delta": -26.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 18,
+      "race": -33,
+      "ringfix3": -1,
+      "taskplan": -30,
+      "yield": -87
+     }
+    },
+    {
+     "seed": 72,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -1.0,
+      "sched_bot": 23.0,
+      "mybot": -52.0,
+      "silver_boss": -8.0
+     },
+     "rollout_mean": -9.5,
+     "actual_mean_delta": 20.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 43,
+      "race": -49,
+      "ringfix3": 35,
+      "taskplan": -29,
+      "yield": 102
+     }
+    },
+    {
+     "seed": 74,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 0.0,
+      "sched_bot": 9.0,
+      "mybot": 12.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": 10.25,
+     "actual_mean_delta": -2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 24,
+      "race": 16,
+      "ringfix3": -12,
+      "taskplan": -12,
+      "yield": -30
+     }
+    },
+    {
+     "seed": 75,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -35.0,
+      "sched_bot": 14.0,
+      "mybot": -47.0,
+      "silver_boss": 14.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -31.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -22,
+      "race": -40,
+      "ringfix3": -6,
+      "taskplan": -32,
+      "yield": -56
+     }
+    },
+    {
+     "seed": 75,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -9.0,
+      "sched_bot": 12.0,
+      "mybot": -15.0,
+      "silver_boss": 21.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": 2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 13,
+      "race": -7,
+      "ringfix3": 22,
+      "taskplan": -12,
+      "yield": -4
+     }
+    },
+    {
+     "seed": 82,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -60.0,
+      "sched_bot": 4.0,
+      "mybot": -3.0,
+      "silver_boss": 10.0
+     },
+     "rollout_mean": -12.25,
+     "actual_mean_delta": -25,
+     "actual_opponent_deltas": {
+      "chopharvest": -21,
+      "race": -44,
+      "ringfix3": -5,
+      "taskplan": -56,
+      "yield": 1
+     }
+    },
+    {
+     "seed": 91,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -87.0,
+      "sched_bot": 27.0,
+      "mybot": -30.0,
+      "silver_boss": -20.0
+     },
+     "rollout_mean": -27.5,
+     "actual_mean_delta": -39,
+     "actual_opponent_deltas": {
+      "chopharvest": -56,
+      "race": 15,
+      "ringfix3": -41,
+      "taskplan": -76,
+      "yield": -37
+     }
+    },
+    {
+     "seed": 93,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 1.0,
+      "sched_bot": 4.0,
+      "mybot": -11.0,
+      "silver_boss": -5.0
+     },
+     "rollout_mean": -2.75,
+     "actual_mean_delta": -2.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 1,
+      "ringfix3": -7,
+      "taskplan": 1,
+      "yield": 1
+     }
+    },
+    {
+     "seed": 96,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -7.0,
+      "sched_bot": 4.0,
+      "mybot": -3.0,
+      "silver_boss": -17.0
+     },
+     "rollout_mean": -5.75,
+     "actual_mean_delta": -3,
+     "actual_opponent_deltas": {
+      "chopharvest": 4,
+      "race": -20,
+      "ringfix3": 3,
+      "taskplan": -16,
+      "yield": 14
+     }
+    },
+    {
+     "seed": 97,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -16.0,
+      "sched_bot": 2.0,
+      "mybot": 5.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": 0.0,
+     "actual_mean_delta": 28.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 48,
+      "race": -28,
+      "ringfix3": 17,
+      "taskplan": 76,
+      "yield": 30
+     }
+    },
+    {
+     "seed": 98,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -71.0,
+      "sched_bot": 3.0,
+      "mybot": -58.0,
+      "silver_boss": 7.0
+     },
+     "rollout_mean": -29.75,
+     "actual_mean_delta": -8,
+     "actual_opponent_deltas": {
+      "chopharvest": 1,
+      "race": -8,
+      "ringfix3": -10,
+      "taskplan": 8,
+      "yield": -31
+     }
+    },
+    {
+     "seed": 101,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -3.0,
+      "sched_bot": 5.0,
+      "mybot": -16.0,
+      "silver_boss": -14.0
+     },
+     "rollout_mean": -7.0,
+     "actual_mean_delta": -5,
+     "actual_opponent_deltas": {
+      "chopharvest": -5,
+      "race": -3,
+      "ringfix3": -5,
+      "taskplan": -7,
+      "yield": -5
+     }
+    },
+    {
+     "seed": 101,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 10.0,
+      "sched_bot": 5.0,
+      "mybot": -18.0,
+      "silver_boss": 16.0
+     },
+     "rollout_mean": 3.25,
+     "actual_mean_delta": 8.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 10,
+      "race": 9,
+      "ringfix3": 10,
+      "taskplan": 9,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 102,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -50.0,
+      "sched_bot": 7.0,
+      "mybot": -13.0,
+      "silver_boss": 0.0
+     },
+     "rollout_mean": -14.0,
+     "actual_mean_delta": -23.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -34,
+      "race": -17,
+      "ringfix3": -24,
+      "taskplan": -60,
+      "yield": 17
+     }
+    },
+    {
+     "seed": 107,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 15.0,
+      "sched_bot": 29.0,
+      "mybot": -17.0,
+      "silver_boss": -13.0
+     },
+     "rollout_mean": 3.5,
+     "actual_mean_delta": -16,
+     "actual_opponent_deltas": {
+      "chopharvest": -4,
+      "race": 4,
+      "ringfix3": -97,
+      "taskplan": 0,
+      "yield": 17
+     }
+    },
+    {
+     "seed": 109,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 60.0,
+      "sched_bot": 25.0,
+      "mybot": -38.0,
+      "silver_boss": 3.0
+     },
+     "rollout_mean": 12.5,
+     "actual_mean_delta": -9.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 0,
+      "race": 0,
+      "ringfix3": -4,
+      "taskplan": -36,
+      "yield": -8
+     }
+    },
+    {
+     "seed": 112,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -48.0,
+      "sched_bot": 5.0,
+      "mybot": 10.0,
+      "silver_boss": -30.0
+     },
+     "rollout_mean": -15.75,
+     "actual_mean_delta": -33,
+     "actual_opponent_deltas": {
+      "chopharvest": -43,
+      "race": -52,
+      "ringfix3": -56,
+      "taskplan": -12,
+      "yield": -2
+     }
+    }
+   ]
+  },
+  "mybot": {
+   "rule": "mybot",
+   "threshold": 0.0,
+   "selected_cell_count": 19,
+   "selected_seed_count": 17,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": -2.54,
+    "median": 0.0,
+    "trimmed_5pct_mean": -1.348148148148148,
+    "standard_deviation": 8.47077128139433,
+    "standard_error": 1.0935718700790766,
+    "ci95_normal": [
+     -4.68340086535499,
+     -0.39659913464500995
+    ],
+    "worst_decile_mean": -23.166666666666668,
+    "wins": 3,
+    "ties": 43,
+    "losses": 14,
+    "minimum": -48.7,
+    "maximum": 14.3
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": -2.54,
+    "median": 0.0,
+    "trimmed_5pct_mean": -0.5574074074074075,
+    "standard_deviation": 12.160014374162225,
+    "standard_error": 1.1100523620526193,
+    "ci95_normal": [
+     -4.715702629623134,
+     -0.36429737037686616
+    ],
+    "worst_decile_mean": -27.55,
+    "wins": 3,
+    "ties": 101,
+    "losses": 16,
+    "minimum": -97.4,
+    "maximum": 28.6
+   },
+   "worst_opponent_mean": -3.0166666666666666,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": -2.841666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.9537037037037037,
+     "standard_deviation": 10.629943183780217,
+     "standard_error": 1.3723197640637275,
+     "ci95_normal": [
+      -5.531413404231572,
+      -0.15191992910176122
+     ],
+     "worst_decile_mean": -27.083333333333332,
+     "wins": 3,
+     "ties": 43,
+     "losses": 14,
+     "minimum": -63.0,
+     "maximum": 24.0
+    },
+    "race": {
+     "n": 60,
+     "mean": -3.0166666666666666,
+     "median": 0.0,
+     "trimmed_5pct_mean": -2.0462962962962963,
+     "standard_deviation": 8.987734894347598,
+     "standard_error": 1.160311585531184,
+     "ci95_normal": [
+      -5.2908773743077875,
+      -0.7424559590255457
+     ],
+     "worst_decile_mean": -25.583333333333332,
+     "wins": 3,
+     "ties": 44,
+     "losses": 13,
+     "minimum": -42.0,
+     "maximum": 12.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": -2.6,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.5277777777777777,
+     "standard_deviation": 10.470620722052955,
+     "standard_error": 1.3517513226988456,
+     "ci95_normal": [
+      -5.249432592489738,
+      0.04943259248973719
+     ],
+     "worst_decile_mean": -26.333333333333332,
+     "wins": 3,
+     "ties": 44,
+     "losses": 13,
+     "minimum": -63.0,
+     "maximum": 23.5
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": -2.625,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.4351851851851851,
+     "standard_deviation": 11.059402395967524,
+     "standard_error": 1.4277627099529542,
+     "ci95_normal": [
+      -5.42341491150779,
+      0.17341491150779031
+     ],
+     "worst_decile_mean": -27.916666666666668,
+     "wins": 4,
+     "ties": 43,
+     "losses": 13,
+     "minimum": -44.5,
+     "maximum": 38.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": -1.6166666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.7777777777777778,
+     "standard_deviation": 9.050876288068515,
+     "standard_error": 1.1684631044090987,
+     "ci95_normal": [
+      -3.9068543513085,
+      0.6735210179751667
+     ],
+     "worst_decile_mean": -23.75,
+     "wins": 7,
+     "ties": 43,
+     "losses": 10,
+     "minimum": -45.0,
+     "maximum": 20.5
+    }
+   },
+   "selected_cells": [
+    {
+     "seed": 60,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -56.0,
+      "sched_bot": 8.0,
+      "mybot": 22.0,
+      "silver_boss": 36.0
+     },
+     "rollout_mean": 2.5,
+     "actual_mean_delta": 2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 20,
+      "ringfix3": -7,
+      "taskplan": -4,
+      "yield": 12
+     }
+    },
+    {
+     "seed": 67,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": -12.0,
+      "mybot": 4.0,
+      "silver_boss": -13.0
+     },
+     "rollout_mean": -4.0,
+     "actual_mean_delta": 2,
+     "actual_opponent_deltas": {
+      "chopharvest": -16,
+      "race": -10,
+      "ringfix3": 47,
+      "taskplan": -16,
+      "yield": 5
+     }
+    },
+    {
+     "seed": 69,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -28.0,
+      "sched_bot": -32.0,
+      "mybot": 4.0,
+      "silver_boss": -28.0
+     },
+     "rollout_mean": -21.0,
+     "actual_mean_delta": -33.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -44,
+      "race": -12,
+      "ringfix3": -43,
+      "taskplan": -24,
+      "yield": -45
+     }
+    },
+    {
+     "seed": 70,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -62.0,
+      "sched_bot": 18.0,
+      "mybot": 5.0,
+      "silver_boss": -17.0
+     },
+     "rollout_mean": -14.0,
+     "actual_mean_delta": -97.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -126,
+      "race": -84,
+      "ringfix3": -126,
+      "taskplan": -89,
+      "yield": -62
+     }
+    },
+    {
+     "seed": 71,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 4.0,
+      "sched_bot": -2.0,
+      "mybot": 2.0,
+      "silver_boss": -5.0
+     },
+     "rollout_mean": -0.25,
+     "actual_mean_delta": -1.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -1,
+      "race": 0,
+      "ringfix3": -1,
+      "taskplan": -4,
+      "yield": -1
+     }
+    },
+    {
+     "seed": 73,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 16.0,
+      "sched_bot": -4.0,
+      "mybot": 6.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": -1,
+     "actual_opponent_deltas": {
+      "chopharvest": -20,
+      "race": -16,
+      "ringfix3": -22,
+      "taskplan": 12,
+      "yield": 41
+     }
+    },
+    {
+     "seed": 74,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 0.0,
+      "sched_bot": 9.0,
+      "mybot": 12.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": 10.25,
+     "actual_mean_delta": -2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 24,
+      "race": 16,
+      "ringfix3": -12,
+      "taskplan": -12,
+      "yield": -30
+     }
+    },
+    {
+     "seed": 77,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -12.0,
+      "sched_bot": -25.0,
+      "mybot": 12.0,
+      "silver_boss": 12.0
+     },
+     "rollout_mean": -3.25,
+     "actual_mean_delta": -3.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 19,
+      "race": -22,
+      "ringfix3": 20,
+      "taskplan": 2,
+      "yield": -36
+     }
+    },
+    {
+     "seed": 77,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": 0.0,
+      "mybot": 2.0,
+      "silver_boss": 0.0
+     },
+     "rollout_mean": 1.75,
+     "actual_mean_delta": -4.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -6,
+      "race": -9,
+      "ringfix3": -6,
+      "taskplan": 0,
+      "yield": 0
+     }
+    },
+    {
+     "seed": 80,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -21.0,
+      "sched_bot": -43.0,
+      "mybot": 3.0,
+      "silver_boss": -54.0
+     },
+     "rollout_mean": -28.75,
+     "actual_mean_delta": -13.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -34,
+      "race": -12,
+      "ringfix3": -3,
+      "taskplan": -16,
+      "yield": -2
+     }
+    },
+    {
+     "seed": 82,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -75.0,
+      "sched_bot": 0.0,
+      "mybot": 13.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": -10.5,
+     "actual_mean_delta": -18.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -23,
+      "race": -24,
+      "ringfix3": -34,
+      "taskplan": 4,
+      "yield": -16
+     }
+    },
+    {
+     "seed": 91,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -31.0,
+      "sched_bot": -5.0,
+      "mybot": 12.0,
+      "silver_boss": 51.0
+     },
+     "rollout_mean": 6.75,
+     "actual_mean_delta": -61.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -45,
+      "race": -65,
+      "ringfix3": -19,
+      "taskplan": -89,
+      "yield": -90
+     }
+    },
+    {
+     "seed": 97,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -16.0,
+      "sched_bot": 2.0,
+      "mybot": 5.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": 0.0,
+     "actual_mean_delta": 28.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 48,
+      "race": -28,
+      "ringfix3": 17,
+      "taskplan": 76,
+      "yield": 30
+     }
+    },
+    {
+     "seed": 108,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -19.0,
+      "sched_bot": -11.0,
+      "mybot": 19.0,
+      "silver_boss": 32.0
+     },
+     "rollout_mean": 5.25,
+     "actual_mean_delta": -2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -11,
+      "race": 24,
+      "ringfix3": 0,
+      "taskplan": -27,
+      "yield": 2
+     }
+    },
+    {
+     "seed": 111,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": -34.0,
+      "mybot": 9.0,
+      "silver_boss": -34.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -28.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -13,
+      "race": -31,
+      "ringfix3": -31,
+      "taskplan": -74,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 112,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -48.0,
+      "sched_bot": 5.0,
+      "mybot": 10.0,
+      "silver_boss": -30.0
+     },
+     "rollout_mean": -15.75,
+     "actual_mean_delta": -33,
+     "actual_opponent_deltas": {
+      "chopharvest": -43,
+      "race": -52,
+      "ringfix3": -56,
+      "taskplan": -12,
+      "yield": -2
+     }
+    },
+    {
+     "seed": 113,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -6.0,
+      "sched_bot": -19.0,
+      "mybot": 14.0,
+      "silver_boss": -1.0
+     },
+     "rollout_mean": -3.0,
+     "actual_mean_delta": -5.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -3,
+      "race": -6,
+      "ringfix3": -3,
+      "taskplan": -6,
+      "yield": -11
+     }
+    },
+    {
+     "seed": 113,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -4.0,
+      "sched_bot": -12.0,
+      "mybot": 13.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": -3.0,
+     "actual_mean_delta": -7.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": -7,
+      "ringfix3": -7,
+      "taskplan": -4,
+      "yield": -11
+     }
+    },
+    {
+     "seed": 114,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 4.0,
+      "sched_bot": -76.0,
+      "mybot": 13.0,
+      "silver_boss": 5.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -23.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -33,
+      "race": -44,
+      "ringfix3": -26,
+      "taskplan": -32,
+      "yield": 16
+     }
+    }
+   ]
+  },
+  "silver_boss": {
+   "rule": "silver_boss",
+   "threshold": 0.0,
+   "selected_cell_count": 28,
+   "selected_seed_count": 21,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": -2.4166666666666665,
+    "median": 0.0,
+    "trimmed_5pct_mean": -2.0166666666666666,
+    "standard_deviation": 7.432593512878504,
+    "standard_error": 0.9595436964835908,
+    "ci95_normal": [
+     -4.297372311774504,
+     -0.5359610215588284
+    ],
+    "worst_decile_mean": -19.65,
+    "wins": 3,
+    "ties": 39,
+    "losses": 18,
+    "minimum": -30.8,
+    "maximum": 20.8
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": -2.4166666666666665,
+    "median": 0.0,
+    "trimmed_5pct_mean": -1.5222222222222221,
+    "standard_deviation": 10.528220047422394,
+    "standard_error": 0.9610906017252259,
+    "ci95_normal": [
+     -4.300404246048109,
+     -0.5329290872852239
+    ],
+    "worst_decile_mean": -27.033333333333335,
+    "wins": 6,
+    "ties": 92,
+    "losses": 22,
+    "minimum": -61.6,
+    "maximum": 41.6
+   },
+   "worst_opponent_mean": -3.1666666666666665,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": -1.7666666666666666,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.8611111111111112,
+     "standard_deviation": 13.408657292789618,
+     "standard_error": 1.7310502129992273,
+     "ci95_normal": [
+      -5.159525084145152,
+      1.6261917508118189
+     ],
+     "worst_decile_mean": -27.916666666666668,
+     "wins": 7,
+     "ties": 40,
+     "losses": 13,
+     "minimum": -56,
+     "maximum": 47
+    },
+    "race": {
+     "n": 60,
+     "mean": -3.066666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -2.3055555555555554,
+     "standard_deviation": 9.308947157178476,
+     "standard_error": 1.2017799103492373,
+     "ci95_normal": [
+      -5.422155290951172,
+      -0.7111780423821621
+     ],
+     "worst_decile_mean": -26.583333333333332,
+     "wins": 6,
+     "ties": 40,
+     "losses": 14,
+     "minimum": -34,
+     "maximum": 14.5
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": -1.8083333333333333,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.3796296296296295,
+     "standard_deviation": 11.278482462932088,
+     "standard_error": 1.456045824980946,
+     "ci95_normal": [
+      -4.662183150295988,
+      1.045516483629321
+     ],
+     "worst_decile_mean": -24.666666666666668,
+     "wins": 6,
+     "ties": 40,
+     "losses": 14,
+     "minimum": -40.0,
+     "maximum": 53.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": -3.1666666666666665,
+     "median": 0.0,
+     "trimmed_5pct_mean": -2.4814814814814814,
+     "standard_deviation": 10.57085322256947,
+     "standard_error": 1.3646912828738187,
+     "ci95_normal": [
+      -5.841461581099351,
+      -0.49187175223398194
+     ],
+     "worst_decile_mean": -28.583333333333332,
+     "wins": 7,
+     "ties": 39,
+     "losses": 14,
+     "minimum": -44.5,
+     "maximum": 24.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": -2.275,
+     "median": 0.0,
+     "trimmed_5pct_mean": -1.4259259259259258,
+     "standard_deviation": 9.362938568850476,
+     "standard_error": 1.2087501716240332,
+     "ci95_normal": [
+      -4.644150336383105,
+      0.09415033638310533
+     ],
+     "worst_decile_mean": -25.166666666666668,
+     "wins": 7,
+     "ties": 39,
+     "losses": 14,
+     "minimum": -45.0,
+     "maximum": 21
+    }
+   },
+   "selected_cells": [
+    {
+     "seed": 60,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -56.0,
+      "sched_bot": 8.0,
+      "mybot": 22.0,
+      "silver_boss": 36.0
+     },
+     "rollout_mean": 2.5,
+     "actual_mean_delta": 2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 20,
+      "ringfix3": -7,
+      "taskplan": -4,
+      "yield": 12
+     }
+    },
+    {
+     "seed": 60,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -31.0,
+      "sched_bot": 4.0,
+      "mybot": -54.0,
+      "silver_boss": 42.0
+     },
+     "rollout_mean": -9.75,
+     "actual_mean_delta": -43.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -24,
+      "race": -59,
+      "ringfix3": -63,
+      "taskplan": -51,
+      "yield": -19
+     }
+    },
+    {
+     "seed": 62,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 16.0,
+      "sched_bot": -10.0,
+      "mybot": -58.0,
+      "silver_boss": 1.0
+     },
+     "rollout_mean": -12.75,
+     "actual_mean_delta": -4.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -40,
+      "race": -12,
+      "ringfix3": -4,
+      "taskplan": 48,
+      "yield": -14
+     }
+    },
+    {
+     "seed": 63,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -97.0,
+      "sched_bot": 8.0,
+      "mybot": -68.0,
+      "silver_boss": 10.0
+     },
+     "rollout_mean": -36.75,
+     "actual_mean_delta": -19.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -15,
+      "race": -16,
+      "ringfix3": -21,
+      "taskplan": -24,
+      "yield": -20
+     }
+    },
+    {
+     "seed": 64,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -12.0,
+      "sched_bot": -44.0,
+      "mybot": -3.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": -12.5,
+     "actual_mean_delta": -26.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -15,
+      "race": -28,
+      "ringfix3": -36,
+      "taskplan": -8,
+      "yield": -45
+     }
+    },
+    {
+     "seed": 64,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 12.0,
+      "sched_bot": -18.0,
+      "mybot": -15.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": -3.0,
+     "actual_mean_delta": -11.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 18,
+      "race": -28,
+      "ringfix3": -24,
+      "taskplan": -12,
+      "yield": -10
+     }
+    },
+    {
+     "seed": 66,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 19.0,
+      "sched_bot": -9.0,
+      "mybot": -40.0,
+      "silver_boss": 12.0
+     },
+     "rollout_mean": -4.5,
+     "actual_mean_delta": -8.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -48,
+      "race": -12,
+      "ringfix3": 16,
+      "taskplan": 7,
+      "yield": -4
+     }
+    },
+    {
+     "seed": 66,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -51.0,
+      "sched_bot": 10.0,
+      "mybot": -60.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": -20.25,
+     "actual_mean_delta": -7.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -13,
+      "race": -9,
+      "ringfix3": -10,
+      "taskplan": -8,
+      "yield": 3
+     }
+    },
+    {
+     "seed": 67,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -35.0,
+      "sched_bot": -26.0,
+      "mybot": -29.0,
+      "silver_boss": 6.0
+     },
+     "rollout_mean": -21.0,
+     "actual_mean_delta": -4.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -8,
+      "race": 29,
+      "ringfix3": -80,
+      "taskplan": 8,
+      "yield": 28
+     }
+    },
+    {
+     "seed": 74,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 0.0,
+      "sched_bot": 9.0,
+      "mybot": 12.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": 10.25,
+     "actual_mean_delta": -2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 24,
+      "race": 16,
+      "ringfix3": -12,
+      "taskplan": -12,
+      "yield": -30
+     }
+    },
+    {
+     "seed": 75,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -35.0,
+      "sched_bot": 14.0,
+      "mybot": -47.0,
+      "silver_boss": 14.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -31.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -22,
+      "race": -40,
+      "ringfix3": -6,
+      "taskplan": -32,
+      "yield": -56
+     }
+    },
+    {
+     "seed": 75,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -9.0,
+      "sched_bot": 12.0,
+      "mybot": -15.0,
+      "silver_boss": 21.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": 2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 13,
+      "race": -7,
+      "ringfix3": 22,
+      "taskplan": -12,
+      "yield": -4
+     }
+    },
+    {
+     "seed": 76,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -16.0,
+      "sched_bot": -37.0,
+      "mybot": -20.0,
+      "silver_boss": 1.0
+     },
+     "rollout_mean": -18.0,
+     "actual_mean_delta": -15.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -28,
+      "race": -24,
+      "ringfix3": -12,
+      "taskplan": -4,
+      "yield": -9
+     }
+    },
+    {
+     "seed": 77,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -12.0,
+      "sched_bot": -25.0,
+      "mybot": 12.0,
+      "silver_boss": 12.0
+     },
+     "rollout_mean": -3.25,
+     "actual_mean_delta": -3.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 19,
+      "race": -22,
+      "ringfix3": 20,
+      "taskplan": 2,
+      "yield": -36
+     }
+    },
+    {
+     "seed": 82,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -60.0,
+      "sched_bot": 4.0,
+      "mybot": -3.0,
+      "silver_boss": 10.0
+     },
+     "rollout_mean": -12.25,
+     "actual_mean_delta": -25,
+     "actual_opponent_deltas": {
+      "chopharvest": -21,
+      "race": -44,
+      "ringfix3": -5,
+      "taskplan": -56,
+      "yield": 1
+     }
+    },
+    {
+     "seed": 82,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -75.0,
+      "sched_bot": 0.0,
+      "mybot": 13.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": -10.5,
+     "actual_mean_delta": -18.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -23,
+      "race": -24,
+      "ringfix3": -34,
+      "taskplan": 4,
+      "yield": -16
+     }
+    },
+    {
+     "seed": 90,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 9.0,
+      "sched_bot": -2.0,
+      "mybot": -72.0,
+      "silver_boss": 17.0
+     },
+     "rollout_mean": -12.0,
+     "actual_mean_delta": 6.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 16,
+      "race": 0,
+      "ringfix3": 16,
+      "taskplan": -24,
+      "yield": 25
+     }
+    },
+    {
+     "seed": 90,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -4.0,
+      "sched_bot": -34.0,
+      "mybot": -26.0,
+      "silver_boss": 18.0
+     },
+     "rollout_mean": -11.5,
+     "actual_mean_delta": -29,
+     "actual_opponent_deltas": {
+      "chopharvest": -128,
+      "race": 17,
+      "ringfix3": -32,
+      "taskplan": -19,
+      "yield": 17
+     }
+    },
+    {
+     "seed": 91,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -31.0,
+      "sched_bot": -5.0,
+      "mybot": 12.0,
+      "silver_boss": 51.0
+     },
+     "rollout_mean": 6.75,
+     "actual_mean_delta": -61.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -45,
+      "race": -65,
+      "ringfix3": -19,
+      "taskplan": -89,
+      "yield": -90
+     }
+    },
+    {
+     "seed": 97,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -16.0,
+      "sched_bot": 2.0,
+      "mybot": 5.0,
+      "silver_boss": 9.0
+     },
+     "rollout_mean": 0.0,
+     "actual_mean_delta": 28.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 48,
+      "race": -28,
+      "ringfix3": 17,
+      "taskplan": 76,
+      "yield": 30
+     }
+    },
+    {
+     "seed": 97,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -8.0,
+      "sched_bot": -5.0,
+      "mybot": -23.0,
+      "silver_boss": 1.0
+     },
+     "rollout_mean": -8.75,
+     "actual_mean_delta": -5.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 46,
+      "race": 0,
+      "ringfix3": -8,
+      "taskplan": -48,
+      "yield": -18
+     }
+    },
+    {
+     "seed": 98,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -71.0,
+      "sched_bot": 3.0,
+      "mybot": -58.0,
+      "silver_boss": 7.0
+     },
+     "rollout_mean": -29.75,
+     "actual_mean_delta": -8,
+     "actual_opponent_deltas": {
+      "chopharvest": 1,
+      "race": -8,
+      "ringfix3": -10,
+      "taskplan": 8,
+      "yield": -31
+     }
+    },
+    {
+     "seed": 101,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 10.0,
+      "sched_bot": 5.0,
+      "mybot": -18.0,
+      "silver_boss": 16.0
+     },
+     "rollout_mean": 3.25,
+     "actual_mean_delta": 8.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 10,
+      "race": 9,
+      "ringfix3": 10,
+      "taskplan": 9,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 103,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -81.0,
+      "sched_bot": -8.0,
+      "mybot": -8.0,
+      "silver_boss": 2.0
+     },
+     "rollout_mean": -23.75,
+     "actual_mean_delta": 41.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 89,
+      "race": 3,
+      "ringfix3": 106,
+      "taskplan": 16,
+      "yield": -6
+     }
+    },
+    {
+     "seed": 108,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -19.0,
+      "sched_bot": -11.0,
+      "mybot": 19.0,
+      "silver_boss": 32.0
+     },
+     "rollout_mean": 5.25,
+     "actual_mean_delta": -2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -11,
+      "race": 24,
+      "ringfix3": 0,
+      "taskplan": -27,
+      "yield": 2
+     }
+    },
+    {
+     "seed": 109,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 60.0,
+      "sched_bot": 25.0,
+      "mybot": -38.0,
+      "silver_boss": 3.0
+     },
+     "rollout_mean": 12.5,
+     "actual_mean_delta": -9.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 0,
+      "race": 0,
+      "ringfix3": -4,
+      "taskplan": -36,
+      "yield": -8
+     }
+    },
+    {
+     "seed": 110,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -40.0,
+      "sched_bot": -40.0,
+      "mybot": -13.0,
+      "silver_boss": 12.0
+     },
+     "rollout_mean": -20.25,
+     "actual_mean_delta": -19.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -15,
+      "race": -16,
+      "ringfix3": -11,
+      "taskplan": -60,
+      "yield": 3
+     }
+    },
+    {
+     "seed": 114,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 4.0,
+      "sched_bot": -76.0,
+      "mybot": 13.0,
+      "silver_boss": 5.0
+     },
+     "rollout_mean": -13.5,
+     "actual_mean_delta": -23.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -33,
+      "race": -44,
+      "ringfix3": -26,
+      "taskplan": -32,
+      "yield": 16
+     }
+    }
+   ]
+  },
+  "positive-mean": {
+   "rule": "positive-mean",
+   "threshold": 0.0,
+   "selected_cell_count": 13,
+   "selected_seed_count": 12,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 2.9949999999999997,
+    "median": 0.0,
+    "trimmed_5pct_mean": -0.04814814814814815,
+    "standard_deviation": 22.681893211568934,
+    "standard_error": 2.9282198222953846,
+    "ci95_normal": [
+     -2.744310851698954,
+     8.734310851698954
+    ],
+    "worst_decile_mean": -8.05,
+    "wins": 5,
+    "ties": 48,
+    "losses": 7,
+    "minimum": -30.8,
+    "maximum": 162.2
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 2.9949999999999997,
+    "median": 0.0,
+    "trimmed_5pct_mean": -0.009259259259259259,
+    "standard_deviation": 24.244073519941654,
+    "standard_error": 2.213170992114286,
+    "ci95_normal": [
+     -1.342815144544001,
+     7.332815144544
+    ],
+    "worst_decile_mean": -8.133333333333333,
+    "wins": 6,
+    "ties": 107,
+    "losses": 7,
+    "minimum": -61.6,
+    "maximum": 168.2
+   },
+   "worst_opponent_mean": 2.0416666666666665,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 4.5,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.05555555555555555,
+     "standard_deviation": 31.468170628618758,
+     "standard_error": 4.062523359341794,
+     "ci95_normal": [
+      -3.462545784309916,
+      12.462545784309917
+     ],
+     "worst_decile_mean": -7.75,
+     "wins": 5,
+     "ties": 49,
+     "losses": 6,
+     "minimum": -22.5,
+     "maximum": 235.5
+    },
+    "race": {
+     "n": 60,
+     "mean": 2.941666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.3888888888888889,
+     "standard_deviation": 19.02720881110109,
+     "standard_error": 2.4564020950068515,
+     "ci95_normal": [
+      -1.8728814395467617,
+      7.756214772880096
+     ],
+     "worst_decile_mean": -8.083333333333334,
+     "wins": 7,
+     "ties": 49,
+     "losses": 4,
+     "minimum": -32.5,
+     "maximum": 130.5
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 3.3666666666666667,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.17592592592592593,
+     "standard_deviation": 28.44022376289638,
+     "standard_error": 3.6716170998703372,
+     "ci95_normal": [
+      -3.8297028490791942,
+      10.563036182412528
+     ],
+     "worst_decile_mean": -13.583333333333334,
+     "wins": 4,
+     "ties": 49,
+     "losses": 7,
+     "minimum": -48.5,
+     "maximum": 203
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 2.0416666666666665,
+     "median": 0.0,
+     "trimmed_5pct_mean": -0.17592592592592593,
+     "standard_deviation": 20.948340751142766,
+     "standard_error": 2.7044191619951365,
+     "ci95_normal": [
+      -3.2589948908438013,
+      7.342328224177134
+     ],
+     "worst_decile_mean": -15.0,
+     "wins": 4,
+     "ties": 50,
+     "losses": 6,
+     "minimum": -44.5,
+     "maximum": 140.5
+    },
+    "yield": {
+     "n": 60,
+     "mean": 2.125,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.3055555555555556,
+     "standard_deviation": 16.286009645382492,
+     "standard_error": 2.102514804424658,
+     "ci95_normal": [
+      -1.9959290166723296,
+      6.24592901667233
+     ],
+     "worst_decile_mean": -11.0,
+     "wins": 7,
+     "ties": 49,
+     "losses": 4,
+     "minimum": -45.0,
+     "maximum": 101.5
+    }
+   },
+   "selected_cells": [
+    {
+     "seed": 60,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": -56.0,
+      "sched_bot": 8.0,
+      "mybot": 22.0,
+      "silver_boss": 36.0
+     },
+     "rollout_mean": 2.5,
+     "actual_mean_delta": 2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": -7,
+      "race": 20,
+      "ringfix3": -7,
+      "taskplan": -4,
+      "yield": 12
+     }
+    },
+    {
+     "seed": 71,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 157.0,
+      "sched_bot": -21.0,
+      "mybot": -68.0,
+      "silver_boss": -56.0
+     },
+     "rollout_mean": 3.0,
+     "actual_mean_delta": 118.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 115,
+      "race": 116,
+      "ringfix3": 133,
+      "taskplan": 123,
+      "yield": 106
+     }
+    },
+    {
+     "seed": 73,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 16.0,
+      "sched_bot": -4.0,
+      "mybot": 6.0,
+      "silver_boss": -9.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": -1,
+     "actual_opponent_deltas": {
+      "chopharvest": -20,
+      "race": -16,
+      "ringfix3": -22,
+      "taskplan": 12,
+      "yield": 41
+     }
+    },
+    {
+     "seed": 74,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 0.0,
+      "sched_bot": 9.0,
+      "mybot": 12.0,
+      "silver_boss": 20.0
+     },
+     "rollout_mean": 10.25,
+     "actual_mean_delta": -2.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 24,
+      "race": 16,
+      "ringfix3": -12,
+      "taskplan": -12,
+      "yield": -30
+     }
+    },
+    {
+     "seed": 75,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -9.0,
+      "sched_bot": 12.0,
+      "mybot": -15.0,
+      "silver_boss": 21.0
+     },
+     "rollout_mean": 2.25,
+     "actual_mean_delta": 2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": 13,
+      "race": -7,
+      "ringfix3": 22,
+      "taskplan": -12,
+      "yield": -4
+     }
+    },
+    {
+     "seed": 77,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 5.0,
+      "sched_bot": 0.0,
+      "mybot": 2.0,
+      "silver_boss": 0.0
+     },
+     "rollout_mean": 1.75,
+     "actual_mean_delta": -4.2,
+     "actual_opponent_deltas": {
+      "chopharvest": -6,
+      "race": -9,
+      "ringfix3": -6,
+      "taskplan": 0,
+      "yield": 0
+     }
+    },
+    {
+     "seed": 91,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -31.0,
+      "sched_bot": -5.0,
+      "mybot": 12.0,
+      "silver_boss": 51.0
+     },
+     "rollout_mean": 6.75,
+     "actual_mean_delta": -61.6,
+     "actual_opponent_deltas": {
+      "chopharvest": -45,
+      "race": -65,
+      "ringfix3": -19,
+      "taskplan": -89,
+      "yield": -90
+     }
+    },
+    {
+     "seed": 101,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 10.0,
+      "sched_bot": 5.0,
+      "mybot": -18.0,
+      "silver_boss": 16.0
+     },
+     "rollout_mean": 3.25,
+     "actual_mean_delta": 8.8,
+     "actual_opponent_deltas": {
+      "chopharvest": 10,
+      "race": 9,
+      "ringfix3": 10,
+      "taskplan": 9,
+      "yield": 6
+     }
+    },
+    {
+     "seed": 107,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 15.0,
+      "sched_bot": 29.0,
+      "mybot": -17.0,
+      "silver_boss": -13.0
+     },
+     "rollout_mean": 3.5,
+     "actual_mean_delta": -16,
+     "actual_opponent_deltas": {
+      "chopharvest": -4,
+      "race": 4,
+      "ringfix3": -97,
+      "taskplan": 0,
+      "yield": 17
+     }
+    },
+    {
+     "seed": 108,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": -19.0,
+      "sched_bot": -11.0,
+      "mybot": 19.0,
+      "silver_boss": 32.0
+     },
+     "rollout_mean": 5.25,
+     "actual_mean_delta": -2.4,
+     "actual_opponent_deltas": {
+      "chopharvest": -11,
+      "race": 24,
+      "ringfix3": 0,
+      "taskplan": -27,
+      "yield": 2
+     }
+    },
+    {
+     "seed": 109,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 60.0,
+      "sched_bot": 25.0,
+      "mybot": -38.0,
+      "silver_boss": 3.0
+     },
+     "rollout_mean": 12.5,
+     "actual_mean_delta": -9.6,
+     "actual_opponent_deltas": {
+      "chopharvest": 0,
+      "race": 0,
+      "ringfix3": -4,
+      "taskplan": -36,
+      "yield": -8
+     }
+    },
+    {
+     "seed": 116,
+     "seat": 0,
+     "rollout_deltas": {
+      "gold_elite": 242.0,
+      "sched_bot": -19.0,
+      "mybot": -40.0,
+      "silver_boss": -33.0
+     },
+     "rollout_mean": 37.5,
+     "actual_mean_delta": 168.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 246,
+      "race": 147,
+      "ringfix3": 189,
+      "taskplan": 151,
+      "yield": 108
+     }
+    },
+    {
+     "seed": 116,
+     "seat": 1,
+     "rollout_deltas": {
+      "gold_elite": 296.0,
+      "sched_bot": -41.0,
+      "mybot": -48.0,
+      "silver_boss": -30.0
+     },
+     "rollout_mean": 44.25,
+     "actual_mean_delta": 156.2,
+     "actual_opponent_deltas": {
+      "chopharvest": 225,
+      "race": 114,
+      "ringfix3": 217,
+      "taskplan": 130,
+      "yield": 95
+     }
+    }
+   ]
+  },
+  "unanimous-positive": {
+   "rule": "unanimous-positive",
+   "threshold": 0.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  }
+ },
+ "unanimous_threshold_curve_discovery_only": [
+  {
+   "rule": "unanimous-positive",
+   "threshold": 0.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  },
+  {
+   "rule": "unanimous-positive",
+   "threshold": 2.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  },
+  {
+   "rule": "unanimous-positive",
+   "threshold": 5.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  },
+  {
+   "rule": "unanimous-positive",
+   "threshold": 10.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  },
+  {
+   "rule": "unanimous-positive",
+   "threshold": 20.0,
+   "selected_cell_count": 0,
+   "selected_seed_count": 0,
+   "seed_clustered_summary": {
+    "n": 60,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 60,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "seat_cell_summary": {
+    "n": 120,
+    "mean": 0.0,
+    "median": 0.0,
+    "trimmed_5pct_mean": 0.0,
+    "standard_deviation": 0.0,
+    "standard_error": 0.0,
+    "ci95_normal": [
+     0.0,
+     0.0
+    ],
+    "worst_decile_mean": 0.0,
+    "wins": 0,
+    "ties": 120,
+    "losses": 0,
+    "minimum": 0.0,
+    "maximum": 0.0
+   },
+   "worst_opponent_mean": 0.0,
+   "by_opponent": {
+    "chopharvest": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "race": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "ringfix3": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "taskplan": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    },
+    "yield": {
+     "n": 60,
+     "mean": 0.0,
+     "median": 0.0,
+     "trimmed_5pct_mean": 0.0,
+     "standard_deviation": 0.0,
+     "standard_error": 0.0,
+     "ci95_normal": [
+      0.0,
+      0.0
+     ],
+     "worst_decile_mean": 0.0,
+     "wins": 0,
+     "ties": 60,
+     "losses": 0,
+     "minimum": 0.0,
+     "maximum": 0.0
+    }
+   },
+   "selected_cells": []
+  }
+ ],
+ "interpretation_limit": "The local models are a transfer diagnostic, not yet a byte-budgeted live ensemble. Thresholds beyond zero are post-hoc discovery on these reused maps."
+}

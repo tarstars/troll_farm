@@ -1,0 +1,809 @@
+{
+  "blocks": [
+    {
+      "artifacts": {
+        "arms": {
+          "bytes": 122576087,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-arms-9844000-9844015.tsv",
+          "rows": 21557,
+          "sha256": "68bcdae754cee715c801ec9bedbc5b238c4e243921e0d65d759b2fd5ba6888ff"
+        },
+        "baselines": {
+          "bytes": 54801,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-baselines-9844000-9844015.tsv",
+          "rows": 256,
+          "sha256": "87c57e8be8b0e060c359480916075262b731d0fc9f59e49fefeebb753eb70fca"
+        }
+      },
+      "block_id": 0,
+      "labels": {
+        "bytes": 1123781,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-labels.tsv",
+        "rows": 21557,
+        "sha256": "12274496cc449486c2126359923f1683591c70a3dec1edf5e74fa8ff64933761"
+      },
+      "maps": 16,
+      "mechanics": {
+        "descriptive_support_gate": true,
+        "details": {
+          "arms": 21557,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 15,
+          "maximum_paired_gain_error": 7.000000001866624e-08,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 5,
+          "roots": 1302,
+          "supported_tasks": 236,
+          "task_support_rate": 0.921875,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 30.500245336868197,
+            "b": 30.500245336868197
+          },
+          "unsupported_forced_control_tasks": 20
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844000,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.5046082949308756,
+          "act_now_roots": 657,
+          "arms": 21557,
+          "best_now_mean": 25.857910906298002,
+          "negative_arm_advantage_rate": 0.8412116713828455,
+          "negative_arm_advantages": 18134,
+          "positive_arm_advantage_rate": 0.14129980980655935,
+          "positive_arm_advantages": 3046,
+          "roots": 1302,
+          "target_maximum": 189,
+          "target_mean": -23.247251472839448,
+          "target_minimum": -269,
+          "target_standard_deviation": 27.466055371897767,
+          "wait_roots": 645,
+          "zero_arm_advantages": 377
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.93359375,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 58.5625,
+            "gold_adaptive": 55.03125,
+            "legend_balanced": 38.0,
+            "mybot": 30.21875,
+            "norx_native_three": 37.4375,
+            "resident": 28.71875,
+            "script_boss": 43.96875,
+            "silver_boss": 39.53125
+          },
+          "first_boundary_oracle_mean_gain": 35.61328125,
+          "intervention_rate": 0.9140625,
+          "later_boundary_increment": 5.8203125,
+          "mean_margin_gain": 41.43359375,
+          "mean_opponent_score_delta": -16.37890625,
+          "mean_own_score_gain": 25.0546875,
+          "mean_selected_boundary": 1.1111111111111112,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 22,
+            "1": 52,
+            "2": 31,
+            "3": 151
+          },
+          "strict_improvement_rate": 0.9140625,
+          "supported_tasks": 236,
+          "tasks": 256,
+          "worker_three_rate": 0.93359375,
+          "worst_family": 28.71875
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    },
+    {
+      "artifacts": {
+        "arms": {
+          "bytes": 134671139,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-arms-9844016-9844031.tsv",
+          "rows": 23679,
+          "sha256": "824e0610d5664293eb991e765d1f3045318e70d1fa65a617899b7b311a2ff8fa"
+        },
+        "baselines": {
+          "bytes": 54907,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-baselines-9844016-9844031.tsv",
+          "rows": 256,
+          "sha256": "9421bc0d4e38bf26e6f05d2aac427f7131dcbdaab29c01a27f9d9c299cf2fe46"
+        }
+      },
+      "block_id": 1,
+      "labels": {
+        "bytes": 1240951,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-labels.tsv",
+        "rows": 23679,
+        "sha256": "24214d2ac29343ad2a4e2dadde89f211417f8d42713780d16e39ed79e02c07e0"
+      },
+      "maps": 16,
+      "mechanics": {
+        "descriptive_support_gate": true,
+        "details": {
+          "arms": 23679,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 19,
+          "maximum_paired_gain_error": 1.1000000021965661e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 4,
+          "roots": 1461,
+          "supported_tasks": 233,
+          "task_support_rate": 0.91015625,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 21.20023427076107,
+            "b": 21.20023427076107
+          },
+          "unsupported_forced_control_tasks": 23
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844016,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.4791238877481177,
+          "act_now_roots": 700,
+          "arms": 23679,
+          "best_now_mean": 22.637919233401778,
+          "negative_arm_advantage_rate": 0.8672663541534693,
+          "negative_arm_advantages": 20536,
+          "positive_arm_advantage_rate": 0.11706575446598251,
+          "positive_arm_advantages": 2772,
+          "roots": 1461,
+          "target_maximum": 119,
+          "target_mean": -25.166434393344314,
+          "target_minimum": -258,
+          "target_standard_deviation": 26.94034079522607,
+          "wait_roots": 761,
+          "zero_arm_advantages": 371
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.921875,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 41.4375,
+            "gold_adaptive": 58.90625,
+            "legend_balanced": 38.75,
+            "mybot": 19.625,
+            "norx_native_three": 33.46875,
+            "resident": 26.6875,
+            "script_boss": 48.125,
+            "silver_boss": 30.5625
+          },
+          "first_boundary_oracle_mean_gain": 30.6796875,
+          "intervention_rate": 0.89453125,
+          "later_boundary_increment": 6.515625,
+          "mean_margin_gain": 37.1953125,
+          "mean_opponent_score_delta": -15.52734375,
+          "mean_own_score_gain": 21.66796875,
+          "mean_selected_boundary": 1.388646288209607,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 27,
+            "1": 41,
+            "2": 24,
+            "3": 164
+          },
+          "strict_improvement_rate": 0.89453125,
+          "supported_tasks": 233,
+          "tasks": 256,
+          "worker_three_rate": 0.921875,
+          "worst_family": 19.625
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    },
+    {
+      "artifacts": {
+        "arms": {
+          "bytes": 94159104,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-02-arms-9844032-9844047.tsv",
+          "rows": 16560,
+          "sha256": "8b6cf2f508b859b640ce3802c90021ac384b94bd34217499125c75bb3b864c4a"
+        },
+        "baselines": {
+          "bytes": 54690,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-02-baselines-9844032-9844047.tsv",
+          "rows": 256,
+          "sha256": "b2b0593433b6d49c0502e371fb5266b0f2ee491c84ed3b1c30a7380952b9a07d"
+        }
+      },
+      "block_id": 2,
+      "labels": {
+        "bytes": 862323,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-02-labels.tsv",
+        "rows": 16560,
+        "sha256": "e4cec6a9f447ba719c398866c9908f33237a0a30f6879fb31144922cddea7fbd"
+      },
+      "maps": 16,
+      "mechanics": {
+        "descriptive_support_gate": false,
+        "details": {
+          "arms": 16560,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 19,
+          "maximum_paired_gain_error": 1.1000000021965661e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 6,
+          "roots": 1015,
+          "supported_tasks": 217,
+          "task_support_rate": 0.84765625,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 25.917294466085412,
+            "b": 25.917294466085412
+          },
+          "unsupported_forced_control_tasks": 39
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844032,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.5270935960591133,
+          "act_now_roots": 535,
+          "arms": 16560,
+          "best_now_mean": 21.816748768472905,
+          "negative_arm_advantage_rate": 0.8315217391304348,
+          "negative_arm_advantages": 13770,
+          "positive_arm_advantage_rate": 0.14758454106280194,
+          "positive_arm_advantages": 2444,
+          "roots": 1015,
+          "target_maximum": 190,
+          "target_mean": -18.911413043478262,
+          "target_minimum": -479,
+          "target_standard_deviation": 25.594620607501792,
+          "wait_roots": 480,
+          "zero_arm_advantages": 346
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.8125,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 39.21875,
+            "gold_adaptive": 45.4375,
+            "legend_balanced": 27.6875,
+            "mybot": 25.21875,
+            "norx_native_three": 22.0625,
+            "resident": 22.125,
+            "script_boss": 33.21875,
+            "silver_boss": 32.09375
+          },
+          "first_boundary_oracle_mean_gain": 26.90625,
+          "intervention_rate": 0.828125,
+          "later_boundary_increment": 3.9765625,
+          "mean_margin_gain": 30.8828125,
+          "mean_opponent_score_delta": -10.76953125,
+          "mean_own_score_gain": 20.11328125,
+          "mean_selected_boundary": 0.9952830188679245,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 44,
+            "1": 42,
+            "2": 27,
+            "3": 143
+          },
+          "strict_improvement_rate": 0.828125,
+          "supported_tasks": 217,
+          "tasks": 256,
+          "worker_three_rate": 0.8125,
+          "worst_family": 22.0625
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    },
+    {
+      "artifacts": {
+        "arms": {
+          "bytes": 111705896,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-03-arms-9844048-9844063.tsv",
+          "rows": 19644,
+          "sha256": "2b19a4b0e47dc9e329c3fd384cc015de31e44c81729abad4cfef50e572125ae1"
+        },
+        "baselines": {
+          "bytes": 54797,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-03-baselines-9844048-9844063.tsv",
+          "rows": 256,
+          "sha256": "57073695d5d83bf036a5549c817059fa50dfe312a35208b0623a3e3069e9f02e"
+        }
+      },
+      "block_id": 3,
+      "labels": {
+        "bytes": 1022056,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-03-labels.tsv",
+        "rows": 19644,
+        "sha256": "babbe8f4e13ff75201ab03d5fb139cee787872649ae0ff43e57fb2fdd7f742c2"
+      },
+      "maps": 16,
+      "mechanics": {
+        "descriptive_support_gate": false,
+        "details": {
+          "arms": 19644,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 18,
+          "maximum_paired_gain_error": 1.0000000028043132e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 5,
+          "roots": 1202,
+          "supported_tasks": 224,
+          "task_support_rate": 0.875,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 31.218078076985773,
+            "b": 31.218078076985773
+          },
+          "unsupported_forced_control_tasks": 32
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844048,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.5174708818635607,
+          "act_now_roots": 622,
+          "arms": 19644,
+          "best_now_mean": 24.345257903494176,
+          "negative_arm_advantage_rate": 0.8342496436570963,
+          "negative_arm_advantages": 16388,
+          "positive_arm_advantage_rate": 0.1459478721238037,
+          "positive_arm_advantages": 2867,
+          "roots": 1202,
+          "target_maximum": 186,
+          "target_mean": -22.33470779881898,
+          "target_minimum": -287,
+          "target_standard_deviation": 28.480614512054654,
+          "wait_roots": 580,
+          "zero_arm_advantages": 389
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.90234375,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 63.5,
+            "gold_adaptive": 52.40625,
+            "legend_balanced": 31.6875,
+            "mybot": 23.25,
+            "norx_native_three": 43.40625,
+            "resident": 27.71875,
+            "script_boss": 37.1875,
+            "silver_boss": 38.1875
+          },
+          "first_boundary_oracle_mean_gain": 34.265625,
+          "intervention_rate": 0.85546875,
+          "later_boundary_increment": 5.40234375,
+          "mean_margin_gain": 39.66796875,
+          "mean_opponent_score_delta": -16.28515625,
+          "mean_own_score_gain": 23.3828125,
+          "mean_selected_boundary": 1.2100456621004567,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 37,
+            "1": 42,
+            "2": 29,
+            "3": 148
+          },
+          "strict_improvement_rate": 0.85546875,
+          "supported_tasks": 224,
+          "tasks": 256,
+          "worker_three_rate": 0.90234375,
+          "worst_family": 23.25
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    }
+  ],
+  "decision": "open_frozen_d134_leave_one_block_out_selection",
+  "full_pass": true,
+  "historical_support_audit": {
+    "maximum_panel_support_rate": 0.9296875,
+    "minimum_panel_support_rate": 0.859375,
+    "panel_count": 9,
+    "panels": [
+      {
+        "end_seed": 9843315,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv",
+        "sha256": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+        "start_seed": 9843300,
+        "support_rate": 0.91796875,
+        "supported_tasks": 235,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843665,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d116a-q6-validation-repair1-baselines-9843650-9843665.tsv",
+        "sha256": "babfcf5211d655803968a692ccc4f637fce714f9926649f4662976cd33a735a7",
+        "start_seed": 9843650,
+        "support_rate": 0.91015625,
+        "supported_tasks": 233,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843685,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-validation-baselines-9843670-9843685.tsv",
+        "sha256": "702b96089d2d8c0d916f13da4f34bac7b56f74889ff27d6484f204ba11e8b862",
+        "start_seed": 9843670,
+        "support_rate": 0.90234375,
+        "supported_tasks": 231,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843715,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv",
+        "sha256": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+        "start_seed": 9843700,
+        "support_rate": 0.859375,
+        "supported_tasks": 220,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843731,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv",
+        "sha256": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+        "start_seed": 9843716,
+        "support_rate": 0.890625,
+        "supported_tasks": 228,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843747,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv",
+        "sha256": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+        "start_seed": 9843732,
+        "support_rate": 0.921875,
+        "supported_tasks": 236,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843763,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv",
+        "sha256": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+        "start_seed": 9843748,
+        "support_rate": 0.8828125,
+        "supported_tasks": 226,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843779,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv",
+        "sha256": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6",
+        "start_seed": 9843764,
+        "support_rate": 0.89453125,
+        "supported_tasks": 229,
+        "tasks": 256
+      },
+      {
+        "end_seed": 9843795,
+        "maps": 16,
+        "path": "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv",
+        "sha256": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+        "start_seed": 9843780,
+        "support_rate": 0.9296875,
+        "supported_tasks": 238,
+        "tasks": 256
+      }
+    ],
+    "panels_below_90pct": 4,
+    "pooled_support_rate": 0.9010416666666666,
+    "supported_tasks": 2076,
+    "tasks": 2304
+  },
+  "lock": {
+    "manifest_sha256": "c326c398ce878030a4c548fc2a512c6b38dd25847399e416fc86d18f3779c8f6",
+    "mismatches": {},
+    "pass": true
+  },
+  "original_d133": {
+    "decision": "repair_d133_infrastructure_or_mechanics_only",
+    "path": "data/analysis/live-agent-6553250/d133a-yt-q6-independent-block-corpus-result.json",
+    "sha256": "3fa237c363b5b559428261df7dad49f78291238c94f2de14fcb837b2574893af"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d133b-q6-support-semantics-repair-protocol-2026-07-22.md",
+  "repair": {
+    "all_block_required_supported_tasks": 861,
+    "all_block_supported_tasks": 910,
+    "gates": {
+      "all_block_fit_supports_84pct_calibration": true,
+      "all_four_blocks_pass_exact_nonavailability_mechanics": true,
+      "at_least_4800_roots": true,
+      "at_least_80000_arms": true,
+      "d133_infrastructure_passed": true,
+      "every_three_block_fit_supports_84pct_calibration": true,
+      "exactly_1024_baselines": true
+    },
+    "pass": true,
+    "removed_gate": "supported_tasks_at_least_90pct",
+    "supported_tasks_by_block": [
+      236,
+      233,
+      217,
+      224
+    ],
+    "target_activity": 0.84,
+    "three_block_required_supported_tasks": 646,
+    "three_block_supported_tasks": {
+      "0": 674,
+      "1": 677,
+      "2": 693,
+      "3": 686
+    }
+  },
+  "schema": "troll-farm-d133b-q6-support-semantics-repair-v1",
+  "teacher": {
+    "backward_dp": {
+      "act_now_root_rate": 0.5048192771084338,
+      "act_now_roots": 2514,
+      "arms": 81440,
+      "best_now_mean": 23.724497991967873,
+      "negative_arm_advantage_rate": 0.8451375245579568,
+      "negative_arm_advantages": 68828,
+      "positive_arm_advantage_rate": 0.13665275049115913,
+      "positive_arm_advantages": 11129,
+      "roots": 4980,
+      "target_maximum": 190,
+      "target_mean": -22.703499508840864,
+      "target_minimum": -479,
+      "target_standard_deviation": 27.283080757348213,
+      "wait_roots": 2466,
+      "zero_arm_advantages": 1483
+    },
+    "oracle": {
+      "control_worker_three_rate": 0.892578125,
+      "crop_rate": 1.0,
+      "family_mean_margin_gain": {
+        "compact_gold": 50.6796875,
+        "gold_adaptive": 52.9453125,
+        "legend_balanced": 34.03125,
+        "mybot": 24.578125,
+        "norx_native_three": 34.09375,
+        "resident": 26.3125,
+        "script_boss": 40.625,
+        "silver_boss": 35.09375
+      },
+      "first_boundary_oracle_mean_gain": 31.8662109375,
+      "intervention_rate": 0.873046875,
+      "later_boundary_increment": 5.4287109375,
+      "mean_margin_gain": 37.294921875,
+      "mean_opponent_score_delta": -14.740234375,
+      "mean_own_score_gain": 22.5546875,
+      "mean_selected_boundary": 1.1789709172259508,
+      "positive_families": 8,
+      "selected_kind_counts": {
+        "0": 130,
+        "1": 177,
+        "2": 111,
+        "3": 606
+      },
+      "strict_improvement_rate": 0.873046875,
+      "supported_tasks": 910,
+      "tasks": 1024,
+      "worker_three_rate": 0.892578125,
+      "worst_family": 24.578125
+    },
+    "safety_gates": {
+      "oracle_crop_100pct": true,
+      "oracle_worker_three_within_5pp": true
+    },
+    "safety_pass": true,
+    "signal_gates": {
+      "act_now_roots_5_to_90pct": true,
+      "at_least_seven_positive_families": true,
+      "negative_arm_targets_at_least_40pct": true,
+      "oracle_mean_at_least_20": true,
+      "oracle_strict_at_least_75pct": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "positive_arm_targets_1_to_50pct": true,
+      "target_stddev_at_least_5": true,
+      "worst_family_at_least_8": true
+    },
+    "signal_pass": true
+  }
+}

@@ -1,0 +1,463 @@
+{
+ "schema": 1,
+ "scope": "research-only exact-engine Yamo/Orchard residual MOVE search on consumed discovery seeds; both seats and eight local opponents",
+ "scenarios": 80,
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "margin_delta": {
+  "n": 80,
+  "mean": 0.85,
+  "median": 0.0,
+  "minimum": -14.0,
+  "maximum": 34.0,
+  "standard_deviation": 7.584294231327116,
+  "standard_error": 0.8479498731303473,
+  "wins": 18,
+  "ties": 48,
+  "losses": 14
+ },
+ "score_delta": {
+  "n": 80,
+  "mean": 0.7,
+  "median": 0.0,
+  "minimum": -17.0,
+  "maximum": 12.0,
+  "standard_deviation": 4.69149513292708,
+  "standard_error": 0.5245251016667181,
+  "wins": 17,
+  "ties": 55,
+  "losses": 8
+ },
+ "searches": 10504,
+ "accepted": 48,
+ "failed_targets": 15,
+ "active_scenarios": {
+  "count": 39,
+  "margin_delta": {
+   "n": 39,
+   "mean": 1.7435897435897436,
+   "median": 0.0,
+   "minimum": -14.0,
+   "maximum": 34.0,
+   "standard_deviation": 10.862097182205723,
+   "standard_error": 1.7393275682380416,
+   "wins": 18,
+   "ties": 7,
+   "losses": 14
+  },
+  "score_delta": {
+   "n": 39,
+   "mean": 1.435897435897436,
+   "median": 0.0,
+   "minimum": -17.0,
+   "maximum": 12.0,
+   "standard_deviation": 6.683817345274574,
+   "standard_error": 1.0702673318692362,
+   "wins": 17,
+   "ties": 14,
+   "losses": 8
+  }
+ },
+ "nonnegative_opponents": 7,
+ "worst_opponent_margin_delta": -1.2,
+ "by_opponent": {
+  "compact_gold": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.9,
+    "median": 0.0,
+    "minimum": -13.0,
+    "maximum": 34.0,
+    "standard_deviation": 13.287002839032,
+    "standard_error": 4.201719224846473,
+    "wins": 2,
+    "ties": 5,
+    "losses": 3
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": -0.7,
+    "median": 0.0,
+    "minimum": -17.0,
+    "maximum": 8.0,
+    "standard_deviation": 6.254775952999613,
+    "standard_error": 1.977933826552906,
+    "wins": 2,
+    "ties": 7,
+    "losses": 1
+   },
+   "accepted": 8
+  },
+  "gold_adaptive": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 3.7,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 5.735852159879995,
+    "standard_error": 1.8138357147217055,
+    "wins": 4,
+    "ties": 6,
+    "losses": 0
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 2.9,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 4.771442828607157,
+    "standard_error": 1.508862706367503,
+    "wins": 3,
+    "ties": 7,
+    "losses": 0
+   },
+   "accepted": 9
+  },
+  "gold_elite": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.9,
+    "median": 0.0,
+    "minimum": -13.0,
+    "maximum": 34.0,
+    "standard_deviation": 13.287002839032,
+    "standard_error": 4.201719224846473,
+    "wins": 2,
+    "ties": 5,
+    "losses": 3
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": -0.7,
+    "median": 0.0,
+    "minimum": -17.0,
+    "maximum": 8.0,
+    "standard_deviation": 6.254775952999613,
+    "standard_error": 1.977933826552906,
+    "wins": 2,
+    "ties": 7,
+    "losses": 1
+   },
+   "accepted": 8
+  },
+  "mybot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.3,
+    "median": 0.0,
+    "minimum": -14.0,
+    "maximum": 10.0,
+    "standard_deviation": 6.750308634919345,
+    "standard_error": 2.134635019544715,
+    "wins": 3,
+    "ties": 5,
+    "losses": 2
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.0,
+    "median": 0.0,
+    "minimum": -3.0,
+    "maximum": 9.0,
+    "standard_deviation": 3.559026084010437,
+    "standard_error": 1.1254628677422753,
+    "wins": 3,
+    "ties": 5,
+    "losses": 2
+   },
+   "accepted": 5
+  },
+  "printer_bot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": -1.2,
+    "median": 0.0,
+    "minimum": -12.0,
+    "maximum": 6.0,
+    "standard_deviation": 4.9396356140913875,
+    "standard_error": 1.5620499351813308,
+    "wins": 2,
+    "ties": 5,
+    "losses": 3
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": -1.4,
+    "median": 0.0,
+    "minimum": -8.0,
+    "maximum": 6.0,
+    "standard_deviation": 4.221637386396684,
+    "standard_error": 1.3349989596333858,
+    "wins": 1,
+    "ties": 6,
+    "losses": 3
+   },
+   "accepted": 7
+  },
+  "sched_bot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.1,
+    "median": 0.0,
+    "minimum": -4.0,
+    "maximum": 8.0,
+    "standard_deviation": 3.142893217686178,
+    "standard_error": 0.9938701010583715,
+    "wins": 1,
+    "ties": 7,
+    "losses": 2
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 0.5,
+    "median": 0.0,
+    "minimum": -3.0,
+    "maximum": 8.0,
+    "standard_deviation": 2.798809270624444,
+    "standard_error": 0.8850612031567835,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1
+   },
+   "accepted": 5
+  },
+  "script_boss": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 1.7,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 3.8311588035185618,
+    "standard_error": 1.2115187896924164,
+    "wins": 3,
+    "ties": 7,
+    "losses": 0
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.9,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 3.900142447541001,
+    "standard_error": 1.2333333333333332,
+    "wins": 3,
+    "ties": 7,
+    "losses": 0
+   },
+   "accepted": 4
+  },
+  "silver_boss": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.4,
+    "median": 0.0,
+    "minimum": -4.0,
+    "maximum": 8.0,
+    "standard_deviation": 2.9514591494904874,
+    "standard_error": 0.9333333333333332,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 2.1,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 4.483302354291979,
+    "standard_error": 1.4177446878757824,
+    "wins": 2,
+    "ties": 8,
+    "losses": 0
+   },
+   "accepted": 2
+  }
+ },
+ "timing": {
+  "samples": 22541,
+  "mean_us": 36989.8983186194,
+  "median_us": 1111,
+  "p95_us": 129663,
+  "p99_us": 162989,
+  "maximum_us": 225234,
+  "over_50ms": 8261
+ },
+ "accepted_event_audit": {
+  "events": 48,
+  "target_classes": {
+   "SHACK": {
+    "events": 21,
+    "median_turn": 129,
+    "mean_predicted_robust_delta": 6.464285714285714,
+    "mean_scenario_margin_delta": 6.428571428571429,
+    "mean_scenario_score_delta": 3.619047619047619,
+    "singleton_scenarios": 16,
+    "singleton_margin_delta": {
+     "n": 16,
+     "mean": 2.1875,
+     "median": 1.5,
+     "minimum": -12.0,
+     "maximum": 12.0,
+     "standard_deviation": 7.259189578274791,
+     "standard_error": 1.8147973945686977,
+     "wins": 9,
+     "ties": 3,
+     "losses": 4
+    },
+    "singleton_score_delta": {
+     "n": 16,
+     "mean": 3.25,
+     "median": 1.5,
+     "minimum": -8.0,
+     "maximum": 12.0,
+     "standard_deviation": 5.7561561248226525,
+     "standard_error": 1.4390390312056631,
+     "wins": 8,
+     "ties": 6,
+     "losses": 2
+    }
+   },
+   "TREE_APPLE": {
+    "events": 5,
+    "median_turn": 136,
+    "mean_predicted_robust_delta": 6.0,
+    "mean_scenario_margin_delta": -4.2,
+    "mean_scenario_score_delta": -2.2,
+    "singleton_scenarios": 2,
+    "singleton_margin_delta": {
+     "n": 2,
+     "mean": -10.5,
+     "median": -10.5,
+     "minimum": -14.0,
+     "maximum": -7.0,
+     "standard_deviation": 4.949747468305833,
+     "standard_error": 3.4999999999999996,
+     "wins": 0,
+     "ties": 0,
+     "losses": 2
+    },
+    "singleton_score_delta": {
+     "n": 2,
+     "mean": -5.5,
+     "median": -5.5,
+     "minimum": -8.0,
+     "maximum": -3.0,
+     "standard_deviation": 3.5355339059327378,
+     "standard_error": 2.5,
+     "wins": 0,
+     "ties": 0,
+     "losses": 2
+    }
+   },
+   "TREE_BANANA": {
+    "events": 14,
+    "median_turn": 126.5,
+    "mean_predicted_robust_delta": 6.089285714285714,
+    "mean_scenario_margin_delta": 4.214285714285714,
+    "mean_scenario_score_delta": 0.2857142857142857,
+    "singleton_scenarios": 8,
+    "singleton_margin_delta": {
+     "n": 8,
+     "mean": -6.625,
+     "median": -8.0,
+     "minimum": -13.0,
+     "maximum": 4.0,
+     "standard_deviation": 6.7175144212722016,
+     "standard_error": 2.375,
+     "wins": 1,
+     "ties": 1,
+     "losses": 6
+    },
+    "singleton_score_delta": {
+     "n": 8,
+     "mean": -4.0,
+     "median": 0.0,
+     "minimum": -17.0,
+     "maximum": 5.0,
+     "standard_deviation": 8.315218406202998,
+     "standard_error": 2.9398736610366676,
+     "wins": 1,
+     "ties": 4,
+     "losses": 3
+    }
+   },
+   "TREE_PLUM": {
+    "events": 8,
+    "median_turn": 81.0,
+    "mean_predicted_robust_delta": 6.0,
+    "mean_scenario_margin_delta": 0.875,
+    "mean_scenario_score_delta": 2.875,
+    "singleton_scenarios": 5,
+    "singleton_margin_delta": {
+     "n": 5,
+     "mean": 1.4,
+     "median": 1.0,
+     "minimum": -5.0,
+     "maximum": 9.0,
+     "standard_deviation": 6.107372593840988,
+     "standard_error": 2.7313000567495322,
+     "wins": 3,
+     "ties": 0,
+     "losses": 2
+    },
+    "singleton_score_delta": {
+     "n": 5,
+     "mean": 4.6,
+     "median": 6.0,
+     "minimum": -3.0,
+     "maximum": 9.0,
+     "standard_deviation": 5.128352561983234,
+     "standard_error": 2.2934689882359427,
+     "wins": 4,
+     "ties": 0,
+     "losses": 1
+    }
+   }
+  }
+ },
+ "research_gate": {
+  "requirements": {
+   "accepted_deviation": true,
+   "mean_margin_at_least_2": false,
+   "mean_score_at_least_2": false,
+   "five_nonnegative_opponents": true,
+   "worst_opponent_at_least_minus_5": true,
+   "p95_at_most_45ms": false,
+   "no_decision_over_50ms": false
+  },
+  "passed": false
+ },
+ "decision": {
+  "direct_online_profile": false,
+  "own_state_distillation": false,
+  "build_submission_candidate": false
+ }
+}

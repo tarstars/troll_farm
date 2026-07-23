@@ -1,0 +1,16 @@
+{
+  "schema": "troll-farm-d149b-state-conditioned-joint-crossfit-lock-v1",
+  "sha256": {
+    "cgauto/build_d149a_joint_two_stage_dataset.py": "8183157e51e3d86417499a1cbcaa32d94821d2459b8a5bf0bdc2cef175e8fa27",
+    "cgauto/run_d149a_joint_two_stage_selection.py": "cf28c4ce298cf483d2786364537ef8348108fd75222a76e89373b2abb8e46e65",
+    "cgauto/run_d149b_state_conditioned_joint_selection.py": "1df189c526b576d332892216a63de4f6e92b52150e2deadb0de573f1aef2e5ac",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d135a_winner_conditioned_action_gate_q6.py": "eb9469d4141c2ec991adf1e07f02254b2e6c5c8546dffbcad5371cfefd144d91",
+    "cgauto/train_d149a_joint_two_stage_policy.py": "f24367ed6a6a7c7cd23f17fe0573224d465e10cacbf2361678cbf1c07e282277",
+    "cgauto/train_d149b_state_conditioned_joint_policy.py": "ddbe2845776351591c6feafe1d02720bf2053c0b25e1c43c9dee22a7d8c5987c",
+    "data/analysis/live-agent-6553250/d148a-joint-trajectory-targets-9844136-9844199.tsv": "525e53b9a43e84eafed81592254ed84a5853586137ed3335400a5d83dc642dad",
+    "data/analysis/live-agent-6553250/d149a-joint-two-stage-crossfit-result.json": "2fecb8f45d4ef45d2ee57172c686fe211da45fe34e964fffc14fdcd042b4abb2",
+    "data/analysis/live-agent-6553250/d149b-state-conditioned-joint-crossfit-protocol-2026-07-23.md": "4df1ffa4c0adf8f2baa0319250e94db2c6d182a11723c66a2bd80fbd9d633f9b",
+    "data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/d148a-candidates-9844136-9844199.tsv": "0ea7aef2396a83e66c06b747e51aad136a9a05aa4ebc3f96d502a69c727097a5"
+  }
+}

@@ -1,0 +1,4623 @@
+{
+ "schema": 1,
+ "scope": "exact decoded historical replay; observational terminal fixture",
+ "game_id": 895923622,
+ "live_agent": 6553250,
+ "live_seat": 0,
+ "won": false,
+ "margin": -16.0,
+ "scores": [
+  196.0,
+  212.0
+ ],
+ "opponent": "DaNinja",
+ "n_turns": 268,
+ "initial_trees": 12,
+ "focus_kind": [
+  "LEMON",
+  "LEMON"
+ ],
+ "map": {
+  "width": 22,
+  "height": 11,
+  "rows": [
+   "..~~...#0.......~...##",
+   "..~~...........~~~~...",
+   "..............~~~.....",
+   "...........#...~~~#...",
+   "....+....#....~~.~.#..",
+   "......................",
+   "..#.~.~~....#....+....",
+   "...#~~~...#...........",
+   ".....~~~..............",
+   "...~~~~...........~~..",
+   "##...~.......1#...~~.."
+  ]
+ },
+ "last_tree_transitions": [
+  {
+   "resolved_turn": 267,
+   "scores": [
+    192,
+    212
+   ],
+   "margin_player_0": -20,
+   "projected_margin_player_0": -20,
+   "plants": 0,
+   "ripe_plants": 0,
+   "implied_grace": 5,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 192,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 48,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 196,
+     "value_within_implied_grace": 4,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 216,
+     "value_within_implied_grace": 0,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        11,
+        2
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 6,
+       "within_implied_grace": false
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "WAIT",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 2,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 1,
+       "bank_eta": 2,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 2,
+       "bank_eta": 10,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      48
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 11,
+      "y": 2,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     }
+    ],
+    "plants": []
+   },
+   "transition": "last_tree_removed"
+  }
+ ],
+ "preseed_opportunities": [
+  {
+   "turn": 235,
+   "unit": 0,
+   "plants": 2,
+   "scores": [
+    170,
+    188
+   ],
+   "live_margin": -18,
+   "banked_fruit": [
+    0,
+    0,
+    6,
+    0
+   ],
+   "selected_command": "PICK 0 APPLE",
+   "would_change_selection": false
+  },
+  {
+   "turn": 241,
+   "unit": 2,
+   "plants": 2,
+   "scores": [
+    177,
+    196
+   ],
+   "live_margin": -19,
+   "banked_fruit": [
+    0,
+    0,
+    5,
+    0
+   ],
+   "selected_command": "PICK 2 APPLE",
+   "would_change_selection": false
+  },
+  {
+   "turn": 248,
+   "unit": 2,
+   "plants": 2,
+   "scores": [
+    180,
+    204
+   ],
+   "live_margin": -24,
+   "banked_fruit": [
+    0,
+    0,
+    4,
+    0
+   ],
+   "selected_command": "PICK 2 APPLE",
+   "would_change_selection": false
+  },
+  {
+   "turn": 252,
+   "unit": 0,
+   "plants": 2,
+   "scores": [
+    183,
+    204
+   ],
+   "live_margin": -21,
+   "banked_fruit": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "selected_command": "PICK 0 APPLE",
+   "would_change_selection": false
+  },
+  {
+   "turn": 255,
+   "unit": 2,
+   "plants": 1,
+   "scores": [
+    186,
+    204
+   ],
+   "live_margin": -18,
+   "banked_fruit": [
+    0,
+    0,
+    2,
+    0
+   ],
+   "selected_command": "PICK 2 APPLE",
+   "would_change_selection": false
+  },
+  {
+   "turn": 262,
+   "unit": 2,
+   "plants": 1,
+   "scores": [
+    189,
+    212
+   ],
+   "live_margin": -23,
+   "banked_fruit": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "selected_command": "PICK 2 APPLE",
+   "would_change_selection": false
+  }
+ ],
+ "terminal_history": [
+  {
+   "resolved_turn": 253,
+   "scores": [
+    182,
+    204
+   ],
+   "margin_player_0": -22,
+   "projected_margin_player_0": -26,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 182,
+     "banked_fruit": 2,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 2,
+      "BANANA": 0
+     },
+     "banked_wood": 45,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 186,
+     "value_within_implied_grace": 4,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 204,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 49,
+     "carried_value": 8,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 8,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        13,
+        8
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+       ],
+       "value": 8,
+       "cashout_eta": 2,
+       "within_implied_grace": true
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "PLANT 0 APPLE",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 13 8"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 2,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 1,
+       "bank_eta": 2,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 15,
+       "bank_eta": 29,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      2,
+      0,
+      0,
+      45
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      49
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 13,
+      "y": 8,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 11,
+      "fruits": 0,
+      "cooldown": 9
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 254,
+   "scores": [
+    186,
+    204
+   ],
+   "margin_player_0": -18,
+   "projected_margin_player_0": -26,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 186,
+     "banked_fruit": 2,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 2,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 186,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 204,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 49,
+     "carried_value": 8,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 8,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        12,
+        9
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+       ],
+       "value": 8,
+       "cashout_eta": 2,
+       "within_implied_grace": true
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "DROP 2"
+    ],
+    [
+     "MOVE 3 12 9"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 11,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 11,
+       "bank_eta": 12,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 24,
+       "bank_eta": 38,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      2,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      49
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 12,
+      "y": 9,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 10,
+      "fruits": 0,
+      "cooldown": 8
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 255,
+   "scores": [
+    185,
+    204
+   ],
+   "margin_player_0": -19,
+   "projected_margin_player_0": -26,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 1,
+     "carried_seed": 1,
+     "projected_score": 186,
+     "value_within_implied_grace": 1,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       "value": 1,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 204,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 49,
+     "carried_value": 8,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 8,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        12,
+        9
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+       ],
+       "value": 8,
+       "cashout_eta": 2,
+       "within_implied_grace": true
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "PICK 2 APPLE"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 10,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 10,
+       "bank_eta": 11,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 23,
+       "bank_eta": 37,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      49
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 12,
+      "y": 9,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 9,
+      "fruits": 0,
+      "cooldown": 7
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 256,
+   "scores": [
+    185,
+    204
+   ],
+   "margin_player_0": -19,
+   "projected_margin_player_0": -27,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 185,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 204,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 49,
+     "carried_value": 8,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 8,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        12,
+        10
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+       ],
+       "value": 8,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "PLANT 2 APPLE"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 9,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 9,
+       "bank_eta": 10,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 22,
+       "bank_eta": 36,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      49
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 12,
+      "y": 10,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 8,
+      "fruits": 0,
+      "cooldown": 6
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 11,
+      "fruits": 0,
+      "cooldown": 9
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 257,
+   "scores": [
+    185,
+    212
+   ],
+   "margin_player_0": -27,
+   "projected_margin_player_0": -27,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 185,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "DROP 3"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 8,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 8,
+       "bank_eta": 9,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 21,
+       "bank_eta": 35,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 11,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 4,
+       "bank_eta": 5,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 1,
+       "player": 1,
+       "arrival_eta": 13,
+       "fell_eta": 24,
+       "bank_eta": 38,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 12,
+      "y": 10,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 7,
+      "fruits": 0,
+      "cooldown": 5
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 8,
+      "fruits": 0,
+      "cooldown": 8
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 258,
+   "scores": [
+    185,
+    212
+   ],
+   "margin_player_0": -27,
+   "projected_margin_player_0": -27,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 185,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 7,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 7,
+       "bank_eta": 8,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 7,
+       "fell_eta": 11,
+       "bank_eta": 19,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 8,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 7,
+       "fell_eta": 11,
+       "bank_eta": 19,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 7,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 7,
+       "fell_eta": 11,
+       "bank_eta": 19,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 4,
+       "bank_eta": 5,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 10,
+      "y": 10,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 6,
+      "fruits": 0,
+      "cooldown": 4
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 5,
+      "fruits": 0,
+      "cooldown": 7
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 259,
+   "scores": [
+    185,
+    212
+   ],
+   "margin_player_0": -27,
+   "projected_margin_player_0": -27,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 185,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 6,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 6,
+       "bank_eta": 7,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 6,
+       "fell_eta": 9,
+       "bank_eta": 17,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 5,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 2,
+       "bank_eta": 3,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 7,
+       "fell_eta": 10,
+       "bank_eta": 18,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 6,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 6,
+       "fell_eta": 9,
+       "bank_eta": 17,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 10,
+      "y": 8,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 5,
+      "fruits": 0,
+      "cooldown": 3
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 2,
+      "fruits": 0,
+      "cooldown": 6
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 260,
+   "scores": [
+    185,
+    212
+   ],
+   "margin_player_0": -27,
+   "projected_margin_player_0": -23,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 185,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 46,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 189,
+     "value_within_implied_grace": 4,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 9 0"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 5,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 5,
+       "bank_eta": 6,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 5,
+       "fell_eta": 8,
+       "bank_eta": 16,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 2,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 1,
+       "bank_eta": 2,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 6,
+       "fell_eta": 7,
+       "bank_eta": 15,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 9 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 2,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 6,
+       "fell_eta": 7,
+       "bank_eta": 15,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 1,
+       "bank_eta": 2,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 9,
+      "y": 7,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 4,
+      "fruits": 0,
+      "cooldown": 2
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 261,
+   "scores": [
+    189,
+    212
+   ],
+   "margin_player_0": -23,
+   "projected_margin_player_0": -23,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 189,
+     "banked_fruit": 1,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 1,
+      "BANANA": 0
+     },
+     "banked_wood": 47,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 189,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "DROP 2"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 4,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 4,
+       "bank_eta": 5,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 4,
+       "fell_eta": 6,
+       "bank_eta": 14,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 4,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 4,
+       "fell_eta": 6,
+       "bank_eta": 14,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      1,
+      0,
+      0,
+      47
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 9,
+      "y": 5,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 1,
+      "health": 3,
+      "fruits": 0,
+      "cooldown": 1
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 262,
+   "scores": [
+    188,
+    212
+   ],
+   "margin_player_0": -24,
+   "projected_margin_player_0": -23,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 188,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 47,
+     "carried_value": 1,
+     "carried_seed": 1,
+     "projected_score": 189,
+     "value_within_implied_grace": 1,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       "value": 1,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "PICK 2 APPLE"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 3,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 3,
+       "fell_eta": 5,
+       "bank_eta": 13,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 1,
+       "health": 3,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 3,
+       "fell_eta": 5,
+       "bank_eta": 13,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 2,
+       "bank_eta": 3,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      47
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 8,
+      "y": 4,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 2,
+      "health": 5,
+      "fruits": 0,
+      "cooldown": 9
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 263,
+   "scores": [
+    188,
+    212
+   ],
+   "margin_player_0": -24,
+   "projected_margin_player_0": -24,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 7,
+   "stuck": [
+    true,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 188,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 47,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 188,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "PLANT 2 APPLE"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 5,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 5,
+       "bank_eta": 6,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 2,
+       "fell_eta": 5,
+       "bank_eta": 13,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 5,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 2,
+       "fell_eta": 5,
+       "bank_eta": 13,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      47
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 8,
+      "y": 2,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 2,
+      "health": 4,
+      "fruits": 0,
+      "cooldown": 8
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 11,
+      "fruits": 0,
+      "cooldown": 9
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 264,
+   "scores": [
+    188,
+    212
+   ],
+   "margin_player_0": -24,
+   "projected_margin_player_0": -24,
+   "plants": 2,
+   "ripe_plants": 0,
+   "implied_grace": 13,
+   "stuck": [
+    true,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 188,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 47,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 188,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 212,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 8 1"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 4,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 4,
+       "bank_eta": 5,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 11,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 11,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 4,
+       "bank_eta": 5,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 2,
+       "fell_eta": 8,
+       "bank_eta": 16,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "MOVE 3 8 1",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 4,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 11,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      47
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 8,
+      "y": 1,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 8,
+      "y": 1,
+      "size": 2,
+      "health": 3,
+      "fruits": 0,
+      "cooldown": 7
+     },
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 8,
+      "fruits": 0,
+      "cooldown": 8
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 265,
+   "scores": [
+    188,
+    212
+   ],
+   "margin_player_0": -24,
+   "projected_margin_player_0": -24,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 6,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 188,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 47,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 192,
+     "value_within_implied_grace": 4,
+     "carriers": [
+      {
+       "unit": 0,
+       "pos": [
+        8,
+        1
+       ],
+       "ms": 1,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 216,
+     "value_within_implied_grace": 0,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        8,
+        1
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 8,
+       "within_implied_grace": false
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "CHOP 0",
+     "CHOP 2"
+    ],
+    [
+     "CHOP 3"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 0",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 3,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 0,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 0,
+       "fell_eta": 2,
+       "bank_eta": 10,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_beats_selected_fell": true,
+      "opponent_beats_selected_bank": false
+     },
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 8,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 3,
+       "bank_eta": 4,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 5,
+       "bank_eta": 13,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    [
+     {
+      "command": "CHOP 3",
+      "tree": {
+       "type": "APPLE",
+       "x": 8,
+       "y": 1,
+       "size": 2,
+       "health": 3,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 0,
+       "fell_eta": 2,
+       "bank_eta": 10,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_fastest": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 1,
+       "fell_eta": 2,
+       "bank_eta": 3,
+       "wood": 2,
+       "value": 8
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": true
+     }
+    ]
+   ],
+   "plants_before": 2,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      47
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 8,
+      "y": 1,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 5,
+      "fruits": 0,
+      "cooldown": 7
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 266,
+   "scores": [
+    192,
+    212
+   ],
+   "margin_player_0": -20,
+   "projected_margin_player_0": -24,
+   "plants": 1,
+   "ripe_plants": 0,
+   "implied_grace": 6,
+   "stuck": [
+    true,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 192,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 48,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 192,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 216,
+     "value_within_implied_grace": 0,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        10,
+        1
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 7,
+       "within_implied_grace": false
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "DROP 0",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 5,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 2,
+       "bank_eta": 3,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 4,
+       "bank_eta": 12,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      48
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 10,
+      "y": 1,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     }
+    ],
+    "plants": [
+     {
+      "type": "APPLE",
+      "x": 9,
+      "y": 0,
+      "size": 1,
+      "health": 2,
+      "fruits": 0,
+      "cooldown": 6
+     }
+    ]
+   }
+  },
+  {
+   "resolved_turn": 267,
+   "scores": [
+    192,
+    212
+   ],
+   "margin_player_0": -20,
+   "projected_margin_player_0": -20,
+   "plants": 0,
+   "ripe_plants": 0,
+   "implied_grace": 5,
+   "stuck": [
+    false,
+    false
+   ],
+   "stall_reason": null,
+   "players": [
+    {
+     "score": 192,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 48,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 196,
+     "value_within_implied_grace": 4,
+     "carriers": [
+      {
+       "unit": 2,
+       "pos": [
+        9,
+        0
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 1,
+       "within_implied_grace": true
+      }
+     ]
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 216,
+     "value_within_implied_grace": 0,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        11,
+        2
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 6,
+       "within_implied_grace": false
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "WAIT",
+     "CHOP 2"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [
+     {
+      "command": "CHOP 2",
+      "tree": {
+       "type": "APPLE",
+       "x": 9,
+       "y": 0,
+       "size": 1,
+       "health": 2,
+       "fruits": 0
+      },
+      "focus_kind": "LEMON",
+      "focus_gate_active": false,
+      "opponent_units": 2,
+      "selected": {
+       "unit": 2,
+       "player": 0,
+       "arrival_eta": 0,
+       "fell_eta": 1,
+       "bank_eta": 2,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_fastest": {
+       "unit": 3,
+       "player": 1,
+       "arrival_eta": 1,
+       "fell_eta": 2,
+       "bank_eta": 10,
+       "wood": 1,
+       "value": 4
+      },
+      "opponent_beats_selected_fell": false,
+      "opponent_beats_selected_bank": false
+     }
+    ],
+    []
+   ],
+   "plants_before": 1,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      48
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 11,
+      "y": 2,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     }
+    ],
+    "plants": []
+   }
+  },
+  {
+   "resolved_turn": 268,
+   "scores": [
+    196,
+    212
+   ],
+   "margin_player_0": -16,
+   "projected_margin_player_0": -20,
+   "plants": 0,
+   "ripe_plants": 0,
+   "implied_grace": 4,
+   "stuck": [
+    true,
+    false
+   ],
+   "stall_reason": "mercy_player_0",
+   "players": [
+    {
+     "score": 196,
+     "banked_fruit": 0,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 0,
+      "APPLE": 0,
+      "BANANA": 0
+     },
+     "banked_wood": 49,
+     "carried_value": 0,
+     "carried_seed": 0,
+     "projected_score": 196,
+     "value_within_implied_grace": 0,
+     "carriers": []
+    },
+    {
+     "score": 212,
+     "banked_fruit": 8,
+     "banked_fruit_by_kind": {
+      "PLUM": 0,
+      "LEMON": 2,
+      "APPLE": 6,
+      "BANANA": 0
+     },
+     "banked_wood": 51,
+     "carried_value": 4,
+     "carried_seed": 0,
+     "projected_score": 216,
+     "value_within_implied_grace": 0,
+     "carriers": [
+      {
+       "unit": 3,
+       "pos": [
+        13,
+        2
+       ],
+       "ms": 2,
+       "carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ],
+       "value": 4,
+       "cashout_eta": 5,
+       "within_implied_grace": false
+      }
+     ]
+    }
+   ],
+   "commands": [
+    [
+     "WAIT",
+     "DROP 2"
+    ],
+    [
+     "MOVE 3 13 10"
+    ]
+   ],
+   "selected_tree_races": [
+    [],
+    []
+   ],
+   "plants_before": 0,
+   "state": {
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      49
+     ],
+     [
+      0,
+      2,
+      6,
+      0,
+      5,
+      51
+     ]
+    ],
+    "units": [
+     {
+      "id": 0,
+      "player": 0,
+      "x": 8,
+      "y": 1,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 1,
+      "player": 1,
+      "x": 13,
+      "y": 9,
+      "ms": 1,
+      "cc": 1,
+      "hp": 1,
+      "chop": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 2,
+      "player": 0,
+      "x": 9,
+      "y": 0,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 3,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": 3,
+      "player": 1,
+      "x": 13,
+      "y": 2,
+      "ms": 2,
+      "cc": 2,
+      "hp": 0,
+      "chop": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     }
+    ],
+    "plants": []
+   }
+  }
+ ],
+ "final": {
+  "resolved_turn": 268,
+  "scores": [
+   196,
+   212
+  ],
+  "margin_player_0": -16,
+  "projected_margin_player_0": -20,
+  "plants": 0,
+  "ripe_plants": 0,
+  "implied_grace": 4,
+  "stuck": [
+   true,
+   false
+  ],
+  "stall_reason": "mercy_player_0",
+  "players": [
+   {
+    "score": 196,
+    "banked_fruit": 0,
+    "banked_fruit_by_kind": {
+     "PLUM": 0,
+     "LEMON": 0,
+     "APPLE": 0,
+     "BANANA": 0
+    },
+    "banked_wood": 49,
+    "carried_value": 0,
+    "carried_seed": 0,
+    "projected_score": 196,
+    "value_within_implied_grace": 0,
+    "carriers": []
+   },
+   {
+    "score": 212,
+    "banked_fruit": 8,
+    "banked_fruit_by_kind": {
+     "PLUM": 0,
+     "LEMON": 2,
+     "APPLE": 6,
+     "BANANA": 0
+    },
+    "banked_wood": 51,
+    "carried_value": 4,
+    "carried_seed": 0,
+    "projected_score": 216,
+    "value_within_implied_grace": 0,
+    "carriers": [
+     {
+      "unit": 3,
+      "pos": [
+       13,
+       2
+      ],
+      "ms": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "value": 4,
+      "cashout_eta": 5,
+      "within_implied_grace": false
+     }
+    ]
+   }
+  ],
+  "commands": [
+   [
+    "WAIT",
+    "DROP 2"
+   ],
+   [
+    "MOVE 3 13 10"
+   ]
+  ],
+  "selected_tree_races": [
+   [],
+   []
+  ],
+  "plants_before": 0,
+  "state": {
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     49
+    ],
+    [
+     0,
+     2,
+     6,
+     0,
+     5,
+     51
+    ]
+   ],
+   "units": [
+    {
+     "id": 0,
+     "player": 0,
+     "x": 8,
+     "y": 1,
+     "ms": 1,
+     "cc": 1,
+     "hp": 1,
+     "chop": 1,
+     "carry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "id": 1,
+     "player": 1,
+     "x": 13,
+     "y": 9,
+     "ms": 1,
+     "cc": 1,
+     "hp": 1,
+     "chop": 1,
+     "carry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "id": 2,
+     "player": 0,
+     "x": 9,
+     "y": 0,
+     "ms": 2,
+     "cc": 2,
+     "hp": 0,
+     "chop": 3,
+     "carry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "id": 3,
+     "player": 1,
+     "x": 13,
+     "y": 2,
+     "ms": 2,
+     "cc": 2,
+     "hp": 0,
+     "chop": 2,
+     "carry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+     ]
+    }
+   ],
+   "plants": []
+  }
+ },
+ "validation": {
+  "unknown_diff_updates": 0,
+  "decoded_turns": 268,
+  "processed_turns": 268,
+  "trajectory_turns": 268,
+  "final_inventory_matches": true,
+  "final_scores_match": true,
+  "predicted_end_turns": [
+   268
+  ],
+  "early_end_matches": true,
+  "no_premature_end": true
+ }
+}

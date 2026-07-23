@@ -1,0 +1,15 @@
+{
+  "schema": "troll-farm-d136a-d135-all-pair-transfer-audit-lock-v1",
+  "frozen_at": "2026-07-22-after-d135-veto-before-additional-full-pair-fits",
+  "isolated_change": "score every already-frozen D135 pair retrospectively without qualification authority",
+  "sha256": {
+    "cgauto/analyze_d136a_d135_all_pair_transfer.py": "9973ae305e9c3dbf08ea6985e4525ee995fdb85cbe4d82c563b87a214222e1a1",
+    "tests/test_analyze_d136a_d135_all_pair_transfer.py": "5f5b82afb8486e8996e6834328719c5aa9a13a4bc1b945ccba7c64059e562efb",
+    "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-protocol-2026-07-22.md": "b7cc2115f62419cc5b2958b504ca82e65fc871b1241fe5d05ca93f68db2b6a5d",
+    "cgauto/train_d135a_winner_conditioned_action_gate_q6.py": "eb9469d4141c2ec991adf1e07f02254b2e6c5c8546dffbcad5371cfefd144d91",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-lock.json": "6647730a52c5f111e66b8db533a1c4982fce13bc807fcdc50f4568493d5c6f00",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-selection-a.json": "55d9f81d6870665b16e759f5f51f1df0ab5869493efc74134c974c52ed5954ec",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-selection-b.json": "55d9f81d6870665b16e759f5f51f1df0ab5869493efc74134c974c52ed5954ec",
+    "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-result.json": "b15ce182655af60025ba1e774593273647e154f50a3a2f199b1abc5bdcc53592"
+  }
+}

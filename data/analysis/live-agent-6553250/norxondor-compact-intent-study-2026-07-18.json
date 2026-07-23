@@ -1,0 +1,2352 @@
+{
+ "schema": 1,
+ "scope": "compact categorical intent tree on consumed Norxondor replay episodes; fivefold whole-game exclusion; future action supplies labels only",
+ "games": 30,
+ "episodes": 4427,
+ "labels": {
+  "GO_CHOP": 722,
+  "GO_DROP": 1469,
+  "GO_END": 52,
+  "GO_FARM": 635,
+  "GO_HARVEST": 1423,
+  "GO_MINE": 126
+ },
+ "configuration_count": 36,
+ "gate": {
+  "minimum_accuracy": 0.7,
+  "minimum_macro_f1": 0.48,
+  "minimum_worst_fold_accuracy": 0.67,
+  "minimum_worst_fold_macro_f1": 0.44,
+  "maximum_nodes": 127,
+  "maximum_expression_bytes": 20000
+ },
+ "eligible_configurations": 23,
+ "selected": {
+  "config": {
+   "feature_set": "role9",
+   "max_depth": 8,
+   "min_leaf": 5
+  },
+  "held_game": {
+   "rows": 4427,
+   "accuracy": 0.7693697763722611,
+   "macro_f1": 0.5303758735258132,
+   "per_label": {
+    "GO_CHOP": {
+     "support": 722,
+     "precision": 0.6937416777629827,
+     "recall": 0.721606648199446,
+     "f1": 0.7073998642226749
+    },
+    "GO_DROP": {
+     "support": 1469,
+     "precision": 0.8596825396825397,
+     "recall": 0.921715452688904,
+     "f1": 0.8896189224704336
+    },
+    "GO_END": {
+     "support": 52,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_FARM": {
+     "support": 635,
+     "precision": 0.6288659793814433,
+     "recall": 0.5763779527559055,
+     "f1": 0.6014790468364831
+    },
+    "GO_HARVEST": {
+     "support": 1423,
+     "precision": 0.7774018944519621,
+     "recall": 0.8074490513000703,
+     "f1": 0.7921406411582214
+    },
+    "GO_MINE": {
+     "support": 126,
+     "precision": 0.3902439024390244,
+     "recall": 0.12698412698412698,
+     "f1": 0.19161676646706585
+    }
+   },
+   "folds": [
+    {
+     "fold": 0,
+     "training_games": 24,
+     "held_games": 6,
+     "episodes": 1030,
+     "accuracy": 0.7611650485436893,
+     "macro_f1": 0.5557473614947086,
+     "nodes": 101,
+     "expression_bytes": 1813
+    },
+    {
+     "fold": 1,
+     "training_games": 25,
+     "held_games": 5,
+     "episodes": 593,
+     "accuracy": 0.7655986509274874,
+     "macro_f1": 0.5018008628595934,
+     "nodes": 119,
+     "expression_bytes": 2132
+    },
+    {
+     "fold": 2,
+     "training_games": 24,
+     "held_games": 6,
+     "episodes": 933,
+     "accuracy": 0.7545551982851019,
+     "macro_f1": 0.5049438757002227,
+     "nodes": 93,
+     "expression_bytes": 1687
+    },
+    {
+     "fold": 3,
+     "training_games": 23,
+     "held_games": 7,
+     "episodes": 1038,
+     "accuracy": 0.7851637764932563,
+     "macro_f1": 0.5185731117958712,
+     "nodes": 103,
+     "expression_bytes": 1824
+    },
+    {
+     "fold": 4,
+     "training_games": 24,
+     "held_games": 6,
+     "episodes": 833,
+     "accuracy": 0.7791116446578632,
+     "macro_f1": 0.5087101159420773,
+     "nodes": 109,
+     "expression_bytes": 1942
+    }
+   ],
+   "worst_fold_accuracy": 0.7545551982851019,
+   "worst_fold_macro_f1": 0.5018008628595934,
+   "mean_nodes": 105,
+   "maximum_nodes": 119,
+   "maximum_expression_bytes": 2132
+  },
+  "gate_passed": true
+ },
+ "top_configurations": [
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 8,
+    "min_leaf": 5
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7693697763722611,
+    "macro_f1": 0.5303758735258132,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6937416777629827,
+      "recall": 0.721606648199446,
+      "f1": 0.7073998642226749
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8596825396825397,
+      "recall": 0.921715452688904,
+      "f1": 0.8896189224704336
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6288659793814433,
+      "recall": 0.5763779527559055,
+      "f1": 0.6014790468364831
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7774018944519621,
+      "recall": 0.8074490513000703,
+      "f1": 0.7921406411582214
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.3902439024390244,
+      "recall": 0.12698412698412698,
+      "f1": 0.19161676646706585
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7611650485436893,
+      "macro_f1": 0.5557473614947086,
+      "nodes": 101,
+      "expression_bytes": 1813
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7655986509274874,
+      "macro_f1": 0.5018008628595934,
+      "nodes": 119,
+      "expression_bytes": 2132
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7545551982851019,
+      "macro_f1": 0.5049438757002227,
+      "nodes": 93,
+      "expression_bytes": 1687
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7851637764932563,
+      "macro_f1": 0.5185731117958712,
+      "nodes": 103,
+      "expression_bytes": 1824
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7791116446578632,
+      "macro_f1": 0.5087101159420773,
+      "nodes": 109,
+      "expression_bytes": 1942
+     }
+    ],
+    "worst_fold_accuracy": 0.7545551982851019,
+    "worst_fold_macro_f1": 0.5018008628595934,
+    "mean_nodes": 105,
+    "maximum_nodes": 119,
+    "maximum_expression_bytes": 2132
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 8,
+    "min_leaf": 15
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7671109103230178,
+    "macro_f1": 0.5359888798727698,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6703755215577191,
+      "recall": 0.667590027700831,
+      "f1": 0.6689798750867453
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8638351030605871,
+      "recall": 0.9414567733151804,
+      "f1": 0.9009771986970684
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6567425569176882,
+      "recall": 0.5905511811023622,
+      "f1": 0.6218905472636815
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7656988521269412,
+      "recall": 0.7969079409697821,
+      "f1": 0.78099173553719
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.4,
+      "recall": 0.1746031746031746,
+      "f1": 0.24309392265193372
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7572815533980582,
+      "macro_f1": 0.5574517326801536,
+      "nodes": 67,
+      "expression_bytes": 1196
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7504215851602024,
+      "macro_f1": 0.5100878447067334,
+      "nodes": 57,
+      "expression_bytes": 1054
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7684887459807074,
+      "macro_f1": 0.5355582150921706,
+      "nodes": 65,
+      "expression_bytes": 1199
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7870905587668593,
+      "macro_f1": 0.5203246507498333,
+      "nodes": 63,
+      "expression_bytes": 1109
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.4918571985984298,
+      "nodes": 77,
+      "expression_bytes": 1401
+     }
+    ],
+    "worst_fold_accuracy": 0.7504215851602024,
+    "worst_fold_macro_f1": 0.4918571985984298,
+    "mean_nodes": 65.8,
+    "maximum_nodes": 77,
+    "maximum_expression_bytes": 1401
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 10,
+    "min_leaf": 15
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7641743844590015,
+    "macro_f1": 0.5455856741484508,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6578212290502793,
+      "recall": 0.6523545706371191,
+      "f1": 0.655076495132128
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8627573300062383,
+      "recall": 0.9414567733151804,
+      "f1": 0.9003906250000001
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.655536028119508,
+      "recall": 0.5874015748031496,
+      "f1": 0.6196013289036545
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.764266304347826,
+      "recall": 0.7905832747716093,
+      "f1": 0.77720207253886
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.4626865671641791,
+      "recall": 0.24603174603174602,
+      "f1": 0.32124352331606215
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7563106796116504,
+      "macro_f1": 0.5571398972026278,
+      "nodes": 69,
+      "expression_bytes": 1227
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7504215851602024,
+      "macro_f1": 0.5101939399972806,
+      "nodes": 73,
+      "expression_bytes": 1343
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7642015005359056,
+      "macro_f1": 0.5633023221394398,
+      "nodes": 73,
+      "expression_bytes": 1351
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7764932562620424,
+      "macro_f1": 0.5529124471458394,
+      "nodes": 83,
+      "expression_bytes": 1486
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7683073229291717,
+      "macro_f1": 0.4914717512218878,
+      "nodes": 81,
+      "expression_bytes": 1475
+     }
+    ],
+    "worst_fold_accuracy": 0.7504215851602024,
+    "worst_fold_macro_f1": 0.4914717512218878,
+    "mean_nodes": 75.8,
+    "maximum_nodes": 83,
+    "maximum_expression_bytes": 1486
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 6,
+    "min_leaf": 30
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7535577140275581,
+    "macro_f1": 0.5017188319402255,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.5993150684931506,
+      "recall": 0.7271468144044322,
+      "f1": 0.6570713391739675
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8499384993849939,
+      "recall": 0.9407760381211708,
+      "f1": 0.8930533117932148
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6673267326732674,
+      "recall": 0.5307086614173229,
+      "f1": 0.5912280701754385
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7872185911401598,
+      "recall": 0.7617709065354884,
+      "f1": 0.7742857142857144
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.18604651162790697,
+      "recall": 0.06349206349206349,
+      "f1": 0.09467455621301775
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7504854368932039,
+      "macro_f1": 0.48579969861430333,
+      "nodes": 39,
+      "expression_bytes": 687
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7436762225969646,
+      "macro_f1": 0.4844028934289383,
+      "nodes": 39,
+      "expression_bytes": 708
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.744908896034298,
+      "macro_f1": 0.503440484902403,
+      "nodes": 31,
+      "expression_bytes": 571
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7610789980732178,
+      "macro_f1": 0.48574856374513176,
+      "nodes": 39,
+      "expression_bytes": 684
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.5158916928116478,
+      "nodes": 39,
+      "expression_bytes": 681
+     }
+    ],
+    "worst_fold_accuracy": 0.7436762225969646,
+    "worst_fold_macro_f1": 0.4844028934289383,
+    "mean_nodes": 37.4,
+    "maximum_nodes": 39,
+    "maximum_expression_bytes": 708
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 6,
+    "min_leaf": 5
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7569460131014231,
+    "macro_f1": 0.5059989366108253,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6120789779326364,
+      "recall": 0.7299168975069252,
+      "f1": 0.6658243840808592
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8652982681205901,
+      "recall": 0.9183117767188563,
+      "f1": 0.8910171730515192
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6525735294117647,
+      "recall": 0.5590551181102362,
+      "f1": 0.6022052586938083
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7830985915492957,
+      "recall": 0.7814476458186929,
+      "f1": 0.7822722476257474
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.18604651162790697,
+      "recall": 0.06349206349206349,
+      "f1": 0.09467455621301775
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7495145631067961,
+      "macro_f1": 0.483321833095378,
+      "nodes": 45,
+      "expression_bytes": 783
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7639123102866779,
+      "macro_f1": 0.5014100051413484,
+      "nodes": 55,
+      "expression_bytes": 976
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7427652733118971,
+      "macro_f1": 0.49695549308029086,
+      "nodes": 51,
+      "expression_bytes": 903
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.766859344894027,
+      "macro_f1": 0.49766750948166877,
+      "nodes": 53,
+      "expression_bytes": 924
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.5174347423935369,
+      "nodes": 51,
+      "expression_bytes": 885
+     }
+    ],
+    "worst_fold_accuracy": 0.7427652733118971,
+    "worst_fold_macro_f1": 0.483321833095378,
+    "mean_nodes": 51,
+    "maximum_nodes": 55,
+    "maximum_expression_bytes": 976
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 8,
+    "min_leaf": 30
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7659814772983962,
+    "macro_f1": 0.519444882544768,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6816208393632417,
+      "recall": 0.6523545706371191,
+      "f1": 0.6666666666666666
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8619167717528373,
+      "recall": 0.9305650102110279,
+      "f1": 0.8949263502454992
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6595744680851063,
+      "recall": 0.5858267716535434,
+      "f1": 0.6205170975813179
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7541935483870967,
+      "recall": 0.8215038650737878,
+      "f1": 0.7864110326269762
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.3333333333333333,
+      "recall": 0.09523809523809523,
+      "f1": 0.14814814814814814
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7621359223300971,
+      "macro_f1": 0.5366699370444556,
+      "nodes": 47,
+      "expression_bytes": 843
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7419898819561551,
+      "macro_f1": 0.4818092357921758,
+      "nodes": 45,
+      "expression_bytes": 828
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7534833869239014,
+      "macro_f1": 0.5253435927944906,
+      "nodes": 43,
+      "expression_bytes": 798
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7957610789980732,
+      "macro_f1": 0.521542368832938,
+      "nodes": 55,
+      "expression_bytes": 984
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.4855056887686439,
+      "nodes": 47,
+      "expression_bytes": 836
+     }
+    ],
+    "worst_fold_accuracy": 0.7419898819561551,
+    "worst_fold_macro_f1": 0.4818092357921758,
+    "mean_nodes": 47.4,
+    "maximum_nodes": 55,
+    "maximum_expression_bytes": 984
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 10,
+    "min_leaf": 30
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7659814772983962,
+    "macro_f1": 0.519444882544768,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6816208393632417,
+      "recall": 0.6523545706371191,
+      "f1": 0.6666666666666666
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8619167717528373,
+      "recall": 0.9305650102110279,
+      "f1": 0.8949263502454992
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6595744680851063,
+      "recall": 0.5858267716535434,
+      "f1": 0.6205170975813179
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7541935483870967,
+      "recall": 0.8215038650737878,
+      "f1": 0.7864110326269762
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.3333333333333333,
+      "recall": 0.09523809523809523,
+      "f1": 0.14814814814814814
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7621359223300971,
+      "macro_f1": 0.5366699370444556,
+      "nodes": 47,
+      "expression_bytes": 843
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7419898819561551,
+      "macro_f1": 0.4818092357921758,
+      "nodes": 45,
+      "expression_bytes": 828
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7534833869239014,
+      "macro_f1": 0.5253435927944906,
+      "nodes": 43,
+      "expression_bytes": 798
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7957610789980732,
+      "macro_f1": 0.521542368832938,
+      "nodes": 55,
+      "expression_bytes": 984
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.4855056887686439,
+      "nodes": 47,
+      "expression_bytes": 836
+     }
+    ],
+    "worst_fold_accuracy": 0.7419898819561551,
+    "worst_fold_macro_f1": 0.4818092357921758,
+    "mean_nodes": 47.4,
+    "maximum_nodes": 55,
+    "maximum_expression_bytes": 984
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "core7",
+    "max_depth": 10,
+    "min_leaf": 15
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7614637451999097,
+    "macro_f1": 0.5432369669940539,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6363636363636364,
+      "recall": 0.6689750692520776,
+      "f1": 0.6522619851451722
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8572307692307692,
+      "recall": 0.9482641252552757,
+      "f1": 0.9004524886877828
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6867469879518072,
+      "recall": 0.5385826771653544,
+      "f1": 0.6037069726390114
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7589708869329722,
+      "recall": 0.7877723120168658,
+      "f1": 0.7731034482758621
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.47058823529411764,
+      "recall": 0.25396825396825395,
+      "f1": 0.32989690721649484
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7660194174757281,
+      "macro_f1": 0.576788146301086,
+      "nodes": 61,
+      "expression_bytes": 1109
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7419898819561551,
+      "macro_f1": 0.5229486165215381,
+      "nodes": 59,
+      "expression_bytes": 1084
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7427652733118971,
+      "macro_f1": 0.4789858210816326,
+      "nodes": 69,
+      "expression_bytes": 1317
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7803468208092486,
+      "macro_f1": 0.5472777139086047,
+      "nodes": 61,
+      "expression_bytes": 1135
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7671068427370948,
+      "macro_f1": 0.5333662775208069,
+      "nodes": 67,
+      "expression_bytes": 1248
+     }
+    ],
+    "worst_fold_accuracy": 0.7419898819561551,
+    "worst_fold_macro_f1": 0.4789858210816326,
+    "mean_nodes": 63.4,
+    "maximum_nodes": 69,
+    "maximum_expression_bytes": 1317
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "role9",
+    "max_depth": 6,
+    "min_leaf": 15
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7587531059408177,
+    "macro_f1": 0.5049362416214364,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6129411764705882,
+      "recall": 0.721606648199446,
+      "f1": 0.6628498727735368
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8595400870105656,
+      "recall": 0.9414567733151804,
+      "f1": 0.898635477582846
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.6673228346456693,
+      "recall": 0.5338582677165354,
+      "f1": 0.5931758530183727
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7819336626676077,
+      "recall": 0.7786366830639494,
+      "f1": 0.7802816901408451
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.18604651162790697,
+      "recall": 0.06349206349206349,
+      "f1": 0.09467455621301775
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7601941747572816,
+      "macro_f1": 0.4895089148039731,
+      "nodes": 35,
+      "expression_bytes": 612
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7419898819561551,
+      "macro_f1": 0.48155065867290414,
+      "nodes": 41,
+      "expression_bytes": 746
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7566988210075026,
+      "macro_f1": 0.5114019944497096,
+      "nodes": 35,
+      "expression_bytes": 631
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7649325626204239,
+      "macro_f1": 0.48854975386435145,
+      "nodes": 39,
+      "expression_bytes": 686
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7635054021608644,
+      "macro_f1": 0.5168770548253702,
+      "nodes": 43,
+      "expression_bytes": 755
+     }
+    ],
+    "worst_fold_accuracy": 0.7419898819561551,
+    "worst_fold_macro_f1": 0.48155065867290414,
+    "mean_nodes": 38.6,
+    "maximum_nodes": 43,
+    "maximum_expression_bytes": 755
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "feature_set": "core7",
+    "max_depth": 10,
+    "min_leaf": 5
+   },
+   "held_game": {
+    "rows": 4427,
+    "accuracy": 0.7623672916196069,
+    "macro_f1": 0.5456336425791581,
+    "per_label": {
+     "GO_CHOP": {
+      "support": 722,
+      "precision": 0.6544715447154471,
+      "recall": 0.6689750692520776,
+      "f1": 0.6616438356164384
+     },
+     "GO_DROP": {
+      "support": 1469,
+      "precision": 0.8589420654911839,
+      "recall": 0.9285228046289993,
+      "f1": 0.8923781485116127
+     },
+     "GO_END": {
+      "support": 52,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "GO_FARM": {
+      "support": 635,
+      "precision": 0.662962962962963,
+      "recall": 0.5637795275590551,
+      "f1": 0.6093617021276596
+     },
+     "GO_HARVEST": {
+      "support": 1423,
+      "precision": 0.7622237106496986,
+      "recall": 0.7997189037245257,
+      "f1": 0.7805212620027435
+     },
+     "GO_MINE": {
+      "support": 126,
+      "precision": 0.47058823529411764,
+      "recall": 0.25396825396825395,
+      "f1": 0.32989690721649484
+     }
+    },
+    "folds": [
+     {
+      "fold": 0,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 1030,
+      "accuracy": 0.7708737864077669,
+      "macro_f1": 0.5783188214767592,
+      "nodes": 99,
+      "expression_bytes": 1846
+     },
+     {
+      "fold": 1,
+      "training_games": 25,
+      "held_games": 5,
+      "episodes": 593,
+      "accuracy": 0.7403035413153457,
+      "macro_f1": 0.5236681274599638,
+      "nodes": 117,
+      "expression_bytes": 2188
+     },
+     {
+      "fold": 2,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 933,
+      "accuracy": 0.7481243301178992,
+      "macro_f1": 0.4841993215523169,
+      "nodes": 97,
+      "expression_bytes": 1860
+     },
+     {
+      "fold": 3,
+      "training_games": 23,
+      "held_games": 7,
+      "episodes": 1038,
+      "accuracy": 0.7774566473988439,
+      "macro_f1": 0.5488426355383894,
+      "nodes": 107,
+      "expression_bytes": 2008
+     },
+     {
+      "fold": 4,
+      "training_games": 24,
+      "held_games": 6,
+      "episodes": 833,
+      "accuracy": 0.7647058823529411,
+      "macro_f1": 0.5343004626999671,
+      "nodes": 101,
+      "expression_bytes": 1899
+     }
+    ],
+    "worst_fold_accuracy": 0.7403035413153457,
+    "worst_fold_macro_f1": 0.4841993215523169,
+    "mean_nodes": 104.2,
+    "maximum_nodes": 117,
+    "maximum_expression_bytes": 2188
+   },
+   "gate_passed": true
+  }
+ ],
+ "tree": {
+  "label": "GO_DROP",
+  "rows": 4427,
+  "counts": {
+   "GO_CHOP": 722,
+   "GO_DROP": 1469,
+   "GO_END": 52,
+   "GO_FARM": 635,
+   "GO_HARVEST": 1423,
+   "GO_MINE": 126
+  },
+  "feature": "full",
+  "value": "True",
+  "left": {
+   "label": "GO_DROP",
+   "rows": 1671,
+   "counts": {
+    "GO_CHOP": 7,
+    "GO_DROP": 1361,
+    "GO_END": 8,
+    "GO_FARM": 295
+   },
+   "feature": "bank_distance",
+   "value": "1",
+   "left": {
+    "label": "GO_FARM",
+    "rows": 72,
+    "counts": {
+     "GO_DROP": 5,
+     "GO_FARM": 67
+    }
+   },
+   "right": {
+    "label": "GO_DROP",
+    "rows": 1599,
+    "counts": {
+     "GO_CHOP": 7,
+     "GO_DROP": 1356,
+     "GO_END": 8,
+     "GO_FARM": 228
+    },
+    "feature": "previous_action",
+    "value": "HARVEST",
+    "left": {
+     "label": "GO_DROP",
+     "rows": 1033,
+     "counts": {
+      "GO_DROP": 805,
+      "GO_FARM": 228
+     },
+     "feature": "ordinal",
+     "value": "0",
+     "left": {
+      "label": "GO_DROP",
+      "rows": 525,
+      "counts": {
+       "GO_DROP": 362,
+       "GO_FARM": 163
+      },
+      "feature": "bank_distance",
+      "value": "2",
+      "left": {
+       "label": "GO_DROP",
+       "rows": 345,
+       "counts": {
+        "GO_DROP": 283,
+        "GO_FARM": 62
+       }
+      },
+      "right": {
+       "label": "GO_FARM",
+       "rows": 180,
+       "counts": {
+        "GO_DROP": 79,
+        "GO_FARM": 101
+       },
+       "feature": "bank_distance",
+       "value": "6-9",
+       "left": {
+        "label": "GO_FARM",
+        "rows": 30,
+        "counts": {
+         "GO_DROP": 6,
+         "GO_FARM": 24
+        }
+       },
+       "right": {
+        "label": "GO_FARM",
+        "rows": 150,
+        "counts": {
+         "GO_DROP": 73,
+         "GO_FARM": 77
+        },
+        "feature": "unit_count",
+        "value": "4",
+        "left": {
+         "label": "GO_DROP",
+         "rows": 9,
+         "counts": {
+          "GO_DROP": 8,
+          "GO_FARM": 1
+         }
+        },
+        "right": {
+         "label": "GO_FARM",
+         "rows": 141,
+         "counts": {
+          "GO_DROP": 65,
+          "GO_FARM": 76
+         },
+         "feature": "on_cell",
+         "value": "tree",
+         "left": {
+          "label": "GO_DROP",
+          "rows": 45,
+          "counts": {
+           "GO_DROP": 25,
+           "GO_FARM": 20
+          }
+         },
+         "right": {
+          "label": "GO_FARM",
+          "rows": 96,
+          "counts": {
+           "GO_DROP": 40,
+           "GO_FARM": 56
+          }
+         }
+        }
+       }
+      }
+     },
+     "right": {
+      "label": "GO_DROP",
+      "rows": 508,
+      "counts": {
+       "GO_DROP": 443,
+       "GO_FARM": 65
+      }
+     }
+    },
+    "right": {
+     "label": "GO_DROP",
+     "rows": 566,
+     "counts": {
+      "GO_CHOP": 7,
+      "GO_DROP": 551,
+      "GO_END": 8
+     }
+    }
+   }
+  },
+  "right": {
+   "label": "GO_HARVEST",
+   "rows": 2756,
+   "counts": {
+    "GO_CHOP": 715,
+    "GO_DROP": 108,
+    "GO_END": 44,
+    "GO_FARM": 340,
+    "GO_HARVEST": 1423,
+    "GO_MINE": 126
+   },
+   "feature": "on_cell",
+   "value": "tree",
+   "left": {
+    "label": "GO_HARVEST",
+    "rows": 1454,
+    "counts": {
+     "GO_CHOP": 159,
+     "GO_DROP": 4,
+     "GO_END": 3,
+     "GO_FARM": 198,
+     "GO_HARVEST": 1059,
+     "GO_MINE": 31
+    },
+    "feature": "carry_class",
+    "value": "fruit",
+    "left": {
+     "label": "GO_FARM",
+     "rows": 300,
+     "counts": {
+      "GO_CHOP": 11,
+      "GO_DROP": 3,
+      "GO_FARM": 160,
+      "GO_HARVEST": 118,
+      "GO_MINE": 8
+     },
+     "feature": "previous_action",
+     "value": "HARVEST",
+     "left": {
+      "label": "GO_HARVEST",
+      "rows": 174,
+      "counts": {
+       "GO_CHOP": 4,
+       "GO_DROP": 3,
+       "GO_FARM": 72,
+       "GO_HARVEST": 88,
+       "GO_MINE": 7
+      },
+      "feature": "ordinal",
+      "value": "3",
+      "left": {
+       "label": "GO_HARVEST",
+       "rows": 5,
+       "counts": {
+        "GO_HARVEST": 5
+       }
+      },
+      "right": {
+       "label": "GO_HARVEST",
+       "rows": 169,
+       "counts": {
+        "GO_CHOP": 4,
+        "GO_DROP": 3,
+        "GO_FARM": 72,
+        "GO_HARVEST": 83,
+        "GO_MINE": 7
+       },
+       "feature": "bank_distance",
+       "value": "3-5",
+       "left": {
+        "label": "GO_FARM",
+        "rows": 26,
+        "counts": {
+         "GO_DROP": 3,
+         "GO_FARM": 14,
+         "GO_HARVEST": 8,
+         "GO_MINE": 1
+        },
+        "feature": "role",
+        "value": "harvest_specialist",
+        "left": {
+         "label": "GO_FARM",
+         "rows": 7,
+         "counts": {
+          "GO_FARM": 5,
+          "GO_HARVEST": 1,
+          "GO_MINE": 1
+         }
+        },
+        "right": {
+         "label": "GO_FARM",
+         "rows": 19,
+         "counts": {
+          "GO_DROP": 3,
+          "GO_FARM": 9,
+          "GO_HARVEST": 7
+         },
+         "feature": "unit_count",
+         "value": "2",
+         "left": {
+          "label": "GO_HARVEST",
+          "rows": 14,
+          "counts": {
+           "GO_DROP": 1,
+           "GO_FARM": 6,
+           "GO_HARVEST": 7
+          }
+         },
+         "right": {
+          "label": "GO_FARM",
+          "rows": 5,
+          "counts": {
+           "GO_DROP": 2,
+           "GO_FARM": 3
+          }
+         }
+        }
+       },
+       "right": {
+        "label": "GO_HARVEST",
+        "rows": 143,
+        "counts": {
+         "GO_CHOP": 4,
+         "GO_FARM": 58,
+         "GO_HARVEST": 75,
+         "GO_MINE": 6
+        }
+       }
+      }
+     },
+     "right": {
+      "label": "GO_FARM",
+      "rows": 126,
+      "counts": {
+       "GO_CHOP": 7,
+       "GO_FARM": 88,
+       "GO_HARVEST": 30,
+       "GO_MINE": 1
+      },
+      "feature": "ordinal",
+      "value": "2",
+      "left": {
+       "label": "GO_FARM",
+       "rows": 39,
+       "counts": {
+        "GO_CHOP": 6,
+        "GO_FARM": 21,
+        "GO_HARVEST": 12
+       },
+       "feature": "bank_distance",
+       "value": "2",
+       "left": {
+        "label": "GO_HARVEST",
+        "rows": 16,
+        "counts": {
+         "GO_CHOP": 4,
+         "GO_FARM": 5,
+         "GO_HARVEST": 7
+        }
+       },
+       "right": {
+        "label": "GO_FARM",
+        "rows": 23,
+        "counts": {
+         "GO_CHOP": 2,
+         "GO_FARM": 16,
+         "GO_HARVEST": 5
+        }
+       }
+      },
+      "right": {
+       "label": "GO_FARM",
+       "rows": 87,
+       "counts": {
+        "GO_CHOP": 1,
+        "GO_FARM": 67,
+        "GO_HARVEST": 18,
+        "GO_MINE": 1
+       }
+      }
+     }
+    },
+    "right": {
+     "label": "GO_HARVEST",
+     "rows": 1154,
+     "counts": {
+      "GO_CHOP": 148,
+      "GO_DROP": 1,
+      "GO_END": 3,
+      "GO_FARM": 38,
+      "GO_HARVEST": 941,
+      "GO_MINE": 23
+     },
+     "feature": "phase",
+     "value": "251+",
+     "left": {
+      "label": "GO_CHOP",
+      "rows": 36,
+      "counts": {
+       "GO_CHOP": 27,
+       "GO_END": 1,
+       "GO_FARM": 6,
+       "GO_HARVEST": 2
+      },
+      "feature": "ordinal",
+      "value": "3",
+      "left": {
+       "label": "GO_FARM",
+       "rows": 5,
+       "counts": {
+        "GO_CHOP": 2,
+        "GO_FARM": 3
+       }
+      },
+      "right": {
+       "label": "GO_CHOP",
+       "rows": 31,
+       "counts": {
+        "GO_CHOP": 25,
+        "GO_END": 1,
+        "GO_FARM": 3,
+        "GO_HARVEST": 2
+       }
+      }
+     },
+     "right": {
+      "label": "GO_HARVEST",
+      "rows": 1118,
+      "counts": {
+       "GO_CHOP": 121,
+       "GO_DROP": 1,
+       "GO_END": 2,
+       "GO_FARM": 32,
+       "GO_HARVEST": 939,
+       "GO_MINE": 23
+      },
+      "feature": "phase",
+      "value": "151-250",
+      "left": {
+       "label": "GO_HARVEST",
+       "rows": 282,
+       "counts": {
+        "GO_CHOP": 86,
+        "GO_END": 2,
+        "GO_FARM": 5,
+        "GO_HARVEST": 189
+       },
+       "feature": "unit_count",
+       "value": "4",
+       "left": {
+        "label": "GO_CHOP",
+        "rows": 69,
+        "counts": {
+         "GO_CHOP": 40,
+         "GO_END": 2,
+         "GO_FARM": 3,
+         "GO_HARVEST": 24
+        },
+        "feature": "previous_action",
+        "value": "DROP",
+        "left": {
+         "label": "GO_HARVEST",
+         "rows": 26,
+         "counts": {
+          "GO_CHOP": 11,
+          "GO_HARVEST": 15
+         },
+         "feature": "ordinal",
+         "value": "3",
+         "left": {
+          "label": "GO_CHOP",
+          "rows": 8,
+          "counts": {
+           "GO_CHOP": 7,
+           "GO_HARVEST": 1
+          }
+         },
+         "right": {
+          "label": "GO_HARVEST",
+          "rows": 18,
+          "counts": {
+           "GO_CHOP": 4,
+           "GO_HARVEST": 14
+          }
+         }
+        },
+        "right": {
+         "label": "GO_CHOP",
+         "rows": 43,
+         "counts": {
+          "GO_CHOP": 29,
+          "GO_END": 2,
+          "GO_FARM": 3,
+          "GO_HARVEST": 9
+         }
+        }
+       },
+       "right": {
+        "label": "GO_HARVEST",
+        "rows": 213,
+        "counts": {
+         "GO_CHOP": 46,
+         "GO_FARM": 2,
+         "GO_HARVEST": 165
+        },
+        "feature": "unit_count",
+        "value": "2",
+        "left": {
+         "label": "GO_HARVEST",
+         "rows": 90,
+         "counts": {
+          "GO_CHOP": 10,
+          "GO_FARM": 1,
+          "GO_HARVEST": 79
+         }
+        },
+        "right": {
+         "label": "GO_HARVEST",
+         "rows": 123,
+         "counts": {
+          "GO_CHOP": 36,
+          "GO_FARM": 1,
+          "GO_HARVEST": 86
+         },
+         "feature": "bank_distance",
+         "value": "2",
+         "left": {
+          "label": "GO_CHOP",
+          "rows": 7,
+          "counts": {
+           "GO_CHOP": 4,
+           "GO_HARVEST": 3
+          }
+         },
+         "right": {
+          "label": "GO_HARVEST",
+          "rows": 116,
+          "counts": {
+           "GO_CHOP": 32,
+           "GO_FARM": 1,
+           "GO_HARVEST": 83
+          }
+         }
+        }
+       }
+      },
+      "right": {
+       "label": "GO_HARVEST",
+       "rows": 836,
+       "counts": {
+        "GO_CHOP": 35,
+        "GO_DROP": 1,
+        "GO_FARM": 27,
+        "GO_HARVEST": 750,
+        "GO_MINE": 23
+       },
+       "feature": "ordinal",
+       "value": "3",
+       "left": {
+        "label": "GO_CHOP",
+        "rows": 10,
+        "counts": {
+         "GO_CHOP": 8,
+         "GO_HARVEST": 1,
+         "GO_MINE": 1
+        }
+       },
+       "right": {
+        "label": "GO_HARVEST",
+        "rows": 826,
+        "counts": {
+         "GO_CHOP": 27,
+         "GO_DROP": 1,
+         "GO_FARM": 27,
+         "GO_HARVEST": 749,
+         "GO_MINE": 22
+        }
+       }
+      }
+     }
+    }
+   },
+   "right": {
+    "label": "GO_CHOP",
+    "rows": 1302,
+    "counts": {
+     "GO_CHOP": 556,
+     "GO_DROP": 104,
+     "GO_END": 41,
+     "GO_FARM": 142,
+     "GO_HARVEST": 364,
+     "GO_MINE": 95
+    },
+    "feature": "carry_class",
+    "value": "fruit",
+    "left": {
+     "label": "GO_FARM",
+     "rows": 138,
+     "counts": {
+      "GO_CHOP": 3,
+      "GO_DROP": 14,
+      "GO_FARM": 104,
+      "GO_HARVEST": 11,
+      "GO_MINE": 6
+     },
+     "feature": "bank_distance",
+     "value": "1",
+     "left": {
+      "label": "GO_FARM",
+      "rows": 14,
+      "counts": {
+       "GO_CHOP": 1,
+       "GO_FARM": 7,
+       "GO_HARVEST": 4,
+       "GO_MINE": 2
+      },
+      "feature": "unit_count",
+      "value": "3",
+      "left": {
+       "label": "GO_FARM",
+       "rows": 7,
+       "counts": {
+        "GO_FARM": 7
+       }
+      },
+      "right": {
+       "label": "GO_HARVEST",
+       "rows": 7,
+       "counts": {
+        "GO_CHOP": 1,
+        "GO_HARVEST": 4,
+        "GO_MINE": 2
+       }
+      }
+     },
+     "right": {
+      "label": "GO_FARM",
+      "rows": 124,
+      "counts": {
+       "GO_CHOP": 2,
+       "GO_DROP": 14,
+       "GO_FARM": 97,
+       "GO_HARVEST": 7,
+       "GO_MINE": 4
+      },
+      "feature": "phase",
+      "value": "251+",
+      "left": {
+       "label": "GO_FARM",
+       "rows": 11,
+       "counts": {
+        "GO_FARM": 11
+       }
+      },
+      "right": {
+       "label": "GO_FARM",
+       "rows": 113,
+       "counts": {
+        "GO_CHOP": 2,
+        "GO_DROP": 14,
+        "GO_FARM": 86,
+        "GO_HARVEST": 7,
+        "GO_MINE": 4
+       },
+       "feature": "unit_count",
+       "value": "2",
+       "left": {
+        "label": "GO_FARM",
+        "rows": 31,
+        "counts": {
+         "GO_DROP": 2,
+         "GO_FARM": 21,
+         "GO_HARVEST": 5,
+         "GO_MINE": 3
+        },
+        "feature": "phase",
+        "value": "76-150",
+        "left": {
+         "label": "GO_HARVEST",
+         "rows": 6,
+         "counts": {
+          "GO_FARM": 2,
+          "GO_HARVEST": 3,
+          "GO_MINE": 1
+         }
+        },
+        "right": {
+         "label": "GO_FARM",
+         "rows": 25,
+         "counts": {
+          "GO_DROP": 2,
+          "GO_FARM": 19,
+          "GO_HARVEST": 2,
+          "GO_MINE": 2
+         }
+        }
+       },
+       "right": {
+        "label": "GO_FARM",
+        "rows": 82,
+        "counts": {
+         "GO_CHOP": 2,
+         "GO_DROP": 12,
+         "GO_FARM": 65,
+         "GO_HARVEST": 2,
+         "GO_MINE": 1
+        }
+       }
+      }
+     }
+    },
+    "right": {
+     "label": "GO_CHOP",
+     "rows": 1164,
+     "counts": {
+      "GO_CHOP": 553,
+      "GO_DROP": 90,
+      "GO_END": 41,
+      "GO_FARM": 38,
+      "GO_HARVEST": 353,
+      "GO_MINE": 89
+     },
+     "feature": "unit_count",
+     "value": "4",
+     "left": {
+      "label": "GO_CHOP",
+      "rows": 464,
+      "counts": {
+       "GO_CHOP": 306,
+       "GO_DROP": 65,
+       "GO_END": 26,
+       "GO_FARM": 5,
+       "GO_HARVEST": 52,
+       "GO_MINE": 10
+      },
+      "feature": "on_cell",
+      "value": "open",
+      "left": {
+       "label": "GO_DROP",
+       "rows": 107,
+       "counts": {
+        "GO_CHOP": 41,
+        "GO_DROP": 62,
+        "GO_END": 4
+       },
+       "feature": "bank_distance",
+       "value": "10+",
+       "left": {
+        "label": "GO_CHOP",
+        "rows": 34,
+        "counts": {
+         "GO_CHOP": 24,
+         "GO_DROP": 8,
+         "GO_END": 2
+        }
+       },
+       "right": {
+        "label": "GO_DROP",
+        "rows": 73,
+        "counts": {
+         "GO_CHOP": 17,
+         "GO_DROP": 54,
+         "GO_END": 2
+        },
+        "feature": "ordinal",
+        "value": "1",
+        "left": {
+         "label": "GO_CHOP",
+         "rows": 10,
+         "counts": {
+          "GO_CHOP": 7,
+          "GO_DROP": 3
+         },
+         "feature": "role",
+         "value": "harvest_specialist",
+         "left": {
+          "label": "GO_DROP",
+          "rows": 5,
+          "counts": {
+           "GO_CHOP": 2,
+           "GO_DROP": 3
+          }
+         },
+         "right": {
+          "label": "GO_CHOP",
+          "rows": 5,
+          "counts": {
+           "GO_CHOP": 5
+          }
+         }
+        },
+        "right": {
+         "label": "GO_DROP",
+         "rows": 63,
+         "counts": {
+          "GO_CHOP": 10,
+          "GO_DROP": 51,
+          "GO_END": 2
+         }
+        }
+       }
+      },
+      "right": {
+       "label": "GO_CHOP",
+       "rows": 357,
+       "counts": {
+        "GO_CHOP": 265,
+        "GO_DROP": 3,
+        "GO_END": 22,
+        "GO_FARM": 5,
+        "GO_HARVEST": 52,
+        "GO_MINE": 10
+       },
+       "feature": "phase",
+       "value": "76-150",
+       "left": {
+        "label": "GO_CHOP",
+        "rows": 67,
+        "counts": {
+         "GO_CHOP": 31,
+         "GO_DROP": 1,
+         "GO_HARVEST": 25,
+         "GO_MINE": 10
+        },
+        "feature": "role",
+        "value": "wood_specialist",
+        "left": {
+         "label": "GO_CHOP",
+         "rows": 17,
+         "counts": {
+          "GO_CHOP": 16,
+          "GO_MINE": 1
+         }
+        },
+        "right": {
+         "label": "GO_HARVEST",
+         "rows": 50,
+         "counts": {
+          "GO_CHOP": 15,
+          "GO_DROP": 1,
+          "GO_HARVEST": 25,
+          "GO_MINE": 9
+         }
+        }
+       },
+       "right": {
+        "label": "GO_CHOP",
+        "rows": 290,
+        "counts": {
+         "GO_CHOP": 234,
+         "GO_DROP": 2,
+         "GO_END": 22,
+         "GO_FARM": 5,
+         "GO_HARVEST": 27
+        }
+       }
+      }
+     },
+     "right": {
+      "label": "GO_HARVEST",
+      "rows": 700,
+      "counts": {
+       "GO_CHOP": 247,
+       "GO_DROP": 25,
+       "GO_END": 15,
+       "GO_FARM": 33,
+       "GO_HARVEST": 301,
+       "GO_MINE": 79
+      },
+      "feature": "unit_count",
+      "value": "3",
+      "left": {
+       "label": "GO_CHOP",
+       "rows": 403,
+       "counts": {
+        "GO_CHOP": 203,
+        "GO_DROP": 18,
+        "GO_END": 13,
+        "GO_FARM": 3,
+        "GO_HARVEST": 127,
+        "GO_MINE": 39
+       },
+       "feature": "phase",
+       "value": "76-150",
+       "left": {
+        "label": "GO_HARVEST",
+        "rows": 103,
+        "counts": {
+         "GO_CHOP": 28,
+         "GO_DROP": 3,
+         "GO_FARM": 1,
+         "GO_HARVEST": 37,
+         "GO_MINE": 34
+        },
+        "feature": "on_cell",
+        "value": "ripe_tree",
+        "left": {
+         "label": "GO_MINE",
+         "rows": 37,
+         "counts": {
+          "GO_CHOP": 1,
+          "GO_HARVEST": 13,
+          "GO_MINE": 23
+         },
+         "feature": "role",
+         "value": "hybrid_chopper",
+         "left": {
+          "label": "GO_MINE",
+          "rows": 21,
+          "counts": {
+           "GO_CHOP": 1,
+           "GO_HARVEST": 5,
+           "GO_MINE": 15
+          }
+         },
+         "right": {
+          "label": "GO_HARVEST",
+          "rows": 16,
+          "counts": {
+           "GO_HARVEST": 8,
+           "GO_MINE": 8
+          }
+         }
+        },
+        "right": {
+         "label": "GO_CHOP",
+         "rows": 66,
+         "counts": {
+          "GO_CHOP": 27,
+          "GO_DROP": 3,
+          "GO_FARM": 1,
+          "GO_HARVEST": 24,
+          "GO_MINE": 11
+         },
+         "feature": "on_cell",
+         "value": "open",
+         "left": {
+          "label": "GO_DROP",
+          "rows": 7,
+          "counts": {
+           "GO_CHOP": 2,
+           "GO_DROP": 3,
+           "GO_MINE": 2
+          }
+         },
+         "right": {
+          "label": "GO_CHOP",
+          "rows": 59,
+          "counts": {
+           "GO_CHOP": 25,
+           "GO_FARM": 1,
+           "GO_HARVEST": 24,
+           "GO_MINE": 9
+          }
+         }
+        }
+       },
+       "right": {
+        "label": "GO_CHOP",
+        "rows": 300,
+        "counts": {
+         "GO_CHOP": 175,
+         "GO_DROP": 15,
+         "GO_END": 13,
+         "GO_FARM": 2,
+         "GO_HARVEST": 90,
+         "GO_MINE": 5
+        },
+        "feature": "role",
+        "value": "hybrid_chopper",
+        "left": {
+         "label": "GO_CHOP",
+         "rows": 199,
+         "counts": {
+          "GO_CHOP": 136,
+          "GO_DROP": 15,
+          "GO_END": 5,
+          "GO_FARM": 1,
+          "GO_HARVEST": 39,
+          "GO_MINE": 3
+         },
+         "feature": "carry_class",
+         "value": "empty",
+         "left": {
+          "label": "GO_CHOP",
+          "rows": 170,
+          "counts": {
+           "GO_CHOP": 129,
+           "GO_END": 4,
+           "GO_HARVEST": 34,
+           "GO_MINE": 3
+          }
+         },
+         "right": {
+          "label": "GO_DROP",
+          "rows": 29,
+          "counts": {
+           "GO_CHOP": 7,
+           "GO_DROP": 15,
+           "GO_END": 1,
+           "GO_FARM": 1,
+           "GO_HARVEST": 5
+          }
+         }
+        },
+        "right": {
+         "label": "GO_HARVEST",
+         "rows": 101,
+         "counts": {
+          "GO_CHOP": 39,
+          "GO_END": 8,
+          "GO_FARM": 1,
+          "GO_HARVEST": 51,
+          "GO_MINE": 2
+         },
+         "feature": "bank_distance",
+         "value": "1",
+         "left": {
+          "label": "GO_HARVEST",
+          "rows": 87,
+          "counts": {
+           "GO_CHOP": 27,
+           "GO_END": 7,
+           "GO_FARM": 1,
+           "GO_HARVEST": 50,
+           "GO_MINE": 2
+          }
+         },
+         "right": {
+          "label": "GO_CHOP",
+          "rows": 14,
+          "counts": {
+           "GO_CHOP": 12,
+           "GO_END": 1,
+           "GO_HARVEST": 1
+          }
+         }
+        }
+       }
+      },
+      "right": {
+       "label": "GO_HARVEST",
+       "rows": 297,
+       "counts": {
+        "GO_CHOP": 44,
+        "GO_DROP": 7,
+        "GO_END": 2,
+        "GO_FARM": 30,
+        "GO_HARVEST": 174,
+        "GO_MINE": 40
+       },
+       "feature": "phase",
+       "value": "01-05",
+       "left": {
+        "label": "GO_FARM",
+        "rows": 43,
+        "counts": {
+         "GO_CHOP": 6,
+         "GO_FARM": 23,
+         "GO_HARVEST": 14
+        },
+        "feature": "role",
+        "value": "hybrid_chopper",
+        "left": {
+         "label": "GO_CHOP",
+         "rows": 8,
+         "counts": {
+          "GO_CHOP": 6,
+          "GO_FARM": 2
+         }
+        },
+        "right": {
+         "label": "GO_FARM",
+         "rows": 35,
+         "counts": {
+          "GO_FARM": 21,
+          "GO_HARVEST": 14
+         },
+         "feature": "unit_count",
+         "value": "2",
+         "left": {
+          "label": "GO_HARVEST",
+          "rows": 5,
+          "counts": {
+           "GO_FARM": 1,
+           "GO_HARVEST": 4
+          }
+         },
+         "right": {
+          "label": "GO_FARM",
+          "rows": 30,
+          "counts": {
+           "GO_FARM": 20,
+           "GO_HARVEST": 10
+          }
+         }
+        }
+       },
+       "right": {
+        "label": "GO_HARVEST",
+        "rows": 254,
+        "counts": {
+         "GO_CHOP": 38,
+         "GO_DROP": 7,
+         "GO_END": 2,
+         "GO_FARM": 7,
+         "GO_HARVEST": 160,
+         "GO_MINE": 40
+        },
+        "feature": "on_cell",
+        "value": "ripe_tree",
+        "left": {
+         "label": "GO_HARVEST",
+         "rows": 50,
+         "counts": {
+          "GO_CHOP": 4,
+          "GO_HARVEST": 24,
+          "GO_MINE": 22
+         },
+         "feature": "previous_action",
+         "value": "DROP",
+         "left": {
+          "label": "GO_HARVEST",
+          "rows": 45,
+          "counts": {
+           "GO_HARVEST": 23,
+           "GO_MINE": 22
+          }
+         },
+         "right": {
+          "label": "GO_CHOP",
+          "rows": 5,
+          "counts": {
+           "GO_CHOP": 4,
+           "GO_HARVEST": 1
+          }
+         }
+        },
+        "right": {
+         "label": "GO_HARVEST",
+         "rows": 204,
+         "counts": {
+          "GO_CHOP": 34,
+          "GO_DROP": 7,
+          "GO_END": 2,
+          "GO_FARM": 7,
+          "GO_HARVEST": 136,
+          "GO_MINE": 18
+         },
+         "feature": "on_cell",
+         "value": "open",
+         "left": {
+          "label": "GO_DROP",
+          "rows": 15,
+          "counts": {
+           "GO_CHOP": 2,
+           "GO_DROP": 7,
+           "GO_HARVEST": 6
+          }
+         },
+         "right": {
+          "label": "GO_HARVEST",
+          "rows": 189,
+          "counts": {
+           "GO_CHOP": 32,
+           "GO_END": 2,
+           "GO_FARM": 7,
+           "GO_HARVEST": 130,
+           "GO_MINE": 18
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "node_count": 107,
+ "rust_expression": "if full==\"True\"{if bank_distance==\"1\"{GO_FARM}else{if previous_action==\"HARVEST\"{if ordinal==\"0\"{if bank_distance==\"2\"{GO_DROP}else{if bank_distance==\"6-9\"{GO_FARM}else{if unit_count==\"4\"{GO_DROP}else{if on_cell==\"tree\"{GO_DROP}else{GO_FARM}}}}}else{GO_DROP}}else{GO_DROP}}}else{if on_cell==\"tree\"{if carry_class==\"fruit\"{if previous_action==\"HARVEST\"{if ordinal==\"3\"{GO_HARVEST}else{if bank_distance==\"3-5\"{if role==\"harvest_specialist\"{GO_FARM}else{if unit_count==\"2\"{GO_HARVEST}else{GO_FARM}}}else{GO_HARVEST}}}else{if ordinal==\"2\"{if bank_distance==\"2\"{GO_HARVEST}else{GO_FARM}}else{GO_FARM}}}else{if phase==\"251+\"{if ordinal==\"3\"{GO_FARM}else{GO_CHOP}}else{if phase==\"151-250\"{if unit_count==\"4\"{if previous_action==\"DROP\"{if ordinal==\"3\"{GO_CHOP}else{GO_HARVEST}}else{GO_CHOP}}else{if unit_count==\"2\"{GO_HARVEST}else{if bank_distance==\"2\"{GO_CHOP}else{GO_HARVEST}}}}else{if ordinal==\"3\"{GO_CHOP}else{GO_HARVEST}}}}}else{if carry_class==\"fruit\"{if bank_distance==\"1\"{if unit_count==\"3\"{GO_FARM}else{GO_HARVEST}}else{if phase==\"251+\"{GO_FARM}else{if unit_count==\"2\"{if phase==\"76-150\"{GO_HARVEST}else{GO_FARM}}else{GO_FARM}}}}else{if unit_count==\"4\"{if on_cell==\"open\"{if bank_distance==\"10+\"{GO_CHOP}else{if ordinal==\"1\"{if role==\"harvest_specialist\"{GO_DROP}else{GO_CHOP}}else{GO_DROP}}}else{if phase==\"76-150\"{if role==\"wood_specialist\"{GO_CHOP}else{GO_HARVEST}}else{GO_CHOP}}}else{if unit_count==\"3\"{if phase==\"76-150\"{if on_cell==\"ripe_tree\"{if role==\"hybrid_chopper\"{GO_MINE}else{GO_HARVEST}}else{if on_cell==\"open\"{GO_DROP}else{GO_CHOP}}}else{if role==\"hybrid_chopper\"{if carry_class==\"empty\"{GO_CHOP}else{GO_DROP}}else{if bank_distance==\"1\"{GO_HARVEST}else{GO_CHOP}}}}else{if phase==\"01-05\"{if role==\"hybrid_chopper\"{GO_CHOP}else{if unit_count==\"2\"{GO_HARVEST}else{GO_FARM}}}else{if on_cell==\"ripe_tree\"{if previous_action==\"DROP\"{GO_HARVEST}else{GO_CHOP}}else{if on_cell==\"open\"{GO_DROP}else{GO_HARVEST}}}}}}}}",
+ "estimated_expression_bytes": 1923,
+ "decision": {
+  "authorize_native_research_controller": true,
+  "build_submission_candidate": false
+ }
+}

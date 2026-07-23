@@ -1,0 +1,45 @@
+{
+  "schema": "troll-farm-d165a-resident-worker-role-return-lock-v1",
+  "frozen_at_utc": "2026-07-23T08:15:49Z",
+  "question": "causal value of one same-worker producer-to-suppressor-to-remembered-producer return",
+  "map_start": 9844136,
+  "maps": 64,
+  "seats": 2,
+  "opponent_families": 8,
+  "policies": [
+    "resident",
+    "producer_suppressor_return_h016"
+  ],
+  "return_horizon": 16,
+  "expected_rows": 2048,
+  "threads": [
+    1,
+    20
+  ],
+  "bulk_root": "artifacts/experiments/d165a-resident-worker-role-return",
+  "reserved_maps": [
+    9844200,
+    9844215
+  ],
+  "files": {
+    "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-protocol-2026-07-23.md": "73bad4a268d3b2b8097fd5ba07b86939488b2671d5cfbee57bf4c508c584b7d9",
+    "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-result.json": "6ed98a7c7547b3b1c27b2b96bf975b07109880198f9b38fb5725bb626af42e27",
+    "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f"
+  },
+  "prohibitions": {
+    "fresh_maps": true,
+    "reserved_maps": true,
+    "yt": true,
+    "platform": true,
+    "candidate_generation": true,
+    "submission": true,
+    "resident_mutation": true,
+    "outcome_dependent_selection": true
+  }
+}

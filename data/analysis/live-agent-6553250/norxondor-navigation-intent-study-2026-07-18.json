@@ -1,0 +1,465 @@
+{
+ "schema": 1,
+ "scope": "observational Norxondor MOVE rows; next non-MOVE action is retrospective training supervision only; fivefold predictors use current state and exclude held games; shortest-route checks use observed future action cells; goal selection, counterfactual play, causal value, sealed holdout, and arena are excluded",
+ "agent_id": 6480540,
+ "games": 30,
+ "rows": 22177,
+ "move_rows": 10406,
+ "quality": {
+  "turn_count_matches": 30,
+  "unknown_diff_updates": 0
+ },
+ "navigation": {
+  "moves": 10406,
+  "target_equals_after": 10391,
+  "target_equals_after_rate": 0.9985585239285028,
+  "target_within_speed": 10314,
+  "target_within_speed_rate": 0.9911589467614838,
+  "mean_target_distance": 1.486426216792709,
+  "shortest_route_eligible": 9707,
+  "target_on_shortest_route": 9068,
+  "target_on_shortest_route_rate": 0.9341712166477799,
+  "by_intent": {
+   "GO_CHOP": {
+    "moves": 2555,
+    "target_equals_after": 2555,
+    "target_within_speed": 2529,
+    "shortest_route_eligible": 2555,
+    "target_on_shortest_route": 2244,
+    "target_on_shortest_route_rate": 0.8782778864970646
+   },
+   "GO_DROP": {
+    "moves": 3025,
+    "target_equals_after": 3025,
+    "target_within_speed": 3025,
+    "shortest_route_eligible": 3025,
+    "target_on_shortest_route": 2986,
+    "target_on_shortest_route_rate": 0.9871074380165289
+   },
+   "GO_END": {
+    "moves": 699,
+    "target_equals_after": 689,
+    "target_within_speed": 699,
+    "shortest_route_eligible": 0,
+    "target_on_shortest_route": 0,
+    "target_on_shortest_route_rate": null
+   },
+   "GO_FARM": {
+    "moves": 1135,
+    "target_equals_after": 1130,
+    "target_within_speed": 1109,
+    "shortest_route_eligible": 1135,
+    "target_on_shortest_route": 1047,
+    "target_on_shortest_route_rate": 0.9224669603524229
+   },
+   "GO_HARVEST": {
+    "moves": 2727,
+    "target_equals_after": 2727,
+    "target_within_speed": 2687,
+    "shortest_route_eligible": 2727,
+    "target_on_shortest_route": 2541,
+    "target_on_shortest_route_rate": 0.9317931793179318
+   },
+   "GO_MINE": {
+    "moves": 265,
+    "target_equals_after": 265,
+    "target_within_speed": 265,
+    "shortest_route_eligible": 265,
+    "target_on_shortest_route": 250,
+    "target_on_shortest_route_rate": 0.9433962264150944
+   }
+  }
+ },
+ "held_game_intent": {
+  "rows": 10406,
+  "accuracy": 0.7156448202959831,
+  "macro_f1": 0.5728786544656528,
+  "per_label": {
+   "GO_CHOP": {
+    "support": 2555,
+    "precision": 0.6857366771159875,
+    "recall": 0.684931506849315,
+    "f1": 0.6853338554924614
+   },
+   "GO_DROP": {
+    "support": 3025,
+    "precision": 0.8428841309823678,
+    "recall": 0.8849586776859504,
+    "f1": 0.8634091275600709
+   },
+   "GO_END": {
+    "support": 699,
+    "precision": 0.3810316139767055,
+    "recall": 0.32761087267525035,
+    "f1": 0.3523076923076923
+   },
+   "GO_FARM": {
+    "support": 1135,
+    "precision": 0.5341130604288499,
+    "recall": 0.4828193832599119,
+    "f1": 0.5071726052753355
+   },
+   "GO_HARVEST": {
+    "support": 2727,
+    "precision": 0.7575233483223798,
+    "recall": 0.8030803080308031,
+    "f1": 0.7796368814524741
+   },
+   "GO_MINE": {
+    "support": 265,
+    "precision": 0.33125,
+    "recall": 0.2,
+    "f1": 0.24941176470588236
+   }
+  },
+  "group_field": "game_fold",
+  "folds": [
+   {
+    "held": 0,
+    "train_rows": 7999,
+    "test_rows": 2407,
+    "accuracy": 0.7137515579559618,
+    "macro_f1": 0.5950202359963318,
+    "majority_accuracy": 0.31283755712505196
+   },
+   {
+    "held": 1,
+    "train_rows": 8958,
+    "test_rows": 1448,
+    "accuracy": 0.680939226519337,
+    "macro_f1": 0.5362237684533009,
+    "majority_accuracy": 0.22375690607734808
+   },
+   {
+    "held": 2,
+    "train_rows": 7939,
+    "test_rows": 2467,
+    "accuracy": 0.7292257802999594,
+    "macro_f1": 0.5817102267638429,
+    "majority_accuracy": 0.3036076205918119
+   },
+   {
+    "held": 3,
+    "train_rows": 8411,
+    "test_rows": 1995,
+    "accuracy": 0.7408521303258145,
+    "macro_f1": 0.5313560001448474,
+    "majority_accuracy": 0.29223057644110273
+   },
+   {
+    "held": 4,
+    "train_rows": 8317,
+    "test_rows": 2089,
+    "accuracy": 0.7017711823839158,
+    "macro_f1": 0.5584649687732669,
+    "majority_accuracy": 0.2948779320248923
+   }
+  ],
+  "majority_baseline": {
+   "rows": 10406,
+   "accuracy": 0.29069767441860467,
+   "macro_f1": 0.07507507507507508,
+   "per_label": {
+    "GO_CHOP": {
+     "support": 2555,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_DROP": {
+     "support": 3025,
+     "precision": 0.29069767441860467,
+     "recall": 1.0,
+     "f1": 0.45045045045045046
+    },
+    "GO_END": {
+     "support": 699,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_FARM": {
+     "support": 1135,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_HARVEST": {
+     "support": 2727,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "GO_MINE": {
+     "support": 265,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    }
+   }
+  },
+  "accuracy_gain": 0.4249471458773784,
+  "coverage": {
+   "backoff_0": 2705,
+   "backoff_1": 6388,
+   "backoff_2": 838,
+   "backoff_3": 443,
+   "backoff_4": 25,
+   "global": 7
+  },
+  "worst_fold_accuracy": 0.680939226519337,
+  "worst_fold_macro_f1": 0.5313560001448474
+ },
+ "held_game_literal_endpoint_class": {
+  "rows": 10406,
+  "accuracy": 0.6440515087449549,
+  "macro_f1": 0.5028257711094337,
+  "per_label": {
+   "MOVE_OTHER": {
+    "support": 6348,
+    "precision": 0.731160033869602,
+    "recall": 0.8161625708884688,
+    "f1": 0.7713264850379634
+   },
+   "MOVE_TREE": {
+    "support": 1410,
+    "precision": 0.31768558951965065,
+    "recall": 0.20638297872340425,
+    "f1": 0.25021496130696474
+   },
+   "MOVE_TREE_RIPE": {
+    "support": 2648,
+    "precision": 0.5116472545757071,
+    "recall": 0.4645015105740181,
+    "f1": 0.48693586698337293
+   }
+  },
+  "group_field": "game_fold",
+  "folds": [
+   {
+    "held": 0,
+    "train_rows": 7999,
+    "test_rows": 2407,
+    "accuracy": 0.6539260490236809,
+    "macro_f1": 0.5069562767270687,
+    "majority_accuracy": 0.5820523473203157
+   },
+   {
+    "held": 1,
+    "train_rows": 8958,
+    "test_rows": 1448,
+    "accuracy": 0.6781767955801105,
+    "macro_f1": 0.5133096320622297,
+    "majority_accuracy": 0.6505524861878453
+   },
+   {
+    "held": 2,
+    "train_rows": 7939,
+    "test_rows": 2467,
+    "accuracy": 0.6461289014997973,
+    "macro_f1": 0.49111594706955963,
+    "majority_accuracy": 0.6445074989866234
+   },
+   {
+    "held": 3,
+    "train_rows": 8411,
+    "test_rows": 1995,
+    "accuracy": 0.6075187969924812,
+    "macro_f1": 0.5006988555646065,
+    "majority_accuracy": 0.5298245614035088
+   },
+   {
+    "held": 4,
+    "train_rows": 8317,
+    "test_rows": 2089,
+    "accuracy": 0.6414552417424605,
+    "macro_f1": 0.4945882667322382,
+    "majority_accuracy": 0.6500718046912398
+   }
+  ],
+  "majority_baseline": {
+   "rows": 10406,
+   "accuracy": 0.6100326734576206,
+   "macro_f1": 0.25259639489077235,
+   "per_label": {
+    "MOVE_OTHER": {
+     "support": 6348,
+     "precision": 0.6100326734576206,
+     "recall": 1.0,
+     "f1": 0.757789184672317
+    },
+    "MOVE_TREE": {
+     "support": 1410,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 2648,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    }
+   }
+  },
+  "accuracy_gain": 0.03401883528733429,
+  "coverage": {
+   "backoff_0": 2705,
+   "backoff_1": 6388,
+   "backoff_2": 838,
+   "backoff_3": 443,
+   "backoff_4": 25,
+   "global": 7
+  },
+  "worst_fold_accuracy": 0.6075187969924812,
+  "worst_fold_macro_f1": 0.49111594706955963
+ },
+ "intent_accuracy_gain_over_endpoint_class": 0.07159331155102822,
+ "assignment": {
+  "movement_episodes": 4427,
+  "episode_intents": {
+   "GO_CHOP": 722,
+   "GO_DROP": 1469,
+   "GO_END": 52,
+   "GO_FARM": 635,
+   "GO_HARVEST": 1423,
+   "GO_MINE": 126
+  },
+  "mean_moves_per_episode": 2.350576010842557,
+  "median_moves_per_episode": 1,
+  "maximum_moves_per_episode": 80,
+  "by_ordinal": {
+   "0": {
+    "rows": 8738,
+    "roles": {
+     "generalist": 8738
+    },
+    "actions": {
+     "CHOP": 1545,
+     "DROP": 1170,
+     "HARVEST": 1047,
+     "MINE": 20,
+     "MOVE": 4150,
+     "PICK": 309,
+     "PLANT": 497
+    },
+    "movement_intents": {
+     "GO_CHOP": 663,
+     "GO_DROP": 945,
+     "GO_END": 385,
+     "GO_FARM": 621,
+     "GO_HARVEST": 1457,
+     "GO_MINE": 79
+    }
+   },
+   "1": {
+    "rows": 7573,
+    "roles": {
+     "generalist": 490,
+     "harvest_specialist": 2286,
+     "hybrid_chopper": 4797
+    },
+    "actions": {
+     "CHOP": 1437,
+     "DROP": 942,
+     "HARVEST": 1010,
+     "MINE": 94,
+     "MOVE": 3550,
+     "PICK": 146,
+     "PLANT": 394
+    },
+    "movement_intents": {
+     "GO_CHOP": 713,
+     "GO_DROP": 1113,
+     "GO_END": 175,
+     "GO_FARM": 401,
+     "GO_HARVEST": 1024,
+     "GO_MINE": 124
+    }
+   },
+   "2": {
+    "rows": 3894,
+    "roles": {
+     "hybrid_chopper": 3894
+    },
+    "actions": {
+     "CHOP": 1133,
+     "DROP": 382,
+     "HARVEST": 433,
+     "MINE": 60,
+     "MOVE": 1736,
+     "PICK": 31,
+     "PLANT": 119
+    },
+    "movement_intents": {
+     "GO_CHOP": 669,
+     "GO_DROP": 600,
+     "GO_END": 93,
+     "GO_FARM": 103,
+     "GO_HARVEST": 221,
+     "GO_MINE": 50
+    }
+   },
+   "3": {
+    "rows": 1601,
+    "roles": {
+     "hybrid_chopper": 776,
+     "wood_specialist": 825
+    },
+    "actions": {
+     "CHOP": 533,
+     "DROP": 166,
+     "HARVEST": 57,
+     "MINE": 9,
+     "MOVE": 764,
+     "PICK": 34,
+     "PLANT": 38
+    },
+    "movement_intents": {
+     "GO_CHOP": 383,
+     "GO_DROP": 295,
+     "GO_END": 39,
+     "GO_FARM": 10,
+     "GO_HARVEST": 25,
+     "GO_MINE": 12
+    }
+   },
+   "4": {
+    "rows": 371,
+    "roles": {
+     "hybrid_chopper": 87,
+     "wood_specialist": 284
+    },
+    "actions": {
+     "CHOP": 135,
+     "DROP": 28,
+     "MOVE": 206,
+     "PICK": 1,
+     "PLANT": 1
+    },
+    "movement_intents": {
+     "GO_CHOP": 127,
+     "GO_DROP": 72,
+     "GO_END": 7
+    }
+   }
+  }
+ },
+ "gate": {
+  "requirements": [
+   "at least 99.5% of MOVE targets equal the observed end-of-turn cell",
+   "at least 99% of MOVE targets are within the worker's speed",
+   "at least 90% of eligible targets lie on a shortest route to the next action",
+   "held intent accuracy at least 0.70 and macro F1 at least 0.50",
+   "every fold intent accuracy at least 0.65 and macro F1 at least 0.45",
+   "intent accuracy beats fold-majority by at least 0.30",
+   "intent abstraction gains at least 0.08 accuracy over literal endpoint class"
+  ],
+  "passed": false
+ },
+ "decision": {
+  "controller_decomposition_supported": false,
+  "next_layer": "held-game goal-cell selection per GO_* intent",
+  "build_submission_candidate": false
+ }
+}

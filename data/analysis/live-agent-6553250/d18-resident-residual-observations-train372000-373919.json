@@ -1,0 +1,27 @@
+{
+  "captured": 23040,
+  "decisions": 1050686,
+  "decisions_per_second": 2746.552986878447,
+  "dtype": "uint8",
+  "elapsed_seconds": 382.5471436450025,
+  "exporter": "cgauto/d18_resident_residual_observation_export.py",
+  "current_exporter_sha256_at_metadata_write": "ae20ba05b7112d8d921eb151a2f1625b577ff1e9b5437c6882a5010bf0a74d6b",
+  "exporter_sha256": "3d7e6a3064e983725acf0dd11ee7e52b2b14473ce7d7054913f91be3a549becb",
+  "provenance_note": "The serial exporter process began before the parallel-export patch; the process read the newer on-disk hash when writing metadata. execution exporter_sha256 is corrected here; the observation format and reconstruction checks are unchanged.",
+  "labels": "data/analysis/live-agent-6553250/d17-resident-residual-mc-train-scenarios372000-373919.tsv",
+  "labels_sha256": "3e8ab92a29bff9c7e2586afcfe9d7518eb1e79fa6404b840c9b60618c3210182",
+  "output": "data/analysis/live-agent-6553250/d18-resident-residual-observations-train372000-373919.npy",
+  "output_sha256": "b43d1c830af5845b42c5ee231b2744a921e00856a35ade1504b13cf5fee427ef",
+  "rows": 23040,
+  "samples_per_scenario": 12,
+  "scenario_start": 372000,
+  "scenario_stop_exclusive": 373920,
+  "scenarios": 1920,
+  "schema": 1,
+  "shape": [
+    23040,
+    137,
+    11,
+    22
+  ]
+}

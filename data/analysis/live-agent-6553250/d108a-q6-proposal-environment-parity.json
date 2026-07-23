@@ -1,0 +1,48 @@
+{
+  "config": {
+    "map_start": 9829000,
+    "maps": 8,
+    "num_envs": 20,
+    "tasks": 128,
+    "threads": 20
+  },
+  "first": {
+    "elapsed_seconds": 20.779376280028373,
+    "eligible_boundaries": 647,
+    "eligible_tasks": 119,
+    "feature_stream_sha256": "9b8597c825841e2a099b2afc74cd49132012c1557298a49f684246cdd40bd740",
+    "minimum_unique_noncontrol": 6,
+    "reward_exact": true,
+    "steps": 780,
+    "steps_per_second": 37.537219091108106,
+    "support_exact": true,
+    "tasks": 128,
+    "terminal_exact": true
+  },
+  "gates": {
+    "complete_128_tasks": true,
+    "eligible_cardinality_exact": true,
+    "minimum_unique_noncontrol_exact": true,
+    "paired_reward_exact_zero": true,
+    "proposal_support_exact_d107": true,
+    "repeat_feature_and_comparison_exact": true,
+    "terminal_exact_d107_d40": true
+  },
+  "pass": true,
+  "repeat_exact": true,
+  "schema": "troll-farm-d108a-q6-proposal-environment-parity-v1",
+  "scope": "consumed D107 panel; environment parity only",
+  "second": {
+    "elapsed_seconds": 20.541670082020573,
+    "eligible_boundaries": 647,
+    "eligible_tasks": 119,
+    "feature_stream_sha256": "9b8597c825841e2a099b2afc74cd49132012c1557298a49f684246cdd40bd740",
+    "minimum_unique_noncontrol": 6,
+    "reward_exact": true,
+    "steps": 780,
+    "steps_per_second": 37.971596120741296,
+    "support_exact": true,
+    "tasks": 128,
+    "terminal_exact": true
+  }
+}

@@ -1,0 +1,4060 @@
+{
+  "aggregate_mechanics": {
+    "details": {
+      "arms": 103602,
+      "baselines": 1280,
+      "error_samples": {
+        "accounting": [],
+        "feature": [],
+        "paired": [],
+        "root": []
+      },
+      "expert_bank_hashes": [
+        "10190021983138339114"
+      ],
+      "maximum_boundaries_per_task": 25,
+      "maximum_paired_gain_error": 1.1000000021965661e-07,
+      "maximum_proposals_per_root": 29,
+      "maximum_reward_identity_error": 2.3000000037853852e-07,
+      "mechanical_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "minimum_boundaries_per_task": 0,
+      "minimum_proposals_per_root": 4,
+      "roots": 6321,
+      "supported_tasks": 1139,
+      "task_support_rate": 0.88984375,
+      "tasks": 1280,
+      "throughput_arms_per_second": {
+        "a": 25.6746401902464,
+        "b": 25.6746401902464
+      },
+      "unsupported_forced_control_tasks": 141
+    },
+    "gates": {
+      "at_least_6000_arms": true,
+      "at_least_600_roots": true,
+      "both_runs_at_least_12_arms_per_second": true,
+      "complete_unique_arm_grid": true,
+      "d112_full_panel_reproducibility_inherited": true,
+      "feature_schema_and_finiteness": true,
+      "frozen_inputs_exact": true,
+      "nonzero_control_relative_actions": true,
+      "paired_gain_exact": true,
+      "prescribed_baseline_grid": true,
+      "reward_identity_below_1e_4": true,
+      "single_expert_bank_hash": true,
+      "single_intervention_accounting": true,
+      "supported_tasks_at_least_90pct": false,
+      "zero_boundary_is_valid_forced_control": true,
+      "zero_mechanical_failures": true
+    },
+    "pass": false
+  },
+  "artifacts": {
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+    "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+    "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+    "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6"
+  },
+  "block_mechanics": {
+    "held0": {
+      "details": {
+        "arms": 18659,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 16,
+        "maximum_paired_gain_error": 1.0000000028043132e-07,
+        "maximum_proposals_per_root": 29,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 8,
+        "roots": 1165,
+        "supported_tasks": 220,
+        "task_support_rate": 0.859375,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 33.83189398046493,
+          "b": 33.83189398046493
+        },
+        "unsupported_forced_control_tasks": 36
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": false,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    },
+    "repair1": {
+      "details": {
+        "arms": 19859,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 19,
+        "maximum_paired_gain_error": 7.999999995789153e-08,
+        "maximum_proposals_per_root": 27,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 8,
+        "roots": 1198,
+        "supported_tasks": 228,
+        "task_support_rate": 0.890625,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 26.76855224174325,
+          "b": 26.76855224174325
+        },
+        "unsupported_forced_control_tasks": 28
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": false,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    },
+    "repair2": {
+      "details": {
+        "arms": 23869,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 25,
+        "maximum_paired_gain_error": 1.1000000021965661e-07,
+        "maximum_proposals_per_root": 26,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 7,
+        "roots": 1470,
+        "supported_tasks": 236,
+        "task_support_rate": 0.921875,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 20.985285946390768,
+          "b": 20.985285946390768
+        },
+        "unsupported_forced_control_tasks": 20
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": true,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": true
+    },
+    "repair3": {
+      "details": {
+        "arms": 19554,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 19,
+        "maximum_paired_gain_error": 1.0000000028043132e-07,
+        "maximum_proposals_per_root": 28,
+        "maximum_reward_identity_error": 2.0999999961190952e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 4,
+        "roots": 1187,
+        "supported_tasks": 226,
+        "task_support_rate": 0.8828125,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 26.968653801595448,
+          "b": 26.968653801595448
+        },
+        "unsupported_forced_control_tasks": 30
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": false,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    },
+    "repair4": {
+      "details": {
+        "arms": 21661,
+        "baselines": 256,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 19,
+        "maximum_paired_gain_error": 6.000000007944095e-08,
+        "maximum_proposals_per_root": 26,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 9,
+        "roots": 1301,
+        "supported_tasks": 229,
+        "task_support_rate": 0.89453125,
+        "tasks": 256,
+        "throughput_arms_per_second": {
+          "a": 24.63411610707954,
+          "b": 24.63411610707954
+        },
+        "unsupported_forced_control_tasks": 27
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": false,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    }
+  },
+  "decision": "retrospective_only_generate_next_model_hypothesis",
+  "descriptive_frontier": {
+    "best_descriptive_held_pass": null,
+    "best_mean": {
+      "descriptive_held_gates": {
+        "activity_10_to_85pct": false,
+        "crop_100pct": false,
+        "mean_at_least_2": true,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": true,
+        "strict_at_least_40pct": true,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": true
+      },
+      "descriptive_held_pass": false,
+      "gate_offset": -1.0,
+      "grid_index": 12,
+      "id": "11903:-1.0",
+      "metrics": {
+        "control_worker_three_rate": 0.90859375,
+        "crop_rate": 0.9984375,
+        "family_mean_margin_delta": {
+          "compact_gold": 2.10625,
+          "gold_adaptive": 9.2625,
+          "legend_balanced": 2.425,
+          "mybot": 6.43125,
+          "norx_native_three": 4.7625,
+          "resident": -2.6625,
+          "script_boss": -0.2875,
+          "silver_boss": 1.5875
+        },
+        "fold_mean_margin_delta": {
+          "0": 2.5625,
+          "1": 3.34375
+        },
+        "intervention_rate": 0.8875,
+        "mean_margin_delta": 2.953125,
+        "mean_opponent_score_delta": -2.4375,
+        "mean_own_score_delta": 0.515625,
+        "positive_families": 6,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.45390625,
+        "tasks": 1280,
+        "worker_three_rate": 0.90859375,
+        "worst_family": -2.6625
+      },
+      "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+      "seed": 11903
+    },
+    "best_robust": {
+      "descriptive_held_gates": {
+        "activity_10_to_85pct": false,
+        "crop_100pct": false,
+        "mean_at_least_2": true,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": true,
+        "strict_at_least_40pct": true,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": true
+      },
+      "descriptive_held_pass": false,
+      "gate_offset": -1.0,
+      "grid_index": 12,
+      "id": "11903:-1.0",
+      "metrics": {
+        "control_worker_three_rate": 0.90859375,
+        "crop_rate": 0.9984375,
+        "family_mean_margin_delta": {
+          "compact_gold": 2.10625,
+          "gold_adaptive": 9.2625,
+          "legend_balanced": 2.425,
+          "mybot": 6.43125,
+          "norx_native_three": 4.7625,
+          "resident": -2.6625,
+          "script_boss": -0.2875,
+          "silver_boss": 1.5875
+        },
+        "fold_mean_margin_delta": {
+          "0": 2.5625,
+          "1": 3.34375
+        },
+        "intervention_rate": 0.8875,
+        "mean_margin_delta": 2.953125,
+        "mean_opponent_score_delta": -2.4375,
+        "mean_own_score_delta": 0.515625,
+        "positive_families": 6,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.45390625,
+        "tasks": 1280,
+        "worker_three_rate": 0.90859375,
+        "worst_family": -2.6625
+      },
+      "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+      "seed": 11903
+    }
+  },
+  "grid": {
+    "candidates": 24,
+    "descriptive_held_passes": 0,
+    "results": [
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.859375,
+            "mean_margin_delta": 2.49609375,
+            "mean_opponent_score_delta": -2.62890625,
+            "mean_own_score_delta": -0.1328125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.875
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.88671875,
+            "mean_margin_delta": 0.26171875,
+            "mean_opponent_score_delta": -0.84765625,
+            "mean_own_score_delta": -0.5859375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.421875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -4.9375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.921875,
+            "mean_margin_delta": 0.8828125,
+            "mean_opponent_score_delta": -0.890625,
+            "mean_own_score_delta": -0.0078125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -7.65625
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8828125,
+            "mean_margin_delta": 0.9453125,
+            "mean_opponent_score_delta": -1.56640625,
+            "mean_own_score_delta": -0.62109375,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.41796875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -8.34375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.89453125,
+            "mean_margin_delta": 3.859375,
+            "mean_opponent_score_delta": -2.7109375,
+            "mean_own_score_delta": 1.1484375,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.48046875,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -3.75
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -1.0,
+        "grid_index": 0,
+        "id": "11901:-1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.6375,
+            "gold_adaptive": 6.71875,
+            "legend_balanced": 2.3875,
+            "mybot": 4.30625,
+            "norx_native_three": 1.28125,
+            "resident": -1.56875,
+            "script_boss": -0.5625,
+            "silver_boss": 0.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.1859375,
+            "1": 2.1921875
+          },
+          "intervention_rate": 0.8890625,
+          "mean_margin_delta": 1.6890625,
+          "mean_opponent_score_delta": -1.72890625,
+          "mean_own_score_delta": -0.03984375,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.56875
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 5.3125,
+            "gold_adaptive": 1.96875,
+            "legend_balanced": -1.875,
+            "mybot": 9.125,
+            "norx_native_three": 9.46875,
+            "resident": -4.4375,
+            "script_boss": -0.40625,
+            "silver_boss": -0.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.6484375,
+            "1": 2.0625
+          },
+          "intervention_rate": 0.90234375,
+          "mean_margin_delta": 2.35546875,
+          "mean_opponent_score_delta": -3.12890625,
+          "mean_own_score_delta": -0.7734375,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.47265625,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -4.4375
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.83984375,
+            "mean_margin_delta": 1.453125,
+            "mean_opponent_score_delta": -1.53125,
+            "mean_own_score_delta": -0.078125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.4140625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -3.0625
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.87890625,
+            "mean_margin_delta": 0.50390625,
+            "mean_opponent_score_delta": -0.84765625,
+            "mean_own_score_delta": -0.34375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.44140625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -4.3125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.9140625,
+            "mean_margin_delta": 0.38671875,
+            "mean_opponent_score_delta": -0.17578125,
+            "mean_own_score_delta": 0.2109375,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.4140625,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -8.78125
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8671875,
+            "mean_margin_delta": 1.90625,
+            "mean_opponent_score_delta": -1.91015625,
+            "mean_own_score_delta": -0.00390625,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.421875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -8.5
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.890625,
+            "mean_margin_delta": 4.33203125,
+            "mean_opponent_score_delta": -2.6953125,
+            "mean_own_score_delta": 1.63671875,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.484375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -3.4375
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -0.5,
+        "grid_index": 1,
+        "id": "11901:-0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.68125,
+            "gold_adaptive": 7.70625,
+            "legend_balanced": 2.21875,
+            "mybot": 4.00625,
+            "norx_native_three": 0.3625,
+            "resident": -0.85,
+            "script_boss": 0.18125,
+            "silver_boss": -0.575
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.0234375,
+            "1": 2.409375
+          },
+          "intervention_rate": 0.878125,
+          "mean_margin_delta": 1.71640625,
+          "mean_opponent_score_delta": -1.43203125,
+          "mean_own_score_delta": 0.284375,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.43515625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.85
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 5.6875,
+            "gold_adaptive": 2.03125,
+            "legend_balanced": -1.875,
+            "mybot": 7.5,
+            "norx_native_three": 10.21875,
+            "resident": 1.125,
+            "script_boss": 2.09375,
+            "silver_boss": -3.0625
+          },
+          "fold_mean_margin_delta": {
+            "0": 3.8046875,
+            "1": 2.125
+          },
+          "intervention_rate": 0.89453125,
+          "mean_margin_delta": 2.96484375,
+          "mean_opponent_score_delta": -3.203125,
+          "mean_own_score_delta": -0.23828125,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.44921875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.0625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.73828125,
+            "mean_margin_delta": 1.07421875,
+            "mean_opponent_score_delta": -0.37890625,
+            "mean_own_score_delta": 0.6953125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.37109375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -6.65625
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.80859375,
+            "mean_margin_delta": 1.93359375,
+            "mean_opponent_score_delta": -1.15234375,
+            "mean_own_score_delta": 0.78125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.42578125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.84375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.81640625,
+            "mean_margin_delta": 1.82421875,
+            "mean_opponent_score_delta": -1.4453125,
+            "mean_own_score_delta": 0.37890625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.390625,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -3.3125
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.79296875,
+            "mean_margin_delta": 1.69921875,
+            "mean_opponent_score_delta": -1.09765625,
+            "mean_own_score_delta": 0.6015625,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.41015625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -7.125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.82421875,
+            "mean_margin_delta": 2.6953125,
+            "mean_opponent_score_delta": -0.796875,
+            "mean_own_score_delta": 1.8984375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.42578125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -2.3125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.0,
+        "grid_index": 2,
+        "id": "11901:+0.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.725,
+            "gold_adaptive": 6.875,
+            "legend_balanced": 2.1375,
+            "mybot": 2.73125,
+            "norx_native_three": 0.06875,
+            "resident": 0.2875,
+            "script_boss": 0.38125,
+            "silver_boss": -0.44375
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.4828125,
+            "1": 3.2078125
+          },
+          "intervention_rate": 0.79609375,
+          "mean_margin_delta": 1.8453125,
+          "mean_opponent_score_delta": -0.97421875,
+          "mean_own_score_delta": 0.87109375,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4046875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.44375
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": true,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 10.34375,
+            "gold_adaptive": -0.3125,
+            "legend_balanced": -3.375,
+            "mybot": 7.84375,
+            "norx_native_three": 8.59375,
+            "resident": 0.1875,
+            "script_boss": 0.625,
+            "silver_boss": -0.375
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.359375,
+            "1": 3.5234375
+          },
+          "intervention_rate": 0.83984375,
+          "mean_margin_delta": 2.94140625,
+          "mean_opponent_score_delta": -1.98828125,
+          "mean_own_score_delta": 0.953125,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.421875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.375
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.546875,
+            "mean_margin_delta": 0.3984375,
+            "mean_opponent_score_delta": -0.37890625,
+            "mean_own_score_delta": 0.01953125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.28515625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.9375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.64453125,
+            "mean_margin_delta": -0.0625,
+            "mean_opponent_score_delta": 0.25,
+            "mean_own_score_delta": 0.1875,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.31640625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -3.25
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.609375,
+            "mean_margin_delta": 1.42578125,
+            "mean_opponent_score_delta": -0.19140625,
+            "mean_own_score_delta": 1.234375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.33203125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.96875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.57421875,
+            "mean_margin_delta": 1.78515625,
+            "mean_opponent_score_delta": -0.6640625,
+            "mean_own_score_delta": 1.12109375,
+            "positive_families": 8,
+            "strict_improvement_rate": 0.3125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": 0.09375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.59375,
+            "mean_margin_delta": 1.76171875,
+            "mean_opponent_score_delta": -0.09375,
+            "mean_own_score_delta": 1.66796875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.33984375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -1.75
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.5,
+        "grid_index": 3,
+        "id": "11901:+0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.71875,
+            "gold_adaptive": 1.6375,
+            "legend_balanced": 3.19375,
+            "mybot": 0.1625,
+            "norx_native_three": -0.69375,
+            "resident": -0.55,
+            "script_boss": 1.38125,
+            "silver_boss": 0.64375
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.1046875,
+            "1": 2.01875
+          },
+          "intervention_rate": 0.59375,
+          "mean_margin_delta": 1.06171875,
+          "mean_opponent_score_delta": -0.215625,
+          "mean_own_score_delta": 0.84609375,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.3171875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.69375
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 8.65625,
+            "gold_adaptive": -2.34375,
+            "legend_balanced": -3.0625,
+            "mybot": 0.90625,
+            "norx_native_three": 8.1875,
+            "resident": -0.15625,
+            "script_boss": -0.21875,
+            "silver_boss": 0.875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.5390625,
+            "1": 2.671875
+          },
+          "intervention_rate": 0.671875,
+          "mean_margin_delta": 1.60546875,
+          "mean_opponent_score_delta": -1.1171875,
+          "mean_own_score_delta": 0.48828125,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.30859375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.0625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.29296875,
+            "mean_margin_delta": 0.65234375,
+            "mean_opponent_score_delta": -0.140625,
+            "mean_own_score_delta": 0.51171875,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.1484375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.46875
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.39453125,
+            "mean_margin_delta": 1.0546875,
+            "mean_opponent_score_delta": -0.09375,
+            "mean_own_score_delta": 0.9609375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.18359375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.5625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.3359375,
+            "mean_margin_delta": 0.015625,
+            "mean_opponent_score_delta": 0.1875,
+            "mean_own_score_delta": 0.203125,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.1640625,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -2.0
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.29296875,
+            "mean_margin_delta": 1.4765625,
+            "mean_opponent_score_delta": -0.1875,
+            "mean_own_score_delta": 1.2890625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.16796875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.2890625,
+            "mean_margin_delta": 0.6796875,
+            "mean_opponent_score_delta": -0.21484375,
+            "mean_own_score_delta": 0.46484375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.15234375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -1.25
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.0,
+        "grid_index": 4,
+        "id": "11901:+1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.425,
+            "gold_adaptive": 0.6125,
+            "legend_balanced": 0.9,
+            "mybot": 0.7375,
+            "norx_native_three": 1.1125,
+            "resident": 0.1,
+            "script_boss": 0.41875,
+            "silver_boss": -0.1
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.60625,
+            "1": 0.9453125
+          },
+          "intervention_rate": 0.32109375,
+          "mean_margin_delta": 0.77578125,
+          "mean_opponent_score_delta": -0.08984375,
+          "mean_own_score_delta": 0.6859375,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.16328125,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.1
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 5.53125,
+            "gold_adaptive": 0.59375,
+            "legend_balanced": 0.90625,
+            "mybot": 0.34375,
+            "norx_native_three": 0.375,
+            "resident": -0.65625,
+            "script_boss": -0.5625,
+            "silver_boss": 0.78125
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.3671875,
+            "1": 0.4609375
+          },
+          "intervention_rate": 0.40625,
+          "mean_margin_delta": 0.9140625,
+          "mean_opponent_score_delta": -0.25390625,
+          "mean_own_score_delta": 0.66015625,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.21484375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -0.65625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.1328125,
+            "mean_margin_delta": 0.234375,
+            "mean_opponent_score_delta": -0.1953125,
+            "mean_own_score_delta": 0.0390625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.07421875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.15625
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.14453125,
+            "mean_margin_delta": 0.43359375,
+            "mean_opponent_score_delta": 0.16015625,
+            "mean_own_score_delta": 0.59375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.078125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.34375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.09765625,
+            "mean_margin_delta": 0.35546875,
+            "mean_opponent_score_delta": -0.05859375,
+            "mean_own_score_delta": 0.296875,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.046875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.96875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.13671875,
+            "mean_margin_delta": 1.10546875,
+            "mean_opponent_score_delta": -0.375,
+            "mean_own_score_delta": 0.73046875,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.0859375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.4375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.11328125,
+            "mean_margin_delta": 0.4140625,
+            "mean_opponent_score_delta": 0.078125,
+            "mean_own_score_delta": 0.4921875,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.0703125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": 0.0
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.5,
+        "grid_index": 5,
+        "id": "11901:+1.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.6625,
+            "gold_adaptive": 0.0125,
+            "legend_balanced": 2.025,
+            "mybot": 0.23125,
+            "norx_native_three": 1.28125,
+            "resident": -0.0625,
+            "script_boss": -0.00625,
+            "silver_boss": -0.075
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.28125,
+            "1": 0.7359375
+          },
+          "intervention_rate": 0.125,
+          "mean_margin_delta": 0.50859375,
+          "mean_opponent_score_delta": -0.078125,
+          "mean_own_score_delta": 0.43046875,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.07109375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.075
+        },
+        "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+        "seed": 11901,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.03125,
+            "gold_adaptive": -1.28125,
+            "legend_balanced": 0.90625,
+            "mybot": 0.0,
+            "norx_native_three": 1.5,
+            "resident": 0.0,
+            "script_boss": 0.25,
+            "silver_boss": -0.53125
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.125,
+            "1": 0.09375
+          },
+          "intervention_rate": 0.171875,
+          "mean_margin_delta": 0.109375,
+          "mean_opponent_score_delta": 0.18359375,
+          "mean_own_score_delta": 0.29296875,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.1015625,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.28125
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.859375,
+            "mean_margin_delta": 0.18359375,
+            "mean_opponent_score_delta": -2.109375,
+            "mean_own_score_delta": -1.92578125,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.38671875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -3.875
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.88671875,
+            "mean_margin_delta": 0.07421875,
+            "mean_opponent_score_delta": -0.4765625,
+            "mean_own_score_delta": -0.40234375,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.4453125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -5.5625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.921875,
+            "mean_margin_delta": 1.2890625,
+            "mean_opponent_score_delta": -0.20703125,
+            "mean_own_score_delta": 1.08203125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.4609375,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -7.46875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8828125,
+            "mean_margin_delta": 2.828125,
+            "mean_opponent_score_delta": -1.77734375,
+            "mean_own_score_delta": 1.05078125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.4375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -8.71875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.89453125,
+            "mean_margin_delta": 5.1796875,
+            "mean_opponent_score_delta": -2.91015625,
+            "mean_own_score_delta": 2.26953125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.515625,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -6.40625
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -1.0,
+        "grid_index": 6,
+        "id": "11902:-1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": -0.85,
+            "gold_adaptive": 7.5625,
+            "legend_balanced": 4.81875,
+            "mybot": 5.4125,
+            "norx_native_three": 0.33125,
+            "resident": -1.35,
+            "script_boss": -2.7875,
+            "silver_boss": 2.15
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.9140625,
+            "1": 1.9078125
+          },
+          "intervention_rate": 0.8890625,
+          "mean_margin_delta": 1.9109375,
+          "mean_opponent_score_delta": -1.49609375,
+          "mean_own_score_delta": 0.41484375,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.44921875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -2.7875
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 10.03125,
+            "gold_adaptive": 12.34375,
+            "legend_balanced": -3.65625,
+            "mybot": 6.0625,
+            "norx_native_three": 4.84375,
+            "resident": -0.625,
+            "script_boss": 1.9375,
+            "silver_boss": -4.8125
+          },
+          "fold_mean_margin_delta": {
+            "0": 9.0,
+            "1": -2.46875
+          },
+          "intervention_rate": 0.90234375,
+          "mean_margin_delta": 3.265625,
+          "mean_opponent_score_delta": -3.7890625,
+          "mean_own_score_delta": -0.5234375,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4609375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -4.8125
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8359375,
+            "mean_margin_delta": -0.2421875,
+            "mean_opponent_score_delta": -0.5390625,
+            "mean_own_score_delta": -0.78125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.35546875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -7.09375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.87890625,
+            "mean_margin_delta": -0.84765625,
+            "mean_opponent_score_delta": -0.37109375,
+            "mean_own_score_delta": -1.21875,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.42578125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -5.5625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.9140625,
+            "mean_margin_delta": 0.46875,
+            "mean_opponent_score_delta": 0.0703125,
+            "mean_own_score_delta": 0.5390625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -9.125
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.86328125,
+            "mean_margin_delta": 3.10546875,
+            "mean_opponent_score_delta": -1.85546875,
+            "mean_own_score_delta": 1.25,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.453125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -10.03125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.890625,
+            "mean_margin_delta": 4.84375,
+            "mean_opponent_score_delta": -2.60546875,
+            "mean_own_score_delta": 2.23828125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.5,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -5.1875
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -0.5,
+        "grid_index": 7,
+        "id": "11902:-0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": -0.98125,
+            "gold_adaptive": 5.88125,
+            "legend_balanced": 4.6625,
+            "mybot": 5.4125,
+            "norx_native_three": -1.2375,
+            "resident": -1.425,
+            "script_boss": -1.75625,
+            "silver_boss": 1.16875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.696875,
+            "1": 2.234375
+          },
+          "intervention_rate": 0.8765625,
+          "mean_margin_delta": 1.465625,
+          "mean_opponent_score_delta": -1.06015625,
+          "mean_own_score_delta": 0.40546875,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.43359375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.75625
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 10.90625,
+            "gold_adaptive": 9.6875,
+            "legend_balanced": -3.65625,
+            "mybot": 4.75,
+            "norx_native_three": 3.96875,
+            "resident": 0.90625,
+            "script_boss": 2.375,
+            "silver_boss": -5.125
+          },
+          "fold_mean_margin_delta": {
+            "0": 7.1953125,
+            "1": -1.2421875
+          },
+          "intervention_rate": 0.89453125,
+          "mean_margin_delta": 2.9765625,
+          "mean_opponent_score_delta": -3.74609375,
+          "mean_own_score_delta": -0.76953125,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4296875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -5.125
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.734375,
+            "mean_margin_delta": -0.34375,
+            "mean_opponent_score_delta": 0.2421875,
+            "mean_own_score_delta": -0.1015625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.34375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -10.625
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.796875,
+            "mean_margin_delta": 0.55078125,
+            "mean_opponent_score_delta": -0.1484375,
+            "mean_own_score_delta": 0.40234375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.39453125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -6.4375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8125,
+            "mean_margin_delta": 1.5703125,
+            "mean_opponent_score_delta": -1.39453125,
+            "mean_own_score_delta": 0.17578125,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.3828125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -5.9375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.79296875,
+            "mean_margin_delta": 3.3125,
+            "mean_opponent_score_delta": -1.140625,
+            "mean_own_score_delta": 2.171875,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.45703125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.28125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8203125,
+            "mean_margin_delta": 3.33984375,
+            "mean_opponent_score_delta": -1.14453125,
+            "mean_own_score_delta": 2.1953125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.46875,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -1.125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.0,
+        "grid_index": 8,
+        "id": "11902:+0.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.63125,
+            "gold_adaptive": 4.73125,
+            "legend_balanced": 5.3875,
+            "mybot": 3.625,
+            "norx_native_three": -1.24375,
+            "resident": -0.9625,
+            "script_boss": 0.83125,
+            "silver_boss": 0.4875
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.3078125,
+            "1": 2.0640625
+          },
+          "intervention_rate": 0.79140625,
+          "mean_margin_delta": 1.6859375,
+          "mean_opponent_score_delta": -0.7171875,
+          "mean_own_score_delta": 0.96875,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.409375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.24375
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": true,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 6.28125,
+            "gold_adaptive": 6.03125,
+            "legend_balanced": -3.6875,
+            "mybot": 3.875,
+            "norx_native_three": 2.59375,
+            "resident": 0.0,
+            "script_boss": 6.34375,
+            "silver_boss": -0.1875
+          },
+          "fold_mean_margin_delta": {
+            "0": 3.5390625,
+            "1": 1.7734375
+          },
+          "intervention_rate": 0.84375,
+          "mean_margin_delta": 2.65625,
+          "mean_opponent_score_delta": -2.4140625,
+          "mean_own_score_delta": 0.2421875,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.421875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.6875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.5546875,
+            "mean_margin_delta": -0.16015625,
+            "mean_opponent_score_delta": -0.0859375,
+            "mean_own_score_delta": -0.24609375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.26953125,
+            "worker_three_rate": 0.890625,
+            "worst_family": -6.0625
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.62109375,
+            "mean_margin_delta": 0.9453125,
+            "mean_opponent_score_delta": -0.2734375,
+            "mean_own_score_delta": 0.671875,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.3125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -5.09375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.6015625,
+            "mean_margin_delta": 1.34765625,
+            "mean_opponent_score_delta": -0.9375,
+            "mean_own_score_delta": 0.41015625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.3125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.9375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.54296875,
+            "mean_margin_delta": 2.11328125,
+            "mean_opponent_score_delta": -0.66015625,
+            "mean_own_score_delta": 1.453125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.328125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.8125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.5625,
+            "mean_margin_delta": 1.234375,
+            "mean_opponent_score_delta": 0.29296875,
+            "mean_own_score_delta": 1.52734375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.328125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -2.5
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.5,
+        "grid_index": 9,
+        "id": "11902:+0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 1.24375,
+            "gold_adaptive": 1.75625,
+            "legend_balanced": 2.79375,
+            "mybot": 0.89375,
+            "norx_native_three": 1.00625,
+            "resident": -0.46875,
+            "script_boss": 0.7875,
+            "silver_boss": 0.75625
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.56875,
+            "1": 1.6234375
+          },
+          "intervention_rate": 0.5765625,
+          "mean_margin_delta": 1.09609375,
+          "mean_opponent_score_delta": -0.3328125,
+          "mean_own_score_delta": 0.76328125,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.31015625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.46875
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": -0.75,
+            "gold_adaptive": -1.96875,
+            "legend_balanced": -1.03125,
+            "mybot": 1.25,
+            "norx_native_three": 3.125,
+            "resident": -0.84375,
+            "script_boss": -0.125,
+            "silver_boss": -0.6875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.3203125,
+            "1": -0.578125
+          },
+          "intervention_rate": 0.671875,
+          "mean_margin_delta": -0.12890625,
+          "mean_opponent_score_delta": -0.20703125,
+          "mean_own_score_delta": -0.3359375,
+          "positive_families": 2,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.30078125,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.96875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.296875,
+            "mean_margin_delta": -0.140625,
+            "mean_opponent_score_delta": 0.5078125,
+            "mean_own_score_delta": 0.3671875,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.13671875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -5.75
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.3671875,
+            "mean_margin_delta": 1.37109375,
+            "mean_opponent_score_delta": -0.4453125,
+            "mean_own_score_delta": 0.92578125,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.18359375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.3125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.30859375,
+            "mean_margin_delta": 0.00390625,
+            "mean_opponent_score_delta": 0.1953125,
+            "mean_own_score_delta": 0.19921875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.14453125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -2.0625
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.28125,
+            "mean_margin_delta": 1.58984375,
+            "mean_opponent_score_delta": -0.125,
+            "mean_own_score_delta": 1.46484375,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.1640625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.2890625,
+            "mean_margin_delta": 1.08984375,
+            "mean_opponent_score_delta": -0.30078125,
+            "mean_own_score_delta": 0.7890625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.18359375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.9375
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.0,
+        "grid_index": 10,
+        "id": "11902:+1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.425,
+            "gold_adaptive": 0.6625,
+            "legend_balanced": 0.69375,
+            "mybot": 0.2125,
+            "norx_native_three": 1.55,
+            "resident": 0.1875,
+            "script_boss": 0.4125,
+            "silver_boss": 0.11875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.740625,
+            "1": 0.825
+          },
+          "intervention_rate": 0.30859375,
+          "mean_margin_delta": 0.7828125,
+          "mean_opponent_score_delta": -0.03359375,
+          "mean_own_score_delta": 0.74921875,
+          "positive_families": 8,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.1625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": 0.11875
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 3.0625,
+            "gold_adaptive": 1.09375,
+            "legend_balanced": 0.40625,
+            "mybot": -0.03125,
+            "norx_native_three": 5.0,
+            "resident": -0.09375,
+            "script_boss": 0.59375,
+            "silver_boss": 0.875
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.078125,
+            "1": 1.6484375
+          },
+          "intervention_rate": 0.390625,
+          "mean_margin_delta": 1.36328125,
+          "mean_opponent_score_delta": -0.32421875,
+          "mean_own_score_delta": 1.0390625,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.21484375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -0.09375
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.13671875,
+            "mean_margin_delta": 0.22265625,
+            "mean_opponent_score_delta": -0.12890625,
+            "mean_own_score_delta": 0.09375,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.078125,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.140625,
+            "mean_margin_delta": 0.43359375,
+            "mean_opponent_score_delta": -0.0234375,
+            "mean_own_score_delta": 0.41015625,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.0703125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.40625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.09375,
+            "mean_margin_delta": 0.2734375,
+            "mean_opponent_score_delta": 0.01171875,
+            "mean_own_score_delta": 0.28515625,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.04296875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.21875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.125,
+            "mean_margin_delta": 1.05859375,
+            "mean_opponent_score_delta": -0.234375,
+            "mean_own_score_delta": 0.82421875,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.08984375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.21875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.10546875,
+            "mean_margin_delta": 0.7421875,
+            "mean_opponent_score_delta": 0.0546875,
+            "mean_own_score_delta": 0.796875,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.08203125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.5,
+        "grid_index": 11,
+        "id": "11902:+1.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.46875,
+            "gold_adaptive": 0.16875,
+            "legend_balanced": 1.9125,
+            "mybot": 0.06875,
+            "norx_native_three": 1.83125,
+            "resident": -0.1125,
+            "script_boss": 0.0375,
+            "silver_boss": -0.00625
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.49375,
+            "1": 0.5984375
+          },
+          "intervention_rate": 0.1203125,
+          "mean_margin_delta": 0.54609375,
+          "mean_opponent_score_delta": -0.0640625,
+          "mean_own_score_delta": 0.48203125,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.07265625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.1125
+        },
+        "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+        "seed": 11902,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.375,
+            "gold_adaptive": -1.5625,
+            "legend_balanced": 1.875,
+            "mybot": 0.0,
+            "norx_native_three": 3.46875,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.46875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.859375,
+            "1": 0.296875
+          },
+          "intervention_rate": 0.14453125,
+          "mean_margin_delta": 0.578125,
+          "mean_opponent_score_delta": -0.21875,
+          "mean_own_score_delta": 0.359375,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.0859375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.5625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.859375,
+            "mean_margin_delta": 4.73046875,
+            "mean_opponent_score_delta": -4.140625,
+            "mean_own_score_delta": 0.58984375,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.46484375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.9375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.8828125,
+            "mean_margin_delta": 0.421875,
+            "mean_opponent_score_delta": -0.8359375,
+            "mean_own_score_delta": -0.4140625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -3.21875
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.91796875,
+            "mean_margin_delta": 1.30078125,
+            "mean_opponent_score_delta": -1.171875,
+            "mean_own_score_delta": 0.12890625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.4296875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -5.0
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8828125,
+            "mean_margin_delta": 2.92578125,
+            "mean_opponent_score_delta": -2.03515625,
+            "mean_own_score_delta": 0.890625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.421875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.3125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.89453125,
+            "mean_margin_delta": 5.38671875,
+            "mean_opponent_score_delta": -4.00390625,
+            "mean_own_score_delta": 1.3828125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.51953125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -3.28125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -1.0,
+        "grid_index": 12,
+        "id": "11903:-1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.10625,
+            "gold_adaptive": 9.2625,
+            "legend_balanced": 2.425,
+            "mybot": 6.43125,
+            "norx_native_three": 4.7625,
+            "resident": -2.6625,
+            "script_boss": -0.2875,
+            "silver_boss": 1.5875
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.5625,
+            "1": 3.34375
+          },
+          "intervention_rate": 0.8875,
+          "mean_margin_delta": 2.953125,
+          "mean_opponent_score_delta": -2.4375,
+          "mean_own_score_delta": 0.515625,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.45390625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -2.6625
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 16.1875,
+            "gold_adaptive": 6.96875,
+            "legend_balanced": 0.09375,
+            "mybot": 3.78125,
+            "norx_native_three": 5.5,
+            "resident": -1.09375,
+            "script_boss": -3.90625,
+            "silver_boss": 3.21875
+          },
+          "fold_mean_margin_delta": {
+            "0": 6.6015625,
+            "1": 1.0859375
+          },
+          "intervention_rate": 0.90234375,
+          "mean_margin_delta": 3.84375,
+          "mean_opponent_score_delta": -3.35546875,
+          "mean_own_score_delta": 0.48828125,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.48828125,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.90625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.828125,
+            "mean_margin_delta": 2.69921875,
+            "mean_opponent_score_delta": -2.6484375,
+            "mean_own_score_delta": 0.05078125,
+            "positive_families": 8,
+            "strict_improvement_rate": 0.4296875,
+            "worker_three_rate": 0.890625,
+            "worst_family": 0.28125
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.875,
+            "mean_margin_delta": 0.3359375,
+            "mean_opponent_score_delta": -0.92578125,
+            "mean_own_score_delta": -0.58984375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.4296875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -4.8125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.91015625,
+            "mean_margin_delta": 1.0625,
+            "mean_opponent_score_delta": -1.03125,
+            "mean_own_score_delta": 0.03125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.421875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -6.5625
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.86328125,
+            "mean_margin_delta": 3.74609375,
+            "mean_opponent_score_delta": -2.14453125,
+            "mean_own_score_delta": 1.6015625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.6875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.88671875,
+            "mean_margin_delta": 5.3046875,
+            "mean_opponent_score_delta": -3.43359375,
+            "mean_own_score_delta": 1.87109375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.50390625,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -3.59375
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -0.5,
+        "grid_index": 13,
+        "id": "11903:-0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 1.65625,
+            "gold_adaptive": 7.70625,
+            "legend_balanced": 2.25625,
+            "mybot": 6.03125,
+            "norx_native_three": 3.26875,
+            "resident": -1.39375,
+            "script_boss": 0.6375,
+            "silver_boss": 0.875
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.6078125,
+            "1": 3.6515625
+          },
+          "intervention_rate": 0.87265625,
+          "mean_margin_delta": 2.6296875,
+          "mean_opponent_score_delta": -2.03671875,
+          "mean_own_score_delta": 0.59296875,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.44375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.39375
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 16.65625,
+            "gold_adaptive": 3.9375,
+            "legend_balanced": 0.09375,
+            "mybot": 3.3125,
+            "norx_native_three": 4.71875,
+            "resident": 1.3125,
+            "script_boss": -1.5625,
+            "silver_boss": 1.375
+          },
+          "fold_mean_margin_delta": {
+            "0": 6.09375,
+            "1": 1.3671875
+          },
+          "intervention_rate": 0.88671875,
+          "mean_margin_delta": 3.73046875,
+          "mean_opponent_score_delta": -2.46484375,
+          "mean_own_score_delta": 1.265625,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.47265625,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.5625
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.70703125,
+            "mean_margin_delta": 2.19921875,
+            "mean_opponent_score_delta": -1.47265625,
+            "mean_own_score_delta": 0.7265625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.390625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.3125
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.78125,
+            "mean_margin_delta": 0.05859375,
+            "mean_opponent_score_delta": 0.046875,
+            "mean_own_score_delta": 0.10546875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.37890625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -3.625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.77734375,
+            "mean_margin_delta": 2.09765625,
+            "mean_opponent_score_delta": -1.5546875,
+            "mean_own_score_delta": 0.54296875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.390625,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -4.8125
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.75390625,
+            "mean_margin_delta": 2.59375,
+            "mean_opponent_score_delta": -1.49609375,
+            "mean_own_score_delta": 1.09765625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.38671875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.40625
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.79296875,
+            "mean_margin_delta": 2.6171875,
+            "mean_opponent_score_delta": -1.4921875,
+            "mean_own_score_delta": 1.125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.44140625,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -3.125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.0,
+        "grid_index": 14,
+        "id": "11903:+0.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 3.3,
+            "gold_adaptive": 2.725,
+            "legend_balanced": 3.11875,
+            "mybot": 4.43125,
+            "norx_native_three": 0.8125,
+            "resident": -1.11875,
+            "script_boss": 1.2375,
+            "silver_boss": 0.8
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.8,
+            "1": 2.0265625
+          },
+          "intervention_rate": 0.7625,
+          "mean_margin_delta": 1.91328125,
+          "mean_opponent_score_delta": -1.19375,
+          "mean_own_score_delta": 0.71953125,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.39765625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.11875
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": true,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 14.625,
+            "gold_adaptive": 5.53125,
+            "legend_balanced": -3.09375,
+            "mybot": 2.65625,
+            "norx_native_three": 4.3125,
+            "resident": -1.53125,
+            "script_boss": 4.0625,
+            "silver_boss": 1.25
+          },
+          "fold_mean_margin_delta": {
+            "0": 4.7421875,
+            "1": 2.2109375
+          },
+          "intervention_rate": 0.828125,
+          "mean_margin_delta": 3.4765625,
+          "mean_opponent_score_delta": -1.7734375,
+          "mean_own_score_delta": 1.703125,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.41796875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.09375
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.51953125,
+            "mean_margin_delta": 1.3203125,
+            "mean_opponent_score_delta": -0.48828125,
+            "mean_own_score_delta": 0.83203125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.30859375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.25
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.5859375,
+            "mean_margin_delta": 1.67578125,
+            "mean_opponent_score_delta": -0.9453125,
+            "mean_own_score_delta": 0.73046875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.2890625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.9375
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.5703125,
+            "mean_margin_delta": 1.3046875,
+            "mean_opponent_score_delta": -1.09375,
+            "mean_own_score_delta": 0.2109375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.30078125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.59375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.515625,
+            "mean_margin_delta": 2.08984375,
+            "mean_opponent_score_delta": -1.0234375,
+            "mean_own_score_delta": 1.06640625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.27734375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.03125
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.51171875,
+            "mean_margin_delta": 1.1640625,
+            "mean_opponent_score_delta": -0.2734375,
+            "mean_own_score_delta": 0.890625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.28515625,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -1.96875
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.5,
+        "grid_index": 15,
+        "id": "11903:+0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.8875,
+            "gold_adaptive": 1.45,
+            "legend_balanced": 4.70625,
+            "mybot": 0.41875,
+            "norx_native_three": 1.0625,
+            "resident": -0.51875,
+            "script_boss": 0.96875,
+            "silver_boss": 1.1125
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.88125,
+            "1": 2.140625
+          },
+          "intervention_rate": 0.540625,
+          "mean_margin_delta": 1.5109375,
+          "mean_opponent_score_delta": -0.76484375,
+          "mean_own_score_delta": 0.74609375,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.2921875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.51875
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 11.21875,
+            "gold_adaptive": -0.71875,
+            "legend_balanced": -3.21875,
+            "mybot": 0.71875,
+            "norx_native_three": 1.90625,
+            "resident": -0.8125,
+            "script_boss": -0.78125,
+            "silver_boss": -1.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.1484375,
+            "1": -0.3984375
+          },
+          "intervention_rate": 0.65234375,
+          "mean_margin_delta": 0.875,
+          "mean_opponent_score_delta": -0.19140625,
+          "mean_own_score_delta": 0.68359375,
+          "positive_families": 3,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.3046875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.21875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.22265625,
+            "mean_margin_delta": 0.54296875,
+            "mean_opponent_score_delta": -0.21484375,
+            "mean_own_score_delta": 0.328125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.12890625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.0
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.25,
+            "mean_margin_delta": 1.01953125,
+            "mean_opponent_score_delta": -0.43359375,
+            "mean_own_score_delta": 0.5859375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.14453125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.1875,
+            "mean_margin_delta": -0.296875,
+            "mean_opponent_score_delta": 0.17578125,
+            "mean_own_score_delta": -0.12109375,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.078125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -2.09375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.20703125,
+            "mean_margin_delta": 1.39453125,
+            "mean_opponent_score_delta": -0.21484375,
+            "mean_own_score_delta": 1.1796875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.12890625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.4375
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.18359375,
+            "mean_margin_delta": 0.515625,
+            "mean_opponent_score_delta": 0.14453125,
+            "mean_own_score_delta": 0.66015625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.10546875,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.40625
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.0,
+        "grid_index": 16,
+        "id": "11903:+1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.41875,
+            "gold_adaptive": 0.1,
+            "legend_balanced": 2.4875,
+            "mybot": 0.60625,
+            "norx_native_three": 0.85,
+            "resident": 0.025,
+            "script_boss": 0.28125,
+            "silver_boss": 0.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.4296875,
+            "1": 0.840625
+          },
+          "intervention_rate": 0.21015625,
+          "mean_margin_delta": 0.63515625,
+          "mean_opponent_score_delta": -0.10859375,
+          "mean_own_score_delta": 0.5265625,
+          "positive_families": 8,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.1171875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": 0.025
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.8125,
+            "gold_adaptive": -1.46875,
+            "legend_balanced": 4.6875,
+            "mybot": -0.5625,
+            "norx_native_three": 3.34375,
+            "resident": 0.375,
+            "script_boss": 0.125,
+            "silver_boss": -0.375
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.2109375,
+            "1": 1.0234375
+          },
+          "intervention_rate": 0.2734375,
+          "mean_margin_delta": 1.1171875,
+          "mean_opponent_score_delta": -0.16796875,
+          "mean_own_score_delta": 0.94921875,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.1484375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.46875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.046875,
+            "mean_margin_delta": 0.0703125,
+            "mean_opponent_score_delta": -0.03515625,
+            "mean_own_score_delta": 0.03515625,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.03125,
+            "worker_three_rate": 0.890625,
+            "worst_family": 0.0
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.0546875,
+            "mean_margin_delta": 0.2421875,
+            "mean_opponent_score_delta": -0.00390625,
+            "mean_own_score_delta": 0.23828125,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.03515625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.21875
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.0390625,
+            "mean_margin_delta": -0.078125,
+            "mean_opponent_score_delta": 0.1015625,
+            "mean_own_score_delta": 0.0234375,
+            "positive_families": 1,
+            "strict_improvement_rate": 0.015625,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -1.1875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.0625,
+            "mean_margin_delta": 0.53125,
+            "mean_opponent_score_delta": -0.125,
+            "mean_own_score_delta": 0.40625,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.0390625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": 0.0
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.05078125,
+            "mean_margin_delta": 0.28515625,
+            "mean_opponent_score_delta": -0.10546875,
+            "mean_own_score_delta": 0.1796875,
+            "positive_families": 1,
+            "strict_improvement_rate": 0.02734375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.3125
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.5,
+        "grid_index": 17,
+        "id": "11903:+1.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 1.5,
+            "mybot": 0.0,
+            "norx_native_three": 0.11875,
+            "resident": 0.0,
+            "script_boss": 0.0625,
+            "silver_boss": 0.0
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.046875,
+            "1": 0.3734375
+          },
+          "intervention_rate": 0.05078125,
+          "mean_margin_delta": 0.21015625,
+          "mean_opponent_score_delta": -0.03359375,
+          "mean_own_score_delta": 0.1765625,
+          "positive_families": 3,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.0296875,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": 0.0
+        },
+        "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+        "seed": 11903,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.0,
+            "gold_adaptive": 0.0,
+            "legend_balanced": 0.875,
+            "mybot": 0.0,
+            "norx_native_three": 3.0625,
+            "resident": 0.0,
+            "script_boss": 0.0,
+            "silver_boss": 0.71875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.1015625,
+            "1": 1.0625
+          },
+          "intervention_rate": 0.07421875,
+          "mean_margin_delta": 0.58203125,
+          "mean_opponent_score_delta": -0.4140625,
+          "mean_own_score_delta": 0.16796875,
+          "positive_families": 3,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.04296875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": 0.0
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.859375,
+            "mean_margin_delta": 2.83203125,
+            "mean_opponent_score_delta": -2.6796875,
+            "mean_own_score_delta": 0.15234375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.44921875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.78125
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.890625,
+            "mean_margin_delta": 2.72265625,
+            "mean_opponent_score_delta": -1.57421875,
+            "mean_own_score_delta": 1.1484375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.4609375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.0625
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.921875,
+            "mean_margin_delta": 1.58984375,
+            "mean_opponent_score_delta": -1.30859375,
+            "mean_own_score_delta": 0.28125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.44921875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -9.46875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8828125,
+            "mean_margin_delta": 1.54296875,
+            "mean_opponent_score_delta": -1.30078125,
+            "mean_own_score_delta": 0.2421875,
+            "positive_families": 3,
+            "strict_improvement_rate": 0.43359375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -5.1875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.89453125,
+            "mean_margin_delta": 2.76953125,
+            "mean_opponent_score_delta": -2.39453125,
+            "mean_own_score_delta": 0.375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.5078125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -6.09375
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -1.0,
+        "grid_index": 18,
+        "id": "11904:-1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 4.00625,
+            "gold_adaptive": 6.98125,
+            "legend_balanced": 3.94375,
+            "mybot": 4.7875,
+            "norx_native_three": 0.175,
+            "resident": -1.2125,
+            "script_boss": -0.5875,
+            "silver_boss": 0.2375
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.39375,
+            "1": 2.1890625
+          },
+          "intervention_rate": 0.88984375,
+          "mean_margin_delta": 2.29140625,
+          "mean_opponent_score_delta": -1.8515625,
+          "mean_own_score_delta": 0.43984375,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.46015625,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.2125
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 5.34375,
+            "gold_adaptive": 10.8125,
+            "legend_balanced": -3.84375,
+            "mybot": 7.53125,
+            "norx_native_three": 2.53125,
+            "resident": -0.53125,
+            "script_boss": -3.46875,
+            "silver_boss": -3.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.046875,
+            "1": 1.71875
+          },
+          "intervention_rate": 0.90234375,
+          "mean_margin_delta": 1.8828125,
+          "mean_opponent_score_delta": -2.8125,
+          "mean_own_score_delta": -0.9296875,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4609375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -3.84375
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8359375,
+            "mean_margin_delta": 1.30078125,
+            "mean_opponent_score_delta": -1.05078125,
+            "mean_own_score_delta": 0.25,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.41796875,
+            "worker_three_rate": 0.890625,
+            "worst_family": -7.46875
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.87890625,
+            "mean_margin_delta": 2.421875,
+            "mean_opponent_score_delta": -1.6015625,
+            "mean_own_score_delta": 0.8203125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.45703125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -2.03125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.9140625,
+            "mean_margin_delta": 1.0390625,
+            "mean_opponent_score_delta": -0.95703125,
+            "mean_own_score_delta": 0.08203125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.4296875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -10.8125
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.86328125,
+            "mean_margin_delta": 2.34375,
+            "mean_opponent_score_delta": -1.1328125,
+            "mean_own_score_delta": 1.2109375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.4375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -6.15625
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.88671875,
+            "mean_margin_delta": 3.0,
+            "mean_opponent_score_delta": -2.28125,
+            "mean_own_score_delta": 0.71875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.48828125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -5.4375
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": false,
+          "crop_100pct": false,
+          "mean_at_least_2": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": -0.5,
+        "grid_index": 19,
+        "id": "11904:-0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 3.18125,
+            "gold_adaptive": 6.8875,
+            "legend_balanced": 3.775,
+            "mybot": 4.575,
+            "norx_native_three": -1.525,
+            "resident": -1.31875,
+            "script_boss": -0.3375,
+            "silver_boss": 0.93125
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.69375,
+            "1": 2.3484375
+          },
+          "intervention_rate": 0.87578125,
+          "mean_margin_delta": 2.02109375,
+          "mean_opponent_score_delta": -1.4046875,
+          "mean_own_score_delta": 0.61640625,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.44609375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.525
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 6.0625,
+            "gold_adaptive": 9.15625,
+            "legend_balanced": -3.84375,
+            "mybot": 8.8125,
+            "norx_native_three": 3.40625,
+            "resident": -2.8125,
+            "script_boss": -4.8125,
+            "silver_boss": -1.53125
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.5,
+            "1": 1.109375
+          },
+          "intervention_rate": 0.8984375,
+          "mean_margin_delta": 1.8046875,
+          "mean_opponent_score_delta": -2.33984375,
+          "mean_own_score_delta": -0.53515625,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.4296875,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -4.8125
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.7265625,
+            "mean_margin_delta": 1.16796875,
+            "mean_opponent_score_delta": -0.48046875,
+            "mean_own_score_delta": 0.6875,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.359375,
+            "worker_three_rate": 0.890625,
+            "worst_family": -8.3125
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.80078125,
+            "mean_margin_delta": 1.9140625,
+            "mean_opponent_score_delta": -0.625,
+            "mean_own_score_delta": 1.2890625,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.390625,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -6.125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8203125,
+            "mean_margin_delta": 2.0234375,
+            "mean_opponent_score_delta": -1.9921875,
+            "mean_own_score_delta": 0.03125,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.375,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -2.6875
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.78515625,
+            "mean_margin_delta": 2.51953125,
+            "mean_opponent_score_delta": -1.98828125,
+            "mean_own_score_delta": 0.53125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.42578125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -3.15625
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.8359375,
+            "mean_margin_delta": 1.6875,
+            "mean_opponent_score_delta": -0.9296875,
+            "mean_own_score_delta": 0.7578125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.453125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -7.71875
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": true,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.0,
+        "grid_index": 20,
+        "id": "11904:+0.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 1.55625,
+            "gold_adaptive": 5.90625,
+            "legend_balanced": 2.53125,
+            "mybot": 3.9125,
+            "norx_native_three": -0.4,
+            "resident": -0.45625,
+            "script_boss": 1.00625,
+            "silver_boss": 0.84375
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.175,
+            "1": 2.55
+          },
+          "intervention_rate": 0.79375,
+          "mean_margin_delta": 1.8625,
+          "mean_opponent_score_delta": -1.203125,
+          "mean_own_score_delta": 0.659375,
+          "positive_families": 6,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.40078125,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.45625
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": true,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.875,
+            "gold_adaptive": 1.28125,
+            "legend_balanced": -1.75,
+            "mybot": 9.5,
+            "norx_native_three": 4.65625,
+            "resident": 0.96875,
+            "script_boss": -0.4375,
+            "silver_boss": -0.84375
+          },
+          "fold_mean_margin_delta": {
+            "0": 2.5703125,
+            "1": 1.4921875
+          },
+          "intervention_rate": 0.83984375,
+          "mean_margin_delta": 2.03125,
+          "mean_opponent_score_delta": -1.625,
+          "mean_own_score_delta": 0.40625,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.41015625,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.75
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.546875,
+            "mean_margin_delta": 0.7890625,
+            "mean_opponent_score_delta": -0.4453125,
+            "mean_own_score_delta": 0.34375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.2890625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -2.9375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.63671875,
+            "mean_margin_delta": 2.04296875,
+            "mean_opponent_score_delta": -0.23828125,
+            "mean_own_score_delta": 1.8046875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.3046875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.46875
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.6171875,
+            "mean_margin_delta": 1.29296875,
+            "mean_opponent_score_delta": -0.79296875,
+            "mean_own_score_delta": 0.5,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.3125,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -1.375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.56640625,
+            "mean_margin_delta": 1.58203125,
+            "mean_opponent_score_delta": -1.1015625,
+            "mean_own_score_delta": 0.48046875,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.32421875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.1875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.5859375,
+            "mean_margin_delta": 0.7890625,
+            "mean_opponent_score_delta": 0.09375,
+            "mean_own_score_delta": 0.8828125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.32421875,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -2.1875
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 0.5,
+        "grid_index": 21,
+        "id": "11904:+0.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 3.6625,
+            "gold_adaptive": 2.40625,
+            "legend_balanced": 2.5625,
+            "mybot": 1.575,
+            "norx_native_three": 0.15,
+            "resident": -1.025,
+            "script_boss": 0.51875,
+            "silver_boss": 0.54375
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.6703125,
+            "1": 1.928125
+          },
+          "intervention_rate": 0.590625,
+          "mean_margin_delta": 1.29921875,
+          "mean_opponent_score_delta": -0.496875,
+          "mean_own_score_delta": 0.80234375,
+          "positive_families": 7,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.3109375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -1.025
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 8.59375,
+            "gold_adaptive": -1.6875,
+            "legend_balanced": 0.53125,
+            "mybot": 0.46875,
+            "norx_native_three": 1.96875,
+            "resident": -0.03125,
+            "script_boss": -1.625,
+            "silver_boss": -0.3125
+          },
+          "fold_mean_margin_delta": {
+            "0": 1.140625,
+            "1": 0.8359375
+          },
+          "intervention_rate": 0.6875,
+          "mean_margin_delta": 0.98828125,
+          "mean_opponent_score_delta": -0.33203125,
+          "mean_own_score_delta": 0.65625,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.34375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.6875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.30859375,
+            "mean_margin_delta": 0.70703125,
+            "mean_opponent_score_delta": 0.0703125,
+            "mean_own_score_delta": 0.77734375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.1640625,
+            "worker_three_rate": 0.890625,
+            "worst_family": -0.9375
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.4140625,
+            "mean_margin_delta": 1.30859375,
+            "mean_opponent_score_delta": -0.40625,
+            "mean_own_score_delta": 0.90234375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.1953125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -1.53125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.33203125,
+            "mean_margin_delta": 0.828125,
+            "mean_opponent_score_delta": -0.0703125,
+            "mean_own_score_delta": 0.7578125,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.16796875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -1.84375
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.296875,
+            "mean_margin_delta": 1.3515625,
+            "mean_opponent_score_delta": -0.26953125,
+            "mean_own_score_delta": 1.08203125,
+            "positive_families": 7,
+            "strict_improvement_rate": 0.171875,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.71875
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.2890625,
+            "mean_margin_delta": 0.62890625,
+            "mean_opponent_score_delta": -0.0078125,
+            "mean_own_score_delta": 0.62109375,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.15234375,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.625
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": true,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.0,
+        "grid_index": 22,
+        "id": "11904:+1.0",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 2.34375,
+            "gold_adaptive": 1.70625,
+            "legend_balanced": 1.53125,
+            "mybot": 0.58125,
+            "norx_native_three": 0.99375,
+            "resident": 0.08125,
+            "script_boss": 0.25,
+            "silver_boss": 0.23125
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.971875,
+            "1": 0.9578125
+          },
+          "intervention_rate": 0.328125,
+          "mean_margin_delta": 0.96484375,
+          "mean_opponent_score_delta": -0.13671875,
+          "mean_own_score_delta": 0.828125,
+          "positive_families": 8,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.1703125,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": 0.08125
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": 7.5,
+            "gold_adaptive": 0.71875,
+            "legend_balanced": 2.6875,
+            "mybot": 1.25,
+            "norx_native_three": 4.1875,
+            "resident": 0.84375,
+            "script_boss": 1.125,
+            "silver_boss": 1.15625
+          },
+          "fold_mean_margin_delta": {
+            "0": 3.171875,
+            "1": 1.6953125
+          },
+          "intervention_rate": 0.41796875,
+          "mean_margin_delta": 2.43359375,
+          "mean_opponent_score_delta": -0.4921875,
+          "mean_own_score_delta": 1.94140625,
+          "positive_families": 8,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.234375,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": 0.71875
+        }
+      },
+      {
+        "block_metrics": {
+          "held0": {
+            "control_worker_three_rate": 0.890625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.13671875,
+            "mean_margin_delta": 0.15625,
+            "mean_opponent_score_delta": -0.19140625,
+            "mean_own_score_delta": -0.03515625,
+            "positive_families": 4,
+            "strict_improvement_rate": 0.078125,
+            "worker_three_rate": 0.890625,
+            "worst_family": -1.78125
+          },
+          "repair1": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 0.9921875,
+            "intervention_rate": 0.16015625,
+            "mean_margin_delta": 0.5390625,
+            "mean_opponent_score_delta": -0.015625,
+            "mean_own_score_delta": 0.5234375,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.0703125,
+            "worker_three_rate": 0.91015625,
+            "worst_family": -0.78125
+          },
+          "repair2": {
+            "control_worker_three_rate": 0.91796875,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.10546875,
+            "mean_margin_delta": 0.171875,
+            "mean_opponent_score_delta": 0.03515625,
+            "mean_own_score_delta": 0.20703125,
+            "positive_families": 2,
+            "strict_improvement_rate": 0.04296875,
+            "worker_three_rate": 0.91796875,
+            "worst_family": -0.625
+          },
+          "repair3": {
+            "control_worker_three_rate": 0.91015625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.15234375,
+            "mean_margin_delta": 0.89453125,
+            "mean_opponent_score_delta": -0.375,
+            "mean_own_score_delta": 0.51953125,
+            "positive_families": 6,
+            "strict_improvement_rate": 0.0859375,
+            "worker_three_rate": 0.91015625,
+            "worst_family": 0.0
+          },
+          "repair4": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "intervention_rate": 0.11328125,
+            "mean_margin_delta": 0.51171875,
+            "mean_opponent_score_delta": 0.16015625,
+            "mean_own_score_delta": 0.671875,
+            "positive_families": 5,
+            "strict_improvement_rate": 0.078125,
+            "worker_three_rate": 0.9140625,
+            "worst_family": -0.21875
+          }
+        },
+        "descriptive_held_gates": {
+          "activity_10_to_85pct": true,
+          "crop_100pct": false,
+          "mean_at_least_2": false,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "six_positive_families": false,
+          "strict_at_least_40pct": false,
+          "worker_three_within_5pp": true,
+          "worst_family_at_least_minus3": true
+        },
+        "descriptive_held_pass": false,
+        "gate_offset": 1.5,
+        "grid_index": 23,
+        "id": "11904:+1.5",
+        "metrics": {
+          "control_worker_three_rate": 0.90859375,
+          "crop_rate": 0.9984375,
+          "family_mean_margin_delta": {
+            "compact_gold": 0.53125,
+            "gold_adaptive": 0.53125,
+            "legend_balanced": 1.4875,
+            "mybot": 0.4,
+            "norx_native_three": 0.8625,
+            "resident": -0.15,
+            "script_boss": -0.00625,
+            "silver_boss": -0.01875
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.240625,
+            "1": 0.66875
+          },
+          "intervention_rate": 0.13359375,
+          "mean_margin_delta": 0.4546875,
+          "mean_opponent_score_delta": -0.07734375,
+          "mean_own_score_delta": 0.37734375,
+          "positive_families": 5,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.07109375,
+          "tasks": 1280,
+          "worker_three_rate": 0.90859375,
+          "worst_family": -0.15
+        },
+        "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+        "seed": 11904,
+        "validation_admitted": false,
+        "validation_metrics": {
+          "control_worker_three_rate": 0.8984375,
+          "crop_rate": 1.0,
+          "family_mean_margin_delta": {
+            "compact_gold": -0.09375,
+            "gold_adaptive": -1.09375,
+            "legend_balanced": 1.46875,
+            "mybot": 0.0,
+            "norx_native_three": 1.75,
+            "resident": 0.0,
+            "script_boss": 0.25,
+            "silver_boss": 0.375
+          },
+          "fold_mean_margin_delta": {
+            "0": 0.5625,
+            "1": 0.1015625
+          },
+          "intervention_rate": 0.1796875,
+          "mean_margin_delta": 0.33203125,
+          "mean_opponent_score_delta": 0.1484375,
+          "mean_own_score_delta": 0.48046875,
+          "positive_families": 4,
+          "positive_score_ties": 0,
+          "strict_improvement_rate": 0.09765625,
+          "tasks": 256,
+          "worker_three_rate": 0.8984375,
+          "worst_family": -1.09375
+        }
+      }
+    ],
+    "validation_to_aggregate_pearson": {
+      "intervention_rate": 0.9948307279490884,
+      "mean_margin_delta": 0.7951932937832975,
+      "strict_improvement_rate": 0.9918369168883056,
+      "worst_family": 0.8009974089526674
+    }
+  },
+  "lock": {
+    "declared": {
+      "audit": {
+        "blocks": 5,
+        "candidates": 24,
+        "end_seed": 9843779,
+        "maps": 80,
+        "offsets": [
+          -1.0,
+          -0.5,
+          0.0,
+          0.5,
+          1.0,
+          1.5
+        ],
+        "qualification_authority": false,
+        "seeds": [
+          11901,
+          11902,
+          11903,
+          11904
+        ],
+        "start_seed": 9843700,
+        "tasks": 1280
+      },
+      "environment": {
+        "numpy": "2.4.6",
+        "python": "3.11.15",
+        "torch": "2.13.0+cpu"
+      },
+      "frozen_at": "2026-07-22-after-d119-d120-closure-before-any-d119-policy-score-on-aggregate",
+      "schema": "troll-farm-d121a-d119-retrospective-grid-lock-v1",
+      "sha256": {
+        "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+        "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+        "cgauto/analyze_d121a_d119_retrospective_grid.py": "d4fbfd300280cc4da1125cc0c8e51a957b12d62452a94f167e6080c69d546917",
+        "cgauto/evaluate_d119a_held_coverage_repair.py": "2758648c31b335d4e557fab60d6540901f9c4da2cade177e80d46c4d1a0f6dfe",
+        "cgauto/evaluate_d119a_held_soft_value_q6.py": "a838d56ee17c5a4954e63685d945e8bc7d508f249e8232d8d3f3426ae714c69a",
+        "cgauto/evaluate_d120a_policy_sealed_absolute_information.py": "2191bf72781d4d2b4e8dc24d9683987c1fd6b6bbdfe63c2f6c42da6a837cf973",
+        "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+        "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+        "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+        "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+        "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+        "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+        "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8",
+        "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+        "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv": "fabac91a63de460456bfa1983027511b76a1eb45433d758329c6919411f7d0fb",
+        "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv": "1669089b3c0cf2820c64c01f169ae6021e899ad830efb7f0da5586855057299a",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair1-arms-9843716-9843731.tsv": "9fc6200ef8c945a269f38a368b6c4019af7dfdda75f5c313b17a656e901a559a",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair1-baselines-9843716-9843731.tsv": "6bdd52e61127888ebfb45bdb8e6916dfaa61462e28e978a4a576264e9a731eb1",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair2-arms-9843732-9843747.tsv": "d97b959461b619670ec04addfff34c837afeab645614daf266000f6af76943e4",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair2-baselines-9843732-9843747.tsv": "c4f29975159ceb4ed97b02d966f762b555e608ff980c34280bcd570cedc5fdd2",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair3-arms-9843748-9843763.tsv": "a4cbd53881df04b37d5ce622be01922fcf5862ee9c71aeacea52ef7b38a3b751",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair3-baselines-9843748-9843763.tsv": "16c987b2742fd329bf7e3cf943f98f1b3c9fa31c0d4db00451d36d78aa72cad3",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair4-arms-9843764-9843779.tsv": "1692975fd7116e7bac5eeb7edd541816a92a52dd1ef010e6579eb818ffe0ae12",
+        "data/analysis/live-agent-6553250/d119a-q6-held-repair4-baselines-9843764-9843779.tsv": "4588ee94e1d602b8d58a5932c8627d296c92ccbc3faccbf8af2b90ac2f5d7ff6",
+        "data/analysis/live-agent-6553250/d120a-policy-sealed-absolute-information-lock.json": "a36d910efaa9cc0d84333dbb503431931e952b17d892b596c8d2d07b6ba4b570",
+        "data/analysis/live-agent-6553250/d120a-policy-sealed-absolute-information-result.json": "7f0ce432ea5f750f72ec80ae7db27ca72844e98f891291a649905c35f62dbf71",
+        "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-protocol-2026-07-22.md": "cd3eb68b6937728cc49b63de219d8697f4381c34517e578639e1379c9658dda3",
+        "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+        "tests/test_analyze_d121a_d119_retrospective_grid.py": "7f65d2c16e4bae76678bdfdbc5cadf7ad7589cc64a92f94c063bb38973692c11",
+        "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+      }
+    },
+    "manifest_sha256": "04d7cd158afd70b5e0c14d919ffad275d8c5a64eea041feac4ba5c9ea3f28e07",
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-lock.json"
+  },
+  "locked_candidate": {
+    "aggregate": {
+      "descriptive_held_gates": {
+        "activity_10_to_85pct": true,
+        "crop_100pct": false,
+        "mean_at_least_2": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": true,
+        "strict_at_least_40pct": true,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": true
+      },
+      "descriptive_held_pass": false,
+      "gate_offset": 0.0,
+      "grid_index": 2,
+      "id": "11901:+0.0",
+      "metrics": {
+        "control_worker_three_rate": 0.90859375,
+        "crop_rate": 0.9984375,
+        "family_mean_margin_delta": {
+          "compact_gold": 2.725,
+          "gold_adaptive": 6.875,
+          "legend_balanced": 2.1375,
+          "mybot": 2.73125,
+          "norx_native_three": 0.06875,
+          "resident": 0.2875,
+          "script_boss": 0.38125,
+          "silver_boss": -0.44375
+        },
+        "fold_mean_margin_delta": {
+          "0": 0.4828125,
+          "1": 3.2078125
+        },
+        "intervention_rate": 0.79609375,
+        "mean_margin_delta": 1.8453125,
+        "mean_opponent_score_delta": -0.97421875,
+        "mean_own_score_delta": 0.87109375,
+        "positive_families": 7,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.4046875,
+        "tasks": 1280,
+        "worker_three_rate": 0.90859375,
+        "worst_family": -0.44375
+      },
+      "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+      "seed": 11901
+    },
+    "block_mean_summary": {
+      "maximum": 2.6953125,
+      "mean": 1.8453125,
+      "minimum": 1.07421875,
+      "standard_deviation": 0.5189735023040676
+    },
+    "blocks": {
+      "held0": {
+        "control_worker_three_rate": 0.890625,
+        "crop_rate": 1.0,
+        "intervention_rate": 0.73828125,
+        "mean_margin_delta": 1.07421875,
+        "mean_opponent_score_delta": -0.37890625,
+        "mean_own_score_delta": 0.6953125,
+        "positive_families": 5,
+        "strict_improvement_rate": 0.37109375,
+        "worker_three_rate": 0.890625,
+        "worst_family": -6.65625
+      },
+      "repair1": {
+        "control_worker_three_rate": 0.91015625,
+        "crop_rate": 0.9921875,
+        "intervention_rate": 0.80859375,
+        "mean_margin_delta": 1.93359375,
+        "mean_opponent_score_delta": -1.15234375,
+        "mean_own_score_delta": 0.78125,
+        "positive_families": 5,
+        "strict_improvement_rate": 0.42578125,
+        "worker_three_rate": 0.91015625,
+        "worst_family": -2.84375
+      },
+      "repair2": {
+        "control_worker_three_rate": 0.91796875,
+        "crop_rate": 1.0,
+        "intervention_rate": 0.81640625,
+        "mean_margin_delta": 1.82421875,
+        "mean_opponent_score_delta": -1.4453125,
+        "mean_own_score_delta": 0.37890625,
+        "positive_families": 4,
+        "strict_improvement_rate": 0.390625,
+        "worker_three_rate": 0.91796875,
+        "worst_family": -3.3125
+      },
+      "repair3": {
+        "control_worker_three_rate": 0.91015625,
+        "crop_rate": 1.0,
+        "intervention_rate": 0.79296875,
+        "mean_margin_delta": 1.69921875,
+        "mean_opponent_score_delta": -1.09765625,
+        "mean_own_score_delta": 0.6015625,
+        "positive_families": 5,
+        "strict_improvement_rate": 0.41015625,
+        "worker_three_rate": 0.91015625,
+        "worst_family": -7.125
+      },
+      "repair4": {
+        "control_worker_three_rate": 0.9140625,
+        "crop_rate": 1.0,
+        "intervention_rate": 0.82421875,
+        "mean_margin_delta": 2.6953125,
+        "mean_opponent_score_delta": -0.796875,
+        "mean_own_score_delta": 1.8984375,
+        "positive_families": 6,
+        "strict_improvement_rate": 0.42578125,
+        "worker_three_rate": 0.9140625,
+        "worst_family": -2.3125
+      }
+    },
+    "id": "11901:+0.0",
+    "mean_rank_of_24": 8,
+    "robust_rank_of_24": 19
+  },
+  "models_reproduced": true,
+  "protocol": "data/analysis/live-agent-6553250/d121a-d119-retrospective-grid-protocol-2026-07-22.md",
+  "schema": "troll-farm-d121a-d119-retrospective-grid-v1",
+  "scope": "retrospective hypothesis-generation only; no qualification authority",
+  "training": [
+    {
+      "cpu_threads": 1,
+      "epochs": 80,
+      "final_gate_binary_cross_entropy": 0.6168701648712158,
+      "final_soft_rank_cross_entropy": 2.6869053840637207,
+      "first_epoch_streaming_loss": {
+        "gate": 0.6947498595453264,
+        "rank": 2.7564691012318354,
+        "total": 3.4512189550104235
+      },
+      "last_epoch_streaming_loss": {
+        "gate": 0.6173920327753888,
+        "rank": 2.6887325656657315,
+        "total": 3.3061245772663788
+      },
+      "learning_rate": 0.001,
+      "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+      "parameters": 6626,
+      "root_batch_size": 128,
+      "seed": 11901,
+      "train_exact_best_rate": 0.23582766950130463,
+      "train_gate_act_recall": 0.620312511920929,
+      "train_gate_balanced_accuracy": 0.6615471839904785,
+      "train_gate_wait_recall": 0.7027818560600281,
+      "train_mean_proposal_regret": 16.86394500732422,
+      "train_median_proposal_regret": 12.0,
+      "train_within_10_rate": 0.466364324092865,
+      "train_within_20_rate": 0.6810279488563538,
+      "train_within_5_rate": 0.3529856503009796,
+      "weight_decay": 0.0001
+    },
+    {
+      "cpu_threads": 1,
+      "epochs": 80,
+      "final_gate_binary_cross_entropy": 0.6180041432380676,
+      "final_soft_rank_cross_entropy": 2.6928322315216064,
+      "first_epoch_streaming_loss": {
+        "gate": 0.6990135829284708,
+        "rank": 2.7537685523678297,
+        "total": 3.452782104525346
+      },
+      "last_epoch_streaming_loss": {
+        "gate": 0.6189724971467766,
+        "rank": 2.6935904910865376,
+        "total": 3.312562980529312
+      },
+      "learning_rate": 0.001,
+      "model_hash": "6e084f8370d979361b9b56af1bc5bbafbdf8315e07b18f4ad099d1a60a0aa2dd",
+      "parameters": 6626,
+      "root_batch_size": 128,
+      "seed": 11902,
+      "train_exact_best_rate": 0.21164020895957947,
+      "train_gate_act_recall": 0.6109374761581421,
+      "train_gate_balanced_accuracy": 0.6568596661090851,
+      "train_gate_wait_recall": 0.7027818560600281,
+      "train_mean_proposal_regret": 17.235071182250977,
+      "train_median_proposal_regret": 13.0,
+      "train_within_10_rate": 0.45956161618232727,
+      "train_within_20_rate": 0.6598639488220215,
+      "train_within_5_rate": 0.33560091257095337,
+      "weight_decay": 0.0001
+    },
+    {
+      "cpu_threads": 1,
+      "epochs": 80,
+      "final_gate_binary_cross_entropy": 0.6196802258491516,
+      "final_soft_rank_cross_entropy": 2.6945462226867676,
+      "first_epoch_streaming_loss": {
+        "gate": 0.6902769445832354,
+        "rank": 2.7549360870684265,
+        "total": 3.4452130527813507
+      },
+      "last_epoch_streaming_loss": {
+        "gate": 0.6183243168634802,
+        "rank": 2.6972885411162317,
+        "total": 3.31561285027571
+      },
+      "learning_rate": 0.001,
+      "model_hash": "476669bc4624a85b870cb31baba450dfcf7d98699365369edf4f8ebacd31ef43",
+      "parameters": 6626,
+      "root_batch_size": 128,
+      "seed": 11903,
+      "train_exact_best_rate": 0.2191987931728363,
+      "train_gate_act_recall": 0.578125,
+      "train_gate_balanced_accuracy": 0.652898520231247,
+      "train_gate_wait_recall": 0.7276720404624939,
+      "train_mean_proposal_regret": 16.659107208251953,
+      "train_median_proposal_regret": 12.0,
+      "train_within_10_rate": 0.4580498933792114,
+      "train_within_20_rate": 0.6621315479278564,
+      "train_within_5_rate": 0.3522297739982605,
+      "weight_decay": 0.0001
+    },
+    {
+      "cpu_threads": 1,
+      "epochs": 80,
+      "final_gate_binary_cross_entropy": 0.6172022819519043,
+      "final_soft_rank_cross_entropy": 2.6904008388519287,
+      "first_epoch_streaming_loss": {
+        "gate": 0.6953679533141721,
+        "rank": 2.7554288881796376,
+        "total": 3.4507968357270715
+      },
+      "last_epoch_streaming_loss": {
+        "gate": 0.617922948961986,
+        "rank": 2.692877445631827,
+        "total": 3.310800386934864
+      },
+      "learning_rate": 0.001,
+      "model_hash": "6c5c8791134b1485611dd35f5c9c51a4b39a448a60c331e7670ee2da475cd64a",
+      "parameters": 6626,
+      "root_batch_size": 128,
+      "seed": 11904,
+      "train_exact_best_rate": 0.22978080809116364,
+      "train_gate_act_recall": 0.6156250238418579,
+      "train_gate_balanced_accuracy": 0.6599355041980743,
+      "train_gate_wait_recall": 0.7042459845542908,
+      "train_mean_proposal_regret": 16.98185920715332,
+      "train_median_proposal_regret": 12.0,
+      "train_within_10_rate": 0.46485260128974915,
+      "train_within_20_rate": 0.6855630874633789,
+      "train_within_5_rate": 0.35449734330177307,
+      "weight_decay": 0.0001
+    }
+  ]
+}

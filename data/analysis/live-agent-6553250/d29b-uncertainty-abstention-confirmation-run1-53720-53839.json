@@ -1,0 +1,173 @@
+{
+ "schema": 1,
+ "scope": "D29b frozen +4 int8 abstention controller; no Rust integration, candidate, submission, or Arena action",
+ "mode": "confirmation",
+ "seed_start": 53720,
+ "seed_count": 120,
+ "threshold": 4.0,
+ "checkpoint": "data/analysis/live-agent-6553250/d29a-option-critic-int8-verification.checkpoint.json",
+ "checkpoint_sha256": "9d4ef336880ac2ae57e868f05cb99646f94bb2e92a7d1aedd0ad1a22d12b33ba",
+ "sources": {
+  "spatial": "data/analysis/live-agent-6553250/d29b-spatial-features-confirmation-53720-53839.tsv",
+  "scalar": "data/analysis/live-agent-6553250/d29b-scalar-features-confirmation-53720-53839.tsv",
+  "labels": "data/analysis/live-agent-6553250/d29b-option-labels-confirmation-53720-53839.tsv"
+ },
+ "integrity": {
+  "expected_cells": 1920,
+  "joined_cells": 1920,
+  "spatial_cells": 1920,
+  "scalar_cells": 1920,
+  "label_cells": 1920,
+  "missing_spatial": 0,
+  "missing_scalars": 0,
+  "missing_labels": 0,
+  "unexpected_spatial": 0,
+  "unexpected_scalars": 0,
+  "unexpected_labels": 0,
+  "bad_label_branches": {},
+  "root_mismatch_count": 0,
+  "root_mismatches": [],
+  "reached_mismatch_count": 0,
+  "reached_mismatches": [],
+  "all_reached_cut": true,
+  "feature_count": 426,
+  "spatial_shape": [
+   36,
+   11,
+   22
+  ],
+  "spatial_checks": {
+   "bad_grid_lengths": 0,
+   "bad_grid_shapes": 0,
+   "bad_grid_hashes": 0,
+   "bad_canonical_orientations": 0
+  },
+  "rotated_by_seat": {
+   "0": 0,
+   "1": 960
+  },
+  "complete": true
+ },
+ "prediction_hash": "cd6dc28eea2dc1c3ad9390d84ad69090f4fbd80f2aebb8ba2c4bd6bb33e38a5e",
+ "predictions": "data/analysis/live-agent-6553250/d29b-predictions-confirmation-run1-53720-53839.tsv",
+ "repeat_predictions": null,
+ "repeat_prediction_byte_identical": null,
+ "switches": 809,
+ "switch_rate": 0.42135416666666664,
+ "evaluation": {
+  "cells": 1920,
+  "seeds": 120,
+  "switches": 809,
+  "switch_rate": 0.42135416666666664,
+  "positive_cell_precision": 0.8627935723114957,
+  "selected_positive": 698,
+  "selected_zero": 7,
+  "selected_negative": 104,
+  "seed_clustered_margin_delta": {
+   "n": 120,
+   "mean": 36.501041666666666,
+   "median": 22.84375,
+   "trimmed_5pct_mean": 33.92824074074074,
+   "standard_deviation": 43.40074504717067,
+   "standard_error": 3.9619278458109988,
+   "ci95_normal": [
+    28.735663088877107,
+    44.26642024445622
+   ],
+   "wins": 88,
+   "ties": 22,
+   "losses": 10,
+   "minimum": -36.0,
+   "maximum": 146.75
+  },
+  "seed_clustered_own_score_delta": {
+   "n": 120,
+   "mean": 48.66822916666667,
+   "median": 31.9375,
+   "trimmed_5pct_mean": 45.673032407407405,
+   "standard_deviation": 51.371791004070985,
+   "standard_error": 4.689581458728441,
+   "ci95_normal": [
+    39.476649507558925,
+    57.859808825774415
+   ],
+   "wins": 90,
+   "ties": 22,
+   "losses": 8,
+   "minimum": -35.875,
+   "maximum": 172.125
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 37.1,
+   "gold_adaptive": 26.545833333333334,
+   "gold_elite": 37.1,
+   "mybot": 36.44583333333333,
+   "printer_bot": 69.0875,
+   "sched_bot": 32.229166666666664,
+   "script_boss": 27.608333333333334,
+   "silver_boss": 25.891666666666666
+  },
+  "nonnegative_opponent_means": 8,
+  "worst_opponent": "silver_boss",
+  "worst_opponent_mean_delta": 25.891666666666666,
+  "map_block_mean_margin_deltas": {
+   "0": 43.61875,
+   "1": 46.196875,
+   "2": 30.5625,
+   "3": 24.534375,
+   "4": 35.790625,
+   "5": 38.303125
+  },
+  "all_map_blocks_nonnegative": true,
+  "tail": {
+   "resident_catastrophic_frequency": 0.16510416666666666,
+   "selected_catastrophic_frequency": 0.09791666666666667,
+   "resident_negative_margin_mass": 64354,
+   "selected_negative_margin_mass": 45906,
+   "selected_to_resident_negative_mass_ratio": 0.7133356123939459
+  },
+  "oracle": {
+   "positive_cell_seed_mean": 53.171875,
+   "captured_fraction": 0.6864727201488883
+  },
+  "prediction": {
+   "mean": -17.689762115478516,
+   "standard_deviation": 76.11674499511719,
+   "minimum": -280.74609375,
+   "maximum": 181.1814727783203
+  },
+  "gates": {
+   "switch_rate_5_to_55pct": true,
+   "precision_at_least_75pct": true,
+   "mean_margin_at_least_8": true,
+   "trimmed_margin_at_least_5": true,
+   "ci95_lower_above_zero": true,
+   "six_of_eight_opponents_nonnegative": true,
+   "worst_opponent_at_least_minus_5": true,
+   "all_map_blocks_nonnegative": true,
+   "catastrophic_frequency_not_higher": true,
+   "negative_margin_mass_not_higher": true,
+   "oracle_capture_at_least_25pct": true,
+   "repeat_predictions_exact": false
+  },
+  "passed": false,
+  "base_passed": true,
+  "raw_prediction": {
+   "mean": -13.689763069152832,
+   "standard_deviation": 76.11674499511719,
+   "minimum": -276.74609375,
+   "maximum": 185.1814727783203
+  },
+  "reproducibility": {
+   "reference_path": null,
+   "prediction_artifact_byte_identical": null
+  }
+ },
+ "passed": false,
+ "decision": {
+  "await_exact_rerun": true,
+  "open_rust_kernel": false,
+  "build_submission_candidate": false,
+  "authorize_arena": false
+ }
+}

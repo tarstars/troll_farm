@@ -1,0 +1,1288 @@
+{
+  "candidates": {
+    "columns": 454,
+    "expected_groups": 2508,
+    "failures": {},
+    "feature_columns": 443,
+    "groups": 2508,
+    "nonfinite_values": 0,
+    "pass": true,
+    "rows": 44259,
+    "schema_exact": true,
+    "stage_counts": {
+      "first": 909,
+      "second": 909,
+      "wait_before_first": 109,
+      "wait_before_second": 581
+    }
+  },
+  "decision": "repair_d148_infrastructure_or_mechanics_only",
+  "exact_one_use": {
+    "baselines": 1024,
+    "best_one_tasks": 1024,
+    "blocks": [
+      {
+        "block": 0,
+        "labels": {
+          "bytes": 631219,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-00-labels.tsv",
+          "rows": 12064,
+          "sha256": "a8946218202df3258aeb27f0a08b73d9fd530ef8d63cb90a64c66094dcc050a0"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "details": {
+            "arms": 12064,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 16,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 758,
+            "supported_tasks": 114,
+            "task_support_rate": 0.890625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 25.716089166326867,
+              "b": 25.716089166326867
+            },
+            "unsupported_forced_control_tasks": 14
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844136,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.43271767810026385,
+            "act_now_roots": 328,
+            "arms": 12064,
+            "best_now_mean": 23.37994722955145,
+            "negative_arm_advantage_rate": 0.8682029177718833,
+            "negative_arm_advantages": 10474,
+            "positive_arm_advantage_rate": 0.11629641909814324,
+            "positive_arm_advantages": 1403,
+            "roots": 758,
+            "target_maximum": 156,
+            "target_mean": -25.89174403183024,
+            "target_minimum": -232,
+            "target_standard_deviation": 26.711465181777132,
+            "wait_roots": 430,
+            "zero_arm_advantages": 187
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.921875,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 56.8125,
+              "gold_adaptive": 36.5,
+              "legend_balanced": 41.5,
+              "mybot": 28.125,
+              "norx_native_three": 38.75,
+              "resident": 27.625,
+              "script_boss": 41.3125,
+              "silver_boss": 34.1875
+            },
+            "first_boundary_oracle_mean_gain": 30.96875,
+            "intervention_rate": 0.875,
+            "later_boundary_increment": 7.1328125,
+            "mean_margin_gain": 38.1015625,
+            "mean_opponent_score_delta": -13.828125,
+            "mean_own_score_gain": 24.2734375,
+            "mean_selected_boundary": 1.7857142857142858,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 16,
+              "1": 25,
+              "2": 22,
+              "3": 65
+            },
+            "strict_improvement_rate": 0.875,
+            "supported_tasks": 114,
+            "tasks": 128,
+            "worker_three_rate": 0.921875,
+            "worst_family": 27.625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 1,
+        "labels": {
+          "bytes": 595384,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-01-labels.tsv",
+          "rows": 11359,
+          "sha256": "2b10c348bda7688dab2d037a4b5917b8386bc763a762cf3c9071eb978688f19c"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "details": {
+            "arms": 11359,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 17,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 30,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 689,
+            "supported_tasks": 120,
+            "task_support_rate": 0.9375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 42.06097922388505,
+              "b": 42.06097922388505
+            },
+            "unsupported_forced_control_tasks": 8
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844144,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.5413642960812772,
+            "act_now_roots": 373,
+            "arms": 11359,
+            "best_now_mean": 26.294629898403482,
+            "negative_arm_advantage_rate": 0.8479619684831411,
+            "negative_arm_advantages": 9632,
+            "positive_arm_advantage_rate": 0.13363852451800334,
+            "positive_arm_advantages": 1518,
+            "roots": 689,
+            "target_maximum": 179,
+            "target_mean": -23.353816357073686,
+            "target_minimum": -326,
+            "target_standard_deviation": 27.788089564656936,
+            "wait_roots": 316,
+            "zero_arm_advantages": 209
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.84375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 46.4375,
+              "gold_adaptive": 52.9375,
+              "legend_balanced": 57.875,
+              "mybot": 44.6875,
+              "norx_native_three": 22.4375,
+              "resident": 25.625,
+              "script_boss": 41.0625,
+              "silver_boss": 34.3125
+            },
+            "first_boundary_oracle_mean_gain": 35.1953125,
+            "intervention_rate": 0.9296875,
+            "later_boundary_increment": 5.4765625,
+            "mean_margin_gain": 40.671875,
+            "mean_opponent_score_delta": -15.078125,
+            "mean_own_score_gain": 25.59375,
+            "mean_selected_boundary": 1.0252100840336134,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 9,
+              "1": 30,
+              "2": 6,
+              "3": 83
+            },
+            "strict_improvement_rate": 0.9296875,
+            "supported_tasks": 120,
+            "tasks": 128,
+            "worker_three_rate": 0.84375,
+            "worst_family": 22.4375
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 2,
+        "labels": {
+          "bytes": 0,
+          "path": null,
+          "rows": 0,
+          "sha256": null
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "details": {
+            "arms": 6567,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 18,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 1.1000000021965661e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 6,
+            "roots": 394,
+            "supported_tasks": 94,
+            "task_support_rate": 0.734375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 40.13831828187865,
+              "b": 40.13831828187865
+            },
+            "unsupported_forced_control_tasks": 34
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": false,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": false
+        },
+        "start_seed": 9844152,
+        "teacher": {
+          "safety_pass": false,
+          "signal_pass": false
+        }
+      },
+      {
+        "block": 3,
+        "labels": {
+          "bytes": 720856,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-03-labels.tsv",
+          "rows": 13675,
+          "sha256": "f2c91bd87ee2e03dde7a797d76fa17a72589123a5f4e9108bd85304712089fcd"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "details": {
+            "arms": 13675,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 20,
+            "maximum_paired_gain_error": 1.0000000028043132e-07,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 836,
+            "supported_tasks": 126,
+            "task_support_rate": 0.984375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 19.014924930831064,
+              "b": 19.014924930831064
+            },
+            "unsupported_forced_control_tasks": 2
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844160,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4748803827751196,
+            "act_now_roots": 397,
+            "arms": 13675,
+            "best_now_mean": 23.572966507177032,
+            "negative_arm_advantage_rate": 0.8708592321755028,
+            "negative_arm_advantages": 11909,
+            "positive_arm_advantage_rate": 0.11385740402193785,
+            "positive_arm_advantages": 1557,
+            "roots": 836,
+            "target_maximum": 172,
+            "target_mean": -25.276489945155394,
+            "target_minimum": -249,
+            "target_standard_deviation": 25.986447869446703,
+            "wait_roots": 439,
+            "zero_arm_advantages": 209
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.921875,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 48.375,
+              "gold_adaptive": 52.4375,
+              "legend_balanced": 52.625,
+              "mybot": 35.375,
+              "norx_native_three": 57.9375,
+              "resident": 26.8125,
+              "script_boss": 44.4375,
+              "silver_boss": 35.75
+            },
+            "first_boundary_oracle_mean_gain": 36.2890625,
+            "intervention_rate": 0.9765625,
+            "later_boundary_increment": 7.9296875,
+            "mean_margin_gain": 44.21875,
+            "mean_opponent_score_delta": -16.890625,
+            "mean_own_score_gain": 27.328125,
+            "mean_selected_boundary": 1.568,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 3,
+              "1": 31,
+              "2": 14,
+              "3": 80
+            },
+            "strict_improvement_rate": 0.9765625,
+            "supported_tasks": 126,
+            "tasks": 128,
+            "worker_three_rate": 0.921875,
+            "worst_family": 26.8125
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 4,
+        "labels": {
+          "bytes": 534387,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-04-labels.tsv",
+          "rows": 10195,
+          "sha256": "f0e03546a1585b027ae2baaa7e85c9b9cc7f470878d1262bc6f79139db66bd30"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "details": {
+            "arms": 10195,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 17,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 25,
+            "maximum_reward_identity_error": 2.0999999961190952e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 620,
+            "supported_tasks": 116,
+            "task_support_rate": 0.90625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 25.162065226483993,
+              "b": 25.162065226483993
+            },
+            "unsupported_forced_control_tasks": 12
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844168,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.5016129032258064,
+            "act_now_roots": 311,
+            "arms": 10195,
+            "best_now_mean": 20.73548387096774,
+            "negative_arm_advantage_rate": 0.8569887199607651,
+            "negative_arm_advantages": 8737,
+            "positive_arm_advantage_rate": 0.1251593918587543,
+            "positive_arm_advantages": 1276,
+            "roots": 620,
+            "target_maximum": 120,
+            "target_mean": -21.99460519862678,
+            "target_minimum": -299,
+            "target_standard_deviation": 25.483812291239655,
+            "wait_roots": 309,
+            "zero_arm_advantages": 182
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.8984375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 36.8125,
+              "gold_adaptive": 46.6875,
+              "legend_balanced": 33.75,
+              "mybot": 20.3125,
+              "norx_native_three": 36.3125,
+              "resident": 22.5625,
+              "script_boss": 37.5625,
+              "silver_boss": 30.3125
+            },
+            "first_boundary_oracle_mean_gain": 27.9140625,
+            "intervention_rate": 0.859375,
+            "later_boundary_increment": 5.125,
+            "mean_margin_gain": 33.0390625,
+            "mean_opponent_score_delta": -11.125,
+            "mean_own_score_gain": 21.9140625,
+            "mean_selected_boundary": 1.2272727272727273,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 18,
+              "1": 20,
+              "2": 17,
+              "3": 73
+            },
+            "strict_improvement_rate": 0.859375,
+            "supported_tasks": 116,
+            "tasks": 128,
+            "worker_three_rate": 0.8984375,
+            "worst_family": 20.3125
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 5,
+        "labels": {
+          "bytes": 670712,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-05-labels.tsv",
+          "rows": 12879,
+          "sha256": "47f22a29c0744b529b7a63f20147ec44aa41baff3f1aa5a1706611ebe895f982"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "details": {
+            "arms": 12879,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 20,
+            "maximum_paired_gain_error": 8.999999989711682e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 785,
+            "supported_tasks": 120,
+            "task_support_rate": 0.9375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 22.210310139465992,
+              "b": 22.210310139465992
+            },
+            "unsupported_forced_control_tasks": 8
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844176,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4929936305732484,
+            "act_now_roots": 387,
+            "arms": 12879,
+            "best_now_mean": 21.19235668789809,
+            "negative_arm_advantage_rate": 0.8673810078422238,
+            "negative_arm_advantages": 11171,
+            "positive_arm_advantage_rate": 0.11444987964904108,
+            "positive_arm_advantages": 1474,
+            "roots": 785,
+            "target_maximum": 98,
+            "target_mean": -24.970649895178198,
+            "target_minimum": -284,
+            "target_standard_deviation": 26.33767608554538,
+            "wait_roots": 398,
+            "zero_arm_advantages": 234
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 37.9375,
+              "gold_adaptive": 49.0625,
+              "legend_balanced": 30.125,
+              "mybot": 45.625,
+              "norx_native_three": 25.1875,
+              "resident": 25.0625,
+              "script_boss": 40.6875,
+              "silver_boss": 38.875
+            },
+            "first_boundary_oracle_mean_gain": 30.015625,
+            "intervention_rate": 0.9296875,
+            "later_boundary_increment": 6.5546875,
+            "mean_margin_gain": 36.5703125,
+            "mean_opponent_score_delta": -11.0546875,
+            "mean_own_score_gain": 25.515625,
+            "mean_selected_boundary": 1.2436974789915967,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 9,
+              "1": 25,
+              "2": 12,
+              "3": 82
+            },
+            "strict_improvement_rate": 0.9296875,
+            "supported_tasks": 120,
+            "tasks": 128,
+            "worker_three_rate": 0.9140625,
+            "worst_family": 25.0625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 6,
+        "labels": {
+          "bytes": 0,
+          "path": null,
+          "rows": 0,
+          "sha256": null
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "details": {
+            "arms": 9018,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 18,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 29,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 10,
+            "roots": 552,
+            "supported_tasks": 109,
+            "task_support_rate": 0.8515625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 28.313526809055865,
+              "b": 28.313526809055865
+            },
+            "unsupported_forced_control_tasks": 19
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": false,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": false
+        },
+        "start_seed": 9844184,
+        "teacher": {
+          "safety_pass": false,
+          "signal_pass": false
+        }
+      },
+      {
+        "block": 7,
+        "labels": {
+          "bytes": 664863,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d148a-priority-joint-teacher-corpus/exact-block-07-labels.tsv",
+          "rows": 12712,
+          "sha256": "6709475b26d18254f2c710c7292cb340cc0557943ff27b3174d6d615f9b628dd"
+        },
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "details": {
+            "arms": 12712,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 22,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 783,
+            "supported_tasks": 122,
+            "task_support_rate": 0.953125,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 28.956966820891456,
+              "b": 28.956966820891456
+            },
+            "unsupported_forced_control_tasks": 6
+          },
+          "gates": {
+            "at_least_6000_arms": true,
+            "at_least_600_roots": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true
+        },
+        "start_seed": 9844192,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4623243933588761,
+            "act_now_roots": 362,
+            "arms": 12712,
+            "best_now_mean": 21.274584929757342,
+            "negative_arm_advantage_rate": 0.8737413467589679,
+            "negative_arm_advantages": 11107,
+            "positive_arm_advantage_rate": 0.1105254877281309,
+            "positive_arm_advantages": 1405,
+            "roots": 783,
+            "target_maximum": 162,
+            "target_mean": -26.149701069855254,
+            "target_minimum": -234,
+            "target_standard_deviation": 26.86515068814139,
+            "wait_roots": 421,
+            "zero_arm_advantages": 200
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.8984375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 36.375,
+              "gold_adaptive": 61.4375,
+              "legend_balanced": 58.5,
+              "mybot": 23.625,
+              "norx_native_three": 27.6875,
+              "resident": 39.3125,
+              "script_boss": 48.8125,
+              "silver_boss": 41.625
+            },
+            "first_boundary_oracle_mean_gain": 34.9375,
+            "intervention_rate": 0.953125,
+            "later_boundary_increment": 7.234375,
+            "mean_margin_gain": 42.171875,
+            "mean_opponent_score_delta": -17.5703125,
+            "mean_own_score_gain": 24.6015625,
+            "mean_selected_boundary": 1.4098360655737705,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 6,
+              "1": 21,
+              "2": 19,
+              "3": 82
+            },
+            "strict_improvement_rate": 0.953125,
+            "supported_tasks": 122,
+            "tasks": 128,
+            "worker_three_rate": 0.8984375,
+            "worst_family": 23.625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      }
+    ],
+    "mechanics_pass": false,
+    "pass": false,
+    "teacher": {
+      "safety_pass": false,
+      "signal_pass": false
+    }
+  },
+  "full_pass": false,
+  "infrastructure": {
+    "gates": {
+      "all_shards_used_16_threads": true,
+      "exact_prescribed_shards": true,
+      "exact_shards_within_1200_seconds": true,
+      "exactly_16_metadata_rows": true,
+      "joint_shards_within_2700_seconds": true,
+      "operation_completed": true
+    },
+    "metadata": [
+      {
+        "elapsed_seconds": 469.1226539919153,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 12065,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 12064 exact arms in 469.116s total / 467.875s collection (25.716 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-00",
+        "start_seed": 9844136,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 270.06028413027525,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 11360,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 11359 exact arms in 270.054s total / 269.295s collection (42.062 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-01",
+        "start_seed": 9844144,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 163.60924625396729,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 6568,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 6567 exact arms in 163.589s total / 163.084s collection (40.143 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-02",
+        "start_seed": 9844152,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 719.17191625759,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 13676,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 13675 exact arms in 718.420s total / 717.027s collection (19.035 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-03",
+        "start_seed": 9844160,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 405.17341912258416,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 10196,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 10195 exact arms in 405.167s total / 404.213s collection (25.162 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-04",
+        "start_seed": 9844168,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 579.8658334407955,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 12880,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 12879 exact arms in 579.851s total / 578.678s collection (22.211 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-05",
+        "start_seed": 9844176,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 318.50500507466495,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 9019,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 9018 exact arms in 318.499s total / 317.565s collection (28.314 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-06",
+        "start_seed": 9844184,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 438.9962553270161,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 12713,
+          "baselines": 129
+        },
+        "maps": 8,
+        "runner_stderr": "saved 128 D112 baselines and 12712 exact arms in 438.971s total / 437.669s collection (28.959 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-07",
+        "start_seed": 9844192,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 739.0278706224635,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 5220,
+          "manifest": 114,
+          "population": 8321,
+          "replays": 114
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844136, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 700.4103863229975, 'population_steps': 397, 'episodes_per_second': 11.878750176276217, 'replay_seconds': 36.500843674875796, 'replay_steps': 20, 'supported_tasks': 113, 'positive_over_control': 106, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1396769, 'sha256': 'd51625fffabfe22ee5c4c320e3e28bd4c16a23d06a598942bfa247c56a1760e8'}, 'manifest': {'path': 'manifest.tsv', 'rows': 113, 'bytes': 8817, 'sha256': 'f434f6809417222f0fcfc9f079d50a9758839c83b0f040231ddaca72bed58597'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5219, 'bytes': 28311975, 'sha256': '4a67200298fc21e542629e8634b8a7268c70394957c72ea237a4a32d99f85117'}, 'replays': {'path': 'replays.tsv', 'rows': 113, 'bytes': 21948, 'sha256': 'eae238f0ef0def48b9efbf297e03c71d96d7c655dfc2add743f86ebbbec3d4e4'}}}",
+        "shard_id": "joint-00",
+        "start_seed": 9844136,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 548.4149573668838,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 5978,
+          "manifest": 121,
+          "population": 8321,
+          "replays": 121
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844144, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 513.1993653997779, 'population_steps': 360, 'episodes_per_second': 16.212023164757408, 'replay_seconds': 33.434035301208496, 'replay_steps': 20, 'supported_tasks': 120, 'positive_over_control': 115, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1400228, 'sha256': '6c617ad41b45ed1fc0e76ed54b10527161df322dfbc34256b1a8ec8c493e214a'}, 'manifest': {'path': 'manifest.tsv', 'rows': 120, 'bytes': 9311, 'sha256': '93f86ad868cc12dbab95c7840186c10a87d7017a6c55e5b0cb57fbede87d060c'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5977, 'bytes': 32431284, 'sha256': '2ad5ed8c45ae9ccc08dcd879b47898ff2752ebf5c542f0db210936ea787c39da'}, 'replays': {'path': 'replays.tsv', 'rows': 120, 'bytes': 23155, 'sha256': 'cf512acab6f207d9ebb7a0638ceaca9310687ecf50f35272db5f82232f7c5615'}}}",
+        "shard_id": "joint-01",
+        "start_seed": 9844144,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 597.6721401950344,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 4337,
+          "manifest": 92,
+          "population": 8321,
+          "replays": 92
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844152, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 543.4506725920364, 'population_steps': 242, 'episodes_per_second': 15.309577151348472, 'replay_seconds': 52.337471016682684, 'replay_steps': 21, 'supported_tasks': 91, 'positive_over_control': 85, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1363777, 'sha256': '55c260bd85080fb06feb465c20533eff85e579e15354de651d60051c57226932'}, 'manifest': {'path': 'manifest.tsv', 'rows': 91, 'bytes': 7154, 'sha256': 'fde40411b2ecea04d4655cc840fd2b4997213c8cf9d2368b29ee6d4fc3174a9e'}, 'candidates': {'path': 'candidates.tsv', 'rows': 4336, 'bytes': 23529141, 'sha256': 'b2b6166313588e67cf3f2b98f2ab09b906468eaf443daeb063e9aa14d272803a'}, 'replays': {'path': 'replays.tsv', 'rows': 91, 'bytes': 17722, 'sha256': '4e0e9e3137014d34434e3277da1f30b9b7b98ceb771d8a9a63d4afdefbb6c2b7'}}}",
+        "shard_id": "joint-02",
+        "start_seed": 9844152,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 895.7002937309444,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 6268,
+          "manifest": 126,
+          "population": 8321,
+          "replays": 126
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844160, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 848.767808646895, 'population_steps': 420, 'episodes_per_second': 9.802445280369124, 'replay_seconds': 45.25555857899599, 'replay_steps': 19, 'supported_tasks': 125, 'positive_over_control': 122, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1408144, 'sha256': 'c3209910121c583a4924c2f8a6cae4a6cafe0da0e90d72ea68e4aedc4937e985'}, 'manifest': {'path': 'manifest.tsv', 'rows': 125, 'bytes': 9725, 'sha256': '9a83d35aeed638015bd27799a8fe1f112602a137a9d4a7c37dd8a2de1ee223ea'}, 'candidates': {'path': 'candidates.tsv', 'rows': 6267, 'bytes': 34007378, 'sha256': '3c68d9e079f1cdafe145419fcf22ab04e01cd4b139e0871a0f65c7853b9d917e'}, 'replays': {'path': 'replays.tsv', 'rows': 125, 'bytes': 24147, 'sha256': '24ab7f150d534a20b5a77affcd04506c425325d37becfa44d9572c2a78a32d68'}}}",
+        "shard_id": "joint-03",
+        "start_seed": 9844160,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 836.8199856719002,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 5227,
+          "manifest": 115,
+          "population": 8321,
+          "replays": 115
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844168, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 793.3856086675078, 'population_steps': 342, 'episodes_per_second': 10.486703954680312, 'replay_seconds': 41.92590900044888, 'replay_steps': 18, 'supported_tasks': 114, 'positive_over_control': 110, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1393571, 'sha256': 'b2fd49afaaaf46c485f210c77065cbe05cd80bf87eee5462c0ac49879ae67de1'}, 'manifest': {'path': 'manifest.tsv', 'rows': 114, 'bytes': 8872, 'sha256': 'd0e7be4fa805ac1a1f1af089282a71b41b7b9d2e8c2dcd582bc14bcb1e764223'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5226, 'bytes': 28349142, 'sha256': 'ee13836177ac7d0173f1b12ba2f90612863c64d0b916662b80f89caef6357da0'}, 'replays': {'path': 'replays.tsv', 'rows': 114, 'bytes': 22023, 'sha256': '82681e208cbb9ba26180bf07256caca843379195316024a42951099a2b4571f0'}}}",
+        "shard_id": "joint-04",
+        "start_seed": 9844168,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 860.8005041200668,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 6116,
+          "manifest": 119,
+          "population": 8321,
+          "replays": 119
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844176, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 806.6905707865953, 'population_steps': 425, 'episodes_per_second': 10.313743957472141, 'replay_seconds': 52.380650350824, 'replay_steps': 24, 'supported_tasks': 118, 'positive_over_control': 114, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1402818, 'sha256': '15bc6f9504bb78bafeedc4872ec7d891c864d4a206ae56f2ba689061a5efcfc0'}, 'manifest': {'path': 'manifest.tsv', 'rows': 118, 'bytes': 9135, 'sha256': 'efd0be32cda4bd9edcf507b26ae3e7de2a9ad5ba1d2102d591b2d53b20e217e4'}, 'candidates': {'path': 'candidates.tsv', 'rows': 6115, 'bytes': 33176495, 'sha256': 'cf6af7c898ddc4a65e28cd0d2fa83902e53abedf628a53b1b8ef7da37cdd5de9'}, 'replays': {'path': 'replays.tsv', 'rows': 118, 'bytes': 22757, 'sha256': 'c4a87e770728ebcc384d91445ee1ce7bcd598e127a8658aea76d195a362b018e'}}}",
+        "shard_id": "joint-05",
+        "start_seed": 9844176,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 555.9825239991769,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 5216,
+          "manifest": 109,
+          "population": 8321,
+          "replays": 109
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844184, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 521.0511590838432, 'population_steps': 306, 'episodes_per_second': 15.967721892470092, 'replay_seconds': 33.534631891176105, 'replay_steps': 18, 'supported_tasks': 108, 'positive_over_control': 103, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1386108, 'sha256': '7ea7fa4d63d30dc5d28e69aa11006683182bced2c4065b98233d81a2a3e738cf'}, 'manifest': {'path': 'manifest.tsv', 'rows': 108, 'bytes': 8456, 'sha256': '2befda5765a80e1498ad7991344762b1fe816e93542ad5924538112ffb1c31f4'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5215, 'bytes': 28297154, 'sha256': '198b74c3be642d0e20fe7db45ce291f82d8e229c970e79c010b558d8062b914f'}, 'replays': {'path': 'replays.tsv', 'rows': 108, 'bytes': 20937, 'sha256': '40005ffa0cb9b160b6bb1bcea9ea671139b2a029670169a39b00a16e719826d8'}}}",
+        "shard_id": "joint-06",
+        "start_seed": 9844184,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 789.6143233720213,
+        "kind": "joint",
+        "line_counts": {
+          "candidates": 5905,
+          "manifest": 121,
+          "population": 8321,
+          "replays": 121
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'start_seed': 9844192, 'maps': 8, 'pool_tasks': 128, 'search_budget': 64, 'population_seconds': 744.375307184644, 'population_steps': 400, 'episodes_per_second': 11.177157436169768, 'replay_seconds': 43.42522513959557, 'replay_steps': 21, 'supported_tasks': 120, 'positive_over_control': 116, 'artifacts': {'population': {'path': 'population.tsv', 'rows': 8320, 'bytes': 1407779, 'sha256': '32d5aff101d98c58cc2bd6e2a80256600fc61ac46d2a4abc0c893acaa0184a10'}, 'manifest': {'path': 'manifest.tsv', 'rows': 120, 'bytes': 9372, 'sha256': '0955930ec76cc2b61f64a134dbad7a785f8a8ed0023e2c626c5eb808282953b0'}, 'candidates': {'path': 'candidates.tsv', 'rows': 5904, 'bytes': 32034791, 'sha256': '04af8b8925a3c2ef43cea2c3f585acaabc3c27814b3d04f64363d056a09185d2'}, 'replays': {'path': 'replays.tsv', 'rows': 120, 'bytes': 23262, 'sha256': 'd04409f982fd6c6533c1b9154632adbd413ec25ffdfe6c22e39282b7bfc731b1'}}}",
+        "shard_id": "joint-07",
+        "start_seed": 9844192,
+        "threads": 16
+      }
+    ],
+    "pass": true
+  },
+  "lock": {
+    "manifest_sha256": "961129312baa80d8057bc7095f86aa21fa70deddb8a7a3a13a5227af8233c4ea",
+    "mismatches": {},
+    "pass": true
+  },
+  "mechanics_pass": false,
+  "operation": {
+    "operation_id": "ea0a020c-c8eb5ead-42e03e8-59b2f479",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 202194
+  },
+  "panel": {
+    "reserved_validation_maps": 16,
+    "reserved_validation_start_seed": 9844200,
+    "training_maps": 64,
+    "training_start_seed": 9844136,
+    "training_tasks": 1024
+  },
+  "population": {
+    "control_parity_errors": 0,
+    "duplicate_shard_task_indices": 0,
+    "group_errors": 0,
+    "mechanical_failures": {
+      "deposit_prediction_failures": 0,
+      "invalid_direct_commands": 0,
+      "provenance_failures": 0
+    },
+    "pass": true,
+    "rows": 66560,
+    "schema_exact": true,
+    "semantic_errors": 0,
+    "tasks": 1024,
+    "tasks_with_executed_pair": 909,
+    "unique_shard_task_indices": 66560
+  },
+  "protocol": "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-protocol-2026-07-22.md",
+  "schema": "troll-farm-d148a-priority-joint-teacher-corpus-v1",
+  "selected_replays": {
+    "failures": {},
+    "manifest_rows": 909,
+    "manifest_schema_exact": true,
+    "pass": true,
+    "replay_rows": 909,
+    "replay_schema_exact": true
+  },
+  "targets": {
+    "active_rows": 0,
+    "path": null,
+    "rows": 0,
+    "sha256": null
+  },
+  "transfer": {
+    "not_interpreted": "D148 mechanics failure",
+    "pass": false
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "collection": {
+    "collector": "rust/target/release/d112_q6_dense_counterfactual_teacher",
+    "expert_population": "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv",
+    "maps": 16,
+    "output_arms": "data/analysis/live-agent-6553250/d119a-q6-held-arms-9843700-9843715.tsv",
+    "output_baselines": "data/analysis/live-agent-6553250/d119a-q6-held-baselines-9843700-9843715.tsv",
+    "start_seed": 9843700,
+    "tasks": 256,
+    "workers": 20
+  },
+  "environment": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu"
+  },
+  "frozen_at": "2026-07-22-after-d119-validation-selection-before-any-held-collection",
+  "held_gates": {
+    "activity": "0.10 <= intervention_rate <= 0.85",
+    "crop_rate": "== 1.0",
+    "directional_score_safety": "mean_own_score_delta >= 0 or mean_opponent_score_delta <= 0",
+    "mean_margin_delta": ">= 2.0",
+    "positive_families": ">= 6",
+    "strict_improvement_rate": ">= 0.40",
+    "worker_three_rate": ">= control_worker_three_rate - 0.05",
+    "worst_family": ">= -3.0"
+  },
+  "schema": "troll-farm-d119a-held-soft-value-q6-lock-v1",
+  "selected": {
+    "checkpoint_bytes": 30579,
+    "checkpoint_sha256": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+    "gate_offset": 0.0,
+    "model_hash": "a2a79d842732acf746225723754ebd3c54d7d95d3eefa43557c10f0f3002903f",
+    "seed": 11901,
+    "validation_activity": 0.83984375,
+    "validation_mean_margin_delta": 2.94140625,
+    "validation_minimum_fold": 2.359375,
+    "validation_strict_improvement_rate": 0.421875,
+    "validation_worst_family": -3.375
+  },
+  "sha256": {
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/evaluate_d119a_held_soft_value_q6.py": "a838d56ee17c5a4954e63685d945e8bc7d508f249e8232d8d3f3426ae714c69a",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d119a-held-soft-value-q6-protocol-2026-07-22.md": "7499e26a702f36c0219563870cf74619cbed76c5369ae324c3a55aa754225354",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-frozen-inputs.json": "acc6be0ea4a1e02104283f6e87d461608d0940b7692718a1c2c7cd56f9ebba38",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-result.json": "551593926dd87034c9b87644d24a02cb378a54df7986a9a8c036eac101333cb8",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-selection-lock.json": "57b34e83da198d8a945e10fd81d0336a8566e2de9c26ffa0dda9ea5a71752227",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6.pt": "33d1e57642dcf7afaa26909be2681c86cb860627da9ba740881520e284a5c0e6",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "tests/test_evaluate_d119a_held_soft_value_q6.py": "6c3f4e9f662c512c74a768e6df79a8bf6cfe87c016dd08e6dce81e93ece0d786",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

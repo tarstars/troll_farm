@@ -1,0 +1,334 @@
+{
+ "schema": 1,
+ "scope": "consumed-map causal fruit-provenance decomposition; no candidate outcome qualification",
+ "seed_range": [
+  0,
+  29
+ ],
+ "scenarios_per_profile": 60,
+ "profiles": {
+  "lean_m2c2h0k2": {
+   "scenarios": 60,
+   "mean_score": 390.18333333333334,
+   "mean_opponent_score": 374.9166666666667,
+   "mean_margin": 15.266666666666667,
+   "mean_inventory_wood": 94.91666666666667,
+   "mean_opponent_inventory_wood": 92.88333333333334,
+   "successful_plants": 3047,
+   "opponent_successful_plants": 2787,
+   "early_successful_plants": 932,
+   "opponent_early_successful_plants": 229,
+   "fruit_assignment_rate": 0.9998484389208852,
+   "fruit": {
+    "own": {
+     "natural": {
+      "plum": 60,
+      "lemon": 28,
+      "apple": 77,
+      "banana": 488
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 2115
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 95
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 1
+     }
+    },
+    "opponent": {
+     "natural": {
+      "plum": 589,
+      "lemon": 529,
+      "apple": 151,
+      "banana": 202
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 126
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 2137
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    }
+   },
+   "early_fruit": {
+    "own": {
+     "natural": {
+      "plum": 60,
+      "lemon": 28,
+      "apple": 26,
+      "banana": 153
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 389
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 16
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    },
+    "opponent": {
+     "natural": {
+      "plum": 511,
+      "lemon": 426,
+      "apple": 55,
+      "banana": 14
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 2
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 10
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    }
+   },
+   "wood_assignment_rate": 0.9987670629678556
+  },
+  "resident": {
+   "scenarios": 60,
+   "mean_score": 202.28333333333333,
+   "mean_opponent_score": 139.41666666666666,
+   "mean_margin": 62.86666666666667,
+   "mean_inventory_wood": 48.4,
+   "mean_opponent_inventory_wood": 32.95,
+   "successful_plants": 699,
+   "opponent_successful_plants": 1021,
+   "early_successful_plants": 3,
+   "opponent_early_successful_plants": 275,
+   "fruit_assignment_rate": 1.0,
+   "fruit": {
+    "own": {
+     "natural": {
+      "plum": 26,
+      "lemon": 42,
+      "apple": 0,
+      "banana": 0
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 374,
+      "banana": 0
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    },
+    "opponent": {
+     "natural": {
+      "plum": 474,
+      "lemon": 440,
+      "apple": 87,
+      "banana": 63
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 562
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    }
+   },
+   "early_fruit": {
+    "own": {
+     "natural": {
+      "plum": 26,
+      "lemon": 42,
+      "apple": 0,
+      "banana": 0
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 74,
+      "banana": 0
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    },
+    "opponent": {
+     "natural": {
+      "plum": 414,
+      "lemon": 385,
+      "apple": 52,
+      "banana": 15
+     },
+     "ours": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     },
+     "opponent": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 2
+     },
+     "unknown": {
+      "plum": 0,
+      "lemon": 0,
+      "apple": 0,
+      "banana": 0
+     }
+    }
+   },
+   "wood_assignment_rate": 1.0
+  }
+ },
+ "farm_minus_resident": {
+  "opponent_successful_plants": 1766,
+  "opponent_early_successful_plants": -46,
+  "opponent_fruit_by_origin_and_kind": {
+   "natural": {
+    "plum": 115,
+    "lemon": 89,
+    "apple": 64,
+    "banana": 139
+   },
+   "ours": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 126
+   },
+   "opponent": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 1575
+   },
+   "unknown": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 0
+   }
+  },
+  "opponent_fruit_by_origin": {
+   "natural": 407,
+   "ours": 126,
+   "opponent": 1575,
+   "unknown": 0
+  },
+  "opponent_early_fruit_by_origin_and_kind": {
+   "natural": {
+    "plum": 97,
+    "lemon": 41,
+    "apple": 3,
+    "banana": -1
+   },
+   "ours": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 2
+   },
+   "opponent": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 8
+   },
+   "unknown": {
+    "plum": 0,
+    "lemon": 0,
+    "apple": 0,
+    "banana": 0
+   }
+  },
+  "opponent_early_fruit_by_origin": {
+   "natural": 140,
+   "ours": 2,
+   "opponent": 8,
+   "unknown": 0
+  },
+  "natural_early_fruit_per_game": 2.3333333333333335,
+  "dominant_added_fruit_origin": "opponent"
+ },
+ "integrity_checks": {
+  "complete_common_grid": true,
+  "all_games_complete": true,
+  "minimum_fruit_assignment": true,
+  "minimum_wood_assignment": true,
+  "reproduces_prior_margin_delta": false
+ },
+ "material_upstream_natural_seed_mechanism": false,
+ "decision": "close natural-source interruption; continue whole-policy scheduler work"
+}

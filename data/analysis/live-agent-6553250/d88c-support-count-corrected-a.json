@@ -1,0 +1,96 @@
+{
+ "schema": "d88c-support-count-correction-v1",
+ "source_schema": "d88b-yaichi-task-state-v1",
+ "source_sha256": "0b02b7caa8d2a2a1b0e9b55ceb9f0942f0c19a087df3d753e57abf4439171df5",
+ "source_rows_hash": "ade32a18ad4d3694d89916f3de571520984405f61d11b46a536acf987d23ad29",
+ "original_decision": "reject_literal_task_imitation",
+ "known_support": {
+  "validation_games": 16,
+  "renewable_games": 10,
+  "nonrenewable_games": 6
+ },
+ "integrity_pass": true,
+ "mechanism": {
+  "discovery_historical": {
+   "renewable_games": 7,
+   "bank_bootstrap_before_maintenance_games": 6,
+   "bank_bootstrap_before_maintenance_rate": 0.8571428571428571,
+   "starter_plant_sources": {
+    "bank": 38,
+    "natural": 6,
+    "own_crop": 162
+   },
+   "supported_starter_plant_rate": 0.970873786407767,
+   "own_crop_token_dispositions": {
+    "planted": 162,
+    "terminal": 1
+   },
+   "own_crop_same_worker_replant_rate": 0.9938650306748467,
+   "trained_successful_actions": {
+    "CHOP": 658,
+    "DROP": 196
+   },
+   "trained_chop_drop_rate": 1.0,
+   "trained_farm_games": 0,
+   "complete_ordered_phase_games": 6,
+   "complete_ordered_phase_rate": 0.8571428571428571
+  },
+  "current_consumed": {
+   "renewable_games": 6,
+   "bank_bootstrap_before_maintenance_games": 6,
+   "bank_bootstrap_before_maintenance_rate": 1.0,
+   "starter_plant_sources": {
+    "bank": 34,
+    "natural": 26,
+    "own_crop": 203
+   },
+   "supported_starter_plant_rate": 0.9011406844106464,
+   "own_crop_token_dispositions": {
+    "planted": 203
+   },
+   "own_crop_same_worker_replant_rate": 1.0,
+   "trained_successful_actions": {
+    "CHOP": 807,
+    "DROP": 214
+   },
+   "trained_chop_drop_rate": 1.0,
+   "trained_farm_games": 0,
+   "complete_ordered_phase_games": 6,
+   "complete_ordered_phase_rate": 1.0
+  },
+  "validation": {
+   "renewable_games": 10,
+   "bank_bootstrap_before_maintenance_games": 10,
+   "bank_bootstrap_before_maintenance_rate": 1.0,
+   "starter_plant_sources": {
+    "bank": 76,
+    "natural": 8,
+    "own_crop": 358
+   },
+   "supported_starter_plant_rate": 0.9819004524886877,
+   "own_crop_token_dispositions": {
+    "planted": 358,
+    "terminal": 5
+   },
+   "own_crop_same_worker_replant_rate": 0.9862258953168044,
+   "trained_successful_actions": {
+    "CHOP": 1159,
+    "DROP": 381
+   },
+   "trained_chop_drop_rate": 1.0,
+   "trained_farm_games": 0,
+   "complete_ordered_phase_games": 10,
+   "complete_ordered_phase_rate": 1.0
+  }
+ },
+ "corrected_gates": {
+  "bank_before_maintenance_all_10": true,
+  "supported_starter_plants_at_least_0.80": true,
+  "own_crop_same_worker_replant_at_least_0.80": true,
+  "trained_chop_drop_at_least_0.95": true,
+  "trained_farm_in_at_most_one_game": true,
+  "complete_ordered_phases_all_10": true,
+  "current_same_qualitative_direction": true
+ },
+ "decision": "pass_write_blueprint_open_d89"
+}

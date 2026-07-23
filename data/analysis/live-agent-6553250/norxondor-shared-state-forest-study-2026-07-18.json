@@ -1,0 +1,432 @@
+{
+ "schema": 1,
+ "scope": "fivefold blocked-seed precision-first ExtraTrees-style distillation of the frozen turn-three terminal teacher; excludes model compatibility/mismatch features so an eventual implementation needs only map and directly observed opponent stats",
+ "cells": 320,
+ "seeds": 20,
+ "positive_teacher_cells": 141,
+ "feature_count": 93,
+ "selected_config": null,
+ "selected_cross_validation": null,
+ "eligible_configurations": 0,
+ "top_configurations": [
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 64,
+    "false_positive": 92,
+    "false_negative": 77,
+    "true_negative": 87,
+    "precision": 0.41025641025641024,
+    "recall": 0.45390070921985815,
+    "f0_5": 0.4183006535947712
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 60,
+    "false_positive": 97,
+    "false_negative": 81,
+    "true_negative": 82,
+    "precision": 0.3821656050955414,
+    "recall": 0.425531914893617,
+    "f0_5": 0.39011703511053314
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 52,
+    "false_positive": 114,
+    "false_negative": 89,
+    "true_negative": 65,
+    "precision": 0.3132530120481928,
+    "recall": 0.36879432624113473,
+    "f0_5": 0.32298136645962733
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 6,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 46,
+    "false_positive": 72,
+    "false_negative": 95,
+    "true_negative": 107,
+    "precision": 0.3898305084745763,
+    "recall": 0.3262411347517731,
+    "f0_5": 0.37520391517128876
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 39,
+    "false_positive": 66,
+    "false_negative": 102,
+    "true_negative": 113,
+    "precision": 0.37142857142857144,
+    "recall": 0.2765957446808511,
+    "f0_5": 0.34759358288770054
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 6,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 34,
+    "false_positive": 63,
+    "false_negative": 107,
+    "true_negative": 116,
+    "precision": 0.35051546391752575,
+    "recall": 0.24113475177304963,
+    "f0_5": 0.32136105860113423
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 33,
+    "false_positive": 57,
+    "false_negative": 108,
+    "true_negative": 122,
+    "precision": 0.36666666666666664,
+    "recall": 0.23404255319148937,
+    "f0_5": 0.32934131736526945
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 5,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 32,
+    "false_positive": 78,
+    "false_negative": 109,
+    "true_negative": 101,
+    "precision": 0.2909090909090909,
+    "recall": 0.22695035460992907,
+    "f0_5": 0.27538726333907054
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 32,
+    "false_positive": 106,
+    "false_negative": 109,
+    "true_negative": 73,
+    "precision": 0.2318840579710145,
+    "recall": 0.22695035460992907,
+    "f0_5": 0.23088023088023088
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 31,
+    "false_positive": 87,
+    "false_negative": 110,
+    "true_negative": 92,
+    "precision": 0.2627118644067797,
+    "recall": 0.2198581560283688,
+    "f0_5": 0.25285481239804236
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 31,
+    "false_positive": 100,
+    "false_negative": 110,
+    "true_negative": 79,
+    "precision": 0.2366412213740458,
+    "recall": 0.2198581560283688,
+    "f0_5": 0.2330827067669173
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 28,
+    "false_positive": 81,
+    "false_negative": 113,
+    "true_negative": 98,
+    "precision": 0.25688073394495414,
+    "recall": 0.19858156028368795,
+    "f0_5": 0.24263431542461003
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 6,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 27,
+    "false_positive": 39,
+    "false_negative": 114,
+    "true_negative": 140,
+    "precision": 0.4090909090909091,
+    "recall": 0.19148936170212766,
+    "f0_5": 0.33333333333333326
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 6,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 26,
+    "false_positive": 39,
+    "false_negative": 115,
+    "true_negative": 140,
+    "precision": 0.4,
+    "recall": 0.18439716312056736,
+    "f0_5": 0.3241895261845386
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 4,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 26,
+    "false_positive": 84,
+    "false_negative": 115,
+    "true_negative": 95,
+    "precision": 0.23636363636363636,
+    "recall": 0.18439716312056736,
+    "f0_5": 0.22375215146299485
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.6
+   },
+   "cross_validation": {
+    "true_positive": 23,
+    "false_positive": 45,
+    "false_negative": 118,
+    "true_negative": 134,
+    "precision": 0.3382352941176471,
+    "recall": 0.16312056737588654,
+    "f0_5": 0.2784503631961259
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 12,
+    "vote_threshold": 0.6
+   },
+   "cross_validation": {
+    "true_positive": 22,
+    "false_positive": 24,
+    "false_negative": 119,
+    "true_negative": 155,
+    "precision": 0.4782608695652174,
+    "recall": 0.15602836879432624,
+    "f0_5": 0.3384615384615385
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 6,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 22,
+    "false_positive": 52,
+    "false_negative": 119,
+    "true_negative": 127,
+    "precision": 0.2972972972972973,
+    "recall": 0.15602836879432624,
+    "f0_5": 0.2517162471395881
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 32,
+    "max_depth": 5,
+    "min_leaf": 8,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.5
+   },
+   "cross_validation": {
+    "true_positive": 20,
+    "false_positive": 75,
+    "false_negative": 121,
+    "true_negative": 104,
+    "precision": 0.21052631578947367,
+    "recall": 0.14184397163120568,
+    "f0_5": 0.19193857965451053
+   },
+   "eligible": false
+  },
+  {
+   "config": {
+    "trees": 16,
+    "max_depth": 4,
+    "min_leaf": 4,
+    "negative_weight": 1.0,
+    "max_features": 24,
+    "vote_threshold": 0.6
+   },
+   "cross_validation": {
+    "true_positive": 19,
+    "false_positive": 58,
+    "false_negative": 122,
+    "true_negative": 121,
+    "precision": 0.24675324675324675,
+    "recall": 0.1347517730496454,
+    "f0_5": 0.2115812917594655
+   },
+   "eligible": false
+  }
+ ],
+ "forest": null,
+ "node_count": null,
+ "used_features": [],
+ "rust_expression": null,
+ "estimated_expression_bytes": null,
+ "training_actual": null,
+ "research_gate": {
+  "requirements": [
+   "blocked-seed precision at least 90%",
+   "blocked-seed true positives at least 5% of cells",
+   "features exclude embedded opponent models and terminal outcomes"
+  ],
+  "passed": false
+ },
+ "decision": {
+  "authorize_new_validation_block": false,
+  "build_online_prototype": false,
+  "build_submission_candidate": false
+ }
+}

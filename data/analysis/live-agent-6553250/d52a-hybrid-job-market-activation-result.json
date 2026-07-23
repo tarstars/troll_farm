@@ -1,0 +1,164 @@
+{
+  "amendment": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d52a-opening-affordability-amendment-2026-07-21.md",
+  "amendment_sha256": "4438d60f76d4adf800ab94bd684dbffbb642cf1d54ad873501aee25382fb9979",
+  "audit": {
+    "actual_total_immediate_trains": 468,
+    "cap_violations": 0,
+    "expected_total_immediate_trains": 468,
+    "immediate_trains_by_config": {
+      "legend_v3_balanced_m3_p1": 71,
+      "legend_v3_balanced_m3_p2": 71,
+      "legend_v3_balanced_m4_p1": 71,
+      "legend_v3_balanced_m4_p2": 71,
+      "legend_v3_hp2_m3_p1": 46,
+      "legend_v3_hp2_m3_p2": 46,
+      "legend_v3_hp2_m4_p1": 46,
+      "legend_v3_hp2_m4_p2": 46
+    },
+    "opening_mismatches": 0,
+    "outcome_fields_ignored": true,
+    "support_not_evaluated": true
+  },
+  "decision": "close this exact V3 job market before support and localize its failed mechanism",
+  "gates": {
+    "aggregate_max4_worker_four_at_least_15_percent": false,
+    "aggregate_successful_crop_at_least_95_percent": true,
+    "aggregate_worker_three_at_least_70_percent": false,
+    "at_least_50_percent_cells_change_from_v2_parent": true,
+    "complete_byte_exact_repeat": true,
+    "configured_worker_caps_exact": true,
+    "each_config_successful_crop_at_least_90_percent": true,
+    "each_config_worker_three_at_least_55_percent": false,
+    "each_config_worker_two_at_least_90_percent": false,
+    "each_max4_config_worker_four_at_least_5_percent": false,
+    "parent_conditioned_first_train_exact": true
+  },
+  "grid": {
+    "all_checkpoints_complete": true,
+    "cells_per_run": 1280,
+    "games": 160,
+    "models": 8,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "analyzer_sha256": "1712caf64253fcbdc95dafbe1da5f5aa08bdb4e234609d86ce1f20bbfb2fd62e",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "47686b28222e92793414c7d50cb437c3e7d779f7f4f8b8bdf85a0ec0c2c66bae",
+    "run_b_sha256": "47686b28222e92793414c7d50cb437c3e7d779f7f4f8b8bdf85a0ec0c2c66bae",
+    "runner_sha256": "fb6c66f8cdcfa7d76b9309a4d05ae7d02c91733ea1e40516cbf6985294be92d1",
+    "strategy_sha256": "d13dea27b559e531d7fc53dc316768d2cb30e91e1064dd46f46c2e05fb645b78",
+    "v2_parents_sha256": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b"
+  },
+  "mechanism": {
+    "aggregate": {
+      "successful_crop": 1280,
+      "successful_crop_rate": 1.0,
+      "worker_four_max4": 4,
+      "worker_four_max4_rate": 0.00625,
+      "worker_three": 252,
+      "worker_three_rate": 0.196875,
+      "worker_two": 948,
+      "worker_two_rate": 0.740625
+    },
+    "by_config": {
+      "legend_v3_balanced_m3_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 36,
+        "worker_three_rate": 0.225,
+        "worker_two": 124,
+        "worker_two_rate": 0.775
+      },
+      "legend_v3_balanced_m3_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 19,
+        "worker_three_rate": 0.11875,
+        "worker_two": 124,
+        "worker_two_rate": 0.775
+      },
+      "legend_v3_balanced_m4_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 36,
+        "worker_three_rate": 0.225,
+        "worker_two": 124,
+        "worker_two_rate": 0.775
+      },
+      "legend_v3_balanced_m4_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 19,
+        "worker_three_rate": 0.11875,
+        "worker_two": 124,
+        "worker_two_rate": 0.775
+      },
+      "legend_v3_hp2_m3_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 40,
+        "worker_three_rate": 0.25,
+        "worker_two": 113,
+        "worker_two_rate": 0.70625
+      },
+      "legend_v3_hp2_m3_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 31,
+        "worker_three_rate": 0.19375,
+        "worker_two": 113,
+        "worker_two_rate": 0.70625
+      },
+      "legend_v3_hp2_m4_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 3,
+        "worker_four_rate": 0.01875,
+        "worker_three": 40,
+        "worker_three_rate": 0.25,
+        "worker_two": 113,
+        "worker_two_rate": 0.70625
+      },
+      "legend_v3_hp2_m4_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 1,
+        "worker_four_rate": 0.00625,
+        "worker_three": 31,
+        "worker_three_rate": 0.19375,
+        "worker_two": 113,
+        "worker_two_rate": 0.70625
+      }
+    },
+    "changed_from_v2_parent": 876,
+    "changed_from_v2_parent_rate": 0.684375,
+    "mechanism_changed_from_v2_parent": 876,
+    "mechanism_changed_from_v2_parent_rate": 0.684375
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d52a-hybrid-job-market-workforce-preflight-protocol-2026-07-21.md",
+  "protocol_sha256": "608ce2c166438da52171e788b6c2c7ca18908151ac3025eafda6a44a0859676d",
+  "schema": 1,
+  "scope": "activation and mechanism only on consumed maps; score direction, field support, coverage, cohorts, opponent identity, candidate value, and platform outcomes ignored"
+}

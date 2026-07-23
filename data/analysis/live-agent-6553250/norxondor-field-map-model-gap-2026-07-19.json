@@ -1,0 +1,289 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-19T04:09:57.304366+00:00",
+ "rows": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/norxondor-field-map-gap-5x2x8.tsv",
+ "observed": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/norxondor-three-worker-stage2a-field-5-observed.json",
+ "integrity": {
+  "five_unique_maps": true,
+  "eighty_unique_cells": true,
+  "all_terminal": true
+ },
+ "local_policy_summaries": {
+  "norx_three_worker_silver": {
+   "cells": 40,
+   "mean_score": 198.625,
+   "mean_opponent_score": 130.4,
+   "mean_margin": 68.225,
+   "mean_wood": 40.125,
+   "mean_workers": 2.975,
+   "worker_distribution": {
+    "3": 39,
+    "2": 1
+   },
+   "mean_third_worker_turn_or_301": 109.8
+  },
+  "resident": {
+   "cells": 40,
+   "mean_score": 209.875,
+   "mean_opponent_score": 112.675,
+   "mean_margin": 97.2,
+   "mean_wood": 46.575,
+   "mean_workers": 2,
+   "worker_distribution": {
+    "2": 40
+   },
+   "mean_third_worker_turn_or_301": 301
+  }
+ },
+ "actual_two_worker_maps": [
+  896298204,
+  896298211
+ ],
+ "local_three_worker_cells_on_actual_two_worker_maps": {
+  "cells": 16,
+  "reached_three": 15,
+  "missed_three": 1
+ },
+ "field_range_coverage": {
+  "score_maps": 2,
+  "margin_maps": 1,
+  "total_maps": 5
+ },
+ "third_worker_turn_residuals": [
+  -1.0,
+  -5.0,
+  6.0
+ ],
+ "per_map": {
+  "896298158": {
+   "opponent": "delineate",
+   "actual": {
+    "score": 224.0,
+    "opponent_score": 469.0,
+    "margin": -245.0,
+    "workers": 3,
+    "third_worker_turn": 77
+   },
+   "local_three_worker": {
+    "score_min_median_max": [
+     186,
+     268.0,
+     337
+    ],
+    "margin_min_median_max": [
+     57,
+     116.5,
+     222
+    ],
+    "worker_distribution": {
+     "3": 8
+    },
+    "third_turn_min_median_max": [
+     70,
+     78.0,
+     83
+    ]
+   },
+   "actual_score_within_local_range": true,
+   "actual_margin_within_local_range": false,
+   "actual_minus_local_median_third_turn": -1.0
+  },
+  "896298179": {
+   "opponent": "wala",
+   "actual": {
+    "score": 233.0,
+    "opponent_score": 498.0,
+    "margin": -265.0,
+    "workers": 3,
+    "third_worker_turn": 98
+   },
+   "local_three_worker": {
+    "score_min_median_max": [
+     138,
+     205.0,
+     217
+    ],
+    "margin_min_median_max": [
+     -81,
+     91.0,
+     174
+    ],
+    "worker_distribution": {
+     "3": 8
+    },
+    "third_turn_min_median_max": [
+     103,
+     103.0,
+     103
+    ]
+   },
+   "actual_score_within_local_range": false,
+   "actual_margin_within_local_range": false,
+   "actual_minus_local_median_third_turn": -5.0
+  },
+  "896298192": {
+   "opponent": "norxondor",
+   "actual": {
+    "score": 194.0,
+    "opponent_score": 240.0,
+    "margin": -46.0,
+    "workers": 3,
+    "third_worker_turn": 84
+   },
+   "local_three_worker": {
+    "score_min_median_max": [
+     147,
+     229.0,
+     339
+    ],
+    "margin_min_median_max": [
+     29,
+     81.5,
+     246
+    ],
+    "worker_distribution": {
+     "3": 8
+    },
+    "third_turn_min_median_max": [
+     75,
+     78.0,
+     89
+    ]
+   },
+   "actual_score_within_local_range": true,
+   "actual_margin_within_local_range": false,
+   "actual_minus_local_median_third_turn": 6.0
+  },
+  "896298204": {
+   "opponent": "escdemon",
+   "actual": {
+    "score": 44.0,
+    "opponent_score": 91.0,
+    "margin": -47.0,
+    "workers": 2,
+    "third_worker_turn": null
+   },
+   "local_three_worker": {
+    "score_min_median_max": [
+     56,
+     115.0,
+     145
+    ],
+    "margin_min_median_max": [
+     -164,
+     16.5,
+     46
+    ],
+    "worker_distribution": {
+     "3": 8
+    },
+    "third_turn_min_median_max": [
+     155,
+     155.0,
+     209
+    ]
+   },
+   "actual_score_within_local_range": false,
+   "actual_margin_within_local_range": true,
+   "actual_minus_local_median_third_turn": null
+  },
+  "896298211": {
+   "opponent": "laconic",
+   "actual": {
+    "score": 55.0,
+    "opponent_score": 88.0,
+    "margin": -33.0,
+    "workers": 2,
+    "third_worker_turn": null
+   },
+   "local_three_worker": {
+    "score_min_median_max": [
+     70,
+     201.0,
+     309
+    ],
+    "margin_min_median_max": [
+     -4,
+     56.5,
+     164
+    ],
+    "worker_distribution": {
+     "3": 7,
+     "2": 1
+    },
+    "third_turn_min_median_max": [
+     82,
+     104,
+     109
+    ]
+   },
+   "actual_score_within_local_range": false,
+   "actual_margin_within_local_range": false,
+   "actual_minus_local_median_third_turn": null
+  }
+ },
+ "local_three_worker_minus_resident": {
+  "score": -11.25,
+  "opponent_score": 17.725,
+  "margin": -28.975,
+  "wood": -6.45
+ },
+ "per_model_three_worker_minus_resident": {
+  "compact_gold": {
+   "score": -12.6,
+   "opponent_score": 19.8,
+   "margin": -32.4,
+   "wood": -6.2
+  },
+  "gold_adaptive": {
+   "score": 1.2,
+   "opponent_score": 42,
+   "margin": -40.8,
+   "wood": -3.8
+  },
+  "gold_elite": {
+   "score": -12.6,
+   "opponent_score": 19.8,
+   "margin": -32.4,
+   "wood": -6.2
+  },
+  "mybot": {
+   "score": 8,
+   "opponent_score": -5.6,
+   "margin": 13.6,
+   "wood": -7.2
+  },
+  "printer_bot": {
+   "score": 0.6,
+   "opponent_score": 28.2,
+   "margin": -27.6,
+   "wood": -2
+  },
+  "sched_bot": {
+   "score": -22.8,
+   "opponent_score": -0.2,
+   "margin": -22.6,
+   "wood": -5.6
+  },
+  "script_boss": {
+   "score": -12.6,
+   "opponent_score": 26,
+   "margin": -38.6,
+   "wood": -5.2
+  },
+  "silver_boss": {
+   "score": -39.2,
+   "opponent_score": 11.8,
+   "margin": -51,
+   "wood": -15.4
+  }
+ },
+ "discriminators": {
+  "map_driven_funding_failure": false,
+  "opponent_model_driven_funding_failure": true,
+  "own_score_calibrated_at_least_4_of_5": false,
+  "margin_calibrated_at_least_4_of_5": false
+ },
+ "field_transfer_gate_retired": true,
+ "pass": true
+}

@@ -1,0 +1,93 @@
+{
+  "design": {
+    "complete": true,
+    "maps": 20,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "scenarios": 240,
+    "seats": [
+      0,
+      1
+    ]
+  },
+  "keep": {
+    "map_balanced_margin": 47.74583333333333,
+    "mask_legal_max": 7,
+    "mask_legal_min": 1,
+    "mean_wood_edge": 17.491666666666667,
+    "parity_matches": 240,
+    "parity_mismatches": [],
+    "return_errors": [],
+    "transitions": 137496,
+    "transitions_per_second": 2811.906600345042
+  },
+  "qualification": {
+    "authorization": "short PPO signal run only; no candidate, prospective, submission, or Arena activity",
+    "gates": {
+      "keep_finite_telescoping_returns": true,
+      "keep_present_and_mask_between_1_and_7": true,
+      "keep_reference_parity_240_of_240": true,
+      "keep_zero_overrides": true,
+      "no_selected_actions_rejected": true,
+      "random_changes_at_least_half_of_terminal_margins": true,
+      "random_complete_240_of_240": true,
+      "random_map_mean_worse_than_keep": true,
+      "random_override_episode_rate_at_least_95_percent": true,
+      "throughput_at_least_500_decisions_per_second": true
+    },
+    "qualified_for_short_ppo_signal_run": true
+  },
+  "random": {
+    "changed_terminal_margins": 240,
+    "map_balanced_margin": -138.35416666666666,
+    "margin_delta_vs_keep": {
+      "ci95_normal": [
+        -216.59886952137524,
+        -155.60113047862475
+      ],
+      "losses": 20,
+      "maximum": -54.83333333333334,
+      "mean": -186.1,
+      "median": -192.91666666666669,
+      "minimum": -321.0,
+      "n": 20,
+      "standard_deviation": 69.58933212927704,
+      "standard_error": 15.560647714987363,
+      "ties": 0,
+      "wins": 0,
+      "worst_decile_mean": -307.25
+    },
+    "mask_legal_max": 7,
+    "mask_legal_min": 1,
+    "mean_wood_edge": -26.545833333333334,
+    "override_episode_rate": 1.0,
+    "rejected_actions": 0,
+    "residual_attempt_episode_rate": 1.0,
+    "transitions": 138096,
+    "transitions_per_second": 2918.201538165462
+  },
+  "schema": 1,
+  "scope": "D14 resident residual environment smoke on consumed development maps; not policy selection or Arena authorization",
+  "source": {
+    "analyzer": "cgauto/d14_resident_residual_smoke.py",
+    "analyzer_sha256": "bd38102ad23ac972544964796921d3a367019cb5f5b9ffbad0447d405887cec4",
+    "keep": "data/analysis/live-agent-6553250/d14-resident-residual-keep-scenarios0-239.json",
+    "keep_sha256": "2d7daf01f3bfaa3300caa86403c1ac22ca9e0dd1035d7d3acf8dea9be72ecb10",
+    "random": "data/analysis/live-agent-6553250/d14-resident-residual-random-scenarios0-239.json",
+    "random_sha256": "10a563f87e665605e3c4db6a90f8fad9c6dc93d4a5d99a152238e79deffdf7c1",
+    "reference_sha256": {
+      "data/analysis/live-agent-6553250/d11-advisory-layer-development-seeds0-7.tsv": "f9821dd0933ad9f9d89baa8e7c0c6c4a4b4084f2df984e3e514980d814172f7b",
+      "data/analysis/live-agent-6553250/d12-resident-idle-residual-readiness-seeds8-23.tsv": "0fc28ce0db701db7cf79f90c68de9166e2c56b8d84cbacf73d199ef67b2fb5c0"
+    },
+    "references": [
+      "data/analysis/live-agent-6553250/d11-advisory-layer-development-seeds0-7.tsv",
+      "data/analysis/live-agent-6553250/d12-resident-idle-residual-readiness-seeds8-23.tsv"
+    ]
+  }
+}

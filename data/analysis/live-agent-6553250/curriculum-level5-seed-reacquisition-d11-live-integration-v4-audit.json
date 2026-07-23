@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "seed_base": 7700300,
+  "seed_count": 64,
+  "games": 64,
+  "turns": 11586,
+  "decisions": 21695,
+  "trains": 64,
+  "terminal_crops": 63,
+  "renewable_harvest_games": 64,
+  "opponent_crop_destructions": 183,
+  "first_response_max_ns": 20966684,
+  "warm_response_p95_ns": 21086964,
+  "warm_response_max_ns": 64275481,
+  "semantic_parity_passed": true,
+  "timing_gate_passed": false,
+  "source_sha256": "ba93357bfcb6e201ed04a0b9c32e1304f1a64104f83649009fa3551fb2bec581",
+  "protocol_sha256": "7cef1c1bc8cc5e19a6271e953d2260695279658ab1c029ff38f1d0cb324363d4"
+}

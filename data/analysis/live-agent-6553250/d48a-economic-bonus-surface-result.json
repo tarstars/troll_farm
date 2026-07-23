@@ -1,0 +1,147 @@
+{
+  "audit": {
+    "anchor_parity_failures": 0,
+    "integrity_failures": 0,
+    "policies": 7,
+    "repeat_byte_identical": true,
+    "rows": 448,
+    "tasks_per_policy": 64
+  },
+  "gates": {
+    "anchor_exact_d40_prefix_parity": true,
+    "at_least_2_directional_pairs": true,
+    "at_least_4_active_perturbations": false,
+    "at_least_4_safe_perturbations": true,
+    "complete_byte_identical_7x64_repeats": true,
+    "each_coordinate_has_active_direction": false,
+    "mean_margin_range_at_least_15": true,
+    "means_both_above_and_below_anchor": true,
+    "zero_integrity_failures": true
+  },
+  "inputs": {
+    "d40_reference": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d40-macro-work-conserving-preflight-a-9670000-9670015.tsv",
+    "d40_reference_sha256": "653dee375b1922bd43b74e6e9aa1b27503d8017350f3b8dcf3baed197827b8a5",
+    "generator_source_sha256": "bdd9faefac5572f9719020666d4d339a4a8c68410167d3a748a557576833e17a",
+    "policies": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d48a-economic-bonus-surface-policies.tsv",
+    "policies_sha256": "8d6f1aaff77a3a4fb2c7bd5d71307a19895b05f2fab1d0166241200d2e8fe2d6",
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d48a-economic-bonus-surface-a-9670000-9670003.tsv",
+    "run_a_sha256": "48f0c619754aa83f519e6c654c6dfa82b9eca7c444a521e305c5849a2279abc6",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d48a-economic-bonus-surface-b-9670000-9670003.tsv",
+    "run_b_sha256": "48f0c619754aa83f519e6c654c6dfa82b9eca7c444a521e305c5849a2279abc6",
+    "runner_source_sha256": "776fb39aaf7b57f1b1a826af7dd19235464007383e2f99716b6f26055d6c4343"
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d48a-economic-bonus-surface-protocol-2026-07-21.md",
+  "protocol_sha256": "4f3691dbc83cd9c0791719791de6518bb884034fabc59bc67fe151ff0a57580e",
+  "scope": "consumed-map formula-surface preflight only; no arm selection or platform action",
+  "summaries": {
+    "anchor": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1,
+      "mean_margin": 23.1875,
+      "mean_opponent_score": 203.4375,
+      "mean_own_score": 226.625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "bank_double": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1,
+      "mean_margin": 23.1875,
+      "mean_opponent_score": 203.4375,
+      "mean_own_score": 226.625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "bank_zero": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1,
+      "mean_margin": 23.1875,
+      "mean_opponent_score": 203.4375,
+      "mean_own_score": 226.625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "provenance_double": {
+      "changed_action_hash_rate": 0.0,
+      "changed_action_hash_tasks": 0,
+      "crop_rate": 1,
+      "mean_margin": 23.1875,
+      "mean_opponent_score": 203.4375,
+      "mean_own_score": 226.625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "provenance_zero": {
+      "changed_action_hash_rate": 0.9375,
+      "changed_action_hash_tasks": 60,
+      "crop_rate": 1,
+      "mean_margin": 63.3125,
+      "mean_opponent_score": 247.6875,
+      "mean_own_score": 311.0,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "renew_double": {
+      "changed_action_hash_rate": 0.90625,
+      "changed_action_hash_tasks": 58,
+      "crop_rate": 1,
+      "mean_margin": 25.75,
+      "mean_opponent_score": 207.390625,
+      "mean_own_score": 233.140625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    },
+    "renew_zero": {
+      "changed_action_hash_rate": 0.046875,
+      "changed_action_hash_tasks": 3,
+      "crop_rate": 1,
+      "mean_margin": 22.90625,
+      "mean_opponent_score": 203.5,
+      "mean_own_score": 226.40625,
+      "tasks": 64,
+      "worker_three_rate": 0.9375,
+      "worker_two_rate": 1
+    }
+  },
+  "surface": {
+    "active_perturbations": [
+      "provenance_zero",
+      "renew_double"
+    ],
+    "anchor_mean_margin": 23.1875,
+    "coordinate_activation": {
+      "bank": false,
+      "provenance": true,
+      "renew": true
+    },
+    "directional_pairs_at_least_2": 2,
+    "pair_mean_margin_differences": {
+      "bank": 0.0,
+      "provenance": 40.125,
+      "renew": 2.84375
+    },
+    "perturbation_mean_maximum": 63.3125,
+    "perturbation_mean_minimum": 22.90625,
+    "perturbation_mean_range": 40.40625,
+    "perturbations_above_anchor": 2,
+    "perturbations_below_anchor": 1,
+    "safe_perturbations": [
+      "provenance_zero",
+      "provenance_double",
+      "renew_zero",
+      "renew_double",
+      "bank_zero",
+      "bank_double"
+    ]
+  }
+}

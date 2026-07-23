@@ -1,0 +1,31 @@
+{
+  "failed_operation": {
+    "failure": "worker glibc lacks required GLIBC_2.32--2.34; collector exited before simulation",
+    "operation_id": "ebca5163-c00d4adc-42e03e8-b4adc649",
+    "output_rows": 0
+  },
+  "frozen_at": "2026-07-22-after-d132-worker-abi-failure-before-repair-operation",
+  "inherited_protocol_lock": "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-lock.json",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "repair": "run the unchanged binary/mapper/spec/gates in the proven Jammy plus Python 3.11 worker layers and a new YT namespace",
+  "schema": "troll-farm-d132a-yt-q6-teacher-parity-repair1-lock-v1",
+  "external_sha256": {
+    "/home/tarstars/prj/math_through_eml/src/math_through_eml/yt_utils.py": "ce5b7466bde3dfeb2ccf47836c9b18202750142f7c067c177d8ebb36c0340ccc"
+  },
+  "sha256": {
+    "cgauto/yt_d132_q6_teacher.py": "c8336e1ee39337cc33d858cb1a158619d0a1cb3056b94f3e673ba1207f073e6b",
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-arms-9843780-9843795.tsv": "1c2f3b69f802e08b58119a8af728ea225c0560f9bcf88c182b3978b0b294a96d",
+    "data/analysis/live-agent-6553250/d126a-q6-validation-baselines-9843780-9843795.tsv": "72f6bfca3f9c2635416cf4c17d0f6a93c0d129e43517c0993e89d215160a713c",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-launch.json": "37a3ce1875835a091d88275acabd6d62dd63722bda85ef527bf80100a001447f",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-lock.json": "dad6d676f1d341ba7462f11aed128281c888d14ac5cbd75344eac7df8d6caad8",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-protocol-2026-07-22.md": "854e7b38230cd2077b3dbcf9421d967437ac28ae5abc413171ead3da451dd3b1",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "tests/test_yt_d132_q6_teacher.py": "8e66b3e33488a8799b8d07455e9966049cb2c6056da4769fa47444009cfb7fa5"
+  }
+}

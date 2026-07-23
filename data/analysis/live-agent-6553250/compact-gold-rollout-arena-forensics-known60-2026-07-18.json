@@ -1,0 +1,1174 @@
+{
+ "schema": 1,
+ "scope": "observational arena replay forensics; two explicitly captured 30-game windows from the rejected candidate; not a paired counterfactual estimate",
+ "manifest": "data/analysis/live-agent-6553250/compact-gold-rollout-arena-known-games-2026-07-18.json",
+ "candidate": {
+  "path": "cgauto/submissions/candidate-agent6553250-compact-gold-rollout30.min.rs",
+  "sha256": "f5df1f760791a21ad0193469c132fea02ebaa2856b33f62213765205b3b59370",
+  "agent_id": 6559513
+ },
+ "sample_games": 60,
+ "candidate_total_valid_games_at_audit": 123,
+ "stdout_exact_games": 60,
+ "selection_counts": {
+  "control": 57,
+  "option": 3
+ },
+ "by_selection": {
+  "control": {
+   "games": 57,
+   "wins": 25,
+   "mean_margin": 2.0,
+   "median_margin": -10.0,
+   "minimum_margin": -406.0,
+   "maximum_margin": 255.0
+  },
+  "option": {
+   "games": 3,
+   "wins": 0,
+   "mean_margin": -23.666666666666668,
+   "median_margin": -26.0,
+   "minimum_margin": -27.0,
+   "maximum_margin": -18.0
+  }
+ },
+ "option_games": [
+  {
+   "game_id": 896220422,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 207.12675200775266,
+   "won": false,
+   "margin": -26.0,
+   "scores": [
+    136.0,
+    162.0
+   ],
+   "opponent": "FreZzz",
+   "opponent_agent": 6557848,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 6 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 6 1"
+  },
+  {
+   "game_id": 896220808,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 214.15743601392023,
+   "won": false,
+   "margin": -18.0,
+   "scores": [
+    205.0,
+    223.0
+   ],
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 4 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 4 5"
+  },
+  {
+   "game_id": 896220941,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 230.58499000035226,
+   "won": false,
+   "margin": -27.0,
+   "scores": [
+    94.0,
+    121.0
+   ],
+   "opponent": "a76a44",
+   "opponent_agent": 6512056,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 1 0 1;MOVE 0 9 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 1 0 1;MOVE 0 9 3"
+  }
+ ],
+ "rows": [
+  {
+   "game_id": 896220404,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 77.35182001488283,
+   "won": false,
+   "margin": -13.0,
+   "scores": [
+    234.0,
+    221.0
+   ],
+   "opponent": "FredericBautista",
+   "opponent_agent": 6480515,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 1"
+  },
+  {
+   "game_id": 896220422,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 207.12675200775266,
+   "won": false,
+   "margin": -26.0,
+   "scores": [
+    136.0,
+    162.0
+   ],
+   "opponent": "FreZzz",
+   "opponent_agent": 6557848,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 6 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 6 1"
+  },
+  {
+   "game_id": 896220427,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 189.91542601725087,
+   "won": true,
+   "margin": 0.0,
+   "scores": [
+    120.0,
+    120.0
+   ],
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 8 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 8 8"
+  },
+  {
+   "game_id": 896220432,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 100.29385300003923,
+   "won": true,
+   "margin": 28.0,
+   "scores": [
+    247.0,
+    219.0
+   ],
+   "opponent": "a76a44",
+   "opponent_agent": 6512056,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 2"
+  },
+  {
+   "game_id": 896220438,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 124.29861500277184,
+   "won": false,
+   "margin": -2.0,
+   "scores": [
+    206.0,
+    204.0
+   ],
+   "opponent": "FreZzz",
+   "opponent_agent": 6557848,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 6",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 6"
+  },
+  {
+   "game_id": 896220464,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 96.83277300791815,
+   "won": false,
+   "margin": -52.0,
+   "scores": [
+    164.0,
+    216.0
+   ],
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 1"
+  },
+  {
+   "game_id": 896220474,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 174.40846899989992,
+   "won": false,
+   "margin": -44.0,
+   "scores": [
+    204.0,
+    248.0
+   ],
+   "opponent": "Ztrk",
+   "opponent_agent": 6480516,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 1"
+  },
+  {
+   "game_id": 896220488,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 202.00058299815282,
+   "won": true,
+   "margin": 76.0,
+   "scores": [
+    156.0,
+    80.0
+   ],
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 8 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 8 2"
+  },
+  {
+   "game_id": 896220495,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 177.51958800363354,
+   "won": false,
+   "margin": -33.0,
+   "scores": [
+    236.0,
+    203.0
+   ],
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 1 12 7",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 1 12 7"
+  },
+  {
+   "game_id": 896220500,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 120.91695700655691,
+   "won": false,
+   "margin": -38.0,
+   "scores": [
+    218.0,
+    256.0
+   ],
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 8"
+  },
+  {
+   "game_id": 896220513,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 187.5160610070452,
+   "won": true,
+   "margin": 34.0,
+   "scores": [
+    262.0,
+    228.0
+   ],
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 8 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 8 2"
+  },
+  {
+   "game_id": 896220517,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 106.95002600550652,
+   "won": false,
+   "margin": -10.0,
+   "scores": [
+    197.0,
+    207.0
+   ],
+   "opponent": "R1FA",
+   "opponent_agent": 6479863,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 4 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 4 5"
+  },
+  {
+   "game_id": 896220529,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 242.72838601609692,
+   "won": true,
+   "margin": 100.0,
+   "scores": [
+    214.0,
+    114.0
+   ],
+   "opponent": "FreZzz",
+   "opponent_agent": 6557848,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 10 7",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 10 7"
+  },
+  {
+   "game_id": 896220538,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 256.6472869948484,
+   "won": false,
+   "margin": -44.0,
+   "scores": [
+    260.0,
+    216.0
+   ],
+   "opponent": "FreZzz",
+   "opponent_agent": 6557848,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3"
+  },
+  {
+   "game_id": 896220547,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 206.9689059862867,
+   "won": false,
+   "margin": -41.0,
+   "scores": [
+    174.0,
+    133.0
+   ],
+   "opponent": "eulerscheZahl",
+   "opponent_agent": 6479658,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 1"
+  },
+  {
+   "game_id": 896220564,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 100.34448202350177,
+   "won": true,
+   "margin": 16.0,
+   "scores": [
+    168.0,
+    184.0
+   ],
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 8 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 8 5"
+  },
+  {
+   "game_id": 896220569,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 235.2164879848715,
+   "won": true,
+   "margin": 80.0,
+   "scores": [
+    154.0,
+    74.0
+   ],
+   "opponent": "aangairbender",
+   "opponent_agent": 6479532,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 9 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 0 9 1"
+  },
+  {
+   "game_id": 896220576,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 182.2723030054476,
+   "won": false,
+   "margin": -83.0,
+   "scores": [
+    228.0,
+    311.0
+   ],
+   "opponent": "a76a44",
+   "opponent_agent": 6512056,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 5"
+  },
+  {
+   "game_id": 896220583,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 100.47607700107619,
+   "won": false,
+   "margin": -37.0,
+   "scores": [
+    221.0,
+    184.0
+   ],
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 0",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 0"
+  },
+  {
+   "game_id": 896220588,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 118.98055201163515,
+   "won": true,
+   "margin": 179.0,
+   "scores": [
+    141.0,
+    320.0
+   ],
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 2"
+  },
+  {
+   "game_id": 896220593,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 149.378896021517,
+   "won": false,
+   "margin": -278.0,
+   "scores": [
+    519.0,
+    241.0
+   ],
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 14 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 14 4"
+  },
+  {
+   "game_id": 896220600,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 178.35805998765863,
+   "won": false,
+   "margin": -21.0,
+   "scores": [
+    248.0,
+    227.0
+   ],
+   "opponent": "Halphas",
+   "opponent_agent": 6480945,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3"
+  },
+  {
+   "game_id": 896220603,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 97.7073929971084,
+   "won": true,
+   "margin": 66.0,
+   "scores": [
+    250.0,
+    184.0
+   ],
+   "opponent": "Quentin18",
+   "opponent_agent": 6481265,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 4"
+  },
+  {
+   "game_id": 896220604,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 203.67257797624916,
+   "won": false,
+   "margin": -406.0,
+   "scores": [
+    611.0,
+    205.0
+   ],
+   "opponent": "Wld",
+   "opponent_agent": 6479553,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2"
+  },
+  {
+   "game_id": 896220606,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 278.4106339968275,
+   "won": false,
+   "margin": -61.0,
+   "scores": [
+    281.0,
+    220.0
+   ],
+   "opponent": "a76a44",
+   "opponent_agent": 6512056,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 5"
+  },
+  {
+   "game_id": 896220660,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 132.97408798825927,
+   "won": false,
+   "margin": -64.0,
+   "scores": [
+    220.0,
+    284.0
+   ],
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 3"
+  },
+  {
+   "game_id": 896220661,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 207.6744259975385,
+   "won": true,
+   "margin": 26.0,
+   "scores": [
+    120.0,
+    94.0
+   ],
+   "opponent": "Kheopsian",
+   "opponent_agent": 6479388,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 4"
+  },
+  {
+   "game_id": 896220663,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 334.71251200535335,
+   "won": true,
+   "margin": 27.0,
+   "scores": [
+    121.0,
+    148.0
+   ],
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 15 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 15 4"
+  },
+  {
+   "game_id": 896220665,
+   "window": "middle_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 266.33975000004284,
+   "won": true,
+   "margin": 12.0,
+   "scores": [
+    224.0,
+    212.0
+   ],
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 7",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 7"
+  },
+  {
+   "game_id": 896220666,
+   "window": "middle_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 241.88980300095864,
+   "won": false,
+   "margin": -108.0,
+   "scores": [
+    240.0,
+    132.0
+   ],
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 10 9",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 10 9"
+  },
+  {
+   "game_id": 896220710,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 158.73213700251654,
+   "won": false,
+   "margin": -12.0,
+   "scores": [
+    124.0,
+    112.0
+   ],
+   "opponent": "mehdi_ayari",
+   "opponent_agent": 6479750,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 3"
+  },
+  {
+   "game_id": 896220714,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 228.8872729986906,
+   "won": false,
+   "margin": -18.0,
+   "scores": [
+    169.0,
+    187.0
+   ],
+   "opponent": "Quentin18",
+   "opponent_agent": 6481265,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 3"
+  },
+  {
+   "game_id": 896220718,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 155.39053600514308,
+   "won": false,
+   "margin": -24.0,
+   "scores": [
+    168.0,
+    144.0
+   ],
+   "opponent": "Quentin18",
+   "opponent_agent": 6481265,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 10 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 10 8"
+  },
+  {
+   "game_id": 896220724,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 226.60572800668888,
+   "won": false,
+   "margin": -135.0,
+   "scores": [
+    364.0,
+    229.0
+   ],
+   "opponent": "Pech1",
+   "opponent_agent": 6483325,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 15 7",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 15 7"
+  },
+  {
+   "game_id": 896220732,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 149.90219101309776,
+   "won": false,
+   "margin": -35.0,
+   "scores": [
+    211.0,
+    176.0
+   ],
+   "opponent": "celeria",
+   "opponent_agent": 6512040,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 8"
+  },
+  {
+   "game_id": 896220738,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 180.63952698139474,
+   "won": false,
+   "margin": -52.0,
+   "scores": [
+    264.0,
+    212.0
+   ],
+   "opponent": "0x6E0FF",
+   "opponent_agent": 6480951,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 3 0 2;MOVE 1 11 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 3 0 2;MOVE 1 11 1"
+  },
+  {
+   "game_id": 896220744,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 106.31269801524468,
+   "won": false,
+   "margin": -66.0,
+   "scores": [
+    164.0,
+    230.0
+   ],
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 2 0 2;MOVE 0 5 0",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 2 0 2;MOVE 0 5 0"
+  },
+  {
+   "game_id": 896220749,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 92.97430198057555,
+   "won": true,
+   "margin": 110.0,
+   "scores": [
+    106.0,
+    216.0
+   ],
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 6",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 9 6"
+  },
+  {
+   "game_id": 896220752,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 129.64589000330307,
+   "won": true,
+   "margin": 55.0,
+   "scores": [
+    132.0,
+    77.0
+   ],
+   "opponent": "Kheopsian",
+   "opponent_agent": 6479388,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 8"
+  },
+  {
+   "game_id": 896220755,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 109.1230990132317,
+   "won": false,
+   "margin": -36.0,
+   "scores": [
+    248.0,
+    284.0
+   ],
+   "opponent": "celeria",
+   "opponent_agent": 6512040,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 6",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 6"
+  },
+  {
+   "game_id": 896220759,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 209.7965200082399,
+   "won": true,
+   "margin": 88.0,
+   "scores": [
+    112.0,
+    24.0
+   ],
+   "opponent": "_H3R0_",
+   "opponent_agent": 6491567,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 3 1 0 3;MOVE 0 8 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 3 1 0 3;MOVE 0 8 1"
+  },
+  {
+   "game_id": 896220767,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 243.10020401026122,
+   "won": true,
+   "margin": 151.0,
+   "scores": [
+    129.0,
+    280.0
+   ],
+   "opponent": "Quentin18",
+   "opponent_agent": 6481265,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 4"
+  },
+  {
+   "game_id": 896220793,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 137.09675200516358,
+   "won": false,
+   "margin": -32.0,
+   "scores": [
+    228.0,
+    260.0
+   ],
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 0",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 0"
+  },
+  {
+   "game_id": 896220798,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 140.44152898713946,
+   "won": true,
+   "margin": 11.0,
+   "scores": [
+    105.0,
+    116.0
+   ],
+   "opponent": "dabino",
+   "opponent_agent": 6480948,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 1 7 0",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 2;MOVE 1 7 0"
+  },
+  {
+   "game_id": 896220804,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 172.26463500992395,
+   "won": true,
+   "margin": 149.0,
+   "scores": [
+    166.0,
+    17.0
+   ],
+   "opponent": "RinSakamichi",
+   "opponent_agent": 6480507,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 6",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 6"
+  },
+  {
+   "game_id": 896220808,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 214.15743601392023,
+   "won": false,
+   "margin": -18.0,
+   "scores": [
+    205.0,
+    223.0
+   ],
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 4 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 4 5"
+  },
+  {
+   "game_id": 896220812,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 198.11816097353585,
+   "won": false,
+   "margin": -36.0,
+   "scores": [
+    216.0,
+    180.0
+   ],
+   "opponent": "0x6E0FF",
+   "opponent_agent": 6480951,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2"
+  },
+  {
+   "game_id": 896220819,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 111.67842400027439,
+   "won": false,
+   "margin": -61.0,
+   "scores": [
+    300.0,
+    239.0
+   ],
+   "opponent": "_H3R0_",
+   "opponent_agent": 6491567,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 1 10 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 1 10 4"
+  },
+  {
+   "game_id": 896220824,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 218.21087200078182,
+   "won": true,
+   "margin": 118.0,
+   "scores": [
+    320.0,
+    202.0
+   ],
+   "opponent": "Quentin18",
+   "opponent_agent": 6481265,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 5"
+  },
+  {
+   "game_id": 896220851,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 234.4945539953187,
+   "won": false,
+   "margin": -2.0,
+   "scores": [
+    204.0,
+    206.0
+   ],
+   "opponent": "RinSakamichi",
+   "opponent_agent": 6480507,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 8"
+  },
+  {
+   "game_id": 896220861,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 278.0979860108346,
+   "won": true,
+   "margin": 95.0,
+   "scores": [
+    254.0,
+    159.0
+   ],
+   "opponent": "eulerscheZahl",
+   "opponent_agent": 6479658,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 10 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 10 3"
+  },
+  {
+   "game_id": 896220890,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 197.85953901009634,
+   "won": true,
+   "margin": 64.0,
+   "scores": [
+    168.0,
+    104.0
+   ],
+   "opponent": "Kheopsian",
+   "opponent_agent": 6479388,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 8",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 7 8"
+  },
+  {
+   "game_id": 896220894,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 90.19312000600621,
+   "won": false,
+   "margin": 0.0,
+   "scores": [
+    144.0,
+    144.0
+   ],
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 3 2 0 2;MOVE 1 7 5",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 3 2 0 2;MOVE 1 7 5"
+  },
+  {
+   "game_id": 896220899,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 131.25290899188258,
+   "won": true,
+   "margin": 50.0,
+   "scores": [
+    132.0,
+    82.0
+   ],
+   "opponent": "dabino",
+   "opponent_agent": 6480948,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 7",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 7"
+  },
+  {
+   "game_id": 896220905,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 130.63891397905536,
+   "won": true,
+   "margin": 255.0,
+   "scores": [
+    43.0,
+    298.0
+   ],
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 3"
+  },
+  {
+   "game_id": 896220934,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 90.23805300239474,
+   "won": false,
+   "margin": -12.0,
+   "scores": [
+    184.0,
+    172.0
+   ],
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 1"
+  },
+  {
+   "game_id": 896220941,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "option",
+   "stdout_exact": true,
+   "elapsed_ms": 230.58499000035226,
+   "won": false,
+   "margin": -27.0,
+   "scores": [
+    94.0,
+    121.0
+   ],
+   "opponent": "a76a44",
+   "opponent_agent": 6512056,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 1 0 1;MOVE 0 9 3",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 1 1 0 1;MOVE 0 9 3"
+  },
+  {
+   "game_id": 896220957,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 135.7754149939865,
+   "won": false,
+   "margin": -41.0,
+   "scores": [
+    239.0,
+    280.0
+   ],
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 5 2",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 2;MOVE 0 5 2"
+  },
+  {
+   "game_id": 896220967,
+   "window": "late_recent_30",
+   "seat": 1,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 207.83118600957096,
+   "won": true,
+   "margin": 27.0,
+   "scores": [
+    81.0,
+    108.0
+   ],
+   "opponent": "dabino",
+   "opponent_agent": 6480948,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 1",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 1"
+  },
+  {
+   "game_id": 896220972,
+   "window": "late_recent_30",
+   "seat": 0,
+   "selection": "control",
+   "stdout_exact": true,
+   "elapsed_ms": 121.08257299405523,
+   "won": true,
+   "margin": 194.0,
+   "scores": [
+    224.0,
+    30.0
+   ],
+   "opponent": "Wld",
+   "opponent_agent": 6479553,
+   "observed_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 9 4",
+   "reproduced_first_command": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 9 4"
+  }
+ ],
+ "interpretation_limit": "Selection is reconstructed exactly, but outcomes are observational.  Maps selected by the rollout may be intrinsically harder, and the unobserved control counterfactual against each arena opponent is unavailable."
+}

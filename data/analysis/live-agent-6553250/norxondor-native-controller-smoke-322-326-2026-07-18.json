@@ -1,0 +1,5294 @@
+{
+ "schema": 1,
+ "scope": "deterministic exact-engine Bronze map rollouts with seats swapped for every candidate/opponent/seed cell; replay-derived workforce ladder joined to two existing continuations and paired against each continuation control; discovery evidence only, not official-map, sealed-holdout, or arena evidence",
+ "rows": 1200,
+ "seeds": 5,
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "candidates": {
+  "compact_gold": {
+   "margin": {
+    "n": 80,
+    "mean": 118.3,
+    "median": 117.0,
+    "minimum": -102,
+    "maximum": 324,
+    "wins": 63,
+    "ties": 0,
+    "losses": 17
+   },
+   "score": {
+    "n": 80,
+    "mean": 383.1,
+    "median": 385.0,
+    "minimum": 286,
+    "maximum": 432,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 93.55,
+    "median": 94.0,
+    "minimum": 70,
+    "maximum": 106,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 80
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": 0,
+      "median": 0.0,
+      "minimum": -35,
+      "maximum": 35,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 396.1,
+      "median": 394.0,
+      "minimum": 360,
+      "maximum": 428,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -10.3,
+      "median": -36.0,
+      "minimum": -102,
+      "maximum": 153,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 395.4,
+      "median": 394.5,
+      "minimum": 352,
+      "maximum": 428,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": 0,
+      "median": 0.0,
+      "minimum": -35,
+      "maximum": 35,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 396.1,
+      "median": 394.0,
+      "minimum": 360,
+      "maximum": 428,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 138.7,
+      "median": 138.0,
+      "minimum": 19,
+      "maximum": 225,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 350.9,
+      "median": 357.0,
+      "minimum": 286,
+      "maximum": 374,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 255.1,
+      "median": 251.0,
+      "minimum": 176,
+      "maximum": 323,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 396.1,
+      "median": 394.0,
+      "minimum": 360,
+      "maximum": 428,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 195.3,
+      "median": 200.5,
+      "minimum": 93,
+      "maximum": 286,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 361.6,
+      "median": 358.0,
+      "minimum": 320,
+      "maximum": 432,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 126,
+      "median": 108.0,
+      "minimum": 21,
+      "maximum": 301,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 382.9,
+      "median": 385.0,
+      "minimum": 336,
+      "maximum": 428,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 241.6,
+      "median": 248.5,
+      "minimum": 138,
+      "maximum": 324,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 385.7,
+      "median": 389.5,
+      "minimum": 334,
+      "maximum": 430,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   }
+  },
+  "norx_compact": {
+   "margin": {
+    "n": 80,
+    "mean": -71.375,
+    "median": -80.5,
+    "minimum": -379,
+    "maximum": 145,
+    "wins": 28,
+    "ties": 1,
+    "losses": 51
+   },
+   "score": {
+    "n": 80,
+    "mean": 194.2125,
+    "median": 194.0,
+    "minimum": 67,
+    "maximum": 269,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 42.7,
+    "median": 41.5,
+    "minimum": 5,
+    "maximum": 61,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 80
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -194.9,
+      "median": -182.5,
+      "minimum": -335,
+      "maximum": -140,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 201.2,
+      "median": 208.0,
+      "minimum": 67,
+      "maximum": 268,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -203.2,
+      "median": -189.0,
+      "minimum": -379,
+      "maximum": -31,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 200.9,
+      "median": 208.0,
+      "minimum": 67,
+      "maximum": 268,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -194.9,
+      "median": -182.5,
+      "minimum": -335,
+      "maximum": -140,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 201.2,
+      "median": 208.0,
+      "minimum": 67,
+      "maximum": 268,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -27.8,
+      "median": -33.0,
+      "minimum": -112,
+      "maximum": 56,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 177.4,
+      "median": 176.5,
+      "minimum": 122,
+      "maximum": 239,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 62.7,
+      "median": 71.5,
+      "minimum": -93,
+      "maximum": 145,
+      "wins": 8,
+      "ties": 1,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 201.2,
+      "median": 208.0,
+      "minimum": 67,
+      "maximum": 268,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 11.1,
+      "median": 82.0,
+      "minimum": -149,
+      "maximum": 104,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 185.3,
+      "median": 184.0,
+      "minimum": 90,
+      "maximum": 238,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -73.5,
+      "median": -86.0,
+      "minimum": -211,
+      "maximum": 120,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 189.8,
+      "median": 181.5,
+      "minimum": 92,
+      "maximum": 261,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 49.5,
+      "median": 68.0,
+      "minimum": -103,
+      "maximum": 103,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 196.7,
+      "median": 202.5,
+      "minimum": 67,
+      "maximum": 269,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "compact_gold",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": -189.675,
+    "median": -185.5,
+    "minimum": -367,
+    "maximum": -61,
+    "wins": 0,
+    "ties": 0,
+    "losses": 80
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": -188.8875,
+    "median": -177.5,
+    "minimum": -355,
+    "maximum": -111,
+    "wins": 0,
+    "ties": 0,
+    "losses": 80
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -194.9,
+    "gold_adaptive": -192.9,
+    "gold_elite": -194.9,
+    "mybot": -166.5,
+    "printer_bot": -192.4,
+    "sched_bot": -184.2,
+    "script_boss": -199.5,
+    "silver_boss": -192.1
+   },
+   "nonnegative_opponent_deltas": 0,
+   "worst_opponent_mean_delta": -199.5
+  },
+  "norx_cooperative_silver": {
+   "margin": {
+    "n": 80,
+    "mean": 25.8,
+    "median": 28.0,
+    "minimum": -172,
+    "maximum": 180,
+    "wins": 53,
+    "ties": 0,
+    "losses": 27
+   },
+   "score": {
+    "n": 80,
+    "mean": 216.6125,
+    "median": 214.0,
+    "minimum": 121,
+    "maximum": 327,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 48.2,
+    "median": 48.0,
+    "minimum": 27,
+    "maximum": 71,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3.9875,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 5,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 10,
+    "4": 61,
+    "5": 9
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2.9875,
+    "median": 3.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2.9875,
+    "median": 3.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -60.1,
+      "median": -52.5,
+      "minimum": -172,
+      "maximum": 23,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 254.3,
+      "median": 267.5,
+      "minimum": 172,
+      "maximum": 327,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 3.4,
+      "median": -3.0,
+      "minimum": -35,
+      "maximum": 69,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 226.3,
+      "median": 231.0,
+      "minimum": 150,
+      "maximum": 318,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -60.1,
+      "median": -52.5,
+      "minimum": -172,
+      "maximum": 23,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 254.3,
+      "median": 267.5,
+      "minimum": 172,
+      "maximum": 327,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 69.6,
+      "median": 57.0,
+      "minimum": 3,
+      "maximum": 180,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 242.8,
+      "median": 247.5,
+      "minimum": 162,
+      "maximum": 288,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.9,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 113.7,
+      "median": 117.0,
+      "minimum": 18,
+      "maximum": 173,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 226.6,
+      "median": 231.0,
+      "minimum": 165,
+      "maximum": 253,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4,
+      "median": 4.0,
+      "minimum": 4,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 18.6,
+      "median": -4.5,
+      "minimum": -64,
+      "maximum": 132,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 169.6,
+      "median": 174.5,
+      "minimum": 121,
+      "maximum": 235,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 44.4,
+      "median": 34.0,
+      "minimum": -60,
+      "maximum": 172,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 180.1,
+      "median": 171.0,
+      "minimum": 138,
+      "maximum": 249,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 4,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 76.9,
+      "median": 64.0,
+      "minimum": 40,
+      "maximum": 159,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 178.9,
+      "median": 167.5,
+      "minimum": 149,
+      "maximum": 263,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "silver_boss",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 134.4,
+    "median": 129.0,
+    "minimum": -22,
+    "maximum": 287,
+    "wins": 79,
+    "ties": 0,
+    "losses": 1
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 81.6625,
+    "median": 84.5,
+    "minimum": -19,
+    "maximum": 208,
+    "wins": 78,
+    "ties": 0,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 180,
+    "gold_adaptive": 221.8,
+    "gold_elite": 180,
+    "mybot": 147.3,
+    "printer_bot": 100.6,
+    "sched_bot": 59.3,
+    "script_boss": 109.3,
+    "silver_boss": 76.9
+   },
+   "nonnegative_opponent_deltas": 8,
+   "worst_opponent_mean_delta": 59.3
+  },
+  "norx_funded_silver": {
+   "margin": {
+    "n": 80,
+    "mean": -44.4,
+    "median": -31.5,
+    "minimum": -271,
+    "maximum": 185,
+    "wins": 27,
+    "ties": 1,
+    "losses": 52
+   },
+   "score": {
+    "n": 80,
+    "mean": 159.0875,
+    "median": 163.0,
+    "minimum": 96,
+    "maximum": 246,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 34.4125,
+    "median": 34.5,
+    "minimum": 18,
+    "maximum": 57,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 2.5875,
+    "median": 3.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 36,
+    "3": 41,
+    "4": 3
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 1.5875,
+    "median": 2.0,
+    "minimum": 1,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 1.5875,
+    "median": 2.0,
+    "minimum": 1,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -154.5,
+      "median": -164.0,
+      "minimum": -271,
+      "maximum": -49,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 180.8,
+      "median": 193.5,
+      "minimum": 121,
+      "maximum": 215,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.9,
+      "median": 3.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -76.7,
+      "median": -49.5,
+      "minimum": -214,
+      "maximum": 16,
+      "wins": 1,
+      "ties": 0,
+      "losses": 9
+     },
+     "score": {
+      "n": 10,
+      "mean": 177.6,
+      "median": 182.5,
+      "minimum": 111,
+      "maximum": 221,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.9,
+      "median": 3.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -154.5,
+      "median": -164.0,
+      "minimum": -271,
+      "maximum": -49,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 180.8,
+      "median": 193.5,
+      "minimum": 121,
+      "maximum": 215,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.9,
+      "median": 3.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -49.2,
+      "median": -48.5,
+      "minimum": -135,
+      "maximum": 0,
+      "wins": 0,
+      "ties": 1,
+      "losses": 9
+     },
+     "score": {
+      "n": 10,
+      "mean": 152.5,
+      "median": 147.5,
+      "minimum": 109,
+      "maximum": 215,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.7,
+      "median": 3.0,
+      "minimum": 2,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 60.1,
+      "median": 72.0,
+      "minimum": -27,
+      "maximum": 185,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 168.4,
+      "median": 169.5,
+      "minimum": 119,
+      "maximum": 246,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.6,
+      "median": 3.0,
+      "minimum": 2,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -13,
+      "median": -26.0,
+      "minimum": -107,
+      "maximum": 68,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 131.9,
+      "median": 119.5,
+      "minimum": 96,
+      "maximum": 185,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 1.2,
+      "median": -9.0,
+      "minimum": -101,
+      "maximum": 144,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 144.5,
+      "median": 130.5,
+      "minimum": 103,
+      "maximum": 199,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.5,
+      "median": 2.5,
+      "minimum": 2,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 31.4,
+      "median": 23.5,
+      "minimum": 2,
+      "maximum": 77,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 136.2,
+      "median": 132.5,
+      "minimum": 103,
+      "maximum": 172,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "silver_boss",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 64.2,
+    "median": 50.0,
+    "minimum": -53,
+    "maximum": 242,
+    "wins": 74,
+    "ties": 0,
+    "losses": 6
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 24.1375,
+    "median": 26.0,
+    "minimum": -36,
+    "maximum": 93,
+    "wins": 61,
+    "ties": 1,
+    "losses": 18
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 85.6,
+    "gold_adaptive": 141.7,
+    "gold_elite": 85.6,
+    "mybot": 28.5,
+    "printer_bot": 47,
+    "sched_bot": 27.7,
+    "script_boss": 66.1,
+    "silver_boss": 31.4
+   },
+   "nonnegative_opponent_deltas": 8,
+   "worst_opponent_mean_delta": 27.7
+  },
+  "norx_native_full": {
+   "margin": {
+    "n": 80,
+    "mean": -132.725,
+    "median": -129.5,
+    "minimum": -340,
+    "maximum": 71,
+    "wins": 18,
+    "ties": 0,
+    "losses": 62
+   },
+   "score": {
+    "n": 80,
+    "mean": 131.275,
+    "median": 134.0,
+    "minimum": 43,
+    "maximum": 211,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 1.7375,
+    "median": 2.0,
+    "minimum": 0,
+    "maximum": 7,
+    "wins": 49,
+    "ties": 31,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 1.8125,
+    "median": 2.0,
+    "minimum": 1,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "1": 15,
+    "2": 65
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 0.8125,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 1,
+    "wins": 65,
+    "ties": 15,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 0.8125,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 1,
+    "wins": 65,
+    "ties": 15,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -275.0,
+      "minimum": -322,
+      "maximum": -191,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 136.4,
+      "median": 133.5,
+      "minimum": 62,
+      "maximum": 211,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -260.0,
+      "minimum": -340,
+      "maximum": -139,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 138,
+      "median": 148.5,
+      "minimum": 57,
+      "maximum": 203,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -275.0,
+      "minimum": -322,
+      "maximum": -191,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 136.4,
+      "median": 133.5,
+      "minimum": 62,
+      "maximum": 211,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -94.6,
+      "median": -116.0,
+      "minimum": -151,
+      "maximum": -23,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 116.9,
+      "median": 112.0,
+      "minimum": 45,
+      "maximum": 202,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.7,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -1.7,
+      "median": 34.5,
+      "minimum": -93,
+      "maximum": 63,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 139.5,
+      "median": 147.5,
+      "minimum": 62,
+      "maximum": 203,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -31.3,
+      "median": -12.5,
+      "minimum": -193,
+      "maximum": 71,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 139.5,
+      "median": 145.0,
+      "minimum": 105,
+      "maximum": 164,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -110.9,
+      "median": -126.0,
+      "minimum": -214,
+      "maximum": 50,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 122.6,
+      "median": 119.0,
+      "minimum": 43,
+      "maximum": 185,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -24.7,
+      "median": -21.0,
+      "minimum": -92,
+      "maximum": 18,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 120.9,
+      "median": 127.0,
+      "minimum": 46,
+      "maximum": 185,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": -149.675,
+    "median": -128.5,
+    "minimum": -517,
+    "maximum": -3,
+    "wins": 0,
+    "ties": 0,
+    "losses": 80
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": -69.6125,
+    "median": -73.0,
+    "minimum": -155,
+    "maximum": 15,
+    "wins": 3,
+    "ties": 0,
+    "losses": 77
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -130.1,
+    "gold_adaptive": -299.2,
+    "gold_elite": -130.1,
+    "mybot": -115.8,
+    "printer_bot": -95.7,
+    "sched_bot": -88.6,
+    "script_boss": -219.3,
+    "silver_boss": -118.6
+   },
+   "nonnegative_opponent_deltas": 0,
+   "worst_opponent_mean_delta": -299.2
+  },
+  "norx_native_three": {
+   "margin": {
+    "n": 80,
+    "mean": -133.3625,
+    "median": -135.5,
+    "minimum": -340,
+    "maximum": 71,
+    "wins": 18,
+    "ties": 0,
+    "losses": 62
+   },
+   "score": {
+    "n": 80,
+    "mean": 131.4125,
+    "median": 133.0,
+    "minimum": 45,
+    "maximum": 211,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 1.8375,
+    "median": 2.0,
+    "minimum": 0,
+    "maximum": 7,
+    "wins": 54,
+    "ties": 26,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 1.8125,
+    "median": 2.0,
+    "minimum": 1,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "1": 15,
+    "2": 65
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 0.8125,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 1,
+    "wins": 65,
+    "ties": 15,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 0.8125,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 1,
+    "wins": 65,
+    "ties": 15,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -275.0,
+      "minimum": -322,
+      "maximum": -191,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 136.4,
+      "median": 133.5,
+      "minimum": 62,
+      "maximum": 211,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -260.0,
+      "minimum": -340,
+      "maximum": -139,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 138,
+      "median": 148.5,
+      "minimum": 57,
+      "maximum": 203,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -266.2,
+      "median": -275.0,
+      "minimum": -322,
+      "maximum": -191,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 136.4,
+      "median": 133.5,
+      "minimum": 62,
+      "maximum": 211,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -92.9,
+      "median": -124.0,
+      "minimum": -137,
+      "maximum": -23,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 117.1,
+      "median": 112.0,
+      "minimum": 45,
+      "maximum": 202,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.7,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -10,
+      "median": 23.0,
+      "minimum": -92,
+      "maximum": 63,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 138.6,
+      "median": 143.0,
+      "minimum": 58,
+      "maximum": 200,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -31.3,
+      "median": -12.5,
+      "minimum": -193,
+      "maximum": 71,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 139.5,
+      "median": 145.0,
+      "minimum": 105,
+      "maximum": 164,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -110.7,
+      "median": -136.0,
+      "minimum": -214,
+      "maximum": 52,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 123.4,
+      "median": 122.5,
+      "minimum": 45,
+      "maximum": 185,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -23.4,
+      "median": -21.0,
+      "minimum": -92,
+      "maximum": 28,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 121.9,
+      "median": 123.5,
+      "minimum": 46,
+      "maximum": 202,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": -150.3125,
+    "median": -128.5,
+    "minimum": -517,
+    "maximum": -3,
+    "wins": 0,
+    "ties": 0,
+    "losses": 80
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": -69.475,
+    "median": -73.0,
+    "minimum": -152,
+    "maximum": 26,
+    "wins": 3,
+    "ties": 0,
+    "losses": 77
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": -130.1,
+    "gold_adaptive": -299.2,
+    "gold_elite": -130.1,
+    "mybot": -114.1,
+    "printer_bot": -104,
+    "sched_bot": -88.6,
+    "script_boss": -219.1,
+    "silver_boss": -117.3
+   },
+   "nonnegative_opponent_deltas": 0,
+   "worst_opponent_mean_delta": -299.2
+  },
+  "norx_resident_challenge": {
+   "margin": {
+    "n": 80,
+    "mean": 26.075,
+    "median": 23.0,
+    "minimum": -172,
+    "maximum": 210,
+    "wins": 53,
+    "ties": 0,
+    "losses": 27
+   },
+   "score": {
+    "n": 80,
+    "mean": 217.2125,
+    "median": 209.0,
+    "minimum": 121,
+    "maximum": 327,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 48.375,
+    "median": 48.0,
+    "minimum": 27,
+    "maximum": 71,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3.9875,
+    "median": 4.0,
+    "minimum": 3,
+    "maximum": 5,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 10,
+    "4": 61,
+    "5": 9
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2.9875,
+    "median": 3.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2.9875,
+    "median": 3.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -60.1,
+      "median": -52.5,
+      "minimum": -172,
+      "maximum": 23,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 254.3,
+      "median": 267.5,
+      "minimum": 172,
+      "maximum": 327,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 3.4,
+      "median": -3.0,
+      "minimum": -35,
+      "maximum": 69,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 226.3,
+      "median": 231.0,
+      "minimum": 150,
+      "maximum": 318,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -60.1,
+      "median": -52.5,
+      "minimum": -172,
+      "maximum": 23,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 254.3,
+      "median": 267.5,
+      "minimum": 172,
+      "maximum": 327,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 65.4,
+      "median": 52.5,
+      "minimum": 5,
+      "maximum": 171,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 245.2,
+      "median": 252.5,
+      "minimum": 149,
+      "maximum": 285,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.9,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 116.5,
+      "median": 107.5,
+      "minimum": 4,
+      "maximum": 210,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 225.4,
+      "median": 231.0,
+      "minimum": 165,
+      "maximum": 274,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4,
+      "median": 4.0,
+      "minimum": 4,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 18.6,
+      "median": -4.5,
+      "minimum": -64,
+      "maximum": 132,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 169.6,
+      "median": 174.5,
+      "minimum": 121,
+      "maximum": 235,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 48,
+      "median": 43.0,
+      "minimum": -60,
+      "maximum": 172,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 183.7,
+      "median": 176.0,
+      "minimum": 138,
+      "maximum": 262,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 4.2,
+      "median": 4.0,
+      "minimum": 4,
+      "maximum": 5,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 76.9,
+      "median": 64.0,
+      "minimum": 40,
+      "maximum": 159,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 178.9,
+      "median": 167.5,
+      "minimum": 149,
+      "maximum": 263,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 9.125,
+    "median": 5.0,
+    "minimum": -265,
+    "maximum": 230,
+    "wins": 42,
+    "ties": 0,
+    "losses": 38
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 16.325,
+    "median": 18.0,
+    "minimum": -168,
+    "maximum": 143,
+    "wins": 51,
+    "ties": 1,
+    "losses": 28
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76,
+    "gold_adaptive": -29.6,
+    "gold_elite": 76,
+    "mybot": 44.2,
+    "printer_bot": 22.5,
+    "sched_bot": -38.7,
+    "script_boss": -60.4,
+    "silver_boss": -17
+   },
+   "nonnegative_opponent_deltas": 4,
+   "worst_opponent_mean_delta": -60.4
+  },
+  "norx_signature_portfolio": {
+   "margin": {
+    "n": 80,
+    "mean": 14.4875,
+    "median": 44.5,
+    "minimum": -216,
+    "maximum": 262,
+    "wins": 53,
+    "ties": 0,
+    "losses": 27
+   },
+   "score": {
+    "n": 80,
+    "mean": 199.1875,
+    "median": 200.0,
+    "minimum": 99,
+    "maximum": 326,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 47.3875,
+    "median": 46.0,
+    "minimum": 18,
+    "maximum": 65,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 2.05,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 76,
+    "3": 4
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 1.05,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 1.05,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -136.1,
+      "median": -138.5,
+      "minimum": -192,
+      "maximum": -42,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 203.5,
+      "median": 214.5,
+      "minimum": 141,
+      "maximum": 252,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 33,
+      "median": 83.5,
+      "minimum": -216,
+      "maximum": 262,
+      "wins": 7,
+      "ties": 0,
+      "losses": 3
+     },
+     "score": {
+      "n": 10,
+      "mean": 208.9,
+      "median": 206.0,
+      "minimum": 139,
+      "maximum": 326,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -136.1,
+      "median": -138.5,
+      "minimum": -192,
+      "maximum": -42,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 203.5,
+      "median": 214.5,
+      "minimum": 141,
+      "maximum": 252,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 7.4,
+      "median": 14.5,
+      "minimum": -61,
+      "maximum": 45,
+      "wins": 7,
+      "ties": 0,
+      "losses": 3
+     },
+     "score": {
+      "n": 10,
+      "mean": 206.7,
+      "median": 216.5,
+      "minimum": 149,
+      "maximum": 252,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 80.4,
+      "median": 96.5,
+      "minimum": -26,
+      "maximum": 146,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 178.3,
+      "median": 191.5,
+      "minimum": 99,
+      "maximum": 222,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2.4,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 57.3,
+      "median": 44.5,
+      "minimum": 16,
+      "maximum": 115,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 193.7,
+      "median": 184.5,
+      "minimum": 140,
+      "maximum": 261,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 112.2,
+      "median": 107.0,
+      "minimum": 52,
+      "maximum": 196,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 212.7,
+      "median": 217.0,
+      "minimum": 135,
+      "maximum": 321,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 97.8,
+      "median": 91.5,
+      "minimum": 62,
+      "maximum": 177,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 186.2,
+      "median": 177.0,
+      "minimum": 140,
+      "maximum": 292,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": -2.4625,
+    "median": 0.0,
+    "minimum": -63,
+    "maximum": 46,
+    "wins": 10,
+    "ties": 56,
+    "losses": 14
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": -1.7,
+    "median": 0.0,
+    "minimum": -51,
+    "maximum": 30,
+    "wins": 8,
+    "ties": 58,
+    "losses": 14
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 0,
+    "gold_adaptive": 0,
+    "gold_elite": 0,
+    "mybot": -13.8,
+    "printer_bot": -13.6,
+    "sched_bot": 0,
+    "script_boss": 3.8,
+    "silver_boss": 3.9
+   },
+   "nonnegative_opponent_deltas": 6,
+   "worst_opponent_mean_delta": -13.8
+  },
+  "norx_silver": {
+   "margin": {
+    "n": 80,
+    "mean": -73.3125,
+    "median": -57.0,
+    "minimum": -330,
+    "maximum": 147,
+    "wins": 22,
+    "ties": 0,
+    "losses": 58
+   },
+   "score": {
+    "n": 80,
+    "mean": 142.8,
+    "median": 170.0,
+    "minimum": 56,
+    "maximum": 227,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 27.125,
+    "median": 32.0,
+    "minimum": 8,
+    "maximum": 53,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 1.7375,
+    "median": 2.0,
+    "minimum": 1,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "1": 32,
+    "2": 37,
+    "3": 11
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 0.7375,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 2,
+    "wins": 48,
+    "ties": 32,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 0.7375,
+    "median": 1.0,
+    "minimum": 0,
+    "maximum": 2,
+    "wins": 48,
+    "ties": 32,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -203.7,
+      "median": -166.5,
+      "minimum": -324,
+      "maximum": -111,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 156.9,
+      "median": 202.5,
+      "minimum": 68,
+      "maximum": 227,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -133.5,
+      "median": -121.0,
+      "minimum": -330,
+      "maximum": 46,
+      "wins": 1,
+      "ties": 0,
+      "losses": 9
+     },
+     "score": {
+      "n": 10,
+      "mean": 151.3,
+      "median": 188.0,
+      "minimum": 64,
+      "maximum": 227,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -203.7,
+      "median": -166.5,
+      "minimum": -324,
+      "maximum": -111,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 156.9,
+      "median": 202.5,
+      "minimum": 68,
+      "maximum": 227,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -47.1,
+      "median": -54.5,
+      "minimum": -89,
+      "maximum": 41,
+      "wins": 1,
+      "ties": 0,
+      "losses": 9
+     },
+     "score": {
+      "n": 10,
+      "mean": 142.5,
+      "median": 175.0,
+      "minimum": 64,
+      "maximum": 222,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.6,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 33.5,
+      "median": 42.0,
+      "minimum": -79,
+      "maximum": 147,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 143,
+      "median": 182.0,
+      "minimum": 68,
+      "maximum": 211,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -15.6,
+      "median": -14.5,
+      "minimum": -56,
+      "maximum": 14,
+      "wins": 3,
+      "ties": 0,
+      "losses": 7
+     },
+     "score": {
+      "n": 10,
+      "mean": 129.3,
+      "median": 126.0,
+      "minimum": 56,
+      "maximum": 210,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.6,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -31.4,
+      "median": -28.5,
+      "minimum": -193,
+      "maximum": 123,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 133.2,
+      "median": 155.5,
+      "minimum": 60,
+      "maximum": 200,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.8,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 15,
+      "median": 15.5,
+      "minimum": -66,
+      "maximum": 76,
+      "wins": 7,
+      "ties": 0,
+      "losses": 3
+     },
+     "score": {
+      "n": 10,
+      "mean": 129.3,
+      "median": 158.0,
+      "minimum": 64,
+      "maximum": 189,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 1.7,
+      "median": 2.0,
+      "minimum": 1,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "silver_boss",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 35.2875,
+    "median": 33.5,
+    "minimum": -68,
+    "maximum": 209,
+    "wins": 50,
+    "ties": 1,
+    "losses": 29
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 7.85,
+    "median": 12.0,
+    "minimum": -73,
+    "maximum": 83,
+    "wins": 47,
+    "ties": 1,
+    "losses": 32
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 36.4,
+    "gold_adaptive": 84.9,
+    "gold_elite": 36.4,
+    "mybot": 30.6,
+    "printer_bot": 20.4,
+    "sched_bot": 25.1,
+    "script_boss": 33.5,
+    "silver_boss": 15
+   },
+   "nonnegative_opponent_deltas": 8,
+   "worst_opponent_mean_delta": 15
+  },
+  "norx_soft_cooperative_silver": {
+   "margin": {
+    "n": 80,
+    "mean": 35.5375,
+    "median": 32.5,
+    "minimum": -197,
+    "maximum": 219,
+    "wins": 63,
+    "ties": 0,
+    "losses": 17
+   },
+   "score": {
+    "n": 80,
+    "mean": 215.55,
+    "median": 212.0,
+    "minimum": 143,
+    "maximum": 354,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 47.05,
+    "median": 45.0,
+    "minimum": 30,
+    "maximum": 75,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3.2125,
+    "median": 3.0,
+    "minimum": 3,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 63,
+    "4": 17
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2.2125,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2.2125,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -52.5,
+      "median": -50.5,
+      "minimum": -197,
+      "maximum": 26,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 248,
+      "median": 239.5,
+      "minimum": 163,
+      "maximum": 354,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 20.8,
+      "median": 24.0,
+      "minimum": -39,
+      "maximum": 109,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 238.9,
+      "median": 240.0,
+      "minimum": 166,
+      "maximum": 345,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -52.5,
+      "median": -50.5,
+      "minimum": -197,
+      "maximum": 26,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 248,
+      "median": 239.5,
+      "minimum": 163,
+      "maximum": 354,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 50.3,
+      "median": 42.0,
+      "minimum": 13,
+      "maximum": 113,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 227.2,
+      "median": 238.5,
+      "minimum": 151,
+      "maximum": 265,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.2,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 119.7,
+      "median": 105.0,
+      "minimum": 20,
+      "maximum": 219,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 216.2,
+      "median": 205.5,
+      "minimum": 167,
+      "maximum": 293,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 49.6,
+      "median": 39.5,
+      "minimum": -7,
+      "maximum": 110,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 179.1,
+      "median": 167.0,
+      "minimum": 143,
+      "maximum": 278,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 54.7,
+      "median": 47.5,
+      "minimum": -35,
+      "maximum": 182,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 184.1,
+      "median": 172.5,
+      "minimum": 155,
+      "maximum": 228,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.2,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 94.2,
+      "median": 85.5,
+      "minimum": 56,
+      "maximum": 198,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 182.9,
+      "median": 165.0,
+      "minimum": 152,
+      "maximum": 304,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.1,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "silver_boss",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 144.1375,
+    "median": 131.0,
+    "minimum": 23,
+    "maximum": 286,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 80.6,
+    "median": 78.0,
+    "minimum": -23,
+    "maximum": 232,
+    "wins": 76,
+    "ties": 0,
+    "losses": 4
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 187.6,
+    "gold_adaptive": 239.2,
+    "gold_elite": 187.6,
+    "mybot": 128,
+    "printer_bot": 106.6,
+    "sched_bot": 90.3,
+    "script_boss": 119.6,
+    "silver_boss": 94.2
+   },
+   "nonnegative_opponent_deltas": 8,
+   "worst_opponent_mean_delta": 90.3
+  },
+  "norx_soft_resident_challenge": {
+   "margin": {
+    "n": 80,
+    "mean": 34.6875,
+    "median": 33.5,
+    "minimum": -197,
+    "maximum": 219,
+    "wins": 62,
+    "ties": 0,
+    "losses": 18
+   },
+   "score": {
+    "n": 80,
+    "mean": 214.6,
+    "median": 209.0,
+    "minimum": 142,
+    "maximum": 354,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 46.9,
+    "median": 45.0,
+    "minimum": 28,
+    "maximum": 75,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3.2125,
+    "median": 3.0,
+    "minimum": 3,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 63,
+    "4": 17
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2.2125,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2.2125,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -52.5,
+      "median": -50.5,
+      "minimum": -197,
+      "maximum": 26,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 248,
+      "median": 239.5,
+      "minimum": 163,
+      "maximum": 354,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 20.8,
+      "median": 24.0,
+      "minimum": -39,
+      "maximum": 109,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 238.9,
+      "median": 240.0,
+      "minimum": 166,
+      "maximum": 345,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -52.5,
+      "median": -50.5,
+      "minimum": -197,
+      "maximum": 26,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 248,
+      "median": 239.5,
+      "minimum": 163,
+      "maximum": 354,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 46.6,
+      "median": 44.0,
+      "minimum": -4,
+      "maximum": 112,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 221.8,
+      "median": 232.5,
+      "minimum": 142,
+      "maximum": 263,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.2,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 116.8,
+      "median": 104.5,
+      "minimum": 13,
+      "maximum": 219,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 216.5,
+      "median": 202.5,
+      "minimum": 165,
+      "maximum": 293,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 49.6,
+      "median": 39.5,
+      "minimum": -7,
+      "maximum": 110,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 179.1,
+      "median": 167.0,
+      "minimum": 143,
+      "maximum": 278,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 54.5,
+      "median": 37.5,
+      "minimum": -24,
+      "maximum": 182,
+      "wins": 8,
+      "ties": 0,
+      "losses": 2
+     },
+     "score": {
+      "n": 10,
+      "mean": 181.6,
+      "median": 170.5,
+      "minimum": 154,
+      "maximum": 228,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.2,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 94.2,
+      "median": 85.5,
+      "minimum": 56,
+      "maximum": 198,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 182.9,
+      "median": 165.0,
+      "minimum": 152,
+      "maximum": 304,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.1,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 17.7375,
+    "median": 6.5,
+    "minimum": -241,
+    "maximum": 242,
+    "wins": 43,
+    "ties": 0,
+    "losses": 37
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 13.7125,
+    "median": 9.5,
+    "minimum": -166,
+    "maximum": 169,
+    "wins": 43,
+    "ties": 1,
+    "losses": 36
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 83.6,
+    "gold_adaptive": -12.2,
+    "gold_elite": 83.6,
+    "mybot": 25.4,
+    "printer_bot": 22.8,
+    "sched_bot": -7.7,
+    "script_boss": -53.9,
+    "silver_boss": 0.3
+   },
+   "nonnegative_opponent_deltas": 5,
+   "worst_opponent_mean_delta": -53.9
+  },
+  "norx_three_worker_resident_challenge": {
+   "margin": {
+    "n": 80,
+    "mean": 27.8375,
+    "median": 31.0,
+    "minimum": -175,
+    "maximum": 194,
+    "wins": 54,
+    "ties": 0,
+    "losses": 26
+   },
+   "score": {
+    "n": 80,
+    "mean": 218.75,
+    "median": 217.0,
+    "minimum": 140,
+    "maximum": 338,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 45.025,
+    "median": 42.0,
+    "minimum": 27,
+    "maximum": 78,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3,
+    "median": 3.0,
+    "minimum": 3,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 80
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -66.9,
+      "median": -61.0,
+      "minimum": -175,
+      "maximum": 20,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 248.1,
+      "median": 245.0,
+      "minimum": 169,
+      "maximum": 338,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -13.7,
+      "median": -0.5,
+      "minimum": -152,
+      "maximum": 71,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 232.1,
+      "median": 238.0,
+      "minimum": 169,
+      "maximum": 288,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -66.9,
+      "median": -61.0,
+      "minimum": -175,
+      "maximum": 20,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 248.1,
+      "median": 245.0,
+      "minimum": 169,
+      "maximum": 338,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 55.3,
+      "median": 59.5,
+      "minimum": -20,
+      "maximum": 113,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 235.6,
+      "median": 222.5,
+      "minimum": 168,
+      "maximum": 295,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 115.8,
+      "median": 115.5,
+      "minimum": 13,
+      "maximum": 194,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 218,
+      "median": 217.5,
+      "minimum": 170,
+      "maximum": 259,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 54.2,
+      "median": 47.5,
+      "minimum": -1,
+      "maximum": 125,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 185.7,
+      "median": 173.0,
+      "minimum": 140,
+      "maximum": 282,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 57.7,
+      "median": 33.5,
+      "minimum": -40,
+      "maximum": 171,
+      "wins": 7,
+      "ties": 0,
+      "losses": 3
+     },
+     "score": {
+      "n": 10,
+      "mean": 199.1,
+      "median": 196.0,
+      "minimum": 148,
+      "maximum": 254,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 87.2,
+      "median": 89.5,
+      "minimum": 54,
+      "maximum": 152,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 183.3,
+      "median": 171.5,
+      "minimum": 156,
+      "maximum": 266,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "resident",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 10.8875,
+    "median": 8.5,
+    "minimum": -261,
+    "maximum": 221,
+    "wins": 48,
+    "ties": 1,
+    "losses": 31
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 17.8625,
+    "median": 20.5,
+    "minimum": -133,
+    "maximum": 102,
+    "wins": 58,
+    "ties": 0,
+    "losses": 22
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 69.2,
+    "gold_adaptive": -46.7,
+    "gold_elite": 69.2,
+    "mybot": 34.1,
+    "printer_bot": 21.8,
+    "sched_bot": -3.1,
+    "script_boss": -50.7,
+    "silver_boss": -6.7
+   },
+   "nonnegative_opponent_deltas": 4,
+   "worst_opponent_mean_delta": -50.7
+  },
+  "norx_three_worker_silver": {
+   "margin": {
+    "n": 80,
+    "mean": 25.7875,
+    "median": 26.0,
+    "minimum": -175,
+    "maximum": 213,
+    "wins": 54,
+    "ties": 0,
+    "losses": 26
+   },
+   "score": {
+    "n": 80,
+    "mean": 217.0375,
+    "median": 216.5,
+    "minimum": 140,
+    "maximum": 338,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 44.625,
+    "median": 42.0,
+    "minimum": 27,
+    "maximum": 78,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3,
+    "median": 3.0,
+    "minimum": 3,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "3": 80
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -66.9,
+      "median": -61.0,
+      "minimum": -175,
+      "maximum": 20,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 248.1,
+      "median": 245.0,
+      "minimum": 169,
+      "maximum": 338,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -13.7,
+      "median": -0.5,
+      "minimum": -152,
+      "maximum": 71,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 232.1,
+      "median": 238.0,
+      "minimum": 169,
+      "maximum": 288,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -66.9,
+      "median": -61.0,
+      "minimum": -175,
+      "maximum": 20,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 248.1,
+      "median": 245.0,
+      "minimum": 169,
+      "maximum": 338,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 58.7,
+      "median": 59.5,
+      "minimum": 20,
+      "maximum": 108,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 228.6,
+      "median": 233.5,
+      "minimum": 142,
+      "maximum": 295,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 118,
+      "median": 117.0,
+      "minimum": 14,
+      "maximum": 213,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 218.9,
+      "median": 214.0,
+      "minimum": 169,
+      "maximum": 276,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 54.2,
+      "median": 47.5,
+      "minimum": -1,
+      "maximum": 125,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+     },
+     "score": {
+      "n": 10,
+      "mean": 185.7,
+      "median": 173.0,
+      "minimum": 140,
+      "maximum": 282,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 35.4,
+      "median": 7.0,
+      "minimum": -59,
+      "maximum": 156,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 191,
+      "median": 179.5,
+      "minimum": 155,
+      "maximum": 236,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 87.5,
+      "median": 89.5,
+      "minimum": 54,
+      "maximum": 152,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 183.8,
+      "median": 171.5,
+      "minimum": 156,
+      "maximum": 266,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3,
+      "median": 3.0,
+      "minimum": 3,
+      "maximum": 3,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   },
+   "control": "silver_boss",
+   "delta_vs_control_margin": {
+    "n": 80,
+    "mean": 134.3875,
+    "median": 120.0,
+    "minimum": 4,
+    "maximum": 281,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "delta_vs_control_score": {
+    "n": 80,
+    "mean": 82.0875,
+    "median": 87.5,
+    "minimum": -18,
+    "maximum": 159,
+    "wins": 78,
+    "ties": 0,
+    "losses": 2
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 173.2,
+    "gold_adaptive": 204.7,
+    "gold_elite": 173.2,
+    "mybot": 136.4,
+    "printer_bot": 104.9,
+    "sched_bot": 94.9,
+    "script_boss": 100.3,
+    "silver_boss": 87.5
+   },
+   "nonnegative_opponent_deltas": 8,
+   "worst_opponent_mean_delta": 87.5
+  },
+  "resident": {
+   "margin": {
+    "n": 80,
+    "mean": 16.95,
+    "median": 55.5,
+    "minimum": -216,
+    "maximum": 262,
+    "wins": 53,
+    "ties": 0,
+    "losses": 27
+   },
+   "score": {
+    "n": 80,
+    "mean": 200.8875,
+    "median": 200.0,
+    "minimum": 135,
+    "maximum": 326,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 48.55,
+    "median": 48.5,
+    "minimum": 32,
+    "maximum": 65,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 2,
+    "median": 2.0,
+    "minimum": 2,
+    "maximum": 2,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 80
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 1,
+    "median": 1.0,
+    "minimum": 1,
+    "maximum": 1,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -136.1,
+      "median": -138.5,
+      "minimum": -192,
+      "maximum": -42,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 203.5,
+      "median": 214.5,
+      "minimum": 141,
+      "maximum": 252,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": 33,
+      "median": 83.5,
+      "minimum": -216,
+      "maximum": 262,
+      "wins": 7,
+      "ties": 0,
+      "losses": 3
+     },
+     "score": {
+      "n": 10,
+      "mean": 208.9,
+      "median": 206.0,
+      "minimum": 139,
+      "maximum": 326,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -136.1,
+      "median": -138.5,
+      "minimum": -192,
+      "maximum": -42,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 203.5,
+      "median": 214.5,
+      "minimum": 141,
+      "maximum": 252,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": 21.2,
+      "median": 14.5,
+      "minimum": -40,
+      "maximum": 79,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 209.7,
+      "median": 218.5,
+      "minimum": 150,
+      "maximum": 256,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 94,
+      "median": 99.5,
+      "minimum": 9,
+      "maximum": 159,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 190.9,
+      "median": 192.0,
+      "minimum": 145,
+      "maximum": 232,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 57.3,
+      "median": 44.5,
+      "minimum": 16,
+      "maximum": 115,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 193.7,
+      "median": 184.5,
+      "minimum": 140,
+      "maximum": 261,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 108.4,
+      "median": 96.0,
+      "minimum": 52,
+      "maximum": 196,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 213.7,
+      "median": 217.0,
+      "minimum": 135,
+      "maximum": 321,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 93.9,
+      "median": 91.5,
+      "minimum": 62,
+      "maximum": 139,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "score": {
+      "n": 10,
+      "mean": 183.2,
+      "median": 177.0,
+      "minimum": 140,
+      "maximum": 262,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 2,
+      "median": 2.0,
+      "minimum": 2,
+      "maximum": 2,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   }
+  },
+  "silver_boss": {
+   "margin": {
+    "n": 80,
+    "mean": -108.6,
+    "median": -84.0,
+    "minimum": -324,
+    "maximum": 111,
+    "wins": 17,
+    "ties": 0,
+    "losses": 63
+   },
+   "score": {
+    "n": 80,
+    "mean": 134.95,
+    "median": 140.5,
+    "minimum": 62,
+    "maximum": 207,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "wood": {
+    "n": 80,
+    "mean": 19.0375,
+    "median": 20.0,
+    "minimum": 8,
+    "maximum": 38,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "workers": {
+    "n": 80,
+    "mean": 3.7125,
+    "median": 4.0,
+    "minimum": 2,
+    "maximum": 4,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "worker_distribution": {
+    "2": 4,
+    "3": 15,
+    "4": 61
+   },
+   "successful_trains": {
+    "n": 80,
+    "mean": 2.7125,
+    "median": 3.0,
+    "minimum": 1,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "train_attempts": {
+    "n": 80,
+    "mean": 2.7125,
+    "median": 3.0,
+    "minimum": 1,
+    "maximum": 3,
+    "wins": 80,
+    "ties": 0,
+    "losses": 0
+   },
+   "by_opponent": {
+    "compact_gold": {
+     "margin": {
+      "n": 10,
+      "mean": -240.1,
+      "median": -245.0,
+      "minimum": -324,
+      "maximum": -138,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 144.8,
+      "median": 150.5,
+      "minimum": 76,
+      "maximum": 196,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_adaptive": {
+     "margin": {
+      "n": 10,
+      "mean": -218.4,
+      "median": -256.0,
+      "minimum": -299,
+      "maximum": -68,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 147,
+      "median": 157.0,
+      "minimum": 77,
+      "maximum": 207,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "gold_elite": {
+     "margin": {
+      "n": 10,
+      "mean": -240.1,
+      "median": -245.0,
+      "minimum": -324,
+      "maximum": -138,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 144.8,
+      "median": 150.5,
+      "minimum": 76,
+      "maximum": 196,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "mybot": {
+     "margin": {
+      "n": 10,
+      "mean": -77.7,
+      "median": -74.5,
+      "minimum": -136,
+      "maximum": -28,
+      "wins": 0,
+      "ties": 0,
+      "losses": 10
+     },
+     "score": {
+      "n": 10,
+      "mean": 121.6,
+      "median": 118.0,
+      "minimum": 69,
+      "maximum": 179,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.8,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "printer_bot": {
+     "margin": {
+      "n": 10,
+      "mean": 13.1,
+      "median": 32.5,
+      "minimum": -73,
+      "maximum": 111,
+      "wins": 6,
+      "ties": 0,
+      "losses": 4
+     },
+     "score": {
+      "n": 10,
+      "mean": 145.8,
+      "median": 158.0,
+      "minimum": 84,
+      "maximum": 196,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.7,
+      "median": 4.0,
+      "minimum": 2,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "sched_bot": {
+     "margin": {
+      "n": 10,
+      "mean": -40.7,
+      "median": -49.0,
+      "minimum": -134,
+      "maximum": 27,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6
+     },
+     "score": {
+      "n": 10,
+      "mean": 115.7,
+      "median": 113.0,
+      "minimum": 77,
+      "maximum": 183,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.5,
+      "median": 3.5,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "script_boss": {
+     "margin": {
+      "n": 10,
+      "mean": -64.9,
+      "median": -74.5,
+      "minimum": -143,
+      "maximum": 44,
+      "wins": 2,
+      "ties": 0,
+      "losses": 8
+     },
+     "score": {
+      "n": 10,
+      "mean": 129.4,
+      "median": 141.0,
+      "minimum": 77,
+      "maximum": 158,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.8,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    },
+    "silver_boss": {
+     "margin": {
+      "n": 10,
+      "mean": 0,
+      "median": 0.0,
+      "minimum": -20,
+      "maximum": 20,
+      "wins": 5,
+      "ties": 0,
+      "losses": 5
+     },
+     "score": {
+      "n": 10,
+      "mean": 130.5,
+      "median": 137.0,
+      "minimum": 62,
+      "maximum": 175,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     },
+     "workers": {
+      "n": 10,
+      "mean": 3.8,
+      "median": 4.0,
+      "minimum": 3,
+      "maximum": 4,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+     }
+    }
+   }
+  }
+ },
+ "research_gate": {
+  "requirements": [
+   "mean final workforce at least 2.5",
+   "nonnegative paired score and margin delta versus the same continuation",
+   "nonnegative mean margin delta against at least five of eight opponents",
+   "worst opponent mean margin delta at least -5"
+  ],
+  "passing_prototypes": [
+   "norx_cooperative_silver",
+   "norx_funded_silver",
+   "norx_soft_cooperative_silver",
+   "norx_three_worker_silver"
+  ],
+  "passed": true
+ },
+ "decision": {
+  "build_integrated_controller": true,
+  "selected_prototype": "norx_cooperative_silver",
+  "build_submission_candidate": false
+ }
+}

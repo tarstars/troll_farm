@@ -1,0 +1,2408 @@
+{
+  "admission_gates": {
+    "one_00": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_01": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_02": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_03": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_04": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_05": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_06": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_07": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_08": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_09": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": false,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_10": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_11": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_12": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_13": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_14": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_15": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_16": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_17": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_18": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_19": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_20": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_21": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_22": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_23": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_24": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_25": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_26": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_27": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_28": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": false,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_29": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_30": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_31": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_32": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_33": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_34": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_35": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_36": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": false,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_37": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_38": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_39": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_40": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_41": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_42": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_43": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_44": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_45": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_46": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_47": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_48": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_49": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_50": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_51": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_52": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_53": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_54": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_55": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_56": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_57": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_58": {
+      "activity_10_to_85pct": false,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_59": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": true,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_60": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": false,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": false
+    },
+    "one_61": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_62": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": false,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": false,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    },
+    "one_63": {
+      "activity_10_to_85pct": true,
+      "both_fold_means_nonnegative": false,
+      "crop_100pct": true,
+      "five_positive_families": true,
+      "mean_at_least_1_5": false,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "strict_at_least_30pct": false,
+      "worker_three_within_5pp": true,
+      "worst_family_at_least_minus5": true
+    }
+  },
+  "admitted": [],
+  "control_worker_three_rate": 0.9140625,
+  "controllers": {
+    "one_00": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -4.03125,
+        "gold_adaptive": 4.40625,
+        "legend_balanced": 8.8125,
+        "mybot": 1.125,
+        "norx_native_three": 5.21875,
+        "resident": 5.3125,
+        "script_boss": -5.1875,
+        "silver_boss": 2.96875
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.359375,
+        "1": 1.296875
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": 2.328125,
+      "mean_opponent_score_delta": -1.33203125,
+      "mean_own_score_delta": 0.99609375,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.4765625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.1875
+    },
+    "one_01": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 1.28125,
+        "gold_adaptive": 1.8125,
+        "legend_balanced": -4.96875,
+        "mybot": -0.21875,
+        "norx_native_three": -0.40625,
+        "resident": 1.84375,
+        "script_boss": -4.9375,
+        "silver_boss": -3.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": -3.484375,
+        "1": 1.2890625
+      },
+      "intervention_rate": 0.76953125,
+      "mean_margin_delta": -1.09765625,
+      "mean_opponent_score_delta": -0.14453125,
+      "mean_own_score_delta": -1.2421875,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.37109375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.96875
+    },
+    "one_02": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -12.78125,
+        "gold_adaptive": 10.9375,
+        "legend_balanced": 7.40625,
+        "mybot": -3.6875,
+        "norx_native_three": 1.75,
+        "resident": 1.53125,
+        "script_boss": 1.375,
+        "silver_boss": -4.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.7109375,
+        "1": -1.125
+      },
+      "intervention_rate": 0.8984375,
+      "mean_margin_delta": 0.29296875,
+      "mean_opponent_score_delta": -1.078125,
+      "mean_own_score_delta": -0.78515625,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.4375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -12.78125
+    },
+    "one_03": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 7.46875,
+        "gold_adaptive": 8.65625,
+        "legend_balanced": 6.03125,
+        "mybot": 0.0625,
+        "norx_native_three": 0.875,
+        "resident": 2.9375,
+        "script_boss": -4.40625,
+        "silver_boss": -3.09375
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.734375,
+        "1": 2.8984375
+      },
+      "intervention_rate": 0.90234375,
+      "mean_margin_delta": 2.31640625,
+      "mean_opponent_score_delta": -3.19921875,
+      "mean_own_score_delta": -0.8828125,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.46875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.40625
+    },
+    "one_04": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 4.4375,
+        "gold_adaptive": -6.59375,
+        "legend_balanced": 4.84375,
+        "mybot": -4.0625,
+        "norx_native_three": -5.90625,
+        "resident": 1.40625,
+        "script_boss": -2.375,
+        "silver_boss": 0.125
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.1015625,
+        "1": 0.0703125
+      },
+      "intervention_rate": 0.90625,
+      "mean_margin_delta": -1.015625,
+      "mean_opponent_score_delta": -1.8046875,
+      "mean_own_score_delta": -2.8203125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.40625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -6.59375
+    },
+    "one_05": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": -0.65625,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 5.4375,
+        "silver_boss": 0.0
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.5546875,
+        "1": -0.359375
+      },
+      "intervention_rate": 0.0390625,
+      "mean_margin_delta": 0.59765625,
+      "mean_opponent_score_delta": -0.296875,
+      "mean_own_score_delta": 0.30078125,
+      "positive_families": 1,
+      "strict_improvement_rate": 0.02734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.65625
+    },
+    "one_06": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.90625,
+        "legend_balanced": -0.0625,
+        "mybot": 0.0,
+        "norx_native_three": -0.9375,
+        "resident": 0.4375,
+        "script_boss": 1.0625,
+        "silver_boss": 0.84375
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.4375,
+        "1": 0.125
+      },
+      "intervention_rate": 0.046875,
+      "mean_margin_delta": 0.28125,
+      "mean_opponent_score_delta": -0.00390625,
+      "mean_own_score_delta": 0.27734375,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.02734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.9375
+    },
+    "one_07": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -5.28125,
+        "gold_adaptive": 7.84375,
+        "legend_balanced": 1.46875,
+        "mybot": -4.96875,
+        "norx_native_three": 0.34375,
+        "resident": -2.3125,
+        "script_boss": -2.0625,
+        "silver_boss": 1.5625
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.703125,
+        "1": -2.5546875
+      },
+      "intervention_rate": 0.7578125,
+      "mean_margin_delta": -0.42578125,
+      "mean_opponent_score_delta": -1.1484375,
+      "mean_own_score_delta": -1.57421875,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.28125
+    },
+    "one_08": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.625,
+        "gold_adaptive": 2.71875,
+        "legend_balanced": 9.0,
+        "mybot": -1.84375,
+        "norx_native_three": 0.6875,
+        "resident": 2.875,
+        "script_boss": -2.8125,
+        "silver_boss": -9.03125
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.1953125,
+        "1": -1.953125
+      },
+      "intervention_rate": 0.84375,
+      "mean_margin_delta": 0.12109375,
+      "mean_opponent_score_delta": -2.50390625,
+      "mean_own_score_delta": -2.3828125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.42578125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -9.03125
+    },
+    "one_09": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": -1.3125,
+        "legend_balanced": 0.375,
+        "mybot": 3.21875,
+        "norx_native_three": -0.8125,
+        "resident": -0.34375,
+        "script_boss": -3.21875,
+        "silver_boss": -0.53125
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.3828125,
+        "1": -1.0390625
+      },
+      "intervention_rate": 0.234375,
+      "mean_margin_delta": -0.328125,
+      "mean_opponent_score_delta": 0.19921875,
+      "mean_own_score_delta": -0.12890625,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.09765625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -3.21875
+    },
+    "one_10": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.9375,
+        "gold_adaptive": -0.03125,
+        "legend_balanced": -1.6875,
+        "mybot": -0.125,
+        "norx_native_three": 0.0,
+        "resident": -0.65625,
+        "script_boss": 0.34375,
+        "silver_boss": 0.4375
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.3984375,
+        "1": -0.265625
+      },
+      "intervention_rate": 0.0703125,
+      "mean_margin_delta": -0.33203125,
+      "mean_opponent_score_delta": -0.06640625,
+      "mean_own_score_delta": -0.3984375,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.03125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.6875
+    },
+    "one_11": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 2.40625,
+        "gold_adaptive": 0.0625,
+        "legend_balanced": 3.1875,
+        "mybot": -8.875,
+        "norx_native_three": 9.25,
+        "resident": 4.4375,
+        "script_boss": -5.15625,
+        "silver_boss": -4.75
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.375,
+        "1": -1.234375
+      },
+      "intervention_rate": 0.8984375,
+      "mean_margin_delta": 0.0703125,
+      "mean_opponent_score_delta": -1.640625,
+      "mean_own_score_delta": -1.5703125,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.4375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.875
+    },
+    "one_12": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 1.0,
+        "gold_adaptive": 5.125,
+        "legend_balanced": -1.5625,
+        "mybot": 1.375,
+        "norx_native_three": -1.40625,
+        "resident": -1.09375,
+        "script_boss": 0.3125,
+        "silver_boss": -1.0
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.8515625,
+        "1": -0.1640625
+      },
+      "intervention_rate": 0.52734375,
+      "mean_margin_delta": 0.34375,
+      "mean_opponent_score_delta": -1.36328125,
+      "mean_own_score_delta": -1.01953125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.25,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.5625
+    },
+    "one_13": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": -0.25,
+        "script_boss": 0.0,
+        "silver_boss": 0.0
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.0625,
+        "1": 0.0
+      },
+      "intervention_rate": 0.00390625,
+      "mean_margin_delta": -0.03125,
+      "mean_opponent_score_delta": 0.0,
+      "mean_own_score_delta": -0.03125,
+      "positive_families": 0,
+      "strict_improvement_rate": 0.0,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.25
+    },
+    "one_14": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.625,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.6875,
+        "script_boss": 1.1875,
+        "silver_boss": -0.09375
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.2890625,
+        "1": 0.3125
+      },
+      "intervention_rate": 0.046875,
+      "mean_margin_delta": 0.30078125,
+      "mean_opponent_score_delta": -0.00390625,
+      "mean_own_score_delta": 0.296875,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.02734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.09375
+    },
+    "one_15": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.46875,
+        "gold_adaptive": 1.3125,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.03125,
+        "resident": -0.375,
+        "script_boss": 1.25,
+        "silver_boss": 0.6875
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.546875,
+        "1": 0.0625
+      },
+      "intervention_rate": 0.08203125,
+      "mean_margin_delta": 0.3046875,
+      "mean_opponent_score_delta": -0.23046875,
+      "mean_own_score_delta": 0.07421875,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.05078125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.46875
+    },
+    "one_16": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -1.8125,
+        "gold_adaptive": 9.53125,
+        "legend_balanced": 8.90625,
+        "mybot": -0.84375,
+        "norx_native_three": -5.84375,
+        "resident": -0.6875,
+        "script_boss": -4.0,
+        "silver_boss": -1.65625
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.0859375,
+        "1": 0.8125
+      },
+      "intervention_rate": 0.76171875,
+      "mean_margin_delta": 0.44921875,
+      "mean_opponent_score_delta": -2.14453125,
+      "mean_own_score_delta": -1.6953125,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.3515625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.84375
+    },
+    "one_17": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.125,
+        "gold_adaptive": 0.0625,
+        "legend_balanced": 0.0,
+        "mybot": 0.96875,
+        "norx_native_three": -0.40625,
+        "resident": 1.09375,
+        "script_boss": -2.6875,
+        "silver_boss": 0.09375
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.1171875,
+        "1": -0.3046875
+      },
+      "intervention_rate": 0.10546875,
+      "mean_margin_delta": -0.09375,
+      "mean_opponent_score_delta": 0.13671875,
+      "mean_own_score_delta": 0.04296875,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.04296875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -2.6875
+    },
+    "one_18": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 2.03125,
+        "gold_adaptive": 5.1875,
+        "legend_balanced": 1.53125,
+        "mybot": -1.4375,
+        "norx_native_three": 2.78125,
+        "resident": -0.21875,
+        "script_boss": -5.40625,
+        "silver_boss": -1.0
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.28125,
+        "1": -1.4140625
+      },
+      "intervention_rate": 0.6796875,
+      "mean_margin_delta": 0.43359375,
+      "mean_opponent_score_delta": -1.96484375,
+      "mean_own_score_delta": -1.53125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.3203125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.40625
+    },
+    "one_19": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -4.96875,
+        "gold_adaptive": 7.4375,
+        "legend_balanced": -1.78125,
+        "mybot": -2.21875,
+        "norx_native_three": 2.34375,
+        "resident": -2.53125,
+        "script_boss": 1.25,
+        "silver_boss": -2.75
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.5234375,
+        "1": -0.28125
+      },
+      "intervention_rate": 0.72265625,
+      "mean_margin_delta": -0.40234375,
+      "mean_opponent_score_delta": -1.0078125,
+      "mean_own_score_delta": -1.41015625,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.32421875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.96875
+    },
+    "one_20": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -12.4375,
+        "gold_adaptive": 10.9375,
+        "legend_balanced": 7.9375,
+        "mybot": -3.6875,
+        "norx_native_three": 4.59375,
+        "resident": 3.09375,
+        "script_boss": 0.6875,
+        "silver_boss": -2.125
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.1171875,
+        "1": -0.8671875
+      },
+      "intervention_rate": 0.89453125,
+      "mean_margin_delta": 1.125,
+      "mean_opponent_score_delta": -1.72265625,
+      "mean_own_score_delta": -0.59765625,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.45703125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -12.4375
+    },
+    "one_21": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -5.5,
+        "gold_adaptive": 3.8125,
+        "legend_balanced": -0.46875,
+        "mybot": -4.3125,
+        "norx_native_three": 10.5,
+        "resident": 1.5,
+        "script_boss": -4.4375,
+        "silver_boss": -1.28125
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.203125,
+        "1": -3.25
+      },
+      "intervention_rate": 0.671875,
+      "mean_margin_delta": -0.0234375,
+      "mean_opponent_score_delta": -3.18359375,
+      "mean_own_score_delta": -3.20703125,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.3125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.5
+    },
+    "one_22": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.15625,
+        "legend_balanced": 0.15625,
+        "mybot": 0.28125,
+        "norx_native_three": 0.40625,
+        "resident": 0.0625,
+        "script_boss": -0.125,
+        "silver_boss": -1.625
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.5703125,
+        "1": 0.3984375
+      },
+      "intervention_rate": 0.14453125,
+      "mean_margin_delta": -0.0859375,
+      "mean_opponent_score_delta": -0.1796875,
+      "mean_own_score_delta": -0.265625,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.078125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.625
+    },
+    "one_23": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 3.09375,
+        "gold_adaptive": -3.03125,
+        "legend_balanced": 9.125,
+        "mybot": -0.53125,
+        "norx_native_three": 3.15625,
+        "resident": 1.375,
+        "script_boss": 0.0625,
+        "silver_boss": 0.21875
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.9609375,
+        "1": -0.59375
+      },
+      "intervention_rate": 0.90234375,
+      "mean_margin_delta": 1.68359375,
+      "mean_opponent_score_delta": -1.3828125,
+      "mean_own_score_delta": 0.30078125,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.42578125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -3.03125
+    },
+    "one_24": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -3.1875,
+        "gold_adaptive": -2.9375,
+        "legend_balanced": -0.34375,
+        "mybot": -3.0625,
+        "norx_native_three": 3.4375,
+        "resident": -2.6875,
+        "script_boss": -6.1875,
+        "silver_boss": -2.25
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.9609375,
+        "1": -1.34375
+      },
+      "intervention_rate": 0.83203125,
+      "mean_margin_delta": -2.15234375,
+      "mean_opponent_score_delta": -0.8203125,
+      "mean_own_score_delta": -2.97265625,
+      "positive_families": 1,
+      "strict_improvement_rate": 0.3828125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -6.1875
+    },
+    "one_25": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -1.1875,
+        "gold_adaptive": 2.1875,
+        "legend_balanced": 0.75,
+        "mybot": -1.71875,
+        "norx_native_three": 1.0,
+        "resident": 1.65625,
+        "script_boss": 3.65625,
+        "silver_boss": 2.34375
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.8203125,
+        "1": 1.3515625
+      },
+      "intervention_rate": 0.56640625,
+      "mean_margin_delta": 1.0859375,
+      "mean_opponent_score_delta": -0.71484375,
+      "mean_own_score_delta": 0.37109375,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.2734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.71875
+    },
+    "one_26": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 8.4375,
+        "gold_adaptive": 4.96875,
+        "legend_balanced": 2.84375,
+        "mybot": -3.375,
+        "norx_native_three": 5.625,
+        "resident": 1.25,
+        "script_boss": -2.59375,
+        "silver_boss": -1.40625
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.8046875,
+        "1": 1.1328125
+      },
+      "intervention_rate": 0.90625,
+      "mean_margin_delta": 1.96875,
+      "mean_opponent_score_delta": -2.75390625,
+      "mean_own_score_delta": -0.78515625,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.4609375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -3.375
+    },
+    "one_27": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -2.0625,
+        "gold_adaptive": 1.3125,
+        "legend_balanced": 1.125,
+        "mybot": 0.0,
+        "norx_native_three": -0.53125,
+        "resident": 3.84375,
+        "script_boss": -1.5625,
+        "silver_boss": -0.34375
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.578125,
+        "1": -1.1328125
+      },
+      "intervention_rate": 0.61328125,
+      "mean_margin_delta": 0.22265625,
+      "mean_opponent_score_delta": -0.13671875,
+      "mean_own_score_delta": 0.0859375,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.3203125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -2.0625
+    },
+    "one_28": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.75,
+        "gold_adaptive": -4.875,
+        "legend_balanced": -1.90625,
+        "mybot": -0.125,
+        "norx_native_three": -3.25,
+        "resident": 0.125,
+        "script_boss": -2.84375,
+        "silver_boss": -3.5625
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.03125,
+        "1": -2.265625
+      },
+      "intervention_rate": 0.54296875,
+      "mean_margin_delta": -2.1484375,
+      "mean_opponent_score_delta": 0.06640625,
+      "mean_own_score_delta": -2.08203125,
+      "positive_families": 1,
+      "strict_improvement_rate": 0.2109375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.875
+    },
+    "one_29": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.21875,
+        "legend_balanced": 1.53125,
+        "mybot": 0.0,
+        "norx_native_three": 3.375,
+        "resident": 0.9375,
+        "script_boss": 2.15625,
+        "silver_boss": -0.0625
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.2109375,
+        "1": 0.828125
+      },
+      "intervention_rate": 0.05859375,
+      "mean_margin_delta": 1.01953125,
+      "mean_opponent_score_delta": -0.7734375,
+      "mean_own_score_delta": 0.24609375,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.03125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -0.0625
+    },
+    "one_30": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -3.71875,
+        "gold_adaptive": 2.03125,
+        "legend_balanced": 1.1875,
+        "mybot": -0.53125,
+        "norx_native_three": 0.96875,
+        "resident": -3.15625,
+        "script_boss": -0.96875,
+        "silver_boss": -0.8125
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.6171875,
+        "1": -1.8671875
+      },
+      "intervention_rate": 0.4296875,
+      "mean_margin_delta": -0.625,
+      "mean_opponent_score_delta": -0.34765625,
+      "mean_own_score_delta": -0.97265625,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.17578125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -3.71875
+    },
+    "one_31": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": -1.5625,
+        "legend_balanced": 3.1875,
+        "mybot": -0.375,
+        "norx_native_three": 5.34375,
+        "resident": 0.0,
+        "script_boss": -1.53125,
+        "silver_boss": 0.0
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.3671875,
+        "1": 1.6328125
+      },
+      "intervention_rate": 0.1484375,
+      "mean_margin_delta": 0.6328125,
+      "mean_opponent_score_delta": -0.76953125,
+      "mean_own_score_delta": -0.13671875,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.05859375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.5625
+    },
+    "one_32": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 1.59375,
+        "gold_adaptive": 5.46875,
+        "legend_balanced": 4.03125,
+        "mybot": 0.0625,
+        "norx_native_three": 0.78125,
+        "resident": -0.21875,
+        "script_boss": -1.71875,
+        "silver_boss": 1.0625
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.0234375,
+        "1": 0.7421875
+      },
+      "intervention_rate": 0.56640625,
+      "mean_margin_delta": 1.3828125,
+      "mean_opponent_score_delta": -1.79296875,
+      "mean_own_score_delta": -0.41015625,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.30078125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.71875
+    },
+    "one_33": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -12.59375,
+        "gold_adaptive": 11.125,
+        "legend_balanced": 6.6875,
+        "mybot": -4.34375,
+        "norx_native_three": 2.4375,
+        "resident": 4.875,
+        "script_boss": 0.75,
+        "silver_boss": -0.34375
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.9375,
+        "1": -0.7890625
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": 1.07421875,
+      "mean_opponent_score_delta": -1.59375,
+      "mean_own_score_delta": -0.51953125,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.44921875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -12.59375
+    },
+    "one_34": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -1.4375,
+        "gold_adaptive": -4.40625,
+        "legend_balanced": -3.46875,
+        "mybot": -0.8125,
+        "norx_native_three": 4.9375,
+        "resident": 2.75,
+        "script_boss": 2.40625,
+        "silver_boss": -8.75
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.3984375,
+        "1": -0.796875
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -1.09765625,
+      "mean_opponent_score_delta": -1.67578125,
+      "mean_own_score_delta": -2.7734375,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.42578125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.75
+    },
+    "one_35": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -7.84375,
+        "gold_adaptive": -1.96875,
+        "legend_balanced": 0.96875,
+        "mybot": -10.09375,
+        "norx_native_three": 0.3125,
+        "resident": -1.0,
+        "script_boss": -3.46875,
+        "silver_boss": 0.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.2265625,
+        "1": -4.5
+      },
+      "intervention_rate": 0.8515625,
+      "mean_margin_delta": -2.86328125,
+      "mean_opponent_score_delta": -0.35546875,
+      "mean_own_score_delta": -3.21875,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.33984375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -10.09375
+    },
+    "one_36": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -4.09375,
+        "gold_adaptive": -1.09375,
+        "legend_balanced": 0.34375,
+        "mybot": -1.125,
+        "norx_native_three": -3.375,
+        "resident": -1.71875,
+        "script_boss": 0.0,
+        "silver_boss": 3.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.234375,
+        "1": -2.203125
+      },
+      "intervention_rate": 0.1796875,
+      "mean_margin_delta": -0.984375,
+      "mean_opponent_score_delta": 0.56640625,
+      "mean_own_score_delta": -0.41796875,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.0703125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.09375
+    },
+    "one_37": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 3.46875,
+        "gold_adaptive": 0.25,
+        "legend_balanced": 7.15625,
+        "mybot": 0.5,
+        "norx_native_three": 0.875,
+        "resident": 3.15625,
+        "script_boss": -4.59375,
+        "silver_boss": -8.5
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.7890625,
+        "1": -1.2109375
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": 0.2890625,
+      "mean_opponent_score_delta": -2.390625,
+      "mean_own_score_delta": -2.1015625,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.43359375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.5
+    },
+    "one_38": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -2.875,
+        "gold_adaptive": 7.53125,
+        "legend_balanced": 7.15625,
+        "mybot": -5.90625,
+        "norx_native_three": 3.65625,
+        "resident": 0.34375,
+        "script_boss": -15.1875,
+        "silver_boss": -11.09375
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.25,
+        "1": -1.84375
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -2.046875,
+      "mean_opponent_score_delta": -1.484375,
+      "mean_own_score_delta": -3.53125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.38671875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -15.1875
+    },
+    "one_39": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -7.4375,
+        "gold_adaptive": -1.78125,
+        "legend_balanced": 10.0,
+        "mybot": -2.6875,
+        "norx_native_three": -8.65625,
+        "resident": -2.3125,
+        "script_boss": -6.25,
+        "silver_boss": -3.15625
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.0859375,
+        "1": -4.484375
+      },
+      "intervention_rate": 0.89453125,
+      "mean_margin_delta": -2.78515625,
+      "mean_opponent_score_delta": -1.12109375,
+      "mean_own_score_delta": -3.90625,
+      "positive_families": 1,
+      "strict_improvement_rate": 0.37890625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.65625
+    },
+    "one_40": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -5.46875,
+        "gold_adaptive": 6.6875,
+        "legend_balanced": 5.9375,
+        "mybot": 1.625,
+        "norx_native_three": 1.125,
+        "resident": 2.8125,
+        "script_boss": -0.09375,
+        "silver_boss": 3.53125
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.9921875,
+        "1": 2.046875
+      },
+      "intervention_rate": 0.859375,
+      "mean_margin_delta": 2.01953125,
+      "mean_opponent_score_delta": -1.64453125,
+      "mean_own_score_delta": 0.375,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.40625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.46875
+    },
+    "one_41": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 2.125,
+        "gold_adaptive": 6.0625,
+        "legend_balanced": 6.75,
+        "mybot": -2.84375,
+        "norx_native_three": -1.34375,
+        "resident": 1.53125,
+        "script_boss": 1.46875,
+        "silver_boss": 2.40625
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.7578125,
+        "1": 1.28125
+      },
+      "intervention_rate": 0.8828125,
+      "mean_margin_delta": 2.01953125,
+      "mean_opponent_score_delta": -2.6328125,
+      "mean_own_score_delta": -0.61328125,
+      "positive_families": 6,
+      "strict_improvement_rate": 0.421875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -2.84375
+    },
+    "one_42": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -3.625,
+        "gold_adaptive": 10.25,
+        "legend_balanced": 5.46875,
+        "mybot": -6.09375,
+        "norx_native_three": 6.96875,
+        "resident": 1.125,
+        "script_boss": -4.03125,
+        "silver_boss": 2.8125
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.9921875,
+        "1": -0.7734375
+      },
+      "intervention_rate": 0.8984375,
+      "mean_margin_delta": 1.609375,
+      "mean_opponent_score_delta": -2.71875,
+      "mean_own_score_delta": -1.109375,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.4453125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -6.09375
+    },
+    "one_43": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 4.15625,
+        "gold_adaptive": 0.96875,
+        "legend_balanced": 0.0,
+        "mybot": -1.5625,
+        "norx_native_three": 0.1875,
+        "resident": -0.25,
+        "script_boss": -0.5625,
+        "silver_boss": 1.4375
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.265625,
+        "1": -0.171875
+      },
+      "intervention_rate": 0.1640625,
+      "mean_margin_delta": 0.546875,
+      "mean_opponent_score_delta": -0.46875,
+      "mean_own_score_delta": 0.078125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.0859375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.5625
+    },
+    "one_44": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -2.65625,
+        "gold_adaptive": 7.6875,
+        "legend_balanced": 5.84375,
+        "mybot": -1.8125,
+        "norx_native_three": -5.9375,
+        "resident": -4.25,
+        "script_boss": -5.40625,
+        "silver_boss": 3.28125
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.9296875,
+        "1": -2.7421875
+      },
+      "intervention_rate": 0.79296875,
+      "mean_margin_delta": -0.40625,
+      "mean_opponent_score_delta": -1.625,
+      "mean_own_score_delta": -2.03125,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.359375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.9375
+    },
+    "one_45": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -5.375,
+        "gold_adaptive": 7.9375,
+        "legend_balanced": 1.78125,
+        "mybot": -13.0,
+        "norx_native_three": 7.78125,
+        "resident": -1.53125,
+        "script_boss": -0.1875,
+        "silver_boss": 1.28125
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.9921875,
+        "1": -2.3203125
+      },
+      "intervention_rate": 0.90625,
+      "mean_margin_delta": -0.1640625,
+      "mean_opponent_score_delta": -1.55859375,
+      "mean_own_score_delta": -1.72265625,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.39453125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -13.0
+    },
+    "one_46": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -6.125,
+        "gold_adaptive": 9.40625,
+        "legend_balanced": 6.75,
+        "mybot": 0.65625,
+        "norx_native_three": 9.09375,
+        "resident": -2.5625,
+        "script_boss": -12.4375,
+        "silver_boss": 2.40625
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.3828125,
+        "1": 0.4140625
+      },
+      "intervention_rate": 0.6953125,
+      "mean_margin_delta": 0.8984375,
+      "mean_opponent_score_delta": -1.92578125,
+      "mean_own_score_delta": -1.02734375,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.34765625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -12.4375
+    },
+    "one_47": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -5.875,
+        "gold_adaptive": -2.9375,
+        "legend_balanced": 1.9375,
+        "mybot": -10.46875,
+        "norx_native_three": 6.03125,
+        "resident": -2.21875,
+        "script_boss": -6.15625,
+        "silver_boss": 2.4375
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.125,
+        "1": -3.1875
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -2.15625,
+      "mean_opponent_score_delta": -2.23046875,
+      "mean_own_score_delta": -4.38671875,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.3828125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -10.46875
+    },
+    "one_48": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.3125,
+        "gold_adaptive": 5.25,
+        "legend_balanced": 9.3125,
+        "mybot": -2.125,
+        "norx_native_three": -3.375,
+        "resident": 0.875,
+        "script_boss": -4.0625,
+        "silver_boss": -1.90625
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.890625,
+        "1": -0.8203125
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": 0.53515625,
+      "mean_opponent_score_delta": -0.66796875,
+      "mean_own_score_delta": -0.1328125,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.4765625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -4.0625
+    },
+    "one_49": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 5.0625,
+        "gold_adaptive": -0.46875,
+        "legend_balanced": 7.15625,
+        "mybot": -1.96875,
+        "norx_native_three": -2.3125,
+        "resident": 2.03125,
+        "script_boss": -6.78125,
+        "silver_boss": -8.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.4296875,
+        "1": 1.0625
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -0.68359375,
+      "mean_opponent_score_delta": -1.98046875,
+      "mean_own_score_delta": -2.6640625,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.4609375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.1875
+    },
+    "one_50": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 1.53125,
+        "gold_adaptive": -8.03125,
+        "legend_balanced": 5.5,
+        "mybot": -8.78125,
+        "norx_native_three": -3.34375,
+        "resident": 2.125,
+        "script_boss": -1.4375,
+        "silver_boss": -8.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": -3.4609375,
+        "1": -1.6953125
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -2.578125,
+      "mean_opponent_score_delta": -1.81640625,
+      "mean_own_score_delta": -4.39453125,
+      "positive_families": 3,
+      "strict_improvement_rate": 0.421875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -8.78125
+    },
+    "one_51": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -10.96875,
+        "gold_adaptive": 11.9375,
+        "legend_balanced": 7.03125,
+        "mybot": -3.90625,
+        "norx_native_three": -1.15625,
+        "resident": -3.875,
+        "script_boss": -7.90625,
+        "silver_boss": -2.625
+      },
+      "fold_mean_margin_delta": {
+        "0": -0.4453125,
+        "1": -2.421875
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -1.43359375,
+      "mean_opponent_score_delta": -0.60546875,
+      "mean_own_score_delta": -2.0390625,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.421875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -10.96875
+    },
+    "one_52": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -4.28125,
+        "gold_adaptive": 4.15625,
+        "legend_balanced": 5.125,
+        "mybot": -5.0,
+        "norx_native_three": 11.0625,
+        "resident": -0.8125,
+        "script_boss": -9.09375,
+        "silver_boss": 4.53125
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.3671875,
+        "1": 0.0546875
+      },
+      "intervention_rate": 0.90234375,
+      "mean_margin_delta": 0.7109375,
+      "mean_opponent_score_delta": -2.3515625,
+      "mean_own_score_delta": -1.640625,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.44140625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -9.09375
+    },
+    "one_53": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -11.6875,
+        "gold_adaptive": 10.9375,
+        "legend_balanced": 7.875,
+        "mybot": -2.84375,
+        "norx_native_three": 3.90625,
+        "resident": 1.78125,
+        "script_boss": -4.75,
+        "silver_boss": -5.59375
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.796875,
+        "1": -0.890625
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -0.046875,
+      "mean_opponent_score_delta": -1.71875,
+      "mean_own_score_delta": -1.765625,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.45703125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -11.6875
+    },
+    "one_54": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -10.4375,
+        "gold_adaptive": 5.25,
+        "legend_balanced": -6.46875,
+        "mybot": -7.5625,
+        "norx_native_three": 8.375,
+        "resident": -2.25,
+        "script_boss": -7.21875,
+        "silver_boss": -0.625
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.6484375,
+        "1": -3.5859375
+      },
+      "intervention_rate": 0.91015625,
+      "mean_margin_delta": -2.6171875,
+      "mean_opponent_score_delta": -2.30078125,
+      "mean_own_score_delta": -4.91796875,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.41015625,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -10.4375
+    },
+    "one_55": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -3.625,
+        "gold_adaptive": 13.375,
+        "legend_balanced": 4.9375,
+        "mybot": -1.34375,
+        "norx_native_three": 8.5,
+        "resident": 0.28125,
+        "script_boss": -3.8125,
+        "silver_boss": -1.09375
+      },
+      "fold_mean_margin_delta": {
+        "0": 3.671875,
+        "1": 0.6328125
+      },
+      "intervention_rate": 0.7890625,
+      "mean_margin_delta": 2.15234375,
+      "mean_opponent_score_delta": -2.90625,
+      "mean_own_score_delta": -0.75390625,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.3828125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -3.8125
+    },
+    "one_56": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 1.96875,
+        "gold_adaptive": 5.90625,
+        "legend_balanced": 6.15625,
+        "mybot": -1.875,
+        "norx_native_three": 0.09375,
+        "resident": -0.1875,
+        "script_boss": 4.1875,
+        "silver_boss": -1.21875
+      },
+      "fold_mean_margin_delta": {
+        "0": 2.9921875,
+        "1": 0.765625
+      },
+      "intervention_rate": 0.45703125,
+      "mean_margin_delta": 1.87890625,
+      "mean_opponent_score_delta": -1.24609375,
+      "mean_own_score_delta": 0.6328125,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.2578125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -1.875
+    },
+    "one_57": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -9.84375,
+        "gold_adaptive": -1.40625,
+        "legend_balanced": 10.28125,
+        "mybot": -3.78125,
+        "norx_native_three": 0.71875,
+        "resident": 0.65625,
+        "script_boss": -4.0625,
+        "silver_boss": 1.1875
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.15625,
+        "1": -2.71875
+      },
+      "intervention_rate": 0.8828125,
+      "mean_margin_delta": -0.78125,
+      "mean_opponent_score_delta": -1.4921875,
+      "mean_own_score_delta": -2.2734375,
+      "positive_families": 4,
+      "strict_improvement_rate": 0.39453125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -9.84375
+    },
+    "one_58": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 0.0,
+        "silver_boss": 0.0
+      },
+      "fold_mean_margin_delta": {
+        "0": 0.0,
+        "1": 0.0
+      },
+      "intervention_rate": 0.0,
+      "mean_margin_delta": 0.0,
+      "mean_opponent_score_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "positive_families": 0,
+      "strict_improvement_rate": 0.0,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": 0.0
+    },
+    "one_59": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": 0.09375,
+        "gold_adaptive": -7.125,
+        "legend_balanced": 1.4375,
+        "mybot": 1.3125,
+        "norx_native_three": 10.09375,
+        "resident": -2.21875,
+        "script_boss": -1.59375,
+        "silver_boss": 7.90625
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.3125,
+        "1": 1.1640625
+      },
+      "intervention_rate": 0.7109375,
+      "mean_margin_delta": 1.23828125,
+      "mean_opponent_score_delta": -1.5078125,
+      "mean_own_score_delta": -0.26953125,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.35546875,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -7.125
+    },
+    "one_60": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.53125,
+        "gold_adaptive": -3.59375,
+        "legend_balanced": -5.90625,
+        "mybot": -2.71875,
+        "norx_native_three": -2.125,
+        "resident": 3.03125,
+        "script_boss": -3.46875,
+        "silver_boss": 0.59375
+      },
+      "fold_mean_margin_delta": {
+        "0": -1.9609375,
+        "1": -1.71875
+      },
+      "intervention_rate": 0.62109375,
+      "mean_margin_delta": -1.83984375,
+      "mean_opponent_score_delta": 0.70703125,
+      "mean_own_score_delta": -1.1328125,
+      "positive_families": 2,
+      "strict_improvement_rate": 0.2734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.90625
+    },
+    "one_61": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.96875,
+        "gold_adaptive": 12.21875,
+        "legend_balanced": -1.28125,
+        "mybot": 2.6875,
+        "norx_native_three": 4.0,
+        "resident": 0.1875,
+        "script_boss": -2.625,
+        "silver_boss": 1.75
+      },
+      "fold_mean_margin_delta": {
+        "0": 4.2578125,
+        "1": -0.265625
+      },
+      "intervention_rate": 0.8046875,
+      "mean_margin_delta": 1.99609375,
+      "mean_opponent_score_delta": -1.73828125,
+      "mean_own_score_delta": 0.2578125,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.45703125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -2.625
+    },
+    "one_62": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -0.21875,
+        "gold_adaptive": -5.0,
+        "legend_balanced": -3.1875,
+        "mybot": -1.625,
+        "norx_native_three": 0.375,
+        "resident": 0.0,
+        "script_boss": -0.96875,
+        "silver_boss": -1.625
+      },
+      "fold_mean_margin_delta": {
+        "0": -2.4296875,
+        "1": -0.6328125
+      },
+      "intervention_rate": 0.21484375,
+      "mean_margin_delta": -1.53125,
+      "mean_opponent_score_delta": 0.16796875,
+      "mean_own_score_delta": -1.36328125,
+      "positive_families": 1,
+      "strict_improvement_rate": 0.08203125,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -5.0
+    },
+    "one_63": {
+      "crop_rate": 1.0,
+      "family_mean_margin_delta": {
+        "compact_gold": -2.46875,
+        "gold_adaptive": 1.25,
+        "legend_balanced": -1.34375,
+        "mybot": -0.59375,
+        "norx_native_three": 0.5625,
+        "resident": 4.125,
+        "script_boss": 1.34375,
+        "silver_boss": 3.84375
+      },
+      "fold_mean_margin_delta": {
+        "0": 1.890625,
+        "1": -0.2109375
+      },
+      "intervention_rate": 0.53125,
+      "mean_margin_delta": 0.83984375,
+      "mean_opponent_score_delta": -1.8828125,
+      "mean_own_score_delta": -1.04296875,
+      "positive_families": 5,
+      "strict_improvement_rate": 0.27734375,
+      "tasks": 256,
+      "worker_three_rate": 0.9140625,
+      "worst_family": -2.46875
+    }
+  },
+  "decision": "close_one_use_random_population",
+  "inputs": {
+    "analyzer": "52e05c8cc1e1feeace487b6cbeaa321eb79458b3e96425ab41e4bb2f9b7ba513",
+    "cgauto/make_d110a_antithetic_q6_linear_population.py": "13cbe478d2d725a25608d1a2e5dd6089a89ca0d1dc9ed4927857228af62d41f5",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d107a-q6-bounded-online-controller-preflight-result.json": "8ab7ca603686cf4bf26e6026429f7df57fc395242bdb4d8606a10c1b28c989c2",
+    "data/analysis/live-agent-6553250/d109a-duration-only-recurrent-q6-ppo-result.json": "22ebe0a9bf3f992e0ed88d92cbbbf1e4b7a8fb1ed635e8d8737a804eeb469e1f",
+    "data/analysis/live-agent-6553250/d110a-antithetic-q6-linear-population.tsv": "d68eb48e5c091c02472b33c2b6d251dd3bc37dce34a1e06f41908c3e45f6aabb",
+    "data/analysis/live-agent-6553250/d110a-robust-one-use-q6-linear-population-protocol-2026-07-22.md": "2703434c1f10316feada795af5f32fd1fab2d2969ff97f6471a1c1f2e3ce5bc1",
+    "discovery_baselines": "d9251742909b911376616acdf789e6b4bcf12709a1fbb7e9733156c8e0d5a647",
+    "discovery_rows": "22567de119b84c7ed89bbb9c297fb9e93696421bcf5c25aa7e9e4fedbadbcfef",
+    "rust/src/bin/d107_q6_proposal_controller_population.rs": "2bd7e3c5628cf048af61082aba848bb6ea6f66d3967e4ee056823679693d0514",
+    "rust/target/release/d107_q6_proposal_controller_population": "96030ca2ab75e7b98b74942863b9b4c53124790bf62bf7c6946ab546e3a78547"
+  },
+  "integrity": {
+    "complete": true,
+    "counter_violations": [],
+    "finite": true,
+    "maximum_reward_identity_error": 0.0,
+    "mechanical_failures": {
+      "deposit_prediction_failures": 0,
+      "invalid_direct_commands": 0,
+      "provenance_failures": 0
+    },
+    "zero_exact": true
+  },
+  "mechanics_pass": true,
+  "schema": "troll-farm-d110a-robust-one-use-q6-linear-discovery-v1",
+  "selected_gates": null,
+  "selected_metrics": null,
+  "selected_population_hash": null,
+  "selected_source_policy": null
+}

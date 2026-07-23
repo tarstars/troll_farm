@@ -1,0 +1,29 @@
+{
+  "schema": "troll-farm-d144b-two-intervention-support-semantics-lock-v1",
+  "frozen_at": "2026-07-22-after-d144a-raw-coverage-stop-before-incremental-oracle-interpretation",
+  "isolated_change": "replace impossible 95-percent all-task two-use coverage with exact 100-percent coverage of q6-supported tasks and forced-control parity for zero-boundary tasks",
+  "observed_stop_boundary": {
+    "tasks": 128,
+    "q6_supported_tasks": 118,
+    "tasks_with_two_intervention_sample": 118,
+    "raw_coverage": 0.921875,
+    "failed_gate": "at_least_95pct_tasks_have_sampled_two_interventions",
+    "incremental_oracle_interpreted": false
+  },
+  "sha256": {
+    "cgauto/analyze_d144b_two_intervention_support_semantics.py": "e51d4d992dcf8722f28ff22b2d9e94fe434fa561ffe5f12fa1b9801fb4a253ea",
+    "tests/test_analyze_d144b_two_intervention_support_semantics.py": "a9e6627158c009bc50482616ec751e59b41c2148b16707e7625dcb9ab8fa08bc",
+    "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-protocol-2026-07-22.md": "921422434c771d29d22cf76e93d9bda368fefe578b09cdf35c26ba6d44c198e0",
+    "cgauto/yt_d144_two_intervention_mc.py": "f36acf9c5ca4254d44f65606db8f346f936d54e9e026653293f48f164e8fcaec",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-result.json": "a13375a38a6e0ecf68b9d14fa5241790f0d45c632bd1e6299ff155b0391ca3aa",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-repair1-download.json": "d5c277469bd7ab790ccdf72929d8262ff745e65fa0fff3cba134651de65f4928",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-repair1-lock.json": "48966d54bbd3c1ef3cbac40450091c2c7c2bf4ad4c64dbec7bf20eb8a4fd21a6",
+    "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-protocol-2026-07-22.md": "83ca87f5140a4971834393dc94f2091265197aa0692c1d0075ab5eda0f77c89a",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-b-9844128-9844135.tsv": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "checkpoint": null,
+  "consumed_d126_veto": null,
+  "decision": "close_first_positive_aligned_gate_on_transfer",
+  "full_fit": null,
+  "full_pass": false,
+  "lock": {
+    "declared": {
+      "frozen_at": "2026-07-22-after-d142b-closure-before-any-d143-fit",
+      "isolated_change": "replace one-best-root hard labels with every-positive-selected-winner-root labels under equal-task equal-class loss while retaining the soft best-stop objective",
+      "schema": "troll-farm-d143a-first-positive-aligned-best-stop-selection-lock-v1",
+      "sha256": {
+        "cgauto/train_d142b_tie_stable_dual_gate_selection.py": "564cb107aa1d1285a55d095f829664013c6c8323b37b53ae8f6fb3ba8e80ab83",
+        "cgauto/train_d143a_first_positive_aligned_best_stop_selection.py": "b0c3b9a92cc7c44c84ab73882947f667f1f1acba1bf5417a410b5bc8448b235f",
+        "data/analysis/live-agent-6553250/d140a-eight-block-best-stop-selection-lock.json": "940f484dad1290d80df1a00e124d6b0894a41cd6f9069c3649b8301e02b2e727",
+        "data/analysis/live-agent-6553250/d141a-task-balanced-best-stop-selection-lock.json": "364a962ef71c46193177753f8c508a21bb43fb9a0ebdda3396ad9e49f11b111e",
+        "data/analysis/live-agent-6553250/d142b-tie-stable-dual-gate-selection-a.json": "c3879c1dbcc2ae53144de290c7b84fe928e5088eabcd111270651a6e129846bc",
+        "data/analysis/live-agent-6553250/d142b-tie-stable-dual-gate-selection-b.json": "c3879c1dbcc2ae53144de290c7b84fe928e5088eabcd111270651a6e129846bc",
+        "data/analysis/live-agent-6553250/d142b-tie-stable-dual-gate-selection-lock.json": "e606e01af3c76f8558e8da141bfe1beeddb9dc1c0f9c914c5e81715af735fb41",
+        "data/analysis/live-agent-6553250/d142b-tie-stable-dual-gate-selection-result.json": "9869e219a4f3716cd0a17c000db4c8835a93eddd82c4776386a7ce951d7a6104",
+        "data/analysis/live-agent-6553250/d143a-first-positive-aligned-best-stop-selection-protocol-2026-07-22.md": "f07119655ce66996e6e07b7642461102969bcd84842b43403e26a5c82b3ceff7",
+        "tests/test_train_d143a_first_positive_aligned_best_stop_selection.py": "3184c3cb1a5f6310e218b3d3488cc8a2efafbafbc9cc5410b83fe3f842f65bfa"
+      }
+    },
+    "manifest_sha256": "317b6e016ab0eb90e4d64e1c8cc7897ce5a4df8daba75e3950f995e361f4d3c6",
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d143a-first-positive-aligned-best-stop-selection-lock.json"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d143a-first-positive-aligned-best-stop-selection-protocol-2026-07-22.md",
+  "schema": "troll-farm-d143a-first-positive-aligned-result-v1",
+  "selection_repeat": {
+    "a_sha256": "ee5d7ca38725ab807b63dfc1b99f70cbbba6886905b4a3c3358747f3443f9505",
+    "b_sha256": "ee5d7ca38725ab807b63dfc1b99f70cbbba6886905b4a3c3358747f3443f9505",
+    "byte_exact": true,
+    "selected": null
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "clone_checkpoint_sha256": "0d89846065a7c87e6248f66bd2cf2a63d5e90955fc557a9684ae56657fe6a343",
+  "created_utc": "2026-07-19T23:41:47.977304+00:00",
+  "files": {
+    "troll_farm_payload.tar.gz": {
+      "bytes": 3171884,
+      "sha256": "a5f977f3b603139e079d4c0cc1ab6d7461bdf11274ea28c8bcd940ea3c7f28f7"
+    },
+    "yt_run_config.json": {
+      "bytes": 1728,
+      "sha256": "76b6a1a677ccce356ee3e7760a743bfba4670956401bd65e2c14a2b9d541006b"
+    },
+    "yt_troll_farm_ppo_entrypoint.py": {
+      "bytes": 12113,
+      "sha256": "980cb1279f50b58f0320ee16fee32998caf940308d2233f4a0b81c52304c8f2e"
+    }
+  },
+  "frozen_protocol_sha256": "48922c1f7fe4d20936f3d6c1e8aed6b6040c9eb900e231d109fd931057fc368b",
+  "purpose": "throughput_benchmark_only"
+}

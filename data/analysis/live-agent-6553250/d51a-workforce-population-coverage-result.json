@@ -1,0 +1,450 @@
+{
+  "activation": {
+    "anchor_mismatches": 1280,
+    "changed_cells": 2461,
+    "changed_rate": 0.2746651785714286,
+    "opening_mismatches": 0,
+    "switch_cells": 8960,
+    "trigger_integrity_failures": 0,
+    "triggered_cells": 2462,
+    "triggered_policies_on_at_least_16_maps": 56
+  },
+  "decision": "close whole-controller switching and advance to procedural factorized job allocation",
+  "gates": {
+    "all_eight_anchors_exact": false,
+    "all_recorded_switches_satisfy_trigger": true,
+    "all_switch_openings_exact": true,
+    "at_least_35_percent_switch_cells_active": false,
+    "at_least_45_policies_trigger_on_16_maps": true,
+    "complete_byte_exact_repeat": true,
+    "confirmation_catastrophic_increment_at_least_3": false,
+    "confirmation_catastrophic_macro_at_least_7": false,
+    "confirmation_overall_full_at_least_36": false,
+    "confirmation_overall_full_increment_at_least_3": false,
+    "confirmation_overall_macro_at_least_56": false,
+    "confirmation_overall_macro_increment_at_least_5": false,
+    "confirmation_rich_full_at_least_1": false,
+    "confirmation_rich_full_increment_at_least_1": false,
+    "confirmation_rich_macro_at_least_4": false,
+    "confirmation_rich_macro_increment_at_least_2": false,
+    "confirmation_worker_rich_increment_at_least_4": false,
+    "confirmation_worker_rich_macro_at_least_12": false,
+    "discovery_catastrophic_increment_at_least_1": false,
+    "discovery_overall_macro_increment_at_least_5": false,
+    "discovery_rich_full_increment_at_least_1": false,
+    "discovery_rich_macro_increment_at_least_1": true,
+    "discovery_worker_rich_increment_at_least_3": false,
+    "no_legacy_support_lost": true
+  },
+  "grid": {
+    "cells_per_run": 10240,
+    "games": 160,
+    "models": 64,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "analyzer_sha256": "f6f4b568e9b9717b81ca459ba3924998037cafead66a47d7f4928916fe5bb7bb",
+    "legacy_sha256": {
+      "d50a-current-baseline-phase21-local.tsv": "73d441becb6628a9fddd1bf57c1f9e406c9a36489a45141d3c2a924860d557c7",
+      "d50a-current-economy-phase21-local.tsv": "6fcbdc1057c1b81de47c58037ea309d5d7ca2e54b6d19248594e2ade1732d8c4",
+      "d50a-current-legend-v1-phase21-local.tsv": "c18ba0a3a056eb89ce3f9df06c23cc7d3dcf1949cf88e620ed67bb66b58e6a93",
+      "d50a-current-legend-v2-phase21-local.tsv": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b",
+      "d50a-current-structural-phase21-local.tsv": "29e85cb293cd527512260e6a083252f126f25557cbd491162abfd600d6fa5a2a"
+    },
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "fcfbd3553c2d953cb55842407300319abf62d3b8c7f16d69cf3e1c6af955aa47",
+    "run_b_sha256": "fcfbd3553c2d953cb55842407300319abf62d3b8c7f16d69cf3e1c6af955aa47",
+    "runner_sha256": "74dc0cca758f2e97902662a62656555ce790ec6b4aceaa225c37ae4b056bc3e4"
+  },
+  "nearest_distance": {
+    "confirmation": {
+      "catastrophic": {
+        "augmented_mean": 0.858065664160401,
+        "improved_games": 4,
+        "legacy_mean": 0.8865172932330827,
+        "mean_delta": -0.028451629072681728
+      },
+      "overall": {
+        "augmented_mean": 0.550987380952381,
+        "improved_games": 9,
+        "legacy_mean": 0.5618979761904762,
+        "mean_delta": -0.010910595238095233
+      },
+      "rich_immediate": {
+        "augmented_mean": 0.8298296296296296,
+        "improved_games": 4,
+        "legacy_mean": 0.8996550264550265,
+        "mean_delta": -0.0698253968253969
+      },
+      "worker_rich": {
+        "augmented_mean": 0.7852234693877551,
+        "improved_games": 8,
+        "legacy_mean": 0.8154704081632653,
+        "mean_delta": -0.030246938775510213
+      }
+    },
+    "discovery": {
+      "catastrophic": {
+        "augmented_mean": 0.8490396825396825,
+        "improved_games": 5,
+        "legacy_mean": 0.9376285714285715,
+        "mean_delta": -0.08858888888888894
+      },
+      "overall": {
+        "augmented_mean": 0.5134157142857143,
+        "improved_games": 9,
+        "legacy_mean": 0.5321933333333333,
+        "mean_delta": -0.018777619047618987
+      },
+      "rich_immediate": {
+        "augmented_mean": 0.863804761904762,
+        "improved_games": 5,
+        "legacy_mean": 0.9281722222222223,
+        "mean_delta": -0.06436746031746032
+      },
+      "worker_rich": {
+        "augmented_mean": 0.7205151138716356,
+        "improved_games": 8,
+        "legacy_mean": 0.7843958592132505,
+        "mean_delta": -0.06388074534161492
+      }
+    }
+  },
+  "new_critical_macro_support": [
+    {
+      "catastrophic": false,
+      "covering_policies": [
+        "d51_w3_plus50_v2_hp2_farm_to_lean",
+        "d51_w3_plus50_v2_hp2_late_to_lean",
+        "d51_w3_score60_v2_hp2_farm_to_v2_hp2_late"
+      ],
+      "game_id": 896284534,
+      "opponent": "celeria",
+      "rich_immediate": true,
+      "split": "discovery",
+      "worker_rich": true
+    },
+    {
+      "catastrophic": false,
+      "covering_policies": [
+        "d51_w3_now_v2_bal_farm_to_farm3",
+        "d51_w3_now_v2_bal_farm_to_lean",
+        "d51_w3_now_v2_bal_farm_to_norx_funded",
+        "d51_w3_plus25_v2_bal_farm_to_farm3",
+        "d51_w3_plus25_v2_bal_farm_to_lean",
+        "d51_w3_plus25_v2_bal_farm_to_norx_funded",
+        "d51_w3_plus50_v2_bal_farm_to_farm3",
+        "d51_w3_plus50_v2_bal_farm_to_lean",
+        "d51_w3_score60_v2_bal_farm_to_farm3",
+        "d51_w3_score60_v2_bal_farm_to_lean"
+      ],
+      "game_id": 896284933,
+      "opponent": "FredericBautista",
+      "rich_immediate": true,
+      "split": "discovery",
+      "worker_rich": true
+    },
+    {
+      "catastrophic": false,
+      "covering_policies": [
+        "d51_w3_now_v2_hp2_farm_to_farm3",
+        "d51_w3_now_v2_hp2_farm_to_lean",
+        "d51_w3_now_v2_hp2_late_to_farm3",
+        "d51_w3_now_v2_hp2_late_to_lean"
+      ],
+      "game_id": 896284384,
+      "opponent": "mikmak",
+      "rich_immediate": true,
+      "split": "confirmation",
+      "worker_rich": true
+    },
+    {
+      "catastrophic": false,
+      "covering_policies": [
+        "d51_w3_plus50_v2_bal_farm_to_lean",
+        "d51_w3_score60_v2_bal_farm_to_lean"
+      ],
+      "game_id": 896284487,
+      "opponent": "Meruem",
+      "rich_immediate": false,
+      "split": "confirmation",
+      "worker_rich": true
+    }
+  ],
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d51a-workforce-history-opponent-population-protocol-2026-07-21.md",
+  "protocol_sha256": "99e87ea222d3762f368979274190d38ffe44c7e48ba52ef7dbfe201de8857224",
+  "schema": 1,
+  "scope": "consumed-map opponent-model calibration only; neither split is fresh after D50; no candidate or platform evidence",
+  "support": {
+    "confirmation": {
+      "catastrophic": {
+        "augmented": {
+          "full": 2,
+          "macro": 4
+        },
+        "games": 19,
+        "increment": {
+          "full": 0,
+          "macro": 0
+        },
+        "legacy": {
+          "full": 2,
+          "macro": 4
+        },
+        "phase": {
+          "full": 2,
+          "macro": 4
+        }
+      },
+      "overall": {
+        "augmented": {
+          "full": 32,
+          "macro": 52
+        },
+        "games": 80,
+        "increment": {
+          "full": 0,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 32,
+          "macro": 50
+        },
+        "phase": {
+          "full": 14,
+          "macro": 30
+        }
+      },
+      "rich_immediate": {
+        "augmented": {
+          "full": 0,
+          "macro": 3
+        },
+        "games": 9,
+        "increment": {
+          "full": 0,
+          "macro": 1
+        },
+        "legacy": {
+          "full": 0,
+          "macro": 2
+        },
+        "phase": {
+          "full": 0,
+          "macro": 3
+        }
+      },
+      "worker_rich": {
+        "augmented": {
+          "full": 3,
+          "macro": 10
+        },
+        "games": 28,
+        "increment": {
+          "full": 0,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 3,
+          "macro": 8
+        },
+        "phase": {
+          "full": 2,
+          "macro": 8
+        }
+      }
+    },
+    "discovery": {
+      "catastrophic": {
+        "augmented": {
+          "full": 1,
+          "macro": 1
+        },
+        "games": 12,
+        "increment": {
+          "full": 0,
+          "macro": 0
+        },
+        "legacy": {
+          "full": 1,
+          "macro": 1
+        },
+        "phase": {
+          "full": 1,
+          "macro": 1
+        }
+      },
+      "overall": {
+        "augmented": {
+          "full": 35,
+          "macro": 50
+        },
+        "games": 80,
+        "increment": {
+          "full": 0,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 35,
+          "macro": 48
+        },
+        "phase": {
+          "full": 14,
+          "macro": 30
+        }
+      },
+      "rich_immediate": {
+        "augmented": {
+          "full": 0,
+          "macro": 3
+        },
+        "games": 12,
+        "increment": {
+          "full": 0,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 0,
+          "macro": 1
+        },
+        "phase": {
+          "full": 0,
+          "macro": 2
+        }
+      },
+      "worker_rich": {
+        "augmented": {
+          "full": 3,
+          "macro": 7
+        },
+        "games": 23,
+        "increment": {
+          "full": 0,
+          "macro": 2
+        },
+        "legacy": {
+          "full": 3,
+          "macro": 5
+        },
+        "phase": {
+          "full": 1,
+          "macro": 5
+        }
+      }
+    }
+  },
+  "support_by_pair": {
+    "v2_bal_farm->farm3": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 132.9044585987261,
+      "policies": 4,
+      "triggered_cells": 157
+    },
+    "v2_bal_farm->farm4": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 132.9044585987261,
+      "policies": 4,
+      "triggered_cells": 157
+    },
+    "v2_bal_farm->lean": {
+      "confirmation_macro_games": 10,
+      "mean_switch_turn": 132.9044585987261,
+      "policies": 4,
+      "triggered_cells": 157
+    },
+    "v2_bal_farm->norx_funded": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 132.9044585987261,
+      "policies": 4,
+      "triggered_cells": 157
+    },
+    "v2_bal_farm->v2_hp2_late": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 132.9044585987261,
+      "policies": 4,
+      "triggered_cells": 157
+    },
+    "v2_hp2_farm->farm3": {
+      "confirmation_macro_games": 10,
+      "mean_switch_turn": 131.6054054054054,
+      "policies": 4,
+      "triggered_cells": 185
+    },
+    "v2_hp2_farm->farm4": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 131.6054054054054,
+      "policies": 4,
+      "triggered_cells": 185
+    },
+    "v2_hp2_farm->lean": {
+      "confirmation_macro_games": 10,
+      "mean_switch_turn": 131.6054054054054,
+      "policies": 4,
+      "triggered_cells": 185
+    },
+    "v2_hp2_farm->norx_funded": {
+      "confirmation_macro_games": 8,
+      "mean_switch_turn": 131.6054054054054,
+      "policies": 4,
+      "triggered_cells": 185
+    },
+    "v2_hp2_farm->v2_hp2_late": {
+      "confirmation_macro_games": 9,
+      "mean_switch_turn": 131.6054054054054,
+      "policies": 4,
+      "triggered_cells": 185
+    },
+    "v2_hp2_late->farm3": {
+      "confirmation_macro_games": 8,
+      "mean_switch_turn": 130.9627659574468,
+      "policies": 4,
+      "triggered_cells": 188
+    },
+    "v2_hp2_late->farm4": {
+      "confirmation_macro_games": 8,
+      "mean_switch_turn": 130.9627659574468,
+      "policies": 4,
+      "triggered_cells": 188
+    },
+    "v2_hp2_late->lean": {
+      "confirmation_macro_games": 8,
+      "mean_switch_turn": 130.9627659574468,
+      "policies": 4,
+      "triggered_cells": 188
+    },
+    "v2_hp2_late->norx_funded": {
+      "confirmation_macro_games": 7,
+      "mean_switch_turn": 130.9627659574468,
+      "policies": 4,
+      "triggered_cells": 188
+    }
+  },
+  "support_by_trigger": {
+    "w3_now": {
+      "confirmation_macro_games": 11,
+      "mean_switch_turn": 104.79904306220095,
+      "policies": 14,
+      "triggered_cells": 627
+    },
+    "w3_plus25": {
+      "confirmation_macro_games": 11,
+      "mean_switch_turn": 128.2700964630225,
+      "policies": 14,
+      "triggered_cells": 622
+    },
+    "w3_plus50": {
+      "confirmation_macro_games": 12,
+      "mean_switch_turn": 147.5,
+      "policies": 14,
+      "triggered_cells": 600
+    },
+    "w3_score60": {
+      "confirmation_macro_games": 12,
+      "mean_switch_turn": 147.72593800978794,
+      "policies": 14,
+      "triggered_cells": 613
+    }
+  }
+}

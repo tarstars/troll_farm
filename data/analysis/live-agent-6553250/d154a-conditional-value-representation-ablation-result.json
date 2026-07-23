@@ -1,0 +1,95 @@
+{
+  "decision": "close_fixed_semantic_slice_compact_value_models",
+  "differing_model_hashes": 1,
+  "eligible_cells": 0,
+  "full443_reproduction": {
+    "15301": true,
+    "15302": true,
+    "15303": true,
+    "15304": true
+  },
+  "integrity": {
+    "all_full443_seeds_reproduce_d153a": true,
+    "behavior_exact_repeat": true,
+    "exactly_192_fits_per_replica": true
+  },
+  "lock": {
+    "manifest_sha256": "8e57b42e41730e2cc61247133ba2c7116a8a0daff4205991192a2b6befafe41b",
+    "mismatches": {},
+    "pass": true
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d154a-conditional-value-representation-ablation-protocol-2026-07-23.md",
+  "representation_summary": [
+    {
+      "best_seed": 15303,
+      "eligible_seeds": 0,
+      "inputs": 443,
+      "median_harmful_negative_rate": 0.45104510451045104,
+      "median_mean_selected_value": 1.2365236523652365,
+      "median_sign_balanced_accuracy": 0.5123169425629746,
+      "parameters": 7121,
+      "representation": "full443"
+    },
+    {
+      "best_seed": 15302,
+      "eligible_seeds": 0,
+      "inputs": 379,
+      "median_harmful_negative_rate": 0.4592959295929593,
+      "median_mean_selected_value": 0.72002200220022,
+      "median_sign_balanced_accuracy": 0.5151240201696876,
+      "parameters": 6097,
+      "representation": "no_expert_ids379"
+    },
+    {
+      "best_seed": 15302,
+      "eligible_seeds": 0,
+      "inputs": 115,
+      "median_harmful_negative_rate": 0.4581958195819582,
+      "median_mean_selected_value": 1.699119911991199,
+      "median_sign_balanced_accuracy": 0.52072175465333,
+      "parameters": 1873,
+      "representation": "semantic_context115"
+    },
+    {
+      "best_seed": 15303,
+      "eligible_seeds": 0,
+      "inputs": 109,
+      "median_harmful_negative_rate": 0.4537953795379538,
+      "median_mean_selected_value": 1.7282728272827284,
+      "median_sign_balanced_accuracy": 0.5223188412715678,
+      "parameters": 1777,
+      "representation": "semantic109"
+    },
+    {
+      "best_seed": 15301,
+      "eligible_seeds": 0,
+      "inputs": 173,
+      "median_harmful_negative_rate": 0.45764576457645767,
+      "median_mean_selected_value": 0.7557755775577557,
+      "median_sign_balanced_accuracy": 0.5092560841873344,
+      "parameters": 2801,
+      "representation": "semantic_supporters173"
+    },
+    {
+      "best_seed": 15301,
+      "eligible_seeds": 0,
+      "inputs": 51,
+      "median_harmful_negative_rate": 0.4625962596259626,
+      "median_mean_selected_value": 1.3041804180418042,
+      "median_sign_balanced_accuracy": 0.5278334847160054,
+      "parameters": 849,
+      "representation": "action_semantic_context51"
+    }
+  ],
+  "schema": "troll-farm-d154a-conditional-value-representation-ablation-result-v1",
+  "selected": null,
+  "selection_a": {
+    "path": "data/analysis/live-agent-6553250/d154a-conditional-value-representation-ablation-selection-a.json",
+    "sha256": "c6caeb1acd0dd794c0730ff55dba64cb5fed29d74fc51ec1bb55672e376de059"
+  },
+  "selection_b": {
+    "path": "data/analysis/live-agent-6553250/d154a-conditional-value-representation-ablation-selection-b.json",
+    "sha256": "ca56a7748f2818a1623efb3f70cab28fa05b881e3fd76448b130adb082ab660e"
+  }
+}

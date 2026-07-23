@@ -1,0 +1,1374 @@
+{
+  "candidates": {
+    "columns": 454,
+    "expected_groups": 2508,
+    "failures": {},
+    "feature_columns": 443,
+    "groups": 2508,
+    "nonfinite_values": 0,
+    "pass": true,
+    "rows": 44259,
+    "schema_exact": true,
+    "stage_counts": {
+      "first": 909,
+      "second": 909,
+      "wait_before_first": 109,
+      "wait_before_second": 581
+    }
+  },
+  "decision": "open_d149_grouped_joint_two_stage_policy_fit",
+  "exact_one_use": {
+    "baselines": 1024,
+    "best_one_tasks": 1024,
+    "blocks": [
+      {
+        "block": 0,
+        "interpreted_label_rows": 12064,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 12064,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 16,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 758,
+            "supported_tasks": 114,
+            "task_support_rate": 0.890625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 25.716089166326867,
+              "b": 25.716089166326867
+            },
+            "unsupported_forced_control_tasks": 14
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 758,
+            "roots_per_map": 94.75
+          }
+        },
+        "start_seed": 9844136,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.43271767810026385,
+            "act_now_roots": 328,
+            "arms": 12064,
+            "best_now_mean": 23.37994722955145,
+            "negative_arm_advantage_rate": 0.8682029177718833,
+            "negative_arm_advantages": 10474,
+            "positive_arm_advantage_rate": 0.11629641909814324,
+            "positive_arm_advantages": 1403,
+            "roots": 758,
+            "target_maximum": 156,
+            "target_mean": -25.89174403183024,
+            "target_minimum": -232,
+            "target_standard_deviation": 26.71146518177713,
+            "wait_roots": 430,
+            "zero_arm_advantages": 187
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.921875,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 56.8125,
+              "gold_adaptive": 36.5,
+              "legend_balanced": 41.5,
+              "mybot": 28.125,
+              "norx_native_three": 38.75,
+              "resident": 27.625,
+              "script_boss": 41.3125,
+              "silver_boss": 34.1875
+            },
+            "first_boundary_oracle_mean_gain": 30.96875,
+            "intervention_rate": 0.875,
+            "later_boundary_increment": 7.1328125,
+            "mean_margin_gain": 38.1015625,
+            "mean_opponent_score_delta": -13.828125,
+            "mean_own_score_gain": 24.2734375,
+            "mean_selected_boundary": 1.7857142857142858,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 16,
+              "1": 25,
+              "2": 22,
+              "3": 65
+            },
+            "strict_improvement_rate": 0.875,
+            "supported_tasks": 114,
+            "tasks": 128,
+            "worker_three_rate": 0.921875,
+            "worst_family": 27.625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 1,
+        "interpreted_label_rows": 11359,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 11359,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 17,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 30,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 689,
+            "supported_tasks": 120,
+            "task_support_rate": 0.9375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 42.06097922388505,
+              "b": 42.06097922388505
+            },
+            "unsupported_forced_control_tasks": 8
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 689,
+            "roots_per_map": 86.125
+          }
+        },
+        "start_seed": 9844144,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.5413642960812772,
+            "act_now_roots": 373,
+            "arms": 11359,
+            "best_now_mean": 26.294629898403482,
+            "negative_arm_advantage_rate": 0.8479619684831411,
+            "negative_arm_advantages": 9632,
+            "positive_arm_advantage_rate": 0.13363852451800334,
+            "positive_arm_advantages": 1518,
+            "roots": 689,
+            "target_maximum": 179,
+            "target_mean": -23.353816357073686,
+            "target_minimum": -326,
+            "target_standard_deviation": 27.788089564656936,
+            "wait_roots": 316,
+            "zero_arm_advantages": 209
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.84375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 46.4375,
+              "gold_adaptive": 52.9375,
+              "legend_balanced": 57.875,
+              "mybot": 44.6875,
+              "norx_native_three": 22.4375,
+              "resident": 25.625,
+              "script_boss": 41.0625,
+              "silver_boss": 34.3125
+            },
+            "first_boundary_oracle_mean_gain": 35.1953125,
+            "intervention_rate": 0.9296875,
+            "later_boundary_increment": 5.4765625,
+            "mean_margin_gain": 40.671875,
+            "mean_opponent_score_delta": -15.078125,
+            "mean_own_score_gain": 25.59375,
+            "mean_selected_boundary": 1.0252100840336134,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 9,
+              "1": 30,
+              "2": 6,
+              "3": 83
+            },
+            "strict_improvement_rate": 0.9296875,
+            "supported_tasks": 120,
+            "tasks": 128,
+            "worker_three_rate": 0.84375,
+            "worst_family": 22.4375
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 2,
+        "interpreted_label_rows": 6567,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "descriptive_unscaled_root_gate": false,
+          "details": {
+            "arms": 6567,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 18,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 1.1000000021965661e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 6,
+            "roots": 394,
+            "supported_tasks": 94,
+            "task_support_rate": 0.734375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 40.13831828187865,
+              "b": 40.13831828187865
+            },
+            "unsupported_forced_control_tasks": 34
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 394,
+            "roots_per_map": 49.25
+          }
+        },
+        "start_seed": 9844152,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.583756345177665,
+            "act_now_roots": 230,
+            "arms": 6567,
+            "best_now_mean": 24.604060913705585,
+            "negative_arm_advantage_rate": 0.8125475864169331,
+            "negative_arm_advantages": 5336,
+            "positive_arm_advantage_rate": 0.16841784680980662,
+            "positive_arm_advantages": 1106,
+            "roots": 394,
+            "target_maximum": 184,
+            "target_mean": -22.197654941373536,
+            "target_minimum": -270,
+            "target_standard_deviation": 30.464580616369513,
+            "wait_roots": 164,
+            "zero_arm_advantages": 125
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.8671875,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 38.3125,
+              "gold_adaptive": 40.9375,
+              "legend_balanced": 28.8125,
+              "mybot": 20.625,
+              "norx_native_three": 27.25,
+              "resident": 19.0625,
+              "script_boss": 30.0625,
+              "silver_boss": 21.0
+            },
+            "first_boundary_oracle_mean_gain": 23.3125,
+            "intervention_rate": 0.7265625,
+            "later_boundary_increment": 4.9453125,
+            "mean_margin_gain": 28.2578125,
+            "mean_opponent_score_delta": -10.234375,
+            "mean_own_score_gain": 18.0234375,
+            "mean_selected_boundary": 0.9139784946236559,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 35,
+              "1": 23,
+              "2": 4,
+              "3": 66
+            },
+            "strict_improvement_rate": 0.7265625,
+            "supported_tasks": 94,
+            "tasks": 128,
+            "worker_three_rate": 0.8671875,
+            "worst_family": 19.0625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": false,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": false
+        }
+      },
+      {
+        "block": 3,
+        "interpreted_label_rows": 13675,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 13675,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 20,
+            "maximum_paired_gain_error": 1.0000000028043132e-07,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 836,
+            "supported_tasks": 126,
+            "task_support_rate": 0.984375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 19.014924930831064,
+              "b": 19.014924930831064
+            },
+            "unsupported_forced_control_tasks": 2
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 836,
+            "roots_per_map": 104.5
+          }
+        },
+        "start_seed": 9844160,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4748803827751196,
+            "act_now_roots": 397,
+            "arms": 13675,
+            "best_now_mean": 23.572966507177032,
+            "negative_arm_advantage_rate": 0.8708592321755028,
+            "negative_arm_advantages": 11909,
+            "positive_arm_advantage_rate": 0.11385740402193785,
+            "positive_arm_advantages": 1557,
+            "roots": 836,
+            "target_maximum": 172,
+            "target_mean": -25.276489945155394,
+            "target_minimum": -249,
+            "target_standard_deviation": 25.986447869446703,
+            "wait_roots": 439,
+            "zero_arm_advantages": 209
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.921875,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 48.375,
+              "gold_adaptive": 52.4375,
+              "legend_balanced": 52.625,
+              "mybot": 35.375,
+              "norx_native_three": 57.9375,
+              "resident": 26.8125,
+              "script_boss": 44.4375,
+              "silver_boss": 35.75
+            },
+            "first_boundary_oracle_mean_gain": 36.2890625,
+            "intervention_rate": 0.9765625,
+            "later_boundary_increment": 7.9296875,
+            "mean_margin_gain": 44.21875,
+            "mean_opponent_score_delta": -16.890625,
+            "mean_own_score_gain": 27.328125,
+            "mean_selected_boundary": 1.568,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 3,
+              "1": 31,
+              "2": 14,
+              "3": 80
+            },
+            "strict_improvement_rate": 0.9765625,
+            "supported_tasks": 126,
+            "tasks": 128,
+            "worker_three_rate": 0.921875,
+            "worst_family": 26.8125
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 4,
+        "interpreted_label_rows": 10195,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 10195,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 17,
+            "maximum_paired_gain_error": 1.1000000021965661e-07,
+            "maximum_proposals_per_root": 25,
+            "maximum_reward_identity_error": 2.0999999961190952e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 620,
+            "supported_tasks": 116,
+            "task_support_rate": 0.90625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 25.162065226483993,
+              "b": 25.162065226483993
+            },
+            "unsupported_forced_control_tasks": 12
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 620,
+            "roots_per_map": 77.5
+          }
+        },
+        "start_seed": 9844168,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.5016129032258064,
+            "act_now_roots": 311,
+            "arms": 10195,
+            "best_now_mean": 20.73548387096774,
+            "negative_arm_advantage_rate": 0.8569887199607651,
+            "negative_arm_advantages": 8737,
+            "positive_arm_advantage_rate": 0.1251593918587543,
+            "positive_arm_advantages": 1276,
+            "roots": 620,
+            "target_maximum": 120,
+            "target_mean": -21.99460519862678,
+            "target_minimum": -299,
+            "target_standard_deviation": 25.483812291239655,
+            "wait_roots": 309,
+            "zero_arm_advantages": 182
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.8984375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 36.8125,
+              "gold_adaptive": 46.6875,
+              "legend_balanced": 33.75,
+              "mybot": 20.3125,
+              "norx_native_three": 36.3125,
+              "resident": 22.5625,
+              "script_boss": 37.5625,
+              "silver_boss": 30.3125
+            },
+            "first_boundary_oracle_mean_gain": 27.9140625,
+            "intervention_rate": 0.859375,
+            "later_boundary_increment": 5.125,
+            "mean_margin_gain": 33.0390625,
+            "mean_opponent_score_delta": -11.125,
+            "mean_own_score_gain": 21.9140625,
+            "mean_selected_boundary": 1.2272727272727273,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 18,
+              "1": 20,
+              "2": 17,
+              "3": 73
+            },
+            "strict_improvement_rate": 0.859375,
+            "supported_tasks": 116,
+            "tasks": 128,
+            "worker_three_rate": 0.8984375,
+            "worst_family": 20.3125
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 5,
+        "interpreted_label_rows": 12879,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 12879,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 20,
+            "maximum_paired_gain_error": 8.999999989711682e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 5,
+            "roots": 785,
+            "supported_tasks": 120,
+            "task_support_rate": 0.9375,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 22.210310139465992,
+              "b": 22.210310139465992
+            },
+            "unsupported_forced_control_tasks": 8
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 785,
+            "roots_per_map": 98.125
+          }
+        },
+        "start_seed": 9844176,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4929936305732484,
+            "act_now_roots": 387,
+            "arms": 12879,
+            "best_now_mean": 21.19235668789809,
+            "negative_arm_advantage_rate": 0.8673810078422238,
+            "negative_arm_advantages": 11171,
+            "positive_arm_advantage_rate": 0.11444987964904108,
+            "positive_arm_advantages": 1474,
+            "roots": 785,
+            "target_maximum": 98,
+            "target_mean": -24.970649895178198,
+            "target_minimum": -284,
+            "target_standard_deviation": 26.337676085545382,
+            "wait_roots": 398,
+            "zero_arm_advantages": 234
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 37.9375,
+              "gold_adaptive": 49.0625,
+              "legend_balanced": 30.125,
+              "mybot": 45.625,
+              "norx_native_three": 25.1875,
+              "resident": 25.0625,
+              "script_boss": 40.6875,
+              "silver_boss": 38.875
+            },
+            "first_boundary_oracle_mean_gain": 30.015625,
+            "intervention_rate": 0.9296875,
+            "later_boundary_increment": 6.5546875,
+            "mean_margin_gain": 36.5703125,
+            "mean_opponent_score_delta": -11.0546875,
+            "mean_own_score_gain": 25.515625,
+            "mean_selected_boundary": 1.2436974789915967,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 9,
+              "1": 25,
+              "2": 12,
+              "3": 82
+            },
+            "strict_improvement_rate": 0.9296875,
+            "supported_tasks": 120,
+            "tasks": 128,
+            "worker_three_rate": 0.9140625,
+            "worst_family": 25.0625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 6,
+        "interpreted_label_rows": 9018,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": false,
+          "descriptive_unscaled_root_gate": false,
+          "details": {
+            "arms": 9018,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 18,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 29,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 10,
+            "roots": 552,
+            "supported_tasks": 109,
+            "task_support_rate": 0.8515625,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 28.313526809055865,
+              "b": 28.313526809055865
+            },
+            "unsupported_forced_control_tasks": 19
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 552,
+            "roots_per_map": 69.0
+          }
+        },
+        "start_seed": 9844184,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.5036231884057971,
+            "act_now_roots": 278,
+            "arms": 9018,
+            "best_now_mean": 23.6231884057971,
+            "negative_arm_advantage_rate": 0.8356620093147039,
+            "negative_arm_advantages": 7536,
+            "positive_arm_advantage_rate": 0.1461521401641162,
+            "positive_arm_advantages": 1318,
+            "roots": 552,
+            "target_maximum": 120,
+            "target_mean": -21.103127079174982,
+            "target_minimum": -222,
+            "target_standard_deviation": 25.467067632550147,
+            "wait_roots": 274,
+            "zero_arm_advantages": 164
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.9140625,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 45.75,
+              "gold_adaptive": 62.9375,
+              "legend_balanced": 35.6875,
+              "mybot": 19.0,
+              "norx_native_three": 18.875,
+              "resident": 21.4375,
+              "script_boss": 33.6875,
+              "silver_boss": 32.9375
+            },
+            "first_boundary_oracle_mean_gain": 28.46875,
+            "intervention_rate": 0.84375,
+            "later_boundary_increment": 5.3203125,
+            "mean_margin_gain": 33.7890625,
+            "mean_opponent_score_delta": -9.515625,
+            "mean_own_score_gain": 24.2734375,
+            "mean_selected_boundary": 1.2037037037037037,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 20,
+              "1": 23,
+              "2": 18,
+              "3": 67
+            },
+            "strict_improvement_rate": 0.84375,
+            "supported_tasks": 109,
+            "tasks": 128,
+            "worker_three_rate": 0.9140625,
+            "worst_family": 18.875
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      },
+      {
+        "block": 7,
+        "interpreted_label_rows": 12712,
+        "maps": 8,
+        "mechanics": {
+          "descriptive_support_gate": true,
+          "descriptive_unscaled_root_gate": true,
+          "details": {
+            "arms": 12712,
+            "baselines": 128,
+            "error_samples": {
+              "accounting": [],
+              "feature": [],
+              "paired": [],
+              "root": []
+            },
+            "expert_bank_hashes": [
+              "10190021983138339114"
+            ],
+            "maximum_boundaries_per_task": 22,
+            "maximum_paired_gain_error": 6.000000007944095e-08,
+            "maximum_proposals_per_root": 27,
+            "maximum_reward_identity_error": 2.3000000037853852e-07,
+            "mechanical_failures": {
+              "deposit_prediction_failures": 0,
+              "invalid_direct_commands": 0,
+              "provenance_failures": 0
+            },
+            "minimum_boundaries_per_task": 0,
+            "minimum_proposals_per_root": 4,
+            "roots": 783,
+            "supported_tasks": 122,
+            "task_support_rate": 0.953125,
+            "tasks": 128,
+            "throughput_arms_per_second": {
+              "a": 28.956966820891456,
+              "b": 28.956966820891456
+            },
+            "unsupported_forced_control_tasks": 6
+          },
+          "gates": {
+            "at_least_37_5_roots_per_map": true,
+            "at_least_6000_arms": true,
+            "both_runs_at_least_12_arms_per_second": true,
+            "complete_unique_arm_grid": true,
+            "d112_full_panel_reproducibility_inherited": true,
+            "feature_schema_and_finiteness": true,
+            "frozen_inputs_exact": true,
+            "nonzero_control_relative_actions": true,
+            "paired_gain_exact": true,
+            "prescribed_baseline_grid": true,
+            "reward_identity_below_1e_4": true,
+            "single_expert_bank_hash": true,
+            "single_intervention_accounting": true,
+            "zero_boundary_is_valid_forced_control": true,
+            "zero_mechanical_failures": true
+          },
+          "pass": true,
+          "root_density": {
+            "maps": 8,
+            "required_roots": 300,
+            "required_roots_per_map": 37.5,
+            "roots": 783,
+            "roots_per_map": 97.875
+          }
+        },
+        "start_seed": 9844192,
+        "teacher": {
+          "backward_dp": {
+            "act_now_root_rate": 0.4623243933588761,
+            "act_now_roots": 362,
+            "arms": 12712,
+            "best_now_mean": 21.274584929757342,
+            "negative_arm_advantage_rate": 0.8737413467589679,
+            "negative_arm_advantages": 11107,
+            "positive_arm_advantage_rate": 0.1105254877281309,
+            "positive_arm_advantages": 1405,
+            "roots": 783,
+            "target_maximum": 162,
+            "target_mean": -26.149701069855254,
+            "target_minimum": -234,
+            "target_standard_deviation": 26.86515068814139,
+            "wait_roots": 421,
+            "zero_arm_advantages": 200
+          },
+          "oracle": {
+            "control_worker_three_rate": 0.8984375,
+            "crop_rate": 1.0,
+            "family_mean_margin_gain": {
+              "compact_gold": 36.375,
+              "gold_adaptive": 61.4375,
+              "legend_balanced": 58.5,
+              "mybot": 23.625,
+              "norx_native_three": 27.6875,
+              "resident": 39.3125,
+              "script_boss": 48.8125,
+              "silver_boss": 41.625
+            },
+            "first_boundary_oracle_mean_gain": 34.9375,
+            "intervention_rate": 0.953125,
+            "later_boundary_increment": 7.234375,
+            "mean_margin_gain": 42.171875,
+            "mean_opponent_score_delta": -17.5703125,
+            "mean_own_score_gain": 24.6015625,
+            "mean_selected_boundary": 1.4098360655737705,
+            "positive_families": 8,
+            "selected_kind_counts": {
+              "0": 6,
+              "1": 21,
+              "2": 19,
+              "3": 82
+            },
+            "strict_improvement_rate": 0.953125,
+            "supported_tasks": 122,
+            "tasks": 128,
+            "worker_three_rate": 0.8984375,
+            "worst_family": 23.625
+          },
+          "safety_gates": {
+            "oracle_crop_100pct": true,
+            "oracle_worker_three_within_5pp": true
+          },
+          "safety_pass": true,
+          "signal_gates": {
+            "act_now_roots_5_to_90pct": true,
+            "at_least_seven_positive_families": true,
+            "negative_arm_targets_at_least_40pct": true,
+            "oracle_mean_at_least_20": true,
+            "oracle_strict_at_least_75pct": true,
+            "own_nonnegative_or_opponent_nonpositive": true,
+            "positive_arm_targets_1_to_50pct": true,
+            "target_stddev_at_least_5": true,
+            "worst_family_at_least_8": true
+          },
+          "signal_pass": true
+        }
+      }
+    ],
+    "coverage": {
+      "roots_by_eight_map_shard": [
+        758,
+        689,
+        394,
+        836,
+        620,
+        785,
+        552,
+        783
+      ],
+      "roots_by_sixteen_map_block": {
+        "0": 1447,
+        "1": 1230,
+        "2": 1405,
+        "3": 1335
+      },
+      "total_arms": 88469,
+      "total_roots": 5417
+    },
+    "mechanics_gates": {
+      "all_eight_shards_present": true,
+      "all_inherited_nonroot_and_scaled_root_gates_pass": true,
+      "best_one_for_all_1024_tasks": true,
+      "every_eight_map_shard_at_least_300_roots": true,
+      "every_sixteen_map_block_at_least_600_roots": true,
+      "exact_prescribed_block_order": true,
+      "exactly_1024_unique_baselines": true,
+      "full_corpus_at_least_4800_roots": true,
+      "full_corpus_at_least_80000_arms": true
+    },
+    "mechanics_pass": true,
+    "pass": true,
+    "teacher": {
+      "backward_dp": {
+        "act_now_root_rate": 0.49215432896437145,
+        "act_now_roots": 2666,
+        "arms": 88469,
+        "best_now_mean": 22.970278752076794,
+        "negative_arm_advantage_rate": 0.85795024245781,
+        "negative_arm_advantages": 75902,
+        "positive_arm_advantage_rate": 0.12498163198408482,
+        "positive_arm_advantages": 11057,
+        "roots": 5417,
+        "target_maximum": 184,
+        "target_mean": -24.16232804711255,
+        "target_minimum": -326,
+        "target_standard_deviation": 26.80449425070409,
+        "wait_roots": 2751,
+        "zero_arm_advantages": 1510
+      },
+      "oracle": {
+        "control_worker_three_rate": 0.8974609375,
+        "crop_rate": 1.0,
+        "family_mean_margin_gain": {
+          "compact_gold": 43.3515625,
+          "gold_adaptive": 50.3671875,
+          "legend_balanced": 42.359375,
+          "mybot": 29.671875,
+          "norx_native_three": 31.8046875,
+          "resident": 25.9375,
+          "script_boss": 39.703125,
+          "silver_boss": 33.625
+        },
+        "first_boundary_oracle_mean_gain": 30.8876953125,
+        "intervention_rate": 0.88671875,
+        "later_boundary_increment": 6.21484375,
+        "mean_margin_gain": 37.1025390625,
+        "mean_opponent_score_delta": -13.162109375,
+        "mean_own_score_gain": 23.9404296875,
+        "mean_selected_boundary": 1.3083700440528634,
+        "positive_families": 8,
+        "selected_kind_counts": {
+          "0": 116,
+          "1": 198,
+          "2": 112,
+          "3": 598
+        },
+        "strict_improvement_rate": 0.88671875,
+        "supported_tasks": 921,
+        "tasks": 1024,
+        "worker_three_rate": 0.8974609375,
+        "worst_family": 25.9375
+      },
+      "safety_gates": {
+        "oracle_crop_100pct": true,
+        "oracle_worker_three_within_5pp": true
+      },
+      "safety_pass": true,
+      "signal_gates": {
+        "act_now_roots_5_to_90pct": true,
+        "at_least_seven_positive_families": true,
+        "negative_arm_targets_at_least_40pct": true,
+        "oracle_mean_at_least_20": true,
+        "oracle_strict_at_least_75pct": true,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "positive_arm_targets_1_to_50pct": true,
+        "target_stddev_at_least_5": true,
+        "worst_family_at_least_8": true
+      },
+      "signal_pass": true
+    }
+  },
+  "full_pass": true,
+  "lock": {
+    "manifest_sha256": "f91bae25bd8755bd1ad291896a81c3882d65e3eb0809887360a170cffba263bc",
+    "mismatches": {},
+    "pass": true
+  },
+  "mechanics_pass": true,
+  "operation": {
+    "operation_id": "ea0a020c-c8eb5ead-42e03e8-59b2f479",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d148a_priority_joint_teacher_9844136_9844199_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 202194
+  },
+  "parent_d148a": {
+    "decision": "repair_d148_infrastructure_or_mechanics_only",
+    "path": "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-result.json",
+    "sha256": "11b0572366c5c0e253ad027bf51e79f74e7893aaf0f678d3bec069143ba86611"
+  },
+  "population": {
+    "control_parity_errors": 0,
+    "duplicate_shard_task_indices": 0,
+    "group_errors": 0,
+    "mechanical_failures": {
+      "deposit_prediction_failures": 0,
+      "invalid_direct_commands": 0,
+      "provenance_failures": 0
+    },
+    "pass": true,
+    "rows": 66560,
+    "schema_exact": true,
+    "semantic_errors": 0,
+    "tasks": 1024,
+    "tasks_with_executed_pair": 909,
+    "unique_shard_task_indices": 66560
+  },
+  "protocol": "data/analysis/live-agent-6553250/d148b-priority-joint-support-semantics-protocol-2026-07-22.md",
+  "repair": {
+    "removed_absolute_gate": "at_least_600_roots",
+    "removed_descriptive_support_gate": "supported_tasks_at_least_90pct",
+    "replacement_root_density": 37.5,
+    "reproduction_gates": {
+      "candidate_validation_reproduced_exactly": true,
+      "d148a_infrastructure_passed": true,
+      "population_reproduced_exactly": true,
+      "selected_replays_reproduced_exactly": true
+    }
+  },
+  "schema": "troll-farm-d148b-priority-joint-support-semantics-v1",
+  "selected_replays": {
+    "failures": {},
+    "manifest_rows": 909,
+    "manifest_schema_exact": true,
+    "pass": true,
+    "replay_rows": 909,
+    "replay_schema_exact": true
+  },
+  "targets": {
+    "active_rows": 388,
+    "bytes": 74109,
+    "disposition": "created",
+    "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d148a-joint-trajectory-targets-9844136-9844199.tsv",
+    "rows": 909,
+    "sha256": "525e53b9a43e84eafed81592254ed84a5853586137ed3335400a5d83dc642dad"
+  },
+  "transfer": {
+    "aggregate": {
+      "combined_worker_three_rate": 0.8974609375,
+      "family_mean_increment": {
+        "compact_gold": 3.2734375,
+        "gold_adaptive": 4.1875,
+        "legend_balanced": 5.046875,
+        "mybot": 2.8046875,
+        "norx_native_three": 3.4140625,
+        "resident": 3.0234375,
+        "script_boss": 5.9921875,
+        "silver_boss": 5.140625
+      },
+      "mean_increment_beyond_one_use": 4.1103515625,
+      "mean_opponent_score_increment": -1.580078125,
+      "mean_own_score_increment": 2.5302734375,
+      "new_crop_failures": 0,
+      "one_use_worker_three_rate": 0.8974609375,
+      "positive_families": 8,
+      "strict_increment_rate": 0.37890625,
+      "strict_increment_tasks": 388,
+      "tasks": 1024,
+      "worst_family_increment": 2.8046875
+    },
+    "blocks": {
+      "0": {
+        "combined_worker_three_rate": 0.8828125,
+        "mean_increment_beyond_one_use": 4.59375,
+        "mean_opponent_score_increment": -1.91015625,
+        "mean_own_score_increment": 2.68359375,
+        "new_crop_failures": 0,
+        "one_use_worker_three_rate": 0.8828125,
+        "strict_increment_rate": 0.42578125,
+        "strict_increment_tasks": 109,
+        "tasks": 256
+      },
+      "1": {
+        "combined_worker_three_rate": 0.89453125,
+        "mean_increment_beyond_one_use": 3.75,
+        "mean_opponent_score_increment": -1.37109375,
+        "mean_own_score_increment": 2.37890625,
+        "new_crop_failures": 0,
+        "one_use_worker_three_rate": 0.89453125,
+        "strict_increment_rate": 0.33984375,
+        "strict_increment_tasks": 87,
+        "tasks": 256
+      },
+      "2": {
+        "combined_worker_three_rate": 0.90625,
+        "mean_increment_beyond_one_use": 4.3125,
+        "mean_opponent_score_increment": -1.921875,
+        "mean_own_score_increment": 2.390625,
+        "new_crop_failures": 0,
+        "one_use_worker_three_rate": 0.90625,
+        "strict_increment_rate": 0.38671875,
+        "strict_increment_tasks": 99,
+        "tasks": 256
+      },
+      "3": {
+        "combined_worker_three_rate": 0.90625,
+        "mean_increment_beyond_one_use": 3.78515625,
+        "mean_opponent_score_increment": -1.1171875,
+        "mean_own_score_increment": 2.66796875,
+        "new_crop_failures": 0,
+        "one_use_worker_three_rate": 0.90625,
+        "strict_increment_rate": 0.36328125,
+        "strict_increment_tasks": 93,
+        "tasks": 256
+      }
+    },
+    "gates": {
+      "all_four_blocks_positive_mean": true,
+      "at_least_six_positive_families": true,
+      "at_least_three_blocks_strict_15pct": true,
+      "mean_increment_at_least_2_5": true,
+      "no_new_crop_failures": true,
+      "strict_increment_at_least_20pct": true,
+      "worker_three_within_5pp": true,
+      "worst_family_nonnegative": true
+    },
+    "pass": true
+  }
+}

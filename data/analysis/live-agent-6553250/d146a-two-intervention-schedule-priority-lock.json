@@ -1,0 +1,24 @@
+{
+  "schema": "troll-farm-d146a-two-intervention-schedule-priority-lock-v1",
+  "frozen_at": "2026-07-22-after-d145-unsaturated-decision-before-schedule-subset-scoring",
+  "budgets_per_task": [32, 64],
+  "priority": [
+    "first-boundary-zero-and-gap-one",
+    "first-boundary-zero",
+    "gap-one",
+    "remaining"
+  ],
+  "sha256": {
+    "cgauto/analyze_d146a_two_intervention_schedule_priority.py": "a44a0f99d76a00023968c7ef7dc0622e2697fdcb43226df29db5259a6c126dd4",
+    "tests/test_analyze_d146a_two_intervention_schedule_priority.py": "dbc23af8146a6215e6c63d771a863e4955740dc3d85f452bae22aea2c8c56c0d",
+    "data/analysis/live-agent-6553250/d146a-two-intervention-schedule-priority-protocol-2026-07-22.md": "7d7ab3341aefe4443bd87cb76977918b30c457aeb76861946de29dde75997285",
+    "data/analysis/live-agent-6553250/d145a-two-intervention-population-decomposition-result.json": "25ce7d1ab5ef1819ffe5e8ae3b4b577f5c4d20c78108e3cbadd2b067e511e37d",
+    "data/analysis/live-agent-6553250/d145a-two-intervention-population-decomposition-lock.json": "024b297f3f360043441fd49ec844c6aafe62f578c56ab60029e8cad698d550d5",
+    "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-result.json": "0afef524f4f037dc8aa8e3603c5e549df7d799f09637562d51ca21f7b17e61ae",
+    "cgauto/analyze_d145a_two_intervention_population_decomposition.py": "bdd23908b68a79c11addf73db01ccf475449ad22446c2f57d7ef6400175132c1",
+    "cgauto/yt_d144_two_intervention_mc.py": "f36acf9c5ca4254d44f65606db8f346f936d54e9e026653293f48f164e8fcaec",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "entrypoint_completed_utc": "2026-07-19T23:46:10.689668+00:00",
+  "entrypoint_started_utc": "2026-07-19T23:43:36.084381+00:00",
+  "entrypoint_wall_seconds_before_upload": 154.60940573364496,
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "numpy_version": "2.2.6",
+  "operation_role": "throughput_benchmark_only",
+  "payload_archive_sha256": "a5f977f3b603139e079d4c0cc1ab6d7461bdf11274ea28c8bcd940ea3c7f28f7",
+  "payload_extract_seconds": 0.12736787647008896,
+  "payload_files": 11,
+  "payload_manifest_sha256": "059545026d65a76a4b6627ccecad1093c3e2dfc2434e1bae8aa12888615b4f23",
+  "run_name": "seed-reacquisition-d11-ppo-benchmark-yt",
+  "runtime_setup_seconds": 45.87565317656845,
+  "torch_version": "2.4.1+cu121",
+  "training_summary": {
+    "aggregate_host_cpu_percent": 0.7804945136721221,
+    "elapsed_cpu_seconds": 102.265393408,
+    "elapsed_wall_seconds": 102.36438206862658,
+    "evaluations": [
+      {
+        "by_height": {
+          "10": {
+            "episodes": 125,
+            "success_rate": 0.928,
+            "successes": 116
+          },
+          "11": {
+            "episodes": 123,
+            "success_rate": 0.975609756097561,
+            "successes": 120
+          },
+          "8": {
+            "episodes": 127,
+            "success_rate": 0.9606299212598425,
+            "successes": 122
+          },
+          "9": {
+            "episodes": 125,
+            "success_rate": 0.992,
+            "successes": 124
+          }
+        },
+        "by_recipe": {
+          "0": {
+            "episodes": 53,
+            "name": "cheap-planter",
+            "success_rate": 1.0,
+            "successes": 53,
+            "target": [
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "1": {
+            "episodes": 63,
+            "name": "compact-farmer",
+            "success_rate": 1.0,
+            "successes": 63,
+            "target": [
+              1,
+              2,
+              1,
+              1
+            ]
+          },
+          "2": {
+            "episodes": 60,
+            "name": "balanced-producer",
+            "success_rate": 0.9666666666666667,
+            "successes": 58,
+            "target": [
+              2,
+              2,
+              1,
+              1
+            ]
+          },
+          "3": {
+            "episodes": 66,
+            "name": "harvest-producer",
+            "success_rate": 0.9696969696969697,
+            "successes": 64,
+            "target": [
+              2,
+              2,
+              2,
+              1
+            ]
+          },
+          "4": {
+            "episodes": 75,
+            "name": "level1-anchor",
+            "success_rate": 0.9733333333333334,
+            "successes": 73,
+            "target": [
+              1,
+              3,
+              0,
+              1
+            ]
+          },
+          "5": {
+            "episodes": 71,
+            "name": "lean-chopper",
+            "success_rate": 0.9859154929577465,
+            "successes": 70,
+            "target": [
+              1,
+              2,
+              0,
+              2
+            ]
+          },
+          "6": {
+            "episodes": 51,
+            "name": "standard-chopper",
+            "success_rate": 0.9607843137254902,
+            "successes": 49,
+            "target": [
+              2,
+              2,
+              0,
+              2
+            ]
+          },
+          "7": {
+            "episodes": 61,
+            "name": "hybrid-chopper",
+            "success_rate": 0.8524590163934426,
+            "successes": 52,
+            "target": [
+              2,
+              3,
+              1,
+              2
+            ]
+          }
+        },
+        "created_crop_rate": 0.974,
+        "elapsed_seconds": 6.496137249283493,
+        "episodes": 500,
+        "exact_seed_interval": true,
+        "gate": "L5A",
+        "gate_passed": true,
+        "global_step": 1000000,
+        "height_success_floor": 0.928,
+        "level5_mechanism_gate": true,
+        "material_opponent_rate": 1.0,
+        "max_opponent_crop_destructions": 3,
+        "max_opponent_workers": 3,
+        "mean_opponent_created_crops": 1.314,
+        "mean_opponent_crop_destructions": 2.932,
+        "mean_opponent_funded_training_events": 1.982,
+        "mean_opponent_renewable_harvests": 17.134,
+        "mean_opponent_score": 107.978,
+        "mean_opponent_second_worker_productive_actions": 57.928,
+        "mean_opponent_third_worker_productive_actions": 18.938,
+        "median_opponent_score": 112.0,
+        "median_opponent_third_worker_training_turn": 70.0,
+        "median_opponent_training_turn": 16.0,
+        "median_score_gain": 71.0,
+        "median_success_turn": 180.0,
+        "median_training_turn": 14.0,
+        "nontrivial_success_rate": 0.9425675675675675,
+        "opponent_crop_creation_rate": 1.0,
+        "opponent_crop_destruction_at_least_three_rate": 0.958,
+        "opponent_crop_destruction_at_least_two_rate": 0.978,
+        "opponent_crop_destruction_rate": 0.996,
+        "opponent_funding_receipt_rate": 1.0,
+        "opponent_multiworker_rate": 1.0,
+        "opponent_renewable_harvest_rate": 0.91,
+        "opponent_second_worker_productive_rate": 1.0,
+        "opponent_third_worker_productive_rate": 0.946,
+        "opponent_third_worker_training_rate": 0.982,
+        "opponent_training_rate": 1.0,
+        "paired_teacher_median_turn_delta": 0.0,
+        "path": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-ppo-benchmark-yt-l5a-evaluation.json",
+        "random_success_rate": 0.0,
+        "recipe_success_floor": 0.8524590163934426,
+        "renewable_harvest_rate": 0.972,
+        "required_score_gain": 12,
+        "seed_base": 6500,
+        "seed_stop_exclusive": 7000,
+        "success_rate": 0.964,
+        "successes": 482,
+        "target": null,
+        "teacher_success_rate": 0.994,
+        "third_trained_with_fresh_funding_receipt_rate": 1.0,
+        "trained_with_funding_receipt_rate": 1.0,
+        "transitions": 193100,
+        "transitions_per_second": 29725.35717611238
+      }
+    ],
+    "global_step": 1000000,
+    "overall_transitions_per_second": 9769.022972556853,
+    "stage_a_passed": true,
+    "stage_b_passed": null
+  },
+  "training_wall_seconds": 106.32112156134099
+}

@@ -1,0 +1,63 @@
+{
+  "clone_checkpoint": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-bc.pt",
+  "clone_checkpoint_sha256": "0d89846065a7c87e6248f66bd2cf2a63d5e90955fc557a9684ae56657fe6a343",
+  "created_utc": "2026-07-19T23:41:46.586558+00:00",
+  "files": [
+    {
+      "bytes": 10346,
+      "path": "cgauto/rl_level1_env.py",
+      "sha256": "815acc2a0d34bbe71e55ddcb7cf1cc1db97ffa0eace602d9a79a12a2c23feced"
+    },
+    {
+      "bytes": 13193,
+      "path": "cgauto/rl_level2_env.py",
+      "sha256": "e42affed48b8c9f3d8eb077664c879e10a8e71101eeb2ca2211c7d7582c3901c"
+    },
+    {
+      "bytes": 12340,
+      "path": "cgauto/rl_level3_env.py",
+      "sha256": "ab09fa9290456486897a2246c3db4c317d9bd4447f1e519356f020741161ae3b"
+    },
+    {
+      "bytes": 14741,
+      "path": "cgauto/rl_level4_env.py",
+      "sha256": "7b248685e8e70ad0aa0745d963f41a5480dd2293b5c4bf17914883bbef821087"
+    },
+    {
+      "bytes": 28143,
+      "path": "cgauto/rl_level5_env.py",
+      "sha256": "29328f0b614c6d57ccee4bae2a962815ec2d9cc281eaabcc9b34943a90d1331c"
+    },
+    {
+      "bytes": 62423,
+      "path": "cgauto/train_level1_ppo.py",
+      "sha256": "1a855753a145a764d6c3c7d526335c88f5773113f8c32e98376708faed2baf92"
+    },
+    {
+      "bytes": 13653976,
+      "path": "rust/target/release/libtroll_farm.so",
+      "sha256": "381ba5623afb13d77fed09a80dbc2fabc0dd483781a56e9f3c65477783a1dab7"
+    },
+    {
+      "bytes": 7919,
+      "path": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-learning-protocol-2026-07-20.md",
+      "sha256": "48922c1f7fe4d20936f3d6c1e8aed6b6040c9eb900e231d109fd931057fc368b"
+    },
+    {
+      "bytes": 433519,
+      "path": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-learning-teacher-6500-6999.json",
+      "sha256": "0089e4b1be5d8ef1e9fe72736c28426a1889c6b5ad8f2f08efea22757a3cbf4e"
+    },
+    {
+      "bytes": 434201,
+      "path": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-learning-random-6500-6999.json",
+      "sha256": "db6d3edd059ea8c33fcee7883c93955b25b8a34518bf9b7101220db5a00469b8"
+    },
+    {
+      "bytes": 146106,
+      "path": "data/analysis/live-agent-6553250/curriculum-level5-seed-reacquisition-d11-bc-weights.npz",
+      "sha256": "182a7fd6e738070a38c8f31d617824be851f099d9bc7071d6720dbedaa34cd99"
+    }
+  ],
+  "purpose": "D11 one-million-transition PPO local/YT throughput benchmark"
+}

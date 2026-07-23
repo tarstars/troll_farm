@@ -1,0 +1,1212 @@
+{
+  "generation": 3,
+  "integrity": {
+    "action_count_failures": 0,
+    "complete_grid": true,
+    "crop_failures": 0,
+    "duplicate_rows": 0,
+    "expected_rows": 2112,
+    "failure_totals": {
+      "boundary_failures": 0,
+      "deposit_prediction_failures": 0,
+      "finite_feature_failures": 0,
+      "finite_recurrent_failures": 0,
+      "invalid_direct_commands": 0,
+      "legal_mask_failures": 0,
+      "provenance_failures": 0
+    },
+    "family_failures": 0,
+    "maximum_reward_identity_error": 0.0,
+    "missing_rows": 0,
+    "parse_failures": 0,
+    "pass": true,
+    "rows": 2112,
+    "unexpected_rows": 0,
+    "unlocked_count_failures": 0
+  },
+  "labels": [
+    "l0000",
+    "l0046",
+    "l0042",
+    "l0031",
+    "l0035",
+    "l0002",
+    "l0044",
+    "l0043",
+    "l0056",
+    "l0057",
+    "l0058",
+    "l0059",
+    "l0060",
+    "l0061",
+    "l0062",
+    "l0063",
+    "l0064",
+    "l0065",
+    "l0066",
+    "l0067",
+    "l0068",
+    "l0069",
+    "l0070",
+    "l0071",
+    "l0072",
+    "l0073",
+    "l0074",
+    "l0075",
+    "l0076",
+    "l0077",
+    "l0078",
+    "l0079"
+  ],
+  "lineage": {
+    "l0000": {
+      "birth_generation": 1,
+      "founder": "l0000",
+      "parent": null
+    },
+    "l0002": {
+      "birth_generation": 1,
+      "founder": "l0002",
+      "parent": null
+    },
+    "l0031": {
+      "birth_generation": 1,
+      "founder": "l0031",
+      "parent": null
+    },
+    "l0035": {
+      "birth_generation": 2,
+      "founder": "l0031",
+      "parent": "l0031"
+    },
+    "l0042": {
+      "birth_generation": 2,
+      "founder": "l0012",
+      "parent": "l0012"
+    },
+    "l0043": {
+      "birth_generation": 2,
+      "founder": "l0012",
+      "parent": "l0012"
+    },
+    "l0044": {
+      "birth_generation": 2,
+      "founder": "l0002",
+      "parent": "l0002"
+    },
+    "l0046": {
+      "birth_generation": 2,
+      "founder": "l0002",
+      "parent": "l0002"
+    },
+    "l0056": {
+      "birth_generation": 3,
+      "founder": "l0000",
+      "parent": "l0000"
+    },
+    "l0057": {
+      "birth_generation": 3,
+      "founder": "l0000",
+      "parent": "l0000"
+    },
+    "l0058": {
+      "birth_generation": 3,
+      "founder": "l0000",
+      "parent": "l0000"
+    },
+    "l0059": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0046"
+    },
+    "l0060": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0046"
+    },
+    "l0061": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0046"
+    },
+    "l0062": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0042"
+    },
+    "l0063": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0042"
+    },
+    "l0064": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0042"
+    },
+    "l0065": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0031"
+    },
+    "l0066": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0031"
+    },
+    "l0067": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0031"
+    },
+    "l0068": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0035"
+    },
+    "l0069": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0035"
+    },
+    "l0070": {
+      "birth_generation": 3,
+      "founder": "l0031",
+      "parent": "l0035"
+    },
+    "l0071": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0002"
+    },
+    "l0072": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0002"
+    },
+    "l0073": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0002"
+    },
+    "l0074": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0044"
+    },
+    "l0075": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0044"
+    },
+    "l0076": {
+      "birth_generation": 3,
+      "founder": "l0002",
+      "parent": "l0044"
+    },
+    "l0077": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0043"
+    },
+    "l0078": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0043"
+    },
+    "l0079": {
+      "birth_generation": 3,
+      "founder": "l0012",
+      "parent": "l0043"
+    }
+  },
+  "objectives": {
+    "l0000": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": 0.0,
+      "mean_margin_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "minimum_opponent_family_mean_delta": 0.0,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 0.0,
+        "silver_boss": 0.0
+      },
+      "p10_margin_delta": 0.0,
+      "strict_improvement_rate": 0.0,
+      "unlocked_action_counts": [
+        4491,
+        0,
+        0,
+        0
+      ],
+      "unlocked_decisions": 4491,
+      "worker_three_rate": 0.84375
+    },
+    "l0002": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -22.4609375,
+      "mean_margin_delta": 6.71875,
+      "mean_own_score_delta": -14.109375,
+      "minimum_opponent_family_mean_delta": -17.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -6.625,
+        "gold_adaptive": 2.125,
+        "legend_balanced": 59.75,
+        "mybot": 28.25,
+        "norx_native_three": 1.875,
+        "resident": 0.0,
+        "script_boss": -17.25,
+        "silver_boss": -14.375
+      },
+      "p10_margin_delta": -54.0,
+      "strict_improvement_rate": 0.390625,
+      "unlocked_action_counts": [
+        2336,
+        10,
+        88,
+        1079
+      ],
+      "unlocked_decisions": 3513,
+      "worker_three_rate": 0.84375
+    },
+    "l0031": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -26.5078125,
+      "mean_margin_delta": -2.390625,
+      "mean_own_score_delta": -6.984375,
+      "minimum_opponent_family_mean_delta": -23.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -23.25,
+        "gold_adaptive": -6.75,
+        "legend_balanced": 7.25,
+        "mybot": 1.375,
+        "norx_native_three": -5.0,
+        "resident": 10.5,
+        "script_boss": 10.625,
+        "silver_boss": -13.875
+      },
+      "p10_margin_delta": -36.0,
+      "strict_improvement_rate": 0.375,
+      "unlocked_action_counts": [
+        2019,
+        1109,
+        673,
+        662
+      ],
+      "unlocked_decisions": 4463,
+      "worker_three_rate": 0.84375
+    },
+    "l0035": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -12.8828125,
+      "mean_margin_delta": -0.921875,
+      "mean_own_score_delta": -1.796875,
+      "minimum_opponent_family_mean_delta": -9.875,
+      "opponent_family_mean_delta": {
+        "compact_gold": 3.625,
+        "gold_adaptive": -5.375,
+        "legend_balanced": -9.875,
+        "mybot": -0.5,
+        "norx_native_three": -1.75,
+        "resident": 12.25,
+        "script_boss": 2.875,
+        "silver_boss": -8.625
+      },
+      "p10_margin_delta": -24.499999999999996,
+      "strict_improvement_rate": 0.390625,
+      "unlocked_action_counts": [
+        2534,
+        1268,
+        663,
+        317
+      ],
+      "unlocked_decisions": 4782,
+      "worker_three_rate": 0.84375
+    },
+    "l0042": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -10.95625,
+      "mean_margin_delta": -2.375,
+      "mean_own_score_delta": -5.1875,
+      "minimum_opponent_family_mean_delta": -6.625,
+      "opponent_family_mean_delta": {
+        "compact_gold": -6.625,
+        "gold_adaptive": -4.875,
+        "legend_balanced": -1.625,
+        "mybot": 0.0,
+        "norx_native_three": -1.375,
+        "resident": 0.0,
+        "script_boss": -1.25,
+        "silver_boss": -3.25
+      },
+      "p10_margin_delta": -10.7,
+      "strict_improvement_rate": 0.046875,
+      "unlocked_action_counts": [
+        4015,
+        59,
+        210,
+        71
+      ],
+      "unlocked_decisions": 4355,
+      "worker_three_rate": 0.84375
+    },
+    "l0043": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -9.5859375,
+      "mean_margin_delta": -2.25,
+      "mean_own_score_delta": -3.671875,
+      "minimum_opponent_family_mean_delta": -5.0,
+      "opponent_family_mean_delta": {
+        "compact_gold": -2.375,
+        "gold_adaptive": -3.75,
+        "legend_balanced": -5.0,
+        "mybot": -1.625,
+        "norx_native_three": -1.375,
+        "resident": 0.375,
+        "script_boss": -1.25,
+        "silver_boss": -3.0
+      },
+      "p10_margin_delta": -12.0,
+      "strict_improvement_rate": 0.125,
+      "unlocked_action_counts": [
+        3873,
+        0,
+        398,
+        96
+      ],
+      "unlocked_decisions": 4367,
+      "worker_three_rate": 0.84375
+    },
+    "l0044": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -24.2125,
+      "mean_margin_delta": 3.09375,
+      "mean_own_score_delta": -11.5625,
+      "minimum_opponent_family_mean_delta": -17.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -7.0,
+        "gold_adaptive": 2.25,
+        "legend_balanced": 50.125,
+        "mybot": 1.375,
+        "norx_native_three": -6.5,
+        "resident": 0.0,
+        "script_boss": -17.25,
+        "silver_boss": 1.75
+      },
+      "p10_margin_delta": -51.599999999999994,
+      "strict_improvement_rate": 0.28125,
+      "unlocked_action_counts": [
+        2738,
+        0,
+        18,
+        958
+      ],
+      "unlocked_decisions": 3714,
+      "worker_three_rate": 0.84375
+    },
+    "l0046": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -33.3625,
+      "mean_margin_delta": 1.796875,
+      "mean_own_score_delta": -19.21875,
+      "minimum_opponent_family_mean_delta": -23.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -4.625,
+        "gold_adaptive": 12.125,
+        "legend_balanced": 47.25,
+        "mybot": 10.0,
+        "norx_native_three": -12.375,
+        "resident": 0.0,
+        "script_boss": -23.25,
+        "silver_boss": -14.75
+      },
+      "p10_margin_delta": -55.7,
+      "strict_improvement_rate": 0.34375,
+      "unlocked_action_counts": [
+        2050,
+        0,
+        13,
+        1242
+      ],
+      "unlocked_decisions": 3305,
+      "worker_three_rate": 0.84375
+    },
+    "l0056": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -31.734375,
+      "mean_margin_delta": 4.359375,
+      "mean_own_score_delta": -24.9375,
+      "minimum_opponent_family_mean_delta": -23.75,
+      "opponent_family_mean_delta": {
+        "compact_gold": -23.75,
+        "gold_adaptive": 2.75,
+        "legend_balanced": 3.875,
+        "mybot": 47.5,
+        "norx_native_three": -11.875,
+        "resident": 59.125,
+        "script_boss": -22.375,
+        "silver_boss": -20.375
+      },
+      "p10_margin_delta": -47.0,
+      "strict_improvement_rate": 0.453125,
+      "unlocked_action_counts": [
+        31,
+        4,
+        1784,
+        1325
+      ],
+      "unlocked_decisions": 3144,
+      "worker_three_rate": 0.84375
+    },
+    "l0057": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -103.3109375,
+      "mean_margin_delta": -15.40625,
+      "mean_own_score_delta": -52.984375,
+      "minimum_opponent_family_mean_delta": -73.375,
+      "opponent_family_mean_delta": {
+        "compact_gold": -54.875,
+        "gold_adaptive": 1.0,
+        "legend_balanced": 3.375,
+        "mybot": 30.25,
+        "norx_native_three": -46.625,
+        "resident": 49.625,
+        "script_boss": -32.625,
+        "silver_boss": -73.375
+      },
+      "p10_margin_delta": -98.89999999999999,
+      "strict_improvement_rate": 0.359375,
+      "unlocked_action_counts": [
+        33,
+        716,
+        341,
+        1312
+      ],
+      "unlocked_decisions": 2402,
+      "worker_three_rate": 0.84375
+    },
+    "l0058": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": 0.0,
+      "mean_margin_delta": 0.0,
+      "mean_own_score_delta": 0.0,
+      "minimum_opponent_family_mean_delta": 0.0,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": 0.0,
+        "legend_balanced": 0.0,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 0.0,
+        "silver_boss": 0.0
+      },
+      "p10_margin_delta": 0.0,
+      "strict_improvement_rate": 0.0,
+      "unlocked_action_counts": [
+        4491,
+        0,
+        0,
+        0
+      ],
+      "unlocked_decisions": 4491,
+      "worker_three_rate": 0.84375
+    },
+    "l0059": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -16.3296875,
+      "mean_margin_delta": 7.5,
+      "mean_own_score_delta": -16.859375,
+      "minimum_opponent_family_mean_delta": -13.0,
+      "opponent_family_mean_delta": {
+        "compact_gold": 2.875,
+        "gold_adaptive": 23.0,
+        "legend_balanced": 34.75,
+        "mybot": 11.5,
+        "norx_native_three": 4.875,
+        "resident": 0.0,
+        "script_boss": -4.0,
+        "silver_boss": -13.0
+      },
+      "p10_margin_delta": -35.599999999999994,
+      "strict_improvement_rate": 0.40625,
+      "unlocked_action_counts": [
+        2115,
+        0,
+        51,
+        1193
+      ],
+      "unlocked_decisions": 3359,
+      "worker_three_rate": 0.84375
+    },
+    "l0060": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -31.95,
+      "mean_margin_delta": 2.359375,
+      "mean_own_score_delta": -22.34375,
+      "minimum_opponent_family_mean_delta": -17.375,
+      "opponent_family_mean_delta": {
+        "compact_gold": -5.625,
+        "gold_adaptive": 7.75,
+        "legend_balanced": 39.875,
+        "mybot": 15.25,
+        "norx_native_three": -17.375,
+        "resident": 0.0,
+        "script_boss": -6.75,
+        "silver_boss": -14.25
+      },
+      "p10_margin_delta": -57.8,
+      "strict_improvement_rate": 0.40625,
+      "unlocked_action_counts": [
+        1800,
+        0,
+        14,
+        1301
+      ],
+      "unlocked_decisions": 3115,
+      "worker_three_rate": 0.84375
+    },
+    "l0061": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -9.464062499999999,
+      "mean_margin_delta": 9.765625,
+      "mean_own_score_delta": -11.609375,
+      "minimum_opponent_family_mean_delta": -9.75,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.25,
+        "gold_adaptive": 15.75,
+        "legend_balanced": 35.0,
+        "mybot": 13.625,
+        "norx_native_three": 17.75,
+        "resident": 0.0,
+        "script_boss": -9.75,
+        "silver_boss": 5.5
+      },
+      "p10_margin_delta": -34.199999999999996,
+      "strict_improvement_rate": 0.453125,
+      "unlocked_action_counts": [
+        2344,
+        0,
+        22,
+        1156
+      ],
+      "unlocked_decisions": 3522,
+      "worker_three_rate": 0.84375
+    },
+    "l0062": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -8.3703125,
+      "mean_margin_delta": -1.609375,
+      "mean_own_score_delta": -1.671875,
+      "minimum_opponent_family_mean_delta": -9.5,
+      "opponent_family_mean_delta": {
+        "compact_gold": -4.375,
+        "gold_adaptive": -9.5,
+        "legend_balanced": 4.25,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.0,
+        "script_boss": 0.0,
+        "silver_boss": -3.25
+      },
+      "p10_margin_delta": -4.699999999999999,
+      "strict_improvement_rate": 0.078125,
+      "unlocked_action_counts": [
+        4045,
+        58,
+        328,
+        11
+      ],
+      "unlocked_decisions": 4442,
+      "worker_three_rate": 0.84375
+    },
+    "l0063": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -7.7796875,
+      "mean_margin_delta": 4.328125,
+      "mean_own_score_delta": -4.265625,
+      "minimum_opponent_family_mean_delta": -13.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -4.75,
+        "gold_adaptive": -13.25,
+        "legend_balanced": 4.75,
+        "mybot": 30.25,
+        "norx_native_three": 0.125,
+        "resident": 23.25,
+        "script_boss": 2.0,
+        "silver_boss": -7.75
+      },
+      "p10_margin_delta": -13.399999999999999,
+      "strict_improvement_rate": 0.28125,
+      "unlocked_action_counts": [
+        3530,
+        245,
+        15,
+        310
+      ],
+      "unlocked_decisions": 4100,
+      "worker_three_rate": 0.84375
+    },
+    "l0064": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -24.1328125,
+      "mean_margin_delta": -2.09375,
+      "mean_own_score_delta": -11.828125,
+      "minimum_opponent_family_mean_delta": -16.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -14.25,
+        "gold_adaptive": -16.25,
+        "legend_balanced": -0.625,
+        "mybot": 22.125,
+        "norx_native_three": -1.75,
+        "resident": 6.875,
+        "script_boss": -4.375,
+        "silver_boss": -8.5
+      },
+      "p10_margin_delta": -32.0,
+      "strict_improvement_rate": 0.21875,
+      "unlocked_action_counts": [
+        3423,
+        257,
+        194,
+        224
+      ],
+      "unlocked_decisions": 4098,
+      "worker_three_rate": 0.84375
+    },
+    "l0065": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": 6.7,
+      "mean_margin_delta": 12.125,
+      "mean_own_score_delta": 3.6875,
+      "minimum_opponent_family_mean_delta": -5.5,
+      "opponent_family_mean_delta": {
+        "compact_gold": 10.375,
+        "gold_adaptive": 12.25,
+        "legend_balanced": 19.25,
+        "mybot": 30.5,
+        "norx_native_three": 0.875,
+        "resident": 11.125,
+        "script_boss": 18.125,
+        "silver_boss": -5.5
+      },
+      "p10_margin_delta": -10.7,
+      "strict_improvement_rate": 0.5,
+      "unlocked_action_counts": [
+        2468,
+        644,
+        401,
+        742
+      ],
+      "unlocked_decisions": 4255,
+      "worker_three_rate": 0.84375
+    },
+    "l0066": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -5.573437499999999,
+      "mean_margin_delta": 6.265625,
+      "mean_own_score_delta": -0.953125,
+      "minimum_opponent_family_mean_delta": -7.125,
+      "opponent_family_mean_delta": {
+        "compact_gold": -4.75,
+        "gold_adaptive": 6.0,
+        "legend_balanced": 20.5,
+        "mybot": 19.0,
+        "norx_native_three": -2.875,
+        "resident": 14.125,
+        "script_boss": 5.25,
+        "silver_boss": -7.125
+      },
+      "p10_margin_delta": -31.199999999999996,
+      "strict_improvement_rate": 0.421875,
+      "unlocked_action_counts": [
+        1738,
+        1152,
+        1066,
+        657
+      ],
+      "unlocked_decisions": 4613,
+      "worker_three_rate": 0.84375
+    },
+    "l0067": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -28.009375,
+      "mean_margin_delta": -4.296875,
+      "mean_own_score_delta": -5.625,
+      "minimum_opponent_family_mean_delta": -21.25,
+      "opponent_family_mean_delta": {
+        "compact_gold": -21.25,
+        "gold_adaptive": -13.0,
+        "legend_balanced": 1.125,
+        "mybot": -0.5,
+        "norx_native_three": -19.25,
+        "resident": 15.25,
+        "script_boss": 7.5,
+        "silver_boss": -4.25
+      },
+      "p10_margin_delta": -41.099999999999994,
+      "strict_improvement_rate": 0.421875,
+      "unlocked_action_counts": [
+        2673,
+        1192,
+        423,
+        311
+      ],
+      "unlocked_decisions": 4599,
+      "worker_three_rate": 0.84375
+    },
+    "l0068": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -16.171875,
+      "mean_margin_delta": 1.8125,
+      "mean_own_score_delta": -2.46875,
+      "minimum_opponent_family_mean_delta": -14.5,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.125,
+        "gold_adaptive": -14.5,
+        "legend_balanced": 11.375,
+        "mybot": 3.125,
+        "norx_native_three": 2.5,
+        "resident": 22.75,
+        "script_boss": -2.5,
+        "silver_boss": -8.375
+      },
+      "p10_margin_delta": -38.0,
+      "strict_improvement_rate": 0.5,
+      "unlocked_action_counts": [
+        1801,
+        1425,
+        808,
+        607
+      ],
+      "unlocked_decisions": 4641,
+      "worker_three_rate": 0.84375
+    },
+    "l0069": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -22.51875,
+      "mean_margin_delta": -1.84375,
+      "mean_own_score_delta": -6.375,
+      "minimum_opponent_family_mean_delta": -17.125,
+      "opponent_family_mean_delta": {
+        "compact_gold": -17.125,
+        "gold_adaptive": -8.625,
+        "legend_balanced": 0.0,
+        "mybot": -1.5,
+        "norx_native_three": -7.0,
+        "resident": 20.0,
+        "script_boss": 5.375,
+        "silver_boss": -5.875
+      },
+      "p10_margin_delta": -35.7,
+      "strict_improvement_rate": 0.40625,
+      "unlocked_action_counts": [
+        2565,
+        1574,
+        337,
+        299
+      ],
+      "unlocked_decisions": 4775,
+      "worker_three_rate": 0.84375
+    },
+    "l0070": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -27.665625,
+      "mean_margin_delta": -2.28125,
+      "mean_own_score_delta": -0.21875,
+      "minimum_opponent_family_mean_delta": -30.75,
+      "opponent_family_mean_delta": {
+        "compact_gold": -11.75,
+        "gold_adaptive": -30.75,
+        "legend_balanced": 5.75,
+        "mybot": 32.375,
+        "norx_native_three": -0.375,
+        "resident": 15.5,
+        "script_boss": -24.875,
+        "silver_boss": -4.125
+      },
+      "p10_margin_delta": -39.599999999999994,
+      "strict_improvement_rate": 0.40625,
+      "unlocked_action_counts": [
+        2108,
+        800,
+        1445,
+        290
+      ],
+      "unlocked_decisions": 4643,
+      "worker_three_rate": 0.84375
+    },
+    "l0071": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -46.6796875,
+      "mean_margin_delta": -0.40625,
+      "mean_own_score_delta": -28.046875,
+      "minimum_opponent_family_mean_delta": -34.5,
+      "opponent_family_mean_delta": {
+        "compact_gold": -3.5,
+        "gold_adaptive": -3.75,
+        "legend_balanced": 32.375,
+        "mybot": 34.375,
+        "norx_native_three": -23.625,
+        "resident": 0.0,
+        "script_boss": -34.5,
+        "silver_boss": -4.625
+      },
+      "p10_margin_delta": -60.0,
+      "strict_improvement_rate": 0.34375,
+      "unlocked_action_counts": [
+        1651,
+        76,
+        49,
+        1308
+      ],
+      "unlocked_decisions": 3084,
+      "worker_three_rate": 0.84375
+    },
+    "l0072": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -33.46875,
+      "mean_margin_delta": -0.046875,
+      "mean_own_score_delta": -17.34375,
+      "minimum_opponent_family_mean_delta": -22.0,
+      "opponent_family_mean_delta": {
+        "compact_gold": -13.5,
+        "gold_adaptive": -9.5,
+        "legend_balanced": 55.75,
+        "mybot": 11.875,
+        "norx_native_three": -22.0,
+        "resident": 0.0,
+        "script_boss": -9.125,
+        "silver_boss": -13.875
+      },
+      "p10_margin_delta": -55.0,
+      "strict_improvement_rate": 0.28125,
+      "unlocked_action_counts": [
+        2565,
+        0,
+        75,
+        947
+      ],
+      "unlocked_decisions": 3587,
+      "worker_three_rate": 0.84375
+    },
+    "l0073": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -39.9796875,
+      "mean_margin_delta": -1.828125,
+      "mean_own_score_delta": -17.203125,
+      "minimum_opponent_family_mean_delta": -31.75,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.25,
+        "gold_adaptive": 8.875,
+        "legend_balanced": 22.0,
+        "mybot": 26.5,
+        "norx_native_three": -16.25,
+        "resident": 5.375,
+        "script_boss": -31.75,
+        "silver_boss": -29.625
+      },
+      "p10_margin_delta": -54.7,
+      "strict_improvement_rate": 0.359375,
+      "unlocked_action_counts": [
+        2116,
+        469,
+        202,
+        891
+      ],
+      "unlocked_decisions": 3678,
+      "worker_three_rate": 0.84375
+    },
+    "l0074": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -39.36875,
+      "mean_margin_delta": 0.609375,
+      "mean_own_score_delta": -24.78125,
+      "minimum_opponent_family_mean_delta": -26.125,
+      "opponent_family_mean_delta": {
+        "compact_gold": -5.125,
+        "gold_adaptive": 4.125,
+        "legend_balanced": 50.25,
+        "mybot": 6.875,
+        "norx_native_three": -26.125,
+        "resident": 0.0,
+        "script_boss": -10.5,
+        "silver_boss": -14.625
+      },
+      "p10_margin_delta": -58.099999999999994,
+      "strict_improvement_rate": 0.34375,
+      "unlocked_action_counts": [
+        2153,
+        0,
+        2,
+        1156
+      ],
+      "unlocked_decisions": 3311,
+      "worker_three_rate": 0.84375
+    },
+    "l0075": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -21.18125,
+      "mean_margin_delta": -0.984375,
+      "mean_own_score_delta": -10.09375,
+      "minimum_opponent_family_mean_delta": -12.5,
+      "opponent_family_mean_delta": {
+        "compact_gold": -12.5,
+        "gold_adaptive": -8.5,
+        "legend_balanced": 19.625,
+        "mybot": 1.125,
+        "norx_native_three": 4.375,
+        "resident": 0.0,
+        "script_boss": -12.0,
+        "silver_boss": 0.0
+      },
+      "p10_margin_delta": -35.599999999999994,
+      "strict_improvement_rate": 0.1875,
+      "unlocked_action_counts": [
+        3338,
+        0,
+        2,
+        595
+      ],
+      "unlocked_decisions": 3935,
+      "worker_three_rate": 0.84375
+    },
+    "l0076": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -13.1984375,
+      "mean_margin_delta": 4.65625,
+      "mean_own_score_delta": -0.734375,
+      "minimum_opponent_family_mean_delta": -15.125,
+      "opponent_family_mean_delta": {
+        "compact_gold": -15.125,
+        "gold_adaptive": -3.0,
+        "legend_balanced": 47.75,
+        "mybot": 2.375,
+        "norx_native_three": 21.5,
+        "resident": 0.0,
+        "script_boss": -12.875,
+        "silver_boss": -3.375
+      },
+      "p10_margin_delta": -39.7,
+      "strict_improvement_rate": 0.328125,
+      "unlocked_action_counts": [
+        2815,
+        29,
+        464,
+        758
+      ],
+      "unlocked_decisions": 4066,
+      "worker_three_rate": 0.84375
+    },
+    "l0077": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -33.6765625,
+      "mean_margin_delta": -6.8125,
+      "mean_own_score_delta": -13.453125,
+      "minimum_opponent_family_mean_delta": -20.375,
+      "opponent_family_mean_delta": {
+        "compact_gold": 2.75,
+        "gold_adaptive": -15.25,
+        "legend_balanced": -4.0,
+        "mybot": 1.5,
+        "norx_native_three": -20.375,
+        "resident": -0.875,
+        "script_boss": -4.375,
+        "silver_boss": -13.875
+      },
+      "p10_margin_delta": -39.8,
+      "strict_improvement_rate": 0.171875,
+      "unlocked_action_counts": [
+        2917,
+        0,
+        937,
+        274
+      ],
+      "unlocked_decisions": 4128,
+      "worker_three_rate": 0.84375
+    },
+    "l0078": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -3.7093749999999988,
+      "mean_margin_delta": 2.15625,
+      "mean_own_score_delta": -1.15625,
+      "minimum_opponent_family_mean_delta": -6.125,
+      "opponent_family_mean_delta": {
+        "compact_gold": -3.875,
+        "gold_adaptive": -6.125,
+        "legend_balanced": 0.875,
+        "mybot": 29.375,
+        "norx_native_three": -1.375,
+        "resident": 0.375,
+        "script_boss": -0.25,
+        "silver_boss": -1.75
+      },
+      "p10_margin_delta": -8.899999999999995,
+      "strict_improvement_rate": 0.171875,
+      "unlocked_action_counts": [
+        3679,
+        1,
+        528,
+        132
+      ],
+      "unlocked_decisions": 4340,
+      "worker_three_rate": 0.84375
+    },
+    "l0079": {
+      "balanced_worker_three_rate": 0.84375,
+      "eligible": true,
+      "fitness": -4.6796875,
+      "mean_margin_delta": -0.921875,
+      "mean_own_score_delta": -0.890625,
+      "minimum_opponent_family_mean_delta": -6.625,
+      "opponent_family_mean_delta": {
+        "compact_gold": 0.0,
+        "gold_adaptive": -6.625,
+        "legend_balanced": 0.875,
+        "mybot": 0.0,
+        "norx_native_three": 0.0,
+        "resident": 0.375,
+        "script_boss": 0.0,
+        "silver_boss": -2.0
+      },
+      "p10_margin_delta": 0.0,
+      "strict_improvement_rate": 0.046875,
+      "unlocked_action_counts": [
+        4081,
+        0,
+        411,
+        0
+      ],
+      "unlocked_decisions": 4492,
+      "worker_three_rate": 0.84375
+    }
+  },
+  "parameter_hashes": {
+    "l0000": "55b1d62f19adad4498db9afe6e1007f36e1394c2549450945b58e0bb2de1b9f5",
+    "l0002": "b8b590d8b1f90d4c4af10f565accaddc297cdbc8e8f190000485e91b0df95ffd",
+    "l0031": "2e8e768be1139858b05ce2547b275d355300ee933e967620186611fe3d8934ee",
+    "l0035": "01a1ccb97fa614336610b312d3d52b006f00082a93eb1e6ab7b808d37199f647",
+    "l0042": "ebf11887e79d7c33760036f25b9aead52e6eba66411003256431092dcf2a771b",
+    "l0043": "a65127bfd1d4f88241c9177b6d998d970dc0659977d0a33e2b859969fcf9c7b1",
+    "l0044": "d925df733d6d2fd9412b46168dadf7b9772785c98240459bab85e862178e7fc3",
+    "l0046": "2403b536149a80fba7fa26caa0c69438e80503c66692c84a21f9acab38f614a2",
+    "l0056": "bb49f2399b7aab60a41127590877bb00f2da7f5aa8e555d60464902782953b06",
+    "l0057": "d57716ad5fb1a6ba2b5ab4b919658922f94b21e643fd2a23aca6a2d8319b7106",
+    "l0058": "d6b158d3ca502f856ac8632c72ca66e39be07eec7d8d3d1b1a865114b53259c9",
+    "l0059": "9511e67705cc7945640840dff8191a7d1191599eedc49af3202cda015df8a832",
+    "l0060": "646c996cbf4386ed45b55fdb060e45617be4e698968ef6e3fa569786ed042cb5",
+    "l0061": "27d9a723cc96d0b06a27dd15428a3d2c6383f154fe0d28c8238d6e5d35237479",
+    "l0062": "94fb1ce8da74a3fcafdf71802ffa9a439090b8e96082f03db62e76631e89be54",
+    "l0063": "b092ba2534d1920efb14d22a9ac34f9ab5920b54b01171f426a02b73109822c2",
+    "l0064": "4f1cfbc35124ddfec27f30fa65a6efd5666b1abc55d25ba370e00e1dd577c65c",
+    "l0065": "ea107935a800d3cc8befe417f034eec534d9c275d9bc5e7fccb23c497e1d9476",
+    "l0066": "f5408f1ead8043d45af4302cc027a8c2bf18ecd4cbf74068cdd277a169647159",
+    "l0067": "d84af53bb4041b3b858117cbe7cfa5bb8f8ad7b5a182bad00ce0e264351535e7",
+    "l0068": "cbbef8e86457ea2a96ea2602df868b1370c3f05818d2377e8281e01de109a59d",
+    "l0069": "fb42b34b106770aeb3b8a86b237ae0bbedb6159de4b8cc46f1112333148dd63d",
+    "l0070": "e06b70cbcb8e2caa6fa71cfd29034ebb037072c2ffc7bac18901024550a7f438",
+    "l0071": "92911b4a43cbf2fd18368a73d78b68f252bd22245943da6fac9aee8b927206a4",
+    "l0072": "64979c22b26882cdc656fd8bff41642704656388bb15840610c33ff785596dd1",
+    "l0073": "8bc38d893b38cdeeca4347efa94aaf8393ac5c28c650d9add52716da7d4697d0",
+    "l0074": "aa58c94d6c1c08ab0f0cbaaad9bdbb9360e06d9816e7216873bcc1feba9c4620",
+    "l0075": "70e4cd813076b7fe9c84b0fdd7ecaeb79eb29eda21b61e2d879f816b33f0f8d4",
+    "l0076": "6fbd1170dd1cb4e28c4f25eafbac2437bc936bec20c1f5a71dd4adb61e821939",
+    "l0077": "4e141bcfcc2a47518d588ba9460251cfa7b27be4c45fc99227ce40c4a820fcd2",
+    "l0078": "30e3dafb30030242d5eb73a9b55ab4a74b900206df62e88aeb9f3d9fa1d12ae5",
+    "l0079": "c4dacaa4a4bed9bb480f8c4007266a16ea208efa28848e378398bb7ed3dd7f27"
+  },
+  "population": "5d56c6ce915a368b7f91a39a6c4900eb8ceecf93d5751220974c3db59e44efd1",
+  "ranking": [
+    "l0065",
+    "l0000",
+    "l0058",
+    "l0078",
+    "l0079",
+    "l0066",
+    "l0063",
+    "l0062",
+    "l0061",
+    "l0043",
+    "l0042",
+    "l0035",
+    "l0076",
+    "l0068",
+    "l0059",
+    "l0075",
+    "l0002",
+    "l0069",
+    "l0064",
+    "l0044",
+    "l0031",
+    "l0070",
+    "l0067",
+    "l0056",
+    "l0060",
+    "l0046",
+    "l0072",
+    "l0077",
+    "l0074",
+    "l0073",
+    "l0071",
+    "l0057"
+  ],
+  "rng_state_after_evaluation": {
+    "bit_generator": "PCG64",
+    "has_uint32": 0,
+    "state": {
+      "inc": 252705419962166541539997749407098376851,
+      "state": 173320268774379990453182895896390810832
+    },
+    "uinteger": 0
+  },
+  "rows": "8f999f3de21af0aeef80ac635894d86f444f6d361361949a731daccecb4a29c8",
+  "seed_base": 9816008,
+  "survivors": [
+    "l0065",
+    "l0000",
+    "l0058",
+    "l0078",
+    "l0079",
+    "l0066",
+    "l0063",
+    "l0062"
+  ],
+  "timing": "1baed0d84cbb63324d351e830e9d687a2804c3139bf1dc0fd87da3f4ee5f9698"
+}

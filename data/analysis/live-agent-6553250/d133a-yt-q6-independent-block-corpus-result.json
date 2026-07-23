@@ -1,0 +1,728 @@
+{
+  "blocks": [
+    {
+      "active_seconds_sum": 706.7812000168487,
+      "artifacts": {
+        "arms": {
+          "bytes": 122576087,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-arms-9844000-9844015.tsv",
+          "rows": 21557,
+          "sha256": "68bcdae754cee715c801ec9bedbc5b238c4e243921e0d65d759b2fd5ba6888ff"
+        },
+        "baselines": {
+          "bytes": 54801,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-baselines-9844000-9844015.tsv",
+          "rows": 256,
+          "sha256": "87c57e8be8b0e060c359480916075262b731d0fc9f59e49fefeebb753eb70fca"
+        }
+      },
+      "block_id": 0,
+      "labels": {
+        "bytes": 1123781,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-00-labels.tsv",
+        "rows": 21557,
+        "sha256": "12274496cc449486c2126359923f1683591c70a3dec1edf5e74fa8ff64933761"
+      },
+      "maps": 16,
+      "mechanics": {
+        "details": {
+          "arms": 21557,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 15,
+          "maximum_paired_gain_error": 7.000000001866624e-08,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 5,
+          "roots": 1302,
+          "supported_tasks": 236,
+          "task_support_rate": 0.921875,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 30.500245336868197,
+            "b": 30.500245336868197
+          },
+          "unsupported_forced_control_tasks": 20
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "supported_tasks_at_least_90pct": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844000,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.5046082949308756,
+          "act_now_roots": 657,
+          "arms": 21557,
+          "best_now_mean": 25.857910906298002,
+          "negative_arm_advantage_rate": 0.8412116713828455,
+          "negative_arm_advantages": 18134,
+          "positive_arm_advantage_rate": 0.14129980980655935,
+          "positive_arm_advantages": 3046,
+          "roots": 1302,
+          "target_maximum": 189,
+          "target_mean": -23.247251472839448,
+          "target_minimum": -269,
+          "target_standard_deviation": 27.466055371897767,
+          "wait_roots": 645,
+          "zero_arm_advantages": 377
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.93359375,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 58.5625,
+            "gold_adaptive": 55.03125,
+            "legend_balanced": 38.0,
+            "mybot": 30.21875,
+            "norx_native_three": 37.4375,
+            "resident": 28.71875,
+            "script_boss": 43.96875,
+            "silver_boss": 39.53125
+          },
+          "first_boundary_oracle_mean_gain": 35.61328125,
+          "intervention_rate": 0.9140625,
+          "later_boundary_increment": 5.8203125,
+          "mean_margin_gain": 41.43359375,
+          "mean_opponent_score_delta": -16.37890625,
+          "mean_own_score_gain": 25.0546875,
+          "mean_selected_boundary": 1.1111111111111112,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 22,
+            "1": 52,
+            "2": 31,
+            "3": 151
+          },
+          "strict_improvement_rate": 0.9140625,
+          "supported_tasks": 236,
+          "tasks": 256,
+          "worker_three_rate": 0.93359375,
+          "worst_family": 28.71875
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    },
+    {
+      "active_seconds_sum": 1116.9216197133064,
+      "artifacts": {
+        "arms": {
+          "bytes": 134671139,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-arms-9844016-9844031.tsv",
+          "rows": 23679,
+          "sha256": "824e0610d5664293eb991e765d1f3045318e70d1fa65a617899b7b311a2ff8fa"
+        },
+        "baselines": {
+          "bytes": 54907,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-baselines-9844016-9844031.tsv",
+          "rows": 256,
+          "sha256": "9421bc0d4e38bf26e6f05d2aac427f7131dcbdaab29c01a27f9d9c299cf2fe46"
+        }
+      },
+      "block_id": 1,
+      "labels": {
+        "bytes": 1240951,
+        "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-01-labels.tsv",
+        "rows": 23679,
+        "sha256": "24214d2ac29343ad2a4e2dadde89f211417f8d42713780d16e39ed79e02c07e0"
+      },
+      "maps": 16,
+      "mechanics": {
+        "details": {
+          "arms": 23679,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 19,
+          "maximum_paired_gain_error": 1.1000000021965661e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 4,
+          "roots": 1461,
+          "supported_tasks": 233,
+          "task_support_rate": 0.91015625,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 21.20023427076107,
+            "b": 21.20023427076107
+          },
+          "unsupported_forced_control_tasks": 23
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "supported_tasks_at_least_90pct": true,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": true
+      },
+      "start_seed": 9844016,
+      "teacher": {
+        "backward_dp": {
+          "act_now_root_rate": 0.4791238877481177,
+          "act_now_roots": 700,
+          "arms": 23679,
+          "best_now_mean": 22.637919233401778,
+          "negative_arm_advantage_rate": 0.8672663541534693,
+          "negative_arm_advantages": 20536,
+          "positive_arm_advantage_rate": 0.11706575446598251,
+          "positive_arm_advantages": 2772,
+          "roots": 1461,
+          "target_maximum": 119,
+          "target_mean": -25.166434393344314,
+          "target_minimum": -258,
+          "target_standard_deviation": 26.94034079522607,
+          "wait_roots": 761,
+          "zero_arm_advantages": 371
+        },
+        "oracle": {
+          "control_worker_three_rate": 0.921875,
+          "crop_rate": 1.0,
+          "family_mean_margin_gain": {
+            "compact_gold": 41.4375,
+            "gold_adaptive": 58.90625,
+            "legend_balanced": 38.75,
+            "mybot": 19.625,
+            "norx_native_three": 33.46875,
+            "resident": 26.6875,
+            "script_boss": 48.125,
+            "silver_boss": 30.5625
+          },
+          "first_boundary_oracle_mean_gain": 30.6796875,
+          "intervention_rate": 0.89453125,
+          "later_boundary_increment": 6.515625,
+          "mean_margin_gain": 37.1953125,
+          "mean_opponent_score_delta": -15.52734375,
+          "mean_own_score_gain": 21.66796875,
+          "mean_selected_boundary": 1.388646288209607,
+          "positive_families": 8,
+          "selected_kind_counts": {
+            "0": 27,
+            "1": 41,
+            "2": 24,
+            "3": 164
+          },
+          "strict_improvement_rate": 0.89453125,
+          "supported_tasks": 233,
+          "tasks": 256,
+          "worker_three_rate": 0.921875,
+          "worst_family": 19.625
+        },
+        "safety_gates": {
+          "oracle_crop_100pct": true,
+          "oracle_worker_three_within_5pp": true
+        },
+        "safety_pass": true,
+        "signal_gates": {
+          "act_now_roots_5_to_90pct": true,
+          "at_least_seven_positive_families": true,
+          "negative_arm_targets_at_least_40pct": true,
+          "oracle_mean_at_least_20": true,
+          "oracle_strict_at_least_75pct": true,
+          "own_nonnegative_or_opponent_nonpositive": true,
+          "positive_arm_targets_1_to_50pct": true,
+          "target_stddev_at_least_5": true,
+          "worst_family_at_least_8": true
+        },
+        "signal_pass": true
+      }
+    },
+    {
+      "active_seconds_sum": 638.9555831790203,
+      "artifacts": {
+        "arms": {
+          "bytes": 94159104,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-02-arms-9844032-9844047.tsv",
+          "rows": 16560,
+          "sha256": "8b6cf2f508b859b640ce3802c90021ac384b94bd34217499125c75bb3b864c4a"
+        },
+        "baselines": {
+          "bytes": 54690,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-02-baselines-9844032-9844047.tsv",
+          "rows": 256,
+          "sha256": "b2b0593433b6d49c0502e371fb5266b0f2ee491c84ed3b1c30a7380952b9a07d"
+        }
+      },
+      "block_id": 2,
+      "labels": {
+        "bytes": 0,
+        "path": null,
+        "rows": 0,
+        "sha256": null
+      },
+      "maps": 16,
+      "mechanics": {
+        "details": {
+          "arms": 16560,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 19,
+          "maximum_paired_gain_error": 1.1000000021965661e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 6,
+          "roots": 1015,
+          "supported_tasks": 217,
+          "task_support_rate": 0.84765625,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 25.917294466085412,
+            "b": 25.917294466085412
+          },
+          "unsupported_forced_control_tasks": 39
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "supported_tasks_at_least_90pct": false,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": false
+      },
+      "start_seed": 9844032,
+      "teacher": {
+        "not_interpreted": "block mechanics failure",
+        "safety_pass": false,
+        "signal_pass": false
+      }
+    },
+    {
+      "active_seconds_sum": 629.2507806392387,
+      "artifacts": {
+        "arms": {
+          "bytes": 111705896,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-03-arms-9844048-9844063.tsv",
+          "rows": 19644,
+          "sha256": "2b19a4b0e47dc9e329c3fd384cc015de31e44c81729abad4cfef50e572125ae1"
+        },
+        "baselines": {
+          "bytes": 54797,
+          "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d133a-q6-independent-block-corpus/block-03-baselines-9844048-9844063.tsv",
+          "rows": 256,
+          "sha256": "57073695d5d83bf036a5549c817059fa50dfe312a35208b0623a3e3069e9f02e"
+        }
+      },
+      "block_id": 3,
+      "labels": {
+        "bytes": 0,
+        "path": null,
+        "rows": 0,
+        "sha256": null
+      },
+      "maps": 16,
+      "mechanics": {
+        "details": {
+          "arms": 19644,
+          "baselines": 256,
+          "error_samples": {
+            "accounting": [],
+            "feature": [],
+            "paired": [],
+            "root": []
+          },
+          "expert_bank_hashes": [
+            "10190021983138339114"
+          ],
+          "maximum_boundaries_per_task": 18,
+          "maximum_paired_gain_error": 1.0000000028043132e-07,
+          "maximum_proposals_per_root": 26,
+          "maximum_reward_identity_error": 2.3000000037853852e-07,
+          "mechanical_failures": {
+            "deposit_prediction_failures": 0,
+            "invalid_direct_commands": 0,
+            "provenance_failures": 0
+          },
+          "minimum_boundaries_per_task": 0,
+          "minimum_proposals_per_root": 5,
+          "roots": 1202,
+          "supported_tasks": 224,
+          "task_support_rate": 0.875,
+          "tasks": 256,
+          "throughput_arms_per_second": {
+            "a": 31.218078076985773,
+            "b": 31.218078076985773
+          },
+          "unsupported_forced_control_tasks": 32
+        },
+        "gates": {
+          "at_least_6000_arms": true,
+          "at_least_600_roots": true,
+          "both_runs_at_least_12_arms_per_second": true,
+          "complete_unique_arm_grid": true,
+          "d112_full_panel_reproducibility_inherited": true,
+          "feature_schema_and_finiteness": true,
+          "frozen_inputs_exact": true,
+          "nonzero_control_relative_actions": true,
+          "paired_gain_exact": true,
+          "prescribed_baseline_grid": true,
+          "reward_identity_below_1e_4": true,
+          "single_expert_bank_hash": true,
+          "single_intervention_accounting": true,
+          "supported_tasks_at_least_90pct": false,
+          "zero_boundary_is_valid_forced_control": true,
+          "zero_mechanical_failures": true
+        },
+        "pass": false
+      },
+      "start_seed": 9844048,
+      "teacher": {
+        "not_interpreted": "block mechanics failure",
+        "safety_pass": false,
+        "signal_pass": false
+      }
+    }
+  ],
+  "decision": "repair_d133_infrastructure_or_mechanics_only",
+  "full_pass": false,
+  "infrastructure": {
+    "gates": {
+      "every_shard_at_least_12_arms_per_second": true,
+      "every_shard_at_most_900_active_seconds": true,
+      "every_shard_used_16_threads": true,
+      "exact_prescribed_shards": true,
+      "exactly_16_mapper_metadata_rows": true,
+      "operation_completed": true
+    },
+    "metadata": [
+      {
+        "arm_lines": 5805,
+        "baseline_lines": 65,
+        "block_id": 0,
+        "collector_stderr": "saved 64 D112 baselines and 5804 exact arms in 131.738s total / 131.142s collection (44.057 arms/s end-to-end)",
+        "elapsed_seconds": 131.75276392232627,
+        "maps": 4,
+        "shard_id": "block-00-shard-00",
+        "start_seed": 9844000,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4885,
+        "baseline_lines": 65,
+        "block_id": 0,
+        "collector_stderr": "saved 64 D112 baselines and 4884 exact arms in 107.434s total / 106.971s collection (45.460 arms/s end-to-end)",
+        "elapsed_seconds": 107.4743824377656,
+        "maps": 4,
+        "shard_id": "block-00-shard-01",
+        "start_seed": 9844004,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4952,
+        "baseline_lines": 65,
+        "block_id": 0,
+        "collector_stderr": "saved 64 D112 baselines and 4951 exact arms in 168.209s total / 167.722s collection (29.434 arms/s end-to-end)",
+        "elapsed_seconds": 168.21958055067807,
+        "maps": 4,
+        "shard_id": "block-00-shard-02",
+        "start_seed": 9844008,
+        "threads": 16
+      },
+      {
+        "arm_lines": 5919,
+        "baseline_lines": 65,
+        "block_id": 0,
+        "collector_stderr": "saved 64 D112 baselines and 5918 exact arms in 299.313s total / 298.651s collection (19.772 arms/s end-to-end)",
+        "elapsed_seconds": 299.3344731060788,
+        "maps": 4,
+        "shard_id": "block-00-shard-03",
+        "start_seed": 9844012,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4025,
+        "baseline_lines": 65,
+        "block_id": 1,
+        "collector_stderr": "saved 64 D112 baselines and 4024 exact arms in 127.978s total / 127.572s collection (31.443 arms/s end-to-end)",
+        "elapsed_seconds": 127.98236134275794,
+        "maps": 4,
+        "shard_id": "block-01-shard-00",
+        "start_seed": 9844016,
+        "threads": 16
+      },
+      {
+        "arm_lines": 6559,
+        "baseline_lines": 65,
+        "block_id": 1,
+        "collector_stderr": "saved 64 D112 baselines and 6558 exact arms in 382.127s total / 381.459s collection (17.162 arms/s end-to-end)",
+        "elapsed_seconds": 382.13207568228245,
+        "maps": 4,
+        "shard_id": "block-01-shard-01",
+        "start_seed": 9844020,
+        "threads": 16
+      },
+      {
+        "arm_lines": 6566,
+        "baseline_lines": 65,
+        "block_id": 1,
+        "collector_stderr": "saved 64 D112 baselines and 6565 exact arms in 319.301s total / 318.710s collection (20.561 arms/s end-to-end)",
+        "elapsed_seconds": 319.30932078510523,
+        "maps": 4,
+        "shard_id": "block-01-shard-02",
+        "start_seed": 9844024,
+        "threads": 16
+      },
+      {
+        "arm_lines": 6533,
+        "baseline_lines": 65,
+        "block_id": 1,
+        "collector_stderr": "saved 64 D112 baselines and 6532 exact arms in 287.467s total / 286.803s collection (22.723 arms/s end-to-end)",
+        "elapsed_seconds": 287.4978619031608,
+        "maps": 4,
+        "shard_id": "block-01-shard-03",
+        "start_seed": 9844028,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4214,
+        "baseline_lines": 65,
+        "block_id": 2,
+        "collector_stderr": "saved 64 D112 baselines and 4213 exact arms in 150.629s total / 150.341s collection (27.969 arms/s end-to-end)",
+        "elapsed_seconds": 150.63294740498532,
+        "maps": 4,
+        "shard_id": "block-02-shard-00",
+        "start_seed": 9844032,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4360,
+        "baseline_lines": 65,
+        "block_id": 2,
+        "collector_stderr": "saved 64 D112 baselines and 4359 exact arms in 178.451s total / 178.012s collection (24.427 arms/s end-to-end)",
+        "elapsed_seconds": 178.46729736588895,
+        "maps": 4,
+        "shard_id": "block-02-shard-01",
+        "start_seed": 9844036,
+        "threads": 16
+      },
+      {
+        "arm_lines": 5262,
+        "baseline_lines": 65,
+        "block_id": 2,
+        "collector_stderr": "saved 64 D112 baselines and 5261 exact arms in 221.292s total / 220.758s collection (23.774 arms/s end-to-end)",
+        "elapsed_seconds": 221.40155598707497,
+        "maps": 4,
+        "shard_id": "block-02-shard-02",
+        "start_seed": 9844040,
+        "threads": 16
+      },
+      {
+        "arm_lines": 2728,
+        "baseline_lines": 65,
+        "block_id": 2,
+        "collector_stderr": "saved 64 D112 baselines and 2727 exact arms in 88.442s total / 88.232s collection (30.834 arms/s end-to-end)",
+        "elapsed_seconds": 88.45378242107108,
+        "maps": 4,
+        "shard_id": "block-02-shard-03",
+        "start_seed": 9844044,
+        "threads": 16
+      },
+      {
+        "arm_lines": 5215,
+        "baseline_lines": 65,
+        "block_id": 3,
+        "collector_stderr": "saved 64 D112 baselines and 5214 exact arms in 104.368s total / 104.008s collection (49.958 arms/s end-to-end)",
+        "elapsed_seconds": 104.37989002419636,
+        "maps": 4,
+        "shard_id": "block-03-shard-00",
+        "start_seed": 9844048,
+        "threads": 16
+      },
+      {
+        "arm_lines": 5014,
+        "baseline_lines": 65,
+        "block_id": 3,
+        "collector_stderr": "saved 64 D112 baselines and 5013 exact arms in 194.426s total / 193.995s collection (25.784 arms/s end-to-end)",
+        "elapsed_seconds": 194.4303295710124,
+        "maps": 4,
+        "shard_id": "block-03-shard-01",
+        "start_seed": 9844052,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4954,
+        "baseline_lines": 65,
+        "block_id": 3,
+        "collector_stderr": "saved 64 D112 baselines and 4953 exact arms in 126.047s total / 125.367s collection (39.295 arms/s end-to-end)",
+        "elapsed_seconds": 126.05695658177137,
+        "maps": 4,
+        "shard_id": "block-03-shard-02",
+        "start_seed": 9844056,
+        "threads": 16
+      },
+      {
+        "arm_lines": 4465,
+        "baseline_lines": 65,
+        "block_id": 3,
+        "collector_stderr": "saved 64 D112 baselines and 4464 exact arms in 204.370s total / 204.055s collection (21.843 arms/s end-to-end)",
+        "elapsed_seconds": 204.38360446225852,
+        "maps": 4,
+        "shard_id": "block-03-shard-03",
+        "start_seed": 9844060,
+        "threads": 16
+      }
+    ],
+    "pass": true,
+    "shard_arms_per_second": {
+      "block-00-shard-00": 44.052206778915846,
+      "block-00-shard-01": 45.44338743075023,
+      "block-00-shard-02": 29.431769974651996,
+      "block-00-shard-03": 19.77052605599077,
+      "block-01-shard-00": 31.441832747741405,
+      "block-01-shard-01": 17.161605678588842,
+      "block-01-shard-02": 20.560001142021896,
+      "block-01-shard-03": 22.720168966683318,
+      "block-02-shard-00": 27.96864877557702,
+      "block-02-shard-01": 24.424642858031817,
+      "block-02-shard-02": 23.76225395772344,
+      "block-02-shard-03": 30.82965957316016,
+      "block-03-shard-00": 49.95215073316651,
+      "block-03-shard-01": 25.78301446621313,
+      "block-03-shard-02": 39.29176250409519,
+      "block-03-shard-03": 21.841282287515007
+    }
+  },
+  "lock": {
+    "manifest_sha256": "e6c6d554fdeddc961317e94b45972711a4dadbb9da20d9061eda91b385a118c1",
+    "mismatches": {},
+    "pass": true
+  },
+  "mechanics": {
+    "details": {
+      "arms": 81440,
+      "baselines": 1024,
+      "roots": 4980,
+      "supported_tasks": 910,
+      "task_support_rate": 0.888671875
+    },
+    "gates": {
+      "all_four_blocks_pass_inherited_mechanics": false,
+      "at_least_4800_roots": true,
+      "at_least_80000_arms": true,
+      "each_block_has_256_baselines": true,
+      "each_block_support_at_least_90pct": false,
+      "exactly_1024_baselines": true,
+      "global_support_at_least_90pct": false
+    },
+    "pass": false
+  },
+  "operation": {
+    "operation_id": "f68fd8f9-83f2b344-42e03e8-a0934784",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d133a_q6_teacher_corpus_9844000_9844063_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 82512
+  },
+  "panel": {
+    "blocks": 4,
+    "maps": 64,
+    "start_seed": 9844000,
+    "tasks": 1024
+  },
+  "protocol": "data/analysis/live-agent-6553250/d133a-yt-q6-independent-block-corpus-protocol-2026-07-22.md",
+  "schema": "troll-farm-d133a-yt-q6-independent-block-corpus-v1",
+  "teacher": {
+    "not_interpreted": "D133 infrastructure/mechanics failure",
+    "safety_pass": false,
+    "signal_pass": false
+  }
+}

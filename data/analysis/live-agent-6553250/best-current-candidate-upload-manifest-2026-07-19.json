@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "created_date": "2026-07-19",
+  "decision": "select_exact_current_resident",
+  "submission_authorized": false,
+  "resident_platform": {
+    "agent_id": 6560353,
+    "submission_id": 41012883
+  },
+  "selected": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "bytes": 62725,
+    "headroom_bytes": 37275,
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "standalone_rust_2021_deny_warnings": true,
+    "diagnostic_output": false
+  },
+  "behavior_reference": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs",
+    "bytes": 90547,
+    "sha256": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9"
+  },
+  "resident_rollback": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "bytes": 62725,
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "historical_rank6_comparison": {
+    "path": "cgauto/submissions/agent-6553250-yamo-orchard-live-slim.min.rs",
+    "bytes": 62311,
+    "sha256": "025468a87d1807a6027f8af4c1662dfc89beb68b9fe0ef9ed1047fadf39c218f"
+  },
+  "integrity": {
+    "artifact_inventory": "data/analysis/live-agent-6553250/best-current-candidate-artifact-inventory-2026-07-19.tsv",
+    "artifact_inventory_rows": 237,
+    "artifact_inventory_sha256": "474ddfc1cca9769a6e70d75253cc960ee3c79188471aa5790e7401dbe92fed86",
+    "sha_sidecars_checked": 61,
+    "sha_sidecar_mismatches": 0,
+    "high_evidence_compiles_passed": 6,
+    "focused_slim_tests_passed": 3,
+    "parity_scope": "paired outcomes and command-count categories; prior byte-stream parity is recorded in arena-retry-2026-07-17.md",
+    "parity_seed_start": 0,
+    "parity_seeds": 60,
+    "parity_outcome_differences": 0,
+    "parity_command_differences": 0,
+    "parity_artifact": "data/analysis/live-agent-6553250/best-current-candidate-final-slim-parity-0-59-2026-07-19.json",
+    "parity_artifact_sha256": "6c92c5ed171c53f533758ffd232b07b173813bd4d894ddf522f343c8fe29ca91"
+  },
+  "selection_protocol": {
+    "path": "data/analysis/live-agent-6553250/best-current-candidate-selection-protocol-2026-07-19.md",
+    "sha256": "6b85ba3aa061f7d73a2acdd0409a499379fe3138d081074c7e1aae7f46fa1ddc"
+  }
+}

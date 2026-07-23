@@ -1,0 +1,37 @@
+{
+  "activation": {
+    "changed_action_hash_rate": 0.8828125,
+    "changed_action_hash_tasks": 226,
+    "order_eligible_suffixes": 2072,
+    "order_promotions": 491,
+    "tasks": 256
+  },
+  "audit": {
+    "integrity_failures": 12,
+    "outcome_fields_ignored": true,
+    "repeat_byte_identical": true,
+    "tasks_per_arm": 256
+  },
+  "gates": {
+    "at_least_128_order_promotions": true,
+    "at_least_256_order_eligible_suffixes": true,
+    "changed_action_hash_tasks_between_20_and_90_percent": true,
+    "complete_exact_deterministic_repeat": true,
+    "zero_integrity_failures": false
+  },
+  "inputs": {
+    "control": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d49a-d40-activation-control-9785000-9785015.tsv",
+    "control_sha256": "fcd6b6368bc331857a0d655b20658d4cf2eecc4eb3b6849aadc891c53bc9e10d",
+    "environment_source_sha256": "c53388b444ae010a6a298b6ccc32be63badf20bfe4f8b8aa78b38767108d5360",
+    "prior_source_sha256": "632f1b2c99c18073c4cd956863fcaa4b7e9773dd69bb745fc18f062337130f62",
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d49a-chopper-first-activation-a-9785000-9785015.tsv",
+    "run_a_sha256": "97b4f20ab17799386c866a4df1baaa586a170dfb87f98691e5c46fe22f1515bd",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d49a-chopper-first-activation-b-9785000-9785015.tsv",
+    "run_b_sha256": "97b4f20ab17799386c866a4df1baaa586a170dfb87f98691e5c46fe22f1515bd",
+    "runner_source_sha256": "572b1df2b060e30390d2631407dedcb73071e264e9a7142060fa89474fb2ab84"
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d49-chopper-first-reservation-order-protocol-2026-07-21.md",
+  "protocol_sha256": "fdb41df1a1f63781a4dc3fec5a0fee8c687b1b632a9fae6801cfbe03b83e1196",
+  "scope": "activation/integrity audit only; scores and margins ignored; no policy selection or platform action"
+}

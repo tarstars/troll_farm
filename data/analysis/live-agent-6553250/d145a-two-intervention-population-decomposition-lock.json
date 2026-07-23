@@ -1,0 +1,26 @@
+{
+  "schema": "troll-farm-d145a-two-intervention-population-decomposition-lock-v1",
+  "frozen_at": "2026-07-22-after-d144b-full-pass-before-prefix-partition-or-move-decomposition",
+  "prefix_double_replicas": [8, 16, 32, 64, 111],
+  "partition": "zero-based double-replica ordinal parity",
+  "thresholds": {
+    "partition_minimum_mean_increment": 2.0,
+    "partition_minimum_strict_rate": 0.25,
+    "partition_minimum_positive_families": 6,
+    "prefix_64_minimum_fraction_of_full_mean": 0.8,
+    "selected_minimum_mean_second_lift": 5.0,
+    "greedy_first_stage_compatibility_rate": 0.5
+  },
+  "sha256": {
+    "cgauto/analyze_d145a_two_intervention_population_decomposition.py": "bdd23908b68a79c11addf73db01ccf475449ad22446c2f57d7ef6400175132c1",
+    "tests/test_analyze_d145a_two_intervention_population_decomposition.py": "973101b4dce5f8b7b6c040d3c20269b802672452f610bd1f9813af7144656f70",
+    "data/analysis/live-agent-6553250/d145a-two-intervention-population-decomposition-protocol-2026-07-22.md": "7bed37876d34b9d29cec89dc9daa850057d95bb0cadbac07a0400d34fb382ed6",
+    "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-result.json": "0afef524f4f037dc8aa8e3603c5e549df7d799f09637562d51ca21f7b17e61ae",
+    "data/analysis/live-agent-6553250/d144b-two-intervention-support-semantics-lock.json": "8ec8f6bb4cd49ae9e7b0778f9c92d2940208959f725c59e640225d17c31fdf2d",
+    "cgauto/yt_d144_two_intervention_mc.py": "f36acf9c5ca4254d44f65606db8f346f936d54e9e026653293f48f164e8fcaec",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838",
+    "data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+  }
+}

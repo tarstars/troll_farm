@@ -1,0 +1,146 @@
+{
+  "job_count": 16,
+  "launched_utc": "2026-07-23T00:47:16.445959+00:00",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "lock": {
+    "manifest_sha256": "da7a45937a5945cd6dd25843077da42d123e520505e05b8e117a4988741c4bac",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "7c5178cd-39f3843f-42e03e8-2fe89acd",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d151a_conditional_second_9844136_9844199_20260723",
+    "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d151a_conditional_second_9844136_9844199_20260723/records",
+    "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d151a_conditional_second_9844136_9844199_20260723/specs"
+  },
+  "payload": {
+    "/home/tarstars/prj/troll_farm/cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "/home/tarstars/prj/troll_farm/cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "/home/tarstars/prj/troll_farm/cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "/home/tarstars/prj/troll_farm/cgauto/run_d151a_conditional_second_counterfactual.py": "f92ab636cc7a11b8ca3de6ce6c652cc350ca79cfafec28abce3cb77990172813",
+    "/home/tarstars/prj/troll_farm/cgauto/yt_d151_conditional_second_mapper.py": "ccc2c4361702ef4c5f0dbfb195f000fa21f805193dce59974d05ecdc443657a9",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d151a-conditional-second-branch-plan-9844136-9844199.tsv": "dc83762d469728ce5810b2a1949ba01386b92b5a416ea5f1dbf9287a15e6b8b1",
+    "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "/home/tarstars/prj/troll_farm/rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf"
+  },
+  "protocol": "data/analysis/live-agent-6553250/d151a-conditional-second-counterfactual-corpus-protocol-2026-07-23.md",
+  "schema": "troll-farm-d151a-conditional-second-launch-v1",
+  "specs": [
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "a",
+      "shard_id": "a-07",
+      "start_seed": 9844192,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-00",
+      "start_seed": 9844136,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-01",
+      "start_seed": 9844144,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-02",
+      "start_seed": 9844152,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-03",
+      "start_seed": 9844160,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-04",
+      "start_seed": 9844168,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-05",
+      "start_seed": 9844176,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-06",
+      "start_seed": 9844184,
+      "threads": 16
+    },
+    {
+      "maps": 8,
+      "replica": "b",
+      "shard_id": "b-07",
+      "start_seed": 9844192,
+      "threads": 16
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+{
+  "canonical_yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+  "capacity": {
+    "arms_with_at_least_four_strict_wins": 12,
+    "block_mean_margin_deltas": {
+      "0": 10.125,
+      "1": 9.375,
+      "2": 15.03125,
+      "3": 16.09375
+    },
+    "delta": {
+      "map_clustered_normal_95pct_interval": [
+        8.964662435008483,
+        16.34783756499152
+      ],
+      "map_mean_delta_sd": 5.327237960304973,
+      "mean_margin_delta": 12.65625,
+      "mean_opponent_score_delta": -6.421875,
+      "mean_own_score_delta": 6.234375,
+      "median_margin_delta": 8.0,
+      "strict_improvement_rate": 0.671875,
+      "strict_improvement_tasks": 86,
+      "strict_regression_tasks": 0,
+      "tasks": 128,
+      "tie_tasks": 42
+    },
+    "family_mean_margin_deltas": {
+      "compact_gold": 13.625,
+      "gold_adaptive": 9.3125,
+      "legend_balanced": 12.75,
+      "mybot": 17.0,
+      "norx_native_three": 11.125,
+      "resident": 9.5625,
+      "script_boss": 8.0625,
+      "silver_boss": 19.8125
+    },
+    "gates": {
+      "all_family_means_nonnegative": true,
+      "at_least_four_arms_have_four_strict_wins": true,
+      "at_least_six_positive_families": true,
+      "at_least_three_positive_blocks": true,
+      "both_seats_positive": true,
+      "catastrophe_count_not_increased": true,
+      "crop_creation_within_2pp": true,
+      "map_clustered_95pct_lower_bound_above_zero": true,
+      "mean_margin_gain_at_least_8": true,
+      "negative_margin_mass_not_increased": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "selected_worker_three_rate_at_least_10pct": false,
+      "strict_improvement_rate_at_least_25pct": true
+    },
+    "individual_arms": {
+      "balanced_2202_t072_h032": {
+        "mean_margin_delta": -9.90625,
+        "regressions": 70,
+        "strict_wins": 50,
+        "ties": 8
+      },
+      "balanced_2202_t072_h064": {
+        "mean_margin_delta": -13.015625,
+        "regressions": 81,
+        "strict_wins": 41,
+        "ties": 6
+      },
+      "balanced_2202_t104_h032": {
+        "mean_margin_delta": -9.5390625,
+        "regressions": 77,
+        "strict_wins": 37,
+        "ties": 14
+      },
+      "balanced_2202_t104_h064": {
+        "mean_margin_delta": -13.9296875,
+        "regressions": 87,
+        "strict_wins": 33,
+        "ties": 8
+      },
+      "balanced_2202_t136_h032": {
+        "mean_margin_delta": -9.28125,
+        "regressions": 81,
+        "strict_wins": 35,
+        "ties": 12
+      },
+      "balanced_2202_t136_h064": {
+        "mean_margin_delta": -13.8828125,
+        "regressions": 101,
+        "strict_wins": 23,
+        "ties": 4
+      },
+      "minimal_1101_t072_h032": {
+        "mean_margin_delta": -9.265625,
+        "regressions": 73,
+        "strict_wins": 52,
+        "ties": 3
+      },
+      "minimal_1101_t072_h064": {
+        "mean_margin_delta": -11.09375,
+        "regressions": 74,
+        "strict_wins": 47,
+        "ties": 7
+      },
+      "minimal_1101_t104_h032": {
+        "mean_margin_delta": -7.625,
+        "regressions": 73,
+        "strict_wins": 48,
+        "ties": 7
+      },
+      "minimal_1101_t104_h064": {
+        "mean_margin_delta": -10.9765625,
+        "regressions": 81,
+        "strict_wins": 41,
+        "ties": 6
+      },
+      "minimal_1101_t136_h032": {
+        "mean_margin_delta": -8.1484375,
+        "regressions": 78,
+        "strict_wins": 36,
+        "ties": 14
+      },
+      "minimal_1101_t136_h064": {
+        "mean_margin_delta": -10.90625,
+        "regressions": 96,
+        "strict_wins": 27,
+        "ties": 5
+      }
+    },
+    "pass": false,
+    "positive_blocks": 4,
+    "positive_families": 8,
+    "resident_crop_creation_rate": 1.0,
+    "resident_tail": {
+      "catastrophe_count": 4,
+      "negative_margin_mass": 645
+    },
+    "seat_mean_margin_deltas": {
+      "0": 10.734375,
+      "1": 14.578125
+    },
+    "selected_crop_creation_rate": 1.0,
+    "selected_tail": {
+      "catastrophe_count": 2,
+      "negative_margin_mass": 510
+    },
+    "selected_worker_three_rate": 0.0078125,
+    "selection": {
+      "ineligible_crop_rows": 4,
+      "selection_counts": {
+        "balanced_2202_t072_h032": 5,
+        "balanced_2202_t072_h064": 3,
+        "balanced_2202_t104_h064": 3,
+        "balanced_2202_t136_h032": 2,
+        "balanced_2202_t136_h064": 2,
+        "minimal_1101_t072_h032": 23,
+        "minimal_1101_t072_h064": 15,
+        "minimal_1101_t104_h032": 15,
+        "minimal_1101_t104_h064": 7,
+        "minimal_1101_t136_h032": 9,
+        "minimal_1101_t136_h064": 2,
+        "resident": 42
+      }
+    },
+    "worst_family_mean_margin_delta": 8.0625
+  },
+  "catalog": [
+    {
+      "horizon": 0,
+      "index": 0,
+      "label": "resident",
+      "start": -1,
+      "stats": [
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 1,
+      "label": "minimal_1101_t072_h032",
+      "start": 72,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 2,
+      "label": "minimal_1101_t072_h064",
+      "start": 72,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 3,
+      "label": "minimal_1101_t104_h032",
+      "start": 104,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 4,
+      "label": "minimal_1101_t104_h064",
+      "start": 104,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 5,
+      "label": "minimal_1101_t136_h032",
+      "start": 136,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 6,
+      "label": "minimal_1101_t136_h064",
+      "start": 136,
+      "stats": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 7,
+      "label": "balanced_2202_t072_h032",
+      "start": 72,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 8,
+      "label": "balanced_2202_t072_h064",
+      "start": 72,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 9,
+      "label": "balanced_2202_t104_h032",
+      "start": 104,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 10,
+      "label": "balanced_2202_t104_h064",
+      "start": 104,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "horizon": 32,
+      "index": 11,
+      "label": "balanced_2202_t136_h032",
+      "start": 136,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "horizon": 64,
+      "index": 12,
+      "label": "balanced_2202_t136_h064",
+      "start": 136,
+      "stats": [
+        2,
+        2,
+        0,
+        2
+      ]
+    }
+  ],
+  "decision": "close_exact_one_lane_reserve_interface_on_mechanics",
+  "inputs": {
+    "jobs1": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d162a-resident-native-capital-option-jobs1-9844136-9844143.tsv",
+      "sha256": "3fb3e3720777ac90f9d8c95605f72d8e7cfa9d96796987a337791ad1fdce21cd"
+    },
+    "jobs20": {
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d162a-resident-native-capital-option-jobs20-9844136-9844143.tsv",
+      "sha256": "3fb3e3720777ac90f9d8c95605f72d8e7cfa9d96796987a337791ad1fdce21cd"
+    },
+    "runner": {
+      "path": "rust/src/bin/d162_resident_native_capital_option.rs",
+      "sha256": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668"
+    }
+  },
+  "integrity": {
+    "gates": {
+      "frozen_lock_matches": true,
+      "jobs1_and_jobs20_byte_identical": true,
+      "jobs1_grid_exact": true,
+      "jobs20_grid_exact": true,
+      "reserved_maps_excluded": true,
+      "resident_reproduces_d161": true
+    },
+    "pass": true
+  },
+  "lock": {
+    "declared": {
+      "canonical_yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+      "catalog": {
+        "activation_turns": [
+          72,
+          104,
+          136
+        ],
+        "arms": 12,
+        "horizons": [
+          32,
+          64
+        ],
+        "policies_with_control": 13,
+        "specs": [
+          [
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "date": "2026-07-23",
+      "panel": {
+        "maps": 8,
+        "reserved_untouched_maps": 16,
+        "reserved_untouched_start": 9844200,
+        "start_seed": 9844136,
+        "tasks": 128
+      },
+      "schema": "troll-farm-d162a-resident-native-capital-option-lock-v1",
+      "sha256": {
+        "data/analysis/live-agent-6553250/d161a-same-panel-resident-dominance-result.json": "b6411b4c8b2db17f6f2e3efaab3ca193ef0630d3deae4cb255ba9dbdcbf1271a",
+        "data/analysis/live-agent-6553250/d162a-resident-native-capital-option-protocol-2026-07-23.md": "2deae13b36aa713f2334661a558d00917e364d8b25117d18cdc6e20bdf7ad7de",
+        "rust/src/bin/d102_complete_macro_resident_transfer.rs": "3caa71e7077db212e67ed566af9cdf099d587112e9659f369f1e7df58770a319",
+        "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+        "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+        "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971"
+      }
+    },
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d162a-resident-native-capital-option-lock.json",
+    "sha256": "4dd5182384e90212d78811c6b61286536389d084a57a1e813060eee3124e4ab9"
+  },
+  "mechanism": {
+    "arms": {
+      "balanced_2202_t072_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 32.0,
+        "mean_closest_bank_deficit": 12.9296875,
+        "mean_initial_bank_deficit": 15.5,
+        "mean_option_overrides": 31.5234375,
+        "mean_protected_commands": 0.078125,
+        "minimum_closest_bank_deficit": 8,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "balanced_2202_t072_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 63.953125,
+        "mean_closest_bank_deficit": 10.9921875,
+        "mean_initial_bank_deficit": 15.5,
+        "mean_option_overrides": 61.5703125,
+        "mean_protected_commands": 1.59375,
+        "minimum_closest_bank_deficit": 5,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "balanced_2202_t104_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 31.8125,
+        "mean_closest_bank_deficit": 12.921875,
+        "mean_initial_bank_deficit": 15.5390625,
+        "mean_option_overrides": 30.8046875,
+        "mean_protected_commands": 0.78125,
+        "minimum_closest_bank_deficit": 8,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "balanced_2202_t104_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 62.7109375,
+        "mean_closest_bank_deficit": 11.375,
+        "mean_initial_bank_deficit": 15.5390625,
+        "mean_option_overrides": 58.3125,
+        "mean_protected_commands": 4.4140625,
+        "minimum_closest_bank_deficit": 6,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "balanced_2202_t136_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 31.515625,
+        "mean_closest_bank_deficit": 13.328125,
+        "mean_initial_bank_deficit": 15.84375,
+        "mean_option_overrides": 30.3125,
+        "mean_protected_commands": 1.8125,
+        "minimum_closest_bank_deficit": 8,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "balanced_2202_t136_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 60.640625,
+        "mean_closest_bank_deficit": 11.796875,
+        "mean_initial_bank_deficit": 15.84375,
+        "mean_option_overrides": 56.484375,
+        "mean_protected_commands": 8.40625,
+        "minimum_closest_bank_deficit": 6,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "minimal_1101_t072_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 31.9609375,
+        "mean_closest_bank_deficit": 4.5,
+        "mean_initial_bank_deficit": 6.625,
+        "mean_option_overrides": 27.640625,
+        "mean_protected_commands": 0.03125,
+        "minimum_closest_bank_deficit": 0,
+        "tasks": 128,
+        "train_success_rate": 0.0078125,
+        "train_success_tasks": 1
+      },
+      "minimal_1101_t072_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 63.015625,
+        "mean_closest_bank_deficit": 3.2109375,
+        "mean_initial_bank_deficit": 6.625,
+        "mean_option_overrides": 48.0703125,
+        "mean_protected_commands": 0.9140625,
+        "minimum_closest_bank_deficit": 0,
+        "tasks": 128,
+        "train_success_rate": 0.0390625,
+        "train_success_tasks": 5
+      },
+      "minimal_1101_t104_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 31.8125,
+        "mean_closest_bank_deficit": 4.6796875,
+        "mean_initial_bank_deficit": 6.6640625,
+        "mean_option_overrides": 26.6015625,
+        "mean_protected_commands": 0.609375,
+        "minimum_closest_bank_deficit": 1,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "minimal_1101_t104_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 62.1875,
+        "mean_closest_bank_deficit": 3.7109375,
+        "mean_initial_bank_deficit": 6.6640625,
+        "mean_option_overrides": 44.59375,
+        "mean_protected_commands": 3.9140625,
+        "minimum_closest_bank_deficit": 0,
+        "tasks": 128,
+        "train_success_rate": 0.015625,
+        "train_success_tasks": 2
+      },
+      "minimal_1101_t136_h032": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 31.5390625,
+        "mean_closest_bank_deficit": 5.0234375,
+        "mean_initial_bank_deficit": 6.953125,
+        "mean_option_overrides": 26.390625,
+        "mean_protected_commands": 1.84375,
+        "minimum_closest_bank_deficit": 2,
+        "tasks": 128,
+        "train_success_rate": 0.0,
+        "train_success_tasks": 0
+      },
+      "minimal_1101_t136_h064": {
+        "action_distinct_tasks": 128,
+        "activation_rate": 1.0,
+        "activation_tasks": 128,
+        "mean_active_turns": 59.984375,
+        "mean_closest_bank_deficit": 4.109375,
+        "mean_initial_bank_deficit": 6.953125,
+        "mean_option_overrides": 43.8203125,
+        "mean_protected_commands": 6.7578125,
+        "minimum_closest_bank_deficit": 0,
+        "tasks": 128,
+        "train_success_rate": 0.015625,
+        "train_success_tasks": 2
+      }
+    },
+    "arms_activating_at_least_90pct": 12,
+    "arms_training_at_least_10pct": 0,
+    "failures": {
+      "affordability_violations": 0,
+      "ambiguous_created_crops": 0,
+      "deposit_prediction_failures": 0,
+      "horizon_violations": 0,
+      "invalid_direct_commands": 0,
+      "option_command_failures": 0,
+      "provenance_failures": 0,
+      "restart_violations": 0,
+      "transaction_failures": 0,
+      "worker_cap_violations": 0
+    },
+    "gates": {
+      "all_option_lifecycles_exact": true,
+      "all_preactivation_prefixes_exact": true,
+      "at_least_four_arms_train_10pct": false,
+      "at_least_ten_arms_activate_90pct": true,
+      "no_task_exceeds_three_workers": true,
+      "successful_training_at_least_six_families": false,
+      "successful_training_both_seats": true,
+      "zero_mechanical_failures": true
+    },
+    "lifecycle_errors": 0,
+    "pass": false,
+    "prefix_error_samples": [],
+    "prefix_errors": 0,
+    "successful_training_families": [
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "silver_boss"
+    ],
+    "successful_training_seats": [
+      0,
+      1
+    ],
+    "terminal_before_option_close_rows": 76
+  },
+  "panel": {
+    "maps": 8,
+    "platform_requests": 0,
+    "policies": 13,
+    "rows_per_run": 1664,
+    "start_seed": 9844136,
+    "tasks": 128,
+    "yt_requests": 0
+  },
+  "pass": false,
+  "protocol": "data/analysis/live-agent-6553250/d162a-resident-native-capital-option-protocol-2026-07-23.md",
+  "resident_parity": {
+    "mismatches": {},
+    "pass": true,
+    "samples": [],
+    "tasks": 128
+  },
+  "runner_validation": {
+    "jobs1": {
+      "catalog_errors": 0,
+      "columns": 70,
+      "duplicate_rows": 0,
+      "expected_rows": 1664,
+      "missing_rows": 0,
+      "opponent_index_errors": 0,
+      "pass": true,
+      "reward_identity_errors": 0,
+      "rows": 1664,
+      "schema_exact": true,
+      "unexpected_rows": 0,
+      "unfinished_rows": 0,
+      "unique_keys": 1664
+    },
+    "jobs20": {
+      "catalog_errors": 0,
+      "columns": 70,
+      "duplicate_rows": 0,
+      "expected_rows": 1664,
+      "missing_rows": 0,
+      "opponent_index_errors": 0,
+      "pass": true,
+      "reward_identity_errors": 0,
+      "rows": 1664,
+      "schema_exact": true,
+      "unexpected_rows": 0,
+      "unfinished_rows": 0,
+      "unique_keys": 1664
+    }
+  },
+  "schema": "troll-farm-d162a-resident-native-capital-option-v1"
+}

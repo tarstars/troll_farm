@@ -1,0 +1,330 @@
+{
+ "schema": 1,
+ "scope": "research-only exact-engine Yamo/Orchard residual MOVE search on consumed discovery seeds; both seats and eight local opponents",
+ "scenarios": 80,
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "margin_delta": {
+  "n": 80,
+  "mean": 1.2,
+  "median": 0.0,
+  "minimum": -13.0,
+  "maximum": 34.0,
+  "standard_deviation": 7.393805138788805,
+  "standard_error": 0.8266525451359517,
+  "wins": 17,
+  "ties": 52,
+  "losses": 11
+ },
+ "score_delta": {
+  "n": 80,
+  "mean": 0.9125,
+  "median": 0.0,
+  "minimum": -17.0,
+  "maximum": 12.0,
+  "standard_deviation": 4.707101422050342,
+  "standard_error": 0.5262699378345246,
+  "wins": 17,
+  "ties": 59,
+  "losses": 4
+ },
+ "searches": 10456,
+ "accepted": 49,
+ "failed_targets": 17,
+ "active_scenarios": {
+  "count": 37,
+  "margin_delta": {
+   "n": 37,
+   "mean": 2.5945945945945947,
+   "median": 0.0,
+   "minimum": -13.0,
+   "maximum": 34.0,
+   "standard_deviation": 10.781824880220777,
+   "standard_error": 1.7725210916120009,
+   "wins": 17,
+   "ties": 9,
+   "losses": 11
+  },
+  "score_delta": {
+   "n": 37,
+   "mean": 1.972972972972973,
+   "median": 0.0,
+   "minimum": -17.0,
+   "maximum": 12.0,
+   "standard_deviation": 6.816998714351608,
+   "standard_error": 1.1207076851013271,
+   "wins": 17,
+   "ties": 16,
+   "losses": 4
+  }
+ },
+ "nonnegative_opponents": 8,
+ "worst_opponent_margin_delta": 0.1,
+ "by_opponent": {
+  "compact_gold": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.9,
+    "median": 0.0,
+    "minimum": -13.0,
+    "maximum": 34.0,
+    "standard_deviation": 13.287002839032,
+    "standard_error": 4.201719224846473,
+    "wins": 2,
+    "ties": 5,
+    "losses": 3
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": -0.7,
+    "median": 0.0,
+    "minimum": -17.0,
+    "maximum": 8.0,
+    "standard_deviation": 6.254775952999613,
+    "standard_error": 1.977933826552906,
+    "wins": 2,
+    "ties": 7,
+    "losses": 1
+   },
+   "accepted": 8
+  },
+  "gold_adaptive": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 1.7,
+    "median": 0.0,
+    "minimum": -8.0,
+    "maximum": 12.0,
+    "standard_deviation": 6.000925854492047,
+    "standard_error": 1.8976593769987042,
+    "wins": 3,
+    "ties": 6,
+    "losses": 1
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.7,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 9.0,
+    "standard_deviation": 3.591656999213594,
+    "standard_error": 1.1357816691600546,
+    "wins": 2,
+    "ties": 8,
+    "losses": 0
+   },
+   "accepted": 10
+  },
+  "gold_elite": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.9,
+    "median": 0.0,
+    "minimum": -13.0,
+    "maximum": 34.0,
+    "standard_deviation": 13.287002839032,
+    "standard_error": 4.201719224846473,
+    "wins": 2,
+    "ties": 5,
+    "losses": 3
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": -0.7,
+    "median": 0.0,
+    "minimum": -17.0,
+    "maximum": 8.0,
+    "standard_deviation": 6.254775952999613,
+    "standard_error": 1.977933826552906,
+    "wins": 2,
+    "ties": 7,
+    "losses": 1
+   },
+   "accepted": 8
+  },
+  "mybot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 1.7,
+    "median": 0.0,
+    "minimum": -6.0,
+    "maximum": 12.0,
+    "standard_deviation": 5.121848624601603,
+    "standard_error": 1.6196707484341788,
+    "wins": 3,
+    "ties": 6,
+    "losses": 1
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.1,
+    "median": 0.0,
+    "minimum": -13.0,
+    "maximum": 11.0,
+    "standard_deviation": 6.454111523328022,
+    "standard_error": 2.040969268645551,
+    "wins": 3,
+    "ties": 6,
+    "losses": 1
+   },
+   "accepted": 7
+  },
+  "printer_bot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 2.2,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 16.0,
+    "standard_deviation": 5.202563470700445,
+    "standard_error": 1.6451950239004085,
+    "wins": 2,
+    "ties": 8,
+    "losses": 0
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.4,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 8.0,
+    "standard_deviation": 2.988868236194653,
+    "standard_error": 0.9451631252505217,
+    "wins": 2,
+    "ties": 8,
+    "losses": 0
+   },
+   "accepted": 4
+  },
+  "sched_bot": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.1,
+    "median": 0.0,
+    "minimum": -4.0,
+    "maximum": 8.0,
+    "standard_deviation": 3.142893217686178,
+    "standard_error": 0.9938701010583715,
+    "wins": 1,
+    "ties": 7,
+    "losses": 2
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 0.5,
+    "median": 0.0,
+    "minimum": -3.0,
+    "maximum": 8.0,
+    "standard_deviation": 2.798809270624444,
+    "standard_error": 0.8850612031567835,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1
+   },
+   "accepted": 5
+  },
+  "script_boss": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 1.7,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 3.8311588035185618,
+    "standard_error": 1.2115187896924164,
+    "wins": 3,
+    "ties": 7,
+    "losses": 0
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 1.9,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 3.900142447541001,
+    "standard_error": 1.2333333333333332,
+    "wins": 3,
+    "ties": 7,
+    "losses": 0
+   },
+   "accepted": 5
+  },
+  "silver_boss": {
+   "scenarios": 10,
+   "margin_delta": {
+    "n": 10,
+    "mean": 0.4,
+    "median": 0.0,
+    "minimum": -4.0,
+    "maximum": 8.0,
+    "standard_deviation": 2.9514591494904874,
+    "standard_error": 0.9333333333333332,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1
+   },
+   "score_delta": {
+    "n": 10,
+    "mean": 2.1,
+    "median": 0.0,
+    "minimum": 0.0,
+    "maximum": 12.0,
+    "standard_deviation": 4.483302354291979,
+    "standard_error": 1.4177446878757824,
+    "wins": 2,
+    "ties": 8,
+    "losses": 0
+   },
+   "accepted": 2
+  }
+ },
+ "timing": {
+  "samples": 22509,
+  "mean_us": 37746.188013683415,
+  "median_us": 1128,
+  "p95_us": 130047,
+  "p99_us": 164369,
+  "maximum_us": 224449,
+  "over_50ms": 8421
+ },
+ "research_gate": {
+  "requirements": {
+   "accepted_deviation": true,
+   "mean_margin_at_least_2": false,
+   "mean_score_at_least_2": false,
+   "five_nonnegative_opponents": true,
+   "worst_opponent_at_least_minus_5": true,
+   "p95_at_most_45ms": false,
+   "no_decision_over_50ms": false
+  },
+  "passed": false
+ },
+ "decision": {
+  "direct_online_profile": false,
+  "own_state_distillation": false,
+  "build_submission_candidate": false
+ }
+}

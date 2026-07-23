@@ -1,0 +1,563 @@
+{
+  "authority": "retrospective-diagnostic-only-no-qualification",
+  "correlations": {
+    "held_activity_vs_d126_mean": 0.6935007581278229,
+    "held_mean_vs_d126_mean": 0.003972264528861303,
+    "held_worst_block_vs_d126_mean": 0.27440194363901255,
+    "held_worst_family_vs_d126_mean": 0.6839996776058511
+  },
+  "decision": "close_d135_winner_conditioned_bce_gate_abstraction",
+  "exact_repeat": {
+    "a_sha256": "23b7eccb342e0a3ba3319bfe1242404af495b5afe051a7e46c87d8ff5a196541",
+    "b_sha256": "23b7eccb342e0a3ba3319bfe1242404af495b5afe051a7e46c87d8ff5a196541",
+    "byte_exact": true
+  },
+  "lock": {
+    "declared": {
+      "frozen_at": "2026-07-22-after-d135-veto-before-additional-full-pair-fits",
+      "isolated_change": "score every already-frozen D135 pair retrospectively without qualification authority",
+      "schema": "troll-farm-d136a-d135-all-pair-transfer-audit-lock-v1",
+      "sha256": {
+        "cgauto/analyze_d136a_d135_all_pair_transfer.py": "9973ae305e9c3dbf08ea6985e4525ee995fdb85cbe4d82c563b87a214222e1a1",
+        "cgauto/train_d135a_winner_conditioned_action_gate_q6.py": "eb9469d4141c2ec991adf1e07f02254b2e6c5c8546dffbcad5371cfefd144d91",
+        "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-lock.json": "6647730a52c5f111e66b8db533a1c4982fce13bc807fcdc50f4568493d5c6f00",
+        "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-result.json": "b15ce182655af60025ba1e774593273647e154f50a3a2f199b1abc5bdcc53592",
+        "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-selection-a.json": "55d9f81d6870665b16e759f5f51f1df0ab5869493efc74134c974c52ed5954ec",
+        "data/analysis/live-agent-6553250/d135a-winner-conditioned-action-gate-q6-selection-b.json": "55d9f81d6870665b16e759f5f51f1df0ab5869493efc74134c974c52ed5954ec",
+        "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-protocol-2026-07-22.md": "b7cc2115f62419cc5b2958b504ca82e65fc871b1241fe5d05ca93f68db2b6a5d",
+        "tests/test_analyze_d136a_d135_all_pair_transfer.py": "5f5b82afb8486e8996e6834328719c5aa9a13a4bc1b945ccba7c64059e562efb"
+      }
+    },
+    "manifest_sha256": "ff379ce751d7e9cc1c9c39dbf23cd1631707b950c0bb9bee9d62b20618f95122",
+    "mismatches": {},
+    "pass": true,
+    "path": "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-lock.json"
+  },
+  "pairs": [
+    {
+      "calibration": {
+        "achieved_active_tasks": 819,
+        "achieved_activity": 0.7998046875,
+        "active_floor_logit": -1.307586908340454,
+        "inactive_ceiling_logit": -1.3095014095306396,
+        "offset": -1.3085441589355469,
+        "target_active_tasks": 819,
+        "target_activity": 0.8,
+        "tasks": 1024
+      },
+      "d126_gates": {
+        "activity_10_to_85pct": true,
+        "both_folds_nonnegative": true,
+        "crop_not_below_control": true,
+        "mean_at_least_2": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": false,
+        "strict_at_least_40pct": false,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": false
+      },
+      "d126_metrics": {
+        "control_worker_three_rate": 0.9375,
+        "crop_rate": 1.0,
+        "family_mean_margin_delta": {
+          "compact_gold": -3.03125,
+          "gold_adaptive": 6.6875,
+          "legend_balanced": 6.03125,
+          "mybot": 4.1875,
+          "norx_native_three": -1.78125,
+          "resident": -2.3125,
+          "script_boss": -5.09375,
+          "silver_boss": 0.0625
+        },
+        "fold_mean_margin_delta": {
+          "0": 0.7421875,
+          "1": 0.4453125
+        },
+        "intervention_rate": 0.81640625,
+        "mean_margin_delta": 0.59375,
+        "mean_opponent_score_delta": -0.69140625,
+        "mean_own_score_delta": -0.09765625,
+        "positive_families": 4,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.3828125,
+        "tasks": 256,
+        "worker_three_rate": 0.9375,
+        "worst_family": -5.09375
+      },
+      "d126_pass": false,
+      "d126_structural_metrics": {
+        "balanced_accuracy_at_zero": 0.5287155173718929,
+        "mean_proposal_regret": 22.64457893371582,
+        "nonpositive_recall_at_zero": 0.981875479221344,
+        "positive_recall_at_zero": 0.07555555552244186,
+        "roots": 1494,
+        "winner_positive_rate": 0.15060241520404816,
+        "winner_value_mean": -21.499330520629883,
+        "within_10_rate": 0.31593039631843567
+      },
+      "gate_offset": -1.3085441589355469,
+      "gate_seed": 13501,
+      "held_selection": {
+        "activity": 0.8037109375,
+        "eligible": false,
+        "failed_gates": [
+          "every_block_nonnegative"
+        ],
+        "mean_margin_delta": 3.970703125,
+        "strict_improvement_rate": 0.4384765625,
+        "worst_block": -0.1015625,
+        "worst_family": -1.125
+      },
+      "model_hash": "21bbbbb7b763f791a20aad18224ebf55c584d47505fb7b429eced57b7ec07d71",
+      "ranker_seed": 13401,
+      "training": {
+        "balanced_accuracy_at_zero": 0.5331379063427448,
+        "final_gate_binary_cross_entropy": 0.4652172029018402,
+        "first_epoch_gate_loss": 0.6787833631278042,
+        "gate_cpu_threads": 1,
+        "gate_epochs": 80,
+        "gate_learning_rate": 0.001,
+        "gate_root_batch_size": 128,
+        "gate_seed": 13501,
+        "gate_weight_decay": 0.0001,
+        "last_epoch_gate_loss": 0.4665728717443933,
+        "model_hash": "21bbbbb7b763f791a20aad18224ebf55c584d47505fb7b429eced57b7ec07d71",
+        "nonpositive_recall_at_zero": 0.9865447878837585,
+        "parameters": 6786,
+        "positive_recall_at_zero": 0.07973102480173111,
+        "ranker_hash": "766f6916269c684acdf3449be6a1f6c5aed5094f0d84adb6b605d3eb3da5b65a",
+        "ranker_seed": 13401,
+        "ranker_training": {
+          "cpu_threads": 1,
+          "epochs": 80,
+          "final_gate_binary_cross_entropy": 0.6290579438209534,
+          "final_soft_rank_cross_entropy": 2.727771520614624,
+          "first_epoch_streaming_loss": {
+            "gate": 0.6933135291658731,
+            "rank": 2.7623279268961833,
+            "total": 3.455641456205682
+          },
+          "last_epoch_streaming_loss": {
+            "gate": 0.6295949822448822,
+            "rank": 2.7295309265933363,
+            "total": 3.3591259163546274
+          },
+          "learning_rate": 0.001,
+          "model_hash": "2452c96a6f4f80ef73f344e0caf8efc71f5eb00272c633d575464b6a72d2736a",
+          "parameters": 6626,
+          "root_batch_size": 128,
+          "seed": 13401,
+          "train_exact_best_rate": 0.16265060007572174,
+          "train_gate_act_recall": 0.6209228038787842,
+          "train_gate_balanced_accuracy": 0.645416796207428,
+          "train_gate_wait_recall": 0.6699107885360718,
+          "train_mean_proposal_regret": 19.453815460205078,
+          "train_median_proposal_regret": 14.0,
+          "train_within_10_rate": 0.39738956093788147,
+          "train_within_20_rate": 0.6329317092895508,
+          "train_within_5_rate": 0.27710843086242676,
+          "weight_decay": 0.0001
+        },
+        "winner_nonpositive_roots": 3939,
+        "winner_positive_rate": 0.20903614163398743,
+        "winner_positive_roots": 1041,
+        "winner_value_mean": -16.968473434448242,
+        "winner_value_nonpositive_rate": 0.7909638285636902
+      }
+    },
+    {
+      "calibration": {
+        "achieved_active_tasks": 819,
+        "achieved_activity": 0.7998046875,
+        "active_floor_logit": -1.3283581733703613,
+        "inactive_ceiling_logit": -1.3314235210418701,
+        "offset": -1.3298908472061157,
+        "target_active_tasks": 819,
+        "target_activity": 0.8,
+        "tasks": 1024
+      },
+      "d126_gates": {
+        "activity_10_to_85pct": false,
+        "both_folds_nonnegative": true,
+        "crop_not_below_control": true,
+        "mean_at_least_2": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": false,
+        "strict_at_least_40pct": false,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": false
+      },
+      "d126_metrics": {
+        "control_worker_three_rate": 0.9375,
+        "crop_rate": 1.0,
+        "family_mean_margin_delta": {
+          "compact_gold": -0.96875,
+          "gold_adaptive": 13.53125,
+          "legend_balanced": 9.625,
+          "mybot": 2.59375,
+          "norx_native_three": -1.34375,
+          "resident": -5.125,
+          "script_boss": -0.96875,
+          "silver_boss": -2.53125
+        },
+        "fold_mean_margin_delta": {
+          "0": 2.7734375,
+          "1": 0.9296875
+        },
+        "intervention_rate": 0.85546875,
+        "mean_margin_delta": 1.8515625,
+        "mean_opponent_score_delta": -1.5078125,
+        "mean_own_score_delta": 0.34375,
+        "positive_families": 3,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.3984375,
+        "tasks": 256,
+        "worker_three_rate": 0.9375,
+        "worst_family": -5.125
+      },
+      "d126_pass": false,
+      "d126_structural_metrics": {
+        "balanced_accuracy_at_zero": 0.5405515767633915,
+        "mean_proposal_regret": 22.453815460205078,
+        "nonpositive_recall_at_zero": 0.9725058674812317,
+        "positive_recall_at_zero": 0.1085972860455513,
+        "roots": 1494,
+        "winner_positive_rate": 0.14792503416538239,
+        "winner_value_mean": -21.30856704711914,
+        "within_10_rate": 0.3212851285934448
+      },
+      "gate_offset": -1.3298908472061157,
+      "gate_seed": 13502,
+      "held_selection": {
+        "activity": 0.798828125,
+        "eligible": false,
+        "failed_gates": [
+          "every_block_activity_10_to_85pct"
+        ],
+        "mean_margin_delta": 3.4345703125,
+        "strict_improvement_rate": 0.4375,
+        "worst_block": 1.43359375,
+        "worst_family": 0.09375
+      },
+      "model_hash": "0bc01f5f58c912ed6c0cc44702689e7d8d602699e1f5a3bb2ac55040d7698b6e",
+      "ranker_seed": 13402,
+      "training": {
+        "balanced_accuracy_at_zero": 0.5427662394940853,
+        "final_gate_binary_cross_entropy": 0.4546555280685425,
+        "first_epoch_gate_loss": 0.5531151953471234,
+        "gate_cpu_threads": 1,
+        "gate_epochs": 80,
+        "gate_learning_rate": 0.001,
+        "gate_root_batch_size": 128,
+        "gate_seed": 13502,
+        "gate_weight_decay": 0.0001,
+        "last_epoch_gate_loss": 0.4559856808807955,
+        "model_hash": "0bc01f5f58c912ed6c0cc44702689e7d8d602699e1f5a3bb2ac55040d7698b6e",
+        "nonpositive_recall_at_zero": 0.9794572591781616,
+        "parameters": 6786,
+        "positive_recall_at_zero": 0.106075219810009,
+        "ranker_hash": "b1b5b7aa76a0dbe988ff40bc65392af42ac117c9bf3e3b01ab4d79632ce53626",
+        "ranker_seed": 13402,
+        "ranker_training": {
+          "cpu_threads": 1,
+          "epochs": 80,
+          "final_gate_binary_cross_entropy": 0.6314064860343933,
+          "final_soft_rank_cross_entropy": 2.7189197540283203,
+          "first_epoch_streaming_loss": {
+            "gate": 0.6905298035307582,
+            "rank": 2.761287655313331,
+            "total": 3.4518174510404287
+          },
+          "last_epoch_streaming_loss": {
+            "gate": 0.6322498951571055,
+            "rank": 2.7212112237171953,
+            "total": 3.3534611096822595
+          },
+          "learning_rate": 0.001,
+          "model_hash": "5bd45c405a958c55c4fe3104898bbebe6ce3f18197412ef336d63d15b3cefc74",
+          "parameters": 6626,
+          "root_batch_size": 128,
+          "seed": 13402,
+          "train_exact_best_rate": 0.16767068207263947,
+          "train_gate_act_recall": 0.6431980729103088,
+          "train_gate_balanced_accuracy": 0.6423614025115967,
+          "train_gate_wait_recall": 0.6415247321128845,
+          "train_mean_proposal_regret": 18.853614807128906,
+          "train_median_proposal_regret": 14.0,
+          "train_within_10_rate": 0.4078313112258911,
+          "train_within_20_rate": 0.6499999761581421,
+          "train_within_5_rate": 0.2895582318305969,
+          "weight_decay": 0.0001
+        },
+        "winner_nonpositive_roots": 3943,
+        "winner_positive_rate": 0.20823292434215546,
+        "winner_positive_roots": 1037,
+        "winner_value_mean": -16.36827278137207,
+        "winner_value_nonpositive_rate": 0.7917670607566833
+      }
+    },
+    {
+      "calibration": {
+        "achieved_active_tasks": 819,
+        "achieved_activity": 0.7998046875,
+        "active_floor_logit": -1.1139088869094849,
+        "inactive_ceiling_logit": -1.1264970302581787,
+        "offset": -1.1202029585838318,
+        "target_active_tasks": 819,
+        "target_activity": 0.8,
+        "tasks": 1024
+      },
+      "d126_gates": {
+        "activity_10_to_85pct": true,
+        "both_folds_nonnegative": true,
+        "crop_not_below_control": true,
+        "mean_at_least_2": true,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": false,
+        "strict_at_least_40pct": true,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": true
+      },
+      "d126_metrics": {
+        "control_worker_three_rate": 0.9375,
+        "crop_rate": 1.0,
+        "family_mean_margin_delta": {
+          "compact_gold": -2.5,
+          "gold_adaptive": 8.0625,
+          "legend_balanced": 8.96875,
+          "mybot": 7.09375,
+          "norx_native_three": -1.78125,
+          "resident": 1.25,
+          "script_boss": -0.59375,
+          "silver_boss": -0.71875
+        },
+        "fold_mean_margin_delta": {
+          "0": 3.203125,
+          "1": 1.7421875
+        },
+        "intervention_rate": 0.83984375,
+        "mean_margin_delta": 2.47265625,
+        "mean_opponent_score_delta": -0.7734375,
+        "mean_own_score_delta": 1.69921875,
+        "positive_families": 4,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.41796875,
+        "tasks": 256,
+        "worker_three_rate": 0.9375,
+        "worst_family": -2.5
+      },
+      "d126_pass": false,
+      "d126_structural_metrics": {
+        "balanced_accuracy_at_zero": 0.549718976020813,
+        "mean_proposal_regret": 22.550870895385742,
+        "nonpositive_recall_at_zero": 0.9559401869773865,
+        "positive_recall_at_zero": 0.1434977650642395,
+        "roots": 1494,
+        "winner_positive_rate": 0.14926372468471527,
+        "winner_value_mean": -21.405622482299805,
+        "within_10_rate": 0.3192771077156067
+      },
+      "gate_offset": -1.1202029585838318,
+      "gate_seed": 13503,
+      "held_selection": {
+        "activity": 0.8095703125,
+        "eligible": false,
+        "failed_gates": [
+          "every_block_activity_10_to_85pct"
+        ],
+        "mean_margin_delta": 3.908203125,
+        "strict_improvement_rate": 0.447265625,
+        "worst_block": 2.4609375,
+        "worst_family": 0.828125
+      },
+      "model_hash": "657021df2bdefa101909df67c622010a0eeca22789cc937e8e7eeae66507eff7",
+      "ranker_seed": 13403,
+      "training": {
+        "balanced_accuracy_at_zero": 0.5708870887756348,
+        "final_gate_binary_cross_entropy": 0.4610191881656647,
+        "first_epoch_gate_loss": 0.6263464771600133,
+        "gate_cpu_threads": 1,
+        "gate_epochs": 80,
+        "gate_learning_rate": 0.001,
+        "gate_root_batch_size": 128,
+        "gate_seed": 13503,
+        "gate_weight_decay": 0.0001,
+        "last_epoch_gate_loss": 0.4595344346689891,
+        "model_hash": "657021df2bdefa101909df67c622010a0eeca22789cc937e8e7eeae66507eff7",
+        "nonpositive_recall_at_zero": 0.969132661819458,
+        "parameters": 6786,
+        "positive_recall_at_zero": 0.17264151573181152,
+        "ranker_hash": "692c4b8469e236e0e50fdf5d7a9be03fa1d2a0bae202d31972e912e68c9c4512",
+        "ranker_seed": 13403,
+        "ranker_training": {
+          "cpu_threads": 1,
+          "epochs": 80,
+          "final_gate_binary_cross_entropy": 0.631257176399231,
+          "final_soft_rank_cross_entropy": 2.723541736602783,
+          "first_epoch_streaming_loss": {
+            "gate": 0.695380797299994,
+            "rank": 2.762077368694137,
+            "total": 3.45745814928568
+          },
+          "last_epoch_streaming_loss": {
+            "gate": 0.6307382022520625,
+            "rank": 2.7248870840034334,
+            "total": 3.3556252709354264
+          },
+          "learning_rate": 0.001,
+          "model_hash": "3d019f01ba9183996e304eefbd031c16d44dd5dbcf4ac69df6ba5a6585b28431",
+          "parameters": 6626,
+          "root_batch_size": 128,
+          "seed": 13403,
+          "train_exact_best_rate": 0.1664658635854721,
+          "train_gate_act_recall": 0.6758154630661011,
+          "train_gate_balanced_accuracy": 0.6430577635765076,
+          "train_gate_wait_recall": 0.6103000640869141,
+          "train_mean_proposal_regret": 18.85863494873047,
+          "train_median_proposal_regret": 14.0,
+          "train_within_10_rate": 0.408433735370636,
+          "train_within_20_rate": 0.6483935713768005,
+          "train_within_5_rate": 0.29196786880493164,
+          "weight_decay": 0.0001
+        },
+        "winner_nonpositive_roots": 3920,
+        "winner_positive_rate": 0.2128514051437378,
+        "winner_positive_roots": 1060,
+        "winner_value_mean": -16.373292922973633,
+        "winner_value_nonpositive_rate": 0.7871485948562622
+      }
+    },
+    {
+      "calibration": {
+        "achieved_active_tasks": 819,
+        "achieved_activity": 0.7998046875,
+        "active_floor_logit": -1.4251749515533447,
+        "inactive_ceiling_logit": -1.4262906312942505,
+        "offset": -1.4257327914237976,
+        "target_active_tasks": 819,
+        "target_activity": 0.8,
+        "tasks": 1024
+      },
+      "d126_gates": {
+        "activity_10_to_85pct": true,
+        "both_folds_nonnegative": false,
+        "crop_not_below_control": true,
+        "mean_at_least_2": false,
+        "own_nonnegative_or_opponent_nonpositive": true,
+        "six_positive_families": false,
+        "strict_at_least_40pct": false,
+        "worker_three_within_5pp": true,
+        "worst_family_at_least_minus3": true
+      },
+      "d126_metrics": {
+        "control_worker_three_rate": 0.9375,
+        "crop_rate": 1.0,
+        "family_mean_margin_delta": {
+          "compact_gold": -0.15625,
+          "gold_adaptive": 7.625,
+          "legend_balanced": -1.5,
+          "mybot": 4.09375,
+          "norx_native_three": -1.8125,
+          "resident": -1.4375,
+          "script_boss": -2.03125,
+          "silver_boss": -1.9375
+        },
+        "fold_mean_margin_delta": {
+          "0": 1.3515625,
+          "1": -0.640625
+        },
+        "intervention_rate": 0.84765625,
+        "mean_margin_delta": 0.35546875,
+        "mean_opponent_score_delta": -0.2421875,
+        "mean_own_score_delta": 0.11328125,
+        "positive_families": 2,
+        "positive_score_ties": 0,
+        "strict_improvement_rate": 0.39453125,
+        "tasks": 256,
+        "worker_three_rate": 0.9375,
+        "worst_family": -2.03125
+      },
+      "d126_pass": false,
+      "d126_structural_metrics": {
+        "balanced_accuracy_at_zero": 0.5463916249573231,
+        "mean_proposal_regret": 22.518741607666016,
+        "nonpositive_recall_at_zero": 0.9718530178070068,
+        "positive_recall_at_zero": 0.12093023210763931,
+        "roots": 1494,
+        "winner_positive_rate": 0.14390896260738373,
+        "winner_value_mean": -21.373493194580078,
+        "within_10_rate": 0.32195448875427246
+      },
+      "gate_offset": -1.4257327914237976,
+      "gate_seed": 13504,
+      "held_selection": {
+        "activity": 0.7890625,
+        "eligible": true,
+        "failed_gates": [],
+        "mean_margin_delta": 3.595703125,
+        "strict_improvement_rate": 0.44140625,
+        "worst_block": 2.71484375,
+        "worst_family": 0.140625
+      },
+      "model_hash": "a76c4e6db7636e36f0ea02ed4b8e183178676586e0983ddc6043d8781a88460b",
+      "ranker_seed": 13404,
+      "training": {
+        "balanced_accuracy_at_zero": 0.5432287007570267,
+        "final_gate_binary_cross_entropy": 0.4388090968132019,
+        "first_epoch_gate_loss": 0.5582365089391609,
+        "gate_cpu_threads": 1,
+        "gate_epochs": 80,
+        "gate_learning_rate": 0.001,
+        "gate_root_batch_size": 128,
+        "gate_seed": 13504,
+        "gate_weight_decay": 0.0001,
+        "last_epoch_gate_loss": 0.43980775501833386,
+        "model_hash": "a76c4e6db7636e36f0ea02ed4b8e183178676586e0983ddc6043d8781a88460b",
+        "nonpositive_recall_at_zero": 0.979924738407135,
+        "parameters": 6786,
+        "positive_recall_at_zero": 0.10653266310691833,
+        "ranker_hash": "9f8d03beba2917bc2c1807832f5956584d2129b235f377551fd34c234a52cdb0",
+        "ranker_seed": 13404,
+        "ranker_training": {
+          "cpu_threads": 1,
+          "epochs": 80,
+          "final_gate_binary_cross_entropy": 0.6310691237449646,
+          "final_soft_rank_cross_entropy": 2.7338144779205322,
+          "first_epoch_streaming_loss": {
+            "gate": 0.7014462609846429,
+            "rank": 2.76205211126182,
+            "total": 3.4634983694697
+          },
+          "last_epoch_streaming_loss": {
+            "gate": 0.6313669196573127,
+            "rank": 2.735808432245829,
+            "total": 3.3671753701435994
+          },
+          "learning_rate": 0.001,
+          "model_hash": "0ce74c437efdcd0e3331a0067361e5f38a684d0d1eec09706bc34bda58da5285",
+          "parameters": 6626,
+          "root_batch_size": 128,
+          "seed": 13404,
+          "train_exact_best_rate": 0.14738956093788147,
+          "train_gate_act_recall": 0.6129673719406128,
+          "train_gate_balanced_accuracy": 0.6465080082416534,
+          "train_gate_wait_recall": 0.6800486445426941,
+          "train_mean_proposal_regret": 20.129316329956055,
+          "train_median_proposal_regret": 15.0,
+          "train_within_10_rate": 0.3853413760662079,
+          "train_within_20_rate": 0.6218875646591187,
+          "train_within_5_rate": 0.2696787118911743,
+          "weight_decay": 0.0001
+        },
+        "winner_nonpositive_roots": 3985,
+        "winner_positive_rate": 0.19979919493198395,
+        "winner_positive_roots": 995,
+        "winner_value_mean": -17.64397621154785,
+        "winner_value_nonpositive_rate": 0.8002008199691772
+      }
+    }
+  ],
+  "passing_pairs": 0,
+  "protocol": "data/analysis/live-agent-6553250/d136a-d135-all-pair-transfer-audit-protocol-2026-07-22.md",
+  "schema": "troll-farm-d136a-d135-all-pair-transfer-audit-result-v1"
+}

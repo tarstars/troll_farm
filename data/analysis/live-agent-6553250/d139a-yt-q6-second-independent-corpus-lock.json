@@ -1,0 +1,36 @@
+{
+  "schema": "troll-farm-d139a-yt-q6-second-independent-corpus-lock-v1",
+  "frozen_at": "2026-07-22-before-any-d139-yt-path-or-operation",
+  "yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+  "seed_range": {
+    "start": 9844064,
+    "maps": 64,
+    "end_inclusive": 9844127,
+    "blocks": 4,
+    "maps_per_block": 16,
+    "shards": 16,
+    "maps_per_shard": 4
+  },
+  "external_sha256": {
+    "/home/tarstars/prj/math_through_eml/src/math_through_eml/yt_utils.py": "ce5b7466bde3dfeb2ccf47836c9b18202750142f7c067c177d8ebb36c0340ccc"
+  },
+  "sha256": {
+    "cgauto/yt_d139_q6_second_independent_corpus.py": "116e3cb2bd078ed33d822d17ccf8678bb0f69028ee8b0a707f69d12d7eb14a0c",
+    "tests/test_yt_d139_q6_second_independent_corpus.py": "ea211b8e7801a0a245011cf1a2b9293120168d4219ee3699d40727c06de057aa",
+    "data/analysis/live-agent-6553250/d139a-yt-q6-second-independent-corpus-protocol-2026-07-22.md": "2c1189cf1fa53631d40e76fe41d621bf8af4057e51acf4a5e9b6ea13a111676b",
+    "cgauto/yt_d133_q6_teacher_corpus.py": "6c0382d0392aa0741e26cfe32bc039bea24bc78c20d1dd008aac30e0d741d8fc",
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/analyze_d133b_q6_support_semantics.py": "2e77b2d41444faefcd4e6b7853b0c076b9560af18cc3526a616dd5f0f17b54b9",
+    "tests/test_yt_d133_q6_teacher_corpus.py": "5421a1dddecce9f914664212997e42b0c68b0c51b2236eda24121f78d40eb5e4",
+    "tests/test_analyze_d133b_q6_support_semantics.py": "d8f35f40c0fe90d5da9a2dee50753e37c9eb65aa0de259caf9a053dcc6cf38ba",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-result.json": "2c0791cb8b6974ec049628870a0fbcbde36ca00119dfd24fff377d980d3000ab",
+    "data/analysis/live-agent-6553250/d132a-yt-q6-teacher-parity-repair2-lock.json": "3973663789f87b2798373776c769312ce58d76ffa6061d0b7958f7ba3da3d403",
+    "data/analysis/live-agent-6553250/d133b-q6-support-semantics-repair-lock.json": "c326c398ce878030a4c548fc2a512c6b38dd25847399e416fc86d18f3779c8f6",
+    "data/analysis/live-agent-6553250/d133b-q6-support-semantics-repair-result.json": "98a2c5277f365214ee1005bfeca435300f975f955b5dabe20ef0ac51c3cae054",
+    "data/analysis/live-agent-6553250/d138a-best-stop-plus3pp-calibration-q6-result.json": "99a52e733694d4121255a21c831312fb188ac4c5a331c45783a2592df2f035dd",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8"
+  }
+}

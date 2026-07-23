@@ -1,0 +1,197 @@
+{
+ "schema": 1,
+ "phase": "replication",
+ "scope": "research-only provenance-aware priority for reachable opponent-created crops; paired against the unchanged resident on the same seed, seat, and opponent",
+ "rows": 480,
+ "scenarios": 480,
+ "seed_range": [
+  1330,
+  1359
+ ],
+ "seeds": [
+  1330,
+  1331,
+  1332,
+  1333,
+  1334,
+  1335,
+  1336,
+  1337,
+  1338,
+  1339,
+  1340,
+  1341,
+  1342,
+  1343,
+  1344,
+  1345,
+  1346,
+  1347,
+  1348,
+  1349,
+  1350,
+  1351,
+  1352,
+  1353,
+  1354,
+  1355,
+  1356,
+  1357,
+  1358,
+  1359
+ ],
+ "opponents": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "profile_count": 1,
+ "prospective_gate": {
+  "minimum_activated_cells": 48,
+  "minimum_mean_margin_delta": 2,
+  "strictly_positive_trimmed_5pct_mean_margin_delta": true,
+  "minimum_mean_score_delta": -2,
+  "maximum_mean_opponent_score_delta": -4,
+  "minimum_nonnegative_opponents": 6,
+  "minimum_worst_opponent_mean_margin_delta": -5
+ },
+ "selection_order": [
+  "worst opponent mean margin delta",
+  "five-percent-trimmed mean margin delta",
+  "raw mean margin delta",
+  "mean own-score delta",
+  "lower bonus",
+  "lower ETA limit"
+ ],
+ "ranking": [
+  "b100_e6"
+ ],
+ "eligible_profiles": [
+  "b100_e6"
+ ],
+ "selected_profile": "b100_e6",
+ "profiles": {
+  "b100_e6": {
+   "parameters": {
+    "bonus": 100,
+    "eta_limit": 6,
+    "start_turn": 1,
+    "minimum_seen": 1
+   },
+   "scenarios": 480,
+   "activated_cells": 369,
+   "activation_rate": 0.76875,
+   "margin_delta": {
+    "n": 480,
+    "mean": 4.570833333333334,
+    "median": 0.0,
+    "trimmed_5pct_mean": 4.201388888888889,
+    "standard_deviation": 29.382069989747045,
+    "wins": 210,
+    "ties": 132,
+    "losses": 138,
+    "minimum": -135,
+    "maximum": 191
+   },
+   "mean_score_delta": -1.70625,
+   "mean_opponent_score_delta": -6.277083333333334,
+   "mean_wood_delta": -0.30416666666666664,
+   "mean_opponent_wood_delta": -1.3916666666666666,
+   "mean_candidate_score": 203.85,
+   "mean_candidate_opponent_score": 145.65208333333334,
+   "mean_crops_seen": 18.858333333333334,
+   "mean_crop_priority_selections": 70.48958333333333,
+   "first_crop_priority_turn": {
+    "observations": 402,
+    "mean": 48.83582089552239,
+    "median": 40.0
+   },
+   "first_divergence_turn": {
+    "observations": 369,
+    "mean": 54.859078590785906,
+    "median": 47
+   },
+   "nonnegative_opponents": 7,
+   "worst_opponent_mean_margin_delta": -0.21666666666666667,
+   "opponents": {
+    "compact_gold": {
+     "scenarios": 60,
+     "mean_margin_delta": 13.7,
+     "mean_score_delta": -2.4833333333333334,
+     "mean_opponent_score_delta": -16.183333333333334,
+     "activated_cells": 58
+    },
+    "gold_adaptive": {
+     "scenarios": 60,
+     "mean_margin_delta": 0.7166666666666667,
+     "mean_score_delta": -6.033333333333333,
+     "mean_opponent_score_delta": -6.75,
+     "activated_cells": 57
+    },
+    "gold_elite": {
+     "scenarios": 60,
+     "mean_margin_delta": 13.7,
+     "mean_score_delta": -2.4833333333333334,
+     "mean_opponent_score_delta": -16.183333333333334,
+     "activated_cells": 58
+    },
+    "mybot": {
+     "scenarios": 60,
+     "mean_margin_delta": 1.5833333333333333,
+     "mean_score_delta": -4.133333333333334,
+     "mean_opponent_score_delta": -5.716666666666667,
+     "activated_cells": 57
+    },
+    "printer_bot": {
+     "scenarios": 60,
+     "mean_margin_delta": -0.21666666666666667,
+     "mean_score_delta": 3.4833333333333334,
+     "mean_opponent_score_delta": 3.7,
+     "activated_cells": 51
+    },
+    "sched_bot": {
+     "scenarios": 60,
+     "mean_margin_delta": 0.9166666666666666,
+     "mean_score_delta": 0.7333333333333333,
+     "mean_opponent_score_delta": -0.18333333333333332,
+     "activated_cells": 16
+    },
+    "script_boss": {
+     "scenarios": 60,
+     "mean_margin_delta": 2.65,
+     "mean_score_delta": -2.5,
+     "mean_opponent_score_delta": -5.15,
+     "activated_cells": 39
+    },
+    "silver_boss": {
+     "scenarios": 60,
+     "mean_margin_delta": 3.5166666666666666,
+     "mean_score_delta": -0.23333333333333334,
+     "mean_opponent_score_delta": -3.75,
+     "activated_cells": 33
+    }
+   },
+   "gate_checks": {
+    "activated_cells": true,
+    "mean_margin_delta": true,
+    "trimmed_margin_delta": true,
+    "mean_score_delta": true,
+    "mean_opponent_score_delta": true,
+    "nonnegative_opponents": true,
+    "worst_opponent": true
+   },
+   "gate_passed": true
+  }
+ },
+ "decision": {
+  "run_unchanged_replication": false,
+  "research_gate_passed": true,
+  "build_submission_candidate": false,
+  "reason": "the selected profile clears every frozen gate"
+ }
+}

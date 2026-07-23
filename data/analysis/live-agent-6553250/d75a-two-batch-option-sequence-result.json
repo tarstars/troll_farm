@@ -1,0 +1,146 @@
+{
+  "activity": null,
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "repair_only_then_repeat_unchanged",
+    "platform_action": false,
+    "status": "integrity_failure"
+  },
+  "full_oracle": null,
+  "gates": {
+    "integrity": false
+  },
+  "generated_at": "2026-07-21T14:51:03.249025+00:00",
+  "incremental_oracle": null,
+  "inputs": {
+    "analyzer": "563488ce1ee112bd39d403f6b62f20b0b2b78806d1e6edffde8eff451fd0d62c",
+    "generator": "32a6d15883a4e64529a7852a445ebe176c66c406001c94e4b7b90ac5b5c4ac90",
+    "manifest": "9c9df68f166f3528bd9aa8e84c952a1502f37d96a32f736a8c31ebbafe29026f",
+    "manifest_summary": "98dca563c2ec4a22c8b4a48c18247443134957923d86fa8b75ed24c93731d5d0",
+    "protocol": "40ba3af2bf8758e69d6a0f469a778b34785112d96011fb38b671f75f116cec56",
+    "rows_a": "bbe39518fa83b81b8eaf38a9cc0a4a371cebb80a632b5796821bf161f295e4e6",
+    "rows_b": "bbe39518fa83b81b8eaf38a9cc0a4a371cebb80a632b5796821bf161f295e4e6",
+    "runner": "04619a7c829370cbfe2c530c7485285858d6709dea2607408122506a385ce803",
+    "time_a": "05bc80c4ea5e547238272bd88d29ee63f2d224e35efbc54d893cae8cabac5dcb",
+    "time_b": "403a8445e738b3a5c6486d0f2c2e3a156c6c2fe5954ac0d9a68bba5f9a428a21"
+  },
+  "integrity": {
+    "base_pass": false,
+    "manifest": {
+      "feature_hash_failures": 0,
+      "horizon_failures": 0,
+      "parse_failures": 0,
+      "partition_counts": {
+        "discovery": 288,
+        "validation": 288
+      },
+      "pass": true,
+      "rows": 576,
+      "sample_ids_exact": true,
+      "strata_exact": true,
+      "summary_manifest_hash_exact": true,
+      "summary_pass": true,
+      "unique_identities": 576
+    },
+    "pass": false,
+    "repeat_byte_exact": true,
+    "results_a": {
+      "baseline_task_consistency_failures": 0,
+      "baseline_tasks": 332,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "environmental_invalidated_jobs": 29283,
+      "expected_baseline_tasks": 332,
+      "failure_totals": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "identity_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "rows": 9216,
+      "second_executed_counts": {
+        "balanced": 2292,
+        "fell": 2292,
+        "harvest": 2292,
+        "renew": 2292
+      },
+      "second_execution_failures": 0,
+      "second_feature_failures": 0,
+      "second_illegal_counts": {},
+      "second_reach_failures": 48,
+      "second_requested_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_turn_failures": 0,
+      "sequence_accounting_failures": 0,
+      "unexpected_rows": 0
+    },
+    "results_b": {
+      "baseline_task_consistency_failures": 0,
+      "baseline_tasks": 332,
+      "complete_grid": true,
+      "crop_failures": 0,
+      "duplicate_rows": 0,
+      "environmental_invalidated_jobs": 29283,
+      "expected_baseline_tasks": 332,
+      "failure_totals": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      },
+      "identity_failures": 0,
+      "maximum_reward_identity_error": 0.0,
+      "missing_rows": 0,
+      "parse_failures": 0,
+      "rows": 9216,
+      "second_executed_counts": {
+        "balanced": 2292,
+        "fell": 2292,
+        "harvest": 2292,
+        "renew": 2292
+      },
+      "second_execution_failures": 0,
+      "second_feature_failures": 0,
+      "second_illegal_counts": {},
+      "second_reach_failures": 48,
+      "second_requested_counts": {
+        "balanced": 2304,
+        "fell": 2304,
+        "harvest": 2304,
+        "renew": 2304
+      },
+      "second_turn_failures": 0,
+      "sequence_accounting_failures": 0,
+      "unexpected_rows": 0
+    },
+    "timings": [
+      {
+        "effective_cpu_cores": 9.822842810977669,
+        "elapsed_seconds": 414.65999999999997,
+        "maximum_resident_kib": 16000,
+        "reported_cpu_percent": 982.0,
+        "system_seconds": 1.68,
+        "user_seconds": 4071.46
+      },
+      {
+        "effective_cpu_cores": 9.522777895008323,
+        "elapsed_seconds": 426.51,
+        "maximum_resident_kib": 16640,
+        "reported_cpu_percent": 952.0,
+        "system_seconds": 1.56,
+        "user_seconds": 4060.0
+      }
+    ]
+  },
+  "prefix_oracle": null,
+  "schema": "troll-farm-d75a-two-batch-option-sequences-v1",
+  "scope": "paired two-batch ordinary-option sequence headroom",
+  "sequence_results": null
+}

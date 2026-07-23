@@ -1,0 +1,2480 @@
+{
+  "best_fixed_recipe": 7,
+  "cell_oracle": {
+    "gain_vs_best_fixed": {
+      "ci95_normal": [
+        8.38785995724685,
+        22.59130670941982
+      ],
+      "losses": 0,
+      "maximum": 160,
+      "mean": 15.489583333333334,
+      "median": 0.0,
+      "minimum": 0,
+      "n": 96,
+      "standard_deviation": 35.501221562872175,
+      "standard_error": 3.6233282531053495,
+      "ties": 70,
+      "wins": 26,
+      "worst_decile_mean": 0
+    },
+    "rows": [
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 19,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": false,
+        "gain_vs_best_fixed": 115,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": false,
+        "gain_vs_best_fixed": 122,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 57,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 48,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 77,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": false,
+        "gain_vs_best_fixed": 80,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 41,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 13,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 2
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 1,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 5
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 57,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 5
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 45,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 160,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 5
+      },
+      {
+        "both_completed_training": false,
+        "gain_vs_best_fixed": 26,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 5
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 102,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 158,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 54,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 5
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": false,
+        "gain_vs_best_fixed": 48,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 2
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 62,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 12,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 17,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 15,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 12,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 133,
+        "opponent": "legend_balanced",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 5,
+        "opponent": "resident",
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 4
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "compact_gold",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 8,
+        "opponent": "gold_adaptive",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 6
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "legend_balanced",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "mybot",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "norx_native_three",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      },
+      {
+        "both_completed_training": true,
+        "gain_vs_best_fixed": 0,
+        "opponent": "resident",
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      }
+    ],
+    "selection_counts": {
+      "2": 2,
+      "4": 6,
+      "5": 5,
+      "6": 13,
+      "7": 70
+    },
+    "training_complete_pair_gain": {
+      "ci95_normal": [
+        5.472116853253416,
+        18.61579523465867
+      ],
+      "losses": 0,
+      "maximum": 160,
+      "mean": 12.043956043956044,
+      "median": 0,
+      "minimum": 0,
+      "n": 91,
+      "standard_deviation": 31.985382803160462,
+      "standard_error": 3.352979178929912,
+      "ties": 70,
+      "wins": 21,
+      "worst_decile_mean": 0
+    }
+  },
+  "design": {
+    "complete": true,
+    "expected_games": 768,
+    "games": 768,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident"
+    ],
+    "recipes": {
+      "0": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "1": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "2": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "3": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "4": [
+        1,
+        3,
+        0,
+        1
+      ],
+      "5": [
+        1,
+        2,
+        0,
+        2
+      ],
+      "6": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "7": [
+        2,
+        3,
+        1,
+        2
+      ]
+    },
+    "seats": [
+      0,
+      1
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "development_decision": {
+    "authorization": "development evidence only; freeze a disjoint prospective protocol before candidate construction or any Arena action",
+    "fixed_recipe_hypothesis_passes": false,
+    "map_selector_hypothesis_passes": false,
+    "rules": {
+      "fixed": "non-recipe6 best fixed; positive map-balanced delta; worst opponent delta >= -5; training completion >= 95%",
+      "selector": "map oracle gain >= 5; at least two recipes win >=2 maps; gain among training-complete pairs >= 5"
+    }
+  },
+  "map_oracle": {
+    "gain_vs_best_fixed": {
+      "ci95_normal": [
+        -2.640971996349453,
+        18.453471996349453
+      ],
+      "losses": 0,
+      "maximum": 39.416666666666664,
+      "mean": 7.90625,
+      "median": 0.0,
+      "minimum": 0,
+      "n": 8,
+      "standard_deviation": 15.220433053670643,
+      "standard_error": 5.381235712423191,
+      "ties": 6,
+      "wins": 2,
+      "worst_decile_mean": 0
+    },
+    "repeated_winners": {
+      "7": 6
+    },
+    "rows": [
+      {
+        "best_fixed_margin": -36,
+        "features": {
+          "apple_fruit_count": 6,
+          "apple_tree_count": 6,
+          "banana_fruit_count": 6,
+          "banana_tree_count": 4,
+          "initial_apple": 10,
+          "initial_banana": 9,
+          "initial_fruit_total": 20,
+          "initial_iron": 5,
+          "initial_lemon": 6,
+          "initial_plum": 2,
+          "lemon_fruit_count": 2,
+          "lemon_tree_count": 4,
+          "max_nearest_shack_tree_distance": 10,
+          "mean_nearest_shack_tree_distance": 6,
+          "plum_fruit_count": 6,
+          "plum_tree_count": 4,
+          "ripe_tree_count": 10,
+          "shack_manhattan_distance": 8,
+          "tree_count": 18,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 23.833333333333336,
+        "seed": 0,
+        "selected_margin": -12.166666666666666,
+        "selected_recipe": 4
+      },
+      {
+        "best_fixed_margin": -39,
+        "features": {
+          "apple_fruit_count": 6,
+          "apple_tree_count": 4,
+          "banana_fruit_count": 2,
+          "banana_tree_count": 2,
+          "initial_apple": 9,
+          "initial_banana": 9,
+          "initial_fruit_total": 8,
+          "initial_iron": 2,
+          "initial_lemon": 3,
+          "initial_plum": 6,
+          "lemon_fruit_count": 0,
+          "lemon_tree_count": 2,
+          "max_nearest_shack_tree_distance": 8,
+          "mean_nearest_shack_tree_distance": 5.833333333333333,
+          "plum_fruit_count": 0,
+          "plum_tree_count": 4,
+          "ripe_tree_count": 6,
+          "shack_manhattan_distance": 16,
+          "tree_count": 12,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0,
+        "seed": 1,
+        "selected_margin": -39,
+        "selected_recipe": 7
+      },
+      {
+        "best_fixed_margin": -3.25,
+        "features": {
+          "apple_fruit_count": 0,
+          "apple_tree_count": 6,
+          "banana_fruit_count": 2,
+          "banana_tree_count": 4,
+          "initial_apple": 4,
+          "initial_banana": 6,
+          "initial_fruit_total": 12,
+          "initial_iron": 10,
+          "initial_lemon": 7,
+          "initial_plum": 3,
+          "lemon_fruit_count": 10,
+          "lemon_tree_count": 6,
+          "max_nearest_shack_tree_distance": 9,
+          "mean_nearest_shack_tree_distance": 6.5,
+          "plum_fruit_count": 0,
+          "plum_tree_count": 4,
+          "ripe_tree_count": 6,
+          "shack_manhattan_distance": 20,
+          "tree_count": 20,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0.0,
+        "seed": 2,
+        "selected_margin": -3.25,
+        "selected_recipe": 7
+      },
+      {
+        "best_fixed_margin": 70.16666666666667,
+        "features": {
+          "apple_fruit_count": 8,
+          "apple_tree_count": 6,
+          "banana_fruit_count": 6,
+          "banana_tree_count": 6,
+          "initial_apple": 3,
+          "initial_banana": 2,
+          "initial_fruit_total": 20,
+          "initial_iron": 8,
+          "initial_lemon": 9,
+          "initial_plum": 7,
+          "lemon_fruit_count": 4,
+          "lemon_tree_count": 6,
+          "max_nearest_shack_tree_distance": 7,
+          "mean_nearest_shack_tree_distance": 4,
+          "plum_fruit_count": 2,
+          "plum_tree_count": 4,
+          "ripe_tree_count": 12,
+          "shack_manhattan_distance": 12,
+          "tree_count": 22,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0.0,
+        "seed": 3,
+        "selected_margin": 70.16666666666667,
+        "selected_recipe": 7
+      },
+      {
+        "best_fixed_margin": -13.666666666666666,
+        "features": {
+          "apple_fruit_count": 0,
+          "apple_tree_count": 2,
+          "banana_fruit_count": 0,
+          "banana_tree_count": 6,
+          "initial_apple": 9,
+          "initial_banana": 4,
+          "initial_fruit_total": 6,
+          "initial_iron": 7,
+          "initial_lemon": 8,
+          "initial_plum": 3,
+          "lemon_fruit_count": 6,
+          "lemon_tree_count": 4,
+          "max_nearest_shack_tree_distance": 7,
+          "mean_nearest_shack_tree_distance": 4.428571428571429,
+          "plum_fruit_count": 0,
+          "plum_tree_count": 2,
+          "ripe_tree_count": 2,
+          "shack_manhattan_distance": 10,
+          "tree_count": 14,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 39.416666666666664,
+        "seed": 4,
+        "selected_margin": 25.75,
+        "selected_recipe": 6
+      },
+      {
+        "best_fixed_margin": -25.333333333333332,
+        "features": {
+          "apple_fruit_count": 0,
+          "apple_tree_count": 2,
+          "banana_fruit_count": 0,
+          "banana_tree_count": 2,
+          "initial_apple": 9,
+          "initial_banana": 5,
+          "initial_fruit_total": 8,
+          "initial_iron": 2,
+          "initial_lemon": 2,
+          "initial_plum": 10,
+          "lemon_fruit_count": 2,
+          "lemon_tree_count": 2,
+          "max_nearest_shack_tree_distance": 8,
+          "mean_nearest_shack_tree_distance": 4.833333333333333,
+          "plum_fruit_count": 6,
+          "plum_tree_count": 6,
+          "ripe_tree_count": 4,
+          "shack_manhattan_distance": 10,
+          "tree_count": 12,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0.0,
+        "seed": 5,
+        "selected_margin": -25.333333333333332,
+        "selected_recipe": 7
+      },
+      {
+        "best_fixed_margin": -84.41666666666667,
+        "features": {
+          "apple_fruit_count": 6,
+          "apple_tree_count": 2,
+          "banana_fruit_count": 4,
+          "banana_tree_count": 4,
+          "initial_apple": 2,
+          "initial_banana": 4,
+          "initial_fruit_total": 16,
+          "initial_iron": 7,
+          "initial_lemon": 2,
+          "initial_plum": 6,
+          "lemon_fruit_count": 0,
+          "lemon_tree_count": 4,
+          "max_nearest_shack_tree_distance": 9,
+          "mean_nearest_shack_tree_distance": 4.75,
+          "plum_fruit_count": 6,
+          "plum_tree_count": 6,
+          "ripe_tree_count": 6,
+          "shack_manhattan_distance": 20,
+          "tree_count": 16,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0.0,
+        "seed": 6,
+        "selected_margin": -84.41666666666667,
+        "selected_recipe": 7
+      },
+      {
+        "best_fixed_margin": 28.25,
+        "features": {
+          "apple_fruit_count": 0,
+          "apple_tree_count": 2,
+          "banana_fruit_count": 0,
+          "banana_tree_count": 4,
+          "initial_apple": 3,
+          "initial_banana": 10,
+          "initial_fruit_total": 4,
+          "initial_iron": 3,
+          "initial_lemon": 2,
+          "initial_plum": 8,
+          "lemon_fruit_count": 2,
+          "lemon_tree_count": 2,
+          "max_nearest_shack_tree_distance": 5,
+          "mean_nearest_shack_tree_distance": 3.2,
+          "plum_fruit_count": 2,
+          "plum_tree_count": 2,
+          "ripe_tree_count": 4,
+          "shack_manhattan_distance": 8,
+          "tree_count": 10,
+          "walkable_count": 116
+        },
+        "gain_vs_best_fixed": 0.0,
+        "seed": 7,
+        "selected_margin": 28.25,
+        "selected_recipe": 7
+      }
+    ],
+    "selection_counts": {
+      "4": 1,
+      "6": 1,
+      "7": 6
+    }
+  },
+  "per_recipe": {
+    "0": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -113.68301523710387,
+          -93.35865142956278
+        ],
+        "losses": 95,
+        "maximum": 32,
+        "mean": -103.52083333333333,
+        "median": -100.0,
+        "minimum": -260,
+        "n": 96,
+        "standard_deviation": 50.80032721955671,
+        "standard_error": 5.18478668559722,
+        "ties": 0,
+        "wins": 1,
+        "worst_decile_mean": -206
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -30.513441702876797,
+          -25.528224963789867
+        ],
+        "losses": 95,
+        "maximum": 3,
+        "mean": -28.020833333333332,
+        "median": -26.0,
+        "minimum": -65,
+        "n": 96,
+        "standard_deviation": 12.460446191780036,
+        "standard_error": 1.271738964052788,
+        "ties": 0,
+        "wins": 1,
+        "worst_decile_mean": -52.8
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -158.38857856708466,
+          -106.94475476624865
+        ],
+        "losses": 80,
+        "maximum": 136,
+        "mean": -132.66666666666666,
+        "median": -119.0,
+        "minimum": -413,
+        "n": 96,
+        "standard_deviation": 128.58277421397239,
+        "standard_error": 13.12342443898878,
+        "ties": 0,
+        "wins": 16,
+        "worst_decile_mean": -338.4
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -47.80786083075163,
+          -32.75463916924837
+        ],
+        "losses": 74,
+        "maximum": 18,
+        "mean": -40.28125,
+        "median": -33.5,
+        "minimum": -129,
+        "n": 96,
+        "standard_deviation": 37.625216383361,
+        "standard_error": 3.840107566710015,
+        "ties": 2,
+        "wins": 20,
+        "worst_decile_mean": -104.1
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -171.03367560664006,
+          -94.29965772669325
+        ],
+        "losses": 8,
+        "maximum": -43.25,
+        "mean": -132.66666666666666,
+        "median": -142.33333333333334,
+        "minimum": -203.25,
+        "n": 8,
+        "standard_deviation": 55.36647386795938,
+        "standard_error": 19.575004561210925,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -203.25
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -124.37008473542875,
+          -82.67158193123791
+        ],
+        "losses": 8,
+        "maximum": -63.5,
+        "mean": -103.52083333333333,
+        "median": -101.04166666666667,
+        "minimum": -145.25,
+        "n": 8,
+        "standard_deviation": 30.087034794050616,
+        "standard_error": 10.637373164334395,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -145.25
+      },
+      "mean_action_commands": {
+        "chop_commands": 123.125,
+        "drop_commands": 59.875,
+        "harvest_commands": 49.5625,
+        "move_commands": 355.96875,
+        "plant_commands": 4.15625
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -119.1875,
+        "gold_adaptive": -130.6875,
+        "legend_balanced": -106.1875,
+        "mybot": -104.6875,
+        "norx_native_three": -107.625,
+        "resident": -52.75
+      },
+      "spec": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1,
+        "train_commands": {
+          "ci95_normal": [
+            1.0,
+            1.0
+          ],
+          "losses": 0,
+          "maximum": 1,
+          "mean": 1,
+          "median": 1.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 0.0,
+          "standard_error": 0.0,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -130.6875
+    },
+    "1": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -69.18936996502534,
+          -53.539796701641336
+        ],
+        "losses": 91,
+        "maximum": 20,
+        "mean": -61.364583333333336,
+        "median": -58.0,
+        "minimum": -186,
+        "n": 96,
+        "standard_deviation": 39.11578488529896,
+        "standard_error": 3.9922380773938784,
+        "ties": 1,
+        "wins": 4,
+        "worst_decile_mean": -129.9
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -17.891002839524273,
+          -14.088163827142395
+        ],
+        "losses": 93,
+        "maximum": 3,
+        "mean": -15.989583333333334,
+        "median": -14.0,
+        "minimum": -46,
+        "n": 96,
+        "standard_deviation": 9.505117504372569,
+        "standard_error": 0.9701119929545604,
+        "ties": 1,
+        "wins": 2,
+        "worst_decile_mean": -34.3
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -115.85638863976982,
+          -65.16444469356352
+        ],
+        "losses": 72,
+        "maximum": 196,
+        "mean": -90.51041666666667,
+        "median": -91.0,
+        "minimum": -379,
+        "n": 96,
+        "standard_deviation": 126.70346605915526,
+        "standard_error": 12.931618353624058,
+        "ties": 0,
+        "wins": 24,
+        "worst_decile_mean": -290.5
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -35.69842981215952,
+          -20.801570187840483
+        ],
+        "losses": 66,
+        "maximum": 34,
+        "mean": -28.25,
+        "median": -25.5,
+        "minimum": -115,
+        "n": 96,
+        "standard_deviation": 37.23439270352076,
+        "standard_error": 3.800219291918122,
+        "ties": 1,
+        "wins": 29,
+        "worst_decile_mean": -90.4
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -126.95956495966142,
+          -54.06126837367192
+        ],
+        "losses": 8,
+        "maximum": -12.25,
+        "mean": -90.51041666666667,
+        "median": -92.04166666666666,
+        "minimum": -167.75,
+        "n": 8,
+        "standard_deviation": 52.59885699275645,
+        "standard_error": 18.59650423111977,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -167.75
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -75.59186957438162,
+          -47.13729709228503
+        ],
+        "losses": 8,
+        "maximum": -32.08333333333333,
+        "mean": -61.36458333333333,
+        "median": -60.958333333333336,
+        "minimum": -89.83333333333331,
+        "n": 8,
+        "standard_deviation": 20.53104199781085,
+        "standard_error": 7.258819510738927,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -89.83333333333331
+      },
+      "mean_action_commands": {
+        "chop_commands": 125.76041666666667,
+        "drop_commands": 57.666666666666664,
+        "harvest_commands": 46.78125,
+        "move_commands": 350.8958333333333,
+        "plant_commands": 5.135416666666667
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -69.75,
+        "gold_adaptive": -86.3125,
+        "legend_balanced": -62.5625,
+        "mybot": -56.125,
+        "norx_native_three": -69.1875,
+        "resident": -24.25
+      },
+      "spec": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1,
+        "train_commands": {
+          "ci95_normal": [
+            5.581457116472835,
+            11.168542883527165
+          ],
+          "losses": 0,
+          "maximum": 44,
+          "mean": 8.375,
+          "median": 1.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 13.964805386172921,
+          "standard_error": 1.4252769813914106,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -86.3125
+    },
+    "2": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -60.19201424363673,
+          -44.787152423029944
+        ],
+        "losses": 91,
+        "maximum": 11,
+        "mean": -52.489583333333336,
+        "median": -48.0,
+        "minimum": -171,
+        "n": 96,
+        "standard_deviation": 38.50413369241683,
+        "standard_error": 3.9298116889303003,
+        "ties": 0,
+        "wins": 5,
+        "worst_decile_mean": -131
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -15.337428754511468,
+          -10.933404578821865
+        ],
+        "losses": 88,
+        "maximum": 3,
+        "mean": -13.135416666666666,
+        "median": -12.0,
+        "minimum": -44,
+        "n": 96,
+        "standard_deviation": 11.007767393184512,
+        "standard_error": 1.123475555022858,
+        "ties": 2,
+        "wins": 6,
+        "worst_decile_mean": -38.1
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -107.34682029829867,
+          -55.924013035034676
+        ],
+        "losses": 67,
+        "maximum": 158,
+        "mean": -81.63541666666667,
+        "median": -72.0,
+        "minimum": -410,
+        "n": 96,
+        "standard_deviation": 128.53024381273616,
+        "standard_error": 13.118063077363262,
+        "ties": 1,
+        "wins": 28,
+        "worst_decile_mean": -295.5
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -32.979912328387144,
+          -17.811754338279524
+        ],
+        "losses": 66,
+        "maximum": 39,
+        "mean": -25.395833333333332,
+        "median": -24.5,
+        "minimum": -127,
+        "n": 96,
+        "standard_deviation": 37.91249736090134,
+        "standard_error": 3.869428058700923,
+        "ties": 1,
+        "wins": 29,
+        "worst_decile_mean": -90.9
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -123.20068924962749,
+          -40.07014408370586
+        ],
+        "losses": 8,
+        "maximum": -9.916666666666666,
+        "mean": -81.63541666666667,
+        "median": -77.54166666666667,
+        "minimum": -189.08333333333334,
+        "n": 8,
+        "standard_deviation": 59.98180837812015,
+        "standard_error": 21.20677172600041,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -189.08333333333334
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -66.86293116713284,
+          -38.11623549953383
+        ],
+        "losses": 8,
+        "maximum": -13.166666666666664,
+        "mean": -52.489583333333336,
+        "median": -53.625,
+        "minimum": -81.25000000000001,
+        "n": 8,
+        "standard_deviation": 20.74181984006654,
+        "standard_error": 7.3333407315303605,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -81.25000000000001
+      },
+      "mean_action_commands": {
+        "chop_commands": 140.84375,
+        "drop_commands": 58.416666666666664,
+        "harvest_commands": 46.5625,
+        "move_commands": 324.6666666666667,
+        "plant_commands": 4.03125
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -58.8125,
+        "gold_adaptive": -74.8125,
+        "legend_balanced": -57.625,
+        "mybot": -40.75,
+        "norx_native_three": -60.0625,
+        "resident": -22.875
+      },
+      "spec": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1,
+        "train_commands": {
+          "ci95_normal": [
+            14.828052749656448,
+            23.17194725034355
+          ],
+          "losses": 0,
+          "maximum": 76,
+          "mean": 19,
+          "median": 9.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 20.855391830916354,
+          "standard_error": 2.128544515481404,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -74.8125
+    },
+    "3": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -88.47149031313641,
+          -60.570176353530236
+        ],
+        "losses": 94,
+        "maximum": 3,
+        "mean": -74.52083333333333,
+        "median": -53.5,
+        "minimum": -306,
+        "n": 96,
+        "standard_deviation": 69.73875750431473,
+        "standard_error": 7.117682132552598,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -245.1
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -20.98777305423703,
+          -14.428893612429633
+        ],
+        "losses": 93,
+        "maximum": 2,
+        "mean": -17.708333333333332,
+        "median": -13.0,
+        "minimum": -78,
+        "n": 96,
+        "standard_deviation": 16.393783588631308,
+        "standard_error": 1.6731835310733163,
+        "ties": 1,
+        "wins": 2,
+        "worst_decile_mean": -55.5
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -129.1287840981288,
+          -78.20454923520455
+        ],
+        "losses": 74,
+        "maximum": 147,
+        "mean": -103.66666666666667,
+        "median": -98.5,
+        "minimum": -371,
+        "n": 96,
+        "standard_deviation": 127.28407240389231,
+        "standard_error": 12.990876240541901,
+        "ties": 0,
+        "wins": 22,
+        "worst_decile_mean": -304.7
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -37.49859212581465,
+          -22.438907874185343
+        ],
+        "losses": 70,
+        "maximum": 26,
+        "mean": -29.96875,
+        "median": -27.5,
+        "minimum": -115,
+        "n": 96,
+        "standard_deviation": 37.64136949379527,
+        "standard_error": 3.841756186640131,
+        "ties": 2,
+        "wins": 24,
+        "worst_decile_mean": -91.5
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -150.64919956158647,
+          -56.684133771746865
+        ],
+        "losses": 8,
+        "maximum": -13.916666666666666,
+        "mean": -103.66666666666667,
+        "median": -115.70833333333334,
+        "minimum": -196.91666666666666,
+        "n": 8,
+        "standard_deviation": 67.79932164758742,
+        "standard_error": 23.970680048428473,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -196.91666666666666
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -115.32615414140932,
+          -33.71551252525734
+        ],
+        "losses": 8,
+        "maximum": -16.333333333333332,
+        "mean": -74.52083333333333,
+        "median": -59.33333333333333,
+        "minimum": -211.08333333333331,
+        "n": 8,
+        "standard_deviation": 58.88514092221034,
+        "standard_error": 20.8190412286102,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -211.08333333333331
+      },
+      "mean_action_commands": {
+        "chop_commands": 124.44791666666667,
+        "drop_commands": 55.104166666666664,
+        "harvest_commands": 44.5,
+        "move_commands": 317.21875,
+        "plant_commands": 3.5416666666666665
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -77.875,
+        "gold_adaptive": -92.75,
+        "legend_balanced": -88.5,
+        "mybot": -56.8125,
+        "norx_native_three": -96.25,
+        "resident": -34.9375
+      },
+      "spec": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "training_completion": {
+        "completed": 89,
+        "games": 96,
+        "rate": 0.9270833333333334,
+        "train_commands": {
+          "ci95_normal": [
+            32.540406859687984,
+            63.980426473645345
+          ],
+          "losses": 0,
+          "maximum": 300,
+          "mean": 48.260416666666664,
+          "median": 19.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 78.58367914009233,
+          "standard_error": 8.020413166825858,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -96.25
+    },
+    "4": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -47.112395403960335,
+          -29.57510459603966
+        ],
+        "losses": 82,
+        "maximum": 46,
+        "mean": -38.34375,
+        "median": -36.0,
+        "minimum": -229,
+        "n": 96,
+        "standard_deviation": 43.834095867558574,
+        "standard_error": 4.473798675489968,
+        "ties": 2,
+        "wins": 12,
+        "worst_decile_mean": -129.4
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -10.628373864215574,
+          -6.121626135784426
+        ],
+        "losses": 77,
+        "maximum": 13,
+        "mean": -8.375,
+        "median": -7.0,
+        "minimum": -55,
+        "n": 96,
+        "standard_deviation": 11.26452278990151,
+        "standard_error": 1.1496805429671293,
+        "ties": 3,
+        "wins": 16,
+        "worst_decile_mean": -32.5
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -92.45207619056406,
+          -42.5270904761026
+        ],
+        "losses": 67,
+        "maximum": 162,
+        "mean": -67.48958333333333,
+        "median": -63.5,
+        "minimum": -330,
+        "n": 96,
+        "standard_deviation": 124.78646981241842,
+        "standard_error": 12.735965743485067,
+        "ties": 0,
+        "wins": 29,
+        "worst_decile_mean": -268.2
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -28.115117749440376,
+          -13.15571558389296
+        ],
+        "losses": 63,
+        "maximum": 48,
+        "mean": -20.635416666666668,
+        "median": -24.0,
+        "minimum": -101,
+        "n": 96,
+        "standard_deviation": 37.39071649252741,
+        "standard_error": 3.816174021823321,
+        "ties": 0,
+        "wins": 33,
+        "worst_decile_mean": -83.2
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -103.96925027498195,
+          -31.009916391684712
+        ],
+        "losses": 8,
+        "maximum": -8.416666666666666,
+        "mean": -67.48958333333333,
+        "median": -60.41666666666667,
+        "minimum": -133.33333333333334,
+        "n": 8,
+        "standard_deviation": 52.64289769360502,
+        "standard_error": 18.612074970228885,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -133.33333333333334
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -57.03770788175211,
+          -19.649792118247884
+        ],
+        "losses": 7,
+        "maximum": 4.750000000000002,
+        "mean": -38.34375,
+        "median": -38.875,
+        "minimum": -86.5,
+        "n": 8,
+        "standard_deviation": 26.97678446000537,
+        "standard_error": 9.537733613138835,
+        "ties": 0,
+        "wins": 1,
+        "worst_decile_mean": -86.5
+      },
+      "mean_action_commands": {
+        "chop_commands": 121.16666666666667,
+        "drop_commands": 52.625,
+        "harvest_commands": 42.614583333333336,
+        "move_commands": 331.0416666666667,
+        "plant_commands": 3.71875
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -35.3125,
+        "gold_adaptive": -66.4375,
+        "legend_balanced": -35.5,
+        "mybot": -29.6875,
+        "norx_native_three": -47.4375,
+        "resident": -15.6875
+      },
+      "spec": [
+        1,
+        3,
+        0,
+        1
+      ],
+      "training_completion": {
+        "completed": 95,
+        "games": 96,
+        "rate": 0.9895833333333334,
+        "train_commands": {
+          "ci95_normal": [
+            34.481612172080645,
+            50.080887827919355
+          ],
+          "losses": 0,
+          "maximum": 263,
+          "mean": 42.28125,
+          "median": 30.0,
+          "minimum": 8,
+          "n": 96,
+          "standard_deviation": 38.9900670549227,
+          "standard_error": 3.9794070550608946,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 8
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -66.4375
+    },
+    "5": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -45.59212423078566,
+          -29.657875769214343
+        ],
+        "losses": 80,
+        "maximum": 29,
+        "mean": -37.625,
+        "median": -34.0,
+        "minimum": -172,
+        "n": 96,
+        "standard_deviation": 39.827324658752616,
+        "standard_error": 4.0648593014212535,
+        "ties": 0,
+        "wins": 16,
+        "worst_decile_mean": -118.6
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          -12.31844959903275,
+          -8.30655040096725
+        ],
+        "losses": 82,
+        "maximum": 8,
+        "mean": -10.3125,
+        "median": -9.0,
+        "minimum": -51,
+        "n": 96,
+        "standard_deviation": 10.02765911708316,
+        "standard_error": 1.0234436729758927,
+        "ties": 5,
+        "wins": 9,
+        "worst_decile_mean": -31.5
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -93.63160219196618,
+          -39.91006447470048
+        ],
+        "losses": 67,
+        "maximum": 201,
+        "mean": -66.77083333333333,
+        "median": -65.0,
+        "minimum": -386,
+        "n": 96,
+        "standard_deviation": 134.27587306630815,
+        "standard_error": 13.704473907465744,
+        "ties": 0,
+        "wins": 29,
+        "worst_decile_mean": -278.2
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -30.271285945908605,
+          -14.87454738742473
+        ],
+        "losses": 65,
+        "maximum": 46,
+        "mean": -22.572916666666668,
+        "median": -23.0,
+        "minimum": -109,
+        "n": 96,
+        "standard_deviation": 38.48382976665358,
+        "standard_error": 3.9277394281846623,
+        "ties": 1,
+        "wins": 30,
+        "worst_decile_mean": -85.7
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -106.42057672083136,
+          -27.121089945835294
+        ],
+        "losses": 7,
+        "maximum": 23.666666666666668,
+        "mean": -66.77083333333333,
+        "median": -62.375,
+        "minimum": -161.41666666666666,
+        "n": 8,
+        "standard_deviation": 57.21755596246191,
+        "standard_error": 20.229460911988795,
+        "ties": 0,
+        "wins": 1,
+        "worst_decile_mean": -161.41666666666666
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -50.29901716548905,
+          -24.95098283451095
+        ],
+        "losses": 8,
+        "maximum": -2.083333333333332,
+        "mean": -37.625,
+        "median": -44.333333333333336,
+        "minimum": -53.58333333333333,
+        "n": 8,
+        "standard_deviation": 18.289558127738804,
+        "standard_error": 6.466335288514822,
+        "ties": 0,
+        "wins": 0,
+        "worst_decile_mean": -53.58333333333333
+      },
+      "mean_action_commands": {
+        "chop_commands": 79.21875,
+        "drop_commands": 57.520833333333336,
+        "harvest_commands": 43.947916666666664,
+        "move_commands": 396.3854166666667,
+        "plant_commands": 3.8125
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": -51.9375,
+        "gold_adaptive": -65,
+        "legend_balanced": -41.6875,
+        "mybot": -39.25,
+        "norx_native_three": -23.5625,
+        "resident": -4.3125
+      },
+      "spec": [
+        1,
+        2,
+        0,
+        2
+      ],
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1,
+        "train_commands": {
+          "ci95_normal": [
+            9.763524534072454,
+            15.486475465927546
+          ],
+          "losses": 0,
+          "maximum": 44,
+          "mean": 12.625,
+          "median": 9.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 14.304397557173955,
+          "standard_error": 1.4599364622079314,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": -65
+    },
+    "6": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          0.0,
+          0.0
+        ],
+        "losses": 0,
+        "maximum": 0,
+        "mean": 0,
+        "median": 0.0,
+        "minimum": 0,
+        "n": 96,
+        "standard_deviation": 0.0,
+        "standard_error": 0.0,
+        "ties": 96,
+        "wins": 0,
+        "worst_decile_mean": 0
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          0.0,
+          0.0
+        ],
+        "losses": 0,
+        "maximum": 0,
+        "mean": 0,
+        "median": 0.0,
+        "minimum": 0,
+        "n": 96,
+        "standard_deviation": 0.0,
+        "standard_error": 0.0,
+        "ties": 96,
+        "wins": 0,
+        "worst_decile_mean": 0
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -53.62990709696314,
+          -4.6617595697035235
+        ],
+        "losses": 56,
+        "maximum": 211,
+        "mean": -29.145833333333332,
+        "median": -42.0,
+        "minimum": -292,
+        "n": 96,
+        "standard_deviation": 122.39487254195497,
+        "standard_error": 12.491874369198882,
+        "ties": 0,
+        "wins": 40,
+        "worst_decile_mean": -223.2
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -19.313768258809443,
+          -5.2070650745238884
+        ],
+        "losses": 59,
+        "maximum": 55,
+        "mean": -12.260416666666666,
+        "median": -17.0,
+        "minimum": -92,
+        "n": 96,
+        "standard_deviation": 35.25941301468802,
+        "standard_error": 3.5986487715014173,
+        "ties": 1,
+        "wins": 36,
+        "worst_decile_mean": -70.2
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -61.262092725751856,
+          2.970426059085188
+        ],
+        "losses": 5,
+        "maximum": 25.75,
+        "mean": -29.145833333333332,
+        "median": -28.25,
+        "minimum": -107.83333333333333,
+        "n": 8,
+        "standard_deviation": 46.3461730667863,
+        "standard_error": 16.38584662878496,
+        "ties": 0,
+        "wins": 3,
+        "worst_decile_mean": -107.83333333333333
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          0.0,
+          0.0
+        ],
+        "losses": 0,
+        "maximum": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "n": 8,
+        "standard_deviation": 0.0,
+        "standard_error": 0.0,
+        "ties": 8,
+        "wins": 0,
+        "worst_decile_mean": 0.0
+      },
+      "mean_action_commands": {
+        "chop_commands": 96.5,
+        "drop_commands": 60.40625,
+        "harvest_commands": 42.697916666666664,
+        "move_commands": 363.7083333333333,
+        "plant_commands": 4.03125
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": 0,
+        "gold_adaptive": 0,
+        "legend_balanced": 0,
+        "mybot": 0,
+        "norx_native_three": 0,
+        "resident": 0
+      },
+      "spec": [
+        2,
+        2,
+        0,
+        2
+      ],
+      "training_completion": {
+        "completed": 96,
+        "games": 96,
+        "rate": 1,
+        "train_commands": {
+          "ci95_normal": [
+            19.94493935936977,
+            27.950893973963566
+          ],
+          "losses": 0,
+          "maximum": 76,
+          "mean": 23.947916666666668,
+          "median": 19.0,
+          "minimum": 1,
+          "n": 96,
+          "standard_deviation": 20.010718071056278,
+          "standard_error": 2.0423353608657644,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 1
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": 0
+    },
+    "7": {
+      "cell_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          6.101688741626509,
+          26.377477925040154
+        ],
+        "losses": 23,
+        "maximum": 103,
+        "mean": 16.239583333333332,
+        "median": 26.5,
+        "minimum": -158,
+        "n": 96,
+        "standard_deviation": 50.678915950618205,
+        "standard_error": 5.1723951998504205,
+        "ties": 0,
+        "wins": 73,
+        "worst_decile_mean": -97.4
+      },
+      "cell_wood_delta_vs_recipe6": {
+        "ci95_normal": [
+          2.2692023331423443,
+          7.62663100019099
+        ],
+        "losses": 24,
+        "maximum": 27,
+        "mean": 4.947916666666667,
+        "median": 9.0,
+        "minimum": -42,
+        "n": 96,
+        "standard_deviation": 13.39078221186552,
+        "standard_error": 1.3666909864920014,
+        "ties": 1,
+        "wins": 71,
+        "worst_decile_mean": -25
+      },
+      "game_margin": {
+        "ci95_normal": [
+          -38.5984777726582,
+          12.785977772658196
+        ],
+        "losses": 54,
+        "maximum": 270,
+        "mean": -12.90625,
+        "median": -29.0,
+        "minimum": -334,
+        "n": 96,
+        "standard_deviation": 128.4343844864803,
+        "standard_error": 13.108279475846018,
+        "ties": 1,
+        "wins": 41,
+        "worst_decile_mean": -209.1
+      },
+      "game_wood_edge": {
+        "ci95_normal": [
+          -14.70822364139065,
+          0.0832236413906493
+        ],
+        "losses": 61,
+        "maximum": 73,
+        "mean": -7.3125,
+        "median": -14.0,
+        "minimum": -93,
+        "n": 96,
+        "standard_deviation": 36.970916734786634,
+        "standard_error": 3.773328388464617,
+        "ties": 0,
+        "wins": 35,
+        "worst_decile_mean": -64.7
+      },
+      "map_balanced_margin": {
+        "ci95_normal": [
+          -45.166760606902294,
+          19.354260606902294
+        ],
+        "losses": 6,
+        "maximum": 70.16666666666667,
+        "mean": -12.90625,
+        "median": -19.5,
+        "minimum": -84.41666666666667,
+        "n": 8,
+        "standard_deviation": 46.554338397308484,
+        "standard_error": 16.459444187195047,
+        "ties": 0,
+        "wins": 2,
+        "worst_decile_mean": -84.41666666666667
+      },
+      "map_balanced_margin_delta_vs_recipe6": {
+        "ci95_normal": [
+          -6.239113684466773,
+          38.718280351133444
+        ],
+        "losses": 2,
+        "maximum": 56.00000000000001,
+        "mean": 16.239583333333336,
+        "median": 19.83333333333333,
+        "minimum": -39.416666666666664,
+        "n": 8,
+        "standard_deviation": 32.43844712964139,
+        "standard_error": 11.46872296826536,
+        "ties": 0,
+        "wins": 6,
+        "worst_decile_mean": -39.416666666666664
+      },
+      "mean_action_commands": {
+        "chop_commands": 80.97916666666667,
+        "drop_commands": 58.260416666666664,
+        "harvest_commands": 43.239583333333336,
+        "move_commands": 337.0625,
+        "plant_commands": 3.03125
+      },
+      "opponent_mean_margin_delta_vs_recipe6": {
+        "compact_gold": 25.5625,
+        "gold_adaptive": 0.125,
+        "legend_balanced": 9.25,
+        "mybot": 31.75,
+        "norx_native_three": 20.375,
+        "resident": 10.375
+      },
+      "spec": [
+        2,
+        3,
+        1,
+        2
+      ],
+      "training_completion": {
+        "completed": 91,
+        "games": 96,
+        "rate": 0.9479166666666666,
+        "train_commands": {
+          "ci95_normal": [
+            55.619929983510445,
+            82.69257001648955
+          ],
+          "losses": 0,
+          "maximum": 300,
+          "mean": 69.15625,
+          "median": 50.0,
+          "minimum": 16,
+          "n": 96,
+          "standard_deviation": 67.66750415392201,
+          "standard_error": 6.906285722698753,
+          "ties": 0,
+          "wins": 96,
+          "worst_decile_mean": 16.8
+        }
+      },
+      "worst_opponent_mean_margin_delta_vs_recipe6": 0.125
+    }
+  },
+  "schema": 1,
+  "scope": "paired exact-engine D11 fixed-recipe development catalog; map seed is the primary independent unit; reused local maps; not Arena-calibrated",
+  "seat_map_oracle": {
+    "gain_vs_best_fixed": {
+      "ci95_normal": [
+        -0.9941456874693895,
+        21.70247902080272
+      ],
+      "losses": 0,
+      "maximum": 80.16666666666666,
+      "mean": 10.354166666666666,
+      "median": 0.0,
+      "minimum": 0.0,
+      "n": 16,
+      "standard_deviation": 23.15982113088991,
+      "standard_error": 5.789955282722477,
+      "ties": 12,
+      "wins": 4,
+      "worst_decile_mean": 0.0
+    },
+    "rows": [
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 0,
+        "seed": 0,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 80.16666666666666,
+        "seat": 1,
+        "seed": 0,
+        "selected_recipe": 4
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 0,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 1,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0,
+        "seat": 0,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 2,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 0,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 3,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 38.5,
+        "seat": 0,
+        "seed": 4,
+        "selected_recipe": 5
+      },
+      {
+        "gain_vs_best_fixed": 42.83333333333333,
+        "seat": 1,
+        "seed": 4,
+        "selected_recipe": 6
+      },
+      {
+        "gain_vs_best_fixed": 0,
+        "seat": 0,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 5,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 0,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 6,
+        "selected_recipe": 7
+      },
+      {
+        "gain_vs_best_fixed": 4.166666666666667,
+        "seat": 0,
+        "seed": 7,
+        "selected_recipe": 6
+      },
+      {
+        "gain_vs_best_fixed": 0.0,
+        "seat": 1,
+        "seed": 7,
+        "selected_recipe": 7
+      }
+    ],
+    "selection_counts": {
+      "4": 1,
+      "5": 1,
+      "6": 2,
+      "7": 12
+    }
+  },
+  "source": {
+    "analyzer": "cgauto/d11_recipe_catalog_analysis.py",
+    "analyzer_sha256": "4557c05673342fce023c1b5c782b5e803bcff5f094518b11ce7ce08f61056116",
+    "input": "data/analysis/live-agent-6553250/d11-recipe-catalog-development-seeds0-7.tsv",
+    "input_sha256": "9bd2e0ec8413ef2bfa911b3b94f8efffafab1b16def988f7a349d6611d0218b9"
+  }
+}

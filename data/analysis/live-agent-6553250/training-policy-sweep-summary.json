@@ -1,0 +1,599 @@
+{
+ "schema": 1,
+ "scope": "paired local self-harm screen; not an arena predictor",
+ "protocol": {
+  "stage1_seeds": 60,
+  "confirmation_seeds": 200,
+  "workers": 8,
+  "seat_swapped": true
+ },
+ "baseline": {
+  "path": "cgauto/submissions/agent-6553250-yamo-orchard-live.min.rs",
+  "bytes": 90133,
+  "sha256": "09fac1fefa24eac657dba16a75d802eee38e1269f4aa44413e1ca103df36fe7a"
+ },
+ "ideas": [
+  {
+   "name": "train-prefer-carry3",
+   "hypothesis": "raise preferred minimum carry from 2 to 3",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-prefer-carry3.min.rs",
+    "bytes": 90133,
+    "sha256": "38a1d7224eb01bdd3703033cc15dbf7e409cdf6ecc0708059e784c9531cdad31"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.75,
+    "median_margin": 0.0,
+    "margin_stdev": 18.62054178242906,
+    "approximate_95_ci": [
+     -5.461647150419532,
+     3.961647150419532
+    ],
+    "trimmed_5pct_mean_margin": 0.07407407407407407,
+    "mean_wood_delta": -0.225,
+    "mean_nonwood_score_delta": 0.15,
+    "wins_ties_losses": {
+     "wins": 6,
+     "ties": 48,
+     "losses": 6
+    },
+    "active_seeds": 12,
+    "minimum_margin": -120.5,
+    "maximum_margin": 69.5
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.75,
+    "median_margin": 0.0,
+    "margin_stdev": 18.62054178242906,
+    "approximate_95_ci": [
+     -5.461647150419532,
+     3.961647150419532
+    ],
+    "trimmed_5pct_mean_margin": 0.07407407407407407,
+    "mean_wood_delta": -0.225,
+    "mean_nonwood_score_delta": 0.15,
+    "wins_ties_losses": {
+     "wins": 6,
+     "ties": 48,
+     "losses": 6
+    },
+    "active_seeds": 12,
+    "minimum_margin": -120.5,
+    "maximum_margin": 69.5
+   },
+   "decision": "reject_negative_mean",
+   "field_escalated": false
+  },
+  {
+   "name": "train-cap-carry2",
+   "hypothesis": "cap trained carry at 2",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-cap-carry2.min.rs",
+    "bytes": 90133,
+    "sha256": "d82ef4d6b38a1f6fd3cef0f1c4c2a850e9b26901a3218351386fa7788256a084"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.525,
+    "median_margin": 0.0,
+    "margin_stdev": 16.612080809265265,
+    "approximate_95_ci": [
+     -4.728436404915565,
+     3.678436404915565
+    ],
+    "trimmed_5pct_mean_margin": -1.6666666666666667,
+    "mean_wood_delta": -0.3333333333333333,
+    "mean_nonwood_score_delta": 0.8083333333333333,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 46,
+     "losses": 11
+    },
+    "active_seeds": 14,
+    "minimum_margin": -32,
+    "maximum_margin": 114.5
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.525,
+    "median_margin": 0.0,
+    "margin_stdev": 16.612080809265265,
+    "approximate_95_ci": [
+     -4.728436404915565,
+     3.678436404915565
+    ],
+    "trimmed_5pct_mean_margin": -1.6666666666666667,
+    "mean_wood_delta": -0.3333333333333333,
+    "mean_nonwood_score_delta": 0.8083333333333333,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 46,
+     "losses": 11
+    },
+    "active_seeds": 14,
+    "minimum_margin": -32,
+    "maximum_margin": 114.5
+   },
+   "decision": "reject_negative_wood",
+   "field_escalated": false
+  },
+  {
+   "name": "train-prefer-chop2",
+   "hypothesis": "raise preferred minimum chop from 1 to 2",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-prefer-chop2.min.rs",
+    "bytes": 90133,
+    "sha256": "5d885d6867b5c5f73b59678025c6f2ed39023073b4b374e1c1bbd97bbea18587"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.1,
+    "median_margin": 0.0,
+    "margin_stdev": 3.7987509097828815,
+    "approximate_95_ci": [
+     -1.061216601985319,
+     0.861216601985319
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.025,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 55,
+     "losses": 2
+    },
+    "active_seeds": 5,
+    "minimum_margin": -26,
+    "maximum_margin": 10
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.1,
+    "median_margin": 0.0,
+    "margin_stdev": 3.7987509097828815,
+    "approximate_95_ci": [
+     -1.061216601985319,
+     0.861216601985319
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.025,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 55,
+     "losses": 2
+    },
+    "active_seeds": 5,
+    "minimum_margin": -26,
+    "maximum_margin": 10
+   },
+   "decision": "park_inert",
+   "field_escalated": false
+  },
+  {
+   "name": "train-cap-chop2",
+   "hypothesis": "cap trained chop at 2",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-cap-chop2.min.rs",
+    "bytes": 90133,
+    "sha256": "5ace2ca0065281ee205e8d4442a7927a58bb5f49ca7ea155be388d63c9ddd314"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": 1.1,
+    "median_margin": 0.0,
+    "margin_stdev": 22.073797642745603,
+    "approximate_95_ci": [
+     -4.485441442983209,
+     6.685441442983208
+    ],
+    "trimmed_5pct_mean_margin": -1.1481481481481481,
+    "mean_wood_delta": -0.225,
+    "mean_nonwood_score_delta": 2.0,
+    "wins_ties_losses": {
+     "wins": 8,
+     "ties": 36,
+     "losses": 16
+    },
+    "active_seeds": 24,
+    "minimum_margin": -26,
+    "maximum_margin": 160.5
+   },
+   "confirmation": {
+    "seeds": 200,
+    "mean_margin": 1.025,
+    "median_margin": 0.0,
+    "margin_stdev": 19.893545201987443,
+    "approximate_95_ci": [
+     -1.7321046999766199,
+     3.7821046999766197
+    ],
+    "trimmed_5pct_mean_margin": -0.7027777777777777,
+    "mean_wood_delta": -0.04,
+    "mean_nonwood_score_delta": 1.185,
+    "wins_ties_losses": {
+     "wins": 35,
+     "ties": 112,
+     "losses": 53
+    },
+    "active_seeds": 88,
+    "minimum_margin": -26,
+    "maximum_margin": 213.5
+   },
+   "final_evidence": {
+    "seeds": 200,
+    "mean_margin": 1.025,
+    "median_margin": 0.0,
+    "margin_stdev": 19.893545201987443,
+    "approximate_95_ci": [
+     -1.7321046999766199,
+     3.7821046999766197
+    ],
+    "trimmed_5pct_mean_margin": -0.7027777777777777,
+    "mean_wood_delta": -0.04,
+    "mean_nonwood_score_delta": 1.185,
+    "wins_ties_losses": {
+     "wins": 35,
+     "ties": 112,
+     "losses": 53
+    },
+    "active_seeds": 88,
+    "minimum_margin": -26,
+    "maximum_margin": 213.5
+   },
+   "decision": "reject_outlier_driven",
+   "field_escalated": false
+  },
+  {
+   "name": "train-require-carry2",
+   "hypothesis": "require the preferred carry-2 floor",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-require-carry2.min.rs",
+    "bytes": 90132,
+    "sha256": "de073a5ea2b64694e853dfd84f97b7a7b521aea392343d56e6a11479a22adbc4"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -2.45,
+    "median_margin": 0.0,
+    "margin_stdev": 21.606398142169972,
+    "approximate_95_ci": [
+     -7.917173051508543,
+     3.017173051508543
+    ],
+    "trimmed_5pct_mean_margin": -0.12037037037037036,
+    "mean_wood_delta": -0.15,
+    "mean_nonwood_score_delta": -1.85,
+    "wins_ties_losses": {
+     "wins": 6,
+     "ties": 46,
+     "losses": 8
+    },
+    "active_seeds": 14,
+    "minimum_margin": -161.5,
+    "maximum_margin": 22
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -2.45,
+    "median_margin": 0.0,
+    "margin_stdev": 21.606398142169972,
+    "approximate_95_ci": [
+     -7.917173051508543,
+     3.017173051508543
+    ],
+    "trimmed_5pct_mean_margin": -0.12037037037037036,
+    "mean_wood_delta": -0.15,
+    "mean_nonwood_score_delta": -1.85,
+    "wins_ties_losses": {
+     "wins": 6,
+     "ties": 46,
+     "losses": 8
+    },
+    "active_seeds": 14,
+    "minimum_margin": -161.5,
+    "maximum_margin": 22
+   },
+   "decision": "reject_negative_mean",
+   "field_escalated": false
+  },
+  {
+   "name": "train-extra-eta8",
+   "hypothesis": "reduce permitted extra training ETA from 15 to 8",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-extra-eta8.min.rs",
+    "bytes": 90132,
+    "sha256": "aedfec73d1a04ceb12897abdadd1fdbb16ac2611d39a392eb852e46c6704f06b"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": 1.125,
+    "median_margin": 0.0,
+    "margin_stdev": 9.400966863365793,
+    "approximate_95_ci": [
+     -1.2537728225374818,
+     3.503772822537482
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": 0.041666666666666664,
+    "mean_nonwood_score_delta": 0.9583333333333334,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 56,
+     "losses": 1
+    },
+    "active_seeds": 4,
+    "minimum_margin": -18,
+    "maximum_margin": 69.5
+   },
+   "confirmation": {
+    "seeds": 200,
+    "mean_margin": -0.48,
+    "median_margin": 0.0,
+    "margin_stdev": 9.594392206338306,
+    "approximate_95_ci": [
+     -1.8097149189311745,
+     0.8497149189311746
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.125,
+    "mean_nonwood_score_delta": 0.02,
+    "wins_ties_losses": {
+     "wins": 4,
+     "ties": 189,
+     "losses": 7
+    },
+    "active_seeds": 11,
+    "minimum_margin": -109.5,
+    "maximum_margin": 69.5
+   },
+   "final_evidence": {
+    "seeds": 200,
+    "mean_margin": -0.48,
+    "median_margin": 0.0,
+    "margin_stdev": 9.594392206338306,
+    "approximate_95_ci": [
+     -1.8097149189311745,
+     0.8497149189311746
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.125,
+    "mean_nonwood_score_delta": 0.02,
+    "wins_ties_losses": {
+     "wins": 4,
+     "ties": 189,
+     "losses": 7
+    },
+    "active_seeds": 11,
+    "minimum_margin": -109.5,
+    "maximum_margin": 69.5
+   },
+   "decision": "reject_confirmation_negative",
+   "field_escalated": false
+  },
+  {
+   "name": "train-extra-eta25",
+   "hypothesis": "increase permitted extra training ETA from 15 to 25",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-extra-eta25.min.rs",
+    "bytes": 90133,
+    "sha256": "a5531ce244229173b81cddc503b0c23c9bdd2079d7cb92b4b162995846e5423d"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -1.9083333333333334,
+    "median_margin": 0.0,
+    "margin_stdev": 18.702735154513817,
+    "approximate_95_ci": [
+     -6.640778276421387,
+     2.8241116097547208
+    ],
+    "trimmed_5pct_mean_margin": -0.07407407407407407,
+    "mean_wood_delta": 0.008333333333333333,
+    "mean_nonwood_score_delta": -1.9416666666666667,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 53,
+     "losses": 4
+    },
+    "active_seeds": 7,
+    "minimum_margin": -140.5,
+    "maximum_margin": 22
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -1.9083333333333334,
+    "median_margin": 0.0,
+    "margin_stdev": 18.702735154513817,
+    "approximate_95_ci": [
+     -6.640778276421387,
+     2.8241116097547208
+    ],
+    "trimmed_5pct_mean_margin": -0.07407407407407407,
+    "mean_wood_delta": 0.008333333333333333,
+    "mean_nonwood_score_delta": -1.9416666666666667,
+    "wins_ties_losses": {
+     "wins": 3,
+     "ties": 53,
+     "losses": 4
+    },
+    "active_seeds": 7,
+    "minimum_margin": -140.5,
+    "maximum_margin": 22
+   },
+   "decision": "reject_negative_mean",
+   "field_escalated": false
+  },
+  {
+   "name": "train-deadline25",
+   "hypothesis": "move the hard training deadline from turn 35 to 25",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-deadline25.min.rs",
+    "bytes": 90133,
+    "sha256": "5e05683f78af270936d7f261a038bb02f1b2508bcc48be784926ccb8ee5321b6"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.3333333333333333,
+    "median_margin": 0.0,
+    "margin_stdev": 2.3337368496931736,
+    "approximate_95_ci": [
+     -0.9238502316150918,
+     0.25718356494842526
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.08333333333333333,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 1,
+     "ties": 56,
+     "losses": 3
+    },
+    "active_seeds": 4,
+    "minimum_margin": -10,
+    "maximum_margin": 8
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.3333333333333333,
+    "median_margin": 0.0,
+    "margin_stdev": 2.3337368496931736,
+    "approximate_95_ci": [
+     -0.9238502316150918,
+     0.25718356494842526
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.08333333333333333,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 1,
+     "ties": 56,
+     "losses": 3
+    },
+    "active_seeds": 4,
+    "minimum_margin": -10,
+    "maximum_margin": 8
+   },
+   "decision": "reject_negative_wood",
+   "field_escalated": false
+  },
+  {
+   "name": "train-deadline45",
+   "hypothesis": "move the hard training deadline from turn 35 to 45",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-deadline45.min.rs",
+    "bytes": 90133,
+    "sha256": "c35dcfdda95d3096747609a863eb09b50d4a31907a6825d9d12d7d6d7d0ed66b"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.2,
+    "median_margin": 0.0,
+    "margin_stdev": 1.5491933384829668,
+    "approximate_95_ci": [
+     -0.5920000000000001,
+     0.192
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.05,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 0,
+     "ties": 59,
+     "losses": 1
+    },
+    "active_seeds": 1,
+    "minimum_margin": -12,
+    "maximum_margin": 0
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.2,
+    "median_margin": 0.0,
+    "margin_stdev": 1.5491933384829668,
+    "approximate_95_ci": [
+     -0.5920000000000001,
+     0.192
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.05,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 0,
+     "ties": 59,
+     "losses": 1
+    },
+    "active_seeds": 1,
+    "minimum_margin": -12,
+    "maximum_margin": 0
+   },
+   "decision": "park_inert_negative_only",
+   "field_escalated": false
+  },
+  {
+   "name": "train-prefer-movement-ties",
+   "hypothesis": "prefer movement when opening objectives tie",
+   "artifact": {
+    "path": "cgauto/submissions/candidate-agent6553250-train-prefer-movement-ties.min.rs",
+    "bytes": 90132,
+    "sha256": "b3c940bf65e47c3cdbda263610e68c0ceaf5ffaf52f36e1c567cee939007b384"
+   },
+   "stage1": {
+    "seeds": 60,
+    "mean_margin": -0.03333333333333333,
+    "median_margin": 0.0,
+    "margin_stdev": 1.3014550744203441,
+    "approximate_95_ci": [
+     -0.36264690349905226,
+     0.2959802368323856
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.008333333333333333,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 1,
+     "ties": 58,
+     "losses": 1
+    },
+    "active_seeds": 2,
+    "minimum_margin": -8,
+    "maximum_margin": 6
+   },
+   "confirmation": null,
+   "final_evidence": {
+    "seeds": 60,
+    "mean_margin": -0.03333333333333333,
+    "median_margin": 0.0,
+    "margin_stdev": 1.3014550744203441,
+    "approximate_95_ci": [
+     -0.36264690349905226,
+     0.2959802368323856
+    ],
+    "trimmed_5pct_mean_margin": 0,
+    "mean_wood_delta": -0.008333333333333333,
+    "mean_nonwood_score_delta": 0.0,
+    "wins_ties_losses": {
+     "wins": 1,
+     "ties": 58,
+     "losses": 1
+    },
+    "active_seeds": 2,
+    "minimum_margin": -8,
+    "maximum_margin": 6
+   },
+   "decision": "park_inert",
+   "field_escalated": false
+  }
+ ],
+ "field_games": 0,
+ "arena_submissions": 0
+}

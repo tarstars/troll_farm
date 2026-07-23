@@ -1,0 +1,38 @@
+{
+  "calibration": {
+    "active_tasks": 215,
+    "selection_key": "minimum-fold,worst-family,mean,strict,lower-activity,fixed-seed-order",
+    "target_activity": 0.84,
+    "threshold": "midpoint-between-descending-task-maxima-215-and-216"
+  },
+  "environment": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu"
+  },
+  "frozen_at": "2026-07-22-before-d125-training-only-calibration",
+  "fresh_validation_if_fit_repeats": {
+    "maps": 16,
+    "seeds": "9843780--9843795",
+    "tasks": 256,
+    "untouched": true
+  },
+  "schema": "troll-farm-d125a-fit-activity-calibrated-q6-fit-lock-v1",
+  "sha256": {
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "cgauto/train_d117a_factorized_q6_ranker_state_gate.py": "5ddd721bbe59397a0234a2ef54438d94c81b79336ae5542208c145a4fbef6700",
+    "cgauto/train_d118a_soft_value_q6_ranker_state_gate.py": "88d039c8110302c85aca3b565b3256d1e3aa33e5e3966a98afd8ae15fbadce90",
+    "cgauto/train_d119a_long_fit_soft_value_q6.py": "1222f047061d3a381a64d1d5ce28068b07d97cc055e33016c64010a6891fe407",
+    "cgauto/train_d123a_task_balanced_soft_value_q6.py": "703413ef9af5b1b011c40ec029408221c7e964a68b7f28945d70f59991665145",
+    "cgauto/train_d125a_fit_activity_calibrated_q6.py": "8434e3321550f413bc45c150e492930af158f64f0bf06536041109a81bb76633",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d119a-long-fit-soft-value-q6-fit-result.json": "b9b8d8fb327aad9a030c735ad65fcda9e38b97b7616f9227bf47f27b5387afd9",
+    "data/analysis/live-agent-6553250/d124a-d119-fine-gate-calibration-result.json": "48745f26f26007d956e7c223bf7e9f44acf752c1824330b3063214c060b6482d",
+    "data/analysis/live-agent-6553250/d125a-fit-activity-calibrated-q6-protocol-2026-07-22.md": "7e066fad712c585ca1bdf796ef1eeeaeb72ae1f562741d4fec8b140b19faf0b0",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "tests/test_train_d125a_fit_activity_calibrated_q6.py": "54447147d197e1ea6e542865f83a8b768fbf884c60a4b7029f71c1c0018b8b2c",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

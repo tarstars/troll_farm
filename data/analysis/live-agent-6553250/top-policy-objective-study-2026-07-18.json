@@ -1,0 +1,2076 @@
+{
+ "schema": 1,
+ "scope": "observational per-worker objective labels from current top-five official replays; state-only coarse lookup with nested backoff; diagnosis data, not causal policy or arena evidence",
+ "rows": 91427,
+ "games": 129,
+ "agents": [
+  6479768,
+  6480540,
+  6481141,
+  6482055,
+  6483545
+ ],
+ "quality": {
+  "games": 129,
+  "turn_count_matches": 129,
+  "unknown_diff_updates": 0
+ },
+ "features": [
+  "phase",
+  "ordinal",
+  "role",
+  "carry_class",
+  "full",
+  "bank_distance",
+  "on_cell",
+  "unit_count",
+  "score_bucket",
+  "nearest_ripe",
+  "nearest_tree",
+  "nearest_iron",
+  "cheap_train_affordable"
+ ],
+ "backoffs": [
+  [
+   "phase",
+   "ordinal",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell",
+   "unit_count",
+   "score_bucket",
+   "nearest_ripe",
+   "nearest_tree",
+   "nearest_iron",
+   "cheap_train_affordable"
+  ],
+  [
+   "phase",
+   "ordinal",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell",
+   "unit_count"
+  ],
+  [
+   "phase",
+   "role",
+   "carry_class",
+   "full",
+   "bank_distance",
+   "on_cell"
+  ],
+  [
+   "role",
+   "carry_class",
+   "full",
+   "on_cell"
+  ],
+  [
+   "carry_class",
+   "full",
+   "on_cell"
+  ]
+ ],
+ "label_counts": {
+  "CHOP": 18983,
+  "DROP": 9099,
+  "HARVEST": 8125,
+  "MINE": 659,
+  "MOVE_BANK": 2387,
+  "MOVE_IRON": 23,
+  "MOVE_OTHER": 21760,
+  "MOVE_TREE": 10022,
+  "MOVE_TREE_RIPE": 13202,
+  "PICK_APPLE": 95,
+  "PICK_BANANA": 932,
+  "PICK_LEMON": 282,
+  "PICK_PLUM": 268,
+  "PLANT_APPLE": 226,
+  "PLANT_BANANA": 2602,
+  "PLANT_LEMON": 988,
+  "PLANT_PLUM": 716,
+  "WAIT": 1058
+ },
+ "held_game": {
+  "rows": 91427,
+  "accuracy": 0.5988602929112844,
+  "macro_f1": 0.3468366512209908,
+  "per_label": {
+   "CHOP": {
+    "support": 18983,
+    "precision": 0.7497296234391898,
+    "recall": 0.8034030448295844,
+    "f1": 0.7756389065479974
+   },
+   "DROP": {
+    "support": 9099,
+    "precision": 0.854679048882539,
+    "recall": 0.9204308165732498,
+    "f1": 0.8863371785374112
+   },
+   "HARVEST": {
+    "support": 8125,
+    "precision": 0.644432882414152,
+    "recall": 0.7622153846153846,
+    "f1": 0.6983930081759234
+   },
+   "MINE": {
+    "support": 659,
+    "precision": 0.3836477987421384,
+    "recall": 0.27769347496206376,
+    "f1": 0.3221830985915493
+   },
+   "MOVE_BANK": {
+    "support": 2387,
+    "precision": 0.6390454093470335,
+    "recall": 0.8077084206116464,
+    "f1": 0.7135455218356773
+   },
+   "MOVE_IRON": {
+    "support": 23,
+    "precision": 0.08333333333333333,
+    "recall": 0.043478260869565216,
+    "f1": 0.057142857142857134
+   },
+   "MOVE_OTHER": {
+    "support": 21760,
+    "precision": 0.5640169133192389,
+    "recall": 0.6130055147058824,
+    "f1": 0.587491741907069
+   },
+   "MOVE_TREE": {
+    "support": 10022,
+    "precision": 0.3204230829055841,
+    "recall": 0.20554779485132707,
+    "f1": 0.25044070269284535
+   },
+   "MOVE_TREE_RIPE": {
+    "support": 13202,
+    "precision": 0.4078751857355126,
+    "recall": 0.37426147553401,
+    "f1": 0.39034602622847214
+   },
+   "PICK_APPLE": {
+    "support": 95,
+    "precision": 0.03125,
+    "recall": 0.010526315789473684,
+    "f1": 0.015748031496062992
+   },
+   "PICK_BANANA": {
+    "support": 932,
+    "precision": 0.29878048780487804,
+    "recall": 0.2628755364806867,
+    "f1": 0.2796803652968037
+   },
+   "PICK_LEMON": {
+    "support": 282,
+    "precision": 0.1782178217821782,
+    "recall": 0.06382978723404255,
+    "f1": 0.09399477806788513
+   },
+   "PICK_PLUM": {
+    "support": 268,
+    "precision": 0.1875,
+    "recall": 0.06716417910447761,
+    "f1": 0.09890109890109891
+   },
+   "PLANT_APPLE": {
+    "support": 226,
+    "precision": 0.043859649122807015,
+    "recall": 0.022123893805309734,
+    "f1": 0.02941176470588235
+   },
+   "PLANT_BANANA": {
+    "support": 2602,
+    "precision": 0.567342073897497,
+    "recall": 0.7317448116833205,
+    "f1": 0.6391406512252434
+   },
+   "PLANT_LEMON": {
+    "support": 988,
+    "precision": 0.21683309557774608,
+    "recall": 0.15384615384615385,
+    "f1": 0.17998815867377146
+   },
+   "PLANT_PLUM": {
+    "support": 716,
+    "precision": 0.20285714285714285,
+    "recall": 0.09916201117318436,
+    "f1": 0.13320825515947468
+   },
+   "WAIT": {
+    "support": 1058,
+    "precision": 0.16461916461916462,
+    "recall": 0.06332703213610585,
+    "f1": 0.09146757679180888
+   }
+  },
+  "group_field": "game_fold",
+  "folds": [
+   {
+    "held": 0,
+    "train_rows": 69655,
+    "test_rows": 21772,
+    "accuracy": 0.5826290648539408,
+    "macro_f1": 0.3261817631616972,
+    "majority_accuracy": 0.23755282013595444
+   },
+   {
+    "held": 1,
+    "train_rows": 73743,
+    "test_rows": 17684,
+    "accuracy": 0.6084596245193395,
+    "macro_f1": 0.3529562701210413,
+    "majority_accuracy": 0.2033476589007012
+   },
+   {
+    "held": 2,
+    "train_rows": 75887,
+    "test_rows": 15540,
+    "accuracy": 0.602059202059202,
+    "macro_f1": 0.32836055376807477,
+    "majority_accuracy": 0.2568854568854569
+   },
+   {
+    "held": 3,
+    "train_rows": 71000,
+    "test_rows": 20427,
+    "accuracy": 0.6156557497429872,
+    "macro_f1": 0.36238272609898825,
+    "majority_accuracy": 0.21510745581827972
+   },
+   {
+    "held": 4,
+    "train_rows": 75423,
+    "test_rows": 16004,
+    "accuracy": 0.5857910522369407,
+    "macro_f1": 0.34935282468691947,
+    "majority_accuracy": 0.28780304923769057
+   }
+  ],
+  "majority_baseline": {
+   "rows": 91427,
+   "accuracy": 0.2380040906953088,
+   "macro_f1": 0.02136091404293583,
+   "per_label": {
+    "CHOP": {
+     "support": 18983,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "DROP": {
+     "support": 9099,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "HARVEST": {
+     "support": 8125,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MINE": {
+     "support": 659,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_BANK": {
+     "support": 2387,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_IRON": {
+     "support": 23,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_OTHER": {
+     "support": 21760,
+     "precision": 0.2380040906953088,
+     "recall": 1.0,
+     "f1": 0.38449645277284494
+    },
+    "MOVE_TREE": {
+     "support": 10022,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 13202,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_APPLE": {
+     "support": 95,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_BANANA": {
+     "support": 932,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_LEMON": {
+     "support": 282,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_PLUM": {
+     "support": 268,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_APPLE": {
+     "support": 226,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 2602,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_LEMON": {
+     "support": 988,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_PLUM": {
+     "support": 716,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "WAIT": {
+     "support": 1058,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    }
+   }
+  },
+  "accuracy_gain": 0.3608562022159756,
+  "coverage": {
+   "backoff_0": 44080,
+   "backoff_1": 44085,
+   "backoff_2": 2217,
+   "backoff_3": 997,
+   "backoff_4": 48
+  },
+  "worst_fold_accuracy": 0.5826290648539408,
+  "worst_fold_macro_f1": 0.3261817631616972
+ },
+ "held_agent": {
+  "rows": 91427,
+  "accuracy": 0.5156682380478415,
+  "macro_f1": 0.25224218084055583,
+  "per_label": {
+   "CHOP": {
+    "support": 18983,
+    "precision": 0.6943227140676548,
+    "recall": 0.7428225254174788,
+    "f1": 0.7177542502290544
+   },
+   "DROP": {
+    "support": 9099,
+    "precision": 0.7900134176729922,
+    "recall": 0.9059237278821849,
+    "f1": 0.844007576921108
+   },
+   "HARVEST": {
+    "support": 8125,
+    "precision": 0.5972760607647983,
+    "recall": 0.7016615384615384,
+    "f1": 0.6452744765138653
+   },
+   "MINE": {
+    "support": 659,
+    "precision": 0.22748815165876776,
+    "recall": 0.21851289833080426,
+    "f1": 0.22291021671826627
+   },
+   "MOVE_BANK": {
+    "support": 2387,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0
+   },
+   "MOVE_IRON": {
+    "support": 23,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0
+   },
+   "MOVE_OTHER": {
+    "support": 21760,
+    "precision": 0.4467805038575451,
+    "recall": 0.5615349264705882,
+    "f1": 0.4976277260787229
+   },
+   "MOVE_TREE": {
+    "support": 10022,
+    "precision": 0.24258160237388723,
+    "recall": 0.13051287168229894,
+    "f1": 0.1697158427403659
+   },
+   "MOVE_TREE_RIPE": {
+    "support": 13202,
+    "precision": 0.32344050563341575,
+    "recall": 0.2674594758369944,
+    "f1": 0.29279820888096525
+   },
+   "PICK_APPLE": {
+    "support": 95,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0
+   },
+   "PICK_BANANA": {
+    "support": 932,
+    "precision": 0.20620842572062084,
+    "recall": 0.19957081545064378,
+    "f1": 0.20283533260632497
+   },
+   "PICK_LEMON": {
+    "support": 282,
+    "precision": 0.10416666666666667,
+    "recall": 0.03546099290780142,
+    "f1": 0.052910052910052914
+   },
+   "PICK_PLUM": {
+    "support": 268,
+    "precision": 0.12987012987012986,
+    "recall": 0.03731343283582089,
+    "f1": 0.05797101449275362
+   },
+   "PLANT_APPLE": {
+    "support": 226,
+    "precision": 0.037037037037037035,
+    "recall": 0.017699115044247787,
+    "f1": 0.023952095808383235
+   },
+   "PLANT_BANANA": {
+    "support": 2602,
+    "precision": 0.5020505809979494,
+    "recall": 0.56456571867794,
+    "f1": 0.5314761215629522
+   },
+   "PLANT_LEMON": {
+    "support": 988,
+    "precision": 0.18129988597491448,
+    "recall": 0.16093117408906882,
+    "f1": 0.17050938337801608
+   },
+   "PLANT_PLUM": {
+    "support": 716,
+    "precision": 0.15072463768115943,
+    "recall": 0.07262569832402235,
+    "f1": 0.09802073515551367
+   },
+   "WAIT": {
+    "support": 1058,
+    "precision": 0.02425876010781671,
+    "recall": 0.008506616257088847,
+    "f1": 0.012596221133659902
+   }
+  },
+  "group_field": "agent_id",
+  "folds": [
+   {
+    "held": 6479768,
+    "train_rows": 73684,
+    "test_rows": 17743,
+    "accuracy": 0.5459617877472807,
+    "macro_f1": 0.2950133729961124,
+    "majority_accuracy": 0.2107309925040861
+   },
+   {
+    "held": 6480540,
+    "train_rows": 69250,
+    "test_rows": 22177,
+    "accuracy": 0.5735672092708662,
+    "macro_f1": 0.30122824328199144,
+    "majority_accuracy": 0.28624250349461156
+   },
+   {
+    "held": 6481141,
+    "train_rows": 64169,
+    "test_rows": 27258,
+    "accuracy": 0.49277276395920466,
+    "macro_f1": 0.26645373937174555,
+    "majority_accuracy": 0.25486095825078875
+   },
+   {
+    "held": 6482055,
+    "train_rows": 78187,
+    "test_rows": 13240,
+    "accuracy": 0.5286253776435045,
+    "macro_f1": 0.28905279146896645,
+    "majority_accuracy": 0.3145770392749245
+   },
+   {
+    "held": 6483545,
+    "train_rows": 80418,
+    "test_rows": 11009,
+    "accuracy": 0.39131619583976746,
+    "macro_f1": 0.34250849661907645,
+    "majority_accuracy": 0.050958306839858296
+   }
+  ],
+  "majority_baseline": {
+   "rows": 91427,
+   "accuracy": 0.2380040906953088,
+   "macro_f1": 0.02136091404293583,
+   "per_label": {
+    "CHOP": {
+     "support": 18983,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "DROP": {
+     "support": 9099,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "HARVEST": {
+     "support": 8125,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MINE": {
+     "support": 659,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_BANK": {
+     "support": 2387,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_IRON": {
+     "support": 23,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_OTHER": {
+     "support": 21760,
+     "precision": 0.2380040906953088,
+     "recall": 1.0,
+     "f1": 0.38449645277284494
+    },
+    "MOVE_TREE": {
+     "support": 10022,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 13202,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_APPLE": {
+     "support": 95,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_BANANA": {
+     "support": 932,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_LEMON": {
+     "support": 282,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_PLUM": {
+     "support": 268,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_APPLE": {
+     "support": 226,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 2602,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_LEMON": {
+     "support": 988,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_PLUM": {
+     "support": 716,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "WAIT": {
+     "support": 1058,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    }
+   }
+  },
+  "accuracy_gain": 0.27766414735253264,
+  "coverage": {
+   "backoff_0": 31788,
+   "backoff_1": 51135,
+   "backoff_2": 6272,
+   "backoff_3": 2005,
+   "backoff_4": 227
+  },
+  "worst_fold_accuracy": 0.39131619583976746,
+  "worst_fold_macro_f1": 0.26645373937174555
+ },
+ "per_agent_held_game": {
+  "6479768": {
+   "rows": 17743,
+   "accuracy": 0.6041255706475793,
+   "macro_f1": 0.3289851257182756,
+   "per_label": {
+    "CHOP": {
+     "support": 4061,
+     "precision": 0.739946973044631,
+     "recall": 0.8246737256833292,
+     "f1": 0.7800163037149179
+    },
+    "DROP": {
+     "support": 2179,
+     "precision": 0.8266722759781236,
+     "recall": 0.9017898118402937,
+     "f1": 0.8625987708516243
+    },
+    "HARVEST": {
+     "support": 1795,
+     "precision": 0.8318284424379232,
+     "recall": 0.8211699164345404,
+     "f1": 0.8264648163723017
+    },
+    "MINE": {
+     "support": 176,
+     "precision": 0.5340909090909091,
+     "recall": 0.26704545454545453,
+     "f1": 0.3560606060606061
+    },
+    "MOVE_OTHER": {
+     "support": 3739,
+     "precision": 0.5524728588661038,
+     "recall": 0.6124632254613533,
+     "f1": 0.5809233891425674
+    },
+    "MOVE_TREE": {
+     "support": 1935,
+     "precision": 0.32075471698113206,
+     "recall": 0.2284237726098191,
+     "f1": 0.26682764865680647
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 2091,
+     "precision": 0.33487416538264,
+     "recall": 0.3118125298900048,
+     "f1": 0.3229321446260525
+    },
+    "PICK_APPLE": {
+     "support": 31,
+     "precision": 0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_BANANA": {
+     "support": 217,
+     "precision": 0.2644230769230769,
+     "recall": 0.2534562211981567,
+     "f1": 0.2588235294117647
+    },
+    "PICK_LEMON": {
+     "support": 76,
+     "precision": 0.05555555555555555,
+     "recall": 0.02631578947368421,
+     "f1": 0.03571428571428571
+    },
+    "PICK_PLUM": {
+     "support": 94,
+     "precision": 0.034482758620689655,
+     "recall": 0.010638297872340425,
+     "f1": 0.016260162601626015
+    },
+    "PLANT_APPLE": {
+     "support": 54,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 548,
+     "precision": 0.4464993394980185,
+     "recall": 0.6167883211678832,
+     "f1": 0.5180076628352491
+    },
+    "PLANT_LEMON": {
+     "support": 266,
+     "precision": 0.24651162790697675,
+     "recall": 0.19924812030075187,
+     "f1": 0.22037422037422036
+    },
+    "PLANT_PLUM": {
+     "support": 277,
+     "precision": 0.2191780821917808,
+     "recall": 0.17328519855595667,
+     "f1": 0.19354838709677416
+    },
+    "WAIT": {
+     "support": 204,
+     "precision": 0.08823529411764706,
+     "recall": 0.014705882352941176,
+     "f1": 0.025210084033613446
+    }
+   },
+   "group_field": "game_fold",
+   "folds": [
+    {
+     "held": 0,
+     "train_rows": 12846,
+     "test_rows": 4897,
+     "accuracy": 0.5932203389830508,
+     "macro_f1": 0.32880308136730924,
+     "majority_accuracy": 0.23361241576475394
+    },
+    {
+     "held": 1,
+     "train_rows": 14304,
+     "test_rows": 3439,
+     "accuracy": 0.6051177667926723,
+     "macro_f1": 0.3351714575556777,
+     "majority_accuracy": 0.24193079383541727
+    },
+    {
+     "held": 2,
+     "train_rows": 13750,
+     "test_rows": 3993,
+     "accuracy": 0.6090658652642124,
+     "macro_f1": 0.3422786017326576,
+     "majority_accuracy": 0.22839969947407965
+    },
+    {
+     "held": 3,
+     "train_rows": 12923,
+     "test_rows": 4820,
+     "accuracy": 0.6072614107883817,
+     "macro_f1": 0.32482810977573057,
+     "majority_accuracy": 0.20580912863070538
+    },
+    {
+     "held": 4,
+     "train_rows": 17149,
+     "test_rows": 594,
+     "accuracy": 0.6296296296296297,
+     "macro_f1": 0.26844579639792204,
+     "majority_accuracy": 0.3047138047138047
+    }
+   ],
+   "majority_baseline": {
+    "rows": 17743,
+    "accuracy": 0.2288789945330553,
+    "macro_f1": 0.023281278664465235,
+    "per_label": {
+     "CHOP": {
+      "support": 4061,
+      "precision": 0.2288789945330553,
+      "recall": 1.0,
+      "f1": 0.37250045863144376
+     },
+     "DROP": {
+      "support": 2179,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "HARVEST": {
+      "support": 1795,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MINE": {
+      "support": 176,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_OTHER": {
+      "support": 3739,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE": {
+      "support": 1935,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE_RIPE": {
+      "support": 2091,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_APPLE": {
+      "support": 31,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_BANANA": {
+      "support": 217,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_LEMON": {
+      "support": 76,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_PLUM": {
+      "support": 94,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_APPLE": {
+      "support": 54,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_BANANA": {
+      "support": 548,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_LEMON": {
+      "support": 266,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_PLUM": {
+      "support": 277,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "WAIT": {
+      "support": 204,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     }
+    }
+   },
+   "accuracy_gain": 0.37524657611452406,
+   "coverage": {
+    "backoff_0": 5382,
+    "backoff_1": 9903,
+    "backoff_2": 1347,
+    "backoff_3": 443,
+    "backoff_4": 667,
+    "global": 1
+   },
+   "worst_fold_accuracy": 0.5932203389830508,
+   "worst_fold_macro_f1": 0.26844579639792204,
+   "games": 26,
+   "label_counts": {
+    "CHOP": 4061,
+    "DROP": 2179,
+    "HARVEST": 1795,
+    "MINE": 176,
+    "MOVE_OTHER": 3739,
+    "MOVE_TREE": 1935,
+    "MOVE_TREE_RIPE": 2091,
+    "PICK_APPLE": 31,
+    "PICK_BANANA": 217,
+    "PICK_LEMON": 76,
+    "PICK_PLUM": 94,
+    "PLANT_APPLE": 54,
+    "PLANT_BANANA": 548,
+    "PLANT_LEMON": 266,
+    "PLANT_PLUM": 277,
+    "WAIT": 204
+   },
+   "coherent_architecture_gate": {
+    "requirements": [
+     "within-agent held-game accuracy at least 0.60",
+     "within-agent held-game macro F1 at least 0.35",
+     "every within-agent fold accuracy at least 0.50"
+    ],
+    "passed": false
+   }
+  },
+  "6480540": {
+   "rows": 22177,
+   "accuracy": 0.6669522478243225,
+   "macro_f1": 0.35957575360952054,
+   "per_label": {
+    "CHOP": {
+     "support": 4783,
+     "precision": 0.815989847715736,
+     "recall": 0.8066067321764583,
+     "f1": 0.8112711597098097
+    },
+    "DROP": {
+     "support": 2688,
+     "precision": 0.8443686006825939,
+     "recall": 0.9203869047619048,
+     "f1": 0.8807404770380919
+    },
+    "HARVEST": {
+     "support": 2547,
+     "precision": 0.7265880812049771,
+     "recall": 0.8712210443659207,
+     "f1": 0.7923585074093912
+    },
+    "MINE": {
+     "support": 183,
+     "precision": 0.3941176470588235,
+     "recall": 0.366120218579235,
+     "f1": 0.3796033994334278
+    },
+    "MOVE_OTHER": {
+     "support": 6348,
+     "precision": 0.6783186479849777,
+     "recall": 0.739760554505356,
+     "f1": 0.707708537412403
+    },
+    "MOVE_TREE": {
+     "support": 1410,
+     "precision": 0.2881745120551091,
+     "recall": 0.17801418439716313,
+     "f1": 0.22007891275756247
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 2648,
+     "precision": 0.3954983922829582,
+     "recall": 0.3251510574018127,
+     "f1": 0.3568911917098446
+    },
+    "PICK_APPLE": {
+     "support": 21,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_BANANA": {
+     "support": 282,
+     "precision": 0.2824074074074074,
+     "recall": 0.21631205673758866,
+     "f1": 0.24497991967871485
+    },
+    "PICK_LEMON": {
+     "support": 112,
+     "precision": 0.09473684210526316,
+     "recall": 0.08035714285714286,
+     "f1": 0.08695652173913043
+    },
+    "PICK_PLUM": {
+     "support": 106,
+     "precision": 0.13333333333333333,
+     "recall": 0.05660377358490566,
+     "f1": 0.07947019867549668
+    },
+    "PLANT_APPLE": {
+     "support": 65,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 392,
+     "precision": 0.4233576642335766,
+     "recall": 0.44387755102040816,
+     "f1": 0.4333748443337484
+    },
+    "PLANT_LEMON": {
+     "support": 331,
+     "precision": 0.2599388379204893,
+     "recall": 0.256797583081571,
+     "f1": 0.2583586626139817
+    },
+    "PLANT_PLUM": {
+     "support": 261,
+     "precision": 0.18518518518518517,
+     "recall": 0.11494252873563218,
+     "f1": 0.14184397163120566
+    }
+   },
+   "group_field": "game_fold",
+   "folds": [
+    {
+     "held": 0,
+     "train_rows": 17293,
+     "test_rows": 4884,
+     "accuracy": 0.6842751842751843,
+     "macro_f1": 0.41664982589022337,
+     "majority_accuracy": 0.2868550368550369
+    },
+    {
+     "held": 1,
+     "train_rows": 18734,
+     "test_rows": 3443,
+     "accuracy": 0.6927098460644786,
+     "macro_f1": 0.3577030981978244,
+     "majority_accuracy": 0.2735986058669765
+    },
+    {
+     "held": 2,
+     "train_rows": 17267,
+     "test_rows": 4910,
+     "accuracy": 0.6570264765784114,
+     "macro_f1": 0.34742265677713946,
+     "majority_accuracy": 0.32382892057026474
+    },
+    {
+     "held": 3,
+     "train_rows": 17521,
+     "test_rows": 4656,
+     "accuracy": 0.6499140893470791,
+     "macro_f1": 0.3656336440978614,
+     "majority_accuracy": 0.2270189003436426
+    },
+    {
+     "held": 4,
+     "train_rows": 17893,
+     "test_rows": 4284,
+     "accuracy": 0.6563958916900093,
+     "macro_f1": 0.35522071268939126,
+     "majority_accuracy": 0.31699346405228757
+    }
+   ],
+   "majority_baseline": {
+    "rows": 22177,
+    "accuracy": 0.28624250349461156,
+    "macro_f1": 0.029672217353198953,
+    "per_label": {
+     "CHOP": {
+      "support": 4783,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "DROP": {
+      "support": 2688,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "HARVEST": {
+      "support": 2547,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MINE": {
+      "support": 183,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_OTHER": {
+      "support": 6348,
+      "precision": 0.28624250349461156,
+      "recall": 1.0,
+      "f1": 0.4450832602979843
+     },
+     "MOVE_TREE": {
+      "support": 1410,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE_RIPE": {
+      "support": 2648,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_APPLE": {
+      "support": 21,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_BANANA": {
+      "support": 282,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_LEMON": {
+      "support": 112,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_PLUM": {
+      "support": 106,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_APPLE": {
+      "support": 65,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_BANANA": {
+      "support": 392,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_LEMON": {
+      "support": 331,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_PLUM": {
+      "support": 261,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     }
+    }
+   },
+   "accuracy_gain": 0.38070974432971094,
+   "coverage": {
+    "backoff_0": 7000,
+    "backoff_1": 12971,
+    "backoff_2": 1405,
+    "backoff_3": 762,
+    "backoff_4": 39
+   },
+   "worst_fold_accuracy": 0.6499140893470791,
+   "worst_fold_macro_f1": 0.34742265677713946,
+   "games": 30,
+   "label_counts": {
+    "CHOP": 4783,
+    "DROP": 2688,
+    "HARVEST": 2547,
+    "MINE": 183,
+    "MOVE_OTHER": 6348,
+    "MOVE_TREE": 1410,
+    "MOVE_TREE_RIPE": 2648,
+    "PICK_APPLE": 21,
+    "PICK_BANANA": 282,
+    "PICK_LEMON": 112,
+    "PICK_PLUM": 106,
+    "PLANT_APPLE": 65,
+    "PLANT_BANANA": 392,
+    "PLANT_LEMON": 331,
+    "PLANT_PLUM": 261
+   },
+   "coherent_architecture_gate": {
+    "requirements": [
+     "within-agent held-game accuracy at least 0.60",
+     "within-agent held-game macro F1 at least 0.35",
+     "every within-agent fold accuracy at least 0.50"
+    ],
+    "passed": true
+   }
+  },
+  "6481141": {
+   "rows": 27258,
+   "accuracy": 0.5597255851493139,
+   "macro_f1": 0.3817455655959357,
+   "per_label": {
+    "CHOP": {
+     "support": 4195,
+     "precision": 0.6903633491311216,
+     "recall": 0.833373063170441,
+     "f1": 0.7551571444000432
+    },
+    "DROP": {
+     "support": 2338,
+     "precision": 0.9253544620517098,
+     "recall": 0.9491017964071856,
+     "f1": 0.9370777027027026
+    },
+    "HARVEST": {
+     "support": 2662,
+     "precision": 0.5714285714285714,
+     "recall": 0.7167543200601052,
+     "f1": 0.6358940176637227
+    },
+    "MINE": {
+     "support": 185,
+     "precision": 0.35403726708074534,
+     "recall": 0.3081081081081081,
+     "f1": 0.32947976878612717
+    },
+    "MOVE_OTHER": {
+     "support": 6947,
+     "precision": 0.5442274931201677,
+     "recall": 0.597812005182093,
+     "f1": 0.5697626560570722
+    },
+    "MOVE_TREE": {
+     "support": 4170,
+     "precision": 0.354879196736743,
+     "recall": 0.2712230215827338,
+     "f1": 0.3074622808209868
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 4641,
+     "precision": 0.3567693201626961,
+     "recall": 0.26459814695108813,
+     "f1": 0.30384758134356055
+    },
+    "PICK_APPLE": {
+     "support": 33,
+     "precision": 0.11428571428571428,
+     "recall": 0.12121212121212122,
+     "f1": 0.11764705882352942
+    },
+    "PICK_BANANA": {
+     "support": 168,
+     "precision": 0.5736434108527132,
+     "recall": 0.44047619047619047,
+     "f1": 0.4983164983164984
+    },
+    "PICK_LEMON": {
+     "support": 70,
+     "precision": 0.3939393939393939,
+     "recall": 0.18571428571428572,
+     "f1": 0.2524271844660194
+    },
+    "PICK_PLUM": {
+     "support": 49,
+     "precision": 0.38461538461538464,
+     "recall": 0.20408163265306123,
+     "f1": 0.26666666666666666
+    },
+    "PLANT_APPLE": {
+     "support": 97,
+     "precision": 0.12280701754385964,
+     "recall": 0.07216494845360824,
+     "f1": 0.0909090909090909
+    },
+    "PLANT_BANANA": {
+     "support": 1064,
+     "precision": 0.6480811006517017,
+     "recall": 0.8411654135338346,
+     "f1": 0.7321063394683027
+    },
+    "PLANT_LEMON": {
+     "support": 311,
+     "precision": 0.19166666666666668,
+     "recall": 0.14790996784565916,
+     "f1": 0.16696914700544466
+    },
+    "PLANT_PLUM": {
+     "support": 148,
+     "precision": 0.18840579710144928,
+     "recall": 0.08783783783783784,
+     "f1": 0.11981566820276499
+    },
+    "WAIT": {
+     "support": 180,
+     "precision": 0.045454545454545456,
+     "recall": 0.016666666666666666,
+     "f1": 0.024390243902439025
+    }
+   },
+   "group_field": "game_fold",
+   "folds": [
+    {
+     "held": 0,
+     "train_rows": 20868,
+     "test_rows": 6390,
+     "accuracy": 0.5400625978090767,
+     "macro_f1": 0.3743671259804155,
+     "majority_accuracy": 0.2295774647887324
+    },
+    {
+     "held": 1,
+     "train_rows": 21497,
+     "test_rows": 5761,
+     "accuracy": 0.5679569519180698,
+     "macro_f1": 0.3924427287166605,
+     "majority_accuracy": 0.25186599548689464
+    },
+    {
+     "held": 2,
+     "train_rows": 24456,
+     "test_rows": 2802,
+     "accuracy": 0.5835117773019272,
+     "macro_f1": 0.3387311177125752,
+     "majority_accuracy": 0.24411134903640258
+    },
+    {
+     "held": 3,
+     "train_rows": 21764,
+     "test_rows": 5494,
+     "accuracy": 0.5617036767382599,
+     "macro_f1": 0.40573054726673097,
+     "majority_accuracy": 0.2715689843465599
+    },
+    {
+     "held": 4,
+     "train_rows": 20447,
+     "test_rows": 6811,
+     "accuracy": 0.5598296872705917,
+     "macro_f1": 0.37530410695594585,
+     "majority_accuracy": 0.2720599030979298
+    }
+   ],
+   "majority_baseline": {
+    "rows": 27258,
+    "accuracy": 0.25486095825078875,
+    "macro_f1": 0.02538737026750475,
+    "per_label": {
+     "CHOP": {
+      "support": 4195,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "DROP": {
+      "support": 2338,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "HARVEST": {
+      "support": 2662,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MINE": {
+      "support": 185,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_OTHER": {
+      "support": 6947,
+      "precision": 0.25486095825078875,
+      "recall": 1.0,
+      "f1": 0.406197924280076
+     },
+     "MOVE_TREE": {
+      "support": 4170,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE_RIPE": {
+      "support": 4641,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_APPLE": {
+      "support": 33,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_BANANA": {
+      "support": 168,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_LEMON": {
+      "support": 70,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_PLUM": {
+      "support": 49,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_APPLE": {
+      "support": 97,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_BANANA": {
+      "support": 1064,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_LEMON": {
+      "support": 311,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_PLUM": {
+      "support": 148,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "WAIT": {
+      "support": 180,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     }
+    }
+   },
+   "accuracy_gain": 0.30486462689852517,
+   "coverage": {
+    "backoff_0": 11831,
+    "backoff_1": 13799,
+    "backoff_2": 842,
+    "backoff_3": 303,
+    "backoff_4": 481,
+    "global": 2
+   },
+   "worst_fold_accuracy": 0.5400625978090767,
+   "worst_fold_macro_f1": 0.3387311177125752,
+   "games": 29,
+   "label_counts": {
+    "CHOP": 4195,
+    "DROP": 2338,
+    "HARVEST": 2662,
+    "MINE": 185,
+    "MOVE_OTHER": 6947,
+    "MOVE_TREE": 4170,
+    "MOVE_TREE_RIPE": 4641,
+    "PICK_APPLE": 33,
+    "PICK_BANANA": 168,
+    "PICK_LEMON": 70,
+    "PICK_PLUM": 49,
+    "PLANT_APPLE": 97,
+    "PLANT_BANANA": 1064,
+    "PLANT_LEMON": 311,
+    "PLANT_PLUM": 148,
+    "WAIT": 180
+   },
+   "coherent_architecture_gate": {
+    "requirements": [
+     "within-agent held-game accuracy at least 0.60",
+     "within-agent held-game macro F1 at least 0.35",
+     "every within-agent fold accuracy at least 0.50"
+    ],
+    "passed": false
+   }
+  },
+  "6482055": {
+   "rows": 13240,
+   "accuracy": 0.6009818731117825,
+   "macro_f1": 0.31008809233248424,
+   "per_label": {
+    "CHOP": {
+     "support": 2514,
+     "precision": 0.7552341073467834,
+     "recall": 0.7891805887032617,
+     "f1": 0.7718342734876482
+    },
+    "DROP": {
+     "support": 1247,
+     "precision": 0.833457249070632,
+     "recall": 0.8989574979951884,
+     "f1": 0.8649691358024691
+    },
+    "HARVEST": {
+     "support": 1077,
+     "precision": 0.58828125,
+     "recall": 0.6991643454038997,
+     "f1": 0.638947815019092
+    },
+    "MINE": {
+     "support": 104,
+     "precision": 0.05333333333333334,
+     "recall": 0.038461538461538464,
+     "f1": 0.0446927374301676
+    },
+    "MOVE_OTHER": {
+     "support": 4165,
+     "precision": 0.6162906767817927,
+     "recall": 0.7411764705882353,
+     "f1": 0.6729888816219752
+    },
+    "MOVE_TREE": {
+     "support": 1194,
+     "precision": 0.25150602409638556,
+     "recall": 0.13986599664991625,
+     "f1": 0.1797631862217438
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 1778,
+     "precision": 0.3573487031700288,
+     "recall": 0.27896512935883017,
+     "f1": 0.3133291219204043
+    },
+    "PICK_APPLE": {
+     "support": 10,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_BANANA": {
+     "support": 99,
+     "precision": 0.18604651162790697,
+     "recall": 0.08080808080808081,
+     "f1": 0.11267605633802817
+    },
+    "PICK_LEMON": {
+     "support": 19,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PICK_PLUM": {
+     "support": 19,
+     "precision": 0.6666666666666666,
+     "recall": 0.3157894736842105,
+     "f1": 0.42857142857142855
+    },
+    "PLANT_APPLE": {
+     "support": 10,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 432,
+     "precision": 0.5582706766917294,
+     "recall": 0.6875,
+     "f1": 0.6161825726141079
+    },
+    "PLANT_LEMON": {
+     "support": 75,
+     "precision": 0.32075471698113206,
+     "recall": 0.22666666666666666,
+     "f1": 0.265625
+    },
+    "PLANT_PLUM": {
+     "support": 30,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "WAIT": {
+     "support": 467,
+     "precision": 0.08994708994708994,
+     "recall": 0.03640256959314775,
+     "f1": 0.051829268292682924
+    }
+   },
+   "group_field": "game_fold",
+   "folds": [
+    {
+     "held": 0,
+     "train_rows": 9206,
+     "test_rows": 4034,
+     "accuracy": 0.5567674764501735,
+     "macro_f1": 0.29165732262686045,
+     "majority_accuracy": 0.30813088745661876
+    },
+    {
+     "held": 1,
+     "train_rows": 11624,
+     "test_rows": 1616,
+     "accuracy": 0.5922029702970297,
+     "macro_f1": 0.38382561081925753,
+     "majority_accuracy": 0.21534653465346534
+    },
+    {
+     "held": 2,
+     "train_rows": 10447,
+     "test_rows": 2793,
+     "accuracy": 0.5735767991407089,
+     "macro_f1": 0.2946846240079244,
+     "majority_accuracy": 0.29860365198711064
+    },
+    {
+     "held": 3,
+     "train_rows": 10959,
+     "test_rows": 2281,
+     "accuracy": 0.607628233231039,
+     "macro_f1": 0.33212115119317853,
+     "majority_accuracy": 0.2512056115738711
+    },
+    {
+     "held": 4,
+     "train_rows": 10724,
+     "test_rows": 2516,
+     "accuracy": 0.7019077901430842,
+     "macro_f1": 0.3402181641612599,
+     "majority_accuracy": 0.4638314785373609
+    }
+   ],
+   "majority_baseline": {
+    "rows": 13240,
+    "accuracy": 0.3145770392749245,
+    "macro_f1": 0.02991238149956909,
+    "per_label": {
+     "CHOP": {
+      "support": 2514,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "DROP": {
+      "support": 1247,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "HARVEST": {
+      "support": 1077,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MINE": {
+      "support": 104,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_OTHER": {
+      "support": 4165,
+      "precision": 0.3145770392749245,
+      "recall": 1.0,
+      "f1": 0.47859810399310543
+     },
+     "MOVE_TREE": {
+      "support": 1194,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE_RIPE": {
+      "support": 1778,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_APPLE": {
+      "support": 10,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_BANANA": {
+      "support": 99,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_LEMON": {
+      "support": 19,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_PLUM": {
+      "support": 19,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_APPLE": {
+      "support": 10,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_BANANA": {
+      "support": 432,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_LEMON": {
+      "support": 75,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_PLUM": {
+      "support": 30,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "WAIT": {
+      "support": 467,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     }
+    }
+   },
+   "accuracy_gain": 0.28640483383685805,
+   "coverage": {
+    "backoff_0": 2331,
+    "backoff_1": 9000,
+    "backoff_2": 1364,
+    "backoff_3": 523,
+    "backoff_4": 21,
+    "global": 1
+   },
+   "worst_fold_accuracy": 0.5567674764501735,
+   "worst_fold_macro_f1": 0.29165732262686045,
+   "games": 18,
+   "label_counts": {
+    "CHOP": 2514,
+    "DROP": 1247,
+    "HARVEST": 1077,
+    "MINE": 104,
+    "MOVE_OTHER": 4165,
+    "MOVE_TREE": 1194,
+    "MOVE_TREE_RIPE": 1778,
+    "PICK_APPLE": 10,
+    "PICK_BANANA": 99,
+    "PICK_LEMON": 19,
+    "PICK_PLUM": 19,
+    "PLANT_APPLE": 10,
+    "PLANT_BANANA": 432,
+    "PLANT_LEMON": 75,
+    "PLANT_PLUM": 30,
+    "WAIT": 467
+   },
+   "coherent_architecture_gate": {
+    "requirements": [
+     "within-agent held-game accuracy at least 0.60",
+     "within-agent held-game macro F1 at least 0.35",
+     "every within-agent fold accuracy at least 0.50"
+    ],
+    "passed": false
+   }
+  },
+  "6483545": {
+   "rows": 11009,
+   "accuracy": 0.7768189663002998,
+   "macro_f1": 0.5407720346382449,
+   "per_label": {
+    "CHOP": {
+     "support": 3430,
+     "precision": 0.9520369835307715,
+     "recall": 0.9606413994169096,
+     "f1": 0.9563198374691626
+    },
+    "DROP": {
+     "support": 647,
+     "precision": 0.9708141321044547,
+     "recall": 0.9768160741885626,
+     "f1": 0.9738058551617874
+    },
+    "HARVEST": {
+     "support": 44,
+     "precision": 0.7948717948717948,
+     "recall": 0.7045454545454546,
+     "f1": 0.746987951807229
+    },
+    "MINE": {
+     "support": 11,
+     "precision": 0.125,
+     "recall": 0.18181818181818182,
+     "f1": 0.14814814814814814
+    },
+    "MOVE_BANK": {
+     "support": 2387,
+     "precision": 0.8933070866141732,
+     "recall": 0.9505655634687893,
+     "f1": 0.9210472904404303
+    },
+    "MOVE_IRON": {
+     "support": 23,
+     "precision": 0.2857142857142857,
+     "recall": 0.08695652173913043,
+     "f1": 0.13333333333333333
+    },
+    "MOVE_OTHER": {
+     "support": 561,
+     "precision": 0.3717105263157895,
+     "recall": 0.2014260249554367,
+     "f1": 0.261271676300578
+    },
+    "MOVE_TREE": {
+     "support": 1313,
+     "precision": 0.4055884843353091,
+     "recall": 0.3648134044173648,
+     "f1": 0.38412189254210105
+    },
+    "MOVE_TREE_RIPE": {
+     "support": 2044,
+     "precision": 0.6041209995615958,
+     "recall": 0.6741682974559687,
+     "f1": 0.6372254335260117
+    },
+    "PICK_BANANA": {
+     "support": 166,
+     "precision": 0.5469613259668509,
+     "recall": 0.5963855421686747,
+     "f1": 0.5706051873198849
+    },
+    "PICK_LEMON": {
+     "support": 5,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0
+    },
+    "PLANT_BANANA": {
+     "support": 166,
+     "precision": 0.9940119760479041,
+     "recall": 1.0,
+     "f1": 0.996996996996997
+    },
+    "PLANT_LEMON": {
+     "support": 5,
+     "precision": 0.4,
+     "recall": 0.4,
+     "f1": 0.4000000000000001
+    },
+    "WAIT": {
+     "support": 207,
+     "precision": 0.4827586206896552,
+     "recall": 0.4057971014492754,
+     "f1": 0.44094488188976383
+    }
+   },
+   "group_field": "game_fold",
+   "folds": [
+    {
+     "held": 0,
+     "train_rows": 9442,
+     "test_rows": 1567,
+     "accuracy": 0.7606892150606254,
+     "macro_f1": 0.6009206432698676,
+     "majority_accuracy": 0.2763241863433312
+    },
+    {
+     "held": 1,
+     "train_rows": 7584,
+     "test_rows": 3425,
+     "accuracy": 0.7816058394160584,
+     "macro_f1": 0.4786808512490118,
+     "majority_accuracy": 0.3162043795620438
+    },
+    {
+     "held": 2,
+     "train_rows": 9967,
+     "test_rows": 1042,
+     "accuracy": 0.7476007677543186,
+     "macro_f1": 0.4863524060369902,
+     "majority_accuracy": 0.30998080614203455
+    },
+    {
+     "held": 3,
+     "train_rows": 7833,
+     "test_rows": 3176,
+     "accuracy": 0.7827455919395466,
+     "macro_f1": 0.5732459874758161,
+     "majority_accuracy": 0.3189546599496222
+    },
+    {
+     "held": 4,
+     "train_rows": 9210,
+     "test_rows": 1799,
+     "accuracy": 0.7882156753752084,
+     "macro_f1": 0.615555112226638,
+     "majority_accuracy": 0.32128960533629797
+    }
+   ],
+   "majority_baseline": {
+    "rows": 11009,
+    "accuracy": 0.31156326641838494,
+    "macro_f1": 0.03393586813491239,
+    "per_label": {
+     "CHOP": {
+      "support": 3430,
+      "precision": 0.31156326641838494,
+      "recall": 1.0,
+      "f1": 0.47510215388877347
+     },
+     "DROP": {
+      "support": 647,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "HARVEST": {
+      "support": 44,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MINE": {
+      "support": 11,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_BANK": {
+      "support": 2387,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_IRON": {
+      "support": 23,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_OTHER": {
+      "support": 561,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE": {
+      "support": 1313,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "MOVE_TREE_RIPE": {
+      "support": 2044,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_BANANA": {
+      "support": 166,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PICK_LEMON": {
+      "support": 5,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_BANANA": {
+      "support": 166,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "PLANT_LEMON": {
+      "support": 5,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     },
+     "WAIT": {
+      "support": 207,
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0
+     }
+    }
+   },
+   "accuracy_gain": 0.46525569988191484,
+   "coverage": {
+    "backoff_0": 4810,
+    "backoff_1": 5745,
+    "backoff_2": 12,
+    "backoff_3": 440,
+    "global": 2
+   },
+   "worst_fold_accuracy": 0.7476007677543186,
+   "worst_fold_macro_f1": 0.4786808512490118,
+   "games": 26,
+   "label_counts": {
+    "CHOP": 3430,
+    "DROP": 647,
+    "HARVEST": 44,
+    "MINE": 11,
+    "MOVE_BANK": 2387,
+    "MOVE_IRON": 23,
+    "MOVE_OTHER": 561,
+    "MOVE_TREE": 1313,
+    "MOVE_TREE_RIPE": 2044,
+    "PICK_BANANA": 166,
+    "PICK_LEMON": 5,
+    "PLANT_BANANA": 166,
+    "PLANT_LEMON": 5,
+    "WAIT": 207
+   },
+   "coherent_architecture_gate": {
+    "requirements": [
+     "within-agent held-game accuracy at least 0.60",
+     "within-agent held-game macro F1 at least 0.35",
+     "every within-agent fold accuracy at least 0.50"
+    ],
+    "passed": true
+   }
+  }
+ },
+ "coherent_architecture_agents": [
+  6480540,
+  6483545
+ ],
+ "discovery_gate": {
+  "requirements": [
+   "held-game accuracy at least 0.60",
+   "held-game macro F1 at least 0.35",
+   "held-game accuracy beats fold-majority by at least 0.10",
+   "every held-agent accuracy at least 0.45",
+   "every held-agent macro F1 at least 0.25"
+  ],
+  "passed": false
+ },
+ "interpretation_limit": "The first gate tests whether high-level unit objectives are learnable without agent identity or outcomes. It does not yet model TRAIN timing/spec, target coordinates, multi-worker assignment, or counterfactual value. Passing only authorizes a richer imitation study; failure authorizes feature/label diagnosis, not bot construction. The separate within-agent gate identifies coherent architecture targets on consumed replays and does not establish counterfactual value."
+}

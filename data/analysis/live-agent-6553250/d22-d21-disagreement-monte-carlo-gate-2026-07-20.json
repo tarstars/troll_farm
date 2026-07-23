@@ -1,0 +1,689 @@
+{
+  "authorization": "close the D21 action proposal; no residual or distillation follows",
+  "classification": "mixed_unsafe",
+  "coverage": {
+    "by_opponent": {
+      "complete_baseline": 139,
+      "crop_first_repeated_pressure_reacquire": 120,
+      "funded_pair": 137,
+      "one_shot_reaper": 152,
+      "renewable_planter": 135,
+      "sustained_funded_trio": 201
+    },
+    "by_recipe": {
+      "0": 85,
+      "1": 77,
+      "2": 158,
+      "3": 136,
+      "4": 82,
+      "5": 107,
+      "6": 134,
+      "7": 105
+    },
+    "inspected_shared_states": 138275,
+    "raw_disagreements_by_band": [
+      1251,
+      1644,
+      2183,
+      4185
+    ],
+    "selected_by_band": {
+      "0": 218,
+      "1": 223,
+      "2": 226,
+      "3": 217
+    },
+    "selected_events": 884
+  },
+  "metrics": {
+    "by_action_plane_transition": {
+      "0->0": {
+        "gain_at_least_10_rate": 0.04755944931163955,
+        "loss_at_most_minus_10_rate": 0.03754693366708386,
+        "maximum": 86.0,
+        "mean": 0.3642052565707134,
+        "median": 0.0,
+        "minimum": -63.0,
+        "n": 799,
+        "negative_rate": 0.13391739674593242,
+        "positive_rate": 0.1414267834793492,
+        "quantiles": {
+          "q05": -8.0,
+          "q10": -1.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 2.0,
+          "q95": 9.0
+        },
+        "worst_decile_mean": -10.658227848101266,
+        "zero_rate": 0.7246558197747184
+      },
+      "0->1": {
+        "gain_at_least_10_rate": 0.2727272727272727,
+        "loss_at_most_minus_10_rate": 0.18181818181818182,
+        "maximum": 40.0,
+        "mean": -10.363636363636363,
+        "median": 0.0,
+        "minimum": -111.0,
+        "n": 11,
+        "negative_rate": 0.36363636363636365,
+        "positive_rate": 0.45454545454545453,
+        "quantiles": {
+          "q05": -85.0,
+          "q10": -59.0,
+          "q25": -5.5,
+          "q50": 0.0,
+          "q75": 5.5,
+          "q90": 15.0,
+          "q95": 27.5
+        },
+        "worst_decile_mean": -111.0,
+        "zero_rate": 0.18181818181818182
+      },
+      "0->2": {
+        "gain_at_least_10_rate": 0.02702702702702703,
+        "loss_at_most_minus_10_rate": 0.08108108108108109,
+        "maximum": 10.0,
+        "mean": -1.8108108108108107,
+        "median": 0.0,
+        "minimum": -59.0,
+        "n": 37,
+        "negative_rate": 0.2702702702702703,
+        "positive_rate": 0.1891891891891892,
+        "quantiles": {
+          "q05": -11.0,
+          "q10": -5.0,
+          "q25": -1.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.7999999999999972,
+          "q95": 5.799999999999983
+        },
+        "worst_decile_mean": -27.0,
+        "zero_rate": 0.5405405405405406
+      },
+      "0->8": {
+        "gain_at_least_10_rate": 0.0,
+        "loss_at_most_minus_10_rate": 0.0,
+        "maximum": -1.0,
+        "mean": -1.0,
+        "median": -1.0,
+        "minimum": -1.0,
+        "n": 1,
+        "negative_rate": 1.0,
+        "positive_rate": 0.0,
+        "quantiles": {
+          "q05": -1.0,
+          "q10": -1.0,
+          "q25": -1.0,
+          "q50": -1.0,
+          "q75": -1.0,
+          "q90": -1.0,
+          "q95": -1.0
+        },
+        "worst_decile_mean": -1.0,
+        "zero_rate": 0.0
+      },
+      "1->2": {
+        "gain_at_least_10_rate": 0.0,
+        "loss_at_most_minus_10_rate": 0.0,
+        "maximum": 1.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": -1.0,
+        "n": 2,
+        "negative_rate": 0.5,
+        "positive_rate": 0.5,
+        "quantiles": {
+          "q05": -0.9,
+          "q10": -0.8,
+          "q25": -0.5,
+          "q50": 0.0,
+          "q75": 0.5,
+          "q90": 0.8,
+          "q95": 0.8999999999999999
+        },
+        "worst_decile_mean": -1.0,
+        "zero_rate": 0.0
+      },
+      "2->0": {
+        "gain_at_least_10_rate": 0.0,
+        "loss_at_most_minus_10_rate": 0.25,
+        "maximum": 0.0,
+        "mean": -2.5,
+        "median": 0.0,
+        "minimum": -10.0,
+        "n": 4,
+        "negative_rate": 0.25,
+        "positive_rate": 0.0,
+        "quantiles": {
+          "q05": -8.5,
+          "q10": -7.0,
+          "q25": -2.5,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 0.0,
+          "q95": 0.0
+        },
+        "worst_decile_mean": -10.0,
+        "zero_rate": 0.75
+      },
+      "2->1": {
+        "gain_at_least_10_rate": 0.2,
+        "loss_at_most_minus_10_rate": 0.4,
+        "maximum": 25.0,
+        "mean": -3.4,
+        "median": -3.0,
+        "minimum": -30.0,
+        "n": 5,
+        "negative_rate": 0.6,
+        "positive_rate": 0.4,
+        "quantiles": {
+          "q05": -26.2,
+          "q10": -22.4,
+          "q25": -11.0,
+          "q50": -3.0,
+          "q75": 2.0,
+          "q90": 15.800000000000002,
+          "q95": 20.399999999999995
+        },
+        "worst_decile_mean": -30.0,
+        "zero_rate": 0.0
+      },
+      "4->1": {
+        "gain_at_least_10_rate": 0.0,
+        "loss_at_most_minus_10_rate": 0.0,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "n": 1,
+        "negative_rate": 0.0,
+        "positive_rate": 0.0,
+        "quantiles": {
+          "q05": 0.0,
+          "q10": 0.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 0.0,
+          "q95": 0.0
+        },
+        "worst_decile_mean": 0.0,
+        "zero_rate": 1.0
+      },
+      "8->0": {
+        "gain_at_least_10_rate": 0.08333333333333333,
+        "loss_at_most_minus_10_rate": 0.25,
+        "maximum": 49.0,
+        "mean": -2.75,
+        "median": 0.0,
+        "minimum": -72.0,
+        "n": 24,
+        "negative_rate": 0.4583333333333333,
+        "positive_rate": 0.25,
+        "quantiles": {
+          "q05": -30.2,
+          "q10": -17.9,
+          "q25": -6.25,
+          "q50": 0.0,
+          "q75": 0.75,
+          "q90": 8.399999999999999,
+          "q95": 28.54999999999995
+        },
+        "worst_decile_mean": -52.0,
+        "zero_rate": 0.2916666666666667
+      }
+    },
+    "by_band": {
+      "0": {
+        "gain_at_least_10_rate": 0.12844036697247707,
+        "loss_at_most_minus_10_rate": 0.10091743119266056,
+        "maximum": 86.0,
+        "mean": 0.1559633027522936,
+        "median": 0.0,
+        "minimum": -111.0,
+        "n": 218,
+        "negative_rate": 0.22477064220183487,
+        "positive_rate": 0.27522935779816515,
+        "quantiles": {
+          "q05": -21.04999999999999,
+          "q10": -8.599999999999994,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 1.0,
+          "q90": 12.0,
+          "q95": 23.449999999999932
+        },
+        "worst_decile_mean": -32.19047619047619,
+        "zero_rate": 0.5
+      },
+      "1": {
+        "gain_at_least_10_rate": 0.04484304932735426,
+        "loss_at_most_minus_10_rate": 0.04932735426008968,
+        "maximum": 49.0,
+        "mean": 0.11210762331838565,
+        "median": 0.0,
+        "minimum": -72.0,
+        "n": 223,
+        "negative_rate": 0.17488789237668162,
+        "positive_rate": 0.17488789237668162,
+        "quantiles": {
+          "q05": -9.0,
+          "q10": -3.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 3.0,
+          "q95": 8.899999999999977
+        },
+        "worst_decile_mean": -14.090909090909092,
+        "zero_rate": 0.6502242152466368
+      },
+      "2": {
+        "gain_at_least_10_rate": 0.02654867256637168,
+        "loss_at_most_minus_10_rate": 0.03982300884955752,
+        "maximum": 22.0,
+        "mean": -0.17699115044247787,
+        "median": 0.0,
+        "minimum": -17.0,
+        "n": 226,
+        "negative_rate": 0.13274336283185842,
+        "positive_rate": 0.09292035398230089,
+        "quantiles": {
+          "q05": -8.0,
+          "q10": -1.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 0.0,
+          "q95": 4.5
+        },
+        "worst_decile_mean": -8.545454545454545,
+        "zero_rate": 0.7743362831858407
+      },
+      "3": {
+        "gain_at_least_10_rate": 0.004608294930875576,
+        "loss_at_most_minus_10_rate": 0.009216589861751152,
+        "maximum": 13.0,
+        "mean": -0.013824884792626729,
+        "median": 0.0,
+        "minimum": -13.0,
+        "n": 217,
+        "negative_rate": 0.09216589861751152,
+        "positive_rate": 0.06451612903225806,
+        "quantiles": {
+          "q05": -1.0,
+          "q10": 0.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 0.0,
+          "q95": 1.0
+        },
+        "worst_decile_mean": -2.9047619047619047,
+        "zero_rate": 0.8433179723502304
+      }
+    },
+    "by_opponent": {
+      "complete_baseline": {
+        "gain_at_least_10_rate": 0.10071942446043165,
+        "loss_at_most_minus_10_rate": 0.1079136690647482,
+        "maximum": 49.0,
+        "mean": -0.2014388489208633,
+        "median": 0.0,
+        "minimum": -72.0,
+        "n": 139,
+        "negative_rate": 0.17266187050359713,
+        "positive_rate": 0.16546762589928057,
+        "quantiles": {
+          "q05": -17.0,
+          "q10": -11.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 8.600000000000009,
+          "q95": 18.299999999999983
+        },
+        "worst_decile_mean": -23.846153846153847,
+        "zero_rate": 0.6618705035971223
+      },
+      "crop_first_repeated_pressure_reacquire": {
+        "gain_at_least_10_rate": 0.041666666666666664,
+        "loss_at_most_minus_10_rate": 0.06666666666666667,
+        "maximum": 86.0,
+        "mean": -1.125,
+        "median": 0.0,
+        "minimum": -111.0,
+        "n": 120,
+        "negative_rate": 0.19166666666666668,
+        "positive_rate": 0.175,
+        "quantiles": {
+          "q05": -11.0,
+          "q10": -4.1,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 2.0,
+          "q95": 9.0
+        },
+        "worst_decile_mean": -25.083333333333332,
+        "zero_rate": 0.6333333333333333
+      },
+      "funded_pair": {
+        "gain_at_least_10_rate": 0.058394160583941604,
+        "loss_at_most_minus_10_rate": 0.051094890510948905,
+        "maximum": 40.0,
+        "mean": 0.27007299270072993,
+        "median": 0.0,
+        "minimum": -27.0,
+        "n": 137,
+        "negative_rate": 0.15328467153284672,
+        "positive_rate": 0.145985401459854,
+        "quantiles": {
+          "q05": -9.2,
+          "q10": -4.799999999999997,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 3.4000000000000057,
+          "q95": 10.999999999999943
+        },
+        "worst_decile_mean": -12.461538461538462,
+        "zero_rate": 0.7007299270072993
+      },
+      "one_shot_reaper": {
+        "gain_at_least_10_rate": 0.03289473684210526,
+        "loss_at_most_minus_10_rate": 0.03289473684210526,
+        "maximum": 55.0,
+        "mean": -0.3815789473684211,
+        "median": 0.0,
+        "minimum": -63.0,
+        "n": 152,
+        "negative_rate": 0.19736842105263158,
+        "positive_rate": 0.11842105263157894,
+        "quantiles": {
+          "q05": -4.0,
+          "q10": -1.8999999999999986,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.0,
+          "q95": 2.8999999999999773
+        },
+        "worst_decile_mean": -16.266666666666666,
+        "zero_rate": 0.6842105263157895
+      },
+      "renewable_planter": {
+        "gain_at_least_10_rate": 0.014814814814814815,
+        "loss_at_most_minus_10_rate": 0.007407407407407408,
+        "maximum": 13.0,
+        "mean": 0.007407407407407408,
+        "median": 0.0,
+        "minimum": -15.0,
+        "n": 135,
+        "negative_rate": 0.17777777777777778,
+        "positive_rate": 0.1111111111111111,
+        "quantiles": {
+          "q05": -4.0,
+          "q10": -1.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.0,
+          "q95": 5.299999999999997
+        },
+        "worst_decile_mean": -5.153846153846154,
+        "zero_rate": 0.7111111111111111
+      },
+      "sustained_funded_trio": {
+        "gain_at_least_10_rate": 0.05472636815920398,
+        "loss_at_most_minus_10_rate": 0.03980099502487562,
+        "maximum": 40.0,
+        "mean": 0.9900497512437811,
+        "median": 0.0,
+        "minimum": -32.0,
+        "n": 201,
+        "negative_rate": 0.07960199004975124,
+        "positive_rate": 0.18407960199004975,
+        "quantiles": {
+          "q05": -6.0,
+          "q10": 0.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 5.0,
+          "q95": 10.0
+        },
+        "worst_decile_mean": -8.1,
+        "zero_rate": 0.736318407960199
+      }
+    },
+    "by_recipe": {
+      "0": {
+        "gain_at_least_10_rate": 0.023529411764705882,
+        "loss_at_most_minus_10_rate": 0.03529411764705882,
+        "maximum": 15.0,
+        "mean": -0.5882352941176471,
+        "median": 0.0,
+        "minimum": -59.0,
+        "n": 85,
+        "negative_rate": 0.1411764705882353,
+        "positive_rate": 0.16470588235294117,
+        "quantiles": {
+          "q05": -4.0,
+          "q10": -2.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 2.6000000000000085,
+          "q95": 6.0
+        },
+        "worst_decile_mean": -13.625,
+        "zero_rate": 0.6941176470588235
+      },
+      "1": {
+        "gain_at_least_10_rate": 0.06493506493506493,
+        "loss_at_most_minus_10_rate": 0.025974025974025976,
+        "maximum": 38.0,
+        "mean": 1.3376623376623376,
+        "median": 0.0,
+        "minimum": -13.0,
+        "n": 77,
+        "negative_rate": 0.12987012987012986,
+        "positive_rate": 0.15584415584415584,
+        "quantiles": {
+          "q05": -2.799999999999999,
+          "q10": -1.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.8000000000000114,
+          "q95": 13.40000000000002
+        },
+        "worst_decile_mean": -6.142857142857143,
+        "zero_rate": 0.7142857142857143
+      },
+      "2": {
+        "gain_at_least_10_rate": 0.06962025316455696,
+        "loss_at_most_minus_10_rate": 0.05063291139240506,
+        "maximum": 31.0,
+        "mean": 0.3987341772151899,
+        "median": 0.0,
+        "minimum": -29.0,
+        "n": 158,
+        "negative_rate": 0.1518987341772152,
+        "positive_rate": 0.15822784810126583,
+        "quantiles": {
+          "q05": -9.149999999999999,
+          "q10": -3.299999999999999,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 3.3000000000000114,
+          "q95": 11.600000000000023
+        },
+        "worst_decile_mean": -11.666666666666666,
+        "zero_rate": 0.689873417721519
+      },
+      "3": {
+        "gain_at_least_10_rate": 0.051470588235294115,
+        "loss_at_most_minus_10_rate": 0.07352941176470588,
+        "maximum": 86.0,
+        "mean": -0.10294117647058823,
+        "median": 0.0,
+        "minimum": -111.0,
+        "n": 136,
+        "negative_rate": 0.18382352941176472,
+        "positive_rate": 0.16911764705882354,
+        "quantiles": {
+          "q05": -12.5,
+          "q10": -5.5,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 3.5,
+          "q95": 9.5
+        },
+        "worst_decile_mean": -25.076923076923077,
+        "zero_rate": 0.6470588235294118
+      },
+      "4": {
+        "gain_at_least_10_rate": 0.12195121951219512,
+        "loss_at_most_minus_10_rate": 0.04878048780487805,
+        "maximum": 40.0,
+        "mean": 1.3414634146341464,
+        "median": 0.0,
+        "minimum": -63.0,
+        "n": 82,
+        "negative_rate": 0.10975609756097561,
+        "positive_rate": 0.21951219512195122,
+        "quantiles": {
+          "q05": -3.95,
+          "q10": -0.9000000000000004,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 13.0,
+          "q95": 17.900000000000006
+        },
+        "worst_decile_mean": -15.0,
+        "zero_rate": 0.6707317073170732
+      },
+      "5": {
+        "gain_at_least_10_rate": 0.028037383177570093,
+        "loss_at_most_minus_10_rate": 0.037383177570093455,
+        "maximum": 18.0,
+        "mean": -0.7009345794392523,
+        "median": 0.0,
+        "minimum": -59.0,
+        "n": 107,
+        "negative_rate": 0.14018691588785046,
+        "positive_rate": 0.12149532710280374,
+        "quantiles": {
+          "q05": -7.399999999999999,
+          "q10": -2.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.0,
+          "q95": 4.499999999999943
+        },
+        "worst_decile_mean": -13.8,
+        "zero_rate": 0.7383177570093458
+      },
+      "6": {
+        "gain_at_least_10_rate": 0.022388059701492536,
+        "loss_at_most_minus_10_rate": 0.05970149253731343,
+        "maximum": 40.0,
+        "mean": -0.6119402985074627,
+        "median": 0.0,
+        "minimum": -60.0,
+        "n": 134,
+        "negative_rate": 0.19402985074626866,
+        "positive_rate": 0.1044776119402985,
+        "quantiles": {
+          "q05": -11.0,
+          "q10": -3.6999999999999993,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 0.7000000000000028,
+          "q95": 7.0
+        },
+        "worst_decile_mean": -14.615384615384615,
+        "zero_rate": 0.7014925373134329
+      },
+      "7": {
+        "gain_at_least_10_rate": 0.0380952380952381,
+        "loss_at_most_minus_10_rate": 0.047619047619047616,
+        "maximum": 45.0,
+        "mean": -0.37142857142857144,
+        "median": 0.0,
+        "minimum": -72.0,
+        "n": 105,
+        "negative_rate": 0.1619047619047619,
+        "positive_rate": 0.14285714285714285,
+        "quantiles": {
+          "q05": -7.3999999999999995,
+          "q10": -1.0,
+          "q25": 0.0,
+          "q50": 0.0,
+          "q75": 0.0,
+          "q90": 1.0,
+          "q95": 8.799999999999997
+        },
+        "worst_decile_mean": -18.3,
+        "zero_rate": 0.6952380952380952
+      }
+    },
+    "gain_at_least_10_opponent_coverage": 6,
+    "gain_at_least_10_recipe_coverage": 8,
+    "mean_opponent_score_delta": -0.011312217194570135,
+    "mean_own_score_delta": 0.006787330316742082,
+    "new_catastrophe_rate": 0.0022624434389140274,
+    "new_catastrophes": 2,
+    "nonnegative_opponent_means": 3,
+    "overall_advantage": {
+      "gain_at_least_10_rate": 0.05090497737556561,
+      "loss_at_most_minus_10_rate": 0.049773755656108594,
+      "maximum": 86.0,
+      "mean": 0.01809954751131222,
+      "median": 0.0,
+      "minimum": -111.0,
+      "n": 884,
+      "negative_rate": 0.15610859728506787,
+      "positive_rate": 0.1515837104072398,
+      "quantiles": {
+        "q05": -9.0,
+        "q10": -2.0,
+        "q25": 0.0,
+        "q50": 0.0,
+        "q75": 0.0,
+        "q90": 3.0,
+        "q95": 9.849999999999909
+      },
+      "worst_decile_mean": -14.886363636363637,
+      "zero_rate": 0.6923076923076923
+    }
+  },
+  "readiness_gates": {
+    "all_d11_runs_exact_legal_and_identical": true,
+    "at_least_480_events_and_80_per_band": true,
+    "counterfactual_replays_legal_finite_turn300_and_exact_return": true,
+    "opponent_and_recipe_coverage": true,
+    "proposal_legal_on_every_shared_state": true
+  },
+  "readiness_pass": true,
+  "schema": 1,
+  "scope": "D22 frozen one-action Monte Carlo diagnostic; no candidate, holdout, submission, or Arena authorization",
+  "source": {
+    "analyzer": "cgauto/d22_d21_disagreement_mc_analysis.py",
+    "analyzer_sha256": "73932e58c1c7b757352dc19878b3897bf77c9e5b2788a0457607037682d9cdd6",
+    "input": "data/analysis/live-agent-6553250/d22-d21-disagreement-monte-carlo-8300000-8300239.json",
+    "input_sha256": "e85081e526b68abe82dfb807261921c917981d30766c9bbc889aae4ca2f4abbd",
+    "protocol": "data/analysis/live-agent-6553250/d22-d21-disagreement-monte-carlo-protocol-2026-07-20.md",
+    "protocol_sha256": "dd5042316538a65eed8c85b2f449109ed06ba33368fd2e99e9b6270ef7444132"
+  }
+}

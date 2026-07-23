@@ -1,0 +1,54 @@
+{
+  "schema": "troll-farm-d115a-repair1-selection-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-after-repaired-collection-before-first-d115-fit-or-candidate-score",
+  "repair": {
+    "original_validation_mechanics_failure_manifest_sha256": "d3541d4a1a8a0e81c2cfc6f8f557613d595ef346345189e0862a3d8a45d12978",
+    "repaired_validation_seeds": "9843610--9843619",
+    "repaired_validation_maps": 10,
+    "repaired_validation_tasks": 160,
+    "repaired_validation_elapsed_seconds": 479.272,
+    "repaired_collection_was_not_analyzed_before_this_lock": true,
+    "architecture_training_grid_gates_and_selection_order_unchanged": true,
+    "separate_repaired_output_preserves_mechanics_failure_result": true
+  },
+  "data_isolation": {
+    "fit_only_seeds": "9843300--9843315",
+    "discarded_mechanics_failure_seeds": "9843600--9843607",
+    "validation_seeds": "9843610--9843619",
+    "conditional_untouched_held_seeds": "9843700--9843715",
+    "d114_validation_excluded": true
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6"
+  },
+  "train_elapsed_seconds": 855.033,
+  "validation_elapsed_seconds": 479.272,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-frozen-inputs.json": "ecbf434b20cf7a846c3e75c9e099c3774f5d5b8bc6b4de9a5a69ecca97239bd2",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-repair1-frozen-inputs.json": "d3541d4a1a8a0e81c2cfc6f8f557613d595ef346345189e0862a3d8a45d12978",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-protocol-2026-07-22.md": "2b08ad9d4562679898eb891b16f9f673cffd1fabed10c7c810f556fbca7d7dcf",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-repair1-2026-07-22.md": "abc19ee2e041d7408fd134f8f980e2ef767152281806f8b23ed76b92c2c61447",
+    "cgauto/train_d115a_compact_nonlinear_q6_act_classifier.py": "1839d2eabb9573a19eb7d38a22e7cdbfe4125cf89c0475c87db34e7a7d409808",
+    "tests/test_train_d115a_compact_nonlinear_q6_act_classifier.py": "0d33889923b519ec8d3131158c3a05c4b0c0dbc832e9792238ca921c91dde8b9",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/make_d110a_antithetic_q6_linear_population.py": "13cbe478d2d725a25608d1a2e5dd6089a89ca0d1dc9ed4927857228af62d41f5",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-repair1-arms-9843610-9843619.tsv": "e92c0e68fa9b3afd102762b92c5eae38d76c012cddee2c7f571bfbfc2b5dcf7d",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-repair1-baselines-9843610-9843619.tsv": "a1024dba0ed4fdcccc57187e0bdf03ec1abef4acbbf19c6d2f116f8d5191ab89",
+    "data/analysis/live-agent-6553250/d115a-compact-nonlinear-q6-act-classifier-result.json": "b862a1c5eccbd920a46a1aa2e9432e3a6184d917f3262414ca3cf7e6d5a695b6",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-arms-9843600-9843607.tsv": "8861dffaba780745c2d43be3ec87fded18d8eeab45a8e57dff32db5d8d07844c",
+    "data/analysis/live-agent-6553250/d115a-q6-validation-baselines-9843600-9843607.tsv": "6b385d2134c9dbdb13d478a2ca9157d847f32ea441b80c6a2c08474284c9265b",
+    "pyproject.toml": "10f315573f76676605ad48347d3482c8e4cf3093d0c11d16b177beae7fa81ace",
+    "uv.lock": "6c226494a6c1007d83effd57a4fbe02e21127df2e01e73488d0aaa262a5a9d4b"
+  }
+}

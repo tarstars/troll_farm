@@ -1,0 +1,951 @@
+{
+ "schema": 1,
+ "scope": "fixed reconstructed historical state streams; only streams whose exact baseline commands reproduce the recording are admissible; causal selection gate, not outcome replay",
+ "sources": {
+  "baseline": "cgauto/submissions/agent-6553250-yamo-orchard-live.min.rs",
+  "candidate": "cgauto/submissions/candidate-agent6553250-preseed-low-supply.min.rs",
+  "fixtures": "data/analysis/live-agent-6553250/terminal-fixtures/manifest.json"
+ },
+ "aggregate": {
+  "games": 26,
+  "baseline_exact_reproductions": 19,
+  "rejected_nonreproducing_streams": 7,
+  "candidate_activated_games": 16,
+  "activated_close_losses": 7,
+  "activated_matched_close_wins": 9,
+  "inactive_command_identical_games": 10,
+  "eligible_first_divergences": 16,
+  "candidate_stderr_games": 0,
+  "median_first_divergence_turn": 115.0,
+  "pre_turn_100_divergences": 0,
+  "admissible_candidate_activated_games": 14,
+  "admissible_activated_close_losses": 7,
+  "admissible_activated_matched_close_wins": 7,
+  "admissible_inactive_command_identical_games": 5,
+  "admissible_eligible_first_divergences": 14,
+  "admissible_median_first_divergence_turn": 113.0,
+  "admissible_pre_turn_100_divergences": 0
+ },
+ "rows": [
+  {
+   "game_id": 895923052,
+   "won": false,
+   "margin": -17.0,
+   "n_turns": 295,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 67,
+   "baseline_mismatch_recorded": [
+    "MOVE 1 4 6",
+    "MOVE 2 11 1"
+   ],
+   "baseline_mismatch_reproduced": [
+    "MOVE 1 4 6",
+    "MOVE 2 13 3"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895923053,
+   "won": true,
+   "margin": 15.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 143,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 143,
+     "unit": 3,
+     "plants": 2,
+     "scores": [
+      96,
+      104
+     ],
+     "live_margin": 8,
+     "banked_fruit": [
+      0,
+      0,
+      7,
+      9
+     ],
+     "selected_command": "MOVE 3 11 8",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 1 9 8",
+    "MOVE 3 11 8"
+   ],
+   "candidate_commands": [
+    "MOVE 1 11 8",
+    "PICK 3 BANANA"
+   ]
+  },
+  {
+   "game_id": 895923055,
+   "won": false,
+   "margin": 0.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895923185,
+   "won": true,
+   "margin": 8.0,
+   "n_turns": 125,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 104,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 104,
+     "unit": 1,
+     "plants": 2,
+     "scores": [
+      93,
+      106
+     ],
+     "live_margin": 13,
+     "banked_fruit": [
+      0,
+      0,
+      2,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    },
+    {
+     "turn": 104,
+     "unit": 3,
+     "plants": 2,
+     "scores": [
+      93,
+      106
+     ],
+     "live_margin": 13,
+     "banked_fruit": [
+      0,
+      0,
+      2,
+      0
+     ],
+     "selected_command": "MOVE 3 7 5",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "MOVE 3 7 5"
+   ],
+   "candidate_commands": [
+    "PICK 1 APPLE",
+    "PICK 3 APPLE"
+   ]
+  },
+  {
+   "game_id": 895923622,
+   "won": false,
+   "margin": -16.0,
+   "n_turns": 268,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895923981,
+   "won": false,
+   "margin": -7.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895924122,
+   "won": true,
+   "margin": 4.0,
+   "n_turns": 195,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 32,
+   "baseline_mismatch_recorded": [
+    "CHOP 1",
+    "MOVE 3 13 7"
+   ],
+   "baseline_mismatch_reproduced": [
+    "CHOP 1",
+    "MOVE 3 10 8"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 161,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 161,
+     "unit": 3,
+     "plants": 1,
+     "scores": [
+      100,
+      100
+     ],
+     "live_margin": 0,
+     "banked_fruit": [
+      0,
+      0,
+      4,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "CHOP 1",
+    "WAIT"
+   ],
+   "candidate_commands": [
+    "CHOP 1",
+    "PICK 3 APPLE"
+   ]
+  },
+  {
+   "game_id": 895926466,
+   "won": false,
+   "margin": -6.0,
+   "n_turns": 192,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 119,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 119,
+     "unit": 0,
+     "plants": 2,
+     "scores": [
+      102,
+      100
+     ],
+     "live_margin": 2,
+     "banked_fruit": [
+      3,
+      0,
+      6,
+      1
+     ],
+     "selected_command": "MOVE 0 6 3",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 0 6 3",
+    "DROP 2"
+   ],
+   "candidate_commands": [
+    "PICK 0 BANANA",
+    "DROP 2"
+   ]
+  },
+  {
+   "game_id": 895926546,
+   "won": true,
+   "margin": 2.0,
+   "n_turns": 206,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 168,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 168,
+     "unit": 2,
+     "plants": 2,
+     "scores": [
+      86,
+      106
+     ],
+     "live_margin": 20,
+     "banked_fruit": [
+      0,
+      0,
+      2,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "CHOP 1",
+    "WAIT"
+   ],
+   "candidate_commands": [
+    "CHOP 1",
+    "PICK 2 APPLE"
+   ]
+  },
+  {
+   "game_id": 895926655,
+   "won": true,
+   "margin": 9.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895926857,
+   "won": false,
+   "margin": -3.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 39,
+   "baseline_mismatch_recorded": [
+    "MOVE 0 11 8",
+    "CHOP 2"
+   ],
+   "baseline_mismatch_reproduced": [
+    "MOVE 0 11 8",
+    "MOVE 2 7 5"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895926893,
+   "won": false,
+   "margin": -3.0,
+   "n_turns": 217,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 108,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 108,
+     "unit": 0,
+     "plants": 2,
+     "scores": [
+      65,
+      61
+     ],
+     "live_margin": 4,
+     "banked_fruit": [
+      2,
+      2,
+      9,
+      0
+     ],
+     "selected_command": "MOVE 0 9 9",
+     "would_change_selection": true
+    },
+    {
+     "turn": 108,
+     "unit": 2,
+     "plants": 2,
+     "scores": [
+      65,
+      61
+     ],
+     "live_margin": 4,
+     "banked_fruit": [
+      2,
+      2,
+      9,
+      0
+     ],
+     "selected_command": "MOVE 2 10 9",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 0 9 9",
+    "MOVE 2 10 9"
+   ],
+   "candidate_commands": [
+    "PICK 0 PLUM",
+    "PICK 2 PLUM"
+   ]
+  },
+  {
+   "game_id": 895926901,
+   "won": true,
+   "margin": 1.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 20,
+   "baseline_mismatch_recorded": [
+    "CHOP 1",
+    "MOVE 3 9 7"
+   ],
+   "baseline_mismatch_reproduced": [
+    "CHOP 1",
+    "MOVE 3 11 5"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895927004,
+   "won": true,
+   "margin": 15.0,
+   "n_turns": 210,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 131,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 131,
+     "unit": 1,
+     "plants": 1,
+     "scores": [
+      81,
+      81
+     ],
+     "live_margin": 0,
+     "banked_fruit": [
+      1,
+      3,
+      5,
+      8
+     ],
+     "selected_command": "MOVE 1 7 2",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 1 7 2",
+    "MOVE 3 9 1"
+   ],
+   "candidate_commands": [
+    "PICK 1 BANANA",
+    "MOVE 3 9 1"
+   ]
+  },
+  {
+   "game_id": 895927017,
+   "won": true,
+   "margin": 8.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 131,
+   "baseline_mismatch_recorded": [
+    "MOVE 0 8 1",
+    "MOVE 3 8 2"
+   ],
+   "baseline_mismatch_reproduced": [
+    "MOVE 0 8 1",
+    "MOVE 3 11 5"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895927026,
+   "won": true,
+   "margin": 4.0,
+   "n_turns": 186,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 113,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 113,
+     "unit": 3,
+     "plants": 2,
+     "scores": [
+      66,
+      48
+     ],
+     "live_margin": 18,
+     "banked_fruit": [
+      0,
+      0,
+      1,
+      5
+     ],
+     "selected_command": "MOVE 3 10 8",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 0 4 3",
+    "MOVE 3 10 8"
+   ],
+   "candidate_commands": [
+    "MOVE 0 4 3",
+    "PICK 3 BANANA"
+   ]
+  },
+  {
+   "game_id": 895927052,
+   "won": false,
+   "margin": -9.0,
+   "n_turns": 240,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 181,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 181,
+     "unit": 0,
+     "plants": 1,
+     "scores": [
+      120,
+      110
+     ],
+     "live_margin": 10,
+     "banked_fruit": [
+      0,
+      3,
+      5,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "MOVE 2 6 1"
+   ],
+   "candidate_commands": [
+    "PICK 0 LEMON",
+    "MOVE 2 6 1"
+   ]
+  },
+  {
+   "game_id": 895927061,
+   "won": false,
+   "margin": -2.0,
+   "n_turns": 131,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 102,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 102,
+     "unit": 3,
+     "plants": 2,
+     "scores": [
+      94,
+      96
+     ],
+     "live_margin": 2,
+     "banked_fruit": [
+      0,
+      0,
+      4,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "CHOP 1",
+    "WAIT"
+   ],
+   "candidate_commands": [
+    "CHOP 1",
+    "PICK 3 APPLE"
+   ]
+  },
+  {
+   "game_id": 895927065,
+   "won": false,
+   "margin": -4.0,
+   "n_turns": 206,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 103,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 103,
+     "unit": 1,
+     "plants": 2,
+     "scores": [
+      64,
+      89
+     ],
+     "live_margin": 25,
+     "banked_fruit": [
+      0,
+      1,
+      8,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "CHOP 2"
+   ],
+   "candidate_commands": [
+    "PICK 1 LEMON",
+    "CHOP 2"
+   ]
+  },
+  {
+   "game_id": 895927134,
+   "won": true,
+   "margin": 16.0,
+   "n_turns": 266,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895927156,
+   "won": false,
+   "margin": -6.0,
+   "n_turns": 154,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 113,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 113,
+     "unit": 2,
+     "plants": 2,
+     "scores": [
+      102,
+      100
+     ],
+     "live_margin": 2,
+     "banked_fruit": [
+      1,
+      3,
+      2,
+      0
+     ],
+     "selected_command": "MOVE 2 4 4",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "CHOP 0",
+    "MOVE 2 4 4"
+   ],
+   "candidate_commands": [
+    "CHOP 0",
+    "PICK 2 PLUM"
+   ]
+  },
+  {
+   "game_id": 895927159,
+   "won": false,
+   "margin": -5.0,
+   "n_turns": 201,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 103,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 103,
+     "unit": 2,
+     "plants": 1,
+     "scores": [
+      74,
+      57
+     ],
+     "live_margin": 17,
+     "banked_fruit": [
+      3,
+      0,
+      6,
+      5
+     ],
+     "selected_command": "MOVE 2 6 7",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "MOVE 2 6 7"
+   ],
+   "candidate_commands": [
+    "CHOP 0",
+    "PICK 2 BANANA"
+   ]
+  },
+  {
+   "game_id": 895927166,
+   "won": true,
+   "margin": 3.0,
+   "n_turns": 157,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 20,
+   "baseline_mismatch_recorded": [
+    "MOVE 0 11 9",
+    "MOVE 2 4 5"
+   ],
+   "baseline_mismatch_reproduced": [
+    "MOVE 0 11 9",
+    "MOVE 2 6 3"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 117,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 117,
+     "unit": 0,
+     "plants": 2,
+     "scores": [
+      121,
+      108
+     ],
+     "live_margin": 13,
+     "banked_fruit": [
+      0,
+      0,
+      5,
+      0
+     ],
+     "selected_command": "WAIT",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "CHOP 2"
+   ],
+   "candidate_commands": [
+    "PICK 0 APPLE",
+    "CHOP 2"
+   ]
+  },
+  {
+   "game_id": 895927222,
+   "won": false,
+   "margin": -16.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": false,
+   "baseline_first_mismatch": 236,
+   "baseline_mismatch_recorded": [
+    "MOVE 0 7 7",
+    "CHOP 2"
+   ],
+   "baseline_mismatch_reproduced": [
+    "MOVE 0 9 7",
+    "CHOP 2"
+   ],
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": null,
+   "first_divergence_is_eligible": false,
+   "eligibility": [],
+   "baseline_commands": null,
+   "candidate_commands": null
+  },
+  {
+   "game_id": 895927226,
+   "won": true,
+   "margin": 18.0,
+   "n_turns": 196,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 106,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 106,
+     "unit": 3,
+     "plants": 2,
+     "scores": [
+      62,
+      81
+     ],
+     "live_margin": 19,
+     "banked_fruit": [
+      4,
+      0,
+      6,
+      3
+     ],
+     "selected_command": "MOVE 3 14 4",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "WAIT",
+    "MOVE 3 14 4"
+   ],
+   "candidate_commands": [
+    "MOVE 1 18 4",
+    "PICK 3 BANANA"
+   ]
+  },
+  {
+   "game_id": 895927379,
+   "won": true,
+   "margin": 9.0,
+   "n_turns": 300,
+   "baseline_matches_recorded": true,
+   "baseline_first_mismatch": null,
+   "baseline_mismatch_recorded": null,
+   "baseline_mismatch_reproduced": null,
+   "baseline_stderr": "",
+   "candidate_stderr": "",
+   "first_divergence": 202,
+   "first_divergence_is_eligible": true,
+   "eligibility": [
+    {
+     "turn": 202,
+     "unit": 1,
+     "plants": 2,
+     "scores": [
+      179,
+      191
+     ],
+     "live_margin": 12,
+     "banked_fruit": [
+      2,
+      0,
+      7,
+      6
+     ],
+     "selected_command": "MOVE 1 10 4",
+     "would_change_selection": true
+    }
+   ],
+   "baseline_commands": [
+    "MOVE 1 10 4",
+    "MOVE 3 2 5"
+   ],
+   "candidate_commands": [
+    "PICK 1 BANANA",
+    "MOVE 3 2 5"
+   ]
+  }
+ ]
+}

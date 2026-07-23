@@ -1,0 +1,26 @@
+{
+  "schema": "troll-farm-d112a-repair1-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-repaired-signal-replicates-and-value-inspection",
+  "start_seed": 9843100,
+  "maps": 8,
+  "tasks": 128,
+  "threads": 20,
+  "excluded_smoke_seed": 9843000,
+  "unchanged_minimum_throughput": 12.0,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-protocol-2026-07-22.md": "ed047cabd2a36bb4982bc90d59cfb600c18a003c0c0b997bbc77adbfc2a09b13",
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-repair1-2026-07-22.md": "3dda96fd57b581c7a66265e8f04b5c95744ceac6184c3af29bf5278b4a65ff2b",
+    "data/analysis/live-agent-6553250/d112a-dense-q6-counterfactual-teacher-frozen-inputs.json": "0caf2e9c407a16fd2998791a10509b5e769e9b096c0160c76fbe94e517953ff6",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-arms-a-9843100-9843107.tsv": "d097ad835d8ec2253c89b1558f3b3fb97eb3b71e32a8d952a8f0cf3297810032",
+    "data/analysis/live-agent-6553250/d112a-q6-dense-counterfactual-baselines-a-9843100-9843107.tsv": "47da570ab128a87315aebe57c8285ed79bf27956ab1656ed1f173310ab095dad",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/src/strategies/script_boss.rs": "716e52c0c9de0104efae24500202e851b56de9509fe194834f5d8af8d0c6eb1f",
+    "rust/src/strategies/silver_boss.rs": "fd13c13d23b652f9b48cddf81a134800a0bf738b90a7a3f0342bb0525f38cf4d",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "rust/Cargo.lock": "afef49fbb1b34147c78cd8300b96d372c7064602eb244a914c53aef25773ab9d"
+  }
+}

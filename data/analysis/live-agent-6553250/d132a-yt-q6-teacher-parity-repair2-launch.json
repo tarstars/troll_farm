@@ -1,0 +1,32 @@
+{
+  "launched_utc": "2026-07-22T18:25:37.166238+00:00",
+  "layer_paths": [
+    "//porto_layers/base/jammy/porto_layer_search_ubuntu_jammy_app_lastest.tar.gz",
+    "//porto_layers/delta/python/jammy/porto_delta_layer_ubuntu_jammy_python311_2024-01-24.tar.gz"
+  ],
+  "lock": {
+    "manifest_sha256": "3973663789f87b2798373776c769312ce58d76ffa6061d0b7958f7ba3da3d403",
+    "mismatches": {},
+    "pass": true
+  },
+  "operation_id": "95ab008a-17a0e104-42e03e8-6554149d",
+  "paths": {
+    "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722",
+    "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722/records",
+    "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d132a_q6_teacher_parity_seed9843780_repair1_20260722/specs"
+  },
+  "payload": {
+    "cgauto/yt_d132_q6_teacher_mapper.py": "ce3f3e3aa45a212ab219d80494e05f86dcc0ead6d3e286e6f7aa56b31ab5526b",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+  },
+  "schema": "troll-farm-d132a-yt-q6-teacher-launch-v1",
+  "specs": [
+    {
+      "maps": 1,
+      "shard_id": "pilot-00000",
+      "start_seed": 9843780,
+      "threads": 16
+    }
+  ]
+}

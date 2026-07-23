@@ -1,0 +1,195 @@
+{
+ "schema": 1,
+ "scope": "local candidate packaging/parity/latency gate on consumed Phase-17 seeds; not an outcome discriminator and not an arena result",
+ "sources": {
+  "parent": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs",
+   "sha256": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9"
+  },
+  "resident": {
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+   "bytes": 62725,
+   "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "candidate": {
+   "path": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+   "bytes": 64522,
+   "sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  },
+  "research": "rust/src/bin/yamo_orchard_live.rs"
+ },
+ "fixed_treatment": {
+  "bonus": 100,
+  "eta_limit": 6,
+  "start_turn": 1,
+  "minimum_seen": 1
+ },
+ "first_turn_resident_parity": {
+  "cells": 120,
+  "mismatches": [],
+  "passed": true
+ },
+ "dynamic_reference_parity": {
+  "streams": 16,
+  "exact_streams": 16,
+  "activated_streams": 16,
+  "rows": [
+   {
+    "seed": 1300,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 299,
+    "terminal_turn": 299,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 41
+   },
+   {
+    "seed": 1300,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 242,
+    "terminal_turn": 242,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 54
+   },
+   {
+    "seed": 1301,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 226,
+    "terminal_turn": 226,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 20
+   },
+   {
+    "seed": 1301,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 174,
+    "terminal_turn": 174,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 36
+   },
+   {
+    "seed": 1302,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 296,
+    "terminal_turn": 296,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 7
+   },
+   {
+    "seed": 1302,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 230,
+    "terminal_turn": 230,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 18
+   },
+   {
+    "seed": 1303,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 155,
+    "terminal_turn": 155,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 11
+   },
+   {
+    "seed": 1303,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 186,
+    "terminal_turn": 186,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 15
+   },
+   {
+    "seed": 1304,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 221,
+    "terminal_turn": 221,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 6
+   },
+   {
+    "seed": 1304,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 211,
+    "terminal_turn": 211,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 62
+   },
+   {
+    "seed": 1305,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 229,
+    "terminal_turn": 229,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 70
+   },
+   {
+    "seed": 1305,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 211,
+    "terminal_turn": 211,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 35
+   },
+   {
+    "seed": 1306,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 300,
+    "terminal_turn": 300,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 28
+   },
+   {
+    "seed": 1306,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 285,
+    "terminal_turn": 285,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 13
+   },
+   {
+    "seed": 1307,
+    "seat": 0,
+    "opponent": "ringfix3",
+    "turns": 300,
+    "terminal_turn": 300,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 106
+   },
+   {
+    "seed": 1307,
+    "seat": 1,
+    "opponent": "taskplan",
+    "turns": 256,
+    "terminal_turn": 256,
+    "exact_reference_stream": true,
+    "first_resident_divergence_turn": 82
+   }
+  ],
+  "passed": true
+ },
+ "interactive_latency": {
+  "commands": 3821,
+  "mean_ms": 0.5620408519985872,
+  "p50_ms": 0.5086840246804059,
+  "p95_ms": 0.9697620116639882,
+  "maximum_ms": 4.134674003580585,
+  "p95_limit_ms": 20,
+  "maximum_limit_ms": 100,
+  "passed": true
+ },
+ "verdict": "PASS"
+}

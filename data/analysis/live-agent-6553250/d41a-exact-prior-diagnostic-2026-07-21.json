@@ -1,0 +1,84 @@
+{
+  "diagnosis": "candidate observation is sufficient; the independent 44-32-16-1 scorer failed to represent D40's branchwise lexicographic ordering",
+  "exact_prior": {
+    "accuracy": 1.0,
+    "branches": {
+      "deficit": {
+        "accuracy": 1.0,
+        "action_plane_accuracy": 1.0,
+        "decisions": 6542,
+        "exact_matches": 6542
+      },
+      "evacuation": {
+        "accuracy": 1.0,
+        "action_plane_accuracy": 1.0,
+        "decisions": 336,
+        "exact_matches": 336
+      },
+      "rate": {
+        "accuracy": 1.0,
+        "action_plane_accuracy": 1.0,
+        "decisions": 37638,
+        "exact_matches": 37638
+      },
+      "train": {
+        "accuracy": 1.0,
+        "action_plane_accuracy": 1.0,
+        "decisions": 40531,
+        "exact_matches": 40531
+      }
+    },
+    "decisions": 85047,
+    "elapsed_seconds": 209.49801759200636,
+    "episodes": 512,
+    "exact_matches": 85047,
+    "maps": 32,
+    "seed_base": 9710000,
+    "terminal_hash_sha256": "abfc85e66da059de499a127ecbd1c71c3a1e26f3d9e03d4f64c21ae810756aef"
+  },
+  "passing_model_seeds": [],
+  "selected_seed": null,
+  "trained_validation": {
+    "401": {
+      "accuracy": 0.8438628052723788,
+      "action_plane_macro_f1": 0.8579583821440095,
+      "branch_accuracy": {
+        "deficit": 0.469428309385509,
+        "evacuation": 0.38095238095238093,
+        "rate": 0.7585418991444817,
+        "train": 0.987367693863956
+      },
+      "decisions": 85047,
+      "minimum_branch_accuracy": 0.38095238095238093,
+      "pass": false
+    },
+    "402": {
+      "accuracy": 0.8480134513857044,
+      "action_plane_macro_f1": 0.8578551590200821,
+      "branch_accuracy": {
+        "deficit": 0.6308468358300214,
+        "evacuation": 0.38095238095238093,
+        "rate": 0.7398639672671237,
+        "train": 0.987367693863956
+      },
+      "decisions": 85047,
+      "minimum_branch_accuracy": 0.38095238095238093,
+      "pass": false
+    },
+    "403": {
+      "accuracy": 0.849600808964455,
+      "action_plane_macro_f1": 0.8580887838970207,
+      "branch_accuracy": {
+        "deficit": 0.4868541730357689,
+        "evacuation": 0.3333333333333333,
+        "rate": 0.7689037674690472,
+        "train": 0.987367693863956
+      },
+      "decisions": 85047,
+      "minimum_branch_accuracy": 0.3333333333333333,
+      "pass": false
+    }
+  },
+  "training_result": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d41a-macro-bc-result.json",
+  "training_result_sha256": "9cb8905a75d408c71658068c6b09bb48937cc65e3e1307cea4e917849ae4b68d"
+}

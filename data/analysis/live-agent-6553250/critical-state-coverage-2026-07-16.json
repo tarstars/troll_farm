@@ -1,0 +1,7115 @@
+{
+ "schema": 1,
+ "scope": "static tractability census; does not claim a solved official position",
+ "oracle": {
+  "node_budget": 100000,
+  "documented_envelope": "about one troll per side, small map, horizon 5-20",
+  "validated_sample": {
+   "file": "rust/data/etudes/sample-forced-win.txt",
+   "verdict": "ForcedWin(side=0)",
+   "line": [
+    "CHOP 0",
+    "CHOP 0",
+    "MOVE 0 1 0",
+    "DROP 0"
+   ],
+   "score_diff": 8,
+   "proof_validated": true
+  },
+  "full_referee_gaps": [
+   "TRAIN is absent from oracle action enumeration",
+   "movement tie-breaks use the deterministic local engine, while the referee is random",
+   "the conservative proof is for the modeled action set, not automatically the full arena game"
+  ]
+ },
+ "aggregate": {
+  "fixtures": 26,
+  "positions": 416,
+  "documented_size_envelope_positions": 0,
+  "documented_size_envelope_fixtures": 0,
+  "relaxed_probe_envelope_positions": 85,
+  "relaxed_probe_envelope_fixtures": 11,
+  "units_by_side_pairs": {
+   "[2, 2]": 336,
+   "[2, 3]": 32,
+   "[3, 2]": 16,
+   "[4, 2]": 16,
+   "[2, 4]": 16
+  },
+  "maximum_immediate_joint_edges": 308458800
+ },
+ "rows": [
+  {
+   "game_id": 895923052,
+   "resolved_turn": 280,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    768,
+    81
+   ],
+   "immediate_joint_edges": 62208,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 281,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    1008,
+    81
+   ],
+   "immediate_joint_edges": 81648,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 282,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    768,
+    81
+   ],
+   "immediate_joint_edges": 62208,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 283,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    728,
+    64
+   ],
+   "immediate_joint_edges": 46592,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 284,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    704,
+    64
+   ],
+   "immediate_joint_edges": 45056,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    504,
+    49
+   ],
+   "immediate_joint_edges": 24696,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    490,
+    49
+   ],
+   "immediate_joint_edges": 24010,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    720,
+    49
+   ],
+   "immediate_joint_edges": 35280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    1001,
+    64
+   ],
+   "immediate_joint_edges": 64064,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    847,
+    64
+   ],
+   "immediate_joint_edges": 54208,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    660,
+    49
+   ],
+   "immediate_joint_edges": 32340,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    720,
+    49
+   ],
+   "immediate_joint_edges": 35280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    720,
+    49
+   ],
+   "immediate_joint_edges": 35280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    720,
+    49
+   ],
+   "immediate_joint_edges": 35280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    1200,
+    49
+   ],
+   "immediate_joint_edges": 58800,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923052,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    3,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    960,
+    49
+   ],
+   "immediate_joint_edges": 47040,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    32,
+    25
+   ],
+   "immediate_joint_edges": 800,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    28,
+    35
+   ],
+   "immediate_joint_edges": 980,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    40,
+    36
+   ],
+   "immediate_joint_edges": 1440,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    30
+   ],
+   "immediate_joint_edges": 480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    25
+   ],
+   "immediate_joint_edges": 400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    25
+   ],
+   "immediate_joint_edges": 400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    25
+   ],
+   "immediate_joint_edges": 400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    25
+   ],
+   "immediate_joint_edges": 500,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    28,
+    25
+   ],
+   "immediate_joint_edges": 700,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    28,
+    25
+   ],
+   "immediate_joint_edges": 700,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923053,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    28,
+    25
+   ],
+   "immediate_joint_edges": 700,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 21,
+   "joint_actions_by_side": [
+    456300,
+    676
+   ],
+   "immediate_joint_edges": 308458800,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 20,
+   "joint_actions_by_side": [
+    375000,
+    625
+   ],
+   "immediate_joint_edges": 234375000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 19,
+   "joint_actions_by_side": [
+    317400,
+    576
+   ],
+   "immediate_joint_edges": 182822400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    278784,
+    552
+   ],
+   "immediate_joint_edges": 153888768,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 19,
+   "joint_actions_by_side": [
+    316250,
+    576
+   ],
+   "immediate_joint_edges": 182160000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    292008,
+    575
+   ],
+   "immediate_joint_edges": 167904600,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 20,
+   "joint_actions_by_side": [
+    373152,
+    625
+   ],
+   "immediate_joint_edges": 233220000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 20,
+   "joint_actions_by_side": [
+    420000,
+    625
+   ],
+   "immediate_joint_edges": 262500000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 21,
+   "joint_actions_by_side": [
+    422500,
+    676
+   ],
+   "immediate_joint_edges": 285610000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 20,
+   "joint_actions_by_side": [
+    375000,
+    625
+   ],
+   "immediate_joint_edges": 234375000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 19,
+   "joint_actions_by_side": [
+    304704,
+    576
+   ],
+   "immediate_joint_edges": 175509504,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 19,
+   "joint_actions_by_side": [
+    330625,
+    576
+   ],
+   "immediate_joint_edges": 190440000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    255552,
+    552
+   ],
+   "immediate_joint_edges": 141064704,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    267168,
+    529
+   ],
+   "immediate_joint_edges": 141331872,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    267168,
+    529
+   ],
+   "immediate_joint_edges": 141331872,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923055,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    4,
+    2
+   ],
+   "plants": 18,
+   "joint_actions_by_side": [
+    267168,
+    529
+   ],
+   "immediate_joint_edges": 141331872,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    180,
+    169
+   ],
+   "immediate_joint_edges": 30420,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    156,
+    169
+   ],
+   "immediate_joint_edges": 26364,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    180,
+    169
+   ],
+   "immediate_joint_edges": 30420,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    132,
+    144
+   ],
+   "immediate_joint_edges": 19008,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    154,
+    144
+   ],
+   "immediate_joint_edges": 22176,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    144,
+    168
+   ],
+   "immediate_joint_edges": 24192,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    210,
+    169
+   ],
+   "immediate_joint_edges": 35490,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    156,
+    169
+   ],
+   "immediate_joint_edges": 26364,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    154,
+    144
+   ],
+   "immediate_joint_edges": 22176,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    132,
+    144
+   ],
+   "immediate_joint_edges": 19008,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    130,
+    132
+   ],
+   "immediate_joint_edges": 17160,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    110,
+    121
+   ],
+   "immediate_joint_edges": 13310,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    169,
+    121
+   ],
+   "immediate_joint_edges": 20449,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    132,
+    121
+   ],
+   "immediate_joint_edges": 15972,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    143,
+    121
+   ],
+   "immediate_joint_edges": 17303,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926901,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    110,
+    121
+   ],
+   "immediate_joint_edges": 13310,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 253,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    42,
+    35
+   ],
+   "immediate_joint_edges": 1470,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 254,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    35
+   ],
+   "immediate_joint_edges": 1260,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 255,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    48,
+    35
+   ],
+   "immediate_joint_edges": 1680,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 256,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 257,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 258,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    48
+   ],
+   "immediate_joint_edges": 2352,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 259,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    48
+   ],
+   "immediate_joint_edges": 2352,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 260,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    42,
+    35
+   ],
+   "immediate_joint_edges": 1470,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 261,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    35
+   ],
+   "immediate_joint_edges": 1260,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 262,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    35
+   ],
+   "immediate_joint_edges": 1225,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 263,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    48
+   ],
+   "immediate_joint_edges": 1728,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 264,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    48
+   ],
+   "immediate_joint_edges": 1728,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 265,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    35
+   ],
+   "immediate_joint_edges": 1050,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 266,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    35
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 267,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    24
+   ],
+   "immediate_joint_edges": 480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923622,
+   "resolved_turn": 268,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    24
+   ],
+   "immediate_joint_edges": 384,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 251,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    30
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 252,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    20
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 253,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    20
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 254,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    24
+   ],
+   "immediate_joint_edges": 384,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 255,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 256,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 257,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 258,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 259,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    20
+   ],
+   "immediate_joint_edges": 400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 260,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 261,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    24,
+    16
+   ],
+   "immediate_joint_edges": 384,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 262,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 263,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 264,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 265,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927134,
+   "resolved_turn": 266,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    100
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    100
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    100
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    100
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    100
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    99,
+    100
+   ],
+   "immediate_joint_edges": 9900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    88,
+    81
+   ],
+   "immediate_joint_edges": 7128,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    72,
+    81
+   ],
+   "immediate_joint_edges": 5832,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    88,
+    81
+   ],
+   "immediate_joint_edges": 7128,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    88,
+    81
+   ],
+   "immediate_joint_edges": 7128,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    88,
+    81
+   ],
+   "immediate_joint_edges": 7128,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    77,
+    64
+   ],
+   "immediate_joint_edges": 4928,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    70,
+    64
+   ],
+   "immediate_joint_edges": 4480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923981,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    324,
+    396
+   ],
+   "immediate_joint_edges": 128304,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    289,
+    272
+   ],
+   "immediate_joint_edges": 78608,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    289,
+    272
+   ],
+   "immediate_joint_edges": 78608,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    289,
+    340
+   ],
+   "immediate_joint_edges": 98260,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    289,
+    357
+   ],
+   "immediate_joint_edges": 103173,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    272,
+    336
+   ],
+   "immediate_joint_edges": 91392,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    256
+   ],
+   "immediate_joint_edges": 61440,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    380
+   ],
+   "immediate_joint_edges": 91200,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    256
+   ],
+   "immediate_joint_edges": 61440,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    285
+   ],
+   "immediate_joint_edges": 68400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    272
+   ],
+   "immediate_joint_edges": 65280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    285
+   ],
+   "immediate_joint_edges": 68400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    256
+   ],
+   "immediate_joint_edges": 61440,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    300
+   ],
+   "immediate_joint_edges": 72000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    272
+   ],
+   "immediate_joint_edges": 65280,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926655,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    240,
+    361
+   ],
+   "immediate_joint_edges": 86640,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 177,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    72,
+    49
+   ],
+   "immediate_joint_edges": 3528,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 178,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    64,
+    49
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 179,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    80,
+    63
+   ],
+   "immediate_joint_edges": 5040,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 180,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    81,
+    72
+   ],
+   "immediate_joint_edges": 5832,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 181,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    81,
+    64
+   ],
+   "immediate_joint_edges": 5184,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 182,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    81,
+    64
+   ],
+   "immediate_joint_edges": 5184,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 183,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    81,
+    64
+   ],
+   "immediate_joint_edges": 5184,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 184,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    72,
+    49
+   ],
+   "immediate_joint_edges": 3528,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 185,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    64,
+    49
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 186,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    56,
+    48
+   ],
+   "immediate_joint_edges": 2688,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 187,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 188,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 189,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 190,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926466,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 180,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    64,
+    64
+   ],
+   "immediate_joint_edges": 4096,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 181,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 182,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    56,
+    49
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 183,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 184,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 185,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 186,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 187,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 188,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 189,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 190,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 193,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 194,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895924122,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 8,
+   "joint_actions_by_side": [
+    156,
+    26364
+   ],
+   "immediate_joint_edges": 4112784,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 7,
+   "joint_actions_by_side": [
+    121,
+    17424
+   ],
+   "immediate_joint_edges": 2108304,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 7,
+   "joint_actions_by_side": [
+    121,
+    15972
+   ],
+   "immediate_joint_edges": 1932612,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 7,
+   "joint_actions_by_side": [
+    121,
+    15972
+   ],
+   "immediate_joint_edges": 1932612,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    90,
+    8100
+   ],
+   "immediate_joint_edges": 729000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    81,
+    10800
+   ],
+   "immediate_joint_edges": 874800,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    5632
+   ],
+   "immediate_joint_edges": 360448,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    6912
+   ],
+   "immediate_joint_edges": 442368,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    6336
+   ],
+   "immediate_joint_edges": 405504,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    72,
+    5184
+   ],
+   "immediate_joint_edges": 373248,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    6912
+   ],
+   "immediate_joint_edges": 442368,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    7128
+   ],
+   "immediate_joint_edges": 456192,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    64,
+    5184
+   ],
+   "immediate_joint_edges": 331776,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    2744
+   ],
+   "immediate_joint_edges": 134456,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    4032
+   ],
+   "immediate_joint_edges": 197568,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926857,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    4
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    6776
+   ],
+   "immediate_joint_edges": 332024,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    80,
+    90
+   ],
+   "immediate_joint_edges": 7200,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    80,
+    90
+   ],
+   "immediate_joint_edges": 7200,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    100,
+    90
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    72,
+    80
+   ],
+   "immediate_joint_edges": 5760,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    81,
+    72
+   ],
+   "immediate_joint_edges": 5832,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    81,
+    88
+   ],
+   "immediate_joint_edges": 7128,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    100,
+    90
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    100,
+    90
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    100,
+    90
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    100,
+    90
+   ],
+   "immediate_joint_edges": 9000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    81,
+    80
+   ],
+   "immediate_joint_edges": 6480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    81,
+    72
+   ],
+   "immediate_joint_edges": 5832,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    56,
+    56
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    42,
+    42
+   ],
+   "immediate_joint_edges": 1764,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    42
+   ],
+   "immediate_joint_edges": 1470,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927379,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    45,
+    42
+   ],
+   "immediate_joint_edges": 1890,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 202,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 203,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 204,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 205,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 206,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 207,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 208,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 209,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 210,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 211,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 212,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 213,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 214,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 215,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 216,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926893,
+   "resolved_turn": 217,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 171,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 172,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 3,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 173,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    56
+   ],
+   "immediate_joint_edges": 2016,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 174,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    36
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 175,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    35
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 176,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 177,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 178,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 179,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 180,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 181,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 182,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 183,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 184,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 185,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    20
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927026,
+   "resolved_turn": 186,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 225,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 226,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    48,
+    25
+   ],
+   "immediate_joint_edges": 1200,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 227,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 228,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 229,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    35
+   ],
+   "immediate_joint_edges": 1225,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 230,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 231,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 232,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 233,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 234,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 235,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 236,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    35
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 237,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    30
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 238,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 239,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927052,
+   "resolved_turn": 240,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 196,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 197,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    49
+   ],
+   "immediate_joint_edges": 2401,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 198,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    56,
+    49
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 199,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    70,
+    49
+   ],
+   "immediate_joint_edges": 3430,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 200,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    42
+   ],
+   "immediate_joint_edges": 2268,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 201,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 202,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 203,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 204,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 205,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 206,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 207,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 208,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 209,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927004,
+   "resolved_turn": 210,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    54,
+    36
+   ],
+   "immediate_joint_edges": 1944,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 116,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    30
+   ],
+   "immediate_joint_edges": 480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 117,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    30
+   ],
+   "immediate_joint_edges": 480,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 118,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    35
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 119,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 120,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 121,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 122,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 123,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    30
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 124,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 125,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 126,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    20
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 127,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 128,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 129,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 130,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927061,
+   "resolved_turn": 131,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    24,
+    16
+   ],
+   "immediate_joint_edges": 384,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 110,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    64,
+    63
+   ],
+   "immediate_joint_edges": 4032,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 111,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    56,
+    56
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 112,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 113,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 114,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 115,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 116,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 117,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 118,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 119,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 120,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 121,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 122,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 123,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 124,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    64
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895923185,
+   "resolved_turn": 125,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    56
+   ],
+   "immediate_joint_edges": 2016,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    30
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    30
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 193,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    20
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 194,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 196,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 197,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 198,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 199,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 200,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 201,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 202,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 203,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 204,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 205,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927065,
+   "resolved_turn": 206,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 181,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 182,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 183,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 184,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 185,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 186,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 187,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 188,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 189,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 190,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    48,
+    36
+   ],
+   "immediate_joint_edges": 1728,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 193,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 194,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927226,
+   "resolved_turn": 196,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 139,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    48
+   ],
+   "immediate_joint_edges": 2352,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 140,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    36
+   ],
+   "immediate_joint_edges": 1764,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 141,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    36
+   ],
+   "immediate_joint_edges": 1764,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 142,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 143,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 144,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    25
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 145,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 146,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 147,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 148,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 149,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 150,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 151,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 152,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 153,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    28
+   ],
+   "immediate_joint_edges": 448,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927156,
+   "resolved_turn": 154,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    24
+   ],
+   "immediate_joint_edges": 384,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 142,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 143,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 144,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 145,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    30
+   ],
+   "immediate_joint_edges": 1080,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 146,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    35
+   ],
+   "immediate_joint_edges": 1260,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 147,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    25
+   ],
+   "immediate_joint_edges": 875,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 148,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 149,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 150,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 151,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    25,
+    25
+   ],
+   "immediate_joint_edges": 625,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 152,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 153,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 154,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 155,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 156,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927166,
+   "resolved_turn": 157,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 186,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    28
+   ],
+   "immediate_joint_edges": 1176,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 187,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    48
+   ],
+   "immediate_joint_edges": 2352,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 188,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    36
+   ],
+   "immediate_joint_edges": 1764,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 189,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    36
+   ],
+   "immediate_joint_edges": 1764,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 190,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    42
+   ],
+   "immediate_joint_edges": 2058,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    49,
+    48
+   ],
+   "immediate_joint_edges": 2352,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    42,
+    25
+   ],
+   "immediate_joint_edges": 1050,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 193,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    36,
+    25
+   ],
+   "immediate_joint_edges": 900,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 194,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    35,
+    40
+   ],
+   "immediate_joint_edges": 1400,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    48
+   ],
+   "immediate_joint_edges": 1728,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 196,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 197,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 198,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 2,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 199,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    30,
+    25
+   ],
+   "immediate_joint_edges": 750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 200,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    20,
+    16
+   ],
+   "immediate_joint_edges": 320,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895927159,
+   "resolved_turn": 201,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    16,
+    16
+   ],
+   "immediate_joint_edges": 256,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": true
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 191,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 192,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    64,
+    56
+   ],
+   "immediate_joint_edges": 3584,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 193,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 194,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    56,
+    56
+   ],
+   "immediate_joint_edges": 3136,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 195,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 196,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 1,
+   "joint_actions_by_side": [
+    49,
+    56
+   ],
+   "immediate_joint_edges": 2744,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 197,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    42
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 198,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 199,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 200,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 201,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 202,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    42,
+    36
+   ],
+   "immediate_joint_edges": 1512,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 203,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 204,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 205,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895926546,
+   "resolved_turn": 206,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    2
+   ],
+   "plants": 0,
+   "joint_actions_by_side": [
+    36,
+    36
+   ],
+   "immediate_joint_edges": 1296,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    342,
+    5508
+   ],
+   "immediate_joint_edges": 1883736,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    324,
+    5508
+   ],
+   "immediate_joint_edges": 1784592,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 12,
+   "joint_actions_by_side": [
+    323,
+    4896
+   ],
+   "immediate_joint_edges": 1581408,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    324,
+    5508
+   ],
+   "immediate_joint_edges": 1784592,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    324,
+    5202
+   ],
+   "immediate_joint_edges": 1685448,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 13,
+   "joint_actions_by_side": [
+    324,
+    5202
+   ],
+   "immediate_joint_edges": 1685448,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    256,
+    3375
+   ],
+   "immediate_joint_edges": 864000,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    256,
+    3600
+   ],
+   "immediate_joint_edges": 921600,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 11,
+   "joint_actions_by_side": [
+    256,
+    3600
+   ],
+   "immediate_joint_edges": 921600,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    240,
+    2940
+   ],
+   "immediate_joint_edges": 705600,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    2940
+   ],
+   "immediate_joint_edges": 661500,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    2940
+   ],
+   "immediate_joint_edges": 661500,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    3150
+   ],
+   "immediate_joint_edges": 708750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    3150
+   ],
+   "immediate_joint_edges": 708750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    2940
+   ],
+   "immediate_joint_edges": 661500,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927222,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 10,
+   "joint_actions_by_side": [
+    225,
+    3150
+   ],
+   "immediate_joint_edges": 708750,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 285,
+   "horizon_to_observed_end": 15,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    182,
+    2184
+   ],
+   "immediate_joint_edges": 397488,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 286,
+   "horizon_to_observed_end": 14,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    144,
+    1848
+   ],
+   "immediate_joint_edges": 266112,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 287,
+   "horizon_to_observed_end": 13,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    168,
+    2028
+   ],
+   "immediate_joint_edges": 340704,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 288,
+   "horizon_to_observed_end": 12,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    169,
+    2184
+   ],
+   "immediate_joint_edges": 369096,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 289,
+   "horizon_to_observed_end": 11,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    169,
+    2352
+   ],
+   "immediate_joint_edges": 397488,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 290,
+   "horizon_to_observed_end": 10,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    169,
+    2352
+   ],
+   "immediate_joint_edges": 397488,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 291,
+   "horizon_to_observed_end": 9,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    144,
+    1859
+   ],
+   "immediate_joint_edges": 267696,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 292,
+   "horizon_to_observed_end": 8,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 6,
+   "joint_actions_by_side": [
+    169,
+    2352
+   ],
+   "immediate_joint_edges": 397488,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 293,
+   "horizon_to_observed_end": 7,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    156,
+    1859
+   ],
+   "immediate_joint_edges": 290004,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 294,
+   "horizon_to_observed_end": 6,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 5,
+   "joint_actions_by_side": [
+    144,
+    1859
+   ],
+   "immediate_joint_edges": 267696,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 295,
+   "horizon_to_observed_end": 5,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    1320
+   ],
+   "immediate_joint_edges": 159720,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 296,
+   "horizon_to_observed_end": 4,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    1440
+   ],
+   "immediate_joint_edges": 174240,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 297,
+   "horizon_to_observed_end": 3,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    2184
+   ],
+   "immediate_joint_edges": 264264,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 298,
+   "horizon_to_observed_end": 2,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    1584
+   ],
+   "immediate_joint_edges": 191664,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 299,
+   "horizon_to_observed_end": 1,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    1440
+   ],
+   "immediate_joint_edges": 174240,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  },
+  {
+   "game_id": 895927017,
+   "resolved_turn": 300,
+   "horizon_to_observed_end": 0,
+   "units_by_side": [
+    2,
+    3
+   ],
+   "plants": 4,
+   "joint_actions_by_side": [
+    121,
+    1584
+   ],
+   "immediate_joint_edges": 191664,
+   "documented_size_envelope": false,
+   "relaxed_probe_envelope": false
+  }
+ ]
+}

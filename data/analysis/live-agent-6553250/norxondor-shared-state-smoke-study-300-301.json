@@ -1,0 +1,2172 @@
+{
+ "schema": 1,
+ "mode": "discovery",
+ "scope": "exact-engine generated-map shared-resident-prefix study; actual opponent labels are used only for evaluation, while selector conditioning uses replayed observable state transition mismatch and complete terminal macro-option rollouts",
+ "rows": 768,
+ "scenarios": 96,
+ "seeds": 2,
+ "decision_turns": [
+  3,
+  5,
+  10
+ ],
+ "models": [
+  "compact_gold",
+  "gold_adaptive",
+  "gold_elite",
+  "mybot",
+  "printer_bot",
+  "sched_bot",
+  "script_boss",
+  "silver_boss"
+ ],
+ "baselines": {
+  "3": {
+   "always_three_worker": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 43.875,
+     "median": 38.0,
+     "minimum": -37,
+     "maximum": 166,
+     "wins": 27,
+     "ties": 0,
+     "losses": 5
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 44.21875,
+     "median": 40.5,
+     "minimum": -27,
+     "maximum": 119,
+     "wins": 30,
+     "ties": 0,
+     "losses": 2
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 0.5,
+     "gold_elite": 76.5,
+     "mybot": 53.5,
+     "printer_bot": 59.25,
+     "sched_bot": 8.5,
+     "script_boss": 57,
+     "silver_boss": 19.25
+    }
+   },
+   "cell_oracle": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 47.53125,
+     "median": 38.0,
+     "minimum": 0,
+     "maximum": 166,
+     "wins": 27,
+     "ties": 5,
+     "losses": 0
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 42.59375,
+     "median": 38.5,
+     "minimum": 0,
+     "maximum": 119,
+     "wins": 27,
+     "ties": 5,
+     "losses": 0
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 16.5,
+     "gold_elite": 76.5,
+     "mybot": 53.5,
+     "printer_bot": 59.25,
+     "sched_bot": 20.5,
+     "script_boss": 58.25,
+     "silver_boss": 19.25
+    }
+   }
+  },
+  "5": {
+   "always_three_worker": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 48.875,
+     "median": 38.0,
+     "minimum": -37,
+     "maximum": 166,
+     "wins": 28,
+     "ties": 0,
+     "losses": 4
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 44.59375,
+     "median": 43.5,
+     "minimum": -27,
+     "maximum": 110,
+     "wins": 30,
+     "ties": 0,
+     "losses": 2
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 0.5,
+     "gold_elite": 76.5,
+     "mybot": 72.25,
+     "printer_bot": 51,
+     "sched_bot": 8.5,
+     "script_boss": 86.5,
+     "silver_boss": 19.25
+    }
+   },
+   "cell_oracle": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 52.375,
+     "median": 38.0,
+     "minimum": 0,
+     "maximum": 166,
+     "wins": 28,
+     "ties": 4,
+     "losses": 0
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 44.15625,
+     "median": 40.5,
+     "minimum": 0,
+     "maximum": 110,
+     "wins": 28,
+     "ties": 4,
+     "losses": 0
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 16.5,
+     "gold_elite": 76.5,
+     "mybot": 72.25,
+     "printer_bot": 51,
+     "sched_bot": 20.5,
+     "script_boss": 86.5,
+     "silver_boss": 19.25
+    }
+   }
+  },
+  "10": {
+   "always_three_worker": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 44.59375,
+     "median": 38.0,
+     "minimum": -37,
+     "maximum": 166,
+     "wins": 26,
+     "ties": 1,
+     "losses": 5
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 43.78125,
+     "median": 40.5,
+     "minimum": -27,
+     "maximum": 107,
+     "wins": 30,
+     "ties": 0,
+     "losses": 2
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 0.5,
+     "gold_elite": 76.5,
+     "mybot": 53,
+     "printer_bot": 49.25,
+     "sched_bot": 8.5,
+     "script_boss": 71.5,
+     "silver_boss": 21
+    }
+   },
+   "cell_oracle": {
+    "margin_delta": {
+     "n": 32,
+     "mean": 48.25,
+     "median": 38.0,
+     "minimum": 0,
+     "maximum": 166,
+     "wins": 26,
+     "ties": 6,
+     "losses": 0
+    },
+    "score_delta": {
+     "n": 32,
+     "mean": 42.09375,
+     "median": 35.0,
+     "minimum": 0,
+     "maximum": 107,
+     "wins": 26,
+     "ties": 6,
+     "losses": 0
+    },
+    "opponent_mean_margin_deltas": {
+     "compact_gold": 76.5,
+     "gold_adaptive": 16.5,
+     "gold_elite": 76.5,
+     "mybot": 53,
+     "printer_bot": 49.25,
+     "sched_bot": 20.5,
+     "script_boss": 72.75,
+     "silver_boss": 21
+    }
+   }
+  }
+ },
+ "research_gate": {
+  "requirements": [
+   "alternative selected in at least 5% of cells",
+   "mean paired margin and score gains at least 2",
+   "at least five of eight opponent mean margin deltas nonnegative",
+   "worst opponent mean margin delta at least -5"
+  ],
+  "passing_configurations": 472,
+  "passed": true
+ },
+ "selected": {
+  "config": {
+   "decision_turn": 5,
+   "conditioning": "max_exact",
+   "metric": "margin_delta",
+   "aggregate": "minimum",
+   "buffer": 0
+  },
+  "label": "t5-max_exact-margin_delta-minimum-b0",
+  "cells": 32,
+  "selected_alternative": 28,
+  "selection_rate": 0.875,
+  "selected_positive": 28,
+  "selected_negative": 0,
+  "selection_precision": 1.0,
+  "oracle_classification_accuracy": 1.0,
+  "margin_delta_vs_resident": {
+   "n": 32,
+   "mean": 52.375,
+   "median": 38.0,
+   "minimum": 0,
+   "maximum": 166,
+   "wins": 28,
+   "ties": 4,
+   "losses": 0
+  },
+  "score_delta_vs_resident": {
+   "n": 32,
+   "mean": 44.15625,
+   "median": 40.5,
+   "minimum": 0,
+   "maximum": 110,
+   "wins": 28,
+   "ties": 4,
+   "losses": 0
+  },
+  "selected_margin": {
+   "n": 32,
+   "mean": 63.875,
+   "median": 78.0,
+   "minimum": -168,
+   "maximum": 239,
+   "wins": 26,
+   "ties": 0,
+   "losses": 6
+  },
+  "selected_score": {
+   "n": 32,
+   "mean": 208.84375,
+   "median": 185.0,
+   "minimum": 126,
+   "maximum": 326,
+   "wins": 32,
+   "ties": 0,
+   "losses": 0
+  },
+  "opponent_mean_margin_deltas": {
+   "compact_gold": 76.5,
+   "gold_adaptive": 16.5,
+   "gold_elite": 76.5,
+   "mybot": 72.25,
+   "printer_bot": 51,
+   "sched_bot": 20.5,
+   "script_boss": 86.5,
+   "silver_boss": 19.25
+  },
+  "opponent_mean_score_deltas": {
+   "compact_gold": 68.5,
+   "gold_adaptive": 23.25,
+   "gold_elite": 68.5,
+   "mybot": 30.75,
+   "printer_bot": 53.5,
+   "sched_bot": 18.25,
+   "script_boss": 71.5,
+   "silver_boss": 19
+  },
+  "nonnegative_opponent_margin_deltas": 8,
+  "worst_opponent_mean_margin_delta": 16.5,
+  "mean_compatible_models": 1.375,
+  "actual_model_compatible_rate": 1.0,
+  "serial_prediction_us": {
+   "n": 32,
+   "mean": 4084269.6875,
+   "median": 3823301.5,
+   "minimum": 2186938,
+   "maximum": 5941811,
+   "wins": 32,
+   "ties": 0,
+   "losses": 0
+  },
+  "gate_passed": true
+ },
+ "top_configurations": [
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 0
+   },
+   "label": "t5-max_exact-margin_delta-mean-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 0
+   },
+   "label": "t5-max_exact-margin_delta-median-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 0
+   },
+   "label": "t5-max_exact-margin_delta-lower_quartile-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 0
+   },
+   "label": "t5-max_exact-margin_delta-minimum-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 0
+   },
+   "label": "t5-band0-margin_delta-mean-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 0
+   },
+   "label": "t5-band0-margin_delta-median-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 0
+   },
+   "label": "t5-band0-margin_delta-lower_quartile-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 0
+   },
+   "label": "t5-band0-margin_delta-minimum-b0",
+   "cells": 32,
+   "selected_alternative": 28,
+   "selection_rate": 0.875,
+   "selected_positive": 28,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 1.0,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.375,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 44.15625,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 28,
+    "ties": 4,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.84375,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 19.25
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 19
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 5
+   },
+   "label": "t5-max_exact-margin_delta-mean-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 10
+   },
+   "label": "t5-max_exact-margin_delta-mean-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 5
+   },
+   "label": "t5-max_exact-margin_delta-median-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 10
+   },
+   "label": "t5-max_exact-margin_delta-median-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 5
+   },
+   "label": "t5-max_exact-margin_delta-lower_quartile-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "lower_quartile",
+    "buffer": 10
+   },
+   "label": "t5-max_exact-margin_delta-lower_quartile-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 5
+   },
+   "label": "t5-max_exact-margin_delta-minimum-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "max_exact",
+    "metric": "margin_delta",
+    "aggregate": "minimum",
+    "buffer": 10
+   },
+   "label": "t5-max_exact-margin_delta-minimum-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 5
+   },
+   "label": "t5-band0-margin_delta-mean-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "mean",
+    "buffer": 10
+   },
+   "label": "t5-band0-margin_delta-mean-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 5
+   },
+   "label": "t5-band0-margin_delta-median-b5",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  },
+  {
+   "config": {
+    "decision_turn": 5,
+    "conditioning": "band0",
+    "metric": "margin_delta",
+    "aggregate": "median",
+    "buffer": 10
+   },
+   "label": "t5-band0-margin_delta-median-b10",
+   "cells": 32,
+   "selected_alternative": 27,
+   "selection_rate": 0.84375,
+   "selected_positive": 27,
+   "selected_negative": 0,
+   "selection_precision": 1.0,
+   "oracle_classification_accuracy": 0.96875,
+   "margin_delta_vs_resident": {
+    "n": 32,
+    "mean": 52.21875,
+    "median": 38.0,
+    "minimum": 0,
+    "maximum": 166,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "score_delta_vs_resident": {
+    "n": 32,
+    "mean": 43.875,
+    "median": 40.5,
+    "minimum": 0,
+    "maximum": 110,
+    "wins": 27,
+    "ties": 5,
+    "losses": 0
+   },
+   "selected_margin": {
+    "n": 32,
+    "mean": 63.71875,
+    "median": 78.0,
+    "minimum": -168,
+    "maximum": 239,
+    "wins": 26,
+    "ties": 0,
+    "losses": 6
+   },
+   "selected_score": {
+    "n": 32,
+    "mean": 208.5625,
+    "median": 185.0,
+    "minimum": 126,
+    "maximum": 326,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "opponent_mean_margin_deltas": {
+    "compact_gold": 76.5,
+    "gold_adaptive": 16.5,
+    "gold_elite": 76.5,
+    "mybot": 72.25,
+    "printer_bot": 51,
+    "sched_bot": 20.5,
+    "script_boss": 86.5,
+    "silver_boss": 18
+   },
+   "opponent_mean_score_deltas": {
+    "compact_gold": 68.5,
+    "gold_adaptive": 23.25,
+    "gold_elite": 68.5,
+    "mybot": 30.75,
+    "printer_bot": 53.5,
+    "sched_bot": 18.25,
+    "script_boss": 71.5,
+    "silver_boss": 16.75
+   },
+   "nonnegative_opponent_margin_deltas": 8,
+   "worst_opponent_mean_margin_delta": 16.5,
+   "mean_compatible_models": 1.375,
+   "actual_model_compatible_rate": 1.0,
+   "serial_prediction_us": {
+    "n": 32,
+    "mean": 4084269.6875,
+    "median": 3823301.5,
+    "minimum": 2186938,
+    "maximum": 5941811,
+    "wins": 32,
+    "ties": 0,
+    "losses": 0
+   },
+   "gate_passed": true
+  }
+ ],
+ "decision": {
+  "freeze_for_validation": true,
+  "build_online_prototype": false,
+  "build_submission_candidate": false
+ }
+}

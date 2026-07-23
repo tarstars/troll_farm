@@ -1,0 +1,454 @@
+{
+  "decision": {
+    "construct_candidate": false,
+    "mechanism": "missing_species_source_removed_before_first_deposit",
+    "next_experiment": "atomic_source_to_first_deposit_lease",
+    "open_confirmation": false,
+    "open_fresh_d65": false,
+    "platform_action": false,
+    "status": "diagnosed"
+  },
+  "generated_at": "2026-07-21T12:07:22.212652+00:00",
+  "inputs": {
+    "analyzer": "92c6cbe2a07938f72e07d9b2ead447f3a6f8773b8510b12ce40f9ec48011a768",
+    "d65_matrix": "2bb4154c572b1abb32dc132255e9e31c015300416f4a38259a409773f55f4216",
+    "matrix_a": "7fdd27d494a8fbeeb1e80d05c1cfd232ddf62b13c5f8d86b2bebb28d4887f9c4",
+    "matrix_b": "7fdd27d494a8fbeeb1e80d05c1cfd232ddf62b13c5f8d86b2bebb28d4887f9c4",
+    "protocol": "7263044807a65358b664c40af967673389a70483452c47412440f58631c02188",
+    "runner": "54f6e2297fc9a2bebc960cd8b2e37972fd6d0021b260bf59fa4d01b96bcc4362"
+  },
+  "integrity": {
+    "action_accounting_failures": 0,
+    "complete_grid": true,
+    "decision_index_failures": 0,
+    "mechanical_failure_total": 0,
+    "repeat_byte_identical": true,
+    "rows": 491,
+    "state_chain_failures": 0,
+    "tasks": 4,
+    "terminal_parity_mismatch_count": 0,
+    "terminal_parity_mismatches": {},
+    "trace_hash_failures": 0
+  },
+  "missing_species_discriminator": {
+    "failed_root_classifications": {
+      "destroyed_before_ripe": 1,
+      "selected_then_invalidated_or_contested": 1
+    },
+    "failed_tasks": 2,
+    "failed_zero_deposit_tasks": 2,
+    "pass": true,
+    "successful_positive_deposit_tasks": 2,
+    "successful_root_classifications": {
+      "capitalized": 2
+    },
+    "successful_tasks": 2
+  },
+  "schema": "troll-farm-d65i-source-survival-audit-v1",
+  "scope": "consumed D65 lifecycle diagnosis only; no value or candidate claim",
+  "tasks": {
+    "9830002:0:resident": {
+      "decisions": 106,
+      "first_train_turn": null,
+      "missing_species": "lemon",
+      "missing_species_deposited_before_train": 0,
+      "missing_species_root_classifications": [
+        "selected_then_invalidated_or_contested"
+      ],
+      "source_roots": [
+        {
+          "cell": [
+            6,
+            2
+          ],
+          "classification": "reinvested",
+          "deposited_before_train": 1,
+          "deposited_currency": 1,
+          "expected_species": "plum",
+          "first_loss_turn": 169,
+          "first_present_turn": 11,
+          "first_ripe_turn": 52,
+          "max_root_fruits": 3,
+          "present_as_expected_at_terminal": true,
+          "root_target_events": [
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 58,
+              "turn_before": 52
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 62,
+              "turn_before": 58
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 66,
+              "turn_before": 62
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 76,
+              "turn_before": 71
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 222,
+              "turn_before": 218
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 243,
+              "turn_before": 238
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 248,
+              "turn_before": 243
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 254,
+              "turn_before": 248
+            }
+          ]
+        },
+        {
+          "cell": [
+            5,
+            2
+          ],
+          "classification": "selected_then_invalidated_or_contested",
+          "deposited_before_train": 0,
+          "deposited_currency": 0,
+          "expected_species": "lemon",
+          "first_loss_turn": 30,
+          "first_present_turn": 16,
+          "first_ripe_turn": 28,
+          "max_root_fruits": 1,
+          "present_as_expected_at_terminal": false,
+          "root_target_events": [
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 1,
+              "job_fruit": "lemon",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": -1,
+              "root_lost": true,
+              "turn_after": 30,
+              "turn_before": 28
+            }
+          ]
+        }
+      ],
+      "successful_trains": 0,
+      "terminal_bank": [
+        6,
+        3,
+        7,
+        5,
+        10,
+        2
+      ],
+      "terminal_own_plants": [
+        20,
+        0,
+        2,
+        1
+      ],
+      "terminal_own_ripe": [
+        52,
+        0,
+        6,
+        3
+      ],
+      "terminal_workers": 1
+    },
+    "9830002:1:resident": {
+      "decisions": 100,
+      "first_train_turn": null,
+      "missing_species": "lemon",
+      "missing_species_deposited_before_train": 0,
+      "missing_species_root_classifications": [
+        "destroyed_before_ripe"
+      ],
+      "source_roots": [
+        {
+          "cell": [
+            10,
+            5
+          ],
+          "classification": "reinvested",
+          "deposited_before_train": 2,
+          "deposited_currency": 2,
+          "expected_species": "plum",
+          "first_loss_turn": 75,
+          "first_present_turn": 11,
+          "first_ripe_turn": 50,
+          "max_root_fruits": 1,
+          "present_as_expected_at_terminal": true,
+          "root_target_events": [
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 56,
+              "turn_before": 50
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 60,
+              "turn_before": 56
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "renew",
+              "own_species_count_delta": 1,
+              "root_lost": false,
+              "turn_after": 64,
+              "turn_before": 60
+            },
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 300,
+              "turn_before": 296
+            }
+          ]
+        },
+        {
+          "cell": [
+            9,
+            5
+          ],
+          "classification": "destroyed_before_ripe",
+          "deposited_before_train": 0,
+          "deposited_currency": 0,
+          "expected_species": "lemon",
+          "first_loss_turn": 30,
+          "first_present_turn": 16,
+          "first_ripe_turn": null,
+          "max_root_fruits": 0,
+          "present_as_expected_at_terminal": false,
+          "root_target_events": []
+        }
+      ],
+      "successful_trains": 0,
+      "terminal_bank": [
+        6,
+        3,
+        7,
+        5,
+        10,
+        2
+      ],
+      "terminal_own_plants": [
+        19,
+        0,
+        0,
+        0
+      ],
+      "terminal_own_ripe": [
+        50,
+        0,
+        0,
+        0
+      ],
+      "terminal_workers": 1
+    },
+    "9830014:0:resident": {
+      "decisions": 142,
+      "first_train_turn": 63,
+      "missing_species": "plum",
+      "missing_species_deposited_before_train": 1,
+      "missing_species_root_classifications": [
+        "capitalized"
+      ],
+      "source_roots": [
+        {
+          "cell": [
+            5,
+            5
+          ],
+          "classification": "capitalized",
+          "deposited_before_train": 1,
+          "deposited_currency": 1,
+          "expected_species": "plum",
+          "first_loss_turn": 29,
+          "first_present_turn": 11,
+          "first_ripe_turn": 23,
+          "max_root_fruits": 1,
+          "present_as_expected_at_terminal": false,
+          "root_target_events": [
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 28,
+              "turn_before": 23
+            },
+            {
+              "bank_delta": 0,
+              "invalidated_delta": 1,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": -1,
+              "root_lost": true,
+              "turn_after": 29,
+              "turn_before": 28
+            }
+          ]
+        }
+      ],
+      "successful_trains": 1,
+      "terminal_bank": [
+        0,
+        6,
+        10,
+        2,
+        8,
+        21
+      ],
+      "terminal_own_plants": [
+        0,
+        3,
+        19,
+        0
+      ],
+      "terminal_own_ripe": [
+        0,
+        9,
+        53,
+        0
+      ],
+      "terminal_workers": 2
+    },
+    "9830014:1:resident": {
+      "decisions": 143,
+      "first_train_turn": 47,
+      "missing_species": "plum",
+      "missing_species_deposited_before_train": 2,
+      "missing_species_root_classifications": [
+        "capitalized"
+      ],
+      "source_roots": [
+        {
+          "cell": [
+            14,
+            4
+          ],
+          "classification": "capitalized",
+          "deposited_before_train": 2,
+          "deposited_currency": 2,
+          "expected_species": "plum",
+          "first_loss_turn": 32,
+          "first_present_turn": 11,
+          "first_ripe_turn": 23,
+          "max_root_fruits": 1,
+          "present_as_expected_at_terminal": false,
+          "root_target_events": [
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": 0,
+              "root_lost": false,
+              "turn_after": 28,
+              "turn_before": 23
+            },
+            {
+              "bank_delta": 1,
+              "invalidated_delta": 0,
+              "job_fruit": "plum",
+              "job_kind": "harvest_bank",
+              "own_species_count_delta": -1,
+              "root_lost": true,
+              "turn_after": 32,
+              "turn_before": 28
+            }
+          ]
+        }
+      ],
+      "successful_trains": 1,
+      "terminal_bank": [
+        0,
+        7,
+        5,
+        2,
+        8,
+        24
+      ],
+      "terminal_own_plants": [
+        0,
+        22,
+        0,
+        0
+      ],
+      "terminal_own_ripe": [
+        0,
+        60,
+        0,
+        0
+      ],
+      "terminal_workers": 2
+    }
+  }
+}

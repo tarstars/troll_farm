@@ -1,0 +1,54 @@
+{
+  "full_manifest_sha256": "389d5a3111e5232dbbea85f051b46babad9d370072599c37fe44b0e6aa0cb81b",
+  "outcomes_read": false,
+  "population_sha256": "d32a0c0b6de7856e86ef55090e07807dc52bb676db626e5e2e7d69dd72d50b90",
+  "proposal_sha256": "e93a427677ef2fb18b25246bd5b5e9e4e0ad35d47785b9d747880f219e1345f0",
+  "protocol_sha256": "42b5dd0f689b8d8d7e110d7babf6bcf4ea41b21811c3a28017cbbd8c3720962a",
+  "schema": "troll-farm-d105b-outcome-blind-proposal-union-lock-v1",
+  "selected_arm_ids_sha256": "b04dea2d75cc9d17bc9125e3540e24698e8a796e31ca8b550cf8799d37f76266",
+  "selected_control_arm_ids_sha256": "2438af9cb5da50c838fc35b2c0db2612b900167639ab93bb132a267a5b7450a8",
+  "support": {
+    "arm_kind_counts": {
+      "control": 233,
+      "joint": 2720,
+      "single_first": 787,
+      "single_second": 524
+    },
+    "experts_noncontrol_in_at_least_25pct_roots": 47,
+    "full_manifest_arms": 11909,
+    "job_kinds": [
+      "fell",
+      "harvest",
+      "mine",
+      "renew"
+    ],
+    "maximum_unique_noncontrol_proposals_per_root": 28,
+    "mean_unique_noncontrol_proposals_per_root": 17.300429184549355,
+    "minimum_unique_noncontrol_proposals_per_root": 8,
+    "opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "provenance_classes": [
+      "ambiguous",
+      "natural",
+      "opponent",
+      "own"
+    ],
+    "reversed_role_order_present": true,
+    "roots": 233,
+    "roots_with_joint": 233,
+    "seats": [
+      0,
+      1
+    ],
+    "selected_arms": 4264
+  },
+  "union_manifest_sha256": "d7087fb6ec219ee9ad7afa229dda69368d1ddb72eba52bab07ec708237e5b5d2"
+}

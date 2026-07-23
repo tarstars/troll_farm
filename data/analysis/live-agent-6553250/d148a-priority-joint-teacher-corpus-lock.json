@@ -1,0 +1,24 @@
+{
+  "schema": "troll-farm-d148a-priority-joint-teacher-lock-v1",
+  "frozen_utc": "2026-07-23T02:32:24+03:00",
+  "yt_root": "//home/delivery_ml/research/tarstars/troll_farm",
+  "training_seed_interval": [9844136, 9844199],
+  "reserved_validation_seed_interval": [9844200, 9844215],
+  "sha256": {
+    "cgauto/run_d148a_priority_joint_teacher.py": "4e5381c02aed7b48cef5a483c44bd60383b10f0474947909decccc3dcb7ffc6e",
+    "cgauto/yt_d148_priority_joint_teacher_mapper.py": "96267e32e79ebb45a5fa8696aecb9688904bcf8b55cc752855164fa0c0fff857",
+    "cgauto/yt_d148_priority_joint_teacher.py": "a6cdbd29bc85fac2a36e0550cc7e61f6a1928750e7080c64d8268b78bbeb4fb5",
+    "cgauto/collect_d147a_selected_trajectory_features.py": "a9fd01e3e3e1f65b94503723d73fdbf811e6e61a5e133845f656b0e69a2c222d",
+    "cgauto/run_d144a_two_intervention_mc_pilot.py": "9de3a082c44038c342b9d30478b7c64456a1ca9c1bab1fdb924be66d0c8ae32e",
+    "cgauto/rl_q6_proposal_env.py": "8f102e1eca5a1bcc49ea932170b100eacea5848d7af097c0b21689229dc68911",
+    "cgauto/rl_macro_env.py": "19aa0d82de7c3ae72e090123458e0d4c44ec26a1bbea6f5e7b040e4041736f7b",
+    "tests/test_run_d148a_priority_joint_teacher.py": "47076aec83d02d7bad0d2a24e08f293f7faf4e239201138391ec19dfc7fd35e6",
+    "tests/test_yt_d148_priority_joint_teacher.py": "2c7a57d6e6566192238c98d9e863e2b23462878ffdf9605abb30e5b990bd1786",
+    "data/analysis/live-agent-6553250/d148a-priority-joint-teacher-corpus-protocol-2026-07-22.md": "cfd8043eae3971577aca0fa6783f224784fc9a83b26f70c58af1847115f1deb8",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/yt/d144a-numpy-2.2.6-py310-runtime.tar.gz": "7ef9f486b6824ef3f46c7f88bec9f033575c86f0f3f2ba37dc6943f46f8678d8",
+    "rust/target/release/libtroll_farm.so": "90284b35574e78740bdd1b1f81ea6ba5fdf03265a5ef029f1667a676748835cf",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02"
+  },
+  "external_sha256": {}
+}

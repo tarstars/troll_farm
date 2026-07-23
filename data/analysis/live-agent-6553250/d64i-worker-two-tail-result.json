@@ -1,0 +1,881 @@
+{
+  "decision": {
+    "construct_candidate": false,
+    "next_experiment": "missing_resource_source_access_repair",
+    "open_confirmation": false,
+    "platform_action": false,
+    "status": "diagnosed"
+  },
+  "generated_at": "2026-07-21T11:44:26.318225+00:00",
+  "inputs": {
+    "analyzer": "08154b22ef6fc8a22129e83a276144b6498578f5026f7b6199e70a8c617d02fb",
+    "matrix_a": "c136875412132f45f903bbe1e5ffdbbc448a894b06dc41d81d63c43c525ab7a3",
+    "matrix_b": "c136875412132f45f903bbe1e5ffdbbc448a894b06dc41d81d63c43c525ab7a3",
+    "protocol": "6e90ab0955e9c3404900ed02832ca9452206e9cef351cac7a388a4d1437ea24f",
+    "runner": "3f79e8c31a98859fa991a1a23fd60159b64f9f66eb23a6a4868597ff359075ae"
+  },
+  "integrity": {
+    "complete_grid": true,
+    "control_contract_failures": 0,
+    "decision_index_failures": 0,
+    "mechanical_failure_total": 0,
+    "repeat_byte_identical": true,
+    "rows": 440,
+    "state_turn_chain_failures": 0,
+    "target_contract_failures": 0,
+    "tasks": 8,
+    "trace_hash_failures": 0
+  },
+  "schema": "troll-farm-d64i-worker-two-tail-audit-v1",
+  "scope": "consumed-task D40 safety diagnosis only; no value or candidate claim",
+  "target_classification": {
+    "classification": "source_availability",
+    "counts": {
+      "source_availability": 4
+    },
+    "uniform": true
+  },
+  "traces": {
+    "9830002:0:gold_adaptive": {
+      "bank_cover_clear_decisions": 2,
+      "branch_counts": {
+        "deficit": 5,
+        "evacuation": 1,
+        "rate": 2,
+        "train": 8
+      },
+      "carry_cover_decisions": 2,
+      "classification": "transaction_or_shack",
+      "created_worker_two": true,
+      "decisions": 16,
+      "endpoint_done": false,
+      "endpoint_turn": 71,
+      "endpoint_workers": 2,
+      "initial_missing_resources": [
+        "plum",
+        "lemon"
+      ],
+      "job_counts": {
+        "fell_bank": 1,
+        "harvest_bank": 6,
+        "none": 8,
+        "renew": 1
+      },
+      "job_fruit_counts": {
+        "banana": 2,
+        "lemon": 2,
+        "none": 9,
+        "plum": 3
+      },
+      "last_missing_resource_available_turn": {
+        "lemon": 70,
+        "plum": 70
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 5,
+        "iron": 10,
+        "lemon": 5,
+        "plum": 5,
+        "wood": 1
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 6,
+        "banana": 7,
+        "iron": 0,
+        "lemon": 2,
+        "plum": 4,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 18,
+        "banana": 21,
+        "iron": 0,
+        "lemon": 6,
+        "plum": 12,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 18,
+        "banana": 21,
+        "iron": 0,
+        "lemon": 6,
+        "plum": 12,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 12,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830002:0:resident": {
+      "bank_cover_clear_decisions": 0,
+      "branch_counts": {
+        "deficit": 3,
+        "evacuation": 1,
+        "rate": 52,
+        "train": 56
+      },
+      "carry_cover_decisions": 0,
+      "classification": "source_availability",
+      "created_worker_two": false,
+      "decisions": 112,
+      "endpoint_done": true,
+      "endpoint_turn": 301,
+      "endpoint_workers": 1,
+      "initial_missing_resources": [
+        "plum",
+        "lemon"
+      ],
+      "job_counts": {
+        "fell_bank": 5,
+        "harvest_bank": 4,
+        "idle_one_turn": 3,
+        "none": 56,
+        "renew": 44
+      },
+      "job_fruit_counts": {
+        "banana": 45,
+        "none": 64,
+        "plum": 3
+      },
+      "last_missing_resource_available_turn": {
+        "lemon": null,
+        "plum": 300
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 5,
+        "iron": 10,
+        "lemon": 4,
+        "plum": 5,
+        "wood": 2
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 6,
+        "banana": 22,
+        "iron": 0,
+        "lemon": 2,
+        "plum": 4,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 18,
+        "banana": 65,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 9,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 18,
+        "banana": 65,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 9,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 0,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830002:1:gold_adaptive": {
+      "bank_cover_clear_decisions": 2,
+      "branch_counts": {
+        "deficit": 4,
+        "evacuation": 1,
+        "rate": 2,
+        "train": 7
+      },
+      "carry_cover_decisions": 2,
+      "classification": "transaction_or_shack",
+      "created_worker_two": true,
+      "decisions": 14,
+      "endpoint_done": false,
+      "endpoint_turn": 65,
+      "endpoint_workers": 2,
+      "initial_missing_resources": [
+        "plum",
+        "lemon"
+      ],
+      "job_counts": {
+        "fell_bank": 1,
+        "harvest_bank": 5,
+        "none": 7,
+        "renew": 1
+      },
+      "job_fruit_counts": {
+        "banana": 2,
+        "lemon": 1,
+        "none": 8,
+        "plum": 3
+      },
+      "last_missing_resource_available_turn": {
+        "lemon": 64,
+        "plum": 64
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 5,
+        "iron": 10,
+        "lemon": 5,
+        "plum": 5,
+        "wood": 1
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 6,
+        "banana": 7,
+        "iron": 0,
+        "lemon": 2,
+        "plum": 4,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 18,
+        "banana": 21,
+        "iron": 0,
+        "lemon": 5,
+        "plum": 12,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 18,
+        "banana": 21,
+        "iron": 0,
+        "lemon": 5,
+        "plum": 12,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 8,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830002:1:resident": {
+      "bank_cover_clear_decisions": 0,
+      "branch_counts": {
+        "deficit": 3,
+        "evacuation": 1,
+        "rate": 50,
+        "train": 54
+      },
+      "carry_cover_decisions": 0,
+      "classification": "source_availability",
+      "created_worker_two": false,
+      "decisions": 108,
+      "endpoint_done": true,
+      "endpoint_turn": 301,
+      "endpoint_workers": 1,
+      "initial_missing_resources": [
+        "plum",
+        "lemon"
+      ],
+      "job_counts": {
+        "fell_bank": 4,
+        "harvest_bank": 4,
+        "idle_one_turn": 1,
+        "none": 54,
+        "renew": 45
+      },
+      "job_fruit_counts": {
+        "banana": 46,
+        "none": 59,
+        "plum": 3
+      },
+      "last_missing_resource_available_turn": {
+        "lemon": null,
+        "plum": 300
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 5,
+        "iron": 10,
+        "lemon": 4,
+        "plum": 5,
+        "wood": 3
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 6,
+        "banana": 19,
+        "iron": 0,
+        "lemon": 2,
+        "plum": 4,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 18,
+        "banana": 54,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 9,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 18,
+        "banana": 54,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 9,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 1,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 0,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830014:0:gold_adaptive": {
+      "bank_cover_clear_decisions": 2,
+      "branch_counts": {
+        "deficit": 2,
+        "evacuation": 1,
+        "rate": 2,
+        "train": 5
+      },
+      "carry_cover_decisions": 2,
+      "classification": "transaction_or_shack",
+      "created_worker_two": true,
+      "decisions": 10,
+      "endpoint_done": false,
+      "endpoint_turn": 70,
+      "endpoint_workers": 2,
+      "initial_missing_resources": [
+        "plum"
+      ],
+      "job_counts": {
+        "fell_bank": 1,
+        "harvest_bank": 3,
+        "none": 5,
+        "renew": 1
+      },
+      "job_fruit_counts": {
+        "banana": 1,
+        "lemon": 1,
+        "none": 6,
+        "plum": 2
+      },
+      "last_missing_resource_available_turn": {
+        "plum": 69
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 2,
+        "iron": 10,
+        "lemon": 6,
+        "plum": 5,
+        "wood": 1
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 2,
+        "banana": 3,
+        "iron": 0,
+        "lemon": 6,
+        "plum": 2,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 6,
+        "banana": 9,
+        "iron": 0,
+        "lemon": 18,
+        "plum": 2,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 6,
+        "banana": 9,
+        "iron": 0,
+        "lemon": 18,
+        "plum": 2,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 6,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830014:0:resident": {
+      "bank_cover_clear_decisions": 0,
+      "branch_counts": {
+        "deficit": 1,
+        "evacuation": 1,
+        "rate": 38,
+        "train": 40
+      },
+      "carry_cover_decisions": 0,
+      "classification": "source_availability",
+      "created_worker_two": false,
+      "decisions": 80,
+      "endpoint_done": true,
+      "endpoint_turn": 301,
+      "endpoint_workers": 1,
+      "initial_missing_resources": [
+        "plum"
+      ],
+      "job_counts": {
+        "fell_bank": 5,
+        "harvest_bank": 3,
+        "idle_one_turn": 1,
+        "none": 40,
+        "renew": 31
+      },
+      "job_fruit_counts": {
+        "apple": 1,
+        "banana": 1,
+        "lemon": 31,
+        "none": 46,
+        "plum": 1
+      },
+      "last_missing_resource_available_turn": {
+        "plum": 34
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 2,
+        "iron": 10,
+        "lemon": 7,
+        "plum": 3,
+        "wood": 4
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 3,
+        "banana": 2,
+        "iron": 0,
+        "lemon": 23,
+        "plum": 2,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 6,
+        "banana": 3,
+        "iron": 0,
+        "lemon": 66,
+        "plum": 1,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 6,
+        "banana": 3,
+        "iron": 0,
+        "lemon": 66,
+        "plum": 1,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 2,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 1,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 2,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 0,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830014:1:gold_adaptive": {
+      "bank_cover_clear_decisions": 2,
+      "branch_counts": {
+        "deficit": 2,
+        "evacuation": 1,
+        "rate": 3,
+        "train": 6
+      },
+      "carry_cover_decisions": 2,
+      "classification": "transaction_or_shack",
+      "created_worker_two": true,
+      "decisions": 12,
+      "endpoint_done": false,
+      "endpoint_turn": 86,
+      "endpoint_workers": 2,
+      "initial_missing_resources": [
+        "plum"
+      ],
+      "job_counts": {
+        "fell_bank": 1,
+        "harvest_bank": 3,
+        "none": 6,
+        "renew": 2
+      },
+      "job_fruit_counts": {
+        "banana": 2,
+        "lemon": 1,
+        "none": 7,
+        "plum": 2
+      },
+      "last_missing_resource_available_turn": {
+        "plum": 85
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 2,
+        "iron": 10,
+        "lemon": 6,
+        "plum": 5,
+        "wood": 1
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 2,
+        "banana": 4,
+        "iron": 0,
+        "lemon": 6,
+        "plum": 2,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 6,
+        "banana": 10,
+        "iron": 0,
+        "lemon": 18,
+        "plum": 5,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 6,
+        "banana": 10,
+        "iron": 0,
+        "lemon": 18,
+        "plum": 5,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 6,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    },
+    "9830014:1:resident": {
+      "bank_cover_clear_decisions": 0,
+      "branch_counts": {
+        "evacuation": 1,
+        "rate": 43,
+        "train": 44
+      },
+      "carry_cover_decisions": 0,
+      "classification": "source_availability",
+      "created_worker_two": false,
+      "decisions": 88,
+      "endpoint_done": true,
+      "endpoint_turn": 301,
+      "endpoint_workers": 1,
+      "initial_missing_resources": [
+        "plum"
+      ],
+      "job_counts": {
+        "fell_bank": 6,
+        "harvest_bank": 2,
+        "idle_one_turn": 1,
+        "none": 44,
+        "renew": 35
+      },
+      "job_fruit_counts": {
+        "banana": 1,
+        "lemon": 36,
+        "none": 51
+      },
+      "last_missing_resource_available_turn": {
+        "plum": null
+      },
+      "maximum_bank": {
+        "apple": 7,
+        "banana": 2,
+        "iron": 10,
+        "lemon": 7,
+        "plum": 3,
+        "wood": 6
+      },
+      "maximum_carry": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_plant_counts": {
+        "apple": 3,
+        "banana": 3,
+        "iron": 0,
+        "lemon": 24,
+        "plum": 2,
+        "wood": 0
+      },
+      "maximum_plant_fruits": {
+        "apple": 6,
+        "banana": 6,
+        "iron": 0,
+        "lemon": 67,
+        "plum": 0,
+        "wood": 0
+      },
+      "maximum_ripe": {
+        "apple": 6,
+        "banana": 6,
+        "iron": 0,
+        "lemon": 67,
+        "plum": 0,
+        "wood": 0
+      },
+      "minimum_bank_carry_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 2,
+        "wood": 0
+      },
+      "minimum_bank_carry_ripe_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 2,
+        "wood": 0
+      },
+      "minimum_bank_deficit": {
+        "apple": 0,
+        "banana": 0,
+        "iron": 0,
+        "lemon": 0,
+        "plum": 2,
+        "wood": 0
+      },
+      "ripe_cover_decisions": 0,
+      "terminal_failures": {
+        "deposit_prediction_failures": 0,
+        "invalid_direct_commands": 0,
+        "provenance_failures": 0
+      }
+    }
+  }
+}

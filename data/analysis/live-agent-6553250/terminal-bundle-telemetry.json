@@ -1,0 +1,2050 @@
+{
+ "schema": 1,
+ "scope": "static terminal bundle feasibility on validated historical fixtures",
+ "assumptions": "single worker, no growth, no opponent interference, observed turns remaining",
+ "aggregate": {
+  "fixtures": 26,
+  "opportunities": 67,
+  "feasible_opportunities": 48,
+  "games_with_feasible_opportunity": 19,
+  "by_kind": {
+   "cashout_then_fell": {
+    "observed": 59,
+    "feasible": 40,
+    "feasible_episodes": 38,
+    "selected_immediate_first_verb": 23
+   },
+   "harvest_bank_fell": {
+    "observed": 8,
+    "feasible": 8,
+    "feasible_episodes": 2,
+    "selected_immediate_first_verb": 0
+   }
+  },
+  "median_feasible_slack": 5.0
+ },
+ "rows": [
+  {
+   "game_id": 895923052,
+   "won": false,
+   "margin": -17.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 284,
+     "unit": 2,
+     "remaining_turns": 12,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       13,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895923053,
+   "won": true,
+   "margin": 15.0,
+   "opportunities": []
+  },
+  {
+   "game_id": 895923055,
+   "won": false,
+   "margin": 0.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 289,
+     "unit": 3,
+     "remaining_turns": 12,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 2,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "DROP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 291,
+     "unit": 3,
+     "remaining_turns": 10,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 2,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "PLANT 3 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 296,
+     "unit": 1,
+     "remaining_turns": 5,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 1",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 298,
+     "unit": 3,
+     "remaining_turns": 3,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       6,
+       3
+      ],
+      "kind": "BANANA",
+      "eta": 8,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 2,
+      "fell_eta": 5,
+      "bank_eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926901,
+   "won": true,
+   "margin": 1.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 289,
+     "unit": 3,
+     "remaining_turns": 12,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       10,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "DROP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 291,
+     "unit": 3,
+     "remaining_turns": 10,
+     "eta": 3,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       10,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 2,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 1,
+      "fell_eta": 2,
+      "bank_eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "PLANT 3 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 294,
+     "unit": 1,
+     "remaining_turns": 7,
+     "eta": 13,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       9,
+       8
+      ],
+      "kind": "APPLE",
+      "eta": 12,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 1",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 296,
+     "unit": 3,
+     "remaining_turns": 5,
+     "eta": 15,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       0
+      ],
+      "kind": "APPLE",
+      "eta": 14,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 3,
+      "fell_eta": 10,
+      "bank_eta": 14,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895923622,
+   "won": false,
+   "margin": -16.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 254,
+     "unit": 2,
+     "remaining_turns": 15,
+     "eta": 6,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 256,
+     "unit": 2,
+     "remaining_turns": 13,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 261,
+     "unit": 2,
+     "remaining_turns": 8,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 3,
+      "bank_eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 263,
+     "unit": 2,
+     "remaining_turns": 6,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 3,
+      "bank_eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 266,
+     "unit": 0,
+     "remaining_turns": 3,
+     "eta": 7,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       9,
+       0
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927134,
+   "won": true,
+   "margin": 16.0,
+   "opportunities": []
+  },
+  {
+   "game_id": 895923981,
+   "won": false,
+   "margin": -7.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 292,
+     "unit": 1,
+     "remaining_turns": 9,
+     "eta": 31,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       11,
+       0
+      ],
+      "kind": "BANANA",
+      "eta": 30,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 1",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 292,
+     "unit": 2,
+     "remaining_turns": 9,
+     "eta": 15,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       11,
+       0
+      ],
+      "kind": "BANANA",
+      "eta": 14,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 1",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926655,
+   "won": true,
+   "margin": 9.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 286,
+     "unit": 0,
+     "remaining_turns": 15,
+     "eta": 3,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       4,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 2,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 287,
+     "unit": 3,
+     "remaining_turns": 14,
+     "eta": 16,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       13,
+       5
+      ],
+      "kind": "BANANA",
+      "eta": 15,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": null,
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926466,
+   "won": false,
+   "margin": -6.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 178,
+     "unit": 2,
+     "remaining_turns": 15,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       6,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 180,
+     "unit": 2,
+     "remaining_turns": 13,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       6,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 3,
+      "bank_eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 185,
+     "unit": 2,
+     "remaining_turns": 8,
+     "eta": 3,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       6,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 2,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 2,
+      "bank_eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895924122,
+   "won": true,
+   "margin": 4.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 182,
+     "unit": 3,
+     "remaining_turns": 14,
+     "eta": 6,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       12,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926857,
+   "won": false,
+   "margin": -3.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 286,
+     "unit": 2,
+     "remaining_turns": 15,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       1
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 3,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 2,
+      "value": 8
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 290,
+     "unit": 0,
+     "remaining_turns": 11,
+     "eta": 20,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       6
+      ],
+      "kind": "BANANA",
+      "eta": 19,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 292,
+     "unit": 2,
+     "remaining_turns": 9,
+     "eta": 10,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       6
+      ],
+      "kind": "BANANA",
+      "eta": 7,
+      "wood": 3,
+      "value": 12
+     },
+     "direct": null,
+     "next_commands": [
+      "WAIT",
+      "MOVE 2 9 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 293,
+     "unit": 2,
+     "remaining_turns": 8,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       6
+      ],
+      "kind": "BANANA",
+      "eta": 7,
+      "wood": 3,
+      "value": 12
+     },
+     "direct": null,
+     "next_commands": [
+      "WAIT",
+      "MOVE 2 10 0"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 294,
+     "unit": 2,
+     "remaining_turns": 7,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       6
+      ],
+      "kind": "BANANA",
+      "eta": 7,
+      "wood": 3,
+      "value": 12
+     },
+     "direct": null,
+     "next_commands": [
+      "WAIT",
+      "MOVE 2 8 0"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 295,
+     "unit": 2,
+     "remaining_turns": 6,
+     "eta": 8,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       6
+      ],
+      "kind": "BANANA",
+      "eta": 7,
+      "wood": 3,
+      "value": 12
+     },
+     "direct": null,
+     "next_commands": [
+      "WAIT",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927379,
+   "won": true,
+   "margin": 9.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 286,
+     "unit": 1,
+     "remaining_turns": 15,
+     "eta": 10,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       12,
+       3
+      ],
+      "kind": "APPLE",
+      "eta": 9,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 1",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 289,
+     "unit": 3,
+     "remaining_turns": 12,
+     "eta": 10,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       6,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 9,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 4,
+      "fell_eta": 6,
+      "bank_eta": 10,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 291,
+     "unit": 3,
+     "remaining_turns": 10,
+     "eta": 10,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       6,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 9,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 4,
+      "fell_eta": 6,
+      "bank_eta": 10,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "WAIT",
+      "PLANT 3 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 296,
+     "unit": 3,
+     "remaining_turns": 5,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       6,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 8,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 4,
+      "fell_eta": 5,
+      "bank_eta": 9,
+      "wood": 2,
+      "value": 8
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926893,
+   "won": false,
+   "margin": -3.0,
+   "opportunities": []
+  },
+  {
+   "game_id": 895927026,
+   "won": true,
+   "margin": 4.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 177,
+     "unit": 0,
+     "remaining_turns": 10,
+     "eta": 35,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       11,
+       0
+      ],
+      "kind": "APPLE",
+      "eta": 34,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "MOVE 3 10 8"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927052,
+   "won": false,
+   "margin": -9.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 227,
+     "unit": 2,
+     "remaining_turns": 14,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 2,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 228,
+     "unit": 0,
+     "remaining_turns": 13,
+     "eta": 13,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 12,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 230,
+     "unit": 0,
+     "remaining_turns": 11,
+     "eta": 11,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 10,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "PLANT 0 APPLE",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 235,
+     "unit": 2,
+     "remaining_turns": 6,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 2,
+      "fell_eta": 9,
+      "bank_eta": 10,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927004,
+   "won": true,
+   "margin": 15.0,
+   "opportunities": []
+  },
+  {
+   "game_id": 895927061,
+   "won": false,
+   "margin": -2.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 119,
+     "unit": 3,
+     "remaining_turns": 13,
+     "eta": 6,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       14,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 1,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "PLANT 3 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 124,
+     "unit": 3,
+     "remaining_turns": 8,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       14,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 1,
+      "arrival_eta": 1,
+      "fell_eta": 3,
+      "bank_eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895923185,
+   "won": true,
+   "margin": 8.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 111,
+     "unit": 1,
+     "remaining_turns": 15,
+     "eta": 15,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       5,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 14,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "PLANT 1 APPLE",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 112,
+     "unit": 3,
+     "remaining_turns": 14,
+     "eta": 10,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       4
+      ],
+      "kind": "APPLE",
+      "eta": 7,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "MOVE 3 7 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 113,
+     "unit": 3,
+     "remaining_turns": 13,
+     "eta": 8,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       4
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "MOVE 3 10 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 114,
+     "unit": 3,
+     "remaining_turns": 12,
+     "eta": 7,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       9,
+       4
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 1",
+      "DROP 3"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927065,
+   "won": false,
+   "margin": -4.0,
+   "opportunities": [
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 192,
+     "unit": 1,
+     "remaining_turns": 15,
+     "eta": 7,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 193,
+     "unit": 1,
+     "remaining_turns": 14,
+     "eta": 5,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 2,
+      "bank_eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927226,
+   "won": true,
+   "margin": 18.0,
+   "opportunities": []
+  },
+  {
+   "game_id": 895927156,
+   "won": false,
+   "margin": -6.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 143,
+     "unit": 0,
+     "remaining_turns": 12,
+     "eta": 10,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       4,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 9,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 145,
+     "unit": 0,
+     "remaining_turns": 10,
+     "eta": 9,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       4,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "PLANT 0 APPLE",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 148,
+     "unit": 2,
+     "remaining_turns": 7,
+     "eta": 7,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       5,
+       3
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927166,
+   "won": true,
+   "margin": 3.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 148,
+     "unit": 2,
+     "remaining_turns": 10,
+     "eta": 3,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       4,
+       3
+      ],
+      "kind": "APPLE",
+      "eta": 2,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 2,
+      "bank_eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 149,
+     "unit": 0,
+     "remaining_turns": 9,
+     "eta": 13,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       3,
+       2
+      ],
+      "kind": "APPLE",
+      "eta": 12,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927159,
+   "won": false,
+   "margin": -5.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 193,
+     "unit": 2,
+     "remaining_turns": 9,
+     "eta": 8,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 7,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 7,
+      "bank_eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 195,
+     "unit": 2,
+     "remaining_turns": 7,
+     "eta": 6,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       6
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 200,
+     "unit": 0,
+     "remaining_turns": 2,
+     "eta": 5,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       8,
+       5
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895926546,
+   "won": true,
+   "margin": 2.0,
+   "opportunities": [
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 192,
+     "unit": 1,
+     "remaining_turns": 15,
+     "eta": 15,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 13,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 12,
+      "bank_eta": 13,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 193,
+     "unit": 1,
+     "remaining_turns": 14,
+     "eta": 14,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 12,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 11,
+      "bank_eta": 12,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 194,
+     "unit": 1,
+     "remaining_turns": 13,
+     "eta": 13,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 11,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 10,
+      "bank_eta": 11,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 195,
+     "unit": 1,
+     "remaining_turns": 12,
+     "eta": 10,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 7,
+      "bank_eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 196,
+     "unit": 1,
+     "remaining_turns": 11,
+     "eta": 7,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    },
+    {
+     "kind": "harvest_bank_fell",
+     "turn": 197,
+     "unit": 1,
+     "remaining_turns": 10,
+     "eta": 4,
+     "feasible": true,
+     "fruit": 1,
+     "home_cycle": {
+      "tree": [
+       13,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 2,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 1,
+      "player": 1,
+      "arrival_eta": 0,
+      "fell_eta": 1,
+      "bank_eta": 2,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 1",
+      "WAIT"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927222,
+   "won": false,
+   "margin": -16.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 286,
+     "unit": 2,
+     "remaining_turns": 15,
+     "eta": 8,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 7,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 7,
+      "bank_eta": 8,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 288,
+     "unit": 2,
+     "remaining_turns": 13,
+     "eta": 6,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 5,
+      "bank_eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 2 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 292,
+     "unit": 0,
+     "remaining_turns": 9,
+     "eta": 7,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       8
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 2"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 295,
+     "unit": 2,
+     "remaining_turns": 6,
+     "eta": 16,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       0,
+       8
+      ],
+      "kind": "PLUM",
+      "eta": 15,
+      "wood": 3,
+      "value": 12
+     },
+     "direct": {
+      "unit": 2,
+      "player": 0,
+      "arrival_eta": 5,
+      "fell_eta": 11,
+      "bank_eta": 16,
+      "wood": 2,
+      "value": 8
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 2"
+     ]
+    }
+   ]
+  },
+  {
+   "game_id": 895927017,
+   "won": true,
+   "margin": 8.0,
+   "opportunities": [
+    {
+     "kind": "cashout_then_fell",
+     "turn": 286,
+     "unit": 3,
+     "remaining_turns": 15,
+     "eta": 5,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       8
+      ],
+      "kind": "APPLE",
+      "eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 4,
+      "bank_eta": 5,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "DROP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 288,
+     "unit": 3,
+     "remaining_turns": 13,
+     "eta": 4,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       8,
+       8
+      ],
+      "kind": "APPLE",
+      "eta": 3,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": {
+      "unit": 3,
+      "player": 0,
+      "arrival_eta": 1,
+      "fell_eta": 3,
+      "bank_eta": 4,
+      "wood": 1,
+      "value": 4
+     },
+     "next_commands": [
+      "CHOP 0",
+      "PLANT 3 APPLE"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 292,
+     "unit": 0,
+     "remaining_turns": 9,
+     "eta": 7,
+     "feasible": true,
+     "home_cycle": {
+      "tree": [
+       7,
+       7
+      ],
+      "kind": "APPLE",
+      "eta": 6,
+      "wood": 1,
+      "value": 4
+     },
+     "direct": null,
+     "next_commands": [
+      "DROP 0",
+      "CHOP 3"
+     ]
+    },
+    {
+     "kind": "cashout_then_fell",
+     "turn": 294,
+     "unit": 3,
+     "remaining_turns": 7,
+     "eta": 9,
+     "feasible": false,
+     "home_cycle": {
+      "tree": [
+       9,
+       0
+      ],
+      "kind": "LEMON",
+      "eta": 8,
+      "wood": 2,
+      "value": 8
+     },
+     "direct": {
+      "unit": 3,
+      "player": 0,
+      "arrival_eta": 3,
+      "fell_eta": 4,
+      "bank_eta": 8,
+      "wood": 2,
+      "value": 8
+     },
+     "next_commands": [
+      "WAIT",
+      "DROP 3"
+     ]
+    }
+   ]
+  }
+ ]
+}

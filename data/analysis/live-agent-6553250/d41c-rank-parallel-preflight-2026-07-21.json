@@ -1,0 +1,82 @@
+{
+  "baseline_comparison": {
+    "baseline_tasks": 32,
+    "exact": true,
+    "mismatch_count": 0,
+    "mismatch_examples": [],
+    "tasks": 32
+  },
+  "chosen_num_envs": 64,
+  "d41b_result": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d41b-exact-prior-preflight-2026-07-21.json",
+  "d41b_result_sha256": "4835c6394af31eede2830fba892520ad8f9c0b23394965649ea343fa18f053fe",
+  "gates": {
+    "d41b_pass": true,
+    "legacy_feature_hash_preserved": true,
+    "rank_stream_aa": true,
+    "reward_identity": true,
+    "terminal_smoke_exact": true,
+    "width_64_faster": true
+  },
+  "library": "/home/tarstars/prj/troll_farm/rust/target/release/libtroll_farm.so",
+  "library_sha256": "5839a7b888f2772e54a293a66ed5b186df378d5b8514f43a200898c8eef70173",
+  "pass": true,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d41c-exact-prior-residual-ppo-protocol-2026-07-21.md",
+  "protocol_sha256": "87755bc0445f6cab6c9be8037262995496302358fcbdf7c264531e8652eef1f9",
+  "streams": {
+    "16": {
+      "aa_exact": true,
+      "first": {
+        "cpu_seconds": 22.160222011,
+        "decisions": 4096,
+        "decisions_per_second": 1181.387447375974,
+        "effective_cpu_cores": 6.391554715542032,
+        "full_rank_hash": "0f7ffb9da4ab7081264a9eff80e9bb5b43c245d356d571c82ee9a4eb3660be71",
+        "legacy_hash": "306779511abd482bd0a102c9cb0949f4ff40e0180ea1895fc8cefc9c584ef4fd",
+        "num_envs": 16,
+        "seed_base": 9700000,
+        "wall_seconds": 3.4671098030521534
+      },
+      "repeat": {
+        "cpu_seconds": 19.144900513000003,
+        "decisions": 4096,
+        "decisions_per_second": 1345.5121520455732,
+        "effective_cpu_cores": 6.288988352037362,
+        "full_rank_hash": "0f7ffb9da4ab7081264a9eff80e9bb5b43c245d356d571c82ee9a4eb3660be71",
+        "legacy_hash": "306779511abd482bd0a102c9cb0949f4ff40e0180ea1895fc8cefc9c584ef4fd",
+        "num_envs": 16,
+        "seed_base": 9700000,
+        "wall_seconds": 3.0441939849988557
+      }
+    },
+    "64": {
+      "aa_exact": true,
+      "first": {
+        "cpu_seconds": 19.329841895999998,
+        "decisions": 4096,
+        "decisions_per_second": 2232.5633291204335,
+        "effective_cpu_cores": 10.535912152027683,
+        "full_rank_hash": "8a7ee41105f3c0b670abd328dde17cda83b9b5ecf0e281f3399a0af7e4e7aa14",
+        "legacy_hash": "2e89782a43efebfad69f634bccfe5e8dbc78473e533eba35c476a708a4b65231",
+        "num_envs": 64,
+        "seed_base": 9700000,
+        "wall_seconds": 1.8346624019904993
+      },
+      "repeat": {
+        "cpu_seconds": 18.086226547000003,
+        "decisions": 4096,
+        "decisions_per_second": 2406.603944495702,
+        "effective_cpu_cores": 10.626558630139913,
+        "full_rank_hash": "8a7ee41105f3c0b670abd328dde17cda83b9b5ecf0e281f3399a0af7e4e7aa14",
+        "legacy_hash": "2e89782a43efebfad69f634bccfe5e8dbc78473e533eba35c476a708a4b65231",
+        "num_envs": 64,
+        "seed_base": 9700000,
+        "wall_seconds": 1.7019834149978124
+      }
+    }
+  },
+  "terminal_smoke": {
+    "episodes": 32,
+    "maximum_reward_identity_error_margin_points": 4.932284355163574e-06,
+    "reward_identity": true
+  }
+}

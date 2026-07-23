@@ -1,0 +1,24 @@
+{
+  "schema": "troll-farm-d114a-repair1-frozen-inputs-v1",
+  "frozen_at": "2026-07-22-before-first-ridge-solve-or-validation-metric",
+  "train_elapsed_seconds": 855.033,
+  "validation_elapsed_seconds": 458.939,
+  "sha256": {
+    "data/analysis/live-agent-6553250/d114a-supervised-one-use-q6-linear-scorer-protocol-2026-07-22.md": "fc434e6ac942838dc93220b4e4d4206ede8797c0ffff2ff5f244d8056ffd6d1a",
+    "data/analysis/live-agent-6553250/d114a-supervised-one-use-q6-linear-scorer-frozen-inputs.json": "fd031560c02ca45208337da949170b48c5ee70075938652484905c9a4c1ff218",
+    "data/analysis/live-agent-6553250/d114a-supervised-one-use-q6-linear-scorer-repair1-2026-07-22.md": "557245256a0ca1f20cf8f220daf78d490144e31c4326b14c9a40990c7cd8e25a",
+    "cgauto/fit_d114a_supervised_one_use_q6_linear_scorer.py": "ddfb947538a2edfff84db18e5d63efdbd76e3e1ad4503b0169c948a4b16a6ed3",
+    "cgauto/analyze_d112a_dense_q6_counterfactual_teacher.py": "2f6e0ffb5ed5c62c052757a6cb318039c4d55a991d29e7cae9ca2553147bcb4d",
+    "cgauto/analyze_d113a_control_aware_dense_q6_teacher.py": "bb089c440bcd921883f4528d7177c3024a09802fc20e5b2ebc65b0651ca55d1a",
+    "cgauto/make_d110a_antithetic_q6_linear_population.py": "13cbe478d2d725a25608d1a2e5dd6089a89ca0d1dc9ed4927857228af62d41f5",
+    "rust/src/bin/d112_q6_dense_counterfactual_teacher.rs": "f05a6156394173f2a951cb4acf588af376a383f8ecdef2f4b1fca620ed695e4a",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/rl_q6_proposal.rs": "c6679af7416dee08b6181a037be495e22835c4adf8bd9614210d2110ecffe5fa",
+    "rust/target/release/d112_q6_dense_counterfactual_teacher": "5bed211a33393f041221dcda81bdd2bf5d11522ad1aa3978fe4d3b79492f6d02",
+    "data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv": "87c6ed7d018983b72bcc158b6de0aafd6174873d180fb5f3af51f787f3c03fd8",
+    "data/analysis/live-agent-6553250/d114a-q6-train-arms-9843300-9843315.tsv": "4691809322ea1d36a178295a02887315640c4feb8f658fba88f1bd3f101e4e73",
+    "data/analysis/live-agent-6553250/d114a-q6-train-baselines-9843300-9843315.tsv": "8ad41422bc96ab1cddea020bfce9610252539a8841bee10d10c203100770cd84",
+    "data/analysis/live-agent-6553250/d114a-q6-validation-arms-9843400-9843407.tsv": "cc2c66c7d05da0109ac23207a73616e41be38802442c2edccc66aa1cad32f13c",
+    "data/analysis/live-agent-6553250/d114a-q6-validation-baselines-9843400-9843407.tsv": "5326b16aec1b8d97cf7fc1757fca538a0dcabb34ed760832151edb6b100177fa"
+  }
+}

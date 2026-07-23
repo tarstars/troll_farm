@@ -1,0 +1,7268 @@
+{
+ "schema": 1,
+ "scope": "paired local self-harm check; not an arena predictor",
+ "sources": {
+  "baseline": "cgauto/submissions/agent-6553250-yamo-orchard-live.min.rs",
+  "candidate": "cgauto/submissions/candidate-agent6553250-late-supply-loop.min.rs"
+ },
+ "seed_start": 0,
+ "seeds": 60,
+ "jobs": 8,
+ "aggregate": {
+  "seeds": 60,
+  "candidate_mean_paired_margin": -11.766666666666667,
+  "candidate_mean_wood_delta": -2.8916666666666666,
+  "candidate_wins_ties_losses": {
+   "wins": 11,
+   "ties": 9,
+   "losses": 40
+  },
+  "mean_command_delta": {
+   "CHOP": -14.483333333333333,
+   "DROP": -1.7083333333333333,
+   "HARVEST": 1.5583333333333333,
+   "MINE": 0.0,
+   "MOVE": 22.425,
+   "PICK": 0.2,
+   "PLANT": 1.7,
+   "TRAIN": 0,
+   "WAIT": -9.691666666666666
+  }
+ },
+ "rows": [
+  {
+   "seed": 0,
+   "initial_trees": 18,
+   "candidate_margins": [
+    -52,
+    -12
+   ],
+   "candidate_paired_margin": -32,
+   "candidate_wood_delta": -8,
+   "command_delta": {
+    "CHOP": -28,
+    "DROP": -4.5,
+    "HARVEST": 3,
+    "MOVE": 39,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": -12.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     192,
+     140
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      48
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      35
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 210,
+      "CHOP": 146,
+      "DROP": 36,
+      "PICK": 19,
+      "PLANT": 19,
+      "WAIT": 169
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 200,
+      "CHOP": 106,
+      "DROP": 30,
+      "PICK": 19,
+      "PLANT": 24,
+      "WAIT": 215,
+      "HARVEST": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     132,
+     144
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      36
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 232,
+      "CHOP": 110,
+      "DROP": 28,
+      "PICK": 19,
+      "PLANT": 20,
+      "WAIT": 189,
+      "HARVEST": 1
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 144,
+      "CHOP": 126,
+      "DROP": 31,
+      "PICK": 19,
+      "PLANT": 19,
+      "WAIT": 260
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 1,
+   "initial_trees": 12,
+   "candidate_margins": [
+    -4,
+    -36
+   ],
+   "candidate_paired_margin": -20,
+   "candidate_wood_delta": -5.0,
+   "command_delta": {
+    "CHOP": -34,
+    "DROP": -5.0,
+    "HARVEST": 4.5,
+    "MINE": 0,
+    "MOVE": -13.0,
+    "PICK": 0,
+    "PLANT": 4.5,
+    "TRAIN": 0,
+    "WAIT": 43
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 127,
+      "MINE": 3,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 116,
+      "PICK": 19,
+      "PLANT": 19,
+      "WAIT": 271
+     },
+     {
+      "MOVE": 142,
+      "MINE": 3,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 78,
+      "PICK": 19,
+      "PLANT": 22,
+      "WAIT": 289,
+      "HARVEST": 3
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     96,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 135,
+      "MINE": 3,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 19,
+      "PLANT": 25,
+      "WAIT": 279,
+      "HARVEST": 6
+     },
+     {
+      "MOVE": 176,
+      "MINE": 3,
+      "DROP": 36,
+      "TRAIN": 1,
+      "CHOP": 122,
+      "PICK": 19,
+      "PLANT": 19,
+      "WAIT": 211
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 2,
+   "initial_trees": 20,
+   "candidate_margins": [
+    4,
+    12
+   ],
+   "candidate_paired_margin": 8,
+   "candidate_wood_delta": 2.0,
+   "command_delta": {
+    "CHOP": -2.5,
+    "DROP": 1.0,
+    "HARVEST": 1,
+    "MINE": 0.0,
+    "MOVE": 114,
+    "PICK": 0,
+    "PLANT": 1,
+    "TRAIN": 0,
+    "WAIT": -114.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 140,
+      "CHOP": 80,
+      "DROP": 22,
+      "PICK": 12,
+      "PLANT": 12,
+      "WAIT": 333
+     },
+     {
+      "MOVE": 238,
+      "MINE": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 12,
+      "PLANT": 13,
+      "WAIT": 208,
+      "HARVEST": 1
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     120,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 254,
+      "CHOP": 78,
+      "DROP": 23,
+      "PICK": 12,
+      "PLANT": 13,
+      "WAIT": 218,
+      "HARVEST": 1
+     },
+     {
+      "MOVE": 124,
+      "MINE": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 96,
+      "PICK": 12,
+      "PLANT": 12,
+      "WAIT": 322
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 3,
+   "initial_trees": 22,
+   "candidate_margins": [
+    -16,
+    16
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": 0,
+    "DROP": 0,
+    "HARVEST": 0,
+    "MINE": 0.0,
+    "MOVE": 0.0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0
+   },
+   "baseline_seat0": {
+    "scores": [
+     144,
+     128
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 74,
+      "HARVEST": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "WAIT": 413,
+      "PICK": 6,
+      "PLANT": 6
+     },
+     {
+      "MOVE": 73,
+      "MINE": 1,
+      "DROP": 19,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 65,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 417
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     144,
+     128
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 74,
+      "HARVEST": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "WAIT": 413,
+      "PICK": 6,
+      "PLANT": 6
+     },
+     {
+      "MOVE": 73,
+      "MINE": 1,
+      "DROP": 19,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 65,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 417
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 4,
+   "initial_trees": 14,
+   "candidate_margins": [
+    4,
+    12
+   ],
+   "candidate_paired_margin": 8,
+   "candidate_wood_delta": 2,
+   "command_delta": {
+    "CHOP": 3.0,
+    "DROP": 0.5,
+    "HARVEST": 3.5,
+    "MINE": 0.0,
+    "MOVE": 96,
+    "PICK": 0,
+    "PLANT": 3.5,
+    "TRAIN": 0,
+    "WAIT": -106.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     156,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      39
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 128,
+      "MINE": 3,
+      "DROP": 28,
+      "HARVEST": 2,
+      "TRAIN": 1,
+      "CHOP": 74,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 323
+     },
+     {
+      "MOVE": 202,
+      "HARVEST": 7,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 77,
+      "PICK": 13,
+      "PLANT": 18,
+      "WAIT": 252
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     144,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 204,
+      "MINE": 3,
+      "DROP": 27,
+      "HARVEST": 4,
+      "TRAIN": 1,
+      "CHOP": 74,
+      "PICK": 13,
+      "PLANT": 15,
+      "WAIT": 244
+     },
+     {
+      "MOVE": 86,
+      "HARVEST": 2,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 71,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 386
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 5,
+   "initial_trees": 12,
+   "candidate_margins": [
+    0,
+    -32
+   ],
+   "candidate_paired_margin": -16,
+   "candidate_wood_delta": -4.0,
+   "command_delta": {
+    "CHOP": -38.5,
+    "DROP": -4.0,
+    "HARVEST": 3.5,
+    "MOVE": -1.0,
+    "PICK": 0,
+    "PLANT": 3.5,
+    "TRAIN": 0,
+    "WAIT": 36.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     112
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      28
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 92,
+      "HARVEST": 2,
+      "DROP": 30,
+      "CHOP": 143,
+      "TRAIN": 1,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 268
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 149,
+      "CHOP": 87,
+      "DROP": 28,
+      "PICK": 13,
+      "PLANT": 18,
+      "WAIT": 299,
+      "HARVEST": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     92,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      23
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 96,
+      "HARVEST": 4,
+      "DROP": 25,
+      "CHOP": 94,
+      "TRAIN": 1,
+      "PICK": 15,
+      "PLANT": 17,
+      "WAIT": 314
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 155,
+      "CHOP": 115,
+      "DROP": 31,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 272
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 6,
+   "initial_trees": 16,
+   "candidate_margins": [
+    0,
+    0
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": 0.0,
+    "DROP": 0,
+    "HARVEST": 0,
+    "MOVE": 0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     56,
+     56
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      14
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      14
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 58,
+      "WAIT": 428,
+      "HARVEST": 4,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 61,
+      "PICK": 5,
+      "PLANT": 5
+     },
+     {
+      "MOVE": 62,
+      "WAIT": 425,
+      "HARVEST": 4,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 60,
+      "PICK": 5,
+      "PLANT": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     56,
+     56
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      14
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      14
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 58,
+      "WAIT": 428,
+      "HARVEST": 4,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 61,
+      "PICK": 5,
+      "PLANT": 5
+     },
+     {
+      "MOVE": 62,
+      "WAIT": 425,
+      "HARVEST": 4,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 60,
+      "PICK": 5,
+      "PLANT": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 7,
+   "initial_trees": 10,
+   "candidate_margins": [
+    -20,
+    -36
+   ],
+   "candidate_paired_margin": -28,
+   "candidate_wood_delta": -7.0,
+   "command_delta": {
+    "CHOP": -26.0,
+    "DROP": -4,
+    "HARVEST": 1,
+    "MINE": 0.0,
+    "MOVE": -9.0,
+    "PICK": 0,
+    "PLANT": 1,
+    "TRAIN": 0,
+    "WAIT": 37.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     144,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MINE": 2,
+      "MOVE": 104,
+      "DROP": 34,
+      "HARVEST": 3,
+      "TRAIN": 1,
+      "CHOP": 104,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 303
+     },
+     {
+      "MINE": 3,
+      "MOVE": 109,
+      "DROP": 33,
+      "HARVEST": 3,
+      "TRAIN": 1,
+      "CHOP": 67,
+      "WAIT": 331,
+      "PICK": 15,
+      "PLANT": 15
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     120,
+     156
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      39
+     ]
+    ],
+    "command_counts": [
+     {
+      "MINE": 2,
+      "MOVE": 108,
+      "DROP": 31,
+      "HARVEST": 5,
+      "TRAIN": 1,
+      "CHOP": 80,
+      "PICK": 15,
+      "PLANT": 17,
+      "WAIT": 322
+     },
+     {
+      "MINE": 3,
+      "MOVE": 131,
+      "DROP": 38,
+      "HARVEST": 3,
+      "TRAIN": 1,
+      "CHOP": 95,
+      "WAIT": 276,
+      "PICK": 15,
+      "PLANT": 15
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 8,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -44,
+    -8
+   ],
+   "candidate_paired_margin": -26,
+   "candidate_wood_delta": -6.5,
+   "command_delta": {
+    "CHOP": -26,
+    "DROP": -4.5,
+    "HARVEST": 1.5,
+    "MOVE": 111.5,
+    "PICK": 0,
+    "PLANT": 1,
+    "TRAIN": 0,
+    "WAIT": -83.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     140,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 210,
+      "HARVEST": 1,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 95,
+      "WAIT": 237,
+      "PICK": 9,
+      "PLANT": 9
+     },
+     {
+      "MOVE": 222,
+      "HARVEST": 4,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 9,
+      "PLANT": 12,
+      "WAIT": 227
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     104,
+     112
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      26
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 307,
+      "HARVEST": 1,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 59,
+      "WAIT": 184,
+      "PICK": 9,
+      "PLANT": 8
+     },
+     {
+      "MOVE": 96,
+      "HARVEST": 1,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 109,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 341
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 9,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -24,
+    -24
+   ],
+   "candidate_paired_margin": -24,
+   "candidate_wood_delta": -6.0,
+   "command_delta": {
+    "CHOP": -31.5,
+    "DROP": -3.5,
+    "HARVEST": 2,
+    "MOVE": 2.5,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": 28.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     136,
+     112
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      34
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 152,
+      "HARVEST": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 101,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 298
+     },
+     {
+      "MOVE": 151,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 78,
+      "PICK": 6,
+      "PLANT": 7,
+      "WAIT": 323
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     124,
+     148
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      31
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      37
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 167,
+      "HARVEST": 4,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 76,
+      "PICK": 6,
+      "PLANT": 9,
+      "WAIT": 304
+     },
+     {
+      "MOVE": 161,
+      "HARVEST": 1,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 116,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 272
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 10,
+   "initial_trees": 16,
+   "candidate_margins": [
+    8,
+    -8
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": -6.5,
+    "DROP": 0.0,
+    "HARVEST": 3,
+    "MINE": 0.0,
+    "MOVE": 75.0,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": -74.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     108,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 149,
+      "MINE": 1,
+      "DROP": 28,
+      "TRAIN": 1,
+      "CHOP": 89,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 287
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 213,
+      "CHOP": 110,
+      "DROP": 29,
+      "PICK": 17,
+      "PLANT": 22,
+      "WAIT": 203,
+      "HARVEST": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     100,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      25
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 226,
+      "MINE": 1,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 80,
+      "PICK": 17,
+      "PLANT": 18,
+      "WAIT": 219,
+      "HARVEST": 1
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 140,
+      "CHOP": 114,
+      "DROP": 27,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 284
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 11,
+   "initial_trees": 20,
+   "candidate_margins": [
+    4,
+    -32
+   ],
+   "candidate_paired_margin": -14,
+   "candidate_wood_delta": -3.5,
+   "command_delta": {
+    "CHOP": -5.5,
+    "DROP": -1.5,
+    "HARVEST": 0.5,
+    "MOVE": -5.0,
+    "PICK": 0,
+    "PLANT": 0.5,
+    "TRAIN": 0,
+    "WAIT": 11
+   },
+   "baseline_seat0": {
+    "scores": [
+     156,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      39
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 101,
+      "HARVEST": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 77,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 377
+     },
+     {
+      "MOVE": 93,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 65,
+      "WAIT": 396,
+      "PICK": 8,
+      "PLANT": 9
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     132,
+     164
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      41
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 84,
+      "HARVEST": 1,
+      "DROP": 20,
+      "TRAIN": 1,
+      "CHOP": 71,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 402
+     },
+     {
+      "MOVE": 86,
+      "HARVEST": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "WAIT": 399,
+      "PICK": 8,
+      "PLANT": 8
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 12,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -12,
+    -32
+   ],
+   "candidate_paired_margin": -22,
+   "candidate_wood_delta": -5.5,
+   "command_delta": {
+    "CHOP": -23.5,
+    "DROP": -3.0,
+    "HARVEST": 0.5,
+    "MOVE": -14,
+    "PICK": 0,
+    "PLANT": 0.0,
+    "TRAIN": 0,
+    "WAIT": 40
+   },
+   "baseline_seat0": {
+    "scores": [
+     172,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      43
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 113,
+      "HARVEST": 3,
+      "DROP": 33,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 322
+     },
+     {
+      "MOVE": 93,
+      "HARVEST": 3,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 352
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     164,
+     196
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      41
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      49
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 129,
+      "HARVEST": 4,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 11,
+      "PLANT": 12,
+      "WAIT": 324
+     },
+     {
+      "MOVE": 137,
+      "HARVEST": 3,
+      "DROP": 34,
+      "TRAIN": 1,
+      "CHOP": 121,
+      "PICK": 11,
+      "PLANT": 12,
+      "WAIT": 274
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 13,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -12,
+    4
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1,
+   "command_delta": {
+    "CHOP": -6.5,
+    "DROP": -1,
+    "HARVEST": 1.0,
+    "MINE": 0,
+    "MOVE": -87.0,
+    "PICK": 0,
+    "PLANT": 1,
+    "TRAIN": 0,
+    "WAIT": 92.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     100,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      25
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 82,
+      "HARVEST": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 77,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 395
+     },
+     {
+      "MINE": 2,
+      "MOVE": 60,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 62,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 429
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     104,
+     100
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      26
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      25
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 105,
+      "HARVEST": 3,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 74,
+      "PICK": 8,
+      "PLANT": 10,
+      "WAIT": 371
+     },
+     {
+      "MINE": 2,
+      "MOVE": 257,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 72,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 220
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 14,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -8,
+    -36
+   ],
+   "candidate_paired_margin": -22,
+   "candidate_wood_delta": -5.5,
+   "command_delta": {
+    "CHOP": -21.5,
+    "DROP": -3.5,
+    "HARVEST": 3.5,
+    "MOVE": 5.5,
+    "PICK": 0,
+    "PLANT": 3.5,
+    "TRAIN": 0,
+    "WAIT": 12.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     132,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 141,
+      "CHOP": 95,
+      "DROP": 23,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 320
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 113,
+      "CHOP": 112,
+      "DROP": 20,
+      "PICK": 10,
+      "PLANT": 11,
+      "WAIT": 332,
+      "HARVEST": 1
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     124,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 220,
+      "CHOP": 87,
+      "DROP": 22,
+      "PICK": 10,
+      "PLANT": 16,
+      "WAIT": 238,
+      "HARVEST": 6
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 181,
+      "CHOP": 147,
+      "DROP": 26,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 225
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 15,
+   "initial_trees": 16,
+   "candidate_margins": [
+    8,
+    -8
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": 0.0,
+    "DROP": 0,
+    "MOVE": 0.0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0
+   },
+   "baseline_seat0": {
+    "scores": [
+     72,
+     80
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      18
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      20
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 59,
+      "CHOP": 70,
+      "DROP": 18,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 436
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 66,
+      "CHOP": 77,
+      "DROP": 20,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 420
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     72,
+     80
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      18
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      20
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 59,
+      "CHOP": 70,
+      "DROP": 18,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 436
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 66,
+      "CHOP": 77,
+      "DROP": 20,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 420
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 16,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -60,
+    -4
+   ],
+   "candidate_paired_margin": -32,
+   "candidate_wood_delta": -8.0,
+   "command_delta": {
+    "CHOP": -46,
+    "DROP": -5.5,
+    "HARVEST": 0,
+    "MOVE": 6.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 45.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     184,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      46
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 126,
+      "HARVEST": 1,
+      "DROP": 33,
+      "TRAIN": 1,
+      "CHOP": 112,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 294
+     },
+     {
+      "MOVE": 113,
+      "HARVEST": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 329
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     160,
+     164
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      41
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 136,
+      "HARVEST": 1,
+      "DROP": 28,
+      "TRAIN": 1,
+      "CHOP": 69,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 332
+     },
+     {
+      "MOVE": 110,
+      "HARVEST": 1,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 148,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 277
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 17,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -40,
+    -16
+   ],
+   "candidate_paired_margin": -28,
+   "candidate_wood_delta": -7.0,
+   "command_delta": {
+    "CHOP": -32.5,
+    "DROP": -3.5,
+    "MINE": 0,
+    "MOVE": 11,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 25
+   },
+   "baseline_seat0": {
+    "scores": [
+     184,
+     144
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      46
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 140,
+      "CHOP": 129,
+      "DROP": 33,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 265
+     },
+     {
+      "MOVE": 133,
+      "MINE": 2,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 85,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 307
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     156,
+     172
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      39
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      43
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 169,
+      "CHOP": 94,
+      "DROP": 29,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 275
+     },
+     {
+      "MOVE": 140,
+      "MINE": 2,
+      "DROP": 34,
+      "TRAIN": 1,
+      "CHOP": 115,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 267
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 18,
+   "initial_trees": 16,
+   "candidate_margins": [
+    4,
+    -12
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1,
+   "command_delta": {
+    "CHOP": -5,
+    "DROP": -0.5,
+    "HARVEST": 0,
+    "MINE": 0,
+    "MOVE": 2,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 3.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 78,
+      "HARVEST": 1,
+      "DROP": 22,
+      "MINE": 1,
+      "TRAIN": 1,
+      "CHOP": 80,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 384
+     },
+     {
+      "MOVE": 94,
+      "MINE": 1,
+      "DROP": 23,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 56,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 391
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     108,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 78,
+      "HARVEST": 1,
+      "DROP": 22,
+      "MINE": 1,
+      "TRAIN": 1,
+      "CHOP": 78,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 386
+     },
+     {
+      "MOVE": 90,
+      "MINE": 1,
+      "DROP": 24,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 64,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 386
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 19,
+   "initial_trees": 16,
+   "candidate_margins": [
+    8,
+    -16
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1.0,
+   "command_delta": {
+    "CHOP": -5,
+    "DROP": -0.5,
+    "MOVE": 2.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 3.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     116,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 63,
+      "CHOP": 93,
+      "DROP": 22,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 393
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 84,
+      "CHOP": 77,
+      "DROP": 23,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 387
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     112,
+     128
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 64,
+      "CHOP": 91,
+      "DROP": 22,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 394
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 80,
+      "CHOP": 85,
+      "DROP": 24,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 382
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 20,
+   "initial_trees": 16,
+   "candidate_margins": [
+    4,
+    12
+   ],
+   "candidate_paired_margin": 8,
+   "candidate_wood_delta": 2.0,
+   "command_delta": {
+    "CHOP": 0,
+    "DROP": 0,
+    "HARVEST": 2,
+    "MOVE": 113.5,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": -117.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 90,
+      "HARVEST": 3,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 62,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 398
+     },
+     {
+      "MOVE": 210,
+      "HARVEST": 5,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "PICK": 6,
+      "PLANT": 8,
+      "WAIT": 266
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     120,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 208,
+      "HARVEST": 5,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 62,
+      "PICK": 6,
+      "PLANT": 8,
+      "WAIT": 276
+     },
+     {
+      "MOVE": 101,
+      "HARVEST": 3,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 379
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 21,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -12,
+    -16
+   ],
+   "candidate_paired_margin": -14,
+   "candidate_wood_delta": -3.5,
+   "command_delta": {
+    "CHOP": -17.5,
+    "DROP": -2.5,
+    "HARVEST": 0,
+    "MINE": 0,
+    "MOVE": -9.0,
+    "PICK": 0.0,
+    "PLANT": 0.0,
+    "TRAIN": 0,
+    "WAIT": 29.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     128,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 81,
+      "HARVEST": 2,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 91,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 357
+     },
+     {
+      "MOVE": 64,
+      "MINE": 4,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 76,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 385
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     116,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 73,
+      "HARVEST": 2,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 76,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 382
+     },
+     {
+      "MOVE": 74,
+      "MINE": 4,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 96,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 352
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 22,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -24,
+    24
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": -2.5,
+    "DROP": -0.5,
+    "HARVEST": 2.5,
+    "MINE": 0.0,
+    "MOVE": 31,
+    "PICK": 0,
+    "PLANT": 2.5,
+    "TRAIN": 0,
+    "WAIT": -33
+   },
+   "baseline_seat0": {
+    "scores": [
+     108,
+     84
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 106,
+      "HARVEST": 1,
+      "DROP": 16,
+      "TRAIN": 1,
+      "CHOP": 54,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 395
+     },
+     {
+      "MINE": 3,
+      "MOVE": 60,
+      "DROP": 20,
+      "TRAIN": 1,
+      "CHOP": 72,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 413
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     132,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 228,
+      "HARVEST": 6,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 58,
+      "PICK": 6,
+      "PLANT": 11,
+      "WAIT": 257
+     },
+     {
+      "MINE": 3,
+      "MOVE": 120,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 341
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 23,
+   "initial_trees": 18,
+   "candidate_margins": [
+    -12,
+    8
+   ],
+   "candidate_paired_margin": -2,
+   "candidate_wood_delta": -0.5,
+   "command_delta": {
+    "CHOP": -5.5,
+    "DROP": -0.5,
+    "HARVEST": 0.5,
+    "MINE": 0,
+    "MOVE": 119,
+    "PICK": 0,
+    "PLANT": 0.5,
+    "TRAIN": 0,
+    "WAIT": -114
+   },
+   "baseline_seat0": {
+    "scores": [
+     132,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 96,
+      "MINE": 2,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 98,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 329
+     },
+     {
+      "MOVE": 180,
+      "MINE": 2,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 100,
+      "PICK": 16,
+      "PLANT": 17,
+      "WAIT": 243,
+      "HARVEST": 1
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     128,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 228,
+      "MINE": 2,
+      "DROP": 28,
+      "TRAIN": 1,
+      "CHOP": 91,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 205
+     },
+     {
+      "MOVE": 74,
+      "MINE": 2,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 104,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 347
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 24,
+   "initial_trees": 22,
+   "candidate_margins": [
+    4,
+    -12
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1.0,
+   "command_delta": {
+    "CHOP": -3.0,
+    "DROP": -1.0,
+    "HARVEST": 0,
+    "MOVE": -1,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 5
+   },
+   "baseline_seat0": {
+    "scores": [
+     132,
+     136
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      34
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 73,
+      "HARVEST": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 84,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 395
+     },
+     {
+      "MOVE": 79,
+      "HARVEST": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 403
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     124,
+     136
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      31
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      34
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 67,
+      "HARVEST": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 405
+     },
+     {
+      "MOVE": 75,
+      "HARVEST": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "PICK": 8,
+      "PLANT": 8,
+      "WAIT": 403
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 25,
+   "initial_trees": 14,
+   "candidate_margins": [
+    -8,
+    -12
+   ],
+   "candidate_paired_margin": -10,
+   "candidate_wood_delta": -2.5,
+   "command_delta": {
+    "CHOP": -9.5,
+    "DROP": -1.5,
+    "MINE": 0,
+    "MOVE": -0.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 11.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     104
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      26
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 106,
+      "MINE": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 67,
+      "WAIT": 378,
+      "PICK": 11,
+      "PLANT": 11
+     },
+     {
+      "MOVE": 99,
+      "MINE": 5,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 59,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 379
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     100,
+     112
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      25
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 98,
+      "MINE": 1,
+      "DROP": 20,
+      "TRAIN": 1,
+      "CHOP": 59,
+      "WAIT": 396,
+      "PICK": 11,
+      "PLANT": 11
+     },
+     {
+      "MOVE": 92,
+      "MINE": 5,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "PICK": 11,
+      "PLANT": 11,
+      "WAIT": 374
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 26,
+   "initial_trees": 22,
+   "candidate_margins": [
+    44,
+    -52
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1,
+   "command_delta": {
+    "CHOP": -5.0,
+    "DROP": -0.5,
+    "HARVEST": 0,
+    "MINE": 0,
+    "MOVE": 2,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 3.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     120,
+     164
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      41
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 84,
+      "MINE": 2,
+      "DROP": 20,
+      "HARVEST": 2,
+      "TRAIN": 1,
+      "CHOP": 58,
+      "PICK": 5,
+      "PLANT": 5,
+      "WAIT": 390
+     },
+     {
+      "MOVE": 106,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "WAIT": 382,
+      "PICK": 5,
+      "PLANT": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     116,
+     168
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      42
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 84,
+      "MINE": 2,
+      "DROP": 20,
+      "HARVEST": 2,
+      "TRAIN": 1,
+      "CHOP": 56,
+      "PICK": 5,
+      "PLANT": 5,
+      "WAIT": 392
+     },
+     {
+      "MOVE": 102,
+      "HARVEST": 2,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "WAIT": 377,
+      "PICK": 5,
+      "PLANT": 5
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 27,
+   "initial_trees": 14,
+   "candidate_margins": [
+    -4,
+    4
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0.0,
+   "command_delta": {
+    "CHOP": 0.0,
+    "DROP": 0,
+    "MINE": 0.0,
+    "MOVE": 0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     92,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      23
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 79,
+      "CHOP": 60,
+      "DROP": 17,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 431
+     },
+     {
+      "MOVE": 61,
+      "MINE": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 43,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 448
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     92,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      23
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 79,
+      "CHOP": 60,
+      "DROP": 17,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 431
+     },
+     {
+      "MOVE": 61,
+      "MINE": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 43,
+      "PICK": 6,
+      "PLANT": 6,
+      "WAIT": 448
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 28,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -229,
+    233
+   ],
+   "candidate_paired_margin": 2,
+   "candidate_wood_delta": 3.5,
+   "command_delta": {
+    "CHOP": 18.0,
+    "DROP": 8.0,
+    "HARVEST": 5.0,
+    "MINE": 0.0,
+    "MOVE": -14.0,
+    "PICK": 12.0,
+    "PLANT": 17.0,
+    "TRAIN": 0,
+    "WAIT": -46
+   },
+   "baseline_seat0": {
+    "scores": [
+     353,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      121,
+      0,
+      0,
+      58
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MINE": 1,
+      "MOVE": 127,
+      "DROP": 181,
+      "HARVEST": 139,
+      "TRAIN": 1,
+      "CHOP": 83,
+      "PICK": 25,
+      "PLANT": 25,
+      "WAIT": 13
+     },
+     {
+      "MOVE": 112,
+      "HARVEST": 16,
+      "DROP": 23,
+      "WAIT": 346,
+      "TRAIN": 1,
+      "CHOP": 60,
+      "PICK": 8,
+      "PLANT": 18
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     353,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      97,
+      0,
+      0,
+      64
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MINE": 1,
+      "MOVE": 37,
+      "DROP": 196,
+      "HARVEST": 139,
+      "TRAIN": 1,
+      "CHOP": 113,
+      "PICK": 49,
+      "PLANT": 49,
+      "WAIT": 10
+     },
+     {
+      "MOVE": 50,
+      "HARVEST": 6,
+      "DROP": 22,
+      "WAIT": 435,
+      "TRAIN": 1,
+      "CHOP": 54,
+      "PICK": 8,
+      "PLANT": 8
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 29,
+   "initial_trees": 16,
+   "candidate_margins": [
+    135,
+    -99
+   ],
+   "candidate_paired_margin": 18,
+   "candidate_wood_delta": 6.5,
+   "command_delta": {
+    "CHOP": 17.5,
+    "DROP": 7,
+    "HARVEST": 3,
+    "MINE": 0.0,
+    "MOVE": 32,
+    "PICK": 8,
+    "PLANT": 10.5,
+    "TRAIN": 0,
+    "WAIT": -78.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     152,
+     287
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      38
+     ],
+     [
+      0,
+      0,
+      115,
+      0,
+      0,
+      43
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 96,
+      "WAIT": 302,
+      "HARVEST": 2,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 113,
+      "PICK": 17,
+      "PLANT": 17
+     },
+     {
+      "MOVE": 59,
+      "MINE": 1,
+      "DROP": 178,
+      "TRAIN": 1,
+      "CHOP": 132,
+      "PICK": 37,
+      "PLANT": 37,
+      "WAIT": 14,
+      "HARVEST": 134
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     160,
+     259
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      40
+     ],
+     [
+      0,
+      0,
+      131,
+      0,
+      0,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 243,
+      "WAIT": 145,
+      "HARVEST": 8,
+      "DROP": 32,
+      "TRAIN": 1,
+      "CHOP": 109,
+      "PICK": 17,
+      "PLANT": 22
+     },
+     {
+      "MOVE": 142,
+      "MINE": 1,
+      "DROP": 167,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 21,
+      "PLANT": 21,
+      "WAIT": 13,
+      "HARVEST": 134
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 30,
+   "initial_trees": 14,
+   "candidate_margins": [
+    -44,
+    -8
+   ],
+   "candidate_paired_margin": -26,
+   "candidate_wood_delta": -6.5,
+   "command_delta": {
+    "CHOP": -22,
+    "DROP": -3.5,
+    "HARVEST": 3,
+    "MOVE": -44.0,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": 63.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     136,
+     92
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      34
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      23
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 158,
+      "CHOP": 142,
+      "DROP": 24,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 255
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 77,
+      "CHOP": 74,
+      "DROP": 18,
+      "PICK": 10,
+      "PLANT": 16,
+      "WAIT": 398,
+      "HARVEST": 6
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     84,
+     92
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      23
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 56,
+      "CHOP": 100,
+      "DROP": 17,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 406
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 63,
+      "CHOP": 76,
+      "DROP": 18,
+      "PICK": 10,
+      "PLANT": 10,
+      "WAIT": 422
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 31,
+   "initial_trees": 12,
+   "candidate_margins": [
+    8,
+    8
+   ],
+   "candidate_paired_margin": 8,
+   "candidate_wood_delta": 2,
+   "command_delta": {
+    "CHOP": 4.5,
+    "DROP": 1.0,
+    "HARVEST": 2,
+    "MOVE": 8,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": -17.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     88,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 90,
+      "CHOP": 90,
+      "DROP": 15,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 386
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 128,
+      "CHOP": 72,
+      "DROP": 17,
+      "PICK": 9,
+      "PLANT": 11,
+      "WAIT": 360,
+      "HARVEST": 2
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     96,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 98,
+      "CHOP": 96,
+      "DROP": 16,
+      "PICK": 9,
+      "PLANT": 11,
+      "WAIT": 367,
+      "HARVEST": 2
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 120,
+      "CHOP": 69,
+      "DROP": 16,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 376
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 32,
+   "initial_trees": 12,
+   "candidate_margins": [
+    0,
+    0
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": 0,
+    "DROP": 0,
+    "HARVEST": 2,
+    "MOVE": 100,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": -104
+   },
+   "baseline_seat0": {
+    "scores": [
+     116,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 106,
+      "CHOP": 77,
+      "DROP": 24,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 360
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 200,
+      "CHOP": 99,
+      "DROP": 24,
+      "PICK": 16,
+      "PLANT": 18,
+      "WAIT": 240,
+      "HARVEST": 2
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     116,
+     116
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 204,
+      "CHOP": 77,
+      "DROP": 24,
+      "PICK": 16,
+      "PLANT": 18,
+      "WAIT": 258,
+      "HARVEST": 2
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 98,
+      "CHOP": 99,
+      "DROP": 24,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 346
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 33,
+   "initial_trees": 14,
+   "candidate_margins": [
+    0,
+    -40
+   ],
+   "candidate_paired_margin": -20,
+   "candidate_wood_delta": -5,
+   "command_delta": {
+    "CHOP": -22,
+    "DROP": -1,
+    "HARVEST": 1.5,
+    "MINE": 0,
+    "MOVE": 23.5,
+    "PICK": 0,
+    "PLANT": 1.5,
+    "TRAIN": 0,
+    "WAIT": -3.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     160,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 60,
+      "MINE": 2,
+      "DROP": 31,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 102,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 350
+     },
+     {
+      "MOVE": 105,
+      "HARVEST": 1,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 106,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 313
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     160,
+     200
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      50
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 91,
+      "MINE": 2,
+      "DROP": 33,
+      "HARVEST": 4,
+      "TRAIN": 1,
+      "CHOP": 94,
+      "PICK": 20,
+      "PLANT": 23,
+      "WAIT": 319
+     },
+     {
+      "MOVE": 89,
+      "HARVEST": 1,
+      "DROP": 33,
+      "TRAIN": 1,
+      "CHOP": 142,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 289
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 34,
+   "initial_trees": 12,
+   "candidate_margins": [
+    -8,
+    -12
+   ],
+   "candidate_paired_margin": -10,
+   "candidate_wood_delta": -2.5,
+   "command_delta": {
+    "CHOP": -19.0,
+    "DROP": -2.5,
+    "HARVEST": 2.5,
+    "MOVE": -6.5,
+    "PICK": 0,
+    "PLANT": 2.5,
+    "TRAIN": 0,
+    "WAIT": 23.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     104,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      26
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 108,
+      "CHOP": 104,
+      "DROP": 26,
+      "WAIT": 333,
+      "PICK": 14,
+      "PLANT": 14
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 108,
+      "CHOP": 89,
+      "DROP": 24,
+      "PICK": 14,
+      "PLANT": 17,
+      "WAIT": 344,
+      "HARVEST": 3
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     84,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 75,
+      "CHOP": 80,
+      "DROP": 21,
+      "WAIT": 391,
+      "PICK": 14,
+      "PLANT": 16,
+      "HARVEST": 2
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 88,
+      "CHOP": 103,
+      "DROP": 24,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 356
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 35,
+   "initial_trees": 16,
+   "candidate_margins": [
+    0,
+    -20
+   ],
+   "candidate_paired_margin": -10,
+   "candidate_wood_delta": -2.5,
+   "command_delta": {
+    "CHOP": -9.5,
+    "DROP": -1.5,
+    "HARVEST": 0,
+    "MINE": 0.0,
+    "MOVE": 5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 6
+   },
+   "baseline_seat0": {
+    "scores": [
+     132,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 69,
+      "MINE": 1,
+      "DROP": 27,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 84,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 374
+     },
+     {
+      "MOVE": 89,
+      "HARVEST": 1,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 83,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 364
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     120,
+     140
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 65,
+      "MINE": 1,
+      "DROP": 26,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 382
+     },
+     {
+      "MOVE": 75,
+      "HARVEST": 1,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 360
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 36,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -12,
+    16
+   ],
+   "candidate_paired_margin": 2,
+   "candidate_wood_delta": 0.5,
+   "command_delta": {
+    "CHOP": -12.0,
+    "DROP": 0,
+    "HARVEST": 3.5,
+    "MINE": 0.0,
+    "MOVE": 10,
+    "PICK": 0,
+    "PLANT": 3.5,
+    "TRAIN": 0,
+    "WAIT": -5
+   },
+   "baseline_seat0": {
+    "scores": [
+     84,
+     72
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      18
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 162,
+      "MINE": 3,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 53,
+      "PICK": 5,
+      "PLANT": 5,
+      "WAIT": 346
+     },
+     {
+      "MOVE": 126,
+      "MINE": 6,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 45,
+      "PICK": 5,
+      "PLANT": 6,
+      "WAIT": 378,
+      "HARVEST": 1
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     108,
+     92
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      23
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 262,
+      "MINE": 3,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 54,
+      "PICK": 5,
+      "PLANT": 11,
+      "WAIT": 228,
+      "HARVEST": 6
+     },
+     {
+      "MOVE": 206,
+      "MINE": 6,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "PICK": 5,
+      "PLANT": 5,
+      "WAIT": 270
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 37,
+   "initial_trees": 16,
+   "candidate_margins": [
+    24,
+    0
+   ],
+   "candidate_paired_margin": 12,
+   "candidate_wood_delta": 3.0,
+   "command_delta": {
+    "CHOP": 1.5,
+    "DROP": 1,
+    "HARVEST": 2.5,
+    "MINE": 0.0,
+    "MOVE": 58.5,
+    "PICK": 0,
+    "PLANT": 2.5,
+    "TRAIN": 0,
+    "WAIT": -66.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     144,
+     168
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      42
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 158,
+      "HARVEST": 1,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 137,
+      "PICK": 14,
+      "PLANT": 14,
+      "WAIT": 239
+     },
+     {
+      "MOVE": 246,
+      "MINE": 1,
+      "DROP": 28,
+      "HARVEST": 3,
+      "TRAIN": 1,
+      "CHOP": 88,
+      "WAIT": 186,
+      "PICK": 14,
+      "PLANT": 16
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     156,
+     156
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      39
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      39
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 195,
+      "HARVEST": 4,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 147,
+      "PICK": 14,
+      "PLANT": 17,
+      "WAIT": 185
+     },
+     {
+      "MOVE": 166,
+      "MINE": 1,
+      "DROP": 27,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 95,
+      "WAIT": 264,
+      "PICK": 14,
+      "PLANT": 14
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 38,
+   "initial_trees": 22,
+   "candidate_margins": [
+    -16,
+    -24
+   ],
+   "candidate_paired_margin": -20,
+   "candidate_wood_delta": -5,
+   "command_delta": {
+    "CHOP": -39.0,
+    "DROP": -4,
+    "HARVEST": 4,
+    "MOVE": -9.0,
+    "PICK": 0,
+    "PLANT": 4,
+    "TRAIN": 0,
+    "WAIT": 44
+   },
+   "baseline_seat0": {
+    "scores": [
+     140,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 175,
+      "HARVEST": 2,
+      "DROP": 37,
+      "TRAIN": 1,
+      "CHOP": 154,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 190
+     },
+     {
+      "MOVE": 163,
+      "HARVEST": 6,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 91,
+      "PICK": 16,
+      "PLANT": 20,
+      "WAIT": 251
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     124,
+     148
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      37
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 190,
+      "HARVEST": 6,
+      "DROP": 33,
+      "TRAIN": 1,
+      "CHOP": 114,
+      "PICK": 16,
+      "PLANT": 20,
+      "WAIT": 211
+     },
+     {
+      "MOVE": 196,
+      "HARVEST": 2,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 129,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 184
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 39,
+   "initial_trees": 12,
+   "candidate_margins": [
+    4,
+    -4
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0.0,
+   "command_delta": {
+    "CHOP": 0.0,
+    "DROP": 0.0,
+    "HARVEST": 0,
+    "MOVE": 0.0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     76,
+     80
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      19
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      20
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 64,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 397
+     },
+     {
+      "MOVE": 71,
+      "HARVEST": 2,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 388
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     76,
+     80
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      19
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      20
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 64,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 397
+     },
+     {
+      "MOVE": 71,
+      "HARVEST": 2,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 388
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 40,
+   "initial_trees": 10,
+   "candidate_margins": [
+    4,
+    -12
+   ],
+   "candidate_paired_margin": -4,
+   "candidate_wood_delta": -1.0,
+   "command_delta": {
+    "CHOP": -1,
+    "DROP": -0.5,
+    "MINE": 0.0,
+    "MOVE": 8.0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": -6.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     84,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 69,
+      "MINE": 1,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 57,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 425
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 86,
+      "CHOP": 90,
+      "DROP": 17,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 388
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     76,
+     88
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      19
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      22
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 61,
+      "MINE": 1,
+      "DROP": 17,
+      "TRAIN": 1,
+      "CHOP": 56,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 435
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 62,
+      "CHOP": 91,
+      "DROP": 17,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 411
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 41,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -60,
+    12
+   ],
+   "candidate_paired_margin": -24,
+   "candidate_wood_delta": -6,
+   "command_delta": {
+    "CHOP": -30.5,
+    "DROP": -3.5,
+    "HARVEST": 0,
+    "MINE": 0.0,
+    "MOVE": 26.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 7.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     160,
+     100
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      25
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 124,
+      "HARVEST": 1,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 105,
+      "WAIT": 299,
+      "PICK": 13,
+      "PLANT": 13
+     },
+     {
+      "MOVE": 85,
+      "MINE": 1,
+      "DROP": 21,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 369
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     140,
+     128
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 180,
+      "HARVEST": 1,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 70,
+      "WAIT": 280,
+      "PICK": 13,
+      "PLANT": 13
+     },
+     {
+      "MOVE": 88,
+      "MINE": 1,
+      "DROP": 26,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 335
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 42,
+   "initial_trees": 14,
+   "candidate_margins": [
+    8,
+    -8
+   ],
+   "candidate_paired_margin": 0,
+   "candidate_wood_delta": 0,
+   "command_delta": {
+    "CHOP": 0.0,
+    "DROP": 0,
+    "MINE": 0.0,
+    "MOVE": 0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 0.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     84,
+     92
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      23
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 62,
+      "MINE": 1,
+      "DROP": 17,
+      "TRAIN": 1,
+      "CHOP": 64,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 428
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 88,
+      "CHOP": 65,
+      "DROP": 17,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 411
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     84,
+     92
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      23
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 62,
+      "MINE": 1,
+      "DROP": 17,
+      "TRAIN": 1,
+      "CHOP": 64,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 428
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 88,
+      "CHOP": 65,
+      "DROP": 17,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 411
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 43,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -20,
+    -12
+   ],
+   "candidate_paired_margin": -16,
+   "candidate_wood_delta": -4,
+   "command_delta": {
+    "CHOP": -7,
+    "DROP": -1.5,
+    "HARVEST": 3,
+    "MOVE": 30,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": -27.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     128,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      32
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 100,
+      "HARVEST": 2,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 368
+     },
+     {
+      "MOVE": 95,
+      "HARVEST": 3,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 69,
+      "PICK": 9,
+      "PLANT": 10,
+      "WAIT": 385
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     132,
+     144
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      36
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 187,
+      "HARVEST": 7,
+      "DROP": 21,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 9,
+      "PLANT": 14,
+      "WAIT": 271
+     },
+     {
+      "MOVE": 122,
+      "HARVEST": 2,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 83,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 343
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 44,
+   "initial_trees": 16,
+   "candidate_margins": [
+    16,
+    -64
+   ],
+   "candidate_paired_margin": -24,
+   "candidate_wood_delta": -6.0,
+   "command_delta": {
+    "CHOP": -17.0,
+    "DROP": -3,
+    "HARVEST": 3.5,
+    "MINE": 0.0,
+    "MOVE": 86.5,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": -73
+   },
+   "baseline_seat0": {
+    "scores": [
+     112,
+     128
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      32
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 90,
+      "MINE": 1,
+      "DROP": 23,
+      "HARVEST": 2,
+      "TRAIN": 1,
+      "CHOP": 69,
+      "PICK": 12,
+      "PLANT": 12,
+      "WAIT": 373
+     },
+     {
+      "MOVE": 303,
+      "HARVEST": 2,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 74,
+      "PICK": 12,
+      "PLANT": 11,
+      "WAIT": 170
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     116,
+     180
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      3,
+      45
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 176,
+      "MINE": 1,
+      "DROP": 24,
+      "HARVEST": 9,
+      "TRAIN": 1,
+      "CHOP": 71,
+      "PICK": 12,
+      "PLANT": 19,
+      "WAIT": 270
+     },
+     {
+      "MOVE": 216,
+      "HARVEST": 2,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 110,
+      "PICK": 12,
+      "PLANT": 12,
+      "WAIT": 213
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 45,
+   "initial_trees": 14,
+   "candidate_margins": [
+    -24,
+    -20
+   ],
+   "candidate_paired_margin": -22,
+   "candidate_wood_delta": -5.5,
+   "command_delta": {
+    "CHOP": -13.0,
+    "DROP": -3.0,
+    "HARVEST": 2.0,
+    "MINE": 0.0,
+    "MOVE": -16.0,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": 28.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     144,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 136,
+      "WAIT": 330,
+      "HARVEST": 1,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 74,
+      "PICK": 9,
+      "PLANT": 9
+     },
+     {
+      "MOVE": 114,
+      "MINE": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 80,
+      "PICK": 13,
+      "PLANT": 17,
+      "WAIT": 342,
+      "HARVEST": 4
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     100,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      25
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 77,
+      "WAIT": 409,
+      "HARVEST": 1,
+      "DROP": 20,
+      "TRAIN": 1,
+      "CHOP": 59,
+      "PICK": 9,
+      "PLANT": 9
+     },
+     {
+      "MOVE": 87,
+      "MINE": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 91,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 365
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 46,
+   "initial_trees": 16,
+   "candidate_margins": [
+    8,
+    16
+   ],
+   "candidate_paired_margin": 12,
+   "candidate_wood_delta": 3.0,
+   "command_delta": {
+    "CHOP": 6,
+    "DROP": 2,
+    "HARVEST": 2,
+    "MINE": 0,
+    "MOVE": 103.5,
+    "PICK": 0,
+    "PLANT": 2,
+    "TRAIN": 0,
+    "WAIT": -115.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     100,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      25
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 85,
+      "CHOP": 93,
+      "DROP": 21,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 374
+     },
+     {
+      "MOVE": 180,
+      "MINE": 2,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 13,
+      "PLANT": 15,
+      "WAIT": 250,
+      "HARVEST": 2
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     112,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 204,
+      "CHOP": 99,
+      "DROP": 23,
+      "PICK": 13,
+      "PLANT": 15,
+      "WAIT": 243,
+      "HARVEST": 2
+     },
+     {
+      "MOVE": 92,
+      "MINE": 2,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 350
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 47,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -20,
+    -28
+   ],
+   "candidate_paired_margin": -24,
+   "candidate_wood_delta": -6,
+   "command_delta": {
+    "CHOP": -21,
+    "DROP": -4,
+    "MINE": 0.0,
+    "MOVE": -5.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 30.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     180,
+     160
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      45
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 64,
+      "MINE": 7,
+      "DROP": 35,
+      "TRAIN": 1,
+      "CHOP": 90,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 352
+     },
+     {
+      "MOVE": 102,
+      "MINE": 2,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 78,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 349
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     152,
+     180
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      38
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      45
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 45,
+      "MINE": 7,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 76,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 389
+     },
+     {
+      "MOVE": 94,
+      "MINE": 2,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 106,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 325
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 48,
+   "initial_trees": 18,
+   "candidate_margins": [
+    -48,
+    -48
+   ],
+   "candidate_paired_margin": -48,
+   "candidate_wood_delta": -12.0,
+   "command_delta": {
+    "CHOP": -26.0,
+    "DROP": -4.0,
+    "MINE": 0,
+    "MOVE": 6.0,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 24.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     220,
+     172
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      55
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      43
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 107,
+      "MINE": 4,
+      "DROP": 35,
+      "TRAIN": 1,
+      "CHOP": 93,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 321
+     },
+     {
+      "MOVE": 95,
+      "MINE": 6,
+      "DROP": 35,
+      "TRAIN": 1,
+      "CHOP": 75,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 345
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     176,
+     224
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      44
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      56
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 120,
+      "MINE": 4,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 68,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 338
+     },
+     {
+      "MOVE": 96,
+      "MINE": 6,
+      "DROP": 38,
+      "TRAIN": 1,
+      "CHOP": 102,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 314
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 49,
+   "initial_trees": 22,
+   "candidate_margins": [
+    -4,
+    -32
+   ],
+   "candidate_paired_margin": -18,
+   "candidate_wood_delta": -4.5,
+   "command_delta": {
+    "CHOP": -45.5,
+    "DROP": -4.5,
+    "HARVEST": 2.5,
+    "MINE": 0.0,
+    "MOVE": 8,
+    "PICK": 0,
+    "PLANT": 2.5,
+    "TRAIN": 0,
+    "WAIT": 37
+   },
+   "baseline_seat0": {
+    "scores": [
+     136,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      34
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 153,
+      "MINE": 6,
+      "DROP": 40,
+      "TRAIN": 1,
+      "CHOP": 131,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 216
+     },
+     {
+      "MOVE": 193,
+      "MINE": 3,
+      "DROP": 36,
+      "TRAIN": 1,
+      "CHOP": 129,
+      "PICK": 20,
+      "PLANT": 23,
+      "WAIT": 185,
+      "HARVEST": 3
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     116,
+     148
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      29
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      37
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 139,
+      "MINE": 6,
+      "DROP": 35,
+      "TRAIN": 1,
+      "CHOP": 79,
+      "PICK": 20,
+      "PLANT": 22,
+      "WAIT": 283,
+      "HARVEST": 2
+     },
+     {
+      "MOVE": 163,
+      "MINE": 3,
+      "DROP": 40,
+      "TRAIN": 1,
+      "CHOP": 168,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 178
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 50,
+   "initial_trees": 10,
+   "candidate_margins": [
+    -8,
+    -32
+   ],
+   "candidate_paired_margin": -20,
+   "candidate_wood_delta": -5.0,
+   "command_delta": {
+    "CHOP": -13.0,
+    "DROP": -2,
+    "MOVE": 3.0,
+    "PICK": 0,
+    "PLANT": -0.5,
+    "TRAIN": 0,
+    "WAIT": 12.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     160,
+     152
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      38
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 88,
+      "CHOP": 101,
+      "DROP": 32,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 344
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 80,
+      "CHOP": 89,
+      "DROP": 33,
+      "PICK": 17,
+      "PLANT": 20,
+      "WAIT": 360
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     140,
+     172
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      43
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 103,
+      "CHOP": 84,
+      "DROP": 29,
+      "PICK": 17,
+      "PLANT": 17,
+      "WAIT": 349
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 89,
+      "CHOP": 98,
+      "DROP": 34,
+      "PICK": 17,
+      "PLANT": 21,
+      "WAIT": 340
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 51,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -36,
+    -24
+   ],
+   "candidate_paired_margin": -30,
+   "candidate_wood_delta": -7.5,
+   "command_delta": {
+    "CHOP": -29.5,
+    "DROP": -4.0,
+    "HARVEST": 3.5,
+    "MINE": 0.0,
+    "MOVE": -13.5,
+    "PICK": 0,
+    "PLANT": 3.5,
+    "TRAIN": 0,
+    "WAIT": 40
+   },
+   "baseline_seat0": {
+    "scores": [
+     160,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      40
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 126,
+      "MINE": 1,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 126,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 276
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 90,
+      "CHOP": 133,
+      "DROP": 25,
+      "PICK": 15,
+      "PLANT": 19,
+      "WAIT": 313,
+      "HARVEST": 4
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     128,
+     152
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      32
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      38
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 116,
+      "MINE": 1,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 15,
+      "PLANT": 18,
+      "WAIT": 319,
+      "HARVEST": 3
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 107,
+      "CHOP": 158,
+      "DROP": 28,
+      "PICK": 15,
+      "PLANT": 15,
+      "WAIT": 276
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 52,
+   "initial_trees": 12,
+   "candidate_margins": [
+    24,
+    -56
+   ],
+   "candidate_paired_margin": -16,
+   "candidate_wood_delta": -4,
+   "command_delta": {
+    "CHOP": -20.5,
+    "DROP": -2.5,
+    "HARVEST": 0,
+    "MOVE": -6,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": 29
+   },
+   "baseline_seat0": {
+    "scores": [
+     128,
+     152
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      32
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      38
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 67,
+      "WAIT": 351,
+      "HARVEST": 1,
+      "DROP": 24,
+      "TRAIN": 1,
+      "CHOP": 116,
+      "PICK": 14,
+      "PLANT": 14
+     },
+     {
+      "MOVE": 82,
+      "WAIT": 374,
+      "HARVEST": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 79,
+      "PICK": 14,
+      "PLANT": 14
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     112,
+     168
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      42
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 62,
+      "WAIT": 376,
+      "HARVEST": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 98,
+      "PICK": 14,
+      "PLANT": 14
+     },
+     {
+      "MOVE": 89,
+      "WAIT": 341,
+      "HARVEST": 1,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 102,
+      "PICK": 14,
+      "PLANT": 14
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 53,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -28,
+    -96
+   ],
+   "candidate_paired_margin": -62,
+   "candidate_wood_delta": -15.5,
+   "command_delta": {
+    "CHOP": -37.0,
+    "DROP": -8,
+    "HARVEST": 6,
+    "MINE": 0.0,
+    "MOVE": -22.0,
+    "PICK": 0,
+    "PLANT": 6,
+    "TRAIN": 0,
+    "WAIT": 55
+   },
+   "baseline_seat0": {
+    "scores": [
+     172,
+     144
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      43
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      36
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 96,
+      "CHOP": 143,
+      "DROP": 33,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 287
+     },
+     {
+      "MOVE": 110,
+      "MINE": 1,
+      "DROP": 31,
+      "TRAIN": 1,
+      "CHOP": 92,
+      "PICK": 20,
+      "PLANT": 23,
+      "WAIT": 310,
+      "HARVEST": 3
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     132,
+     228
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      2,
+      33
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      57
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 107,
+      "CHOP": 107,
+      "DROP": 27,
+      "PICK": 20,
+      "PLANT": 29,
+      "WAIT": 300,
+      "HARVEST": 9
+     },
+     {
+      "MOVE": 165,
+      "MINE": 1,
+      "DROP": 41,
+      "TRAIN": 1,
+      "CHOP": 130,
+      "PICK": 20,
+      "PLANT": 20,
+      "WAIT": 213
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 54,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -40,
+    -28
+   ],
+   "candidate_paired_margin": -34,
+   "candidate_wood_delta": -8.5,
+   "command_delta": {
+    "CHOP": -44.5,
+    "DROP": -5.5,
+    "HARVEST": 2,
+    "MINE": 0,
+    "MOVE": 61.5,
+    "PICK": 0,
+    "PLANT": 1.5,
+    "TRAIN": 0,
+    "WAIT": -15
+   },
+   "baseline_seat0": {
+    "scores": [
+     180,
+     140
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      45
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 128,
+      "MINE": 3,
+      "DROP": 36,
+      "TRAIN": 1,
+      "CHOP": 148,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 235
+     },
+     {
+      "MOVE": 101,
+      "MINE": 3,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 98,
+      "PICK": 18,
+      "PLANT": 20,
+      "WAIT": 314,
+      "HARVEST": 2
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     140,
+     168
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      42
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 248,
+      "MINE": 3,
+      "DROP": 29,
+      "TRAIN": 1,
+      "CHOP": 99,
+      "PICK": 18,
+      "PLANT": 19,
+      "WAIT": 168,
+      "HARVEST": 2
+     },
+     {
+      "MOVE": 98,
+      "MINE": 3,
+      "DROP": 34,
+      "TRAIN": 1,
+      "CHOP": 138,
+      "PICK": 18,
+      "PLANT": 18,
+      "WAIT": 277
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 55,
+   "initial_trees": 20,
+   "candidate_margins": [
+    8,
+    0
+   ],
+   "candidate_paired_margin": 4,
+   "candidate_wood_delta": 1,
+   "command_delta": {
+    "CHOP": 3.0,
+    "DROP": 0.5,
+    "HARVEST": 1.5,
+    "MINE": 0.0,
+    "MOVE": 56.5,
+    "PICK": 0,
+    "PLANT": 1.5,
+    "TRAIN": 0,
+    "WAIT": -63.0
+   },
+   "baseline_seat0": {
+    "scores": [
+     104,
+     112
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      26
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      28
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 90,
+      "HARVEST": 1,
+      "DROP": 19,
+      "TRAIN": 1,
+      "CHOP": 62,
+      "PICK": 7,
+      "PLANT": 7,
+      "WAIT": 404
+     },
+     {
+      "MOVE": 213,
+      "MINE": 1,
+      "DROP": 21,
+      "HARVEST": 4,
+      "TRAIN": 1,
+      "CHOP": 81,
+      "PICK": 7,
+      "PLANT": 10,
+      "WAIT": 247
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     96,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 73,
+      "HARVEST": 1,
+      "DROP": 18,
+      "TRAIN": 1,
+      "CHOP": 60,
+      "PICK": 7,
+      "PLANT": 7,
+      "WAIT": 424
+     },
+     {
+      "MOVE": 83,
+      "MINE": 1,
+      "DROP": 19,
+      "HARVEST": 1,
+      "TRAIN": 1,
+      "CHOP": 73,
+      "PICK": 7,
+      "PLANT": 7,
+      "WAIT": 393
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 56,
+   "initial_trees": 20,
+   "candidate_margins": [
+    -44,
+    -4
+   ],
+   "candidate_paired_margin": -24,
+   "candidate_wood_delta": -8,
+   "command_delta": {
+    "CHOP": -72.0,
+    "DROP": -8.5,
+    "HARVEST": 0.5,
+    "MOVE": 113.5,
+    "PICK": -8,
+    "PLANT": -7.5,
+    "TRAIN": 0,
+    "WAIT": -18
+   },
+   "baseline_seat0": {
+    "scores": [
+     152,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      38
+     ],
+     [
+      0,
+      1,
+      9,
+      2,
+      0,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 115,
+      "CHOP": 152,
+      "DROP": 30,
+      "WAIT": 266,
+      "PICK": 18,
+      "PLANT": 18
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 259,
+      "CHOP": 91,
+      "WAIT": 221,
+      "DROP": 16,
+      "PICK": 6,
+      "PLANT": 6
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     148,
+     152
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      4,
+      0,
+      0,
+      36
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      38
+     ]
+    ],
+    "command_counts": [
+     {
+      "TRAIN": 1,
+      "MOVE": 244,
+      "CHOP": 88,
+      "DROP": 26,
+      "WAIT": 211,
+      "PICK": 14,
+      "PLANT": 15,
+      "HARVEST": 1
+     },
+     {
+      "TRAIN": 1,
+      "MOVE": 161,
+      "CHOP": 171,
+      "WAIT": 202,
+      "DROP": 29,
+      "PICK": 18,
+      "PLANT": 18
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 57,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -4,
+    8
+   ],
+   "candidate_paired_margin": 2,
+   "candidate_wood_delta": 0.5,
+   "command_delta": {
+    "CHOP": -13.0,
+    "DROP": -0.5,
+    "HARVEST": 3,
+    "MINE": 0,
+    "MOVE": 57,
+    "PICK": 0,
+    "PLANT": 3,
+    "TRAIN": 0,
+    "WAIT": -49.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     124,
+     120
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 130,
+      "MINE": 1,
+      "DROP": 26,
+      "TRAIN": 1,
+      "CHOP": 90,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 315
+     },
+     {
+      "MOVE": 230,
+      "MINE": 3,
+      "DROP": 27,
+      "TRAIN": 1,
+      "CHOP": 78,
+      "PICK": 16,
+      "PLANT": 17,
+      "WAIT": 214,
+      "HARVEST": 1
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     140,
+     132
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      33
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 224,
+      "MINE": 1,
+      "DROP": 28,
+      "TRAIN": 1,
+      "CHOP": 83,
+      "PICK": 16,
+      "PLANT": 21,
+      "WAIT": 216,
+      "HARVEST": 5
+     },
+     {
+      "MOVE": 210,
+      "MINE": 3,
+      "DROP": 30,
+      "TRAIN": 1,
+      "CHOP": 97,
+      "PICK": 16,
+      "PLANT": 16,
+      "WAIT": 214
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 58,
+   "initial_trees": 16,
+   "candidate_margins": [
+    -32,
+    -12
+   ],
+   "candidate_paired_margin": -22,
+   "candidate_wood_delta": -5.5,
+   "command_delta": {
+    "CHOP": -18.0,
+    "DROP": -3.5,
+    "HARVEST": 1,
+    "MINE": 0,
+    "MOVE": -6.0,
+    "PICK": 0,
+    "PLANT": 1,
+    "TRAIN": 0,
+    "WAIT": 25.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     140,
+     108
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      35
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      27
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 112,
+      "HARVEST": 3,
+      "DROP": 28,
+      "TRAIN": 1,
+      "CHOP": 112,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 305
+     },
+     {
+      "MOVE": 93,
+      "MINE": 2,
+      "DROP": 26,
+      "HARVEST": 5,
+      "TRAIN": 1,
+      "CHOP": 65,
+      "PICK": 13,
+      "PLANT": 15,
+      "WAIT": 353
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     112,
+     124
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      1,
+      28
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      31
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 92,
+      "HARVEST": 3,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 82,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 360
+     },
+     {
+      "MOVE": 85,
+      "MINE": 2,
+      "DROP": 28,
+      "HARVEST": 3,
+      "TRAIN": 1,
+      "CHOP": 71,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 357
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  },
+  {
+   "seed": 59,
+   "initial_trees": 18,
+   "candidate_margins": [
+    -4,
+    -8
+   ],
+   "candidate_paired_margin": -6,
+   "candidate_wood_delta": -1.5,
+   "command_delta": {
+    "CHOP": -9.0,
+    "DROP": -1.5,
+    "HARVEST": 0.5,
+    "MINE": 0.0,
+    "MOVE": 99.5,
+    "PICK": 0,
+    "PLANT": 0,
+    "TRAIN": 0,
+    "WAIT": -89.5
+   },
+   "baseline_seat0": {
+    "scores": [
+     88,
+     84
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 94,
+      "HARVEST": 1,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 72,
+      "PICK": 9,
+      "PLANT": 9,
+      "WAIT": 380
+     },
+     {
+      "MOVE": 280,
+      "MINE": 1,
+      "DROP": 22,
+      "TRAIN": 1,
+      "CHOP": 67,
+      "PICK": 13,
+      "PLANT": 12,
+      "WAIT": 195
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   },
+   "candidate_seat0": {
+    "scores": [
+     88,
+     96
+    ],
+    "inventories": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      22
+     ],
+     [
+      0,
+      0,
+      0,
+      0,
+      0,
+      24
+     ]
+    ],
+    "command_counts": [
+     {
+      "MOVE": 120,
+      "HARVEST": 2,
+      "DROP": 23,
+      "TRAIN": 1,
+      "CHOP": 64,
+      "PICK": 9,
+      "PLANT": 10,
+      "WAIT": 360
+     },
+     {
+      "MOVE": 107,
+      "MINE": 1,
+      "DROP": 25,
+      "TRAIN": 1,
+      "CHOP": 77,
+      "PICK": 13,
+      "PLANT": 13,
+      "WAIT": 354
+     }
+    ],
+    "events": [
+     [],
+     []
+    ]
+   }
+  }
+ ]
+}

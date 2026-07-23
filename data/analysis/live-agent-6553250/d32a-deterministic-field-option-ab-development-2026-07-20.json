@@ -1,0 +1,315 @@
+{
+ "schema": 1,
+ "created_at": "2026-07-20T20:13:29.880559+00:00",
+ "scope": "D32 consumed deterministic TestSession A/B; no Arena submission",
+ "protocol": "d32a-deterministic-field-option-ab-recovery-protocol-2026-07-20.md",
+ "inputs": {
+  "bank": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d32-deterministic-field-option-bank.json",
+  "bank_sha256": "58260acf1327c3b57c2de36fd3a7efc57480dda47bda1fda67be086f5e7eab2d",
+  "panel": "data/panels/d32a-deterministic-field-option-ab-20260720.json",
+  "panel_sha256": "fd9e1c019cc82c90c7b8cbcedcf320db87e4f30301d5959ce8517b5315387798",
+  "dry_run": "data/panels/d32a-deterministic-field-option-ab-dry-run-20260720.json",
+  "dry_run_sha256": "422883f8a37d62636a2d1f15a33e43926621021f6b70216246b8b638bac0d6da",
+  "prior_panel": "/home/tarstars/prj/troll_farm/data/panels/legend-top5-common-seed-bank-v1-aa-20260719.json",
+  "prior_panel_sha256": "720609f3417447a3fb278a79db088b701533e5e29e98c44888e5b0f4792a516c",
+  "prior_result": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/legend-top5-common-seed-bank-aa-result-2026-07-19.json",
+  "prior_result_sha256": "c9e6b31c0d4c8d99964e4635638424dedfd73e22df6cf1f00ce4460c8f992f82"
+ },
+ "preflight": {
+  "bank_sha256": "58260acf1327c3b57c2de36fd3a7efc57480dda47bda1fda67be086f5e7eab2d",
+  "baseline_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "candidate_sha256": "5138066175177a9b198c2c3f51deeef30d13d6207bee316227fae607662a6f82",
+  "candidate_regeneration_exact": true,
+  "source_sizes_below_100000": true,
+  "fixed_turn75_decision_unique": true,
+  "strict_compile": {
+   "baseline": {
+    "pass": true,
+    "returncode": 0,
+    "stderr": ""
+   },
+   "candidate": {
+    "pass": true,
+    "returncode": 0,
+    "stderr": ""
+   }
+  },
+  "dry_run_exact": true,
+  "pass": true
+ },
+ "integrity": {
+  "preflight_pass": true,
+  "panel_complete": true,
+  "six_rows": true,
+  "six_exact_jobs": true,
+  "bank_hash_exact": true,
+  "source_hashes_exact": true,
+  "unique_game_ids": true,
+  "zero_diagnostics": true,
+  "trace_evidence_complete": true,
+  "prior_global_integrity": true,
+  "selected_prior_blocks_exact": true,
+  "all_block_integrity": true
+ },
+ "integrity_pass": true,
+ "per_block": [
+  {
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "seed": 9213838685008738669,
+   "game_ids": [
+    896442768,
+    896442771
+   ],
+   "scores": {
+    "baseline": [
+     148.0,
+     92.0
+    ],
+    "candidate": [
+     190.0,
+     176.0
+    ]
+   },
+   "margins": {
+    "baseline": 56.0,
+    "candidate": 14.0
+   },
+   "delta": {
+    "own_score": 42.0,
+    "opponent_score": 84.0,
+    "margin": -42.0
+   },
+   "turn_one_sha256": [
+    "9797204d5d5db3bca8a0aa61299b5c15ddca5239d9a62018e1a1ca15ac7da445",
+    "9797204d5d5db3bca8a0aa61299b5c15ddca5239d9a62018e1a1ca15ac7da445"
+   ],
+   "stdout_sha256": {
+    "baseline": [
+     "8a0ad953725654f8a89343ae22fd5ab96e9cb9fc747f4b82c94e88a4cbc878e8",
+     "91ac0fe15fb6d30b2743408e559eb1b07938969a535be7cf8c1b9b5c6720eab2"
+    ],
+    "candidate": [
+     "00f69f52a61e2ae4e18ae2bf9bf89f1b22d7d325c7d406f9b202f5b52dd9e7de",
+     "3e40cc1a4f6cefb904fe87992d228dd0974c7a2e4f27a38f6ebdc9e9ab6a45c0"
+    ]
+   },
+   "first_player_0_action_difference_turn": 75,
+   "first_player_1_action_difference_turn": 77,
+   "prior_reference_matches": [
+    {
+     "game_id": 896299239,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    },
+    {
+     "game_id": 896299244,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    }
+   ],
+   "gates": {
+    "row_identity_and_seed_echo_exact": true,
+    "opponent_agent_identity_exact": true,
+    "turn_one_a_b_and_prior_exact": true,
+    "fresh_baseline_reproduces_prior": true,
+    "complete_stdout_lengths": true,
+    "player_0_actions_exact_through_turn_74": true,
+    "player_0_first_divergence_turn_75_to_85": true
+   },
+   "integrity_pass": true
+  },
+  {
+   "opponent": "escdemon",
+   "opponent_agent": 6483545,
+   "seed": 995889697906457104,
+   "game_ids": [
+    896442775,
+    896442781
+   ],
+   "scores": {
+    "baseline": [
+     225.0,
+     249.0
+    ],
+    "candidate": [
+     218.0,
+     213.0
+    ]
+   },
+   "margins": {
+    "baseline": -24.0,
+    "candidate": 5.0
+   },
+   "delta": {
+    "own_score": -7.0,
+    "opponent_score": -36.0,
+    "margin": 29.0
+   },
+   "turn_one_sha256": [
+    "eb329658d012b78f8581115aca3424c973dd5d041629ce4afa7a42b456843257",
+    "eb329658d012b78f8581115aca3424c973dd5d041629ce4afa7a42b456843257"
+   ],
+   "stdout_sha256": {
+    "baseline": [
+     "dd64bb53af9defc797f6ac605fab697d733cbd3a0e6f34a1528c10a1985577b3",
+     "b667983729fa3bff64637279f03c154040715898bf7e141e476a4e8d94e22bc4"
+    ],
+    "candidate": [
+     "4d3f2c1d2dd787af3809cfa8566633d517f0dad6097c1564a2df35463ddefa14",
+     "8fe1f1e3f6662aba5b015c9afde48e54caaf69833caa66ec977ab553b219daf4"
+    ]
+   },
+   "first_player_0_action_difference_turn": 75,
+   "first_player_1_action_difference_turn": 88,
+   "prior_reference_matches": [
+    {
+     "game_id": 896299263,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    },
+    {
+     "game_id": 896299265,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    }
+   ],
+   "gates": {
+    "row_identity_and_seed_echo_exact": true,
+    "opponent_agent_identity_exact": true,
+    "turn_one_a_b_and_prior_exact": true,
+    "fresh_baseline_reproduces_prior": true,
+    "complete_stdout_lengths": true,
+    "player_0_actions_exact_through_turn_74": true,
+    "player_0_first_divergence_turn_75_to_85": true
+   },
+   "integrity_pass": true
+  },
+  {
+   "opponent": "laconic",
+   "opponent_agent": 6482055,
+   "seed": -1363387433195008244,
+   "game_ids": [
+    896442789,
+    896442806
+   ],
+   "scores": {
+    "baseline": [
+     165.0,
+     193.0
+    ],
+    "candidate": [
+     115.0,
+     217.0
+    ]
+   },
+   "margins": {
+    "baseline": -28.0,
+    "candidate": -102.0
+   },
+   "delta": {
+    "own_score": -50.0,
+    "opponent_score": 24.0,
+    "margin": -74.0
+   },
+   "turn_one_sha256": [
+    "505f40f4b9d826a2f8bf37ddf7039c302d00fe7fea4afc4ca0c70fd6799d34d5",
+    "505f40f4b9d826a2f8bf37ddf7039c302d00fe7fea4afc4ca0c70fd6799d34d5"
+   ],
+   "stdout_sha256": {
+    "baseline": [
+     "aea8fc2a6ecd0463207a25f22ed84192b697fd653c7211b1e1a5e178e12174a6",
+     "23a812abba64c340a249474ee161c2a302767c7db530f154498f340225b574e9"
+    ],
+    "candidate": [
+     "109b31ed5ef207c7ae44311927191dee4f6f5b4e5ff941dbe8a9ccfdf06b41e7",
+     "94b432c61379820577ef21d9cdee7e817f75c469f2f658c49cc19a2a7fb81069"
+    ]
+   },
+   "first_player_0_action_difference_turn": 75,
+   "first_player_1_action_difference_turn": 80,
+   "prior_reference_matches": [
+    {
+     "game_id": 896299268,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    },
+    {
+     "game_id": 896299271,
+     "fields": {
+      "scores": true,
+      "inventories": true,
+      "turns": true,
+      "workforce": true,
+      "player_0_stdout": true,
+      "player_1_stdout": true
+     },
+     "pass": true
+    }
+   ],
+   "gates": {
+    "row_identity_and_seed_echo_exact": true,
+    "opponent_agent_identity_exact": true,
+    "turn_one_a_b_and_prior_exact": true,
+    "fresh_baseline_reproduces_prior": true,
+    "complete_stdout_lengths": true,
+    "player_0_actions_exact_through_turn_74": true,
+    "player_0_first_divergence_turn_75_to_85": true
+   },
+   "integrity_pass": true
+  }
+ ],
+ "value_evaluated": true,
+ "value": {
+  "metrics": {
+   "mean_margin_delta": -29.0,
+   "mean_own_score_delta": -5.0,
+   "positive_margin_blocks": 1,
+   "minimum_margin_delta": -74.0
+  },
+  "gates": {
+   "mean_margin_delta_at_least_10": false,
+   "mean_own_score_delta_nonnegative": false,
+   "at_least_two_positive_margin_blocks": false,
+   "no_margin_delta_below_minus_20": false
+  },
+  "pass": false
+ },
+ "decision": "reject_permanent_turn75_farm",
+ "complete": false
+}

@@ -1,0 +1,69 @@
+{
+  "audit": {
+    "arm_accounting_failures": 0,
+    "arms": 4,
+    "available_hash_failures": 0,
+    "complete_repeats": true,
+    "mechanics_and_numeric_failures": 0,
+    "root_identity_failures": 0,
+    "rows": 1024,
+    "tasks": 256,
+    "unavailable_parity_failure_examples": [],
+    "unavailable_parity_failures": 0
+  },
+  "decision": "support_failure_close_contested_top_four_vocabulary",
+  "inputs": {
+    "run_a": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d81a-contested-action-set-rollout-a-9912000-9912015.tsv",
+    "run_a_sha256": "0de01a09dc053dfd6e2c7c8814e905f0b1d783f51ca585ec5f115efa53b108e6",
+    "run_b": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d81a-contested-action-set-rollout-b-9912000-9912015.tsv",
+    "run_b_sha256": "0de01a09dc053dfd6e2c7c8814e905f0b1d783f51ca585ec5f115efa53b108e6",
+    "runner_source_sha256": "48996296fc6bea54a83469cd4d45c123532344e919ea6d574991ff3aa3aa00ff"
+  },
+  "oracle_gates": null,
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d81a-one-boundary-contested-action-set-rollout-protocol-2026-07-21.md",
+  "protocol_sha256": "72cd1ecea06583f1d757ffb47f37f63d23c93df90b800dcd66ce2c378765a2fc",
+  "scope": "exact one-boundary rollout upper bound only; no arm or oracle policy is selectable",
+  "support": {
+    "availability_by_rank": {
+      "rank_1": 116,
+      "rank_2": 121,
+      "rank_3": 127
+    },
+    "available_action_planes": [
+      5,
+      6,
+      7
+    ],
+    "available_noncontrol_arms": 364,
+    "available_opponents": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "available_seats": [
+      0,
+      1
+    ],
+    "rooted_tasks": 249
+  },
+  "support_gates": {
+    "at_least_224_rooted_tasks": true,
+    "at_least_400_available_noncontrol_arms": false,
+    "available_arm_intervention_changes_hash": true,
+    "both_seats_all_opponents_two_planes": true,
+    "complete_byte_identical_4x256_repeats": true,
+    "each_rank_available_at_least_64": true,
+    "unavailable_arm_exact_control_parity": true,
+    "zero_arm_accounting_failures": true,
+    "zero_mechanics_and_numeric_failures": true,
+    "zero_root_identity_failures": true
+  },
+  "support_pass": false,
+  "value_opened": false
+}

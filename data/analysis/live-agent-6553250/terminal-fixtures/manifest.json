@@ -1,0 +1,332 @@
+{
+ "schema": 1,
+ "scope": "13 historical close losses and 13 unique matched close wins",
+ "live_agent": 6553250,
+ "history": 16,
+ "selection": {
+  "loss_rule": "ranked loss/tie with absolute score margin <= 20",
+  "control_rule": "unique greedy nearest close win by duration, tree count, margin, seat, opponent",
+  "pairs": [
+   {
+    "loss": 895923052,
+    "control_win": 895923053
+   },
+   {
+    "loss": 895923055,
+    "control_win": 895926901
+   },
+   {
+    "loss": 895923622,
+    "control_win": 895927134
+   },
+   {
+    "loss": 895923981,
+    "control_win": 895926655
+   },
+   {
+    "loss": 895926466,
+    "control_win": 895924122
+   },
+   {
+    "loss": 895926857,
+    "control_win": 895927379
+   },
+   {
+    "loss": 895926893,
+    "control_win": 895927026
+   },
+   {
+    "loss": 895927052,
+    "control_win": 895927004
+   },
+   {
+    "loss": 895927061,
+    "control_win": 895923185
+   },
+   {
+    "loss": 895927065,
+    "control_win": 895927226
+   },
+   {
+    "loss": 895927156,
+    "control_win": 895927166
+   },
+   {
+    "loss": 895927159,
+    "control_win": 895926546
+   },
+   {
+    "loss": 895927222,
+    "control_win": 895927017
+   }
+  ]
+ },
+ "aggregate": {
+  "fixtures": 26,
+  "valid": 26,
+  "terminal_reasons": {
+   "grace_expired": 6,
+   "turn_limit": 9,
+   "mercy_player_0": 7,
+   "both_stuck": 1,
+   "mercy_player_1": 3
+  },
+  "transitions": {
+   "last_tree_removed": 95,
+   "empty_board_replanted": 77
+  },
+  "mean_final_unbanked_value_per_side": 1.0384615384615385,
+  "preseed_activation": {
+   "close_losses": {
+    "games": 13,
+    "games_with_state_opportunity": 9,
+    "games_where_selection_would_change": 8,
+    "selection_change_opportunities": 99,
+    "median_first_change_turn": 110.5
+   },
+   "matched_close_wins": {
+    "games": 13,
+    "games_with_state_opportunity": 10,
+    "games_where_selection_would_change": 10,
+    "selection_change_opportunities": 110,
+    "median_first_change_turn": 135.0
+   }
+  }
+ },
+ "fixtures": [
+  {
+   "game_id": 895923052,
+   "won": false,
+   "margin": -17.0,
+   "opponent": "zasmu",
+   "n_turns": 295,
+   "file": "game-895923052.json",
+   "valid": true
+  },
+  {
+   "game_id": 895923053,
+   "won": true,
+   "margin": 15.0,
+   "opponent": "FredericBautista",
+   "n_turns": 300,
+   "file": "game-895923053.json",
+   "valid": true
+  },
+  {
+   "game_id": 895923055,
+   "won": false,
+   "margin": 0.0,
+   "opponent": "OccitanieFreelancer",
+   "n_turns": 300,
+   "file": "game-895923055.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926901,
+   "won": true,
+   "margin": 1.0,
+   "opponent": "norxondor_gorgonax",
+   "n_turns": 300,
+   "file": "game-895926901.json",
+   "valid": true
+  },
+  {
+   "game_id": 895923622,
+   "won": false,
+   "margin": -16.0,
+   "opponent": "DaNinja",
+   "n_turns": 268,
+   "file": "game-895923622.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927134,
+   "won": true,
+   "margin": 16.0,
+   "opponent": "yaichi",
+   "n_turns": 266,
+   "file": "game-895927134.json",
+   "valid": true
+  },
+  {
+   "game_id": 895923981,
+   "won": false,
+   "margin": -7.0,
+   "opponent": "Stounate",
+   "n_turns": 300,
+   "file": "game-895923981.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926655,
+   "won": true,
+   "margin": 9.0,
+   "opponent": "MSz",
+   "n_turns": 300,
+   "file": "game-895926655.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926466,
+   "won": false,
+   "margin": -6.0,
+   "opponent": "Escdemon",
+   "n_turns": 192,
+   "file": "game-895926466.json",
+   "valid": true
+  },
+  {
+   "game_id": 895924122,
+   "won": true,
+   "margin": 4.0,
+   "opponent": "DoubtinGiyov",
+   "n_turns": 195,
+   "file": "game-895924122.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926857,
+   "won": false,
+   "margin": -3.0,
+   "opponent": "laconic_pixel",
+   "n_turns": 300,
+   "file": "game-895926857.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927379,
+   "won": true,
+   "margin": 9.0,
+   "opponent": "delineate",
+   "n_turns": 300,
+   "file": "game-895927379.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926893,
+   "won": false,
+   "margin": -3.0,
+   "opponent": "Escdemon",
+   "n_turns": 217,
+   "file": "game-895926893.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927026,
+   "won": true,
+   "margin": 4.0,
+   "opponent": "yamo",
+   "n_turns": 186,
+   "file": "game-895927026.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927052,
+   "won": false,
+   "margin": -9.0,
+   "opponent": "Escdemon",
+   "n_turns": 240,
+   "file": "game-895927052.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927004,
+   "won": true,
+   "margin": 15.0,
+   "opponent": "Escdemon",
+   "n_turns": 210,
+   "file": "game-895927004.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927061,
+   "won": false,
+   "margin": -2.0,
+   "opponent": "Escdemon",
+   "n_turns": 131,
+   "file": "game-895927061.json",
+   "valid": true
+  },
+  {
+   "game_id": 895923185,
+   "won": true,
+   "margin": 8.0,
+   "opponent": "oidrissi",
+   "n_turns": 125,
+   "file": "game-895923185.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927065,
+   "won": false,
+   "margin": -4.0,
+   "opponent": "Escdemon",
+   "n_turns": 206,
+   "file": "game-895927065.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927226,
+   "won": true,
+   "margin": 18.0,
+   "opponent": "yaichi",
+   "n_turns": 196,
+   "file": "game-895927226.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927156,
+   "won": false,
+   "margin": -6.0,
+   "opponent": "Escdemon",
+   "n_turns": 154,
+   "file": "game-895927156.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927166,
+   "won": true,
+   "margin": 3.0,
+   "opponent": "Escdemon",
+   "n_turns": 157,
+   "file": "game-895927166.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927159,
+   "won": false,
+   "margin": -5.0,
+   "opponent": "Escdemon",
+   "n_turns": 201,
+   "file": "game-895927159.json",
+   "valid": true
+  },
+  {
+   "game_id": 895926546,
+   "won": true,
+   "margin": 2.0,
+   "opponent": "yaichi",
+   "n_turns": 206,
+   "file": "game-895926546.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927222,
+   "won": false,
+   "margin": -16.0,
+   "opponent": "norxondor_gorgonax",
+   "n_turns": 300,
+   "file": "game-895927222.json",
+   "valid": true
+  },
+  {
+   "game_id": 895927017,
+   "won": true,
+   "margin": 8.0,
+   "opponent": "Astrobytes",
+   "n_turns": 300,
+   "file": "game-895927017.json",
+   "valid": true
+  }
+ ]
+}

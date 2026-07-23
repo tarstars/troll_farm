@@ -1,0 +1,201 @@
+{
+  "audit": {
+    "actual_total_immediate_trains": 468,
+    "cap_violations": 0,
+    "expected_total_immediate_trains": 468,
+    "immediate_trains_by_config": {
+      "legend_v5_balanced_m3_p1": 71,
+      "legend_v5_balanced_m3_p2": 71,
+      "legend_v5_balanced_m4_p1": 71,
+      "legend_v5_balanced_m4_p2": 71,
+      "legend_v5_hp2_m3_p1": 46,
+      "legend_v5_hp2_m3_p2": 46,
+      "legend_v5_hp2_m4_p1": 46,
+      "legend_v5_hp2_m4_p2": 46
+    },
+    "opening_mismatches": 0,
+    "outcome_fields_ignored": true,
+    "support_not_evaluated": true,
+    "train_partition_failures": 0
+  },
+  "decision": "shared spending is repaired; close transaction tuning and diagnose acquisition deficits",
+  "gates": {
+    "aggregate_max4_worker_four_at_least_15_percent": false,
+    "aggregate_successful_crop_at_least_95_percent": true,
+    "aggregate_worker_three_at_least_70_percent": false,
+    "at_least_50_percent_cells_change_from_v2_parent": true,
+    "complete_byte_exact_repeat": true,
+    "configured_worker_caps_exact": true,
+    "each_config_successful_crop_at_least_90_percent": true,
+    "each_config_worker_three_at_least_55_percent": false,
+    "each_config_worker_two_at_least_90_percent": false,
+    "each_max4_config_worker_four_at_least_5_percent": false,
+    "every_train_attempt_partition_exact": true,
+    "parent_conditioned_first_train_exact": true,
+    "target_three_four_failures_are_shack_only": true,
+    "zero_budget_inclusive_train_failures": true,
+    "zero_unexplained_train_failures": true
+  },
+  "grid": {
+    "all_checkpoints_complete": true,
+    "cells_per_run": 1280,
+    "games": 160,
+    "models": 8,
+    "repeat_byte_identical": true
+  },
+  "inputs": {
+    "amendment_sha256": "4438d60f76d4adf800ab94bd684dbffbb642cf1d54ad873501aee25382fb9979",
+    "analyzer_sha256": "027df3b53722138f6682425b9c94431c4e2b415c25757ba12684c08b1c801fff",
+    "d53b_result_sha256": "bc980354842b0defc20206281318baea46950e9925c0f0612eb69c71fd68e8ae",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "run_a_sha256": "66f99af783e855fc64e48df3990bf04469fe1dea07798ede6b95a4fea17a1263",
+    "run_b_sha256": "66f99af783e855fc64e48df3990bf04469fe1dea07798ede6b95a4fea17a1263",
+    "runner_sha256": "99aec36964f8d6b865f9ad34801f97565877d7ddb9e3e50aa004c0152fea8e3e",
+    "strategy_sha256": "f5ec11f3ec8b480e82bbbc6c39e7caa77efdb2a678e0d5a190eaf0035c8e098d",
+    "v2_parents_sha256": "2a3150540d8b6b563d778ff0a3cca2e0d68c52bb130145030a71a896c2fe073b"
+  },
+  "mechanism": {
+    "aggregate": {
+      "successful_crop": 1280,
+      "successful_crop_rate": 1.0,
+      "worker_four_max4": 9,
+      "worker_four_max4_rate": 0.0140625,
+      "worker_three": 324,
+      "worker_three_rate": 0.253125,
+      "worker_two": 1056,
+      "worker_two_rate": 0.825
+    },
+    "by_config": {
+      "legend_v5_balanced_m3_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 37,
+        "worker_three_rate": 0.23125,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v5_balanced_m3_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 37,
+        "worker_three_rate": 0.23125,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v5_balanced_m4_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 37,
+        "worker_three_rate": 0.23125,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v5_balanced_m4_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 1,
+        "worker_four_rate": 0.00625,
+        "worker_three": 37,
+        "worker_three_rate": 0.23125,
+        "worker_two": 134,
+        "worker_two_rate": 0.8375
+      },
+      "legend_v5_hp2_m3_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 44,
+        "worker_three_rate": 0.275,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v5_hp2_m3_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 0,
+        "worker_four_rate": 0.0,
+        "worker_three": 44,
+        "worker_three_rate": 0.275,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v5_hp2_m4_p1": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 4,
+        "worker_four_rate": 0.025,
+        "worker_three": 44,
+        "worker_three_rate": 0.275,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      },
+      "legend_v5_hp2_m4_p2": {
+        "cells": 160,
+        "successful_crop": 160,
+        "successful_crop_rate": 1.0,
+        "worker_four": 4,
+        "worker_four_rate": 0.025,
+        "worker_three": 44,
+        "worker_three_rate": 0.275,
+        "worker_two": 130,
+        "worker_two_rate": 0.8125
+      }
+    },
+    "changed_from_v2_parent": 996,
+    "changed_from_v2_parent_rate": 0.778125
+  },
+  "pass": false,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d54a-shared-pick-ledger-workforce-preflight-protocol-2026-07-21.md",
+  "protocol_sha256": "2231f5972c0a5243a1ade1771d79a9e3b827e2ce8fab6988137c0917836a5175",
+  "schema": 1,
+  "scope": "activation and TRAIN transaction integrity only on consumed maps; score direction, support, distance, cohorts, opponent identity, candidate value, and platform outcomes ignored",
+  "train_transactions_by_target": {
+    "2": {
+      "attempts": 1524,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 468,
+      "failures": 468,
+      "successes": 1056
+    },
+    "3": {
+      "attempts": 324,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "failures": 0,
+      "successes": 324
+    },
+    "4": {
+      "attempts": 9,
+      "budget_inclusive": 0,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "failures": 0,
+      "successes": 9
+    }
+  },
+  "transaction_pass": true,
+  "workforce_pass": false
+}

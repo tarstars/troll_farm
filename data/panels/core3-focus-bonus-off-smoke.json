@@ -1,0 +1,774 @@
+{
+ "schema": 1,
+ "started_at": "2026-07-16T10:19:18.429012+00:00",
+ "completed_at": "2026-07-16T10:24:26.142974+00:00",
+ "status": "complete",
+ "sources": {
+  "baseline": {
+   "path": "cgauto/submissions/agent-6553250-yamo-orchard-live.min.rs",
+   "bytes": 90133,
+   "sha256": "09fac1fefa24eac657dba16a75d802eee38e1269f4aa44413e1ca103df36fe7a"
+  },
+  "candidate": {
+   "path": "cgauto/submissions/candidate-agent6553250-focus-bonus-off.min.rs",
+   "bytes": 90131,
+   "sha256": "b81486311b241da6397dfca29657bd424e9172ff70fbea37479deac7e44157a6"
+  }
+ },
+ "jobs": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "candidate"
+  }
+ ],
+ "rows": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline",
+   "game_id": 896027286,
+   "scores": [
+    252.0,
+    262.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     2,
+     63
+    ],
+    [
+     0,
+     0,
+     10,
+     0,
+     4,
+     63
+    ]
+   ],
+   "wood": [
+    63,
+    63
+   ],
+   "fruit": [
+    0,
+    10
+   ],
+   "turns": 296,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 288,
+     "CHOP": 205,
+     "DROP": 46,
+     "PICK": 11,
+     "PLANT": 11,
+     "WAIT": 30
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate",
+   "game_id": 896027309,
+   "scores": [
+    157.0,
+    274.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     1,
+     0,
+     1,
+     39
+    ],
+    [
+     0,
+     12,
+     0,
+     2,
+     1,
+     65
+    ]
+   ],
+   "wood": [
+    39,
+    65
+   ],
+   "fruit": [
+    1,
+    14
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 424,
+     "CHOP": 132,
+     "DROP": 27,
+     "WAIT": 2,
+     "PICK": 7,
+     "PLANT": 7
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "baseline",
+   "game_id": 896027337,
+   "scores": [
+    153.0,
+    112.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     1,
+     0,
+     0,
+     38
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     1,
+     28
+    ]
+   ],
+   "wood": [
+    38,
+    28
+   ],
+   "fruit": [
+    1,
+    0
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 378,
+     "MINE": 3,
+     "DROP": 30,
+     "TRAIN": 1,
+     "CHOP": 154,
+     "PICK": 9,
+     "PLANT": 9,
+     "WAIT": 9
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "candidate",
+   "game_id": 896027360,
+   "scores": [
+    169.0,
+    179.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     1,
+     0,
+     0,
+     0,
+     1,
+     42
+    ],
+    [
+     1,
+     0,
+     6,
+     0,
+     8,
+     43
+    ]
+   ],
+   "wood": [
+    42,
+    43
+   ],
+   "fruit": [
+    1,
+    7
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 295,
+     "CHOP": 243,
+     "DROP": 43,
+     "PICK": 6,
+     "PLANT": 6,
+     "HARVEST": 1,
+     "WAIT": 5
+    },
+    "harvest_turns": [
+     293
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "baseline",
+   "game_id": 896027407,
+   "scores": [
+    240.0,
+    248.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     8,
+     0,
+     1,
+     58
+    ],
+    [
+     28,
+     0,
+     8,
+     0,
+     7,
+     53
+    ]
+   ],
+   "wood": [
+    58,
+    53
+   ],
+   "fruit": [
+    8,
+    36
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 338,
+     "CHOP": 189,
+     "DROP": 39,
+     "PICK": 12,
+     "PLANT": 12,
+     "WAIT": 9
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "candidate",
+   "game_id": 896027421,
+   "scores": [
+    223.0,
+    332.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     3,
+     0,
+     0,
+     55
+    ],
+    [
+     75,
+     63,
+     0,
+     18,
+     1,
+     44
+    ]
+   ],
+   "wood": [
+    55,
+    44
+   ],
+   "fruit": [
+    3,
+    156
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 362,
+     "CHOP": 151,
+     "DROP": 38,
+     "PICK": 14,
+     "PLANT": 14,
+     "WAIT": 20
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline",
+   "game_id": 896027432,
+   "scores": [
+    229.0,
+    220.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     0,
+     0,
+     1,
+     0,
+     0,
+     57
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     2,
+     55
+    ]
+   ],
+   "wood": [
+    57,
+    55
+   ],
+   "fruit": [
+    1,
+    0
+   ],
+   "turns": 251,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 260,
+     "HARVEST": 3,
+     "DROP": 43,
+     "TRAIN": 1,
+     "CHOP": 160,
+     "PICK": 9,
+     "PLANT": 9,
+     "WAIT": 10
+    },
+    "harvest_turns": [
+     2,
+     4,
+     6
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate",
+   "game_id": 896027442,
+   "scores": [
+    134.0,
+    418.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     2,
+     2,
+     6,
+     4,
+     31
+    ],
+    [
+     4,
+     3,
+     2,
+     5,
+     3,
+     101
+    ]
+   ],
+   "wood": [
+    31,
+    101
+   ],
+   "fruit": [
+    10,
+    14
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 353,
+     "CHOP": 130,
+     "DROP": 31,
+     "WAIT": 77,
+     "PICK": 4,
+     "PLANT": 4
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "baseline",
+   "game_id": 896027473,
+   "scores": [
+    221.0,
+    164.0
+   ],
+   "win": true,
+   "inventories": [
+    [
+     1,
+     0,
+     4,
+     0,
+     1,
+     54
+    ],
+    [
+     1,
+     0,
+     10,
+     1,
+     7,
+     38
+    ]
+   ],
+   "wood": [
+    54,
+    38
+   ],
+   "fruit": [
+    5,
+    12
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 316,
+     "CHOP": 216,
+     "DROP": 39,
+     "PICK": 11,
+     "PLANT": 11,
+     "HARVEST": 1,
+     "WAIT": 5
+    },
+    "harvest_turns": [
+     294
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "wala",
+   "opponent_agent": 6481141,
+   "bot": "candidate",
+   "game_id": 896027503,
+   "scores": [
+    121.0,
+    298.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     1,
+     0,
+     0,
+     30
+    ],
+    [
+     5,
+     0,
+     0,
+     1,
+     2,
+     73
+    ]
+   ],
+   "wood": [
+    30,
+    73
+   ],
+   "fruit": [
+    1,
+    6
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "TRAIN": 1,
+     "MOVE": 436,
+     "CHOP": 96,
+     "DROP": 30,
+     "PICK": 12,
+     "PLANT": 12,
+     "WAIT": 13
+    },
+    "harvest_turns": [],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "baseline",
+   "game_id": 896027544,
+   "scores": [
+    164.0,
+    184.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     0,
+     0,
+     2,
+     41
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     2,
+     46
+    ]
+   ],
+   "wood": [
+    41,
+    46
+   ],
+   "fruit": [
+    0,
+    0
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 312,
+     "HARVEST": 2,
+     "DROP": 43,
+     "TRAIN": 1,
+     "CHOP": 203,
+     "PICK": 8,
+     "PLANT": 8,
+     "WAIT": 16
+    },
+    "harvest_turns": [
+     4,
+     272
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  },
+  {
+   "repetition": 1,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "candidate",
+   "game_id": 896027557,
+   "scores": [
+    168.0,
+    375.0
+   ],
+   "win": false,
+   "inventories": [
+    [
+     0,
+     0,
+     4,
+     0,
+     1,
+     41
+    ],
+    [
+     29,
+     5,
+     26,
+     11,
+     0,
+     76
+    ]
+   ],
+   "wood": [
+    41,
+    76
+   ],
+   "fruit": [
+    4,
+    71
+   ],
+   "turns": 300,
+   "commands": {
+    "counts": {
+     "MSG": 1,
+     "MOVE": 298,
+     "HARVEST": 1,
+     "DROP": 31,
+     "TRAIN": 1,
+     "CHOP": 219,
+     "PICK": 10,
+     "PLANT": 10,
+     "WAIT": 21
+    },
+    "harvest_turns": [
+     5
+    ],
+    "announcements": [
+     "yamo-carry-regen-transit-idle-harvest-rust"
+    ]
+   }
+  }
+ ],
+ "stop_reason": null
+}

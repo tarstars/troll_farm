@@ -1,0 +1,15 @@
+{
+  "schema": "troll-farm-d138a-best-stop-plus3pp-calibration-q6-lock-v1",
+  "frozen_at": "2026-07-22-after-d137-held-closure-before-any-d138-fit",
+  "isolated_change": "add exactly three percentage points of training tasks to D137 count calibration",
+  "sha256": {
+    "cgauto/train_d138a_best_stop_plus3pp_calibration_q6.py": "5da7c4b7c8993a1699c356207bf5b72e0309bc256d4e9734d2bc9d7456e09a71",
+    "tests/test_train_d138a_best_stop_plus3pp_calibration_q6.py": "16eedefd3ee14f6bfec940c3efdc26ac5c7bd06b154fe5839a36e209aaaebffc",
+    "data/analysis/live-agent-6553250/d138a-best-stop-plus3pp-calibration-q6-protocol-2026-07-22.md": "190a2718006cf0089ca7c44ea655762c995ed23ac8dce4dbff3c4a445695cd87",
+    "cgauto/train_d137a_task_sequence_best_stop_gate_q6.py": "243d1a7ea4585139a8c02b9ab6ea95c7e32279e36ef83edb7438563b959c8c08",
+    "data/analysis/live-agent-6553250/d137a-task-sequence-best-stop-gate-q6-lock.json": "8609f9d0bd99d65f67cb5012d5f5d3c2fa8a0879f0bec337b2076ed9c17e8386",
+    "data/analysis/live-agent-6553250/d137a-task-sequence-best-stop-gate-q6-selection-a.json": "2a367aeda25784a524c60d58e963dee381f498e009d7bc150bd20bbd39c30a32",
+    "data/analysis/live-agent-6553250/d137a-task-sequence-best-stop-gate-q6-selection-b.json": "2a367aeda25784a524c60d58e963dee381f498e009d7bc150bd20bbd39c30a32",
+    "data/analysis/live-agent-6553250/d137a-task-sequence-best-stop-gate-q6-result.json": "f1ab9dedd726e025082a4edc048cbb4f70938697bc594467b44032a8f7deb5dc"
+  }
+}

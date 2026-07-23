@@ -1,0 +1,97 @@
+{
+ "schema": 1,
+ "scope": "consumed-map provenance diagnostic; not candidate outcome qualification",
+ "seed_range": [
+  0,
+  29
+ ],
+ "scenarios_per_profile": 60,
+ "profiles": {
+  "lean_m2c2h0k2": {
+   "scenarios": 60,
+   "mean_score": 390.18333333333334,
+   "mean_opponent_score": 374.9166666666667,
+   "mean_margin": 15.266666666666667,
+   "mean_inventory_wood": 94.91666666666667,
+   "mean_opponent_inventory_wood": 92.88333333333334,
+   "mean_successful_plants": 50.78333333333333,
+   "mean_opponent_successful_plants": 46.45,
+   "total_chop_wood": 11355,
+   "assigned_chop_wood": 11341,
+   "assignment_rate": 0.9987670629678556,
+   "ambiguous_births": 7,
+   "wood_by_collector_and_origin": {
+    "ours": {
+     "natural": 379,
+     "ours": 5208,
+     "opponent": 131,
+     "unknown": 5
+    },
+    "opponent": {
+     "natural": 767,
+     "ours": 153,
+     "opponent": 4703,
+     "unknown": 9
+    }
+   }
+  },
+  "resident": {
+   "scenarios": 60,
+   "mean_score": 202.5,
+   "mean_opponent_score": 139.3,
+   "mean_margin": 63.2,
+   "mean_inventory_wood": 48.46666666666667,
+   "mean_opponent_inventory_wood": 32.916666666666664,
+   "mean_successful_plants": 11.7,
+   "mean_opponent_successful_plants": 17,
+   "total_chop_wood": 4944,
+   "assigned_chop_wood": 4944,
+   "assignment_rate": 1.0,
+   "ambiguous_births": 0,
+   "wood_by_collector_and_origin": {
+    "ours": {
+     "natural": 1705,
+     "ours": 708,
+     "opponent": 498,
+     "unknown": 0
+    },
+    "opponent": {
+     "natural": 666,
+     "ours": 113,
+     "opponent": 1254,
+     "unknown": 0
+    }
+   }
+  }
+ },
+ "farm_minus_resident": {
+  "mean_margin": -47.93333333333334,
+  "mean_score": 187.68333333333334,
+  "mean_opponent_score": 235.61666666666667,
+  "mean_inventory_wood": 46.45,
+  "mean_opponent_inventory_wood": 59.966666666666676,
+  "opponent_chop_wood_increase_by_origin": {
+   "natural": 101,
+   "ours": 40,
+   "opponent": 3449,
+   "unknown": 9
+  },
+  "total_opponent_chop_wood_increase": 3599,
+  "our_crop_component_of_increase": 40,
+  "our_crop_share_of_increase": 0.011114198388441235,
+  "opponent_capture_share_of_farm_controller_crops": 0.028539451594851706,
+  "dominant_increase_origin": "opponent"
+ },
+ "integrity_gates": {
+  "complete_common_grid": true,
+  "completed_games": true,
+  "minimum_provenance_assignment": true,
+  "no_ambiguous_births": false
+ },
+ "direct_capture_checks": {
+  "farm_induced_opponent_wood_from_our_crops": false,
+  "opponent_capture_share_of_our_farm": false
+ },
+ "direct_supply_capture": false,
+ "decision": "close private placement as primary cause; design opponent-relative throttling/liquidation"
+}

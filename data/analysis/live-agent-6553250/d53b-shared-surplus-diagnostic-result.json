@@ -1,0 +1,70 @@
+{
+  "binding_worker_three_four": {
+    "budget_failures": 168,
+    "failed_currency_picks": 336,
+    "failures_with_multiple_currency_picks": 168,
+    "failures_with_oversubscribed_resource": 168
+  },
+  "by_target": {
+    "2": {
+      "attempts": 1524,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 468,
+      "fail_with_multiple_currency_picks": 0,
+      "fail_with_oversubscribed_resource": 0,
+      "failed_currency_picks": 0,
+      "successes": 1056
+    },
+    "3": {
+      "attempts": 482,
+      "fail_both": 0,
+      "fail_budget_only": 168,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "fail_with_multiple_currency_picks": 168,
+      "fail_with_oversubscribed_resource": 168,
+      "failed_currency_picks": 336,
+      "successes": 314
+    },
+    "4": {
+      "attempts": 9,
+      "fail_both": 0,
+      "fail_budget_only": 0,
+      "fail_other": 0,
+      "fail_shack_only": 0,
+      "fail_with_multiple_currency_picks": 0,
+      "fail_with_oversubscribed_resource": 0,
+      "failed_currency_picks": 0,
+      "successes": 9
+    }
+  },
+  "decision": "authorize D54 shared per-turn PICK-surplus ledger as the sole treatment",
+  "gates": {
+    "all_attempt_partitions_exact": true,
+    "all_preexisting_fields_match_d53a": true,
+    "binding_budget_failures_are_present": true,
+    "every_binding_budget_failure_has_multiple_currency_picks": true,
+    "every_binding_budget_failure_oversubscribes_a_resource": true
+  },
+  "inputs": {
+    "analyzer_sha256": "9f68e1f4d471e315df934a7017a9d49fd367eac4df6045828924f1623f3c069f",
+    "d53a_sha256": "d378288dd24b992a027583ae6270fbff358311f34b8da666a5241880347c021b",
+    "diagnostic_sha256": "eb5687491018a77f982487ebbc990c33f581bfe1eabd47e7251abd01495b1829",
+    "maps_sha256": "d7e4419fad0594673c795e01b6db9b758d646b9b865f612910513f47ddc18ff0",
+    "observed_sha256": "c94e3a188913b45c853242bb6a83e5d07f5726dea6c866a1cb1130450d5ae9bc",
+    "runner_sha256": "6f5cda853088b756a02e1c6c17ec5029e6a217e845512b219d10a5f70c0b1df0",
+    "strategy_sha256": "cf5cdb1df23033f88f465a8213d47b4291137c916d539f8861ba040f4363062a"
+  },
+  "integrity": {
+    "attempt_partition_failures": 0,
+    "common_field_mismatches": 0,
+    "exact_160_by_8_grid": true
+  },
+  "pass": true,
+  "protocol": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/d53b-shared-surplus-oversubscription-diagnostic-protocol-2026-07-21.md",
+  "protocol_sha256": "50ed0f24c79698188059aea5c734c6d5f6fa0cf6f486080fae0b18d326737e90",
+  "schema": 1,
+  "scope": "shared-surplus transaction telemetry only on consumed maps; score, support, distance, cohort, opponent, candidate-value, and platform fields ignored"
+}

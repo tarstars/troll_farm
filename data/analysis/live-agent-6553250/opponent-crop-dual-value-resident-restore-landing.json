@@ -1,0 +1,174 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-19T00:08:31.661896+00:00",
+ "result_audit_completed_at": "2026-07-19T00:08:36.716000+00:00",
+ "role": "resident-restore-landing",
+ "agent_id": 6560353,
+ "submission_id": 41012883,
+ "arena": {
+  "agent_id": 6560353,
+  "rank": 98,
+  "total": 107,
+  "score": 16.42,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6560353,
+  "rank": 98,
+  "score": 16.42,
+  "division_index": 5
+ },
+ "battle_rows_listed": 13,
+ "matching_rows": 13,
+ "matching_finished": 12,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 12,
+ "fetch_failures": [],
+ "summary": {
+  "games": 12,
+  "wins": 7,
+  "ties": 0,
+  "losses": 5,
+  "mean_margin": 14.166666666666666,
+  "catastrophic_losses": 2,
+  "catastrophic_rate": 0.16666666666666666,
+  "negative_margin_mass": 546.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 896293827,
+   "opponent": "Shun_PI",
+   "opponent_agent_id": 6481094,
+   "our_score": 112.0,
+   "opponent_score": 44.0,
+   "margin": 68.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293826,
+   "opponent": "anuragm",
+   "opponent_agent_id": 6488432,
+   "our_score": 220.0,
+   "opponent_score": 274.0,
+   "margin": -54.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293823,
+   "opponent": "sZoom",
+   "opponent_agent_id": 6493247,
+   "our_score": 281.0,
+   "opponent_score": 26.0,
+   "margin": 255.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293822,
+   "opponent": "FRHT",
+   "opponent_agent_id": 6535596,
+   "our_score": 230.0,
+   "opponent_score": 282.0,
+   "margin": -52.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293821,
+   "opponent": "boumagik",
+   "opponent_agent_id": 6489550,
+   "our_score": 288.0,
+   "opponent_score": 186.0,
+   "margin": 102.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293820,
+   "opponent": "hello_me_world",
+   "opponent_agent_id": 6482161,
+   "our_score": 188.0,
+   "opponent_score": -2.0,
+   "margin": 190.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293819,
+   "opponent": "Sequo",
+   "opponent_agent_id": 6481144,
+   "our_score": 152.0,
+   "opponent_score": 146.0,
+   "margin": 6.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293818,
+   "opponent": "daaskare",
+   "opponent_agent_id": 6491404,
+   "our_score": 120.0,
+   "opponent_score": 50.0,
+   "margin": 70.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293817,
+   "opponent": "FreZzz",
+   "opponent_agent_id": 6557848,
+   "our_score": 140.0,
+   "opponent_score": 115.0,
+   "margin": 25.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293816,
+   "opponent": "mikmak",
+   "opponent_agent_id": 6481225,
+   "our_score": 185.0,
+   "opponent_score": 252.0,
+   "margin": -67.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293815,
+   "opponent": "MSz",
+   "opponent_agent_id": 6479460,
+   "our_score": 148.0,
+   "opponent_score": 377.0,
+   "margin": -229.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 896293814,
+   "opponent": "putibuzu",
+   "opponent_agent_id": 6479779,
+   "our_score": 196.0,
+   "opponent_score": 340.0,
+   "margin": -144.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

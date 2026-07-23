@@ -1,0 +1,314 @@
+{
+  "artifacts": {
+    "arms": {
+      "bytes": 62813775,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-arms-9844128-9844135.tsv",
+      "rows": 11046,
+      "sha256": "801fd3533ee6a4541c848f54313d728d21f0885a0b59680ca02ecab4bb601838"
+    },
+    "baselines": {
+      "bytes": 27679,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-exact-baselines-9844128-9844135.tsv",
+      "rows": 128,
+      "sha256": "928eaba05d568727e8e6de3e32e91e035a79e278cca04a3c9c5d2f8205886f73"
+    },
+    "mc-a": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-a-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    },
+    "mc-b": {
+      "bytes": 2693128,
+      "path": "/home/tarstars/prj/troll_farm/data/analysis/live-agent-6553250/yt/d144a-two-intervention-mc-pilot/d144a-mc-b-9844128-9844135.tsv",
+      "rows": 16384,
+      "sha256": "cbeb74ff83a1b9f29d79ad9d58c495d84ea33537665ab076943a95c31e679ba3"
+    }
+  },
+  "decision": "repair_d144_infrastructure_or_mechanics_only",
+  "exact_one_use_teacher": {
+    "backward_dp": {
+      "act_now_root_rate": 0.502283105022831,
+      "act_now_roots": 330,
+      "arms": 11046,
+      "best_now_mean": 23.901065449010655,
+      "negative_arm_advantage_rate": 0.8515299655984067,
+      "negative_arm_advantages": 9406,
+      "positive_arm_advantage_rate": 0.12909650552236104,
+      "positive_arm_advantages": 1426,
+      "roots": 657,
+      "target_maximum": 165,
+      "target_mean": -23.95482527611805,
+      "target_minimum": -251,
+      "target_standard_deviation": 28.156282603147673,
+      "wait_roots": 327,
+      "zero_arm_advantages": 214
+    },
+    "oracle": {
+      "control_worker_three_rate": 0.875,
+      "crop_rate": 1.0,
+      "family_mean_margin_gain": {
+        "compact_gold": 51.6875,
+        "gold_adaptive": 60.25,
+        "legend_balanced": 41.875,
+        "mybot": 38.375,
+        "norx_native_three": 38.6875,
+        "resident": 16.75,
+        "script_boss": 29.5,
+        "silver_boss": 30.375
+      },
+      "first_boundary_oracle_mean_gain": 32.265625,
+      "intervention_rate": 0.90625,
+      "later_boundary_increment": 6.171875,
+      "mean_margin_gain": 38.4375,
+      "mean_opponent_score_delta": -12.4140625,
+      "mean_own_score_gain": 26.0234375,
+      "mean_selected_boundary": 1.293103448275862,
+      "positive_families": 8,
+      "selected_kind_counts": {
+        "0": 12,
+        "1": 27,
+        "2": 7,
+        "3": 82
+      },
+      "strict_improvement_rate": 0.90625,
+      "supported_tasks": 118,
+      "tasks": 128,
+      "worker_three_rate": 0.875,
+      "worst_family": 16.75
+    },
+    "safety_gates": {
+      "oracle_crop_100pct": true,
+      "oracle_worker_three_within_5pp": true
+    },
+    "safety_pass": true,
+    "signal_gates": {
+      "act_now_roots_5_to_90pct": true,
+      "at_least_seven_positive_families": true,
+      "negative_arm_targets_at_least_40pct": true,
+      "oracle_mean_at_least_20": true,
+      "oracle_strict_at_least_75pct": true,
+      "own_nonnegative_or_opponent_nonpositive": true,
+      "positive_arm_targets_1_to_50pct": true,
+      "target_stddev_at_least_5": true,
+      "worst_family_at_least_8": true
+    },
+    "signal_pass": true
+  },
+  "full_pass": false,
+  "incremental_oracle": {
+    "not_interpreted": "D144 infrastructure/mechanics failure",
+    "safety_pass": false,
+    "signal_pass": false
+  },
+  "infrastructure": {
+    "exact_arms_per_second": {
+      "exact-00": 25.081316163285152,
+      "exact-01": 18.38105652944596
+    },
+    "gates": {
+      "all_jobs_used_16_threads": true,
+      "exact_jobs_at_least_12_arms_per_second": true,
+      "exact_jobs_at_most_900_active_seconds": true,
+      "exact_prescribed_shards": true,
+      "exactly_four_mapper_metadata_rows": true,
+      "mc_jobs_at_least_5_episodes_per_second": true,
+      "mc_jobs_at_most_2700_active_seconds": true,
+      "operation_completed": true
+    },
+    "mc_episodes_per_second": {
+      "mc-a": 10.612238023431559,
+      "mc-b": 10.267240408427599
+    },
+    "metadata": [
+      {
+        "elapsed_seconds": 224.8287116708234,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 5640,
+          "baselines": 65
+        },
+        "maps": 4,
+        "runner_stderr": "saved 64 D112 baselines and 5639 exact arms in 224.823s total / 224.313s collection (25.082 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-00",
+        "start_seed": 9844128,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 294.1615456836298,
+        "kind": "exact",
+        "line_counts": {
+          "arms": 5408,
+          "baselines": 65
+        },
+        "maps": 4,
+        "runner_stderr": "saved 64 D112 baselines and 5407 exact arms in 294.147s total / 293.605s collection (18.382 arms/s end-to-end)",
+        "runner_stdout": "",
+        "shard_id": "exact-01",
+        "start_seed": 9844132,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 1543.877923188731,
+        "kind": "mc",
+        "line_counts": {
+          "mc": 16385
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'path': 'episodes.tsv', 'bytes': 2709513, 'sha256': 'e8af304a9b1be8522c7938741b339ed8d7ca15eca2b7f408242d93a73b9717e7', 'start_seed': 9844128, 'maps': 8, 'pool_tasks': 128, 'replicas': 128, 'single_replicas': 16, 'episodes': 16384, 'steps': 677, 'elapsed_seconds': 1543.5393165992573, 'episodes_per_second': 10.614566032627797, 'zero_intervention': 2769, 'one_intervention': 4758, 'two_interventions': 8857}",
+        "shard_id": "mc-a",
+        "start_seed": 9844128,
+        "threads": 16
+      },
+      {
+        "elapsed_seconds": 1595.7549787722528,
+        "kind": "mc",
+        "line_counts": {
+          "mc": 16385
+        },
+        "maps": 8,
+        "runner_stderr": "",
+        "runner_stdout": "{'path': 'episodes.tsv', 'bytes': 2709513, 'sha256': 'e8af304a9b1be8522c7938741b339ed8d7ca15eca2b7f408242d93a73b9717e7', 'start_seed': 9844128, 'maps': 8, 'pool_tasks': 128, 'replicas': 128, 'single_replicas': 16, 'episodes': 16384, 'steps': 677, 'elapsed_seconds': 1595.3810715023428, 'episodes_per_second': 10.26964672745645, 'zero_intervention': 2769, 'one_intervention': 4758, 'two_interventions': 8857}",
+        "shard_id": "mc-b",
+        "start_seed": 9844128,
+        "threads": 16
+      }
+    ],
+    "pass": true
+  },
+  "lock": {
+    "manifest_sha256": "48966d54bbd3c1ef3cbac40450091c2c7c2bf4ad4c64dbec7bf20eb8a4fd21a6",
+    "mismatches": {},
+    "pass": true
+  },
+  "mechanics": {
+    "exact_one_use": {
+      "details": {
+        "arms": 11046,
+        "baselines": 128,
+        "error_samples": {
+          "accounting": [],
+          "feature": [],
+          "paired": [],
+          "root": []
+        },
+        "expert_bank_hashes": [
+          "10190021983138339114"
+        ],
+        "maximum_boundaries_per_task": 17,
+        "maximum_paired_gain_error": 6.000000007944095e-08,
+        "maximum_proposals_per_root": 28,
+        "maximum_reward_identity_error": 2.3000000037853852e-07,
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "minimum_boundaries_per_task": 0,
+        "minimum_proposals_per_root": 5,
+        "roots": 657,
+        "supported_tasks": 118,
+        "task_support_rate": 0.921875,
+        "tasks": 128,
+        "throughput_arms_per_second": {
+          "a": 21.283636529723807,
+          "b": 21.283636529723807
+        },
+        "unsupported_forced_control_tasks": 10
+      },
+      "gates": {
+        "at_least_6000_arms": true,
+        "at_least_600_roots": true,
+        "both_runs_at_least_12_arms_per_second": true,
+        "complete_unique_arm_grid": true,
+        "d112_full_panel_reproducibility_inherited": true,
+        "feature_schema_and_finiteness": true,
+        "frozen_inputs_exact": true,
+        "nonzero_control_relative_actions": true,
+        "paired_gain_exact": true,
+        "prescribed_baseline_grid": true,
+        "reward_identity_below_1e_4": true,
+        "single_expert_bank_hash": true,
+        "single_intervention_accounting": true,
+        "supported_tasks_at_least_90pct": true,
+        "zero_boundary_is_valid_forced_control": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": true
+    },
+    "gates": {
+      "exact_one_use_mechanics_pass": true,
+      "exactly_128_baselines": true,
+      "mc_a_b_byte_exact": true,
+      "mc_mechanics_pass": false
+    },
+    "mc": {
+      "details": {
+        "double_episodes": 14208,
+        "episodes": 16384,
+        "error_samples": {
+          "control": [],
+          "semantic": [],
+          "single": []
+        },
+        "intervention_counts": {
+          "0": 2769,
+          "1": 4758,
+          "2": 8857
+        },
+        "mechanical_failures": {
+          "deposit_prediction_failures": 0,
+          "invalid_direct_commands": 0,
+          "provenance_failures": 0
+        },
+        "mode_counts": {
+          "control": 128,
+          "double": 14208,
+          "single": 2048
+        },
+        "selected_single_episodes": 1721,
+        "task_two_intervention_coverage": 0.921875,
+        "tasks_with_two_interventions": 118,
+        "two_intervention_episodes": 8857,
+        "two_intervention_rate_within_double": 0.6233811936936937
+      },
+      "gates": {
+        "at_least_40pct_double_episodes_reach_two_interventions": true,
+        "at_least_95pct_tasks_have_sampled_two_interventions": false,
+        "complete_unique_episode_grid": true,
+        "control_exactly_matches_dense_baseline": true,
+        "exact_mc_schema": true,
+        "exact_mode_counts": true,
+        "exact_per_task_mode_counts": true,
+        "schedule_mapping_hash_and_caps_exact": true,
+        "selected_single_episodes_match_dense_arms": true,
+        "zero_mechanical_failures": true
+      },
+      "pass": false
+    },
+    "pass": false
+  },
+  "operation": {
+    "operation_id": "d29f4ba8-8e972d8c-42e03e8-c28f4f16",
+    "paths": {
+      "build": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722",
+      "records": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/records",
+      "specs": "//home/delivery_ml/research/tarstars/troll_farm/dataset_builds/d144a_two_intervention_mc_9844128_9844135_repair1_20260722/specs"
+    },
+    "state": "completed",
+    "table_rows": 43952
+  },
+  "panel": {
+    "double_replicas": 111,
+    "maps": 8,
+    "mc_episodes_per_repeat": 16384,
+    "replicas": 128,
+    "single_replicas": 16,
+    "start_seed": 9844128,
+    "tasks": 128
+  },
+  "protocol": "data/analysis/live-agent-6553250/d144a-two-intervention-mc-pilot-protocol-2026-07-22.md",
+  "schema": "troll-farm-d144a-two-intervention-mc-pilot-v1"
+}

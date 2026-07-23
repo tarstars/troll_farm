@@ -1,0 +1,102 @@
+{
+ "schema": 1,
+ "scope": "conditional exact-coordinate choice for non-repeated, non-singleton Escdemon tree MOVE objectives; state/candidate features only; five-fold held-game averaged ranking perceptron; excludes objective timing, open-cell detours, TRAIN, and causal value",
+ "games": 26,
+ "events": 633,
+ "events_by_ordinal": {
+  "0": 232,
+  "1": 401
+ },
+ "candidate_count": {
+  "mean": 6.545023696682464,
+  "median": 5,
+  "maximum": 19
+ },
+ "baselines": {
+  "nearest_unit": {
+   "events": 633,
+   "exact": 267,
+   "accuracy": 0.4218009478672986
+  },
+  "minimum_cycle": {
+   "events": 633,
+   "exact": 291,
+   "accuracy": 0.4597156398104265
+  }
+ },
+ "ranker": {
+  "algorithm": "20-epoch deterministic averaged ranking perceptron",
+  "events": 633,
+  "exact": 355,
+  "accuracy": 0.5608214849921012,
+  "folds": [
+   {
+    "events": 63,
+    "exact": 37,
+    "accuracy": 0.5873015873015873,
+    "fold": 0,
+    "train_games": 23,
+    "held_games": 3
+   },
+   {
+    "events": 186,
+    "exact": 101,
+    "accuracy": 0.543010752688172,
+    "fold": 1,
+    "train_games": 17,
+    "held_games": 9
+   },
+   {
+    "events": 81,
+    "exact": 41,
+    "accuracy": 0.5061728395061729,
+    "fold": 2,
+    "train_games": 24,
+    "held_games": 2
+   },
+   {
+    "events": 207,
+    "exact": 117,
+    "accuracy": 0.5652173913043478,
+    "fold": 3,
+    "train_games": 18,
+    "held_games": 8
+   },
+   {
+    "events": 96,
+    "exact": 59,
+    "accuracy": 0.6145833333333334,
+    "fold": 4,
+    "train_games": 22,
+    "held_games": 4
+   }
+  ],
+  "worst_fold_accuracy": 0.5061728395061729,
+  "by_ordinal": {
+   "0": {
+    "events": 232,
+    "exact": 112,
+    "accuracy": 0.4827586206896552
+   },
+   "1": {
+    "events": 401,
+    "exact": 243,
+    "accuracy": 0.6059850374064838
+   }
+  },
+  "gain_over_minimum_cycle": 0.10110584518167465
+ },
+ "conditional_tree_gate": {
+  "requirements": [
+   "held-game exact tree-coordinate accuracy at least 0.55",
+   "gain over minimum-cycle baseline at least 0.08",
+   "every held-game fold accuracy at least 0.50"
+  ],
+  "passed": true
+ },
+ "decision": {
+  "implement_research_tree_ranker": true,
+  "build_complete_candidate": false,
+  "next": "Integrate the frozen tree ranker only into an offline teacher-forced policy skeleton. The complete candidate remains blocked by opening-spec generalization and MOVE_OTHER collision/waypoint recovery."
+ }
+}
