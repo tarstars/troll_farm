@@ -18,6 +18,9 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Front-loaded four-worker scale is rejected as the universal rich mechanism: most rich
   confirmation games end at three workers, funded by ongoing productive cycles, not an
   all-worker funding detour. [vol 1 "Knowledge retained"]
+- Farm-first orchard scale loses −97.57 score / −27.46 wood vs the promoted stack, and
+  explicit later funding for the adaptive option loses −56.78 — created supply was private,
+  so the failure is funding plus displaced work, not opponent capture. [Phase 2]
 - Behavior initializers for the complete macro environment are closed: scalar rate/provenance
   (D37) never reaches worker-3 and spends one-capacity harvests on RENEW; deficit-only (D38)
   trains only on the six positive-deficit maps and loses 26.215 to random; shack evacuation
@@ -63,6 +66,50 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   75.32% of exact official roots, improving all eight families; the remaining action-space
   gap is competitive target provenance and repeated job-boundary allocation, not another flat
   team class or isolated worker-3 command. [D35d era]
+- Static opening/map features cannot select workforce policy (0.830 discovery AUC → 0.479
+  validation); turn-100 economy state predicts WHO scales (0.970 AUC) but behavior is not
+  value: the scale/suppress hindsight oracle gains only +1.904 (10/114 tasks) — top-policy
+  no-scale is not a causal instruction to cancel D40's coupled funding plan. [D63/D64]
+- Late deposited-seed source rescue is closed end-to-end: single planted roots die before
+  paying back (D65i), a two-fruit lease fails on all six roots (D66), no viable cell exists
+  in the 88-cell domain (D67), and a bill-level portfolio recovers only 2/4 because reusable
+  hostile pressure taxes sequential source generations — snapshot redundancy is not capital
+  protection. [D64i–D68]
+- Later scalers universally follow establish → renewable receipt → reinvest → worker-3
+  (100%/100%/93.75% in discovery), but no minimal fixed opening transaction reproduces it
+  (best 45–60% first-generation receipt; species spread) — fixed one-source opening prefixes
+  are closed. [D69/D70]
+- The banana seed-factory (yaichi architecture) reproduces production decisively (+162.3 own
+  score, +79.4 margin, catastrophes 26→11) but fails safety: opponent score +82.9, of which
+  +76.5 is extra opponent-created crop output — private production relaxes rival-loop
+  pressure. Lineage-boundary ablation changes only 19/256 tasks; yaichi's ATTACK is an
+  exhaustion-time bank blockade, mostly inert; first-boundary factory selectors fail map
+  transfer (selection on 5/16 maps). [D88–D91]
+- D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
+  PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
+  existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns
+  in funding). Strong multi-worker play needs a concurrent opening economy, not a late
+  graft. [D93/D94]
+- Rank-one scalers share coordinated multi-worker bill funding, immediate TRAIN at
+  affordability, hybrid early labor, and wood-heavy later labor — but no universal
+  hand-written pair grammar exists; deterministic scaler distillation is closed. [D95]
+- ★ The resident's real architectural gap is production persistence during and after scaling,
+  not suppression: top-3 agents reap their own crops in 93.3% of games (resident 10.3%),
+  reap 24.16% of created crops (resident 0.94%), and take 78% of suppression chops at
+  workforce ≥3; resident suppression coverage/latency is already competitive. [D101]
+- Wholesale D40 transfer loses −48.396 paired (70.7% of tasks regress); its +65.943
+  opponent-score excess splits 14%/39%/47% across pre-scale/post-scale/terminal-tail — extra
+  field economy mostly feeds the rival unless coupled to duration control. [D102/D103]
+- Pooled top-5 state-objective imitation fails (59.9% held-game accuracy); Escdemon's compact
+  policy passes observationally but its eventual spec is not out-of-sample selectable (8/26
+  vs the resident planner's 14/26) and collapses after autoregressive integration (52.1%
+  MOVE accuracy). Norxondor's four-stage ladder reproduces all 8,738 trigger decisions and
+  62/62 specs, yet the observable-signature prefix switch fails prospectively (−6.169).
+  [Phases 9–10]
+- Curriculum economics: preserve the renewable planter loop until one crop exists, then fund
+  worker-3 — secure renewable supply before scaling. The recurring serial-scheduler defect is
+  the starter abandoning planting to fund worker-3, then competing with the new worker for a
+  remaining seed. [curriculum D5–D9]
 
 ## (b) Imitation & offline value learning
 
@@ -71,6 +118,9 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Fitted conditional value does not transfer across map folds: best held +1.82 vs +14–17
   train, 44% harmful, negative fold; confidence contains no rescue (top decile predicts
   +18.07, realizes −1.51). [D153a/b]
+- Behavior cloning of D40 fails as a function class: 84.4–85.0% held accuracy vs the 99%
+  floor while a parameter-free decoder reproduces all 85,047 decisions exactly — small MLPs
+  cannot approximate conditional integer filters and lexicographic tuple ordering. [D41a]
 - Generic turn-3/5/10 trajectory-value distillation fails the held-opponent-family precision
   gate (turn-10: 91.43% blocked-seed → 73.08% family precision). [Phases 12–14]
 - Map-only worker-three selection stayed non-transferable after a 3.75× discovery expansion:
@@ -87,6 +137,22 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   probability mass but changes 0/512 deterministic probe decisions. Retain the exact
   679-transition/s environment; require current-field replay evidence before choosing a
   different learning representation. [D62]
+- The one-use q6 supervised program is closed after D110–D143: ridge (best +0.336), per-arm
+  binary classification, fixed-WAIT joint softmax, factorized/soft-value/long-fit rankers,
+  absolute-value anchoring (regret 16.7→21), independent safety heads (arm-level false
+  positives compound across proposals), cross-sign pairwise loss, dual gates, and
+  first-positive labels all fail held gates; the best-ever point is D142b at +3.057 / 39.65%
+  strict vs the 40% floor. 82/98 negative interventions are ranking errors (chosen arms −248
+  vs +643 for exact best at the same roots); relative ranking and absolute safety must not
+  share one scalar. [D110–D143; D127–D129]
+- Fit statistics do not predict transfer: lower fit regret correlates with WORSE development
+  mean (r=+0.890); held mean is uncorrelated with veto-panel mean (r=0.004). Out-of-fit
+  independent-block selection (eight 16-map blocks, leave-one-block-out) is the only selector
+  that honestly removed optimism. [D131/D134/D136/D140]
+- Pure teacher-initialized PPO collapses deterministically (18.2% vs the clone's 94.3%;
+  argmax collapse while stochastic success stays 91.7%); a coefficient-0.10 teacher-auxiliary
+  anchor reproducibly rescues it (97.1% → 99.3%). Curriculum Levels 1–4 (requested
+  multi-resource plan execution, closed-loop) were accepted this way. [vol 1 current-iteration]
 - A hindsight shared-state teacher proves some maps/opponents support worker three, but all
   tested compact selectors fail held-opponent transfer; reopening requires a new opponent
   representation or a closed-loop objective, not more rows with the same features. [vol 1]
@@ -96,6 +162,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - D40/q6 is dead as a resident-competition substrate: full per-task terminal oracle only
   +3.42 vs resident, CI [−8.70, +15.54], catastrophes 22→43. All controllers must anchor on
   the exact resident or first prove same-panel dominance. [D161; D158]
+- Local evaluators must use referee terminal semantics: with persistent no-tree grace,
+  resource-stuck, and mercy rules, 58/60 exact-live self-play games end by stall at median
+  turn 129 — forced-300-turn evaluation reversed at least one verdict (fixed-300 pre-seed
+  "neutral" became +0.259 corrected). [Phase corrected-terminal-iteration]
+- Generated-map results are not field evidence: the synthetic generator's constant six water
+  cells vs official 12–104 put all 80 official roots outside model support (−78.05 shift,
+  −72.12 from scalars); more seeds, threshold tuning, or retraining on the same map/zoo
+  family is closed. Recorded-command continuation is also invalid (86.85% command match,
+  57/80 exact streams). `generate_official` (SHA1PRNG port, 120/120 untouched confirmation)
+  is the accepted official-map substrate. [D29c/D30/D31/D33]
 - Exact field maps do not rescue legacy local evaluation: actual score/margin range coverage
   is 2/5 and 1/5, and the old zoo funds worker-3 in 15/16 cells on maps where real opponents
   prevent it. The zoo is for parity/mechanism tests only, never promotion evidence. [vol 1]
@@ -125,6 +201,20 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - D40 is the sole validated complete-macro teacher of its family (+94.621 paired margin over
   D39, removes 97.02% of idle selections, all eight families improve); do not reopen D37–D39
   teacher tuning. [D40]
+- Measurement-protocol rules: task action hashes saturate after one decision — measure
+  controller authority by decisions/episode and explicit budgets (D80); crop safety must be
+  measured relative to control, not absolutely (D122: the two "failures" were D40's own);
+  percentage support gates are fragile (the empirical every-four-block pass rate was 9.53%) —
+  freeze absolute information floors instead (D133b); never lower or chase a freshly observed
+  threshold (D120). [D80/D120/D122/D133b]
+- The distributed YT path is validated byte-exact against local (one-map parity shard
+  SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
+  not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
+  CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- Deployment latency/size is solved by pattern, not luck: int8 plus persistent
+  workspaces/buffers reached 7.04 ms median inference (K2) and 17.60 ms warm p95 for the full
+  68,988-byte controller (V5) after four observation-parity iterations — exact
+  observation/mask parity on disjoint banks is the required bridge discipline. [K1–K2, V1–V5]
 
 ## (d) Denial & opponent-crop
 
@@ -159,6 +249,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   negative-margin mass, with opponent-crop wood explaining 63.6 of the 68.9-point opponent
   wood gap. The mechanism is real; the tested scorings of it are the closed items above.
   [vol 1 "Knowledge retained"]
+- Opponent attack imminence on own crops is observable (0.9307 validation AUC from spatial
+  features; six turns of history add only +0.0024), but the resident already issues CHOP at
+  all 221 lethal joint-chop opportunities; fixed one-turn defensive salvage gains +0.051 vs
+  the +0.25 floor (harvesting a dying one-fruit APPLE forfeits wood worth four) — closed.
+  [D78/D85]
+- Threatened-own-crop semantic responses: oracle +11.24, but no fixed arm is deployable (fell
+  averages −1.571 yet wins 180 roots; useful ranks span 1–92); the snapshot value model
+  captures 10.56% of oracle; truncated counterfactual MC peaks at +3.160 (horizon 32) vs
+  +5.620 required at 210 ms serial p95 — online threatened-response search is closed at this
+  representation. [D82–D84]
+- Factory dual-value composition fails both ways: the trained wood role reaches nominal
+  rival-crop targets too late to affect capitalization (opponent −0.188, margin −5.609), and
+  the starter can suppress only by abandoning more valuable production. [D92]
 
 ## (e) Renewal & farm grammars
 
@@ -182,6 +285,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Generic one-shot factorized farm bundles are closed before learning: +34.989 oracle margin
   but suppression only 8.712, opponents stay +96.525 above resident. Retain factorized
   persistent jobs as an interface only. [D35b]
+- Fresh-harvest regeneration commitment is closed: −51.161 active margin; it adds 3.866
+  plants per active task but exactly zero own-crop harvests — the resident's regeneration
+  grammar converts plants toward wood, not toward a renewable orchard. [D87]
+- Renewable mother/crop variants all lose wood (broad late loop −11.77; best selective
+  −1.27); only the timing-only pre-seed was neutral-then-positive after the terminal-semantics
+  correction (+0.259 over seeds 0..999) and became part of the promoted stack. [Phases 1–5]
+- Idle-harvest fallback and the global lemon/plum denial (focus) bonus are KEEP: every causal
+  activated idle-harvest comparison was positive (5/40 seeds, +6.2 activated mean);
+  focus-bonus-off failed promotion 0–6 / −150.7 and the capable-only isolation was −1.21 —
+  focus-weight edits are closed. Isolated training-constant tuning is closed (10 ideas; both
+  Stage-1 positives died at n=200). Early-bank wood detours are closed (only 10/429
+  uncollected wood units recoverable; conversion is workforce quality: trained workers 0.349
+  wood/chop vs starter 0.135). [Phases 1–5; archive/legend/session-handoff-2026-07-16.md]
 
 ## (f) Wrappers, residuals, online-search latency
 
@@ -208,6 +324,39 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   four bounded interventions add only +19.617 own / +10.633 margin with negative-margin mass
   30 above resident. Retain the validated job/provenance interface; no more overlay epochs or
   resident wrappers on this grammar. [D36]
+- Exact-prior residual PPO at temperature 4 cannot act: the largest learned rank-one
+  advantage is +0.332 vs the fixed +4 prior gap → 0/85,128 changed decisions. [D41c]
+- The one-deviation label family is closed end-to-end: global positives 46.37% vs 55%; the
+  branch-gap selector +4.116 vs the +5 floor; no scalar gap threshold qualifies (57.36% vs
+  60%); linear, tiny-ReLU, and context-complete 194-feature value filters all fail the
+  65%/27% precision pair. Supervised one-deviation sign selection is closed. [D41d–D42]
+- Sparse binary closed-loop PPO learns a uniform bias, not a contextual boundary (probe
+  probability SD 0.001164 vs 0.005 required); its actor score is uncorrelated with external
+  value (Spearman −0.0006) — score reuse and iterative binary counterfactual learning are
+  closed. [D43/D44]
+- Coarse four-mode control cannot express lifecycle strategy: one-batch deviations reach
+  38.54% strict vs 55%; all 16 two-batch sequences span only 3.455 margin points vs the 15
+  floor; CEM and full recurrent lineage search both converge to the balanced plateau
+  (0/17,230 and 0.989% non-balanced choices); worker factorization over the same four modes
+  adds +0.797 vs the +5 floor. [D74–D77, D96]
+- The unconstrained all-Rate spatial scorer is global trajectory replacement (all 32 random
+  policies change 64/64 task hashes; its +92 oracle is unusable) — closed. Blind
+  contested-crop promotion is ubiquitous (98.83% of tasks) and closed. [D79/D80]
+- ★ Validated positive interface: concrete, collision-safe two-worker JOINT assignments at
+  natural batch boundaries. D97's oracle gains +36.852 with joint assignment adding +9.208
+  beyond best-single (66.67% of roots). The 64-expert proposal union is a valuable online
+  action basis (86.45% of the joint oracle) even though any single expert is unstable
+  (D100b: policy rankings correlate 0.217 across maps, 0.103 across seats — static selection
+  closed). q6 quantization packs the bank in 9,180 bytes with headroom replicated on fresh
+  maps (+32.047; four-use +35.227). Offline two-intervention MC adds +4.148 incremental;
+  winning pairs are genuinely joint (second action +27.316 over the same first alone; only
+  19.30% start from the one-use oracle arm) — do NOT build greedy one-use-plus-residual;
+  early-immediate schedule pairs carry the value. [D97, D104–D107, D144–D146]
+- Recurrent masked q6 PPO: 16k transitions is undertrained; 4× duration still fails (−0.150
+  vs D40) with family patterns ROTATING across independent panels (r=−0.014) and
+  near-symmetric own/opponent score suppression. The open question is a family-robust
+  objective with own-score protection — not more duration. [D108/D109; reopened as the
+  skipped-D109 question by D157]
 
 ## (g) Arena measurement & platform behavior
 
@@ -216,6 +365,9 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]
 - Verdicts are deltas against a same-window control, never absolute levels or cross-hour
   comparisons. [archive/bronze-to-gold/arena-queue.md, measurement policy v2]
+- Field evidence comes from authorized passive replay collection with immutable snapshots,
+  request/source hashes, and physically sealed confirmation partitions; active platform
+  actions are separately sealed and individually authorized. [D61p]
 
 ## (h) Meta-lessons
 
