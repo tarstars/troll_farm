@@ -72,9 +72,29 @@ TITLE = r"""
 """
 
 
+def unwrap(md_lines):
+    """Join hard-wrapped continuation lines so inline spans never cross lines.
+
+    A line continues the previous one when the previous is non-blank and the
+    current line is indented plain text (not a header, bullet, table row, or
+    blank line)."""
+    logical = []
+    for raw in md_lines:
+        line = raw.rstrip("\n")
+        stripped = line.strip()
+        if (logical and stripped and not stripped.startswith(("#", "|", "- "))
+                and logical[-1].strip()
+                and not logical[-1].lstrip().startswith("|")):
+            logical[-1] = logical[-1] + " " + stripped
+        else:
+            logical.append(line)
+    return logical
+
+
 def esc(text: str) -> str:
     """Escape LaTeX specials, then apply inline bold/code markup."""
-    for ch, rep in [("&", r"\&"), ("%", r"\%"), ("#", r"\#"), ("$", r"\$"), ("_", r"\_")]:
+    for ch, rep in [("&", r"\&"), ("%", r"\%"), ("#", r"\#"), ("$", r"\$"),
+                    ("_", r"\_"), ("{", r"\{"), ("}", r"\}")]:
         text = text.replace(ch, rep)
     text = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", text)
     text = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"\\textit{\1}", text)
@@ -147,7 +167,7 @@ def main():
     out_pdf = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT
     with open(SRC, encoding="utf-8") as f:
         md = f.readlines()
-    body = convert(md)
+    body = convert(unwrap(md))
     tex = PREAMBLE + TITLE + body + "\n\\end{document}\n"
     with tempfile.TemporaryDirectory(prefix="atlas-") as tmp:
         tex_path = os.path.join(tmp, "atlas.tex")
