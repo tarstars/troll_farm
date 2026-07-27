@@ -291,6 +291,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Renewable mother/crop variants all lose wood (broad late loop −11.77; best selective
   −1.27); only the timing-only pre-seed was neutral-then-positive after the terminal-semantics
   correction (+0.259 over seeds 0..999) and became part of the promoted stack. [Phases 1–5]
+- Successor-job acquisition is regular and BANK_SEED is the only frozen-eligible class:
+  135/135 local natural PLANT returns and 71.4% of top-5 field returns (4/5 agents, both
+  seats) acquire via PICK-from-shack; FIELD_FRUIT and OPPONENT_DERIVED fail both frozen
+  gates (OPPONENT_DERIVED: 23.8% field, 0/135 local — closed as a distinct class). Top
+  agents pre-carry the seed through suppression in 22/49 field cycles; the resident does in
+  0/1,024. Any D168 successor option must be BANK_SEED-shaped, weigh a pre-carry variant,
+  and pass its own resident-fallback causal gates. [D167]
 - Idle-harvest fallback and the global lemon/plum denial (focus) bonus are KEEP: every causal
   activated idle-harvest comparison was positive (5/40 seeds, +6.2 activated mean);
   focus-bonus-off failed promotion 0–6 / −150.7 and the capable-only isolation was −1.21 —

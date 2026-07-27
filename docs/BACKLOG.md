@@ -32,18 +32,17 @@ crops, resident 0.94%; suppression already competitive).
 
 ## Tier 1 — declared next experiments (cheap, bounded, evidence-backed)
 
-- **B1.1 D167: successor-job acquisition-path recovery** *(1 session, local, consumed maps)*
-  Recover the seed-acquisition paths behind the 135 natural local PLANT returns and the
-  field PLANT returns from the immutable D164 snapshot; freeze observable semantic job
-  classes (KEEP / acquire-and-PLANT / own-crop HARVEST) only if broad and distinct from
-  D87/D89. **Kill rule:** heterogeneous paths → close hand-written controllers for good
-  and go to B2. [D166 decision; class (a)/(e) guards]
-- **B1.2 Trajectory-conditioned successor-job value, resident-backed short rollouts**
-  *(1–2 sessions; only if B1.1 freezes classes)* Offline, bounded-horizon (16–32 turn)
-  rollout value over exact resident KEEP at P→S transition states — value computed at
-  decision time, sidestepping the D153 fitted-value fold-transfer failure. **Kill rule:**
-  held-block value < +2 or family floor < −3 → record and stop; do not tune. [D166;
-  classes (b)/(f)]
+- **B1.1 ✅ DONE 2026-07-27 (D167a)** — acquisition paths ARE regular: **BANK_SEED
+  frozen-eligible** (135/135 local; 71.4% top-5 field, 4/5 agents, both seats; all frozen
+  gates passed, no tuning). OPPONENT_DERIVED closed as a class. Bonus discovery: top agents
+  pre-carry seeds through suppression (22/49 cycles) — the resident never does (0/1,024).
+- **B1.2 → D168: bounded BANK_SEED successor option, causal test** *(1–2 sessions)*
+  Exact resident KEEP + one bounded option: at the P→S transition (and a pre-carry
+  variant), route the returning worker through PICK-banked-seed → PLANT. Consumed maps,
+  paired, both seats. Gates: prefix/fallback parity; activation breadth (both seats, ≥6
+  families); mean value ≥ +2 with own-score protection; no negative worst family; tail
+  safety. **Kill rule:** fails → close hand-written successor controllers; the successor
+  motif survives only as an option inside B2.1's rollout-valued interface. [D167; vol 2]
 
 ## Tier 2 — the big bet: resident-native options + closed-loop learning
 

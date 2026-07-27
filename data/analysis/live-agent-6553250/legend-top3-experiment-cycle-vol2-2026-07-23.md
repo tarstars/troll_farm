@@ -40,6 +40,36 @@ top-ranked attack angle and feeds the B2.1 option-interface design (activation
 conditioning), not a retuned switch. Report:
 `scratchpad/b31-endgame-audit-report.md` (session scratch; numbers preserved here).
 
+## 2026-07-27: D167a successor-job acquisition-path recovery — BANK_SEED frozen-eligible
+
+D167a extends D166 byte-for-byte (new Rust runner reproduces D166's audit logic; D161/D166
+reference inputs reverified by hash) and classifies the acquisition path behind every
+successor PLANT return. Local: all 135/135 natural returns are **BANK_SEED** (PICK a
+deposited shack seed → walk → PLANT); 96/135 returning workers have harvest power 0, making
+BANK_SEED mechanically forced for 71% and chosen anyway by the rest. Field: top-5 PLANT
+returns split BANK_SEED 15/21 = 71.4% (4/5 agents — all but MSz — both seats),
+OPPONENT_DERIVED 5/21, FIELD_FRUIT 1/21; ranks 6–20 descriptively 25/28 BANK_SEED. Frozen
+gates: **BANK_SEED passes both** (field ≥60% + ≥4/5 agents + both seats; local ≥90/135);
+every other class fails both. OPPONENT_DERIVED is closed as a distinct successor class
+(23.8% field, 0/135 local). Verdict: **BANK_SEED is FROZEN-ELIGIBLE** — the hand-written
+successor branch stays alive; a D168 causal option test (exact resident KEEP, activation
+breadth, value, own-score protection, family/seat breadth, tail safety) is authorized to be
+*designed*, not assumed.
+
+Methodological discovery during integrity verification: 22/49 field cycles carry the
+eventually-planted seed *through* suppression (acquired before suppressing; e.g. gaha game
+896636060 harvests an opponent PLUM, chops, then plants it) versus **0/1,024** for the
+resident — the extractor was repaired to walk the full acquisition ledger (completeness
+fix; gates untouched). Top agents pre-stage seeds before suppressing; the resident never
+does. D168's design must weigh a pre-carry variant, and note the shack pool is fungible
+(BANK_SEED does not identify which teammate produced the seed).
+
+Determinism: all three products byte-identical 1-vs-20 workers (SHAs in the result doc).
+Rust 10/10, D164–D166 Python suite unaffected 10/10. Bulk rows on the external
+`artifacts/experiments/d167a-...` root per storage policy. No candidate, platform, YT-write,
+sealed-map, resident, or Arena action. Full record:
+`d167a-successor-acquisition-path-{protocol,lock,result}-2026-07-27.*`.
+
 Operational, same day: the data-footprint cleanup executed per
 `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md` with per-task review — 22
 clean worktrees removed (branches intact), `rust/target/debug` cleared + AGENTS.md cap

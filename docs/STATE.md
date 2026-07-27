@@ -39,11 +39,14 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
 
 ## 4. Open thread
 
-- **Next experiment — D167** (per D166 decision, 2026-07-23): recover the seed-acquisition
-  paths behind the 135 natural local PLANT returns and the field PLANT returns; then freeze
-  trajectory-conditioned semantic successor-job value over exact resident KEEP /
-  acquire-and-PLANT / current-own-crop HARVEST, evaluated with short resident-backed
-  rollouts. Do not force one verb, reopen D87/D89, or train on terminal outcomes.
+- **D167 DONE 2026-07-27: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field,
+  gates clean; OPPONENT_DERIVED closed; top agents pre-carry seeds through suppression
+  22/49 vs resident 0/1,024). **Next experiment — D168**: bounded BANK_SEED successor
+  option as a causal test — exact resident KEEP, arm at the P→S transition (weigh a
+  pre-carry variant), gates: prefix/fallback parity, activation breadth (both seats, ≥6
+  families), mean value + own-score protection, tail safety. Kill: value < +2 or negative
+  worst family → close hand-written successor controllers; branch moves to rollout-valued
+  semantic actions inside B2.1.
 - Queue after D167 (reorder only from written evidence):
   1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
      explicitly skipped D109 question (see vol 1, D157 audit).

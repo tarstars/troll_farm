@@ -1,0 +1,399 @@
+{
+  "decision": {
+    "arena_or_submission": false,
+    "construct_candidate": false,
+    "decision_sentence": "BANK_SEED is FROZEN-ELIGIBLE: it passes both the field gate (>=60% of top-5 PLANT returns, >=4/5 top agents, both seats) and the local gate (>=90/135 natural PLANT returns).",
+    "frozen_eligible_classes": [
+      "BANK_SEED"
+    ],
+    "reserved_maps_opened": false,
+    "verdict": "frozen_eligible_class=BANK_SEED",
+    "yt": false
+  },
+  "determinism": {
+    "field_byte_identical": true,
+    "field_jobs1_sha256": "d2be0f43e7b3e5d696be8e1dfa254dfafbbbbd32b4082d19102d2414027782b5",
+    "field_jobs1_wall_seconds": 20.131,
+    "field_jobs20_sha256": "d2be0f43e7b3e5d696be8e1dfa254dfafbbbbd32b4082d19102d2414027782b5",
+    "field_jobs20_wall_seconds": 2.964,
+    "local_events_byte_identical": true,
+    "local_events_jobs1_sha256": "03ebd3e410696a4650bc0f390912e64c84e5bd14473f86711e473ff2ee780994",
+    "local_events_jobs20_sha256": "03ebd3e410696a4650bc0f390912e64c84e5bd14473f86711e473ff2ee780994",
+    "local_jobs1_wall_seconds": 105.697,
+    "local_jobs20_wall_seconds": 11.679,
+    "local_summary_byte_identical": true,
+    "local_summary_jobs1_sha256": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c",
+    "local_summary_jobs20_sha256": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c"
+  },
+  "field": {
+    "acquisition_predates_suppression_count": 22,
+    "acquisition_predates_suppression_rate": 0.4489795918367347,
+    "gate": {
+      "BANK_SEED": {
+        "gates": {
+          "at_least_4_of_5_top5_agents": true,
+          "both_seats": true,
+          "top5_rate_at_least_60pct": true
+        },
+        "pass": true,
+        "stats": {
+          "agent_count": 4,
+          "agents": [
+            "delineate",
+            "gaha",
+            "norxondor_gorgonax",
+            "viewlagoon"
+          ],
+          "count": 15,
+          "rate": 0.7142857142857143,
+          "seats": [
+            0,
+            1
+          ]
+        }
+      },
+      "FIELD_FRUIT": {
+        "gates": {
+          "at_least_4_of_5_top5_agents": false,
+          "both_seats": false,
+          "top5_rate_at_least_60pct": false
+        },
+        "pass": false,
+        "stats": {
+          "agent_count": 1,
+          "agents": [
+            "MSz"
+          ],
+          "count": 1,
+          "rate": 0.047619047619047616,
+          "seats": [
+            0
+          ]
+        }
+      },
+      "OPPONENT_DERIVED": {
+        "gates": {
+          "at_least_4_of_5_top5_agents": false,
+          "both_seats": true,
+          "top5_rate_at_least_60pct": false
+        },
+        "pass": false,
+        "stats": {
+          "agent_count": 3,
+          "agents": [
+            "gaha",
+            "norxondor_gorgonax",
+            "viewlagoon"
+          ],
+          "count": 5,
+          "rate": 0.23809523809523808,
+          "seats": [
+            0,
+            1
+          ]
+        }
+      },
+      "OTHER_MIXED": {
+        "gates": {
+          "at_least_4_of_5_top5_agents": false,
+          "both_seats": false,
+          "top5_rate_at_least_60pct": false
+        },
+        "pass": false,
+        "stats": {
+          "agent_count": 0,
+          "agents": [],
+          "count": 0,
+          "rate": 0.0,
+          "seats": []
+        }
+      }
+    },
+    "rank_6_20": {
+      "counts": {
+        "BANK_SEED": 25,
+        "FIELD_FRUIT": 2,
+        "OPPONENT_DERIVED": 1
+      },
+      "per_class": {
+        "BANK_SEED": {
+          "agent_count": 9,
+          "agents": [
+            "Astrobytes",
+            "Bondo416",
+            "Bubaptik",
+            "Escdemon",
+            "Risen",
+            "putibuzu",
+            "therealbeef",
+            "tsukammo",
+            "yamo"
+          ],
+          "count": 25,
+          "rate": 0.8928571428571429,
+          "seats": [
+            0,
+            1
+          ]
+        },
+        "FIELD_FRUIT": {
+          "agent_count": 2,
+          "agents": [
+            "Astrobytes",
+            "Bondo416"
+          ],
+          "count": 2,
+          "rate": 0.07142857142857142,
+          "seats": [
+            0
+          ]
+        },
+        "OPPONENT_DERIVED": {
+          "agent_count": 1,
+          "agents": [
+            "putibuzu"
+          ],
+          "count": 1,
+          "rate": 0.03571428571428571,
+          "seats": [
+            0
+          ]
+        },
+        "OTHER_MIXED": {
+          "agent_count": 0,
+          "agents": [],
+          "count": 0,
+          "rate": 0.0,
+          "seats": []
+        }
+      },
+      "population": 28
+    },
+    "top5": {
+      "counts": {
+        "BANK_SEED": 15,
+        "FIELD_FRUIT": 1,
+        "OPPONENT_DERIVED": 5
+      },
+      "per_class": {
+        "BANK_SEED": {
+          "agent_count": 4,
+          "agents": [
+            "delineate",
+            "gaha",
+            "norxondor_gorgonax",
+            "viewlagoon"
+          ],
+          "count": 15,
+          "rate": 0.7142857142857143,
+          "seats": [
+            0,
+            1
+          ]
+        },
+        "FIELD_FRUIT": {
+          "agent_count": 1,
+          "agents": [
+            "MSz"
+          ],
+          "count": 1,
+          "rate": 0.047619047619047616,
+          "seats": [
+            0
+          ]
+        },
+        "OPPONENT_DERIVED": {
+          "agent_count": 3,
+          "agents": [
+            "gaha",
+            "norxondor_gorgonax",
+            "viewlagoon"
+          ],
+          "count": 5,
+          "rate": 0.23809523809523808,
+          "seats": [
+            0,
+            1
+          ]
+        },
+        "OTHER_MIXED": {
+          "agent_count": 0,
+          "agents": [],
+          "count": 0,
+          "rate": 0.0,
+          "seats": []
+        }
+      },
+      "population": 21
+    },
+    "top5_single_persistent_job_rate": 0.5714285714285714
+  },
+  "input_hashes": {
+    "analyzer": "ec5dfe09a9cf739823d2486768f37fd34b206ab88e311eeb651ba0728e21e39e",
+    "d161_reference": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "d166a_field_reference": "a6fe0d28199d2ad201fdaf75441bded0c50cc6de8c1e402479ad4769da990091",
+    "d166a_local_reference": "30d294bcaf620ddff3932e8d153b8315572b198192a9532d84e899ca44c16e9f",
+    "field_extractor": "231ae0d9e71e793b576b8010b43508bbd088f47bac6067dc5f0ccd8292e3761c",
+    "field_jobs20": "d2be0f43e7b3e5d696be8e1dfa254dfafbbbbd32b4082d19102d2414027782b5",
+    "local_events_jobs20": "03ebd3e410696a4650bc0f390912e64c84e5bd14473f86711e473ff2ee780994",
+    "local_summary_jobs20": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c",
+    "lock": "2ae7cae9543b364298d0be104d127e261f73f83a746e730967c6ccb35ae4b377",
+    "protocol": "037c25934de83fbc5ede010d6b8dba28973b4d8f68b9e06635b2a529955274e6",
+    "rust_runner": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032"
+  },
+  "integrity": {
+    "field": {
+      "bytes_identical": true,
+      "cycle_selection_matches_d166a": true,
+      "ledger_integrity_ok_for_all": true,
+      "rank6_20_exact_28": true,
+      "rows_exact_49": true,
+      "top5_exact_21": true,
+      "zero_ambiguous_partial_spends": true
+    },
+    "local": {
+      "all_returns_are_plant": true,
+      "bytes_identical_events": true,
+      "bytes_identical_summary": true,
+      "entries_exact_237": true,
+      "ledger_integrity_ok_for_all_returns": true,
+      "mismatch_examples_d161": [],
+      "mismatch_examples_d166a": [],
+      "natural_returns_exact_135": true,
+      "reproduces_d161_on_shared_columns": true,
+      "reproduces_d166a_on_shared_columns": true,
+      "rows_exact_1024": true,
+      "zero_controller_commands": true,
+      "zero_entry_carry_nonzero": true,
+      "zero_ledger_ambiguous_partial_spends": true,
+      "zero_ledger_carry_mismatches": true,
+      "zero_reward_or_ownership_failures": true
+    }
+  },
+  "integrity_pass": true,
+  "local": {
+    "class_counts": {
+      "BANK_SEED": 135
+    },
+    "class_rates": {
+      "BANK_SEED": 1.0,
+      "FIELD_FRUIT": 0.0,
+      "OPPONENT_DERIVED": 0.0,
+      "OTHER_MIXED": 0.0
+    },
+    "gate": {
+      "BANK_SEED": {
+        "count": 135,
+        "pass": true,
+        "rate": 1.0
+      },
+      "FIELD_FRUIT": {
+        "count": 0,
+        "pass": false,
+        "rate": 0.0
+      },
+      "OPPONENT_DERIVED": {
+        "count": 0,
+        "pass": false,
+        "rate": 0.0
+      },
+      "OTHER_MIXED": {
+        "count": 0,
+        "pass": false,
+        "rate": 0.0
+      }
+    },
+    "median_path_length_turns": 16,
+    "returns": 135,
+    "single_persistent_job_rate": 0.7851851851851852,
+    "species_distribution": {
+      "APPLE": 52,
+      "BANANA": 63,
+      "LEMON": 8,
+      "PLUM": 12
+    }
+  },
+  "lock": {
+    "bulk_root": "artifacts/experiments/d167a-successor-acquisition-path",
+    "field_actor_occurrences": 392,
+    "field_jobs": [
+      1,
+      20
+    ],
+    "field_plant_return_cycles": {
+      "rank_1_5": 21,
+      "rank_6_20": 28
+    },
+    "files": {
+      "artifacts/experiments/d166a-producer-job-successor-affordance/d166a-field-return-classes-jobs20.jsonl": "a6fe0d28199d2ad201fdaf75441bded0c50cc6de8c1e402479ad4769da990091",
+      "artifacts/experiments/d166a-producer-job-successor-affordance/d166a-local-affordances-jobs20-9844136-9844199.tsv": "30d294bcaf620ddff3932e8d153b8315572b198192a9532d84e899ca44c16e9f",
+      "cgauto/analyze_d101a_production_suppression.py": "9ffb10092180fa8a9ac848033650dc5d1c8fe95f83bff3a0aad9dc0dd37d4d30",
+      "cgauto/analyze_d164a_current_field_macro_transitions.py": "617908d5f1bc12d37b7113e2578a87062fc48c30aa37f07884067e8752353fb6",
+      "cgauto/analyze_d61p_field_snapshot.py": "e9ed056c7d5ba1595bc52a563a917d785807219788c8473901d3ee8e242b71df",
+      "cgauto/analyze_d95a_rank_one_scaler.py": "8122cc06cf75ca239b1eba4466ba39b2f8ef9d3d9289b939286462c199ad136e",
+      "cgauto/extract_d166a_field_return_classes.py": "51190a7d81aeb5e651771ebe5c299ba882239c2f48e6d51a447fc10b9b920936",
+      "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+      "cgauto/rich_opponent_scheduler_transition_study.py": "6fd8efc8f680d044e8447afcf637f0fe94e349cda4dade6a7a5699034cf50c8b",
+      "cgauto/top_player_opening_analysis.py": "7a29292677cb310cdc94ffcd4035f5b28744d704f970aac1e855d911dd858fcd",
+      "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+      "data/analysis/live-agent-6553250/d164a-current-field-macro-transition-audit-result.json": "6ed98a7c7547b3b1c27b2b96bf975b07109880198f9b38fb5725bb626af42e27",
+      "data/analysis/live-agent-6553250/d165a-resident-worker-role-return-result.json": "f6bd6c346ee5d21f4cf5bc86f64fcef7782472ff5a11702c829584570b75243a",
+      "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-lock.json": "d26b146eb826b5d82579d741ef529425c80e4d79843202a1bed25c72c540f0b0",
+      "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-result.json": "bdc1419c3dff886957b6346a6d6ba3996416782163831b2b5f316eab4f0933af",
+      "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-protocol-2026-07-27.md": "037c25934de83fbc5ede010d6b8dba28973b4d8f68b9e06635b2a529955274e6",
+      "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/manifest.json": "2e5ed6b0e8cb486de57d2deddaf36a46074b6ddc58057e4042c017007afb0520",
+      "data/external/arena-corpus/snapshots/20260723T074715Z-d164a/processed/manifest.json": "eef9d329192cc2655ab4c2d0398999feb4e1f7b36cb88b03b4e693103230570c",
+      "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+      "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+      "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+      "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+      "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+      "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+      "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+    },
+    "frozen_at_utc": "2026-07-27T17:00:00Z",
+    "local_entries": 237,
+    "local_map_start": 9844136,
+    "local_maps": 64,
+    "local_natural_returns": 135,
+    "local_opponent_families": 8,
+    "local_seats": 2,
+    "local_tasks": 1024,
+    "prohibitions": {
+      "candidate_generation": true,
+      "d165_tuning": true,
+      "force_single_verb": true,
+      "fresh_maps": true,
+      "intervention": true,
+      "outcome_dependent_selection": true,
+      "platform": true,
+      "reopen_d87_d89": true,
+      "reserved_maps": true,
+      "resident_mutation": true,
+      "sealed_confirmation_reads": true,
+      "submission": true,
+      "yt": true
+    },
+    "reserved_maps": [
+      9844200,
+      9844215
+    ],
+    "schema": "troll-farm-d167a-successor-acquisition-path-lock-v1",
+    "snapshot_id": "20260723T074715Z-d164a",
+    "threads": [
+      1,
+      20
+    ]
+  },
+  "protocol": "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-protocol-2026-07-27.md",
+  "row_counts": {
+    "field_rank6_20": 28,
+    "field_rows": 49,
+    "field_top5": 21,
+    "local_entries": 237,
+    "local_natural_returns": 135,
+    "local_tasks": 1024
+  },
+  "schema": "troll-farm-d167a-successor-acquisition-path-v1"
+}
