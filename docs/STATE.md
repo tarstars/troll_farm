@@ -43,13 +43,15 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   bounded BANK_SEED options FAIL value** (−6.73 / −8.21 paired, worst family −17.11;
   mechanism and integrity clean) → **hand-written successor controllers CLOSED** per the
   frozen kill rule. The successor motif survives only as a rollout-valued option.
-- **Next work — B2.1** (see `docs/BACKLOG.md`): the resident-native option interface +
-  headroom audit. Vocabulary: BANK_SEED successor return (rollout-valued), D162-style
-  bounded reserve/route/protect, D97-style joint two-worker assignments, with the B3.1
-  opponent-scaling trigger (42–125 turns of lead time) as activation conditioning.
-  Gate: crop-safe hindsight envelope ≥ +10 mean, no negative family, clean tails
-  (D162 reached +12.7 on a narrower vocabulary). Kill: < +5 → the class is dead; hold at
-  Tier 0/3 + maturity.
+- **Next work — D169 (B2.1), protocol FROZEN and delegable**:
+  `data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-protocol-2026-07-27.md`
+  — unified crop-safe option envelope on the 1,024-task panel (14 arms incl. the B3.1
+  scaling trigger). Gates frozen: PASS ≥ +10 (CI ≥ +5, ≥30% improved, clean tails/
+  families) → STOP for Fable adjudication + D170 authoring; KILL < +5 → class dead;
+  BORDERLINE → one predeclared D169b (add joint assignments), then STOP.
+- **Autonomous-session rules: `docs/RUNBOOK.md`** (goal phrase, model roles, STOP
+  triggers, filler tasks). Cheap sessions execute frozen protocols; Fable is reserved
+  for gate adjudication and D170 design.
 - Queue after D167 (reorder only from written evidence):
   1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
      explicitly skipped D109 question (see vol 1, D157 audit).

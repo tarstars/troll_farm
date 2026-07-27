@@ -53,7 +53,8 @@ under bar); the never-executed branch is closed-loop optimization on the **resid
 substrate with a family-robust objective (skipped-D109 question, D157 audit; D158's
 invalidation was substrate-only). Prereq chain, each gate preregistered:
 
-- **B2.1 Resident-native option interface + headroom audit** *(2–3 sessions)*
+- **B2.1 → D169: protocol FROZEN 2026-07-27, delegable to cheap sessions** (see
+  `d169a-...-protocol-2026-07-27.md` + `docs/RUNBOOK.md`). Original scope:
   Define the option vocabulary at the resident's natural job boundaries (successor jobs
   from B1.1 + D162-style bounded reserve/route/protect + joint two-worker assignments per
   D97 semantics, rebuilt resident-anchored per the D158/D161 substrate rule). Include the
