@@ -19,12 +19,13 @@ crops, resident 0.94%; suppression already competitive).
 
 ## Tier 0 — free points and standing discipline (no code)
 
-- **B0.1 Passive standing + replay refresh** *(needs explicit user authorization; ~30 min)*
-  One leaderboard read + incremental replay pull (throttled, immutable-snapshot pipeline).
-  Measures 8 days of maturity drift since 07-19, refreshes the rank-3 bar, and feeds every
-  Tier-1/2 field audit. Zero arena writes. [D61p pipeline; class (g)]
-- **B0.2 Execute the approved data-cleanup plan** *(~1–2 h, plan `2026-07-24-...md`)*
-  ~20 GB reclaimed, tranche-2 migration + YT mirror. Pending execution-mode choice.
+- **B0.1 ✅ DONE 2026-07-27** — passive read: resident 43/110 @ 21.97 (203 battles), bar
+  MSz 28.22; 198 new replays, QA clean. **Key finding: the score is source-side frozen
+  since 07-23 (no ladder recomputation; 6 battles in 4 days) — the passive-maturity lever
+  is much weaker than assumed. Code strength must carry essentially the whole +6.25 gap.**
+- **B0.2 ✅ DONE 2026-07-27** — cleanup executed (SDD, all reviews clean): 22 worktrees
+  removed, debug cache cleared + cap rule, 683 files / 1.04 GB migrated + symlinked, YT
+  dead dir removed, 425 MB mirror uploaded md5-verified. Repo 23.5 → 2.76 GB.
 - **B0.3 No-churn rule stays absolute** — no arena write until a candidate passes the
   promotion protocol (B4.1). Every failed trial costs ~2–4 points of standing for days.
   [class (g), fresh-vs-mature]
@@ -106,7 +107,10 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 ## Recommended order
 
 B0.1 → B1.1 → (B1.2 if warranted) → B2.1 gate → B2.2 → B2.3; B0.2 and B3.1 interleave as
-fillers; B0.3/B4.x standing. Honest odds: Tier 0 alone likely recovers visible rank into
-the ~15–25 range via maturity; top-3 additionally requires B2 to succeed where thirty-odd
-offline selectors failed — the closed-loop objective is the one untested lever the
-evidence still permits.
+fillers; B0.3/B4.x standing. Honest odds, **revised 2026-07-27 after B0.1**: the maturity
+lever is largely dead — the ladder recomputes fresh-agent scores rarely (score frozen 4+
+days), so visible-rank recovery cannot be assumed from waiting. Top-3 requires B2 to
+succeed where thirty-odd offline selectors failed — the closed-loop objective is the one
+untested lever the evidence still permits — and any promoted candidate must additionally
+survive the same slow-recompute regime (mature reads will take days, reinforcing B0.3's
+no-churn rule).

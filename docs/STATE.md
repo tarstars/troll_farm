@@ -11,8 +11,11 @@ record. Hard budget: 150 lines. Rewrite it whenever facts change.
   (62,725 bytes, slim Yamo/Orchard + pre-seed + orchard coverage).
   SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
 - `cgauto/api_submit.py` default = that exact source. Keep it that way.
-- Last ladder read: rank 43/107 @ 21.97 (2026-07-23 ~10:47 MSK, D164 snapshot; earlier same
-  day: rank 40/107 @ 22.18 with 197 battles).
+- Last ladder read: rank 43/110 @ 21.97, 203 listed battles (2026-07-27 ~13:07 UTC, passive
+  D61p snapshot). Score is bit-identical to 2026-07-23 — CodinGame's own updateTime shows no
+  recomputation since 2026-07-23T02:45Z, so fresh-agent scores freeze between rare ladder
+  recomputes; passive maturity recovery is slower than previously assumed.
+- Rank bar (2026-07-27): 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
 
 ## 2. Goal
 
