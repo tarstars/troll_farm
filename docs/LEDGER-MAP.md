@@ -254,7 +254,142 @@ thirty supervised selectors that all failed the same way.
 - **D161** — the alternative-economy substrate is weaker than the bot we already have; everything pivots resident-native.
 - **D164→D167** — the missing field behavior distilled into one frozen-eligible option.
 
-## 16. Glossary — mother, crop, orchard
+## 16. Lesson learnt — what rich players' persistent jobs taught us (D35a and descendants)
+
+D35a decoded two frozen partitions of rich-player replays (a 12-game discovery and a
+9-game confirmation split) into **persistent worker jobs**: multi-turn units of intent —
+"this worker is renewing the farm", "this worker is felling and banking wood" — rather
+than per-turn commands. It is one of the program's foundational results because both the
+*finding* and the *representation failure* shaped everything after it.
+
+**What the decode found.** The job vocabulary explains essentially all of what strong
+players do: direct productive coverage 100% in both partitions, all-unit coverage
+98.1%/99.5%, and 96.4%/99.0% of MOVE commands resolvable as travel *for* a job rather
+than wandering. The median job runs six-to-seven turns — strong play is *committed*, not
+per-turn reactive. In 62.7%/63.5% of multi-worker turns the workers hold **distinct
+roles**, and just two job types — RENEW (renewable farm work) and FELL (chop-and-bank) —
+account for **~94% of all non-idle activity**: the producer/producer/chopper field
+mechanism in its rawest form.
+
+**The representation lesson.** The obvious encoding — one flat categorical over whole-team
+job signatures — failed its own gate: the top 32 team signatures covered only 86.56% of
+discovery turns against a 90% floor, because teams of one to seven workers generate 176
+signatures and a flat head would have to encode *team size* into *class identity*.
+The verdict distinguished abstraction from representation: **keep the job abstraction,
+discard the flat joint head, and factorize per worker** — centralized assignment,
+collision-aware targets, deterministic banking/completion, and a separate global TRAIN
+decision. That factorized interface became D35b–d (bundles, provenance, repetition), then
+D97's validated joint assignments, and ultimately the q6 proposal ABI.
+
+**What the lesson did *not* license.** Hard-coding the observed roles failed both ways:
+a forced persistent chopper was inert (D46 — the D40 teacher already chooses FELL_BANK
+whenever legal) and a forced persistent producer lost 12 points (D47) — the roles strong
+players exhibit are *emergent from scheduling*, not rules you can bolt on. And the later
+field audits sharpened the picture: what actually separates the top cohort is not holding
+roles but **cycling** them — the same worker produces, suppresses, then produces again
+(D164, 72% of top-5 games), with production *persistence* through interruptions as the
+real differentiator (D101: they reap 24% of what they plant; the resident 0.94%). The
+D-series' current thread — successor jobs, BANK_SEED returns, D168's bounded option — is
+the direct descendant of D35a's job abstraction applied to that cycling.
+
+## 17. Model architectures and situation encodings
+
+Three encoding families and half a dozen model families recur across the arcs. This
+section describes them concretely.
+
+**The raw situation.** Every encoding starts from the same game state: a rectangular
+board (up to 22×11 cells) of terrain (soil/water), trees (species PLUM/LEMON/APPLE/
+BANANA/IRON-ore analogues, growth stage, hit points, ripe fruit), units (per-troll move
+speed, carry capacity, hp, chop power, cargo), both players' banked inventories and
+scores, and the turn number. The referee reveals all of it every turn — the encodings
+differ in what they make *learnable*, not in what is visible.
+
+**Family 1 — spatial planes (the curriculum actor, Arc A).** The Rust environment
+serializes the situation as a **104-channel × 11 × 22 uint8 tensor**. Per-cell planes
+encode validity (channel 0 doubles as the board mask), terrain, tree species/stage/fruit,
+and unit positions; scalar facts are *broadcast* as constant planes — e.g. channels 56–61
+own inventory and 62–67 opponent inventory (values quantized to uint8 at a ≈1/30 scale),
+channels
+74–78 the selected unit's move/carry/hp/chop/free-capacity stats — and explicit BFS
+*distance planes* give the network pathfinding for free (added after pure PPO failed to
+learn it). Actions are likewise spatial: **13 action planes × 11 × 22** — a masked
+categorical over (action-type, cell), with the legality mask computed by the referee-exact
+environment.
+
+**The curriculum actor architecture** (`SpatialActorCritic`): a 3×3 conv stem
+104→16 channels → **four residual blocks** (width 16, two 3×3 convs each) → an actor head
+(1×1 conv to the 13 action planes, logits flattened and masked) and a critic head
+(validity-masked global average pool → Linear 16→64 → tanh → Linear→1). Roughly 35k
+parameters — deliberately tiny, because deployment must fit CodinGame: the accepted
+pipeline quantizes it to **int8 inside a generated Rust kernel** (max logit drift
+0.0000687, 512/512 identical masked choices) and, after the K2/V5 pattern of persistent
+workspaces and reused buffers, runs a two-worker inference in **7.04 ms median /
+17.6 ms warm p95** within a 68,988-byte single-file source. Training used PPO with a
+0.10-weight teacher-auxiliary loss (pure PPO deterministically argmax-collapses) and
+legal-action masking throughout.
+
+**Family 2 — scalar situation vectors (selector era).** Where a decision attaches to a
+*moment* rather than a cell, situations are flat feature vectors, always built from
+observable state only (opponent identity is deliberately excluded — the submitted agent
+cannot see it): the 56-feature deployable state of D61's option probes, the **64-field
+state vector** of the q6 program (global economy, workforce, phase, remaining
+intervention budget, previous-intervention kind), the 139/62/44-feature turn-100 economy
+models of D63, and D78's spatial-relational add-ons (target condition, worker-to-crop
+distance, occupancy) that lifted opponent-attack prediction to 0.9307 AUC. The recurring
+finding: these snapshots *predict behavior* well and *transfer value* poorly — every
+fitted value model on them collapsed one map-fold away (D153: +14–17 in fit, +1.8 held).
+
+**Family 3 — proposal/action vectors (the q6 ABI).** Interventions are encoded per
+*candidate action*: a **379-field proposal vector** (job kind, target class and crop
+provenance, ETA, predicted deposit and rate, ownership, encoded cell geometry, and the
+64-expert endorsement pattern) concatenated with the 64-field state = the 443-feature
+rows of the D148/D151 corpora. The proposal *generator* is itself a model: the bank of
+64 frozen D98 linear scorers, quantized to 6 bits per coefficient (**9,792 coefficients
+in 9,180 base85 bytes**), whose per-root proposal union retains 86–88% of the exact joint
+oracle — a compact action basis rather than a policy.
+
+**Model families tried on these encodings**, smallest to largest: linear probes (224 and
+379 weights — D61/D110), a 12-unit echo reservoir with a 52-parameter trained readout
+(D76), a fully-trained 1,072-parameter recurrent controller (D77), tiny MLPs of 6–7k
+parameters (D115 ReLU classifier; D153's state64+action379→16→1 value net), the
+factorized 6,626-parameter proposal-ranker + 689-parameter act/wait gate (D117–D143), and
+the 10,725-parameter recurrent shared-proposal policy of D108/D109/D158. The pattern
+across all of them: capacity was never the binding constraint — representation and
+objective were. What survived: dense exact-value *teachers* over these encodings (D113,
+D152), the proposal-union action basis, and the rule that value must be computed at
+decision time (rollouts) rather than fitted into a snapshot scorer.
+
+## 18. Why CPU and GPU training never agreed
+
+The YT benchmark that decided where training runs (Arc A, D11 era) found the GPU path
+**9.8× faster** (9,769 vs 995 transitions/s) — and rejected it anyway: the same frozen
+hybrid-chopper evaluation scored **52/61 on CUDA versus 56/61 on CPU**, a 6.557-point gap
+against the preregistered 5-point parity cap, while every other parity metric passed.
+This is not a bug in either backend; it is the expected physics of the situation:
+
+- **Floating-point addition is not associative.** GPU kernels (cuDNN convolutions,
+  parallel reductions, tensor-core matmuls) sum in different orders than CPU BLAS, and
+  may use different intermediate precisions (TF32, fused multiply-adds), so identical
+  models on identical inputs produce logits differing in the last bits.
+- **Reinforcement learning amplifies last-bit noise.** A last-bit logit difference flips
+  an occasional near-tie action; a flipped action changes the trajectory; the changed
+  trajectory changes the training data for every subsequent update. Unlike supervised
+  learning — where the same noise stays bounded — the RL feedback loop compounds it into
+  *macroscopically different policies*. That is exactly the observed signature: bitwise
+  parity on static metrics, divergence only in rolled-out policy outcomes.
+- **The same mechanism appears CPU-side with threads.** A 20-thread fit was not
+  byte-stable for one seed (D117), and one threaded model hash differed at 2.4e-5 drift
+  (D153) — parallel summation order again. Hence the house rules: **one deterministic
+  training thread** for anything selected by byte-identity, thread-parallelism only for
+  *evaluation* whose outputs are compared field-by-field, and byte-identical 1-vs-20
+  repeats as a standing integrity gate.
+
+The project chose reproducibility over throughput: the sole D11 training run went to
+local CPU, and the frozen local/YT parity gate remains a precondition before any GPU
+result may be *selected* (YT stayed in use for exactly-replayable map/reduce simulation,
+where byte-parity was achieved and verified per shard).
+
+## 19. Glossary — mother, crop, orchard
 
 Terms that recur throughout the ledger, grounded in the game's mechanics and the
 resident's own source code.
@@ -291,7 +426,7 @@ resident's own source code.
   deposited bank those seeds come from is fed by harvests — including mother fruit — so
   the mother/crop loop is the upstream supply of the very returns D168 is now testing.
 
-## 17. Where the records live
+## 20. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.

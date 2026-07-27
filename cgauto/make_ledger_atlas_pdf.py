@@ -94,7 +94,8 @@ def unwrap(md_lines):
 def esc(text: str) -> str:
     """Escape LaTeX specials, then apply inline bold/code markup."""
     for ch, rep in [("&", r"\&"), ("%", r"\%"), ("#", r"\#"), ("$", r"\$"),
-                    ("_", r"\_"), ("{", r"\{"), ("}", r"\}")]:
+                    ("_", r"\_"), ("{", r"\{"), ("}", r"\}"),
+                    ("~", r"\textasciitilde{}")]:
         text = text.replace(ch, rep)
     text = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", text)
     text = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"\\textit{\1}", text)
