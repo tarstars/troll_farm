@@ -1,6 +1,6 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-07-23. This file is live state, not a record — the ledger volumes are the
+Last updated: 2026-07-27. This file is live state, not a record — the ledger volumes are the
 record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
@@ -45,6 +45,9 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
      explicitly skipped D109 question (see vol 1, D157 audit).
   2. Standing: let the resident mature undisturbed; no arena writes without authorization.
+- Full prioritized backlog with gates and kill rules: `docs/BACKLOG.md` (2026-07-27).
+  Pending ops: data-cleanup plan `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md`
+  is approved but unexecuted.
 
 ## 5. Reading order & pointers
 
