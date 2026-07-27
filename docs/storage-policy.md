@@ -171,3 +171,13 @@ The post-cleanup local inventory was:
 The 34 files larger than 50 MiB accounted for `5,121,892,121` bytes and have
 now been migrated. Compact sibling protocols/results remain local, and every
 moved file retains its existing consumer path through a verified link.
+
+The second historical tranche completed on 2026-07-24: 683 untracked regular files
+(1,042,056,986 apparent bytes) from `data/analysis` and `data/panels` were copied to
+`artifacts/legacy-data-analysis`, verified by count, bytes, and per-file SHA-256
+(digest list: `docs/storage-migration-2026-07-24.sha256`), then replaced with
+path-preserving symlinks and re-read through the repository paths. Free space after
+`sync`: 456824188928 bytes on `medium_data`. A consolidated mirror of the whole
+`legacy-data-analysis` tree was archived to YT as
+`//home/delivery_ml/research/tarstars/troll_farm/mirrors/legacy-data-analysis-2026-07-24.tar.gz`
+(SHA-256 in the adjacent `.sha256` sidecar node).

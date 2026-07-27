@@ -36,6 +36,9 @@ ledgers unless archaeology is explicitly required.
   research archives. They may remain local while useful, but clear stale
   Cargo targets and inactive-worktree environments before allowing them to
   crowd out research data.
+- `rust/target` is a disposable cache. At session end, if it exceeds ~10 GB,
+  delete `rust/target/debug`; keep `rust/target/release`, whose
+  `libtroll_farm.so` serves the Python ctypes tests.
 
 ## YT Storage And Compute Policy
 

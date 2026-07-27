@@ -1,3 +1,12 @@
 raw/
 processed/trajectories/
 *.jsonl
+# bulk artifact tiers live on medium_data behind symlinks (storage-policy.md);
+# compact md/json/sha256 records stay visible for commit
+analysis/**/*.tsv
+analysis/**/*.pt
+analysis/**/*.npz
+analysis/**/*.npy
+analysis/**/*.bin
+analysis/**/*.tar.gz
+analysis/**/*.maps
