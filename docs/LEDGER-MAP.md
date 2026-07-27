@@ -485,7 +485,128 @@ resident's own source code.
   deposited bank those seeds come from is fed by harvests — including mother fruit — so
   the mother/crop loop is the upstream supply of the very returns D168 is now testing.
 
-## 21. Where the records live
+## 21. Deep dive — D169, the option-envelope gate (standalone reading)
+
+This chapter explains the currently frozen experiment D169 from scratch, including every
+experiment it builds on. It assumes no other context.
+
+**What D169 is.** The live bot ("the resident") is a hand-written two-worker policy that
+cannot be beaten by any replacement we have built, yet loses to the top of the ladder in
+one measured way. The remaining strategy is to keep the resident exactly as it is and add
+a small vocabulary of bounded, abortable interventions ("options") on top of it — then
+*learn when to invoke them*. D169 is the go/no-go measurement for that entire strategy:
+it computes, on 1,024 replayed games, the **hindsight envelope** — how much better each
+game could have gone if, with perfect hindsight, we had picked the single best option (or
+no option) for that game. The envelope is a ceiling, not a policy: if even the ceiling is
+low, the strategy dies before any training budget is spent on it.
+
+**Why this is the remaining strategy (the four results that force it).**
+
+- *D159 — the loss mechanism.* On 200 arena games: ~11% of the resident's games are
+  "catastrophes" carrying ~58% of all lost margin, and in most of them the resident is
+  *ahead at turn 100* before being out-compounded. Replicated independently on fresh data
+  (19/192).
+- *D101 — the root cause.* Top agents harvest 24.16% of the crops they plant; the
+  resident harvests 0.94%. Its suppression (chopping enemy crops) is already
+  competitive — what it lacks is production *persistence* while interrupted.
+- *D160 — why "just add a third worker" fails.* In 195 decoded games the resident never
+  once accumulates the resources to train a third worker; affordability is a multi-turn
+  funding *policy*, not a windfall you can wait for.
+- *D161 — why "switch to a better economy" fails.* The best alternative complete economy
+  we ever built (the D40 teacher family) is 37.8 points *behind* the resident head-to-head,
+  and even a perfect per-game oracle over interventions on that substrate nets only +3.4
+  (statistically indistinguishable from zero). Verdict: everything must anchor on the
+  exact resident.
+
+**What an "option" is.** A bounded intervention with exact-resident fallback: it may
+route *one* worker through a short scripted sequence, holds a horizon (24–32 turns),
+aborts back to the exact resident on any failure, and leaves every other worker untouched
+every turn. Options are safe by construction — a game where an option never arms is
+byte-identical to the resident's game (verified, not assumed).
+
+**The D169 vocabulary, option by option.**
+
+- `OPT_RETURN` — the *successor return*. Lineage: D164 found that in 72% of top-5 games
+  the same worker produces → suppresses → produces again, while the resident does this in
+  11%. D165 tested "walk back to the crop you remember" — zero support in 1,024 games
+  (the old crop is always gone). D166 showed the real return is a multi-step journey
+  (median 16 turns) starting empty-handed. D167 proved the journey is regular: in
+  135/135 resident cases and 71.4% of top-5 field cases it is **BANK_SEED** — pick a
+  seed from the deposited bank, walk, plant a new generation. D168 then scripted exactly
+  that as an always-on controller and *lost* (−6.7 to −8.2 paired): forcing the return
+  everywhere is worse than the resident's own judgment. The surviving question — the one
+  D169 asks — is the per-game one: *are there games where invoking it would have won?*
+  The envelope selects it only where it helps.
+- `OPT_FRUIT`, `OPT_IRON`, `OPT_PROTECT` — three *resource-control* options from D162/
+  D163: temporarily route one worker to fruit harvesting/banking, iron mining/banking, or
+  consumption protection, under a fixed shadow reserve, then return. D163 proved each is
+  *negative on average* when always-on (−2.0 / −3.6 / −0.03) — but D162 measured that the
+  per-task envelope over this family is **+12.7 (CI +9.0 to +16.3) with zero
+  regressions** on a 128-task panel. That asymmetry — bad always, good when selected —
+  is precisely the signature of a timing problem, and timing problems are what the
+  closed-loop program (D170) would learn. D169 re-measures that envelope at full scale
+  (1,024 tasks) with the unified vocabulary.
+- `TRIG` arming — each resource option also gets a variant armed by the *B3.1 trigger*:
+  the audit of catastrophe games showed the resident's existing endgame switch cannot
+  fire until the collapse has begun (it requires already being behind), but that the
+  opponent visibly scaling past two workers precedes the collapse by **42–125 turns in
+  84% of catastrophes**. That observable early warning becomes an arming condition here —
+  making part of the envelope deployability-realistic, not just hindsight.
+- *Predeclared extension (D169b):* if the envelope lands between +5 and +10, one
+  addition is authorized — joint two-worker assignments in the style of D97, which proved
+  (on the old substrate) that coordinating both workers' concrete jobs adds +9.2 beyond
+  the best single-worker action at two-thirds of decision points. It is excluded from
+  D169a only because it must be rebuilt resident-anchored, which costs implementation
+  risk the first measurement doesn't need.
+
+**The panel and the integrity discipline.** The 1,024 tasks are the consumed D148
+evaluation panel: 64 official-generator maps × both seats × eight opponent families,
+already used by D161/D167/D168 — reusing consumed data is *correct* here because an
+envelope is an upper-bound measurement, not a selection (nothing is fitted; the
+prohibition on fitting anything to envelope winners is itself a lesson, from D100b, where
+hindsight winners proved map- and seat-specific with rank correlations of 0.10–0.22).
+Every run must: reproduce the resident's 1,024 control games bit-for-bit against D161's
+frozen records; prove inactive arms byte-identical to control; produce byte-identical
+results at 1 and 20 threads; and apply crop safety *relative to control* (D122's rule —
+judging absolute crop counts penalizes games the resident itself fails).
+
+**The gates, and why these numbers.** Coverage ≥ 60% of tasks armable (else the
+vocabulary is too narrow to matter). **PASS** needs mean ≥ +10 with CI lower bound ≥ +5,
+≥ 30% of tasks improved, no negative opponent family, and tails no worse than control.
+The +10 bar is set against the actual goal arithmetic: the code gap to rank 3 is roughly
+4–6 arena points, and every translation step — envelope → learned policy → arena — has
+historically lost margin (thirty-odd selectors captured under a third of their teachers'
+value; the one arena promotion came from +4 local). A ceiling below +10 leaves no room
+for those losses; below +5 (**KILL**) the class cannot even theoretically close the gap,
+and the honest move is to stop. **BORDERLINE** buys exactly one extension (D169b), never
+tuning.
+
+**What happens after.** PASS does not create a bot — it authorizes designing D170: a
+closed-loop learner over this vocabulary, whose central open question was posed by
+D108/D109 and never answered: a *family-robust objective with own-score protection*
+(recurrent policies trained on pooled margin kept "rotating" which opponents they beat,
+correlation −0.014 across panels, while suppressing their own score). KILL closes Tier 2
+of the backlog and the project holds at maintenance. Either verdict is recorded under the
+same rules as the 168 experiments before it.
+
+**Cast of experiments referenced here:**
+
+| ID | Role in D169 |
+|---|---|
+| D97 | Joint two-worker assignment value (+9.2 beyond best-single) — the D169b extension |
+| D100b | Why nothing may be fitted to envelope winners (hindsight doesn't transfer) |
+| D101 | The root-cause diagnosis (reap 24.16% vs 0.94%) motivating the option class |
+| D108/D109 | The unanswered objective question D170 would tackle after a PASS |
+| D122 | The relative crop-safety measurement rule |
+| D148 | Origin of the 1,024-task consumed panel |
+| D159/D160/D161 | Loss mechanism; funding proof; substrate verdict — why options-on-resident is the only path |
+| D162 | The option machinery and the +12.7 envelope precedent |
+| D163 | The three resource options; proof they fail always-on (the timing signature) |
+| D164–D167 | The successor-return lineage ending in BANK_SEED |
+| D168 | Proof that scripting the return always-on loses; per-game selection is the open question |
+| B3.1 | The observable opponent-scaling trigger (42–125 turns of warning) used for arming |
+
+## 22. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
