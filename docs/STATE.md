@@ -39,14 +39,17 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
 
 ## 4. Open thread
 
-- **D167 DONE 2026-07-27: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field,
-  gates clean; OPPONENT_DERIVED closed; top agents pre-carry seeds through suppression
-  22/49 vs resident 0/1,024). **Next experiment — D168**: bounded BANK_SEED successor
-  option as a causal test — exact resident KEEP, arm at the P→S transition (weigh a
-  pre-carry variant), gates: prefix/fallback parity, activation breadth (both seats, ≥6
-  families), mean value + own-score protection, tail safety. Kill: value < +2 or negative
-  worst family → close hand-written successor controllers; branch moves to rollout-valued
-  semantic actions inside B2.1.
+- **D167 DONE 2026-07-27: BANK_SEED frozen-eligible.** **D168 DONE 2026-07-27: both
+  bounded BANK_SEED options FAIL value** (−6.73 / −8.21 paired, worst family −17.11;
+  mechanism and integrity clean) → **hand-written successor controllers CLOSED** per the
+  frozen kill rule. The successor motif survives only as a rollout-valued option.
+- **Next work — B2.1** (see `docs/BACKLOG.md`): the resident-native option interface +
+  headroom audit. Vocabulary: BANK_SEED successor return (rollout-valued), D162-style
+  bounded reserve/route/protect, D97-style joint two-worker assignments, with the B3.1
+  opponent-scaling trigger (42–125 turns of lead time) as activation conditioning.
+  Gate: crop-safe hindsight envelope ≥ +10 mean, no negative family, clean tails
+  (D162 reached +12.7 on a narrower vocabulary). Kill: < +5 → the class is dead; hold at
+  Tier 0/3 + maturity.
 - Queue after D167 (reorder only from written evidence):
   1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
      explicitly skipped D109 question (see vol 1, D157 audit).

@@ -243,7 +243,7 @@ thirty supervised selectors that all failed the same way.
 | D165 | Return to the remembered crop? | Zero support in 1,024 tasks — the old crop is always gone |
 | D166 | Is the return one command? | No: multi-step acquisition journeys, median 16 turns; single-verb controllers closed |
 | D167 | Are the journeys regular? | **Yes: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field); field agents pre-carry seeds through suppression 45%, resident 0% |
-| D168 | Does executing the return causally help? | *Running now* — bounded option vs exact resident, preregistered value/tail gates |
+| D168 | Does executing the return causally help? | **No — hand-written successor controllers close** (post-return −6.73, pre-carry −8.21; integrity clean); the motif becomes a rollout-valued option for B2.1 |
 
 ## 15. Inflection points
 

@@ -36,13 +36,12 @@ crops, resident 0.94%; suppression already competitive).
   frozen-eligible** (135/135 local; 71.4% top-5 field, 4/5 agents, both seats; all frozen
   gates passed, no tuning). OPPONENT_DERIVED closed as a class. Bonus discovery: top agents
   pre-carry seeds through suppression (22/49 cycles) — the resident never does (0/1,024).
-- **B1.2 → D168: bounded BANK_SEED successor option, causal test** *(1–2 sessions)*
-  Exact resident KEEP + one bounded option: at the P→S transition (and a pre-carry
-  variant), route the returning worker through PICK-banked-seed → PLANT. Consumed maps,
-  paired, both seats. Gates: prefix/fallback parity; activation breadth (both seats, ≥6
-  families); mean value ≥ +2 with own-score protection; no negative worst family; tail
-  safety. **Kill rule:** fails → close hand-written successor controllers; the successor
-  motif survives only as an option inside B2.1's rollout-valued interface. [D167; vol 2]
+- **B1.2 ✅ DONE 2026-07-27 (D168a) — kill rule fired.** Both bounded BANK_SEED options
+  failed value decisively (post-return −6.73 [−8.40,−4.08]; pre-carry −8.21; worst
+  family −17.11) with mechanism and integrity fully clean. **Hand-written successor
+  controllers are closed**; the motif enters B2.1 as a rollout-valued option only.
+  Bonus fact for B2.1: carry is empty at 100% of P→S entries — pre-carry preconditions
+  never arm on resident trajectories. Tier 1 is complete. [D168; vol 2]
 
 ## Tier 2 — the big bet: resident-native options + closed-loop learning
 

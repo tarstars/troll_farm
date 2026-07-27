@@ -1,0 +1,299 @@
+{
+  "arm_pass": {
+    "arm_a_post_return": false,
+    "arm_b_pre_carry": false
+  },
+  "d161_parity": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true,
+    "tasks": 1024
+  },
+  "d166_d167_cross_check": {
+    "entries": 237,
+    "expected_entries": 237,
+    "expected_natural_plant_returns": 135,
+    "mismatch_count": 0,
+    "mismatches": [],
+    "natural_plant_returns": 135,
+    "pass": true
+  },
+  "entry_event_cross_policy": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true
+  },
+  "inactive_task_parity": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true,
+    "tasks_checked": 1720
+  },
+  "input_hashes": {
+    "build_script": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "d161_resident_panel": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "d167a_local_summary": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c",
+    "jobs1": "d0620184bb3bbb9a959d0d4bf88de3e2cc727f9c2d028b45f07370b46b7814c1",
+    "jobs20": "d0620184bb3bbb9a959d0d4bf88de3e2cc727f9c2d028b45f07370b46b7814c1",
+    "lock": "79618784cd2fcb48ab82011f0af7a2c9f8086032f3a1d9e960cd0de9135e69ee",
+    "protocol": "d513177473a4be06fa71e8873588a22a76ed66cb8f61a18f7f8b7fe9829823d1",
+    "runner": "02efa8ff95f55b8e1bf24122cfd1ed7d5b2dab213ea45621ce074691e7884eb3"
+  },
+  "integrity": {
+    "all_games_done": true,
+    "control_never_activates": true,
+    "control_reproduces_d161": true,
+    "control_reproduces_d166_d167_entry_facts": true,
+    "entry_event_identical_across_policies": true,
+    "episode_bounds_exact": true,
+    "inactive_tasks_byte_exact_vs_control": true,
+    "jobs1_and_jobs20_byte_identical": true,
+    "no_double_commit_and_abort": true,
+    "reserved_maps_excluded": true,
+    "reward_identity_exact": true,
+    "row_count_exact": true,
+    "schema_exact": true,
+    "task_policy_matrix_exact": true,
+    "unique_rows_exact": true,
+    "zero_ambiguous_crops": true,
+    "zero_failure_telemetry": true
+  },
+  "integrity_pass": true,
+  "lock": {
+    "lock": {
+      "arm_a_horizon_turns": 24,
+      "arm_b_horizon_turns": 32,
+      "bulk_root": "artifacts/experiments/d168a-bank-seed-successor-option",
+      "files": {
+        "artifacts/experiments/d166a-producer-job-successor-affordance/d166a-local-affordances-jobs20-9844136-9844199.tsv": "30d294bcaf620ddff3932e8d153b8315572b198192a9532d84e899ca44c16e9f",
+        "artifacts/experiments/d167a-successor-acquisition-path/d167a-local-summary-jobs20-9844136-9844199.tsv": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c",
+        "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+        "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-result.json": "bdc1419c3dff886957b6346a6d6ba3996416782163831b2b5f316eab4f0933af",
+        "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-protocol-2026-07-27.md": "037c25934de83fbc5ede010d6b8dba28973b4d8f68b9e06635b2a529955274e6",
+        "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-result.json": "5d6f7b173e9c9d757830a480ff7c979d98e09e29e89ababe378f5aed1f0d0364",
+        "data/analysis/live-agent-6553250/d168a-bank-seed-successor-option-protocol-2026-07-27.md": "d513177473a4be06fa71e8873588a22a76ed66cb8f61a18f7f8b7fe9829823d1",
+        "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+        "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+        "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+        "rust/src/bin/d167a_successor_acquisition_path.rs": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032",
+        "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+        "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+        "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+        "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+      },
+      "frozen_at_utc": "2026-07-27T15:00:00Z",
+      "local_map_start": 9844136,
+      "local_maps": 64,
+      "local_opponent_families": 8,
+      "local_seats": 2,
+      "local_tasks": 1024,
+      "mechanism_gate": {
+        "min_activated_tasks": 32,
+        "min_opponent_families": 6,
+        "min_seats": 2
+      },
+      "policies": [
+        "control",
+        "arm_a_post_return",
+        "arm_b_pre_carry"
+      ],
+      "prohibitions": {
+        "candidate_generation": true,
+        "fresh_maps": true,
+        "modify_d162_d166_d167_frozen_modules": true,
+        "outcome_dependent_selection": true,
+        "platform": true,
+        "reserved_maps": true,
+        "resident_mutation": true,
+        "submission": true,
+        "threshold_tuning_after_outcomes": true,
+        "yt": true
+      },
+      "question": "causal value of an explicit bounded BANK_SEED successor option (post-return ARM_A, pre-carry ARM_B) over the exact resident",
+      "reference_local_facts_from_d166_d167": {
+        "entries": 237,
+        "natural_plant_returns": 135
+      },
+      "reserved_maps": [
+        9844200,
+        9844215
+      ],
+      "rows_per_run": 3072,
+      "schema": "troll-farm-d168a-bank-seed-successor-option-lock-v1",
+      "species_tie_break": [
+        "BANANA",
+        "APPLE",
+        "PLUM",
+        "LEMON"
+      ],
+      "threads": [
+        1,
+        20
+      ],
+      "value_gate": {
+        "max_negative_margin_mass_ratio": 1.1,
+        "min_mean_own_score_delta": -0.5,
+        "min_mean_paired_margin": 2.0,
+        "min_worst_family_mean_margin": 0.0
+      }
+    },
+    "mismatches": {},
+    "pass": true
+  },
+  "mechanism": {
+    "arm_a_post_return": {
+      "activated_tasks": 164,
+      "activation_families": [
+        "compact_gold",
+        "gold_adaptive",
+        "legend_balanced",
+        "mybot",
+        "norx_native_three",
+        "resident",
+        "silver_boss"
+      ],
+      "activation_rate": 0.16015625,
+      "activation_seats": [
+        0,
+        1
+      ],
+      "family_count": 7,
+      "gates": {
+        "at_least_32_activations": true,
+        "at_least_six_families": true,
+        "both_seats": true
+      },
+      "pass": true
+    },
+    "arm_b_pre_carry": {
+      "activated_tasks": 164,
+      "activation_families": [
+        "compact_gold",
+        "gold_adaptive",
+        "legend_balanced",
+        "mybot",
+        "norx_native_three",
+        "resident",
+        "silver_boss"
+      ],
+      "activation_rate": 0.16015625,
+      "activation_seats": [
+        0,
+        1
+      ],
+      "family_count": 7,
+      "gates": {
+        "at_least_32_activations": true,
+        "at_least_six_families": true,
+        "both_seats": true
+      },
+      "pass": true
+    }
+  },
+  "protocol": "data/analysis/live-agent-6553250/d168a-bank-seed-successor-option-protocol-2026-07-27.md",
+  "runs": {
+    "jobs1": {
+      "path": "artifacts/experiments/d168a-bank-seed-successor-option/d168a-jobs1-9844136-9844199.tsv",
+      "rows": 3072,
+      "wall_seconds": 309.694
+    },
+    "jobs20": {
+      "path": "artifacts/experiments/d168a-bank-seed-successor-option/d168a-jobs20-9844136-9844199.tsv",
+      "rows": 3072,
+      "wall_seconds": 33.451
+    },
+    "speedup": 9.258138770141402
+  },
+  "schema": "troll-farm-d168a-bank-seed-successor-option-v1",
+  "value": {
+    "arm_a_post_return": {
+      "activated_tasks": 164,
+      "arm_tail": {
+        "catastrophe_count": 24,
+        "negative_margin_mass": 5430
+      },
+      "control_tail": {
+        "catastrophe_count": 22,
+        "negative_margin_mass": 5001
+      },
+      "family_mean_margin_active": {
+        "compact_gold": -7.0,
+        "gold_adaptive": -17.11111111111111,
+        "legend_balanced": -6.0,
+        "mybot": -4.7560975609756095,
+        "norx_native_three": -10.555555555555555,
+        "resident": -4.648148148148148,
+        "silver_boss": -9.307692307692308
+      },
+      "gates": {
+        "catastrophes_not_above_control": false,
+        "mean_own_score_delta_at_least_neg_0_5": false,
+        "mean_paired_margin_at_least_2": false,
+        "negative_margin_mass_within_1_10x_control": true,
+        "worst_family_margin_at_least_0": false
+      },
+      "intention_to_treat_map_clustered_95pct_ci": [
+        -1.5187504678878525,
+        -0.6374995321121475
+      ],
+      "intention_to_treat_mean_margin": -1.078125,
+      "map_clustered_95pct_ci_active": [
+        -8.398172671690048,
+        -4.077237164375525
+      ],
+      "mean_opponent_score_delta_active": 3.1219512195121952,
+      "mean_own_score_delta_active": -3.6097560975609757,
+      "mean_paired_margin_active": -6.7317073170731705,
+      "pass": false,
+      "strict_improvements_active": 31,
+      "strict_regressions_active": 123,
+      "ties_active": 10,
+      "worst_family_margin_active": -17.11111111111111
+    },
+    "arm_b_pre_carry": {
+      "activated_tasks": 164,
+      "arm_tail": {
+        "catastrophe_count": 22,
+        "negative_margin_mass": 5486
+      },
+      "control_tail": {
+        "catastrophe_count": 22,
+        "negative_margin_mass": 5001
+      },
+      "family_mean_margin_active": {
+        "compact_gold": -10.294117647058824,
+        "gold_adaptive": -15.555555555555555,
+        "legend_balanced": -6.0,
+        "mybot": -8.341463414634147,
+        "norx_native_three": -9.666666666666666,
+        "resident": -5.314814814814815,
+        "silver_boss": -10.26923076923077
+      },
+      "gates": {
+        "catastrophes_not_above_control": true,
+        "mean_own_score_delta_at_least_neg_0_5": false,
+        "mean_paired_margin_at_least_2": false,
+        "negative_margin_mass_within_1_10x_control": true,
+        "worst_family_margin_at_least_0": false
+      },
+      "intention_to_treat_map_clustered_95pct_ci": [
+        -1.7195651337216127,
+        -0.9093411162783873
+      ],
+      "intention_to_treat_mean_margin": -1.314453125,
+      "map_clustered_95pct_ci_active": [
+        -10.52762414859731,
+        -5.709378193323063
+      ],
+      "mean_opponent_score_delta_active": 4.2560975609756095,
+      "mean_own_score_delta_active": -3.951219512195122,
+      "mean_paired_margin_active": -8.207317073170731,
+      "pass": false,
+      "strict_improvements_active": 24,
+      "strict_regressions_active": 121,
+      "ties_active": 19,
+      "worst_family_margin_active": -15.555555555555555
+    }
+  },
+  "verdict": "close_hand_written_successor_controllers; BANK_SEED survives only as a rollout-valued option"
+}

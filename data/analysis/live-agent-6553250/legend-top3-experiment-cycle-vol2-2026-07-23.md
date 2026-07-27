@@ -70,6 +70,30 @@ Rust 10/10, D164–D166 Python suite unaffected 10/10. Bulk rows on the external
 sealed-map, resident, or Arena action. Full record:
 `d167a-successor-acquisition-path-{protocol,lock,result}-2026-07-27.*`.
 
+## 2026-07-27: D168a bounded BANK_SEED successor option — hand-written successor controllers CLOSE
+
+D168a implemented the frozen-eligible BANK_SEED return as two bounded options over exact
+resident KEEP (ARM_A post-suppression return, horizon 24; ARM_B pre-carry detour, horizon
+32) and ran all three policies on the 1,024 consumed D148/D161 tasks. Every integrity gate
+passed: CONTROL reproduces D161 and D166/D167's entry facts exactly; 1,720 inactive
+(task,arm) pairs byte-exact; command/vocabulary purity zero violations; jobs1/jobs20
+byte-identical; frozen D162/D166/D167 modules untouched; 13/13 Rust tests. Mechanism
+passed for both arms: 164/1,024 activations (16.0%), both seats, 7/8 families (absent only
+vs script_boss). Notably, worker carry is empty at 100% of entries, so the field's
+pre-carry precondition never differentiates ARM_B from ARM_A on resident trajectories —
+the resident's economy never stages a seed before suppressing.
+
+Value failed decisively for both arms under the preregistered gates: ARM_A **−6.73**
+paired margin, CI [−8.40, −4.08], own −3.61, worst family −17.11 (gold_adaptive),
+catastrophes 24 vs 22 (1/5 gates pass); ARM_B **−8.21** [−10.53, −5.71], own −3.95, worst
+family −15.56 (2/5 pass). Verdict per the frozen kill rule: **hand-written successor
+controllers close.** The motif (D164) and its path regularity (D167) stand, but forcing
+the return is worse than the resident's natural scheduling — the value lives in WHEN, not
+WHAT. BANK_SEED survives only as an option inside the rollout-valued B2.1 interface. No
+tuning, no rescue, no candidate, no platform/Arena/YT action. Full record:
+`d168a-bank-seed-successor-option-{protocol,lock,result}-2026-07-27.*`; bulk rows on the
+external `artifacts/experiments/d168a-...` root.
+
 Operational, same day: the data-footprint cleanup executed per
 `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md` with per-task review — 22
 clean worktrees removed (branches intact), `rust/target/debug` cleared + AGENTS.md cap

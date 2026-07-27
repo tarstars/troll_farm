@@ -1,0 +1,62 @@
+{
+  "schema": "troll-farm-d168a-bank-seed-successor-option-lock-v1",
+  "frozen_at_utc": "2026-07-27T15:00:00Z",
+  "question": "causal value of an explicit bounded BANK_SEED successor option (post-return ARM_A, pre-carry ARM_B) over the exact resident",
+  "local_map_start": 9844136,
+  "local_maps": 64,
+  "local_tasks": 1024,
+  "local_seats": 2,
+  "local_opponent_families": 8,
+  "policies": ["control", "arm_a_post_return", "arm_b_pre_carry"],
+  "rows_per_run": 3072,
+  "arm_a_horizon_turns": 24,
+  "arm_b_horizon_turns": 32,
+  "species_tie_break": ["BANANA", "APPLE", "PLUM", "LEMON"],
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d168a-bank-seed-successor-option",
+  "reserved_maps": [9844200, 9844215],
+  "reference_local_facts_from_d166_d167": {
+    "entries": 237,
+    "natural_plant_returns": 135
+  },
+  "mechanism_gate": {
+    "min_activated_tasks": 32,
+    "min_seats": 2,
+    "min_opponent_families": 6
+  },
+  "value_gate": {
+    "min_mean_paired_margin": 2.0,
+    "min_mean_own_score_delta": -0.5,
+    "min_worst_family_mean_margin": 0.0,
+    "max_negative_margin_mass_ratio": 1.10
+  },
+  "files": {
+    "data/analysis/live-agent-6553250/d168a-bank-seed-successor-option-protocol-2026-07-27.md": "d513177473a4be06fa71e8873588a22a76ed66cb8f61a18f7f8b7fe9829823d1",
+    "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-protocol-2026-07-27.md": "037c25934de83fbc5ede010d6b8dba28973b4d8f68b9e06635b2a529955274e6",
+    "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-result.json": "5d6f7b173e9c9d757830a480ff7c979d98e09e29e89ababe378f5aed1f0d0364",
+    "data/analysis/live-agent-6553250/d166a-producer-job-successor-affordance-audit-result.json": "bdc1419c3dff886957b6346a6d6ba3996416782163831b2b5f316eab4f0933af",
+    "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "artifacts/experiments/d167a-successor-acquisition-path/d167a-local-summary-jobs20-9844136-9844199.tsv": "a2a3c6fec2c87f740903ad875d8b2cb943a0120ac161ed4c928a34718e57759c",
+    "artifacts/experiments/d166a-producer-job-successor-affordance/d166a-local-affordances-jobs20-9844136-9844199.tsv": "30d294bcaf620ddff3932e8d153b8315572b198192a9532d84e899ca44c16e9f",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+    "rust/src/bin/d167a_successor_acquisition_path.rs": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f"
+  },
+  "prohibitions": {
+    "fresh_maps": true,
+    "reserved_maps": true,
+    "yt": true,
+    "platform": true,
+    "candidate_generation": true,
+    "submission": true,
+    "resident_mutation": true,
+    "outcome_dependent_selection": true,
+    "threshold_tuning_after_outcomes": true,
+    "modify_d162_d166_d167_frozen_modules": true
+  }
+}

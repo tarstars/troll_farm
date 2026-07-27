@@ -296,8 +296,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   seats) acquire via PICK-from-shack; FIELD_FRUIT and OPPONENT_DERIVED fail both frozen
   gates (OPPONENT_DERIVED: 23.8% field, 0/135 local — closed as a distinct class). Top
   agents pre-carry the seed through suppression in 22/49 field cycles; the resident does in
-  0/1,024. Any D168 successor option must be BANK_SEED-shaped, weigh a pre-carry variant,
-  and pass its own resident-fallback causal gates. [D167]
+  0/1,024. [D167]
+- Hand-written successor controllers are CLOSED: both bounded BANK_SEED options fail value
+  decisively despite clean mechanism and integrity (post-return −6.73 [−8.40,−4.08];
+  pre-carry −8.21 [−10.53,−5.71]; worst families −17.11/−15.56, gold_adaptive). Forcing
+  the return loses to the resident's natural scheduling — the value is in the timing, not
+  the action. The motif enters B2.1 only as a rollout-valued option. Also binding: worker
+  carry is empty at 100% of P→S entries, so pre-carry preconditions never arm on resident
+  trajectories. Do not retune horizons, arming conditions, or species order. [D168]
 - Idle-harvest fallback and the global lemon/plum denial (focus) bonus are KEEP: every causal
   activated idle-harvest comparison was positive (5/40 seeds, +6.2 activated mean);
   focus-bonus-off failed promotion 0–6 / −150.7 and the capable-only isolation was −1.21 —
