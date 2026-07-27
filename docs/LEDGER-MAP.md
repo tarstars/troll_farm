@@ -254,7 +254,44 @@ thirty supervised selectors that all failed the same way.
 - **D161** — the alternative-economy substrate is weaker than the bot we already have; everything pivots resident-native.
 - **D164→D167** — the missing field behavior distilled into one frozen-eligible option.
 
-## 16. Where the records live
+## 16. Glossary — mother, crop, orchard
+
+Terms that recur throughout the ledger, grounded in the game's mechanics and the
+resident's own source code.
+
+- **Mother** — a tree the bot deliberately plants (or adopts) and then *keeps alive as a
+  renewable seed source* instead of chopping it. Mechanically: a living tree bears
+  species-typed fruit; a picked fruit can be replanted as a seed of that species; chopping
+  the tree instead yields one-time wood. A mother is therefore reproductive capital — its
+  recurring fruit income funds new plantings — where an ordinary tree is harvestable
+  capital. The concept is first-class in the live resident: its scarce-map planner runs
+  the intent chain `NeedSeed → HarvestSeed → PlantMother → TendMother → PlantCrop{mother,
+  target}` (see `rust/src/bin/yamo_orchard_live.rs`).
+- **Crop** — a tree planted for *conversion*: grown, then felled for wood/score. In the
+  mother/crop loop, the mother's fruit becomes the seeds; the crops are her children.
+  A **lineage** is the family of trees descending from one seed source; "lineage
+  extinction" (a denial concept, class d) means no living tree of that family remains.
+- **The mother/crop loop** — the self-renewing economy: protect one mature parent,
+  harvest her fruit, plant children, fell the children at maturity, repeat. On
+  tree-sparse maps this loop is the lifeline (the Gold-era deforestation stall was fixed
+  by a seed reserve for exactly this reason). Its cost side: tending a mother consumes
+  worker turns, and a mature *shared* mother's fruit can be captured by the opponent —
+  the Phase 1–5 verdict that closed six aggressive mother/crop variants was precisely
+  "action cost plus opponent capture exceed private crop value."
+- **Orchard / secure orchard** — the resident's wrapper that runs this loop on favorable
+  geometry: cells where the mother and her crops sit in resident-controlled territory
+  (the promoted 07-17 stack's "secure-orchard coverage" widened exactly this geometry).
+  "Releasing" the mother — treating her as a spare resource for other tasks — is closed:
+  the ledger's verdict is that **the mother is a saturated producer, not an idle
+  reservation** — her fruit throughput is already fully consumed by the loop, so
+  liquidating or re-tasking her trades recurring apples for less wood than they are worth.
+- **Where this touches the current thread** — the D164–D168 successor returns are the
+  same economics seen from the worker's side: a producer leaves to suppress, and comes
+  back by planting a *new crop generation* from a banked seed (D167's BANK_SEED). The
+  deposited bank those seeds come from is fed by harvests — including mother fruit — so
+  the mother/crop loop is the upstream supply of the very returns D168 is now testing.
+
+## 17. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
