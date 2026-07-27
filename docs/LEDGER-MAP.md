@@ -244,6 +244,7 @@ thirty supervised selectors that all failed the same way.
 | D166 | Is the return one command? | No: multi-step acquisition journeys, median 16 turns; single-verb controllers closed |
 | D167 | Are the journeys regular? | **Yes: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field); field agents pre-carry seeds through suppression 45%, resident 0% |
 | D168 | Does executing the return causally help? | **No — hand-written successor controllers close** (post-return −6.73, pre-carry −8.21; integrity clean); the motif becomes a rollout-valued option for B2.1 |
+| D169 | Does a unified resident-option envelope clear the +10 gate? | **Yes — PASS**: +10.671 mean, CI [+9.42,+11.92], 65% improved, 0 regressions, tails better than control (100% coverage; every option negative always-on). Opens D170 (Fable-authored closed-loop training design) |
 
 ## 15. Inflection points
 
@@ -487,8 +488,14 @@ resident's own source code.
 
 ## 21. Deep dive — D169, the option-envelope gate (standalone reading)
 
-This chapter explains the currently frozen experiment D169 from scratch, including every
-experiment it builds on. It assumes no other context.
+This chapter explains experiment D169 from scratch, including every experiment it builds
+on. It assumes no other context. **Update (2026-07-27, post-run): D169 PASSED** — mean
+envelope +10.671, CI [+9.420, +11.922], 65% of tasks improved, zero regressions, tails
+better than control, on 100% panel coverage; every option was negative when always-on,
+so all value is per-game selection. This clears every frozen gate on the first pass (no
+D169b extension needed) and authorizes designing D170. The rest of this chapter describes
+the experiment as it was frozen before that result; its reasoning for *why* the gate
+exists and *why* the thresholds are what they are remains the authoritative explanation.
 
 **What D169 is.** The live bot ("the resident") is a hand-written two-worker policy that
 cannot be beaten by any replacement we have built, yet loses to the top of the ladder in

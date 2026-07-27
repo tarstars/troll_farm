@@ -94,6 +94,34 @@ tuning, no rescue, no candidate, no platform/Arena/YT action. Full record:
 `d168a-bank-seed-successor-option-{protocol,lock,result}-2026-07-27.*`; bulk rows on the
 external `artifacts/experiments/d168a-...` root.
 
+## 2026-07-27: D169a resident-native option-interface envelope — PASS, Tier-2 gate cleared
+
+D169a ran the unified crop-safe option envelope (OPT_RETURN from D168's ARM_A + the three
+D163 resource components at fixed and B3.1-TRIG-armed starts, 13 arms + control, 14,336
+episodes) on the full 1,024-task consumed panel, reusing the D161/D162/D163/D167/D168
+frozen modules without modification. Coverage 100% (1,024/1,024 armable). All 17
+integrity gates passed: CONTROL exactly reproduces D161; every inactive (task,arm) pair
+byte-exact; zero purity/vocabulary/provenance violations; 1-thread vs 20-thread
+byte-identical (SHA `a51a64119a14...`); all frozen modules hash-verified unmodified;
+Rust suite 16/16. Every individual arm is negative alone (−0.06 to −12.07 mean) — value
+is entirely a selection effect.
+
+**Envelope: mean +10.671, clustered 95% CI [+9.420, +11.922], 65.0% of tasks improved, 0
+regressions, worst family +5.14 (all 8 positive).** Tails improved vs control: 14
+catastrophes vs 22, negative-margin mass 3,622 vs 5,001. **All six frozen PASS conditions
+hold** (mean ≥ +10.0; CI floor ≥ +5.0; ≥30% improved; no negative family; catastrophes
+and negative mass ≤ control) — no BORDERLINE extension (D169b) needed. Diagnostic-only
+subset (TRIG+RETURN, the deployability-realistic slice): +1.80 [1.23, 2.37] — an order of
+magnitude below the full hindsight ceiling, confirming the gap is genuinely a *selection*
+problem, not just an activation-breadth one.
+
+**Verdict: PASS. Opens D170 authoring (family-robust closed-loop objective over this
+vocabulary, per D108/D109's unanswered question) — reserved for Fable-tier design per
+`docs/RUNBOOK.md`. Session STOPS here on Tier-2 work.** No candidate, tuning, fresh maps,
+or platform/Arena/YT action. Full record:
+`d169a-resident-option-interface-envelope-{protocol,lock,result}-2026-07-27.*`; bulk rows
+on external `artifacts/experiments/d169a-resident-option-envelope/`.
+
 Operational, same day: the data-footprint cleanup executed per
 `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md` with per-task review — 22
 clean worktrees removed (branches intact), `rust/target/debug` cleared + AGENTS.md cap

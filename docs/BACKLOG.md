@@ -53,18 +53,15 @@ under bar); the never-executed branch is closed-loop optimization on the **resid
 substrate with a family-robust objective (skipped-D109 question, D157 audit; D158's
 invalidation was substrate-only). Prereq chain, each gate preregistered:
 
-- **B2.1 → D169: protocol FROZEN 2026-07-27, delegable to cheap sessions** (see
-  `d169a-...-protocol-2026-07-27.md` + `docs/RUNBOOK.md`). Original scope:
-  Define the option vocabulary at the resident's natural job boundaries (successor jobs
-  from B1.1 + D162-style bounded reserve/route/protect + joint two-worker assignments per
-  D97 semantics, rebuilt resident-anchored per the D158/D161 substrate rule). Include the
-  B3.1 trigger — observed opponent scaling past 2 workers, 42–125 turns of lead time in
-  84% of catastrophes — as an activation-conditioning feature of the interface. Measure
-  the crop-safe hindsight envelope on paired local maps, both seats, eight families.
-  **Gate:** envelope ≥ +10 mean with no negative family and clean tails (D162 achieved
-  +12.7 on a narrower vocabulary). **Kill:** < +5 → the class is dead; fall back to
-  Tier 3 + maturity.
-- **B2.2 Family-robust closed-loop training on that interface** *(3–5 sessions + YT)*
+- **B2.1 ✅ DONE 2026-07-27 (D169a) — PASS, gate cleared cleanly.** Envelope over
+  {OPT_RETURN, 3× D163 resource options, all ± B3.1-trigger arming}: **+10.671 mean,
+  CI [+9.420, +11.922], 65% improved, 0 regressions**, tails better than control, 100%
+  coverage. Every option negative always-on — value is pure per-game selection. No
+  D169b needed (all six PASS conditions held on the first pass). 🛑 Per
+  `docs/STATE.md`, Tier-2 is now paused for Fable-tier D170 authoring — do not proceed
+  to B2.2 with a cheaper model.
+- **B2.2 → D170 (Fable-authored): Family-robust closed-loop training on the D169
+  interface** *(design pending; then 3–5 sessions + YT)*
   Recurrent policy over the B2.1 options with exact-resident action zero; objective =
   paired margin with group-DRO/worst-family term and own-score protection (D109's
   rotation, r=−0.014 across panels, is the failure this objective targets). Selection by

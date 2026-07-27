@@ -1,0 +1,95 @@
+{
+  "schema": "troll-farm-d169a-resident-option-interface-envelope-lock-v1",
+  "frozen_at_utc": "2026-07-27T18:00:00Z",
+  "question": "does a unified, resident-native, crop-safe option vocabulary (OPT_RETURN + OPT_FRUIT/OPT_IRON/OPT_PROTECT, fixed + observable-trigger starts) contain >= +10 mean paired hindsight-envelope margin over the exact resident on the full 1,024-task consumed panel, with clean tails and no negative family?",
+  "panel": {
+    "start_seed": 9844136,
+    "maps": 64,
+    "tasks": 1024,
+    "seats": 2,
+    "opponent_families": 8,
+    "reserved_maps": [9844200, 9844215]
+  },
+  "policies": [
+    "control",
+    "opt_return",
+    "opt_fruit_t072",
+    "opt_fruit_t104",
+    "opt_fruit_t136",
+    "opt_fruit_trig",
+    "opt_iron_t072",
+    "opt_iron_t104",
+    "opt_iron_t136",
+    "opt_iron_trig",
+    "opt_protect_t072",
+    "opt_protect_t104",
+    "opt_protect_t136",
+    "opt_protect_trig"
+  ],
+  "policy_count": 14,
+  "rows_per_run": 14336,
+  "arm_definitions": {
+    "opt_return": {
+      "source": "D168a ARM_A (post-return), byte-identical semantics",
+      "horizon_turns": 24,
+      "species_tie_break": ["BANANA", "APPLE", "PLUM", "LEMON"],
+      "abort_reasons": ["EMPTY_BANK_AT_PICK", "NO_LEGAL_CELL", "HORIZON", "WORKER_MISSING"]
+    },
+    "opt_fruit": {"source": "D163 component F", "mask": 1},
+    "opt_iron": {"source": "D163 component I", "mask": 2},
+    "opt_protect": {"source": "D163 component P", "mask": 4},
+    "resource_component_common": {
+      "horizon_turns": 32,
+      "shadow_reserve": [3, 3, 2, 0, 3, 0],
+      "controller_train": false
+    },
+    "start_variants": {
+      "fixed": [72, 104, 136],
+      "trig": "first turn observed opponent worker count >= 3 (B3.1 early-warning trigger)"
+    }
+  },
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d169a-resident-option-envelope",
+  "value_gates": {
+    "coverage_min_task_rate": 0.60,
+    "pass_min_mean_envelope": 10.0,
+    "pass_min_ci_lower_bound": 5.0,
+    "pass_min_improved_rate": 0.30,
+    "kill_max_mean_envelope": 5.0,
+    "borderline_min_mean_envelope": 5.0,
+    "borderline_max_mean_envelope": 10.0
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-protocol-2026-07-27.md": "a09af90724bfe739e8fe9bea0a2cfb165ba2db0518c1594b9741853969fc9a78",
+    "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/src/bin/d163_resident_resource_control_components.rs": "08c669d60f2bc6681760e963070ff67e3d0157914cdde00bfbef65e88f94e7fc",
+    "rust/src/bin/d167a_successor_acquisition_path.rs": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032",
+    "rust/src/bin/d168a_bank_seed_successor_option.rs": "02efa8ff95f55b8e1bf24122cfd1ed7d5b2dab213ea45621ce074691e7884eb3",
+    "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+    "rust/src/bin/d102_complete_macro_resident_transfer.rs": "3caa71e7077db212e67ed566af9cdf099d587112e9659f369f1e7df58770a319",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "data/analysis/live-agent-6553250/d162a-resident-native-capital-option-result.json": "013a8a6c6cab5892a17e4b7e58da77aa11e2d7cf4b145e940f08d5158aed7f5c",
+    "data/analysis/live-agent-6553250/d163a-resident-resource-control-components-result.json": "560e5651ae0f8079175db5d521cedf9021c807a4d69c2b8d2e6b2487fa69afe7",
+    "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-result.json": "5d6f7b173e9c9d757830a480ff7c979d98e09e29e89ababe378f5aed1f0d0364",
+    "data/analysis/live-agent-6553250/d168a-bank-seed-successor-option-result.json": "765426418f9ece42c142272bcf493cd9a18b4d4a210417a79b1d14dc423ffb2a"
+  },
+  "prohibitions": {
+    "fresh_maps": true,
+    "reserved_maps": true,
+    "yt": true,
+    "platform": true,
+    "candidate_generation": true,
+    "submission": true,
+    "resident_mutation": true,
+    "selector_or_policy_fitting_on_this_runs_outcomes": true,
+    "tuning_frozen_option_parameters": true,
+    "threshold_tuning_after_outcomes": true,
+    "modify_d162_d163_d167_d168_frozen_modules": true
+  }
+}

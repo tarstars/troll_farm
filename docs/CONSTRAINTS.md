@@ -355,6 +355,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - The unconstrained all-Rate spatial scorer is global trajectory replacement (all 32 random
   policies change 64/64 task hashes; its +92 oracle is unusable) — closed. Blind
   contested-crop promotion is ubiquitous (98.83% of tasks) and closed. [D79/D80]
+- ★★ The unified resident-native option envelope clears the Tier-2 gate: crop-safe
+  hindsight ceiling over {OPT_RETURN (D168 ARM_A), OPT_FRUIT/IRON/PROTECT (D163), all
+  ±B3.1-scaling-trigger-armed} is **+10.671 mean, CI [+9.420, +11.922], 65% improved, 0
+  regressions, tails better than control** on the full 1,024-task panel (100% coverage).
+  Every option is individually negative always-on — the entire value is per-game
+  selection. The deployability-realistic subset (trigger-armed only) is +1.80, an order
+  of magnitude lower — the open problem is genuinely a selection/timing objective, not
+  activation breadth. This authorizes D170 (closed-loop training design) but does not
+  itself constitute one; do not select/tune from this envelope's per-task winners
+  directly (D100b: hindsight winners are trajectory-specific, not a policy). [D169]
 - ★ Validated positive interface: concrete, collision-safe two-worker JOINT assignments at
   natural batch boundaries. D97's oracle gains +36.852 with joint assignment adding +9.208
   beyond best-single (66.67% of roots). The 64-expert proposal union is a valuable online

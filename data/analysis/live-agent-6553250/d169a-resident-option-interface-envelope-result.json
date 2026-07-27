@@ -1,0 +1,477 @@
+{
+  "activation": {
+    "opt_fruit_t072": {
+      "aborted_tasks": 1022,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -3.6533203125,
+      "strict_improve_active": 360,
+      "strict_regress_active": 462
+    },
+    "opt_fruit_t104": {
+      "aborted_tasks": 1007,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -2.9169921875,
+      "strict_improve_active": 319,
+      "strict_regress_active": 449
+    },
+    "opt_fruit_t136": {
+      "aborted_tasks": 961,
+      "activated_tasks": 1014,
+      "activation_rate": 0.990234375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -2.980276134122288,
+      "strict_improve_active": 267,
+      "strict_regress_active": 424
+    },
+    "opt_fruit_trig": {
+      "aborted_tasks": 180,
+      "activated_tasks": 182,
+      "activation_rate": 0.177734375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -9.489010989010989,
+      "strict_improve_active": 65,
+      "strict_regress_active": 86
+    },
+    "opt_iron_t072": {
+      "aborted_tasks": 1024,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -6.1689453125,
+      "strict_improve_active": 291,
+      "strict_regress_active": 619
+    },
+    "opt_iron_t104": {
+      "aborted_tasks": 1016,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -6.3603515625,
+      "strict_improve_active": 269,
+      "strict_regress_active": 619
+    },
+    "opt_iron_t136": {
+      "aborted_tasks": 984,
+      "activated_tasks": 1014,
+      "activation_rate": 0.990234375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -5.763313609467455,
+      "strict_improve_active": 234,
+      "strict_regress_active": 605
+    },
+    "opt_iron_trig": {
+      "aborted_tasks": 182,
+      "activated_tasks": 182,
+      "activation_rate": 0.177734375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -12.065934065934066,
+      "strict_improve_active": 56,
+      "strict_regress_active": 106
+    },
+    "opt_protect_t072": {
+      "aborted_tasks": 1022,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -0.060546875,
+      "strict_improve_active": 5,
+      "strict_regress_active": 11
+    },
+    "opt_protect_t104": {
+      "aborted_tasks": 1004,
+      "activated_tasks": 1024,
+      "activation_rate": 1.0,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -0.458984375,
+      "strict_improve_active": 12,
+      "strict_regress_active": 52
+    },
+    "opt_protect_t136": {
+      "aborted_tasks": 947,
+      "activated_tasks": 1014,
+      "activation_rate": 0.990234375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -0.7504930966469427,
+      "strict_improve_active": 36,
+      "strict_regress_active": 98
+    },
+    "opt_protect_trig": {
+      "aborted_tasks": 181,
+      "activated_tasks": 182,
+      "activation_rate": 0.177734375,
+      "committed_tasks": 0,
+      "mean_paired_margin_active": -0.1043956043956044,
+      "strict_improve_active": 2,
+      "strict_regress_active": 3
+    },
+    "opt_return": {
+      "aborted_tasks": 55,
+      "activated_tasks": 164,
+      "activation_rate": 0.16015625,
+      "committed_tasks": 105,
+      "mean_paired_margin_active": -6.7317073170731705,
+      "strict_improve_active": 31,
+      "strict_regress_active": 123
+    }
+  },
+  "coverage": {
+    "pass": true,
+    "rate": 1.0,
+    "tasks": 1024,
+    "tasks_with_at_least_one_armable_option_state": 1024
+  },
+  "d161_parity": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true,
+    "tasks": 1024
+  },
+  "envelope": {
+    "arms_in_envelope": [
+      "opt_return",
+      "opt_fruit_t072",
+      "opt_fruit_t104",
+      "opt_fruit_t136",
+      "opt_fruit_trig",
+      "opt_iron_t072",
+      "opt_iron_t104",
+      "opt_iron_t136",
+      "opt_iron_trig",
+      "opt_protect_t072",
+      "opt_protect_t104",
+      "opt_protect_t136",
+      "opt_protect_trig"
+    ],
+    "catastrophes_not_above_control": true,
+    "control_tail": {
+      "catastrophe_count": 22,
+      "negative_margin_mass": 5001
+    },
+    "family_mean_margin": {
+      "compact_gold": 11.75,
+      "gold_adaptive": 14.5859375,
+      "legend_balanced": 11.421875,
+      "mybot": 13.3125,
+      "norx_native_three": 11.2421875,
+      "resident": 5.140625,
+      "script_boss": 8.015625,
+      "silver_boss": 9.8984375
+    },
+    "map_clustered_normal_95pct_ci": [
+      9.419732704421426,
+      11.922064170578574
+    ],
+    "mean_margin": 10.6708984375,
+    "mean_opponent_score_delta": -5.701171875,
+    "mean_own_score_delta": 4.9697265625,
+    "median_margin": 5.0,
+    "negative_margin_mass_not_above_control": true,
+    "positive_families": 8,
+    "selected_tail": {
+      "catastrophe_count": 14,
+      "negative_margin_mass": 3622
+    },
+    "selection": {
+      "ineligible_crop_rows": 1021,
+      "selection_counts": {
+        "control": 358,
+        "opt_fruit_t072": 187,
+        "opt_fruit_t104": 109,
+        "opt_fruit_t136": 87,
+        "opt_fruit_trig": 25,
+        "opt_iron_t072": 96,
+        "opt_iron_t104": 72,
+        "opt_iron_t136": 64,
+        "opt_iron_trig": 13,
+        "opt_protect_t072": 1,
+        "opt_protect_t136": 2,
+        "opt_return": 10
+      }
+    },
+    "strict_improvement_rate": 0.650390625,
+    "strict_improvement_tasks": 666,
+    "strict_regression_tasks": 0,
+    "tasks": 1024,
+    "tie_tasks": 358,
+    "worst_family_mean_margin": 5.140625
+  },
+  "inactive_task_parity": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true,
+    "tasks_checked": 3416
+  },
+  "input_hashes": {
+    "build_script": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "d161_resident_panel": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+    "jobs1": "a51a64119a148f4855e29e474626f12c2fcb5924cb0d84161014ef8a68ec1762",
+    "jobs20": "a51a64119a148f4855e29e474626f12c2fcb5924cb0d84161014ef8a68ec1762",
+    "lock": "beaad47d6ef1f3d0ff9b63114d232fd9b6a648bfc03f1b0c6ee481eeb79980e4",
+    "protocol": "a09af90724bfe739e8fe9bea0a2cfb165ba2db0518c1594b9741853969fc9a78",
+    "runner": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a"
+  },
+  "integrity": {
+    "all_games_done": true,
+    "control_never_activates": true,
+    "control_reproduces_d161": true,
+    "frozen_modules_unmodified": true,
+    "inactive_tasks_byte_exact_vs_control": true,
+    "jobs1_and_jobs20_byte_identical": true,
+    "no_double_commit_and_abort": true,
+    "no_task_exceeds_workforce_cap": true,
+    "own_le_max_own_workers": true,
+    "reserved_maps_excluded": true,
+    "resource_arms_workforce_paired_with_control": true,
+    "reward_identity_exact": true,
+    "row_count_exact": true,
+    "schema_exact": true,
+    "task_policy_matrix_exact": true,
+    "unique_rows_exact": true,
+    "zero_ambiguous_crops": true,
+    "zero_failure_telemetry": true
+  },
+  "integrity_pass": true,
+  "lock": {
+    "lock": {
+      "arm_definitions": {
+        "opt_fruit": {
+          "mask": 1,
+          "source": "D163 component F"
+        },
+        "opt_iron": {
+          "mask": 2,
+          "source": "D163 component I"
+        },
+        "opt_protect": {
+          "mask": 4,
+          "source": "D163 component P"
+        },
+        "opt_return": {
+          "abort_reasons": [
+            "EMPTY_BANK_AT_PICK",
+            "NO_LEGAL_CELL",
+            "HORIZON",
+            "WORKER_MISSING"
+          ],
+          "horizon_turns": 24,
+          "source": "D168a ARM_A (post-return), byte-identical semantics",
+          "species_tie_break": [
+            "BANANA",
+            "APPLE",
+            "PLUM",
+            "LEMON"
+          ]
+        },
+        "resource_component_common": {
+          "controller_train": false,
+          "horizon_turns": 32,
+          "shadow_reserve": [
+            3,
+            3,
+            2,
+            0,
+            3,
+            0
+          ]
+        },
+        "start_variants": {
+          "fixed": [
+            72,
+            104,
+            136
+          ],
+          "trig": "first turn observed opponent worker count >= 3 (B3.1 early-warning trigger)"
+        }
+      },
+      "bulk_root": "artifacts/experiments/d169a-resident-option-envelope",
+      "frozen_at_utc": "2026-07-27T18:00:00Z",
+      "panel": {
+        "maps": 64,
+        "opponent_families": 8,
+        "reserved_maps": [
+          9844200,
+          9844215
+        ],
+        "seats": 2,
+        "start_seed": 9844136,
+        "tasks": 1024
+      },
+      "policies": [
+        "control",
+        "opt_return",
+        "opt_fruit_t072",
+        "opt_fruit_t104",
+        "opt_fruit_t136",
+        "opt_fruit_trig",
+        "opt_iron_t072",
+        "opt_iron_t104",
+        "opt_iron_t136",
+        "opt_iron_trig",
+        "opt_protect_t072",
+        "opt_protect_t104",
+        "opt_protect_t136",
+        "opt_protect_trig"
+      ],
+      "policy_count": 14,
+      "prohibitions": {
+        "candidate_generation": true,
+        "fresh_maps": true,
+        "modify_d162_d163_d167_d168_frozen_modules": true,
+        "platform": true,
+        "reserved_maps": true,
+        "resident_mutation": true,
+        "selector_or_policy_fitting_on_this_runs_outcomes": true,
+        "submission": true,
+        "threshold_tuning_after_outcomes": true,
+        "tuning_frozen_option_parameters": true,
+        "yt": true
+      },
+      "question": "does a unified, resident-native, crop-safe option vocabulary (OPT_RETURN + OPT_FRUIT/OPT_IRON/OPT_PROTECT, fixed + observable-trigger starts) contain >= +10 mean paired hindsight-envelope margin over the exact resident on the full 1,024-task consumed panel, with clean tails and no negative family?",
+      "rows_per_run": 14336,
+      "schema": "troll-farm-d169a-resident-option-interface-envelope-lock-v1",
+      "sha256": {
+        "data/analysis/live-agent-6553250/d161a-resident-d40-panel-jobs20-9844136-9844199.tsv": "144d8f880be8eb58e19e1ef0a3547c04280dac8644340628b60101c1c47c988b",
+        "data/analysis/live-agent-6553250/d162a-resident-native-capital-option-result.json": "013a8a6c6cab5892a17e4b7e58da77aa11e2d7cf4b145e940f08d5158aed7f5c",
+        "data/analysis/live-agent-6553250/d163a-resident-resource-control-components-result.json": "560e5651ae0f8079175db5d521cedf9021c807a4d69c2b8d2e6b2487fa69afe7",
+        "data/analysis/live-agent-6553250/d167a-successor-acquisition-path-result.json": "5d6f7b173e9c9d757830a480ff7c979d98e09e29e89ababe378f5aed1f0d0364",
+        "data/analysis/live-agent-6553250/d168a-bank-seed-successor-option-result.json": "765426418f9ece42c142272bcf493cd9a18b4d4a210417a79b1d14dc423ffb2a",
+        "data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-protocol-2026-07-27.md": "a09af90724bfe739e8fe9bea0a2cfb165ba2db0518c1594b9741853969fc9a78",
+        "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+        "rust/src/bin/d102_complete_macro_resident_transfer.rs": "3caa71e7077db212e67ed566af9cdf099d587112e9659f369f1e7df58770a319",
+        "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+        "rust/src/bin/d163_resident_resource_control_components.rs": "08c669d60f2bc6681760e963070ff67e3d0157914cdde00bfbef65e88f94e7fc",
+        "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+        "rust/src/bin/d167a_successor_acquisition_path.rs": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032",
+        "rust/src/bin/d168a_bank_seed_successor_option.rs": "02efa8ff95f55b8e1bf24122cfd1ed7d5b2dab213ea45621ce074691e7884eb3",
+        "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+        "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+        "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+        "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+        "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+      },
+      "threads": [
+        1,
+        20
+      ],
+      "value_gates": {
+        "borderline_max_mean_envelope": 10.0,
+        "borderline_min_mean_envelope": 5.0,
+        "coverage_min_task_rate": 0.6,
+        "kill_max_mean_envelope": 5.0,
+        "pass_min_ci_lower_bound": 5.0,
+        "pass_min_improved_rate": 0.3,
+        "pass_min_mean_envelope": 10.0
+      }
+    },
+    "mismatches": {},
+    "pass": true
+  },
+  "policies": [
+    "control",
+    "opt_return",
+    "opt_fruit_t072",
+    "opt_fruit_t104",
+    "opt_fruit_t136",
+    "opt_fruit_trig",
+    "opt_iron_t072",
+    "opt_iron_t104",
+    "opt_iron_t136",
+    "opt_iron_trig",
+    "opt_protect_t072",
+    "opt_protect_t104",
+    "opt_protect_t136",
+    "opt_protect_trig"
+  ],
+  "protocol": "data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-protocol-2026-07-27.md",
+  "resource_workforce_parity": {
+    "mismatch_count": 0,
+    "mismatches": [],
+    "pass": true,
+    "rows_checked": 12288
+  },
+  "runs": {
+    "jobs1": {
+      "path": "artifacts/experiments/d169a-resident-option-envelope/d169a-jobs1-9844136-9844199.tsv",
+      "rows": 14336,
+      "wall_seconds": 1434.415
+    },
+    "jobs20": {
+      "path": "artifacts/experiments/d169a-resident-option-envelope/d169a-jobs20-9844136-9844199.tsv",
+      "rows": 14336,
+      "wall_seconds": 168.992
+    },
+    "speedup": 8.48806452376444
+  },
+  "schema": "troll-farm-d169a-resident-option-interface-envelope-v1",
+  "trig_and_return_envelope_diagnostic": {
+    "arms_in_envelope": [
+      "opt_return",
+      "opt_fruit_trig",
+      "opt_iron_trig",
+      "opt_protect_trig"
+    ],
+    "catastrophes_not_above_control": true,
+    "control_tail": {
+      "catastrophe_count": 22,
+      "negative_margin_mass": 5001
+    },
+    "family_mean_margin": {
+      "compact_gold": 0.828125,
+      "gold_adaptive": 6.1328125,
+      "legend_balanced": 1.4609375,
+      "mybot": 1.8515625,
+      "norx_native_three": 0.140625,
+      "resident": 0.703125,
+      "script_boss": 1.75,
+      "silver_boss": 1.5390625
+    },
+    "map_clustered_normal_95pct_ci": [
+      1.234032383317159,
+      2.367530116682841
+    ],
+    "mean_margin": 1.80078125,
+    "mean_opponent_score_delta": -1.0146484375,
+    "mean_own_score_delta": 0.7861328125,
+    "median_margin": 0.0,
+    "negative_margin_mass_not_above_control": true,
+    "positive_families": 8,
+    "selected_tail": {
+      "catastrophe_count": 21,
+      "negative_margin_mass": 4769
+    },
+    "selection": {
+      "ineligible_crop_rows": 73,
+      "selection_counts": {
+        "control": 913,
+        "opt_fruit_trig": 48,
+        "opt_iron_trig": 34,
+        "opt_protect_trig": 2,
+        "opt_return": 27
+      }
+    },
+    "strict_improvement_rate": 0.1083984375,
+    "strict_improvement_tasks": 111,
+    "strict_regression_tasks": 0,
+    "tasks": 1024,
+    "tie_tasks": 913,
+    "worst_family_mean_margin": 0.140625
+  },
+  "value_verdict": {
+    "all_non_mean_gates_pass": true,
+    "gates": {
+      "at_least_30pct_improved": true,
+      "catastrophes_not_above_control": true,
+      "ci_lower_bound_at_least_5_0": true,
+      "mean_envelope_at_least_10_0": true,
+      "negative_margin_mass_not_above_control": true,
+      "no_negative_family_mean": true
+    },
+    "reason": "mean envelope >= +10.0 and all non-mean gates pass",
+    "verdict": "PASS"
+  },
+  "verdict": "PASS"
+}
