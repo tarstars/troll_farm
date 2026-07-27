@@ -389,7 +389,66 @@ local CPU, and the frozen local/YT parity gate remains a precondition before any
 result may be *selected* (YT stayed in use for exactly-replayable map/reduce simulation,
 where byte-parity was achieved and verified per shard).
 
-## 19. Glossary — mother, crop, orchard
+## 19. The saved-games database
+
+Everything field-related — loss diagnoses, archaeology, motif audits, opponent models —
+runs on a locally saved corpus of real arena replays. Its shape as of 2026-07-27:
+
+**What we have.**
+
+- **1,891 raw replays, 517 MB**, in `data/raw/games/` — one JSON per finished arena game,
+  containing the referee's full record: per-turn frames, both players' commands and
+  stdout, map layout, and final scores. Every game sits on a distinct map (1,891 unique
+  layouts); **345 distinct agents** appear, including 32 boss games. Through the last full
+  QA rebuild the processed corpus covers 1,693 of them (0 parse failures); the newest 198
+  games passed snapshot-level QA (393/393 in their snapshot) and fold into the cumulative
+  statistics at the next rebuild.
+- **Two immutable D61p snapshots** (`data/raw/snapshots/20260721T105508Z-d61p/`,
+  `.../20260727T130712Z-d61p/`) — 33 index/manifest files each: leaderboard state at
+  collection time, request and source hashes for every fetch, and the open/sealed
+  partition manifests. Snapshots are append-only; the collector refuses cache overwrite.
+- **47 legacy battle records** in `data/raw/battles/` from the Gold-era collector — the
+  previous tooling generation, kept for the historical corpus.
+- Derived layers: decoded state streams validated turn-by-turn against the simulator
+  (361,755 transitions, **zero material mismatches**; 28,416 position-only RNG
+  differences), aggregate statistics (`data/processed/stats.json`), and per-experiment
+  extracts (e.g. the D164 field-cycle tables).
+
+**How we got them.** CodinGame exposes finished games through public replay endpoints:
+a last-battles list per agent, and one replay JSON per game id. Collection is strictly
+read-only (GETs only, throttled, hard-stop on HTTP 422/429) and each run is individually
+authorized, the same discipline as arena writes. Two tool generations: the Gold-era
+`collect.py` (fetch-log bookkeeping into `battles/`), superseded by the **D61p immutable
+collector** (`data/scripts/collect_snapshot.py` + `parse_snapshot.py`), which hashes every
+request and source body, refuses to overwrite cached games, deduplicates into the shared
+`games/` store (2026-07-27 run: 198 fetched new, 195 skipped as cached, 220/220 requests
+clean), and physically separates a **sealed confirmation partition** (currently 11 games)
+that no analysis may open — it is reserved as untouched holdout for future candidate
+confirmation. Every rebuild passes a QA gate: exact final-score reproduction (1,685
+exact + 8 known penalty-only endings), tree invariants, and point-symmetry of every map.
+
+**How we group them.** The groupings the experiments actually use:
+
+- **By partition discipline** — OPEN vs SEALED-confirmation. The single most important
+  split: sealed games are never decoded by exploratory analyses.
+- **By subject** — resident appearances (203 in the current snapshot, 192 open) vs the
+  top-source stratum (exactly 10 appearances per current top-20 agent — a deliberate
+  stratified sample) vs boss games vs the long tail of the 345-agent population.
+- **By rank cohort** — top-5 / ranks 6–20 / resident: the standard field split of
+  D164–D167 (e.g. P→S→P cycles: 72% / 27% / 11% of appearances).
+- **By outcome** — wins vs losses; within losses, **catastrophes** (margin ≤ −100;
+  19/192 open resident games, carrying 58% of negative-margin mass) vs ordinary losses;
+  early-lead reversals (ahead at turn 100) as their own diagnostic cohort.
+- **By matchup** — per-opponent records against the resident (historically the weakest:
+  wala, delineate, norxondor — the 07-16 loss-analysis trio).
+- **By behavioral motif** — analysis-derived labels: scaler vs non-scaler appearances
+  (46/104 in D63), renewable-mode games (the yaichi study), worker-rich vs two-worker
+  cohorts, pre-carry vs post-acquisition successor returns (D167).
+- **By collection generation and era** — legacy Gold-era battles vs the Legend-era
+  cumulative store vs dated immutable snapshots (which make "the field as of date X"
+  a well-defined, hash-frozen object).
+
+## 20. Glossary — mother, crop, orchard
 
 Terms that recur throughout the ledger, grounded in the game's mechanics and the
 resident's own source code.
@@ -426,7 +485,7 @@ resident's own source code.
   deposited bank those seeds come from is fed by harvests — including mother fruit — so
   the mother/crop loop is the upstream supply of the very returns D168 is now testing.
 
-## 20. Where the records live
+## 21. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
