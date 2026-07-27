@@ -21,6 +21,25 @@ norxondor_gorgonax 29.52 / MSz 28.22. 198 new public replays collected (195 cach
 skipped; 220/220 requests clean), QA 393/393 parsed with zero failures; snapshot
 `data/raw/snapshots/20260727T130712Z-d61p/` (gitignored raw). No arena write.
 
+## 2026-07-27: B3.1 catastrophe-tail endgame coverage audit (read-only; no candidate)
+
+On the fresh snapshot's 192 open resident games (11 sealed-confirmation games excluded per
+the D61p holdout protocol), the D159 signature replicates independently: 19/192 = 9.9%
+catastrophes (margin ≤ −100) carrying 57.9% of negative-margin mass across 14 opponents;
+ahead-at-t100 reversals match D159a's own `catastrophic_reversals` computation 16/16. The
+resident's score-aware endgame switch (`endgame = turn>250 || (plants≤4 &&
+my_score<opp_score)`) fired in 10/19 catastrophes but always at or after the score
+crossover (median +46.5 turns late, minimum gap 0) — an AND-of-behind design structurally
+cannot fire earlier, and the four worst catastrophes never triggered it before the trivial
+turn-250 clock (never-fired games hold 57.6% of catastrophic mass). Verdict: **no coverage
+bug; switch retuning is closed.** The bounded surviving signal: opponent workforce scaling
+past the resident's two-worker ceiling precedes the crossover by 42–125 turns in 84% of
+catastrophes (79% jointly with ahead-at-t100), covering 83% of catastrophic mass — an
+observable trigger the resident never conditions on. This independently confirms D159's
+top-ranked attack angle and feeds the B2.1 option-interface design (activation
+conditioning), not a retuned switch. Report:
+`scratchpad/b31-endgame-audit-report.md` (session scratch; numbers preserved here).
+
 Operational, same day: the data-footprint cleanup executed per
 `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md` with per-task review — 22
 clean worktrees removed (branches intact), `rust/target/debug` cleared + AGENTS.md cap

@@ -357,6 +357,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   near-symmetric own/opponent score suppression. The open question is a family-robust
   objective with own-score protection — not more duration. [D108/D109; reopened as the
   skipped-D109 question by D157]
+- The resident's score-aware endgame switch has no coverage bug and its retuning is closed:
+  across 19 independent catastrophes it fired at or after the score crossover in every
+  activation (median +46.5 turns late) — its behind-AND design structurally cannot fire
+  earlier, and the four worst games never reached it before turn 250. The exploitable
+  signal is upstream: opponent scaling past two workers precedes the crossover by 42–125
+  turns in 84% of catastrophes (83% of catastrophic mass) and the resident never
+  conditions on it. [B3.1 audit 2026-07-27, vol 2]
 
 ## (g) Arena measurement & platform behavior
 

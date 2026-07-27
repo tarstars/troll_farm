@@ -58,8 +58,10 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 - **B2.1 Resident-native option interface + headroom audit** *(2–3 sessions)*
   Define the option vocabulary at the resident's natural job boundaries (successor jobs
   from B1.1 + D162-style bounded reserve/route/protect + joint two-worker assignments per
-  D97 semantics, rebuilt resident-anchored per the D158/D161 substrate rule). Measure the
-  crop-safe hindsight envelope on paired local maps, both seats, eight families.
+  D97 semantics, rebuilt resident-anchored per the D158/D161 substrate rule). Include the
+  B3.1 trigger — observed opponent scaling past 2 workers, 42–125 turns of lead time in
+  84% of catastrophes — as an activation-conditioning feature of the interface. Measure
+  the crop-safe hindsight envelope on paired local maps, both seats, eight families.
   **Gate:** envelope ≥ +10 mean with no negative family and clean tails (D162 achieved
   +12.7 on a narrower vocabulary). **Kill:** < +5 → the class is dead; fall back to
   Tier 3 + maturity.
@@ -76,13 +78,12 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 
 ## Tier 3 — execution-class diagnostics (historically the only transferrers)
 
-- **B3.1 Catastrophe-tail endgame audit** *(1 session, read-only on corpus)*
-  In the 13/120 catastrophe games (D159): would duration control have banked the t100
-  lead? D103 showed 47% of D40's opponent excess accrues in the terminal tail; the
-  resident already has a score-aware endgame switch (removing it was negative, Phase 1–5)
-  — audit its *coverage* on catastrophes specifically. Output: either one bounded
-  execution-class candidate or a closure bullet. [D103/D159; class (h) — execution-class
-  changes are the only ones that ever transferred]
+- **B3.1 ✅ DONE 2026-07-27** — signature replicates independently (19/192, 57.9% of
+  negative mass); the endgame switch has NO coverage bug (fires at the earliest turn its
+  behind-AND design permits; retuning closed — CONSTRAINTS §(f)). Surviving output: an
+  observable early-warning trigger — opponent scaling past 2 workers precedes the
+  crossover by 42–125 turns in 84% of catastrophes (83% of mass). **Feeds B2.1 as an
+  activation-conditioning signal**, not a switch retune.
 - **B3.2 Execution-waste sweep on the freshest corpus** *(1 session after B0.1)*
   Motion/idle/waste audit on new replays (the 07-16 audit found zero motion failures —
   rerun on current field only if B0.1 shows new opponents/behaviors). Cheap; occasional
