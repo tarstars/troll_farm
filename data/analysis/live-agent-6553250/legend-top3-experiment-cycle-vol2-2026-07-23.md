@@ -175,6 +175,37 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: D173b CLOSED — the fix works where it can; `harvest_power: 0` is the real cap
+
+Trigger fidelity repaired and verified: **64/64 activations** show CHOP as control's issued
+action at the divergence turn (D173a scored 19/60). Implementation is a post-selection
+rewrite called once from `commands()`; 32/32 tests; dev copy restored byte-exact (SHA
+`fff6669b…`) and re-verified three times. Activation 805/2,048 = 39.3% (vs D173a's 50.9%,
+as predicted).
+
+**The decisive finding:** the mechanism gate fails at 21.3% sub-class reduction — but the
+population splits cleanly. Among **addressable** episodes (chopper with `harvest_power ≥ 1`,
+i.e. the starter) the fix achieves **99.9% elimination (1,002 → 1)**. Among **inaddressable**
+episodes (`harvest_power = 0` trained choppers — the constraint the protocol froze as
+untouchable) the count *rises* 25.2% (1,092 → 1,367) through downstream cascades, and
+**99.93% of all surviving episodes are of that kind**. The fix is not weak; the vein is
+capped by trained-unit harvest incapability. Total slack +8.3%; door_queue +21.2% and
+idle_with_work +11.9% worsen (unbanked_carry improves, two flat).
+
+**Value, and a pattern across both variants:** overall **+1.063 [−0.056, +2.181]**
+(passes ≥0), activated **+2.703** over 805 tasks (passes ≥+1.0) — but worst family
+`compact_gold` **−1.391**, catastrophes **52 vs 49**, negative-mass ratio **1.081** all
+fail. D173a failed the same three (−2.06 / 54 vs 49 / 1.096). Harvest-before-chop
+consistently buys mean value while delaying wood in ways that cost specific opponents and
+fatten the tail — that cost is a property of the intervention, not of either trigger.
+
+**Verdict: harvest-before-chop is CLOSED as an execution-class fix.** The residual
+question is strategic and now sharply posed: should trained units be harvest-capable at
+all (`opening_options:1878–1900`)? That is a worker-capability change, gated on whether
+the fruit would actually fund anything — which B3.8's counterfactual currency audit is
+measuring right now. No candidate built; no arena action; the owner's D173a promotion
+authorization never triggered and does not carry to any successor.
+
 ## 2026-07-28: B3.6 CLOSED — idle_with_work is ~78% benign; no fix candidate, and round 2 partly self-corrected
 
 Full-corpus sub-classification of all 7,782 episodes / 10,279 turns (reproduces round 2's

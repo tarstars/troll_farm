@@ -124,7 +124,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   (all machinery exists), expected value small; promotion of any qualified successor
   needs a NEW owner authorization (the D171a standing grant never triggered and does not
   carry over).
-- **B3.5 (new, OPEN — current top execution-class lead): harvest_slack diagnosis + fix**
+- **B3.5 ❌ CLOSED 2026-07-28 (D173a + D173b)** — diagnosis excellent (missing HARVEST
+  action class, 1,972 pts/9.62 per game lost), fix works on what it can reach (99.9%
+  elimination among harvest-capable choppers) but 99.93% of the vein needs trained-unit
+  harvest capability (`opening_options` hp:0) — strategy, not execution. Both variants
+  also failed worst-family/catastrophe/tail gates identically: delaying wood for fruit
+  has a real cost. **Successor is strategic and gated on B3.8's funding verdict** (does
+  the fruit pay TRAIN bills? if no, the whole vein closes; if yes, a worker-capability
+  protocol becomes justified). Original entry:
   — ripe fruit unharvested ≥3 turns with a capable worker nearby: 2,163 episodes in
   204/205 games, ~536 pts gross ceiling (~2.6/game), loss-enriched +15–20%, 91%
   independent of the closed oscillation vein. Plausible target-reassignment root cause.

@@ -1,0 +1,250 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..c4c400a 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -2758,6 +2758,76 @@ pub mod bot {
+                     self.opponent_crop_harvest_rewrites += 1;
+                 }
+             }
++            /// D173b: harvest-before-chop, trigger-fidelity repair of D173a. D173a's own
++            /// trigger fired whenever a CHOP candidate merely existed for the unit's own
++            /// cell -- satisfied even by a transit unit merely passing through a fruited
++            /// cell on its way to a better target elsewhere (41/60 sampled activations;
++            /// B3.5's own `transit_passthrough` sub-class), not only by the genuine
++            /// chop-shadow population the fix was scoped to. This repair reads the unit's
++            /// *actual assigned winning action* -- the literal command `MoisanBot::select`
++            /// already chose for that unit this turn, absent this fix -- instead of
++            /// candidate existence: only when the resident's own assignment already chose
++            /// `CHOP {id}` for a harvest-capable unit whose own cell carries ripe fruit
++            /// within shack distance 2 does this rewrite that single command to
++            /// `HARVEST {id}` for exactly this turn (chop resumes next turn once the fruit
++            /// is gone -- this is a stateless post-selection rewrite recomputed fresh from
++            /// `view`/`commands` on every call, mirroring the
++            /// `apply_opponent_crop_harvest_contact` rewrite immediately above, which is
++            /// likewise a same-cell CHOP-to-HARVEST substitution keyed off the literal
++            /// selected command string rather than a re-derived candidate). Confined to the
++            /// same two candidate generators D173a's protocol scoped this fix to
++            /// (`main_candidates`/`endgame_candidates`): units routed to
++            /// `scarce_farmer_candidates` or the opening `early_candidates` path (the two
++            /// generators D173a never touched) are excluded by construction via the
++            /// `scarce_farmer_id`/`early` guards the caller already computes.
++            fn harvest_before_chop_rewrite(
++                view: &GameState,
++                commands: &mut [String],
++                scarce_farmer_id: Option<i32>,
++                early: bool,
++            ) {
++                if early {
++                    return;
++                }
++                for command in commands {
++                    let unit_id = {
++                        let fields: Vec<_> = command.split_whitespace().collect();
++                        if fields.first() != Some(&"CHOP") {
++                            continue;
++                        }
++                        let Some(unit_id) = fields.get(1).and_then(|value| value.parse().ok())
++                        else {
++                            continue;
++                        };
++                        unit_id
++                    };
++                    if scarce_farmer_id == Some(unit_id) {
++                        continue;
++                    }
++                    let Some(unit) = view.unit(unit_id).filter(|unit| unit.player == 0) else {
++                        continue;
++                    };
++                    if unit.stats.harvest_power <= 0 || unit.free_capacity() <= 0 {
++                        continue;
++                    }
++                    let Some(plant) = view.plant_at(unit.cell).map(|index| &view.plants[index])
++                    else {
++                        continue;
++                    };
++                    if plant.fruits <= 0 {
++                        continue;
++                    }
++                    let shack_starts: Vec<Cell> = ortho_neighbors(view.shacks[0])
++                        .into_iter()
++                        .filter(|cell| view.walkable.contains(cell))
++                        .collect();
++                    let to_shack = bfs_distances(&view.walkable, &shack_starts);
++                    if to_shack.get(&unit.cell).copied().unwrap_or(10_000) > 2 {
++                        continue;
++                    }
++                    *command = format!("HARVEST {}", unit_id);
++                }
++            }
+             fn tree_targets_by_command(
+                 candidates: &BTreeMap<i32, Vec<Candidate>>,
+             ) -> BTreeMap<String, Cell> {
+@@ -3663,6 +3733,7 @@ pub mod bot {
+                 self.remember_selected_regeneration(view, &selected);
+                 self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                 self.remember_own_plant_attempts(view, &selected);
++                Self::harvest_before_chop_rewrite(view, &mut selected, scarce_farmer_id, early);
+                 if let Some(farmer_id) = scarce_farmer_id {
+                     self.regeneration_commitments.remove(&farmer_id);
+                 }
+@@ -5994,6 +6065,160 @@ pub mod bot {
+                 );
+                 assert_eq!(bot.inner.opponent_crop_selected, 0);
+             }
++
++            // D173b: harvest-before-chop trigger-fidelity repair. These replace D173a's
++            // `harvest_before_chop_candidate` tests (that fn no longer exists -- the fix is
++            // now a post-selection rewrite of the resident's own final assigned commands,
++            // `harvest_before_chop_rewrite`); the mapping is 1:1 except test 1 below, which
++            // is strictly stronger than D173a's old "non_chop_assignment" test since it
++            // exercises a real losing CHOP candidate through the real `MoisanBot::select`
++            // rather than an empty candidate list.
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_transit_unit_passing_fruited_tree() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let mut by_id = BTreeMap::new();
++                by_id.insert(
++                    7,
++                    vec![
++                        Candidate {
++                            command: "CHOP 7".to_string(),
++                            score: 100.0,
++                            target: Target::Tree(view.units[0].cell),
++                        },
++                        Candidate {
++                            command: "MOVE 7 3 3".to_string(),
++                            score: 200.0,
++                            target: Target::Cell((3, 3)),
++                        },
++                    ],
++                );
++                let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
++                assert_eq!(selected, vec!["MOVE 7 3 3".to_string()]);
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(
++                    selected,
++                    vec!["MOVE 7 3 3".to_string()],
++                    "a transit unit whose real assignment is MOVE must not be rewritten to \
++                     HARVEST merely because a losing CHOP candidate existed for its own cell"
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_emitted_when_units_actual_assigned_action_is_chop_on_fruited_own_cell(
++            ) {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let mut by_id = BTreeMap::new();
++                by_id.insert(
++                    7,
++                    vec![Candidate {
++                        command: "CHOP 7".to_string(),
++                        score: 100.0,
++                        target: Target::Tree(view.units[0].cell),
++                    }],
++                );
++                let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
++                assert_eq!(selected, vec!["CHOP 7".to_string()]);
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["HARVEST 7".to_string()]);
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_trained_hp0_unit() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                view.units[0].stats.harvest_power = 0;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["CHOP 7".to_string()]);
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_unfruited_tree() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                view.plants[0].fruits = 0;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["CHOP 7".to_string()]);
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_beyond_shack_distance_two() {
++                let mut view = fixture();
++                view.units[0].cell = (4, 4);
++                view.plants[0].cell = view.units[0].cell;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["CHOP 7".to_string()]);
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_when_unit_is_the_scarce_farmer() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, Some(7), false);
++                assert_eq!(
++                    selected,
++                    vec!["CHOP 7".to_string()],
++                    "scarce_farmer_candidates is one of the two candidate generators D173a's \
++                     protocol never touched; this fix must not widen coverage to it"
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_during_early_opening_phase() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, true);
++                assert_eq!(
++                    selected,
++                    vec!["CHOP 7".to_string()],
++                    "early_candidates is the other candidate generator D173a's protocol never \
++                     touched; this fix must not widen coverage to it"
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_resumes_chop_next_turn_once_fruit_is_gone() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let mut selected = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["HARVEST 7".to_string()]);
++
++                view.plants[0].fruits = 0;
++                let mut resumed = vec!["CHOP 7".to_string()];
++                YamoBot::harvest_before_chop_rewrite(&view, &mut resumed, None, false);
++                assert_eq!(
++                    resumed,
++                    vec!["CHOP 7".to_string()],
++                    "once the fruit is gone the rewrite must no-op, letting the resident's own \
++                     unmodified chop resume next turn -- this fix keeps no cross-turn memory"
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_converts_endgames_hardcoded_chop_override_when_it_wins_selection(
++            ) {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let candidates =
++                    YamoBot::endgame_candidates(&view, &view.units[0], None, false, None, 0);
++                assert!(candidates
++                    .iter()
++                    .any(|candidate| candidate.command == "CHOP 7" && candidate.score == 10_000.0));
++                let mut by_id = BTreeMap::new();
++                by_id.insert(7, candidates);
++                let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
++                assert_eq!(selected, vec!["CHOP 7".to_string()]);
++                YamoBot::harvest_before_chop_rewrite(&view, &mut selected, None, false);
++                assert_eq!(selected, vec!["HARVEST 7".to_string()]);
++            }
+         }
+     }
+     use super::game::GameState;

@@ -211,6 +211,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- Harvest-before-chop is CLOSED as an execution fix, with the cap identified: on
+  harvest-capable choppers it eliminates 99.9% of target episodes (1,002→1), but 99.93%
+  of the vein involves `harvest_power: 0` trained units (hardcoded in
+  `opening_options:1878–1900`) and is structurally unreachable without changing worker
+  capability — a strategy change requiring its own protocol and a funding rationale.
+  Both trigger variants (existence-based D173a, assignment-based D173b) also failed the
+  same three value gates — worst family (−2.06 / −1.39, compact_gold), catastrophes
+  (+5 / +3), negative mass (1.096 / 1.081) — so delaying wood for fruit carries a real,
+  trigger-independent cost against specific opponents. Any successor must budget for it.
+  [D173a, D173b]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"

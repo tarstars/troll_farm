@@ -1,0 +1,201 @@
+{
+  "integrity": {
+    "all_games_done": true,
+    "inactive_episodes_byte_exact": {
+      "activated_tasks": 805,
+      "inactive_tasks": 1243,
+      "mismatches": 0,
+      "pass": true
+    },
+    "one_vs_twenty_thread_byte_identical": true,
+    "pass": true,
+    "row_count_exact": true,
+    "task_matrix_exact": true
+  },
+  "mechanism": {
+    "activated_tasks_covered": 805,
+    "gates": {
+      "harvest_slack_total_not_increased": false,
+      "other_five_no_displacement": false,
+      "subclass_reduced_ge_70pct": false
+    },
+    "harvest_slack": {
+      "subclass_chop_shadow_shack2": {
+        "candidate": 2681,
+        "control": 3407,
+        "reduction_fraction": 0.213090695626651,
+        "reduction_pct": 21.3090695626651
+      },
+      "total_all_subclasses": {
+        "candidate": 23882,
+        "control": 22059,
+        "not_increased": false
+      }
+    },
+    "missing_candidate_for_active": [],
+    "missing_control": [],
+    "other_five_detectors": {
+      "door_queue": {
+        "candidate_episodes": 1855,
+        "candidate_flagged_turns": 1866,
+        "control_episodes": 1530,
+        "control_flagged_turns": 1537,
+        "episodes_not_worsened": false,
+        "flagged_turns_not_worsened": false
+      },
+      "idle_with_work": {
+        "candidate_episodes": 83002,
+        "candidate_flagged_turns": 115652,
+        "control_episodes": 74174,
+        "control_flagged_turns": 102941,
+        "episodes_not_worsened": false,
+        "flagged_turns_not_worsened": false
+      },
+      "late_train_window": {
+        "candidate_episodes": 1,
+        "candidate_flagged_turns": 34,
+        "control_episodes": 1,
+        "control_flagged_turns": 34,
+        "episodes_not_worsened": true,
+        "flagged_turns_not_worsened": true
+      },
+      "repeated_failed_command": {
+        "candidate_episodes": 0,
+        "candidate_flagged_turns": 0,
+        "control_episodes": 0,
+        "control_flagged_turns": 0,
+        "episodes_not_worsened": true,
+        "flagged_turns_not_worsened": true
+      },
+      "unbanked_carry": {
+        "candidate_episodes": 113,
+        "candidate_flagged_turns": 4698,
+        "control_episodes": 122,
+        "control_flagged_turns": 5151,
+        "episodes_not_worsened": true,
+        "flagged_turns_not_worsened": true
+      }
+    },
+    "pass": false,
+    "tasks_covered": 2048
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "path": "artifacts/experiments/d173b-harvest-before-chop/d173b-jobs20-9854000-9854127.tsv",
+    "rows": 2048,
+    "seeds": "9854000-9854127"
+  },
+  "reason": "gate failure(s): mechanism, value",
+  "schema": "troll-farm-d173b-harvest-before-chop-panel-v1",
+  "value": {
+    "activated_subset_mean_margin_delta": 2.703105590062112,
+    "activated_tasks": 805,
+    "best_5_candidate_tail": [
+      {
+        "map_seed": 9854071,
+        "margin_delta": 76,
+        "opponent": "gold_adaptive",
+        "seat": 0
+      },
+      {
+        "map_seed": 9854007,
+        "margin_delta": 89,
+        "opponent": "norx_native_three",
+        "seat": 1
+      },
+      {
+        "map_seed": 9854105,
+        "margin_delta": 102,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9854042,
+        "margin_delta": 119,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      },
+      {
+        "map_seed": 9854105,
+        "margin_delta": 155,
+        "opponent": "norx_native_three",
+        "seat": 1
+      }
+    ],
+    "candidate_catastrophes": 52,
+    "candidate_negative_margin_mass": 13784,
+    "control_catastrophes": 49,
+    "control_negative_margin_mass": 12749,
+    "family_mean_margin_delta": {
+      "compact_gold": -1.390625,
+      "gold_adaptive": 0.39453125,
+      "legend_balanced": 0.390625,
+      "mybot": 0.80859375,
+      "norx_native_three": 0.984375,
+      "resident": 2.015625,
+      "script_boss": 1.984375,
+      "silver_boss": 3.3125
+    },
+    "gates": {
+      "activated_subset_mean_ge_1_0": true,
+      "catastrophes_not_above_control": false,
+      "negative_margin_mass_le_1_05x_control": false,
+      "overall_ci_lower_ge_neg_0_5": true,
+      "overall_mean_ge_0": true,
+      "worst_family_ge_neg_1_0": false
+    },
+    "map_clustered_95pct_ci": [
+      -0.056151226435769086,
+      2.181151226435769
+    ],
+    "negative_margin_mass_ratio": 1.0811828378696369,
+    "overall_mean_margin_delta": 1.0625,
+    "pass": false,
+    "worst_5_candidate_tail": [
+      {
+        "map_seed": 9854116,
+        "margin_delta": -273,
+        "opponent": "gold_adaptive",
+        "seat": 0
+      },
+      {
+        "map_seed": 9854045,
+        "margin_delta": -198,
+        "opponent": "compact_gold",
+        "seat": 0
+      },
+      {
+        "map_seed": 9854031,
+        "margin_delta": -153,
+        "opponent": "compact_gold",
+        "seat": 0
+      },
+      {
+        "map_seed": 9854045,
+        "margin_delta": -125,
+        "opponent": "legend_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9854031,
+        "margin_delta": -109,
+        "opponent": "compact_gold",
+        "seat": 1
+      }
+    ],
+    "worst_family": {
+      "mean_margin_delta": -1.390625,
+      "name": "compact_gold"
+    }
+  },
+  "verdict": "CLOSED"
+}

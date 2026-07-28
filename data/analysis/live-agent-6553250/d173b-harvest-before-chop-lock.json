@@ -1,0 +1,80 @@
+{
+  "schema": "troll-farm-d173b-harvest-before-chop-lock-v1",
+  "frozen_at_utc": "2026-07-28T21:00:00Z",
+  "question": "does replacing D173a's candidate-existence trigger with a true assignment-outcome trigger (the unit's actual selected command this turn, absent the fix, is CHOP on its own fruited cell within shack-distance <=2) achieve >=90% same-turn CHOP fidelity on a 64-task activation sample, and does it then clear the inherited mechanism gate (>=70% reduction of the chop-shadow-shack<=2 harvest_slack sub-class, total harvest_slack not increased, the other five waste detectors not worsened) and value gates (non-regression overall + activated-subset >= +1.0, worst family >= -1.0, catastrophes/negative-mass not worse) on a fresh 2,048-task panel over the same seeds as D173a?",
+  "root_cause_being_repaired": "D173a's trigger fired on CHOP-candidate *existence* at the unit's cell (chops.iter().any(command == \"CHOP {id}\")), not on CHOP being the unit's actual assigned/selected action; 41/60 sampled activations were transit units diverted mid-plan (a same-cell CHOP candidate that lost the scoring contest to a better MOVE elsewhere in main_candidates), outside the frozen chop_or_mine_shadows_harvest scope.",
+  "panel": {
+    "start_seed": 9854000,
+    "maps": 128,
+    "tasks": 2048,
+    "seats": 2,
+    "opponent_families": 8,
+    "seed_range_note": "identical seed range to D173a (re-run from scratch per protocol); disjoint from D171a's 9,853,000-9,853,127."
+  },
+  "fix_scope": {
+    "file": "rust/src/bin/yamo_orchard_live.rs",
+    "new_fn": "harvest_before_chop_rewrite(view, commands, scarce_farmer_id, early)",
+    "architecture_change_from_d173a": "post-selection rewrite of the resident's own final assigned commands (called once from commands(), after MoisanBot::select and after apply_opponent_crop_harvest_contact) rather than a pre-selection candidate injected into main_candidates/endgame_candidates -- necessary because 'is CHOP the unit's actual assignment outcome' cannot be determined from inside a per-unit candidate generator called before MoisanBot::select has seen every unit's candidates",
+    "call_sites": ["commands() -- single call site, immediately before out.extend(selected)"],
+    "trigger": "commands[i] == \"CHOP {id}\" (the resident's own already-selected command this turn, absent this fix, by construction of running after MoisanBot::select with no prior candidate injection) AND unit is not the scarce farmer AND not an early-opening turn (both exclude the two candidate generators -- scarce_farmer_candidates, early_candidates -- D173a's protocol never touched) AND harvest_power >= 1 AND free_capacity() > 0 AND the plant at the unit's own cell has fruits > 0 AND own-door BFS shack distance <= 2",
+    "score": "n/a -- this is a command-string rewrite, not a scored candidate",
+    "untouched": ["opening_options (harvest_power: 0 for trained units)", "idle_harvest_candidates", "ScarceIntent / scarce_farmer_candidates", "force_unique_door_clear / external_protected_tree filtering", "main_candidates / endgame_candidates internals (both fully reverted to their pre-D173a form)"],
+    "cross_turn_state": "none -- recomputed fresh every call from view/commands plus the two already-computed locals (scarce_farmer_id, early) the caller threads through"
+  },
+  "delta_2_fidelity_gate": {
+    "sample_size": 64,
+    "sample_seed": 173002,
+    "threshold_pct": 90.0,
+    "measured_pct": 100.0,
+    "activated_tasks_in_panel": 805,
+    "pass": true,
+    "output": "artifacts/experiments/d173b-harvest-before-chop/d173b-trigger-fidelity-check.json"
+  },
+  "control_snapshot": "rust/src/d171a_control_resident_snapshot.rs (reused unmodified, shared with D173a; verified same SHA-256 as the dev copy before the fix was applied and again after restore)",
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d173b-harvest-before-chop",
+  "mechanism_gates": {
+    "subclass_reduction_min_pct": 70.0,
+    "harvest_slack_total_not_increased": true,
+    "other_five_detectors_no_displacement": true
+  },
+  "value_gates": {
+    "overall_mean_min": 0.0,
+    "overall_ci_lower_min": -0.5,
+    "activated_subset_mean_min": 1.0,
+    "worst_family_min": -1.0,
+    "catastrophes_max_vs_control_ratio": 1.0,
+    "negative_margin_mass_max_vs_control_ratio": 1.05
+  },
+  "verdict_rule": "all mechanism gates AND all value gates pass -> QUALIFIED (build candidate pair, STOP at arena gate, new owner authorization required for promotion); any gate fails -> CLOSED (restore dev copy byte-exact, no tuning of distance bound/scoring/condition)",
+  "sha256": {
+    "data/analysis/live-agent-6553250/d173b-harvest-before-chop-trigger-repair-protocol-2026-07-28.md": "268312f775546f199bf624c3a2fa3e24cc8e9d74e0c2ca3f5451e2adbf272506",
+    "rust/src/bin/d173b_harvest_before_chop_panel.rs": "e386f23a42441c95caa4b7bff1954e50b4819db1007328f5f2a40f45ff2d0efb",
+    "rust/src/d171a_control_resident_snapshot.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/bin/yamo_orchard_live.rs_restored_after_build": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "data/analysis/live-agent-6553250/d173b-fix-as-tested.patch": "df89f43e620e70a12a1f466f2f99d7c6c9deb8769ffe41e607ab2231f25dc9a0",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "cgauto/waste_sweep.py": "ebc7963fd7d55daa3e0bebded698803299b4609167d293d077731ef5c6dde816",
+    "cgauto/analyze_d173b_harvest_before_chop.py": "0d928d12a8ed2a282577247d7e86d78944af1b4284e71816f56c973ef5bca743",
+    "artifacts/experiments/d173b-harvest-before-chop/d173b-jobs1-9854000-9854127.tsv": "99d1a03584e0f94f5b91a13181dc577e47130ed5e22d2fbaa817eb30273f0f1d",
+    "artifacts/experiments/d173b-harvest-before-chop/d173b-jobs20-9854000-9854127.tsv": "99d1a03584e0f94f5b91a13181dc577e47130ed5e22d2fbaa817eb30273f0f1d"
+  },
+  "prohibitions": {
+    "fresh_maps_only": true,
+    "yt": true,
+    "platform": true,
+    "resident_mutation_beyond_declared_scope": true,
+    "candidate_arena_submission": true,
+    "threshold_tuning_after_outcomes": true,
+    "distance_bound_or_scoring_tuning_after_outcomes": true,
+    "modify_d171a_control_snapshot": true,
+    "modify_d172a_files": true,
+    "modify_d173a_frozen_artifacts": true
+  },
+  "verdict": "CLOSED",
+  "verdict_recorded_utc": "2026-07-28T22:20:00Z"
+}
