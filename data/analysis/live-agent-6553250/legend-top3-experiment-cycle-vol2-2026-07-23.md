@@ -188,6 +188,31 @@ five workers in 48% of its games (resident 0/194); persistent-denial styles exis
 local 8-family panel does not exhibit. Report: session scratch
 `b32-b33-field-audits-report.md` (numbers preserved here).
 
+## 2026-07-28: B3.4 diagnosis — oscillation root-caused; D171 bounded fix frozen
+
+The same-two-cell oscillation is a **memoryless detour tie-break**: in
+`resolve_move_conflicts_with_priority_and_forbidden` (dev copy `yamo_orchard_live.rs:
+1440–1520`, tie-break :1505–1519), a unit blocked by a parked teammate resolves its detour
+by `min_by_key((BFS_dist, Cell))`; ties break on incidental lexicographic cell order and,
+with zero cross-turn memory, the identical choice regenerates indefinitely. All 18
+episodes re-derived exactly (worst 131 turns, game 896350846); both cells always plain
+ground; 17/18 involve a teammate parked ≥85% of the run (11/18 at the own shack door on
+the wood loop). The resident's existing `force_unique_door_clear` defense never fires —
+gated on `unique_shack_door()`, but all 18 games have 2–4 doors: a genuine coverage gap.
+Two byte-exact turn-by-turn reconstructions confirm the mechanism (predicted-vs-actual
+command traces match perfectly).
+
+Causality split is modest and honestly recorded: 2/18 causally suspicious, 4/18
+symptomatic-but-compounding, 12/18 benign (several wins); none of the 5 catastrophes in
+the set shows clean causal evidence (r=−0.116). This is a waste-cut, not a catastrophe
+cure. **D171a frozen accordingly** (`d171a-oscillation-breaker-protocol-2026-07-28.md`):
+wire per-unit t−2 memory into the existing unwired `forbidden_for_non_priority`
+parameter, arm after 3 confirmed reversals (the corpus histogram's elbow), disarm on
+progress; 2,048 fresh paired episodes (seeds 9,853,000–127) + ≥14/18 historical run-break
+confirmation; primary gate = mechanism elimination ≥80% without displacement; value gate
+= non-regression (CI ≥ −0.5) + activated-subset ≥ +1. QUALIFIED builds a checksummed
+candidate that STOPS at the owner's arena gate.
+
 ## 2026-07-28: D170b CLOSED-AT-PHASE-2 — the closed-loop option program closes on valid mechanics
 
 The repaired re-run is mechanically flawless: frozen inherited block byte-identical (all
