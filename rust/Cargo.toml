@@ -39,3 +39,26 @@ path = "src/bin/search_time.rs"
 [[bin]]
 name = "mapstat"
 path = "src/bin/mapstat.rs"
+
+# The following two targets are module-only source files for closed research
+# experiments (D35c, D36 — see docs/LEDGER-MAP.md Arc C). They are included
+# via #[path] from working shim bins (e.g. d35b_factorized_joint_bundle_oracle,
+# d35c_provenance_competitive_bundle_oracle, d36_resident_anchored_constrained_joint_oracle)
+# and were never meant to be compiled as standalone crate roots. Cargo's
+# src/bin auto-discovery nonetheless treats every *.rs file here as its own
+# bin, so without this explicit entry + required-features gate they fail
+# `cargo build --workspace` with pre-existing compile errors (frozen, must
+# not be edited — the source documents what actually ran in the experiment).
+[[bin]]
+name = "d35c_provenance_competitive_bundle_oracle_impl"
+path = "src/bin/d35c_provenance_competitive_bundle_oracle_impl.rs"
+required-features = ["research-d35c"]
+
+[[bin]]
+name = "d36_resident_anchored_constrained_joint_oracle_impl"
+path = "src/bin/d36_resident_anchored_constrained_joint_oracle_impl.rs"
+required-features = ["research-d36"]
+
+[features]
+research-d35c = []
+research-d36 = []
