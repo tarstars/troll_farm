@@ -1,0 +1,250 @@
+{
+  "integrity": {
+    "all_games_done": true,
+    "inactive_episodes_byte_exact": {
+      "activated_tasks": 4087,
+      "inactive_tasks": 9,
+      "mismatches": 0,
+      "pass": true
+    },
+    "one_vs_twenty_thread_byte_identical": true,
+    "pass": true,
+    "row_count_exact": true,
+    "task_matrix_exact": true
+  },
+  "mechanism": {
+    "activated_tasks_covered": 4087,
+    "first_plant_turn": {
+      "candidate_mean": 14.32080078125,
+      "candidate_median": 13.0,
+      "candidate_n_games_ever_planted": 4096,
+      "control_mean": 184.6845063538612,
+      "control_median": 199.0,
+      "control_n_games_ever_planted": 4092,
+      "control_reference_b44_b45": 191.5,
+      "gate_max_median": 60.0,
+      "pass": true
+    },
+    "gates": {
+      "median_first_plant_turn_le_60": true,
+      "no_detector_worsens_gt_10pct": true,
+      "own_reap_rate_ge_5pct": false,
+      "peak_concurrent_own_crops_le_8": true
+    },
+    "missing_candidate_for_active": [],
+    "missing_control": [],
+    "own_reap_rate": {
+      "candidate_ever_harvested": 252,
+      "candidate_generations": 55715,
+      "candidate_rate_pct": 0.45230189356546713,
+      "control_ever_harvested": 319,
+      "control_generations": 47164,
+      "control_rate_pct": 0.6763633279620049,
+      "control_reference_b44": 0.93,
+      "gate_min_pct": 5.0,
+      "pass": false
+    },
+    "pass": false,
+    "peak_concurrent_own_crops": {
+      "candidate_max": 4,
+      "candidate_mean": 1.98095703125,
+      "candidate_median": 2.0,
+      "control_max": 2,
+      "control_mean": 1.923583984375,
+      "control_median": 2.0,
+      "gate_max_mean": 8.0,
+      "pass": true,
+      "peer_field_reference_b45": 5.5
+    },
+    "tasks_covered": 4096,
+    "waste_sweep_detectors": {
+      "door_queue": {
+        "candidate_episodes": 3564,
+        "candidate_flagged_turns": 3577,
+        "control_episodes": 3754,
+        "control_flagged_turns": 3769,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": -5.061267980820459
+      },
+      "harvest_slack": {
+        "candidate_episodes": 45288,
+        "candidate_flagged_turns": 461738,
+        "control_episodes": 42829,
+        "control_flagged_turns": 326732,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": 5.741436876882486
+      },
+      "idle_with_work": {
+        "candidate_episodes": 55451,
+        "candidate_flagged_turns": 83562,
+        "control_episodes": 134352,
+        "control_flagged_turns": 180389,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": -58.727075145885436
+      },
+      "late_train_window": {
+        "candidate_episodes": 16,
+        "candidate_flagged_turns": 432,
+        "control_episodes": 16,
+        "control_flagged_turns": 432,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": 0.0
+      },
+      "repeated_failed_command": {
+        "candidate_episodes": 0,
+        "candidate_flagged_turns": 0,
+        "control_episodes": 0,
+        "control_flagged_turns": 0,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": null
+      },
+      "unbanked_carry": {
+        "candidate_episodes": 172,
+        "candidate_flagged_turns": 7282,
+        "control_episodes": 214,
+        "control_flagged_turns": 10966,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": -19.626168224299064
+      }
+    }
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "path": "artifacts/experiments/d175a-bounded-early-planting/d175a-panel-jobs20.tsv",
+    "rows": 4096,
+    "seeds": "9856000-9856255"
+  },
+  "reason": "one or more mechanism gates failed",
+  "safety": {
+    "activated_subset": {
+      "mean_opponent_delta": 21.08906288230976,
+      "mean_own_delta": -5.410080743821874,
+      "n": 4087,
+      "ratio_opponent_over_own": -3.898105015603093
+    },
+    "classification": "own_delta_nonpositive_dominated_by_opponent",
+    "d89_reference_ratio_FAILED": 0.511,
+    "d91_reference_ratio_PASSED": 0.337,
+    "definition": "Delta_own_i = candidate_own_score_i - control_own_score_i; Delta_opponent_i = candidate_opponent_score_i - control_opponent_score_i; computed per paired episode (same map_seed/seat/opponent between arms), then meaned. Primary gate uses the ACTIVATED subset (D89/D91's own 'selected' convention); overall (all 4,096 tasks) reported for context. The ratio Delta_opponent/Delta_own only has its intended meaning (how much of a genuine own gain leaks to the opponent) when Delta_own > 0; when Delta_own <= 0 the gate is reported as FAILED outright rather than accepting a sign-flip pass, and classified explicitly.",
+    "gate_max_ratio": 0.4,
+    "overall_all_tasks": {
+      "mean_opponent_delta": 21.042724609375,
+      "mean_own_delta": -5.398193359375,
+      "n": 4096,
+      "ratio_opponent_over_own": -3.8981050156030936
+    },
+    "pass": false
+  },
+  "schema": "troll-farm-d175a-bounded-early-planting-panel-v1",
+  "value": {
+    "activated_subset_mean_margin_delta": -26.499143626131637,
+    "activated_tasks": 4087,
+    "best_5_candidate_tail": [
+      {
+        "map_seed": 9856206,
+        "margin_delta": 150,
+        "opponent": "mybot",
+        "seat": 0
+      },
+      {
+        "map_seed": 9856021,
+        "margin_delta": 167,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9856136,
+        "margin_delta": 172,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9856075,
+        "margin_delta": 185,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9856220,
+        "margin_delta": 185,
+        "opponent": "gold_adaptive",
+        "seat": 0
+      }
+    ],
+    "candidate_catastrophes": 229,
+    "candidate_negative_margin_mass": 60673,
+    "control_catastrophes": 130,
+    "control_negative_margin_mass": 30789,
+    "family_mean_margin_delta": {
+      "compact_gold": -51.314453125,
+      "gold_adaptive": -46.341796875,
+      "legend_balanced": -31.431640625,
+      "mybot": -14.640625,
+      "norx_native_three": -10.677734375,
+      "resident": -11.966796875,
+      "script_boss": -27.58203125,
+      "silver_boss": -17.572265625
+    },
+    "gates": {
+      "activated_subset_mean_ge_1_0": false,
+      "catastrophes_not_above_control": false,
+      "negative_margin_mass_le_1_05x_control": false,
+      "overall_ci_lower_ge_0_0": false,
+      "overall_mean_ge_1_0": false,
+      "worst_family_ge_neg_1_0": false
+    },
+    "map_clustered_95pct_ci": [
+      -28.960954138720616,
+      -23.920881798779384
+    ],
+    "negative_margin_mass_ratio": 1.970606385397382,
+    "overall_mean_margin_delta": -26.44091796875,
+    "pass": false,
+    "worst_5_candidate_tail": [
+      {
+        "map_seed": 9856190,
+        "margin_delta": -328,
+        "opponent": "gold_adaptive",
+        "seat": 0
+      },
+      {
+        "map_seed": 9856125,
+        "margin_delta": -324,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      },
+      {
+        "map_seed": 9856010,
+        "margin_delta": -318,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      },
+      {
+        "map_seed": 9856157,
+        "margin_delta": -313,
+        "opponent": "legend_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9856082,
+        "margin_delta": -301,
+        "opponent": "compact_gold",
+        "seat": 1
+      }
+    ],
+    "worst_family": {
+      "mean_margin_delta": -51.314453125,
+      "name": "compact_gold"
+    }
+  },
+  "verdict": "CLOSED-AT-MECHANISM"
+}

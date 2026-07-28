@@ -211,6 +211,17 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★★★ PRODUCTION IS STRUCTURALLY NEGATIVE FOR THIS ARCHITECTURE — three independent
+  confirmations: D89 (full factory, opponent +82.9, of which +76.5 from the opponent's own
+  crops), B4.5 (field: higher-planting peers give opponents +20.8, CI [1.8,38.0]), D175a
+  (bounded early planting: **Δown −5.41, Δopponent +21.09, overall −26.44**, catastrophes
+  229 vs 130, all six value gates failed — while successfully moving first-plant from turn
+  199 to 13). Reap rate FELL (0.68% → 0.45%) because planting earlier does not change the
+  wood-conversion grammar (D87). Turns spent farming are turns not spent suppressing, and
+  we cannot harvest what we plant. Our wood-dominant suppression-led shape is this
+  architecture's comparative advantage. Do not retune the planting window, concurrency cap,
+  or distance bound; do not reopen production without first changing harvest capability AND
+  demonstrating denial is preserved. [D175a]
 - ★★ The resident plants at median turn 191.5; all 25 two-worker Legend peers plant by
   turn 21–29 (6.6–9× delay, not resource-constrained). Reap rate 0.93% vs STRONG 15.3% /
   PEER-WEAK 17.2% / top-3 24.16% — the reap gap separates us from EVERY other two-worker

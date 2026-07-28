@@ -185,7 +185,18 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   Ranked: (1) no plant-reap loop [policy/parameter], (2) scale survival [downstream],
   (3) suppression efficiency 0.31 vs 0.43 wood/chop [execution]. Caveat: 4/12 STRONG
   agents share our no-loop profile and still outrank us.
-- **B4.5 (new, OPEN — next after D174): planting-gate diagnostic → D175.** Characterize
+- **B4.5 ✅ / D175a ❌ CLOSED-AT-MECHANISM 2026-07-29** — "chopping always wins" pinned as
+  the real gate (factory is dead/pruned code); the bounded early-planting fix moved first
+  plant 199 → 13 and cost **−26.44** with Δopponent +21.09 vs Δown −5.41 and catastrophes
+  229 vs 130. Third confirmation that production feeds the opponent more than us. Early
+  planting CLOSED; do not retune.
+- **B4.6 (new, OPEN — the last unexplored lead): suppression-efficiency diagnosis.**
+  B4.4 finding 3: we get **0.31 wood/chop vs peers' 0.43** and make opponent-crop contact
+  on **41.1% vs 46.6%** of chops. Execution-class, aligned with the architecture's proven
+  comparative advantage (denial), and structurally incapable of feeding the opponent —
+  unlike every production route, now all closed. Diagnose target selection and chop
+  sequencing; if a mechanism is pinned, a bounded fix protocol follows.
+- *(original B4.5 scope)* planting-gate diagnostic → D175. Characterize
   the `banana_factory_*` enable condition and selector precisely; measure how often it
   fires in real games and what it would do at various thresholds; reconcile with D89's
   safety rejection (full factory, +82.9 opponent) and D91's 5/16-map selector failure, and

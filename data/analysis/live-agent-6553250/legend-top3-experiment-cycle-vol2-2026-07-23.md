@@ -175,6 +175,45 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: ★★★ D175a CLOSED — early planting is severely harmful; the production leak is structural
+
+Execution was exemplary: trigger fidelity **100%** (153/153; an initial 75.7% reading was
+correctly diagnosed as a verification-methodology artifact — `select()`'s joint pairwise
+optimisation can shift a collateral untouched unit's command — fixed and re-verified rather
+than explained away), 32/32 tests, dev copy restored byte-exact and re-verified, activation
+99.8% on 4,096 paired episodes.
+
+**The intervention worked and the outcome was catastrophic.** Median first plant **turn
+13.0 vs control 199.0** (gate ≤60, PASS); peak concurrent crops 1.98 (gate ≤8, PASS); no
+detector worsened and `idle_with_work` improved 58.7% (PASS). But **reap rate FELL to 0.45%
+from 0.68%** (gate ≥5%, FAIL) — planting earlier changes only *when* a plant appears, not
+what our grammar does with it afterwards, which is convert it to wood (D87's exact finding:
++3.866 plants, zero additional own-crop harvests). And the safety ratio failed decisively:
+**Δown −5.41 while Δopponent +21.09** — our own score *fell* while the opponent's rose. (The
+analyzer caught and fixed a sign-flip that would have let the naive ratio false-pass.)
+Value: **−26.44 overall** (CI [−28.96, −23.92]), activated −26.50, worst family −51.31,
+catastrophes **229 vs 130**, negative-mass ratio 1.97 — all six sub-gates fail.
+
+**The structural conclusion, now backed by three independent tests.** D89 (full factory:
++82.9 opponent, of which +76.5 from the opponent's own crops), B4.5 (field correlation:
++20.8 opponent score for higher-planting peers, CI [1.8,38.0]), and D175 (Δopponent +21.09
+against Δown −5.41) all say the same thing: **for this bot, production trades away more
+denial than it gains.** Turns spent farming are turns not spent suppressing, and the
+opponent's loop compounds faster than ours because we cannot harvest what we plant
+(B3.5/D173: no HARVEST candidate for busy units, trained units hardcoded `harvest_power:
+0`). Our wood-dominant, suppression-led shape is not an accident or an oversight — it is
+this architecture's comparative advantage, and every attempt to add production on top of it
+has been net negative.
+
+**Consequences for the programme.** Early/bounded planting is CLOSED; do not retune its
+window, concurrency cap, or distance bound. The full chain is now closed at every link:
+harvest capability (D173, capped by hp:0 plus family/tail costs), mining (D174a, wrong
+resource and harmful), scaling (D174a, hard-capped and unaffordable under the real bill),
+early planting (D175a, harmful). The one unexplored lead that plays *to* the architecture
+rather than against it is B4.4's finding 3 — suppression efficiency, 0.31 vs 0.43 wood per
+chop and 41.1% vs 46.6% opponent-crop contact — execution-class, aligned with our actual
+strength, and incapable of feeding the opponent. Opened as B4.6.
+
 ## 2026-07-29: B4.5 — "chopping always wins": the planting gate is priority, not a disabled subsystem
 
 Two corrections to B4.4's reading. **(1) The live artifact does not contain the factory.**

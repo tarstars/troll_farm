@@ -1,0 +1,372 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..be17b2c 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -716,6 +716,7 @@ pub mod bot {
+             previous_plants: BTreeSet<Cell>,
+             own_plant_attempts: BTreeSet<Cell>,
+             opponent_crops: BTreeSet<Cell>,
++            own_crops: BTreeSet<Cell>,
+             opponent_crops_seen: usize,
+             opponent_crop_bonus: i32,
+             opponent_crop_dual_value: bool,
+@@ -1647,6 +1648,7 @@ pub mod bot {
+                     previous_plants: BTreeSet::new(),
+                     own_plant_attempts: BTreeSet::new(),
+                     opponent_crops: BTreeSet::new(),
++                    own_crops: BTreeSet::new(),
+                     opponent_crops_seen: 0,
+                     opponent_crop_bonus: 0,
+                     opponent_crop_dual_value: false,
+@@ -2641,13 +2643,18 @@ pub mod bot {
+                     .collect();
+                 if self.plant_history_initialized {
+                     for cell in current.difference(&self.previous_plants) {
+-                        if !self.own_plant_attempts.contains(cell)
+-                            && self.opponent_crops.insert(*cell)
+-                        {
++                        // D175a: mirror the pre-existing opponent-crop reconciliation to
++                        // also track our own live plantings (`view.plants` carries no
++                        // owner field, so this is the only way to know the count) --
++                        // read-only bookkeeping, no behavior change by itself.
++                        if self.own_plant_attempts.contains(cell) {
++                            self.own_crops.insert(*cell);
++                        } else if self.opponent_crops.insert(*cell) {
+                             self.opponent_crops_seen += 1;
+                         }
+                     }
+                     self.opponent_crops.retain(|cell| current.contains(cell));
++                    self.own_crops.retain(|cell| current.contains(cell));
+                 } else {
+                     self.plant_history_initialized = true;
+                 }
+@@ -3143,6 +3150,115 @@ pub mod bot {
+                 }
+                 out
+             }
++            /// D175a -- bounded early planting: break the "chopping always wins" priority
++            /// (B4.4/B4.5). `main_candidates`'s own first branch converts a carried seed
++            /// straight to a bank trip (toward wood) whenever `safe_regeneration` is set
++            /// (true in production), and otherwise a unit only ever considers PLANT via
++            /// `endgame_candidates`, reached only once it has nothing left to CHOP
++            /// (median turn 191.5 in the field vs 21-29 for two-worker peers). This adds
++            /// a competing, scored candidate -- not a rewrite of that existing logic --
++            /// so it wins by priority (score) rather than by starving CHOP of targets.
++            ///
++            /// Frozen five-condition conjunction (D175a protocol, exact, no scope beyond
++            /// this), re-evaluated fresh every call, no cross-turn state of its own:
++            /// (a) the worker carries a plantable seed, or can PICK one from an adjacent
++            ///     own-bank source this turn (the exact adjacency + non-empty-bank-stock
++            ///     gate `main_candidates`/`endgame_candidates` already use elsewhere for
++            ///     PICK -- no new routing);
++            /// (b) our live own-crop count is < 6 (`own_crops`, tracked read-only in
++            ///     `reconcile_opponent_crops`; peers' measured concurrent ceiling ~5-6);
++            /// (c) turn <= 120 (early-economy window; roster already reaches 2 by median
++            ///     turn 7, so timing is not the binding constraint, priority is);
++            /// (d) a legal (unoccupied-by-a-plant, unoccupied-by-another-own-unit) cell
++            ///     exists within BFS distance <= 2 of the worker's current position --
++            ///     no detours (the D174a lesson);
++            /// (e) not bill-critical (no existing `tree_commitments` entry for this unit
++            ///     -- the file's one existing "this chop is protected" signal, itself
++            ///     inert whenever `tree_target_bonus <= 0`, true in production) and not
++            ///     `Self::endgame(view)` (turn>250 OR board-stripped-and-losing, reused
++            ///     verbatim, not re-derived).
++            ///
++            /// Scored to outrank ordinary CHOP (`1000 * wood/turns`, rarely > a few
++            /// thousand) and this file's own `bank_candidates` (max 8,000) while staying
++            /// below the unconditional-override tier (`forced_move` 20,000; the inert
++            /// scarce-farming path 11,000-12,000) -- same "governance tier" convention
++            /// `endgame_candidates`'s own PLANT-at-target (9,000) already uses.
++            fn bounded_early_plant_candidate(
++                &self,
++                view: &GameState,
++                unit: &Unit,
++            ) -> Option<Candidate> {
++                // (c) early-economy window.
++                if view.turn > 120 {
++                    return None;
++                }
++                // (e) endgame exclusion, reusing the existing predicate verbatim.
++                if Self::endgame(view) {
++                    return None;
++                }
++                // (b) live own-crop ceiling.
++                if self.own_crops.len() >= 6 {
++                    return None;
++                }
++                // (e) bill-critical exclusion.
++                if self.tree_commitments.contains_key(&unit.id) {
++                    return None;
++                }
++                // (a) seed already carried -> (d) plant it if a legal cell is close.
++                if let Some(kind) = Self::carried_fruit(unit) {
++                    let (distance, cell) = Self::nearest_bounded_own_plant_cell(view, unit)?;
++                    return Some(if distance == 0 {
++                        Candidate {
++                            command: format!("PLANT {} {}", unit.id, kind.as_str()),
++                            score: 9_800.0,
++                            target: Target::Cell(cell),
++                        }
++                    } else {
++                        Candidate {
++                            command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
++                            score: 9_700.0 - distance as f64,
++                            target: Target::Cell(cell),
++                        }
++                    });
++                }
++                // (a) otherwise: can PICK a seed from bank this turn (existing pick
++                // logic -- adjacency to the shack, non-empty bank stock, empty-handed).
++                if unit.total_carried() == 0 && is_adjacent(unit.cell, view.shacks[0]) {
++                    let kind = Self::inventory_fruits(view).into_iter().next()?;
++                    // (d) still required: do not pick a seed with nowhere bounded to go.
++                    Self::nearest_bounded_own_plant_cell(view, unit)?;
++                    return Some(Candidate {
++                        command: format!("PICK {} {}", unit.id, kind.as_str()),
++                        score: 9_600.0,
++                        target: Target::Cell(unit.cell),
++                    });
++                }
++                None
++            }
++            /// Nearest walkable cell within BFS distance <= 2 of `unit.cell` that has no
++            /// plant on it and is not occupied by a different own unit -- the same
++            /// occupancy filter `endgame_candidates`'s own carried-fruit cell search
++            /// uses, just bounded to distance <= 2 (D175a condition d) instead of
++            /// `endgame_candidates`'s unbounded turns-left feasibility search.
++            fn nearest_bounded_own_plant_cell(
++                view: &GameState,
++                unit: &Unit,
++            ) -> Option<(i32, Cell)> {
++                let dist = bfs_distances(&view.walkable, &[unit.cell]);
++                view.walkable
++                    .iter()
++                    .filter(|cell| {
++                        view.plant_at(**cell).is_none()
++                            && dist.get(*cell).is_some_and(|d| *d <= 2)
++                            && !view.units.iter().any(|other| {
++                                other.player == unit.player
++                                    && other.id != unit.id
++                                    && other.cell == **cell
++                            })
++                    })
++                    .map(|cell| (dist[cell], *cell))
++                    .min_by_key(|(distance, cell)| (*distance, *cell))
++            }
+             fn carried_fruit(unit: &Unit) -> Option<PlantKind> {
+                 [
+                     (PLUM, PlantKind::Plum),
+@@ -3544,7 +3660,7 @@ pub mod bot {
+                     } else if early {
+                         MoisanBot::early_candidates(view, unit, desired)
+                     } else {
+-                        Self::main_candidates(
++                        let mut candidates = Self::main_candidates(
+                             view,
+                             unit,
+                             self.type_to_cut,
+@@ -3552,7 +3668,15 @@ pub mod bot {
+                             self.persistent_regeneration,
+                             protected_tree,
+                             self.opponent_eta_penalty,
+-                        )
++                        );
++                        // D175a: bounded early planting -- a competing, higher-scored
++                        // candidate that outranks CHOP when the frozen five-condition
++                        // conjunction holds. Only this branch (ordinary mid-game, not
++                        // early/endgame/committed/scarce) is in scope, per protocol.
++                        if let Some(candidate) = self.bounded_early_plant_candidate(view, unit) {
++                            candidates.push(candidate);
++                        }
++                        candidates
+                     };
+                     self.apply_opponent_crop_priority(view, unit, &mut candidates);
+                     if scarce_farmer_id != Some(unit.id) {
+@@ -5616,6 +5740,187 @@ pub mod bot {
+                 }));
+             }
+ 
++            // D175a -- bounded early planting. Unit tests for `bounded_early_plant_candidate`
++            // covering exactly the scenarios the protocol's "Unit tests" paragraph lists:
++            // emitted under the full conjunction; NOT emitted at 6+ live crops, after turn
++            // 120, with no seed, with no cell within distance 2, when the CHOP is
++            // bill-critical, or in endgame; CHOP resumes next turn.
++
++            #[test]
++            fn bounded_early_plant_emitted_under_full_conjunction() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                let candidate = bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .expect("full conjunction should emit a candidate");
++                assert_eq!(candidate.command, "PLANT 7 PLUM");
++                assert_eq!(candidate.score, 9_800.0);
++                assert_eq!(candidate.target, Target::Cell((1, 1)));
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_at_six_or_more_live_crops() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                bot.own_crops =
++                    BTreeSet::from([(10, 10), (10, 11), (10, 12), (10, 13), (10, 14), (10, 15)]);
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_after_turn_120() {
++                let mut view = fixture();
++                view.turn = 121;
++                view.units[0].carry[PLUM] = 1;
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_with_no_seed() {
++                let mut view = fixture();
++                view.turn = 50;
++                // Unit carries nothing, is not adjacent to the shack ((1,1) vs (0,0) is
++                // distance 2), and the bank holds no plantable stock: condition (a) fails
++                // on both its "carries" and "can PICK" branches.
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_with_no_cell_within_distance_2() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                // Shrink the walkable set to just the unit's own cell, and occupy that
++                // cell with a plant -- no legal cell exists at any distance, let alone
++                // within 2.
++                view.walkable = BTreeSet::from([(1, 1)]);
++                view.plants = vec![Plant {
++                    kind: PlantKind::Plum,
++                    cell: (1, 1),
++                    size: 1,
++                    health: 1,
++                    fruits: 0,
++                    cooldown: 0,
++                }];
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_when_chop_is_bill_critical() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                bot.tree_target_bonus = 1;
++                bot.tree_commitments.insert(7, (2, 2));
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_not_emitted_in_endgame() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                // fixture() already has exactly 1 plant (<= 4); make us the loser so
++                // `Self::endgame(view)` is true even though turn <= 120.
++                view.inventories[1][WOOD] = 10;
++                view.scores = [score(&view.inventories[0]), score(&view.inventories[1])];
++                assert!(YamoBot::endgame(&view));
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                assert!(bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .is_none());
++            }
++
++            #[test]
++            fn bounded_early_plant_picks_from_bank_when_not_carrying() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].cell = (0, 1); // adjacent to the shack at (0, 0)
++                view.inventories[0][PLUM] = 1;
++                let bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                let candidate = bot
++                    .bounded_early_plant_candidate(&view, &view.units[0])
++                    .expect("adjacent to shack with bank stock should emit a PICK");
++                assert_eq!(candidate.command, "PICK 7 PLUM");
++                assert_eq!(candidate.score, 9_600.0);
++                assert_eq!(candidate.target, Target::Cell((0, 1)));
++            }
++
++            #[test]
++            fn bounded_early_plant_chop_resumes_next_turn() {
++                let mut view = fixture();
++                view.turn = 50;
++                view.units[0].carry[PLUM] = 1;
++                view.units.push(Unit {
++                    id: 8,
++                    player: 0,
++                    cell: (4, 3),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++
++                let turn50 = bot.commands(&view);
++                assert!(
++                    turn50.contains(&"PLANT 7 PLUM".to_string()),
++                    "turn 50 commands: {turn50:?}"
++                );
++
++                // Simulate the server confirming the plant: unit 7's carry is consumed,
++                // a new live Plum tree now sits at its cell, and one turn passes. No
++                // state on `bot` is touched by hand -- only `commands()`'s own internal
++                // reconciliation (already exercised above) is allowed to update it.
++                view.turn = 51;
++                view.units[0].carry = [0; 6];
++                view.plants.push(Plant {
++                    kind: PlantKind::Plum,
++                    cell: (1, 1),
++                    size: 1,
++                    health: 6,
++                    fruits: 0,
++                    cooldown: 8,
++                });
++
++                assert!(
++                    bot.bounded_early_plant_candidate(&view, &view.units[0])
++                        .is_none(),
++                    "no seed carried and not adjacent to the shack: the rule must not fire"
++                );
++                let turn51 = bot.commands(&view);
++                assert!(
++                    turn51.contains(&"CHOP 7".to_string()),
++                    "turn 51 commands: {turn51:?}"
++                );
++                assert_eq!(
++                    bot.own_crops.len(),
++                    1,
++                    "the turn-50 plant should be tracked"
++                );
++            }
++
+             fn add_factory_worker(view: &mut GameState) {
+                 view.units.push(Unit {
+                     id: 8,

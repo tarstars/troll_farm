@@ -1,0 +1,98 @@
+{
+  "schema": "troll-farm-d175a-bounded-early-planting-lock-v1",
+  "frozen_at_utc": "2026-07-29T01:00:00Z",
+  "question": "does a stateless five-condition candidate-priority rule (carries or can bank-PICK a plantable seed; own live-crop count < 6; turn <= 120; a legal plant cell within BFS distance <= 2; the displaced CHOP not bill-critical or in endgame) that lets PLANT outrank CHOP clear the mechanism gates (median first-plant turn <= 60, own-crop reap rate >= 5%, peak concurrent own crops <= 8, no waste-sweep detector worse by > 10%), the reinstated D89/D91 safety ratio (selected Delta-opponent-score <= 0.40 x selected Delta-own-score), and the value gates (overall + activated-subset mean >= +1.0, CI lower bound >= 0.0, worst family >= -1.0, catastrophes/negative-margin-mass not worse) on a fresh 256-map/8-family/2-seat panel vs the exact resident control?",
+  "protocol": "data/analysis/live-agent-6553250/d175a-bounded-early-planting-protocol-2026-07-29.md",
+  "fix_scope": {
+    "file": "rust/src/bin/yamo_orchard_live.rs",
+    "new_field": "YamoBot.own_crops: BTreeSet<Cell> -- read-only bookkeeping mirroring the pre-existing opponent_crops reconciliation (reconcile_opponent_crops extended, not replaced)",
+    "new_fn": "YamoBot::bounded_early_plant_candidate(&self, view, unit) -> Option<Candidate>, plus YamoBot::nearest_bounded_own_plant_cell(view, unit) -> Option<(i32, Cell)>",
+    "architecture": "scored-candidate injection (not a post-selection rewrite): appended, when eligible, to the Vec<Candidate> the ordinary (non-early/non-endgame/non-committed/non-scarce) branch of commands() already builds via Self::main_candidates(...), scored (9,600-9,800) to outrank ordinary CHOP/bank_candidates scores (<8,000) via the existing select() argmax + cross-unit conflict resolution, while staying below the file's unconditional-override tier (forced_move 20,000)",
+    "call_sites_touched": ["commands() -- only the single 'else' arm that already calls plain Self::main_candidates(...) unconditionally"],
+    "untouched": [
+      "main_candidates/endgame_candidates internals (cited root-cause lines 3084-3145/3200-3253, read but not edited)",
+      "banana_factory_* subsystem (dead code in production, banana_factory_enabled hardcoded false)",
+      "can_train's hard 2-worker cap (D174a; scaling out of scope)",
+      "scarce_farmer_candidates/committed_regeneration/endgame branches of commands()",
+      "select()/resolve_move_conflicts/apply_opponent_crop_priority/apply_opponent_crop_harvest_contact"
+    ],
+    "condition_e_bill_critical_operationalization": "self.tree_commitments.contains_key(&unit.id) -- the one existing 'this chop is protected/committed' signal in the file (tree_target_bonus-gated); reconcile_tree_commitments clears the whole map unconditionally whenever tree_target_bonus <= 0 (true in production), so this clause is provably a no-op (never blocks) in the actual production configuration and in this panel -- documented in .superpowers/sdd/d175a-phase-markers.md before any results were seen",
+    "condition_e_endgame_reuse": "Self::endgame(view) reused verbatim (turn>250 OR plants<=4-and-losing), not re-derived",
+    "cross_turn_state": "none in the rule's own decision logic (recomputed fresh every call); own_crops is read-only observation of the world (mirrors opponent_crops), not a plan/commitment"
+  },
+  "trigger_fidelity_gate": {
+    "sample_method": "random.Random(175002).sample of 150 activated tasks out of 4,087; ground truth = each task's first_divergence_turn (state provably identical between control/candidate up to and including that turn); every own unit whose selected command differs from control's identified, independently re-derived in Python (line-for-line reconstruction of bounded_early_plant_candidate, including a from-scratch own_crops replay) and classified",
+    "changed_command_instances_total": 202,
+    "collateral_reassignment_excluded": 49,
+    "collateral_reassignment_explanation": "select()'s 2-unit joint pairwise score-sum optimization can shift a DIFFERENT, untouched unit's chosen command as a side effect of this fix adding one high-scored candidate elsewhere; spot-checked (seed 9856201/seat1/opp4/turn2) and confirmed general -- not attributable to this fix's own gating",
+    "instances_checked_attributable": 153,
+    "instances_ok": 153,
+    "instances_bad": 0,
+    "fidelity_pct": 100.0,
+    "threshold_pct": 90.0,
+    "pass": true,
+    "output": "artifacts/experiments/d175a-bounded-early-planting/d175a-trigger-fidelity-check.json"
+  },
+  "control_snapshot": "rust/src/d171a_control_resident_snapshot.rs (reused unmodified; verified same SHA-256 as the dev copy before the fix was applied and again after restore)",
+  "dev_copy_sha256_prefix_required": "fff6669b",
+  "dev_copy_sha256_pre_fix": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "dev_copy_sha256_with_fix_at_build_time": "de2db365160ca935d1720fc8e91be0123de8eab9e5afbea44771348a1f2c5c72",
+  "dev_copy_sha256_post_restore": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "panel": {
+    "start_seed": 9856000,
+    "maps": 256,
+    "tasks": 4096,
+    "seats": 2,
+    "opponent_families": 8,
+    "seed_range_note": "fresh range per protocol (9,856,000-9,856,255); pre-lock precise-pattern grep of data/analysis and docs for 9,856,000-9,856,255 found 3 hits, all confirmed false positives (digit substrings inside unrelated floating-point PPO-training values, e.g. 6473.090089856158) -- no real overlap; disjoint from D171a (9,853,xxx), D173a/b (9,854,xxx), D174a (9,855,000-9,855,127)"
+  },
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d175a-bounded-early-planting",
+  "mechanism_gates": {
+    "median_first_plant_turn_max": 60.0,
+    "own_reap_rate_min_pct": 5.0,
+    "peak_concurrent_own_crops_max": 8.0,
+    "detector_worsen_max_pct": 10.0
+  },
+  "safety_gate": {
+    "definition": "Delta_opponent (activated-subset mean, candidate - control) <= 0.40 x Delta_own (activated-subset mean, candidate - control)",
+    "max_ratio": 0.40,
+    "d89_reference_ratio_FAILED": 0.511,
+    "d91_reference_ratio_PASSED": 0.337
+  },
+  "value_gates": {
+    "overall_mean_min": 1.0,
+    "overall_ci_lower_min": 0.0,
+    "activated_subset_mean_min": 1.0,
+    "worst_family_min": -1.0,
+    "catastrophes_max_vs_control_ratio": 1.0,
+    "negative_margin_mass_max_vs_control_ratio": 1.05
+  },
+  "verdict_rule": "all mechanism gates AND safety gate AND value gates pass -> QUALIFIED (build candidate pair, STOP at arena gate, new owner authorization required for promotion); mechanism passes, safety fails -> CLOSED-AT-SAFETY (record as a third independent confirmation of the production-feeds-the-opponent leak, alongside D89 and the B4.5 field correlation); mechanism fails -> CLOSED-AT-MECHANISM with the shortfall quantified; value-only failure -> CLOSED-AT-VALUE; integrity failure -> BLOCKED. No tuning of any threshold, condition, or scope after any outcome was seen.",
+  "results_summary": {
+    "integrity_pass": true,
+    "mechanism_pass": false,
+    "safety_pass": false,
+    "value_pass": false,
+    "verdict": "CLOSED-AT-MECHANISM",
+    "activation_rate": {"activated": 4087, "total": 4096, "pct": 99.78},
+    "median_first_plant_turn": {"control": 199.0, "candidate": 13.0, "b44_b45_field_reference": 191.5, "gate_max": 60.0, "pass": true},
+    "own_reap_rate_pct": {"control": 0.6763633279620049, "candidate": 0.45230189356546713, "b44_field_reference": 0.93, "gate_min": 5.0, "pass": false},
+    "peak_concurrent_own_crops": {"control_mean": 1.923583984375, "candidate_mean": 1.98095703125, "candidate_max": 4, "peer_field_reference": 5.5, "gate_max_mean": 8.0, "pass": true},
+    "detector_worsen_pct": {"idle_with_work": -58.727075145885436, "unbanked_carry": -19.626168224299064, "door_queue": -5.061267980820459, "harvest_slack": 5.741436876882486, "late_train_window": 0.0, "repeated_failed_command": null},
+    "safety_ratio": {
+      "activated_subset_n": 4087,
+      "mean_own_delta": -5.410080743821874,
+      "mean_opponent_delta": 21.08906288230976,
+      "raw_ratio_opponent_over_own": -3.898105015603093,
+      "classification": "own_delta_nonpositive_dominated_by_opponent",
+      "pass": false
+    },
+    "value_overall_mean_margin_delta": -26.44091796875,
+    "value_ci95": [-28.960954138720616, -23.920881798779384],
+    "value_activated_subset_mean": -26.499143626131637,
+    "worst_family": {"name": "compact_gold", "mean_margin_delta": -51.314453125},
+    "catastrophes": {"control": 130, "candidate": 229},
+    "negative_margin_mass_ratio": 1.970606385397382
+  }
+}
