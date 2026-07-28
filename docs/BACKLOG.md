@@ -190,7 +190,16 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   plant 199 → 13 and cost **−26.44** with Δopponent +21.09 vs Δown −5.41 and catastrophes
   229 vs 130. Third confirmation that production feeds the opponent more than us. Early
   planting CLOSED; do not retune.
-- **B4.6 (new, OPEN — the last unexplored lead): suppression-efficiency diagnosis.**
+- **B4.6 ❌ CLOSED 2026-07-29 — no cycle warranted; the last lead is spent.** Mechanism
+  pinned (`chop_candidates` is origin-blind throughput scoring; the gap is tree size +
+  kind mix, with travel/contention/capacity all ruled out and our travel actually better
+  than peers'), but the ≈54–73/game residual belongs to an intervention class that has
+  already failed twice on this exact binary (−7.77 arena, −2.325 grid) plus a −61.7
+  transplant against adaptive. **With this, the execution-class track and the whole
+  improvement space for this architecture are closed** — see the ledger's TERMINAL
+  SYNTHESIS. Remaining work is maintenance only; further gains need a different bot,
+  which is an owner decision.
+- *(original B4.6 scope)* suppression-efficiency diagnosis.
   B4.4 finding 3: we get **0.31 wood/chop vs peers' 0.43** and make opponent-crop contact
   on **41.1% vs 46.6%** of chops. Execution-class, aligned with the architecture's proven
   comparative advantage (denial), and structurally incapable of feeding the opponent —

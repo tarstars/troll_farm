@@ -211,6 +211,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★★★ SUPPRESSION EFFICIENCY: mechanism pinned, no cycle warranted. The 0.31-vs-0.43
+  wood/chop gap is tree size at felling (37.8% vs 22.9% size-1) plus kind mix (Oaxaca:
+  51% rate / 33% mix); capacity-blocking, contention, abandoned chops and travel are all
+  ruled out (travel is BETTER than peers: 1.52 vs 1.96). Contact rate is selection, not
+  reachability (>99% reachable, median ETA 3–4). `chop_candidates:1050-1118` scores
+  `1000·wood/turns`, origin-blind by design. The ≈54–73/game addressable residual is NOT
+  bankable: this exact class already failed twice on the byte-identical binary (Phase 21
+  opponent-crop bonus, −7.77 ARENA; harvest-before-chop, −2.325 grid) and a chop-layer
+  transplant failed at −61.7 vs adaptive — isolated local-metric gains break the
+  resident's coordinated schedule against adaptive opponents. [B4.6]
 - ★★★ PRODUCTION IS STRUCTURALLY NEGATIVE FOR THIS ARCHITECTURE — three independent
   confirmations: D89 (full factory, opponent +82.9, of which +76.5 from the opponent's own
   crops), B4.5 (field: higher-planting peers give opponents +20.8, CI [1.8,38.0]), D175a

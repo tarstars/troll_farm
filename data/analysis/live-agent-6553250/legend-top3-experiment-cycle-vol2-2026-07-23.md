@@ -175,6 +175,64 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: B4.6 CLOSED — suppression efficiency is real but its fix class already failed twice
+
+Decomposition of the 0.31-vs-0.43 wood/chop gap. **Ruled out entirely:** capacity-blocked
+chops (0% — `chop_candidates` structurally refuses to chop at zero free capacity), target
+contention (0 occurrences — `select()`'s uniqueness constraint), abandoned chops (0.34%),
+and travel overhead — the resident's move:chop ratio is actually **better** than the strong
+cohort's (1.52 vs 1.96). **What remains:** tree size at felling (we fell 37.8% size-1 trees
+vs 22.9%) and kind mix (more APPLE, less BANANA at near-identical map availability); an
+Oaxaca decomposition splits it 51% rate effect / 33% mix effect. Notably the single largest
+loss channel — the capacity ceiling against tree size, ~35–37 wood/game — is **identical in
+absolute terms across all three cohorts**, so it is a shared architectural tax rather than
+our gap; it traces to our `cc=1` unit performing 38.5% of fells versus a sampled peer's
+13.0%. Contact rate is **pure selection, not reachability**: >99% of opponent crops are
+reachable within 20 turns for every cohort (median ETA 3–4 turns, the peers' if anything
+faster), and restricting to reachable targets barely moves the gap (41.5% vs 46.0%).
+
+**Root cause pinned:** `MoisanBot::chop_candidates` (`:1050-1118`, via
+`SecureOrchardBot::new()` → `YamoBot::main_candidates` → `yamo_chop_candidates`) scores
+`1000·wood/turns` with `wood = final_size.min(free_capacity)` — pure throughput, **blind to
+crop origin by design**. Confirmed by reconstructing 445/515 = 86.4% of real decisions with
+a Python port of the scorer. Two dead-code families sit alongside it: `opponent_eta_penalty`
+(traced to a literal 0, matching B3.6) and a newly documented
+`opponent_crop_bonus`/`opponent_crop_dual_value` pair — the Phase-21 machinery left inert
+after its arena rejection.
+
+**Why no cycle is warranted despite a ≈54–73 point/game addressable-looking residual:**
+this exact intervention class has already been built and tested against the byte-identical
+resident binary (SHA-verified) **twice** — the opponent-crop scoring bonus lost **−7.77
+rating in the real arena** (Phase 21), and harvest-before-chop lost −2.325 margin on a
+960-cell grid (−7.108 against adaptive Gold). A third, closely analogous experiment
+(transplanting the resident's chop layer onto another bot) produced positive mean value and
+then failed catastrophically at **−61.7** against an adaptive opponent. The documented
+reason is the same each time: **isolated local-metric improvements break the resident's
+coordinated schedule against adaptive opponents.** B4.6 closes, and with it the
+execution-class prospecting track.
+
+## 2026-07-29: ★★★ TERMINAL SYNTHESIS — the improvement space for this architecture is closed
+
+Every route is now closed by measurement, each with its own frozen protocol and verdict:
+
+| Route | Closed by | Decisive number |
+|---|---|---|
+| Learned option selection | D172a | 40.4% of states carry ≥+2 value; held policy +0.14–0.26 vs +1.5 gate — unlearnable from observables |
+| On-policy closed-loop | D170b | All four objectives converge to always-KEEP; 0/8 admitted |
+| Production / farming | D89, D175a | Early planting works (turn 199→13) and costs −26.44; Δown −5.41 vs Δopponent +21.09 |
+| Scaling | D174a | `can_train` hard-caps at 2; real bill unaffordable in 100% of games (fruit, not iron, binds) |
+| Mining | D174a | Iron ×10.6 delivered, value −10.76, all 8 families negative |
+| Harvest capability | D173a/b | 99.9% cure among capable units; 99.93% of the vein needs `harvest_power:0` lifted; family/tail costs both times |
+| Oscillation / execution waste | D171a, B3.6, baseline | We waste LESS than the top cohorts on all six signatures, even per-worker |
+| Suppression efficiency | B4.6 | Mechanism real; the fix class already failed twice on this binary (−7.77 arena, −2.325 grid) |
+
+The unifying finding: **this architecture's shape is its advantage, and local improvements
+to any one component break the coordination that makes it work.** At equal roster we are at
+parity with strong two-worker peers (58.2% vs 58.3%); our deficit is entirely
+scale-asymmetry survival, and every attempt to acquire scale costs more than it returns
+because we cannot harvest what we produce. Further gains require a different bot, not a
+better-tuned one — a project-scale decision for the owner, not a next experiment.
+
 ## 2026-07-29: ★★★ D175a CLOSED — early planting is severely harmful; the production leak is structural
 
 Execution was exemplary: trigger fidelity **100%** (153/153; an initial 75.7% reading was

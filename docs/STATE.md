@@ -43,6 +43,18 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
 
 ## 4. Open thread
 
+- **2026-07-29 TERMINAL: the improvement space for this architecture is closed.** Every
+  route now has a frozen protocol and a verdict — learned selection (D172a), closed-loop
+  training (D170b), production/farming (D175a: −26.44, Δopponent +21.09), scaling and
+  mining (D174a: hard cap + fruit-binding + −10.76), harvest capability (D173a/b),
+  execution waste (we waste LESS than the top cohorts), suppression efficiency (B4.6:
+  mechanism real, fix class already failed twice on this binary). At equal roster we are
+  at parity with strong two-worker peers (58.2/58.3); the deficit is scale-asymmetry
+  survival, and scale is unaffordable because we cannot harvest what we produce.
+  **Further gains require a different bot, not a better-tuned one — an owner decision,
+  not a next experiment.** Maintenance continues: daily collection cron, corpus growth,
+  resident untouched, no arena churn. See the ledger's TERMINAL SYNTHESIS table.
+
 - **D167→D168 DONE: hand-written successor controllers CLOSED** (BANK_SEED
   frozen-eligible but both scripted options failed value; motif survives only as a
   rollout-valued option). **D169 DONE 2026-07-27: PASS.** Unified resident-native option
