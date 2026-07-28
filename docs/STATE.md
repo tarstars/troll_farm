@@ -46,15 +46,18 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   full 1,024-task panel: **+10.671 mean, CI [+9.420, +11.922], 65% improved, 0
   regressions, tails better than control.** Every option is negative always-on; all
   value is per-game selection. Clears every frozen gate — no D169b needed.
-- 🛑 **STOP MARKER — Tier-2 work paused pending Fable-tier adjudication.** D169's PASS
-  opens **D170 authoring**: a family-robust closed-loop training design over the D169
-  vocabulary, answering the objective question D108/D109 left open (recurrent
-  policies on pooled margin "rotated" which families they beat, r=−0.014 across panels,
-  and suppressed their own score near-symmetrically). This is a genuine design task
-  (learner architecture, objective, selection protocol, deployability gates) — per
-  `docs/RUNBOOK.md`, do NOT attempt it with a cheaper model. Fable re-entry prompt is in
-  the runbook. Cheap sessions may run Tier-0/3 fillers (B3.2, B5.1) meanwhile; do not
-  resume Tier-2 work until this marker is cleared by a Fable session authoring D170.
+- **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
+  FROZEN and delegable**:
+  `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`
+  — the resurrected D158 four-objective comparison (pooled / capped / own-score-protected
+  / group-DRO+protection) on the valid resident-native substrate, closed-loop over the
+  D169 vocabulary, budget-1 activation, paired-control reward. Fresh ranges declared
+  (train 9,850,000–255; selection 9,851,000–127 as 8 blocks LOBO; sealed confirmation
+  9,852,000–063). Gates: admission ≥ +1.5 LOBO / worst family ≥ −1 / own ≥ −0.5;
+  veto-only consumed panel ≥ +1.0; confirmation ≥ +2.0 CI>0; deployability int8 ≤100 kB
+  p95 ≤20 ms. Kill: no admission → program closes. Post-confirmation: 🛑 STOP for user
+  arena authorization. Cheap sessions execute per `docs/RUNBOOK.md`; fillers B3.2/B5.1
+  remain available.
 - Queue after D167 (reorder only from written evidence):
   1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
      explicitly skipped D109 question (see vol 1, D157 audit).

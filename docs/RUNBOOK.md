@@ -17,7 +17,8 @@ being conserved. Written by Fable; cheap sessions execute, they do not redesign.
 2. `docs/CONSTRAINTS.md` (check before proposing anything)
 3. `docs/BACKLOG.md` (what is next and its gates)
 4. The active frozen protocol (currently
-   `data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-protocol-2026-07-27.md`)
+   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`;
+   D169 is complete — PASS, adjudicated 2026-07-28)
 
 ## Model roles
 

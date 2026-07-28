@@ -60,8 +60,10 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   D169b needed (all six PASS conditions held on the first pass). 🛑 Per
   `docs/STATE.md`, Tier-2 is now paused for Fable-tier D170 authoring — do not proceed
   to B2.2 with a cheaper model.
-- **B2.2 → D170 (Fable-authored): Family-robust closed-loop training on the D169
-  interface** *(design pending; then 3–5 sessions + YT)*
+- **B2.2 → D170: protocol FROZEN 2026-07-28 (Fable-authored), delegable** — see
+  `d170a-family-robust-option-policy-protocol-2026-07-28.md`. Four-objective comparison
+  (the skipped-D109 question) → LOBO admission/selection → veto → sealed confirmation →
+  int8 deployability → 🛑 user arena gate. Original scope: *(3–5 sessions + YT)*
   Recurrent policy over the B2.1 options with exact-resident action zero; objective =
   paired margin with group-DRO/worst-family term and own-score protection (D109's
   rotation, r=−0.014 across panels, is the failure this objective targets). Selection by
