@@ -122,6 +122,28 @@ or platform/Arena/YT action. Full record:
 `d169a-resident-option-interface-envelope-{protocol,lock,result}-2026-07-27.*`; bulk rows
 on external `artifacts/experiments/d169a-resident-option-envelope/`.
 
+## 2026-07-28: authorized wide-lens passive collection — corpus 1,891 → 8,122 games
+
+User-authorized read-only collection with a deliberately widened lens: resident full
+window + top-20 FULL visible windows (previously sampled at 10/agent) + ranks 21–50
+(previously never fetched). Yield: 2,345 new top-20 games + 3,838 new rank-21–50 games
+(29 agents new to the corpus) = **6,231 new games in one run**; cumulative store
+1,891 → **8,122 games / 2.4 GB**, 469 unique agents. The old sampling lens had been
+leaving ~85% of the visible stream uncollected — per-agent "last battles" windows rotate,
+so unharvested games are lost permanently; regular wide collection converts the stream
+into a compounding archive. QA: primary snapshot 11/11 gates; wide snapshot content-clean
+(0 parse failures across 6,841 games, all 10 integrity gates) with pass=false solely on
+acquisition-completeness from 105 transient DNS/timeouts — all recovered by retry, zero
+permanent losses, zero 422/429. Cumulative rebuild: 8,122/8,122 parsed, 99.7% exact
+scores, 0 unexpected mismatches. Standings bit-identical to 07-27 (resident 43/110 @
+21.97, 203 battles; bar delineate 31.00 / norxondor 29.52 / MSz 28.22); no roster
+changes. Disclosed anomaly, zero data impact: the wide snapshot's audit manifest mislabels
+the resident's 203 records' provenance tag (`legend_21_50` — its rank 43 fell in that
+slice); content, cache, and stats unaffected; manifest left immutable per design.
+Snapshots: `data/raw/snapshots/20260728T050038Z-d61p{,-wide21to50}/`. The games store
+(2.4 GB, gitignored raw) is now a future external-migration candidate per storage policy.
+No arena write; no submission.
+
 Operational, same day: the data-footprint cleanup executed per
 `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md` with per-task review — 22
 clean worktrees removed (branches intact), `rust/target/debug` cleared + AGENTS.md cap

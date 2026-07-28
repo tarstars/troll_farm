@@ -476,13 +476,14 @@ runs on a locally saved corpus of real arena replays. Its shape as of 2026-07-27
 
 **What we have.**
 
-- **1,891 raw replays, 517 MB**, in `data/raw/games/` — one JSON per finished arena game,
+- **8,122 raw replays, 2.4 GB**, in `data/raw/games/` — one JSON per finished arena game,
   containing the referee's full record: per-turn frames, both players' commands and
-  stdout, map layout, and final scores. Every game sits on a distinct map (1,891 unique
-  layouts); **345 distinct agents** appear, including 32 boss games. Through the last full
-  QA rebuild the processed corpus covers 1,693 of them (0 parse failures); the newest 198
-  games passed snapshot-level QA (393/393 in their snapshot) and fold into the cumulative
-  statistics at the next rebuild.
+  stdout, map layout, and final scores. Every game sits on a distinct map (8,122 unique
+  layouts); **469 distinct agents** appear, including 32 boss games. All 8,122 parse with
+  0 failures (99.7% exact score reproduction, 0 unexpected mismatches). The 2026-07-28
+  wide-lens collection quadrupled the corpus in one run (+6,231 games) by fetching the
+  top-20's FULL visible battle windows and ranks 21–50 for the first time — the earlier
+  10-per-agent sampling had been leaving ~85% of the rotating stream uncollected.
 - **Two immutable D61p snapshots** (`data/raw/snapshots/20260721T105508Z-d61p/`,
   `.../20260727T130712Z-d61p/`) — 33 index/manifest files each: leaderboard state at
   collection time, request and source hashes for every fetch, and the open/sealed
