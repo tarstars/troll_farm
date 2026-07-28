@@ -211,6 +211,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- Event-triggered arming in sequential wrappers must use the sticky-flag pattern (set a
+  persistent flag post-step, consume at the next candidate refresh) — never turn-equality
+  against a live counter: the D170a composition layer's turn-equality check was
+  unreachable by construction on every trajectory (0/2,880 offers vs a 15.7% underlying
+  event rate), invalidating all 8 Phase-1 fits; caught by the Stage-A exploration gate
+  and byte-identical reruns. [D170a]
 - Deployment latency/size is solved by pattern, not luck: int8 plus persistent
   workspaces/buffers reached 7.04 ms median inference (K2) and 17.60 ms warm p95 for the full
   68,988-byte controller (V5) after four observation-parity iterations — exact

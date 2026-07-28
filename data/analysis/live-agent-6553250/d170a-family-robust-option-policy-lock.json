@@ -1,0 +1,152 @@
+{
+  "schema": "troll-farm-d170a-family-robust-option-policy-lock-v1",
+  "frozen_at_utc": "2026-07-28T00:00:00Z",
+  "question": "Can a small, observable-feature policy, trained closed-loop over the D169 option vocabulary, capture >= +2.0 mean paired margin on fresh held data with no opponent family sacrificed?",
+  "preflight": {
+    "external_storage_check": "PASS (medium_data, /media/tarstars/medium_data/database/troll_farm, artifacts/ symlink resolved)",
+    "seed_range_overlap_check": {
+      "method": "LC_ALL=C grep -rnoE '9,85[0-9],[0-9]{3}|9_85[0-9]_[0-9]{3}|\\b985[0-9]{4}\\b' over docs/*.md, docs/archive/**/*.md, data/analysis/live-agent-6553250/*.{md,json}",
+      "result": "No occurrence of the 9,850,000-9,852,999 prefix anywhere outside docs/STATE.md's own D170a summary and this protocol/lock. Sealed ranges 9,844,200-9,844,215 and the official-map holdout (seeds <=999, per opponent-crop-suppression-2026-07-18.md 'seeds 402--999') are numerically disjoint from all three declared D170a ranges by construction (9,850,000 >> 9,844,215 and >> 999). D148/D161/D169's own consumed panel (9,844,136-9,844,199) is likewise disjoint and is the D170a Phase-3 veto-only panel by design (never trained/selected on).",
+      "verdict": "CLEAR - no overlap; proceeding to lock."
+    },
+    "frozen_module_integrity": "Verified byte-identical against the D169a lock's own sha256 table (rust/src/bin/d169a_resident_option_envelope.rs, d162_resident_native_capital_option.rs, build.rs, game/engine.rs, game/official_mapgen.rs, game/state.rs, rl_macro.rs) immediately before authoring this lock. No mismatches."
+  },
+  "seed_ranges": {
+    "train": {"start": 9850000, "count": 256, "note": "seeds 9,850,000-9,850,255"},
+    "selection": {"start": 9851000, "count": 128, "note": "seeds 9,851,000-9,851,127 as eight independent 16-map LOBO blocks"},
+    "confirmation": {"start": 9852000, "count": 64, "note": "seeds 9,852,000-9,852,063; sealed until Phase 3, opened exactly once"},
+    "veto_panel": {"start": 9844136, "count": 64, "note": "the consumed D148/D161/D169 1,024-task panel; veto-only, never trained or selected on"}
+  },
+  "environment": {
+    "runner": "rust/src/rl_d170a_option_policy_env.rs (new lib module, cdylib entry tf_d170a_*, composes D169a's frozen vocabulary; does not modify it)",
+    "python_wrapper": "cgauto/rl_d170a_option_policy_env.py",
+    "budget": "one activation (INVOKE) per game; decision points are the 13 D169a arms (opt_return + fruit/iron/protect x {t072,t104,t136,trig}), offered in arm_catalog order at each turn their D169a-frozen arming condition first holds",
+    "reward": "terminal paired margin vs the same (map_seed,seat,opponent) exact-resident control, computed once and memoized (control_cache), = (own_score-opponent_score) - (control_own_score-control_opponent_score)",
+    "actions": ["KEEP=0", "INVOKE=1"]
+  },
+  "state_family_64_fields": [
+    "0 bias(=1)", "1 turn/300", "2 own_workers/3", "3 opponent_workers/3",
+    "4 own_score/400", "5 opponent_score/400", "6 margin/400",
+    "7-12 own_inventory[PLUM,LEMON,APPLE,BANANA,IRON,WOOD]/20",
+    "13-18 opponent_inventory (same order)/20",
+    "19-24 own_carried_sum (same order)/20", "25-30 opponent_carried_sum/20",
+    "31-35 plant_count_by_owner[Natural,Own,Opponent,Joint,Ambiguous]/20",
+    "36-40 fruit_count_by_owner (same order)/40",
+    "41 has_own_plant", "42 has_opponent_plant", "43 water_frac", "44 walkable_frac",
+    "45 own_hp_sum/12", "46 own_chop_sum/12", "47 own_ms_sum/9", "48 own_cc_sum/12",
+    "49 turns_remaining_frac", "50 max_own_workers_so_far/3",
+    "51 own_created_crops_so_far/20", "52 opponent_created_crops_so_far/20",
+    "53 own_reinvested_crops_so_far/20", "54 provenance_failures_so_far/10",
+    "55 opp_worker_trigger_seen", "56 opp_worker_trigger_turn_frac",
+    "57 entry_captured_flag", "58 bank_fruit_total/20",
+    "59 bank_deficit_frac (signed, clamped [-1,1])",
+    "60 own_free_capacity_sum/12", "61 opponent_free_capacity_sum/12",
+    "62 decisions_seen_so_far/10", "63 budget_remaining"
+  ],
+  "decision_block_17_fields": [
+    "0 turn/300", "1 observed_opponent_worker_count/6",
+    "2-14 armable-option one-hot (13 dims, arm_catalog()[1..14] order: opt_return, opt_fruit_t072, opt_fruit_t104, opt_fruit_t136, opt_fruit_trig, opt_iron_t072, opt_iron_t104, opt_iron_t136, opt_iron_trig, opt_protect_t072, opt_protect_t104, opt_protect_t136, opt_protect_trig)",
+    "15 affordance_primary (bank_fruit_total/20 for opt_return; signed bank_deficit_frac for resource arms)",
+    "16 affordance_secondary (near_shack flag for opt_return; carried-resource-worker-available flag for resource arms)"
+  ],
+  "opponent_identity_in_inputs": false,
+  "policy_architecture": {
+    "trunk": "nn.GRUCell(81 -> 16)",
+    "head": "nn.Linear(16 -> 2), bias initialized [keep_bias=+2.0, invoke_bias=0.0] (KEEP-favoring prior; architecture detail fixed before any training outcome, consistent with D169's own always-on-negative finding)",
+    "actor_parameter_count": 4786,
+    "actor_parameter_cap": 12288,
+    "critic": "separate 3-layer MLP (81->64->32->1), training-only, not deployed, not counted against the cap"
+  },
+  "objectives": {
+    "pooled_margin": "reward = paired_margin / 100",
+    "capped_margin": "reward = min(paired_margin, 50) / 100",
+    "own_protected": "reward = (paired_margin - 0.5*max(0, -own_score_delta)) / 100",
+    "group_dro_own": "reward = weight_family * (paired_margin - 0.5*max(0, -own_score_delta)) / 100; weight_family = softmax_over_8_families(-EMA/10)[family]; EMA = per-family decay-0.99 exponential moving average of raw paired_margin, frozen within a rollout, updated after each rollout's terminal rows; literal protocol formula, no renormalization to mean one"
+  },
+  "phase1_execution": {
+    "trainer": "cgauto/train_d170a_family_robust_option_policy.py",
+    "model_seeds": {
+      "pooled_margin": [170101, 170102],
+      "capped_margin": [170201, 170202],
+      "own_protected": [170301, 170302],
+      "group_dro_own": [170401, 170402]
+    },
+    "train_seed_base": 9850000,
+    "train_map_pool": 256,
+    "num_envs": 32,
+    "rollout_steps": 16,
+    "batch_size_cells": 512,
+    "stage_a_transitions": 8192,
+    "full_transitions": 32768,
+    "one_continuous_run_with_stage_a_checkpoint": true,
+    "threads": 1,
+    "optimizer": {"lr": 0.0003, "adam_eps": 1e-05, "gamma": 1.0, "gae_lambda": 0.95, "clip_coef": 0.2, "entropy_coef": 0.02, "value_coef": 0.5, "max_grad_norm": 0.5, "target_kl": 0.03, "update_epochs": 3, "minibatch_envs": 8},
+    "stage_a_gates": {
+      "exact_transition_budget": "ran every intended update (global_decisions can fall slightly short of the nominal budget only via a rare zero-armable-state episode; gated on updates completed, not raw decision-count equality)",
+      "finite_losses": true,
+      "every_option_at_least_2pct_of_sampled_decisions": 0.02,
+      "crop_safety_exact": "zero purity_violations, zero invalid_direct_commands, zero provenance_failures across all Stage-A episodes",
+      "zero_reward_identity_errors": "abs(100*raw_reward - terminal.paired_margin) < 1e-3 for every terminal"
+    }
+  },
+  "threading": {
+    "training_rule": "one deterministic training thread per fit (RAYON_NUM_THREADS=1, torch.set_num_threads(1)); the 8 fits are run as 8 separate OS processes concurrently (each internally single-threaded), not as one multi-threaded fit.",
+    "evaluation_rule": "evaluation (Phase 2/3) may parallelize; byte-identity between 1 and 20 threads is demonstrated by the D170aBatch::step() design itself (every slot is a fully independent simulation; the only shared state is the pure memoizing control-margin cache, which produces identical values regardless of insertion order) and by the dedicated Rust unit test batch_task_assignment_is_thread_count_invariant plus a live 1-vs-20-thread run comparison recorded in the Phase 2/3 result docs."
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md": "1e2ff6597969d0d2670e1c84c0871a3b595405df8114884ad39713f9920e8ec0",
+    "rust/src/rl_d170a_option_policy_env.rs": "4ea4a215731e83c73893410579ab1c27e866e7ffbcf2d0531cec3ad7435ed963",
+    "cgauto/rl_d170a_option_policy_env.py": "febc4377b9141e8253fb24330f73b25e5d96071483775a8c1b88278e0033de9f",
+    "cgauto/train_d170a_family_robust_option_policy.py": "37da37c9eb6f9d104c1794c0b3b845f27a78a56ca77f5db929f809af9b841b9c",
+    "rust/src/lib.rs": "2b8f2c9cb9cbcad3cf3a9528993e0aca921159aae95fdf96b47635b422951ba4",
+    "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+  },
+  "prohibitions": {
+    "train_or_select_on_veto_panel": true,
+    "fit_to_d169_envelope_winners": true,
+    "gpu_in_selected_path": true,
+    "fresh_range_expansion": true,
+    "threshold_or_architecture_tuning_after_outcomes": true,
+    "second_confirmation_run": true,
+    "modify_frozen_modules": true
+  },
+  "resume_additions_2026_07_28": {
+    "note": "Added during a controlled-interruption resume (USB unmount pause after Phase 0/1 were built/launched by a prior agent). Everything above this key is the original, unmodified Phase-0/1 lock. Nothing above was edited; no Phase-0/1 sha256 entries changed. This section only records what the resuming agent verified and added.",
+    "resume_integrity_verification": {
+      "storage_preflight": "PASS (456809893888 bytes free on medium_data)",
+      "phase0_1_hash_reverification": "All 12 files in the original sha256 table above re-hashed from the live working tree and matched exactly; no mismatches (no mid-edit corruption from the interruption). The 7 frozen-module hashes shared with the D169a lock (engine.rs, build.rs, official_mapgen.rs, d162_resident_native_capital_option.rs, rl_macro.rs, d169a_resident_option_envelope.rs, state.rs) were additionally cross-checked against d169a-resident-option-interface-envelope-lock.json's own sha256 table and matched exactly.",
+      "rust_unit_tests": "cargo test --release --lib rl_d170a_option_policy_env: 10/10 passed (control-parity, control_margin identity, budget<=1, deterministic replay, thread-count invariance, exhaustive task_index coverage incl. zero-decision episodes), matching the phase-0-done marker's claim.",
+      "phase2_3_code_found": "cgauto/analyze_d170a_family_robust_option_policy.py (sha256 d5a971d503bb055f25f306e284f7317595f32140a2a4defe5d0e639761fffa6f) was already present, written by the prior agent before Phase 1 training completed (mtime precedes the checkpoints by ~6 minutes) and therefore never exercised against a real checkpoint. Read in full and verified: LOBO block-wise summary + admission gates + selection tie-break (max worst_block -> max pooled_mean -> lowest seed) + veto gates + confirmation gates + clustered-cluster-bootstrap CI all match the protocol text and lock verbatim; catastrophe (margin<=-100) and negative-mass (sum(max(0,-margin))) conventions match the established house pattern (d34/d35c/d80a/d89a/d159a/d162a/d168a/d169a). `.pt` confirmed canonical (analyzer's fit_checkpoint_path() loads `.pt`; `.npz` is a numpy mirror, byte-for-byte value-equal to `.pt` on all 8 fits). Functionally smoke-tested end-to-end (evaluate_deterministic -> summarize_rows -> admission_gates/veto_gates/confirmation_gates/clustered_ci) against a freshly-initialized (untrained) model on an out-of-protocol seed base (1, map_pool=2, disjoint from all three declared D170a ranges) to avoid touching train/selection/veto/confirmation data with a throwaway model: ran cleanly, 32/32 rows collected, untrained KEEP-biased policy reproduced byte-exact-control (paired_margin=0 for all rows) as expected, all gates correctly evaluated False. No Phase 2/3 code defects found."
+    },
+    "phase1_fit_validation": {
+      "method": "Ran the resume task's own checklist (result JSON parses; Stage-A sanity record present; final-training summary present; checkpoint .pt/.npz load and are value-identical; actor_parameters <= 12288) against all 8 inherited fits.",
+      "outcome": "All 8 fits FAILED validation identically: stage_a.verdict.mechanics_pass == false for every fit, decision == \"mechanics_fail_at_stage_a\", final == null (no final-training summary, by the trainer's own control flow). The failing gate in all 8 cases is every_option_at_least_2pct_of_sampled_decisions: opt_fruit_trig, opt_iron_trig, opt_protect_trig are at exactly 0.0 share in all 8 fits (never once offered as a pending decision across 8192 decisions / ~1350-1470 episodes each); opt_return is also below the 2% floor in all 8 (0.79%-1.06%, a much softer, non-structural shortfall). All other Stage-A gates (finite_losses, crop_safety_exact, zero_reward_identity_errors, exact_transition_budget) passed cleanly in all 8.",
+      "rerun_performed": "Per the resume protocol's own instruction (\"delete its outputs and RERUN that fit exactly per protocol -- a rerun reproduces it\"), backed up all 8 original result JSONs + checkpoints, deleted them, and reran all 8 fits from scratch as 8 concurrent single-threaded OS processes (RAYON_NUM_THREADS=1, torch.set_num_threads(1)), exactly per the locked trainer/env code (unmodified).",
+      "rerun_result": "All 8 reruns reproduced their originals EXACTLY: identical decision, identical stage_a.verdict.gates, identical arm_offer_counts (including the three exact-zero trig arms), identical global_decisions/total_episodes/loss means, and byte-identical checkpoint sha256 (both .pt and .npz) for every one of the 8 fits. This proves the mechanics-fail is fully deterministic and was NOT an artifact of the USB-unmount interruption (the interruption occurred after Phase 1 had already finished writing all 8 outputs, before Phase 2 began)."
+    },
+    "root_cause_finding": {
+      "summary": "Structural (not stochastic) bug in the new D170a-specific composition code (rust/src/rl_d170a_option_policy_env.rs, the section below the file's own \"D170a-specific\" banner at line 772 -- NOT the frozen/hash-verified `mod inherited` vocabulary block copied from D162/D163/D167/D168/D169a). The three resource `_trig` arms (opt_fruit_trig, opt_iron_trig, opt_protect_trig) can never be queued as a pending decision.",
+      "mechanism": "In `D170aEnv::step_one_turn` (~line 1270), `self.opp_worker_trigger_turn` is set to `current_turn`, the PRE-increment turn value captured at function entry, BEFORE that turn's `step(&mut self.game, ...)` engine call (game/engine.rs:805) advances `self.game.turn` by 1. `D170aEnv::refresh_candidates` (~line 1149) later checks `self.opp_worker_trigger_turn == self.game.turn` to enqueue the trig arm -- but `refresh_candidates` only ever runs either (a) before that turn's `step_one_turn` call (opp_worker_trigger_turn not yet set for this turn), or (b) on the NEXT resume() loop iteration, by which point `self.game.turn` has already been incremented past the stored value. The equality is therefore never satisfiable, for any game trajectory, on any seed. Contrast with the OPT_RETURN arm in the same file, which correctly handles this exact category of post-step timing via a sticky `self.return_pending` boolean flag set in step_one_turn and consumed on the next refresh_candidates() call -- the same pattern was not applied to the resource `_trig` arms.",
+      "evidence": [
+        "Static trace of the only enqueue site (line 1149-1151) confirms the condition is unreachable by construction, independent of map/seed.",
+        "All 8 independent fits (4 objectives x 2 seeds) show the identical exact-zero count for all three trig arms across ~1350-1470 episodes each (~11,200 episodes total in the original run alone) -- 0% is not what stochastic rarity looks like.",
+        "D169a's own frozen, hash-verified reference implementation of the SAME underlying trigger condition (byte-identical copy in `mod inherited`) shows nonzero activity for the same arms: opt_fruit_trig won 25/1024 and opt_iron_trig won 13/1024 hindsight-envelope tasks (data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-result.json, .lock.selection.selection_counts) -- proving the underlying game-level event (opponent reaching >=3 workers) is not itself rare and is reachable through the identical, hash-verified vocabulary logic.",
+        "Direct empirical field-level diagnostic on the ACTUAL D170a training pool (seed_base=9850000, map_pool=256, 303 episodes, 2880 decision observations, all-KEEP deterministic policy so as not to spend budget): opp_worker_trigger_seen (state feature 55) was true in 451/2880 (15.7%) of observed decision points -- yet trig_candidate_offered was 0/2880. The underlying event fires often; the option is never exposed."
+      ],
+      "scope": "Confined to the new D170a composition layer. All frozen D162/D163/D167/D168/D169a modules remain hash-verified byte-identical/unmodified (see phase0_1_hash_reverification above and the D169a cross-reference in evidence). opt_return's mechanism (the sticky-flag pattern) is not affected by this bug; its own ~1% share (also below the 2% floor in all 8 fits) is a separate, much softer, non-structural finding not diagnosed further here (out of scope for a resume task; would need its own investigation)."
+    },
+    "decision": {
+      "rule_applied": "Protocol §\"Decision tree\": \"Phase 1 mechanics-fail on all fits -> CLOSE (record; Tier 0/3).\"",
+      "verdict": "CLOSED-AT-PHASE-1",
+      "phase2_3_executed_against_real_fits": false,
+      "rationale": "No fit reached decision==\"trained\"; there is no valid checkpoint to LOBO-evaluate, and (separately from validity) a policy trained where 3 of the declared 13 arms were structurally unreachable would silently be a test of a truncated 10-arm vocabulary mislabeled as the full D169 vocabulary -- running Phase 2/3 against these fits would risk a false research conclusion, not just a formality violation. This is a distinct, prior decision-tree branch from \"Phase 2 no admission\"; classifying it as CLOSED-AT-PHASE-2 would misattribute the cause. Per \"no threshold/architecture tuning after outcomes\" and \"frozen modules untouched\", the resuming agent did not patch rl_d170a_option_policy_env.rs and re-run -- that decision (fix + re-freeze + re-run Phase 1) requires a new dispatch/authorization, not a unilateral resume-agent action.",
+      ".superpowers/sdd/d170a-phase-1-done.md": "NOT written -- the stated precondition (\"only after all 8 validate\") was not met after the prescribed rerun."
+    }
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "schema": "troll-farm-d170a-family-robust-option-policy-resume-result-v1",
+  "generated_at": "2026-07-28T08:10:00Z",
+  "git_rev": "d2e962f7aa16c1ddc4fe71632a1c2e003688f67e",
+  "question": "Can a small, observable-feature policy, trained closed-loop over the D169 option vocabulary, capture >= +2.0 mean paired margin on fresh held data with no opponent family sacrificed?",
+  "resume_context": {
+    "reason": "controlled interruption (USB unmount pause) after a prior agent completed Phase 0 and launched/apparently completed Phase 1",
+    "task": "verify Phase 0/1 inheritance; execute Phase 2/3 per protocol if valid; do not execute Phase 4"
+  },
+  "phase0_inheritance_verification": {
+    "storage_preflight": "PASS (free_bytes=456809893888)",
+    "lock_hash_reverification": "all 12 original sha256 entries re-verified byte-identical from the live working tree; 0 mismatches",
+    "frozen_module_cross_check_vs_d169a_lock": "7 shared frozen-module hashes (engine.rs, build.rs, official_mapgen.rs, d162_resident_native_capital_option.rs, rl_macro.rs, d169a_resident_option_envelope.rs, state.rs) all match D169a's own lock exactly",
+    "rust_unit_tests": "cargo test --release --lib rl_d170a_option_policy_env: 10/10 passed",
+    "verdict": "PASS -- no interruption-caused corruption; Phase 0/1 code matches its own lock and D169a's"
+  },
+  "phase1_fit_validation": {
+    "fits_checked": 8,
+    "fits_valid_as_trained": 0,
+    "fits_mechanics_fail": 8,
+    "reruns_performed": 8,
+    "rerun_reproducibility": "all 8 reruns byte/value-identical to their pre-rerun originals (identical decision, stage_a gates, arm_offer_counts, checkpoint sha256 both .pt and .npz) -- confirms deterministic, non-corrupted, reproducible outcome",
+    "per_fit": [
+      {
+        "variant": "pooled_margin",
+        "seed": 170101,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.00830078125
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1416,
+        "checkpoint_pt_sha256": "231539caf5f014aa6e2a63bafa46c5e65e5c6b530697dac51127e0a1a7ff3b2d",
+        "checkpoint_npz_sha256": "f43cdb909d033fd611ffa8915413cceb7f53f38f364b6df4261dd9e032cb8ec5",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-pooled_margin-seed170101-result.json"
+      },
+      {
+        "variant": "pooled_margin",
+        "seed": 170102,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.0106201171875
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1360,
+        "checkpoint_pt_sha256": "cbf8d993b5c5e28094b9372837158ea253661dc7a89b0b730d68920e483e69a5",
+        "checkpoint_npz_sha256": "493587c389f9b200fd38acea1b51752065eac71c688bd56985a7778d89f8ae1a",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-pooled_margin-seed170102-result.json"
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170201,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.00927734375
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1437,
+        "checkpoint_pt_sha256": "6f03f3248af94d0b9b68e166ef42b056b20596adb735875e422317dcf10e2bf6",
+        "checkpoint_npz_sha256": "b29bc66d7b338be2efa6092f0371b23645057246373bbaac0a870e296ac58b00",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-capped_margin-seed170201-result.json"
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170202,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.0087890625
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1359,
+        "checkpoint_pt_sha256": "440af12518e8601011db3ac84fadef8c18815ee8d591109610405d77810bf955",
+        "checkpoint_npz_sha256": "cf5239f88fe4a0e358c14e4112db083f0c18f477fabdf568f4be30f7ce96a009",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-capped_margin-seed170202-result.json"
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170301,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.0101318359375
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1425,
+        "checkpoint_pt_sha256": "139b7564de060128c1d5ea6af5147b08b6b2915285dd52e91451a7ce02a4adfa",
+        "checkpoint_npz_sha256": "48f5f011afdd945e5017de8dce059d41bfbb42feebae4d5ee0ec7759dd9da6fe",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-own_protected-seed170301-result.json"
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170302,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.0106201171875
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1377,
+        "checkpoint_pt_sha256": "25691859972f8fe67c83375813b42b3b2fcc992c43bee41d87aa0ff853f7aabb",
+        "checkpoint_npz_sha256": "690a350056e53bdd4e7b5823b8f31ae528ca1c330d3844f6c334b26fdcb11618",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-own_protected-seed170302-result.json"
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170401,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.009521484375
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1389,
+        "checkpoint_pt_sha256": "60ece2565a3f922bb2531825a26fa23d850476e314701876f17e64a281a6b471",
+        "checkpoint_npz_sha256": "e5c0d626ecc4778ac46b306645508149e842d5fce95de528ebca90539a7bd3ce",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-group_dro_own-seed170401-result.json"
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170402,
+        "decision": "mechanics_fail_at_stage_a",
+        "stage_a_mechanics_pass": false,
+        "stage_a_gates": {
+          "crop_safety_exact": true,
+          "every_option_at_least_2pct_of_sampled_decisions": false,
+          "exact_transition_budget": true,
+          "finite_losses": true,
+          "zero_reward_identity_errors": true
+        },
+        "arm_offer_shares_below_2pct": {
+          "opt_fruit_trig": 0.0,
+          "opt_iron_trig": 0.0,
+          "opt_protect_trig": 0.0,
+          "opt_return": 0.0079345703125
+        },
+        "global_decisions": 8192,
+        "total_episodes": 1469,
+        "checkpoint_pt_sha256": "e03fd9b1f2ca905562ac24c6b625c23905cdc81a149bd828d7882fe72f292dc1",
+        "checkpoint_npz_sha256": "a8b36c85b6beebe8f991b568737acd0dd1b2acfcd03a4303e9c95f45ce766d63",
+        "actor_parameters": 4786,
+        "result_json_path": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-group_dro_own-seed170402-result.json"
+      }
+    ],
+    "common_failing_gate": "every_option_at_least_2pct_of_sampled_decisions",
+    "common_failure_detail": "opt_fruit_trig, opt_iron_trig, opt_protect_trig at exactly 0.0 share in all 8 fits; opt_return also below 2% (0.79%-1.06%) in all 8 fits but not diagnosed as structural"
+  },
+  "root_cause": {
+    "location": "rust/src/rl_d170a_option_policy_env.rs, D170a-specific composition layer (not the frozen `mod inherited` vocabulary block)",
+    "defect": "off-by-one in the resource `_trig` arm arming check: refresh_candidates() compares self.opp_worker_trigger_turn (captured pre-increment, inside step_one_turn, before that turn's engine step() call advances self.game.turn) against self.game.turn, but refresh_candidates() is only ever evaluated either before that turn's step_one_turn call (not yet set) or on the next loop iteration after game.turn has already advanced past the stored value -- structurally unreachable for any trajectory/seed. OPT_RETURN in the same file correctly handles the equivalent post-step timing via a sticky return_pending flag; the same pattern was not applied to the three resource _trig arms.",
+    "evidence": [
+      "static code trace of the sole enqueue site (refresh_candidates, ~line 1149)",
+      "8/8 independent fits show exact zero (not stochastic rarity) for all three trig arms",
+      "D169a's own frozen hash-verified reference implementation of the identical vocabulary shows nonzero trig activity (opt_fruit_trig 25/1024, opt_iron_trig 13/1024 hindsight-envelope winners)",
+      "direct field-level diagnostic on the real D170a training pool: opp_worker_trigger_seen true in 451/2880 (15.7%) of observed decisions, yet trig_candidate_offered = 0/2880"
+    ],
+    "frozen_modules_status": "unaffected; all remain hash-verified byte-identical/unmodified"
+  },
+  "phase2_3_code_readiness": {
+    "file": "cgauto/analyze_d170a_family_robust_option_policy.py",
+    "sha256": "d5a971d503bb055f25f306e284f7317595f32140a2a4defe5d0e639761fffa6f",
+    "found_state": "present but unexercised (written before Phase 1 checkpoints existed)",
+    "review": "LOBO block-wise summary, admission gates, veto gates, confirmation gates, clustered-cluster-bootstrap CI, and selection tie-break (max worst_block -> max pooled_mean -> lowest seed) all verified to match the protocol/lock text verbatim",
+    "canonical_checkpoint_format": ".pt (analyzer's fit_checkpoint_path() loads .pt; .npz is a value-identical numpy mirror)",
+    "smoke_test": "evaluate_deterministic -> summarize_rows -> admission_gates/veto_gates/confirmation_gates/clustered_ci run end-to-end against a freshly-initialized untrained model on an out-of-protocol seed base (1, map_pool=2; disjoint from all 3 declared D170a ranges); 32/32 rows collected; untrained KEEP-biased policy reproduced byte-exact control (paired_margin=0 everywhere) as expected; all gates correctly evaluated False",
+    "verdict": "Phase 2/3 code is functionally complete and correct; NOT executed against the real (mechanics-failed) Phase 1 fits, per the decision below"
+  },
+  "phase2_executed_against_real_fits": false,
+  "phase3_executed": false,
+  "phase4_executed": false,
+  "decision_tree_branch_applied": "Phase 1 mechanics-fail on all fits -> CLOSE (record; Tier 0/3)",
+  "verdict": "CLOSED-AT-PHASE-1",
+  "verdict_rationale": "All 8 Phase 1 fits deterministically and reproducibly fail the protocol's own pre-registered Stage-A mechanics gate (every_option_at_least_2pct_of_sampled_decisions), root-caused to a structural bug (not a rarity/threshold judgment call) in the new D170a sequential-decision composition code that makes 3 of the declared 13 arms permanently unreachable. No fit has decision=='trained'; there is no valid checkpoint to evaluate in Phase 2, and running Phase 2/3 on a fit trained over a silently-truncated 10-arm vocabulary would test a different, mislabeled experiment. Per the protocol's explicit prohibitions (no architecture/mechanics tuning after outcomes; frozen modules untouched) the resuming agent did not patch the bug and re-run -- that requires a new dispatch/authorization. This is a distinct decision-tree branch from Phase 2's own 'no admission' close and is recorded as such.",
+  "not_done_by_design": {
+    "phase1_done_marker": ".superpowers/sdd/d170a-phase-1-done.md NOT written (precondition 'all 8 validate' unmet after the prescribed rerun)",
+    "phase2_execution_against_real_checkpoints": "not run (no eligible 'trained' fit exists)",
+    "phase3_veto_confirmation": "not run (Phase 2 not reached)",
+    "phase4": "not in scope per dispatch; moot given Phase 1 closure",
+    "frozen_code_patch": "not applied; requires new authorization, out of resume-agent scope"
+  },
+  "recommendation_for_next_dispatch": "Fix the off-by-one in rust/src/rl_d170a_option_policy_env.rs's resource _trig arming check (mirror OPT_RETURN's sticky-flag pattern), re-verify against D169a's reference trig-activity rate, re-freeze a new lock (new hash for the env file), and re-run Phase 1 from scratch on the same seeds under the corrected code. Separately note opt_return's own sub-2% share (0.79%-1.06% across all 8 fits) may also need Stage-A budget/threshold reconsideration even after the trig fix -- flagged, not diagnosed, here.",
+  "reproducibility": {
+    "lock": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-lock.json",
+    "lock_sha256_after_resume_update": "670f4415ba6b9f9aae173f3d63306785761813d183b20fe3e28862117898965b",
+    "protocol_sha256": "1e2ff6597969d0d2670e1c84c0871a3b595405df8114884ad39713f9920e8ec0",
+    "env_rs_sha256_inherited_unmodified": "4ea4a215731e83c73893410579ab1c27e866e7ffbcf2d0531cec3ad7435ed963",
+    "trainer_py_sha256_inherited_unmodified": "37da37c9eb6f9d104c1794c0b3b845f27a78a56ca77f5db929f809af9b841b9c",
+    "analyzer_py_sha256_resume_addition": "d5a971d503bb055f25f306e284f7317595f32140a2a4defe5d0e639761fffa6f",
+    "env_wrapper_py_sha256_inherited_unmodified": "febc4377b9141e8253fb24330f73b25e5d96071483775a8c1b88278e0033de9f"
+  }
+}

@@ -122,6 +122,33 @@ or platform/Arena/YT action. Full record:
 `d169a-resident-option-interface-envelope-{protocol,lock,result}-2026-07-27.*`; bulk rows
 on external `artifacts/experiments/d169a-resident-option-envelope/`.
 
+## 2026-07-28: D170a CLOSED-AT-PHASE-1 (implementation invalidation) → D170b repair frozen
+
+D170a's Phase 1 (8 fits, 4 objectives × 2 seeds) completed before the USB-pause
+interruption; the resume validation then found all 8 fits deterministically failing their
+preregistered Stage-A mechanics gate — and root-caused it to a structural off-by-one in
+the NEW D170a composition code: the three resource `_trig` arms compared a stored trigger
+turn against an already-advanced turn counter, making them unreachable on any trajectory
+(offered 0/2,880 decision points while the underlying opponent-≥3-workers event fired in
+15.7%; D169's frozen reference shows the same arms winning 25+13 envelope tasks). Reruns
+of all 8 fits reproduced byte-identical checkpoints and identical zero counts — fully
+deterministic, not interruption damage. The frozen inherited vocabulary block is
+hash-verified untouched; `OPT_RETURN` avoided the bug via its sticky-flag pattern. No
+value field was ever computed (Stage-A stops precede training summaries), so no outcome
+contamination exists. The resume agent correctly refused to patch locked code, recorded
+CLOSED-AT-PHASE-1 per the decision tree, built and smoke-tested the Phase 2/3 analyzer,
+and escalated. Full record: `d170a-family-robust-option-policy-result-2026-07-28.{md,json}`.
+
+**Fable adjudication: implementation invalidation, not scientific closure** (house
+precedent D112→D113, D133b, D75b, D158). The D170 question remains open. **D170b frozen**
+(`d170b-family-robust-option-policy-repair-protocol-2026-07-28.md`): mechanics-only
+repair (sticky-flag arming for the trig arms), a pre-training all-KEEP activation
+verification with frozen floors, and one definitional correction made pre-outcome (the
+2% exploration floor computed conditional on offered decisions, unconditional share
+reported alongside). Everything else — objectives, seeds, budgets, ranges, gates, phases
+— inherited from D170a unchanged. Engineering constraint recorded: post-step event
+arming must use the sticky-flag pattern, never turn-equality against a live counter.
+
 ## 2026-07-28: authorized wide-lens passive collection — corpus 1,891 → 8,122 games
 
 User-authorized read-only collection with a deliberately widened lens: resident full

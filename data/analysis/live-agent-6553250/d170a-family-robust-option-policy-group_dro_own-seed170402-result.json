@@ -1,0 +1,696 @@
+{
+  "arms": [
+    "opt_return",
+    "opt_fruit_t072",
+    "opt_fruit_t104",
+    "opt_fruit_t136",
+    "opt_fruit_trig",
+    "opt_iron_t072",
+    "opt_iron_t104",
+    "opt_iron_t136",
+    "opt_iron_trig",
+    "opt_protect_t072",
+    "opt_protect_t104",
+    "opt_protect_t136",
+    "opt_protect_trig"
+  ],
+  "config": {
+    "actor_keep_bias": 2.0,
+    "adam_epsilon": 1e-05,
+    "clip_coef": 0.2,
+    "entropy_coef": 0.02,
+    "full_transitions": 32768,
+    "gae_lambda": 0.95,
+    "gamma": 1.0,
+    "group_ema_decay": 0.99,
+    "group_temperature": 10.0,
+    "learning_rate": 0.0003,
+    "max_grad_norm": 0.5,
+    "minibatch_envs": 8,
+    "num_envs": 32,
+    "own_loss_penalty": 0.5,
+    "positive_cap": 50.0,
+    "rollout_steps": 16,
+    "stage_a_min_arm_share": 0.02,
+    "stage_a_transitions": 8192,
+    "target_kl": 0.03,
+    "threads": 1,
+    "train_map_pool": 256,
+    "train_seed_base": 9850000,
+    "update_epochs": 3,
+    "value_coef": 0.5
+  },
+  "decision": "mechanics_fail_at_stage_a",
+  "decision_features": 17,
+  "final": null,
+  "generated_at": "2026-07-28T07:55:11Z",
+  "git_rev": "d2e962f7aa16c1ddc4fe71632a1c2e003688f67e",
+  "input_features": 81,
+  "model": {
+    "actor_parameters": 4786,
+    "critic_parameters": 7361,
+    "total_parameters": 12147
+  },
+  "outputs": {
+    "checkpoint_npz": "/home/tarstars/prj/troll_farm/artifacts/experiments/d170a-family-robust-option-policy/d170a-family-robust-option-policy-group_dro_own-seed170402-checkpoint.npz",
+    "checkpoint_npz_sha256": "a8b36c85b6beebe8f991b568737acd0dd1b2acfcd03a4303e9c95f45ce766d63",
+    "checkpoint_pt": "/home/tarstars/prj/troll_farm/artifacts/experiments/d170a-family-robust-option-policy/d170a-family-robust-option-policy-group_dro_own-seed170402-checkpoint.pt",
+    "checkpoint_pt_sha256": "e03fd9b1f2ca905562ac24c6b625c23905cdc81a149bd828d7882fe72f292dc1"
+  },
+  "schema": "troll-farm-d170a-family-robust-option-policy-fit-v1",
+  "seed": 170402,
+  "stage_a": {
+    "telemetry": {
+      "arm_offer_counts": {
+        "opt_fruit_t072": 1493,
+        "opt_fruit_t104": 957,
+        "opt_fruit_t136": 637,
+        "opt_fruit_trig": 0,
+        "opt_iron_t072": 1298,
+        "opt_iron_t104": 838,
+        "opt_iron_t136": 556,
+        "opt_iron_trig": 0,
+        "opt_protect_t072": 1119,
+        "opt_protect_t104": 743,
+        "opt_protect_t136": 486,
+        "opt_protect_trig": 0,
+        "opt_return": 65
+      },
+      "arm_offer_shares": {
+        "opt_fruit_t072": 0.1822509765625,
+        "opt_fruit_t104": 0.1168212890625,
+        "opt_fruit_t136": 0.0777587890625,
+        "opt_fruit_trig": 0.0,
+        "opt_iron_t072": 0.158447265625,
+        "opt_iron_t104": 0.102294921875,
+        "opt_iron_t136": 0.06787109375,
+        "opt_iron_trig": 0.0,
+        "opt_protect_t072": 0.1365966796875,
+        "opt_protect_t104": 0.0906982421875,
+        "opt_protect_t136": 0.059326171875,
+        "opt_protect_trig": 0.0,
+        "opt_return": 0.0079345703125
+      },
+      "cpu_seconds": 488.193806098,
+      "decisions_per_second": 16.773460341909832,
+      "expected_updates": 16,
+      "family_episode_counts": {
+        "compact_gold": 184,
+        "gold_adaptive": 178,
+        "legend_balanced": 197,
+        "mybot": 185,
+        "norx_native_three": 187,
+        "resident": 185,
+        "script_boss": 173,
+        "silver_boss": 180
+      },
+      "family_mean_paired_margin": {
+        "compact_gold": -3.0489130434782608,
+        "gold_adaptive": -4.179775280898877,
+        "legend_balanced": -3.1421319796954315,
+        "mybot": -2.2972972972972974,
+        "norx_native_three": -3.4705882352941178,
+        "resident": -0.9027027027027027,
+        "script_boss": -1.254335260115607,
+        "silver_boss": -1.5222222222222221
+      },
+      "final_family_ema": {
+        "compact_gold": -7.6582925052760285,
+        "gold_adaptive": 0.40477920381073373,
+        "legend_balanced": 1.655497509187474,
+        "mybot": -8.560722332323616,
+        "norx_native_three": 2.0034985369075926,
+        "resident": 0.021843858580798195,
+        "script_boss": -4.989213998115465,
+        "silver_boss": -4.506721103488132
+      },
+      "global_decisions": 8192,
+      "invalid_direct_commands_total": 0,
+      "logs": [
+        {
+          "approx_kl": 2.2534125794967014e-05,
+          "decisions_so_far": 512,
+          "entropy": 0.36880284051100415,
+          "episodes_this_update": 80,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.5,
+            "gold_adaptive": 1.1666666666666667,
+            "legend_balanced": 2.5,
+            "mybot": -9.666666666666666,
+            "norx_native_three": 3.0,
+            "resident": 0.18181818181818182,
+            "script_boss": -5.625,
+            "silver_boss": -5.0
+          },
+          "family_weights": {
+            "compact_gold": 0.125,
+            "gold_adaptive": 0.125,
+            "legend_balanced": 0.125,
+            "mybot": 0.125,
+            "norx_native_three": 0.125,
+            "resident": 0.125,
+            "script_boss": 0.125,
+            "silver_boss": 0.125
+          },
+          "gradient_norm": 0.13069170465071997,
+          "policy_loss": -0.0005087746928135554,
+          "update": 1,
+          "update_seconds": 35.98314578598365,
+          "value_loss": 0.01905207638628781
+        },
+        {
+          "approx_kl": 1.0724451082448164e-05,
+          "decisions_so_far": 1024,
+          "entropy": 0.37556488811969757,
+          "episodes_this_update": 96,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.432142857142857,
+            "gold_adaptive": 1.151,
+            "legend_balanced": 2.363888888888889,
+            "mybot": -9.593571428571428,
+            "norx_native_three": 3.0083333333333333,
+            "resident": 0.16666666666666666,
+            "script_boss": -5.5947499999999994,
+            "silver_boss": -4.962
+          },
+          "family_weights": {
+            "compact_gold": 0.19888069847225637,
+            "gold_adaptive": 0.07564402637352596,
+            "legend_balanced": 0.06620163362709097,
+            "mybot": 0.22349114787624177,
+            "norx_native_three": 0.06297294185610486,
+            "resident": 0.0834730079574489,
+            "script_boss": 0.14918768434899324,
+            "silver_boss": 0.1401488594883378
+          },
+          "gradient_norm": 0.10988440488775571,
+          "policy_loss": 9.154280026753744e-06,
+          "update": 2,
+          "update_seconds": 44.96920219808817,
+          "value_loss": 0.014135542170455059
+        },
+        {
+          "approx_kl": 3.92901711165905e-07,
+          "decisions_so_far": 1536,
+          "entropy": 0.37786173323790234,
+          "episodes_this_update": 91,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.36282142857143,
+            "gold_adaptive": 1.1217976923076924,
+            "legend_balanced": 2.247173076923077,
+            "mybot": -9.510635714285714,
+            "norx_native_three": 2.96075,
+            "resident": 0.15199999999999997,
+            "script_boss": -5.567469166666666,
+            "silver_boss": -4.96863
+          },
+          "family_weights": {
+            "compact_gold": 0.1981012684739173,
+            "gold_adaptive": 0.07597953830211175,
+            "legend_balanced": 0.06730100584842455,
+            "mybot": 0.22249869001742945,
+            "norx_native_three": 0.06310062900218384,
+            "resident": 0.08383892550760232,
+            "script_boss": 0.14916291101394655,
+            "silver_boss": 0.14001703183438424
+          },
+          "gradient_norm": 0.10172365947316091,
+          "policy_loss": -5.460390821099281e-05,
+          "update": 3,
+          "update_seconds": 32.79846695798915,
+          "value_loss": 0.012238862613836924
+        },
+        {
+          "approx_kl": 9.681136968235174e-06,
+          "decisions_so_far": 2048,
+          "entropy": 0.37412557750940323,
+          "episodes_this_update": 105,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.309193214285715,
+            "gold_adaptive": 0.8042160790209789,
+            "legend_balanced": 2.208868012820513,
+            "mybot": -9.454815071428571,
+            "norx_native_three": 2.888475833333333,
+            "resident": 0.12714666666666663,
+            "script_boss": -5.479794474999999,
+            "silver_boss": -4.932515128571429
+          },
+          "family_weights": {
+            "compact_gold": 0.19714347403134957,
+            "gold_adaptive": 0.07636082830356514,
+            "legend_balanced": 0.06823327217493591,
+            "mybot": 0.221121690740331,
+            "norx_native_three": 0.06353396313136093,
+            "resident": 0.08413726862569272,
+            "script_boss": 0.14906709879252564,
+            "silver_boss": 0.14040240420023914
+          },
+          "gradient_norm": 0.1121591351305445,
+          "policy_loss": -0.0003999290056526661,
+          "update": 4,
+          "update_seconds": 33.29985227796715,
+          "value_loss": 0.006500748063748081
+        },
+        {
+          "approx_kl": 1.0896008461713791e-05,
+          "decisions_so_far": 2560,
+          "entropy": 0.36888383825620014,
+          "episodes_this_update": 99,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.226815567857145,
+            "gold_adaptive": 0.7391739182307691,
+            "legend_balanced": 2.1451126660256414,
+            "mybot": -9.379641920714286,
+            "norx_native_three": 2.8712577416666667,
+            "resident": 0.12587519999999996,
+            "script_boss": -5.41499653025,
+            "silver_boss": -4.886523310619047
+          },
+          "family_weights": {
+            "compact_gold": 0.19622574579262125,
+            "gold_adaptive": 0.07887977291127106,
+            "legend_balanced": 0.06854288707183459,
+            "mybot": 0.2200440924330788,
+            "norx_native_three": 0.06403942158158597,
+            "resident": 0.08440543308809607,
+            "script_boss": 0.14786887284940345,
+            "silver_boss": 0.1399937742721088
+          },
+          "gradient_norm": 0.07500150986015797,
+          "policy_loss": -0.00019632687326520681,
+          "update": 5,
+          "update_seconds": 30.059652435942553,
+          "value_loss": 0.00395217186693723
+        },
+        {
+          "approx_kl": 8.511124178767204e-07,
+          "decisions_so_far": 3072,
+          "entropy": 0.36554716030756634,
+          "episodes_this_update": 96,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.18871407884524,
+            "gold_adaptive": 0.7267821790484613,
+            "legend_balanced": 2.111896833483032,
+            "mybot": -9.300845501507144,
+            "norx_native_three": 2.823314395019231,
+            "resident": 0.11643462981818177,
+            "script_boss": -5.3608465649475,
+            "silver_boss": -4.856888846743626
+          },
+          "family_weights": {
+            "compact_gold": 0.1953545583639593,
+            "gold_adaptive": 0.07969582551635049,
+            "legend_balanced": 0.0692430883027539,
+            "mybot": 0.21922504191416023,
+            "norx_native_three": 0.0643932506869059,
+            "resident": 0.08473655399831485,
+            "script_boss": 0.14747139898795072,
+            "silver_boss": 0.1398802822296047
+          },
+          "gradient_norm": 0.05958579651390513,
+          "policy_loss": 2.2892064104477566e-05,
+          "update": 6,
+          "update_seconds": 31.184371401905082,
+          "value_loss": 0.0038876240723766387
+        },
+        {
+          "approx_kl": 6.154490013917287e-08,
+          "decisions_so_far": 3584,
+          "entropy": 0.3651863584915797,
+          "episodes_this_update": 85,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.120160271390121,
+            "gold_adaptive": 0.7136810239246434,
+            "legend_balanced": 2.2182778651482016,
+            "mybot": -9.179087046492072,
+            "norx_native_three": 2.8306368066245944,
+            "resident": 0.16193695018666665,
+            "script_boss": -5.329965372025297,
+            "silver_boss": -4.824986624942857
+          },
+          "family_weights": {
+            "compact_gold": 0.19518845744391275,
+            "gold_adaptive": 0.08003114844795452,
+            "legend_balanced": 0.06967938100091448,
+            "mybot": 0.21814908005903394,
+            "norx_native_three": 0.06489448822429744,
+            "resident": 0.08506797726611072,
+            "script_boss": 0.14710973264717275,
+            "silver_boss": 0.1398797349106033
+          },
+          "gradient_norm": 0.06685681579013665,
+          "policy_loss": -2.2489577531814575e-05,
+          "update": 7,
+          "update_seconds": 25.440186072024517,
+          "value_loss": 0.00295828302235653
+        },
+        {
+          "approx_kl": 1.4050165191292763e-06,
+          "decisions_so_far": 4096,
+          "entropy": 0.3653061067064603,
+          "episodes_this_update": 92,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.172035591753142,
+            "gold_adaptive": 0.5542365213777045,
+            "legend_balanced": 2.1037873941890273,
+            "mybot": -9.11229617602715,
+            "norx_native_three": 2.8143304385583483,
+            "resident": 0.15531758068479998,
+            "script_boss": -5.260415718305044,
+            "silver_boss": -4.756736758693428
+          },
+          "family_weights": {
+            "compact_gold": 0.19501308552014365,
+            "gold_adaptive": 0.08061482229221721,
+            "legend_balanced": 0.06935393233478764,
+            "mybot": 0.21679654629261683,
+            "norx_native_three": 0.06523440108182005,
+            "resident": 0.08518768996231978,
+            "script_boss": 0.14753230542179466,
+            "silver_boss": 0.14026721709430023
+          },
+          "gradient_norm": 0.09501657805715998,
+          "policy_loss": -8.340893934170406e-05,
+          "update": 8,
+          "update_seconds": 29.491111245006323,
+          "value_loss": 0.002613966935314238
+        },
+        {
+          "approx_kl": 3.2279640436172485e-06,
+          "decisions_so_far": 4608,
+          "entropy": 0.36872093627850216,
+          "episodes_this_update": 91,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.046148569168944,
+            "gold_adaptive": 0.5125403100100813,
+            "legend_balanced": 2.122749520247137,
+            "mybot": -9.052711675805341,
+            "norx_native_three": 2.7377255957112263,
+            "resident": 0.13222594333949042,
+            "script_boss": -5.231978227788661,
+            "silver_boss": -4.717740819677923
+          },
+          "family_weights": {
+            "compact_gold": 0.1960564394230435,
+            "gold_adaptive": 0.08192263798237455,
+            "legend_balanced": 0.07016294168531235,
+            "mybot": 0.21538532480772696,
+            "norx_native_three": 0.0653505574978506,
+            "resident": 0.0852567470041227,
+            "script_boss": 0.14653152407002404,
+            "silver_boss": 0.13933382752954543
+          },
+          "gradient_norm": 0.07771924852083127,
+          "policy_loss": -2.5219361608227093e-05,
+          "update": 9,
+          "update_seconds": 25.137795958085917,
+          "value_loss": 0.002046995999990031
+        },
+        {
+          "approx_kl": 6.069778464734554e-06,
+          "decisions_so_far": 5120,
+          "entropy": 0.37167571981747943,
+          "episodes_this_update": 90,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -8.019323447113617,
+            "gold_adaptive": 0.45441490690998043,
+            "legend_balanced": 2.072291255813896,
+            "mybot": -8.946184559047287,
+            "norx_native_three": 2.6961816730874473,
+            "resident": 0.1281764111788228,
+            "script_boss": -5.169658445510774,
+            "silver_boss": -4.637486488404221
+          },
+          "family_weights": {
+            "compact_gold": 0.19433871432175695,
+            "gold_adaptive": 0.08257720705954424,
+            "legend_balanced": 0.07029585094741543,
+            "mybot": 0.21491850235225496,
+            "norx_native_three": 0.06610306865999672,
+            "resident": 0.0857782206356011,
+            "script_boss": 0.14667005681698464,
+            "silver_boss": 0.13931837920644577
+          },
+          "gradient_norm": 0.08889248842994373,
+          "policy_loss": -0.00028970371931791306,
+          "update": 10,
+          "update_seconds": 28.927178133977577,
+          "value_loss": 0.0017606786859687418
+        },
+        {
+          "approx_kl": 4.170268463591735e-06,
+          "decisions_so_far": 5632,
+          "entropy": 0.3764522646864255,
+          "episodes_this_update": 81,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.931130212642481,
+            "gold_adaptive": 0.43441621238633515,
+            "legend_balanced": 1.9824774341648481,
+            "mybot": -8.929449986184087,
+            "norx_native_three": 2.5933865230232396,
+            "resident": 0.13133909151147902,
+            "script_boss": -5.120819003912809,
+            "silver_boss": -4.659111623520179
+          },
+          "family_weights": {
+            "compact_gold": 0.19453316944106097,
+            "gold_adaptive": 0.08336502443228253,
+            "legend_balanced": 0.07091210945369571,
+            "mybot": 0.21342570724632393,
+            "norx_native_three": 0.06662315391242873,
+            "resident": 0.0861295621903019,
+            "script_boss": 0.14629661718874334,
+            "silver_boss": 0.13871465613516296
+          },
+          "gradient_norm": 0.06890490061293046,
+          "policy_loss": 9.065928558508556e-05,
+          "update": 11,
+          "update_seconds": 24.184394315001555,
+          "value_loss": 0.0019288781622890383
+        },
+        {
+          "approx_kl": 3.716675564646721e-06,
+          "decisions_so_far": 6144,
+          "entropy": 0.37545447796583176,
+          "episodes_this_update": 97,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.886818910516056,
+            "gold_adaptive": 0.466225896416318,
+            "legend_balanced": 1.898107205277745,
+            "mybot": -8.830822152988912,
+            "norx_native_three": 2.5266193244596735,
+            "resident": 0.11669236726303088,
+            "script_boss": -5.125166369429236,
+            "silver_boss": -4.649443584208053
+          },
+          "family_weights": {
+            "compact_gold": 0.19301994240371043,
+            "gold_adaptive": 0.08361633281261194,
+            "legend_balanced": 0.07162418150052473,
+            "mybot": 0.2132841873688933,
+            "norx_native_three": 0.06737956880566504,
+            "resident": 0.08618934668303391,
+            "script_boss": 0.14573099048134536,
+            "silver_boss": 0.13915544994421522
+          },
+          "gradient_norm": 0.09956992945323388,
+          "policy_loss": -0.00020122954932351908,
+          "update": 12,
+          "update_seconds": 29.920694642933086,
+          "value_loss": 0.001527344371424988
+        },
+        {
+          "approx_kl": 1.7072694996992748e-06,
+          "decisions_so_far": 6656,
+          "entropy": 0.37228963772455853,
+          "episodes_this_update": 96,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.9288598123199865,
+            "gold_adaptive": 0.4557303041188215,
+            "legend_balanced": 1.8562689903678247,
+            "mybot": -8.792513931459023,
+            "norx_native_three": 2.341353131215077,
+            "resident": 0.09838258644754341,
+            "script_boss": -5.079748039068277,
+            "silver_boss": -4.596585512002336
+          },
+          "family_weights": {
+            "compact_gold": 0.1925706936772356,
+            "gold_adaptive": 0.08352607390933343,
+            "legend_balanced": 0.07238294567105591,
+            "mybot": 0.21163511803047588,
+            "norx_native_three": 0.06797360735452593,
+            "resident": 0.086497213402214,
+            "script_boss": 0.1461009866645796,
+            "silver_boss": 0.13931336129057972
+          },
+          "gradient_norm": 0.07911221558849017,
+          "policy_loss": 7.94107715288798e-07,
+          "update": 13,
+          "update_seconds": 28.174377635936253,
+          "value_loss": 0.0015338424321574469
+        },
+        {
+          "approx_kl": 3.2212119549512863e-07,
+          "decisions_so_far": 7168,
+          "entropy": 0.37149471044540405,
+          "episodes_this_update": 89,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.86341736804294,
+            "gold_adaptive": 0.43299118289581506,
+            "legend_balanced": 1.9353986081564543,
+            "mybot": -8.733679701235342,
+            "norx_native_three": 2.149939599902926,
+            "resident": 0.051944215128522486,
+            "script_boss": -5.028041467768503,
+            "silver_boss": -4.582841879104534
+          },
+          "family_weights": {
+            "compact_gold": 0.19329956671117554,
+            "gold_adaptive": 0.08357815089758454,
+            "legend_balanced": 0.07265543982816543,
+            "mybot": 0.2107360824680562,
+            "norx_native_three": 0.06921515560816159,
+            "resident": 0.08661880196818895,
+            "script_boss": 0.14537694171592977,
+            "silver_boss": 0.13851986080273804
+          },
+          "gradient_norm": 0.05587792800118526,
+          "policy_loss": -5.209166556596756e-05,
+          "update": 14,
+          "update_seconds": 29.0934203970246,
+          "value_loss": 0.0016884903113047283
+        },
+        {
+          "approx_kl": 2.3763859644532204e-06,
+          "decisions_so_far": 7680,
+          "entropy": 0.3694603194793065,
+          "episodes_this_update": 98,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.791926051505368,
+            "gold_adaptive": 0.4336612710668569,
+            "legend_balanced": 1.8380446220748896,
+            "mybot": -8.594524722404806,
+            "norx_native_three": 2.0753632808269735,
+            "resident": 0.041424772977237255,
+            "script_boss": -4.993594386424151,
+            "silver_boss": -4.534286187586216
+          },
+          "family_weights": {
+            "compact_gold": 0.19243871049878108,
+            "gold_adaptive": 0.08394290462718983,
+            "legend_balanced": 0.07223293594407719,
+            "mybot": 0.20993625758501538,
+            "norx_native_three": 0.07069974875495215,
+            "resident": 0.08720324623568544,
+            "script_boss": 0.14492844327910578,
+            "silver_boss": 0.1386177530751933
+          },
+          "gradient_norm": 0.06824367555479209,
+          "policy_loss": -7.541050824026267e-05,
+          "update": 15,
+          "update_seconds": 32.18872742494568,
+          "value_loss": 0.0015389619026488315
+        },
+        {
+          "approx_kl": 4.167047639687856e-06,
+          "decisions_so_far": 8192,
+          "entropy": 0.3662797063589096,
+          "episodes_this_update": 83,
+          "epochs_run": 3,
+          "family_ema": {
+            "compact_gold": -7.6582925052760285,
+            "gold_adaptive": 0.40477920381073373,
+            "legend_balanced": 1.655497509187474,
+            "mybot": -8.560722332323616,
+            "norx_native_three": 2.0034985369075926,
+            "resident": 0.021843858580798195,
+            "script_boss": -4.989213998115465,
+            "silver_boss": -4.506721103488132
+          },
+          "family_weights": {
+            "compact_gold": 0.19185826115429505,
+            "gold_adaptive": 0.08428451374123543,
+            "legend_balanced": 0.07324132485677617,
+            "mybot": 0.20789159029870186,
+            "norx_native_three": 0.0715236341775609,
+            "resident": 0.08765615170644273,
+            "script_boss": 0.14502754787842023,
+            "silver_boss": 0.1385169761865677
+          },
+          "gradient_norm": 0.0702112993846337,
+          "policy_loss": -0.00019573249543706575,
+          "update": 16,
+          "update_seconds": 21.129341415013187,
+          "value_loss": 0.0010457576039091994
+        }
+      ],
+      "losses": {
+        "approx_kl": {
+          "finite": true,
+          "maximum": 7.044896483421326e-05,
+          "mean": 5.14398804322506e-06
+        },
+        "entropy": {
+          "finite": true,
+          "maximum": 0.37876075506210327,
+          "mean": 0.3708191422435145
+        },
+        "gradient_norm": {
+          "finite": true,
+          "maximum": 0.22403955459594727,
+          "mean": 0.08496570561934884
+        },
+        "policy_loss": {
+          "finite": true,
+          "maximum": 0.41351330280303955,
+          "mean": -0.00012383878492983058
+        },
+        "value_loss": {
+          "finite": true,
+          "maximum": 0.0269660335034132,
+          "mean": 0.004900639037562844
+        }
+      },
+      "mean_episode_paired_margin": -2.488767869298843,
+      "mean_own_score_delta": -1.2661674608577262,
+      "provenance_failures_total": 0,
+      "purity_violations_total": 0,
+      "reward_identity_errors": 0,
+      "seed": 170402,
+      "total_episodes": 1469,
+      "transition_budget": 8192,
+      "updates": 16,
+      "variant": "group_dro_own",
+      "wall_seconds": 488.3905785100069
+    },
+    "verdict": {
+      "gates": {
+        "crop_safety_exact": true,
+        "every_option_at_least_2pct_of_sampled_decisions": false,
+        "exact_transition_budget": true,
+        "finite_losses": true,
+        "zero_reward_identity_errors": true
+      },
+      "mechanics_pass": false,
+      "min_arm_offer_share": 0.0
+    }
+  },
+  "state_features": 64,
+  "variant": "group_dro_own"
+}

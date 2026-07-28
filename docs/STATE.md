@@ -46,6 +46,13 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   full 1,024-task panel: **+10.671 mean, CI [+9.420, +11.922], 65% improved, 0
   regressions, tails better than control.** Every option is negative always-on; all
   value is per-game selection. Clears every frozen gate — no D169b needed.
+- **2026-07-28 (later): D170a CLOSED-AT-PHASE-1 = implementation invalidation** (trig-arm
+  off-by-one in new composition code; all 8 fits mechanics-failed deterministically; no
+  value computed; frozen modules untouched). Fable-adjudicated as a bug, not science;
+  **D170b repair protocol FROZEN and delegable**:
+  `d170b-family-robust-option-policy-repair-protocol-2026-07-28.md` (sticky-flag repair +
+  activation verification + offered-conditional exploration semantics; everything else
+  inherited from D170a). D170b is now the active protocol.
 - **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
   FROZEN and delegable**:
   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`
