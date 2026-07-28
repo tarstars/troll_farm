@@ -360,7 +360,86 @@ objective were. What survived: dense exact-value *teachers* over these encodings
 D152), the proposal-union action basis, and the rule that value must be computed at
 decision time (rollouts) rather than fitted into a snapshot scorer.
 
-## 18. Why CPU and GPU training never agreed
+## 18. Why the models kept failing — representation and objective, unpacked
+
+Section 17 ends with a compressed claim: *capacity was never the binding constraint —
+representation and objective were.* That sentence summarizes roughly sixty failed
+learning experiments. This section unpacks it.
+
+**How we know capacity was not the problem.** Models from 52 parameters to 10,725 failed
+in the *same way*, and adding capacity never moved held-out performance: the
+7,121-parameter value net fit its training folds at +14–17 and scored +1.8 one map-fold
+away (D153); adding feature slices (D154), history memory (D155), or hierarchical lookup
+(D156) changed nothing. Meanwhile a *parameter-free* hand decoder reproduced all 85,047
+of the teacher decisions that a trained MLP captured only 85% of (D41a). The information
+was present and representable — the models were being asked the wrong question in the
+wrong language.
+
+**Four representation diseases.**
+
+- **Wrong function shape for the target.** The teacher's decision rule is lexicographic —
+  strict priority tiers resolved by exact integer comparisons. Small MLPs express smooth
+  blends of features and approximate hard nested precedence badly at any practical size
+  (D41a: 85% vs the decoder's 100%). No amount of width fixes a primitive mismatch.
+- **Snapshots don't carry causes.** A feature vector of the current moment encodes
+  *correlates* of value on the training distribution, not the causal game-tree structure
+  that produces value. Hence the sharpest split in the ledger: behavior prediction from
+  snapshots worked beautifully (0.97 AUC for "who will scale", D63) while value
+  prediction from the same kind of snapshot collapsed under any distribution shift —
+  and model confidence *anti-correlated* with realized value (the top decile predicted
+  +18.07 and realized −1.51; D153b). Same inputs, different question, opposite outcome:
+  a representation boundary, not a data-volume problem.
+- **Action spaces too coarse to contain the strategy.** With four semantic modes
+  (balanced/harvest/renew/fell), every optimizer — PPO, CEM, evolutionary lineage
+  search — converged to "always balanced" (≤1% deviations; D73–D77), because the choices
+  that matter (*which* crop, *which* worker, *when exactly*) were not expressible in the
+  vocabulary. The moment actions became concrete jobs (D97), +36.9 of oracle value
+  appeared in the very same games. The state encoding was never the bottleneck there;
+  the *action* encoding was.
+- **One scalar forced to mean two things.** The proposal-ranking logit was implicitly
+  asked to encode both relative preference and absolute safety. A translation-invariant
+  ranking loss cannot calibrate absolutes: 82 of 98 losing interventions were ranking
+  errors with a positive arm available at the same decision (D127), and bolting on a
+  separate safety head failed because per-arm false positives compound across many
+  proposals (D129).
+
+**Four objective diseases.**
+
+- **Pooled margin doesn't pin down the trade-offs.** Optimizing mean margin over a
+  heterogeneous opponent population lets the learner buy points against one family by
+  selling another — and *which* trade it makes is undetermined by the loss, so it rotated
+  across independent panels (per-family correlation −0.014; D109). Nothing in the
+  objective said "don't sacrifice anyone."
+- **Margin permits self-harm.** Margin = own − opponent, so suppressing both scores
+  nearly symmetrically looks acceptable to the gradient. Observed literally: −39.98
+  opponent score bought with −41.74 own (D73, again in D109). The fix — an explicit
+  own-score protection term — was proposed in D109's closing paragraph and never tested
+  until D170.
+- **Hard-argmax targets punish equally good actions.** The teacher picks one of several
+  near-tied moves (70% of states had another action within five points; D152);
+  cross-entropy against the single winner turns near-ties into hard negatives, capping
+  even *training* accuracy near 20% (D149). The objective fought the structure of the
+  task itself.
+- **Grading on the wrong distribution.** Supervised imitation grades the policy on the
+  teacher's states; deployment happens on the policy's *own* states, which drift
+  immediately — −172.7 paired margin from autoregressive covariate shift (Phases 12–14).
+  Even the *selection* objective had this disease for a while: fit-side regret
+  anti-predicted transfer (r = +0.89 in the wrong direction; D131) until selection moved
+  to held-out blocks (D134).
+
+**Why D170 is shaped the way it is.** Each clause of the current experiment answers one
+of these diseases: concrete validated options instead of coarse modes (action
+representation); observable features with recurrent context, and value obtained from
+actual rollouts rather than fitted snapshots (causal state); a single clean output —
+invoke or keep (no dual-meaning scalar); paired-control reward to strip map-difficulty
+variance; closed-loop training so the policy is graded on its own states; and the
+four-way objective comparison whose whole point is the first two objective diseases —
+group-DRO against family rotation, an explicit own-score protection term against
+self-harm — under strictly out-of-fit selection. It is the first experiment in the
+program where every previously identified failure mode has a specific countermeasure in
+the design.
+
+## 19. Why CPU and GPU training never agreed
 
 The YT benchmark that decided where training runs (Arc A, D11 era) found the GPU path
 **9.8× faster** (9,769 vs 995 transitions/s) — and rejected it anyway: the same frozen
@@ -390,7 +469,7 @@ local CPU, and the frozen local/YT parity gate remains a precondition before any
 result may be *selected* (YT stayed in use for exactly-replayable map/reduce simulation,
 where byte-parity was achieved and verified per shard).
 
-## 19. The saved-games database
+## 20. The saved-games database
 
 Everything field-related — loss diagnoses, archaeology, motif audits, opponent models —
 runs on a locally saved corpus of real arena replays. Its shape as of 2026-07-27:
@@ -449,7 +528,7 @@ exact + 8 known penalty-only endings), tree invariants, and point-symmetry of ev
   cumulative store vs dated immutable snapshots (which make "the field as of date X"
   a well-defined, hash-frozen object).
 
-## 20. Glossary — mother, crop, orchard
+## 21. Glossary — mother, crop, orchard
 
 Terms that recur throughout the ledger, grounded in the game's mechanics and the
 resident's own source code.
@@ -486,7 +565,7 @@ resident's own source code.
   deposited bank those seeds come from is fed by harvests — including mother fruit — so
   the mother/crop loop is the upstream supply of the very returns D168 is now testing.
 
-## 21. Deep dive — D169, the option-envelope gate (standalone reading)
+## 22. Deep dive — D169, the option-envelope gate (standalone reading)
 
 This chapter explains experiment D169 from scratch, including every experiment it builds
 on. It assumes no other context. **Update (2026-07-27, post-run): D169 PASSED** — mean
@@ -613,7 +692,7 @@ same rules as the 168 experiments before it.
 | D168 | Proof that scripting the return always-on loses; per-game selection is the open question |
 | B3.1 | The observable opponent-scaling trigger (42–125 turns of warning) used for arming |
 
-## 22. Where the records live
+## 23. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
