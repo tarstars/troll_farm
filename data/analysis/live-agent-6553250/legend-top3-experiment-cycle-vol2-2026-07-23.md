@@ -149,6 +149,32 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28: B3.5 diagnosis — HARVEST is a missing action class; D173 fix frozen
+
+Root cause, confirmed by two independent source reads cross-checked against all 1,014
+capable-worker episodes: the busy-unit candidate generators (`main_candidates:3084–3145`,
+`endgame_candidates:3200–3339`) construct **no HARVEST candidate at all** — the only
+fruit-aware fallback (`idle_harvest_candidates:3340–3387`) is gated behind endgame AND
+no-other-target, structurally unreachable; and `opening_options:1878–1900` hardcodes
+`harvest_power: 0` for every trained unit, so only the starter is ever harvest-capable
+(the same fact D167 measured from the trajectory side: 96/135 returning workers hp=0).
+Sub-classes: 58.7% transit passthrough, **33.4% chop-shadows-harvest** (the worker
+destroys the fruit with the tree it chops), 6.3% second-task, 0% deliberate reserve (two
+independent checks). Net value after deduplication (a triple-count bug caught before
+trusting the number): deliberate 0; delayed-but-banked 16 pts; **genuinely lost 688
+events / 1,972 pts = 9.62/game mean**, +23% in losses (~19% of an average losing margin).
+The richest execution vein assayed to date.
+
+**D173a frozen** (`d173a-harvest-before-chop-protocol-2026-07-28.md`), scoped narrowly
+per the diagnosis's honest recommendation (cc=1 makes blanket fixes force costly bank
+detours): one stateless candidate class — harvest-capable unit chopping a ripe-fruited
+tree at shack-distance ≤2 harvests the fruit first, then resumes the chop. Reuses the
+`fruit_candidates:910–919` sibling pattern; no new state machine (D171a lesson);
+`opening_options` and the orchard reserve untouched. Panel 2,048 fresh paired episodes
+(seeds 9,854,000–127); mechanism gate = sub-class slack −70% with no displacement across
+all six waste detectors; value gates = non-regression + activated ≥ +1.0. QUALIFIED
+builds a candidate that stops at the arena gate (new owner authorization required).
+
 ## 2026-07-28: waste-sweep round 2 — standing tool committed; harvest_slack is the new top lead
 
 The execution-waste detector library is now a committed tool (`cgauto/waste_sweep.py` +
