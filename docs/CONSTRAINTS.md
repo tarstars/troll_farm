@@ -211,6 +211,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★★ The resident plants at median turn 191.5; all 25 two-worker Legend peers plant by
+  turn 21–29 (6.6–9× delay, not resource-constrained). Reap rate 0.93% vs STRONG 15.3% /
+  PEER-WEAK 17.2% / top-3 24.16% — the reap gap separates us from EVERY other two-worker
+  agent. At equal roster we are at exact parity with the strong cohort (58.2% vs 58.3%);
+  the whole deficit is scale-asymmetry survival (vs 3-worker: −37.1 us vs −1.8 them; vs
+  4+: 5.0% vs 13.7% wins), which is downstream of having no sustained plant-reap loop.
+  The live planner contains the tested `banana_factory_*` loop defaulting to
+  `enabled: false` behind a one-shot board-richness selector (D89/D91 lineage: D89's FULL
+  factory was safety-rejected at +82.9 opponent score, D91's selector fired on 5/16 maps).
+  The middle ground — early, moderate, sustained planting — is untested. [B4.4]
 - ★★ The bot stops mining permanently at worker two: `iron_candidates()` has one call
   site, gated `own_units < 2`, so 100% of 139 lifetime MINE actions occurred pre-worker-2
   and 0 occurred across 4,090 legal-but-idle workforce-≥2 turns. We mine 0.68 iron/game vs

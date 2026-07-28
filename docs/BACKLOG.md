@@ -171,7 +171,21 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 - **B4.3 ✅ DONE 2026-07-28 — the scaling destination is priced**: within-agent +48.2
   margin/worker (CI [44.1,52.7]); 2→3 = +1.9 rating, 3→4 = +3.3, 4→5 = none; resident wins
   5.0% vs 4+-worker opponents. **2→4 ≈ +5.2 rating = 84% of the gap.** Gated on B3.9.
-- **B4.4 (new, OPEN — the non-scaling path B4.3 exposed): peer-cohort analysis.** 25
+- **B4.4 ✅ DONE 2026-07-28 — the non-scaling path is real and identified.** We plant at
+  turn 191.5 vs peers' 21–29; reap 0.93% vs 15–17% for every other two-worker agent; at
+  equal roster we are at PARITY with strong peers (58.2/58.3) — the deficit is entirely
+  scale-asymmetry survival, downstream of having no sustained plant-reap loop. The loop's
+  code exists, tested, defaulting OFF behind a rarely-firing selector (D89/D91 lineage).
+  Ranked: (1) no plant-reap loop [policy/parameter], (2) scale survival [downstream],
+  (3) suppression efficiency 0.31 vs 0.43 wood/chop [execution]. Caveat: 4/12 STRONG
+  agents share our no-loop profile and still outrank us.
+- **B4.5 (new, OPEN — next after D174): planting-gate diagnostic → D175.** Characterize
+  the `banana_factory_*` enable condition and selector precisely; measure how often it
+  fires in real games and what it would do at various thresholds; reconcile with D89's
+  safety rejection (full factory, +82.9 opponent) and D91's 5/16-map selector failure, and
+  determine what distinguishes the field's early-moderate planters from D89's
+  plant-everything design. Read-only; sequenced after D174 to avoid concurrent edits to
+  the resident source. Output: a frozen D175 protocol for the middle-ground planting loop. 25
   Legend agents run the resident's exact 2.00 roster yet rank 7–54 — a two-worker
   architecture demonstrably reaches rank 7, ~9 rating points above us, with no scaling at
   all. What do the strong two-worker agents do that we don't? Read-only field comparison

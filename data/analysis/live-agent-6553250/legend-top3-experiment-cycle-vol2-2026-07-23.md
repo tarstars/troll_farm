@@ -175,6 +175,47 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: ★★ B4.4 — we plant at turn 191; every two-worker peer plants by turn 21–29
+
+Cohort (corrected from the earlier preview): 25 Legend agents with mean roster within ±0.2
+of the resident's exact 2.000, ranks **7–104**; STRONG = 12 (ranks 7–38, above our 43),
+PEER/WEAK = 13 (46–104). 2,787 occurrences, 100% decode integrity.
+
+**The dominant difference is tempo, not conversion style.** Median first successful PLANT:
+**resident turn 191.5 vs 21–29 for all 25 peers** — a 6.6–9× delay, and not a resource
+constraint (starter `hp=1` universally). Reap rate, recomputed independently on the full
+corpus: **resident 0.93%** (matching D101's 0.94%), **STRONG 15.3%, PEER/WEAK 17.2%**,
+top-3 24.16% — i.e. the reap gap separates the resident from *every other two-worker
+agent*, not the strong from the weak. Score composition confirms it is "convert more", not
+"convert differently": STRONG 215.6 vs our 185.7 with both wood (+15%) and fruit (+30%)
+up, and the resident the most wood-concentrated of all three groups (94.7% of score).
+
+**Code grounding:** the live planner already contains a tested `banana_factory_*`
+self-planting/reaping subsystem that defaults to `enabled: false` and is gated by a
+one-shot board-richness selector evaluated once at 2-worker roster — consistent with (not
+proven identical to) the observed delay. Note the lineage: this is D89/D91 machinery, and
+D89's *full* factory was rejected for safety (+162 own but +82.9 opponent) while D91's
+selector fired on only 5/16 maps. The field now shows 25 two-worker agents planting early
+at moderate volume and holding leads — **the middle ground between "off" and "plant
+everything immediately" has never been tested.**
+
+**The crux, quantified.** Trajectory shape: resident leads **+33.4 at t150** then fades to
+**−3.0 at t300** (D159's anti-compounding tail, field-confirmed); STRONG builds a smaller
+lead that **holds at +18.2**. Head-to-head we go 38.7% / −12.9 vs the STRONG cohort
+(n=31). **At equal roster (2v2) we are at exact parity: 58.2% vs 58.3%.** Outnumbered we
+collapse where they do not: vs 3-worker opponents **−37.1 (us, n=60) vs −1.8 (STRONG,
+n=700)**; vs 4+-worker **5.0% wins (us, n=20) vs 13.7% (STRONG, n=190)**.
+
+**Ranked verdict:** (1) no sustained plant-then-reap loop — largest, and
+policy/parameter-class: a gating threshold in existing tested code, not missing
+capability; (2) the scale-asymmetry survival gap — the crux, mostly downstream of (1);
+(3) suppression efficiency — smaller, execution-class (0.31 vs 0.43 wood/chop; 41.1% vs
+46.6% opponent-crop contact). Honest caveat: 4 of the 12 STRONG agents (Escdemon,
+therealbeef, yamo, mehdi_ayari) share our no-loop profile and still outrank us, so the
+pattern is dominant but not uniform; for that minority only (3) plus ladder-maturity
+confounds apply. Opened as B4.5 (diagnostic) → D175 (fix), sequenced after D174 to avoid
+concurrent edits to the resident source.
+
 ## 2026-07-28: ★ B3.9 — the bot stops mining at worker two; the scaling bootstrap is a one-site gate
 
 **Root cause, confirmed with zero exceptions.** `iron_candidates()`
