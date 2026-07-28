@@ -238,7 +238,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   agent. At equal roster we are at exact parity with the strong cohort (58.2% vs 58.3%);
   the whole deficit is scale-asymmetry survival (vs 3-worker: −37.1 us vs −1.8 them; vs
   4+: 5.0% vs 13.7% wins), which is downstream of having no sustained plant-reap loop.
-  The live planner contains the tested `banana_factory_*` loop defaulting to
+  [CORRECTED by B4.5 — the DEPLOYED slim artifact contains ZERO occurrences of
+  `banana_factory`/`ScarceIntent` (pruned as provably-dead code in the 07-17 slimming);
+  the real gate is priority, not a disabled subsystem: PLANT is reachable only once a
+  worker has nothing left to CHOP. The claim below describes the dev copy only.]
+  The dev copy contains the tested `banana_factory_*` loop defaulting to
   `enabled: false` behind a one-shot board-richness selector (D89/D91 lineage: D89's FULL
   factory was safety-rejected at +82.9 opponent score, D91's selector fired on 5/16 maps).
   The middle ground — early, moderate, sustained planting — is untested. [B4.4]
