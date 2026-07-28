@@ -1,0 +1,364 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..f9e0e5c 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -727,12 +727,26 @@ pub mod bot {
+             opponent_crop_harvest_contact: bool,
+             opponent_crop_harvested: BTreeSet<Cell>,
+             opponent_crop_harvest_rewrites: usize,
++            oscillation_memory: BTreeMap<i32, OscillationMemory>,
+         }
+         impl Default for YamoBot {
+             fn default() -> Self {
+                 Self::with_opening_policy(YamoOpeningPolicy::default())
+             }
+         }
++        // D171a oscillation breaker: per-unit short memory feeding the already-existing
++        // `forbidden_for_non_priority` parameter of `resolve_move_conflicts_with_priority_and_forbidden`.
++        // See data/analysis/live-agent-6553250/d171a-oscillation-breaker-protocol-2026-07-28.md.
++        #[derive(Clone, Copy, Debug, Default)]
++        struct OscillationMemory {
++            one_ago: Option<Cell>,
++            two_ago: Option<Cell>,
++            target: Option<Cell>,
++            reversals: u8,
++            forbidden: Option<Cell>,
++            armed_target: Option<Cell>,
++            armed_distance: Option<i32>,
++        }
+         #[derive(Clone, Copy)]
+         struct PredictedTree {
+             size: i32,
+@@ -1658,6 +1672,7 @@ pub mod bot {
+                     opponent_crop_harvest_contact: false,
+                     opponent_crop_harvested: BTreeSet::new(),
+                     opponent_crop_harvest_rewrites: 0,
++                    oscillation_memory: BTreeMap::new(),
+                 }
+             }
+             pub fn tuned_carry() -> Self {
+@@ -3429,6 +3444,86 @@ pub mod bot {
+                     || (view.plants.len() <= 4
+                         && score(&view.inventories[0]) < score(&view.inventories[1]))
+             }
++            /// D171a oscillation breaker. Detects the same-two-cell reversal pattern with the
++            /// exact B3.2/B3.4 predicate (`positions[k]==positions[k-2] && positions[k]!=positions[k-1]`)
++            /// from each own unit's *pre-conflict-resolution* command in `selected` (which still
++            /// encodes the far MOVE target, before `resolve_move_conflicts*` rewrites it to a
++            /// one-step landing cell). After 3 confirmed reversals with an unchanged target, the
++            /// unit is armed and its retreat cell (`one_ago`, the distinct cell of the confirmed
++            /// A/B pair) is returned for the *next* turn's `forbidden_for_non_priority` set,
++            /// breaking the tie in the existing detour search toward "go around" instead of
++            /// "retreat". Disarms on target change or measured BFS-distance progress since arming.
++            /// Returns the forbidden cells plus the set of unit ids they were armed for, so the
++            /// caller can verify no other unit's command was perturbed (command-purity gate).
++            fn oscillation_forbidden_cells(
++                &mut self,
++                view: &GameState,
++                selected: &[String],
++            ) -> (BTreeSet<Cell>, BTreeSet<i32>) {
++                let own_ids: BTreeSet<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                self.oscillation_memory.retain(|id, _| own_ids.contains(id));
++                let mut forbidden = BTreeSet::new();
++                let mut armed = BTreeSet::new();
++                for unit in view.units.iter().filter(|unit| unit.player == 0) {
++                    let current = unit.cell;
++                    let target = selected.iter().find_map(|command| {
++                        let (id, target) = MoisanBot::move_command(command)?;
++                        (id == unit.id).then_some(target)
++                    });
++                    let entry = self.oscillation_memory.entry(unit.id).or_default();
++
++                    if entry.forbidden.is_some() {
++                        let target_changed = target != entry.armed_target;
++                        let progressed =
++                            entry.armed_target.zip(entry.armed_distance).is_some_and(
++                                |(goal, prior)| {
++                                    bfs_distances(&view.walkable, &[goal])
++                                        .get(&current)
++                                        .is_some_and(|&distance| distance < prior)
++                                },
++                            );
++                        if target_changed || progressed {
++                            entry.reversals = 0;
++                            entry.forbidden = None;
++                            entry.armed_target = None;
++                            entry.armed_distance = None;
++                        }
++                    }
++
++                    if let Some(cell) = entry.forbidden {
++                        forbidden.insert(cell);
++                        armed.insert(unit.id);
++                    }
++
++                    let is_reversal = target.is_some()
++                        && target == entry.target
++                        && entry.two_ago == Some(current)
++                        && entry.one_ago != Some(current);
++                    if is_reversal {
++                        entry.reversals = entry.reversals.saturating_add(1);
++                    } else if entry.forbidden.is_none() {
++                        entry.reversals = 0;
++                    }
++
++                    if entry.reversals >= 3 && entry.forbidden.is_none() {
++                        entry.forbidden = entry.one_ago;
++                        entry.armed_target = target;
++                        entry.armed_distance = target
++                            .map(|goal| bfs_distances(&view.walkable, &[goal]))
++                            .and_then(|distances| distances.get(&current).copied());
++                    }
++
++                    entry.two_ago = entry.one_ago;
++                    entry.one_ago = Some(current);
++                    entry.target = target;
++                }
++                (forbidden, armed)
++            }
+         }
+         impl Bot for YamoBot {
+             fn commands(&mut self, view: &GameState) -> Vec<String> {
+@@ -3659,7 +3754,36 @@ pub mod bot {
+                     }
+                 }
+                 self.remember_selected_tree_targets(view, &selected, &tree_targets);
+-                MoisanBot::resolve_move_conflicts(view, &mut selected);
++                let (oscillation_forbidden, oscillation_armed) =
++                    self.oscillation_forbidden_cells(view, &selected);
++                if oscillation_forbidden.is_empty() {
++                    MoisanBot::resolve_move_conflicts(view, &mut selected);
++                } else {
++                    // D171a: only accept the breaker's override if every unit other than the
++                    // armed one(s) resolves to the exact command CONTROL would have produced
++                    // (command-purity gate, enforced structurally rather than hoped for).
++                    let original = selected.clone();
++                    let mut overridden = selected.clone();
++                    MoisanBot::resolve_move_conflicts_with_priority_and_forbidden(
++                        view,
++                        &mut overridden,
++                        &BTreeSet::new(),
++                        &oscillation_forbidden,
++                    );
++                    MoisanBot::resolve_move_conflicts(view, &mut selected);
++                    let purity_ok = original
++                        .iter()
++                        .zip(selected.iter())
++                        .zip(overridden.iter())
++                        .all(|((command, control), fixed)| {
++                            control == fixed
++                                || MoisanBot::move_command(command)
++                                    .is_some_and(|(id, _)| oscillation_armed.contains(&id))
++                        });
++                    if purity_ok {
++                        selected = overridden;
++                    }
++                }
+                 self.remember_selected_regeneration(view, &selected);
+                 self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                 self.remember_own_plant_attempts(view, &selected);
+@@ -5995,6 +6119,199 @@ pub mod bot {
+                 assert_eq!(bot.inner.opponent_crop_selected, 0);
+             }
+         }
++
++        // D171a oscillation breaker: focused unit tests for `oscillation_forbidden_cells`.
++        #[cfg(test)]
++        mod oscillation_breaker_tests {
++            use super::*;
++
++            fn fixture(unit_id: i32, cell: Cell) -> GameState {
++                let mut view = GameState::empty(8, 8);
++                view.units.push(Unit {
++                    id: unit_id,
++                    player: 0,
++                    cell,
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                view
++            }
++
++            fn move_toward(unit_id: i32, target: Cell) -> Vec<String> {
++                vec![format!("MOVE {} {} {}", unit_id, target.0, target.1)]
++            }
++
++            /// Drive the tracker through one call per cell in `path` (unit 0 in `view.units`),
++            /// feeding the same far MOVE target every turn, collecting each call's result.
++            fn drive(
++                bot: &mut YamoBot,
++                view: &mut GameState,
++                unit_id: i32,
++                path: &[Cell],
++                target: Cell,
++            ) -> Vec<(BTreeSet<Cell>, BTreeSet<i32>)> {
++                path.iter()
++                    .map(|&cell| {
++                        view.units[0].cell = cell;
++                        let selected = move_toward(unit_id, target);
++                        bot.oscillation_forbidden_cells(view, &selected)
++                    })
++                    .collect()
++            }
++
++            #[test]
++            fn no_effect_without_a_reversal_pattern() {
++                let unit_id = 1;
++                let mut view = fixture(unit_id, (0, 0));
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Monotonic motion toward the target never repeats a cell two turns back.
++                let path = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0)];
++                let results = drive(&mut bot, &mut view, unit_id, &path, (9, 9));
++                for (forbidden, armed) in &results {
++                    assert!(forbidden.is_empty());
++                    assert!(armed.is_empty());
++                }
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 0);
++            }
++
++            #[test]
++            fn reversal_counting_arms_at_exactly_three() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let target = (1, -1);
++                let mut view = fixture(unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Calls 1..=5 (A,B,A,B,A): confirmed reversals land on calls 3,4,5 (1,2,3).
++                let path = [a, b, a, b, a];
++                let results = drive(&mut bot, &mut view, unit_id, &path, target);
++                for (forbidden, armed) in &results {
++                    assert!(
++                        forbidden.is_empty(),
++                        "forbidding must not surface before the 3rd confirmed reversal"
++                    );
++                    assert!(armed.is_empty());
++                }
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 3);
++            }
++
++            #[test]
++            fn forbidden_cell_applies_starting_the_turn_after_arming() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let target = (1, -1);
++                let mut view = fixture(unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                let path = [a, b, a, b, a, b];
++                let results = drive(&mut bot, &mut view, unit_id, &path, target);
++                for (forbidden, armed) in &results[..5] {
++                    assert!(forbidden.is_empty());
++                    assert!(armed.is_empty());
++                }
++                let (forbidden, armed) = &results[5];
++                assert_eq!(forbidden, &BTreeSet::from([b]), "the alternate A/B cell is forbidden");
++                assert_eq!(armed, &BTreeSet::from([unit_id]));
++            }
++
++            #[test]
++            fn disarm_on_progress_clears_the_forbidden_cell() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let choke = (1, 0);
++                let target = (1, -1);
++                let mut view = GameState::empty(8, 8);
++                view.walkable = BTreeSet::from([a, b, choke, target]);
++                view.units.push(Unit {
++                    id: unit_id,
++                    player: 0,
++                    cell: a,
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                let armed_path = [a, b, a, b, a, b];
++                let armed_results = drive(&mut bot, &mut view, unit_id, &armed_path, target);
++                assert_eq!(armed_results[5].0, BTreeSet::from([b]));
++                // Still armed: the counter keeps incrementing harmlessly on each further
++                // confirmed reversal (call 6 is itself one more A/B step) since only
++                // target-change/progress -- not the raw count -- disarms once armed.
++                assert!(bot.oscillation_memory[&unit_id].reversals >= 3);
++
++                // The unit finally squeezes through the chokepoint: strictly closer to the
++                // target than the frozen arm-time distance from `a` (both `a` and `b` are
++                // equidistant, matching the real tie this fix targets).
++                view.units[0].cell = choke;
++                let selected = move_toward(unit_id, target);
++                let (forbidden, armed) = bot.oscillation_forbidden_cells(&view, &selected);
++                assert!(forbidden.is_empty(), "progress toward the target must disarm immediately");
++                assert!(armed.is_empty());
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 0);
++                assert!(bot.oscillation_memory[&unit_id].forbidden.is_none());
++            }
++
++            #[test]
++            fn only_the_armed_unit_is_affected() {
++                let armed_id = 1;
++                let quiet_id = 2;
++                let a = (0, 0);
++                let b = (2, 0);
++                let target = (1, -1);
++                let mut view = GameState::empty(8, 8);
++                view.units.push(Unit {
++                    id: armed_id,
++                    player: 0,
++                    cell: a,
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                view.units.push(Unit {
++                    id: quiet_id,
++                    player: 0,
++                    cell: (5, 5),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // The quiet unit marches in a straight line: never a reversal candidate.
++                let quiet_path = [(5, 5), (5, 4), (5, 3), (5, 2), (5, 1), (5, 0)];
++                let armed_path = [a, b, a, b, a, b];
++                let mut last = (BTreeSet::new(), BTreeSet::new());
++                for step in 0..armed_path.len() {
++                    view.units[0].cell = armed_path[step];
++                    view.units[1].cell = quiet_path[step];
++                    let selected = vec![
++                        format!("MOVE {} {} {}", armed_id, target.0, target.1),
++                        format!("MOVE {} {} {}", quiet_id, 5, -5),
++                    ];
++                    last = bot.oscillation_forbidden_cells(&view, &selected);
++                }
++                assert_eq!(last.1, BTreeSet::from([armed_id]));
++                assert!(!last.0.contains(&(5, 0)));
++                assert_eq!(bot.oscillation_memory[&quiet_id].reversals, 0);
++            }
++        }
+     }
+     use super::game::GameState;
+     pub trait Bot {

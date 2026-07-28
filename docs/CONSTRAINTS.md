@@ -211,6 +211,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- The hard-forbid oscillation breaker (D171a arm/disarm spec) is CLOSED: 45.7% reduction
+  of long runs (floor 80%), +117% displacement into short runs, de-novo oscillations in
+  72 clean tasks — a stale-arm design hole (no echo-stop disarm, unbounded arm lifetime)
+  manufactures the defect it fights. Do not retune within that spec. Successor
+  requirements: bounded arm lifetime, echo-stop disarm, ≤2 forced choices per arming, or
+  preference-based tie-breaking instead of prohibition. Also binding: the dev copy is
+  library-visible as `troll_farm::resident_policy` (lib.rs `#[path]`) — controls must
+  snapshot it; never leave working-tree diffs on it during concurrent runs. [D171a]
 - Field-rate corrections from the 8,1xx-game corpus (2026-07-28, frozen verdicts stand):
   the D164 top-5 P→S→P motif POPULATION rate is ≈49.7% (435/875), not the 72% measured on
   recent-10 windows — a sampling-completeness artifact (old windows over-sampled peer

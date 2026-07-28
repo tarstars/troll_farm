@@ -108,14 +108,15 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   signature (9.8%, lead 74.4 turns) all stable; **D164's top-5 motif population rate
   corrected 72% → 49.7%** (sampling-completeness artifact; the frozen breadth+gap gate
   still passes, 5/5 agents, +38.9pp vs resident). CONSTRAINTS updated.
-- **B3.4 (new, OPEN — the current best maintenance lead): same-two-cell oscillation
-  diagnosis + bounded fix** *(1–2 sessions, local only)* — 18/194 resident games contain
-  ≥10-turn two-cell target oscillations (worst: 131 turns with frozen unbanked carry),
-  ~2.8× enriched in catastrophes (causality unproven — losing-game pathology is a
-  plausible confounder). Diagnose the planner standoff in the resident source, then test
-  a bounded fix under the standard causal protocol (paired, exact-fallback, preregistered
-  gates). Execution-class — the only family that has ever transferred to the arena. Any
-  promotion attempt would still require owner arena authorization under B0.3/B4.1.
+- **B3.4 — diagnosis ✅ (root cause pinned: memoryless detour tie-break,
+  `yamo_orchard_live.rs:1505-19`; coverage gap in `force_unique_door_clear`); fix v1
+  (D171a) ❌ CLOSED** — hard-forbid breaker under-cured long runs (45.7% vs 80%) and
+  manufactured short ones (+117%, stale-arm design hole). Causality was modest anyway
+  (2/18 suspicious). **Open successor option — D171b** (redesigned semantics: bounded arm
+  lifetime + echo-stop disarm + ≤2 forced choices, or preference-based tie-break); cheap
+  (all machinery exists), expected value small; promotion of any qualified successor
+  needs a NEW owner authorization (the D171a standing grant never triggered and does not
+  carry over).
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

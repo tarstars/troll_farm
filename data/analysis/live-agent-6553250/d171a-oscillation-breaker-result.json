@@ -1,0 +1,186 @@
+{
+  "integrity": {
+    "all_games_done": true,
+    "command_purity_external_check": {
+      "flagged": [
+        {
+          "first_divergence_turn": 229,
+          "map_seed": 9853043,
+          "opponent": "script_boss",
+          "seat": 1
+        },
+        {
+          "first_divergence_turn": 55,
+          "map_seed": 9853047,
+          "opponent": "script_boss",
+          "seat": 1
+        },
+        {
+          "first_divergence_turn": 209,
+          "map_seed": 9853097,
+          "opponent": "norx_native_three",
+          "seat": 0
+        },
+        {
+          "first_divergence_turn": 82,
+          "map_seed": 9853113,
+          "opponent": "legend_balanced",
+          "seat": 1
+        }
+      ],
+      "flagged_tasks": 4,
+      "note": [
+        "This external heuristic flags a turn as a purity risk only when NEITHER own unit shows a live (position-only, target-agnostic) reversal streak >=3 on CONTROL's trajectory at the divergence turn. Investigation of all flagged cases (see result narrative) traced every one to the SAME single already-armed unit diverging on a STALE forbidden cell long after its originating 3-reversal episode had naturally ended (the disarm rule -- target change or BFS progress vs the frozen arm-time distance -- does not cover 'the natural pattern already stopped repeating'); in every flagged case exactly one own unit's command differs, matching the fix's own structural per-unit isolation (proven separately by the 5 focused Rust unit tests), not a cross-unit leak. This is mechanism evidence (stale-arm persistence), not an isolation failure."
+      ]
+    },
+    "inactive_episodes_byte_exact": {
+      "inactive_tasks": 1529,
+      "mismatches": 0,
+      "pass": true
+    },
+    "one_vs_twenty_thread_byte_identical": true,
+    "pass": true,
+    "row_count_exact": true,
+    "task_matrix_exact": true
+  },
+  "mechanism": {
+    "candidate_run_5_9_total": 398,
+    "candidate_run_ge10_tasks": 56,
+    "candidate_run_ge10_total": 69,
+    "control_run_5_9_total": 183,
+    "control_run_ge10_tasks": 107,
+    "control_run_ge10_total": 127,
+    "gates": {
+      "historical_ge_14_of_18": false,
+      "no_run_5_9_displacement": false,
+      "run_ge10_reduced_ge80pct": false
+    },
+    "historical": null,
+    "pass": false,
+    "run_5_9_no_displacement": false,
+    "run_ge10_reduction_fraction": 0.4566929133858268,
+    "run_ge10_reduction_pct": 45.66929133858268,
+    "tasks_fully_resolved_below_5": 0,
+    "tasks_where_control_had_run_ge10": 107,
+    "tasks_with_newly_created_5_9_run_and_clean_control": 72
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "path": "artifacts/experiments/d171a-oscillation-breaker/d171a-jobs20-9853000-9853127.tsv",
+    "rows": 2048,
+    "seeds": "9853000-9853127"
+  },
+  "reason": "gate failure(s): mechanism, value",
+  "schema": "troll-farm-d171a-oscillation-breaker-panel-v1",
+  "value": {
+    "activated_subset_mean_margin_delta": 0.5346534653465347,
+    "activated_tasks": 202,
+    "best_5_candidate_tail": [
+      {
+        "map_seed": 9853045,
+        "margin_delta": 20,
+        "opponent": "compact_gold",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853122,
+        "margin_delta": 20,
+        "opponent": "compact_gold",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853097,
+        "margin_delta": 26,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9853122,
+        "margin_delta": 32,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853065,
+        "margin_delta": 44,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      }
+    ],
+    "candidate_catastrophes": 74,
+    "candidate_negative_margin_mass": 15770,
+    "control_catastrophes": 74,
+    "control_negative_margin_mass": 15803,
+    "family_mean_margin_delta": {
+      "compact_gold": 0.15625,
+      "gold_adaptive": 0.1640625,
+      "legend_balanced": 0.01953125,
+      "mybot": 0.0390625,
+      "norx_native_three": 0.1328125,
+      "resident": 0.01171875,
+      "script_boss": -0.1015625,
+      "silver_boss": 0.0
+    },
+    "gates": {
+      "activated_subset_mean_ge_1_0": false,
+      "catastrophes_not_above_control": true,
+      "negative_margin_mass_le_1_05x_control": true,
+      "overall_ci_lower_ge_neg_0_5": true,
+      "overall_mean_ge_0": true,
+      "worst_family_ge_neg_1_0": true
+    },
+    "map_clustered_95pct_ci": [
+      -0.042857760444323975,
+      0.148326510444324
+    ],
+    "negative_margin_mass_ratio": 0.9979117889008416,
+    "overall_mean_margin_delta": 0.052734375,
+    "pass": false,
+    "worst_5_candidate_tail": [
+      {
+        "map_seed": 9853047,
+        "margin_delta": -37,
+        "opponent": "script_boss",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853113,
+        "margin_delta": -24,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853015,
+        "margin_delta": -12,
+        "opponent": "resident",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853045,
+        "margin_delta": -12,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      },
+      {
+        "map_seed": 9853099,
+        "margin_delta": -12,
+        "opponent": "resident",
+        "seat": 0
+      }
+    ],
+    "worst_family": {
+      "mean_margin_delta": -0.1015625,
+      "name": "script_boss"
+    }
+  },
+  "verdict": "CLOSED"
+}

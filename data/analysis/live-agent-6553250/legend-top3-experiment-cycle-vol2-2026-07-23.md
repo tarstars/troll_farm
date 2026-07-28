@@ -196,6 +196,25 @@ executes without a further ask (capacity A/A, candidate submit, timed reads, fro
 bands, exact-resident restore on failure or inconclusive). This one candidate only;
 no-churn rule otherwise unchanged.
 
+## 2026-07-28: D171a CLOSED — the hard-forbid oscillation breaker fails its mechanism gate
+
+The fix was implemented exactly per spec (28/28 tests, diff confined, purity safety net)
+and run on 2,048 fresh paired tasks with clean integrity. **Mechanism failed decisively:**
+≥10-turn runs reduced only 45.7% (floor 80%); 5–9-turn runs +117% (displacement); 72
+zero-oscillation tasks acquired NEW runs (worst de-novo 88 turns). Root cause: the frozen
+disarm rule misses "echo stopped on its own" — a coincidental 3-reversal blip arms the
+unit permanently against a stale cell, and the stale prohibition manufactures new
+oscillations. Value neutral overall (+0.053 [−0.04,+0.15], tails tied) but activated
+subset +0.53 < +1.0. No tuning attempted; no candidate built; the dev copy restored
+byte-exact (SHA matches the frozen control snapshot); the owner's promotion authorization
+never triggered. Successor requirements recorded: bounded arm lifetime + echo-stop disarm
++ ≤2 forced choices per arming, or preference-based (not hard-forbid) tie-breaking.
+Infrastructure constraint discovered: `lib.rs` re-exports the dev copy as
+`troll_farm::resident_policy` — controls must snapshot it; working-tree diffs to it
+contaminate all concurrent runners. Full record:
+`d171a-oscillation-breaker-{protocol,result-2026-07-28.md,result.json}` +
+`d171a-fix-as-tested.patch`.
+
 ## 2026-07-28: B3.4 diagnosis — oscillation root-caused; D171 bounded fix frozen
 
 The same-two-cell oscillation is a **memoryless detour tie-break**: in
