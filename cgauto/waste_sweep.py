@@ -3,18 +3,24 @@
 
 Read-only diagnostic tool: it never touches the arena, never edits corpus data, and
 never proposes strategy changes.  It measures concrete per-turn/per-episode execution
-waste in the resident's own already-played arena replays, reusing this repo's existing
-decoders rather than writing a new replay parser:
+waste in one agent's own already-played arena replays -- the resident by default, or
+any other agent id present in the local corpus for a comparative baseline (does the
+top cohort show the same waste we do?) -- reusing this repo's existing decoders rather
+than writing a new replay parser:
 
 - ``cgauto.recent_resident_field_census.decoded_states``/``current_player`` -- exact
-  official per-turn state reconstruction from ``frame.diff`` data.
+  official per-turn state reconstruction from ``frame.diff`` data (``current_player``
+  is resident-specific; :func:`agent_seat` below generalizes seat lookup to any agent).
 - ``cgauto.replay_conformance.action_commands`` -- turn-string -> command-list parsing.
 - ``cgauto.top_player_opening_analysis.terrain``/``adjacent``/``bfs``/
   ``assigned_unit_commands`` -- map decoding, door/BFS geometry, and positional command
   attribution.
 
 Six detectors, one signature each (see each ``detect_*`` function's docstring for the
-exact per-turn/episode definition used):
+exact per-turn/episode definition used).  All six reason about game state and legality,
+which is agent-agnostic; the one detector with resident-specific framing in its own
+docstring is ``late_train_window`` (it grounds "affordable" in the swept agent's *own*
+revealed training bill -- whichever agent is being swept, not always the resident):
 
 1. ``idle_with_work``
 2. ``unbanked_carry``
@@ -29,6 +35,11 @@ these define the signatures and are intentionally not CLI-tunable.
 CLI usage::
 
     python3 cgauto/waste_sweep.py --output <path/to/report.json> [--jobs 8] [--limit N]
+        [--agent-id 6561795]
+
+``--agent-id`` defaults to the resident (module constant ``RESIDENT_AGENT_ID``); pass
+any other agent id from the local corpus (see ``agent_game_ids``) to sweep that agent's
+own games instead, for a comparative baseline against the same six signatures.
 
 The report JSON contains, per detector: total episodes, per-game episode counts, a
 win/loss/catastrophe breakdown, and the worst (longest-duration) episodes with full
@@ -43,6 +54,7 @@ from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from functools import partial
 import json
 from pathlib import Path
 import statistics
@@ -136,7 +148,9 @@ def training_blocked(own_units_before, shack: tuple[int, int]) -> bool:
 
 @dataclass
 class DecodedGame:
-    """Everything the detectors need for one resident game, decoded once."""
+    """Everything the detectors need for one decoded game, from one agent's own seat
+    ("me" -- the resident by default, or any other agent id via decode_game_for_agent),
+    decoded once."""
 
     game_id: int
     me: int
@@ -163,7 +177,8 @@ class DecodedGame:
 @dataclass
 class TurnFrame:
     """Per-turn context shared by every detector: state at the start and end of one
-    turn, the commands the resident issued, and unit-id-keyed positional attribution."""
+    turn, the commands the swept agent (game.me) issued, and unit-id-keyed positional
+    attribution."""
 
     turn: int
     my_commands: list[str]
@@ -188,10 +203,10 @@ def _crossover_turn(margin_series: list[int]) -> int:
 
 
 def _find_train_events(me: int, states: list[dict], trajectory: list[dict]) -> list[dict]:
-    """Successful TRAINs: a turn where the resident's own unit count increases and a
-    TRAIN command is present in that turn's own commands (talents parsed from the
-    command text -- the only ground truth available for what the policy actually
-    wanted, since the referee's summary text does not repeat the talent vector)."""
+    """Successful TRAINs: a turn where ``me``'s own unit count increases and a TRAIN
+    command is present in that turn's own commands (talents parsed from the command
+    text -- the only ground truth available for what the policy actually wanted, since
+    the referee's summary text does not repeat the talent vector)."""
 
     events = []
     usable = min(len(states) - 1, len(trajectory))
@@ -272,18 +287,17 @@ def build_decoded_game(
     )
 
 
-def decode_game(game_id: int) -> DecodedGame:
-    """Load one resident game from the on-disk corpus and fully decode it."""
-
+def _load_raw_and_trajectory(game_id: int) -> tuple[dict, list[dict]]:
     game = json.loads((RAW_GAMES / f"{game_id}.json").read_text())
     trajectory = [
         json.loads(line)
         for line in (TRAJECTORIES / f"{game_id}.jsonl").read_text().splitlines()
         if line.strip()
     ]
-    me = current_player(game)
-    if me is None:
-        raise ValueError(f"game {game_id}: resident seat not found")
+    return game, trajectory
+
+
+def _decode_game_from_seat(game_id: int, game: dict, trajectory: list[dict], me: int) -> DecodedGame:
     map_data, states, unknown_updates = decoded_states(game, trajectory)
     if unknown_updates:
         raise ValueError(f"game {game_id}: {unknown_updates} unknown diff updates")
@@ -306,8 +320,45 @@ def decode_game(game_id: int) -> DecodedGame:
     )
 
 
-def resident_game_ids() -> list[int]:
-    """Every game in the processed corpus index that the resident agent played in."""
+def decode_game(game_id: int) -> DecodedGame:
+    """Load one resident game from the on-disk corpus and fully decode it."""
+
+    game, trajectory = _load_raw_and_trajectory(game_id)
+    me = current_player(game)
+    if me is None:
+        raise ValueError(f"game {game_id}: resident seat not found")
+    return _decode_game_from_seat(game_id, game, trajectory, me)
+
+
+def agent_seat(game: dict, agent_id: int) -> int | None:
+    """Seat index (0/1) of the given agent id in this raw game record, or ``None`` if
+    the agent did not play in this game.  Generalizes ``current_player``'s
+    resident-CodinGame-user-id lookup (recent_resident_field_census.py) to any agent
+    id, using the raw game record's own ``agents[i]["agentId"]`` field directly -- this
+    is what makes the comparative-baseline sweep (any agent's own games, not just the
+    resident's) possible without touching the resident-scoped decode_game() path.
+    """
+
+    for agent in game.get("agents") or []:
+        if agent.get("agentId") == agent_id:
+            return agent.get("index")
+    return None
+
+
+def decode_game_for_agent(game_id: int, agent_id: int) -> DecodedGame:
+    """Load one game from the on-disk corpus and fully decode it from the seat of the
+    given agent id -- the comparative-baseline counterpart of :func:`decode_game`, so
+    the same detector suite can be pointed at any agent's own games."""
+
+    game, trajectory = _load_raw_and_trajectory(game_id)
+    me = agent_seat(game, agent_id)
+    if me is None:
+        raise ValueError(f"game {game_id}: agent {agent_id} seat not found")
+    return _decode_game_from_seat(game_id, game, trajectory, me)
+
+
+def agent_game_ids(agent_id: int) -> list[int]:
+    """Every game in the processed corpus index that the given agent played in."""
 
     ids = []
     with GAMES_INDEX.open() as handle:
@@ -315,9 +366,15 @@ def resident_game_ids() -> list[int]:
             if not line.strip():
                 continue
             row = json.loads(line)
-            if any(int(player["agentId"]) == RESIDENT_AGENT_ID for player in row["players"]):
+            if any(int(player["agentId"]) == agent_id for player in row["players"]):
                 ids.append(int(row["gameId"]))
     return sorted(ids)
+
+
+def resident_game_ids() -> list[int]:
+    """Every game in the processed corpus index that the resident agent played in."""
+
+    return agent_game_ids(RESIDENT_AGENT_ID)
 
 
 def iter_turn_frames(game: DecodedGame):
@@ -368,7 +425,15 @@ def legal_productive_actions(
     actions: set[str] = set()
     if plant is not None and plant["fruits"] > 0 and unit["hp"] >= 1 and free > 0:
         actions.add("HARVEST")
-    if plant is not None and unit["chop"] > 0:
+    if plant is not None and unit["chop"] > 0 and free > 0:
+        # apply_chop() (sim/engine.py:294-309) only pays wood to choppers with free
+        # capacity when the tree dies this turn; a full-capacity chopper legitimately
+        # gets no wood.  The live bot's own chop_candidates() agrees -- it bails out
+        # whenever unit.free_capacity() <= 0 (rust/src/bin/yamo_orchard_live.rs) -- so a
+        # full unit standing next to a tree is not leaving a productive action on the
+        # table (B3.6).  This does not change command_precondition_met's CHOP branch:
+        # the command itself still deals damage regardless of capacity, so it is not a
+        # no-op for repeated_failed_command's purposes.
         actions.add("CHOP")
     if pos in walkable and plant is None and any(carry[index] > 0 for index in FRUIT_INDICES):
         # apply_plant() has no capacity check -- planting spends an already-carried
@@ -398,9 +463,14 @@ def command_precondition_met(
     once the precondition holds, no RNG involved), so precondition exactly determines
     success -- this avoids the pitfall of diffing post-turn state, where an
     independent same-turn tree-growth tick can mask/mimic a CHOP's health delta.
-    MOVE has no such precondition under this bot's own pre-resolved collision handling
-    (round-1 confirmed 0% "no_progress" / landed-in-place moves for the resident), so
-    it returns ``None`` here; callers judge MOVE from the actual landing instead.
+    MOVE is not modeled analytically here (no attempt to reproduce the referee's own
+    collision/blocking resolution) -- round-1 confirmed 0% "no_progress" / landed-in-
+    place moves for the resident specifically, which is why that analytical model was
+    never worth building for this tool.  So this function returns ``None`` for MOVE;
+    callers instead compare the unit's actual before/after position, which is a direct
+    read of observed state and is agent-agnostic -- it needs no resident-specific
+    assumption and is exactly as valid for a comparative-baseline sweep of any other
+    agent's own games, whether or not that agent also lands in-place 0% of the time.
     """
 
     pos = (unit["x"], unit["y"])
@@ -629,7 +699,7 @@ def _maybe_finish_unbanked_carry(game: DecodedGame, run: dict) -> dict | None:
 
 def detect_harvest_slack(game: DecodedGame) -> list[dict]:
     """Own or unclaimed ripe fruit (a plant with fruits > 0, on a cell no closer to
-    the opponent's doors than to the resident's own -- i.e. not strictly opponent
+    the opponent's doors than to the swept agent's own -- i.e. not strictly opponent
     territory) that sits within HARVEST_SLACK_ADJACENT_RADIUS (Manhattan) of an own
     worker for >= HARVEST_SLACK_MIN_RUN consecutive turns without being harvested (the
     run ends the moment fruit count drops, by whoever's harvest, or the tree/adjacency
@@ -640,8 +710,11 @@ def detect_harvest_slack(game: DecodedGame) -> list[dict]:
     while dedicated to chopping is not itself acting wrongly, but a persistent nearby
     opportunity can still reflect a real cross-worker allocation gap (nobody was ever
     routed to it).  To let the report distinguish the two, each turn also records
-    whether at least one *capable* (harvest_power >= 1) own worker was in range; the
-    finished episode's ``any_capable_worker_seen`` flag summarizes this across the run.
+    whether at least one *capable* (harvest_power >= 1 **and** free carry capacity > 0
+    -- apply_harvest requires both, matching legal_productive_actions' HARVEST gate;
+    same bug class as B3.6, a full-capacity worker cannot pick up any more fruit no
+    matter how long it waits) own worker was in range; the finished episode's
+    ``any_capable_worker_seen`` flag summarizes this across the run.
     """
 
     tracker = RunTracker()
@@ -661,7 +734,9 @@ def detect_harvest_slack(game: DecodedGame) -> list[dict]:
             if not any(in_range):
                 continue
             capable_in_range = any(
-                d <= HARVEST_SLACK_ADJACENT_RADIUS and unit["hp"] >= 1
+                d <= HARVEST_SLACK_ADJACENT_RADIUS
+                and unit["hp"] >= 1
+                and (unit["cc"] - sum(unit["carry"])) > 0
                 for d, unit in zip(distances, own_units)
             )
             tracker.mark(
@@ -774,15 +849,22 @@ def _finish_door_queue(game: DecodedGame, run: dict) -> dict:
 def detect_late_train_window(game: DecodedGame) -> list[dict]:
     """Informational: turns where a TRAIN was fully affordable in deposited (banked)
     stock and stayed affordable for >= LATE_TRAIN_MIN_RUN consecutive turns with no
-    TRAIN command issued, using the resident's *own* revealed bill for that game (the
-    talent vector of its own next successful TRAIN) as the affordability target -- the
-    only "the resident's own policy would want" bill this decoder-reuse tool can ground
-    in evidence rather than assumption.  Scanned only in the window strictly before
-    each successful TRAIN in that same game; games where the resident never trains
-    contribute no episodes (no revealed bill to check against; documented scope
-    limitation, not "no waste found").  Training policy itself (what to train, when)
-    is strategy; a *missed* window the policy's own later choice reveals it wanted is
-    execution.
+    TRAIN command issued, using the swept agent's *own* revealed bill for that game
+    (the talent vector of its own next successful TRAIN) as the affordability target --
+    the only "this agent's own policy would want" bill this decoder-reuse tool can
+    ground in evidence rather than assumption (this makes the detector's target
+    self-relative and agent-agnostic: swept under a different --agent-id, it grounds
+    against *that* agent's own revealed bill, not the resident's).  "Affordable"
+    requires both a bank-affordable cost *and* an unoccupied shack (apply_train's own
+    second guard, ``any(u.pos == game.shacks[player] ...)``: TRAIN fails outright while
+    an own unit stands on the shack cell, regardless of the bank) -- same bug class as
+    B3.6, this detector must not call a window "neglected" when TRAIN would have failed
+    anyway; repeated_failed_command's own TRAIN check already ANDs both preconditions
+    the same way.  Scanned only in the window strictly before each successful TRAIN in
+    that same game; games where the swept agent never trains contribute no episodes (no
+    revealed bill to check against; documented scope limitation, not "no waste found").
+    Training policy itself (what to train, when) is strategy; a *missed* window the
+    policy's own later choice reveals it wanted is execution.
     """
 
     episodes = []
@@ -792,12 +874,15 @@ def detect_late_train_window(game: DecodedGame) -> list[dict]:
         talents = event["talents"]
         for turn in range(window_start, event["turn"]):
             bank_before = game.states[turn - 1]["inventories"][game.me]
-            n_before = sum(1 for unit in game.states[turn - 1]["units"] if unit["player"] == game.me)
+            own_units_before = [unit for unit in game.states[turn - 1]["units"] if unit["player"] == game.me]
+            n_before = len(own_units_before)
             issued_train = any(
                 command.split()[0].upper() == "TRAIN"
                 for command in action_commands(game.trajectory[turn - 1].get(f"commands{game.me}"))
             )
-            affordable = training_affordable(n_before, talents, bank_before, game.iron_present)
+            affordable = training_affordable(
+                n_before, talents, bank_before, game.iron_present
+            ) and not training_blocked(own_units_before, game.own_shack)
             active = set()
             if affordable and not issued_train:
                 tracker.mark(
@@ -1010,9 +1095,9 @@ def summarize_detector(name: str, games_meta: list[dict], episodes_by_game: dict
     }
 
 
-def _analyze_one_game(game_id: int) -> dict:
+def _analyze_one_game(game_id: int, agent_id: int = RESIDENT_AGENT_ID) -> dict:
     try:
-        game = decode_game(game_id)
+        game = decode_game(game_id) if agent_id == RESIDENT_AGENT_ID else decode_game_for_agent(game_id, agent_id)
     except Exception as exc:  # noqa: BLE001 -- keep a complete read audit, one bad game shouldn't abort the sweep
         return {"ok": False, "game_id": game_id, "error": f"{type(exc).__name__}: {exc}"}
     episodes = {name: detector(game) for name, detector in DETECTORS.items()}
@@ -1028,14 +1113,23 @@ def _analyze_one_game(game_id: int) -> dict:
     }
 
 
-def sweep(game_ids: list[int], jobs: int = 8) -> dict:
+def sweep(game_ids: list[int], jobs: int = 8, agent_id: int = RESIDENT_AGENT_ID) -> dict:
+    """Sweep every detector over ``game_ids``, decoded from ``agent_id``'s own seat.
+
+    ``agent_id`` defaults to the resident, preserving the original resident-only
+    behaviour exactly.  Passing any other agent id is the comparative-baseline path:
+    the same detector suite, thresholds, and report shape, pointed at a different
+    agent's own games (see :func:`agent_game_ids`/:func:`decode_game_for_agent`).
+    """
+
     results = []
+    worker = partial(_analyze_one_game, agent_id=agent_id)
     if jobs == 1:
         for game_id in game_ids:
-            results.append(_analyze_one_game(game_id))
+            results.append(worker(game_id))
     else:
         with ProcessPoolExecutor(max_workers=jobs) as executor:
-            for result in executor.map(_analyze_one_game, game_ids, chunksize=2):
+            for result in executor.map(worker, game_ids, chunksize=2):
                 results.append(result)
 
     ok = [result for result in results if result["ok"]]
@@ -1058,10 +1152,11 @@ def sweep(game_ids: list[int], jobs: int = 8) -> dict:
         "schema": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scope": (
-            "read-only standing execution-waste sweep over the resident's own decoded arena "
+            "read-only standing execution-waste sweep over one agent's own decoded arena "
             "replays; no arena writes, no strategy changes"
         ),
         "resident_agent_id": RESIDENT_AGENT_ID,
+        "agent_id": agent_id,
         "games_requested": len(game_ids),
         "games_decoded_ok": len(ok),
         "games_failed": len(failed),
@@ -1087,24 +1182,30 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--output", type=Path, required=True, help="path to write the JSON sweep report")
     parser.add_argument("--jobs", type=int, default=8)
-    parser.add_argument("--limit", type=int, default=0, help="0 means every resident game in the corpus")
+    parser.add_argument("--limit", type=int, default=0, help="0 means every game the agent played in the corpus")
+    parser.add_argument(
+        "--agent-id",
+        type=int,
+        default=RESIDENT_AGENT_ID,
+        help="sweep this agent's own games instead of the resident's (comparative baseline)",
+    )
     args = parser.parse_args()
     if not 1 <= args.jobs <= 16:
         parser.error("--jobs must be between 1 and 16")
     if args.limit < 0:
         parser.error("--limit cannot be negative")
 
-    game_ids = resident_game_ids()
+    game_ids = agent_game_ids(args.agent_id)
     if args.limit:
         game_ids = game_ids[: args.limit]
     if not game_ids:
-        raise SystemExit("no resident games found in the corpus")
+        raise SystemExit(f"no games found for agent {args.agent_id} in the corpus")
 
-    report = sweep(game_ids, jobs=args.jobs)
+    report = sweep(game_ids, jobs=args.jobs, agent_id=args.agent_id)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=1) + "\n")
 
-    print(f"resident games swept: {report['games_decoded_ok']}/{report['games_requested']}")
+    print(f"agent {args.agent_id} games swept: {report['games_decoded_ok']}/{report['games_requested']}")
     if report["games_failed"]:
         print(f"decode failures: {report['games_failed']}")
     for name, summary in report["detectors"].items():

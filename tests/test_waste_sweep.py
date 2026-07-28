@@ -3,9 +3,14 @@
 No test touches the on-disk corpus (data/raw/games, data/processed/*): every
 DecodedGame here is built directly from hand-written states/trajectory/map rows via
 ``cgauto.waste_sweep.build_decoded_game``, matching the fixture-helper conventions
-already used by tests/test_top_player_opening_analysis.py.
+already used by tests/test_top_player_opening_analysis.py.  The two tests for the
+comparative-baseline corpus-index helpers (``agent_game_ids``/``resident_game_ids``)
+are the one exception that touches disk -- they point the module's ``GAMES_INDEX``
+constant at a throwaway ``tmp_path`` file instead of the real corpus index, so they
+stay hermetic and fast without depending on real corpus content/size.
 """
 
+import json
 from types import SimpleNamespace
 
 import cgauto.waste_sweep as ws
@@ -183,11 +188,38 @@ def test_legal_actions_harvest_needs_ripe_fruit_capacity_and_harvest_power():
     assert ws.legal_productive_actions(zero_hp, ripe, [0] * 6, shack=(9, 9), walkable=walkable) == set()
 
 
-def test_legal_actions_chop_ignores_capacity():
+def test_legal_actions_chop_requires_free_capacity():
+    """Regression test (B3.6 false positive, waste_sweep.py:371-372): a full-capacity
+    chopper legitimately gets no wood -- both the engine (sim/engine.py apply_chop only
+    pays choppers with free capacity when the tree dies this turn) and the live bot's
+    own chop_candidates() (rust/src/bin/yamo_orchard_live.rs, which bails out whenever
+    ``unit.free_capacity() <= 0``) agree CHOP is not worth doing once a unit is full.
+    So CHOP must not be reported as a legal *productive* action for a unit with zero
+    free carry capacity, even though the command itself still deals damage and remains
+    legal at the command-precondition level (see the paired test below)."""
+
     cell = (2, 0)
-    u = unit(0, 0, *cell, carry=[0, 0, 0, 0, 0, 3], stats=(1, 3, 0, 2))  # full carry, hp=0
-    ripe = {cell: plant(*cell, fruits=0)}  # no fruit -- only CHOP should be legal
-    assert ws.legal_productive_actions(u, ripe, [0] * 6, shack=(9, 9), walkable={cell}) == {"CHOP"}
+    full = unit(0, 0, *cell, carry=[0, 0, 0, 0, 0, 3], stats=(1, 3, 0, 2))  # cc=3, carry=3: free=0
+    ripe = {cell: plant(*cell, fruits=0)}  # no fruit -- CHOP is the only candidate action
+    assert ws.legal_productive_actions(full, ripe, [0] * 6, shack=(9, 9), walkable={cell}) == set()
+
+    has_room = unit(0, 0, *cell, carry=[0, 0, 0, 0, 0, 1], stats=(1, 3, 0, 2))  # cc=3, carry=1: free=2
+    assert ws.legal_productive_actions(has_room, ripe, [0] * 6, shack=(9, 9), walkable={cell}) == {"CHOP"}
+
+
+def test_command_precondition_chop_ignores_capacity_unlike_legal_productive_actions():
+    """CHOP always deals damage regardless of capacity (apply_chop applies
+    ``plant.health -= u.chop`` unconditionally for every chopper standing on the cell);
+    only the wood *payout*, on a kill, is capacity-gated.  So unlike
+    legal_productive_actions' CHOP gate (B3.6, tested above), this precondition -- used
+    by repeated_failed_command to decide whether a command had *any* state effect --
+    must NOT require free capacity: a full-capacity chopper's repeated CHOP command is
+    still doing something (chipping the tree down), not a no-op."""
+
+    cell = (2, 0)
+    ripe = {cell: plant(*cell)}
+    full = unit(0, 0, *cell, carry=[0, 0, 0, 0, 0, 3], stats=(1, 3, 1, 2))  # cc=3, carry=3: free=0
+    assert ws.command_precondition_met("CHOP", ["CHOP", "0"], full, ripe, [0] * 6, (9, 9), set(), {cell}) is True
 
 
 def test_legal_actions_plant_requires_walkable_empty_cell_and_carried_seed():
@@ -422,6 +454,28 @@ def test_harvest_slack_marks_incapable_only_worker_distinctly():
     assert episodes[0]["detail"]["any_capable_worker_seen"] is False
 
 
+def test_harvest_slack_marks_full_capacity_only_worker_as_not_capable():
+    """Regression test, same bug class as B3.6: a worker with harvest_power >= 1 but
+    zero free carry capacity cannot actually harvest anything -- apply_harvest requires
+    free capacity (``u.total < u.cc``) for even the first fruit -- so it must not count
+    as a "capable" worker just because its harvest_power stat alone looks sufficient."""
+
+    cell = (2, 3)
+    full_carry = unit(0, 0, 1, 3, carry=[0, 0, 0, 3, 0, 0], stats=(1, 3, 1, 0))  # hp=1, free=0
+    ripe = plant(*cell, fruits=2)
+    states = [state(0, [full_carry], [ripe])]
+    trajectory = []
+    for turn in range(1, ws.HARVEST_SLACK_MIN_RUN + 1):
+        states.append(state(turn, [full_carry], [ripe]))
+        trajectory.append(commands_row(turn, commands0="WAIT"))
+    game = make_game(states, trajectory)
+
+    episodes = ws.detect_harvest_slack(game)
+
+    assert len(episodes) == 1
+    assert episodes[0]["detail"]["any_capable_worker_seen"] is False
+
+
 def test_harvest_slack_excludes_strictly_opponent_territory():
     cell = (6, 5)  # one BFS step from the opponent's shack, far from the resident's
     on_top_of_it = unit(0, 0, *cell, stats=(1, 1, 1, 0))
@@ -548,6 +602,30 @@ def test_late_train_window_flags_a_neglected_affordable_stretch():
     assert episode["detail"]["own_workers_during_window"] == 1
 
 
+def test_late_train_window_not_flagged_when_blocked_by_shack_occupancy():
+    """Regression test, same bug class as B3.6: a turn where TRAIN is bank-affordable
+    but an own unit sits on the shack cell must not count as a neglected window --
+    apply_train's own second guard (``any(u.pos == game.shacks[player] ...)``) means
+    TRAIN would have failed anyway, just like repeated_failed_command's TRAIN check
+    already correctly ANDs training_affordable with ``not training_blocked``."""
+
+    talents = (1, 1, 1, 1)
+    afford = [5, 5, 5, 5, 0, 0]
+    blocker = unit(0, 0, *OWN_SHACK, stats=(1, 1, 1, 1))  # sits ON the shack the whole window
+    states = [state(0, [blocker], bank0=afford)]
+    trajectory = []
+    for turn in range(1, ws.LATE_TRAIN_MIN_RUN + 1):
+        states.append(state(turn, [blocker], bank0=afford))
+        trajectory.append(commands_row(turn, commands0="WAIT"))
+    trained_turn = ws.LATE_TRAIN_MIN_RUN + 1
+    states.append(state(trained_turn, [blocker, unit(1, 0, *OWN_SHACK, stats=talents)], bank0=afford))
+    trajectory.append(commands_row(trained_turn, commands0="TRAIN 1 1 1 1"))
+    game = make_game(states, trajectory)
+
+    assert game.train_events == [{"turn": trained_turn, "talents": talents, "n_before": 1}]
+    assert ws.detect_late_train_window(game) == []
+
+
 def test_late_train_window_empty_when_the_lag_is_short():
     talents = (1, 1, 1, 1)
     not_afford = [0] * 6
@@ -658,6 +736,35 @@ def test_repeated_failed_command_covers_the_train_pseudo_slot():
     assert episode["unit_id"] is None
     assert episode["detail"]["command"] == "TRAIN 1 1 1 1"
     assert episode["detail"]["repeat_count"] == ws.REPEATED_FAILED_COMMAND_MIN_RUN
+
+
+# ---------------------------------------------------------------------------
+# Comparative-baseline support: any-agent seat lookup and corpus-index filtering
+# ---------------------------------------------------------------------------
+
+
+def test_agent_seat_matches_by_agent_id_and_returns_none_when_absent():
+    game = {"agents": [{"index": 0, "agentId": 111}, {"index": 1, "agentId": 222}]}
+    assert ws.agent_seat(game, 111) == 0
+    assert ws.agent_seat(game, 222) == 1
+    assert ws.agent_seat(game, 999) is None
+    assert ws.agent_seat({}, 111) is None
+
+
+def test_agent_game_ids_filters_by_agent_and_resident_delegates(tmp_path, monkeypatch):
+    index = tmp_path / "games.jsonl"
+    rows = [
+        {"gameId": 1, "players": [{"agentId": 111}, {"agentId": 222}]},
+        {"gameId": 2, "players": [{"agentId": 333}, {"agentId": ws.RESIDENT_AGENT_ID}]},
+        {"gameId": 3, "players": [{"agentId": 111}, {"agentId": 444}]},
+    ]
+    index.write_text("\n".join(json.dumps(row) for row in rows) + "\n")
+    monkeypatch.setattr(ws, "GAMES_INDEX", index)
+
+    assert ws.agent_game_ids(111) == [1, 3]
+    assert ws.agent_game_ids(222) == [1]
+    assert ws.agent_game_ids(999) == []
+    assert ws.resident_game_ids() == ws.agent_game_ids(ws.RESIDENT_AGENT_ID) == [2]
 
 
 # ---------------------------------------------------------------------------
