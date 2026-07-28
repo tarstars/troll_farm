@@ -175,6 +175,40 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: B3.8 — the scaling bootstrap is IRON-limited, not fruit-limited (owner-thesis test)
+
+Counterfactual currency audit over all 205 resident games (0 integrity anomalies). Haul:
+**4,880 uncollected reachable own-territory fruit events (23.8/game**; PLUM 1,248 / LEMON
+1,154 / APPLE 1,429 / BANANA 1,049), plus an 11,244-event opponent-territory increment.
+**90% of the own-territory haul is destroyed by our own CHOP** (84% by us specifically) —
+independent confirmation of the B3.5 chop-shadow mechanism from a broader definition.
+Bill costs source-verified: cheap helper (1,1,0,1) = 3 PLUM / 3 LEMON / 2 APPLE / 3 IRON;
+balanced chopper (2,2,0,2) = 6/6/2/6. The real-bank baseline reproduces D160a exactly:
+**0/205 windows** for both specs.
+
+Stock-accounting counterfactual (upper bound — ignores that harvesting costs turns):
+crediting all own uncollected fruit opens a cheap-helper window in **18/205 games (8.8%,
+median turn 43.5)** and the balanced chopper in **0/205, never**; adding opponent fruit
+moves it only to 21/205 (10.2%, median turn 30), balanced still 0. **IRON limits
+97.3–100% of all remaining failures in every scenario**, on maps that all contain iron.
+Fruit credit essentially closes the PLUM/LEMON side; iron never moves, because iron is
+MINE-only and no harvest change touches it.
+
+Top-5 contrast: 34% of their bill currency comes from the starting endowment and 66% is
+earned; of the earned share, **76% is fruit and 24% iron** (71–78% fruit consistently per
+agent) — they do fund scaling from the orchard, while their later workers' 91% CHOP/DROP
+share is wood logistics, not bill funding.
+
+Spatial section (owner hypothesis, confirmed): **1,144 near-camp events (≤2 BFS from our
+own door), 956 bill-relevant; only 28.2% fall inside D173b's chop-shadow scope and 71.8%
+lie outside it**; 43.4% (496 events, 425 bill-relevant) are capturable within a ≤2-turn
+walking detour.
+
+**Verdict (c) NO:** harvest capability is not the bootstrap for worker-3 scaling. The
+binding constraint is IRON acquisition. This redirects the owner's production+consumption
+thesis rather than refuting it — the coupling the top cohort runs is real, but its funding
+path for us must pass through mining, which has never been audited. Opened as B3.9.
+
 ## 2026-07-28: D173b CLOSED — the fix works where it can; `harvest_power: 0` is the real cap
 
 Trigger fidelity repaired and verified: **64/64 activations** show CHOP as control's issued

@@ -211,6 +211,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★ Worker-3 scaling is IRON-limited, not fruit-limited: crediting EVERY uncollected
+  reachable fruit (ours + opponent's) opens a cheap-helper window in only ~10% of games
+  and the balanced spec in 0/205 ever, while IRON limits 97.3–100% of remaining failures
+  on iron-present maps. Iron is MINE-only, so no harvest change can unlock scaling. The
+  top cohort funds 66% of bills from earned currency, 76% of it fruit — the architecture
+  is real, but our binding constraint is mining. Do not justify harvest work by scaling
+  benefits; justify it (if at all) by direct fruit value. [B3.8]
 - Harvest-before-chop is CLOSED as an execution fix, with the cap identified: on
   harvest-capable choppers it eliminates 99.9% of target episodes (1,002→1), but 99.93%
   of the vein involves `harvest_power: 0` trained units (hardcoded in

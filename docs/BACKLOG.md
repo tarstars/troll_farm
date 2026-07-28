@@ -146,11 +146,23 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   our crops we never reap — harvested/chopped-by-us/taken/expired/alive — plus
   live-crops-per-capable-worker vs the top cohort. Verdict shapes whether a plant-pacing
   rule, denial, or an orchard rethink is warranted.
-- **B3.8 counterfactual training-currency audit — IN FLIGHT** (owner thesis test): would
-  the fruit we *fail* to harvest have paid TRAIN bills? Tests the missing precondition of
-  the production+consumption coupling (D93: the factory ended with 92.8 wood but 1.4
-  PLUM/0.6 LEMON/0.4 IRON and zero legal training turns; D160: zero affordability windows
-  in 195 games).
+- **B3.8 ✅ DONE 2026-07-28 — verdict (c) NO: the bootstrap is IRON-limited.** All
+  uncollected fruit (ours + opponent's) would open a cheap-helper window in ~10% of games,
+  balanced spec 0/205 ever; IRON limits 97.3–100% of failures. Owner's near-camp
+  hypothesis CONFIRMED (1,144 events ≤2 from our door; 71.8% outside D173b's scope; 43.4%
+  capturable in a ≤2-turn detour). Top-5 fund 66% of bills from earned currency, 76% fruit.
+- **B3.9 (new, OPEN — the vein B3.8 opened): IRON acquisition audit + combined
+  counterfactual** — mining has never been audited. Measure our MINE behaviour vs the top
+  cohort (rate, timing, iron-source proximity, missed reachable iron), then re-run the
+  affordability counterfactual crediting BOTH uncollected fruit AND missed iron. This is
+  the decisive test of whether the production+consumption coupling has ANY viable bootstrap
+  for us. If iron slack is large → an execution-class mining fix becomes the top candidate;
+  if not → scaling is structurally out of reach and the orchard must be justified by direct
+  fruit value alone.
+- **B3.10 (new, OPEN, conditional): near-camp opportunistic harvest** — 956 bill-relevant
+  near-camp events, 71.8% outside the tested scope, 43.4% cheaply capturable. Justified by
+  DIRECT fruit value only (B3.8 closed the scaling rationale), and must budget for the
+  trigger-independent family/tail cost both D173 variants paid. Design only after B3.9.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 
