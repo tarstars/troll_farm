@@ -85,7 +85,13 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   all families ≥ −1; latency p95 < 50 ms in the deployable form (V5 buffer pattern);
   ≤100 kB source. **Kill:** two consecutive objective variants fail fresh-block → close
   the program and hold at Tier 0/3.
-- **B2.3 Controlled arena trial** *(only after B2.2 passes everything, via B4.1)*
+- **B2.2 ❌ CLOSED 2026-07-28 (D170b, kill rule fired on valid mechanics).** 8/8 fits
+  trained; 0/8 admitted — all four objectives converged to always-KEEP (P(invoke) ≤3.3%);
+  sampled-invoke value −1.0..−2.3. The envelope's positive contexts are unlearnable by
+  on-policy terminal-reward training at this (or any sane) budget; objective choice
+  irrelevant in this regime. Tier-2 CLOSED; project holds at Tier 0/3. Successor
+  (dense counterfactual credit) = new program, owner authorization required. [D170b]
+- **B2.3 — moot** (gated on B2.2, which closed).
 
 ## Tier 3 — execution-class diagnostics (historically the only transferrers)
 

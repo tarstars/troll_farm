@@ -245,6 +245,8 @@ thirty supervised selectors that all failed the same way.
 | D167 | Are the journeys regular? | **Yes: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field); field agents pre-carry seeds through suppression 45%, resident 0% |
 | D168 | Does executing the return causally help? | **No — hand-written successor controllers close** (post-return −6.73, pre-carry −8.21; integrity clean); the motif becomes a rollout-valued option for B2.1 |
 | D169 | Does a unified resident-option envelope clear the +10 gate? | **Yes — PASS**: +10.671 mean, CI [+9.42,+11.92], 65% improved, 0 regressions, tails better than control (100% coverage; every option negative always-on). Opens D170 (Fable-authored closed-loop training design) |
+| D170a | Can a policy learn WHEN to invoke the options? | Invalidated by an implementation bug (3 trig arms structurally unreachable; caught by the Stage-A gate, byte-identical reruns; superb root-cause) — repaired as D170b |
+| D170b | Same question, repaired mechanics | **CLOSED-AT-PHASE-2**: 8/8 fits trained, all 13 arms live — and all four objectives converged to always-KEEP (0/8 admitted). The envelope's rare positive contexts are unlearnable from ~200 samples/arm vs ±26 terminal noise; objective choice irrelevant. Tier-2 closes per its kill rule |
 
 ## 15. Inflection points
 
@@ -698,6 +700,11 @@ same rules as the 168 experiments before it.
 What we intend to do next, how long each step takes, why it is worth doing, and what we
 expect from it. The operational source of truth is `docs/BACKLOG.md` (with gates and
 kill rules); this chapter is its narrative snapshot as of 2026-07-28.
+
+*(Post-run update: D170b completed later on 2026-07-28 — **CLOSED-AT-PHASE-2** on fully
+valid mechanics; all four objectives converged to always-KEEP and the frozen kill rule
+fired, closing Tier 2. Items 2 and 3 below are therefore moot; the "horizon" paragraph's
+second branch is now the live one. The chapter is preserved as written pre-verdict.)*
 
 **1. D170b — the closed-loop option policy (in flight; hours of CPU).**
 *Why:* it is the only lever whose measured ceiling (+10.671 hindsight envelope, D169)

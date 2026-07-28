@@ -211,6 +211,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- On-policy terminal-reward closed-loop training over the budget-1 resident option space
+  is CLOSED: with valid mechanics and all 13 arms live, all four objectives (pooled,
+  capped, own-protected, group-DRO+protection) converged to always-KEEP (P(invoke) ≤3.3%,
+  0/8 admitted; fit-side sampled-invoke value −1.0..−2.3). The D109 objective question is
+  answered in this regime: objective choice is irrelevant when per-context signal is
+  unlearnable — ~200 invoke samples/arm vs SD≈26 terminal noise cannot resolve the rare
+  positive contexts behind the +10.7 hindsight envelope. Reopening requires dense
+  per-decision counterfactual credit or another genuinely new representation, under a new
+  authorization — not budget/architecture retunes. [D170b]
 - Event-triggered arming in sequential wrappers must use the sticky-flag pattern (set a
   persistent flag post-step, consume at the next candidate refresh) — never turn-equality
   against a live counter: the D170a composition layer's turn-equality check was

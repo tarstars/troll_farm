@@ -998,6 +998,16 @@ mod inherited {
         resource_controller: ResourceController,
         active_arm: Option<ArmKind>,
         return_pending: bool,
+        /// D170b Delta 1 repair: sticky flag for the resource `_trig` arms,
+        /// mirroring `return_pending` above. Set in `step_one_turn` (after
+        /// the engine step) the one time `opp_worker_trigger_turn` is newly
+        /// latched; consumed by `refresh_candidates` on its next call. See
+        /// `data/analysis/live-agent-6553250/d170b-family-robust-option-policy-repair-protocol-2026-07-28.md`
+        /// Delta 1 (replaces the unreachable
+        /// `opp_worker_trigger_turn == self.game.turn` equality that made
+        /// `opt_fruit_trig`/`opt_iron_trig`/`opt_protect_trig` structurally
+        /// unarmable in D170a).
+        trig_pending: bool,
         pending_queue: Vec<ArmKind>,
         last_scanned_turn: i32,
         current_candidate: Option<ArmKind>,
@@ -1080,6 +1090,7 @@ mod inherited {
                 resource_controller: ResourceController::new(None),
                 active_arm: None,
                 return_pending: false,
+                trig_pending: false,
                 pending_queue: Vec::new(),
                 last_scanned_turn: -1,
                 current_candidate: None,
@@ -1139,6 +1150,15 @@ mod inherited {
             }
             let workers = worker_count(&self.game, self.task.seat);
             if workers == 2 {
+                // D170b Delta 1 repair: consume the sticky `trig_pending`
+                // flag (mirrors `return_pending` above) instead of the
+                // unreachable `opp_worker_trigger_turn == self.game.turn`
+                // equality — `refresh_candidates` only ever runs strictly
+                // before or after `step_one_turn`, never at the instant the
+                // trigger is latched mid-turn, so that equality could never
+                // hold. Read once per call so a mid-loop reset can't cause a
+                // partial (some-components-only) enqueue.
+                let trig_ready = self.trig_pending;
                 for component in Component::ALL {
                     for mark in MARKS {
                         if self.game.turn == mark {
@@ -1146,10 +1166,13 @@ mod inherited {
                                 .push(ArmKind::Resource(component, StartSpec::Fixed(mark)));
                         }
                     }
-                    if self.opp_worker_trigger_turn == self.game.turn {
+                    if trig_ready {
                         self.pending_queue
                             .push(ArmKind::Resource(component, StartSpec::Trig));
                     }
+                }
+                if trig_ready {
+                    self.trig_pending = false;
                 }
             }
         }
@@ -1453,6 +1476,21 @@ mod inherited {
             );
             for event in production {
                 self.history.insert(event.unit_id, event.record);
+            }
+
+            // D170b Delta 1 repair: resource `_trig` arms gate, post-step,
+            // sticky-flag pattern mirroring the OPT_RETURN gate immediately
+            // below. `opp_worker_trigger_turn` is set pre-step above
+            // (unchanged, still drives state features 55/56) and, being
+            // monotonic and latched at most once, can equal `current_turn`
+            // only on the exact call where it was just newly set — so this
+            // reuses that existing value rather than re-deriving the "first
+            // reaches >= 3" condition. `refresh_candidates` cannot observe
+            // this directly (it only ever runs strictly before or after
+            // `step_one_turn`, never mid-turn); latched here, consumed on
+            // its next call.
+            if self.opp_worker_trigger_turn == current_turn {
+                self.trig_pending = true;
             }
 
             // OPT_RETURN gate: post-step, exactly the turn entry was
@@ -1837,6 +1875,112 @@ mod inherited {
             eprintln!(
                 "D170a coverage test: zero-decision task observed = {zero_decision_seen} \
                  (informational; both outcomes are valid depending on the arm-condition rate)"
+            );
+        }
+
+        /// D170b Delta 1 test support: drives `env` end-to-end with the
+        /// all-KEEP policy (budget is never spent, so every armable turn in
+        /// the episode is visited) and records
+        /// `(game_turn, opp_worker_trigger_turn, is_trig_arm, own_workers)`
+        /// for every decision offered.
+        fn drive_keep_recording_trig_offers(mut env: D170aEnv) -> Vec<(i32, i32, bool, usize)> {
+            let seat = env.task.seat;
+            let mut offers = Vec::new();
+            loop {
+                if env.current_candidate.is_none() && !env.resume() {
+                    break;
+                }
+                if env.current_candidate.is_none() {
+                    break;
+                }
+                let candidate = env.current_candidate.unwrap();
+                let is_trig = matches!(candidate, ArmKind::Resource(_, StartSpec::Trig));
+                offers.push((
+                    env.game.turn,
+                    env.opp_worker_trigger_turn,
+                    is_trig,
+                    worker_count(&env.game, seat),
+                ));
+                if !env.decide(0) {
+                    break;
+                }
+            }
+            offers
+        }
+
+        /// D170b Delta 1 regression test (half of the protocol's required
+        /// pair): the resource `_trig` arms must never be offered before the
+        /// observed-opponent-worker trigger has fired, and never on the same
+        /// turn it fires (`refresh_candidates` only ever runs strictly
+        /// before or after `step_one_turn`, so the earliest legal offer turn
+        /// is one turn after the latch).
+        #[test]
+        fn trig_arm_never_offered_before_the_trigger_fires() {
+            let cache: ControlCache = Arc::new(Mutex::new(BTreeMap::new()));
+            let mut trig_offers_seen = 0usize;
+            for slot in 0..128usize {
+                let env = D170aEnv::new(9_844_136, 64, slot, 0, 128, &cache);
+                for (turn, trigger_turn, is_trig, _workers) in drive_keep_recording_trig_offers(env)
+                {
+                    if !is_trig {
+                        continue;
+                    }
+                    assert!(
+                        trigger_turn >= 0,
+                        "slot {slot}: trig arm offered on turn {turn} before the \
+                         opponent-worker trigger ever fired"
+                    );
+                    assert!(
+                        turn > trigger_turn,
+                        "slot {slot}: trig arm offered on turn {turn}, not strictly after \
+                         its trigger turn {trigger_turn}"
+                    );
+                    trig_offers_seen += 1;
+                }
+            }
+            assert!(
+                trig_offers_seen > 0,
+                "sweep never offered a trig arm at all -- this test cannot confirm the \
+                 'never before' property is being meaningfully exercised (see the \
+                 companion reachability test for the D170a 0/N regression check)"
+            );
+        }
+
+        /// D170b Delta 1 regression test (the other half): whenever the
+        /// trigger has fired and this seat is later observed holding exactly
+        /// 2 workers (the shared resource-arm armability gate), a trig arm
+        /// must actually be offered. This is the direct regression check for
+        /// the D170a bug, where `opt_fruit_trig`/`opt_iron_trig`/
+        /// `opt_protect_trig` were offered 0/2,880 times across the real
+        /// training pool despite the underlying trigger firing in 15.7% of
+        /// observed decisions.
+        #[test]
+        fn trig_arm_is_offered_on_the_decision_boundary_after_the_trigger_fires() {
+            let cache: ControlCache = Arc::new(Mutex::new(BTreeMap::new()));
+            let mut eligible_episodes = 0usize;
+            for slot in 0..128usize {
+                let env = D170aEnv::new(9_844_136, 64, slot, 0, 128, &cache);
+                let offers = drive_keep_recording_trig_offers(env);
+                let eligible = offers.iter().any(|&(turn, trigger_turn, _, workers)| {
+                    trigger_turn >= 0 && turn > trigger_turn && workers == 2
+                });
+                if !eligible {
+                    continue;
+                }
+                eligible_episodes += 1;
+                let trig_offered = offers.iter().any(|&(_, _, is_trig, _)| is_trig);
+                assert!(
+                    trig_offered,
+                    "slot {slot}: the opponent-worker trigger fired and this seat later \
+                     held exactly 2 workers, but no trig arm was ever offered -- the \
+                     D170a unreachable-arm bug is not fixed"
+                );
+            }
+            assert!(
+                eligible_episodes > 0,
+                "sweep never produced an episode where the trigger fired and this seat \
+                 later held exactly 2 workers; cannot positively confirm reachability in \
+                 this sweep (widen the slot/map_pool sweep)"
             );
         }
     }

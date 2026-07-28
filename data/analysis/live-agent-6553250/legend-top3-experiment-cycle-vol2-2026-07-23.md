@@ -149,6 +149,39 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28: D170b CLOSED-AT-PHASE-2 — the closed-loop option program closes on valid mechanics
+
+The repaired re-run is mechanically flawless: frozen inherited block byte-identical (all
+repair hunks ≥ line 998), 12/12 env tests, activation diagnostic field-identical on
+rerun, new lock frozen. Delta-3 required a standalone D170b trainer/analyzer (D170a files
+left byte-unmodified; hashes locked). **Phase 1: 8/8 fits reach `trained`** — reversing
+D170a's 8/8 mechanics-fail — with every one of the 13 arms (including the three repaired
+trig arms) offered and invoked in every fit; minimum conditional exploration share
+0.034–0.108. Fit-side mean margins of sampled invocations: **−0.96 to −2.26 across all
+objectives.**
+
+**Phase 2: 0/8 admitted.** Every deterministic policy chose KEEP on literally all 2,048
+of its held LOBO decisions (`chosen_arm_counts: {control: 2048}`), all statistics exactly
+0.0; verified by direct logit inspection (P(invoke) 0–3.27%, logit gap ≥3.39) — a learned
+conclusion, not an evaluation bug. 1-vs-20-thread byte identity held. Phase 3 not
+executed per the decision tree; the veto panel and sealed confirmation block
+9,852,000–063 remain untouched.
+
+**Adjudication (Fable): the closure is valid and informative.** All four objectives —
+including group-DRO + own-score protection — converged to the same always-KEEP answer,
+so the skipped-D109 objective question resolves as: *objective choice cannot rescue
+learning when the per-context signal is too sparse to find.* The mechanism: the +10.671
+envelope is a per-game hindsight max; unconditional invocation value is negative (D163),
+realistic trigger-armed density thin (+1.80, D169 diagnostic), and budget-1 training
+yields only ~200 invoke samples per arm against SD≈26 terminal-reward noise — orders of
+magnitude short of resolving the rare positive contexts. On-policy terminal-reward
+policy gradient over this option space is closed. Per the frozen kill rule ("no fit
+admitted → the closed-loop program CLOSES"), **Tier-2 closes and the project holds at
+Tier 0/3**; any successor (e.g., dense counterfactual credit over the same options)
+is a NEW program requiring its own authorization, and re-scoping the goal is an owner
+decision. Full record: `d170b-family-robust-option-policy-{lock,result-2026-07-28.md,
+result.json}` + per-fit JSONs; checkpoints external.
+
 ## 2026-07-28: authorized wide-lens passive collection — corpus 1,891 → 8,122 games
 
 User-authorized read-only collection with a deliberately widened lens: resident full

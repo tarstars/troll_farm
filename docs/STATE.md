@@ -46,13 +46,18 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   full 1,024-task panel: **+10.671 mean, CI [+9.420, +11.922], 65% improved, 0
   regressions, tails better than control.** Every option is negative always-on; all
   value is per-game selection. Clears every frozen gate — no D169b needed.
-- **2026-07-28 (later): D170a CLOSED-AT-PHASE-1 = implementation invalidation** (trig-arm
-  off-by-one in new composition code; all 8 fits mechanics-failed deterministically; no
-  value computed; frozen modules untouched). Fable-adjudicated as a bug, not science;
-  **D170b repair protocol FROZEN and delegable**:
-  `d170b-family-robust-option-policy-repair-protocol-2026-07-28.md` (sticky-flag repair +
-  activation verification + offered-conditional exploration semantics; everything else
-  inherited from D170a). D170b is now the active protocol.
+- 🛑 **2026-07-28 (final): D170b CLOSED-AT-PHASE-2 — the Tier-2 closed-loop program is
+  CLOSED per its frozen kill rule.** Mechanics fully valid (repair verified, 8/8 fits
+  trained, all 13 arms live); all four objectives converged to always-KEEP (0/8 admitted;
+  P(invoke) ≤3.3%; sampled-invoke value −1.0..−2.3 fit-side). Adjudicated: the +10.7
+  envelope's positive contexts are unlearnable by on-policy terminal-reward training at
+  any sane budget (~200 samples/arm vs SD≈26 noise); objective choice is irrelevant in
+  this regime (the D109 question's answer). Veto panel and sealed confirmation block
+  remain untouched. **The project holds at Tier 0/3 (maintenance + execution-class
+  sweeps + field re-powering). Open owner decisions: (a) authorize a NEW dense-credit
+  successor program (would need its own Fable-designed protocol), (b) hold as-is, or
+  (c) re-scope the goal.** D170a's earlier CLOSED-AT-PHASE-1 was implementation
+  invalidation (trig off-by-one, repaired in D170b); both records frozen.
 - **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
   FROZEN and delegable**:
   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`

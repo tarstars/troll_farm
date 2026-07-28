@@ -1,0 +1,36 @@
+{
+  "elapsed_seconds": 992.2264470229857,
+  "gates": {
+    "opt_fruit_trig": {
+      "gate_offered_5pct_to_50pct_of_episodes": true,
+      "gate_offered_ge_60pct_of_trigger_episodes": true,
+      "offered_at_least_once_rate": 0.245361328125,
+      "offered_at_least_once_rate_given_trigger_seen": 1.0
+    },
+    "opt_iron_trig": {
+      "gate_offered_5pct_to_50pct_of_episodes": true,
+      "gate_offered_ge_60pct_of_trigger_episodes": true,
+      "offered_at_least_once_rate": 0.245361328125,
+      "offered_at_least_once_rate_given_trigger_seen": 1.0
+    },
+    "opt_protect_trig": {
+      "gate_offered_5pct_to_50pct_of_episodes": true,
+      "gate_offered_ge_60pct_of_trigger_episodes": true,
+      "offered_at_least_once_rate": 0.245361328125,
+      "offered_at_least_once_rate_given_trigger_seen": 1.0
+    },
+    "opt_return": {
+      "gate_offered_ge_8pct_of_episodes": true,
+      "offered_at_least_once_rate": 0.14697265625
+    }
+  },
+  "generated_at": "2026-07-28T09:16:24Z",
+  "map_pool": 256,
+  "num_envs": 32,
+  "schema": "troll-farm-d170b-activation-verification-v1",
+  "seed_base": 9850000,
+  "tasks": 4096,
+  "trigger_episode_rate": 0.245361328125,
+  "trigger_episodes": 1005,
+  "verdict": "PASS"
+}

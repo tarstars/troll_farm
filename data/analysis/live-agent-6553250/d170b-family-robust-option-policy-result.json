@@ -1,0 +1,385 @@
+{
+  "schema": "troll-farm-d170b-family-robust-option-policy-result-v1",
+  "generated_at": "2026-07-28T10:33:10Z",
+  "git_rev": "a61990fc22ad820628985abe5d1cf89689a8d1a7",
+  "verdict": "CLOSED-AT-PHASE-2",
+  "verdict_rule_applied": "Protocol decision tree: \"Phase 2 no admission -> CLOSE.\" Kill (backlog rule): \"no fit admitted -> the closed-loop program CLOSES... No rescue, no budget extension.\"",
+  "resume_integrity": {
+    "storage_preflight": "PASS (456809893888 bytes free on medium_data)",
+    "frozen_mod_inherited_prefix_byte_identical": true,
+    "frozen_mod_inherited_prefix_sha256": "5256701de077aa42747b61c1195a62ea38bfa1348c93b4740a364d0c53faceb8",
+    "rust_focused_tests": "12/12 passed (10 pre-existing + 2 new trig-timing tests), cargo test --release --lib rl_d170a_option_policy_env",
+    "delta2_diagnostic_rerun_field_identical_to_inherited_verification": true,
+    "delta2_verdict": "PASS (both original and rerun)"
+  },
+  "phase0_lock": "d170b-family-robust-option-policy-lock.json",
+  "phase1": {
+    "status": "all_8_fits_trained",
+    "fits": [
+      {
+        "variant": "pooled_margin",
+        "seed": 170101,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.09375,
+        "stage_a_min_unconditional_offer_share": 0.0078125,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.0392156862745098,
+        "final_min_unconditional_offer_share": 0.010894775390625,
+        "fit_side_mean_episode_paired_margin": -1.62160441426146,
+        "fit_side_mean_own_score_delta": -0.3646010186757216,
+        "total_episodes": 4712,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "bff28b0ea5fc4c4b916015747ba311d8e21d7fcbe52783951978c8a2eb3b0514",
+        "checkpoint_npz_sha256": "ede749fd2e5553b85c1020fffc627116ecb7c0aa250b7474fdb9550eb9e00979"
+      },
+      {
+        "variant": "pooled_margin",
+        "seed": 170102,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.07456140350877193,
+        "stage_a_min_unconditional_offer_share": 0.01025390625,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.03389830508474576,
+        "final_min_unconditional_offer_share": 0.012603759765625,
+        "fit_side_mean_episode_paired_margin": -1.1916167664670658,
+        "fit_side_mean_own_score_delta": -0.2280239520958084,
+        "total_episodes": 4175,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "8f7e9083bf55eabe7c721288ad2816b5c8ccbdba4d8ef809edf34eaf976a7c5d",
+        "checkpoint_npz_sha256": "1f01a8510b47c2b14085b8d29b172b2e9acd4033e3e7433d0c4eaafb2cf3f808"
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170201,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.07377049180327869,
+        "stage_a_min_unconditional_offer_share": 0.0086669921875,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.03769230769230769,
+        "final_min_unconditional_offer_share": 0.011566162109375,
+        "fit_side_mean_episode_paired_margin": -1.56199862479945,
+        "fit_side_mean_own_score_delta": -0.5443502177400871,
+        "total_episodes": 4363,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "a795f6845048e5c99ce02184a7b34880b0c818ce44d289d69cdaf16ee27d2bae",
+        "checkpoint_npz_sha256": "f7bd6e2ebf5087e94447c0b61044625ee680a3013593edf236e25099cea97c19"
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170202,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.08333333333333333,
+        "stage_a_min_unconditional_offer_share": 0.008544921875,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.04045801526717557,
+        "final_min_unconditional_offer_share": 0.01171875,
+        "fit_side_mean_episode_paired_margin": -1.239710009354537,
+        "fit_side_mean_own_score_delta": -0.35032740879326474,
+        "total_episodes": 4276,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "614ea38e89707e4b10feef01c8c5d50e0f291cfb52398e196c5e818398402b8c",
+        "checkpoint_npz_sha256": "350e0c406762919380d853140c8026194b49aa5b84f703f2b037593910a3c2a5"
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170301,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.09645669291338582,
+        "stage_a_min_unconditional_offer_share": 0.0098876953125,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.04967520061138708,
+        "final_min_unconditional_offer_share": 0.011322021484375,
+        "fit_side_mean_episode_paired_margin": -1.2393558349878668,
+        "fit_side_mean_own_score_delta": -0.5100375027575557,
+        "total_episodes": 4533,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "1064b82fc1ea26b7fe51bdb1d2a32066e5bc3f1e97b4f94e439c287eedad8e53",
+        "checkpoint_npz_sha256": "2c56e1ce2e8cbe736431851502a21ff52704f394ee7ac19ae3d1864e68a4d0db"
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170302,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.07692307692307693,
+        "stage_a_min_unconditional_offer_share": 0.009521484375,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.034020991675714804,
+        "final_min_unconditional_offer_share": 0.012542724609375,
+        "fit_side_mean_episode_paired_margin": -0.958162031438936,
+        "fit_side_mean_own_score_delta": -0.324546553808948,
+        "total_episodes": 4135,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "a57a10ac43ff7ef4253d6438c74a0f8c66a886668e22f2423f1a327fa455a4d5",
+        "checkpoint_npz_sha256": "fc037b14812b0058bcc9b61f280f7df3bc5bfe41777f741f5e57a07dcb450f31"
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170401,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.0821917808219178,
+        "stage_a_min_unconditional_offer_share": 0.0089111328125,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.10161758606387392,
+        "final_min_unconditional_offer_share": 0.008941650390625,
+        "fit_side_mean_episode_paired_margin": -2.259622501850481,
+        "fit_side_mean_own_score_delta": -0.7057735011102887,
+        "total_episodes": 5404,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "2e180b602730c862119d7555e54ce5a7aca4413a6cb2a8e7e87d0c82aff9f39b",
+        "checkpoint_npz_sha256": "5b0fb1504de4fc9542ee9a5fe2f7367c5eb7192ba95ad0797ac83dd988664d8a"
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170402,
+        "decision": "trained",
+        "stage_a_mechanics_pass": true,
+        "stage_a_min_conditional_invoke_share": 0.07829181494661921,
+        "stage_a_min_unconditional_offer_share": 0.007568359375,
+        "final_mechanics_pass": true,
+        "final_min_conditional_invoke_share": 0.10747663551401869,
+        "final_min_unconditional_offer_share": 0.009002685546875,
+        "fit_side_mean_episode_paired_margin": -1.927986906710311,
+        "fit_side_mean_own_score_delta": -0.6455719221676669,
+        "total_episodes": 5499,
+        "global_decisions": 32768,
+        "checkpoint_pt_sha256": "b84df6c0c5968e728ef8dab8ca5e0d3bc2366369b151aaa1feb26d7ce86963e2",
+        "checkpoint_npz_sha256": "060de06df1d291ace095f849b2b132c653a1619262f045128ca790923e2f16d3"
+      }
+    ],
+    "note": "All 8 (objective, seed) fits reached decision=='trained' -- both Stage-A (8,192 transitions) and final-budget (32,768 transitions) mechanics gates pass under the Delta-1 repair + Delta-3 conditional-share semantics. This reverses D170a's all-8-mechanics-fail outcome. Every fit's min_unconditional_offer_share remained < 0.02 (would have failed D170a's original ungated formula) -- Delta 3 is load-bearing for all 8 fits, not just the 3 previously-unreachable trig arms."
+  },
+  "phase2": {
+    "status": "no_admission",
+    "selection_seed_base": 9851000,
+    "selection_map_pool": 128,
+    "selection_blocks": 8,
+    "admitted_count": 0,
+    "selected": null,
+    "fits": [
+      {
+        "variant": "pooled_margin",
+        "seed": 170101,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "pooled_margin",
+        "seed": 170102,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170201,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "capped_margin",
+        "seed": 170202,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170301,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "own_protected",
+        "seed": 170302,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170401,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      },
+      {
+        "variant": "group_dro_own",
+        "seed": 170402,
+        "status": "evaluated",
+        "pooled_mean": 0.0,
+        "worst_block": 0.0,
+        "worst_family": 0.0,
+        "mean_own_score_delta": 0.0,
+        "chosen_arm_counts": {
+          "control": 2048
+        },
+        "budget_used_rate": 0.0,
+        "admission_gates": {
+          "catastrophes_le_control": true,
+          "crop_workforce_safety_exact": true,
+          "lobo_pooled_mean_at_least_1_5": false,
+          "mean_own_score_delta_at_least_minus0_5": true,
+          "worst_family_mean_at_least_minus1": true,
+          "worst_held_block_at_least_0": true
+        },
+        "admitted": false
+      }
+    ],
+    "thread_parity_1_vs_20": {
+      "byte_identical_1_vs_20_threads": true,
+      "digests": {
+        "1": "256657d3bf4c2f8715dd0f16386bf61208733d4fdda9683aeeb90bf292037ee4",
+        "20": "256657d3bf4c2f8715dd0f16386bf61208733d4fdda9683aeeb90bf292037ee4"
+      }
+    },
+    "finding": "All 8 fits' deterministic (argmax) evaluation policies chose KEEP on literally every decision across all 2,048 held-out selection-block tasks each (chosen_arm_counts=={'control': 2048}, budget_used_rate==0.0 in all 8) -- byte-identical to the exact-resident control baseline row-for-row, making every evaluation-product statistic (pooled_mean, all 8 block_means, all 8 family_means, mean_own_score_delta) exactly 0.0 in all 8 fits. Only failing admission gate in all 8: lobo_pooled_mean_at_least_1_5 (0.0 < 1.5); every other admission gate trivially passes (policy==control implies catastrophes_policy==catastrophes_control, mean_own_score_delta==0>=-0.5, worst_block==0>=0, worst_family==0>=-1, crop/workforce safety exact).",
+    "not_an_evaluation_bug_verification": "Direct logit inspection of one checkpoint (pooled_margin/170101) on 1,920 real decision states drawn from the training pool: P(INVOKE) ranged 0-3.27% (mean 2.33%), KEEP-minus-INVOKE logit gap >= 3.39 for every one of the 1,920 states, argmax(KEEP) for all 1,920/1,920. The policy's stochastic training-time exploration (feeding the nonzero Stage-A/final conditional-invoke shares, 3.4%-10.8% depending on fit) never crosses 50% confidence for INVOKE on any observed state, so the deterministic policy collapses identically to the control baseline. This is a genuine trained-policy property (probability-mass / argmax-threshold gap), not an evaluation-code defect."
+  },
+  "phase3": {
+    "status": "not_executed",
+    "reason": "Phase 2 admitted 0/8 fits; per the frozen decision tree (\"Phase 2 no admission -> CLOSE\") Phase 3 (veto panel evaluation, sealed confirmation block) is not executed. The consumed veto panel (seeds 9,844,136-9,844,199) and the sealed confirmation block (seeds 9,852,000-9,852,063) remain untouched."
+  },
+  "phase4": {
+    "status": "out_of_scope_this_dispatch"
+  },
+  "d170a_artifacts_untouched": {
+    "d170a_lock_sha256_unchanged": "670f4415ba6b9f9aae173f3d63306785761813d183b20fe3e28862117898965b",
+    "verified": true
+  },
+  "lock_sha256": "b2e77b931f2323fc713874dc542ee2d6c986fadc301e67fa4991baabf980443a",
+  "outputs": {
+    "lock": "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-lock.json",
+    "phase1_fit_results": [
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-pooled_margin-seed170101-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-pooled_margin-seed170102-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-capped_margin-seed170201-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-capped_margin-seed170202-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-own_protected-seed170301-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-own_protected-seed170302-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-group_dro_own-seed170401-result.json",
+      "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-group_dro_own-seed170402-result.json"
+    ],
+    "phase2_result": "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-phase2-result.json",
+    "phase2_thread_parity": "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-phase2-thread-parity.json",
+    "activation_verification": "data/analysis/live-agent-6553250/d170b-activation-verification-2026-07-28.json",
+    "trainer": "cgauto/train_d170b_family_robust_option_policy.py",
+    "analyzer_driver": "cgauto/analyze_d170b_family_robust_option_policy.py",
+    "analyzer_reused_unmodified": "cgauto/analyze_d170a_family_robust_option_policy.py",
+    "checkpoints_external": "artifacts/experiments/d170b-family-robust-option-policy/"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "schema": "troll-farm-d170b-family-robust-option-policy-lock-v1",
+  "frozen_at_utc": "2026-07-28T09:22:22Z",
+  "question": "Can a small, observable-feature policy, trained closed-loop over the D169 option vocabulary, capture >= +2.0 mean paired margin on fresh held data with no opponent family sacrificed? (D170b: mechanics-repaired re-run of D170a, same question)",
+  "inherits_from": {
+    "d170a_protocol": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md",
+    "d170a_protocol_sha256": "1e2ff6597969d0d2670e1c84c0871a3b595405df8114884ad39713f9920e8ec0",
+    "d170a_lock": "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-lock.json",
+    "d170a_lock_sha256": "670f4415ba6b9f9aae173f3d63306785761813d183b20fe3e28862117898965b",
+    "d170a_result_verdict": "CLOSED-AT-PHASE-1 (implementation invalidation, not scientific closure)",
+    "d170b_repair_protocol": "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-repair-protocol-2026-07-28.md",
+    "d170b_repair_protocol_sha256": "6f8780b19a761aec434c0e27b6712fac1efa1818bc400ac087a06933dc3b9653",
+    "note": "D170b inherits the D170a protocol in its entirety (question, environment semantics, policy, four objectives, seeds, budgets, declared ranges, Phase 2/3 gates, prohibitions, decision tree) with exactly three deltas (Delta 1 repair, Delta 2 activation verification, Delta 3 exploration-gate semantics). Phase 4 excluded from this dispatch."
+  },
+  "resume_and_repair_integrity_verification_2026_07_28": {
+    "dispatch_context": "Resuming after a prior agent was killed by an API connection error. Its repair work (env fix + activation diagnostic) was on disk with the activation verification already PASS; this section records this agent's independent re-verification before freezing the lock and proceeding to Phase 1-3.",
+    "storage_preflight": "PASS (python3 cgauto/check_external_storage.py --required-free-gib 5): 456,809,893,888 bytes free on medium_data.",
+    "inherited_file_hash_cross_check": "All D170a-lock-recorded files NOT touched by the Delta-1 repair re-hashed from the live working tree and matched the D170a lock's sha256 table exactly (0 mismatches): cgauto/rl_d170a_option_policy_env.py, cgauto/train_d170a_family_robust_option_policy.py, rust/src/lib.rs, rust/src/bin/d169a_resident_option_envelope.rs, rust/src/bin/d162_resident_native_capital_option.rs, rust/build.rs, rust/src/game/engine.rs, rust/src/game/official_mapgen.rs, rust/src/game/state.rs, rust/src/rl_macro.rs.",
+    "frozen_mod_inherited_prefix_byte_identity": {
+      "method": "rust/src/rl_d170a_option_policy_env.rs's `mod inherited { ... }` construct (line 21 to its closing brace at line 1987) lexically contains BOTH the truly-frozen vocabulary copied byte-for-byte from D162/D163/D167/D168/D169a AND the new D170a-specific composition layer (both live inside the same outer `mod inherited` Rust module -- confirmed by brace-depth parse and cross-checked against the top-level FFI functions, which only begin after line 1987). The file's own banner comment marks the true frozen/new boundary at line 772 (\"D170a-specific: sequential closed-loop option-policy environment. New code (not a copy of any frozen module)\"). Verification: extracted lines 1-771 (through the line immediately before the banner's divider) from (a) the D170a-locked version (git commit 845d5b4, whose whole-file sha256 -- 4ea4a215731e83c73893410579ab1c27e866e7ffbcf2d0531cec3ad7435ed963 -- matches the D170a lock's own record for this file exactly) and (b) the live (repaired) working-tree file, and sha256-hashed each slice.",
+      "old_frozen_prefix_sha256": "5256701de077aa42747b61c1195a62ea38bfa1348c93b4740a364d0c53faceb8",
+      "new_frozen_prefix_sha256": "5256701de077aa42747b61c1195a62ea38bfa1348c93b4740a364d0c53faceb8",
+      "match": true,
+      "diff_hunk_locations": "All 6 git diff hunks between the D170a-locked and repaired working-tree file begin at old/new line >=998, i.e. strictly inside the D170a-specific section (>=772) and far from the frozen prefix boundary (771). No hunk touches lines 1-771.",
+      "verdict": "PASS -- frozen mod inherited vocabulary block byte-identical; repair confined to the D170a-specific section, as Delta 1 requires."
+    },
+    "rust_focused_test_suite": {
+      "command": "cargo test --release --lib rl_d170a_option_policy_env",
+      "result": "12 passed; 0 failed; 0 ignored (127.71s)",
+      "tests": [
+        "inherited::tests::frozen_catalog_has_control_and_twelve_options",
+        "inherited::tests::referee_exact_third_worker_bills_are_frozen",
+        "inherited::tests::bounded_option_is_deterministic_and_never_exceeds_three_workers",
+        "inherited::tests::disabled_option_is_exact_resident_control",
+        "inherited::d170a_tests::control_margin_matches_paired_margin_identity",
+        "inherited::d170a_tests::deterministic_replay_matches",
+        "inherited::d170a_tests::all_keep_is_byte_exact_vs_control",
+        "inherited::d170a_tests::budget_is_at_most_one_activation",
+        "inherited::d170a_tests::every_task_index_is_reported_exactly_once_including_zero_decision_tasks",
+        "inherited::d170a_tests::batch_task_assignment_is_thread_count_invariant",
+        "inherited::d170a_tests::trig_arm_never_offered_before_the_trigger_fires (NEW, Delta 1)",
+        "inherited::d170a_tests::trig_arm_is_offered_on_the_decision_boundary_after_the_trigger_fires (NEW, Delta 1)"
+      ],
+      "verdict": "PASS -- all 10 pre-existing tests plus both new trig-timing tests green."
+    },
+    "delta2_activation_diagnostic_rerun": {
+      "method": "Reran `python -m cgauto.d170b_activation_verification` once (RAYON_NUM_THREADS=1, LC_ALL=C) -- same frozen seed_base 9,850,000 / map_pool 256 / all-KEEP deterministic diagnostic the inherited run used -- and compared every field against the pre-existing d170b-activation-verification-2026-07-28.json (backed up before the rerun) except `elapsed_seconds`/`generated_at` (wall-clock only, expected to vary).",
+      "pre_existing_elapsed_seconds": 760.5870145759545,
+      "rerun_elapsed_seconds": 992.2264470229857,
+      "field_diff_excluding_timing_fields": [],
+      "match": true,
+      "verdict_both_runs": "PASS",
+      "gates_both_runs": {
+        "opt_fruit_trig": {"offered_at_least_once_rate": 0.245361328125, "offered_at_least_once_rate_given_trigger_seen": 1.0},
+        "opt_iron_trig": {"offered_at_least_once_rate": 0.245361328125, "offered_at_least_once_rate_given_trigger_seen": 1.0},
+        "opt_protect_trig": {"offered_at_least_once_rate": 0.245361328125, "offered_at_least_once_rate_given_trigger_seen": 1.0},
+        "opt_return": {"offered_at_least_once_rate": 0.14697265625}
+      },
+      "trigger_episode_rate": 0.245361328125,
+      "trigger_episodes": 1005,
+      "tasks": 4096
+    },
+    "delta3_exploration_gate_implementation": {
+      "problem": "Delta 3 redefines the Stage-A 'every option >= 2% of sampled decisions' gate to a conditional share, requiring per-decision (arm, sampled-action) instrumentation inside the training rollout loop -- data the byte-unmodified D170a trainer (cgauto/train_d170a_family_robust_option_policy.py) does not capture (only offer counts, not invoke-vs-keep per arm). The inherited cgauto/run_d170b_phase1_fit.py (built by the interrupted agent before Delta 3's implementation) was a thin output-path-redirecting wrapper around the unmodified D170a trainer and therefore could not implement Delta 3's live Stage-A gating; it has been removed (superseded).",
+      "resolution": "Authored cgauto/train_d170b_family_robust_option_policy.py as a standalone D170b trainer (full diff against the D170a trainer reviewed; only the documented Delta-3 deltas plus D170b-prefixed output paths differ -- FROZEN config, architecture, objectives, MODEL_SEEDS, and the entire PPO update logic are untouched). cgauto/train_d170a_family_robust_option_policy.py itself was left byte-unmodified (hash unchanged from the D170a lock) to preserve D170a's own frozen invalidated-run record.",
+      "executor_interpretation_of_delta3_text": "\"sampled-share is computed conditional on decisions where that option was offered (>= 2% of its offered decisions)\" is read as, per arm X: conditional_share(X) = P(sampled action == INVOKE | X was the offered candidate) = arm_invoke_counts[X] / arm_offer_counts[X] (0.0 if X was never offered). Rationale recorded in train_d170b_family_robust_option_policy.py's stage_a_gates() docstring: (a) this is the only reading under which the quantity is not trivially 100% (numerator would coincide with denominator under a naive 'X's own offered-decisions' reading), (b) it matches the stated intent verbatim (\"the learner explores every option enough to learn about it\" = the learner actually tries INVOKE a meaningful fraction of the times the option is available, not just how often it happens to be offered), and (c) it leaves opt_return a genuine, independently-failable check post-repair (offered on ~15% of episodes, non-rare, but < 2% of pooled decisions in all 8 original D170a fits) -- matching the D170a result doc's own flag that opt_return \"may still fail Stage-A even after the trig fix and would need its own look,\" which a trivial reading would have mooted. The pre-existing (D170a) unconditional share (offer_count[X] / total_offers_all_arms) is retained and reported as `min_arm_unconditional_offer_share` for continuity, per Delta 3's explicit instruction, but no longer gates.",
+      "smoke_test": "Verified stage_a_gates() with synthetic telemetry (option offered 101 times pooled, split 100/1: the rare option's unconditional share 0.99% fails the old gate but its conditional share 100% passes) and with a live 2-update (1,024-decision) train_variant() call on an out-of-protocol seed (999170101, disjoint from all declared ranges): the repaired trig arms were offered (34/29/28 times for fruit/iron/protect respectively) and invoked at least once each within the tiny run, confirming the Delta-1 repair functions correctly inside the actual training loop (not just the standalone diagnostic) and that arm_offer_counts/arm_invoke_counts populate as designed. No output files are written by train_variant() directly (only main() writes files), so this smoke test left no fit artifacts on disk."
+    }
+  },
+  "seed_ranges": {
+    "train": {"start": 9850000, "count": 256, "note": "seeds 9,850,000-9,850,255"},
+    "selection": {"start": 9851000, "count": 128, "note": "seeds 9,851,000-9,851,127 as eight independent 16-map LOBO blocks"},
+    "confirmation": {"start": 9852000, "count": 64, "note": "seeds 9,852,000-9,852,063; sealed until Phase 3, opened exactly once"},
+    "veto_panel": {"start": 9844136, "count": 64, "note": "the consumed D148/D161/D169 1,024-task panel; veto-only, never trained or selected on"}
+  },
+  "environment": {
+    "runner": "rust/src/rl_d170a_option_policy_env.rs (D170b Delta 1 repair applied: sticky trig_pending flag replaces the unreachable opp_worker_trigger_turn==game.turn equality; frozen mod-inherited vocabulary prefix (lines 1-771) byte-identical to D170a)",
+    "python_wrapper": "cgauto/rl_d170a_option_policy_env.py (unmodified)",
+    "budget": "one activation (INVOKE) per game; decision points are the 13 D169a arms (opt_return + fruit/iron/protect x {t072,t104,t136,trig}), offered in arm_catalog order at each turn their D169a-frozen arming condition first holds",
+    "reward": "terminal paired margin vs the same (map_seed,seat,opponent) exact-resident control, computed once and memoized (control_cache), = (own_score-opponent_score) - (control_own_score-control_opponent_score)",
+    "actions": ["KEEP=0", "INVOKE=1"]
+  },
+  "state_family_64_fields": "unchanged from D170a lock (see d170a-family-robust-option-policy-lock.json.state_family_64_fields)",
+  "decision_block_17_fields": "unchanged from D170a lock (see d170a-family-robust-option-policy-lock.json.decision_block_17_fields)",
+  "opponent_identity_in_inputs": false,
+  "policy_architecture": {
+    "trunk": "nn.GRUCell(81 -> 16)",
+    "head": "nn.Linear(16 -> 2), bias initialized [keep_bias=+2.0, invoke_bias=0.0]",
+    "actor_parameter_count": 4786,
+    "actor_parameter_cap": 12288,
+    "critic": "separate 3-layer MLP (81->64->32->1), training-only, not deployed, not counted against the cap"
+  },
+  "objectives": {
+    "pooled_margin": "reward = paired_margin / 100",
+    "capped_margin": "reward = min(paired_margin, 50) / 100",
+    "own_protected": "reward = (paired_margin - 0.5*max(0, -own_score_delta)) / 100",
+    "group_dro_own": "reward = weight_family * (paired_margin - 0.5*max(0, -own_score_delta)) / 100; weight_family = softmax_over_8_families(-EMA/10)[family]; EMA = per-family decay-0.99 exponential moving average of raw paired_margin"
+  },
+  "phase1_execution": {
+    "trainer": "cgauto/train_d170b_family_robust_option_policy.py (standalone D170b trainer; Delta 3 conditional-share Stage-A gate; everything else byte-for-byte identical logic to the unmodified D170a trainer, see resume_and_repair_integrity_verification_2026_07_28.delta3_exploration_gate_implementation)",
+    "model_seeds": {
+      "pooled_margin": [170101, 170102],
+      "capped_margin": [170201, 170202],
+      "own_protected": [170301, 170302],
+      "group_dro_own": [170401, 170402]
+    },
+    "train_seed_base": 9850000,
+    "train_map_pool": 256,
+    "num_envs": 32,
+    "rollout_steps": 16,
+    "batch_size_cells": 512,
+    "stage_a_transitions": 8192,
+    "full_transitions": 32768,
+    "one_continuous_run_with_stage_a_checkpoint": true,
+    "threads": 1,
+    "optimizer": {"lr": 0.0003, "adam_eps": 1e-05, "gamma": 1.0, "gae_lambda": 0.95, "clip_coef": 0.2, "entropy_coef": 0.02, "value_coef": 0.5, "max_grad_norm": 0.5, "target_kl": 0.03, "update_epochs": 3, "minibatch_envs": 8},
+    "stage_a_gates": {
+      "exact_transition_budget": "unchanged from D170a",
+      "finite_losses": true,
+      "every_option_at_least_2pct_of_sampled_decisions": "D170b Delta 3: now gates on the CONDITIONAL share (P(INVOKE|offered=X)) >= 0.02, not the D170a unconditional share; unconditional reported alongside for continuity",
+      "crop_safety_exact": "unchanged from D170a",
+      "zero_reward_identity_errors": "unchanged from D170a"
+    }
+  },
+  "phase2_3_execution": {
+    "driver": "cgauto/analyze_d170b_family_robust_option_policy.py (thin driver; imports evaluate_deterministic/summarize_rows/admission_gates/veto_gates/confirmation_gates/clustered_ci/load_model/rows_digest unmodified from cgauto/analyze_d170a_family_robust_option_policy.py; only file-path resolution and output schema tags differ, pointed at D170b's own fit checkpoints/results)",
+    "analyzer_reused_unmodified": "cgauto/analyze_d170a_family_robust_option_policy.py (hash below matches the D170a lock's own record for the same file)"
+  },
+  "threading": {
+    "training_rule": "one deterministic training thread per fit (RAYON_NUM_THREADS=1, torch.set_num_threads(1)); the 8 fits are run as 8 separate OS processes concurrently (each internally single-threaded), not as one multi-threaded fit.",
+    "evaluation_rule": "evaluation (Phase 2/3) may parallelize; byte-identity between 1 and 20 threads is demonstrated by the D170aBatch::step() design itself and the dedicated Rust unit test batch_task_assignment_is_thread_count_invariant plus a live 1-vs-20-thread run comparison recorded in the Phase 2/3 result docs."
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md": "1e2ff6597969d0d2670e1c84c0871a3b595405df8114884ad39713f9920e8ec0",
+    "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-repair-protocol-2026-07-28.md": "6f8780b19a761aec434c0e27b6712fac1efa1818bc400ac087a06933dc3b9653",
+    "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-lock.json": "670f4415ba6b9f9aae173f3d63306785761813d183b20fe3e28862117898965b",
+    "rust/src/rl_d170a_option_policy_env.rs": "f9d47d119dcd8d443976ccb1154081eb54e99493cbcdd5012a5b4491b81c542d",
+    "cgauto/rl_d170a_option_policy_env.py": "febc4377b9141e8253fb24330f73b25e5d96071483775a8c1b88278e0033de9f",
+    "cgauto/train_d170a_family_robust_option_policy.py": "37da37c9eb6f9d104c1794c0b3b845f27a78a56ca77f5db929f809af9b841b9c",
+    "cgauto/train_d170b_family_robust_option_policy.py": "3315633ceead404919c516b2fa53f3e1edf969ea126bb38839685ad96082f0bf",
+    "cgauto/analyze_d170a_family_robust_option_policy.py": "d5a971d503bb055f25f306e284f7317595f32140a2a4defe5d0e639761fffa6f",
+    "cgauto/analyze_d170b_family_robust_option_policy.py": "c12527a8e8fc6639e1bb3d96b4b47601107ca32aae579c2d857aee000fd78b41",
+    "cgauto/d170b_activation_verification.py": "8170a4749c31981ac2937e1b4e7130a13563accac71ab8eb26846f13c348282e",
+    "data/analysis/live-agent-6553250/d170b-activation-verification-2026-07-28.json": "2607626da74aedba3a68fe80442a4c908f445d6c0fa1553b90de3a67c6f462be",
+    "rust/src/lib.rs": "2b8f2c9cb9cbcad3cf3a9528993e0aca921159aae95fdf96b47635b422951ba4",
+    "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+  },
+  "prohibitions": {
+    "train_or_select_on_veto_panel": true,
+    "fit_to_d169_envelope_winners": true,
+    "gpu_in_selected_path": true,
+    "fresh_range_expansion": true,
+    "threshold_or_architecture_tuning_after_outcomes": true,
+    "second_confirmation_run": true,
+    "modify_frozen_modules": true,
+    "d170a_artifacts_untouched": true,
+    "phase4_out_of_scope_this_dispatch": true
+  }
+}
