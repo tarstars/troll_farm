@@ -67,6 +67,13 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   stays on the shelf pending any future (a) decision; goal re-scoping remains open.
   D170a's CLOSED-AT-PHASE-1 was implementation invalidation (repaired in D170b); both
   records frozen.
+- **2026-07-28 (latest): OWNER REOPENED TIER-2 (option a).** Active protocol: **D172a**
+  (`d172a-dense-counterfactual-option-policy-protocol-2026-07-28.md`) — exact zero-noise
+  counterfactual labels at every armable state (the D169 machinery), signal-floor early
+  kill (≥8% of states with max label ≥ +2), two frozen function classes, τ=+1.0 runtime
+  threshold, LOBO selection, veto, sealed confirmation (ranges 9,860/9,861/9,862
+  thousands). Any CLOSED = final closure of the learning route. Arena for a CONFIRMED
+  product needs a NEW owner authorization. Maintenance mode continues in parallel.
 - **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
   FROZEN and delegable**:
   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`

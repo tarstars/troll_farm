@@ -149,6 +149,14 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28 (later): OWNER DECISION — Tier-2 REOPENED (option a)
+
+The owner reopened Tier-2: "Let's reopen Tier-2." The dense-counterfactual-credit
+successor program is authorized as **D172** (protocol frozen same day). Maintenance-mode
+items (collection cron, sweeps, no-churn) continue unchanged; the earlier hold decision
+is superseded only for Tier-2. Arena/promotion for any D172 product would require its
+own explicit authorization at that gate.
+
 ## 2026-07-28: OWNER DECISION — hold (option b)
 
 Presented with (a) authorize a new dense-counterfactual-credit successor program, (b)
