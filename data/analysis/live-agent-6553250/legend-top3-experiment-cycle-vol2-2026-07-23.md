@@ -162,6 +162,32 @@ in STATE §4, available for a future (a) decision. The rank-≤3 goal remains fo
 standing but has no evidence-permitted active program; re-scoping stays open to the
 owner.
 
+## 2026-07-28: B3.3 field re-powering + B3.2 waste sweep on the 8,1xx-game corpus
+
+B3.3 recomputed the small-n field measurements on the quadrupled corpus (read-only; frozen
+verdicts stand). Stable within old CIs: D167 BANK_SEED top-5 share 71.4% (n=21) → 67.5%
+(n=243); pre-carry 44.9% (n=49) → 40.5% (n=635); B3.1 catastrophe rate 9.9% → 9.8% with
+scaling lead time mean 74.4 turns CI [63.9, 85.8] (the resident's own game set was already
+exhaustive — re-confirmation, not re-powering). One material mover: **D164's top-5 P→S→P
+motif rate 72.0% (36/50) → 49.7% (435/875), CIs non-overlapping** — diagnosed as sampling
+completeness, not regime change: the old recent-10-per-agent windows over-sampled peer
+matchups, while the full windows are 91.7% non-peer opponents. D164's actual frozen gate
+(breadth + gap) still passes cleanly on the new data (5/5 agents, +38.9pp over the
+resident's 10.8%); the *population* motif rate is hereby corrected to ≈50% for future
+reference.
+
+B3.2: the motion audit replicates its zero-failure result at 4× scale (49,977 real arena
+moves: zero target-landing, teammate-block, or door-stall failures). **One concrete
+execution-class candidate found: sustained same-two-cell target oscillation** — ≥10-turn
+runs in 18/194 resident games, worst 131 consecutive turns with frozen unbanked carry,
+~2.8× enriched in catastrophes (causality unestablished; losing-game pathology is a
+plausible confounder). Logged as open lead B3.4: diagnose the planner standoff, test a
+bounded fix under the usual causal protocol — execution-class, the only family with a
+perfect arena-transfer record. Context notes from the 29 first-seen agents: Pafin reaches
+five workers in 48% of its games (resident 0/194); persistent-denial styles exist that the
+local 8-family panel does not exhibit. Report: session scratch
+`b32-b33-field-audits-report.md` (numbers preserved here).
+
 ## 2026-07-28: D170b CLOSED-AT-PHASE-2 — the closed-loop option program closes on valid mechanics
 
 The repaired re-run is mechanically flawless: frozen inherited block byte-identical (all

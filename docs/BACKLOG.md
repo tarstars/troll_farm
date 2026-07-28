@@ -32,10 +32,10 @@ envelope PASS (+10.671) → D170b closed-loop training (in flight).
 - **B0.3 No-churn rule stays absolute** — no arena write until a candidate passes the
   promotion protocol (B4.1). Every failed trial costs ~2–4 points of standing for days.
   [class (g), fresh-vs-mature]
-- **B0.4 ✅ AUTHORIZED 2026-07-28 (owner decision (b), "let the corpus compound"
-  clause): scheduled wide-lens collection.** Daily token-free system cron running a
-  committed wide-lens driver (productionized from the 07-28 run); throttled, idempotent,
-  read-only, logs locally. Removal: delete the marked line via `crontab -e`.
+- **B0.4 ✅ INSTALLED 2026-07-28** (authorized under owner decision (b)): daily cron
+  05:17 → `data/scripts/collect_wide_cron.sh` (marker `# troll-farm-wide-collect`;
+  removal = delete that line via `crontab -e`). Driver committed (`b15a75f`) with
+  offline failure-path tests; live test run: +9 games → 8,131 cumulative, QA clean.
 
 ## Tier 1 — declared next experiments (cheap, bounded, evidence-backed)
 
@@ -100,16 +100,22 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   observable early-warning trigger — opponent scaling past 2 workers precedes the
   crossover by 42–125 turns in 84% of catastrophes (83% of mass). **Feeds B2.1 as an
   activation-conditioning signal**, not a switch retune.
-- **B3.2 Execution-waste sweep on the freshest corpus** *(1 session)*
-  Motion/idle/waste audit on new replays (the 07-16 audit found zero motion failures —
-  now worth rerunning on the 4× corpus with its 29 first-seen agents). Cheap; occasional
-  +0.5–1 candidates of the class that actually transfers.
-- **B3.3 (new): re-power the field measurements on the 8,122-game corpus** *(1 session,
-  read-only)* — D164's motif rates rested on 50 top-5 appearances, D167's field gate on
-  21 cycles, B3.1 on 19 catastrophes. A fresh field audit (new protocol; frozen prior
-  verdicts stand — this is new evidence, not re-adjudication) sharpens the field picture
-  before any candidate approaches the arena and gives D170's confirmation numbers better
-  context.
+- **B3.2 ✅ DONE 2026-07-28** — motion audit clean at 4× scale (49,977 moves, zero
+  failures, replicating 07-16). **One concrete candidate found → B3.4.** Context: 29
+  first-seen agents include qualitatively new scaling (Pafin: 5 workers in 48% of games)
+  and denial styles absent from the local panel.
+- **B3.3 ✅ DONE 2026-07-28** — BANK_SEED (67.5%), pre-carry (40.5%), catastrophe
+  signature (9.8%, lead 74.4 turns) all stable; **D164's top-5 motif population rate
+  corrected 72% → 49.7%** (sampling-completeness artifact; the frozen breadth+gap gate
+  still passes, 5/5 agents, +38.9pp vs resident). CONSTRAINTS updated.
+- **B3.4 (new, OPEN — the current best maintenance lead): same-two-cell oscillation
+  diagnosis + bounded fix** *(1–2 sessions, local only)* — 18/194 resident games contain
+  ≥10-turn two-cell target oscillations (worst: 131 turns with frozen unbanked carry),
+  ~2.8× enriched in catastrophes (causality unproven — losing-game pathology is a
+  plausible confounder). Diagnose the planner standoff in the resident source, then test
+  a bounded fix under the standard causal protocol (paired, exact-fallback, preregistered
+  gates). Execution-class — the only family that has ever transferred to the arena. Any
+  promotion attempt would still require owner arena authorization under B0.3/B4.1.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

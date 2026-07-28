@@ -211,6 +211,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- Field-rate corrections from the 8,1xx-game corpus (2026-07-28, frozen verdicts stand):
+  the D164 top-5 P→S→P motif POPULATION rate is ≈49.7% (435/875), not the 72% measured on
+  recent-10 windows — a sampling-completeness artifact (old windows over-sampled peer
+  matchups; full windows are 91.7% non-peer). D164's breadth+gap gate still passes (5/5
+  agents, +38.9pp vs resident). D167 BANK_SEED (67.5%, n=243), pre-carry (40.5%, n=635),
+  and the B3.1 catastrophe signature (9.8%, lead time 74.4 turns CI [63.9,85.8]) are
+  stable. Sampled-window rates must not be quoted as population rates. [B3.3, vol 2]
 - On-policy terminal-reward closed-loop training over the budget-1 resident option space
   is CLOSED: with valid mechanics and all 13 arms live, all four objectives (pooled,
   capped, own-protected, group-DRO+protection) converged to always-KEEP (P(invoke) ≤3.3%,
