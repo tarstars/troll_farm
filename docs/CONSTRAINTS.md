@@ -211,6 +211,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★ Execution-waste minimisation is NOT the ladder differentiator: on all six sweep
+  signatures the resident wastes LESS than both the top-5 and ranks-6–20 cohorts, even
+  per-worker (harvest_slack turns/game 74.8 vs 615.9 vs 330.0; top-5 episodes 96%
+  capable-worker-in-range vs our 40.5%, still 9.9× our rate after roster adjustment).
+  Rosters: resident 2.00, top-5 3.55, ranks 6–20 2.50. Our efficiency is the efficiency of
+  a small economy. Take cheap positive execution fixes, but do not expect a large vein and
+  do not frame waste as the gap. [comparative baseline 2026-07-28]
 - ★ Worker-3 scaling is IRON-limited, not fruit-limited: crediting EVERY uncollected
   reachable fruit (ours + opponent's) opens a cheap-helper window in only ~10% of games
   and the balanced spec in 0/205 ever, while IRON limits 97.3–100% of remaining failures

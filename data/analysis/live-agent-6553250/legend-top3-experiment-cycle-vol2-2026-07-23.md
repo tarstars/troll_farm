@@ -175,6 +175,33 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: comparative waste baseline — the resident is CLEANER than the top cohort on every signature
+
+Detector correctness first: three capacity/precondition bugs found and fixed in the
+standing tool (CHOP legality ungated on free capacity — the B3.6 artifact; harvest_slack's
+capable-worker annotation; late_train_window's affordability missing `training_blocked`).
+Resident `idle_with_work` falls **7,782 → 6,759 episodes (−13.1%)**, corroborating B3.6's
+~945-episode diagnosis. Tool now sweeps any agent (46 tests).
+
+First cross-cohort measurement in the project's history: top-5 (875 games) and ranks 6–20
+(2,412 games) vs the resident (205), pooled and roster-adjusted (rosters are exact:
+workers never die, so final roster = 1 + TRAINs; resident **2.00**, top-5 **3.55**, ranks
+6–20 **2.50**). **On all six signatures the resident shows LESS waste than both cohorts,
+including per-worker.** The separator is `harvest_slack`: **74.8 turns/game (resident) vs
+615.9 (top-5, 8.2×) vs 330.0 (ranks 6–20, 4.4×)** — and in the opposite direction to the
+"we are uniquely sloppy" hypothesis. Top-5 episodes are 96% genuinely-capable-worker-in-
+range versus our 40.5%; restricted to capable episodes and roster-adjusted, top-5 still
+run **9.9×** our rate. `idle_with_work` is near-identical in character everywhere (~80%
+single-turn blips), consistent with B3.6.
+
+**Interpretation, recorded as binding:** our execution hygiene is the hygiene of poverty —
+with 2 workers and ~12 crops there is little to waste, while the top cohort leaves fruit
+lying everywhere and wins anyway on economy size. **Execution-waste minimisation is not
+the differentiator**; this is strong independent support for the architectural reading
+(D101, D170b, D172a) and it materially downgrades the remaining Tier-3 prospecting.
+Execution-class fixes retain their perfect transfer record and stay worth taking when
+cheap and positive — but no large execution vein should be expected to exist.
+
 ## 2026-07-28: B3.8 — the scaling bootstrap is IRON-limited, not fruit-limited (owner-thesis test)
 
 Counterfactual currency audit over all 205 resident games (0 integrity anomalies). Haul:
