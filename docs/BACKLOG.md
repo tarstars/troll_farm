@@ -132,9 +132,13 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   (`d35c_provenance_competitive_bundle_oracle_impl`, 311 errors) so
   `cargo test --workspace` gates work again.
 - **B5.2 ✅ YT tranche mirror** — done as part of B0.2 (plan Task 5, md5-verified).
-- **B5.3 (new): migrate `data/raw/games` (2.4 GB) to external storage** — the games store
-  became a bulk root after the wide collection; apply the storage policy's deferred path
-  split (copy-verify-symlink, as tranches 1–2), leaving compact indexes local.
+- **B5.3 (re-scoped 2026-07-28): cold-file migration only; the LIVE games store stays
+  local.** Rationale: the daily collection cron writes into `data/raw/games/` at 05:17 —
+  symlinking the live store to the sometimes-detached USB drive would turn every
+  drive-absent morning into a failed collection and permanently lost stream games
+  (windows rotate). Instead: periodically migrate games older than ~30 days per-file
+  (copy-verify-symlink), keeping the hot store and all indexes local. Low urgency at
+  2.4 GB on a 900 GB NVMe.
 
 ## Recommended order
 
