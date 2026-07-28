@@ -32,11 +32,10 @@ envelope PASS (+10.671) → D170b closed-loop training (in flight).
 - **B0.3 No-churn rule stays absolute** — no arena write until a candidate passes the
   promotion protocol (B4.1). Every failed trial costs ~2–4 points of standing for days.
   [class (g), fresh-vs-mature]
-- **B0.4 (proposed — ⏳ pending user standing authorization): scheduled wide-lens
-  collection.** Token-free system crontab running the throttled idempotent collector
-  every 12–24 h with the wide lens. Justification: the 2026-07-28 one-shot yielded 6,231
-  games; per-agent battle windows rotate, so unharvested games are permanently lost. Not
-  installed until the user grants standing passive-read authorization.
+- **B0.4 ✅ AUTHORIZED 2026-07-28 (owner decision (b), "let the corpus compound"
+  clause): scheduled wide-lens collection.** Daily token-free system cron running a
+  committed wide-lens driver (productionized from the 07-28 run); throttled, idempotent,
+  read-only, logs locally. Removal: delete the marked line via `crontab -e`.
 
 ## Tier 1 — declared next experiments (cheap, bounded, evidence-backed)
 

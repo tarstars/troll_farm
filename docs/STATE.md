@@ -53,11 +53,14 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   envelope's positive contexts are unlearnable by on-policy terminal-reward training at
   any sane budget (~200 samples/arm vs SD≈26 noise); objective choice is irrelevant in
   this regime (the D109 question's answer). Veto panel and sealed confirmation block
-  remain untouched. **The project holds at Tier 0/3 (maintenance + execution-class
-  sweeps + field re-powering). Open owner decisions: (a) authorize a NEW dense-credit
-  successor program (would need its own Fable-designed protocol), (b) hold as-is, or
-  (c) re-scope the goal.** D170a's earlier CLOSED-AT-PHASE-1 was implementation
-  invalidation (trig off-by-one, repaired in D170b); both records frozen.
+  remain untouched. **OWNER DECISION 2026-07-28: (b) HOLD.** Maintenance mode active:
+  daily wide-lens collection cron (authorized; see RUNBOOK for removal), B3.2/B3.3
+  audits as occasional work, housekeeping B5.1/B5.3, absolute no-churn. No Tier-2
+  successor authorized; the dense-counterfactual-credit design (exact per-decision
+  option values from the D169 machinery as labels, closed-loop evaluation) stays on the
+  shelf pending any future (a) decision. Goal re-scoping remains open to the owner.
+  D170a's earlier CLOSED-AT-PHASE-1 was implementation invalidation (trig off-by-one,
+  repaired in D170b); both records frozen.
 - **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
   FROZEN and delegable**:
   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`

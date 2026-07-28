@@ -149,6 +149,19 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28: OWNER DECISION — hold (option b)
+
+Presented with (a) authorize a new dense-counterfactual-credit successor program, (b)
+hold at maintenance, (c) re-scope the goal, the owner chose **(b) hold**. Maintenance
+mode is now active: standing wide-lens passive collection (authorized under this
+decision's "let the corpus compound" clause; installed as a daily system cron —
+token-free, trivially removable), occasional execution-class sweeps (B3.2) and field
+re-powering audits (B3.3), housekeeping (B5.1/B5.3), and the absolute no-churn rule. No
+Tier-2 successor is authorized; the dense-credit design remains on the shelf, documented
+in STATE §4, available for a future (a) decision. The rank-≤3 goal remains formally
+standing but has no evidence-permitted active program; re-scoping stays open to the
+owner.
+
 ## 2026-07-28: D170b CLOSED-AT-PHASE-2 — the closed-loop option program closes on valid mechanics
 
 The repaired re-run is mechanically flawless: frozen inherited block byte-identical (all
