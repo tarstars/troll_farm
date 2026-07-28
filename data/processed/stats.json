@@ -1,9 +1,9 @@
 {
- "games_raw": 8122,
- "games_parsed": 8122,
+ "games_raw": 8131,
+ "games_parsed": 8131,
  "parse_failures": 0,
- "unique_maps": 8122,
- "unique_agents": 469,
+ "unique_maps": 8131,
+ "unique_agents": 471,
  "unique_names": 264,
  "names": [
   "0x6E0FF",
@@ -273,7 +273,7 @@
  ],
  "boss_games": 32,
  "turn_hist": {
-  "300": 6640,
+  "300": 6649,
   "250": 7,
   "244": 9,
   "278": 5,
@@ -470,9 +470,9 @@
   "103": 1
  },
  "map_dims": {
-  "20x10": 2212,
-  "22x11": 2169,
-  "18x9": 2043,
-  "16x8": 1698
+  "20x10": 2213,
+  "22x11": 2172,
+  "18x9": 2045,
+  "16x8": 1701
  }
 }
