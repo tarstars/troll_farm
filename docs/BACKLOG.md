@@ -159,6 +159,15 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   for us. If iron slack is large → an execution-class mining fix becomes the top candidate;
   if not → scaling is structurally out of reach and the orchard must be justified by direct
   fruit value alone.
+- **B4.3 ✅ DONE 2026-07-28 — the scaling destination is priced**: within-agent +48.2
+  margin/worker (CI [44.1,52.7]); 2→3 = +1.9 rating, 3→4 = +3.3, 4→5 = none; resident wins
+  5.0% vs 4+-worker opponents. **2→4 ≈ +5.2 rating = 84% of the gap.** Gated on B3.9.
+- **B4.4 (new, OPEN — the non-scaling path B4.3 exposed): peer-cohort analysis.** 25
+  Legend agents run the resident's exact 2.00 roster yet rank 7–54 — a two-worker
+  architecture demonstrably reaches rank 7, ~9 rating points above us, with no scaling at
+  all. What do the strong two-worker agents do that we don't? Read-only field comparison
+  of score composition, production, suppression, timing, and terminal behaviour. This is
+  the only direction that is neither closed nor affordability-gated.
 - **B3.10 (new, OPEN, conditional): near-camp opportunistic harvest** — 956 bill-relevant
   near-camp events, 71.8% outside the tested scope, 43.4% cheaply capturable. Justified by
   DIRECT fruit value only (B3.8 closed the scaling rationale), and must budget for the

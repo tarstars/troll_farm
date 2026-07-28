@@ -175,6 +175,36 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: B4.3 — the field price of a worker: +2–4 rating points each, 2→4 ≈ 84% of our gap
+
+First field pricing of the scaling direction, over 8,073 clean games (boss and
+crash/timeout games excluded). **Head-to-head roster asymmetry** (the natural experiment):
+roster difference +1 → **+30.4 mean margin, 66.4% win rate (n=3,415)**; +2 → +81.2, 79.0%
+(n=775); +3 → +135.1, 92.9% (n=56). It survives skill-matching (≤2-point arenaScore gap:
++46.2 at n=228) and — decisively for the confounding worry — the **within-agent fixed
+effect is LARGER, not smaller: +48.2 margin per worker, 95% CI [44.1, 52.7]** across 169
+agents / 15,424 games. Per-worker increments are **not** diminishing where it matters:
+2→3 = +22.7 margin (+1.9 rating), 3→4 = +38.9 (+3.3 rating), 4→5 = −18.5 with a CI
+crossing zero (no benefit; cap the ambition at four).
+
+**The resident's own exposure**: win rate **100% / 58.2% / 30.0% / 5.0%** against
+opponents ending with 1 / 2 / 3 / 4+ workers, margins +101 / +21 / −37 / −76. Our overall
+field margin is ≈ 0 (+0.19) — a break-even blend of winning at our own scale and being
+crushed by larger armies.
+
+**Two honest qualifications.** (1) Field-wide, roster does NOT proxy rank: the rank-band
+table is non-monotonic (top-5 3.55, ranks 6–20 2.50, ranks 21–50 2.90, Gold 2.64) and the
+agent-level correlation is ≈0 — which cuts both ways: it weakens "big rosters = strong
+bots" as a confound (good for the causal reading) while proving roster is not destiny.
+(2) **25 Legend agents run the resident's exact 2.00 roster and rank 7–54** — i.e. a
+two-worker architecture can reach rank 7, so a non-scaling path to improvement provably
+exists; opened as B4.4.
+
+Verdict: a worker is worth ≈ +25–50 margin (+2–4 rating), concentrated in workers 3–4;
+**scaling 2→4 ≈ +5.2 rating points, 84% of the resident's 6.25-point gap to the rank-3
+bar.** This prices the destination only — B3.8 showed our path there is iron-limited, so
+the whole direction remains gated on B3.9's affordability answer.
+
 ## 2026-07-28: comparative waste baseline — the resident is CLEANER than the top cohort on every signature
 
 Detector correctness first: three capacity/precondition bugs found and fixed in the

@@ -211,6 +211,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★ Field price of a worker (first measurement, 8,073 games): head-to-head roster +1 →
+  +30.4 margin / 66.4% wins (n=3,415); within-agent fixed effect **+48.2 margin/worker,
+  CI [44.1,52.7]** (larger than naive, so skill confounding does not explain it). Marginal
+  value 2→3 = +1.9 rating, 3→4 = +3.3 rating, 4→5 = none (cap at four). Resident win rate
+  by opponent roster: 100/58.2/30.0/5.0% vs 1/2/3/4+ workers. Scaling 2→4 ≈ +5.2 rating =
+  84% of the gap — but this prices the DESTINATION; affordability is the open question.
+  Roster does not proxy rank field-wide (correlation ≈0; 25 Legend agents run 2.00 rosters
+  at ranks 7–54), so a non-scaling path also provably exists. [B4.3]
 - ★ Execution-waste minimisation is NOT the ladder differentiator: on all six sweep
   signatures the resident wastes LESS than both the top-5 and ranks-6–20 cohorts, even
   per-worker (harvest_slack turns/game 74.8 vs 615.9 vs 330.0; top-5 episodes 96%
