@@ -175,6 +175,41 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: B4.5 — "chopping always wins": the planting gate is priority, not a disabled subsystem
+
+Two corrections to B4.4's reading. **(1) The live artifact does not contain the factory.**
+`banana_factory_enabled` is hardcoded `false` in the only constructor chain `main()` uses
+(`:4077` via `new()`→`with_policy()` `:3824-3832`, called unconditionally at `:6016`), so
+its one-shot selector (`:5216-5234`: `live_plants ≤ 20 && fruits ≥ 27 && banana_plants ≥ 6`,
+evaluated once at roster 2) is dead code — and the deployed slim artifact, SHA-verified
+against STATE.md, contains **zero occurrences of `banana_factory`/`ScarceIntent`**,
+consistent with the 07-17 slimming pruning provably-dead families. **(2) The real
+mechanism** producing turn-191.5 is two other live paths: a rare map-gated single-mother
+orchard (`:4394-4443`, `:5242-5429`) and an idle-regeneration fallback that permits PLANT
+only once a worker has nothing left to CHOP (`:3084-3145`, `:3200-3253`). **Chopping always
+outranks planting**; we farm only when idle.
+
+Measurements: the dead selector would fire in **12/204 = 5.9%** of games (evaluated on
+decoded state at each game's own roster-2 turn, median turn 7); fruit and banana floors
+each block ~70%, the plants cap binds only 13%; halving the floors reaches ~10–20%
+coverage. Timing is not the constraint — we reach roster 2 at turn 7, long before peers
+begin planting at 21–29. Peer design vs D89: **not structurally different** (peers are
+~50/50 bank/harvest-seeded and self-chop 76% of their own crops vs 16% harvested — the same
+wood-dominant pattern D88 found inside D89) — the difference is **bound**: D89 dumps 100%
+of its bank at once with no cap, peers hold **~5–6 concurrent own crops**.
+
+**Risk, field-confirmed:** D89's leak mechanism is visible in real games — a within-agent
+high-vs-low planting split shows **opponent score +20.8, CI [1.8, 38.0]**, surviving a
+game-length confound check, and **11/16 peer agents exceed D89/D91's 0.40 safety ratio**.
+Peers appear to absorb the leak through the suppression efficiency we lack (B4.4 finding
+3: 0.31 vs 0.43 wood/chop). Note also that D91's real failure was **map-cluster support**
+(CI [−1.74, +63.76]), not the efficiency ratio, which it passed at 0.337.
+
+Design consequence for D175: do not resurrect the pruned factory or tune its dead selector.
+Target the priority defect directly with a **bounded-concurrency early planting rule**
+matching the peers' measured shape, and reinstate the Δopponent ≤ 40%·Δown safety ratio
+unweakened on a wider map panel than D91's.
+
 ## 2026-07-29: D174a CLOSED-AT-MECHANISM — and it corrects B3.9 while exposing a hard 2-worker cap
 
 **Phase-0 preflight, before any code change: 0/64 (0.0%).** With the bank synthetically
