@@ -211,6 +211,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- ★★ The bot stops mining permanently at worker two: `iron_candidates()` has one call
+  site, gated `own_units < 2`, so 100% of 139 lifetime MINE actions occurred pre-worker-2
+  and 0 occurred across 4,090 legal-but-idle workforce-≥2 turns. We mine 0.68 iron/game vs
+  the top-5's 13.02 (19.2×) while 98.3–98.6% of reachable iron goes unconverted at median
+  approach distance 0. No capability wall (trained units already have `chop_power ≥ 1`).
+  Crediting fruit AND iron moves cheap-helper affordability 8.8% → 84.4% of games and the
+  balanced spec 0% → 42.4%; the residual bottleneck then flips to LEMON/PLUM. Any fix must
+  be opportunistic, never a dedicated funding detour (D94 trained worker 3 in 147 tasks and
+  lost 91.6 margin). [B3.9]
 - ★ Field price of a worker (first measurement, 8,073 games): head-to-head roster +1 →
   +30.4 margin / 66.4% wins (n=3,415); within-agent fixed effect **+48.2 margin/worker,
   CI [44.1,52.7]** (larger than naive, so skill confounding does not explain it). Marginal

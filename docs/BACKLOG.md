@@ -151,8 +151,17 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   balanced spec 0/205 ever; IRON limits 97.3–100% of failures. Owner's near-camp
   hypothesis CONFIRMED (1,144 events ≤2 from our door; 71.8% outside D173b's scope; 43.4%
   capturable in a ≤2-turn detour). Top-5 fund 66% of bills from earned currency, 76% fruit.
-- **B3.9 (new, OPEN — the vein B3.8 opened): IRON acquisition audit + combined
-  counterfactual** — mining has never been audited. Measure our MINE behaviour vs the top
+- **B3.9 ✅ DONE 2026-07-28 — verdict (A), the strongest lead in the project's history.**
+  Mining is gated off entirely at workforce ≥2 (one call site, `own_units < 2`); 0.68
+  iron/game vs top-5's 13.02; 98%+ of reachable iron unconverted at approach distance 0;
+  no capability wall. Fruit+iron together: cheap-helper affordability 8.8% → **84.4%**,
+  balanced 0% → **42.4%**. → **D174a frozen** (`d174a-opportunistic-mining-protocol-
+  2026-07-28.md`): TRAIN-trigger preflight, opportunistic MINE candidate at workforce ≥2,
+  mechanism gates including **worker-3 TRAIN in ≥25% of tasks** (control 0%), value gates
+  retaining the family/tail floors both D173 variants failed. QUALIFIED → candidate at the
+  arena gate (new owner authorization required).
+- *(original B3.9 scope)* IRON acquisition audit + combined
+  counterfactual — mining has never been audited. Measure our MINE behaviour vs the top
   cohort (rate, timing, iron-source proximity, missed reachable iron), then re-run the
   affordability counterfactual crediting BOTH uncollected fruit AND missed iron. This is
   the decisive test of whether the production+consumption coupling has ANY viable bootstrap

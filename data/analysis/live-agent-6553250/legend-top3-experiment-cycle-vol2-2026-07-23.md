@@ -175,6 +175,46 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: ★ B3.9 — the bot stops mining at worker two; the scaling bootstrap is a one-site gate
+
+**Root cause, confirmed with zero exceptions.** `iron_candidates()`
+(`yamo_orchard_live.rs:936–961`) is the only MINE-candidate constructor in ~6,024 lines,
+called from exactly one site (`early_candidates:887`), reachable only while
+`own_units < 2` (`:1560`/`:3486`, dispatch `:1581`/`:3545`). Empirically: **100% of our
+139 lifetime MINE actions occurred at unit-count 1**, and across 4,090 real legal-but-idle
+turns at workforce ≥2 in 171/205 games, mining was chosen **0 times**. The instant worker
+two exists, iron acquisition ends permanently.
+
+**Scale of the loss.** We mine 139 iron across 205 games (**0.68/game**, median 0); the
+top-5 mine **13.02/game** — 19.2× — with mining spread across worker ordinals 0–4 and no
+dedicated miners (every miner-worker is <30% MINE share, i.e. opportunistic). Unmined
+reachable iron: **8,051 credit-iron (strict) / 10,211 (generous)**, 98.1–98.5% of it at
+workforce ≥2 — meaning **98.3–98.6% of the opportunity is never converted**, with a median
+trajectory approach distance of **0** (units stand on the source).
+
+**Crucially, no second capability wall.** Unlike the harvest defect (trained units
+hardcoded `harvest_power: 0`, which capped D173), `opening_options:1887` gives every
+trained unit `chop_power ≥ 1` — the stat mining uses. The defect is purely
+candidate-generation, and an inactive prototype already exists in-source
+(`SecureOrchardBot::banana_seed_factory_worker_three_bridge:3871`).
+
+**Combined counterfactual (upper bound, stated as such).** Fruit-only reproduces B3.8
+exactly (8.8% cheap / 0% balanced). Iron-only barely moves (1.5%/0%). **Both together:
+cheap helper affordable in 173/205 = 84.4% of games (median turn 37), balanced chopper in
+87/205 = 42.4% (median turn 71)** — nearly identical under strict and generous
+definitions. The residual bottleneck flips from IRON (97–100% of fruit-only failures) to
+LEMON/PLUM (65–88% of combined failures).
+
+**Verdict (A): mining slack is large and the fix is warranted** — the top execution-class
+candidate the project has ever had, because for the first time a mechanically-identified
+one-site defect connects to a priced outcome (B4.3: 2→4 workers ≈ +5.2 rating = 84% of our
+gap) with no known capability blocker. Cautions carried into the design: this is stock
+accounting, not causal simulation; D94's funding *bridge* trained worker three in 147
+tasks and still lost 91.6 margin, so the fix must be **opportunistic** (mine what you are
+standing on) rather than a dedicated funding detour; and both D173 variants paid a
+trigger-independent family/tail cost for diverting work, which any successor must budget
+for. Opened as D174.
+
 ## 2026-07-28: B4.3 — the field price of a worker: +2–4 rating points each, 2→4 ≈ 84% of our gap
 
 First field pricing of the scaling direction, over 8,073 clean games (boss and
