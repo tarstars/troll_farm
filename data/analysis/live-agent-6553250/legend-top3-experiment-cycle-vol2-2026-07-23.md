@@ -452,6 +452,17 @@ the fruit would actually fund anything — which B3.8's counterfactual currency 
 measuring right now. No candidate built; no arena action; the owner's D173a promotion
 authorization never triggered and does not carry to any successor.
 
+## 2026-07-28: standing collection cron installed and first run
+
+The wide-lens collector is now productionized and scheduled (`data/scripts/collect_wide.py`
++ `collect_wide_cron.sh`, daily 05:17, crontab marker `# troll-farm-wide-collect`, commit
+`b15a75f`; six offline failure-path tests plus the live suites ran before any network
+call). Its first live run: **+9 new games, corpus 8,122 → 8,131**, snapshot
+`20260728T110709Z-d61p-wide`, 50 players enumerated (resident once — the earlier
+duplicate-source tag is fixed by construction), all 11 QA gates true. Corpus figures
+quoted after this date should use 8,131; the 8,122 figure in the wide-collection entry
+above is correct as of that entry.
+
 ## 2026-07-28: B3.6 CLOSED — idle_with_work is ~78% benign; no fix candidate, and round 2 partly self-corrected
 
 Full-corpus sub-classification of all 7,782 episodes / 10,279 turns (reproduces round 2's

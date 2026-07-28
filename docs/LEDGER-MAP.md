@@ -239,7 +239,7 @@ thirty supervised selectors that all failed the same way.
 | D161 | Same-panel dominance arithmetic | Full q6 oracle only +3.4 (n.s.) vs resident — substrate closed; resident-anchoring becomes law |
 | D162 | Bounded reserve/route/commit options | Can't fund worker 3 (5/128 best) — but the crop-safe option envelope is +12.7 with zero regressions |
 | D163 | Do fixed components transport? | No — fruit/iron/protection all nonpositive on a disjoint panel |
-| D164 | Current-field macro-transition audit | New motif: producer→suppressor→producer cycling, 72% of top-5 games, resident 11% |
+| D164 | Current-field macro-transition audit | New motif: producer→suppressor→producer cycling, 72% of top-5 games as sampled, resident 11% (population rate later corrected to 49.7% by B3.3; the breadth+gap gate still passes) |
 | D165 | Return to the remembered crop? | Zero support in 1,024 tasks — the old crop is always gone |
 | D166 | Is the return one command? | No: multi-step acquisition journeys, median 16 turns; single-verb controllers closed |
 | D167 | Are the journeys regular? | **Yes: BANK_SEED frozen-eligible** (135/135 local, 71.4% top-5 field); field agents pre-carry seeds through suppression 45%, resident 0% |
@@ -389,7 +389,8 @@ whenever legal) and a forced persistent producer lost 12 points (D47) — the ro
 players exhibit are *emergent from scheduling*, not rules you can bolt on. And the later
 field audits sharpened the picture: what actually separates the top cohort is not holding
 roles but **cycling** them — the same worker produces, suppresses, then produces again
-(D164, 72% of top-5 games), with production *persistence* through interruptions as the
+(D164, 72% of top-5 games as sampled — 49.7% at population scale after B3.3), with
+production *persistence* through interruptions as the
 real differentiator (D101: they reap 24% of what they plant; the resident 0.94%). The
 D-series' current thread — successor jobs, BANK_SEED returns, D168's bounded option — is
 the direct descendant of D35a's job abstraction applied to that cycling.
@@ -617,7 +618,8 @@ exact + 8 known penalty-only endings), tree invariants, and point-symmetry of ev
   top-source stratum (exactly 10 appearances per current top-20 agent — a deliberate
   stratified sample) vs boss games vs the long tail of the 345-agent population.
 - **By rank cohort** — top-5 / ranks 6–20 / resident: the standard field split of
-  D164–D167 (e.g. P→S→P cycles: 72% / 27% / 11% of appearances).
+  D164–D167 (e.g. P→S→P cycles: 72% / 27% / 11% of appearances as sampled; the top-5
+  figure is 49.7% at population scale after B3.3's re-powering).
 - **By outcome** — wins vs losses; within losses, **catastrophes** (margin ≤ −100;
   19/192 open resident games, carrying 58% of negative-margin mass) vs ordinary losses;
   early-lead reversals (ahead at turn 100) as their own diagnostic cohort.
@@ -726,7 +728,7 @@ byte-identical to the resident's game (verified, not assumed).
 
 **The D169 vocabulary, option by option.**
 
-- `OPT_RETURN` — the *successor return*. Lineage: D164 found that in 72% of top-5 games
+- `OPT_RETURN` — the *successor return*. Lineage: D164 found that in 72% of sampled top-5 games (49.7% at population scale, B3.3)
   the same worker produces → suppresses → produces again, while the resident does this in
   11%. D165 tested "walk back to the crop you remember" — zero support in 1,024 games
   (the old crop is always gone). D166 showed the real return is a multi-step journey
