@@ -1,0 +1,193 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..6cce26f 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -3081,6 +3081,46 @@ pub mod bot {
+                 }
+                 out
+             }
++            /// D173a: harvest-before-chop. A stateless, same-turn candidate for a
++            /// harvest-capable unit whose current chop target (from `chops`, already
++            /// computed by the caller) is the plant on the unit's own cell: if that tree
++            /// carries ripe fruit and the cell is within shack distance 2 (bounding the
++            /// forced carry-capacity-1 bank round trip), harvest for exactly this turn
++            /// instead of destroying the fruit with the chop -- the chop resumes next turn
++            /// since this is recomputed fresh from `view`/`unit`/`chops` on every call, with
++            /// no cross-turn memory. Reuses the existing "standing on a ripe tree" pattern
++            /// (`fruit_candidates`, `scarce_farmer_candidates`'s `HarvestSeed` branch) and
++            /// the existing shack-distance-<=2 pattern (`scarce_plant_cell`).
++            fn harvest_before_chop_candidate(
++                view: &GameState,
++                unit: &Unit,
++                chops: &[Candidate],
++            ) -> Option<Candidate> {
++                if unit.stats.harvest_power <= 0 || unit.free_capacity() <= 0 {
++                    return None;
++                }
++                let chop_command = format!("CHOP {}", unit.id);
++                if !chops.iter().any(|candidate| candidate.command == chop_command) {
++                    return None;
++                }
++                let plant = view.plant_at(unit.cell).map(|index| &view.plants[index])?;
++                if plant.fruits <= 0 {
++                    return None;
++                }
++                let shack_starts: Vec<Cell> = ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect();
++                let to_shack = bfs_distances(&view.walkable, &shack_starts);
++                if to_shack.get(&unit.cell).copied().unwrap_or(10_000) > 2 {
++                    return None;
++                }
++                Some(Candidate {
++                    command: format!("HARVEST {}", unit.id),
++                    score: 5_000.0,
++                    target: Target::Tree(unit.cell),
++                })
++            }
+             fn main_candidates(
+                 view: &GameState,
+                 unit: &Unit,
+@@ -3126,6 +3166,10 @@ pub mod bot {
+                     protected_tree,
+                     opponent_eta_penalty,
+                 );
++                if let Some(harvest) = Self::harvest_before_chop_candidate(view, unit, &chops) {
++                    out.push(harvest);
++                    return out;
++                }
+                 if idle_regeneration && chops.is_empty() {
+                     return Self::endgame_candidates(
+                         view,
+@@ -3268,6 +3312,10 @@ pub mod bot {
+                     protected_tree,
+                     opponent_eta_penalty,
+                 );
++                if let Some(harvest) = Self::harvest_before_chop_candidate(view, unit, &chops) {
++                    out.push(harvest);
++                    return out;
++                }
+                 if let Some(mut current) = chops
+                     .iter()
+                     .find(|candidate| candidate.command == format!("CHOP {}", unit.id))
+@@ -5994,6 +6042,119 @@ pub mod bot {
+                 );
+                 assert_eq!(bot.inner.opponent_crop_selected, 0);
+             }
++
++            #[test]
++            fn harvest_before_chop_fires_under_triple_condition() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let chops = vec![Candidate {
++                    command: "CHOP 7".to_string(),
++                    score: 100.0,
++                    target: Target::Tree(view.units[0].cell),
++                }];
++                let harvest =
++                    YamoBot::harvest_before_chop_candidate(&view, &view.units[0], &chops);
++                assert_eq!(
++                    harvest.map(|candidate| candidate.command),
++                    Some("HARVEST 7".to_string())
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_trained_hp0_unit() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                view.units[0].stats.harvest_power = 0;
++                let chops = vec![Candidate {
++                    command: "CHOP 7".to_string(),
++                    score: 100.0,
++                    target: Target::Tree(view.units[0].cell),
++                }];
++                assert!(
++                    YamoBot::harvest_before_chop_candidate(&view, &view.units[0], &chops)
++                        .is_none()
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_unfruited_tree() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                view.plants[0].fruits = 0;
++                let chops = vec![Candidate {
++                    command: "CHOP 7".to_string(),
++                    score: 100.0,
++                    target: Target::Tree(view.units[0].cell),
++                }];
++                assert!(
++                    YamoBot::harvest_before_chop_candidate(&view, &view.units[0], &chops)
++                        .is_none()
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_beyond_shack_distance_two() {
++                let mut view = fixture();
++                view.units[0].cell = (4, 4);
++                view.plants[0].cell = view.units[0].cell;
++                let chops = vec![Candidate {
++                    command: "CHOP 7".to_string(),
++                    score: 100.0,
++                    target: Target::Tree(view.units[0].cell),
++                }];
++                assert!(
++                    YamoBot::harvest_before_chop_candidate(&view, &view.units[0], &chops)
++                        .is_none()
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_not_emitted_for_non_chop_assignment() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let chops: Vec<Candidate> = Vec::new();
++                assert!(
++                    YamoBot::harvest_before_chop_candidate(&view, &view.units[0], &chops)
++                        .is_none()
++                );
++            }
++
++            #[test]
++            fn harvest_before_chop_wins_in_main_candidates_and_chop_resumes_after() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let armed =
++                    YamoBot::main_candidates(&view, &view.units[0], None, false, false, None, 0);
++                assert!(armed.iter().any(|candidate| candidate.command == "HARVEST 7"));
++                assert!(!armed.iter().any(|candidate| candidate.command == "CHOP 7"));
++                let best = armed
++                    .iter()
++                    .max_by(|a, b| a.score.partial_cmp(&b.score).unwrap())
++                    .expect("at least one candidate");
++                assert_eq!(best.command, "HARVEST 7");
++
++                view.plants[0].fruits = 0;
++                let resumed =
++                    YamoBot::main_candidates(&view, &view.units[0], None, false, false, None, 0);
++                assert!(resumed.iter().any(|candidate| candidate.command == "CHOP 7"));
++                assert!(!resumed.iter().any(|candidate| candidate.command == "HARVEST 7"));
++            }
++
++            #[test]
++            fn harvest_before_chop_wins_in_endgame_candidates_over_the_hardcoded_chop_override() {
++                let mut view = fixture();
++                view.plants[0].cell = view.units[0].cell;
++                let armed =
++                    YamoBot::endgame_candidates(&view, &view.units[0], None, false, None, 0);
++                assert!(armed.iter().any(|candidate| candidate.command == "HARVEST 7"));
++                assert!(!armed.iter().any(|candidate| candidate.command == "CHOP 7"));
++
++                view.plants[0].fruits = 0;
++                let resumed =
++                    YamoBot::endgame_candidates(&view, &view.units[0], None, false, None, 0);
++                assert!(resumed.iter().any(|candidate| candidate.command == "CHOP 7"));
++                assert!(!resumed.iter().any(|candidate| candidate.command == "HARVEST 7"));
++            }
+         }
+     }
+     use super::game::GameState;

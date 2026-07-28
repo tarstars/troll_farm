@@ -175,6 +175,24 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: D173a CLOSED (trigger infidelity) → D173b repair frozen; the broad variant's signal recorded
+
+D173a ran cleanly (3-hunk fix, 30/30 tests, compile-then-restore kept the tree byte-exact
+throughout, 2,048-task panel, 1,005/1,005 inactive tasks byte-exact) but the implemented
+trigger was broader than the frozen spec: it fired on CHOP-candidate *existence* at the
+unit's cell rather than CHOP being the unit's *assigned action* — 41/60 sampled
+activations were transit units diverted mid-plan. All three mechanism gates failed
+(sub-class −23.6% vs −70%; total slack +7.8%; door_queue +30%, idle_with_work +15.3%
+worsened) and value failed family/tails (worst family compact_gold −2.06; catastrophes
+54 vs 49; mass 1.096) — **while overall value was strongly positive: +2.935
+[+1.346, +4.524], activated subset +5.763 over 1,043 tasks (50.9% activation).**
+Adjudication: implementation-fidelity invalidation (D170a precedent) — the frozen narrow
+fix was never tested. **D173b frozen** (trigger reads the actual assignment; ≥90%
+pre-panel fidelity check; all else inherited, same seeds rerun from scratch). The broad
+variant is CLOSED as tested and may not be tuned; its +2.9/+5.8-with-regressions signal
+is recorded as hypothesis material for a future, separately-designed transit-unit
+opportunistic-harvest experiment (guards for family/tails would be the design core).
+
 ## 2026-07-28: B3.5 diagnosis — HARVEST is a missing action class; D173 fix frozen
 
 Root cause, confirmed by two independent source reads cross-checked against all 1,014

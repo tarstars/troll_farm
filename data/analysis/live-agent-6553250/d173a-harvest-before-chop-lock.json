@@ -1,0 +1,65 @@
+{
+  "schema": "troll-farm-d173a-harvest-before-chop-lock-v1",
+  "frozen_at_utc": "2026-07-28T18:30:00Z",
+  "question": "does a single stateless HARVEST(fruit) candidate injected into main_candidates/endgame_candidates for a harvest-capable unit whose current chop target is its own ripe-fruited cell at shack-distance <=2 clear the mechanism gate (>=70% reduction of the chop-shadow-shack<=2 harvest_slack sub-class, total harvest_slack not increased, the other five waste detectors not worsened) and the value gates (non-regression overall + activated-subset >= +1.0) on a fresh 2,048-task panel?",
+  "root_cause": "B3.5 diagnosis (scratchpad b35-harvest-slack-diagnosis-report.md): YamoBot::main_candidates (yamo_orchard_live.rs:3084-3145 pre-fix) and endgame_candidates (:3200-3339 pre-fix) never construct a HARVEST candidate for ripe fruit on any cell; yamo_chop_candidates scores purely by wood yield with zero reference to plant.fruits, so a harvest-capable unit standing on a fruited tree it is chopping destroys the fruit with the tree every time (33.4% of all harvest_slack episodes).",
+  "panel": {
+    "start_seed": 9854000,
+    "maps": 128,
+    "tasks": 2048,
+    "seats": 2,
+    "opponent_families": 8,
+    "seed_range_note": "pre-lock grepped both ledger volumes for '9,854' before use: only the D173a protocol-freeze entry itself mentions this range (vol2 line ~174); no prior experiment consumed it. Disjoint from D171a's 9,853,000-9,853,127."
+  },
+  "fix_scope": {
+    "file": "rust/src/bin/yamo_orchard_live.rs",
+    "new_fn": "harvest_before_chop_candidate(view, unit, chops) -> Option<Candidate>",
+    "call_sites": ["main_candidates", "endgame_candidates"],
+    "trigger": "unit.stats.harvest_power > 0 AND chops contains a CHOP <id> candidate for the unit's own cell AND that cell's plant has fruits > 0 AND own-door BFS shack distance <= 2",
+    "score": 5000.0,
+    "untouched": ["opening_options (harvest_power: 0 for trained units)", "idle_harvest_candidates", "ScarceIntent / scarce_farmer_candidates", "force_unique_door_clear / external_protected_tree filtering"],
+    "cross_turn_state": "none -- recomputed fresh every call from view/unit/chops only"
+  },
+  "control_snapshot": "rust/src/d171a_control_resident_snapshot.rs (reused unmodified per protocol; verified same SHA-256 as the dev copy before the fix was applied and again after restore)",
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d173a-harvest-before-chop",
+  "mechanism_gates": {
+    "subclass_reduction_min_pct": 70.0,
+    "harvest_slack_total_not_increased": true,
+    "other_five_detectors_no_displacement": true
+  },
+  "value_gates": {
+    "overall_mean_min": 0.0,
+    "overall_ci_lower_min": -0.5,
+    "activated_subset_mean_min": 1.0,
+    "worst_family_min": -1.0,
+    "catastrophes_max_vs_control_ratio": 1.0,
+    "negative_margin_mass_max_vs_control_ratio": 1.05
+  },
+  "verdict_rule": "all mechanism gates AND all value gates pass -> QUALIFIED (build candidate pair, STOP at arena gate, new owner authorization required for promotion); any gate fails -> CLOSED (restore dev copy byte-exact, no tuning of distance bound/scoring/condition)",
+  "sha256": {
+    "data/analysis/live-agent-6553250/d173a-harvest-before-chop-protocol-2026-07-28.md": "51f3dbfbdf0e85d88474d87ee35277698a174b1d99876a64139b217baf8e5344",
+    "rust/src/bin/d173a_harvest_before_chop_panel.rs": "a2950f20ffe35d740b8c06cf4de11a46813096899f9876400b65080e1f4e5e4a",
+    "rust/src/d171a_control_resident_snapshot.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/bin/yamo_orchard_live.rs_restored_after_build": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "data/analysis/live-agent-6553250/d173a-fix-as-tested.patch": "c70afe5dc4e3244a5f17020f0d791a826b39e8e6bce8c65eacfb576e92aa3261",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "cgauto/waste_sweep.py": "ebc7963fd7d55daa3e0bebded698803299b4609167d293d077731ef5c6dde816",
+    "cgauto/analyze_d173a_harvest_before_chop.py": "300fe592bd408ebdb7d7d39cbf93fe643ac92b983f3807099a36797db050134b"
+  },
+  "prohibitions": {
+    "fresh_maps_only": true,
+    "yt": true,
+    "platform": true,
+    "resident_mutation_beyond_declared_scope": true,
+    "candidate_arena_submission": true,
+    "threshold_tuning_after_outcomes": true,
+    "distance_bound_or_scoring_tuning_after_outcomes": true,
+    "modify_d171a_control_snapshot": true,
+    "modify_d172a_files": true
+  }
+}
