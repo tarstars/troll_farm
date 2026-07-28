@@ -1,0 +1,305 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..cb52ca6 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -833,7 +833,16 @@ pub mod bot {
+             }
+             fn can_train(view: &GameState, stats: Stats) -> bool {
+                 let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+-                if n >= 2 || TOTAL_TURNS - view.turn <= 20 {
++                // D174a TRAIN-gate repair (Phase 0 preflight, 2026-07-28): this used to
++                // read `if n >= 2 || TOTAL_TURNS - view.turn <= 20`, an unconditional
++                // ceiling that returned false for worker 3+ regardless of affordability
++                // (0/64 preflight tasks issued TRAIN within 10 turns of the bank being
++                // credited to exactly cover a cheap-helper bill at workforce 2). Removing
++                // the artificial `n >= 2` clause is the minimal repair: the deadline
++                // guard and the affordability check below are unchanged, so training at
++                // any workforce is now governed purely by the pre-existing cost formula,
++                // exactly mirroring Delta 1's own philosophy for `iron_candidates`.
++                if TOTAL_TURNS - view.turn <= 20 {
+                     return false;
+                 }
+                 let cost = training_cost(n, stats.tuple());
+@@ -2758,6 +2767,90 @@ pub mod bot {
+                     self.opponent_crop_harvest_rewrites += 1;
+                 }
+             }
++            /// D174a -- opportunistic mining: lift the workforce-2 mining gate (B3.9).
++            ///
++            /// `iron_candidates` is the sole MINE-candidate constructor and is reachable
++            /// only from `early_candidates`, itself gated to own-unit-count < 2. From
++            /// workforce 2 onward the resident never mines again even though every
++            /// trained unit already has chop_power >= 1 (`opening_options` never emits
++            /// chop_power 0 -- no second capability wall, unlike harvest).
++            ///
++            /// This is a post-selection rewrite of the unit's own already-resolved
++            /// assigned command, not a scored candidate injected before `select()` --
++            /// deliberately, because condition (d) below needs to know the unit's *true*
++            /// assignment outcome for the turn (D173a's lesson: a pre-selection
++            /// candidate-existence trigger fires on transit units whose real winner is
++            /// something else; D173b's own post-selection rewrite fixed that at 100%
++            /// fidelity). Positional zip against a freshly sorted own-unit list (not
++            /// string-parsing the unit id out of `commands`) so a bare "WAIT" -- which
++            /// carries no id in this engine -- is still correctly attributable and
++            /// eligible, matching `select()`'s own by-construction index correspondence
++            /// (`commands[i]` = i-th smallest-id own unit's command, unchanged by
++            /// `resolve_move_conflicts`). No cross-turn state: recomputed fresh from
++            /// `view`/`commands`/`desired` every call (the D171a stale-arm lesson).
++            ///
++            /// Runs after `apply_opponent_crop_harvest_contact` (this file's closest
++            /// architectural sibling: also a same-cell post-selection command-string
++            /// rewrite) so that mechanism's own crop-denial rewrites are evaluated
++            /// against the unit's fully-resolved assignment, matching where D173b placed
++            /// its own analogous rewrite.
++            ///
++            /// Conditions, ALL required (frozen, exact -- Delta 1):
++            /// (a) the unit stands on, or is orthogonally adjacent to, an iron source --
++            ///     `is_adjacent`, the identical check `iron_candidates` itself uses;
++            ///     "standing on" is physically unreachable (iron is not walkable) so this
++            ///     is exactly `iron_candidates`'s own adjacency test, reused verbatim;
++            /// (b) the unit has free carry capacity (`free_capacity() > 0`);
++            /// (c) an unmet TRAIN bill for the cheapest currently-planned worker spec
++            ///     (the bot's own already-computed `desired`) still needs IRON:
++            ///     deposited + carried across all own units < bill IRON, bill IRON from
++            ///     the same `training_cost(n, desired.tuple())` formula `early_candidates`
++            ///     already uses;
++            /// (d) the unit's assigned action for this turn is not itself bill-critical:
++            ///     do not displace a DROP while the unit carries IRON (that DROP is what
++            ///     banks it toward the very same bill), and -- defensively, since PICK's
++            ///     argument is a `PlantKind` and can in practice never be IRON -- do not
++            ///     displace a `PICK id IRON` either.
++            ///
++            /// Opportunistic only: no MOVE-toward-iron candidates are generated (unlike
++            /// the second half of `iron_candidates`), no routing, no reservation, no new
++            /// state machine -- the unit's previous task simply resumes next turn because
++            /// nothing about it was remembered.
++            fn opportunistic_mine_rewrite(view: &GameState, commands: &mut [String], desired: Stats) {
++                let mut my_units: Vec<&Unit> =
++                    view.units.iter().filter(|unit| unit.player == 0).collect();
++                my_units.sort_by_key(|unit| unit.id);
++                if my_units.len() < 2 || my_units.len() != commands.len() {
++                    return;
++                }
++                let n = my_units.len() as i32;
++                let bill_iron = training_cost(n, desired.tuple())[IRON];
++                if bill_iron <= 0 {
++                    return;
++                }
++                let carried_iron: i32 = my_units.iter().map(|unit| unit.carry[IRON]).sum();
++                let deposited_iron = view.inventories[0][IRON];
++                if deposited_iron + carried_iron >= bill_iron {
++                    return;
++                }
++                for (unit, command) in my_units.iter().zip(commands.iter_mut()) {
++                    if unit.free_capacity() <= 0 {
++                        continue;
++                    }
++                    if !view.iron.iter().any(|iron| is_adjacent(*iron, unit.cell)) {
++                        continue;
++                    }
++                    let fields: Vec<&str> = command.split_whitespace().collect();
++                    let verb = fields.first().copied().unwrap_or("");
++                    if verb.eq_ignore_ascii_case("DROP") && unit.carry[IRON] > 0 {
++                        continue;
++                    }
++                    if verb.eq_ignore_ascii_case("PICK") && fields.get(2) == Some(&"IRON") {
++                        continue;
++                    }
++                    *command = format!("MINE {}", unit.id);
++                }
++            }
+             fn tree_targets_by_command(
+                 candidates: &BTreeMap<i32, Vec<Candidate>>,
+             ) -> BTreeMap<String, Cell> {
+@@ -3662,6 +3755,7 @@ pub mod bot {
+                 MoisanBot::resolve_move_conflicts(view, &mut selected);
+                 self.remember_selected_regeneration(view, &selected);
+                 self.apply_opponent_crop_harvest_contact(view, &mut selected);
++                Self::opportunistic_mine_rewrite(view, &mut selected, desired);
+                 self.remember_own_plant_attempts(view, &selected);
+                 if let Some(farmer_id) = scarce_farmer_id {
+                     self.regeneration_commitments.remove(&farmer_id);
+@@ -5616,6 +5710,183 @@ pub mod bot {
+                 }));
+             }
+ 
++            // D174a -- opportunistic mining (lift the workforce-2 mining gate, B3.9).
++            const D174A_DESIRED: Stats = Stats {
++                movement_speed: 1,
++                carry_capacity: 1,
++                harvest_power: 0,
++                chop_power: 1,
++            };
++
++            /// Two own units (workforce 2): unit 7 at (1,1), unaffected by iron; unit 8
++            /// at (2,1), orthogonally adjacent to an iron source at (3,1) (manhattan 1).
++            /// `training_cost(2, D174A_DESIRED.tuple())[IRON] == 2 + 1*1 == 3`.
++            fn opportunistic_mine_fixture() -> GameState {
++                let mut view = fixture();
++                view.iron.insert((3, 1));
++                view.units.push(Unit {
++                    id: 8,
++                    player: 0,
++                    cell: (2, 1),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 2,
++                        harvest_power: 0,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                view
++            }
++
++            #[test]
++            fn opportunistic_mine_emitted_at_workforce_two_with_pending_iron_bill() {
++                let view = opportunistic_mine_fixture();
++                // Unit 7 (not adjacent to iron) keeps its bare "WAIT" (no id embedded --
++                // this also proves the rewrite is positionally, not string-id, attributed).
++                // Unit 8 (adjacent, free capacity, deficit) starts from "WAIT" too.
++                let mut commands = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[0], "WAIT");
++                assert_eq!(commands[1], "MINE 8");
++            }
++
++            #[test]
++            fn opportunistic_mine_not_emitted_when_bill_already_covered_by_bank() {
++                let mut view = opportunistic_mine_fixture();
++                view.inventories[0][IRON] = 3; // == bill (3): already covered
++                let mut commands = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[1], "WAIT");
++            }
++
++            #[test]
++            fn opportunistic_mine_not_emitted_when_bill_already_covered_by_carried_iron() {
++                let mut view = opportunistic_mine_fixture();
++                // A different unit (7) already carries enough IRON to cover the bill;
++                // unit 8 itself carries none, so this isolates condition (c) from (b).
++                view.units[0].carry[IRON] = 3;
++                let mut commands = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[1], "WAIT");
++            }
++
++            #[test]
++            fn opportunistic_mine_not_emitted_when_carry_is_full() {
++                let mut view = opportunistic_mine_fixture();
++                view.units[1].stats.carry_capacity = 1;
++                view.units[1].carry[PLUM] = 1; // free_capacity() == 0
++                let mut commands = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[1], "WAIT");
++            }
++
++            #[test]
++            fn opportunistic_mine_does_not_displace_a_drop_that_pays_the_iron_bill() {
++                let mut view = opportunistic_mine_fixture();
++                view.units[1].carry[IRON] = 1; // this DROP would bank IRON toward the bill
++                let mut commands = vec!["WAIT".to_string(), "DROP 8".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[1], "DROP 8");
++            }
++
++            #[test]
++            fn opportunistic_mine_displaces_a_drop_that_does_not_carry_iron() {
++                let mut view = opportunistic_mine_fixture();
++                view.units[1].carry[PLUM] = 1; // this DROP does not touch the IRON bill
++                let mut commands = vec!["WAIT".to_string(), "DROP 8".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[1], "MINE 8");
++            }
++
++            #[test]
++            fn opportunistic_mine_not_emitted_at_workforce_one() {
++                let mut view = fixture();
++                view.iron.insert((2, 1)); // adjacent to the sole unit's cell (1,1)
++                let mut commands = vec!["WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view, &mut commands, D174A_DESIRED);
++                assert_eq!(commands[0], "WAIT");
++            }
++
++            #[test]
++            fn opportunistic_mine_is_freshly_recomputed_every_call_no_cross_turn_state() {
++                // Same view called twice back to back with independently-fresh command
++                // vectors: the deficit call fires, the covered call does not -- proving
++                // the decision is driven purely by this call's own inputs, not memory of
++                // a previous activation (Delta 1's "no cross-turn state" requirement).
++                let view_deficit = opportunistic_mine_fixture();
++                let mut view_covered = opportunistic_mine_fixture();
++                view_covered.inventories[0][IRON] = 3;
++                let mut first = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view_deficit, &mut first, D174A_DESIRED);
++                let mut second = vec!["WAIT".to_string(), "WAIT".to_string()];
++                YamoBot::opportunistic_mine_rewrite(&view_covered, &mut second, D174A_DESIRED);
++                assert_eq!(first[1], "MINE 8");
++                assert_eq!(second[1], "WAIT");
++            }
++
++            // D174a -- minimal TRAIN-gate repair (Phase 0 preflight finding).
++            #[test]
++            fn can_train_allows_worker_three_when_affordable() {
++                let mut view = fixture();
++                view.iron.insert((3, 1)); // map has iron -> IRON leg of the bill is charged
++                view.units.push(Unit {
++                    id: 8,
++                    player: 0,
++                    cell: (2, 1),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                // Before D174a this returned false unconditionally at n == 2, regardless
++                // of the bank. training_cost(2, (1,1,0,1)) == [3, 3, 2, 0, 3, 0].
++                view.inventories[0] = [3, 3, 2, 0, 3, 0];
++                assert!(MoisanBot::can_train(&view, D174A_DESIRED));
++            }
++
++            #[test]
++            fn can_train_still_refuses_worker_three_when_unaffordable() {
++                let mut view = fixture();
++                view.units.push(Unit {
++                    id: 8,
++                    player: 0,
++                    cell: (2, 1),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                view.inventories[0] = [0, 0, 0, 0, 0, 0];
++                assert!(!MoisanBot::can_train(&view, D174A_DESIRED));
++            }
++
++            #[test]
++            fn can_train_still_respects_the_late_game_deadline_regardless_of_workforce() {
++                let mut view = fixture();
++                view.units.push(Unit {
++                    id: 8,
++                    player: 0,
++                    cell: (2, 1),
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++                view.inventories[0] = [3, 3, 2, 0, 3, 0];
++                view.turn = TOTAL_TURNS - 20; // TOTAL_TURNS - view.turn == 20 -> refused
++                assert!(!MoisanBot::can_train(&view, D174A_DESIRED));
++            }
++
+             fn add_factory_worker(view: &mut GameState) {
+                 view.units.push(Unit {
+                     id: 8,

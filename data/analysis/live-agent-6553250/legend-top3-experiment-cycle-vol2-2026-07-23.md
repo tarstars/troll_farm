@@ -175,6 +175,45 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: D174a CLOSED-AT-MECHANISM — and it corrects B3.9 while exposing a hard 2-worker cap
+
+**Phase-0 preflight, before any code change: 0/64 (0.0%).** With the bank synthetically
+credited to exactly cover a cheap-helper bill at workforce 2, the unmodified resident never
+issues TRAIN within 10 turns. Root cause: `MoisanBot::can_train` contains
+`if n >= 2 { return false }` — **unconditional, evaluated before affordability**. The bot
+is hard-capped at two workers no matter what it can pay for. Per the protocol's own
+branch, scope became Variant B (mining fix + deletion of that single clause), declared in
+the lock.
+
+Execution was clean: trigger fidelity **100.0%** (211/211 emissions satisfy all four frozen
+conditions), 34/34 unit tests, diff confined, dev copy restored and SHA-verified twice,
+activation 77.9%.
+
+**Mechanism 1/4.** Iron acquisition works exactly as designed: **0.51 → 5.40 iron/game
+(10.6×, PASS)**. But unmined-reachable episodes fall only 4.6% (need ≥50%), detector
+displacement fails (`door_queue` +16.8%, `unbanked_carry` +13.7%), and decisively
+**worker-3 TRAIN remains 0.0% in both arms** — a full 84.4-point shortfall against the
+counterfactual prediction, *even with the cap clause deleted*.
+
+**The correction this forces (binding).** B3.8/B3.9's counterfactuals priced a *synthetic*
+cheap-helper spec (3 PLUM / 3 LEMON / 2 APPLE / 3 IRON). The live resident's `TUNED_CARRY`
+policy actually requests a bill averaging **PLUM 6.23 / LEMON 5.87** at n=2 — roughly
+double. Under the real bill the post-workforce-2 bank never reaches the PLUM requirement in
+**100.0%** of games and LEMON in **99.5%**: **fruit, not iron, is the binding constraint.**
+B3.9's headline 84.4% affordability figure must not be quoted for the real policy.
+
+**Value 0/6, and badly:** overall **−10.76** (CI [−13.16, −8.36]), activated −13.82, worst
+family −21.96 with **all eight families negative**, catastrophes 95 vs 71, mass 1.363.
+Diverting workers to mine iron they don't need is strictly harmful. Opportunistic mining is
+CLOSED; no candidate built; dev copy byte-exact.
+
+**Convergence.** Three independent audits and one causal experiment now point at the same
+root: B3.8 (fruit short), B3.9 (iron gated — but the wrong constraint), B4.4 (we plant at
+turn 191 and reap 0.93%), D174 (fruit binding, and a hard cap behind it). **We do not farm,
+therefore we cannot pay fruit bills, therefore we never scale — and a single unconditional
+clause would block scaling even if we could pay.** The fix ordering follows: planting first
+(D175, diagnostic B4.5 running), then the cap, then — only if ever needed — mining.
+
 ## 2026-07-28: ★★ B4.4 — we plant at turn 191; every two-worker peer plants by turn 21–29
 
 Cohort (corrected from the earlier preview): 25 Legend agents with mean roster within ±0.2

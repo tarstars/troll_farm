@@ -221,6 +221,20 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   `enabled: false` behind a one-shot board-richness selector (D89/D91 lineage: D89's FULL
   factory was safety-rejected at +82.9 opponent score, D91's selector fired on 5/16 maps).
   The middle ground — early, moderate, sustained planting — is untested. [B4.4]
+- ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
+  `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
+  preflight trials trained with a fully credited bank). Any scaling work must lift this
+  clause — but lifting it alone changes nothing, because the real bill is unaffordable.
+  [D174a]
+- ★★ CORRECTION to B3.8/B3.9: their counterfactuals priced a SYNTHETIC cheap-helper spec
+  (3 PLUM/3 LEMON/2 APPLE/3 IRON). The live `TUNED_CARRY` policy requests ≈PLUM 6.23 /
+  LEMON 5.87 at n=2. Under the real bill the bank never reaches the PLUM requirement in
+  100.0% of games and LEMON in 99.5% — **fruit, not iron, is binding**. Do not quote
+  B3.9's 84.4% affordability for the live policy. [D174a]
+- Opportunistic mining at workforce ≥2 is CLOSED as harmful: it delivers its mechanism
+  (iron 0.51 → 5.40/game, 10.6×, 100% trigger fidelity) and still scores **−10.76**
+  (CI [−13.16,−8.36]) with ALL EIGHT families negative, catastrophes 95 vs 71, mass 1.363
+  — mining iron the bot cannot use costs turns it needs elsewhere. [D174a]
 - ★★ The bot stops mining permanently at worker two: `iron_candidates()` has one call
   site, gated `own_units < 2`, so 100% of 139 lifetime MINE actions occurred pre-worker-2
   and 0 occurred across 4,090 legal-but-idle workforce-≥2 turns. We mine 0.68 iron/game vs

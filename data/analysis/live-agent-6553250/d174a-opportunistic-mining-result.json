@@ -1,0 +1,228 @@
+{
+  "integrity": {
+    "all_games_done": true,
+    "inactive_episodes_byte_exact": {
+      "activated_tasks": 1595,
+      "inactive_tasks": 453,
+      "mismatches": 0,
+      "pass": true
+    },
+    "one_vs_twenty_thread_byte_identical": true,
+    "pass": true,
+    "row_count_exact": true,
+    "task_matrix_exact": true
+  },
+  "mechanism": {
+    "activated_tasks_covered": 1595,
+    "gates": {
+      "iron_per_game_ge_4_0": true,
+      "no_detector_worsens_gt_10pct": false,
+      "unmined_reachable_reduced_ge_50pct": false,
+      "worker3_train_rate_ge_25pct": false
+    },
+    "iron_per_game": {
+      "b39_reference_control": 0.68,
+      "b39_reference_top5": 13.02,
+      "candidate_mean": 5.4033203125,
+      "candidate_total": 11066,
+      "control_mean": 0.5078125,
+      "control_total": 1040,
+      "gate_min": 4.0,
+      "pass": true
+    },
+    "missing_candidate_for_active": [],
+    "missing_control": [],
+    "pass": false,
+    "tasks_covered": 2048,
+    "unmined_reachable_workforce2plus": {
+      "candidate_episodes": 51843,
+      "candidate_reachable_total": 57911,
+      "control_episodes": 54354,
+      "control_reachable_total": 54354,
+      "gate_min_reduction_pct": 50.0,
+      "pass": false,
+      "reduction_fraction": 0.0461971520035324,
+      "reduction_pct": 4.61971520035324
+    },
+    "waste_sweep_detectors": {
+      "door_queue": {
+        "candidate_episodes": 1798,
+        "candidate_flagged_turns": 1816,
+        "control_episodes": 1539,
+        "control_flagged_turns": 1544,
+        "gate_le_10pct_worse": false,
+        "worsen_pct": 16.829109811565953
+      },
+      "harvest_slack": {
+        "candidate_episodes": 24133,
+        "candidate_flagged_turns": 176636,
+        "control_episodes": 23370,
+        "control_flagged_turns": 174923,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": 3.264869490800171
+      },
+      "idle_with_work": {
+        "candidate_episodes": 72331,
+        "candidate_flagged_turns": 95597,
+        "control_episodes": 67739,
+        "control_flagged_turns": 91615,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": 6.77896042161827
+      },
+      "late_train_window": {
+        "candidate_episodes": 22,
+        "candidate_flagged_turns": 686,
+        "control_episodes": 22,
+        "control_flagged_turns": 686,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": 0.0
+      },
+      "repeated_failed_command": {
+        "candidate_episodes": 0,
+        "candidate_flagged_turns": 0,
+        "control_episodes": 0,
+        "control_flagged_turns": 0,
+        "gate_le_10pct_worse": true,
+        "worsen_pct": null
+      },
+      "unbanked_carry": {
+        "candidate_episodes": 116,
+        "candidate_flagged_turns": 4775,
+        "control_episodes": 102,
+        "control_flagged_turns": 4180,
+        "gate_le_10pct_worse": false,
+        "worsen_pct": 13.72549019607843
+      }
+    },
+    "worker3_train_rate": {
+      "candidate_pct": 0.0,
+      "candidate_worker3plus_tasks": 0,
+      "control_pct": 0.0,
+      "control_worker3plus_tasks": 0,
+      "counterfactual_prediction_pct": 84.4,
+      "gate_min_pct": 25.0,
+      "pass": false,
+      "shortfall_vs_counterfactual_pct": 84.4,
+      "tasks": 2048
+    }
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "path": "artifacts/experiments/d174a-opportunistic-mining/d174a-jobs20-9855000-9855127.tsv",
+    "rows": 2048,
+    "seeds": "9855000-9855127"
+  },
+  "reason": "one or more mechanism gates failed",
+  "schema": "troll-farm-d174a-opportunistic-mining-panel-v1",
+  "value": {
+    "activated_subset_mean_margin_delta": -13.81755485893417,
+    "activated_tasks": 1595,
+    "best_5_candidate_tail": [
+      {
+        "map_seed": 9855069,
+        "margin_delta": 89,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9855078,
+        "margin_delta": 106,
+        "opponent": "gold_adaptive",
+        "seat": 1
+      },
+      {
+        "map_seed": 9855061,
+        "margin_delta": 118,
+        "opponent": "legend_balanced",
+        "seat": 0
+      },
+      {
+        "map_seed": 9855125,
+        "margin_delta": 120,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9855104,
+        "margin_delta": 216,
+        "opponent": "legend_balanced",
+        "seat": 1
+      }
+    ],
+    "candidate_catastrophes": 95,
+    "candidate_negative_margin_mass": 22479,
+    "control_catastrophes": 71,
+    "control_negative_margin_mass": 16494,
+    "family_mean_margin_delta": {
+      "compact_gold": -21.96484375,
+      "gold_adaptive": -14.90625,
+      "legend_balanced": -12.5390625,
+      "mybot": -8.078125,
+      "norx_native_three": -7.6953125,
+      "resident": -3.546875,
+      "script_boss": -11.921875,
+      "silver_boss": -5.4375
+    },
+    "gates": {
+      "activated_subset_mean_ge_1_0": false,
+      "catastrophes_not_above_control": false,
+      "negative_margin_mass_le_1_05x_control": false,
+      "overall_ci_lower_ge_0_0": false,
+      "overall_mean_ge_1_0": false,
+      "worst_family_ge_neg_1_0": false
+    },
+    "map_clustered_95pct_ci": [
+      -13.159975224047281,
+      -8.362485713452719
+    ],
+    "negative_margin_mass_ratio": 1.3628592215351036,
+    "overall_mean_margin_delta": -10.76123046875,
+    "pass": false,
+    "worst_5_candidate_tail": [
+      {
+        "map_seed": 9855108,
+        "margin_delta": -314,
+        "opponent": "compact_gold",
+        "seat": 1
+      },
+      {
+        "map_seed": 9855108,
+        "margin_delta": -290,
+        "opponent": "compact_gold",
+        "seat": 0
+      },
+      {
+        "map_seed": 9855018,
+        "margin_delta": -280,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9855002,
+        "margin_delta": -275,
+        "opponent": "compact_gold",
+        "seat": 0
+      },
+      {
+        "map_seed": 9855002,
+        "margin_delta": -274,
+        "opponent": "compact_gold",
+        "seat": 1
+      }
+    ],
+    "worst_family": {
+      "mean_margin_delta": -21.96484375,
+      "name": "compact_gold"
+    }
+  },
+  "verdict": "CLOSED-AT-MECHANISM"
+}

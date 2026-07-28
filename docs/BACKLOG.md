@@ -160,6 +160,12 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   mechanism gates including **worker-3 TRAIN in ≥25% of tasks** (control 0%), value gates
   retaining the family/tail floors both D173 variants failed. QUALIFIED → candidate at the
   arena gate (new owner authorization required).
+- **D174a ❌ CLOSED-AT-MECHANISM 2026-07-29** — mining fix worked (iron ×10.6, fidelity
+  100%) but worker-3 TRAIN stayed 0.0% even with the cap clause deleted, and value was
+  −10.76 with all 8 families negative. **Two structural findings:** the bot is hard-capped
+  by `can_train`'s `if n >= 2 { return false }`, and the REAL bill (`TUNED_CARRY`: PLUM
+  6.23/LEMON 5.87) makes **fruit** binding, not iron — correcting B3.8/B3.9's synthetic-spec
+  counterfactuals. Fix ordering is now: **planting (D175) → cap → (mining probably never)**.
 - *(original B3.9 scope)* IRON acquisition audit + combined
   counterfactual — mining has never been audited. Measure our MINE behaviour vs the top
   cohort (rate, timing, iron-source proximity, missed reachable iron), then re-run the

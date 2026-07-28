@@ -1,0 +1,88 @@
+{
+  "schema": "troll-farm-d174a-opportunistic-mining-lock-v1",
+  "frozen_at_utc": "2026-07-29T00:20:00Z",
+  "question": "does lifting the workforce-2 mining gate (opportunistic MINE emission when a unit is iron-adjacent, has free capacity, the currently-planned worker's IRON bill is unmet, and the unit's own assigned action isn't itself bill-critical) clear the mechanism gates (IRON/game >= 4.0, unmined-reachable-workforce>=2 episodes down >= 50%, worker-3 TRAIN in >= 25% of tasks, no waste-sweep detector worse by > 10%) and value gates (overall + activated-subset mean >= +1.0, CI lower bound >= 0.0, worst family >= -1.0, catastrophes/negative-mass not worse) on a fresh 2,048-task panel vs the exact resident control?",
+  "phase_0_preflight": {
+    "method": "64 tasks, D173b's own already-sealed range 9,854,000-9,854,063, seat 0, resident self-play, unmodified dev copy; play forward to the turn own-workforce first reaches 2, synthetically credit the bank to exactly cover a cheap-helper (1,1,0,1) bill at n=2, continue for up to 10 more turns, check for a TRAIN command in own output",
+    "result_pct": 0.0,
+    "result_fraction": "0/64",
+    "gate_min_pct_for_mining_only_variant": 80.0,
+    "gate_pass": false,
+    "finding": "MoisanBot::can_train (yamo_orchard_live.rs:834-845) hard-codes `if n >= 2 { return false }` before ever evaluating affordability -- the live resident cannot train a 3rd worker under any circumstance, independent of bank contents. Distinct from and complementary to D160's documented 'zero affordability windows' finding (a bank-economics fact, not a code-gate fact).",
+    "scope_decision": "Variant B: both deltas in one cycle, same lineage, same one-site character -- Delta 1 (opportunistic mining, unchanged from the frozen protocol) plus the minimal TRAIN-gate repair (delete the `n >= 2 ||` clause from can_train, deadline guard and affordability check otherwise untouched)"
+  },
+  "fix_scope": {
+    "file": "rust/src/bin/yamo_orchard_live.rs",
+    "delta_1_opportunistic_mining": {
+      "new_fn": "YamoBot::opportunistic_mine_rewrite(view, commands, desired)",
+      "architecture": "stateless post-selection rewrite of the resident's own already-resolved assigned command (positional zip against a freshly sorted own-unit list, not string-parsing a unit id -- correctly attributes a bare 'WAIT', which carries no id in this engine); called once from commands(), immediately after apply_opponent_crop_harvest_contact and before remember_own_plant_attempts",
+      "call_sites": ["commands() -- single call site"],
+      "conditions": "(a) is_adjacent(iron, unit.cell), the identical check iron_candidates itself uses; (b) unit.free_capacity() > 0; (c) training_cost(own_count, desired.tuple())[IRON] > deposited IRON + IRON carried across all own units; (d) the unit's currently-assigned command is not a DROP while it carries IRON, nor (defensively, unreachable in practice) a PICK ... IRON",
+      "untouched": ["iron_candidates", "early_candidates", "opening_options (chop_power never 0)", "main_candidates/farmer_candidates/scarce_farmer_candidates/endgame_candidates internals", "select()"],
+      "cross_turn_state": "none -- recomputed fresh every call from view/commands/desired"
+    },
+    "delta_2_train_gate_repair": {
+      "site": "MoisanBot::can_train (yamo_orchard_live.rs:834-845)",
+      "change": "deleted the `n >= 2 ||` clause; the pre-existing `TOTAL_TURNS - view.turn <= 20` deadline guard and the unchanged PLUM/LEMON/APPLE/IRON affordability check are the only remaining logic",
+      "untouched": ["enforce_training_deadline", "training_affordable (its own internal n>=2 branch is unreachable via enforce_training_deadline's own more restrictive own-count<2 guard, unaffected by this repair)", "banana_factory_worker_three_can_train (dead code, banana_factory_enabled hardcoded false)", "desired_second selection logic (ensure_opening/choose_second_troll/opening_options), frozen once workforce reaches 2 exactly as before"]
+    }
+  },
+  "delta_2_fidelity_gate": {
+    "sample_method": "40 randomly-sampled activated tasks (fixed seed 174002) out of 1,595; every individual MINE-emission instance attributable to the fix (candidate issues MINE for a unit/turn where control does not) checked against all 4 conditions using candidate's own pre-turn state for (a)/(b)/(c) and control's recorded command as ground truth for (d)",
+    "instances_checked": 211,
+    "instances_ok": 211,
+    "fidelity_pct": 100.0,
+    "first_divergence_turn_exact_subset": {"instances": 40, "ok": 40, "fidelity_pct": 100.0},
+    "divergence_recompute_mismatches": 0,
+    "threshold_pct": 90.0,
+    "pass": true,
+    "output": "artifacts/experiments/d174a-opportunistic-mining/d174a-trigger-fidelity-check.json"
+  },
+  "control_snapshot": "rust/src/d171a_control_resident_snapshot.rs (reused unmodified; verified same SHA-256 as the dev copy before the fix was applied and again after restore)",
+  "panel": {
+    "start_seed": 9855000,
+    "maps": 128,
+    "tasks": 2048,
+    "seats": 2,
+    "opponent_families": 8,
+    "seed_range_note": "fresh range per protocol (9,855,000-9,855,127); pre-lock grep of both ledger volumes for 9,855 found no prior use; disjoint from D171a (9,853,xxx) and D173a/b (9,854,xxx)"
+  },
+  "threads": [1, 20],
+  "bulk_root": "artifacts/experiments/d174a-opportunistic-mining",
+  "mechanism_gates": {
+    "iron_per_game_min": 4.0,
+    "unmined_reachable_workforce2plus_reduction_min_pct": 50.0,
+    "worker3_train_rate_min_pct": 25.0,
+    "detector_worsen_max_pct": 10.0
+  },
+  "value_gates": {
+    "overall_mean_min": 1.0,
+    "overall_ci_lower_min": 0.0,
+    "activated_subset_mean_min": 1.0,
+    "worst_family_min": -1.0,
+    "catastrophes_max_vs_control_ratio": 1.0,
+    "negative_margin_mass_max_vs_control_ratio": 1.05
+  },
+  "verdict_rule": "all mechanism gates AND all value gates pass -> QUALIFIED (build candidate pair, STOP at arena gate, new owner authorization required for promotion); mechanism passes but value fails -> CLOSED-AT-VALUE; mechanism fails -> CLOSED-AT-MECHANISM with the shortfall quantified against the 84.4% counterfactual prediction; integrity failure -> BLOCKED",
+  "results_summary": {
+    "integrity_pass": true,
+    "mechanism_pass": false,
+    "value_pass": false,
+    "iron_per_game": {"control_mean": 0.5078125, "candidate_mean": 5.4033203125, "gate_min": 4.0, "pass": true},
+    "unmined_reachable_workforce2plus": {"control_episodes": 54354, "candidate_episodes": 51843, "candidate_reachable_total": 57911, "reduction_pct": 4.61971520035324, "gate_min_pct": 50.0, "pass": false},
+    "worker3_train_rate": {"control_pct": 0.0, "candidate_pct": 0.0, "gate_min_pct": 25.0, "counterfactual_prediction_pct": 84.4, "shortfall_pct_points": 84.4, "pass": false},
+    "detector_worsen_pct": {"door_queue": 16.829109811565953, "harvest_slack": 3.264869490800171, "idle_with_work": 6.77896042161827, "late_train_window": 0.0, "repeated_failed_command": null, "unbanked_carry": 13.72549019607843},
+    "value_overall_mean": -10.76123046875,
+    "value_ci": [-13.159975224047281, -8.362485713452719],
+    "value_activated_subset_mean": -13.81755485893417,
+    "worst_family": {"name": "compact_gold", "mean_margin_delta": -21.96484375},
+    "catastrophes": {"control": 71, "candidate": 95},
+    "negative_margin_mass_ratio": 1.3628592215351036
+  },
+  "root_cause_of_mechanism_failure": {
+    "diagnosis": "the live resident's actual TRAIN target (YamoOpeningPolicy::TUNED_CARRY, preferred_min_carry=2) is far pricier than B3.9's synthetic cheap_helper (1,1,0,1) reference: recovered from 1,595 activated candidate games, mean training_cost(n=2, desired) is PLUM=6.23 LEMON=5.87 APPLE=2.00 IRON=7.12. This fix raises IRON acquisition 10.6x (0.51->5.40/game) and clears the IRON leg comfortably, but does nothing for PLUM/LEMON: peak post-workforce-2 bank never reached the PLUM bill in 1595/1595 games (100.0%) and never reached the LEMON bill in 1587/1595 games (99.5%); the dominant shortfall combination (1264/1595 = 79.2%) is PLUM+LEMON short together, IRON alone is essentially never the sole blocker any more. This matches B3.8/B3.9's own prediction that iron credited alone barely moves the needle because fruit remains independently binding -- the 84.4% counterfactual required BOTH slacks credited together against a cheaper synthetic spec than the real desired.",
+    "value_interpretation": "IRON is not itself a scored resource (score = banked PLUM+LEMON+APPLE+BANANA+4*WOOD); since worker-3 training essentially never completes, every turn diverted to MINE is pure opportunity cost against whatever productive (fruit/wood) action it displaced, with no offsetting benefit -- directly explaining the strongly negative value result across all 8 opponent families."
+  },
+  "verdict": "CLOSED-AT-MECHANISM",
+  "verdict_recorded_utc": "2026-07-29T01:10:00Z"
+}
