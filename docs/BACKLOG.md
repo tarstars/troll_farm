@@ -128,9 +128,11 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 
 ## Tier 5 — infrastructure (pull in only when it blocks)
 
-- **B5.1 Green workspace build** — feature-gate or fix the broken research bin
-  (`d35c_provenance_competitive_bundle_oracle_impl`, 311 errors) so
-  `cargo test --workspace` gates work again.
+- **B5.1 ✅ DONE 2026-07-28** — TWO broken frozen bins found and feature-gated (d35c +
+  the d36 oracle nested in its file; sources untouched, proof via identical error counts
+  under the features). `cargo test --workspace`: **1,312 passed / 0 failed / 19
+  ignored** — first green workspace in weeks. Commit `83bf5c0`; cap rule applied after
+  the 29 GB test build (target back to 2.0 GB, release lib intact).
 - **B5.2 ✅ YT tranche mirror** — done as part of B0.2 (plan Task 5, md5-verified).
 - **B5.3 (re-scoped 2026-07-28): cold-file migration only; the LIVE games store stays
   local.** Rationale: the daily collection cron writes into `data/raw/games/` at 05:17 —
@@ -138,7 +140,8 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   drive-absent morning into a failed collection and permanently lost stream games
   (windows rotate). Instead: periodically migrate games older than ~30 days per-file
   (copy-verify-symlink), keeping the hot store and all indexes local. Low urgency at
-  2.4 GB on a 900 GB NVMe.
+  2.4 GB on a 900 GB NVMe. *(Ripeness checked 2026-07-28: oldest file is 07-03; zero
+  files cross the 30-day threshold — first actionable window ≈ 2026-08-03.)*
 
 ## Recommended order
 
