@@ -129,9 +129,21 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   204/205 games, ~536 pts gross ceiling (~2.6/game), loss-enriched +15–20%, 91%
   independent of the closed oscillation vein. Plausible target-reassignment root cause.
   Pipeline: diagnosis (in flight) → bounded fix protocol → gates. The waste-sweep tool
-  is now standing (`cgauto/waste_sweep.py`, commit 31b3ef0); `idle_with_work`
-  sub-classification is the second-priority follow-up (must exclude the deliberate
-  orchard-reserve idle).
+  is now standing (`cgauto/waste_sweep.py`, commit 31b3ef0).
+- **B3.6 ❌ CLOSED 2026-07-28** — `idle_with_work` sub-classified: ~78% benign/correct/
+  detector-artifact, genuine ceiling ≤0.6 pts/game with no shared mechanism, flat across
+  outcomes; round 2's "wood-race" flagship falsified (11% clean loss, ≤68 pts). No fix
+  candidate. **Deferred chore:** gate the detector on free capacity (blocked while D173b
+  uses `waste_sweep.py`).
+- **B3.7 crop-fate census — IN FLIGHT** (owner-originated): what happens to the ~99% of
+  our crops we never reap — harvested/chopped-by-us/taken/expired/alive — plus
+  live-crops-per-capable-worker vs the top cohort. Verdict shapes whether a plant-pacing
+  rule, denial, or an orchard rethink is warranted.
+- **B3.8 counterfactual training-currency audit — IN FLIGHT** (owner thesis test): would
+  the fruit we *fail* to harvest have paid TRAIN bills? Tests the missing precondition of
+  the production+consumption coupling (D93: the factory ended with 92.8 wood but 1.4
+  PLUM/0.6 LEMON/0.4 IRON and zero legal training turns; D160: zero affordability windows
+  in 195 games).
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

@@ -175,6 +175,29 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-28: B3.6 CLOSED — idle_with_work is ~78% benign; no fix candidate, and round 2 partly self-corrected
+
+Full-corpus sub-classification of all 7,782 episodes / 10,279 turns (reproduces round 2's
+totals exactly): `short_transit_blip` 4,852 (median 1 turn, benign), `harvest_gap` 1,086
+(set aside — already B3.5/D173's vein), `capacity_full_correct_transit` 945 (**detector
+artifact**: `waste_sweep.py:371-372` doesn't gate CHOP legality on free capacity, while
+the bot and the engine both correctly refuse wood to a full chopper), `closed_oscillation
+_vein` 539, `late_game_no_time` 160, `contested_colocation` 107, `opening_ripeness_wait`
+20 (100% fate-verified benign), residual 73. **Round 2's flagship "wood-race" finding does
+not survive**: all 107 contested episodes fate-traced — 52% ripen normally, 29% the
+resident shares the kill, only 11% (12 episodes, ≤68 pts corpus-wide) are clean losses;
+the named exemplar did receive its wood share. Also traced `opponent_eta_penalty` to dead
+code (0 through the full construction chain) and falsified an orchard-mother hypothesis
+via `opp_doors` geometry; NEEDS_CONTEXT on the exact per-turn contested mechanism, which
+does not change the value conclusion.
+
+Net: ~78% of non-harvest_gap turn-mass is benign/correct/artifact, ~8% zero-value
+late-game, ~8% closed vein; genuine ceiling **≤130 pts corpus-wide (≤0.6/game)** across
+~20 unrelated single-turn incidents with no shared mechanism, and every class is flat or
+inverted across wins/losses. **Verdict: no cycle warranted — B3.6 closes negative.**
+Follow-up recorded: gate the `idle_with_work` detector on free capacity (deferred while
+D173b uses `waste_sweep.py` for its mechanism gates).
+
 ## 2026-07-28: D173a CLOSED (trigger infidelity) → D173b repair frozen; the broad variant's signal recorded
 
 D173a ran cleanly (3-hunk fix, 30/30 tests, compile-then-restore kept the tree byte-exact

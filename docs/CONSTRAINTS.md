@@ -211,6 +211,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   SHA-identical; runtime pinning required — the two failures were GLIBC/NumPy image issues,
   not semantics). Use YT for ≳1 h batches; a frozen 5-point backend parity cap once failed
   CUDA-vs-CPU (6.557) and correctly forced local training. [D132/D133/D139; D11 era]
+- `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
+  correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
+  across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"
+  sub-pattern is 11% clean loss (≤68 pts corpus-wide), not the flagship it appeared to be.
+  Waste-sweep detectors must gate action-legality on capacity before reporting. [B3.6]
 - The hard-forbid oscillation breaker (D171a arm/disarm spec) is CLOSED: 45.7% reduction
   of long runs (floor 80%), +117% displacement into short runs, de-novo oscillations in
   72 clean tasks — a stale-arm design hole (no echo-stop disarm, unbounded arm lifetime)
