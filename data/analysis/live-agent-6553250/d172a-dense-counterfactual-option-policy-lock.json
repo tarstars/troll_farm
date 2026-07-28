@@ -1,0 +1,142 @@
+{
+  "schema": "troll-farm-d172a-dense-counterfactual-option-policy-lock-v1",
+  "frozen_at_utc": "2026-07-28T00:00:00Z",
+  "question": "With exact, zero-noise counterfactual labels at every armable state (the D169 machinery), can a small observable-feature policy select options profitably on held maps, closed-loop? A NO is the final closure of the learning route.",
+  "preflight": {
+    "external_storage_check": "PASS (python3 cgauto/check_external_storage.py --required-free-gib 20; medium_data, /media/tarstars/medium_data/database/troll_farm, all 5 repo-relative bulk paths resolve as symlinks beneath the physical root); re-verified after the mid-session USB remount.",
+    "seed_range_overlap_check": {
+      "method": "LC_ALL=C grep -rnoE '9,86[0-9],[0-9]{3}|9_86[0-9]_[0-9]{3}|\\b986[0-9]{4}\\b' over every docs/**/*.md and every data/analysis/live-agent-6553250/*.{md,json} file (both ledger volumes included).",
+      "result": "Zero occurrences of the 9,860,000-9,862,999 prefix anywhere except the D172a protocol file itself (which declares the three new ranges). Vol 1 (legend-top3-experiment-cycle-2026-07-18.md) and vol 2 (legend-top3-experiment-cycle-vol2-2026-07-23.md) both clean. Sealed ranges (9,844,200-9,844,215 official-map holdout; the 11 sealed D164 field games; D170a/b's own 9,850,000-9,852,063) are all numerically disjoint from 9,860,000-9,862,063 by construction.",
+      "verdict": "CLEAR - no overlap; proceeding to lock."
+    },
+    "frozen_module_integrity": "Verified byte-identical against the D169a/D170a/D170b locks' own sha256 tables immediately before authoring this lock (see sha256 table below). No mismatches. D171a constraint separately verified: rust/src/bin/yamo_orchard_live.rs sha256 = fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f (prefix matches the frozen record); zero working-tree diff on that file."
+  },
+  "machinery_reused": {
+    "envelope": "rust/src/bin/d169a_resident_option_envelope.rs (unmodified) - the 13-arm catalog, arming detection, option execution, D169aOutcome/D169aRow, and d169a_play (byte-for-byte copy of the resource controller / return-option+entry-detection / Component-StartSpec-ArmKind-arm_catalog / d169a_play into the new corpus-generator bin; the copied lines are hash-verified against the source file's own lines in the Phase-0 result doc).",
+      "feature_builder": "rust/src/rl_d170a_option_policy_env.rs (unmodified) - state_family (64-field state) + the 17-field decision block (turn/300, opp_worker_count/6, 13-arm one-hot, 2 affordance scalars) + the D172a corpus generator's own byte-for-byte adaptation (affordance() de-methodized to a free function with an identical body; cross-validated in Phase 0 against direct calls to this file's own tf_d170a_* FFI functions on sample tasks).",
+    "python_wrapper_reused_for_gates_only": "cgauto/analyze_d170a_family_robust_option_policy.py - summarize_rows/veto_gates/confirmation_gates/clustered_ci/rows_digest imported unmodified; D172a's own admission_gates (the one gate that differs: activation-in-5-60%-of-tasks replaces D170a's mean-own-score-delta) is new code in the D172a analyzer."
+  },
+  "label_semantics": {
+    "definition": "For task T = (map_seed, seat, opponent) and arm X (one of the 13 D169a options), if X's own D169a-frozen arming precondition is satisfied at some turn under the exact resident's play (budget-1: X is the only option ever engaged in that simulation, from t=0, though it does nothing until its own natural activation point), label(T,X) = (own_score(T,X) - opponent_score(T,X)) - (own_score(T,control) - opponent_score(T,control)) using the exact same full-game simulation D169a itself runs per (task,arm). This is byte-identical to D169a's own per-(task,arm) paired margin. No regression target is ever fitted from another policy's trajectories.",
+    "decision_state": "A decision state is (map_seed, seat, opponent, turn) where 1 or more of the 13 arms' arming preconditions hold simultaneously, discovered by walking the exact-resident (all-KEEP-equivalent) trajectory once per task and reproducing D170's own refresh_candidates gating exactly (workers==2 gate for fixed marks 72/104/136; sticky trig_pending flag latched post-step and consumed next call, per the D170b Delta-1 repair; sticky return_pending flag latched post-step at entry_turn when bank_fruit_total>0 and consumed next call). State features (the 64-field state family) are read at the START of that turn, before any option ever engages - identical to control up to that point, so there is no train/deploy covariate shift at budget-1 (the policy's pre-intervention distribution IS the labeling distribution).",
+    "cross_validation": "Every task's candidate-offer list (from the scanning pass) is asserted 1:1 against d169a_play's own `activated` boolean for all 13 arms during corpus generation (panic on any mismatch) - a continuous, whole-corpus consistency check, not just a 32-sample spot check."
+  },
+  "state_family_64_fields": [
+    "0 bias(=1)", "1 turn/300", "2 own_workers/3", "3 opponent_workers/3",
+    "4 own_score/400", "5 opponent_score/400", "6 margin/400",
+    "7-12 own_inventory[PLUM,LEMON,APPLE,BANANA,IRON,WOOD]/20",
+    "13-18 opponent_inventory (same order)/20",
+    "19-24 own_carried_sum (same order)/20", "25-30 opponent_carried_sum/20",
+    "31-35 plant_count_by_owner[Natural,Own,Opponent,Joint,Ambiguous]/20",
+    "36-40 fruit_count_by_owner (same order)/40",
+    "41 has_own_plant", "42 has_opponent_plant", "43 water_frac", "44 walkable_frac",
+    "45 own_hp_sum/12", "46 own_chop_sum/12", "47 own_ms_sum/9", "48 own_cc_sum/12",
+    "49 turns_remaining_frac", "50 max_own_workers_so_far/3",
+    "51 own_created_crops_so_far/20", "52 opponent_created_crops_so_far/20",
+    "53 own_reinvested_crops_so_far/20", "54 provenance_failures_so_far/10",
+    "55 opp_worker_trigger_seen", "56 opp_worker_trigger_turn_frac",
+    "57 entry_captured_flag", "58 bank_fruit_total/20",
+    "59 bank_deficit_frac (signed, clamped [-1,1])",
+    "60 own_free_capacity_sum/12", "61 opponent_free_capacity_sum/12",
+    "62 decisions_seen_so_far/10", "63 budget_remaining"
+  ],
+  "decision_block_17_fields": [
+    "0 turn/300", "1 observed_opponent_worker_count/6",
+    "2-14 armable-option one-hot (13 dims, arm_catalog()[1..14] order: opt_return, opt_fruit_t072, opt_fruit_t104, opt_fruit_t136, opt_fruit_trig, opt_iron_t072, opt_iron_t104, opt_iron_t136, opt_iron_trig, opt_protect_t072, opt_protect_t104, opt_protect_t136, opt_protect_trig)",
+    "15 affordance_primary (bank_fruit_total/20 for opt_return; signed bank_deficit_frac for resource arms)",
+    "16 affordance_secondary (near_shack flag for opt_return; carried-resource-worker-available flag for resource arms)"
+  ],
+  "opponent_identity_in_inputs": false,
+  "input_features_total": 81,
+  "seed_ranges": {
+    "train_corpus": {"start": 9860000, "count": 512, "note": "seeds 9,860,000-9,860,511; 512 maps x 8 families x 2 seats = 8,192 tasks"},
+    "selection": {"start": 9861000, "count": 128, "note": "seeds 9,861,000-9,861,127 as eight independent 16-map LOBO blocks"},
+    "confirmation": {"start": 9862000, "count": 64, "note": "seeds 9,862,000-9,862,063; sealed until Phase 4, opened exactly once"},
+    "veto_panel": {"start": 9844136, "count": 64, "note": "the consumed D148/D161/D169/D170a/D170b 1,024-task panel; veto-only, never trained or selected on; same panel D170a/b used"}
+  },
+  "phase2_signal_floor": {
+    "unit_of_analysis": "decision state (map_seed,seat,opponent,turn) grouped from the corpus; max-option label = max(label) over the candidates offered at that state",
+    "frozen_floor": "coverage_rate = (#states with max-option label >= +2.0) / (#states) >= 0.08, AND at least one such state in both seat=0 and seat=1, AND at least 6 of the 8 opponent families represented among such states",
+    "kill_verdict": "CLOSED-AT-SIGNAL if below floor - not softened."
+  },
+  "phase3_function_classes": {
+    "linear": {
+      "form": "per-option linear scorer: score(x)[k] = W[k,:] . x + b[k] for k in 0..12 (13 arms), x = the full 81-field per-(state,option) input vector",
+      "params": "81*13 + 13 = 1066",
+      "seeds": [172101, 172102]
+    },
+    "mlp": {
+      "form": "shared trunk Linear(81->16) + ReLU, then 13 linear per-option heads Linear(16->1) each (equivalently one Linear(16->13))",
+      "params": "(81*16+16) + (16*13+13) = 1312 + 221 = 1533",
+      "param_cap": 12288,
+      "seeds": [172201, 172202]
+    },
+    "loss": "Huber loss (delta=1.0, PyTorch nn.HuberLoss default), supervised regression of the selected option-head's prediction against the row's exact label; only the head matching the row's own one-hot arm receives gradient from that row",
+    "training": "one deterministic thread per fit (torch.set_num_threads(1)); fixed seed controls init + minibatch shuffling; 4 fits total (2 function classes x 2 seeds)",
+    "runtime_rule": "tau = +1.0 (frozen). At each decision turn, gather the FULL set of simultaneously-armable candidates before deciding (true argmax over that turn's offered group, not greedy-first-that-clears); score each via the fitted model reading off its own arm's head; invoke the argmax candidate iff its predicted value > tau; else KEEP all and continue. Budget: at most one INVOKE per game."
+  },
+  "phase3_admission_gates": {
+    "lobo_pooled_mean_at_least_1_5": "summary.pooled_mean >= 1.5",
+    "worst_held_block_at_least_0": "summary.worst_block >= 0.0",
+    "worst_family_mean_at_least_minus1": "summary.worst_family >= -1.0",
+    "activation_in_5_to_60_pct_of_tasks": "0.05 <= summary.budget_used_rate <= 0.60",
+    "crop_workforce_safety_exact": "summary.crop_safety_exact",
+    "catastrophes_le_control": "summary.catastrophes_policy <= summary.catastrophes_control",
+    "selection_among_admitted": "max worst_block -> tie: max pooled_mean -> tie: lowest seed (fit-side statistics forbidden as selectors, D131/D134)"
+  },
+  "phase4_veto_gates": {
+    "mean_at_least_1_0": "summary.pooled_mean >= 1.0",
+    "no_family_below_minus2": "summary.worst_family >= -2.0",
+    "catastrophes_le_control": "summary.catastrophes_policy <= summary.catastrophes_control",
+    "negative_mass_le_control": "summary.negative_mass_policy <= summary.negative_mass_control",
+    "reused_unmodified_from": "cgauto/analyze_d170a_family_robust_option_policy.py:veto_gates (identical formula to D170a's own veto gate)"
+  },
+  "phase4_confirmation_gates": {
+    "mean_at_least_2_0": "summary.pooled_mean >= 2.0",
+    "clustered_ci_floor_positive": "ci.ci_low > 0.0",
+    "all_families_at_least_minus1": "summary.worst_family >= -1.0",
+    "catastrophes_le_control": "summary.catastrophes_policy <= summary.catastrophes_control",
+    "negative_mass_le_1_1x_control": "summary.negative_mass_policy <= 1.1 * summary.negative_mass_control",
+    "reused_unmodified_from": "cgauto/analyze_d170a_family_robust_option_policy.py:confirmation_gates + clustered_ci (identical formula to D170a's own confirmation gate)"
+  },
+  "threading": {
+    "corpus_generation": "std::thread manual work-stealing pool (AtomicUsize index + Mutex<Vec<Row>>), matching d169a_resident_option_envelope.rs's own established pattern; LC_ALL=C for any text verification",
+    "training": "one deterministic training thread per fit (torch.set_num_threads(1))",
+    "evaluation": "may parallelize across tasks (each task fully independent; only shared state is the pure memoizing control-margin cache)"
+  },
+  "sha256": {
+    "data/analysis/live-agent-6553250/d172a-dense-counterfactual-option-policy-protocol-2026-07-28.md": "577d1c9798d593d2c62939492f6ef2db3fe99aa13a074078b2ae9283eae753cc",
+    "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rust/src/rl_d170a_option_policy_env.rs": "f9d47d119dcd8d443976ccb1154081eb54e99493cbcdd5012a5b4491b81c542d",
+    "cgauto/rl_d170a_option_policy_env.py": "febc4377b9141e8253fb24330f73b25e5d96071483775a8c1b88278e0033de9f",
+    "cgauto/analyze_d170a_family_robust_option_policy.py": "d5a971d503bb055f25f306e284f7317595f32140a2a4defe5d0e639761fffa6f",
+    "rust/src/bin/d162_resident_native_capital_option.rs": "8c82a27191ecb999c945d969cd525afcd0073caaa1c2f5412cdca9d136879668",
+    "rust/src/bin/d163_resident_resource_control_components.rs": "08c669d60f2bc6681760e963070ff67e3d0157914cdde00bfbef65e88f94e7fc",
+    "rust/src/bin/d167a_successor_acquisition_path.rs": "fdd0e985304e9fac8fc725c349141f472a941379eccfbd83b23b0497976a1032",
+    "rust/src/bin/d168a_bank_seed_successor_option.rs": "02efa8ff95f55b8e1bf24122cfd1ed7d5b2dab213ea45621ce074691e7884eb3",
+    "rust/src/bin/d166_producer_job_successor_affordance.rs": "a1427f72db8d3ee038af4ca397b37533d6a04975d9d58e68e692c24434a2b072",
+    "rust/src/bin/d102_complete_macro_resident_transfer.rs": "3caa71e7077db212e67ed566af9cdf099d587112e9659f369f1e7df58770a319",
+    "rust/build.rs": "e06e96bf7ba9f1b2a3eb99444a7cd380058e493f4377a0116f13d287921e5c6f",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/lib.rs": "2b8f2c9cb9cbcad3cf3a9528993e0aca921159aae95fdf96b47635b422951ba4",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "data/analysis/live-agent-6553250/d169a-resident-option-interface-envelope-lock.json": "beaad47d6ef1f3d0ff9b63114d232fd9b6a648bfc03f1b0c6ee481eeb79980e4",
+    "data/analysis/live-agent-6553250/d170a-family-robust-option-policy-lock.json": "670f4415ba6b9f9aae173f3d63306785761813d183b20fe3e28862117898965b",
+    "data/analysis/live-agent-6553250/d170b-family-robust-option-policy-lock.json": "b2e77b931f2323fc713874dc542ee2d6c986fadc301e67fa4991baabf980443a"
+  },
+  "prohibitions": {
+    "tau_threshold_feature_class_change_post_outcome": true,
+    "train_or_select_on_veto_panel": true,
+    "fit_to_d169_envelope_winners_directly": true,
+    "fresh_range_expansion": true,
+    "second_confirmation_run": true,
+    "modify_frozen_modules": true,
+    "soften_signal_floor": true,
+    "gpu_in_selected_path": true
+  },
+  "bulk_root": "artifacts/experiments/d172a-dense-counterfactual-option-policy/",
+  "resume_note_2026_07_28": "Session included a transient USB-drive disconnect/remount of the medium_data external artifacts root (storage preflight re-confirmed PASS after remount) and MCP tool-server reconnects; neither affected the repo working tree. This lock was written once, before Phase 0, per the protocol's Outputs ordering; nothing above has been edited post-outcome."
+}

@@ -91,13 +91,13 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   irrelevant in this regime. Tier-2 CLOSED; project holds at Tier 0/3. Successor
   (dense counterfactual credit) = new program, owner authorization required. [D170b]
 - **B2.3 — moot** (gated on B2.2, which closed).
-- **B2.4 → D172 (Tier-2 REOPENED by owner 2026-07-28): dense counterfactual credit —
-  IN FLIGHT.** Exact per-decision option labels (zero noise, on-distribution, budget-1 —
-  structurally outside the closed offline-value class) → signal floor → two function
-  classes → LOBO/veto/sealed confirmation. Protocol:
-  `d172a-dense-counterfactual-option-policy-protocol-2026-07-28.md`. Any CLOSED verdict
-  is the final closure of the learning route; CONFIRMED → deployability + a new owner
-  arena decision.
+- **B2.4 ❌ CLOSED-AT-SELECTION 2026-07-28 (D172a) — the definitive Tier-2 closure.**
+  Signal abundant (40.4% of 27,392 states carry ≥+2), labels exact, states
+  on-distribution — and held value only +0.14..+0.26 for both function classes. The
+  positive contexts are not identifiable from current observables (CONSTRAINTS ★FINAL).
+  Tier-2 is closed on the strongest possible evidence; sealed block 9,862,000–063 and
+  the veto discipline preserved. Residual for any future owner decision: spatial-plane
+  observations on the official substrate (never retried post-D33).
 
 ## Tier 3 — execution-class diagnostics (historically the only transferrers)
 

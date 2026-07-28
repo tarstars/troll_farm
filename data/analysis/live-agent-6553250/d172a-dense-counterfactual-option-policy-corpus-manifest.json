@@ -1,0 +1,20 @@
+{
+  "schema": "troll-farm-d172a-corpus-manifest-v1",
+  "generated_at_utc": "2026-07-28T18:19:23Z",
+  "seed_range": {"start": 9860000, "count": 512, "note": "seeds 9,860,000-9,860,511"},
+  "tasks": 8192,
+  "maps": 512,
+  "seats": 2,
+  "families": 8,
+  "total_rows": 79997,
+  "generator_binary_sha256": "c9afde7daa701067ff2d9a960bfe1e86adc41623b69f1e44a2056a7c77e909bc",
+  "generator_source_sha256_at_build_time": "219f7de187988437871551e1b15cd585a5de2514a6927ad07142c4713d35a295",
+  "wall_time_seconds": 1435.300,
+  "threads": 20,
+  "shards": [
+    {"path": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860000-9860127.tsv", "rows": 20149, "sha256": "e9d46b5e3411d94be2df14935971a7f3cec6799069b9db35ad0575bb880aab51"},
+    {"path": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860128-9860255.tsv", "rows": 19906, "sha256": "82541a97a714e5115735e83b49988ef25f7c92721efc5bfc16aad07fd7d499ad"},
+    {"path": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860256-9860383.tsv", "rows": 19939, "sha256": "d0a79ea73867a793a5ed6bbf55a092e6b8f6ab13cd760ad495163bc1f466ba6c"},
+    {"path": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860384-9860511.tsv", "rows": 20003, "sha256": "bd83cf3188b3597d8eb864adc68a7893745855a09eda2aed38285664a159b630"}
+  ]
+}

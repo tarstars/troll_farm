@@ -67,13 +67,15 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
   stays on the shelf pending any future (a) decision; goal re-scoping remains open.
   D170a's CLOSED-AT-PHASE-1 was implementation invalidation (repaired in D170b); both
   records frozen.
-- **2026-07-28 (latest): OWNER REOPENED TIER-2 (option a).** Active protocol: **D172a**
-  (`d172a-dense-counterfactual-option-policy-protocol-2026-07-28.md`) — exact zero-noise
-  counterfactual labels at every armable state (the D169 machinery), signal-floor early
-  kill (≥8% of states with max label ≥ +2), two frozen function classes, τ=+1.0 runtime
-  threshold, LOBO selection, veto, sealed confirmation (ranges 9,860/9,861/9,862
-  thousands). Any CLOSED = final closure of the learning route. Arena for a CONFIRMED
-  product needs a NEW owner authorization. Maintenance mode continues in parallel.
+- **2026-07-28 (latest): D172a CLOSED-AT-SELECTION — Tier-2 learning route closed with a
+  definitive mechanism.** Signal abundant (40.4% of states ≥+2) yet unlearnable from
+  observables (held +0.14..+0.26 vs +1.5 gate; exact labels, both classes). The owner's
+  reopening is consumed with a clean scientific answer; see CONSTRAINTS ★FINAL bullet.
+  Only untried observation class: spatial planes on the official substrate (reopening =
+  new owner decision against the recorded evidence). **Project posture: maintenance mode
+  + the execution-class pipeline. In flight: D173a harvest-before-chop** (the richest
+  vein found: 9.62 pts/game net lost to a missing HARVEST action class; QUALIFIED would
+  stop at the arena gate needing a NEW owner authorization).
 - **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
   FROZEN and delegable**:
   `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`

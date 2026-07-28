@@ -149,6 +149,32 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28: D172a CLOSED-AT-SELECTION — the Tier-2 learning route is closed with a definitive mechanism
+
+Phase 0 byte-exact (256/256 vs D169 bulk; two real feature-timing bugs caught and fixed
+pre-corpus — the features were correct this run). Phase 1: 79,997 exact zero-noise labels
+over 27,392 decision states (512 fresh maps, ~24 min at 20 threads). Phase 2: **signal
+floor passed 5× over** — 40.4% of states carry a ≥+2 option (floor 8%), both seats, 8/8
+families. Phase 3: **0/4 admitted** — pooled LOBO means +0.139/+0.229 (linear) and
++0.178/+0.262 (MLP) against the +1.5 gate, activation 4–10%, worst blocks slightly
+negative; crop/catastrophe safety clean. Phase 4 correctly never run; veto panel and
+sealed block 9,862,000–063 untouched.
+
+**Adjudication (Fable): this is the definitive closure.** Every alternative explanation
+is excluded by construction: not label noise (exact counterfactuals), not capacity
+(linear ≈ MLP), not covariate shift (budget-1, on-distribution states), not absent signal
+(40.4% of states ≥+2). The positive contexts are **not identifiable from the 64-field +
+affordance observables** — D100b's trajectory-specificity warning, now proven at the
+mechanistic level with the cleanest possible instrument. The Tier-2 learning route is
+closed per the protocol's own decision tree ("any CLOSED = final closure"). For the
+record only: the one untried observation class is spatial planes at decision states on
+the official substrate (the D29 spatial option-critic died of the pre-D33 map-domain
+artifact and was never retried); reopening on that basis would be a new owner decision
+against this entry's evidence. The owner's Tier-2 reopening is hereby consumed with a
+clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, phase
+results, corpus manifest, result docs); new machinery committed
+(`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
+
 ## 2026-07-28: B3.5 diagnosis — HARVEST is a missing action class; D173 fix frozen
 
 Root cause, confirmed by two independent source reads cross-checked against all 1,014

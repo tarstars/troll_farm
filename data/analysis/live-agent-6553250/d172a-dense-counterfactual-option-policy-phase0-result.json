@@ -1,0 +1,52 @@
+{
+  "schema": "troll-farm-d172a-phase0-label-pipeline-validation-v1",
+  "generated_at_utc": "2026-07-28T02:00:00Z",
+  "verdict": "PASS",
+  "primary_gate": {
+    "description": "Protocol-mandated: recompute a >=32-(task,arm) sample of D169a's consumed-panel arm values via d172a's own copy of d169a_play and match own_score/opponent_score/action_hash/state_hash byte-exact.",
+    "runs": [
+      {
+        "tsv": "artifacts/experiments/d169a-resident-option-envelope/d169a-jobs1-9844136-9844199.tsv",
+        "sample": 256,
+        "stride": "row_count/256 (deterministic, spans the full 1,024-task x 14-arm panel)",
+        "mismatches": 0,
+        "verdict": "PASS"
+      },
+      {
+        "tsv": "artifacts/experiments/d169a-resident-option-envelope/d169a-jobs20-9844136-9844199.tsv",
+        "sample": 256,
+        "mismatches": 0,
+        "verdict": "PASS"
+      }
+    ],
+    "note": "256-row samples run against both the jobs1 and jobs20 (thread-parity) bulk files, well above the protocol's 32-sample floor; column lookup by header name (not hardcoded index)."
+  },
+  "extended_validation_not_a_protocol_gate": {
+    "description": "Defensive cross-check (not required by the frozen protocol): scan_task's 81-field feature vectors compared against the live, already-compiled, already-tested tf_d170a_* FFI (via cgauto/rl_d170a_option_policy_env.py's D170aVecEnv, driven all-KEEP so budget is never spent and every armable state is visited), over map_seed 9,860,000-9,860,003 x 2 seats x 8 families = 64 tasks, 639 candidate rows.",
+    "bugs_found_and_fixed_during_this_check": [
+      {
+        "bug": "decisions_seen_so_far (state field 62) computed once per simultaneous-candidate group instead of incremented per candidate within the group.",
+        "root_cause": "D170a's own env calls observe_input() once per candidate, sequentially; decisions_seen is incremented inside decide() BETWEEN successive same-turn candidates (rl_d170a_option_policy_env.rs:1188), so candidate i (0-indexed within a simultaneous group) sees decisions_seen_so_far = baseline+i, not a shared snapshot.",
+        "fix": "scan_task now recomputes state_family fresh for every candidate (incrementing decisions_seen between them), matching D170a's env exactly.",
+        "verification": "Before the fix: 443/639 vectors mismatched, exactly the fixed-mark/return candidates in every multi-candidate group beyond the first, with diffs in exact multiples of 0.1 (=1/10, field 62's own divisor). After the fix: those 443 mismatches are gone (0 remaining on any fixed-mark or return candidate)."
+      }
+    ],
+    "remaining_mismatches_after_fix": {
+      "count": 63,
+      "isolated_to": "opt_fruit_trig / opt_iron_trig / opt_protect_trig candidates exclusively -- zero mismatches on any fixed-mark or opt_return candidate",
+      "explanation": "NOT a bug: this is the deliberate, already-validated-correct divergence from D170a's own env recorded in the design-decision note above. D169a's own native trig-arm activation is pre-step, same-turn (`opp_worker_trigger_turn == current_turn`, d169a_resident_option_envelope.rs:903-904+925-926, independently confirmed by D169a's own test `trig_arm_configured_start_equals_observed_opponent_trigger_turn`). D170a's env offers the trig arms one turn later (turn+1) only because that file's own refresh_candidates/step_one_turn split cannot observe the trigger mid-turn -- an architecture-specific workaround for THAT file, not D169a's native semantics, and NOT what D172a's labels (sourced from d169a_play) require. Every one of the 63 remaining mismatches is a full 3-candidate group (all of fruit/iron/protect-trig together, at the group's own recorded turn) with no partial/field-isolated mismatches -- consistent with 'the whole group is offered one turn later in D170a's env, hence describes a different game state entirely', not a residual field-construction bug. The primary (D169a byte-exact) gate above is unaffected either way -- labels never touch state_family/decisions_seen at all."
+    },
+    "verdict": "Consistent with the primary gate and the recorded design decision; no unexplained discrepancy remains."
+  },
+  "frozen_module_hashes_reverified_after_all_phase0_work": {
+    "rust/src/bin/d169a_resident_option_envelope.rs": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rust/src/rl_d170a_option_policy_env.rs": "f9d47d119dcd8d443976ccb1154081eb54e99493cbcdd5012a5b4491b81c542d",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "note": "All three re-hashed identical to the lock's recorded values; zero working-tree diff on any of them (git status --short rust/ shows nothing but the new d172a bin)."
+  },
+  "new_machinery": {
+    "rust/src/bin/d172a_dense_counterfactual_corpus.rs": "composes (byte-copy) d169a_resident_option_envelope.rs lines 9-1284 + rl_d170a_option_policy_env.rs lines 802-923; new orchestration scan_task/label_task/eval_task/D172aModel; CLI subcommands phase0-sample/corpus/eval/dump-scan; 9/9 Rust unit tests passing.",
+    "rust_tests": "cargo test --release --bin d172a_dense_counterfactual_corpus: 9 passed, 0 failed (380.9s, RAYON_NUM_THREADS=1)"
+  },
+  "decision": "Phase 0 PASS. Proceeding to Phase 1 (training corpus)."
+}

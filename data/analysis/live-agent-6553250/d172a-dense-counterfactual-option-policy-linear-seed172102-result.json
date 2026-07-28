@@ -1,0 +1,59 @@
+{
+  "checkpoint_pt_sha256": "8be4c930fb0467e53341cd5015b7b6b78d7a7ef6ac3e4847a7420beccdbcf78f",
+  "elapsed_s": 3.7856740170391276,
+  "final_train_loss": 7.585722616041444,
+  "final_val_loss": 7.316614627838135,
+  "function_class": "linear",
+  "generated_at": "2026-07-28T18:20:14Z",
+  "git_rev": "d29cb52d4e057d410fbe0af065a698ad2d5aa897",
+  "history_tail": [
+    {
+      "epoch": 195,
+      "train_loss": 7.586998697022484,
+      "val_loss": 7.317831516265869
+    },
+    {
+      "epoch": 196,
+      "train_loss": 7.586728757505778,
+      "val_loss": 7.317440986633301
+    },
+    {
+      "epoch": 197,
+      "train_loss": 7.586301093558616,
+      "val_loss": 7.316832065582275
+    },
+    {
+      "epoch": 198,
+      "train_loss": 7.58602392554611,
+      "val_loss": 7.316439628601074
+    },
+    {
+      "epoch": 199,
+      "train_loss": 7.585722616041444,
+      "val_loss": 7.316614627838135
+    }
+  ],
+  "inputs": {
+    "lock": "82c56870ca6879061091631b0a850f8384b409d8c88ba58f806935c417fbd8af",
+    "protocol": "577d1c9798d593d2c62939492f6ef2db3fe99aa13a074078b2ae9283eae753cc"
+  },
+  "n_train": 71998,
+  "n_val": 7999,
+  "param_cap": 12288,
+  "params": 1066,
+  "schema": "troll-farm-d172a-phase3-fit-v1",
+  "seed": 172102,
+  "threads": 1,
+  "train_config": {
+    "adam_eps": 1e-08,
+    "batch_size": 4096,
+    "epochs": 200,
+    "huber_delta": 1.0,
+    "lr": 0.001,
+    "val_fraction": 0.1,
+    "weight_decay": 0.0
+  },
+  "weights_path": "/home/tarstars/prj/troll_farm/artifacts/experiments/d172a-dense-counterfactual-option-policy/d172a-linear-seed172102-weights.txt",
+  "weights_sha256": "3d36389692c946c59c9735c28f80c416a673c9d60931fec0fd432c06d452da49",
+  "within_param_cap": true
+}

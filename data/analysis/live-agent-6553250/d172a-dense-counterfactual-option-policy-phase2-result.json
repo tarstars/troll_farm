@@ -1,0 +1,36 @@
+{
+  "corpus_shards": 4,
+  "decision": "signal_floor_pass",
+  "gate": {
+    "both_seats_covered": true,
+    "families_covered": [
+      "compact_gold",
+      "gold_adaptive",
+      "legend_balanced",
+      "mybot",
+      "norx_native_three",
+      "resident",
+      "script_boss",
+      "silver_boss"
+    ],
+    "families_covered_count": 8,
+    "families_gate_ge_6": true,
+    "pass": true,
+    "qualifying_states": 11077,
+    "rate": 0.40438814252336447,
+    "rate_gate_ge_0_08": true,
+    "seats_covered": [
+      0,
+      1
+    ],
+    "total_rows": 79997,
+    "total_states": 27392
+  },
+  "generated_at": "2026-07-28T18:19:30Z",
+  "git_rev": "d29cb52d4e057d410fbe0af065a698ad2d5aa897",
+  "inputs": {
+    "lock": "82c56870ca6879061091631b0a850f8384b409d8c88ba58f806935c417fbd8af",
+    "protocol": "577d1c9798d593d2c62939492f6ef2db3fe99aa13a074078b2ae9283eae753cc"
+  },
+  "schema": "troll-farm-d172a-phase2-signal-floor-v1"
+}

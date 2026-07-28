@@ -226,6 +226,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   agents, +38.9pp vs resident). D167 BANK_SEED (67.5%, n=243), pre-carry (40.5%, n=635),
   and the B3.1 catastrophe signature (9.8%, lead time 74.4 turns CI [63.9,85.8]) are
   stable. Sampled-window rates must not be quoted as population rates. [B3.3, vol 2]
+- ★ FINAL for the learned-selector question: with exact zero-noise counterfactual labels,
+  on-distribution budget-1 states, and abundant signal (40.4% of 27,392 states carry a
+  ≥+2 option), held-block policy value is only +0.14..+0.26 (gate +1.5) for both linear
+  and MLP classes — **the envelope's positive contexts are not identifiable from the
+  64-field + affordance observables.** Not noise, not capacity, not shift, not sparsity.
+  Do not reopen selector learning on these features with more data, bigger models, or
+  different losses. The single untried observation class is spatial planes at decision
+  states on the official substrate (D29's approach, killed pre-D33 by the map-domain
+  artifact, never retried) — reopening requires an owner decision citing this entry.
+  [D172a]
 - On-policy terminal-reward closed-loop training over the budget-1 resident option space
   is CLOSED: with valid mechanics and all 13 arms live, all four objectives (pooled,
   capped, own-protected, group-DRO+protection) converged to always-KEEP (P(invoke) ≤3.3%,

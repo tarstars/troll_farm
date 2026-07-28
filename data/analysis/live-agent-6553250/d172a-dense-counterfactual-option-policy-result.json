@@ -1,0 +1,96 @@
+{
+  "schema": "troll-farm-d172a-dense-counterfactual-option-policy-result-v1",
+  "generated_at_utc": "2026-07-28T18:35:00Z",
+  "question": "With exact, zero-noise counterfactual labels at every armable state, can a small observable-feature policy select options profitably on held maps, closed-loop?",
+  "verdict": "CLOSED-AT-SELECTION",
+  "verdict_meaning": "Phase 0-2 all PASS (label pipeline byte-exact; corpus generated; signal floor cleared 5x over). Phase 3 (fits + LOBO selection) admitted 0/4 fits -- every fit's decisive failure is the LOBO pooled-mean gate (all land +0.14..+0.26 vs the +1.5 floor). Per the protocol's pre-adjudicated decision tree, this is the terminal outcome: Phase 4 (veto panel, sealed confirmation) was never executed. This CLOSES the dense-counterfactual-credit route and, per the protocol text, constitutes the final closure of the Tier-2 learning route over this option vocabulary.",
+  "phases": {
+    "phase0_label_pipeline_validation": {
+      "gate": "recompute >=32-(task,arm) sample of D169a's consumed-panel arm values byte-exact",
+      "result": "PASS: 256/256 rows byte-exact (own_score, opponent_score, action_hash, state_hash) against BOTH d169a-jobs1 and d169a-jobs20 bulk TSVs (8x the 32-sample floor)",
+      "extended_defensive_check_not_a_gate": "Cross-checked scan_task's 81-field feature vectors against the live tf_d170a_* FFI (D170aVecEnv, all-KEEP). Found and fixed two real bugs before they could contaminate the corpus: (1) resource _trig arms offered one turn late (copied D170b's env-specific sticky-flag workaround instead of D169a's own same-turn native timing -- caught by the PRIMARY gate itself); (2) decisions_seen_so_far (state field 62) computed once per simultaneous-candidate group instead of incremented per candidate within the group (caught by the extended check). After both fixes: 0 mismatches on the primary gate; the only remaining extended-check mismatches (63/639, all isolated to opt_*_trig candidates as complete groups) are the deliberate, already-validated same-turn-vs-D170a's-turn+1 divergence, not a residual defect.",
+      "detail_doc": "d172a-dense-counterfactual-option-policy-phase0-result.json",
+      "decision": "PASS -> proceed to Phase 1"
+    },
+    "phase1_training_corpus": {
+      "seed_range": "9,860,000-9,860,511 (512 fresh maps x 8 families x 2 seats = 8,192 tasks)",
+      "pre_lock_seed_overlap_grep": "CLEAR (zero hits in both ledger volumes and all docs/**/*.md outside the D172a protocol/lock themselves; sealed ranges 9,844,200-215 / D164 field games / D170's 9,850,000-9,852,063 all numerically disjoint)",
+      "rows": 79997,
+      "wall_time_seconds": 1435.3,
+      "threads": 20,
+      "manifest": "d172a-dense-counterfactual-option-policy-corpus-manifest.json",
+      "decision": "DONE -> proceed to Phase 2"
+    },
+    "phase2_signal_floor": {
+      "frozen_floor": ">=8% of armable states have max-option label >= +2.0, present in both seats and >=6 families",
+      "total_states": 27392,
+      "qualifying_states": 11077,
+      "rate": 0.40438814252336447,
+      "both_seats_covered": true,
+      "families_covered_count": 8,
+      "result": "PASS at 40.4% (5x the 8% floor); both seats; all 8/8 families",
+      "detail_doc": "d172a-dense-counterfactual-option-policy-phase2-result.json",
+      "decision": "PASS -> proceed to Phase 3"
+    },
+    "phase3_fits_and_selection": {
+      "function_classes": ["linear (81->13, 1066 params)", "mlp (81->16->13 ReLU, 1533 params)"],
+      "seeds": {"linear": [172101, 172102], "mlp": [172201, 172202]},
+      "tau": 1.0,
+      "training": "Huber loss (delta=1.0), Adam lr=1e-3, 200 epochs, batch 4096, one deterministic thread/fit; all hyperparameters frozen before any Phase 3 outcome was observed",
+      "weight_export_crosscheck": "PyTorch model output vs Python parse+matmul of the exported Rust-consumable weights.txt: max_abs_diff=1.07e-6 over 20 sampled rows x 13 heads -- export format verified correct",
+      "thread_parity": "1 vs 20 threads byte-identical row digests (linear/172101, 8-map sample)",
+      "selection_seed_range": "9,861,000-9,861,127 (8 independent 16-map LOBO blocks, 2,048 tasks/fit)",
+      "fits": [
+        {"function_class": "linear", "seed": 172101, "pooled_mean": 0.138671875, "worst_block": -0.07421875, "worst_family": -0.09375, "activation_rate": 0.06689453125, "admitted": false, "failing_gates": ["lobo_pooled_mean_at_least_1_5", "worst_held_block_at_least_0"]},
+        {"function_class": "linear", "seed": 172102, "pooled_mean": 0.22900390625, "worst_block": -0.03125, "worst_family": 0.0, "activation_rate": 0.06787109375, "admitted": false, "failing_gates": ["lobo_pooled_mean_at_least_1_5", "worst_held_block_at_least_0"]},
+        {"function_class": "mlp", "seed": 172201, "pooled_mean": 0.17822265625, "worst_block": -0.078125, "worst_family": -0.05859375, "activation_rate": 0.04345703125, "admitted": false, "failing_gates": ["lobo_pooled_mean_at_least_1_5", "worst_held_block_at_least_0", "activation_in_5_to_60_pct_of_tasks"]},
+        {"function_class": "mlp", "seed": 172202, "pooled_mean": 0.26220703125, "worst_block": -0.09375, "worst_family": -0.4140625, "activation_rate": 0.09912109375, "admitted": false, "failing_gates": ["lobo_pooled_mean_at_least_1_5", "worst_held_block_at_least_0"]}
+      ],
+      "common_to_all_4_fits": {
+        "worst_family_mean_at_least_minus1": "PASS in all 4",
+        "crop_workforce_safety_exact": "PASS in all 4 (zero purity violations / invalid direct commands / provenance failures)",
+        "catastrophes_le_control": "PASS in all 4 (49 policy vs 49 control, every fit)"
+      },
+      "admitted_count": 0,
+      "selected": null,
+      "detail_doc": "d172a-dense-counterfactual-option-policy-phase3-result.json",
+      "decision": "0/4 admitted -> CLOSED-AT-SELECTION per the frozen decision tree"
+    },
+    "phase4_veto_and_confirmation": {
+      "executed": false,
+      "reason": "Per the protocol's pre-adjudicated decision tree, Phase 4 only runs after Phase 3 admits a fit. 0/4 admitted, so veto and confirmation were never run.",
+      "veto_panel_status": "untouched (D169a/D170a/D170b's consumed 1,024-task panel, seeds 9,844,136-9,844,199) -- still veto-only for a future dispatch",
+      "confirmation_block_status": "sealed, never opened (seeds 9,862,000-9,862,063)"
+    }
+  },
+  "interpretation": {
+    "signal_vs_selection_gap": "Phase 2 proved dense positive signal exists at a rate an order of magnitude above the kill floor (40.4% vs 8%), and Phase 0's byte-exact labels rule out D153-D156-style regression-target noise. Phase 3 shows the two frozen function classes CAN extract and act on some of that signal (small but consistently positive, non-zero pooled means of +0.14..+0.26, activation rates 4-10%, concentrated almost entirely on the least-negative-always-on arm family (opt_fruit_*), essentially zero selection of the strongly-negative-always-on arms (opt_iron/opt_return) -- a mechanistically sensible pattern, not noise) but the achieved value is roughly an order of magnitude short of the +1.5 admission bar, and at least one of the 8 held LOBO blocks is net-negative for every fit. This is qualitatively different from D170b's on-policy closed-loop result (100% collapse to always-KEEP, pooled_mean exactly 0.0 in all 8 fits, P(invoke)<=3.3%): here, with exact labels, the models genuinely learn to invoke a meaningful minority of the time and do so with real (if small) positive expected value -- confirming the underlying decision problem IS learnable to a first approximation from these features under supervision, unlike the on-policy regime. But 'learnable to a first approximation with the wrong magnitude' is not the same as 'clears the value bar'; the frozen protocol's admission threshold treats this correctly as a non-admission, not a partial pass.",
+    "does_not_answer": "Whether a larger/different function class, more corpus, or a different (non-frozen-post-outcome) tau could clear the bar -- the protocol explicitly prohibits retuning after this outcome is seen; any such follow-on is a NEW program requiring its own authorization, per the same house rule D170b's own closure was recorded under."
+  },
+  "frozen_module_integrity": {
+    "d169a_resident_option_envelope_rs_sha256": "ec51121a1a49251f4a3ee001cbc2fe832179be7db7dba41ea247a8aa1862760a",
+    "rl_d170a_option_policy_env_rs_sha256": "f9d47d119dcd8d443976ccb1154081eb54e99493cbcdd5012a5b4491b81c542d",
+    "verified_unchanged_throughout": true,
+    "yamo_orchard_live_rs_note": "An UNRELATED concurrent agent ('D173a: harvest-before-chop') edited this D171a-frozen file mid-session (working-tree diff observed at 21:12:17 local); NOT caused by this task (verified via git diff content and file never opened for writing here). Timeline reconciliation: this task's compiled binary (sha256 c9afde7d...) was built at 20:39:39, strictly before the concurrent diff appeared, and Phase 0/Phase 1 (20:49-21:13) both completed using that already-compiled, already-loaded binary -- Rust binaries statically embed source at compile time, so a running process is unaffected by a later on-disk source edit. No cargo build/test was run by this task after that point specifically to avoid ever embedding the concurrent change into any artifact. Full detail in the phase-markers log."
+  },
+  "outputs": {
+    "lock": "d172a-dense-counterfactual-option-policy-lock.json",
+    "phase0_result": "d172a-dense-counterfactual-option-policy-phase0-result.json",
+    "corpus_manifest": "d172a-dense-counterfactual-option-policy-corpus-manifest.json",
+    "phase2_result": "d172a-dense-counterfactual-option-policy-phase2-result.json",
+    "phase3_fit_results": [
+      "d172a-dense-counterfactual-option-policy-linear-seed172101-result.json",
+      "d172a-dense-counterfactual-option-policy-linear-seed172102-result.json",
+      "d172a-dense-counterfactual-option-policy-mlp-seed172201-result.json",
+      "d172a-dense-counterfactual-option-policy-mlp-seed172202-result.json"
+    ],
+    "phase3_selection_result": "d172a-dense-counterfactual-option-policy-phase3-result.json",
+    "result_markdown": "d172a-dense-counterfactual-option-policy-result-2026-07-28.md",
+    "new_rust": "rust/src/bin/d172a_dense_counterfactual_corpus.rs",
+    "new_python": ["cgauto/train_d172a_dense_counterfactual_option_policy.py", "cgauto/analyze_d172a_dense_counterfactual_option_policy.py"],
+    "phase_markers": ".superpowers/sdd/d172a-phase-markers.md",
+    "full_report": ".superpowers/sdd/d172a-report.md",
+    "bulk_root": "artifacts/experiments/d172a-dense-counterfactual-option-policy/"
+  },
+  "git_rev_at_writing": "d29cb52d4e057d410fbe0af065a698ad2d5aa897"
+}
