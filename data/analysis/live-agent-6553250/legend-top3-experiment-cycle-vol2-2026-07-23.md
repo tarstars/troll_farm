@@ -188,6 +188,14 @@ five workers in 48% of its games (resident 0/194); persistent-denial styles exis
 local 8-family panel does not exhibit. Report: session scratch
 `b32-b33-field-audits-report.md` (numbers preserved here).
 
+## 2026-07-28: OWNER STANDING AUTHORIZATION — D171 promotion on QUALIFIED
+
+The owner pre-authorized the arena trial: "when new solution passes internal gates, send
+it to platform." Scope recorded in STATE §3: if D171a returns QUALIFIED, protocol B4.1
+executes without a further ask (capacity A/A, candidate submit, timed reads, frozen
+bands, exact-resident restore on failure or inconclusive). This one candidate only;
+no-churn rule otherwise unchanged.
+
 ## 2026-07-28: B3.4 diagnosis — oscillation root-caused; D171 bounded fix frozen
 
 The same-two-cell oscillation is a **memoryless detour tie-break**: in

@@ -24,7 +24,11 @@ rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen ta
 
 ## 3. Standing rules
 
-- Arena writes require explicit user authorization. No exceptions.
+- Arena writes require explicit user authorization. No exceptions. **STANDING
+  AUTHORIZATION 2026-07-28: if D171a returns QUALIFIED (all frozen local gates pass),
+  execute promotion protocol B4.1 without further ask** — capacity A/A → candidate
+  submission → +20/+35/+50-min reads → frozen bands (≥+0.5 keep / ≤−0.5 or inconclusive
+  → revert) → exact-resident restore on any failure. Scope: this one candidate only.
 - Never churn submissions: fresh submissions read 3–4 points below matured ones (proven by
   failed same-code A/A on 2026-07-16). Restores/candidates burn standing.
 - Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11 sealed
