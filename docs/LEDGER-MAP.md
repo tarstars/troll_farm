@@ -1,6 +1,6 @@
 # Troll Farm — The D-Series Atlas
 
-Snapshot date: 2026-07-27. A reader's guide to every numbered experiment of the Legend
+Snapshot date: 2026-07-29. A reader's guide to every numbered experiment of the Legend
 top-3 research cycle. Chronology lives in the ledger volumes
 (`data/analysis/live-agent-6553250/legend-top3-experiment-cycle-*.md`); topic-sorted
 conclusions in `docs/CONSTRAINTS.md`; live state in `docs/STATE.md`. This atlas is a
@@ -247,8 +247,105 @@ thirty supervised selectors that all failed the same way.
 | D169 | Does a unified resident-option envelope clear the +10 gate? | **Yes — PASS**: +10.671 mean, CI [+9.42,+11.92], 65% improved, 0 regressions, tails better than control (100% coverage; every option negative always-on). Opens D170 (Fable-authored closed-loop training design) |
 | D170a | Can a policy learn WHEN to invoke the options? | Invalidated by an implementation bug (3 trig arms structurally unreachable; caught by the Stage-A gate, byte-identical reruns; superb root-cause) — repaired as D170b |
 | D170b | Same question, repaired mechanics | **CLOSED-AT-PHASE-2**: 8/8 fits trained, all 13 arms live — and all four objectives converged to always-KEEP (0/8 admitted). The envelope's rare positive contexts are unlearnable from ~200 samples/arm vs ±26 terminal noise; objective choice irrelevant. Tier-2 closes per its kill rule |
+| D171a | Does a hard-forbid breaker cure the B3.4 same-two-cell oscillation? | **No — mechanism fails**: ≥10-turn runs cut only 45.7% (floor 80%); 5–9-turn runs increase +117% (displacement); 72 previously clean tasks acquire brand-new oscillations (worst 88 turns) — a stale-arm design hole in the disarm rule. Value neutral overall (+0.053) but activated subset only +0.53 <+1.0 gate. No candidate; successor requirements recorded (bounded arm lifetime, echo-stop disarm) |
+| D172a | With exact, zero-noise counterfactual labels instead of on-policy reward, is the +10.671 envelope's value learnable? | **No — definitive closure.** Signal is abundant (40.4% of 27,392 states carry a ≥+2 option, floor 8%, both seats, 8/8 families) yet both linear and MLP fits fail LOBO admission (+0.14–+0.26 held vs the +1.5 gate). Not label noise, not capacity, not covariate shift — the positive contexts are unidentifiable from the 64-field+affordance observables. The Tier-2 learning route closes on the cleanest possible instrument; only spatial-plane observation remains untried |
+| D173a | Does a narrow harvest-before-chop fix recover B3.5's 9.62-pt/game lost fruit? | Trigger fired broader than the frozen spec (any CHOP-candidate at the cell, not the unit's *assigned* action) — 41/60 sampled activations were diverted transit units. All three mechanism gates fail, though raw value was strongly positive (+2.935, activated +5.763) with a worst-family/catastrophe/tail cost. **Implementation-fidelity invalidation** (D170a precedent) — repaired as D173b; broad variant closed as tested, kept only as hypothesis material |
+| D173b | With trigger fidelity repaired (64/64 verified), does harvest-before-chop transfer? | **Mixed, and capped.** 99.9% elimination among harvest-capable choppers, but 99.93% of surviving waste is trained units hardcoded `harvest_power: 0` — untouchable by the frozen scope. Value passes the mean gate (+1.063) but fails worst family (−1.391), catastrophes (52 vs 49), and tail mass (1.081). Closed as an execution-class fix; reframed as a strategic worker-capability question gated on B3.8 |
+| D174a | Does an opportunistic-mining fix (B3.9) unlock worker-3 funding? | Iron acquisition worked exactly as designed (0.51→5.40 iron/game, 10.6×) — but worker-3 TRAIN stayed **0.0%** even with the `can_train` cap clause deleted, an 84.4-point shortfall against the counterfactual. Exposed instead: an unconditional `if n>=2{return false}` hard cap, and — correcting B3.8/B3.9's synthetic-spec counterfactual — the real `TUNED_CARRY` bill is **fruit**-bound (PLUM/LEMON short in 100.0%/99.5% of games), not iron. Value −10.76, all 8 families negative — opportunistic mining closed as harmful; fix order becomes planting (D175) → cap → mining (probably never) |
 
-## 15. Inflection points
+## 15. Arc M — The maintenance-era audits (B3.x/B4.x, 2026-07-27→29)
+
+Where Arc L's D-experiments are bounded, frozen-protocol causal tests, a parallel run of
+**B-numbered audits** used the (now quadrupled) replay corpus to find and price leads by
+read-only measurement — no code change, no candidate, no preregistered pass/fail
+threshold. They ran under the owner's 2026-07-28 maintenance-mode decision, alongside
+rather than instead of the Tier-2 program. Several fed directly into Arc L's later
+experiments: B3.4 diagnosed the oscillation that D171a then tried and failed to fix; B3.5
+diagnosed the missing HARVEST action class that D173a/D173b then partially fixed; B3.9
+diagnosed the mining gate that D174a then fixed and, in fixing, corrected.
+
+| ID | Question | Verdict |
+|---|---|---|
+| B0.4 | Does the per-agent battle-window sample undercount the visible field? | **Yes** — the old 10-per-agent lens left ~85% of the visible stream uncollected. Full top-20 windows plus ranks 21–50, fetched for the first time: **1,891 → 8,122 games** (+6,231 in one run), 469 unique agents, 99.7% exact score reproduction, zero permanent losses. Standing daily collection cron installed the same day |
+| B3.1 | Is the D159 catastrophe signature real, and does the endgame switch just need retuning? | Replicates independently: 19/192 games (9.9%) are catastrophes carrying 57.9% of negative-margin mass. The switch has no coverage bug — an AND-of-behind design cannot structurally fire before the crossover (median +46.5 turns late). Switch retuning closed. Surviving signal: opponent workforce scaling past two workers precedes the crossover by 42–125 turns in 84% of catastrophes — an observable trigger the resident never conditions on |
+| B3.2/B3.3 | At 4× corpus scale, does the motion audit stay clean and do the small-sample field rates hold? | Motion: zero failures across 49,977 real moves. One new lead found: sustained same-two-cell oscillation (18/194 games, worst 131 turns) → opened as B3.4. Field rates mostly stable (BANK_SEED 71.4%→67.5%, pre-carry 44.9%→40.5%, catastrophe rate 9.9%→9.8%); one correction: **D164's top-5 P→S→P motif rate 72.0%→49.7%** (sampling-completeness artifact — the frozen breadth+gap gate still passes, 5/5 agents) |
+| B3.4 | What causes the two-cell oscillation, and can a bounded fix cure it? | Root-caused to a memoryless detour tie-break with zero cross-turn memory — ties regenerate indefinitely; `force_unique_door_clear` has a genuine coverage gap (all 18 games have 2–4 doors). Causality modest (2/18 causally suspicious). Bounded fix frozen as **D171a — closed** (Arc L): 45.7% cure vs an 80% floor, +117% displacement |
+| B3.5 | Why does the resident leave fruit unharvested near its own choppers? | Root cause: the busy-unit candidate generators build no HARVEST candidate at all, and trained units are hardcoded `harvest_power: 0`. Net genuinely-lost value **1,972 pts / 9.62 per game** — the richest execution vein assayed to date, 33.4% of it destroyed by the worker's own chop. Fix frozen as **D173a/D173b — both closed** (Arc L): recovers the addressable slice, capped by the same harvest-incapability design |
+| B3.6 | Is the `idle_with_work` signature (7,782 episodes corpus-wide) a real waste vein? | **No — ~78% benign/correct/detector-artifact.** 945 episodes were a detector bug (CHOP legality ungated on free capacity); round 2's "wood-race" flagship falsifies on fate-tracing (only 11% clean losses, ≤68 pts corpus-wide). Genuine ceiling ≤130 pts corpus-wide (≤0.6/game). Closed — no cycle warranted |
+| B3.8 | Is worker-3 scaling fruit-limited or iron-limited (owner-thesis test)? | Crediting all uncollected own+opponent fruit opens the cheap-helper window in only 10.2% of games, balanced spec never (0/205) — iron limits 97.3–100% of remaining failures. 90% of the own-territory fruit haul is destroyed by the resident's own CHOP. Confirms the owner's near-camp hypothesis. Verdict: iron-limited — **later corrected by D174a** (Arc L; see the synthesis below) |
+| B3.9 | Is mining itself gated off, and would fixing it unlock scaling? | **Yes, decisively — the strongest lead in the project's history at the time.** Mining is reachable only while `own_units < 2`; 0.68 iron/game vs the top-5's 13.02 (19.2×); 98.3–98.6% of reachable iron never converted. Fruit+iron combined counterfactual: cheap-helper affordability 8.8%→84.4%. Opened D174 — **closed at mechanism** (Arc L): the affordability figure does not survive contact with the resident's real bill |
+| B4.3 | What is a worker actually worth, and where does the resident's gap concentrate? | First field pricing (8,073 games): **within-agent fixed effect +48.2 margin/worker** (CI [44.1, 52.7]), non-diminishing through worker 4. **Scaling 2→4 ≈ +5.2 rating points = 84% of the resident's 6.25-point gap** to the rank-3 bar. Prices the destination only |
+| B4.4 | 25 Legend agents share the resident's near-exact roster and outrank it — what differs? | **Tempo, not conversion style.** Median first PLANT: resident turn 191.5 vs 21–29 for the cohort. Reap rate: resident 0.93%, strong peers 15.3%, peer/weak 17.2%. **At equal roster (2v2) the resident is at exact parity with strong peers (58.2% vs 58.3%)** — the deficit is downstream scale-asymmetry survival. The plant-reap loop's code exists but defaults off behind a rarely-firing selector |
+| Baseline | Is execution-waste minimisation the ladder differentiator? | **No — the opposite.** On all six waste signatures the resident is cleaner than top-5 and ranks 6–20, including per-worker (`harvest_slack` 74.8 turns/game vs top-5's 615.9, 8.2×). Interpretation: "the hygiene of poverty" — little to waste with 2 workers and ~12 crops. Execution-waste minimisation is not the differentiator, downgrading remaining Tier-3 prospecting |
+
+These are read-only field measurements, not frozen-protocol causal tests — no threshold is
+declared in advance and nothing here changes the resident's code directly; each audit finds
+and prices a lead, and where a lead was actionable it was handed to a proper D-numbered
+experiment under the usual integrity discipline (B3.4→D171a, B3.5→D173a/D173b,
+B3.9→D174a). Together they assembled the causal chain the next section synthesizes: the
+resident's problem was never suppression, and — despite B3.8's first read — not iron
+either; it is that the plant-reap loop the rest of the field runs from turn ~25 never
+starts.
+
+## 16. The 2026-07-29 synthesis — why we don't scale
+
+By 2026-07-29 the maintenance-era audits (Arc M) had converged on a single causal chain,
+assembled from three independent audits and one causal experiment rather than any one of
+them alone. B4.4 found that the resident makes its first successful PLANT at a median turn
+of 191.5, against turns 21–29 across a cohort of 25 Legend agents whose roster averages
+within ±0.2 of the resident's own exact two workers — not a resource constraint (every
+agent's starting unit has the same hp=1 endowment), but a policy choice. The downstream
+consequence is the reap-rate gap the project has now confirmed independently: the resident
+converts 0.93% of the crops it creates into score, against 15.3–17.2% for those same
+two-worker peers and 24.16% for the top of the ladder (D101). Crucially, B4.4 also showed
+this is *not* a two-worker skill gap: at equal roster (2v2) the resident is at exact parity
+with the strong cohort, 58.2% wins to 58.3%. The entire deficit to those peers is downstream
+of scale-asymmetry survival — losing badly once outnumbered (−37.1 average margin vs
+3-worker opponents, where the strong cohort loses only −1.8) — which is itself downstream
+of never running the plant-reap loop that would let the resident afford a third worker at
+all.
+
+B4.3 priced what that loop is worth: a worker prices at roughly +2–4 rating points,
+concentrated in workers three and four and not diminishing through worker four (2→3 =
++1.9 rating, 3→4 = +3.3); scaling from two workers to four is worth ≈ +5.2 rating points —
+about 84% of the resident's 6.25-point gap to the rank-3 bar. B3.8 and B3.9 then tried to
+explain why that scaling never happens, and first pinned it on iron: mining is gated off
+entirely once a second worker exists (one call site, reachable only while `own_units < 2`),
+and crediting all uncollected fruit *plus* reachable iron opened a cheap-helper
+affordability window in 84.4% of games, against 8.8% for fruit alone. D174a then ran that
+fix for real and found the opposite of what the counterfactual promised: iron acquisition
+worked exactly as designed (0.51 → 5.40 iron/game, a 10.6× increase), yet worker-3 TRAIN
+stayed at 0.0% in both arms regardless — an 84.4-point shortfall against the
+counterfactual's own prediction. The reason is a correction to B3.8/B3.9's own method:
+their counterfactual priced a synthetic cheap-helper spec (3 PLUM/3 LEMON/2 APPLE/3 IRON),
+while the resident's actual `TUNED_CARRY` policy requests roughly double the fruit (PLUM
+6.23, LEMON 5.87 at two workers) — a bill the post-workforce-2 bank never reaches in 100.0%
+of games for PLUM and 99.5% for LEMON. Fruit, not iron, is the binding bill constraint, and
+B3.9's 84.4% affordability figure must not be quoted for the real policy.
+
+D174a also exposed a second, independent defect while testing the first: `MoisanBot::can_train`
+contains an unconditional `if n >= 2 { return false }`, evaluated *before* any
+affordability check — the bot is hard-capped at two workers no matter what it can pay for.
+And underneath both defects sits a finding B4.4 grounded directly in source: the live
+planner already contains a tested `banana_factory_*` self-planting/reaping subsystem,
+currently defaulting to `enabled: false` behind a one-shot board-richness selector
+evaluated once at two-worker roster — machinery from the D89/D91 lineage, whose selector
+historically fired on only 5 of 16 maps (consistent with, though not proven identical to,
+the observed 191-turn delay). The plant-reap loop the rest of the field runs by turn 30 is
+present in the resident's own source and essentially never switches on.
+
+The fix ordering follows directly from this chain: planting first (opened as D175,
+preceded by the B4.5 diagnostic now in flight), then the `can_train` cap, and mining only
+if either turns out to still be insufficient — probably never, since D174a already tested a
+combined mining-fix-plus-cap-deletion variant and found opportunistic mining itself
+strictly harmful once actually run (−10.76 mean margin, all eight opponent families
+negative): diverting a worker to mine iron it does not yet need is a losing trade, closed
+outright, leaving the cap clause as its own untested next step. The synthesis reframes the
+whole maintenance-era program: the resident's scaling gap was never a suppression problem
+or, as first suspected, an iron problem — it is that the plant-reap loop the rest of the
+field runs from turn ~25 never starts.
+
+## 17. Inflection points
 
 - **D30** — our generated maps were unlike real maps; weeks of results invalidated, honest substrate built (D33).
 - **D40** — a teacher economy good enough to learn from.
@@ -256,8 +353,10 @@ thirty supervised selectors that all failed the same way.
 - **D101** — the gap is production *persistence*, not suppression.
 - **D161** — the alternative-economy substrate is weaker than the bot we already have; everything pivots resident-native.
 - **D164→D167** — the missing field behavior distilled into one frozen-eligible option.
+- **D172a** — exact zero-noise counterfactual labels prove the +10.671 envelope's value is real yet unlearnable from the resident's own observables; the definitive, method-agnostic closure of the Tier-2 learning route.
+- **B4.4→D174a** — the scaling gap gets a mechanism: no plant-reap loop, a fruit-bound (not iron-bound) bill, and a single unconditional clause capping the bot at two workers.
 
-## 16. Lesson learnt — what rich players' persistent jobs taught us (D35a and descendants)
+## 18. Lesson learnt — what rich players' persistent jobs taught us (D35a and descendants)
 
 D35a decoded two frozen partitions of rich-player replays (a 12-game discovery and a
 9-game confirmation split) into **persistent worker jobs**: multi-turn units of intent —
@@ -295,7 +394,7 @@ real differentiator (D101: they reap 24% of what they plant; the resident 0.94%)
 D-series' current thread — successor jobs, BANK_SEED returns, D168's bounded option — is
 the direct descendant of D35a's job abstraction applied to that cycling.
 
-## 17. Model architectures and situation encodings
+## 19. Model architectures and situation encodings
 
 Three encoding families and half a dozen model families recur across the arcs. This
 section describes them concretely.
@@ -362,9 +461,9 @@ objective were. What survived: dense exact-value *teachers* over these encodings
 D152), the proposal-union action basis, and the rule that value must be computed at
 decision time (rollouts) rather than fitted into a snapshot scorer.
 
-## 18. Why the models kept failing — representation and objective, unpacked
+## 20. Why the models kept failing — representation and objective, unpacked
 
-Section 17 ends with a compressed claim: *capacity was never the binding constraint —
+Section 19 ends with a compressed claim: *capacity was never the binding constraint —
 representation and objective were.* That sentence summarizes roughly sixty failed
 learning experiments. This section unpacks it.
 
@@ -441,7 +540,7 @@ self-harm — under strictly out-of-fit selection. It is the first experiment in
 program where every previously identified failure mode has a specific countermeasure in
 the design.
 
-## 19. Why CPU and GPU training never agreed
+## 21. Why CPU and GPU training never agreed
 
 The YT benchmark that decided where training runs (Arc A, D11 era) found the GPU path
 **9.8× faster** (9,769 vs 995 transitions/s) — and rejected it anyway: the same frozen
@@ -471,7 +570,7 @@ local CPU, and the frozen local/YT parity gate remains a precondition before any
 result may be *selected* (YT stayed in use for exactly-replayable map/reduce simulation,
 where byte-parity was achieved and verified per shard).
 
-## 20. The saved-games database
+## 22. The saved-games database
 
 Everything field-related — loss diagnoses, archaeology, motif audits, opponent models —
 runs on a locally saved corpus of real arena replays. Its shape as of 2026-07-27:
@@ -531,7 +630,7 @@ exact + 8 known penalty-only endings), tree invariants, and point-symmetry of ev
   cumulative store vs dated immutable snapshots (which make "the field as of date X"
   a well-defined, hash-frozen object).
 
-## 21. Glossary — mother, crop, orchard
+## 23. Glossary — mother, crop, orchard
 
 Terms that recur throughout the ledger, grounded in the game's mechanics and the
 resident's own source code.
@@ -568,16 +667,28 @@ resident's own source code.
   deposited bank those seeds come from is fed by harvests — including mother fruit — so
   the mother/crop loop is the upstream supply of the very returns D168 is now testing.
 
-## 22. Deep dive — D169, the option-envelope gate (standalone reading)
+## 24. Deep dive — D169, the option-envelope gate (standalone reading)
 
 This chapter explains experiment D169 from scratch, including every experiment it builds
-on. It assumes no other context. **Update (2026-07-27, post-run): D169 PASSED** — mean
+on. It assumes no other context. **Update (2026-07-29, full arc): D169 PASSED** — mean
 envelope +10.671, CI [+9.420, +11.922], 65% of tasks improved, zero regressions, tails
-better than control, on 100% panel coverage; every option was negative when always-on,
-so all value is per-game selection. This clears every frozen gate on the first pass (no
-D169b extension needed) and authorizes designing D170. The rest of this chapter describes
-the experiment as it was frozen before that result; its reasoning for *why* the gate
-exists and *why* the thresholds are what they are remains the authoritative explanation.
+better than control, on 100% panel coverage; every option was negative when always-on, so
+all value is per-game selection. This cleared every frozen gate on the first pass and
+authorized designing D170. D170a then hit an implementation bug (three trigger arms
+structurally unreachable) and closed at Phase 1 as an implementation invalidation, not a
+scientific closure; its mechanics-only repair, D170b, trained cleanly — 8/8 fits, all 13
+arms live — but every one of the four objectives converged to always-KEEP on held
+decisions (0/8 admitted): CLOSED-AT-PHASE-2, on-policy terminal-reward training cannot
+find the envelope's rare positive contexts at any sane budget. The owner then reopened
+Tier 2 for one further, differently-shaped attempt: D172a replaced on-policy reward with
+exact, zero-noise counterfactual labels over 27,392 decision states and found signal 5×
+the required floor (40.4% of states carry a ≥+2 option) — yet both a linear and an MLP fit
+still failed held-out admission (+0.14 to +0.26 against the +1.5 gate). CLOSED-AT-SELECTION:
+the positive contexts are not identifiable from the resident's own observables at all,
+independent of training method — the definitive closure of the Tier-2 learning route. The
+rest of this chapter describes the experiment as it was frozen before any of these
+results; its reasoning for *why* the gate exists and *why* the thresholds are what they
+are remains the authoritative explanation.
 
 **What D169 is.** The live bot ("the resident") is a hand-written two-worker policy that
 cannot be beaten by any replacement we have built, yet loses to the top of the ladder in
@@ -695,7 +806,7 @@ same rules as the 168 experiments before it.
 | D168 | Proof that scripting the return always-on loses; per-game selection is the open question |
 | B3.1 | The observable opponent-scaling trigger (42–125 turns of warning) used for arming |
 
-## 23. The road ahead — backlog
+## 25. The road ahead — backlog
 
 What we intend to do next, how long each step takes, why it is worth doing, and what we
 expect from it. The operational source of truth is `docs/BACKLOG.md` (with gates and
@@ -769,7 +880,7 @@ exhausted: the project holds at maintenance (standing collection, occasional
 execution-class sweeps, no arena churn) — and whether to re-scope the goal becomes a
 decision for the owner, not the ledger.
 
-## 24. Where the records live
+## 26. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
