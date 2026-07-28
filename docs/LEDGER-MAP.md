@@ -693,7 +693,76 @@ same rules as the 168 experiments before it.
 | D168 | Proof that scripting the return always-on loses; per-game selection is the open question |
 | B3.1 | The observable opponent-scaling trigger (42–125 turns of warning) used for arming |
 
-## 23. Where the records live
+## 23. The road ahead — backlog
+
+What we intend to do next, how long each step takes, why it is worth doing, and what we
+expect from it. The operational source of truth is `docs/BACKLOG.md` (with gates and
+kill rules); this chapter is its narrative snapshot as of 2026-07-28.
+
+**1. D170b — the closed-loop option policy (in flight; hours of CPU).**
+*Why:* it is the only lever whose measured ceiling (+10.671 hindsight envelope, D169)
+exceeds the +6.25 gap to the rank-3 bar; every offline alternative was exhausted by
+thirty-odd failed selectors. *What:* train a ≤12k-parameter recurrent policy to decide,
+in-game, when to invoke which bounded option — comparing four training objectives to
+answer the program's oldest open question (does family-robustness plus own-score
+protection prevent the rotation and self-harm that killed pooled-margin training?), then
+survive out-of-fit selection, a veto panel, and one sealed confirmation run.
+*Expectation:* honestly uncertain — this is the decisive experiment. Success = ≥ +2.0 on
+never-touched maps with no opponent family sacrificed. Both outcomes are valuable: a
+CONFIRMED opens the deployment path; a CLOSED ends the Tier-2 program with a clean
+conscience. (The first attempt, D170a, died of a wiring bug caught by its own mechanics
+gate — the repair is verified and the re-run is executing.)
+
+**2. Deployability port (only after a CONFIRMED; ~1 session).**
+*Why:* a confirmed policy is research until it fits CodinGame's walls. *What:* int8
+quantization + persistent-buffer engineering per the proven K2/V5 pattern, ≥99% action
+agreement with the float policy, warm decision p95 ≤ 20 ms, combined source ≤ 100 KB.
+*Expectation:* high confidence — the identical pattern already shipped a bigger network
+at 7 ms / 69 KB.
+
+**3. The arena trial (only after everything above; ~1 day including mature reads;
+requires explicit user authorization).**
+*Why:* the ledger's hardest lesson — local gates qualify, only arena transfer validates.
+*What:* the frozen promotion protocol: capacity A/A control, candidate submission, timed
+reads, keep/revert bands, instant restore on failure. *Expectation:* the honest risk
+concentrates here — historical local→arena attrition is severe, and the ladder's slow
+score recomputation means even a successful promotion shows its true rank over days, not
+minutes. A confirmed +2–4 local candidate is a *shot* at climbing, not a guarantee.
+
+**4. Re-power the field measurements on the quadrupled corpus (1 session, read-only).**
+*Why:* several standing field verdicts rest on painfully small samples — 21 top-5 return
+cycles, 19 catastrophes, 50 motif appearances — because the old collection lens sampled
+10 games per agent. The 2026-07-28 wide collection took the corpus to 8,122 games and
+469 agents. *Expectation:* tighter confidence on the motif rates and the catastrophe
+signature, and better context for judging D170's confirmation numbers before anything
+approaches the arena. Frozen verdicts stand; this is new evidence, not re-adjudication.
+
+**5. Execution-waste sweep on the fresh corpus (1 session).**
+*Why:* execution-class improvements are historically the *only* changes that ever
+transferred to the arena (+3.0 promotion included). The new corpus contains 29 agents we
+had never observed. *Expectation:* usually nothing; occasionally a +0.5–1 candidate of
+the one class with a perfect transfer record.
+
+**6. Standing wide-lens collection (minutes to install; awaiting user authorization).**
+*Why:* per-agent battle windows rotate — unharvested games are lost permanently, and the
+one-shot wide run proved the stream's value (6,231 games in one pass). *What:* a
+token-free system cron running the throttled, idempotent collector every 12–24 h.
+*Expectation:* a corpus that compounds by roughly a thousand games per week at zero
+attention cost.
+
+**7. Housekeeping (pull in when convenient):** make `cargo test --workspace` green again
+by gating one broken research bin (~1 short session); migrate the now-2.4 GB games store
+to external storage per the established copy-verify-symlink policy (~1 session).
+
+**The horizon.** If D170b confirms and the arena transfer holds, the next headroom is
+already mapped: the D169b extension (joint two-worker assignments, +9.2 measured beyond
+best-single on the old substrate) widens the option vocabulary, and the same closed-loop
+machinery retrains on it. If D170b closes, the evidence-permitted paths to +6 are
+exhausted: the project holds at maintenance (standing collection, occasional
+execution-class sweeps, no arena churn) — and whether to re-scope the goal becomes a
+decision for the owner, not the ledger.
+
+## 24. Where the records live
 
 - Ledger vol 1 (Phases + D1–D166, frozen): `legend-top3-experiment-cycle-2026-07-18.md`.
 - Ledger vol 2 (live): `legend-top3-experiment-cycle-vol2-2026-07-23.md`.
