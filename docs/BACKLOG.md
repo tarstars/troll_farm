@@ -124,6 +124,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   (all machinery exists), expected value small; promotion of any qualified successor
   needs a NEW owner authorization (the D171a standing grant never triggered and does not
   carry over).
+- **B3.5 (new, OPEN — current top execution-class lead): harvest_slack diagnosis + fix**
+  — ripe fruit unharvested ≥3 turns with a capable worker nearby: 2,163 episodes in
+  204/205 games, ~536 pts gross ceiling (~2.6/game), loss-enriched +15–20%, 91%
+  independent of the closed oscillation vein. Plausible target-reassignment root cause.
+  Pipeline: diagnosis (in flight) → bounded fix protocol → gates. The waste-sweep tool
+  is now standing (`cgauto/waste_sweep.py`, commit 31b3ef0); `idle_with_work`
+  sub-classification is the second-priority follow-up (must exclude the deliberate
+  orchard-reserve idle).
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

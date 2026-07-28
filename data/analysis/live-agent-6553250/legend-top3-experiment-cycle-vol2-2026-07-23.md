@@ -149,6 +149,24 @@ reported alongside). Everything else — objectives, seeds, budgets, ranges, gat
 — inherited from D170a unchanged. Engineering constraint recorded: post-step event
 arming must use the sticky-flag pattern, never turn-equality against a live counter.
 
+## 2026-07-28: waste-sweep round 2 — standing tool committed; harvest_slack is the new top lead
+
+The execution-waste detector library is now a committed tool (`cgauto/waste_sweep.py` +
+41 tests, commit 31b3ef0; two real detector bugs caught and regression-tested during
+development). Round 2 over all 205 resident games (98W/106L/1T, 20 catastrophes), six new
+signatures: `repeated_failed_command` 0 (clean, verified non-vacuous);
+`late_train_window` 1/205 (resident trains immediately when affordable — policy healthy);
+`door_queue` and `unbanked_carry` residuals are closed-vein re-detections or scattered
+single turns; `idle_with_work` large (7,782 episodes, ~38/game) but flat across outcomes
+and heterogeneous — needs sub-classification before any cycle (one confirmed genuine
+pattern: contested-tree wood race; one confirmed NON-waste: the deliberately idled
+orchard reserve unit — any future fix must exclude it). **Top candidate:
+`harvest_slack`** — 2,163 episodes / 15,326 turns in 204/205 games, ~536 points gross
+foregone value (~2.6/game ceiling), +15–20% loss/catastrophe enrichment, 91% independent
+of the oscillation vein, and 46.9% of episodes have a verified-capable worker nearby;
+plausible target-reassignment root cause. Ranked worth a diagnosis+fix cycle (opened as
+B3.5). Report: session scratch `waste-sweep-round2-report.md` (numbers preserved here).
+
 ## 2026-07-28 (later): OWNER DECISION — Tier-2 REOPENED (option a)
 
 The owner reopened Tier-2: "Let's reopen Tier-2." The dense-counterfactual-credit
