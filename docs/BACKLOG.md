@@ -1,21 +1,24 @@
 # BACKLOG — path to Legend top-3
 
-Created 2026-07-27. Owner-ranked task list for the standing goal (`docs/STATE.md` §2:
-rank ≤ 3 on a mature read + confirmation; bar ~28.11 at Phase 21). Every item cites its
-evidence (`Dnnn`/`Phase n` = ledger vol 1; classes = `docs/CONSTRAINTS.md`). Re-rank only
-from written evidence. One item in flight at a time; each ends with a ledger entry.
+Created 2026-07-27, consistency-revised 2026-07-28. Owner-ranked task list for the
+standing goal (`docs/STATE.md` §2: rank ≤ 3 on a mature read + confirmation; bar 28.22
+as of 2026-07-28 — MSz; was 28.11 at Phase 21). Every item cites its evidence
+(`Dnnn`/`Phase n` = ledger; classes = `docs/CONSTRAINTS.md`). Re-rank only from written
+evidence. One experiment in flight at a time (standing Tier-0 operations may run in
+parallel); each ends with a ledger entry.
 
-## Position summary (2026-07-27)
+## Position summary (2026-07-28)
 
-Resident `6561795` read 40–43/107 @ ~22.0 on 2026-07-23 (fresh-agent scoring); the
-untouched original matured to 26.31 / rank 6, and same-code A/A proved fresh reads sit
-3–4 points low. So the goal decomposes into: **(a) ~2–4 points of maturity recovery**
-(free — requires only not churning) **plus (b) ~+2–4 points of real code strength**
-(nothing transferable found since the +3.0 stack promotion on 07-17). The loss mechanism
-is measured: anti-compounding catastrophic tail (D159 — leads +23.9 at t100 → −5.2 at
-t225; 11% of games carry 58% of negative mass; 58% of losing opponents reach ≥3 workers),
-rooted in production persistence during/after scaling (D101: top-3 reap 24.16% of created
-crops, resident 0.94%; suppression already competitive).
+Resident `6561795`: rank 43/110 @ 21.97, score **source-side frozen since 07-23** (the
+ladder recomputes fresh-agent scores rarely) — the once-assumed passive-maturity recovery
+is dead as a lever; **code strength must carry essentially the whole +6.25 gap** to the
+28.22 bar. The loss mechanism is measured: anti-compounding catastrophic tail (D159 —
+leads +23.9 at t100 → −5.2 at t225; ~10–11% of games carry ~58% of negative mass,
+independently replicated at n=192), rooted in production persistence during/after scaling
+(D101: top-3 reap 24.16% of created crops, resident 0.94%; suppression already
+competitive). The replay corpus is 8,122 games / 469 agents after the 2026-07-28
+wide-lens collection (4× in one run). The active critical path is Tier 2: D169's
+envelope PASS (+10.671) → D170b closed-loop training (in flight).
 
 ## Tier 0 — free points and standing discipline (no code)
 
@@ -29,6 +32,11 @@ crops, resident 0.94%; suppression already competitive).
 - **B0.3 No-churn rule stays absolute** — no arena write until a candidate passes the
   promotion protocol (B4.1). Every failed trial costs ~2–4 points of standing for days.
   [class (g), fresh-vs-mature]
+- **B0.4 (proposed — ⏳ pending user standing authorization): scheduled wide-lens
+  collection.** Token-free system crontab running the throttled idempotent collector
+  every 12–24 h with the wide lens. Justification: the 2026-07-28 one-shot yielded 6,231
+  games; per-agent battle windows rotate, so unharvested games are permanently lost. Not
+  installed until the user grants standing passive-read authorization.
 
 ## Tier 1 — declared next experiments (cheap, bounded, evidence-backed)
 
@@ -57,13 +65,18 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   {OPT_RETURN, 3× D163 resource options, all ± B3.1-trigger arming}: **+10.671 mean,
   CI [+9.420, +11.922], 65% improved, 0 regressions**, tails better than control, 100%
   coverage. Every option negative always-on — value is pure per-game selection. No
-  D169b needed (all six PASS conditions held on the first pass). 🛑 Per
-  `docs/STATE.md`, Tier-2 is now paused for Fable-tier D170 authoring — do not proceed
-  to B2.2 with a cheaper model.
-- **B2.2 → D170: protocol FROZEN 2026-07-28 (Fable-authored), delegable** — see
-  `d170a-family-robust-option-policy-protocol-2026-07-28.md`. Four-objective comparison
-  (the skipped-D109 question) → LOBO admission/selection → veto → sealed confirmation →
-  int8 deployability → 🛑 user arena gate. Original scope: *(3–5 sessions + YT)*
+  D169b needed (all six PASS conditions held on the first pass). *(The one-time Fable
+  STOP for D170 authoring was satisfied 2026-07-28; no pause is in force.)*
+- **B2.2 → D170 — IN FLIGHT (D170b re-run executing 2026-07-28).** History: D170a
+  protocol frozen (Fable) → Phase 1 trained 8 fits → resume validation exposed a
+  structural trig-arming bug in the new composition code → **CLOSED-AT-PHASE-1
+  adjudicated as implementation invalidation** (no value ever computed; frozen vocabulary
+  intact) → **D170b** mechanics-only repair protocol frozen and now executing (repair +
+  activation verification + offered-conditional exploration semantics; all science
+  inherited). Chain: `d170a-...-protocol`, `d170a-...-result` (the invalidation record),
+  `d170b-...-repair-protocol`. Four-objective comparison (the skipped-D109 question) →
+  LOBO admission/selection → veto → sealed confirmation → int8 deployability → 🛑 user
+  arena gate.
   Recurrent policy over the B2.1 options with exact-resident action zero; objective =
   paired margin with group-DRO/worst-family term and own-score protection (D109's
   rotation, r=−0.014 across panels, is the failure this objective targets). Selection by
@@ -82,10 +95,16 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   observable early-warning trigger — opponent scaling past 2 workers precedes the
   crossover by 42–125 turns in 84% of catastrophes (83% of mass). **Feeds B2.1 as an
   activation-conditioning signal**, not a switch retune.
-- **B3.2 Execution-waste sweep on the freshest corpus** *(1 session after B0.1)*
+- **B3.2 Execution-waste sweep on the freshest corpus** *(1 session)*
   Motion/idle/waste audit on new replays (the 07-16 audit found zero motion failures —
-  rerun on current field only if B0.1 shows new opponents/behaviors). Cheap; occasional
+  now worth rerunning on the 4× corpus with its 29 first-seen agents). Cheap; occasional
   +0.5–1 candidates of the class that actually transfers.
+- **B3.3 (new): re-power the field measurements on the 8,122-game corpus** *(1 session,
+  read-only)* — D164's motif rates rested on 50 top-5 appearances, D167's field gate on
+  21 cycles, B3.1 on 19 catastrophes. A fresh field audit (new protocol; frozen prior
+  verdicts stand — this is new evidence, not re-adjudication) sharpens the field picture
+  before any candidate approaches the arena and gives D170's confirmation numbers better
+  context.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 
@@ -101,7 +120,10 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 - **B5.1 Green workspace build** — feature-gate or fix the broken research bin
   (`d35c_provenance_competitive_bundle_oracle_impl`, 311 errors) so
   `cargo test --workspace` gates work again.
-- **B5.2 YT tranche mirror** — part of B0.2 (plan Task 5).
+- **B5.2 ✅ YT tranche mirror** — done as part of B0.2 (plan Task 5, md5-verified).
+- **B5.3 (new): migrate `data/raw/games` (2.4 GB) to external storage** — the games store
+  became a bulk root after the wide collection; apply the storage policy's deferred path
+  split (copy-verify-symlink, as tranches 1–2), leaving compact indexes local.
 
 ## Recommended order
 
