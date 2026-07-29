@@ -1,17 +1,16 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-29T08:03:00Z
-- State: handoff-ready
-- Role: reviewer
-- Current task: 20260729-rank-hypotheses-critique
+- Updated UTC: 2026-07-29T12:29:00Z
+- State: idle / backlog published
+- Role: research agent and reviewer
+- Current task: none
 - Branch: agent/chatgpt_1
-- Base: a50276b5e0f5b33dcef1965723707269222e7037
-- Latest session head inspected: ab90981d512f648f8cc36216edc2dd43146fcb3f
-- Head: 0ab3dbab349e732cb859c94d7a7a7106a7beb8da
-- Write set: docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md; own coordination namespace; task record
-- Last concrete progress UTC: 2026-07-29T08:03:00Z
-- Evidence: H1-H12 critique committed; onboarding and mistake-walkthrough messages acknowledged; latest integrator commit inspected
+- Base: session-2026-07-01 at `8f83bcfcd431e1490270b6ade6bd833af7d2df92`
+- Write set: own agent and coordination namespaces only
+- Last concrete progress UTC: 2026-07-29T12:29:00Z
+- Evidence: `chatgpt_1/BACKLOG.md`; critique release message and released task record
 - Running job: none
-- Next checkpoint: integrator review/ack and optional integration
-- Blockers: branch is one session commit behind only because the integrator's new policy message landed during review; changed paths are disjoint and the message has been read/acked
+- Next checkpoint: review H5 after `claude_1` handoff; otherwise request H6 bounded-lookahead oracle-gap task
+- Blockers: H5 is actively owned by `claude_1`; Architecture-2 and H10 require explicit owner authorization
+- Preferred next unowned task: H6 bounded-lookahead oracle-gap audit
 - Arena controller: no
