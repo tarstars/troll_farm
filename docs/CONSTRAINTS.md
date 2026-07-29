@@ -370,6 +370,23 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (d) Denial & opponent-crop
 
+- **The "no-loop quartet" is not a proven causal peer group, and B4.4's cohort figures
+  are corrected.** Controlled at own-roster = 2: the 2v3 gap (resident −34.2 n=67 vs
+  quartet −14.6 n=200) **vanishes under identical-opponent matching** (−16.3 n=47 vs −17.1
+  n=63) while an OLS score/duration adjustment disagrees (+56.4, CI [+14,+274]) — the
+  controls conflict and the question is unresolved. At **2v4+ the quartet is numerically
+  worse** (−74.4 n=56 vs our −71.5 n=21; we win more often, 9.5% vs 3.6%). Also: "no-loop"
+  is a misnomer — all five agents run a 92–99% self-plant→self-chop **wood** loop; the
+  resident harvests **2–9× MORE** fruit than any quartet member (12.6 vs 2.2–6.4 pts/game),
+  reversing the "most wood-concentrated" claim; and wood/chop efficiency, tree size at
+  felling, specs and banking latency are statistically indistinguishable across all five.
+  Do not cite the −1.8-vs-−37.1 survival gap. [H3, 2026-07-29; corrects B4.4]
+- Opponent-crop **contact-coverage stability under numeric pressure** (resident 41.3%→35.3%
+  when outnumbered, −14.5% relative, while the quartet holds flat; whole margin gap sits in
+  full-300-turn games) is a LEAD, not a candidate. Any conditional opponent-crop targeting
+  change is Phase-21-adjacent and requires, before implementation: causality established
+  (cause vs symptom-of-losing) and an always-on control arm proving the conditioning is
+  load-bearing. [H3; gated by the same standard as H4]
 - ★ **Cross-player physical interference does not exist in this game.** Movement
   collisions resolve within each player's own units separately; **enemy units may share a
   cell with ours**, and units never block BFS distance. Body-blocking, door camping and

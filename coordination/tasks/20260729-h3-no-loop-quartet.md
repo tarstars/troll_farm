@@ -1,6 +1,6 @@
 # 20260729-h3-no-loop-quartet: why do our architectural twins survive scale asymmetry?
 
-- Status: active
+- Status: closed — verdict (C) underdetermined; residual lead gated to P1; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)
@@ -10,7 +10,7 @@
 - Branch: session-2026-07-01 (integrator; executed by claude_1 subagents)
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-29T11:56:58Z
-- Last updated UTC: 2026-07-29T11:56:58Z
+- Last updated UTC: 2026-07-29T12:30:06Z
 
 ## Outcome
 A verdict on whether the four STRONG two-worker no-loop agents (Escdemon, therealbeef,

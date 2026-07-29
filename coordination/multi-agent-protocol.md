@@ -156,6 +156,11 @@ of standing.
 
 ## 8. Conflict and failure rules
 
+**Never stage another worker's files.** With concurrent work in the same tree, `git add
+-A`/`-u` is forbidden — name explicit paths. (Violated 2026-07-29: an integrator `add -A`
+swept a running audit's in-progress script into an unrelated commit; content survived but
+the provenance is wrong in history.)
+
 Overlapping claims → integrator picks one owner. Unexpected peer edits inside your write
 set → stop, publish a `blocker`, let the integrator reconcile. A dirty shared worktree →
 do not operate on it; split into separate worktrees. Stale progress → the §5 procedure.

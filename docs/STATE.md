@@ -12,9 +12,10 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
   SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
 - `cgauto/api_submit.py` default = that exact source. Keep it that way.
 - Last ladder read (timestamped snapshot discipline — cite exactly one):
-  **2026-07-28T13:59Z: rank 43/112 @ 22.0**, 203 battles, promotable=False. Score is
-  source-side frozen between rare ladder recomputes (no recomputation since 07-23);
-  passive maturity is dead as a lever.
+  **2026-07-29T02:17Z cron snapshot: score 21.76, rank ~45** (bar unchanged, gap now
+  **6.46**). Drifting down passively as the pool strengthens (22.0 on 07-28, 21.97 on
+  07-27) — the score is source-side frozen between rare recomputes, so this is pool
+  movement, not decay. Passive maturity is dead as a lever.
 - Rank bar: 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
 - Corpus: 8,131+ games / 469 agents, compounding daily (cron 05:17).
 
@@ -68,10 +69,11 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   independently reviewed by chatgpt_1
   (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
   premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  Working taxonomy: **audit-ready** H5 (postmortem search — reserved for chatgpt_1), H3
-  (no-loop quartet — IN FLIGHT); **H8 CLOSED 2026-07-29** (B) forced — trains on the first
-  legal turn in 219/220 games, premise was a stale census, timing worth +1.31 n.s.;
-  **preflight-gated** H1 (read-only joint upper bound
+  Working taxonomy: **audit-ready** H5 (postmortem search — last P0 item);
+  **H8 CLOSED** (B) forced — trains on the first legal turn in 219/220 games, premise was
+  a stale census, timing worth +1.31 n.s.; **H3 CLOSED** (C) — the quartet's edge does not
+  survive controls and inverts at 2v4+, B4.4 corrected on four counts, residual
+  contact-coverage lead gated into P1; **preflight-gated** H1 (read-only joint upper bound
   only — the four-lever resident bundle is rejected), H4 (deniability census first),
   H6 (oracle-gap audit first), H7-rewritten (action contention, after H3); **owner
   programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the

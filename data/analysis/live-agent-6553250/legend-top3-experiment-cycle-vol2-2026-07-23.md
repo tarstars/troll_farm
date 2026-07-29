@@ -175,6 +175,57 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: H3 CLOSED (C) — the quartet's "survival edge" does not survive controls; B4.4 corrected on four counts
+
+**Verdict (C) mixed/underdetermined; no transferable mechanism confirmed.** Cohort
+(fresh snapshot, rank/games/roster/crop-level own-reap): Escdemon 11/180/2.00/2.4%;
+therealbeef 12/236/2.00/0.0%; yamo 15/140/2.00/0.0%; mehdi_ayari 32/144/1.99/0.2%;
+resident 45/219/2.00/0.9%. All four still satisfy B4.4's STRONG rule.
+
+**The headline gap largely dissolves under control.** Restricting to own-roster = 2, the
+raw pooled 2v3 comparison is resident **−34.2 (n=67)** vs quartet **−14.6 (n=200)** (win
+34% vs 30%) — a real difference. But under the tightest control, **identical opponent
+identity** (19 shared 3-worker bots), it vanishes: resident **−16.3 (n=47)** vs quartet
+**−17.1 (n=63)**. An OLS adjustment for opponent arenaScore + duration points the other
+way (+56.4 quartet advantage, CI [+14, +274], n=48). **The two rigorous controls disagree
+and the audit correctly declined to adjudicate.** At **2v4+ there is no edge at all**:
+resident −71.5 (n=21) vs quartet **−74.4 (n=56), numerically worse**, with the resident
+winning more often (9.5% vs 3.6%).
+
+**Four corrections to B4.4, all adopted.** (1) Its −1.8-vs-−37.1 headline was not
+own-roster-controlled; the controlled figures are above, and the vs4+ claim inverts.
+(2) **"No-loop" is a misnomer** — all five agents, resident included, run a 92–99%
+self-plant → self-**chop-for-wood** cycle. Everyone has a loop; it is a wood loop, and it
+is not a differentiator. (3) The own-reap rates are tighter than reported: 0–2.4%
+crop-level for the quartet (B4.4's "0–14.5%" was a looser game-level indicator).
+(4) **The resident harvests 2–9× MORE fruit than every quartet member** (12.6 vs 2.2–6.4
+pts/game), reversing B4.4's pooled "resident is the most wood-concentrated" claim — we are
+the *least* pure wood economy of the five. Additionally, wood/chop efficiency, tree size
+at felling, unit specs, and banking latency are **statistically indistinguishable across
+all five**, refuting B4.4's own hedge that chop efficiency explained the gap (a class
+B4.6 had already closed on other grounds).
+
+**Residual signal, recorded as a gated lead, not a candidate.** Opponent-crop contact
+coverage degrades **41.3% → 35.3%** for the resident under numeric pressure (−14.5%
+relative) while every quartet member holds flat or improves, and a duration-tercile split
+places the entire margin gap in full-300-turn games. The audit's proposed test — bias
+chop-target selection toward opponent-origin crops when roster-behind and past ~turn 150 —
+is **Phase-21-adjacent** (exact 1:1 dual-value opponent-crop scoring: all pre-arena gates
+passed, −7.77 rating live) and rests on a comparison whose headline dissolved under the
+tightest control. Adjudication: it is gated by the same standard the H4 review imposed —
+before any implementation, (i) establish causality (is coverage degradation a cause or a
+symptom of already losing? the 300-turn concentration is consistent with either), and
+(ii) demonstrate that the *conditioning* is load-bearing via an always-on control arm.
+Folded into the H4/H7-rewritten preflight bucket, all three being "opponent interaction
+under pressure". Script `cgauto/no_loop_quartet_audit.py`; report in session scratch
+`h3-no-loop-quartet-report.md`.
+
+**Process note (integrator error, recorded).** A `git add -A` during the H8 commit swept
+this audit's in-progress script into an unrelated commit while its author was still
+working. The protocol forbids staging another worker's files; with concurrent agents,
+commits must name explicit paths. No content was harmed (verified byte-identical), but the
+provenance is now wrong in the history and the rule is restated in the protocol.
+
 ## 2026-07-29: H8 CLOSED — worker-2 timing is already optimal; the premise was wrong and a shared method bug is fixed
 
 **Verdict (B) forced — no execution-class candidate; H8 closes.** The resident trains its

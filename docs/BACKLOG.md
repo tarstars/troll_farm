@@ -24,9 +24,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 - **H5 postmortem intelligence** — search for published Spring Challenge 2026 write-ups
   by delineate/norxondor/MSz and cohort; check the field's self-description against our
   inferred model. Hours; zero platform interaction. *(offered to chatgpt_1)*
-- **H3 no-loop quartet** — Escdemon/therealbeef/yamo/mehdi_ayari share our profile and
-  survive 2v3 at −1.8 vs our −37; controlled comparison (opponent workforce, identity,
-  seat, map, duration; revalidate "no-loop" from commands; separate maturity effects).
+- ~~**H3 no-loop quartet**~~ **❌ CLOSED 2026-07-29 (C) underdetermined** — the edge
+  dissolves under identical-opponent matching and inverts at 2v4+; B4.4 corrected on four
+  counts (no-loop is a misnomer; we harvest 2–9× more fruit than they do; chop efficiency
+  indistinguishable). Residual lead (contact-coverage stability) moved to P1, gated.
 - ~~**H8 worker-2 timing**~~ **❌ CLOSED 2026-07-29 (B) forced** — trains on the first
   legal turn in 219/220 games; premise was a stale census (same-architecture cohorts are
   slower than us); timing worth +1.31 n.s. Byproduct: post-move shack-occupancy rule now
@@ -41,7 +42,13 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 - **H6 oracle-gap audit** — bounded-continuation oracle vs live scorer on real decision
   states; implementation only after a material, broad, affordable gap.
 - **H7 (rewritten) action-contention audit** — cross-player races/duplication/timing
-  (body-blocking DOES NOT EXIST — mechanics.md:42-44); run only if H3 points there.
+  (body-blocking DOES NOT EXIST — mechanics.md:42-45).
+- **H3-residual contact-coverage lead** — our opponent-crop contact coverage decays
+  41.3%→35.3% when outnumbered while the quartet's holds; whole gap sits in 300-turn
+  games. Phase-21-adjacent: establish causality (cause vs symptom of losing) and prove the
+  conditioning is load-bearing with an always-on control arm BEFORE any implementation.
+  Natural companion to H4 and H7-rewritten — all three are "opponent interaction under
+  pressure"; consider one combined preflight audit.
 
 **P2 — owner programme decisions (not started without explicit go):**
 - **H2 Architecture-2** — PRIMARY. New bot around the coupled economy; five milestone
