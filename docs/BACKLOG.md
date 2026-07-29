@@ -19,84 +19,90 @@ grafts are structurally negative (three independent confirmations). Corpus 8,131
 compounding daily. Direction menu: `docs/rank-hypotheses-2026-07-29.md` + its integrated
 review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 
-## LIVE PRIORITIES (2026-07-29)
+## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
-**P0 — audit-ready, read-only, parallel, claimable now:**
-- ~~**H13 fidelity gap**~~ **✅ DONE 2026-07-29 — one candidate, headline deflated.** The
-  2.94 gap is most plausibly **maturity, not code** (≤1 point attributable; fresh-vs-mature
-  is 3–4 points; several behaviours equal or reversed) — do not repeat the "we underperform
-  our source" claim without a maturity-controlled measurement. Real finding: we oscillate in
-  **18.2% of games (worst 133 turns) vs yamo's 2.9% (worst 6)**. Also: the endgame
-  opponent-plant contest is absent from our code, the denial weight was never swept, and
-  four accretions (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring)
-  are structurally DEAD. → **D176a frozen** (preference tie-break, bounded arming;
-  expected value marginal ≈+0.1 overall, run because execution-class transfers).
-- *(superseded framing)* H13 fidelity gap vs our own source design The resident is a reproduction of yamo's #3-Legend published bot (H5), and
-  **yamo outranks us by 2.94 points at the same fixed 2-troll roster** (24.70 rank 15 vs
-  21.76 rank 45). That gap is not architectural. Diff our live source against (a) the
-  restored postmortem `docs/reference/yann-moisan-postmortem-2026-05-26.txt`, (b) the
-  reproduction spec `docs/reference/2026-07-11-yannbot-design.md`, and (c) yamo's 140
-  ladder games; class every deviation as validated-improvement / unvalidated-change /
-  unintended-divergence. The last two classes are candidate fixes — execution-class, the
-  only family that has ever transferred.
-- ~~**H5 postmortem intelligence**~~ **✅ DONE 2026-07-29, verdict (b)+(c)** — thin but
-  real sources; strongly confirms our model (2-worker viability, worker-3 marginality,
-  denial mechanism corroborated by the #2 and #3 finishers); corrects H6's premise (the
-  field is split on lookahead: #1 is a NN with no search, #2 ran depth-12 rollout + 3-ply
-  beam); nobody describes recovering from numeric disadvantage, only preventing it. Its
-  incidental finding opened H13.
-- ~~**H3 no-loop quartet**~~ **❌ CLOSED 2026-07-29 (C) underdetermined** — the edge
-  dissolves under identical-opponent matching and inverts at 2v4+; B4.4 corrected on four
-  counts (no-loop is a misnomer; we harvest 2–9× more fruit than they do; chop efficiency
-  indistinguishable). Residual lead (contact-coverage stability) moved to P1, gated.
-- ~~**H8 worker-2 timing**~~ **❌ CLOSED 2026-07-29 (B) forced** — trains on the first
-  legal turn in 219/220 games; premise was a stale census (same-architecture cohorts are
-  slower than us); timing worth +1.31 n.s. Byproduct: post-move shack-occupancy rule now
-  binding for all affordability work. No candidate.
+Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
+produced one experiment (D176a, in flight). Its most consequential output was not a
+candidate but a **re-baselining**: H13 found that at most ~1 point of our 2.94-point gap to
+yamo is attributable to code, while the documented fresh-vs-mature score effect is 3–4
+points. **If that holds, our true code gap to the 28.22 bar is roughly 2.5–3.5, not 6.46** —
+which changes what is worth building. Iteration 2 therefore leads with measurement, not
+construction.
 
-**P1 — preflight-gated audits (read-only first steps only):**
-- ~~**H1 joint upper bound**~~ **❌ CLOSED 2026-07-29 (C) immaterial/negative** — NET
-  bound −21.33 rating [−22.76,−19.89], 0/220 games positive; even the most optimistic
-  credible variant is −2.49, 6/220. Displacement model calibrated against D175a (−4.32
-  predicted vs −5.41 actual). Harvest capability contributes most, early planting ≈0.
-  Worker 3 affordable 36.8% (median turn 78) under the real bill; **worker 4 never** —
-  credited resources are a one-time windfall from a finite tree population. The economy
-  package is dead as a resident patch; the finding constrains H2 rather than killing it.
-- **H4 deniability census** — what currency paid the opponent's worker-3 bill, was it
-  reachable/contestable in the B3.1 warning window, and at what displacement cost.
-- **H6 oracle-gap audit** — bounded-continuation oracle vs live scorer on real decision
-  states; implementation only after a material, broad, affordable gap.
-- **H7 (rewritten) action-contention audit** — cross-player races/duplication/timing
-  (body-blocking DOES NOT EXIST — mechanics.md:42-45).
-- **H3-residual contact-coverage lead** — our opponent-crop contact coverage decays
-  41.3%→35.3% when outnumbered while the quartet's holds; whole gap sits in 300-turn
-  games. Phase-21-adjacent: establish causality (cause vs symptom of losing) and prove the
-  conditioning is load-bearing with an always-on control arm BEFORE any implementation.
-  Natural companion to H4 and H7-rewritten — all three are "opponent interaction under
-  pressure"; consider one combined preflight audit.
+### P0 — re-baseline (cheap, read-only, and everything downstream depends on it)
 
-**P2 — owner programme decisions (not started without explicit go):**
-- **H2 Architecture-2** — new bot around the coupled economy; five milestone gates
-  (review §H2): referee/eval parity → equal-roster match + tail safety → closed-loop
-  plant-reap-fund-train → 3–4-worker survival → same-panel dominance. **Two 2026-07-29
-  constraints now bind its rationale:** (a) H1 showed the package cannot pay as a patch,
-  but its displacement term is specific to cannibalised chop capacity, so a from-scratch
-  design is not refuted — it must, however, answer "where does the RENEWABLE resource base
-  come from" first, since a finite windfall never affords a 4th worker; (b) H5 found the
-  contest's #2 and #3 finishers both ran/endorsed 2-worker rosters, so "scale is the
-  answer" is contested by the field itself. Natural multi-agent programme.
-- **H10 spatial-planes learner** — the sanctioned D172a reopening; cheap spatial probe
-  before any GPU programme; every D172 gate preserved.
+- **N1. Maturity-curve measurement.** *The single highest-leverage item available.* Quantify
+  the fresh-vs-mature effect empirically instead of citing a 07-16 anecdote: use the six
+  ladder snapshots (2026-07-21 → 07-29, daily since 07-28) plus the 8,131-game corpus to fit
+  score-vs-time-since-submission across the field, controlling for battle count and pool
+  composition. Deliver: our expected *mature* score, the resulting true code gap to the bar,
+  and whether score converges or plateaus. **Decision value:** re-baselines every other item;
+  if maturity is worth 3–4 points, patience and submission *timing* outrank every code
+  candidate we have found. Read-only, no platform interaction.
+- **N2. B4.4 verification sweep.** Its figures have now been corrected twice (H3 on four
+  counts; H5 on planting tempo, where yamo's own postmortem says turn > 250 against B4.4's
+  claimed 21–29). Re-verify or retire its remaining claims — particularly the cohort
+  planting-tempo and wood-concentration numbers, which motivated D175a. Until this lands, do
+  not cite B4.4 figures in any new protocol.
 
-**P3 — near-closed:** **H11** map-conditioned config — only as a controlled decomposition
-(joint opponent×map conditioning, held blocks); D63 0.830→0.479 and D91 stand.
+### P1 — bounded audits with a decision attached
 
-**Operations (not hypotheses):** **H9** capacity A/A only as phase 1 of an authorized
-promotion (`docs/PROMOTION-RUNBOOK.md`); **H12** surveillance = cron 05:17 + weekly
-comparative refresh with explicit triggers; **B5.3** cold-file migration ripens
-~2026-08-03; **B0.3 no-churn** absolute.
+- **N3. Renewable-base feasibility — the gate on H2.** H1 found worker 4 is affordable in
+  0/220 games because credited resources are a *one-time windfall from a finite tree
+  population*, yet the top cohort runs 3.55 workers. Determine from the corpus whether a
+  genuinely self-sustaining resource loop exists on these maps, or whether the top cohort
+  simply consumes a larger windfall faster. **If no renewable base exists, H2's premise
+  fails and the Architecture-2 programme should not start.**
+- **N4. H6 residual as a value audit** *(chatgpt_1's, re-scoped)*. Their preflight already
+  invalidated generic rollout — pair assignment is exhaustive, chop scoring models growth,
+  and the MC/MOVE-residual/one-deviation/overlay families are closed. What survives is
+  intertemporal choice among the resident's *existing* candidate pairs. Wanted first: a
+  cheap bound on what better first-pair choice is worth under the resident's own objective,
+  before any three-phase implementation ladder.
+- **N5. Endgame opponent-plant contest.** The source design specifies "park adjacent to the
+  opponent's shack and contest last-minute planting"; H13 confirmed it absent from our code
+  (`view.shacks[1]` appears at three unrelated lines) with directional support (opponents
+  plant while we lead in 43.3% of our endgame games vs 35.9% of yamo's, n≈260). Quantify the
+  cost, then decide. A genuinely missing mechanic from a design we deliberately reproduced.
+- **N6. Denial-weight sweep.** `900/(1+dist)` was never swept, despite the reproduction
+  plan's own G1 requiring it. This is an unfinished reproduction step, not a post-hoc
+  threshold retune — but it must be framed and gated as an experiment, not a tuning pass.
 
----
+### P2 — hygiene and consequences of iteration 1
+
+- **N7. Dead-accretion cleanup plan.** `ScarceIntent`, `banana_factory`, `task_market` and
+  the opponent-crop scoring family are structurally unreachable (H13). Confirm independently,
+  then plan removal from the dev copy — they have already caused analytical errors (several
+  audits, mine included, discussed them as live behaviour). Removal touches the byte-sacred
+  file, so it needs its own protocol and a behavioural-identity proof.
+- **D176a integration** when it reports. If it closes, the oscillation line ends permanently
+  (two designed attempts against a measured ceiling is enough).
+
+### P3 — owner programme decisions (unchanged, now better constrained)
+
+- **H2 Architecture-2** — gated on **N3**, and further contested by H5: the contest's #2
+  finisher explicitly rejected a third troll for "unfavorable cost scaling" and the #3 ran a
+  fixed two-troll roster. Do not start without N1 and N3 in hand.
+- **H10 spatial-planes learner** — the sanctioned D172a reopening. H5 adds a data point
+  worth weighing: the #1 finisher (delineate) is a **trained NN with no search at all**. Our
+  closures cover *option-selection* learning and *imitation from replays*; a self-trained
+  whole-policy network is a different target and was never attempted. Reframing H10 that way
+  is a legitimate owner question, and a substantially larger programme than the spatial probe.
+
+### Operations
+
+- **H9 submission timing** — reclassified from "curiosity" to **strategic**, pending N1: if
+  maturity dominates, *when* we next submit matters more than what we submit. Still requires
+  explicit owner authorization and runs only inside `docs/PROMOTION-RUNBOOK.md`.
+- **H12 surveillance** — cron 05:17 running; weekly comparative refresh with explicit
+  triggers. **B5.3** cold-file migration ripens ~2026-08-03. **B0.3 no-churn** absolute.
+
+### Closed — do not re-propose (see CONSTRAINTS for the decisive numbers)
+
+H1 (economy package, −2.49 own-side-only), H3 (quartet edge dissolves), H5 (done), H6
+generic rollout (narrowed to N4), H7 body-blocking (mechanically impossible), H8 (worker-2
+at the floor), H11 (near-closed, D63/D91), H13 (done → D176a), plus the eight routes of the
+2026-07-29 terminal synthesis.
 
 *Everything below this line is the historical record (tiers as they were run, verdicts
 inline). Do not re-rank it; it is the evidence base for the priorities above.*

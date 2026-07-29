@@ -76,7 +76,14 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   independently reviewed by chatgpt_1
   (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
   premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  Working taxonomy: **all P0 audits CLOSED 2026-07-29** (H3, H5, H8, H13; H1 too).
+  **Iteration 2 backlog formed 2026-07-29** (`docs/BACKLOG.md` LIVE PRIORITIES): leads with
+  **N1 maturity-curve measurement** — if the fresh-vs-mature effect is the documented 3–4
+  points, the true code gap to the bar is ~2.5–3.5 rather than 6.46, which re-baselines
+  every downstream decision including whether to build at all. Then N2 (retire/verify B4.4's
+  twice-corrected figures), N3 (renewable-base feasibility — the gate on H2), N4 (H6
+  residual as a value audit), N5 (missing endgame opponent-plant contest), N6 (unswept
+  denial weight), N7 (dead-accretion removal plan).
+  Working taxonomy: **all iteration-1 P0 audits CLOSED 2026-07-29** (H3, H5, H8, H13; H1 too).
   **Active experiment: D176a** oscillation-breaker successor (preference tie-break,
   bounded arming; marginal expected value, execution-class). **H13 DONE** — the 2.94 gap
   to yamo is most plausibly maturity not code (≤1 pt attributable), but we oscillate at
