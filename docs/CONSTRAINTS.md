@@ -623,6 +623,22 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   therefore wrong, while the opportunity it names is corroborated by a top-2 finisher.
   Also: nobody in any public source describes *recovering* from numeric disadvantage — the
   field's answer is prevention only. [H5]
+- ★ **Displacement is the default explanation for a mechanism that "should" pay.** Across
+  the 2026-07-29 sweep, five independent candidates each looked materially positive on
+  gross accounting and each priced out at or below zero once the turns they consume were
+  charged against what those turns currently produce: D175a planting (−26.44 measured,
+  Δopponent +21.09), D174a mining (−10.76 with the mechanism delivered at 10.6×), H1's
+  whole economy package (−2.49 own-side-only, 0–6 of 220 games positive), plus H3's and
+  H8's gaps dissolving under control. **A proposal that does not price displacement is not
+  yet an estimate.** Corollary: the calibration standard is to reproduce a known measured
+  result (H1's model recovered D175a's −5.41 as −4.32); a displacement model that cannot
+  do that is not trustworthy. [D174a, D175a, H1, H3, H8]
+- **Measure before you build, and re-verify the premise first.** Of six hypotheses examined
+  on 2026-07-29, **four had false or stale premises** — H7's mechanic does not exist in the
+  game, H8's tempo figure came from a superseded census, H6's "the field doesn't search" was
+  wrong (the #2 finisher ran depth-12 rollout), and H13's headline gap is most likely score
+  maturity rather than code. Cheap premise-checks retired more work than any experiment did.
+  [H5, H6-preflight, H7, H8, H13]
 - Across the whole project, only execution-class changes (waste cuts, geometry, packaging)
   have transferred to the arena; every wrapper, transplant, imitation, offline-value
   selector, and economy re-architecture failed held-out gates or arena. [vol 1; archive
