@@ -113,7 +113,19 @@ is load-bearing. **First step.** Read-only: in catastrophe games, measure what c
 the opponent's worker-3 bill actually consumed and whether it was deniable (reachable by
 our units in the window). **Cost:** audit one session; experiment 1–2 more.
 
-## H5. Postmortem intelligence — read what the top players wrote
+## H5. Postmortem intelligence — ✅ DONE 2026-07-29, verdict (b) confirms + (c)
+
+> **Result:** thin but real sources. Strongly confirms our model — the #2 and #3 finishers
+> independently endorse a 2-troll roster and denial-first play, and #2 explicitly rejected
+> a third troll for "unfavorable cost scaling". Corrects H6: the field is *split* on
+> lookahead (#1 delineate is a trained NN with no search at 2–3 ms; #2 putibuzu ran
+> depth-12 rollout + 3-ply beam). Nobody describes recovering from numeric disadvantage —
+> only preventing it. **Incidental and decisive: our resident is a reproduction of yamo's
+> #3-Legend published design, and yamo outranks us by 2.94 at the same roster** → opened
+> as H13, now the top cheap lead. Primary sources restored to `docs/reference/`.
+> Ledger + CONSTRAINTS (h). Original text preserved below.
+
+## H5 (original). Postmortem intelligence — read what the top players wrote
 
 **Hypothesis.** The contest ended 2026-05-25; CodinGame top players routinely publish
 postmortems (forum, blogs, GitHub). delineate, norxondor_gorgonax, and MSz's own

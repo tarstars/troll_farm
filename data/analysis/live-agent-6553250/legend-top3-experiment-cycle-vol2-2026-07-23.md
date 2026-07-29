@@ -175,6 +175,64 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: ★★★ H5 — the resident IS a #3-Legend published design, and it underperforms its own source by 2.94
+
+**Verdict (b) strongly confirms + (c) a few uncatalogued mechanisms — but the incidental
+finding outweighs both.** Public sources are thin and honestly so: two CodinGame forum
+threads (~29 named authors), plus three write-ups — delineate's gist (#1 Legend), Yann
+Moisan / `yamo`'s blog (#3 Legend), and Astrobytes' README. Nothing on Reddit, YouTube or
+X. `norxondor_gorgonax`, our ladder #2, is a CodinGame **auto-generated anonymous
+pseudonym**, so no postmortem can structurally exist; `MSz` published nothing. Both are
+verified absences, not search failures.
+
+**The finding: our own resident is a reproduction of the #3 finisher's published bot, and
+the project had lost track of this.** Commit `0307012` (2026-07-11) archived Yann Moisan's
+postmortem and a `yannbot` design spec; that lineage became `MoisanBot`/`YamoOpeningPolicy`
+and, after execution polish, **is the live resident today**. Verified directly: the
+postmortem describes scoring chops as "wood per turn — collectible wood divided by the full
+round-trip cost" (our `1000·wood/turns` in `chop_candidates`), a first-turn `typeToCut`
+chosen by cluster-nearest-shack, an endgame that plants leftover fruit for points, and —
+decisively — "when a tree matches `typeToCut` and **the opponent has at most 2 trolls**, the
+bot uses a different scoring formula that rewards trees near the opponent's shack… cut
+trees that will prevent the opponent from training." That gate is
+`yamo_orchard_live.rs:1102`, `opponent_trolls <= 2`, byte-identical in intent. **Both
+documents had been lost from the tree during a reorganization and are restored to
+`docs/reference/`.**
+
+**The number that matters.** Current ladder (2026-07-29T02:17Z snapshot): delineate 31.00,
+MSz 28.22, Escdemon 25.37, therealbeef 25.24, **yamo 24.70 (rank 15)**, mehdi_ayari 22.83,
+Pafin 22.25, **tass 21.76 (rank 45)**. We are **2.94 points below the very design we
+reproduce**, at the same fixed 2-troll roster. That gap is by construction **not
+architectural** — it is implementation fidelity, accreted divergence, or meta drift. It is
+also 45% of our 6.46-point gap to the bar, and it has a directly studiable target: yamo
+plays on our ladder and we hold 140 of its games. Opened as **H13**, now the strongest
+cheap lead on the board.
+
+**Field mechanisms recovered, and what they do to our theses.** (1) yamo (#3) ran a **fixed
+2-troll roster for the entire contest**, with denial-biased chop targeting only while the
+opponent has ≤2 trolls, and an endgame plant-to-extend at turn > 250 when behind.
+(2) **putibuzu (#2) explicitly rejected a third troll for "unfavorable cost scaling."**
+(3) delineate (#1) runs a **trained neural network with no turn search at all** — 2–3 ms of
+the 50 ms budget. (4) putibuzu also ran **real rollout to depth 12 plus a 3-ply beam
+search**. So: the field's top is **split on lookahead**, not uniformly greedy — which
+corrects H6's premise while strengthening its opportunity; and two of the top three
+finishers independently endorse exactly our roster, which **contests the premise under H2**
+that scaling is the answer. Our own measurements (B4.3 +48.2 margin/worker within-agent;
+H8 worker-3 timing +42.6) still stand as ladder facts; they now sit in explicit tension
+with the contest field's own reasoning, and that tension is unresolved rather than settled
+either way.
+
+**Two further consequences.** Nobody in any source describes *recovering* from numeric
+disadvantage — the field's only answer is **prevention** (deny while small; throttle
+aggression against disruptive opponents). That reinforces the terminal synthesis and
+deflates the H3 contact-coverage residual further. And a flagged tension: yamo's own
+postmortem places its planting at turn > 250, which sits badly against B4.4's "all 25
+two-worker peers plant by turn 21–29" — the figure that motivated D175a. Not adjudicable
+from public sources; recorded for re-verification, and combined with H3's four corrections
+it means B4.4's tempo measurements should not be cited until re-checked. Report in session
+scratch `h5-postmortem-intelligence-report.md`; primary sources restored to
+`docs/reference/`.
+
 ## 2026-07-29: H3 CLOSED (C) — the quartet's "survival edge" does not survive controls; B4.4 corrected on four counts
 
 **Verdict (C) mixed/underdetermined; no transferable mechanism confirmed.** Cohort

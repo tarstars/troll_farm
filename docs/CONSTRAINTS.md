@@ -579,6 +579,33 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (h) Meta-lessons
 
+- ★★★ **IDENTITY: the resident is a reproduction of Yann Moisan (`yamo`)'s #3-Legend
+  published bot**, not an independently evolved architecture. Postmortem archived in
+  commit `0307012` (2026-07-11) → `yannbot` spec → `MoisanBot`/`YamoOpeningPolicy` → the
+  live source. Verified correspondences: `1000·wood/turns` round-trip chop scoring; first
+  turn `typeToCut` by cluster-nearest-shack; endgame plant-for-points; and the denial gate
+  `opponent_trolls <= 2` (`yamo_orchard_live.rs:1102`) matching the postmortem verbatim in
+  intent. Primary sources: `docs/reference/yann-moisan-postmortem-2026-05-26.txt` and
+  `docs/reference/2026-07-11-yannbot-design.md` (both were lost in a reorganization and
+  restored 2026-07-29). **Consequence: "our architecture's ceiling" arguments must account
+  for the fact that this architecture finished #3 in the contest.** [H5]
+- ★★ **We underperform our own source design by 2.94 points** — yamo 24.70 (rank 15) vs
+  tass 21.76 (rank 45) on the 2026-07-29 snapshot, at the same fixed 2-troll roster. This
+  gap is by construction NOT architectural; it is fidelity, accreted divergence, or meta
+  drift, and it is 45% of the gap to the rank-3 bar. Studiable directly: 140 yamo games in
+  the corpus plus the published design. [H5 → H13]
+- **The contest field's top finishers contest the scaling premise.** yamo (#3) ran a fixed
+  2-troll roster all contest; **putibuzu (#2) explicitly rejected a third troll for
+  "unfavorable cost scaling."** Our ladder measurements (B4.3 +48.2 margin/worker
+  within-agent; H8 worker-3 timing +42.6, worker-4 +60.1) stand as ladder facts and are
+  now in explicit, unresolved tension with that reasoning. Do not present scaling as the
+  settled answer in either direction. [H5]
+- **The field is SPLIT on lookahead, not uniformly greedy.** delineate (#1) runs a trained
+  NN with **no turn search**, using 2–3 ms of 50 ms; **putibuzu (#2) ran real rollout to
+  depth 12 plus a 3-ply beam search.** H6's premise ("the field doesn't search") is
+  therefore wrong, while the opportunity it names is corroborated by a top-2 finisher.
+  Also: nobody in any public source describes *recovering* from numeric disadvantage — the
+  field's answer is prevention only. [H5]
 - Across the whole project, only execution-class changes (waste cuts, geometry, packaging)
   have transferred to the arena; every wrapper, transplant, imitation, offline-value
   selector, and economy re-architecture failed held-out gates or arena. [vol 1; archive

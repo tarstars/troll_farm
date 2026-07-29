@@ -53,8 +53,15 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
 
 ## 4. Open thread
 
+- ★★★ **2026-07-29 (H5): the resident is a reproduction of yamo's #3-Legend published
+  bot** (`docs/reference/yann-moisan-postmortem-2026-05-26.txt`, restored) — so "this
+  architecture's ceiling" must be read against the fact that this architecture placed 3rd.
+  **yamo currently ranks 15 @ 24.70 while we rank 45 @ 21.76 at the same 2-troll roster:
+  a 2.94-point, non-architectural gap** to our own source design, 45% of the gap to the
+  bar. This is H13 and it is the strongest cheap lead available.
 - **2026-07-29 TERMINAL SYNTHESIS: the improvement space for THIS architecture is
-  closed.** Eight routes, each with a frozen protocol and verdict: learned selection
+  closed** *(scope note: closed for the eight tested LEVERS; H13's fidelity question is
+  outside that scope and untested)*. Eight routes, each with a frozen protocol and verdict: learned selection
   (D172a — signal abundant, unlearnable from observables), closed-loop training (D170b),
   production/farming (D175a: −26.44, Δopponent +21.09 — third confirmation production is
   structurally negative), scaling+mining (D174a: `can_train` hard cap; FRUIT binds the
@@ -69,7 +76,10 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   independently reviewed by chatgpt_1
   (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
   premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  Working taxonomy: **audit-ready** H5 (postmortem search — last P0 item);
+  Working taxonomy: **audit-ready** H13 (fidelity gap vs our own source design — NEW and
+  now the top cheap lead); **H5 DONE** (b)+(c) — confirms the model, corrects H6's
+  lookahead premise, and revealed that the resident reproduces yamo's #3-Legend design
+  while ranking 2.94 below it;
   **H8 CLOSED** (B) forced — trains on the first legal turn in 219/220 games, premise was
   a stale census, timing worth +1.31 n.s.; **H3 CLOSED** (C) — the quartet's edge does not
   survive controls and inverts at 2v4+, B4.4 corrected on four counts, residual

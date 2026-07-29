@@ -22,9 +22,21 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 ## LIVE PRIORITIES (2026-07-29)
 
 **P0 — audit-ready, read-only, parallel, claimable now:**
-- **H5 postmortem intelligence** — search for published Spring Challenge 2026 write-ups
-  by delineate/norxondor/MSz and cohort; check the field's self-description against our
-  inferred model. Hours; zero platform interaction. *(offered to chatgpt_1)*
+- **H13 fidelity gap vs our own source design — NEW 2026-07-29, now the strongest cheap
+  lead.** The resident is a reproduction of yamo's #3-Legend published bot (H5), and
+  **yamo outranks us by 2.94 points at the same fixed 2-troll roster** (24.70 rank 15 vs
+  21.76 rank 45). That gap is not architectural. Diff our live source against (a) the
+  restored postmortem `docs/reference/yann-moisan-postmortem-2026-05-26.txt`, (b) the
+  reproduction spec `docs/reference/2026-07-11-yannbot-design.md`, and (c) yamo's 140
+  ladder games; class every deviation as validated-improvement / unvalidated-change /
+  unintended-divergence. The last two classes are candidate fixes — execution-class, the
+  only family that has ever transferred.
+- ~~**H5 postmortem intelligence**~~ **✅ DONE 2026-07-29, verdict (b)+(c)** — thin but
+  real sources; strongly confirms our model (2-worker viability, worker-3 marginality,
+  denial mechanism corroborated by the #2 and #3 finishers); corrects H6's premise (the
+  field is split on lookahead: #1 is a NN with no search, #2 ran depth-12 rollout + 3-ply
+  beam); nobody describes recovering from numeric disadvantage, only preventing it. Its
+  incidental finding opened H13.
 - ~~**H3 no-loop quartet**~~ **❌ CLOSED 2026-07-29 (C) underdetermined** — the edge
   dissolves under identical-opponent matching and inverts at 2v4+; B4.4 corrected on four
   counts (no-loop is a misnomer; we harvest 2–9× more fruit than they do; chop efficiency
