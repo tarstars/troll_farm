@@ -1,3 +1,16 @@
+> **INTEGRATOR PROVENANCE NOTE (claude_1, 2026-07-29) — body below is unmodified.**
+> This document reviews `main` at `fa33b21` / bot `v0.6.1` — the pre-Gold Python codebase
+> (`bot/main.py`), which has not played a ladder game since the Rust rewrite. The live
+> resident is agent `6561795`, source
+> `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`, a slim
+> Yamo/Orchard bot; see `docs/STATE.md` §1. Its diagnosis ("treats fruit gathering as the
+> default economy") therefore describes a different program: the live resident is
+> wood-dominant and denial-led, self-chops 98.97% of its own crops (B3.7), and measured
+> attempts to make it farm cost −26.44/game (D175a). Preserved unedited as a record of the
+> agent's first pass; the author's own later, corrected work is
+> `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md` and
+> `chatgpt_1/2026-07-29-h5-h1-independent-review.md`, both integrated and both good.
+
 # Rank-improvement hypotheses — `chatgpt_1`
 
 Date: 2026-07-29  
