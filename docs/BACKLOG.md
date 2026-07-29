@@ -8,7 +8,8 @@ may run in parallel and are claimable by any agent under
 
 ## Position summary (2026-07-29)
 
-Resident `6561795`: 43/112 @ 22.0 (2026-07-28T13:59Z read), score source-side frozen,
+Resident `6561795`: **21.76, rank ~45** (2026-07-29T02:17Z cron snapshot; gap to the
+28.22 bar now **6.46** and widening passively as the pool strengthens), score source-side frozen,
 untouched and holding the slot. **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
 equal roster we are at parity with strong two-worker peers (58.2/58.3) — the whole
