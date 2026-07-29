@@ -1,123 +1,102 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-07-27. This file is live state, not a record — the ledger volumes are the
-record. Hard budget: 150 lines. Rewrite it whenever facts change.
+Last updated: 2026-07-29. This file is live state, not a record — the ledger volumes are
+the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Resident: agent `6561795`, submission `41015603`.
+- Resident: agent `6561795`, submission `41015603`, live since 2026-07-19, untouched.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`
   (62,725 bytes, slim Yamo/Orchard + pre-seed + orchard coverage).
   SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
 - `cgauto/api_submit.py` default = that exact source. Keep it that way.
-- Last ladder read: rank 43/110 @ 21.97, 203 listed battles (2026-07-27 ~13:07 UTC, passive
-  D61p snapshot). Score is bit-identical to 2026-07-23 — CodinGame's own updateTime shows no
-  recomputation since 2026-07-23T02:45Z, so fresh-agent scores freeze between rare ladder
-  recomputes; passive maturity recovery is slower than previously assumed.
-- Rank bar (2026-07-27): 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
+- Last ladder read (timestamped snapshot discipline — cite exactly one):
+  **2026-07-28T13:59Z: rank 43/112 @ 22.0**, 203 battles, promotable=False. Score is
+  source-side frozen between rare ladder recomputes (no recomputation since 07-23);
+  passive maturity is dead as a lever.
+- Rank bar: 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
+- Corpus: 8,131+ games / 469 agents, compounding daily (cron 05:17).
 
 ## 2. Goal
 
-Legend **rank ≤ 3** on a mature read plus a later confirmation (journal vol 1 "Completion
-rule"). Rank-3 bar was 28.11 at Phase 21 — a moving reference, not a frozen target.
+Formally standing: Legend **rank ≤ 3** on a mature read + confirmation. **Post-terminal
+reality (2026-07-29): this architecture cannot reach it** — closing the +6.25 gap
+requires a new bot (H2 programme) or an owner re-scope. The resident holds the slot.
 
 ## 3. Standing rules
 
-- Arena writes require explicit user authorization. No exceptions. **STANDING
-  AUTHORIZATION 2026-07-28: if D171a returns QUALIFIED (all frozen local gates pass),
-  execute promotion protocol B4.1 without further ask** — capacity A/A → candidate
-  submission → +20/+35/+50-min reads → frozen bands (≥+0.5 keep / ≤−0.5 or inconclusive
-  → revert) → exact-resident restore on any failure. Scope: this one candidate only.
-- Never churn submissions: fresh submissions read 3–4 points below matured ones (proven by
-  failed same-code A/A on 2026-07-16). Restores/candidates burn standing.
-- Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11 sealed
-  field games from the D164 snapshot.
-- Substrate rule (D158/D161): every controller uses exact Yamo/Orchard resident
-  fallback natively, or first proves same-panel dominance over it. D40/q6 is dead as a
-  competition substrate.
+- **Arena writes require explicit user authorization per exact candidate. No
+  exceptions.** (The 2026-07-28 D171a standing grant is consumed — D171a CLOSED, never
+  triggered, does not carry over.) Promotion runs only via `docs/PROMOTION-RUNBOOK.md`
+  (tooling verified 2026-07-28; baseline read taken).
+- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
+  trial costs days of standing.
+- Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11
+  sealed D164 field games; D170's confirmation block `9,852,000–063` (unused, preserved).
+- Substrate rule (D158/D161): controllers use the exact Yamo/Orchard resident fallback
+  natively or first prove same-panel dominance. D40/q6 is dead as a substrate.
 - External play bursts ≤ 12 games; stop on HTTP 422 or degenerate results.
-- Bulk writes: preflight `python3 cgauto/check_external_storage.py --required-free-gib <N>`
-  (see `AGENTS.md` + `docs/storage-policy.md`). YT root:
+- Bulk writes: preflight `python3 cgauto/check_external_storage.py --required-free-gib N`
+  (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
+- **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
+  `claude_1` = integrator + arena controller. Hazards (§7) bind every agent: the dev copy
+  `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
+  (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
+  (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
+- Repository pushed to GitHub 2026-07-29 (`origin/session-2026-07-01` current); remote
+  message transport is live; full-history bundle on `medium_data`; 1,629 tracked bulk
+  artifacts migrated to USB as committed symlinks (digest
+  `docs/storage-migration-2026-07-29-tracked.sha256`).
 
 ## 4. Open thread
 
-- **2026-07-29 TERMINAL: the improvement space for this architecture is closed.** Every
-  route now has a frozen protocol and a verdict — learned selection (D172a), closed-loop
-  training (D170b), production/farming (D175a: −26.44, Δopponent +21.09), scaling and
-  mining (D174a: hard cap + fruit-binding + −10.76), harvest capability (D173a/b),
-  execution waste (we waste LESS than the top cohorts), suppression efficiency (B4.6:
-  mechanism real, fix class already failed twice on this binary). At equal roster we are
-  at parity with strong two-worker peers (58.2/58.3); the deficit is scale-asymmetry
-  survival, and scale is unaffordable because we cannot harvest what we produce.
-  **Further gains require a different bot, not a better-tuned one — an owner decision,
-  not a next experiment.** Maintenance continues: daily collection cron, corpus growth,
-  resident untouched, no arena churn. See the ledger's TERMINAL SYNTHESIS table.
-
-- **D167→D168 DONE: hand-written successor controllers CLOSED** (BANK_SEED
-  frozen-eligible but both scripted options failed value; motif survives only as a
-  rollout-valued option). **D169 DONE 2026-07-27: PASS.** Unified resident-native option
-  envelope (OPT_RETURN + D163's 3 resource options, incl. B3.1-trigger arming) on the
-  full 1,024-task panel: **+10.671 mean, CI [+9.420, +11.922], 65% improved, 0
-  regressions, tails better than control.** Every option is negative always-on; all
-  value is per-game selection. Clears every frozen gate — no D169b needed.
-- 🛑 **2026-07-28 (final): D170b CLOSED-AT-PHASE-2 — the Tier-2 closed-loop program is
-  CLOSED per its frozen kill rule.** Mechanics fully valid (repair verified, 8/8 fits
-  trained, all 13 arms live); all four objectives converged to always-KEEP (0/8 admitted;
-  P(invoke) ≤3.3%; sampled-invoke value −1.0..−2.3 fit-side). Adjudicated: the +10.7
-  envelope's positive contexts are unlearnable by on-policy terminal-reward training at
-  any sane budget (~200 samples/arm vs SD≈26 noise); objective choice is irrelevant in
-  this regime (the D109 question's answer). Veto panel and sealed confirmation block
-  remain untouched. **OWNER DECISION 2026-07-28: (b) HOLD.** Maintenance mode ACTIVE and
-  set up: daily collection cron installed (05:17, `# troll-farm-wide-collect`; corpus
-  8,131 and compounding); B3.2/B3.3 audits DONE (motion clean at 4× scale; field rates
-  stable except D164's motif population rate corrected 72%→49.7%, gate unaffected).
-  **Best open maintenance lead: B3.4** — same-two-cell oscillation (18/194 games, worst
-  131 turns frozen carry, 2.8× catastrophe-enriched; execution-class). Housekeeping
-  B5.1/B5.3 open. No Tier-2 successor authorized; the dense-counterfactual-credit design
-  stays on the shelf pending any future (a) decision; goal re-scoping remains open.
-  D170a's CLOSED-AT-PHASE-1 was implementation invalidation (repaired in D170b); both
-  records frozen.
-- **2026-07-28 (latest): D172a CLOSED-AT-SELECTION — Tier-2 learning route closed with a
-  definitive mechanism.** Signal abundant (40.4% of states ≥+2) yet unlearnable from
-  observables (held +0.14..+0.26 vs +1.5 gate; exact labels, both classes). The owner's
-  reopening is consumed with a clean scientific answer; see CONSTRAINTS ★FINAL bullet.
-  Only untried observation class: spatial planes on the official substrate (reopening =
-  new owner decision against the recorded evidence). **Project posture: maintenance mode
-  + the execution-class pipeline. In flight: D173a harvest-before-chop** (the richest
-  vein found: 9.62 pts/game net lost to a missing HARVEST action class; QUALIFIED would
-  stop at the arena gate needing a NEW owner authorization).
-- **2026-07-28: D169 PASS adjudicated by Fable; STOP marker cleared. D170 protocol
-  FROZEN and delegable**:
-  `data/analysis/live-agent-6553250/d170a-family-robust-option-policy-protocol-2026-07-28.md`
-  — the resurrected D158 four-objective comparison (pooled / capped / own-score-protected
-  / group-DRO+protection) on the valid resident-native substrate, closed-loop over the
-  D169 vocabulary, budget-1 activation, paired-control reward. Fresh ranges declared
-  (train 9,850,000–255; selection 9,851,000–127 as 8 blocks LOBO; sealed confirmation
-  9,852,000–063). Gates: admission ≥ +1.5 LOBO / worst family ≥ −1 / own ≥ −0.5;
-  veto-only consumed panel ≥ +1.0; confirmation ≥ +2.0 CI>0; deployability int8 ≤100 kB
-  p95 ≤20 ms. Kill: no admission → program closes. Post-confirmation: 🛑 STOP for user
-  arena authorization. Cheap sessions execute per `docs/RUNBOOK.md`; fillers B3.2/B5.1
-  remain available.
-- Queue after D167 (reorder only from written evidence):
-  1. If D167 closes: family-robust closed-loop objective on the resident substrate — the
-     explicitly skipped D109 question (see vol 1, D157 audit).
-  2. Standing: let the resident mature undisturbed; no arena writes without authorization.
-- Full prioritized backlog with gates and kill rules: `docs/BACKLOG.md` (2026-07-27).
-  Pending ops: data-cleanup plan `docs/superpowers/plans/2026-07-24-data-footprint-cleanup.md`
-  is approved but unexecuted.
+- **2026-07-29 TERMINAL SYNTHESIS: the improvement space for THIS architecture is
+  closed.** Eight routes, each with a frozen protocol and verdict: learned selection
+  (D172a — signal abundant, unlearnable from observables), closed-loop training (D170b),
+  production/farming (D175a: −26.44, Δopponent +21.09 — third confirmation production is
+  structurally negative), scaling+mining (D174a: `can_train` hard cap; FRUIT binds the
+  real bill, not iron; mining −10.76), harvest capability (D173a/b), execution waste
+  (comparative baseline: we waste LESS than the top cohorts on all six signatures),
+  suppression efficiency (B4.6: fix class failed twice on this binary). Key structural
+  facts: at equal roster we are at parity with strong two-worker peers (58.2/58.3); the
+  whole deficit is scale-asymmetry survival; a worker prices at +2–4 rating (B4.3); we
+  reap 0.93% vs every other two-worker agent's 15–17%. Full table: ledger vol 2 TERMINAL
+  SYNTHESIS entry; reader's version: `docs/D-series-atlas.pdf` (27 pp).
+- **Direction menu (post-terminal): `docs/rank-hypotheses-2026-07-29.md`** (claude_1),
+  independently reviewed by chatgpt_1
+  (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
+  premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
+  Working taxonomy: **audit-ready now** H5 (postmortem search), H3 (no-loop quartet:
+  4 agents with our profile survive 2v3 at −1.8 vs our −37), H8 (worker-2 timing: top
+  cohort trains turn 2, we turn 8); **preflight-gated** H1 (read-only joint upper bound
+  only — the four-lever resident bundle is rejected), H4 (deniability census first),
+  H6 (oracle-gap audit first), H7-rewritten (action contention, after H3); **owner
+  programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the
+  review), H10 spatial-planes learner (sanctioned long shot); **near-closed** H11;
+  **operations** H9 (capacity A/A only inside an authorized promotion), H12 (running).
+- **Coordination roster**: `claude_1` (integrator, arena controller); `chatgpt_1`
+  (onboarded 2026-07-29 after correction — analyzed the retired Gold-era bot first;
+  first right of claim offered on H5/H3/H8). Inbox:
+  `python3 scripts/inbox_sweep.py --me claude_1 --fetch`.
+- **Operations running**: collection cron 05:17 (`# troll-farm-wide-collect`); B5.3
+  cold-file migration ripens ~2026-08-03; weekly surveillance cadence (H12) with
+  explicit triggers.
+- **Awaiting owner**: (a) dispatch of the audit-ready set (H5/H3/H8 — parallel,
+  read-only, delegable to any agent); (b) the H2 Architecture-2 programme go/no-go.
 
 ## 5. Reading order & pointers
 
 1. This file.
 2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
-3. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md`
-   (frozen history: `...-2026-07-18.md` = vol 1, 292 KB, includes Phases 1–21 + D1–D166).
-4. `AGENTS.md` (process), `docs/storage-policy.md` (storage/YT), `docs/mechanics.md` (game).
-5. Superseded docs: `docs/archive/INDEX.md`. Pre-2026-07-23 doc references resolve via
-   `docs/archive/`.
+3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
+4. `coordination/README.md` + inbox sweep — mandatory for any agent before writing.
+5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md`
+   (vol 1 `...-2026-07-18.md` frozen at D166). Atlas: `docs/D-series-atlas.pdf`.
+6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
+   `docs/archive/INDEX.md` (superseded docs).
 
-Per-experiment obligations: ledger entry in the live volume; a `docs/CONSTRAINTS.md` bullet
-for anything closed; update §4 of this file. First session ending with the live volume over
-100 KB freezes it (one appended note) and opens the next.
+Per-experiment obligations: ledger entry; CONSTRAINTS bullet for anything closed; §4
+update here. First session ending with the live volume over 100 KB freezes it and opens
+the next.

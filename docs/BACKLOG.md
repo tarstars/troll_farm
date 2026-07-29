@@ -1,24 +1,66 @@
-# BACKLOG — path to Legend top-3
+# BACKLOG — Troll Farm priorities
 
-Created 2026-07-27, consistency-revised 2026-07-28. Owner-ranked task list for the
-standing goal (`docs/STATE.md` §2: rank ≤ 3 on a mature read + confirmation; bar 28.22
-as of 2026-07-28 — MSz; was 28.11 at Phase 21). Every item cites its evidence
-(`Dnnn`/`Phase n` = ledger; classes = `docs/CONSTRAINTS.md`). Re-rank only from written
-evidence. One experiment in flight at a time (standing Tier-0 operations may run in
-parallel); each ends with a ledger entry.
+Created 2026-07-27; **reprioritized 2026-07-29 (post-terminal, post-review)**. Evidence
+citations: `Dnnn`/`Phase n`/`B*` = ledger; classes/closures = `docs/CONSTRAINTS.md`.
+Re-rank only from written evidence. One experiment in flight at a time; read-only audits
+may run in parallel and are claimable by any agent under
+`coordination/multi-agent-protocol.md`.
 
-## Position summary (2026-07-28)
+## Position summary (2026-07-29)
 
-Resident `6561795`: rank 43/110 @ 21.97, score **source-side frozen since 07-23** (the
-ladder recomputes fresh-agent scores rarely) — the once-assumed passive-maturity recovery
-is dead as a lever; **code strength must carry essentially the whole +6.25 gap** to the
-28.22 bar. The loss mechanism is measured: anti-compounding catastrophic tail (D159 —
-leads +23.9 at t100 → −5.2 at t225; ~10–11% of games carry ~58% of negative mass,
-independently replicated at n=192), rooted in production persistence during/after scaling
-(D101: top-3 reap 24.16% of created crops, resident 0.94%; suppression already
-competitive). The replay corpus is 8,122 games / 469 agents after the 2026-07-28
-wide-lens collection (4× in one run). The active critical path is Tier 2: D169's
-envelope PASS (+10.671) → D170b closed-loop training (in flight).
+Resident `6561795`: 43/112 @ 22.0 (2026-07-28T13:59Z read), score source-side frozen,
+untouched and holding the slot. **The TERMINAL SYNTHESIS closed all eight improvement
+routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
+equal roster we are at parity with strong two-worker peers (58.2/58.3) — the whole
+deficit is scale-asymmetry survival; a worker prices at +2–4 rating (2→4 ≈ 84% of the
+gap) but scale is unaffordable because we cannot harvest what we produce, and production
+grafts are structurally negative (three independent confirmations). Corpus 8,131+,
+compounding daily. Direction menu: `docs/rank-hypotheses-2026-07-29.md` + its integrated
+review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
+
+## LIVE PRIORITIES (2026-07-29)
+
+**P0 — audit-ready, read-only, parallel, claimable now:**
+- **H5 postmortem intelligence** — search for published Spring Challenge 2026 write-ups
+  by delineate/norxondor/MSz and cohort; check the field's self-description against our
+  inferred model. Hours; zero platform interaction. *(offered to chatgpt_1)*
+- **H3 no-loop quartet** — Escdemon/therealbeef/yamo/mehdi_ayari share our profile and
+  survive 2v3 at −1.8 vs our −37; controlled comparison (opponent workforce, identity,
+  seat, map, duration; revalidate "no-loop" from commands; separate maturity effects).
+- **H8 worker-2 timing** — top cohort trains turn 2, we turn 8; audit affordability,
+  TRAIN legality, shack occupancy, travel, and the counterfactual cost per game.
+
+**P1 — preflight-gated audits (read-only first steps only):**
+- **H1 joint upper bound** — from real game states: bill/creation/harvest/bankability
+  under the full economy package. The four-lever resident bundle is REJECTED (review:
+  attribution + graft pattern); any implementation only as an H2 prototype.
+- **H4 deniability census** — what currency paid the opponent's worker-3 bill, was it
+  reachable/contestable in the B3.1 warning window, and at what displacement cost.
+- **H6 oracle-gap audit** — bounded-continuation oracle vs live scorer on real decision
+  states; implementation only after a material, broad, affordable gap.
+- **H7 (rewritten) action-contention audit** — cross-player races/duplication/timing
+  (body-blocking DOES NOT EXIST — mechanics.md:42-44); run only if H3 points there.
+
+**P2 — owner programme decisions (not started without explicit go):**
+- **H2 Architecture-2** — PRIMARY. New bot around the coupled economy; five milestone
+  gates (review §H2): referee/eval parity → equal-roster match + tail safety →
+  closed-loop plant-reap-fund-train → 3–4-worker survival → same-panel dominance.
+  Natural multi-agent programme.
+- **H10 spatial-planes learner** — the sanctioned D172a reopening; cheap spatial probe
+  before any GPU programme; every D172 gate preserved.
+
+**P3 — near-closed:** **H11** map-conditioned config — only as a controlled decomposition
+(joint opponent×map conditioning, held blocks); D63 0.830→0.479 and D91 stand.
+
+**Operations (not hypotheses):** **H9** capacity A/A only as phase 1 of an authorized
+promotion (`docs/PROMOTION-RUNBOOK.md`); **H12** surveillance = cron 05:17 + weekly
+comparative refresh with explicit triggers; **B5.3** cold-file migration ripens
+~2026-08-03; **B0.3 no-churn** absolute.
+
+---
+
+*Everything below this line is the historical record (tiers as they were run, verdicts
+inline). Do not re-rank it; it is the evidence base for the priorities above.*
 
 ## Tier 0 — free points and standing discipline (no code)
 
