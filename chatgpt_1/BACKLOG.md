@@ -1,165 +1,134 @@
 # chatgpt_1 backlog
 
-Last updated: 2026-07-29T12:35:00Z
+Last updated: 2026-07-29T13:27:00Z
 Branch: `agent/chatgpt_1`
 Integrator: `claude_1`
 
 ## Operating rule
 
-Work one substantive item at a time. Before starting: fetch the session branch, read new messages, re-read current `docs/STATE.md` and relevant `docs/CONSTRAINTS.md`, obtain an explicit task record and write set, then publish a claim. Every completed item ends with a pushed handoff, acknowledgement, integration or explicit deferral, and release.
+Work one substantive item at a time. Before implementation: fetch the session branch, read new messages, re-read `docs/STATE.md` and relevant `docs/CONSTRAINTS.md`, obtain a canonical task record and explicit write set, then publish/renew the claim. Every completed item ends with a pushed handoff, acknowledgement, integration or explicit deferral, and release.
 
-No Arena mutation, sealed-data access, resident-source edit, or shared-state edit without the authority required by the coordination protocol.
+No Arena mutation, sealed-data access, resident-source edit, or shared-state edit without protocol authority.
 
 ## Ordered backlog
 
 ### B0. Coordination cleanup
 
-**Status:** done on this branch; awaiting integration.
+**Status:** complete and pushed; awaiting integrator reconciliation.
 
-- Release `20260729-rank-hypotheses-critique`.
-- Withdraw the stale H5 claim after `claude_1` took the task under the published timeout condition.
-- Preserve the old branch tip at `archive/chatgpt_1-pre-backlog-20260729` before resynchronizing.
+- Critique release and released record published.
+- Stale H5 claim withdrawn in practice after integrator takeover.
+- Old branch tip preserved at `archive/chatgpt_1-pre-backlog-20260729`.
 
-**Done when:** release message and released task record are visible to the integrator.
+### B1. Independent review of H5 and H1
 
-### B1. Independent review of H5 postmortem intelligence
+**Status:** complete and pushed.
 
-**Status:** blocked on `claude_1`'s H5 handoff. Do not duplicate the active search.
+Deliverable: `chatgpt_1/2026-07-29-h5-h1-independent-review.md`.
 
-**Objective:** verify source quality and turn the public-strategy findings into project decisions.
+Verdicts:
 
-**Work:**
+- H5 accepted with correction: resident implements Yann Moisan’s published #3 design family, but the 2.94 current practice-rating gap is diagnostic, not yet causally attributable to fidelity.
+- H1 resident patch closure accepted. The own-side-only optimistic sensitivity is negative and worker four is never affordable. Correct terminology from formal “upper bound” to model-conditional finite-windfall accounting stress test.
+- H13 becomes the strongest cheap lead.
+- H2 is deferred and constrained by the renewable-base question.
 
-- Check every material source, date, author identity, and contest-final versus practice-ladder context.
-- Separate direct player statements from inference and from third-party summaries.
-- Map each recovered mechanism to current evidence: production tempo, crop concurrency, harvesting, training bills, suppression, worker roles, endgame, and search.
-- Mark each mechanism as already tested, contradicted, genuinely new, or useful only for Architecture-2.
-- Identify missing top-player sources without treating absence as evidence.
+**Done when:** integrator accepts/corrects/rejects the review and updates binding docs if warranted.
 
-**Deliverable:** review message or compact report with an accept/correct/reject verdict and concrete backlog effects.
+### B2. Review H13 fidelity-gap audit
 
-**Done when:** the integrator can update H2/P1 priorities without re-reading the source corpus.
+**Status:** immediate dependency; `claude_1` owns active H13 execution.
 
-### B2. Independent review of H1 joint-economy upper bound
+Review requirements:
 
-**Status:** blocked on `claude_1`'s active H1 handoff. Do not duplicate its analyzer.
+- Separate published contest-final design, resident implementation, and current practice-`yamo` behavior.
+- Do not assign the full 2.94 rating gap to fidelity without matched evidence.
+- Classify every difference as documented under-specification, validated local improvement, unvalidated accretion, unintended divergence, current-yamo evolution, or meta-distribution effect.
+- Require matched opponent/map/seat controls before valuing any deviation.
+- Confirm any candidate is execution-class and isolated, not a closed scoring retune.
 
-**Objective:** verify that the bound is genuinely net, uses live-policy bills and referee-correct legality, and supports the H2 go/no-go claimed for it.
-
-**Checks:**
-
-- Bills come from revealed live TRAIN commands, not synthetic cheap-helper specs.
-- TRAIN legality uses post-MOVE shack occupancy.
-- Gross created value is reduced by honestly measured displaced suppression, banking, travel, and opponent compounding.
-- D175a is used as a calibration anchor rather than as an arbitrary universal coefficient.
-- Error bars include uncertainty in both available production and displacement price.
-- Mechanical feasibility is not confused with policy selectability.
-- The final material/marginal/immaterial verdict follows from preregistered thresholds, not retrospective interpretation.
-
-**Deliverable:** independent accept/correct/reject review and a precise consequence for H2.
+Deliverable: accept/correct/reject review with candidate implications.
 
 ### B3. H6 bounded-lookahead oracle-gap audit
 
-**Status:** preferred next unowned claim after B1/B2 reviews, unless those reports produce a stronger new lead.
+**Status:** claimed; preflight complete; blocked on canonical task record.
 
-**Objective:** decide whether limited deeper search over real resident decision states has enough broad value to justify implementation.
+Artifacts:
 
-**Preflight only:** no resident change.
+- claim: `coordination/messages/chatgpt_1/20260729T130700Z-20260729-h6-bounded-lookahead-claim.md`;
+- preflight: `chatgpt_1/h6-bounded-lookahead-preflight.md`;
+- progress: `coordination/messages/chatgpt_1/20260729T131500Z-20260729-h6-bounded-lookahead-progress.md`.
 
-**Questions:**
+Corrections established:
 
-- On which exact decision classes does a 2-3 ply bounded continuation disagree with the live choice?
-- What is the paired value of those disagreements under referee terminal semantics?
-- Is value broad across opponents, seats, maps, and tail cases?
-- Can the oracle fit comfortably inside the 50 ms turn budget after realistic overhead?
-- Does it optimize the resident's existing objective rather than silently changing it?
+- deployed two-worker selection already exhaustively searches compatible candidate pairs;
+- chop scoring already predicts growth during travel/chopping;
+- generic MC, first-move rollout, MOVE mutation, threatened-crop MC, one-deviation and bounded-overlay grammars are closed.
 
-**Acceptance threshold:** material positive oracle gap, family/tail safety, and a credible deployable latency estimate. Otherwise close H6 without implementation.
+Only viable residual: existing-candidate-pair intertemporal depth.
 
-**Expected artifacts:** task-specific analyzer, reproducible state sample manifest, report, and handoff.
+Phases:
+
+1. Export candidate-pair surface, close-score states, short intertemporal boundaries, and instrumentation latency.
+2. If coverage passes, force one existing pair for one turn then exact-resident fallback to measure terminal oracle gap.
+3. If oracle passes, test a resident-objective leaf ranker at <=20 ms incremental p95.
+
+No `cgauto/` or Rust implementation until integrator approves the distinct grammar and write set.
 
 ### B4. Combined opponent-pressure preflight: H4 + H7 + H3 residual
 
-**Status:** queued behind B3, or promoted if H5/H1 point directly here.
+**Status:** queued behind H13/H6; promote only if those results point here.
 
-**Objective:** determine whether the resident's reduced opponent-crop contact under numeric pressure is causal and exploitable rather than a symptom of already losing.
+Objective: determine whether reduced opponent-crop contact under numeric pressure is causal and exploitable rather than a symptom of losing.
 
-**Scope:** read-only causal audit combining:
+Scope:
 
-- H4: reconstruct the resources that paid opponent worker-3 bills and whether they were realistically deniable.
-- H7 rewritten: harvest/chop races, last-fruit duplication, target disappearance, and wasted travel.
-- H3 residual: contact coverage falls from 41.3% to 35.3% while outnumbered, concentrated in full-length games.
+- reconstruct resources paying opponent worker-three bills and realistic deniability;
+- analyze harvest/chop races, last-fruit duplication, target disappearance and wasted travel;
+- re-test the 41.3%→35.3% contact-coverage residual.
 
-**Required controls:** matched opponent, roster, seat, map, duration, pre-trigger score state, and always-on versus condition-only counterfactual arms before any candidate is proposed.
+Controls: matched opponent, roster, seat, map, duration, pre-trigger score; always-on versus condition-only arms before implementation.
 
-**Kill condition:** no evidence that the condition is load-bearing, or the opportunity cost exceeds the denial value.
+Kill: condition not load-bearing or displacement cost exceeds denial value.
 
 ### B5. Architecture-2 design specification
 
-**Status:** owner-gated. Start only after explicit user go/no-go and an integrator task record. H5 and H1 reviews are inputs.
+**Status:** owner-gated and deferred until H13 plus H6 Phase 0.
 
-**Objective:** define a new coherent bot rather than grafting subsystems onto Yamo/Orchard.
+H1 adds a hard first question: where does a genuinely renewable resource base come from, and can it repay before game end? H5/H13 add a competing possibility: a faithful/evolved fixed-two-worker design may recover substantial value without a new architecture.
 
-**Specification must cover:**
+If authorized, gates remain:
 
-- opening and worker-2 transaction;
-- renewable production and crop concurrency;
-- harvest-capable worker specs;
-- transactional training-bill reservation;
-- role allocation and collision-safe joint assignments;
-- suppression as part of the same scheduler;
-- endgame and liquidation;
-- observability, latency, deterministic testing, and source-size limits.
-
-**Milestone gates:**
-
-1. Referee and evaluator parity.
-2. Equal-roster performance and tail safety at least match the resident.
-3. Closed-loop plant-reap-fund-train works without feeding the opponent.
-4. Survival against three- and four-worker opponents improves materially.
-5. Same-panel dominance over the resident before any promotion discussion.
+1. referee/evaluator parity;
+2. equal-roster performance and tail safety at least resident level;
+3. closed-loop renewable plant-reap-fund-train without feeding the opponent;
+4. improved survival against 3–4 workers;
+5. same-panel resident dominance.
 
 ### B6. Architecture-2 implementation workstreams
 
-**Status:** blocked on B5 approval and design acceptance.
+**Status:** blocked on B5 approval.
 
-Potential owned modules, one task each:
+Potential isolated modules: architecture state, transactional economy scheduler, joint assignment, parity/failure tests, Rust packaging/latency, independent module review, qualification handoff. No submission authority.
 
-- architecture skeleton and state representation;
-- transactional economy scheduler;
-- joint assignment solver;
-- evaluator parity tests and failure taxonomy;
-- compact Rust packaging and latency profiling;
-- independent review of other agents' modules;
-- candidate qualification report and handoff to the arena controller.
+### B7. H10 spatial-planes learner
 
-No direct submission authority.
+**Status:** low-priority owner-gated alternative.
 
-### B7. H10 spatial-planes learner review or implementation
-
-**Status:** low-priority owner-gated alternative to Architecture-2.
-
-**Objective:** test the only sanctioned D172 reopening: whether spatial observations can identify the +10.671 option-envelope contexts that scalar observables could not.
-
-**First step:** architecture and data-parity review, not GPU training. Preserve every D172 independent-block, safety, latency, and sealed-data gate.
+First step is architecture/data-parity review, not GPU training. Preserve every D172 independent-block, safety, latency and sealed-data gate.
 
 ## Continuous responsibilities
 
-- Sweep inbox and remote refs before each work block.
-- Review H5, H1, or future agent handoffs when assigned.
-- Challenge causal claims, trigger fidelity, evaluation parity, and source liveness.
-- Publish negative results and corrections, not only promising leads.
-- Keep exact commit hashes, commands, data provenance, and local/field/Arena distinctions.
-- Never stage another worker's files; name explicit paths only.
+- Sweep inbox and refs before every block.
+- Review H13 and future handoffs when assigned.
+- Challenge causal claims, source liveness, trigger fidelity, evaluation parity and model-conditional intervals.
+- Publish negative results and corrections.
+- Keep exact hashes, provenance, and local/field/Arena distinctions.
+- Never stage another worker’s files; explicit paths only.
 
-## Explicitly not in my backlog
+## Explicitly excluded
 
-- Duplicate H5 or H1 work while `claude_1` owns it.
-- More fruit-priority tuning on the resident.
-- Worker-2 timing changes; H8 is closed.
-- Re-running the no-loop-quartet premise; H3 corrected it.
-- Body-blocking or door-camping; cross-player physical blocking is impossible.
-- Global opponent-crop rescoring without causal conditioning; Phase 21 closed it live.
-- Map configuration justified only by opponent-family failures.
-- Identical-source resubmission outside an authorized promotion.
-- Arena writes, candidate selection for submission, or changes to `cgauto/api_submit.py`.
+- Duplicate active H13 work.
+- Four-lever resident economy patch; H1 closed.
+- Generic rollout implementation; only the H6 residual grammar is claimable.
+- Fruit-priority tuning, worker-two timing, no-loop quartet reruns, body blocking, unconditional opponent-crop rescoring, opponent-family-as-map inference, unauthorized resubmission, Arena writes, or `cgauto/api_submit.py` changes.
