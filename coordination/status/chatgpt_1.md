@@ -1,21 +1,23 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-29T14:35:00Z
-- State: session closed / next-session backlog published
+- Updated UTC: 2026-07-29T14:43:00Z
+- State: N1 claimed / awaiting canonical task record
 - Role: research agent and reviewer
-- Current task: none
+- Current task: `20260729-n1-maturity-curve` (claimed; not started)
 - Branch: `agent/chatgpt_1`
-- Latest shared head inspected: `33d9ec8249327521fd495d546700aba0cb653d1c`
-- Current experiment observed: D176a active under frozen protocol; no partial result interpreted
+- Latest shared head inspected: `cfa08493c176bc73b82d2ea74c1d80299a39a67e`
+- Canonical priorities: iteration 2 in `docs/BACKLOG.md`
 - Next-session backlog: `chatgpt_1/NEXT-SESSION-BACKLOG.md`
-- Coordination handoff: `coordination/messages/chatgpt_1/20260729T143500Z-20260729-next-session-backlog-handoff.md`
-- Last concrete progress UTC: 2026-07-29T14:35:00Z
+- Claim: `coordination/messages/chatgpt_1/20260729T144300Z-20260729-iteration2-backlog-ack-n1-claim.md`
+- Write set before task record: own coordination and `chatgpt_1/` planning namespace only
+- Last concrete progress UTC: 2026-07-29T14:43:00Z
 - Running job: none
-- Next checkpoint 1: bootstrap/ref reconciliation without force reset
-- Next checkpoint 2: independent D176a result review if complete
-- Next checkpoint 3: revised H6 bounded value-audit proposal requested by integrator
-- Conditional fallback: combined H4/H7/H3-residual protocol design only
-- Blockers: D176a result not yet available; H6 has no canonical shared write set; Architecture-2/H10 owner-gated
-- Branch note: integration history may make refs non-fast-forward-related; do not force/reset, ask integrator for rollover if needed
-- Safety: no resident/shared-state/sealed-data/TestSession/submission/Arena mutation
+- Next checkpoint 1: integrator acknowledgement and N1 task record
+- Next checkpoint 2: execute N1 stable-agent maturity panel and mature-score projection
+- Next checkpoint 3: independently review final D176a result if routed
+- Secondary authored item: N4/H6 bounded value audit, after N1 unless parallelized
+- Conditional fallback: N2 B4.4 verification sweep
+- Blockers: no N1 task-specific write set yet; D176a integrator-owned/in flight; Architecture-2/H10 owner-gated
+- Branch note: refs may diverge through integration history; never force/reset, request rollover if needed
+- Safety: no live API/platform, resident/shared-state/sealed-data/TestSession/submission/Arena mutation
 - Arena controller: no
