@@ -47,9 +47,13 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   binding for all affordability work. No candidate.
 
 **P1 — preflight-gated audits (read-only first steps only):**
-- **H1 joint upper bound** — from real game states: bill/creation/harvest/bankability
-  under the full economy package. The four-lever resident bundle is REJECTED (review:
-  attribution + graft pattern); any implementation only as an H2 prototype.
+- ~~**H1 joint upper bound**~~ **❌ CLOSED 2026-07-29 (C) immaterial/negative** — NET
+  bound −21.33 rating [−22.76,−19.89], 0/220 games positive; even the most optimistic
+  credible variant is −2.49, 6/220. Displacement model calibrated against D175a (−4.32
+  predicted vs −5.41 actual). Harvest capability contributes most, early planting ≈0.
+  Worker 3 affordable 36.8% (median turn 78) under the real bill; **worker 4 never** —
+  credited resources are a one-time windfall from a finite tree population. The economy
+  package is dead as a resident patch; the finding constrains H2 rather than killing it.
 - **H4 deniability census** — what currency paid the opponent's worker-3 bill, was it
   reachable/contestable in the B3.1 warning window, and at what displacement cost.
 - **H6 oracle-gap audit** — bounded-continuation oracle vs live scorer on real decision
@@ -64,10 +68,15 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   pressure"; consider one combined preflight audit.
 
 **P2 — owner programme decisions (not started without explicit go):**
-- **H2 Architecture-2** — PRIMARY. New bot around the coupled economy; five milestone
-  gates (review §H2): referee/eval parity → equal-roster match + tail safety →
-  closed-loop plant-reap-fund-train → 3–4-worker survival → same-panel dominance.
-  Natural multi-agent programme.
+- **H2 Architecture-2** — new bot around the coupled economy; five milestone gates
+  (review §H2): referee/eval parity → equal-roster match + tail safety → closed-loop
+  plant-reap-fund-train → 3–4-worker survival → same-panel dominance. **Two 2026-07-29
+  constraints now bind its rationale:** (a) H1 showed the package cannot pay as a patch,
+  but its displacement term is specific to cannibalised chop capacity, so a from-scratch
+  design is not refuted — it must, however, answer "where does the RENEWABLE resource base
+  come from" first, since a finite windfall never affords a 4th worker; (b) H5 found the
+  contest's #2 and #3 finishers both ran/endorsed 2-worker rosters, so "scale is the
+  answer" is contested by the field itself. Natural multi-agent programme.
 - **H10 spatial-planes learner** — the sanctioned D172a reopening; cheap spatial probe
   before any GPU programme; every D172 gate preserved.
 

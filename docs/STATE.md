@@ -83,8 +83,10 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   **H8 CLOSED** (B) forced — trains on the first legal turn in 219/220 games, premise was
   a stale census, timing worth +1.31 n.s.; **H3 CLOSED** (C) — the quartet's edge does not
   survive controls and inverts at 2v4+, B4.4 corrected on four counts, residual
-  contact-coverage lead gated into P1; **preflight-gated** H1 (read-only joint upper bound
-  only — the four-lever resident bundle is rejected), H4 (deniability census first),
+  contact-coverage lead gated into P1; **H1 CLOSED** (C) — the economy package cannot pay even at its
+  upper bound (−21.33 rating, 0/220 positive; worker 4 never affordable because credited
+  resources are a finite windfall, not a renewable stream); **preflight-gated** H4
+  (deniability census first),
   H6 (oracle-gap audit first), H7-rewritten (action contention, after H3); **owner
   programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the
   review), H10 spatial-planes learner (sanctioned long shot); **near-closed** H11;

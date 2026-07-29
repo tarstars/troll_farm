@@ -26,7 +26,18 @@ crops, peers 15–17%, top-3 24.16%; the top cohort trains first at median turn 
 
 ---
 
-## H1. The joint economy package — all four levers at once
+## H1. The joint economy package — ❌ CLOSED 2026-07-29, verdict (C) immaterial/negative
+
+> **Result:** the sanctioned read-only upper bound came back negative in every credible
+> setting — NET −21.33 rating [−22.76,−19.89] with 0/220 games positive, and −2.49
+> [−2.78,−2.21] with 6/220 even when the opponent-side displacement term is dropped
+> entirely. The displacement model reproduces D175a's measured own-side effect (−4.32 vs
+> −5.41), so it is calibrated rather than assumed. Harvest capability carries almost all
+> the value; bounded early planting ≈0. Under the real bill worker 3 is affordable in
+> 36.8% of games — but worker 4 **never**, because the credited resources are a one-time
+> windfall from a finite tree population. Ledger + CONSTRAINTS (h). Original below.
+
+## H1 (original). The joint economy package — all four levers at once
 
 **Hypothesis.** Lifting `harvest_power: 0`, the `can_train` two-worker cap, bounded early
 planting, and banking support **together** produces a viable economy where each lever

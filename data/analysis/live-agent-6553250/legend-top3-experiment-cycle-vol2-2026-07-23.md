@@ -175,6 +175,54 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: H1 CLOSED (C) — the joint economy package cannot pay, even at its upper bound
+
+**Verdict (C) immaterial or negative; the H1 bundle is dead on measured grounds rather
+than on the methodological objection alone.** A NET upper bound computed on all 220
+resident games (`cgauto/joint_economy_upper_bound.py`): gross recoverable fruit **23.64
+units/game** — an independent match to B3.8's 23.8 — falling to **19.03/game** net of
+bill-spending. Bounded early planting adds only **+0.067/game** on grounded terms, exactly
+as D175a's real intervention implied; the aspirational peer-shape bracket (+4.02/game)
+requires a fifth, unmodelled lever and is not credited.
+
+**Bill side, using the real bill and post-move legality** (both H8 corrections applied;
+worker-2 talents source-verified as the same bill the live code reuses for workers 3–4
+once `can_train`'s cap is lifted, and cross-checked against D174a's independently published
+mean): **worker 3 becomes affordable in 81/220 games (36.8%), median turn 78** — materially
+better than B3.8/B3.9's ~10% under their synthetic spec, because the accounting is now
+correct. **Worker 4: 0/220. Never.** The reason is structural and new: *the credited fruit
+and iron are a one-time windfall from a finite tree population, not a renewable stream.*
+
+**Displacement was priced, not waved away, and the model was calibrated.** Against this
+corpus's own value-per-chop-turn (1.026, consistent with B4.4's 172.9 wood-score/game), the
+model reproduces D175a's measured own-side effect (predicted −4.32 vs actual −5.41, ratio
+0.80) — it passes on sign and magnitude. The honest caveat is recorded by the audit itself:
+the opponent-side ratio is transferred from D175a by construction and extrapolated to a
+5–25× larger diversion regime, which is the dominant uncertainty.
+
+**Net bound: −21.33 rating [−22.76, −19.89], with 0 of 220 games positive.** Even the most
+optimistic credible variant — counting own-side displacement only and ignoring the opponent
+term entirely — lands at **−2.49 rating [−2.78, −2.21] with 6/220 positive.** The verdict
+is therefore robust to its own dominant uncertainty: every credible setting is negative.
+Per-lever attribution: **harvest capability contributes most** (all direct fruit credit,
+and it is what makes worker 3 affordable at all); **bounded early planting contributes
+least** (≈0 on its own measured terms); worker 4's promise never materialises.
+
+**Adjudication.** This closes H1 completely: a patch on the existing scheduler cannot pay
+even at best, which confirms the review's rejection of the four-lever bundle on measured
+grounds and not merely on attribution methodology. It does **not** settle H2. The audit's
+argument — that a from-scratch design draws harvest and mining time from *added* capacity
+rather than cannibalised chop capacity, so the displacement term that dominates this bound
+would not apply the same way — is sound in principle, and the displacement term is indeed
+what makes the number negative. But it now inherits a hard design constraint: **crediting a
+finite tree windfall never affords a fourth worker, while the top cohort demonstrably runs
+3.55.** The difference must be a genuinely *renewable* resource base — continuous planting
+and reaping that grows the base rather than consuming it (the top cohort holds 5–6
+concurrent crops and reaps 15–29%). "Where does the renewable base come from, and does it
+close before the game does?" is therefore the **first** question any Architecture-2 design
+must answer, ahead of scheduler or roster questions. Report in session scratch
+`h1-joint-upper-bound-report.md`.
+
 ## 2026-07-29: ★★★ H5 — the resident IS a #3-Legend published design, and it underperforms its own source by 2.94
 
 **Verdict (b) strongly confirms + (c) a few uncatalogued mechanisms — but the incidental

@@ -1,6 +1,6 @@
 # 20260729-h1-joint-upper-bound: would the full economy package have paid, even at best?
 
-- Status: active
+- Status: closed — verdict (C) immaterial/negative; H1 dead as a resident patch; constrains H2; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional; this audit was their prescription)
@@ -10,7 +10,7 @@
 - Branch: session-2026-07-01 (integrator; executed by claude_1 subagent)
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-29T12:33:46Z
-- Last updated UTC: 2026-07-29T12:33:46Z
+- Last updated UTC: 2026-07-29T13:14:53Z
 
 ## Outcome
 A NET upper bound, computed on real game states, on what the joint economy package

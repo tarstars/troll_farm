@@ -618,6 +618,18 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   evidence — static map/opening features already failed workforce-policy selection
   (discovery AUC 0.830 → validation 0.479, D63) and D91's map selector lacked cluster
   support. [D63, D91; misclassification caught in the H11 review, 2026-07-29]
+- ★★ **The joint economy package cannot pay on this scheduler, measured as a NET upper
+  bound: −21.33 rating [−22.76,−19.89], 0/220 games positive**; the most optimistic
+  credible variant (own-side displacement only) is still −2.49 [−2.78,−2.21], 6/220. The
+  displacement model was calibrated against D175a and reproduces its own-side effect
+  (−4.32 predicted vs −5.41 actual). Per-lever: harvest capability contributes most,
+  bounded early planting ≈0 on measured terms. With the real bill and post-move legality,
+  worker 3 is affordable in 36.8% of games (median turn 78) — but **worker 4 in 0/220,
+  ever**, because credited fruit and iron are a **one-time windfall from a finite tree
+  population, not a renewable stream**. Any future economy design must therefore answer
+  "where does the renewable base come from, and does it close in time?" FIRST — the top
+  cohort runs 3.55 workers on 5–6 concurrent crops at 15–29% reap, i.e. a base that grows
+  rather than depletes. [H1, 2026-07-29]
 - **Multi-lever bundles on the resident are not a valid first experiment.** Changing
   several subsystems at once destroys attribution (a loss teaches nothing; a win does not
   identify the minimal causal package) and re-creates the graft pattern the 2026-07-29
