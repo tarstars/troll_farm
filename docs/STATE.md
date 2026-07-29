@@ -68,9 +68,10 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   independently reviewed by chatgpt_1
   (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
   premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  Working taxonomy: **audit-ready now** H5 (postmortem search), H3 (no-loop quartet:
-  4 agents with our profile survive 2v3 at −1.8 vs our −37), H8 (worker-2 timing: top
-  cohort trains turn 2, we turn 8); **preflight-gated** H1 (read-only joint upper bound
+  Working taxonomy: **audit-ready** H5 (postmortem search — reserved for chatgpt_1), H3
+  (no-loop quartet — IN FLIGHT); **H8 CLOSED 2026-07-29** (B) forced — trains on the first
+  legal turn in 219/220 games, premise was a stale census, timing worth +1.31 n.s.;
+  **preflight-gated** H1 (read-only joint upper bound
   only — the four-lever resident bundle is rejected), H4 (deniability census first),
   H6 (oracle-gap audit first), H7-rewritten (action contention, after H3); **owner
   programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the

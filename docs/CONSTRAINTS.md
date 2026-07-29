@@ -13,6 +13,23 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   "Knowledge retained"; archive/legend/session-handoff-2026-07-16.md]
 - Worker-3 is a funding-policy effect, never passively affordable: zero affordability windows
   in 195/195 decoded games; cheapest helper ≥2 units short, balanced ≥10. [D160]
+- **Worker-2 timing is CLOSED as a lever — the scheduler is already at the floor.** The
+  resident trains on the exact turn its bill first becomes legal in **219/220 games
+  (gap = 0)**; the sole exception is the `hard_train_turn = 35` deadline downgrade. There
+  is no fixed worker-2 spec: `choose_second_troll` ETA-optimizes (ms,cc,chop) ∈ {1,2,3}³
+  per map (26 observed vectors; median cost PLUM 5/LEMON 5/APPLE 1/IRON 5). Field pricing
+  of worker-2 *timing* is +1.31, CI [−2.80,+5.42] — not significant — against worker-3
+  +42.6 and worker-4 +60.1 (both significant, n=16,872). **Premise correction:** the "top
+  cohort trains at turn 2 vs our 8" claim came from a stale 2026-07-16 census; the
+  same-architecture STRONG/PEER cohorts train SLOWER than us (median 14 and 20), and the
+  literal top-5's median 1 belongs to a structurally different harvest-capable economy.
+  [H8, 2026-07-29]
+- **Method rule for any affordability/legality audit: check shack occupancy POST-move.**
+  The referee resolves MOVE before TRAIN within a turn (`sim/engine.py:step`), so the
+  pre-turn convention used by D160/B3.8/B3.9 wrongly flags same-turn `TRAIN;MOVE` vacates
+  as blocked. Verified with two independent decoders, 0 mismatches over 219 games. Prior
+  conclusions stand (the `can_train` hard cap and the real-bill correction dominate), but
+  new work must use the corrected convention. [H8]
 - Bounded reserve/commit options cannot fund worker-3 either: best arm 5/128 = 3.91%,
   balanced 0/768; breadth/rate gates fail. Do not retime/lengthen/tune. [D162]
 - Front-loaded four-worker scale is rejected as the universal rich mechanism: most rich

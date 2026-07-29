@@ -27,8 +27,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 - **H3 no-loop quartet** — Escdemon/therealbeef/yamo/mehdi_ayari share our profile and
   survive 2v3 at −1.8 vs our −37; controlled comparison (opponent workforce, identity,
   seat, map, duration; revalidate "no-loop" from commands; separate maturity effects).
-- **H8 worker-2 timing** — top cohort trains turn 2, we turn 8; audit affordability,
-  TRAIN legality, shack occupancy, travel, and the counterfactual cost per game.
+- ~~**H8 worker-2 timing**~~ **❌ CLOSED 2026-07-29 (B) forced** — trains on the first
+  legal turn in 219/220 games; premise was a stale census (same-architecture cohorts are
+  slower than us); timing worth +1.31 n.s. Byproduct: post-move shack-occupancy rule now
+  binding for all affordability work. No candidate.
 
 **P1 — preflight-gated audits (read-only first steps only):**
 - **H1 joint upper bound** — from real game states: bill/creation/harvest/bankability

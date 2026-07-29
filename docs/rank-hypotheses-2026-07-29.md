@@ -164,7 +164,18 @@ arena-transfer record. **Closures touched.** None. **First step.** Corpus audit:
 detector for opponent-adjacent stalls, door occupancy by non-owner units, and forced
 detours; compare cohorts. **Cost:** one session, delegable.
 
-## H8. Worker-2 timing — the unaudited five turns
+## H8. Worker-2 timing — ❌ CLOSED 2026-07-29, verdict (B) forced
+
+> **Result:** the resident already trains on the first legal turn in **219/220 games**
+> (gap = 0); the lone exception is the `hard_train_turn = 35` deadline downgrade. My
+> premise was false — it rested on a stale 2026-07-16 census, and the same-architecture
+> cohorts actually train *slower* than us (median 14 and 20 vs our 7–8); the top-5's
+> median 1 belongs to a different economy entirely. Field pricing of worker-2 timing:
+> +1.31, CI [−2.80,+5.42], not significant (worker-3 +42.6 and worker-4 +60.1 are).
+> Byproduct: a shared method bug fixed — shack occupancy must be checked post-move.
+> Ledger + CONSTRAINTS (a). Original text preserved below.
+
+
 
 **Hypothesis.** The top cohort trains first at median turn 2; we train at median turn 8.
 Worker-2's affordability window has never been audited (D160 audited worker-3 only). If

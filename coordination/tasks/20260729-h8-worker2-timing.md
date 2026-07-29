@@ -1,6 +1,6 @@
 # 20260729-h8-worker2-timing: why do we train worker two at turn 8 when the field trains at turn 2?
 
-- Status: active
+- Status: closed — verdict (B) forced; no candidate; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)
@@ -10,7 +10,7 @@
 - Branch: session-2026-07-01 (integrator; executed by claude_1 subagents)
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-29T11:56:58Z
-- Last updated UTC: 2026-07-29T11:56:58Z
+- Last updated UTC: 2026-07-29T12:23:31Z
 
 ## Outcome
 A verdict on whether the ~6-turn worker-2 lag is an execution defect (bill affordable and

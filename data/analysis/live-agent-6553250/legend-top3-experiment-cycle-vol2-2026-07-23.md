@@ -175,6 +175,50 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: H8 CLOSED — worker-2 timing is already optimal; the premise was wrong and a shared method bug is fixed
+
+**Verdict (B) forced — no execution-class candidate; H8 closes.** The resident trains its
+second worker on **the exact turn its bill first becomes legal in 219 of 220 games
+(99.5%, gap = 0)**. Median actual TRAIN turn 7 (mean 7.42) against median
+first-affordable-and-legal turn 6 (mean 7.29). The single exception (game 896350706, gap
+29) lands precisely on the documented `hard_train_turn = 35` deadline downgrade — the
+policy held out for a better spec and was forced to settle, which is deliberate design,
+not a defect. Explanation split: execution defect **0/220**, forced/floor **219/220**,
+deliberate hold-out **1/220**. No PLANT is ever issued before worker 2 in any game, so
+there is no competing "opening economy" claim on that currency either.
+
+**The real bill, established rather than assumed** (the D174a trap avoided): there is no
+fixed worker-2 spec. `choose_second_troll` — live path `SecureOrchardBot::new()` →
+`YamoBot::tuned_carry_regeneration_transit_idle_harvest()` → `TUNED_CARRY` —
+ETA-optimizes (ms, cc, chop) ∈ {1,2,3}³ per map at turn 1. Read from each game's own
+revealed TRAIN command text: 26 distinct talent vectors, most common `2/2/0/2` (13.6%),
+pooled median cost PLUM 5 / LEMON 5 / APPLE 1 / IRON 5.
+
+**The H8 premise itself was false.** "Top cohort trains at median turn 2, we at 8" traces
+to a stale 2026-07-16 census. Re-verified field-wide: resident median 7–8, field median
+8, and **B4.4's own same-architecture cohorts are SLOWER than us — STRONG median 14,
+PEER/WEAK median 20**. The literal top-5-by-rank do train at median 1, but they run a
+structurally different economy (98.7% harvest-capable specialist/hybrid/generalist roles
+vs the resident's 79% wood specialists), so that comparison never licensed an inference
+about our scheduler.
+
+**Independent pricing of scaling *timing*** (field natural experiment, early vs late per
+ordinal, n=16,872): worker-2 timing is worth **+1.31 margin, CI [−2.80, +5.42] — not
+significant**, whereas worker-3 timing is **+42.6** and worker-4 **+60.1**, both
+significant. Consistent in direction with B4.3's existence-effect pricing (2→3 = +22.7,
+3→4 = +38.9) by a different method: value lives in workers 3–4, not 2.
+
+**Method bug found and fixed — it affects prior audits' convention.** The referee resolves
+MOVE before TRAIN within a turn (`sim/engine.py:step`), so the pre-turn shack-occupancy
+check used by D160/B3.8/B3.9 wrongly flags a same-turn `TRAIN;MOVE` vacate as blocked.
+Corrected here by testing post-move position; cross-checked with two independent decoders,
+0 mismatches over 219 games. This does **not** overturn those audits' conclusions —
+worker-3 is blocked by `can_train`'s unconditional `if n >= 2 { return false }` (D174a
+Phase 0, 0/64 with a fully credited bank) and by the real-bill correction, both of which
+dominate any occupancy accounting — but every future affordability computation must use
+the post-move convention. Script: `cgauto/worker2_timing_audit.py`; report in session
+scratch `h8-worker2-timing-report.md`.
+
 ## 2026-07-29: first multi-agent review cycle — H7 falsified, H1 demoted, portfolio re-taxonomized
 
 The icfpc2026 coordination protocol was ported (`coordination/multi-agent-protocol.md`;
