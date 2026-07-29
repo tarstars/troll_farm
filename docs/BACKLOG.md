@@ -190,6 +190,13 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   plant 199 → 13 and cost **−26.44** with Δopponent +21.09 vs Δown −5.41 and catastrophes
   229 vs 130. Third confirmation that production feeds the opponent more than us. Early
   planting CLOSED; do not retune.
+- **→ Post-terminal direction menu: `docs/rank-hypotheses-2026-07-29.md`** — twelve
+  ranked, closure-aware hypotheses (H1 joint economy package, H2 architecture-2 rebuild,
+  H3 no-loop quartet study, H4 opponent-scaling denial, H5 postmortem intelligence,
+  H6 subgame lookahead, H7 physical-interference audit, H8 worker-2 timing, H9
+  resubmission A/A [owner-gated], H10 spatial-planes learner, H11 map-conditioned config,
+  H12 pool-drift surveillance). Recommended order: H5+H3 (cheap invalidators) → H1
+  (first new experiment) → H2 (owner program decision).
 - **B4.6 ❌ CLOSED 2026-07-29 — no cycle warranted; the last lead is spent.** Mechanism
   pinned (`chop_candidates` is origin-blind throughput scoring; the gap is tree size +
   kind mix, with travel/contention/capacity all ruled out and our travel actually better
