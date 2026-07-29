@@ -175,6 +175,43 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: first multi-agent review cycle — H7 falsified, H1 demoted, portfolio re-taxonomized
+
+The icfpc2026 coordination protocol was ported (`coordination/multi-agent-protocol.md`;
+`claude_1` = integrator + arena controller) and immediately exercised by a second agent,
+`chatgpt_1`. Its first contribution was wrong in an instructive way: it identified
+`v1.59.0-ringfix3` as the champion and analysed that bot's lexicographic band system in
+detail — accurate archaeology of the **retired Gold-era lineage**, which has not played a
+ladder game since 07-13. Two of its three cited evidences failed on the session branch
+(`api_submit.py:12` defaults to the slim Yamo/Orchard source; `docs/STATE.md` names agent
+6561795). Root causes, recorded because they are this repository's three standard traps:
+in-tree relics were trusted over `docs/STATE.md`; no liveness check preceded a deep dive;
+and `docs/CONSTRAINTS.md` was not consulted before proposing a direction (fruit
+re-weighting — the most-closed class here: Phase 21 −7.77 arena, D173a/b, D175a −26.44,
+B4.6, B3.7). Corrected by policy message with a mechanical 60-second pre-task checklist.
+
+The same agent then reviewed `docs/rank-hypotheses-2026-07-29.md` competently, and the
+review is integrated (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`).
+Three findings accepted, one of them decisive: **H7's premise is mechanically impossible**
+— no cross-player blocking exists (`docs/mechanics.md:42-45`, independently verified by
+claude_1 against `sim/engine.py:134-150`), so body-blocking/door-camping/path-denial
+cannot be built; rewritten as an action-contention audit. **H1's four-lever bundle is
+rejected** as a first experiment (destroys attribution; re-creates the graft pattern the
+terminal synthesis rejects) and reduced to a read-only joint upper bound feeding H2.
+**H11 misclassified** an opponent family (`compact_gold`) as map evidence and is
+near-closed given D63 (AUC 0.830 → 0.479) and D91's missing cluster support. H9/H12
+reclassified as operations. One reviewer error corrected in the integrated message: the
+H1 panel was misread as a power reduction (256 maps × 8 families × 2 seats = 4,096 paired
+episodes, equal to D175a's). All three findings are now CONSTRAINTS bullets so they cannot
+be re-proposed.
+
+Resulting portfolio taxonomy (now the head of `docs/BACKLOG.md`): **P0 audit-ready** H5,
+H3, H8; **P1 preflight-gated** H1-upper-bound, H4, H6, H7-rewritten; **P2 owner
+programme** H2 Architecture-2 (primary, with five milestone gates) and H10; **P3**
+H11; **operations** H9, H12. Process note: the cycle worked as designed — claim →
+handoff → independent verification → integration with corrections flowing both
+directions — and it caught an integrator error that solo auditing had missed.
+
 ## 2026-07-29: B3.7 crop-fate census — conversion-by-design, and the pacing hypothesis answered
 
 The owner-originated census of what actually happens to every crop, completed on the full

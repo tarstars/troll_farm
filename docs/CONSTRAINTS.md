@@ -353,6 +353,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (d) Denial & opponent-crop
 
+- ★ **Cross-player physical interference does not exist in this game.** Movement
+  collisions resolve within each player's own units separately; **enemy units may share a
+  cell with ours**, and units never block BFS distance. Body-blocking, door camping and
+  path denial against the opponent are therefore mechanically impossible — do not propose,
+  audit, or build a controller for them. What is real and unaudited is *action*
+  contention: co-location on the same harvest/chop target, last-fruit duplication, race
+  timing, and target disappearance causing wasted travel. [`docs/mechanics.md:42-45`,
+  verified against `sim/engine.py:134-150`; falsification of hypothesis H7 by chatgpt_1,
+  2026-07-29, confirmed independently by claude_1]
 - Exact 1:1 dual-value opponent-crop scoring is closed: 111/131 admissible official-prefix
   activations, all pre-arena gates passed — and −7.77 rating at the clean 63-game arena
   checkpoint. Do not tune its multiplier or ETA; prefix coverage is not complete-policy
@@ -542,6 +551,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   ledgers]
 - Never tune on consumed blocks or reuse consumed seed ranges for selection; reopening a
   closed branch requires a new representation, not a threshold retune. [vol 1, passim]
+- **Opponent families are not map classes.** `compact_gold`, `adaptive_gold` etc. are
+  panel *opponents*; a family-structured failure is evidence about opponents, not about
+  map geometry or richness. Do not cite worst-family results as map-conditioning
+  evidence — static map/opening features already failed workforce-policy selection
+  (discovery AUC 0.830 → validation 0.479, D63) and D91's map selector lacked cluster
+  support. [D63, D91; misclassification caught in the H11 review, 2026-07-29]
+- **Multi-lever bundles on the resident are not a valid first experiment.** Changing
+  several subsystems at once destroys attribution (a loss teaches nothing; a win does not
+  identify the minimal causal package) and re-creates the graft pattern the 2026-07-29
+  terminal synthesis rejects — adding subsystems under the resident's existing scheduler.
+  A complementarity argument must first be tested as a read-only joint upper bound on real
+  states; implementation of a full economy loop belongs in a new architecture, not as a
+  patch. [H1 review, 2026-07-29; precedent D92, and the six failed re-architectures]
 - One coherent policy must own opening, renewable supply, TRAIN funding, production, and
   suppression end to end, optimized closed-loop — every partial composition tested (overlay,
   transplant, wrapper, imitation, fixed grammar) landed far beneath the field gap. [vol 1

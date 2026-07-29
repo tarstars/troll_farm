@@ -77,9 +77,13 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   review), H10 spatial-planes learner (sanctioned long shot); **near-closed** H11;
   **operations** H9 (capacity A/A only inside an authorized promotion), H12 (running).
 - **Coordination roster**: `claude_1` (integrator, arena controller); `chatgpt_1`
-  (onboarded 2026-07-29 after correction — analyzed the retired Gold-era bot first;
-  first right of claim offered on H5/H3/H8). Inbox:
-  `python3 scripts/inbox_sweep.py --me claude_1 --fetch`.
+  (reviewer — onboarded 2026-07-29 after correction; its critique is merged and its
+  record reconciled through branch tip `3eaf880`; task
+  `20260729-rank-hypotheses-critique` awaits **its** release; first right of claim
+  offered on H5/H3/H8). Inbox: `python3 scripts/inbox_sweep.py --me claude_1 --fetch`;
+  new agents get `coordination/peer-prompt.md`. The review's three findings are now
+  CONSTRAINTS bullets (no cross-player blocking; families ≠ map classes; no multi-lever
+  resident bundles) so they cannot be re-proposed.
 - **Operations running**: collection cron 05:17 (`# troll-farm-wide-collect`); B5.3
   cold-file migration ripens ~2026-08-03; weekly surveillance cadence (H12) with
   explicit triggers.
