@@ -181,3 +181,21 @@ path-preserving symlinks and re-read through the repository paths. Free space af
 `legacy-data-analysis` tree was archived to YT as
 `//home/delivery_ml/research/tarstars/troll_farm/mirrors/legacy-data-analysis-2026-07-24.tar.gz`
 (SHA-256 in the adjacent `.sha256` sidecar node).
+
+The third tranche completed on 2026-07-29 and is the first to migrate **tracked** files.
+1,629 tracked bulk artifacts (232,647,112 bytes) — the ≥100 KB non-record payloads under
+`data/analysis`, `data/candidates`, `data/panels`, plus all of `data/boss5_games`,
+`data/arena_replays` and the legacy `data/raw/battles` — were copied to
+`artifacts/legacy-tracked-migration`, verified by count, bytes and per-file SHA-256
+(1,629/1,629 match; itemized checksum `rsync --dry-run` reported zero changes), then
+replaced with path-preserving symlinks which are **committed to git**, so the repository
+records what moved and where. Digest list:
+`docs/storage-migration-2026-07-29-tracked.sha256`. Free space after `sync`: 454094581760
+bytes on `medium_data`.
+
+Deliberately retained in the repository, against the size-only heuristic:
+`cgauto/submissions` (the frozen bot artifacts, including the live source),
+`docs/plays` (input to `sim/validate_replay.py`), all experiment protocols, locks,
+result documents and result JSONs (587 record files explicitly protected by the selection
+filter), and **`data/raw/games`** — the live replay store, which the daily collection
+cron writes to and whose QA would fail on a detached volume (the B5.3 re-scope decision).

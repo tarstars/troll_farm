@@ -175,6 +175,34 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: B3.7 crop-fate census — conversion-by-design, and the pacing hypothesis answered
+
+The owner-originated census of what actually happens to every crop, completed on the full
+corpus. **Resident (220 games, 2,433 crops): chopped by us 98.97%, harvested by us 0.90%
+(matching D101's 0.94%), taken by the opponent 0.12%, alive at end 0%** — and **96.8% of
+our self-chopped crops never bore fruit at all** before we converted them. **Top-5 (200
+games, 8,913 crops): harvested by owner 29.81%, self-chopped 42.98%, chopped by opponent
+15.71%, alive at end 11.28%.**
+
+Servicing ratio (live crops ÷ harvest-capable workers): **resident ≈0 throughout**
+(0.08→0.40 across turns 25–300) versus **top-5 ≈2.5–3.0**; empirically **100% of 220
+resident trained workers have `harvest_power = 0`** — only the starter, effectively glued
+to one orchard-mother tree, ever harvests — against just 9.5% for the top cohort. Expiry
+analysis: when our ripe fruit does go unserviced a capable worker is in reach 87.4% of the
+time (73.2% excluding the orchard-mother reserve), but there are only **41 true residual
+episodes, median 2 turns**; the top-5 have 3,922 such episodes at median 19 turns with
+1,010 crops still ripening at game end (we have 1, in 220 games).
+
+**Verdict: conversion-by-design, decisively, for the resident.** We are not racing our own
+orchard and we are not capacity-limited (true capacity waste ≈1.6% of ripe episodes);
+theft is real but secondary (18.2% opponent wood-share on contested self-chopped trees,
+2.60 wood/game, matching CONSTRAINTS' 2.32). We have **architecturally opted out** of
+farming: trees are wood, and only one designated tree per game is ever treated otherwise.
+For the top-5 the picture is genuinely mixed — conversion 43%, capacity-limitation 39.3%
+despite near-universal reachability, theft 15.7% — with none dominant. This settles the
+owner's plant-pacing hypothesis precisely: **it fits the top cohort's ceiling and does not
+apply to us at all**, and it is the fate-level confirmation of what D175a proved causally.
+
 ## 2026-07-29: B4.6 CLOSED — suppression efficiency is real but its fix class already failed twice
 
 Decomposition of the 0.31-vs-0.43 wood/chop gap. **Ruled out entirely:** capacity-blocked
