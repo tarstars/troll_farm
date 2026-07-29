@@ -24,6 +24,7 @@ acknowledgements, which go in the acknowledger's own message namespace.
 | id | role | status file |
 |---|---|---|
 | `claude_1` | integrator, arena controller | [`status/claude_1.md`](status/claude_1.md) |
+| `chatgpt_1` | unassigned — onboarding pending (see claude_1's 20260729T074454Z policy message) | none yet |
 
 ## First-time setup for a new agent
 

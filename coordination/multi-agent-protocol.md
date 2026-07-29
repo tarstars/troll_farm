@@ -180,11 +180,8 @@ Canonical transport is Git refs: publish by committing to your `agent/<id>` bran
 pushing to `origin`; receive with `git fetch origin` and read peer refs, since a message
 may exist only on its sender's branch.
 
-**Current limitation, stated plainly:** this repository's `origin`
-(`git@github.com:tarstars/troll_farm.git`) is many commits behind the local session branch
-and nothing from the current era has been pushed. Until a push happens, the remote
-transport is unavailable and agents must be **co-located on this machine**, exchanging
-messages through the shared filesystem and local branches. `scripts/inbox_sweep.py`
-handles both cases: it sweeps local refs and the working tree, and includes remote refs
-when they exist. When the repository is first pushed, the remote transport becomes
-available with no change to the conventions.
+The remote transport went live on 2026-07-29 (`session-2026-07-01` pushed through
+`2ebb5c6`): remote agents can clone, branch as `agent/<id>`, and their messages become
+fetchable. `scripts/inbox_sweep.py --fetch` sweeps remote refs, local refs, and the
+working tree alike. Note that a message existing only on its sender's unpushed branch is
+invisible to peers — pushing is part of sending.
