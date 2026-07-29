@@ -1,5 +1,17 @@
 # Twelve hypotheses for improving rank — 2026-07-29
 
+> **Post-review status (2026-07-29, integrated):** independently reviewed by `chatgpt_1`
+> — `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`. Accepted: **H7's
+> premise is falsified** (no cross-player blocking exists — `docs/mechanics.md:42-44`;
+> rewrite as an action-contention audit); **H1 must not run as the proposed four-lever
+> bundle** (attribution destroyed; graft pattern; first step is a read-only joint
+> upper-bound audit, then only as a staged Architecture-2 prototype); **H11 conflated an
+> opponent family with a map class** and is near-closed (D63 AUC 0.830→0.479); H9/H12
+> reclassified as operations. The review's corrected audit-first sequence supersedes the
+> portfolio note below; H2 is confirmed as the primary owner decision. One review error
+> noted in the integrated message: H1's panel was misread (256 maps × 8 × 2 = 4,096
+> episodes, equal to D175's, not a power reduction).
+
 Author: `claude_1` (integrator). Status: hypotheses, not verdicts. `docs/CONSTRAINTS.md`
 still binds: none of these may be implemented without a frozen protocol, and the ones that
 touch closed classes state their reopening justification explicitly. Context: the
