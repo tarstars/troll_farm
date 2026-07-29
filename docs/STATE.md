@@ -76,8 +76,11 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   independently reviewed by chatgpt_1
   (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
   premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  Working taxonomy: **audit-ready** H13 (fidelity gap vs our own source design — NEW and
-  now the top cheap lead); **H5 DONE** (b)+(c) — confirms the model, corrects H6's
+  Working taxonomy: **all P0 audits CLOSED 2026-07-29** (H3, H5, H8, H13; H1 too).
+  **Active experiment: D176a** oscillation-breaker successor (preference tie-break,
+  bounded arming; marginal expected value, execution-class). **H13 DONE** — the 2.94 gap
+  to yamo is most plausibly maturity not code (≤1 pt attributable), but we oscillate at
+  6.4× yamo's rate; four accretions are structurally dead. **H5 DONE** (b)+(c) — confirms the model, corrects H6's
   lookahead premise, and revealed that the resident reproduces yamo's #3-Legend design
   while ranking 2.94 below it;
   **H8 CLOSED** (B) forced — trains on the first legal turn in 219/220 games, premise was

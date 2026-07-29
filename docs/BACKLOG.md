@@ -22,8 +22,16 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 ## LIVE PRIORITIES (2026-07-29)
 
 **P0 — audit-ready, read-only, parallel, claimable now:**
-- **H13 fidelity gap vs our own source design — NEW 2026-07-29, now the strongest cheap
-  lead.** The resident is a reproduction of yamo's #3-Legend published bot (H5), and
+- ~~**H13 fidelity gap**~~ **✅ DONE 2026-07-29 — one candidate, headline deflated.** The
+  2.94 gap is most plausibly **maturity, not code** (≤1 point attributable; fresh-vs-mature
+  is 3–4 points; several behaviours equal or reversed) — do not repeat the "we underperform
+  our source" claim without a maturity-controlled measurement. Real finding: we oscillate in
+  **18.2% of games (worst 133 turns) vs yamo's 2.9% (worst 6)**. Also: the endgame
+  opponent-plant contest is absent from our code, the denial weight was never swept, and
+  four accretions (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring)
+  are structurally DEAD. → **D176a frozen** (preference tie-break, bounded arming;
+  expected value marginal ≈+0.1 overall, run because execution-class transfers).
+- *(superseded framing)* H13 fidelity gap vs our own source design The resident is a reproduction of yamo's #3-Legend published bot (H5), and
   **yamo outranks us by 2.94 points at the same fixed 2-troll roster** (24.70 rank 15 vs
   21.76 rank 45). That gap is not architectural. Diff our live source against (a) the
   restored postmortem `docs/reference/yann-moisan-postmortem-2026-05-26.txt`, (b) the

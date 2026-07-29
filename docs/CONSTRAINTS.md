@@ -589,11 +589,28 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   `docs/reference/2026-07-11-yannbot-design.md` (both were lost in a reorganization and
   restored 2026-07-29). **Consequence: "our architecture's ceiling" arguments must account
   for the fact that this architecture finished #3 in the contest.** [H5]
-- ★★ **We underperform our own source design by 2.94 points** — yamo 24.70 (rank 15) vs
-  tass 21.76 (rank 45) on the 2026-07-29 snapshot, at the same fixed 2-troll roster. This
-  gap is by construction NOT architectural; it is fidelity, accreted divergence, or meta
-  drift, and it is 45% of the gap to the rank-3 bar. Studiable directly: 140 yamo games in
-  the corpus plus the published design. [H5 → H13]
+- ★★ **We score 2.94 below our own source design** — yamo 24.70 (rank 15) vs tass 21.76
+  (rank 45), 2026-07-29 snapshot, same fixed 2-troll roster. **[qualified by H13: this is
+  most plausibly MATURITY, not code.]** H13 could attribute at most ≈1 point to code
+  deviations and found several checked behaviours equal or reversed; the documented
+  fresh-vs-mature effect is 3–4 points and our agent has been live only since 2026-07-19
+  while yamo has played since May. **Do not cite "we underperform our source" as a code
+  claim without a maturity-controlled measurement** — on current evidence our code may
+  already match or exceed yamo's. [H5, corrected by H13]
+- **Four accretions in the dev copy are structurally DEAD** — `ScarceIntent`,
+  `banana_factory`, `task_market`, and the opponent-crop scoring family cannot fire at all
+  under `main()`'s construction chain. Any analysis that treats them as live behaviour is
+  wrong and must be re-checked. [H13]
+- **Oscillation is a real fidelity defect with a measured achievable ceiling.** We
+  oscillate in **40/220 games (18.2%), worst 133 turns**; yamo, the same architecture,
+  in **4/140 (2.9%), worst 6 turns** — 6.4× incidence, 22× severity. His postmortem admits
+  the weakness and leaves it unfixed; our engineered fix
+  (`resolve_move_conflicts_with_priority_and_forbidden`, tie-break L1513–1521, no
+  cross-turn memory) is what made it worse. Also confirmed absent from our code: the
+  postmortem's endgame "park adjacent to the opponent's shack and contest last-minute
+  planting" (opponents plant while we lead in 43.3% of our endgame games vs 35.9% of his,
+  directional only at n≈260). And the denial-bonus weight `900/(1+dist)` was never swept
+  despite the reproduction plan's own G1 requiring it. [H13]
 - **The contest field's top finishers contest the scaling premise.** yamo (#3) ran a fixed
   2-troll roster all contest; **putibuzu (#2) explicitly rejected a third troll for
   "unfavorable cost scaling."** Our ladder measurements (B4.3 +48.2 margin/worker

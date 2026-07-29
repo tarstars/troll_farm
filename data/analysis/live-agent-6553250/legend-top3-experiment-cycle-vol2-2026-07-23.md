@@ -175,6 +175,56 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: H13 — one real fidelity defect (oscillation, 6.4× yamo's rate), and the 2.94 headline is deflated
+
+**The correction first, because the integrator over-claimed.** I opened H13 on the framing
+that 2.94 points separate us from our own source design and that the gap is "by
+construction not architectural". H13's attribution says otherwise: only one deviation
+carries a real number (D171a's measured +0.53 on its activated subset), the optimistic sum
+of everything found is **≈1 point — well under half of 2.94**, and several checked
+deviations (typeToCut concentration, contested-chop rate, planting timing) show **no gap or
+a reversed one**. The honest residual is large and most plausibly **score maturity**:
+STATE's own documented effect is that fresh reads sit 3–4 points below matured ones, our
+agent was submitted 2026-07-19 while yamo has been on the ladder since May. **A 3–4-point
+maturity effect fully covers a 2.94-point observed gap** — meaning our code may already
+match or exceed yamo's, and the "we underperform our source" framing must not be repeated
+without a maturity-controlled measurement. Recorded as a correction to my own H5 entry.
+
+**What is nonetheless real: the oscillation defect, now with a reference ceiling.**
+Deviation classes found: **2 validated improvements** — idle-harvest KEEP, and the
+single-mother orchard mechanism (arena **+3.0**, promoted; structurally an *active* analog
+of a "sweet spot" idea yamo describes but says he left **disabled**); **4 unvalidated
+changes** — denial-bonus weight, funding-spec tie-break, a dormant risk-avoidance term, the
+PICK-dedup rule; **3 unintended divergences**; plus **4 accretions confirmed structurally
+dead** by tracing `main()`'s construction chain — `ScarceIntent`, `banana_factory`,
+`task_market`, and the opponent-crop scoring family **cannot fire at all** (any prior
+description treating these as live behaviour needs re-checking).
+
+The headline divergence is **same-two-cell oscillation**, and the comparison is stark:
+**40/220 = 18.2% of our games oscillate, worst case 133 turns, against 4/140 = 2.9% of
+yamo's, worst case 6 turns** — 6.4× the incidence and 22× the severity. The irony is
+recorded: yamo's postmortem *admits* this weakness ("I only set the destination… trolls
+occasionally blocked each other") and leaves it; we deliberately engineered around it
+(`resolve_move_conflicts_with_priority_and_forbidden`, detour tie-break L1513–1521, zero
+cross-turn memory) and ended up 6× worse. Second candidate: the **missing endgame
+opponent-plant contest** — the postmortem's "park adjacent to the opponent's shack… contest
+any last-minute planting" is confirmed absent (`view.shacks[1]` appears at only three
+unrelated lines); opponents plant while we lead in 43.3% of our endgame games vs 35.9% of
+yamo's (directional, not significant at n≈260). Third: the **denial-bonus weight**
+`900/(1+dist)`, never swept despite the reproduction plan's own G1 requiring it
+(placebo-adjusted signal 1.24 ours vs 1.64 yamo's).
+
+**Adjudication.** H13 closes as an audit. Its one actionable output is a **sanctioned
+successor to D171a** — sanctioned because D171a's own closure recorded successor
+requirements (bounded arm lifetime, echo-stop disarm, ≤2 forced choices per arming, or
+preference-based tie-breaking rather than prohibition), and because H13 supplies genuinely
+new evidence rather than a threshold retune: a *measured achievable ceiling from a
+same-architecture reference bot* (2.9% incidence, ≤6-turn worst case). Expected value is
+honestly marginal — D171a's partial 45.7% cure was worth +0.53 activated, so even a good
+successor plausibly returns ~+0.1 overall — but it is execution-class, the only family that
+has ever transferred, and the machinery exists. Frozen as **D176**. Report in session
+scratch `h13-fidelity-gap-report.md`; script `cgauto/fidelity_gap_audit.py`.
+
 ## 2026-07-29: H1 CLOSED (C) — the joint economy package cannot pay, even at its upper bound
 
 **Verdict (C) immaterial or negative; the H1 bundle is dead on measured grounds rather
