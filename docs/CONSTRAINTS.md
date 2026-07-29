@@ -623,6 +623,20 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   therefore wrong, while the opportunity it names is corroborated by a top-2 finisher.
   Also: nobody in any public source describes *recovering* from numeric disadvantage — the
   field's answer is prevention only. [H5]
+- **Oscillation is CLOSED permanently after two designed attempts.** D176a's preference
+  tie-break with bounded arming largely worked — ≥10-turn task rate 8.50% → **2.88%**,
+  *below yamo's 2.9% reference*, with **zero** de-novo oscillation and **all six value
+  gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
+  ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
+  reopen. [D176a; D171a]
+- ★ **Gate-design rules, learned by getting both wrong in D176a.** (1) Calibrate a mechanism
+  gate on the **same population the panel measures** — D176a's ≤20-turn worst-case gate came
+  from a real-corpus statistic (133) while the panel's own control runs 247, so the control
+  fails the gate by 12×. (2) A gate must distinguish the intervention's intended **mechanism
+  of action** from the failure mode it was inherited to catch — the 5–9-turn displacement
+  gate (from D171a's *manufactured* oscillation) could not tell manufacture from the
+  fragmentation of long runs that this design exists to produce; the de-novo gate could, and
+  passed at zero. [D176a]
 - ★ **Displacement is the default explanation for a mechanism that "should" pay.** Across
   the 2026-07-29 sweep, five independent candidates each looked materially positive on
   gross accounting and each priced out at or below zero once the turns they consume were

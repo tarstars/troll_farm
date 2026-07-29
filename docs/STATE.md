@@ -84,12 +84,11 @@ requires a new bot (H2 programme) or an owner re-scope. The resident holds the s
   residual as a value audit), N5 (missing endgame opponent-plant contest), N6 (unswept
   denial weight), N7 (dead-accretion removal plan).
   Working taxonomy: **all iteration-1 P0 audits CLOSED 2026-07-29** (H3, H5, H8, H13; H1 too).
-  **Active experiment: D176a** oscillation-breaker successor (preference tie-break, bounded
-  arming). Status: panel complete, trigger fidelity 100% (n=152), dev copy verified restored
-  at `fff6669b`; **mechanism gates failing decisively** — worst-case run 247 turns against a
-  ≤20 gate and *worse than the control's own 133*, displacement +288% against ≤+10%. Agent
-  died to an API drop mid-root-cause and was resumed; expected verdict CLOSED-AT-MECHANISM,
-  which per protocol ends the oscillation line permanently. **H13 DONE** — the 2.94 gap
+  **D176a CLOSED-AT-MECHANISM 2026-07-29 — no experiment now in flight.** The fix largely
+  worked (incidence 8.50%→2.88%, below yamo's 2.9% reference; zero de-novo; all six value
+  gates pass) but is worth only **+0.045 overall**, so the oscillation line closes
+  permanently. Two mechanism sub-gates were mis-specified by me and the errors are recorded
+  as gate-design rules in CONSTRAINTS. **Next: iteration-2 P0 — N1 maturity measurement.** **H13 DONE** — the 2.94 gap
   to yamo is most plausibly maturity not code (≤1 pt attributable), but we oscillate at
   6.4× yamo's rate; four accretions are structurally dead. **H5 DONE** (b)+(c) — confirms the model, corrects H6's
   lookahead premise, and revealed that the resident reproduces yamo's #3-Legend design

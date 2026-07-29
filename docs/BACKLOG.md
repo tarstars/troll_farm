@@ -75,8 +75,12 @@ construction.
   then plan removal from the dev copy — they have already caused analytical errors (several
   audits, mine included, discussed them as live behaviour). Removal touches the byte-sacred
   file, so it needs its own protocol and a behavioural-identity proof.
-- **D176a integration** when it reports. If it closes, the oscillation line ends permanently
-  (two designed attempts against a measured ceiling is enough).
+- **D176a ✅ CLOSED-AT-MECHANISM 2026-07-29 — oscillation line closed permanently.** The fix
+  largely worked (incidence 8.50%→2.88%, below yamo's 2.9%; zero de-novo; all six value gates
+  pass) and is worth **+0.045 overall** — not a promotion cycle. Two of the four mechanism
+  sub-gates were mis-specified by the integrator (worst-case anchored to a real-corpus figure
+  the panel control misses by 12×; displacement gate cannot distinguish fragmentation from
+  manufacture) — recorded in CONSTRAINTS as gate-design rules.
 
 ### P3 — owner programme decisions (unchanged, now better constrained)
 
