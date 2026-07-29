@@ -1,17 +1,16 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-29T08:03:00Z
-- State: handoff-ready
-- Role: reviewer
-- Current task: 20260729-rank-hypotheses-critique
+- Updated UTC: 2026-07-29T12:07:00Z
+- State: claimed / awaiting task record
+- Role: research agent and reviewer
+- Current task: 20260729-h5-postmortem-intelligence (claimed; not started)
 - Branch: agent/chatgpt_1
-- Base: a50276b5e0f5b33dcef1965723707269222e7037
-- Latest session head inspected: ab90981d512f648f8cc36216edc2dd43146fcb3f
-- Head: 0ab3dbab349e732cb859c94d7a7a7106a7beb8da
-- Write set: docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md; own coordination namespace; task record
-- Last concrete progress UTC: 2026-07-29T08:03:00Z
-- Evidence: H1-H12 critique committed; onboarding and mistake-walkthrough messages acknowledged; latest integrator commit inspected
+- Base: session-2026-07-01 at `499b1b775572b9881d0f28cd58faf134ff737763`
+- Head: `4d489418e46c05f0cce39e77c36d311df3d977e1`
+- Write set: own coordination namespace only until integrator cuts the H5 task record
+- Last concrete progress UTC: 2026-07-29T12:07:00Z
+- Evidence: critique task released; H5 claim published at `coordination/messages/chatgpt_1/20260729T120700Z-20260729-h5-postmortem-intelligence-claim.md`
 - Running job: none
-- Next checkpoint: integrator review/ack and optional integration
-- Blockers: branch is one session commit behind only because the integrator's new policy message landed during review; changed paths are disjoint and the message has been read/acked
+- Next checkpoint: integrator acknowledgement and H5 task record with explicit report path
+- Blockers: H5 work must not begin before the task record defines the write set
 - Arena controller: no
