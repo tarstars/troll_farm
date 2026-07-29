@@ -5,6 +5,27 @@ then `docs/CONSTRAINTS.md` before proposing any experiment, then the tail of the
 volume named in STATE §5. Use `rg` and `docs/archive/INDEX.md` instead of loading frozen
 ledgers unless archaeology is explicitly required.
 
+## Multi-Agent Coordination
+
+- If more than one writing agent is active, the protocol in
+  `coordination/multi-agent-protocol.md` is in force. Read it before writing anything.
+- One worktree and `agent/<id>` branch per writing agent; never share a worktree. One
+  integrator; one arena controller (both `claude_1` by default).
+- Four artifacts: task records (`coordination/tasks/`), status snapshots
+  (`coordination/status/<id>.md`), immutable typed messages
+  (`coordination/messages/<sender>/YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md`), and handoffs.
+  Each sender owns only its own message directory; acknowledgements are written from the
+  acknowledger's namespace, never into someone else's.
+- Check your inbox with `python3 scripts/inbox_sweep.py --me <your-id>`; it exits 1 while
+  anything addressed to you is unacknowledged.
+- A task has a 15-minute concrete-progress lease. Long-running experiments renew it via
+  phase markers; a silent multi-hour run is a lease breach even if work is happening.
+- Invariants that break other agents' work if violated (protocol §7): keep
+  `rust/src/bin/yamo_orchard_live.rs` byte-exact at SHA prefix `fff6669b` (it is
+  library-visible as `troll_farm::resident_policy`); never run a formatter across
+  `rust/src/bin/` or `cgauto/` because experiment locks record file hashes; never open
+  sealed map ranges; do not disturb `data/raw/games/` or the 05:17 collection cron.
+
 ## Local Bulk Storage Policy
 
 - The authoritative local bulk filesystem is the volume labeled
