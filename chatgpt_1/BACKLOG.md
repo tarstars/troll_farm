@@ -1,6 +1,6 @@
 # chatgpt_1 backlog
 
-Last updated: 2026-07-29T12:29:00Z
+Last updated: 2026-07-29T12:35:00Z
 Branch: `agent/chatgpt_1`
 Integrator: `claude_1`
 
@@ -40,9 +40,27 @@ No Arena mutation, sealed-data access, resident-source edit, or shared-state edi
 
 **Done when:** the integrator can update H2/P1 priorities without re-reading the source corpus.
 
-### B2. H6 bounded-lookahead oracle-gap audit
+### B2. Independent review of H1 joint-economy upper bound
 
-**Status:** preferred next claim after B1, unless H5 produces a stronger new lead.
+**Status:** blocked on `claude_1`'s active H1 handoff. Do not duplicate its analyzer.
+
+**Objective:** verify that the bound is genuinely net, uses live-policy bills and referee-correct legality, and supports the H2 go/no-go claimed for it.
+
+**Checks:**
+
+- Bills come from revealed live TRAIN commands, not synthetic cheap-helper specs.
+- TRAIN legality uses post-MOVE shack occupancy.
+- Gross created value is reduced by honestly measured displaced suppression, banking, travel, and opponent compounding.
+- D175a is used as a calibration anchor rather than as an arbitrary universal coefficient.
+- Error bars include uncertainty in both available production and displacement price.
+- Mechanical feasibility is not confused with policy selectability.
+- The final material/marginal/immaterial verdict follows from preregistered thresholds, not retrospective interpretation.
+
+**Deliverable:** independent accept/correct/reject review and a precise consequence for H2.
+
+### B3. H6 bounded-lookahead oracle-gap audit
+
+**Status:** preferred next unowned claim after B1/B2 reviews, unless those reports produce a stronger new lead.
 
 **Objective:** decide whether limited deeper search over real resident decision states has enough broad value to justify implementation.
 
@@ -60,9 +78,9 @@ No Arena mutation, sealed-data access, resident-source edit, or shared-state edi
 
 **Expected artifacts:** task-specific analyzer, reproducible state sample manifest, report, and handoff.
 
-### B3. Combined opponent-pressure preflight: H4 + H7 + H3 residual
+### B4. Combined opponent-pressure preflight: H4 + H7 + H3 residual
 
-**Status:** queued behind B2, or promoted if H5 points directly here.
+**Status:** queued behind B3, or promoted if H5/H1 point directly here.
 
 **Objective:** determine whether the resident's reduced opponent-crop contact under numeric pressure is causal and exploitable rather than a symptom of already losing.
 
@@ -76,24 +94,9 @@ No Arena mutation, sealed-data access, resident-source edit, or shared-state edi
 
 **Kill condition:** no evidence that the condition is load-bearing, or the opportunity cost exceeds the denial value.
 
-### B4. H1 joint-economy upper-bound audit
-
-**Status:** queued; run only when an Architecture-2 decision is near or external evidence revives the coupled-economy thesis.
-
-**Objective:** establish whether a coherent plant-harvest-bank-train package has enough theoretical value on real states before anyone implements it.
-
-**Restrictions:**
-
-- Read-only upper bound; never a four-lever patch to the resident.
-- Full bill accounting using the real worker specs.
-- Include displaced suppression and opponent-compounding cost.
-- Separate mechanical feasibility from policy selectability.
-
-**Done when:** the result either closes the coupled-economy package or supplies quantitative requirements for Architecture-2.
-
 ### B5. Architecture-2 design specification
 
-**Status:** owner-gated. Start only after explicit user go/no-go and an integrator task record.
+**Status:** owner-gated. Start only after explicit user go/no-go and an integrator task record. H5 and H1 reviews are inputs.
 
 **Objective:** define a new coherent bot rather than grafting subsystems onto Yamo/Orchard.
 
@@ -143,7 +146,7 @@ No direct submission authority.
 ## Continuous responsibilities
 
 - Sweep inbox and remote refs before each work block.
-- Review H3/H8/H5 or future agent handoffs when assigned.
+- Review H5, H1, or future agent handoffs when assigned.
 - Challenge causal claims, trigger fidelity, evaluation parity, and source liveness.
 - Publish negative results and corrections, not only promising leads.
 - Keep exact commit hashes, commands, data provenance, and local/field/Arena distinctions.
@@ -151,6 +154,7 @@ No direct submission authority.
 
 ## Explicitly not in my backlog
 
+- Duplicate H5 or H1 work while `claude_1` owns it.
 - More fruit-priority tuning on the resident.
 - Worker-2 timing changes; H8 is closed.
 - Re-running the no-loop-quartet premise; H3 corrected it.
