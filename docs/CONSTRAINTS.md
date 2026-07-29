@@ -635,8 +635,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   evidence — static map/opening features already failed workforce-policy selection
   (discovery AUC 0.830 → validation 0.479, D63) and D91's map selector lacked cluster
   support. [D63, D91; misclassification caught in the H11 review, 2026-07-29]
-- ★★ **The joint economy package cannot pay on this scheduler, measured as a NET upper
-  bound: −21.33 rating [−22.76,−19.89], 0/220 games positive**; the most optimistic
+- ★★ **The joint economy package cannot pay on this scheduler.** Measured as a grounded
+  finite-windfall accounting stress test (NOT a formal upper bound over all
+  complementarities; CI conditional on fixed pricing constants — correction adopted from
+  chatgpt_1's review): headline −21.33 rating [−22.76,−19.89], 0/220 positive, but the
+  **load-bearing figure is the own-side-only sensitivity, −2.49 [−2.78,−2.21], 6/220** —
+  quote that one, since it drops the extrapolated opponent term and is still negative; the most optimistic
   credible variant (own-side displacement only) is still −2.49 [−2.78,−2.21], 6/220. The
   displacement model was calibrated against D175a and reproduces its own-side effect
   (−4.32 predicted vs −5.41 actual). Per-lever: harvest capability contributes most,

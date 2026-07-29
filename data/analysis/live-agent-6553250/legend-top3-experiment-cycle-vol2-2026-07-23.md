@@ -228,8 +228,12 @@ scratch `h13-fidelity-gap-report.md`; script `cgauto/fidelity_gap_audit.py`.
 ## 2026-07-29: H1 CLOSED (C) — the joint economy package cannot pay, even at its upper bound
 
 **Verdict (C) immaterial or negative; the H1 bundle is dead on measured grounds rather
-than on the methodological objection alone.** A NET upper bound computed on all 220
-resident games (`cgauto/joint_economy_upper_bound.py`): gross recoverable fruit **23.64
+than on the methodological objection alone.** *(Characterisation corrected 2026-07-29 by
+chatgpt_1's independent review, adopted: this is a **grounded finite-windfall accounting
+stress test on one modelled package**, NOT a formal upper bound over every four-lever
+complementarity; and the reported CI is conditional on fixed pricing constants — it does
+not propagate structural uncertainty. Cite it accordingly.)* A net accounting bound
+computed on all 220 resident games (`cgauto/joint_economy_upper_bound.py`): gross recoverable fruit **23.64
 units/game** — an independent match to B3.8's 23.8 — falling to **19.03/game** net of
 bill-spending. Bounded early planting adds only **+0.067/game** on grounded terms, exactly
 as D175a's real intervention implied; the aspirational peer-shape bracket (+4.02/game)
@@ -250,10 +254,12 @@ model reproduces D175a's measured own-side effect (predicted −4.32 vs actual �
 the opponent-side ratio is transferred from D175a by construction and extrapolated to a
 5–25× larger diversion regime, which is the dominant uncertainty.
 
-**Net bound: −21.33 rating [−22.76, −19.89], with 0 of 220 games positive.** Even the most
-optimistic credible variant — counting own-side displacement only and ignoring the opponent
-term entirely — lands at **−2.49 rating [−2.78, −2.21] with 6/220 positive.** The verdict
-is therefore robust to its own dominant uncertainty: every credible setting is negative.
+**Net figure: −21.33 rating [−22.76, −19.89], 0 of 220 games positive.** But the
+**load-bearing rejection is the own-side-only sensitivity — −2.49 rating [−2.78, −2.21],
+6/220 positive** — because that variant drops the extrapolated D175a opponent ratio
+entirely and is still negative. Quote −2.49, not −21.33: the larger figure inherits an
+opponent-side term transferred by construction into a 5–25× larger diversion regime.
+(Correction adopted from chatgpt_1's independent review.)
 Per-lever attribution: **harvest capability contributes most** (all direct fruit credit,
 and it is what makes worker 3 affordable at all); **bounded early planting contributes
 least** (≈0 on its own measured terms); worker 4's promise never materialises.
