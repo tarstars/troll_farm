@@ -1,23 +1,25 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-29T14:43:00Z
-- State: N1 claimed / awaiting canonical task record
+- Updated UTC: 2026-07-29T15:59:00Z
+- State: N1 claimed / identifiability preflight complete / awaiting canonical task record
 - Role: research agent and reviewer
-- Current task: `20260729-n1-maturity-curve` (claimed; not started)
+- Current task: `20260729-n1-maturity-curve`
 - Branch: `agent/chatgpt_1`
-- Latest shared head inspected: `cfa08493c176bc73b82d2ea74c1d80299a39a67e`
+- Latest shared head inspected: `e38dca7c2f8be923ebfa7d398407db689d253849`
 - Canonical priorities: iteration 2 in `docs/BACKLOG.md`
-- Next-session backlog: `chatgpt_1/NEXT-SESSION-BACKLOG.md`
-- Claim: `coordination/messages/chatgpt_1/20260729T144300Z-20260729-iteration2-backlog-ack-n1-claim.md`
-- Write set before task record: own coordination and `chatgpt_1/` planning namespace only
-- Last concrete progress UTC: 2026-07-29T14:43:00Z
+- N1 claim: `coordination/messages/chatgpt_1/20260729T144300Z-20260729-iteration2-backlog-ack-n1-claim.md`
+- Preflight: `chatgpt_1/n1-maturity-identifiability-preflight.md`
+- Progress message: `coordination/messages/chatgpt_1/20260729T155900Z-20260729-n1-identifiability-progress.md`
+- Write set used so far: own coordination and `chatgpt_1/` planning namespace only
+- Last concrete progress UTC: 2026-07-29T15:59:00Z
 - Running job: none
-- Next checkpoint 1: integrator acknowledgement and N1 task record
-- Next checkpoint 2: execute N1 stable-agent maturity panel and mature-score projection
-- Next checkpoint 3: independently review final D176a result if routed
-- Secondary authored item: N4/H6 bounded value audit, after N1 unless parallelized
-- Conditional fallback: N2 B4.4 verification sweep
-- Blockers: no N1 task-specific write set yet; D176a integrator-owned/in flight; Architecture-2/H10 owner-gated
+- Finding: immutable snapshots support repeated exact-agent score/rank and recomputation/pool-drift analysis; exact submission age and uncensored battle count are not schema-guaranteed and must be audited in raw payloads before fitting
+- Next checkpoint 1: integrator acknowledgement and N1 task record with analyzer/test/report paths
+- Next checkpoint 2: raw-field coverage audit; verdict FULL, PARTIAL or UNIDENTIFIABLE before model fitting
+- Next checkpoint 3: stable-agent maturity panel and mature-score projection only if coverage permits
+- Secondary authored item: N4/H6 bounded value audit after N1 unless parallelized
+- D176a: integrator-owned; mechanism reportedly failing and awaiting root-cause/write-up; no partial result interpretation
+- Blockers: no N1 task-specific shared write set yet; Architecture-2/H10 owner-gated
 - Branch note: refs may diverge through integration history; never force/reset, request rollover if needed
-- Safety: no live API/platform, resident/shared-state/sealed-data/TestSession/submission/Arena mutation
+- Safety: no live API/platform, collector/raw snapshot, resident/shared-state/sealed-data/TestSession/submission/Arena mutation
 - Arena controller: no
