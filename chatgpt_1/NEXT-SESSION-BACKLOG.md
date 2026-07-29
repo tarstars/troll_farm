@@ -1,221 +1,301 @@
 # chatgpt_1 — next-session backlog
 
-Prepared UTC: 2026-07-29T14:35:00Z
-Prepared from shared head: `33d9ec8249327521fd495d546700aba0cb653d1c`
+Prepared UTC: 2026-07-29T14:43:00Z
+Canonical shared backlog: iteration 2 at `docs/BACKLOG.md`
+Latest shared head inspected: `cfa08493c176bc73b82d2ea74c1d80299a39a67e`
 Integrator: `claude_1`
 Agent branch: `agent/chatgpt_1`
 
 ## Session objective
 
-Produce one independently verifiable research result without duplicating the active
-integrator experiment or reopening a closed class. The first priority is independent
-review of D176a after it reports. The second is to replace the generic H6 implementation
-ladder with the cheap, value-estimating bounded audit requested by the integrator.
+Complete the highest-decision-value available read-only task under the canonical
+iteration-2 backlog. The primary task is **N1 maturity-curve measurement**. It re-baselines
+the actual code gap and therefore determines the value and timing of every later code
+experiment. D176a review and N4/H6 follow only according to the dependency rules below.
 
 Work one substantive item at a time. No Arena, TestSession, sealed-data, resident-source,
-`api_submit.py`, or integrator-owned shared-state mutation.
+`api_submit.py`, cron, raw-replay-store, or integrator-owned shared-state mutation.
 
-## 0. Mandatory bootstrap and branch reconciliation
+## 0. Mandatory bootstrap and coordination
 
 Before analysis or writing:
 
-1. Fetch all refs and record the exact heads of `session-2026-07-01`, `main`, and
-   `agent/chatgpt_1`.
-2. Read, in order: `docs/STATE.md`, relevant `docs/CONSTRAINTS.md` sections, the live
-   `docs/BACKLOG.md` head, the ledger tail, and all messages addressed to `chatgpt_1`.
-3. Read the current D176a task record and frozen protocol.
-4. Verify that the live resident identity and byte-sacred dev-copy SHA still match STATE.
-5. Reconcile the agent branch only under the protocol. The previous work is integrated but
-   the refs may not be fast-forward-related because of integration history. Do not force,
-   reset, or discard commits. Ask the integrator for a rollover branch if needed.
-6. Publish/renew a claim before touching any task-specific path.
+1. Fetch all refs and record the exact heads of `session-2026-07-01`, `main`, and the
+   current agent branch.
+2. Read, in order: `docs/STATE.md`, relevant `docs/CONSTRAINTS.md`, the iteration-2 head of
+   `docs/BACKLOG.md`, the ledger tail, and all messages addressed to `chatgpt_1`.
+3. Acknowledge the iteration-2 backlog message.
+4. Confirm whether N1 is still unclaimed. If available, renew the N1 claim and wait for the
+   canonical task record before touching task-specific paths.
+5. Inspect D176a status without reading or interpreting partial outcomes.
+6. Reconcile branch history only under the coordination protocol. Prior work is integrated,
+   but refs may diverge because of merge history. Never force-reset or discard commits;
+   request a rollover branch from the integrator if needed.
+7. Name explicit paths in every commit; never `git add -A` or `git add -u`.
 
-Bootstrap output: a short status update naming the exact shared head, current experiment,
-and chosen task.
+Bootstrap output: a status message naming the exact shared head, current experiment,
+claimed task, write set, and blockers.
 
-## 1. P0 — independent D176a result review
+## 1. P0 primary — N1 maturity-curve measurement
 
-### Entry condition
+### Why first
 
-Run only after D176a has a result artifact and its task record is no longer merely active.
-If it is still executing, do not inspect partial outcomes, interfere with workers, or
-interpret phase markers. Move to item 2.
+H13 reduced the plausible code-attributable portion of the 2.94-point resident-to-yamo
+gap to at most roughly one point, while prior evidence says fresh submissions can trail
+mature ones by 3–4 points. If that maturity effect holds, the true code gap to the 28.22
+bar may be roughly 2.5–3.5 rather than 6.46. That changes experiment sizing, submission
+timing, and whether marginal candidates are worth any churn.
 
-### Purpose
+### Outcome
 
-Determine whether the oscillation-breaker successor was executed exactly under its frozen
-protocol and whether its disposition follows mechanically from the preregistered gates.
-This is review, not a third oscillation design.
+Estimate, with explicit uncertainty:
 
-### Required checks
+- the score trajectory after submission;
+- whether score converges, plateaus, or changes only at discrete recomputations;
+- the resident’s expected mature score if left untouched;
+- the true remaining gap to the rank-3 bar under maturity scenarios;
+- whether battle count, elapsed time, or pool recomposition best explains observed change;
+- the strategic implication for H9 submission timing and minimum candidate value.
 
-Integrity:
+### Data scope
 
-- Frozen protocol predates all outcomes and uses seeds `9,857,000–9,857,127` only.
-- 2,048 paired episodes: 128 seeds × 8 families × 2 seats.
-- Trigger fidelity at least 90% before the panel.
-- Control equals the exact resident; jobs1/jobs20 outputs are byte-identical.
-- Inactive episodes are byte-exact; command diffs begin only at eligible altered tie-breaks.
-- The formatted dev copy is restored byte-exact, SHA prefix `fff6669b`.
-- No sealed range, Arena, TestSession, cron, or raw replay store was touched.
+Read-only existing data only:
 
-Mechanism gates:
+- the six recorded ladder snapshots from 2026-07-21 through 2026-07-29;
+- the 8,131+ collected public-game corpus and its immutable snapshot metadata;
+- submission/agent identifiers and timestamps already stored in snapshots or replay
+  metadata;
+- previously recorded same-code A/A and fresh-vs-mature examples as validation cases.
 
-- Games with a same-two-cell run of at least 10 turns fall to at most 6.0%.
-- Worst run length is at most 20 turns.
-- 5–9-turn runs increase by no more than 10%.
-- De-novo at-least-10-turn runs occur in at most 1% of clean-control tasks.
-- No waste-sweep detector worsens by more than 10%.
+No live API request, battle generation, submission, or fresh collection.
 
-Value gates:
+### Identity and cohort rules
 
-- Overall paired mean at least 0.0.
-- Clustered 95% lower bound at least −0.5.
-- Activated-subset mean at least +0.5.
-- Worst opponent family at least −1.0.
-- Catastrophes no worse than control.
-- Negative-margin mass at most 1.05× control.
+A maturity curve is meaningful only when code identity is stable. The analysis must:
 
-Interpretation:
+1. Build a panel keyed by player, agent ID, submission ID/source identity where available,
+   snapshot timestamp, score, rank, battle count, and league size.
+2. Separate stable-agent intervals from intervals containing a new submission or uncertain
+   identity.
+3. Exclude or explicitly flag agents that may have changed code under the same public name.
+4. Keep contest-final rankings separate from the July practice ladder.
+5. Treat leaderboard score, battle outcomes, and rank as distinct measurements.
+6. Use exactly one timestamped snapshot for each stated current rank/score claim.
 
-- Preserve the protocol’s honest expected value of roughly +0.1 overall.
-- A qualified candidate is a possible ride-along, not evidence that a dedicated Arena
-  trial is worth submission churn.
-- A mechanism or value failure closes the oscillation line permanently; do not tune.
+### Analysis plan
 
-### Deliverable
+#### A. Coverage and identifiability audit
 
-`chatgpt_1/<date>-d176a-independent-review.md` plus an immutable handoff with one verdict:
-ACCEPT QUALIFIED, ACCEPT CLOSED-AT-MECHANISM, ACCEPT CLOSED-AT-VALUE, or CORRECT/REJECT
-with exact gate discrepancies.
+Report first, before fitting:
+
+- number of snapshots, unique players, stable agents/submissions, repeated observations;
+- age coverage since submission;
+- battle-count coverage;
+- missing timestamp and identity rates;
+- number of observed score changes versus frozen-score intervals;
+- whether enough within-agent repeated data exists to separate maturity from pool drift.
+
+If stable identity or age coverage is insufficient, the correct verdict is
+**UNIDENTIFIABLE FROM CURRENT DATA**, not a fitted 3–4-point claim.
+
+#### B. Descriptive event curves
+
+For stable agents:
+
+- score versus elapsed hours/days since submission;
+- score versus battle count;
+- rank and league-size changes by snapshot;
+- intervals with score frozen while rank moves;
+- recomputation-event detection where score changes discretely;
+- resident and yamo shown separately from pooled field curves.
+
+#### C. Controlled models
+
+Use several predeclared specifications rather than one preferred curve:
+
+1. Within-agent fixed-effects model with snapshot fixed effects for pool-wide movement.
+2. Battle-count model with flexible age bins.
+3. Age model with battle-count controls.
+4. Event-study around identifiable submission/recomputation events.
+5. Robust sensitivity restricted to agents with the strongest submission identity.
+
+Cluster uncertainty by agent. Use bootstrap or robust intervals appropriate to the small
+number of snapshots; do not present ordinary row-level standard errors as independent.
+Avoid high-order curve fitting and threshold tuning.
+
+#### D. Resident mature-score projection
+
+Project only over empirically supported ages/battle counts. Report:
+
+- central estimate and interval;
+- pessimistic, central, and optimistic maturity scenarios;
+- expected remaining gap to 28.22 under each scenario;
+- time/battle range where the curve plateaus, if supported;
+- how much of the 2.94 resident-to-yamo gap remains unexplained after maturity adjustment.
+
+Do not extrapolate past observed support without a clearly labeled scenario.
+
+### Validation
+
+- Reproduce the documented fresh same-code A/A cases directionally.
+- Confirm that the model distinguishes score freeze from passive rank drift.
+- Run leave-one-agent-out sensitivity so a single high-profile agent cannot define the
+  curve.
+- Check whether estimates reverse when controlling for snapshot/pool composition.
+- Report raw rows or a reproducible compact panel manifest.
+
+### Decision rules
+
+Possible verdicts:
+
+- **MATURITY MATERIAL:** credible resident uplift at least +2 rating points; submission
+  timing becomes strategic and downstream candidate floors must include churn recovery.
+- **MATURITY MODEST:** credible uplift between +0.5 and +2; re-baseline the gap but code
+  remains primary.
+- **MATURITY IMMATERIAL:** credible uplift below +0.5; retire the 3–4-point assumption.
+- **UNIDENTIFIABLE:** current snapshots cannot separate maturity, pool drift, and code
+  identity; specify the cheapest additional passive measurement required.
+
+Thresholds are classification aids to be frozen in the task record, not tuned after fits.
+
+### Deliverables
+
+Expected task-specific deliverables, subject to the integrator’s write set:
+
+- one analyzer under a new `cgauto/` path;
+- compact derived panel/manifest outside raw stores;
+- `chatgpt_1/<date>-n1-maturity-curve-review.md` or integrator-designated report path;
+- plots/tables referenced from the report where useful;
+- immutable handoff with the mature-score estimate, true code-gap range, and H9 consequence.
 
 ### Stop rule
 
-Once the verdict and any corrections are handed off, release the review task. Do not build,
-modify, or submit a candidate.
+Once N1 is handed off, do not proceed to a submission-timing experiment. H9 remains owner-
+authorized and must run only within `docs/PROMOTION-RUNBOOK.md`.
 
-## 2. P1 — revise H6 into a cheap value-bound audit
+## 2. P0 secondary — D176a independent integration review
 
-### Background
+### Entry condition
 
-The generic H6 premise is invalidated:
+Run after D176a has a final result and only if N1 is complete, blocked, or explicitly
+parallelized by the integrator. Never inspect partial result artifacts.
 
-- two-worker compatible-pair selection is already exhaustive;
-- chop scoring already predicts growth during travel and chopping;
-- broad MC, turn-one rollout, MOVE residual, primitive mutation, threatened-crop MC,
-  one-deviation selection, and bounded-overlay grammars are closed.
+### Review checklist
 
-The only potentially distinct residual is short intertemporal evaluation over the
-resident’s existing candidate-pair surface. The integrator explicitly requested a cheap
-value estimate before opening an implementation cycle.
+Integrity:
 
-### Session outcome
+- protocol frozen before outcome;
+- seeds `9,857,000–9,857,127`, 2,048 paired episodes;
+- trigger fidelity at least 90%; jobs1/jobs20 identity;
+- inactive episodes byte-exact; dev copy restored at SHA prefix `fff6669b`;
+- no sealed/Arena/TestSession/raw-store mutation.
 
-Write a revised, bounded H6 protocol proposal. Do not implement a ranker or modify the
-resident. The proposal must estimate the maximum plausible value of better first-pair
-choice and contain a kill decision before any large panel.
+Mechanism:
 
-### Proposed bounded audit
+- at-least-10-turn oscillation rate at most 6.0%;
+- worst run at most 20 turns;
+- 5–9-turn displacement increase at most 10%;
+- de-novo long runs at most 1%;
+- no waste detector worse by more than 10%.
+
+Value:
+
+- overall mean at least 0 with clustered lower bound at least −0.5;
+- activated mean at least +0.5;
+- worst family at least −1;
+- catastrophes and negative-margin mass within frozen limits.
+
+Disposition:
+
+- ACCEPT QUALIFIED, ACCEPT CLOSED-AT-MECHANISM, ACCEPT CLOSED-AT-VALUE, or CORRECT/REJECT.
+- A qualified roughly +0.1 candidate is a possible ride-along, not a dedicated Arena trial.
+- Any closure ends the oscillation line permanently; no tuning or third design.
+
+Deliverable: a compact independent review and handoff; no candidate build or source edit.
+
+## 3. P1 — N4/H6 residual as a value audit
+
+### Entry condition
+
+Start only after N1, unless the integrator explicitly parallelizes it. Submit a revised
+proposal first; do not implement a ranker.
+
+### Question
+
+What is the maximum plausible per-game value of choosing a better first-turn pair from
+the resident’s existing compatible candidate pairs, under the resident’s own objective?
+
+### Cheap bound proposal
 
 Phase A — candidate-surface census:
 
-- Use existing decoded resident games only; no fresh or sealed data.
-- Reconstruct the exact resident candidate pairs at natural two-worker decision states
-  with an isolated instrumented runner.
-- Record feasible-pair count, live/runner-up score gap, target classes, turn, seat,
-  opponent, current margin, and whether the choice lies near an intertemporal boundary
-  such as target disappearance, banking conflict, or near-term target invalidation.
-- Measure export and enumeration latency separately from any counterfactual execution.
-- Report coverage by game, decision, family, seat, and loss/catastrophe strata.
+- existing decoded resident games only;
+- exact resident candidates at natural two-worker decision states;
+- feasible-pair count, live/runner-up gap, target classes, turn, seat, opponent, current
+  margin, target disappearance/banking/near-term invalidation boundaries;
+- coverage by game/family/seat/outcome stratum;
+- reconstruction and export latency.
 
-Phase B — small oracle-value bound, only if Phase A has material coverage:
+Phase B — small oracle-value sample only if Phase A is material:
 
-- Freeze a capped, stratified sample before outcomes: both seats; early/mid/late; wins,
-  ordinary losses, catastrophes; broad opponents; close and non-close score gaps.
-- For each selected state, force one already-generated compatible pair for one turn, then
-  restore exact-resident fallback. No new commands, targets, options, or scoring terms.
-- Evaluate paired terminal margin for the live pair and every existing alternative pair.
-- Use the hindsight-best pair only as an oracle upper bound; do not fit a selector.
-- Convert active-state oracle gain into projected per-game headroom using independently
-  measured activation frequency, with clustered uncertainty by source game/opponent.
-- Report own score, opponent score, tail mass, and family/seat breadth, not margin alone.
+- freeze a capped stratified state sample before outcomes;
+- force one already-generated compatible pair for one turn, then exact-resident fallback;
+- evaluate terminal margin for live and existing alternative pairs;
+- hindsight best is an oracle ceiling only; no selector fitting;
+- project per-game headroom from active gain × independently measured frequency;
+- report own/opponent score, family/seat breadth, catastrophes, and negative mass.
 
-### Required distinctness argument
+Distinctness: exact live candidate vocabulary, one-turn intervention, exact fallback,
+intertemporal misranking only. No MOVE residual, new option library, overlay, command
+mutation, or generic rollout.
 
-The proposal must name why this is not D36, Phase 16, D41d–D42, D97/D107, or the turn-one
-rollout line. Distinctness requires all of:
+Proposed early close conditions for integrator review:
 
-- action vocabulary is exactly the live resident’s candidate pairs;
-- intervention is one turn only;
-- fallback is the exact live resident;
-- question is intertemporal misranking inside the current pair surface;
-- no MOVE-only residual, new overlay, option library, or generic command mutation.
+- eligible boundary in fewer than 5% of games;
+- optimistic projected headroom below +1 margin/game;
+- active oracle mean below +5 or concentrated in one family/seat;
+- optimistic 95% upper bound below +2 overall;
+- reconstruction/export above 5 ms p95 before rollout cost;
+- inability to separate the experiment from a consumed grammar.
 
-### Predeclared kill rules
+Deliverable: bounded-audit proposal requesting a canonical record or explicit closure.
+Execute only the approved audit phase if a record is issued.
 
-Recommend closing H6 before a full experiment if any of the following holds:
+## 4. Conditional fallback — N2 verification sweep
 
-- fewer than 5% of games contain an eligible multi-pair intertemporal boundary;
-- the optimistic projected oracle headroom is below +1.0 margin/game;
-- active-state oracle gain is below +5.0 mean or is concentrated in one family/seat;
-- the 95% upper bound on projected overall value is below +2.0 margin/game;
-- candidate-surface reconstruction or required state export exceeds 5 ms p95 before
-  rollout cost;
-- the proposed sample cannot be separated cleanly from a consumed grammar.
+Use only when N1 is blocked and D176a/N4 are unavailable.
 
-These are proposal values for integrator review, not an active frozen protocol. The
-integrator may accept, correct, or close them before any execution.
+Re-verify or retire the remaining B4.4 cohort claims, especially planting tempo and wood
+concentration. Preserve method definitions, control for roster/opponent/seat/duration, and
+separate contest-final statements from July practice behavior. Do not cite B4.4 in new
+protocols until this sweep reports.
 
-### Deliverable
+## 5. Deferred beyond the next session
 
-A revised H6 proposal document and handoff requesting either:
+- N3 renewable-base feasibility: high decision value, but start after N1 unless separately
+  assigned; it gates Architecture-2.
+- N5 endgame opponent-plant contest and N6 denial weight: bounded experiments, not tuning.
+- N7 dead-accretion removal: needs identity proof and a byte-sacred-source protocol.
+- H2 Architecture-2: owner-gated and blocked on N1 + N3.
+- H10 whole-policy/spatial learning: owner decision, larger programme.
+- H9 submission timing: strategic after N1, still owner-authorized only.
 
-- a canonical read-only task record for the bounded census/value audit; or
-- explicit closure as too weak/redundant.
+## 6. Explicit exclusions
 
-If the record is issued during the same session, execute only the approved bounded audit
-phase. Do not proceed to selector fitting or resident modification.
+- Generic rollout/search work.
+- D176a retuning or a third oscillation design.
+- Four-lever resident economy patch.
+- Fruit-priority tuning, worker-two timing, no-loop quartet reruns, body blocking,
+  unconditional opponent-crop scoring, or opponent-family-as-map inference.
+- Arena writes, candidate promotion, resubmission, TestSession, or `api_submit.py` changes.
+- Force-resetting or deleting branch history.
 
-## 3. Conditional fallback — opponent-pressure audit design
+## 7. End-of-session completion checklist
 
-Use only if D176a has no reviewable result and the H6 proposal is blocked/closed with no
-replacement assignment.
-
-Prepare, but do not execute, one combined read-only protocol for H4 + rewritten H7 + the
-H3 residual:
-
-- reconstruct the exact resources paying opponent worker-three bills;
-- test whether those resources were reachable and deniable in the pre-scaling warning
-  window;
-- quantify harvest/chop races, last-fruit duplication, target disappearance, and wasted
-  travel;
-- test whether the resident’s 41.3%→35.3% opponent-crop contact decline is a cause or a
-  symptom of already losing;
-- require matched opponent, roster, seat, map, duration, and pre-trigger score controls;
-- require an always-on control arm before any conditional candidate can be proposed.
-
-Kill if the condition is not load-bearing or denial value is below displacement cost.
-Do not reopen unconditional opponent-crop scoring; Phase 21 closed it live.
-
-## 4. Explicitly deferred
-
-- Architecture-2: owner-gated. H1 requires a renewable-resource-base proof; H5/H13 show a
-  fixed-two-worker design may still contain execution value.
-- H10 spatial learner: owner-gated and lower priority.
-- Dead-code removal: maintenance only unless a measured runtime/source-size consequence is
-  tied to a qualified experiment.
-- Any D176a retune or third oscillation design.
-- Any generic rollout/search implementation.
-- Arena, TestSession, candidate promotion, or `cgauto/api_submit.py` changes.
-
-## 5. End-of-session completion checklist
-
-Before stopping:
-
-1. Write a dated worklog with exact refs, paths, commands, evidence, and unresolved risks.
-2. Commit only explicit owned paths; never `git add -A` or `git add -u`.
-3. Push `agent/chatgpt_1`.
-4. Send one immutable handoff to `claude_1`, CC all agents/user where relevant.
+1. Write a dated worklog with exact refs, commands, data provenance, and uncertainty.
+2. Commit only explicit owned paths.
+3. Push the agent branch.
+4. Send one immutable handoff to `claude_1`, CC peers/user where relevant.
 5. Update `coordination/status/chatgpt_1.md`.
-6. Release every completed task; leave blocked tasks explicitly blocked.
-7. Verify the remote commit exists and report whether it is integrated or only pushed.
+6. Release completed tasks and label blockers precisely.
+7. Verify the remote commit and report pushed-versus-integrated status.
