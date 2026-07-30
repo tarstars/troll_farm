@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T15:22:05Z
+- Last updated UTC: 2026-07-30T15:23:35Z
 
 ## Outcome
 
@@ -22,9 +22,10 @@ counts before any A2 Phase 1 result is trusted.
 
 ## Protocol status
 
-Frozen at `docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md`, SHA-256
-`c912896d98da164cb34255ce44c4da1e463ecb23fa9b5ebba923f4f0f1f0b432`.
-No panel execution begins until the implementation lock is remotely published.
+Frozen at `docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md`, with binding
+source correction
+`docs/a2-0b-referee-evaluation-parity-rng-amendment-2026-07-30.md`. No panel execution
+begins until the implementation lock is remotely published.
 
 ## Exclusive write set
 
@@ -71,7 +72,8 @@ Conditional integrator closeout paths:
 1. Accepted D33 initial-state identity remains unchanged.
 2. New RNG-continuous generation produces the identical initial `GameState` while retaining
    the next SHA1PRNG state.
-3. Equal-best movement consumes exactly one bounded referee RNG draw; non-ties consume none.
+3. Direct reachable movement consumes no RNG; every non-direct path selection consumes
+   exactly one bounded referee RNG draw, including `nextInt(1)`.
 4. Every direct command in the reproduction panel is referee-legal, with reason-counted
    failure on any invalid command.
 5. One-thread and multi-thread result rows are byte-identical after deterministic ordering.

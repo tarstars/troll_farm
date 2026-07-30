@@ -1,9 +1,12 @@
 # A2-0b — referee and evaluation parity protocol
 
-Status: **FROZEN before implementation**  
+Status: **FROZEN before implementation; source correction A1 incorporated**
 Owner/integrator: `local_codex_1`  
 Reviewer: `chatgpt_1`  
 Programme authority: `docs/A2-programme-charter-2026-07-30.md`, Phase 0b
+
+Binding amendment:
+`docs/a2-0b-referee-evaluation-parity-rng-amendment-2026-07-30.md`.
 
 ## Question
 
@@ -39,9 +42,10 @@ Add a separate `game::a2_referee_parity` module and a separate A2-0b runner.
 - The new module includes the unchanged D33 official-map implementation in a private
   namespace and adds a source-identical generator entry point returning both
   `GameState` and its post-generation `Sha1Prng`.
-- Referee-mode movement copies `Board.getNextCell`/`MoveTask.apply` semantics but draws
-  one `nextInt(tie_count)` only when more than one equal-best cell exists. A unique best
-  cell consumes no draw.
+- Referee-mode movement copies `Board.getNextCell`/`MoveTask.apply` semantics. A target
+  already reachable within speed returns directly with no RNG call. Every other path
+  selection calls `nextInt(closest_count)` exactly once, **including bound 1**; a tie is
+  where that mandatory draw can change the selected cell.
 - All non-movement mechanics delegate to the unchanged, X1-audited engine functions,
   except the existing pre-PLANT choppable-cell snapshot is preserved explicitly.
 - A source-shaped Legend command checker runs on both players' raw commands before every
@@ -119,8 +123,9 @@ versioned protocol. There is no same-protocol repair.
 
 - For at least 1,024 nonzero deterministic seeds, the new generator's `GameState` is
   field-identical to `generate_official(seed)`.
-- A tied move consumes one bounded draw and selects the indexed equal-best cell.
-- A unique-best/direct/unreachable-no-choice move consumes zero draws.
+- A direct target already reachable within speed consumes zero draws.
+- Every non-direct path selection consumes one bounded draw, including a unique-best
+  `nextInt(1)`, and selects the indexed best cell in referee x-major/y-minor order.
 - RNG draw totals are deterministic and reported per panel.
 
 ### G3 — command legality
@@ -194,4 +199,3 @@ No YT is expected: the panel is comfortably local and below one hour.
 
 Do not touch sealed ranges, `data/raw/games/`, the collection cron, the resident,
 submission tooling, TestSession, or Arena. Do not format `rust/src/bin/` or `cgauto/`.
-
