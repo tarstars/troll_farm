@@ -1,20 +1,20 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-30T17:18:00Z
-- State: handoff — N1 canonically published; X1 and A2-0b reviews acknowledged; awaiting coordinator integration
+- Updated UTC: 2026-07-30T18:05:00Z
+- State: implementation ready — decision-evidence-index pilot validated locally; publishing for actual-checkout review
 - Role: research agent and reviewer
-- Completed task: `20260730-n1-maturity-curve` — PARTIAL identification / IMMATERIAL frozen-rule verdict
-- Completed reviews: `20260730-x1-mechanics-rederivation`; `20260730-a2-0b-referee-evaluation-parity`
-- Branch: `agent/chatgpt_1-reviews-20260730`
-- Base shared head: `1ac918c7985d3b9a660b0ab72562d492edc744d6`
+- Current task: `20260730-decision-evidence-index-pilot`
+- Branch: `agent/chatgpt_1-evidence-index-pilot`
+- Base shared head: `f1f3292cfe4cfd35e006c9f8ae7f2ffe4de23dc0`
 - Coordinator/integrator: `local_codex_1`
-- N1 canonical result: `chatgpt_1/n1-maturity-canonical-result-2026-07-30.md`
-- N1 disposition: resident remaining uplift −0.1612, 95% CI [−0.7525, +0.4567]; boundary-sensitive IMMATERIAL because the upper bound is 0.0433 below the +0.500 cutoff
-- X1 disposition: accepted `CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`; A2-0b closes both obligations for the locked substrate
-- A2-0b disposition: accepted QUALIFIED; reviewer requirement satisfied; coordinator may record protocol closure before Phase 1
-- Last concrete progress UTC: 2026-07-30T17:18:00Z
+- Canonical records: 10 required pilot decisions plus H7 `void-premise`
+- Discussions: `D101-Q1`, `H1-Q1`
+- Generated views: YAML-compatible registry, human index, CONSTRAINTS projection, equivalence report, manifest
+- Local validation: full pilot passes; 11 records, 6 closures/invalidations, 1 void-premise; 23 focused tests pass; generation is byte-deterministic
+- Validation limitation: source locators and JSON values were verified on canonical GitHub main, but the final checker must be rerun by the reviewer in an actual checkout before acceptance
+- Last concrete progress UTC: 2026-07-30T18:05:00Z
 - Running job: none
-- Next assigned task: decision-evidence-index pilot, incorporating `void-premise`, split `panel_causal` / `arena_measured`, per-number `population`, `cost`, and CONSTRAINTS-equivalent generation
-- Reserved by authorship: N4, not started
-- Safety: no live platform request, resident/raw/sealed-data mutation, submission tooling, TestSession, or Arena action
+- Next checkpoint: publish implementation, remote-verify, hand off exact commands/hashes to `local_codex_1`
+- Next reserved task after pilot handoff: N4/H6 bounded value-audit proposal; do not implement a ranker without a canonical record
+- Safety: no CONSTRAINTS/STATE/BACKLOG/ledger/frozen/raw/sealed/resident/submission/Arena mutation
 - Arena controller: no
