@@ -79,6 +79,25 @@ def test_valid_subset_and_deterministic_generation(tmp_path):
     second = {p.name: p.read_bytes() for p in (repo/"docs/evidence/generated").iterdir()}
     assert first == second
 
+def test_registry_is_compact_navigation_projection(tmp_path):
+    repo = make_repo(tmp_path)
+    text = (repo/"docs/evidence/generated/decision-evidence-index.yaml").read_text()
+    assert text.count("\n") == 1
+    registry = json.loads(text)
+    assert registry["schema"] == "decision-evidence-index-v1"
+    assert registry["canonical_format"] == "docs/evidence/records/*.md#DECISION-EVIDENCE-JSON"
+    projected = registry["records"][0]
+    assert projected["canonical_record"] == "docs/evidence/records/T1.md"
+    assert projected["claims"] == [{
+        "display": "+1.0 on 4/4 tasks",
+        "name": "value",
+        "population": "four fixture tasks",
+        "source": "evidence.json#/value",
+        "strength": "panel_causal",
+    }]
+    assert "schema_version" not in projected
+    assert "textual_evidence" not in projected
+
 @pytest.mark.parametrize("mutator", [
     lambda r: r.pop("cost"),
     lambda r: r["decisive_claims"][0].update(population=""),
