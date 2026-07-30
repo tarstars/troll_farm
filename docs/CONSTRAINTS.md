@@ -572,6 +572,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   29-option harvest-0 first-worker library has no opponent-robust activation across eight
   continuations and six process realizations — isolated turn-one Monte Carlo is closed.
   [Phases 6–8]
+- **E1 is narrowed, not a fresh “exhaustive short-horizon” opening programme.** Complete
+  first-worker enumeration, fixed opening prefixes, one/two-batch semantic sequences, and
+  a terminal-valued turn-one rollout already exist and are closed. A 3–5-turn reward is
+  invalid because observed opening recovery is around +68 turns. The only distinct residual
+  is a short sequence over exact resident candidate pairs followed by terminal resident
+  continuation; it depends on accepted N4 Phase A instrumentation and remains a diagnostic
+  oracle, not a selector/book or candidate. [E1 scope audit, 2026-07-30]
 - Signature-only late switching is path-dependent and prospectively loses (−6.169 margin on
   seeds 270–299); do not retune its four consumed signature regions. [Phase 10]
 - Broad and bank-only resident MOVE residual search is closed: the prospective bank-only

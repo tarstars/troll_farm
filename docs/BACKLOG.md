@@ -119,6 +119,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   LOW is −0.754 margin and negative in both seats; HIGH is only +0.559 with four positive
   families. Both fail the directional mechanism sharply (15/97 and 12/77 versus 60%).
   Confirmation maps remain unused. Keep 900 and do not retune the scalar.
+- **E1 NARROWED_TO_N4_PREFIX_ORACLE.** “Opening never audited” was false: the complete
+  first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
+  one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
+  exact resident candidate pairs survives; wait for accepted N4 Phase A before protocol.
 
 ### P2 — hygiene and consequences of iteration 1
 

@@ -1,6 +1,6 @@
 # 20260730-e1-opening-micro-optimality-scope-audit
 
-- Status: active — claimed; read-only scope audit in progress
+- Status: result ready — `NARROWED_TO_N4_PREFIX_ORACLE`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:27:30Z
-- Last updated UTC: 2026-07-30T21:27:30Z
+- Last updated UTC: 2026-07-30T21:29:03Z
 
 ## Outcome
 
@@ -74,3 +74,16 @@ Outcomes:
 ## Arena authority
 
 No platform access or mutation.
+
+## Result
+
+- The “never audited” premise is false for first-worker selection, fixed prefixes,
+  semantic option sequences, and terminal turn-one rollout.
+- Short-horizon reward is invalid for opening value: observed foundational-farmer recovery
+  is around +68 turns.
+- One distinct diagnostic survives: turns-1–5 sequences over exact resident candidate
+  pairs, followed by terminal resident continuation.
+- That grammar depends on accepted N4 Phase A instrumentation. No E1 implementation,
+  protocol, range, selector, candidate, or Arena action is opened yet.
+- Canonical report:
+  `data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md`.

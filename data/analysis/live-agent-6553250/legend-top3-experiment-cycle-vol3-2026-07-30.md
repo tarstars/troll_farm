@@ -246,3 +246,31 @@ intermediate weights, or a second grid.
 Evidence:
 `data/analysis/live-agent-6553250/n6-denial-weight-sweep-result-2026-07-30.md`;
 machine bundle `local_codex_1/n6-denial-weight-sweep/`.
+
+## E1 — opening micro-optimality is narrower than registered
+
+**Question.** Is a first-3–5-turn exhaustive opening audit genuinely new, and if so what
+exact action/value object remains?
+
+**Coverage reconstruction.** Historical records already contain CONTROL plus dynamic
+max-affordable plus all 27 fixed harvest-0 first-worker specs under eight continuations and
+six process realizations; complete farm-first/max-bank opening options; a terminal-valued
+turn-one rollout selector and its Arena rejection; fixed one-source prefixes; an
+eight-action recurrent opening portfolio; all four one-batch and all 16 two-batch ordinary
+mode sequences; and bounded primitive MOVE residual search. Their binding failures remain:
+no robust first-worker activation, farm-first −97.57 score, later funding −56.78,
+two-batch spread 3.455 <15, and residual effects +1.200/+0.508 below gates.
+
+**Scope correction.** “Never audited” is false for those classes. “Short-horizon” also
+cannot mean short reward: replay archaeology observes foundational-farmer bank recovery
+around +68 turns. The only distinct residual is a short sequence over the resident's own
+candidate pairs during turns 1–5, followed by exact resident continuation to terminal.
+Arbitrary primitive enumeration lacks a bounded semantic grammar.
+
+**Verdict: `NARROWED_TO_N4_PREFIX_ORACLE`.** N4 Phase A is already responsible for exact
+candidate-pair publication/census, so E1 opens no implementation or seed range until that
+surface is accepted. Any later oracle is diagnostic only; selection, opening-book,
+candidate, and Arena gates remain separate.
+
+Evidence:
+`data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md`.
