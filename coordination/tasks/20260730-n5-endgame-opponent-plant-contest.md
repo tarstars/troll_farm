@@ -1,6 +1,6 @@
 # 20260730-n5-endgame-opponent-plant-contest: quantify the missing endgame contest mechanic
 
-- Status: active — implementation locked; exact corpus run pending
+- Status: result ready — `NO_MATERIAL_CONTEST_OPPORTUNITY`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:30:00Z
-- Last updated UTC: 2026-07-30T20:36:30Z
+- Last updated UTC: 2026-07-30T20:39:00Z
 
 ## Outcome
 
@@ -95,3 +95,18 @@ proposal; no other continuation is automatic.
 - Sacred resident SHA remains
   `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
 - The full 382-occurrence audit has not been run at this lock.
+
+## Empirical result — 2026-07-30T20:39:00Z
+
+- Verdict: **`NO_MATERIAL_CONTEST_OPPORTUNITY`**.
+- Exact coverage: 382/382 cohort occurrences, 381 unique games, zero decode or target
+  integrity failures.
+- H13 reproduces exactly: resident 388 generations / 78 of 170 reaching games; yamo 205
+  / 37 of 103.
+- The resident factor-two replay-conditioned observed-yield ceiling is 11.9917 per all
+  242 games, whole-game bootstrap 95% CI [8.7273, 15.7603], below 20.
+- Opponent extracted value is 1,487 versus resident 241; only 51/388 targets are contacted,
+  but carried extraction is not banked score and changed-policy causality is unidentified.
+- All source, support, and no-material gates pass. No simulation, resident, or Arena action.
+- Canonical result:
+  `data/analysis/live-agent-6553250/n5-endgame-opponent-plant-contest-result-2026-07-30.md`.

@@ -47,7 +47,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **N5** | Endgame opponent-plant contest — a mechanic the source design specifies and our code lacks | 1 session audit | open |
+| **N5** | Endgame opponent-plant contest — a mechanic the source design specifies and our code lacks | 1 session audit | **✅ DONE — NO_MATERIAL_CONTEST_OPPORTUNITY:** factor-two all-game ceiling 11.99, CI [8.73,15.76] < 20; no simulation |
 | **N6** | Denial-weight sweep — `900/(1+dist)` was never swept though the reproduction plan required it | 1 session | open |
 | **E1** | **Opening micro-optimality (first 3–5 turns)** — highest-leverage turns in the game; never audited for optimality against an exhaustive short-horizon search | ~1 session | open |
 | **E2** | **Banking-route efficiency** — round-trip path choice, door selection, and whether carry is ever wasted on a suboptimal return | ~1 session | open |
@@ -114,10 +114,12 @@ N2 (B4_4_CORRECTED); M2 (NO_ACTIONABLE_MATCHUP);
 M3 (NO_ACTIONABLE_SEAT_ASYMMETRY);
 M4 (NO_MATERIAL_MATCHMAKING_DRIFT);
 M5 (NO_MATERIAL_LENGTH_ASSOCIATION);
+N5 (NO_MATERIAL_CONTEST_OPPORTUNITY);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its host generator/output-parity blocker.
 
-Priority order as of 2026-07-30: evidence-index acceptance after correction → B-tier
-execution and C/D-tier search/learning audits in id order. N4 Phase A runs separately.
+Priority order as of 2026-07-30: evidence-index acceptance after correction → N6 →
+remaining B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A
+runs separately.

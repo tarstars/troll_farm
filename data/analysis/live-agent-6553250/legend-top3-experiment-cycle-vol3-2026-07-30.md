@@ -180,3 +180,33 @@ requirements remain binding.
 Evidence:
 `data/analysis/live-agent-6553250/m5-game-length-effects-result-2026-07-30.md`;
 machine bundle `local_codex_1/m5-game-length-effects/`.
+
+## N5 — real late-planting situation, sub-material observed-yield opportunity
+
+**Question.** What is the cost of omitting the postmortem's instruction to park near the
+opponent shack and contest last-minute planting?
+
+**Integrity.** All 382 resident/yamo cohort occurrences decode; exact index, cohort,
+dependency, resident, raw, trajectory, unique-PLANT, and dual-lineage checks pass. The one
+resident/yamo game overlap gives 381 unique games and two valid subject perspectives.
+
+**H13 reproduction.** Resident opponents create 388 target generations in 78/170
+endgame-reaching games (45.88%, 2.282/reaching game); yamo opponents create 205 in 37/103
+(35.92%, 1.990). A target is born after turn 250 while the subject leads pre-turn.
+
+**Opportunity.** Resident opponents extract 1,487 carried score-equivalent units from
+targets versus our 241; we contact 51/388 and are at optimistic ETA ≤1 for 24/388.
+Seventy-four percent of targets lie within distance two of the opponent shack. The frozen
+deny-plus-capture factor-two observed-yield ceiling is 37.21 conditional on a target game,
+but **11.9917 across all 242 games**, whole-game bootstrap CI **[8.7273,15.7603]**, below
+the 20-margin gate. The never-contacted version is 10.314; yamo's identical descriptive
+quantity is 8.471.
+
+**Verdict: `NO_MATERIAL_CONTEST_OPPORTUNITY`.** Enemy units can share cells, so this is
+access for later HARVEST/CHOP, not body-blocking. Extracted cargo is not banked score, and
+the factor-two quantity is replay-conditioned rather than causal. No controlled
+simulation, policy change, resident change, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/n5-endgame-opponent-plant-contest-result-2026-07-30.md`;
+machine bundle `local_codex_1/n5-endgame-opponent-plant-contest/`.

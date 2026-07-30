@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "task": "20260730-n5-endgame-opponent-plant-contest",
+  "verdict": "NO_MATERIAL_CONTEST_OPPORTUNITY",
+  "coverage": {
+    "cohort_occurrences_requested": 382,
+    "cohort_occurrences_decoded": 382,
+    "unique_games": 381,
+    "cross_cohort_game_ids": [
+      896350293
+    ],
+    "decode_failures": 0,
+    "target_integrity_failures": 0
+  },
+  "resident": {
+    "agent_id": 6561795,
+    "games": 242,
+    "games_reaching_turn_gt_250": 170,
+    "target_generations": 388,
+    "target_games": 78,
+    "target_game_share_of_reaching_window": 0.4588235294117647,
+    "mean_targets_per_game_reaching_window": 2.2823529411764705,
+    "positive_opponent_yield_targets": 262,
+    "positive_opponent_yield_games": 75,
+    "subject_contacted_targets": 51,
+    "subject_eta_zero_targets": 5,
+    "subject_eta_le_one_targets": 24,
+    "subject_reachable_within_remaining_targets": 368,
+    "targets_within_distance_two_of_opponent_shack": 287,
+    "opponent_extracted_score_equivalent_total": 1487,
+    "subject_extracted_score_equivalent_total": 241,
+    "all_game_observed_yield_swing_ceiling": {
+      "mean": 11.991735537190083,
+      "bootstrap_95_ci_lo": 8.727272727272727,
+      "bootstrap_95_ci_hi": 15.760330578512397,
+      "reps": 20000,
+      "seed": 20260730
+    },
+    "all_game_missed_contact_swing_ceiling_mean": 10.314049586776859,
+    "target_game_observed_yield_swing_ceiling_mean": 37.205128205128204
+  },
+  "yamo": {
+    "agent_id": 6479814,
+    "games": 140,
+    "games_reaching_turn_gt_250": 103,
+    "target_generations": 205,
+    "target_games": 37,
+    "target_game_share_of_reaching_window": 0.3592233009708738,
+    "mean_targets_per_game_reaching_window": 1.9902912621359223,
+    "positive_opponent_yield_targets": 133,
+    "positive_opponent_yield_games": 27,
+    "subject_contacted_targets": 35,
+    "subject_eta_le_one_targets": 36,
+    "subject_reachable_within_remaining_targets": 201,
+    "opponent_extracted_score_equivalent_total": 597,
+    "subject_extracted_score_equivalent_total": 156,
+    "all_game_observed_yield_swing_ceiling": {
+      "mean": 8.471428571428572,
+      "bootstrap_95_ci_lo": 5.257142857142857,
+      "bootstrap_95_ci_hi": 12.100357142857112,
+      "reps": 20000,
+      "seed": 20260730
+    }
+  },
+  "gates": {
+    "source_integrity": true,
+    "decode_integrity": true,
+    "target_integrity": true,
+    "resident_targets_ge_30": true,
+    "resident_target_games_ge_20": true,
+    "resident_positive_targets_ge_20": true,
+    "resident_positive_games_ge_10": true,
+    "ci_lower_ge_20": false,
+    "ci_upper_lt_20": true,
+    "support_pass": true,
+    "material_pass": false
+  },
+  "boundaries": {
+    "enemy_units_can_share_cells": true,
+    "contest_is_body_block": false,
+    "extracted_resource_is_banked_score": false,
+    "causal_policy_value_identified": false,
+    "factor_two_quantity_is_replay_conditioned": true,
+    "authorizes_simulation_or_arena": false
+  },
+  "machine_bundle_hashes": {
+    "result.json": "7b5cb104df969aaacf1771eb0d86bed49f04b2aa55e481590c215273dc9c275b",
+    "input-manifest.json": "53ee5cf3347fbc72dcd1021369cb2b41ce48eb6c3ca22fc9981f7abf14a2b26f",
+    "targets.csv": "b51e8140e1a78d11aa5be110a6a123485b75754e275a345dbfc3ddd24beacb3f",
+    "report.md": "793d673ddafbf409f850c19760c04241766e5e6ff7b557fdd348cd4dac849222"
+  }
+}

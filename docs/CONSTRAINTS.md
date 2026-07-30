@@ -318,6 +318,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   lineage omissions reverse signs. Duration is post-game; do not build a cap-conditioned
   policy or call this a causal turn-limit effect. H3's narrower contact-coverage lead
   retains its cause-versus-symptom and always-on-control gates. [M5, 2026-07-30]
+- **Late opponent planting is common but its observed-yield opportunity is below the
+  current experiment bar.** Exact lineage finds 388 opponent generations planted after
+  turn 250 while the resident leads, in 78/170 endgame-reaching games. The resident
+  contacts only 51; opponents extract 1,487 carried score-equivalent units versus 241.
+  Yet a generous deny-plus-capture factor-two ceiling averages 11.99 across all 242
+  resident games, whole-game bootstrap CI [8.73,15.76], below 20. Extracted cargo is not
+  banked score and the bound is replay-conditioned, not causal. Enemy units can share
+  cells, so never describe this as body-blocking or reopen H7. [N5, 2026-07-30]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this

@@ -34,7 +34,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
 > DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
 > DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
-> NO_MATERIAL_LENGTH_ASSOCIATION. Next: peer corrections, then B-tier audits.**
+> NO_MATERIAL_LENGTH_ASSOCIATION; N5 is DONE /
+> NO_MATERIAL_CONTEST_OPPORTUNITY. Next: peer corrections, then N6.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -107,11 +108,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   intertemporal choice among the resident's *existing* candidate pairs. Wanted first: a
   cheap bound on what better first-pair choice is worth under the resident's own objective,
   before any three-phase implementation ladder.
-- **N5. Endgame opponent-plant contest.** The source design specifies "park adjacent to the
-  opponent's shack and contest last-minute planting"; H13 confirmed it absent from our code
-  (`view.shacks[1]` appears at three unrelated lines) with directional support (opponents
-  plant while we lead in 43.3% of our endgame games vs 35.9% of yamo's, n≈260). Quantify the
-  cost, then decide. A genuinely missing mechanic from a design we deliberately reproduced.
+- **N5 ✅ DONE — NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
+  388 resident targets in 78/170 endgame-reaching games versus yamo's 205 in 37/103.
+  Opponents extract 1,487 carried score-equivalent units versus our 241, and we contact
+  only 51/388 targets. But even the generous deny-plus-capture factor-two ceiling is
+  **11.99 per all resident games, CI [8.73,15.76]**, below the frozen 20-margin gate.
+  Enemy units can share cells; this cannot body-block. No simulation or policy experiment.
 - **N6. Denial-weight sweep.** `900/(1+dist)` was never swept, despite the reproduction
   plan's own G1 requiring it. This is an unfinished reproduction step, not a post-hoc
   threshold retune — but it must be framed and gated as an experiment, not a tuning pass.
