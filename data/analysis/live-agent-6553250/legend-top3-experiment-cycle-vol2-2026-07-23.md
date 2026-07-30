@@ -279,6 +279,44 @@ close before the game does?" is therefore the **first** question any Architectur
 must answer, ahead of scheduler or roster questions. Report in session scratch
 `h1-joint-upper-bound-report.md`.
 
+## 2026-07-30: ★★★ A2 Phase 0a — no renewable base exists anywhere, yet 3–4 workers are reached anyway
+
+**The renewable base does not exist, for any cohort.** Reproduction ratio R (new plantable
+seeds per harvested generation, net) median: resident **0.00**, ranks 6–20 **0.77**, top-5
+**0.75** — below 1 everywhere, with only **1.2%** of top-5 games ever reaching R ≥ 1.
+Independently confirmed by population growth: all cohorts start at ~16 trees and end far
+below (net **−11.97** resident, **−8.95** ranks 6–20), with only 6.6%/10.3% of games ending
+above their initial count. The resident is the extreme: zero harvest in **57.9%** of games
+and **0.05** of its own planted trees alive at the end (vs 2.17 for ranks 6–20). **Nobody on
+this ladder grows their base; planting is sub-critical for everyone.**
+
+**And yet the A2 target is demonstrably reached.** Worker 3: resident **0/242**, ranks 6–20
+89/300 (29.7%, earliest t28, median t85), top-5 **189/250 (75.6%**, earliest t34, median
+t106). Worker 4: resident 0/242, ranks 6–20 42/300 (14.0%), top-5 **104/250 (41.6%**,
+earliest t55, median t137). Bill-currency provenance is the decisive part: for the top five,
+**self-planted crops supply 37.2% of the third worker and 49.7% of the fourth**, while the
+endowment's share *falls* 39.9% → 26.9%. Farming funds scaling without ever replacing
+itself. Mined iron scales **5.99 → 16.05** between workers 3 and 4 — a hard requirement that
+directly conflicts with the resident's `own_units < 2` mining gate (D174a).
+
+**Synthesis: the top cohort runs a sub-critical but strongly productive economy** — not
+renewal, not windfall consumption, but *conversion*: extracting far more from a finite
+declining base, fast enough to fund 3–4 workers before it runs out. Maturation costs ~31.6
+turns dry vs ~11.8 watered, so water access sets how many generations fit in a game.
+
+**Kill rule K1 fires as written, and has been amended with the error recorded as mine.** K1
+assumed renewal was the necessary condition for reaching 3–4 workers; the measured necessary
+condition is **conversion efficiency of a finite endowment**, and two cohorts demonstrate the
+target from a depleting base. Killing A2 on that rule would discard an achievable objective
+because I described its mechanism wrongly. Amended: **stop if Phase 1 cannot fund a third
+worker in ≥40% of fresh-map games by turn ~110.** Third gate-specification error of the week
+(after D176a's two) and the same shape — a threshold anchored to the wrong quantity.
+
+Provenance: full compute completed (792 occurrences, 100% decode across three cohorts);
+the agent died in a trailing print when the machine was suspended during a physical
+relocation, and the integrator assembled the result from its `report.json`. Record:
+`a2-phase0a-renewable-base-result-2026-07-30.md`; script `cgauto/renewable_base_feasibility.py`.
+
 ## 2026-07-30: OWNER DECISION — goal re-scoped from rank ≤3 to a mature score ≥ 25.40
 
 Presented with (a) keep rank ≤3, (b) re-scope to a target the evidence can reach, or (c)

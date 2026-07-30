@@ -158,8 +158,12 @@ rank goalpost move in the wrong direction.
   pending N1/N3; the owner elected to build, and N3's renewable-base question is folded into
   **Phase 0a** rather than used as a pre-gate. Five preregistered milestone gates (adopted
   from chatgpt_1's review) plus five kill rules including a 6-session budget circuit-breaker.
-  Phase 0 runs two parallel workstreams: **0a renewable-base feasibility** (K1: no renewable
-  base → stop the programme) and **0b referee/evaluation parity harness**. The resident is
+  **Phase 0a DONE 2026-07-30: no renewable base exists anywhere (R median 0.75 even for
+  top-5; populations collapse ~16→7) — but 3–4 workers ARE reached from the depleting base
+  (top-5: 75.6% / 41.6%, with self-planted crops funding 37%/50% of the bills; resident
+  0/242 ever). K1 fired as written and was AMENDED: the binding variable is conversion
+  efficiency, not renewal. New K1: stop if Phase 1 cannot fund worker 3 in ≥40% of games by
+  turn ~110.** Phase 0b (referee/evaluation parity harness) still open. The resident is
   untouched throughout; Phase 5 (arena) now runs under the 2026-07-30 standing authorization (§3), still requiring a QUALIFIED verdict and the full runbook.
 - ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
   **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately

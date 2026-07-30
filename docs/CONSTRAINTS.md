@@ -629,6 +629,22 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
   ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
   reopen. [D176a; D171a]
+- ★★★ **No renewable resource base exists on these maps — for ANY cohort.** Reproduction
+  ratio median 0.00 (resident) / 0.77 (ranks 6–20) / **0.75 (top-5)**; only 1.2% of top-5
+  games reach R ≥ 1; every cohort's tree population collapses from ~16 to well below it
+  (net −11.97 / −8.95). **Never design for a self-sustaining loop.** [A2 Phase 0a]
+- ★★★ **But 3–4 workers ARE reachable from the depleting base, and the binding variable is
+  CONVERSION EFFICIENCY, not renewal.** Top-5 reach worker 3 in **75.6%** of games (median
+  t106) and worker 4 in **41.6%** (median t137); ranks 6–20 in 29.7%/14.0%; resident
+  **0/242, ever**. Self-planted crops supply **37.2%** of the top cohort's third worker and
+  **49.7%** of its fourth, while the endowment's share falls 39.9% → 26.9%. Mined iron
+  scales **5.99 → 16.05** from worker 3 to 4, so any scaling design must mine throughout —
+  the resident's `own_units < 2` mining gate would be fatal. Maturation ~31.6 turns dry vs
+  ~11.8 watered sets the generational clock. [A2 Phase 0a]
+- ★ **Specify a gate against the variable the intervention actually moves.** A2's K1 was
+  written against "renewal" when the measured necessary condition was conversion efficiency,
+  and would have killed an achievable programme on a mis-described mechanism. Third such
+  error in a week, after D176a's two. [A2 Phase 0a; D176a]
 - ★ **Gate-design rules, learned by getting both wrong in D176a.** (1) Calibrate a mechanism
   gate on the **same population the panel measures** — D176a's ≤20-turn worst-case gate came
   from a real-corpus statistic (133) while the panel's own control runs 247, so the control
