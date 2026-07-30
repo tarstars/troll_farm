@@ -1,3 +1,13 @@
+> **SUPERSEDED 2026-07-30 — preserved as a record, do not activate.** The owner adopted a
+> breadth strategy at the plateau: enumerate every feasible approach and roll it rather than
+> follow a single prioritized ladder. The operating mode is now
+> `docs/APPROACH-REGISTER-2026-07-30.md` with its rolling rule (no value bar on audits,
+> ≥+1.0 rating bar for experiments, keep 2–3 audits in flight). This file's mission (N1
+> first) and its bounded fallback ladder are subsumed by the register; its **process**
+> sections — liveness, authority, startup checklist, handoff requirements — remain the
+> correct template for any future goal file, except that the arena clause is now governed by
+> the standing authorization in `docs/STATE.md` §3.
+
 # Goal — nine-hour autonomous window, iteration 2
 
 Author: `claude_1` (integrator), 2026-07-29. Type: coordination goal file

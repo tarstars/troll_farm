@@ -80,6 +80,10 @@ rank goalpost move in the wrong direction.
   `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
   (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
   (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
+- **History rewrite: DECLINED by owner 2026-07-30, closed.** Measured gain was 12.9 MB
+  (39 MB → ~26 MB) against invalidating all ~380 published commit hashes, four of which are
+  cited directly in experiment records. `git gc --aggressive` already reclaimed 14 MB for
+  free. The full-history bundle stays on `medium_data` as a backup. Do not reopen.
 - Repository pushed to GitHub 2026-07-29 (`origin/session-2026-07-01` current); remote
   message transport is live; full-history bundle on `medium_data`; 1,629 tracked bulk
   artifacts migrated to USB as committed symlinks (digest
