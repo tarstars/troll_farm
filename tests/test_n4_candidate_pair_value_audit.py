@@ -1,7 +1,7 @@
 import importlib.util
 from pathlib import Path
 
-MODULE_PATH = Path(__file__).with_name("n4_candidate_pair_value_audit.py")
+MODULE_PATH = Path(__file__).parents[1] / "cgauto/n4_candidate_pair_value_audit.py"
 spec = importlib.util.spec_from_file_location("n4", MODULE_PATH)
 n4 = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -54,6 +54,7 @@ def test_instrumentation_is_anchor_exact():
     assert "pub struct N4CandidateProbe" in transformed
     assert "n4_force_pair" in transformed
     assert "n4_selected_pre" in transformed
+    assert "fn main()" in n4.runner_source()
 
 
 def test_surface_clears_only_with_all_gates():
