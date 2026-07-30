@@ -1,6 +1,6 @@
 # 20260730-e5-ripeness-wait-audit
 
-- Status: active — claim/protocol publication pending
+- Status: active — implementation locked; full jobs-parity panels pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,18 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:41:39Z
-- Last updated UTC: 2026-07-30T22:41:39Z
+- Last updated UTC: 2026-07-30T22:49:26Z
+
+## Progress
+
+- Claim/protocol published at `656de84912b2af8905d6ddc7e750e90ee7b569c9`.
+- Analyzer/test hashes:
+  `a6979f596eb205d97e6d4d9df01ecc8135875c826d7e05cfb79f76d51746d6d8` /
+  `c8ae9c063bf9f5db4c1b25fc94504c0d6f4c8289d531dce4cdda3b70cece1a8f`.
+- Eight focused tests, self-test, raw/probe sentinel, and active seed-6 two-seat
+  first-divergence attribution pass.
+- Implementation lock:
+  `local_codex_1/e5-ripeness-wait-audit/implementation-lock.json`.
 
 ## Outcome
 

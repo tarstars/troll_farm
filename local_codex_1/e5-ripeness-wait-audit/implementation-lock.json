@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "task": "20260730-e5-ripeness-wait-audit",
+  "locked_utc": "2026-07-30T22:49:26Z",
+  "base_commit": "656de84912b2af8905d6ddc7e750e90ee7b569c9",
+  "protocol": "docs/e5-ripeness-wait-audit-protocol-2026-07-30.md",
+  "implementation": {
+    "path": "cgauto/e5_ripeness_wait_audit.py",
+    "sha256": "a6979f596eb205d97e6d4d9df01ecc8135875c826d7e05cfb79f76d51746d6d8"
+  },
+  "tests": {
+    "path": "tests/test_e5_ripeness_wait_audit.py",
+    "sha256": "c8ae9c063bf9f5db4c1b25fc94504c0d6f4c8289d531dce4cdda3b70cece1a8f",
+    "pytest": "8 passed",
+    "self_test": "ok"
+  },
+  "control": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "probe": {
+    "persistent": false,
+    "replacement_count": 1,
+    "sha256": "720ebf958338a37121a2b87aa71376670eec5713010481cb10644b8491a92e38"
+  },
+  "alternate": {
+    "persistent": false,
+    "replacement_count": 1,
+    "sha256": "9e9f516556fbae8ff7158c18a1092744c8894253a916f43791c7ccfec8dc1c94"
+  },
+  "runtime": {
+    "source": "cgauto/e4_orchard_mother_tie_audit.py:CLOCK_SHIM_SOURCE",
+    "shim_source_sha256": "52a879df0a3c034c202d18ded300c634feb822e17c9f335946e64552ab71bf2a",
+    "bot_source_mutation": false
+  },
+  "panel": {
+    "seeds": "0..59",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "value_cells": 360,
+    "value_games": 1440,
+    "sentinel_seeds": "0..7"
+  },
+  "prelock_checks": {
+    "motion_activation_census_side_games": 120,
+    "motion_activation_census_active_side_games": 8,
+    "motion_activation_census_events": 29,
+    "active_smoke_seed": 6,
+    "active_smoke_opponent": "motion",
+    "active_smoke_events": 2,
+    "active_smoke_both_seats": true,
+    "active_smoke_first_divergence_turns": [
+      2,
+      2
+    ],
+    "active_smoke_first_divergences_explained": true,
+    "active_smoke_delta_paired_margin_not_used_for_design": -12,
+    "raw_probe_seed_0_sentinel_exact": true,
+    "stderr_unclassified": 0,
+    "malformed_commands": 0
+  },
+  "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "authorized_next_action": "run the unchanged complete jobs=8 and jobs=1 panels; no source, panel, or gate changes"
+}
