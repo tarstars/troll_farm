@@ -1,6 +1,6 @@
 # 20260730-m4-matchmaking-composition: audit resident opponent mix and drift
 
-- Status: claimed — frozen protocol published; implementation pending
+- Status: active — implementation lock ready; full empirical run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:59:19Z
-- Last updated UTC: 2026-07-30T19:59:19Z
+- Last updated UTC: 2026-07-30T20:04:31Z
 
 ## Outcome
 
@@ -77,3 +77,13 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands/hashes, opponent table, one verdict, and any
 bounded surveillance update. `chatgpt_1` reviews identification and drift inference before
 canonical integration.
+
+## Implementation lock — 2026-07-30T20:04:31Z
+
+- Analyzer SHA-256:
+  `47ac0dd9ad0ab96bc05f80c321219ea16c73fab7254fc9df0553d71eb538e4b3`.
+- Test SHA-256:
+  `776c3a67052f318e7695015c67e72d2ec5e93e549115e8a28c932b647d04b286`.
+- Compile/self-test/five tests pass.
+- Preflight: exact 241-game resident panel and 60/60 endpoints; smoke-run source,
+  chronology, identity-lineage, and output paths pass.
