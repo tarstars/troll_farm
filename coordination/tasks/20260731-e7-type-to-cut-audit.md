@@ -1,0 +1,51 @@
+# 20260731-e7-type-to-cut-audit
+
+- Status: active — claim/protocol publication pending
+- Record owner: local_codex_1
+- Work owner: local_codex_1
+- Reviewer: chatgpt_1
+- Integrator: local_codex_1
+- Area: APPROACH-REGISTER E7 / initial focus species
+- Base commit: fea69916bd2613380216420ce0e94aef4e99fc6c
+- Branch: agent/local_codex_1
+- Progress lease: 15 minutes without concrete evidence
+- Created UTC: 2026-07-30T23:28:27Z
+- Last updated UTC: 2026-07-30T23:28:27Z
+
+## Outcome
+
+Exhaust the live binary LEMON/PLUM `typeToCut` choice on reused maps, pricing direct
+inversion and a seed-level hindsight ceiling under exact terminal continuation.
+
+## Frozen protocol
+
+`docs/e7-type-to-cut-audit-protocol-2026-07-31.md`.
+
+## Exclusive write set
+
+- this task record;
+- `coordination/messages/local_codex_1/*-20260731-e7-type-to-cut-*.md`;
+- `coordination/status/local_codex_1.md`;
+- `cgauto/e7_type_to_cut_audit.py` (new);
+- `tests/test_e7_type_to_cut_audit.py` (new);
+- `data/analysis/live-agent-6553250/e7-type-to-cut-audit-*` (new);
+- `local_codex_1/e7-type-to-cut-audit/` (new, compact);
+- canonical register/BACKLOG/CONSTRAINTS/STATE/ledger only at closeout.
+
+## Shared read-only paths
+
+- Exact live source, simulator/map generator, six opponents, and E4 runtime helper.
+- H13, N6, yamo reference, N4 boundaries, and reused seeds `0..59`.
+
+## Do not touch
+
+- Resident/dev source, submissions, existing analyzers/results, raw games, bulk roots,
+  map ranges, cron, peer-owned paths, or Arena.
+- No formatter, persistent alternate, weight change, third species, feature fitting, or
+  opponent-specific hindsight.
+
+## Acceptance
+
+- Exact flip, independent geometry, complete panel, divergence fidelity, and jobs parity.
+- One frozen direct/oracle verdict with activated-only and hindsight quantities labeled.
+- No candidate or Arena implication.
