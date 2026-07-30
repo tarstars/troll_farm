@@ -1,6 +1,6 @@
 # 20260729-h13-fidelity-gap: why does our reproduction rank 2.94 below its source design?
 
-- Status: active
+- Status: closed — done; 2.94 gap attributed mostly to maturity; oscillation defect quantified; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)

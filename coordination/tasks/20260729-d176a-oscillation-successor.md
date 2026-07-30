@@ -1,6 +1,6 @@
 # 20260729-d176a-oscillation-successor: sanctioned successor to D171a
 
-- Status: active
+- Status: closed — CLOSED-AT-MECHANISM; fix largely worked but worth +0.045; oscillation line closed permanently; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)

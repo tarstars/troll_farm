@@ -35,7 +35,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **N1** | Maturity-curve measurement: fit score vs time-since-submission across the field; deliver our expected mature score and the true code gap | 1 session | **running** |
+| **N1** | Maturity-curve measurement | 1 session | **claimed by chatgpt_1** — preflight says CONDITIONALLY IDENTIFIABLE; raw-field audit first |
 | **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | **running** |
 | **M1** | **Rating-system dynamics** — how does the score actually update per win/loss? Recover the update rule from the snapshot series. If it is Elo-like, quantify how many wins a +1 move costs, which prices *every* candidate in wins rather than margin | ~1 session | open |
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | open |
@@ -80,7 +80,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **A2-0a** | Renewable-base feasibility (= N3) — **kill rule K1** for the A2 programme | 1 session | **running** |
+| **A2-0a** | Renewable-base feasibility (= N3) | 1 session | **✅ DONE — EXISTS (qualified); K1 does not fire; base sub-critical and LABOR-limited (0.40 fruit/turn realized vs 2.5–6.8 ceiling)** |
 | **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | open — offered to `chatgpt_1` |
 | **A2-1…5** | A2 phases per `docs/A2-programme-charter-2026-07-30.md` | programme | gated on 0a |
 | **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | open |
@@ -98,7 +98,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **X1** | **Systematic mechanics re-derivation** — `docs/mechanics.md` is reverse-engineered from replays, not official documentation. Differential-test our simulator against the referee across edge cases (resource boundaries, simultaneous actions, referee tie-breaks). **High variance: a single misunderstood rule could be worth more than any tuning** | 1–2 sessions | open |
+| **X1** | **Systematic mechanics re-derivation — PROMOTED 2026-07-30.** No longer speculative: A2 Phase 0a found an **undocumented per-player starting bank of ~24 fruit / ~6 iron**, verified in `official_mapgen.rs` and absent from `docs/mechanics.md` — an input to *every* affordability calculation this project has run. If one rule was missing, others may be. Differential-test the simulator against the referee across edge cases | 1–2 sessions | **open — now P0** |
 | **H9** | Submission timing — strategic pending N1; requires explicit owner authorization per event | owner | gated |
 | **H11** | Map-conditioned configuration as a controlled decomposition only (D63/D91 stand) | 1 session | open, low |
 | **H12** | Standing surveillance — cron plus weekly comparative refresh | automatic | running |
@@ -108,7 +108,12 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 ## Immediate roll
 
-Running now: **A2-0a**, **N1**, **N2**. Next up as slots free, cheapest-informative first:
-**X1** (mechanics re-derivation — highest variance on the board), **M1** (rating dynamics —
-prices everything in wins), **E1** (opening micro-optimality), then B-tier execution audits
-in id order. `chatgpt_1` holds **N4** and is offered **A2-0b**.
+**Done 2026-07-30:** A2-0a (EXISTS-qualified). **Claimed by `chatgpt_1`:** N1 (maturity),
+the evidence-index pilot, and N4 by authorship. **Offered and unclaimed:** A2-0b.
+
+Priority order as of 2026-07-30, highest first: **N1** (re-baselines everything) →
+**X1** (promoted: a confirmed missing rule proves the mechanics are incomplete) →
+**A2-0b** (parity harness — blocking for the whole A2 programme) → **A2-1** (economy
+skeleton, gated on 0b) → **M1** (rating dynamics: prices candidates in wins, and the goal is
+stated in score) → **N2** (unblocks B4.4 citations) → evidence-index pilot → then B-tier
+execution and C/D-tier search/learning audits in id order.

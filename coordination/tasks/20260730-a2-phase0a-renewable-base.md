@@ -1,6 +1,6 @@
 # 20260730-a2-phase0a-renewable-base: does a renewable resource base exist on these maps?
 
-- Status: active
+- Status: closed — verdict EXISTS (qualified); K1 does NOT fire; base is sub-critical and LABOR-limited; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)
