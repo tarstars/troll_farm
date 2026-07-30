@@ -1,6 +1,6 @@
 # 20260730-e5-ripeness-wait-audit
 
-- Status: active — implementation locked; full jobs-parity panels pending
+- Status: active — jobs-8 passed; full jobs-1 parity run starting
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:41:39Z
-- Last updated UTC: 2026-07-30T22:49:26Z
+- Last updated UTC: 2026-07-30T23:00:00Z
 
 ## Progress
 
@@ -22,6 +22,8 @@
   first-divergence attribution pass.
 - Implementation lock:
   `local_codex_1/e5-ripeness-wait-audit/implementation-lock.json`.
+- Jobs-8 completes 360/360 value cells and 8/8 exact sentinels. Provisional
+  `KEEP_RIPENESS_WAIT`: +0.1056 whole-panel margin, seat 0 −0.200, magnitude <+1.
 
 ## Outcome
 
