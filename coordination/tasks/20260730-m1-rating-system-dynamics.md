@@ -103,4 +103,6 @@ Canonical human result:
 Machine bundle: `local_codex_1/m1-rating-system-dynamics/`. STATE, CONSTRAINTS, BACKLOG,
 the approach register, and ledger volume 3 record the same consequence: stored outcomes do
 not support a ladder-score conversion, so terminal-margin gates remain binding. Reviewer
-handoff is the remaining definition-of-done step.
+handoff is remotely published from canonical result head
+`b1f7400d3987aafb40836796381ec5683ca95e00`; acknowledgement is the remaining
+definition-of-done step.
