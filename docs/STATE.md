@@ -123,7 +123,8 @@ makes the goalpost move in the wrong direction.
   **M1 DONE — PARTIAL / DESCRIPTIVE_ONLY:** 307/329 outcome-complete score transitions
   across 45 agents, but best held-agent MAE 0.4773 vs 0.4786 zero baseline. No defensible
   wins-per-+1 conversion. **N2 DONE — B4_4_CORRECTED:** group rates reproduce, but its
-  all/every-peer, no-loop and causal claims fail. Current next unassigned item: M2.
+  all/every-peer, no-loop and causal claims fail. **M2 DONE — NO_ACTIONABLE_MATCHUP:**
+  three exact identities clear support, none clear all gates. Next unassigned item: M3.
 - **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
   offline; `chatgpt_1` has N4 Phase A; evidence-index generation still fails host parity. Inbox:
   `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.

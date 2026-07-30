@@ -31,8 +31,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > (206/512 = 40.23%) but reached only **582/2,048 = 28.42%** fruit-funded worker 3 by
 > turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
-> Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; next
-> unassigned breadth item: M2.**
+> Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
+> DONE / NO_ACTIONABLE_MATCHUP; next unassigned breadth item: M3.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -65,6 +65,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   directly confirm the owner's distinction: early crops can be repeatedly harvested,
   while post-250 crops are predominantly fruit-to-wood conversions. Cite only the N2
   corrected result, not B4.4's “all/every peer,” no-loop, or causal-survival wording.
+- **M2 ✅ DONE — NO_ACTIONABLE_MATCHUP.** Of 72 exact opponents, only R1FA,
+  BoatBuilder, and a76a44 clear current-identity, games, seats, and matched-control
+  support. R1FA's stable −31.62 matched-margin hint is imprecise (CI
+  [−81.02,+22.24], Holm p 0.229) and has only −0.087 win residual. BoatBuilder reverses
+  by seat; a76a44 is positive. Do not build identity-specific behavior; retain R1FA only
+  as a surveillance hint pending more exact games.
 
 ### P1 — next build and bounded audits with a decision attached
 

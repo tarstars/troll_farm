@@ -81,3 +81,28 @@ untouched.
 Evidence:
 `data/analysis/live-agent-6553250/n2-b4-4-verification-result-2026-07-30.md`;
 machine bundle `local_codex_1/n2-b4-4-verification/`.
+
+## M2 — no actionable opponent-specific loss
+
+**Question.** Does the exact resident systematically underperform against any currently
+active exact opponent after matching its own games on contemporaneous strength, seat,
+map dimensions, resident score, and initial-tree count?
+
+**Evidence.** The frozen corpus verifies at 9,082 records / 9,018 clean games, including
+241 resident games against 72 exact identities. Twelve active identities have at least
+five games and two per seat; only R1FA, BoatBuilder, and a76a44 retain at least ten
+within-resident controls for every target game.
+
+**Result.** R1FA has a stable −31.621 matched-margin hint, but CI
+[−81.015,+22.243], Holm p 0.229, and win residual −0.087 fail the frozen uncertainty,
+multiplicity, and win-effect gates. BoatBuilder's −73.178 estimate is imprecise and
+reverses by seat (−152.91 / +46.42). a76a44's residual is +9.526. None clears all ten
+actionability gates.
+
+**Verdict: `NO_ACTIONABLE_MATCHUP`.** No identity-specific implementation, replay
+mechanism follow-up, resident change, or Arena action. Keep R1FA only as a surveillance
+hint until more exact games narrow the evidence.
+
+Evidence:
+`data/analysis/live-agent-6553250/m2-opponent-specific-losses-result-2026-07-30.md`;
+machine bundle `local_codex_1/m2-opponent-specific-losses/`.

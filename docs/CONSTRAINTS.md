@@ -291,6 +291,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   causality, and the deployed slim artifact pruned that subsystem. H3's controlled
   survival/wood-purity corrections and D175a's harmful intervention remain binding. [N2;
   corrects B4.4]
+- **Opponent-specific behavior has no currently actionable target.** Only 3/72 exact
+  opponent identities clear the frozen activity/games/seats/control gates. R1FA's matched
+  margin residual is −31.62 but CI [−81.02,+22.24], Holm p 0.229, and win residual −0.087
+  fail actionability. BoatBuilder's −73.18 reverses by seat and is imprecise; a76a44 is
+  positive. Do not build an identity-specific branch or infer a mechanism. Reopen only
+  after materially more exact games or a stronger contemporaneous control design. [M2,
+  2026-07-30]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this

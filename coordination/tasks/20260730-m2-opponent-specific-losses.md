@@ -1,6 +1,6 @@
 # 20260730-m2-opponent-specific-losses: find active matchup-specific loss anomalies
 
-- Status: active — implementation lock ready; empirical run pending
+- Status: result ready — `NO_ACTIONABLE_MATCHUP`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:35:48Z
-- Last updated UTC: 2026-07-30T19:40:54Z
+- Last updated UTC: 2026-07-30T19:52:00Z
 
 ## Outcome
 
@@ -89,3 +89,16 @@ actionability before canonical integration.
 - Compile/self-test/five tests pass.
 - Preflight: 12 active identities clear games/seats; R1FA, a76a44, and BoatBuilder alone
   clear per-game matched-control support.
+
+## Empirical result — 2026-07-30T19:52:00Z
+
+- Verdict: **`NO_ACTIONABLE_MATCHUP`**.
+- All 9,082 source records and the current leaderboard pass frozen count/hash gates.
+- Three exact identities are primary-eligible; none clear all ten actionability gates.
+- R1FA has the only stable negative hint (residual −31.621) but CI
+  [−81.015,+22.243], Holm p 0.229, and win residual −0.087 fail the frozen gates.
+- BoatBuilder's larger residual (−73.178) reverses by seat and is imprecise; a76a44 has a
+  positive residual.
+- Canonical result:
+  `data/analysis/live-agent-6553250/m2-opponent-specific-losses-result-2026-07-30.md`.
+- No identity-specific implementation, replay follow-up, resident change, or Arena action.
