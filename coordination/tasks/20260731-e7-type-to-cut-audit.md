@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T23:28:27Z
-- Last updated UTC: 2026-07-30T23:40:37Z
+- Last updated UTC: 2026-07-30T23:46:15Z
 
 ## Progress
 
@@ -24,6 +24,10 @@
 - Implementation lock:
   `local_codex_1/e7-type-to-cut-audit/implementation-lock.json`.
 - Jobs-8 phase marker: 120/360 value cells complete without an integrity exception.
+- Jobs-8 completes 360/360 with all integrity gates. Provisional
+  `HINDSIGHT_RESIDUAL_ONLY`: blanket FLIP −12.1736; seed hindsight +10.5097;
+  24/60 seeds prefer FLIP; 6/6 leave-one-family-out means positive.
+- Jobs-1 parity is pending.
 
 ## Outcome
 
