@@ -32,8 +32,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
-> DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; next
-> unassigned breadth item: M4.**
+> DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
+> DONE / NO_MATERIAL_MATCHMAKING_DRIFT; next unassigned breadth item: M5.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -76,6 +76,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   point toward seat 0 being worse, but the matched seat-1-minus-seat-0 margin is only
   +10.09, CI [−16.81,+38.91], p 0.484. The identity-equal fixed-opponent contrast flips
   to −1.37. No seat-specific mechanism or branch; repeat only with a larger exact panel.
+- **M4 ✅ DONE — NO_MATERIAL_MATCHMAKING_DRIFT.** Newest-minus-oldest-60 mean opponent
+  score is +0.438, CI [−0.865,+1.867], p 0.884; median is −0.155. Strength drift is not
+  established. Composition is highly concentrated: newest 60 = 47 FreZzz, 7 Bubaptik,
+  5 goq, 1 IlyaPol, represented by 16 exact IDs but four pseudonyms. Surveillance must
+  report both exact-ID versions and pseudonym lineages.
 
 ### P1 — next build and bounded audits with a decision attached
 

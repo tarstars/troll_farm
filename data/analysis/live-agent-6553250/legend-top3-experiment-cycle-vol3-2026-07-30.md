@@ -130,3 +130,30 @@ action.
 Evidence:
 `data/analysis/live-agent-6553250/m3-seat-asymmetry-result-2026-07-30.md`;
 machine bundle `local_codex_1/m3-seat-asymmetry/`.
+
+## M4 — no material strength drift; strong lineage concentration
+
+**Question.** Who does exact resident `6561795` play, how concentrated is that mix, and
+is the newest opponent-strength distribution materially different from the oldest?
+
+**Evidence.** The 241-game resident panel compares the oldest/newest 60 games by
+contemporaneous opponent score. Terminal outcomes are excluded. Uncertainty uses 20,000
+moving-block bootstraps and all 241 circular temporal rotations.
+
+**Strength result.** Mean opponent score moves 22.297→22.735: +0.438, CI
+[−0.865,+1.867], p 0.884. Median drift is −0.155. Window-40/80 and both seats are
+positive, but magnitude, CI, temporal-null, and median gates fail.
+
+**Composition result.** Exact identities contract 38→16 and pseudonyms 38→4. The newest
+60 games are 47 FreZzz, 7 Bubaptik, 5 goq, and 1 IlyaPol. Every late exact ID is absent
+from the early endpoint, but only 6/60 late games use a new pseudonym; current-active
+pseudonym lineage share remains 100%. This is submission-version churn plus concentrated
+matchmaking, not wholesale lineage replacement.
+
+**Verdict: `NO_MATERIAL_MATCHMAKING_DRIFT`.** Do not explain score/rank movement by a
+proven stronger opponent mix or create composition-specific policy. Surveillance must
+report exact IDs and pseudonym lineages separately.
+
+Evidence:
+`data/analysis/live-agent-6553250/m4-matchmaking-composition-result-2026-07-30.md`;
+machine bundle `local_codex_1/m4-matchmaking-composition/`.

@@ -1,6 +1,6 @@
 # 20260730-m4-matchmaking-composition: audit resident opponent mix and drift
 
-- Status: active — implementation lock ready; full empirical run pending
+- Status: result ready — `NO_MATERIAL_MATCHMAKING_DRIFT`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:59:19Z
-- Last updated UTC: 2026-07-30T20:04:31Z
+- Last updated UTC: 2026-07-30T20:06:15Z
 
 ## Outcome
 
@@ -87,3 +87,16 @@ canonical integration.
 - Compile/self-test/five tests pass.
 - Preflight: exact 241-game resident panel and 60/60 endpoints; smoke-run source,
   chronology, identity-lineage, and output paths pass.
+
+## Empirical result — 2026-07-30T20:06:15Z
+
+- Verdict: **`NO_MATERIAL_MATCHMAKING_DRIFT`**.
+- Mean opponent score moves 22.297→22.735 (+0.438), CI [−0.865,+1.867], p 0.884;
+  median moves −0.155. Magnitude, CI, p, and median gates fail.
+- The newest endpoint is highly concentrated: 47 FreZzz, 7 Bubaptik, 5 goq, 1 IlyaPol.
+  It has 16 exact IDs but only four pseudonyms (effective pseudonym count 1.58).
+- All 60 late exact IDs are absent from the early endpoint, but only six late games use
+  new pseudonyms. Current-active lineage share remains 100%.
+- Canonical result:
+  `data/analysis/live-agent-6553250/m4-matchmaking-composition-result-2026-07-30.md`.
+- Surveillance should report exact ID and lineage; no policy, resident, or Arena action.

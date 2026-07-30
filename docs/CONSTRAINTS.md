@@ -304,6 +304,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   the identity-equal fixed-opponent contrast flips to −1.37. Do not create a seat branch
   or infer a mechanism. Reopen only with a materially larger exact panel that clears the
   frozen magnitude, uncertainty, and stability gates. [M3, 2026-07-30]
+- **Matchmaking strength drift is not established, but version-lineage concentration is
+  binding.** Newest-minus-oldest-60 mean opponent score is +0.438, CI
+  [−0.865,+1.867], p 0.884, while the median moves −0.155. The newest 60 games are
+  47 FreZzz, 7 Bubaptik, 5 goq, 1 IlyaPol: 16 exact IDs but only four pseudonyms. All late
+  exact IDs are absent early, yet only 6/60 games use a new pseudonym and active-lineage
+  share is 100%. Use exact IDs for version-specific claims and pseudonyms for longitudinal
+  composition; never interpret inactive version IDs as vanished lineages. [M4, 2026-07-30]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this
