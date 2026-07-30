@@ -385,3 +385,25 @@ Evidence:
 `data/analysis/live-agent-6553250/e5-ripeness-wait-audit-result-2026-07-30.md`;
 compact JSON beside it; implementation lock and hashes under
 `local_codex_1/e5-ripeness-wait-audit/`.
+
+## E6 — seed-carry premise duplicates D167/D168
+
+**Premise correction.** “Which seed to carry and when to drop it” was not unexamined.
+`PLANT` consumes the carried seed; `DROP` is generic shack banking and belongs to E2.
+
+**Coverage.** D167 classifies all 135/135 local successor returns as BANK_SEED and later
+field rates at 67.5%; field pre-carry is 40.5% versus resident 0/1,024. D168 implements
+post-suppression pickup and pre-carry over exact continuation, freezes bank revalidation,
+species tie-break, destination, and horizons, and activates the same 164/1,024 tasks in
+both seats and seven families.
+
+**Value.** Post-return loses −6.732, CI [−8.398,−4.077]; pre-carry loses −8.207,
+[−10.528,−5.709]. All active family means are negative; even committed post-return
+episodes are −7.22. D168 explicitly closes species/horizon/arming retuning.
+
+**Verdict: `VOID_PREMISE_DUPLICATE`.** The surviving timing question belonged to the
+rollout-valued option interface, not another fixed seed heuristic. No simulation, source,
+range, candidate, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/e6-seed-carry-scope-audit-2026-07-30.md`.

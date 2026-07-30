@@ -41,7 +41,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle. E4 is DONE /
 > KEEP_LEXICOGRAPHIC: the secure-orchard tie is active but reversing it loses −0.0855
 > exact-1,000-map-weighted margin. E5 is DONE / KEEP_RIPENESS_WAIT: +0.1056 overall,
-> but seat 0 is negative and magnitude is below +1.**
+> but seat 0 is negative and magnitude is below +1. E6 is VOID_PREMISE_DUPLICATE under
+> D167/D168's acquisition/pre-carry/species/terminal-value coverage.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -148,6 +149,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   activates in 33/360 cells across both seats and all six families. It gains only +0.1056
   whole-panel margin; seat 0 is −0.200, motion/race are negative, and 346/360 cells are
   unchanged. The +1 magnitude and both-seat gates fail. Keep the current wait.
+- **E6 ✅ VOID_PREMISE_DUPLICATE.** D167 classifies seed acquisition (135/135 local
+  BANK_SEED; field 67.5%; pre-carry 40.5%), and D168 causally tests post-return/pre-carry
+  with a frozen species rule: −6.732/−8.207, all active families negative. `DROP` is
+  generic banking, not selective seed disposal. Do not retune species, horizons, or carry.
 
 ### P2 — hygiene and consequences of iteration 1
 

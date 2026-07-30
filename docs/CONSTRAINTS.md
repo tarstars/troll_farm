@@ -855,3 +855,10 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   both seats, and all six families, but gains just +0.1056 margin. Seat 0 is −0.200,
   motion/race are negative, and 346/360 cells are unchanged. Do not rewrite arbitrary
   WAITs, tune the predicate, persist the alternate, or promote it. [E5, 2026-07-30]
+- **Seed-carry choice is already closed by D167/D168.** Acquisition is 135/135 local
+  BANK_SEED; field BANK_SEED/pre-carry rates are 67.5%/40.5%. Exact-resident post-return
+  and pre-carry controllers activate the same 164/1,024 tasks across both seats and seven
+  families but lose −6.732/−8.207; every active family is negative. D168 includes a frozen
+  species tie-break and dynamic destination checks. `DROP` is generic banking, not a
+  seed-specific disposal decision. Do not retune species, horizons, or carry timing.
+  [D167, D168, E6]

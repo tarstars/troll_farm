@@ -1,6 +1,6 @@
 # 20260730-e6-seed-carry-scope-audit
 
-- Status: active — claim/scope publication pending
+- Status: done — `VOID_PREMISE_DUPLICATE`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,16 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T23:23:21Z
-- Last updated UTC: 2026-07-30T23:23:21Z
+- Last updated UTC: 2026-07-30T23:25:18Z
+
+## Result
+
+- D167: 135/135 local BANK_SEED; field BANK_SEED/pre-carry 67.5%/40.5%.
+- D168: same 164/1,024 tasks activate post-return/pre-carry, both seats, 7/8 families.
+- Value: −6.732 / −8.207; all active family means negative.
+- Verdict: `VOID_PREMISE_DUPLICATE`.
+- Report:
+  `data/analysis/live-agent-6553250/e6-seed-carry-scope-audit-2026-07-30.md`.
 
 ## Outcome
 
