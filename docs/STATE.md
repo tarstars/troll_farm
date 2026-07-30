@@ -17,7 +17,7 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
   07-27) — the score is source-side frozen between rare recomputes, so this is pool
   movement, not decay. Passive maturity is dead as a lever.
 - Rank bar: 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
-- Corpus: 8,131+ games / 469 agents, compounding daily (cron 05:17).
+- Corpus: **9,082 games** / 469+ agents, compounding daily (cron 05:17 — +951 overnight).
 
 ## 2. Goal
 

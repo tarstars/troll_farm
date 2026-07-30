@@ -279,6 +279,55 @@ close before the game does?" is therefore the **first** question any Architectur
 must answer, ahead of scheduler or roster questions. Report in session scratch
 `h1-joint-upper-bound-report.md`.
 
+## 2026-07-29: D176a CLOSED-AT-MECHANISM — the fix largely works; two of my gates were mis-specified
+
+**Verdict CLOSED-AT-MECHANISM, as recorded by the analyzer and not reinterpreted.** But the
+result is far more nuanced than a failure, and the record should say so plainly.
+
+**Integrity: all pass**, including 1-vs-20-thread byte identity (jobs1 ran 1,210 s, the
+expected ratio). Trigger fidelity **100.0% on n=152** — and the agent earned that number: it
+first measured 95.4%, refused to accept a pass at face value, investigated the seven
+apparent failures, and found a genuine indexing bug **in its own verification script** (a
+mid-game-trained unit leaves gaps in `state["u"]`, silently misaligning an append-only
+history list). It fixed the script rather than the fix and re-ran clean.
+
+**Mechanism: 2 of 4 sub-gates pass.** ≥10-turn task rate **8.50% → 2.88%** (gate ≤6.0%) —
+*below yamo's 2.9% reference*; de-novo oscillation **0.0%, zero tasks** (gate ≤1.0%; D171a
+manufactured 72). Failing: 5–9-turn runs 213 → 825 (+287%, gate ≤+10%) and worst-case run
+length 247 → 247 turns (gate ≤20).
+
+**Value: all six gates pass.** Overall **+0.045** margin, CI [−0.024, +0.114]; activated
+subset **+0.612** over 152 tasks; catastrophes **73 vs 73**; mass ratio 0.999; worst family
+0.000. Nothing is harmed anywhere.
+
+**Two gate-specification errors, both mine, recorded as such.** (1) I anchored the
+worst-case gate to H13's *real-corpus* 133 turns, but **the control's own worst run on this
+panel is 247** — identical to the candidate's. The fix did not worsen the tail; it failed a
+threshold the control misses by 12×, calibrated on a different population. (2) I inherited
+the 5–9-turn displacement gate from D171a, where +117% accompanied *manufactured*
+oscillation. Here de-novo is **zero**, so +287% short runs cannot be manufacture — fewer
+long runs, more short runs, no new oscillation in clean tasks is the arithmetic signature of
+**long runs being fragmented**, i.e. the mechanism working. The gate cannot distinguish
+fragmentation from manufacture; the de-novo gate can, and it passed.
+
+**Why the line still closes, on better grounds.** Read charitably, the intervention works —
+and it is still worth **+0.045 overall with a CI straddling zero**, roughly 0.005 rating.
+The activated +0.61 across 18% of games is real and rounds to nothing at ladder level. So
+D176a closes not because the fix fails but because a *working* version is not worth a
+promotion cycle. The protocol's "two designed attempts is enough" disposition stands, and
+arrives at the same place by a sounder road. Oscillation is closed permanently.
+
+**Durable lesson for protocol design (now CONSTRAINTS):** calibrate a mechanism gate on the
+same population the panel measures, never on a corpus statistic from elsewhere; and ensure
+each gate can distinguish the intervention's intended *mechanism of action* from the failure
+mode it was inherited to catch.
+
+**Process note:** the executing agent was killed by transient API errors three times —
+after the panel, after the resume, and after the byte-identity check. All substantive work
+survived on disk (complete `result.json` with every gate), and the result document was
+assembled by the integrator from that file. Phase markers plus artifacts-on-disk made a
+thrice-failed agent fully recoverable; this is the third such recovery this week.
+
 ## 2026-07-29: ★★★ H5 — the resident IS a #3-Legend published design, and it underperforms its own source by 2.94
 
 **Verdict (b) strongly confirms + (c) a few uncatalogued mechanisms — but the incidental
