@@ -1,6 +1,6 @@
 # 20260730-m2-opponent-specific-losses: find active matchup-specific loss anomalies
 
-- Status: claimed — protocol frozen; implementation not started
+- Status: active — implementation lock ready; empirical run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:35:48Z
-- Last updated UTC: 2026-07-30T19:35:48Z
+- Last updated UTC: 2026-07-30T19:40:54Z
 
 ## Outcome
 
@@ -79,3 +79,13 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands/hashes, full exact-opponent table, one verdict,
 and any bounded replay-mechanism follow-up request. `chatgpt_1` reviews identification and
 actionability before canonical integration.
+
+## Implementation lock — 2026-07-30T19:40:54Z
+
+- Analyzer SHA-256:
+  `46d0a53ddadcf261cd2d2eb9a1ce8cf92fa3ffdb567c42a8008d2e3a992581dc`.
+- Test SHA-256:
+  `55b414c99ada11ae94e0ec0b5b9902f56c1217f36469575b6462673c38711bc6`.
+- Compile/self-test/five tests pass.
+- Preflight: 12 active identities clear games/seats; R1FA, a76a44, and BoatBuilder alone
+  clear per-game matched-control support.
