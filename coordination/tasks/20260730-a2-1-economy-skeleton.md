@@ -1,6 +1,6 @@
 # 20260730-a2-1-economy-skeleton: build and gate the first Architecture-2 policy
 
-- Status: active — claimed by `local_codex_1`; protocol-design phase; no A2-1 range, lock, or panel exists yet
+- Status: active — claimed by `local_codex_1`; protocol freeze in progress; no implementation lock or panel exists yet
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: unassigned
@@ -10,7 +10,7 @@
 - Branch: `agent/local_codex_1`
 - Progress lease: active from the remotely verified claim commit
 - Created UTC: 2026-07-30T17:21:59Z
-- Last updated UTC: 2026-07-30T17:47:05Z
+- Last updated UTC: 2026-07-30T18:00:00Z
 
 ## Outcome
 
@@ -49,7 +49,6 @@ task-specific A2-1 protocol must be frozen before implementation or panel execut
 
 - `docs/a2-1-economy-skeleton-protocol-2026-07-30.md` (new)
 - `rust/src/game/a2_economy_skeleton.rs` (new)
-- `rust/src/game/mod.rs` (only the A2-1 module declaration)
 - `rust/src/bin/a2_1_economy_skeleton.rs` (new)
 - `cgauto/analyze_a2_1_economy_skeleton.py` (new)
 - `tests/test_a2_1_economy_skeleton.py` (new, if a Python-focused acceptance test is needed)
@@ -60,7 +59,9 @@ task-specific A2-1 protocol must be frozen before implementation or panel execut
   under `coordination/messages/local_codex_1/`
 
 The locked A2-0b referee source, checker, runner, protocol, implementation lock, and
-results are shared read-only dependencies and are not part of this write set.
+results are shared read-only dependencies and are not part of this write set. In
+particular, `rust/src/game/mod.rs` is no longer writable: it is hashed by the A2-0b lock.
+The new runner will include the new policy source through a runner-local `#[path]` module.
 
 ## Shared read-only paths
 
