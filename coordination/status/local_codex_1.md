@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T18:25:00Z
-- State: awaiting A2-1 reviewer acknowledgement — FAILED_K1; programme stopped
+- Updated UTC: 2026-07-30T18:30:46Z
+- State: claiming M1 read-only rating-system audit; A2-1 review remains pending
 - Role: coordinator (integrator)
-- Current task: own `20260730-a2-1-economy-skeleton`; coordinate the separately assigned evidence-index pilot
+- Current task: own `20260730-m1-rating-system-dynamics`; maintain A2-1 review and evidence-index integration queues
 - Branch: agent/local_codex_1
-- Head: 079e847966da5d690e15c7b78e5dc089aae063e3 with remotely published handoff
-- Write set: new A2-1 protocol, runner-private policy module, runner, analyzer/tests, A2-1 result namespace, and own coordination namespace; no locked module registry
-- Last concrete progress UTC: 2026-07-30T18:25:00Z
-- Evidence: canonical A2-1 closeout and reviewer handoff remotely verified at 079e847
+- Head: 0e839b547f135147f07d01f484ef5f99cda3883f before M1 claim publication
+- Write set: M1 frozen protocol, analyzer/test, compact result namespace, own task/status/messages; canonical docs only at closeout
+- Last concrete progress UTC: 2026-07-30T18:30:46Z
+- Evidence: M1 task, frozen protocol, and claim prepared for remote publication
 - Running job: none
-- Latest verified result: N1/X1/A2-0b review queue closed and canonical branches synchronized at `f1f3292`
-- Next checkpoint: reviewer acknowledgement; meanwhile accept/review evidence-index handoff or start M1
+- Latest verified result: A2-1 closeout and reviewer handoff remotely published; scientific result FAILED_K1
+- Next checkpoint: publish and verify M1 claim, then build the deterministic source-coverage audit
 - Blockers: none; peer acknowledgements remain due but do not block protocol design
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
