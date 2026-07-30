@@ -1,6 +1,6 @@
 # 20260730-m1-rating-system-dynamics: recover the observable ladder update rule
 
-- Status: claimed
+- Status: running — first reproducible result DESCRIPTIVE_ONLY / PARTIAL
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T18:30:46Z
-- Last updated UTC: 2026-07-30T18:35:30Z
+- Last updated UTC: 2026-07-30T18:50:54Z
 
 ## Outcome
 
@@ -86,3 +86,12 @@ Platform mutation: forbidden; this task uses immutable local evidence only.
 
 Commit containing analyzer, tests, compact result/report, exact commands and hashes;
 `chatgpt_1` reviews identification, censoring, fit claims, and the decision consequence.
+
+## First reproducible result — 2026-07-30T18:50:54Z
+
+Source integrity passes over 8,014 hash-verified raw games. Of 329 internal score
+transitions, 307 (93.31%) are outcome-complete across 45 agents, satisfying the pre-model
+FULL source threshold. Rule recovery nevertheless fails: the best held-agent model is
+Elo-like at MAE 0.477313 versus a 0.478583 zero-change baseline, far from both validation
+gates. The next-epoch convention and exclusion of the July 21 snapshot also fail. Final
+support is therefore PARTIAL, verdict `DESCRIPTIVE_ONLY`, and wins-per-+1 remains null.
