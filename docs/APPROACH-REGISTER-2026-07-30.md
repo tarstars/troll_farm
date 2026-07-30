@@ -98,7 +98,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **X1** | **Systematic mechanics re-derivation — PROMOTED 2026-07-30.** No longer speculative: A2 Phase 0a found an **undocumented per-player starting bank of ~24 fruit / ~6 iron**, verified in `official_mapgen.rs` and absent from `docs/mechanics.md` — an input to *every* affordability calculation this project has run. If one rule was missing, others may be. Differential-test the simulator against the referee across edge cases | 1–2 sessions | **open — now P0** |
+| **X1** | **Systematic mechanics re-derivation — PROMOTED 2026-07-30.** No longer speculative: A2 Phase 0a found an **undocumented per-player starting bank of ~24 fruit / ~6 iron**, verified in `official_mapgen.rs` and absent from `docs/mechanics.md` — an input to *every* affordability calculation this project has run. If one rule was missing, others may be. Differential-test the simulator against the referee across edge cases | 1–2 sessions | **running — `local_codex_1`** |
 | **H9** | Submission timing — strategic pending N1; requires explicit owner authorization per event | owner | gated |
 | **H11** | Map-conditioned configuration as a controlled decomposition only (D63/D91 stand) | 1 session | open, low |
 | **H12** | Standing surveillance — cron plus weekly comparative refresh | automatic | running |

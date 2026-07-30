@@ -76,7 +76,7 @@ rank goalpost move in the wrong direction.
   (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
 - **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
-  **Coordinator (integrator) = `local_codex_1` from 2026-07-30** (owner reassignment); arena controller follows the coordinator by protocol default unless the owner directs otherwise. `claude_1` and `chatgpt_1` are contributors. Handover: `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. Hazards (§7) bind every agent: the dev copy
+  **Coordinator (integrator) = `local_codex_1` from 2026-07-30** (owner reassignment); arena controller follows the coordinator by protocol default unless the owner directs otherwise. `claude_1` is offline by owner notice; `chatgpt_1` is a contributor. Handover: `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. Hazards (§7) bind every agent: the dev copy
   `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
   (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
   (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
@@ -142,12 +142,10 @@ rank goalpost move in the wrong direction.
   programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the
   review), H10 spatial-planes learner (sanctioned long shot); **near-closed** H11;
   **operations** H9 (capacity A/A only inside an authorized promotion), H12 (running).
-- **Coordination roster**: `claude_1` (integrator, arena controller); `chatgpt_1`
-  (reviewer — onboarded 2026-07-29 after correction; its critique is merged and its
-  record reconciled through branch tip `3eaf880`; task
-  `20260729-rank-hypotheses-critique` awaits **its** release; first right of claim
-  offered on H5/H3/H8). Inbox: `python3 scripts/inbox_sweep.py --me claude_1 --fetch`;
-  new agents get `coordination/peer-prompt.md`. The review's three findings are now
+- **Coordination roster**: `local_codex_1` (integrator and arena controller);
+  `claude_1` offline by owner notice; `chatgpt_1` reviewer and N1 owner. Inbox:
+  `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`; new agents get
+  `coordination/peer-prompt.md`. The review's three findings are now
   CONSTRAINTS bullets (no cross-player blocking; families ≠ map classes; no multi-lever
   resident bundles) so they cannot be re-proposed.
 - **Operations running**: collection cron 05:17 (`# troll-farm-wide-collect`); B5.3

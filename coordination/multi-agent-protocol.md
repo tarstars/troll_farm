@@ -30,10 +30,11 @@ index — path ownership alone cannot make simultaneous staging and commits safe
 
 Current roster (owner reassignment 2026-07-30): **`local_codex_1`** — **coordinator
 (integrator)**, and arena controller by the "normally the integrator" default unless the owner
-directs otherwise. **`claude_1`** — contributor; former coordinator; handover brief at
+directs otherwise. **`claude_1`** — offline by owner notice 2026-07-30; former coordinator;
+do not assign work while offline. Handover brief at
 `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. **`chatgpt_1`** — contributor
-and reviewer; holds N1 and the evidence-index pilot. Roles are defaults, not capability limits; a task record says who owns
-that particular outcome, and the user may reassign at any time.
+and reviewer; holds N1 and the evidence-index pilot. Roles are defaults, not capability limits;
+a task record says who owns that particular outcome, and the user may reassign at any time.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
@@ -156,7 +157,7 @@ serialized through the single arena controller**, per `docs/PROMOTION-RUNBOOK.md
 see `docs/STATE.md` §3), but the requirements it protected are not: a **QUALIFIED verdict
 from a frozen protocol**, expected gain above the arena noise band, the full runbook, and
 owner notification before and after each cycle. **No peer agent or subagent may submit** —
-the serialization through `claude_1` is unchanged and is the point.
+serialization through the single controller, currently `local_codex_1`, is the point.
 
 No agent submits merely because a candidate qualifies. Before any submission: confirm the
 exact artifact and its SHA-256, confirm only one controller is active, take the pre-trial

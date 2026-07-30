@@ -23,8 +23,8 @@ acknowledgements, which go in the acknowledger's own message namespace.
 
 | id | role | status file |
 |---|---|---|
-| `local_codex_1` | **coordinator (integrator)**; arena controller by default | (create on join) |
-| `claude_1` | contributor; former coordinator | [`status/claude_1.md`](status/claude_1.md) |
+| `local_codex_1` | **coordinator (integrator)**; arena controller by default | [`status/local_codex_1.md`](status/local_codex_1.md) |
+| `claude_1` | offline by owner notice 2026-07-30; do not assign | [`status/claude_1.md`](status/claude_1.md) |
 | `chatgpt_1` | contributor / reviewer; holds N1 + evidence-index pilot | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
 
 Handover brief: [`HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`](HANDOVER-2026-07-30-claude_1-to-local_codex_1.md)
