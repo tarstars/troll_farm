@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:41:39Z
-- Last updated UTC: 2026-07-30T23:00:00Z
+- Last updated UTC: 2026-07-30T23:07:24Z
 
 ## Progress
 
@@ -24,6 +24,7 @@
   `local_codex_1/e5-ripeness-wait-audit/implementation-lock.json`.
 - Jobs-8 completes 360/360 value cells and 8/8 exact sentinels. Provisional
   `KEEP_RIPENESS_WAIT`: +0.1056 whole-panel margin, seat 0 −0.200, magnitude <+1.
+- Jobs-1 phase marker: 120/360 value cells complete without an integrity exception.
 
 ## Outcome
 
