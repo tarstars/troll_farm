@@ -26,9 +26,55 @@ def load_records(repo_root: Path) -> list[dict[str, Any]]:
     records = [extract_record(p) for p in paths]
     return sorted(records, key=lambda r: r["id"])
 
+def compact_source(source: dict[str, Any]) -> str:
+    locator = source.get("locator") or source.get("json_pointer")
+    return f"{source['path']}#{locator}"
+
+def compact_record(record: dict[str, Any]) -> dict[str, Any]:
+    projected = {
+        "canonical_record": f"docs/evidence/records/{record['id']}.md",
+        "claims": [
+            {
+                "display": claim["display"],
+                "name": claim["name"],
+                "population": claim["population"],
+                "source": compact_source(claim["source"]),
+                "strength": claim["evidence_strength"],
+            }
+            for claim in record["decisive_claims"]
+        ],
+        "conclusion": record["conclusion"],
+        "cost_class": record["cost"]["class"],
+        "discussions": record.get("discussions", []),
+        "evidence_strength": record["primary_evidence_strength"],
+        "id": record["id"],
+        "kind": record["kind"],
+        "relations": [
+            f"{relation['type']}:{relation['target']}"
+            for relation in record.get("relations", [])
+        ],
+        "scope": record["scope"],
+        "status": record["status"],
+    }
+    if record.get("outcomes"):
+        projected["outcomes"] = record["outcomes"]
+    if record.get("premise_failure"):
+        projected["premise_failure"] = record["premise_failure"]
+    return projected
+
 def render_yaml(records: list[dict[str, Any]]) -> str:
-    # JSON is valid YAML 1.2; this avoids a PyYAML runtime dependency.
-    return json.dumps(records, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+    # Compact JSON is valid YAML 1.2. Canonical records remain the authority; this is navigation.
+    projection = {
+        "canonical_format": "docs/evidence/records/*.md#DECISION-EVIDENCE-JSON",
+        "records": [compact_record(record) for record in records],
+        "schema": "decision-evidence-index-v1",
+    }
+    return json.dumps(
+        projection,
+        sort_keys=True,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ) + "\n"
 
 def render_index(records: list[dict[str, Any]]) -> str:
     closed = sum(r["status"] in {"closed", "invalidated"} for r in records)
