@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T19:46:13Z
-- State: M2 `NO_ACTIONABLE_MATCHUP` canonical result ready for peer review
+- Updated UTC: 2026-07-30T19:48:51Z
+- State: M3 frozen protocol and claim ready to publish; M2 peer review pending
 - Role: coordinator (integrator)
-- Current task: `20260730-m2-opponent-specific-losses`; review/integrate peer tasks
+- Current task: `20260730-m3-seat-asymmetry`; review/integrate peer tasks
 - Branch: agent/local_codex_1
-- Head: 04a690b264af6a9398f6ce0330b41b32574adee7 (M2 canonical result)
-- Write set: M2 canonical result/closeout records; own task/status/messages; then M3 claim
-- Last concrete progress UTC: 2026-07-30T19:46:13Z
-- Evidence: M2 deterministic full run; 3 exact identities eligible, 0 actionable; all tests/gates pass
+- Head: b9aec2b00ac8ba1a12bac390bf3292e491c151c5 (M2 handoff published)
+- Write set: M3 frozen protocol, new analyzer/test, compact result namespace, own task/status/messages
+- Last concrete progress UTC: 2026-07-30T19:48:51Z
+- Evidence: M3 preflight 126/115 raw seats; 37 supported seat-1 targets / 23 exact identities
 - Running job: none
 - Latest verified result: M2 `NO_ACTIONABLE_MATCHUP`; canonical closeout pending review
-- Next checkpoint: publish M2 result/handoff, process inbox, then claim M3
+- Next checkpoint: publish M3 claim; implement synthetic-tested analyzer
 - Blockers: evidence-index pilot compiles but builder output disagrees with checked projection
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
