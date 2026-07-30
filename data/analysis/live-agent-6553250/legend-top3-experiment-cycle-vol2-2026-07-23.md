@@ -279,7 +279,32 @@ close before the game does?" is therefore the **first** question any Architectur
 must answer, ahead of scheduler or roster questions. Report in session scratch
 `h1-joint-upper-bound-report.md`.
 
-## 2026-07-30: ★★★ A2 Phase 0a — no renewable base exists anywhere, yet 3–4 workers are reached anyway
+## 2026-07-30: ★★★ A2 Phase 0a — verdict EXISTS (qualified): a sub-critical, LABOR-limited base
+
+**CORRECTION FIRST (integrator error, second of the day).** The entry that follows was
+written from a partial `report.json` while the executing agent was down after a machine
+suspend; the agent recovered and finished with data I did not have, and its verdict is
+**EXISTS (qualified) — K1 does NOT fire.** What I got wrong: I claimed no cohort grows its
+base. In fact **natural-origin trees can only shrink** (chopping is the sole removal
+mechanic) yet **top-5 population rises 16 → 23.5 by turn 150 with 64.7% of turn-300 trees
+planted, not inherited** — which mechanically rules out the "faster windfall consumption"
+reading I adopted. I generalized ranks 6–20's collapsing aggregate to every cohort; theirs
+does collapse late, the top five's holds. Corrected findings: **R ≈ 0.75 [0.73–0.77]** for
+top-5 and **broad-based** (98.8% of games harvest ≥1 self-planted tree); the resident's
+naive pooled 0.94 is a **mega-tree artifact** — only 23/242 games ever harvest anything and
+those supply **94%** of all fruit it has harvested, so its honest median R is 0. **The
+binding constraint is LABOR to service crops, not tree capacity**: realized 0.40 fruit/turn
+against a labor-unconstrained ceiling of **2.5–6.8**, peak ~20 concurrent fruiting trees at
+turn 75–100 then declining. That is the most important design fact for A2 — more
+harvest-capable labour raises throughput, which is precisely the compounding a scaling
+economy requires. Also discovered: an **undocumented per-player starting bank of ~24 fruit
+and ~6 iron** (per-game random, verified in `official_mapgen.rs`, **absent from
+`docs/mechanics.md`**) — an input to every affordability calculation ever run here, and
+exactly the class of gap X1 exists to find. Finally: **K1 did not fire**, so my amendment
+stands as a better-specified gate rather than as the rescue I described it as. The
+worker-3/4 reach and currency-provenance figures below are correct and unaffected.
+
+## 2026-07-30 (superseded framing): the partial-data reading
 
 **The renewable base does not exist, for any cohort.** Reproduction ratio R (new plantable
 seeds per harvested generation, net) median: resident **0.00**, ranks 6–20 **0.77**, top-5

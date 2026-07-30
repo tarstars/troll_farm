@@ -158,12 +158,17 @@ rank goalpost move in the wrong direction.
   pending N1/N3; the owner elected to build, and N3's renewable-base question is folded into
   **Phase 0a** rather than used as a pre-gate. Five preregistered milestone gates (adopted
   from chatgpt_1's review) plus five kill rules including a 6-session budget circuit-breaker.
-  **Phase 0a DONE 2026-07-30: no renewable base exists anywhere (R median 0.75 even for
-  top-5; populations collapse ~16→7) — but 3–4 workers ARE reached from the depleting base
-  (top-5: 75.6% / 41.6%, with self-planted crops funding 37%/50% of the bills; resident
-  0/242 ever). K1 fired as written and was AMENDED: the binding variable is conversion
-  efficiency, not renewal. New K1: stop if Phase 1 cannot fund worker 3 in ≥40% of games by
-  turn ~110.** Phase 0b (referee/evaluation parity harness) still open. The resident is
+  **Phase 0a DONE 2026-07-30 — verdict EXISTS (qualified); K1 does NOT fire; Phase 1 is
+  clearable.** A renewable base exists but is **sub-critical** (R ≈ 0.75 [0.73–0.77] top-5)
+  and **labor-limited, not capacity-limited** (realized 0.40 fruit/turn vs a 2.5–6.8
+  labor-unconstrained ceiling). Decisive: natural trees can only shrink, yet top-5 population
+  **rises 16 → 23.5 by turn 150** with **64.7% of turn-300 trees planted** — so this is not
+  windfall consumption. Worker 3 reached 75.6% (median t106), worker 4 41.6% (t137), with
+  self-planted crops funding 37%/50%; resident 0/242 ever. Iron scales 5.99 → 16.05. K1 was
+  amended to a conversion-efficiency gate (≥40% worker-3 by turn ~110) — a better gate, but
+  note the integrator's mid-flight claim that the original had fired was **wrong**. Also
+  found: an **undocumented ~24-fruit/~6-iron per-player starting bank** absent from
+  `docs/mechanics.md`. Phase 0b (parity harness) still open. The resident is
   untouched throughout; Phase 5 (arena) now runs under the 2026-07-30 standing authorization (§3), still requiring a QUALIFIED verdict and the full runbook.
 - ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
   **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately

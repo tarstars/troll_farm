@@ -629,10 +629,30 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
   ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
   reopen. [D176a; D171a]
-- ★★★ **No renewable resource base exists on these maps — for ANY cohort.** Reproduction
-  ratio median 0.00 (resident) / 0.77 (ranks 6–20) / **0.75 (top-5)**; only 1.2% of top-5
-  games reach R ≥ 1; every cohort's tree population collapses from ~16 to well below it
-  (net −11.97 / −8.95). **Never design for a self-sustaining loop.** [A2 Phase 0a]
+- ~~**No renewable resource base exists on these maps — for ANY cohort.**~~
+  **[OVERTURNED 2026-07-30 by the completed A2 Phase 0a analysis — the integrator drew this
+  from partial output before the audit finished. See the corrected bullet below.]** The
+  reproduction ratios were right (median 0.00 resident / 0.74 ranks 6–20 / 0.75 top-5) but
+  the population claim was wrong: it generalized ranks 6–20's collapsing aggregate to all
+  cohorts.
+- ★★★ **A renewable base EXISTS but is SUB-CRITICAL and LABOR-limited (corrected).**
+  Reproduction ratio R ≈ **0.75 [0.73–0.77]** for the top five — sub-critical, so not
+  exponential — but **broad-based**: 98.8% of their games harvest at least one self-planted
+  tree. The mechanically decisive fact: **natural-origin trees can only shrink** (chopping is
+  the sole removal mechanic), yet **top-5 total population RISES 16 → 23.5 by turn 150, and
+  64.7% of their turn-300 population is planted rather than inherited.** That rules out
+  "faster consumption of the same windfall." Ranks 6–20 start the loop and it collapses in
+  the endgame; the top five's holds. **The binding constraint is LABOR to service crops, not
+  tree capacity** — realized throughput 0.40 fruit/turn against a labor-unconstrained ceiling
+  of 2.5–6.8, with peak concurrent fruiting ~20 trees at turn 75–100 then declining. Design
+  consequence: more harvest-capable labour raises throughput, which is exactly the compounding
+  a scaling economy needs. The resident's median R = 0; its naive pooled 0.94 is a mega-tree
+  artifact (only 23/242 games ever harvest anything, and those 23 supply 94% of all fruit it
+  has ever harvested). [A2 Phase 0a, completed]
+- ★★ **UNDOCUMENTED MECHANIC found: each player starts with a per-game-random bank of ~24
+  fruit and ~6 iron.** Verified in `official_mapgen.rs`; **absent from `docs/mechanics.md`**.
+  This is a live input to every affordability calculation ever done here, and it is exactly
+  the class of gap X1 (systematic mechanics re-derivation) exists to find. [A2 Phase 0a]
 - ★★★ **But 3–4 workers ARE reachable from the depleting base, and the binding variable is
   CONVERSION EFFICIENCY, not renewal.** Top-5 reach worker 3 in **75.6%** of games (median
   t106) and worker 4 in **41.6%** (median t137); ranks 6–20 in 29.7%/14.0%; resident
@@ -642,9 +662,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   the resident's `own_units < 2` mining gate would be fatal. Maturation ~31.6 turns dry vs
   ~11.8 watered sets the generational clock. [A2 Phase 0a]
 - ★ **Specify a gate against the variable the intervention actually moves.** A2's K1 was
-  written against "renewal" when the measured necessary condition was conversion efficiency,
-  and would have killed an achievable programme on a mis-described mechanism. Third such
-  error in a week, after D176a's two. [A2 Phase 0a; D176a]
+  written against "renewal"; the measured binding variable is conversion efficiency /
+  servicing labour. **Correction: K1 did NOT fire** — the completed audit found a base does
+  exist (sub-critical) — so the integrator's mid-flight claim that it had fired was itself
+  wrong. The amendment stands on its own merits as the better-specified gate, not as a rescue.
+  [A2 Phase 0a; D176a]
 - ★ **Gate-design rules, learned by getting both wrong in D176a.** (1) Calibrate a mechanism
   gate on the **same population the panel measures** — D176a's ≤20-turn worst-case gate came
   from a real-corpus statistic (133) while the panel's own control runs 247, so the control

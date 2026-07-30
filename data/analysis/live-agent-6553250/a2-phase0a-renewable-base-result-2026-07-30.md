@@ -1,3 +1,36 @@
+> ## ⚠ CORRECTED 2026-07-30 — read this first
+>
+> **The verdict below is WRONG. The completed audit's verdict is EXISTS (qualified), and
+> kill rule K1 does NOT fire.** This document was assembled by the integrator from a
+> partial `report.json` while the executing agent was down; the agent then recovered and
+> finished the analysis with data the integrator did not have. The corrections:
+>
+> - **A renewable base does exist, sub-critically.** R ≈ **0.75 [0.73–0.77]** for the top
+>   five, and **broad-based** — 98.8% of their games harvest at least one self-planted tree.
+> - **The population claim below is false.** Natural-origin trees can only shrink (chopping
+>   is the only removal mechanic), yet **top-5 total population rises 16 → 23.5 by turn
+>   150**, and **64.7% of their turn-300 trees are planted rather than inherited**. That
+>   mechanically rules out "faster consumption of the same windfall". The integrator
+>   generalized ranks 6–20's collapsing aggregate to every cohort. Ranks 6–20 do start the
+>   loop and it collapses late; the top five's holds.
+> - **The binding constraint is LABOR, not tree capacity** — realized throughput 0.40
+>   fruit/turn against a labor-unconstrained ceiling of 2.5–6.8, peak ~20 concurrent
+>   fruiting trees at turn 75–100. More harvest-capable labour therefore raises throughput,
+>   which is the compounding a scaling economy needs.
+> - **The resident's R is a mega-tree artifact.** Its naive pooled 0.94 comes from just
+>   23/242 games (9.5%) that ever harvest anything, and those 23 supply **94%** of all fruit
+>   it has ever harvested. Honest figure: median R = 0.
+> - **New undocumented mechanic:** each player starts with a per-game-random bank of ~24
+>   fruit and ~6 iron, verified in `official_mapgen.rs` and **absent from
+>   `docs/mechanics.md`**. This is an input to every affordability calculation in the project.
+> - **K1 did not fire.** The amendment to a conversion-efficiency gate stands on its own
+>   merits as the better-specified gate, but the integrator's justification for making it —
+>   that the original had fired — was itself wrong.
+>
+> The worker-3/4 reach and currency-provenance tables below are **correct** and unaffected.
+> Authoritative report: session scratchpad `a2-phase0a-renewable-base-report.md`.
+> The body is left unedited as a record of the error.
+
 # A2 Phase 0a — renewable-base feasibility: result
 
 Date: 2026-07-30. **Verdict: no renewable base exists — but the A2 target is reachable
