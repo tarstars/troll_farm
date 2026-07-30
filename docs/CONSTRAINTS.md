@@ -311,6 +311,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   exact IDs are absent early, yet only 6/60 games use a new pseudonym and active-lineage
   share is 100%. Use exact IDs for version-specific claims and pseudonyms for longitudinal
   composition; never interpret inactive version IDs as vanished lineages. [M4, 2026-07-30]
+- **Turn-300 games do not define a resident-wide loss mechanism.** In 241 resident games,
+  125 reach the cap. Ninety-seven matched cap targets give margin residual −1.44, CI
+  [−26.25,+25.11], p 0.710, while win residual is +0.184. Seats (+0.72/−3.47), early/late
+  targets (−14.53/+11.38), same-pseudonym (+11.85), same-exact-opponent (+3.87), and
+  lineage omissions reverse signs. Duration is post-game; do not build a cap-conditioned
+  policy or call this a causal turn-limit effect. H3's narrower contact-coverage lead
+  retains its cause-versus-symptom and always-on-control gates. [M5, 2026-07-30]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this

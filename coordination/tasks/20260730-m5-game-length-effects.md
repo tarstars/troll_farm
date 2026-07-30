@@ -1,6 +1,6 @@
 # 20260730-m5-game-length-effects: characterize duration and turn-cap outcomes
 
-- Status: active — implementation lock ready; full empirical run pending
+- Status: result ready — `NO_MATERIAL_LENGTH_ASSOCIATION`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:11:33Z
-- Last updated UTC: 2026-07-30T20:15:53Z
+- Last updated UTC: 2026-07-30T20:19:11Z
 
 ## Outcome
 
@@ -87,3 +87,16 @@ identification and causal wording before canonical integration.
 - Compile/self-test/five tests pass.
 - Preflight: 125 cap games; 97 primary supported targets / 43 exact identities; all
   primary support gates structurally clear.
+
+## Empirical result — 2026-07-30T20:19:11Z
+
+- Verdict: **`NO_MATERIAL_LENGTH_ASSOCIATION`**.
+- Primary support: 97 cap targets / 43 exact identities; all support gates pass.
+- Matched cap-minus-non-cap margin −1.440, CI [−26.251,+25.112], p 0.710; win residual
+  +0.184. Magnitude, CI, p, and win gates fail.
+- Seats, target-time halves, same-pseudonym/exact-opponent checks, and lineage
+  leave-one-out estimates reverse sign.
+- Canonical result:
+  `data/analysis/live-agent-6553250/m5-game-length-effects-result-2026-07-30.md`.
+- H3's narrow cause-versus-symptom gate remains; no replay, policy, resident, or Arena
+  action.

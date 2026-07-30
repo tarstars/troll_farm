@@ -33,7 +33,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
 > DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
-> DONE / NO_MATERIAL_MATCHMAKING_DRIFT; next unassigned breadth item: M5.**
+> DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
+> NO_MATERIAL_LENGTH_ASSOCIATION. Next: peer corrections, then B-tier audits.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -81,6 +82,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   established. Composition is highly concentrated: newest 60 = 47 FreZzz, 7 Bubaptik,
   5 goq, 1 IlyaPol, represented by 16 exact IDs but four pseudonyms. Surveillance must
   report both exact-ID versions and pseudonym lineages.
+- **M5 ✅ DONE — NO_MATERIAL_LENGTH_ASSOCIATION.** Turn-300 games are 125/241. The
+  97-target matched cap residual is −1.44, CI [−26.25,+25.11], p 0.710, while win
+  residual is +0.184. Seats, time halves, exact/pseudo sensitivities, and lineage
+  omissions reverse signs. H3's narrow cause-versus-symptom gate remains; there is no
+  resident-wide duration-conditioned policy lead.
 
 ### P1 — next build and bounded audits with a decision attached
 

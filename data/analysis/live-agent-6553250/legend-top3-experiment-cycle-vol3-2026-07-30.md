@@ -157,3 +157,26 @@ report exact IDs and pseudonym lineages separately.
 Evidence:
 `data/analysis/live-agent-6553250/m4-matchmaking-composition-result-2026-07-30.md`;
 machine bundle `local_codex_1/m4-matchmaking-composition/`.
+
+## M5 — no resident-wide turn-cap loss association
+
+**Question.** Are exact-resident games reaching turn 300 materially worse than comparable
+shorter games?
+
+**Evidence.** Recorded duration is 106–300; 125/241 resident games reach turn 300. The
+primary pre-game match supports 97 cap targets across 43 exact identities. Duration is a
+post-game category and the source has no trusted terminal-reason label.
+
+**Result.** Matched cap-minus-non-cap margin is −1.440, CI
+[−26.251,+25.112], two-sided p 0.710; win residual is +0.184. Seat estimates
++0.724/−3.474 and early/late target estimates −14.529/+11.381 reverse. Same-pseudonym
+and same-exact-opponent sensitivities are positive (+11.852/+3.867); near-cap is −2.036.
+
+**Verdict: `NO_MATERIAL_LENGTH_ASSOCIATION`.** H3's full-300 concentration does not
+generalize beyond its narrow quartet/roster comparison. Do not infer a cap mechanism or
+build a duration-conditioned policy. H3's cause-versus-symptom and always-on-control
+requirements remain binding.
+
+Evidence:
+`data/analysis/live-agent-6553250/m5-game-length-effects-result-2026-07-30.md`;
+machine bundle `local_codex_1/m5-game-length-effects/`.

@@ -41,7 +41,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | **✅ DONE — NO_ACTIONABLE_MATCHUP:** 3/72 exact identities clear support; R1FA is a stable negative hint but CI, Holm, and win-effect gates fail; BoatBuilder reverses by seat |
 | **M3** | **Seat asymmetry** — do we underperform in one seat? Never audited; if real it is a targeted fix | hours | **✅ DONE — NO_ACTIONABLE_SEAT_ASYMMETRY:** matched seat-1−seat-0 +10.09, CI [−16.81,+38.91], p 0.484; identity-equal contrast −1.37 |
 | **M4** | **Matchmaking composition** — who do we actually play, how often, and is the mix drifting? Bears on N1 and on whether score drift is pool or us | hours | **✅ DONE — NO_MATERIAL_MATCHMAKING_DRIFT:** mean +0.438, CI [−0.865,+1.867], p 0.884; late mix is 4 pseudonym lineages across 16 version IDs |
-| **M5** | **Game-length / turn-limit effects** — the whole margin gap sat in 300-turn games (H3); characterise how outcome depends on length | ~1 session | open |
+| **M5** | **Game-length / turn-limit effects** — the whole margin gap sat in 300-turn games (H3); characterise how outcome depends on length | ~1 session | **✅ DONE — NO_MATERIAL_LENGTH_ASSOCIATION:** matched cap residual −1.44, CI [−26.25,+25.11], p 0.710; win and stability checks reverse |
 
 ## B. Execution-class — the only family with a perfect arena-transfer record
 
@@ -113,12 +113,11 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 N2 (B4_4_CORRECTED); M2 (NO_ACTIONABLE_MATCHUP);
 M3 (NO_ACTIONABLE_SEAT_ASYMMETRY);
 M4 (NO_MATERIAL_MATCHMAKING_DRIFT);
+M5 (NO_MATERIAL_LENGTH_ASSOCIATION);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its host generator/output-parity blocker.
 
-Priority order as of 2026-07-30, highest unassigned first: **M5** (game-length /
-turn-limit effects) → evidence-index acceptance after correction
-→ then B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A runs
-separately.
+Priority order as of 2026-07-30: evidence-index acceptance after correction → B-tier
+execution and C/D-tier search/learning audits in id order. N4 Phase A runs separately.

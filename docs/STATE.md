@@ -120,13 +120,12 @@ makes the goalpost move in the wrong direction.
     stops; A2-2…5 are closed, no candidate or Arena action.
 - ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
   Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
-  **M1 DONE — PARTIAL / DESCRIPTIVE_ONLY:** 307/329 outcome-complete score transitions
-  across 45 agents, but best held-agent MAE 0.4773 vs 0.4786 zero baseline. No defensible
+  **M1 DONE — DESCRIPTIVE_ONLY:** best held-agent MAE 0.4773 vs 0.4786 zero; no
   wins-per-+1 conversion. **N2 DONE — B4_4_CORRECTED:** group rates reproduce, but its
   all/every-peer, no-loop and causal claims fail. **M2 DONE — NO_ACTIONABLE_MATCHUP:**
   three exact identities clear support, none clear all gates. **M3 DONE:** +10.09 matched,
-  CI crosses zero. **M4 DONE — NO_MATERIAL_MATCHMAKING_DRIFT:** +0.438, CI crosses;
-  late 60 = 47 FreZzz/7 Bubaptik/5 goq/1 IlyaPol across 16 IDs/4 pseudos. Next: M5.
+  CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
+  DONE — NO_MATERIAL_LENGTH_ASSOCIATION:** −1.44 matched, CI crosses, splits reverse.
 - **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
   offline; `chatgpt_1` has N4 Phase A; evidence-index generation still fails host parity. Inbox:
   `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
