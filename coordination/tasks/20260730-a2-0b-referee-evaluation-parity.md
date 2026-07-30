@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T15:28:38Z
+- Last updated UTC: 2026-07-30T15:38:42Z
 
 ## Outcome
 
@@ -95,3 +95,15 @@ without changing the historical engine or generator. A direct Rust module harnes
 6/6 tests, including field identity over 1,024 seeds, direct-move zero draws, bound-one
 draws, and true-tie selection. Collision resolution accepts already-resolved targets so
 the final parser can consume RNG in referee command order.
+
+## V1 development verdict — 2026-07-30T15:38:42Z
+
+**BLOCKED_BEFORE_IMPLEMENTATION_LOCK.** Frozen G3 required zero referee errors across
+both players/modes. The 16-map/256-task smoke observed 10,782 legacy-checker and 10,132
+referee-path issues, overwhelmingly source-defined noncritical `MOVE_BLOCKED`. No
+implementation lock or confirmation run occurred. Evidence:
+`data/analysis/live-agent-6553250/a2-0b-v1-development-blocker-result.json`.
+
+Per the frozen verdict, v1 is preserved. The active task proceeds only through a
+separately frozen r1 repair protocol that models and accounts for supported noncritical
+errors while requiring zero critical or unsupported errors.

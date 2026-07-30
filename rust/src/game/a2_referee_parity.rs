@@ -4,9 +4,12 @@
 //! module preserves the post-map SHA1PRNG state and mirrors the referee's x-major/y-minor
 //! movement candidate ordering.
 
-use super::engine::bfs_distances;
+use super::engine::{
+    self, apply_drop, apply_harvest, apply_mine, apply_plant, apply_train, bfs_distances,
+    recompute_scores, tick_plants,
+};
 use super::state::{Cell, GameState};
-use std::collections::{HashMap, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet};
 
 use super::a2_continued_mapgen::{generate_official_with_rng, Sha1Prng};
 
@@ -28,6 +31,7 @@ pub struct RefereeGame {
     pub game: GameState,
     random: Sha1Prng,
     pub movement_rng: MovementRngStats,
+    pub legality: LegalityReport,
 }
 
 pub fn generate_official(seed: i64) -> RefereeGame {
@@ -36,6 +40,7 @@ pub fn generate_official(seed: i64) -> RefereeGame {
         game,
         random,
         movement_rng: MovementRngStats::default(),
+        legality: LegalityReport::default(),
     }
 }
 
@@ -255,6 +260,609 @@ pub fn apply_resolved_moves(game: &mut GameState, intents: &HashMap<i32, Cell>) 
     blocked
 }
 
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct LegalityIssue {
+    pub turn: i32,
+    pub player: usize,
+    pub phase: &'static str,
+    pub reason: &'static str,
+    pub critical: bool,
+    pub command: String,
+}
+
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
+pub struct LegalityReport {
+    pub commands_checked: u64,
+    pub issues: Vec<LegalityIssue>,
+}
+
+impl LegalityReport {
+    pub fn issue_count(&self) -> usize {
+        self.issues.len()
+    }
+
+    pub fn reason_counts(&self) -> BTreeMap<&'static str, usize> {
+        let mut counts = BTreeMap::new();
+        for issue in &self.issues {
+            *counts.entry(issue.reason).or_insert(0) += 1;
+        }
+        counts
+    }
+}
+
+#[derive(Default)]
+struct ParsedTurn {
+    moves: HashMap<i32, Cell>,
+    move_commands: HashMap<i32, String>,
+    harvest: Vec<i32>,
+    plant: Vec<(i32, String, String)>,
+    chop: Vec<i32>,
+    pick: Vec<(i32, String, String)>,
+    train: Vec<((i32, i32, i32, i32), String)>,
+    drop: Vec<i32>,
+    mine: Vec<i32>,
+}
+
+fn near_shack(game: &GameState, player: usize, cell: Cell) -> bool {
+    manhattan(game.shacks[player], cell) <= 1
+}
+
+fn plant_index(game: &GameState, cell: Cell) -> Option<usize> {
+    game.plants.iter().position(|plant| plant.pos() == cell)
+}
+
+fn parse_decimal(token: &str, signed: bool) -> Option<i32> {
+    let digits = if signed {
+        token.strip_prefix('-').unwrap_or(token)
+    } else {
+        token
+    };
+    if digits.is_empty() || !digits.bytes().all(|byte| byte.is_ascii_digit()) {
+        return None;
+    }
+    token.parse().ok()
+}
+
+fn parse_plant_item(token: &str) -> Result<usize, (&'static str, bool)> {
+    match token.to_ascii_uppercase().as_str() {
+        "PLUM" => Ok(engine::PLUM),
+        "LEMON" => Ok(engine::LEMON),
+        "APPLE" => Ok(engine::APPLE),
+        "BANANA" => Ok(engine::BANANA),
+        "IRON" | "WOOD" => Err(("invalid_plant", false)),
+        _ if token.bytes().all(|byte| byte.is_ascii_digit() || byte == b'_') => {
+            match token.parse::<i32>() {
+                Ok(0..=3) => Ok(token.parse::<usize>().expect("small plant index")),
+                Ok(_) => Err(("invalid_plant", false)),
+                Err(_) => Err(("unknown_command", true)),
+            }
+        }
+        _ => Err(("unknown_command", true)),
+    }
+}
+
+fn record_issue(
+    referee: &mut RefereeGame,
+    player: usize,
+    phase: &'static str,
+    reason: &'static str,
+    critical: bool,
+    command: &str,
+) {
+    referee.legality.issues.push(LegalityIssue {
+        turn: referee.game.turn,
+        player,
+        phase,
+        reason,
+        critical,
+        command: command.to_owned(),
+    });
+}
+
+fn parse_player(referee: &mut RefereeGame, player: usize, raw_commands: &[String]) -> ParsedTurn {
+    let mut parsed = ParsedTurn::default();
+    let mut used = HashSet::new();
+    let commands: Vec<&str> = raw_commands
+        .iter()
+        .flat_map(|line| line.split(';'))
+        .collect();
+
+    for raw in commands {
+        let command = raw.trim();
+        if command.is_empty() {
+            continue;
+        }
+        referee.legality.commands_checked += 1;
+        let upper = command.to_ascii_uppercase();
+        if upper == "WAIT" || upper.starts_with("MSG ") {
+            continue;
+        }
+        let parts: Vec<&str> = command.split_whitespace().collect();
+        let verb = parts[0].to_ascii_uppercase();
+
+        if verb == "TRAIN" {
+            if parts.len() != 5 {
+                record_issue(
+                    referee,
+                    player,
+                    "parse",
+                    "unknown_command",
+                    true,
+                    command,
+                );
+                continue;
+            }
+            let talents: Option<Vec<i32>> = parts[1..]
+                .iter()
+                .map(|token| parse_decimal(token, false))
+                .collect();
+            let Some(talents) = talents else {
+                record_issue(
+                    referee,
+                    player,
+                    "parse",
+                    "unknown_command",
+                    true,
+                    command,
+                );
+                continue;
+            };
+            let talents = (talents[0], talents[1], talents[2], talents[3]);
+            let invalid_skill = talents.0 < 1
+                || talents.0 > referee.game.width * referee.game.height
+                || talents.1 < 0
+                || talents.1 > 1_000
+                || talents.2 < 0
+                || talents.2 > 3
+                || talents.3 < 0
+                || talents.3 > 20;
+            if invalid_skill {
+                record_issue(
+                    referee,
+                    player,
+                    "parse",
+                    "invalid_skill",
+                    false,
+                    command,
+                );
+                continue;
+            }
+            let roster = referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player as usize == player)
+                .count() as i32;
+            let cost = engine::training_cost(roster, talents);
+            if cost
+                .iter()
+                .enumerate()
+                .any(|(index, amount)| referee.game.inventories[player][index] < *amount)
+            {
+                record_issue(
+                    referee,
+                    player,
+                    "parse",
+                    "cant_afford_train",
+                    false,
+                    command,
+                );
+                continue;
+            }
+            parsed.train.push((talents, command.to_owned()));
+            continue;
+        }
+
+        let expected_len = match verb.as_str() {
+            "MOVE" => 4,
+            "PLANT" | "PICK" => 3,
+            "HARVEST" | "CHOP" | "DROP" | "MINE" => 2,
+            _ => {
+                record_issue(
+                    referee,
+                    player,
+                    "parse",
+                    "unknown_command",
+                    true,
+                    command,
+                );
+                continue;
+            }
+        };
+        if parts.len() != expected_len {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                "unknown_command",
+                true,
+                command,
+            );
+            continue;
+        }
+        let Some(unit_id) = parse_decimal(parts[1], false) else {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                "unknown_command",
+                true,
+                command,
+            );
+            continue;
+        };
+        let Some(unit) = referee
+            .game
+            .units
+            .iter()
+            .find(|unit| unit.id == unit_id)
+            .cloned()
+        else {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                "unit_not_found",
+                false,
+                command,
+            );
+            continue;
+        };
+        if unit.player as usize != player {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                "unit_not_owned",
+                false,
+                command,
+            );
+            continue;
+        }
+        if !used.insert(unit_id) {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                "unit_already_used",
+                false,
+                command,
+            );
+            continue;
+        }
+
+        let first_error = match verb.as_str() {
+            "MOVE" => {
+                let x = parse_decimal(parts[2], true);
+                let y = parse_decimal(parts[3], true);
+                match (x, y) {
+                    (Some(x), Some(y)) => {
+                        if x < 0
+                            || x >= referee.game.width
+                            || y < 0
+                            || y >= referee.game.height
+                        {
+                            Some(("out_of_board", false))
+                        } else {
+                            let selected =
+                                select_next_cell(referee, unit.pos(), (x, y), unit.ms);
+                            parsed.moves.insert(unit_id, selected.cell);
+                            parsed
+                                .move_commands
+                                .insert(unit_id, command.to_owned());
+                            None
+                        }
+                    }
+                    _ => Some(("unknown_command", true)),
+                }
+            }
+            "HARVEST" => match plant_index(&referee.game, unit.pos()) {
+                None => Some(("no_plant", false)),
+                Some(index) if referee.game.plants[index].fruits == 0 => {
+                    Some(("no_fruit", false))
+                }
+                Some(_) if unit.free() == 0 => Some(("no_capacity", false)),
+                Some(_) if unit.hp == 0 => Some(("no_harvest", false)),
+                Some(_) => {
+                    parsed.harvest.push(unit_id);
+                    None
+                }
+            },
+            "PLANT" => match parse_plant_item(parts[2]) {
+                Err(error) => Some(error),
+                Ok(_item) if !referee.game.walkable.contains(&unit.pos()) => {
+                    Some(("no_grass", false))
+                }
+                Ok(_) if plant_index(&referee.game, unit.pos()).is_some() => {
+                    Some(("existing_plant", false))
+                }
+                Ok(item) if unit.carry[item] == 0 => Some(("no_seeds", false)),
+                Ok(_) => {
+                    parsed.plant.push((
+                        unit_id,
+                        parts[2].to_ascii_uppercase(),
+                        command.to_owned(),
+                    ));
+                    None
+                }
+            },
+            "CHOP" => {
+                if plant_index(&referee.game, unit.pos()).is_none() {
+                    Some(("no_plant", false))
+                } else if unit.chop == 0 {
+                    Some(("no_chop", false))
+                } else {
+                    parsed.chop.push(unit_id);
+                    None
+                }
+            }
+            "PICK" => match parse_plant_item(parts[2]) {
+                _ if unit.free() == 0 => Some(("no_capacity", false)),
+                Err(error) => Some(error),
+                Ok(item) if referee.game.inventories[player][item] == 0 => {
+                    Some(("out_of_stock", false))
+                }
+                Ok(_) if !near_shack(&referee.game, player, unit.pos()) => {
+                    Some(("no_shack", false))
+                }
+                Ok(_) => {
+                    parsed.pick.push((
+                        unit_id,
+                        parts[2].to_ascii_uppercase(),
+                        command.to_owned(),
+                    ));
+                    None
+                }
+            },
+            "DROP" => {
+                if unit.total() == 0 {
+                    Some(("nothing_to_drop", false))
+                } else if !near_shack(&referee.game, player, unit.pos()) {
+                    Some(("no_shack", false))
+                } else {
+                    parsed.drop.push(unit_id);
+                    None
+                }
+            }
+            "MINE" => {
+                let near_iron = referee
+                    .game
+                    .iron
+                    .iter()
+                    .any(|cell| manhattan(*cell, unit.pos()) == 1);
+                if !near_iron {
+                    Some(("no_iron", false))
+                } else if unit.free() == 0 {
+                    Some(("no_capacity", false))
+                } else if unit.chop == 0 {
+                    Some(("no_chop", false))
+                } else {
+                    parsed.mine.push(unit_id);
+                    None
+                }
+            }
+            _ => unreachable!("known unit command"),
+        };
+        if let Some((reason, critical)) = first_error {
+            record_issue(
+                referee,
+                player,
+                "parse",
+                reason,
+                critical,
+                command,
+            );
+        }
+    }
+    parsed
+}
+
+fn apply_chop_on_existing_cells(
+    game: &mut GameState,
+    unit_ids: &[i32],
+    allowed_cells: &HashSet<Cell>,
+) {
+    let mut cells: HashMap<Cell, Vec<i32>> = HashMap::new();
+    for unit_id in unit_ids {
+        if let Some(unit) = game.units.iter().find(|unit| unit.id == *unit_id) {
+            if unit.chop > 0
+                && allowed_cells.contains(&unit.pos())
+                && plant_index(game, unit.pos()).is_some()
+            {
+                cells.entry(unit.pos()).or_default().push(*unit_id);
+            }
+        }
+    }
+
+    let mut dead = Vec::new();
+    for (cell, choppers) in cells {
+        let Some(index) = plant_index(game, cell) else {
+            continue;
+        };
+        for unit_id in &choppers {
+            let power = game
+                .units
+                .iter()
+                .find(|unit| unit.id == *unit_id)
+                .map(|unit| unit.chop)
+                .unwrap_or(0);
+            game.plants[index].health = (game.plants[index].health - power).max(0);
+        }
+        if game.plants[index].health <= 0 {
+            let size = game.plants[index].size;
+            let mut remaining = size;
+            let mut round = 0;
+            while round < size && remaining > 0 {
+                for unit_id in &choppers {
+                    let free = game
+                        .units
+                        .iter()
+                        .find(|unit| unit.id == *unit_id)
+                        .map(|unit| unit.free())
+                        .unwrap_or(0);
+                    if free > 0 {
+                        if let Some(unit) =
+                            game.units.iter_mut().find(|unit| unit.id == *unit_id)
+                        {
+                            unit.carry[engine::WOOD] += 1;
+                            remaining -= 1;
+                        }
+                    }
+                }
+                round += 1;
+            }
+            dead.push(index);
+        }
+    }
+    dead.sort_unstable();
+    dead.dedup();
+    for index in dead.into_iter().rev() {
+        game.plants.remove(index);
+    }
+}
+
+/// Parse and execute one Legend turn with referee movement RNG and legality accounting.
+pub fn step(referee: &mut RefereeGame, commands0: &[String], commands1: &[String]) {
+    let parsed0 = parse_player(referee, 0, commands0);
+    let parsed1 = parse_player(referee, 1, commands1);
+
+    let mut moves = parsed0.moves.clone();
+    moves.extend(parsed1.moves.iter());
+    let blocked = apply_resolved_moves(&mut referee.game, &moves);
+    for unit_id in blocked {
+        let (player, command) = if let Some(command) = parsed0.move_commands.get(&unit_id) {
+            (0, command)
+        } else {
+            (1, parsed1.move_commands.get(&unit_id).expect("blocked move command"))
+        };
+        record_issue(
+            referee,
+            player,
+            "apply",
+            "move_blocked",
+            false,
+            command,
+        );
+    }
+
+    let mut harvest = parsed0.harvest;
+    harvest.extend(parsed1.harvest);
+    apply_harvest(&mut referee.game, &harvest);
+
+    let choppable_cells: HashSet<Cell> =
+        referee.game.plants.iter().map(|plant| plant.pos()).collect();
+    let all_plants: Vec<(i32, String)> = parsed0
+        .plant
+        .iter()
+        .chain(parsed1.plant.iter())
+        .map(|(unit_id, plant_type, _)| (*unit_id, plant_type.clone()))
+        .collect();
+    let mut plant_types_by_cell: HashMap<Cell, HashSet<&str>> = HashMap::new();
+    for (unit_id, plant_type, _) in parsed0.plant.iter().chain(parsed1.plant.iter()) {
+        let cell = referee
+            .game
+            .units
+            .iter()
+            .find(|unit| unit.id == *unit_id)
+            .expect("parsed planter")
+            .pos();
+        plant_types_by_cell
+            .entry(cell)
+            .or_default()
+            .insert(plant_type.as_str());
+    }
+    for (unit_id, _, command) in parsed0.plant.iter().chain(parsed1.plant.iter()) {
+        let unit = referee
+            .game
+            .units
+            .iter()
+            .find(|unit| unit.id == *unit_id)
+            .expect("parsed planter");
+        if plant_types_by_cell[&unit.pos()].len() > 1 {
+            record_issue(
+                referee,
+                unit.player as usize,
+                "apply",
+                "opponent_plant_blocking",
+                false,
+                command,
+            );
+        }
+    }
+    apply_plant(&mut referee.game, &all_plants);
+
+    let mut chop = parsed0.chop;
+    chop.extend(parsed1.chop);
+    apply_chop_on_existing_cells(&mut referee.game, &chop, &choppable_cells);
+
+    for (player, picks) in [(0, parsed0.pick), (1, parsed1.pick)] {
+        for (unit_id, item, command) in picks {
+            let before = referee.game.inventories[player][engine::item_index(&item)];
+            engine::apply_pick(&mut referee.game, &[(unit_id, item)]);
+            if before == 0 {
+                record_issue(
+                    referee,
+                    player,
+                    "apply",
+                    "pick_stock_lost",
+                    false,
+                    &command,
+                );
+            }
+        }
+    }
+
+    for (player, trains) in [(0, parsed0.train), (1, parsed1.train)] {
+        for (talents, command) in trains {
+            let roster = referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player as usize == player)
+                .count();
+            let cost = engine::training_cost(roster as i32, talents);
+            let affordable = cost
+                .iter()
+                .enumerate()
+                .all(|(index, amount)| referee.game.inventories[player][index] >= *amount);
+            let shack_blocked = referee
+                .game
+                .units
+                .iter()
+                .any(|unit| unit.pos() == referee.game.shacks[player]);
+            apply_train(&mut referee.game, player as i32, talents);
+            let after = referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player as usize == player)
+                .count();
+            if after == roster {
+                let reason = if !affordable {
+                    "train_affordability_lost"
+                } else if shack_blocked {
+                    "train_shack_blocked"
+                } else {
+                    "train_failed"
+                };
+                record_issue(referee, player, "apply", reason, false, &command);
+            }
+        }
+    }
+
+    let mut drop = parsed0.drop;
+    drop.extend(parsed1.drop);
+    apply_drop(&mut referee.game, &drop);
+
+    let mut mine = parsed0.mine;
+    mine.extend(parsed1.mine);
+    apply_mine(&mut referee.game, &mine);
+
+    tick_plants(&mut referee.game);
+    recompute_scores(&mut referee.game);
+    referee.game.turn += 1;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -299,6 +907,8 @@ mod tests {
     fn unique_non_direct_target_consumes_bound_one_draw() {
         let mut referee = generate_official(9_900_002);
         referee.game = from_ascii(&["0..1"]);
+        let mut expected_rng = referee.random.clone();
+        assert_eq!(expected_rng.next_int(1), 0);
         let selected = select_next_cell(&mut referee, (0, 0), (2, 0), 1);
         assert_eq!(selected.cell, (1, 0));
         assert_eq!(selected.candidate_count, 1);
@@ -310,14 +920,22 @@ mod tests {
                 tied_draws: 0,
             }
         );
+        for _ in 0..8 {
+            assert_eq!(
+                referee.random.next_int(10_000),
+                expected_rng.next_int(10_000)
+            );
+        }
     }
 
     #[test]
     fn tied_candidates_follow_referee_x_major_y_minor_order() {
         let mut referee = generate_official(9_900_003);
         referee.game = from_ascii(&["0..", "...", "..1"]);
+        let mut expected_rng = referee.random.clone();
+        let expected_index = expected_rng.next_int(2) as usize;
         let selected = select_next_cell(&mut referee, (0, 0), (2, 2), 1);
-        assert!(selected.cell == (0, 1) || selected.cell == (1, 0));
+        assert_eq!(selected.cell, [(0, 1), (1, 0)][expected_index]);
         assert_eq!(selected.candidate_count, 2);
         assert_eq!(
             referee.movement_rng,
@@ -326,5 +944,113 @@ mod tests {
                 tied_draws: 1,
             }
         );
+    }
+
+    fn with_game(game: GameState) -> RefereeGame {
+        let mut referee = generate_official(9_900_004);
+        referee.game = game;
+        referee.movement_rng = MovementRngStats::default();
+        referee.legality = LegalityReport::default();
+        referee
+    }
+
+    #[test]
+    fn legal_move_vacates_shack_before_train() {
+        let mut game = from_ascii(&["0.+1"]);
+        game.inventories[0] = [2, 2, 2, 0, 2, 0];
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["MOVE 0 1 0".to_owned(), "TRAIN 1 1 1 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+
+        assert_eq!(referee.legality.issue_count(), 0);
+        assert_eq!(
+            referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player == 0)
+                .count(),
+            2
+        );
+    }
+
+    #[test]
+    fn pick_can_make_a_parse_legal_train_fail_at_apply_time() {
+        let mut game = from_ascii(&["0.+1"]);
+        game.inventories[0] = [2, 2, 2, 0, 2, 0];
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["PICK 0 PLUM".to_owned(), "TRAIN 1 1 1 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+
+        assert_eq!(
+            referee.legality.reason_counts(),
+            BTreeMap::from([("train_affordability_lost", 1)])
+        );
+        assert_eq!(
+            referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player == 0)
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn ownership_reuse_and_unknown_commands_are_reason_counted() {
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        step(
+            &mut referee,
+            &[
+                "HARVEST 0".to_owned(),
+                "MOVE 0 1 0".to_owned(),
+                "MOVE 1 1 0".to_owned(),
+                "DANCE".to_owned(),
+            ],
+            &["WAIT".to_owned()],
+        );
+
+        assert_eq!(
+            referee.legality.reason_counts(),
+            BTreeMap::from([
+                ("no_plant", 1),
+                ("unit_already_used", 1),
+                ("unit_not_owned", 1),
+                ("unknown_command", 1),
+            ])
+        );
+    }
+
+    #[test]
+    fn mixed_type_simultaneous_planting_is_an_apply_failure() {
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.units[1].x = 1;
+        game.units[0].carry[engine::PLUM] = 1;
+        game.units[1].carry[engine::LEMON] = 1;
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["PLANT 0 PLUM".to_owned()],
+            &["PLANT 1 LEMON".to_owned()],
+        );
+
+        assert_eq!(
+            referee.legality.reason_counts(),
+            BTreeMap::from([("opponent_plant_blocking", 2)])
+        );
+        assert!(referee.game.plants.is_empty());
+        assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
+        assert_eq!(referee.game.units[1].carry[engine::LEMON], 1);
     }
 }

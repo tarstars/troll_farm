@@ -1,0 +1,57 @@
+{
+  "schema": "troll-farm-a2-0b-v1-development-blocker-v1",
+  "recorded_utc": "2026-07-30T15:38:42Z",
+  "verdict": "BLOCKED_BEFORE_IMPLEMENTATION_LOCK",
+  "reason": "Frozen G3 required zero referee errors across both players and both modes, but ordinary resident/opponent play emits source-defined noncritical errors. Confirmation was not run.",
+  "protocol": {
+    "path": "docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md",
+    "binding_amendment": "docs/a2-0b-referee-evaluation-parity-rng-amendment-2026-07-30.md"
+  },
+  "development_panel": {
+    "start_seed": 9854000,
+    "maps": 16,
+    "tasks": 256,
+    "seats": 2,
+    "opponent_families": 8,
+    "threads": 1,
+    "all_terminal": true,
+    "legacy_referee_state_divergence_tasks": 224
+  },
+  "legacy": {
+    "legality_issues": 10782,
+    "reason_counts": {
+      "move_blocked": 10013,
+      "no_capacity": 558,
+      "nothing_to_drop": 11,
+      "opponent_plant_blocking": 88,
+      "pick_stock_lost": 2,
+      "train_affordability_lost": 98,
+      "train_shack_blocked": 12
+    },
+    "movement_rng_draws": 51319,
+    "movement_tied_draws": 14007
+  },
+  "referee": {
+    "legality_issues": 10132,
+    "reason_counts": {
+      "move_blocked": 9584,
+      "no_capacity": 524,
+      "nothing_to_drop": 10,
+      "pick_stock_lost": 2,
+      "train_shack_blocked": 12
+    },
+    "movement_rng_draws": 52434,
+    "movement_tied_draws": 14562
+  },
+  "integrity": {
+    "source_tests_passed": 10,
+    "source_tests_failed": 0,
+    "development_tsv_sha256": "08684486310dd8ab13da11d6fc9ca4d529ec12684aa68e1fd51a877a3fb7696b",
+    "development_tsv_bytes": 68146,
+    "runner_binary_sha256": "4038d8388d91329a75b5baf5ba164656f83636447d3371f5aa8075fc5b277344",
+    "historical_engine_unchanged": true,
+    "historical_mapgen_unchanged": true,
+    "resident_unchanged": true
+  },
+  "next": "Open a separately frozen r1 protocol that requires source-faithful handling and accounting of noncritical errors, zero critical or unsupported errors, and retains every other v1 gate."
+}
