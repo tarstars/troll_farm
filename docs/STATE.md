@@ -63,7 +63,7 @@ rank goalpost move in the wrong direction.
     cycle starts and again when it terminates; (v) every submission id and terminal
     response is logged to the ledger.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (`claude_1`). No peer agent or subagent may submit. The no-churn evidence still binds
+    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
     the judgment even though it no longer binds the permission.
 - Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
   trial costs days of standing.
@@ -76,7 +76,7 @@ rank goalpost move in the wrong direction.
   (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
 - **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
-  `claude_1` = integrator + arena controller. Hazards (§7) bind every agent: the dev copy
+  **Coordinator (integrator) = `local_codex_1` from 2026-07-30** (owner reassignment); arena controller follows the coordinator by protocol default unless the owner directs otherwise. `claude_1` and `chatgpt_1` are contributors. Handover: `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. Hazards (§7) bind every agent: the dev copy
   `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
   (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
   (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.

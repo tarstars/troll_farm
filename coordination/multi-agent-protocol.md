@@ -28,8 +28,11 @@ index — path ownership alone cannot make simultaneous staging and commits safe
 - one designated **arena controller**, normally the integrator, who alone performs
   platform-side mutations (see §6).
 
-Current roster: **`claude_1`** — integrator and arena controller by default, being the
-only agent present. Roles are defaults, not capability limits; a task record says who owns
+Current roster (owner reassignment 2026-07-30): **`local_codex_1`** — **coordinator
+(integrator)**, and arena controller by the "normally the integrator" default unless the owner
+directs otherwise. **`claude_1`** — contributor; former coordinator; handover brief at
+`coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. **`chatgpt_1`** — contributor
+and reviewer; holds N1 and the evidence-index pilot. Roles are defaults, not capability limits; a task record says who owns
 that particular outcome, and the user may reassign at any time.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
