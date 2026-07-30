@@ -306,3 +306,26 @@ Evidence:
 `data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.md`;
 compact JSON beside it; external detail under
 `outputs/local_codex_1/e2-banking-route-efficiency/`.
+
+## E3 — chop-order premise duplicates stronger exact-resident oracles
+
+**Question.** Is multi-tree chop ordering unaudited because the resident scores only the
+current tree's travel/growth/chop/return yield?
+
+**Coverage.** Production dynamically reconstructs every tree candidate each turn and stores
+no order. The exact-live remembered-current-tree bonus was only +0.617 on 60 reused seeds.
+More importantly, the resident-local one-job terminal oracle executes `FELL_BANK` to
+completion then resumes exact resident; it failed its selected-root gate at +18.584 vs +20
+and closed larger target catalogs. D36 is a strict sequence superset: exact resident roots,
+up to two targets per acquisition kind per unit, joint persistent bundles, exact terminal
+rollouts, and replanning at up to four completion boundaries. It ran multiple bundles in
+87/128 tasks and 292 non-control epochs.
+
+**Value and verdict.** D36's repeated exact-resident upper bound is +10.633 margin vs its
++25 gate and +19.617 own score vs +68; only 2/8 families reach +15 margin, and further
+resident target/overlay iterations are explicitly closed. Therefore E3 is
+`VOID_PREMISE_DUPLICATE`, not an N4 dependency. No cluster definition, two-tree
+permutation, simulation, source, range, candidate, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/e3-chop-order-scope-audit-2026-07-30.md`.

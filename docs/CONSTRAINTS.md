@@ -403,6 +403,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   static future-conditioned ceiling, not causal score or rating. Do not build an immediate
   router or persistence fix; any lookahead successor first needs causal terminal value
   clearing the experiment bar. [E2]
+- **Tree-cluster chop ordering is already CLOSED by stronger exact-resident terminal
+  oracles.** The one-job audit executes `FELL_BANK` through travel/chop/drop and returns to
+  exact resident; its selected-root mean is +18.584 below +20 and explicitly closes larger
+  target catalogs. D36 then enumerates up to two targets/kind/unit, jointly executes full
+  bundles, and replans at completion up to four times: 87/128 tasks use ≥2 bundles, yet the
+  upper bound is only +10.633 margin versus +25 and +19.617 own score versus +68. Do not
+  reopen with cluster definitions, two-tree permutations, commitment bonuses, more targets,
+  or overlay depth. [E3; bundle-job oracle; D36]
 - Field-rate corrections from the 8,1xx-game corpus (2026-07-28, frozen verdicts stand):
   the D164 top-5 P→S→P motif POPULATION rate is ≈49.7% (435/875), not the 72% measured on
   recent-10 windows — a sampling-completeness artifact (old windows over-sampled peer

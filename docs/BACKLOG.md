@@ -37,7 +37,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > NO_MATERIAL_LENGTH_ASSOCIATION; N5 is DONE /
 > NO_MATERIAL_CONTEST_OPPORTUNITY; N6 is CLOSED_AT_DEVELOPMENT. Next: peer corrections,
 > then remaining execution/search audits. E2 is DONE / ROUTE_RESIDUAL_OBSERVED but not
-> experiment-justified (0.335 hindsight movement turn per side-game).**
+> experiment-justified (0.335 hindsight movement turn per side-game). E3 is
+> VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -129,6 +130,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   clean. A future-conditioned alternate door saves exactly one movement turn in 134/10,597
   next-target-bound wood returns: 0.335 turn per side-game, maximum one per episode. This
   is not causal score/rating evidence and does not justify a policy cycle.
+- **E3 ✅ VOID_PREMISE_DUPLICATE.** The resident has no stored tree sequence, but this
+  question was already tested at a stronger level: exact-resident `FELL_BANK` terminal jobs
+  and D36's repeated joint completion-boundary oracle enumerate tree targets, let other
+  trees grow under exact continuation, and execute multiple bundles in 87/128 tasks.
+  D36 gains +10.633 margin versus its +25 upper-bound gate and explicitly closes further
+  resident target/overlay iterations. Do not reopen with cluster or depth definitions.
 
 ### P2 — hygiene and consequences of iteration 1
 

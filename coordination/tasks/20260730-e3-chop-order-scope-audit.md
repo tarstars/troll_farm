@@ -1,6 +1,6 @@
 # 20260730-e3-chop-order-scope-audit
 
-- Status: active — claim publication pending
+- Status: result ready — `VOID_PREMISE_DUPLICATE`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:54:47Z
-- Last updated UTC: 2026-07-30T21:54:47Z
+- Last updated UTC: 2026-07-30T21:58:27Z
 
 ## Outcome
 
@@ -72,3 +72,16 @@ Outcomes:
 
 No platform access or mutation.
 
+## Result
+
+- Production dynamically rescans per-tree travel/growth/chop/return value and has no stored
+  tree sequence.
+- Current-tree persistence was already small (+0.617 margin on 60 reused seeds).
+- The exact-resident one-job oracle terminally valued `FELL_BANK` and closed larger target
+  catalogs at +18.584 selected-root mean versus +20.
+- D36 is the decisive sequence superset: up to two targets/kind/unit, joint persistent jobs,
+  exact terminal rollouts, and up to four completion-boundary replans. It executes ≥2
+  bundles in 87/128 tasks but gains only +10.633 margin versus +25.
+- Verdict: `VOID_PREMISE_DUPLICATE`. No E3 implementation or N4 dependency.
+- Canonical report:
+  `data/analysis/live-agent-6553250/e3-chop-order-scope-audit-2026-07-30.md`.
