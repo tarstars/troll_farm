@@ -64,10 +64,22 @@ def instrument_resident(source:str)->str:
                 let n4_selected_pre = selected.clone();
 """
     source=replace_once(source,select,hooked,"selection hook")
-    final="""                out.extend(selected);
+    final="""                self.remember_selected_regeneration(view, &selected);
+                self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                self.remember_own_plant_attempts(view, &selected);
+                if let Some(farmer_id) = scarce_farmer_id {
+                    self.regeneration_commitments.remove(&farmer_id);
+                }
+                out.extend(selected);
                 if out.is_empty() {
 """
-    publish="""                N4_LAST_PROBE.with(|slot| {
+    publish="""                self.remember_selected_regeneration(view, &selected);
+                self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                self.remember_own_plant_attempts(view, &selected);
+                if let Some(farmer_id) = scarce_farmer_id {
+                    self.regeneration_commitments.remove(&farmer_id);
+                }
+                N4_LAST_PROBE.with(|slot| {
                     *slot.borrow_mut() = Some(N4Probe::capture(
                         view, &n4_candidates, &view.inventories[0],
                         &self.inner.opponent_crops, &n4_selected_pre, &selected,
@@ -76,7 +88,7 @@ def instrument_resident(source:str)->str:
                 out.extend(selected);
                 if out.is_empty() {
 """
-    return replace_once(source,final,publish,"probe publication")
+    return replace_once(source,final,publish,"probe publication live path")
 
 def materialize(args:argparse.Namespace)->int:
     actual=sha256_file(args.resident)
@@ -185,9 +197,21 @@ def self_test()->None:
                 let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
                 out.extend(selected);
                 if out.is_empty() {
+                    out.push("WAIT".to_string());
+                }
+                self.remember_selected_regeneration(view, &selected);
+                self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                self.remember_own_plant_attempts(view, &selected);
+                if let Some(farmer_id) = scarce_farmer_id {
+                    self.regeneration_commitments.remove(&farmer_id);
+                }
+                out.extend(selected);
+                if out.is_empty() {
 """
     transformed=instrument_resident(fixture)
     assert "pub struct N4Probe" in transformed and "n4_forced_pair" in transformed
+    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert transformed.count("out.extend(selected);") == 2
     assert decode_field("MOVE%201%202%203")=="MOVE 1 2 3"
     frozen={}; rows=[]
     for seed in range(1,EXPECTED_GAMES+1):
