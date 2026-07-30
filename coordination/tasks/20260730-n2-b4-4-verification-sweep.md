@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: active — v2 source correction frozen after anchor preflight
+- Status: active — implementation lock ready; full read-only run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:13:04Z
+- Last updated UTC: 2026-07-30T19:21:50Z
 
 ## Outcome
 
@@ -92,3 +92,13 @@ The documented 8,131-record cut fails B4.4's structural anchors (23 peers, 2,700
 occurrences). Exactly one prefix from 8,131 through 9,082 matches all headline counts:
 8,395 records, 25 peers, 12/13 split, 2,787 occurrences. V2 freezes this as an
 anchor-matching reconstruction, not the missing original.
+
+## Implementation lock — 2026-07-30T19:21:50Z
+
+- Analyzer SHA-256:
+  `2f2ee071bb6e06a2b1ba2c4d04e559afec8160cb74fd7781e68f0c506674f796`.
+- Tests SHA-256:
+  `ea9cfdcd486174be537960700161511301299ee07cfc35b34c5952d46fb1de62`.
+- Compile, self-test, and four focused tests pass.
+- One real 300-turn occurrence passes decode, event/lineage reference, and first-plant
+  parity checks.
