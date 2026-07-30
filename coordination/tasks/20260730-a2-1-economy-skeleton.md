@@ -1,16 +1,16 @@
 # 20260730-a2-1-economy-skeleton: build and gate the first Architecture-2 policy
 
-- Status: active — development passed and implementation locked; confirmation not started
+- Status: result ready for review — `FAILED_K1`; A2 programme stopped; no candidate
 - Record owner: local_codex_1
 - Work owner: local_codex_1
-- Reviewer: unassigned
+- Reviewer: `chatgpt_1` requested; acceptance pending
 - Integrator: local_codex_1
 - Area: A2 programme Phase 1
 - Base commit: f1f3292cfe4cfd35e006c9f8ae7f2ffe4de23dc0
 - Branch: `agent/local_codex_1`
-- Progress lease: active from the remotely verified claim commit
+- Progress lease: handoff pending remote publication and reviewer acknowledgement
 - Created UTC: 2026-07-30T17:21:59Z
-- Last updated UTC: 2026-07-30T18:11:05Z
+- Last updated UTC: 2026-07-30T18:17:05Z
 
 ## Outcome
 
@@ -42,8 +42,11 @@ A2-0b built the referee/evaluation substrate; neither produced a candidate bot.
 
 ## Frozen protocol
 
-None yet. `docs/A2-programme-charter-2026-07-30.md` defines the programme gates, but a
-task-specific A2-1 protocol must be frozen before implementation or panel execution.
+`docs/a2-1-economy-skeleton-protocol-2026-07-30.md`, SHA-256
+`93d1273b54f1cddba3b349e18d08fdd427a572a821d8c424bde07976a9469f2a`.
+
+Implementation lock:
+`data/analysis/live-agent-6553250/a2-1-implementation-lock.json`.
 
 ## Exclusive write set
 
@@ -121,7 +124,13 @@ intervening gates and the promotion runbook.
 
 ## Handoff
 
-The eventual work owner must provide a remotely fetchable implementation commit, lock,
-reproduction commands, compact result records, hashes, and reviewer handoff. Until a
-claim is remotely published, this file is only a durable queue entry and reserves no
-write set.
+Implementation commit:
+`2357ec672c971a23f8225ce63f8f1ff4c9214913`.
+
+Confirmation verdict: **FAILED_K1**, 582/2,048 = 28.418% against the frozen 40% gate.
+Machine result:
+`data/analysis/live-agent-6553250/a2-1-confirmation-result.json`.
+Human result:
+`data/analysis/live-agent-6553250/a2-1-confirmation-result-2026-07-30.md`.
+All exact commands, hashes, fresh ranges, and artifact paths are recorded in the protocol,
+implementation lock, and results. Reviewer acknowledgement and integrator closeout remain.

@@ -127,6 +127,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   worker-3 — secure renewable supply before scaling. The recurring serial-scheduler defect is
   the starter abandoning planting to fund worker-3, then competing with the new worker for a
   remaining seed. [curriculum D5–D9]
+- **Architecture-2 Phase 1 is CLOSED by its preregistered K1.** The first from-scratch
+  economy scheduler proves the component mechanics (128,979 unambiguous own bill fruit
+  harvested, 127,614 banked; iron mined at rosters 2 and 3+; zero iron-directed moves),
+  but fruit-funded worker 3 by turn ≤110 transfers from a selection-block
+  **206/512 = 40.23%** to only **582/2,048 = 28.42%** on locked confirmation (gate 40%).
+  All families lie at 27.34–31.25%; thread parity, referee quality, source locks, and all
+  six detectors pass, so this is scientific failure rather than evaluator ambiguity.
+  Do not retune the service threshold, worker spec, deadline, crop catalog, or mining quota
+  on consumed ranges. Reopening requires an owner-authorized new programme and a materially
+  different closed-loop representation. [A2-1, 2026-07-30]
 
 ## (b) Imitation & offline value learning
 

@@ -1346,3 +1346,43 @@ The same review branch accepted X1's
 A2-0b r1. It also accepted A2-0b as **QUALIFIED**. A2-0b is now protocol-closed; A2-1
 inherits locked referee mode, fresh ranges, a policy-owned command-quality gate, and
 legacy-as-control-only. No Phase 1 panel or Arena action occurred.
+
+## 2026-07-30: A2-1 economy skeleton — FAILED K1; Architecture-2 stops
+
+The first new Architecture-2 policy was built from scratch against the locked A2-0b
+referee path. It owns planting, own-generation reconstruction, harvest/bank provenance,
+real worker bills, in-route-only mining, collision-safe one-step movement, crop servicing,
+and late fruit-to-wood liquidation. The resident, A2-0b sources, module registry, and
+sealed data remained byte-exact; no Arena or TestSession action occurred.
+
+Development used fresh seeds 9,880,000–031. The first probe reached 202/512 = 39.45%;
+the one preregistered architecture repair kept distinct pre-worker-3 workers attached to
+distinct owned crops rather than resuming distant chops. The official repaired block
+narrowly passed at **206/512 = 40.23%**. One/20-thread TSVs were byte-identical, all six
+detectors covered 512 trajectories, and command quality passed. The exact implementation
+was remotely locked at commit `2357ec672c971a23f8225ce63f8f1ff4c9214913`.
+
+The single fresh confirmation look used seeds 9,881,000–127, two seats, and all eight
+families. It is a clean **FAILED_K1**:
+
+- fruit-funded worker 3 by post-step turn ≤110: **582/2,048 = 28.42%**, gate 40%;
+- own bill fruit: 128,979 harvested and 127,614 banked;
+- mined iron: 755 at roster 2 and 840 at roster 3+; zero iron-directed moves;
+- one/20-thread TSV SHA:
+  `efd793552a9a535de94a9429eb73fc82db69e11eaf282e83a8ef5ccc2cffe2fa`;
+- critical/unclassified issues: 0; A2-owned issues 198/1,365,709, all allowed
+  simultaneous `opponent_plant_blocking`;
+- all six detectors cover all 2,048 trajectories; repeated failed command 0;
+- family rates are uniformly low (27.34–31.25%), so no family-selection rescue exists.
+
+Descriptive value is also far from candidate level (mean margin −113.11; 1,368
+catastrophes), though Phase 1 did not gate on it. The charter's amended K1 now fires:
+**stop the A2 programme before Phase 2; do not retune on consumed ranges.** Full records:
+`a2-1-{development-result,implementation-lock,confirmation-result}.json` and dated
+Markdown companions. No candidate was built for promotion.
+
+## 2026-07-30: volume 2 frozen
+
+The A2-1 closeout carries this volume past its 100 KB rotation threshold. Volume 2 is now
+frozen; the live ledger continues in
+`legend-top3-experiment-cycle-vol3-2026-07-30.md`.

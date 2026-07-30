@@ -1,0 +1,274 @@
+{
+  "command_quality": {
+    "all_reason_counts": {
+      "existing_plant": 1,
+      "move_blocked": 88903,
+      "no_capacity": 6609,
+      "nothing_to_drop": 10,
+      "opponent_plant_blocking": 396,
+      "pick_stock_lost": 20,
+      "train_affordability_lost": 1393,
+      "train_shack_blocked": 90
+    },
+    "checks": {
+      "global_critical_zero": true,
+      "global_unclassified_zero": true,
+      "own_critical_zero": true,
+      "own_issue_rate_at_most_0_005": true,
+      "own_issue_task_rate_at_most_0_10": true,
+      "own_reasons_allowed": true,
+      "row_accounting_exact": true
+    },
+    "disallowed_own_reasons": {},
+    "own_commands": 1365709,
+    "own_issue_rate": 0.00014497964061157978,
+    "own_issue_task_rate": 0.00048828125,
+    "own_issue_tasks": 1,
+    "own_issues": 198,
+    "own_reason_counts": {
+      "opponent_plant_blocking": 198
+    },
+    "pass": true,
+    "row_invariant_failure_examples": []
+  },
+  "coverage": {
+    "checks": {
+      "all_terminal": true,
+      "labels_exact": true,
+      "no_duplicates": true,
+      "row_count_exact": true,
+      "task_matrix_exact": true
+    },
+    "duplicate_examples": [],
+    "expected_rows": 2048,
+    "missing_examples": [],
+    "observed_rows": 2048,
+    "pass": true,
+    "unexpected_examples": []
+  },
+  "descriptive_value": {
+    "by_family": {
+      "compact_gold": {
+        "catastrophes": 255,
+        "fruit_funded_worker3_rate": 0.27734375,
+        "mean_margin": -265.734375,
+        "mean_opponent_score": 372.58984375,
+        "mean_own_score": 106.85546875,
+        "negative_margin_mass": 68028,
+        "own_bill_fruit_banked": 18009,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "gold_adaptive": {
+        "catastrophes": 211,
+        "fruit_funded_worker3_rate": 0.27734375,
+        "mean_margin": -177.89453125,
+        "mean_opponent_score": 280.203125,
+        "mean_own_score": 102.30859375,
+        "negative_margin_mass": 46324,
+        "own_bill_fruit_banked": 17253,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "legend_balanced": {
+        "catastrophes": 148,
+        "fruit_funded_worker3_rate": 0.2734375,
+        "mean_margin": -90.96875,
+        "mean_opponent_score": 196.3359375,
+        "mean_own_score": 105.3671875,
+        "negative_margin_mass": 26329,
+        "own_bill_fruit_banked": 17699,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "mybot": {
+        "catastrophes": 188,
+        "fruit_funded_worker3_rate": 0.3125,
+        "mean_margin": -99.98046875,
+        "mean_opponent_score": 174.58984375,
+        "mean_own_score": 74.609375,
+        "negative_margin_mass": 26203,
+        "own_bill_fruit_banked": 13106,
+        "own_issues": 198,
+        "tasks": 256
+      },
+      "norx_native_three": {
+        "catastrophes": 75,
+        "fruit_funded_worker3_rate": 0.2734375,
+        "mean_margin": -10.4140625,
+        "mean_opponent_score": 116.078125,
+        "mean_own_score": 105.6640625,
+        "negative_margin_mass": 9734,
+        "own_bill_fruit_banked": 17354,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "resident": {
+        "catastrophes": 229,
+        "fruit_funded_worker3_rate": 0.27734375,
+        "mean_margin": -128.5625,
+        "mean_opponent_score": 198.890625,
+        "mean_own_score": 70.328125,
+        "negative_margin_mass": 32925,
+        "own_bill_fruit_banked": 13046,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "script_boss": {
+        "catastrophes": 131,
+        "fruit_funded_worker3_rate": 0.2734375,
+        "mean_margin": -77.08203125,
+        "mean_opponent_score": 175.3671875,
+        "mean_own_score": 98.28515625,
+        "negative_margin_mass": 22278,
+        "own_bill_fruit_banked": 16821,
+        "own_issues": 0,
+        "tasks": 256
+      },
+      "silver_boss": {
+        "catastrophes": 131,
+        "fruit_funded_worker3_rate": 0.30859375,
+        "mean_margin": -54.2265625,
+        "mean_opponent_score": 135.96484375,
+        "mean_own_score": 81.73828125,
+        "negative_margin_mass": 15897,
+        "own_bill_fruit_banked": 14326,
+        "own_issues": 0,
+        "tasks": 256
+      }
+    },
+    "by_seat": {
+      "0": {
+        "catastrophes": 700,
+        "fruit_funded_worker3_rate": 0.26953125,
+        "mean_margin": -117.90625,
+        "mean_opponent_score": 205.84375,
+        "mean_own_score": 87.9375,
+        "negative_margin_mass": 127450,
+        "own_bill_fruit_banked": 57403,
+        "own_issues": 198,
+        "tasks": 1024
+      },
+      "1": {
+        "catastrophes": 668,
+        "fruit_funded_worker3_rate": 0.298828125,
+        "mean_margin": -108.3095703125,
+        "mean_opponent_score": 206.6611328125,
+        "mean_own_score": 98.3515625,
+        "negative_margin_mass": 120268,
+        "own_bill_fruit_banked": 70211,
+        "own_issues": 0,
+        "tasks": 1024
+      }
+    },
+    "catastrophes": 1368,
+    "mean_margin": -113.10791015625,
+    "mean_opponent_score": 206.25244140625,
+    "mean_own_score": 93.14453125,
+    "negative_margin_mass": 247718
+  },
+  "mechanism": {
+    "checks": {
+      "fruit_funded_worker3_rate_at_least_0_40": false,
+      "iron_directed_moves_zero": true,
+      "mine_roster2_positive": true,
+      "mine_roster3plus_positive": true,
+      "own_crop_bank_positive": true,
+      "own_crop_harvest_positive": true
+    },
+    "conservative_bill_needs_owned_fruit_tasks": 542,
+    "fruit_funded_worker3_rate": 0.2841796875,
+    "fruit_funded_worker3_tasks": 582,
+    "iron_directed_moves": 0,
+    "mined_iron_roster2": 755,
+    "mined_iron_roster3plus": 840,
+    "own_bill_fruit_banked": 127614,
+    "own_bill_fruit_harvested": 128979,
+    "own_generations_created": 13778,
+    "pass": false,
+    "worker3_turn": {
+      "count": 769,
+      "maximum": 295,
+      "median": 37,
+      "minimum": 18
+    }
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "maps": 128,
+    "rows": 2048,
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9881000
+  },
+  "schema": "troll-farm-a2-1-economy-skeleton-result-v1",
+  "stage": "confirmation",
+  "thread_parity": {
+    "byte_identical": true,
+    "jobs1": {
+      "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-confirmation-jobs1-9881000-9881127.tsv",
+      "sha256": "efd793552a9a535de94a9429eb73fc82db69e11eaf282e83a8ef5ccc2cffe2fa"
+    },
+    "jobs20": {
+      "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-confirmation-jobs20-9881000-9881127.tsv",
+      "sha256": "efd793552a9a535de94a9429eb73fc82db69e11eaf282e83a8ef5ccc2cffe2fa"
+    }
+  },
+  "trajectories_and_detectors": {
+    "checks": {
+      "all_records_decoded": true,
+      "no_duplicates": true,
+      "record_count_exact": true,
+      "repeated_failed_command_zero": true,
+      "six_detectors_executed": true,
+      "task_coverage_exact": true
+    },
+    "decode_or_detector_errors": [],
+    "detectors": {
+      "door_queue": {
+        "episodes": 82420,
+        "flagged_turns": 84459
+      },
+      "harvest_slack": {
+        "episodes": 68772,
+        "flagged_turns": 797392
+      },
+      "idle_with_work": {
+        "episodes": 266535,
+        "flagged_turns": 598806
+      },
+      "late_train_window": {
+        "episodes": 185,
+        "flagged_turns": 3881
+      },
+      "repeated_failed_command": {
+        "episodes": 0,
+        "flagged_turns": 0
+      },
+      "unbanked_carry": {
+        "episodes": 2941,
+        "flagged_turns": 266736
+      }
+    },
+    "duplicate_examples": [],
+    "missing_examples": [],
+    "pass": true,
+    "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-confirmation-trajectories-9881000-9881127.ndjson",
+    "records": 2048,
+    "sha256": "bb20af96dc785bd3626e0996c035858bc8ba20ca1ba2c168053259541a47a4c2",
+    "unexpected_examples": [],
+    "unique_tasks": 2048
+  },
+  "verdict": "FAILED_K1"
+}

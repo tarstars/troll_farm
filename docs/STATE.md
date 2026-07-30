@@ -36,8 +36,8 @@ Why ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 
 two-worker roster**, so it is architecturally demonstrated rather than hypothetical.
 N1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:
 remaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do
-the work. **A2 remains optional upside rather than goal-required**, but waiting is no
-longer a candidate path. Rank targets are additionally avoided because pool strengthening
+the work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;
+waiting is not one either. Rank targets are additionally avoided because pool strengthening
 makes the goalpost move in the wrong direction.
 
 ## 3. Standing rules
@@ -100,7 +100,7 @@ makes the goalpost move in the wrong direction.
   scale-asymmetry survival. Learned selection, closed-loop options, production/farming,
   scaling/mining, harvest changes, execution waste, and suppression fixes did not clear
   their frozen gates. See ledger vol 2 and `docs/D-series-atlas.pdf`.
-- ★★ **A2 Architecture-2 is owner-authorized** under
+- ★★ **A2 Architecture-2 STOPPED AT PHASE-1 K1** under
   `docs/A2-programme-charter-2026-07-30.md`; the resident remains untouched.
   - **A2-0a DONE — EXISTS-qualified:** the crop base is sub-critical (R≈0.75) and
     labor-limited. Top-5 reaches worker 3 in 75.6% by median t106 and worker 4 in 41.6% by
@@ -113,13 +113,14 @@ makes the goalpost move in the wrong direction.
     negative mass), is byte-identical at one/20 threads, zero-gates critical/unclassified
     issues, and covers all six detectors over 2,048+2,048 trajectories. Referee RNG changes
     1,781/2,048 trajectories (tail 53 / 13,646); legacy evaluation is control only.
-  - **A2-1 is explicitly QUEUED, unassigned and unstarted** at
-    `coordination/tasks/20260730-a2-1-economy-skeleton.md`; its A2-0b precondition is now
-    satisfied, but it still needs an owner claim and frozen fresh-range protocol. No Phase
-    1 panel has started.
+  - **A2-1 FAILED K1:** the locked new scheduler establishes/reaps/banks its own crops and
+    mines at rosters 2/3, but fruit-funded worker 3 by t≤110 falls from a narrow
+    development 206/512 (40.23%) to confirmation **582/2,048 (28.42%)**, below 40%.
+    Integrity, thread parity, command quality, and all six detectors pass. The programme
+    stops; A2-2…5 are closed, no candidate or Arena action.
 - ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
   Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
-  Current order: A2-1 → M1 → N2 → execution/search/learning audits.
+  Current order: M1 → N2 → evidence-index pilot → execution/search/learning audits.
 - **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
   offline; `chatgpt_1` owns the evidence-index pilot and holds N4 by authorship. Inbox:
   `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
@@ -132,8 +133,9 @@ makes the goalpost move in the wrong direction.
 2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
 3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
 4. `coordination/README.md` + inbox sweep — mandatory for any agent before writing.
-5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md`
-   (vol 1 `...-2026-07-18.md` frozen at D166). Atlas: `docs/D-series-atlas.pdf`.
+5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md`
+   (vol 2 `...-vol2-2026-07-23.md` frozen after A2-1; vol 1
+   `...-2026-07-18.md` frozen at D166). Atlas: `docs/D-series-atlas.pdf`.
 6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
    `docs/archive/INDEX.md` (superseded docs).
 

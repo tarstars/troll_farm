@@ -27,12 +27,11 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > experiments; programmes stay owner-gated. Keep 2–3 audits in flight. The iteration-2
 > section below remains valid as the subset that was already prioritized.
 
-> **NEXT CONSTRUCTION ITEM — A2-1 ECONOMY SKELETON.** Phase 0 feasibility and referee
-> infrastructure are complete; A2-1 is explicitly queued at
-> `coordination/tasks/20260730-a2-1-economy-skeleton.md`. It is **unassigned and
-> unstarted**: no protocol, map range, implementation lock, or panel exists yet. The first
-> build must keep early orchard establishment/partial renewal distinct from late
-> fruit-to-wood conversion and pass the frozen charter gate before any later A2 phase.
+> **A2-1 CLOSED — FAILED K1.** The first new economy scheduler passed development narrowly
+> (206/512 = 40.23%) but reached only **582/2,048 = 28.42%** fruit-funded worker 3 by
+> turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
+> thread parity, and detectors pass; transfer does not. The A2 programme stops before
+> Phase 2. **Next breadth item: M1 rating-system dynamics**, then N2.
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -63,15 +62,11 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 ### P1 — next build and bounded audits with a decision attached
 
-- **A2-1. Economy skeleton — QUEUED, UNASSIGNED, UNSTARTED.** Build a new closed-loop
-  scheduler that establishes and harvests an early orchard, banks its proceeds, mines
-  opportunistically, and funds worker 3. Population-level reproduction is sub-critical
-  (median R≈0.75), so the policy may exploit partial renewal but must not assume indefinite
-  self-replacement. Late fruit-to-wood conversion is a separate objective, not evidence
-  against early establishment. **First kill gate:** fruit-funded worker 3 in ≥40% of
-  fresh-map games by about turn 110, plus non-zero reap of our own crops. Preconditions:
-  A2-0b review closure (**satisfied**); a remotely claimed owner/write set; a separately
-  frozen protocol with fresh ranges and a policy-owned command-quality gate. Canonical record:
+- **A2-1. Economy skeleton — ✅ CLOSED / FAILED K1.** The policy creates and reaps an
+  early orchard, banks 127,614 unambiguous own bill-fruit units, and mines without iron
+  detours, but locked confirmation reaches fruit-funded worker 3 by t≤110 in only
+  **28.42%** of tasks versus the frozen 40% floor. Development's 40.23% did not transfer.
+  All integrity gates pass; no retune and no A2-2. Canonical record:
   `coordination/tasks/20260730-a2-1-economy-skeleton.md`.
 - **N3 / A2-0a ✅ DONE.** The corpus found a sub-critical, labor-limited crop base rather
   than reliable population-level self-replacement. That does not kill A2: top-5 converts
@@ -109,12 +104,10 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 ### P3 — owner programmes
 
-- **H2 / A2 Architecture-2 — OWNER-AUTHORIZED; Phase 0 complete.** A2-0a established the
-  measured economy target and A2-0b produced a reviewed, protocol-closed
-  referee/evaluation substrate. The next step is the explicit A2-1 queue item above,
-  not an implicit open-ended programme. The contest's #2 rejected a third troll for
-  unfavorable cost scaling and #3 stayed at two; A2 therefore remains optional upside and
-  must obey its kill gates rather than assuming scaling wins.
+- **H2 / A2 Architecture-2 — ✅ STOPPED AT PHASE-1 K1.** A2-0a established the target,
+  A2-0b qualified the referee substrate, and A2-1 built the first new policy. Its clean
+  28.42% confirmation misses the 40% workforce-conversion floor, so the charter stops the
+  programme. A2-2…5 are not backlog items without a new owner authorization.
 - **H10 spatial-planes learner** — the sanctioned D172a reopening. H5 adds a data point
   worth weighing: the #1 finisher (delineate) is a **trained NN with no search at all**. Our
   closures cover *option-selection* learning and *imitation from replays*; a self-trained
@@ -131,7 +124,8 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 ### Closed — do not re-propose (see CONSTRAINTS for the decisive numbers)
 
-H1 (economy package, −2.49 own-side-only), H3 (quartet edge dissolves), H5 (done), H6
+H1 (economy package, −2.49 own-side-only), H2/A2 (Phase-1 K1, 28.42% vs 40%),
+H3 (quartet edge dissolves), H5 (done), H6
 generic rollout (narrowed to N4), H7 body-blocking (mechanically impossible), H8 (worker-2
 at the floor), H11 (near-closed, D63/D91), H13 (done → D176a), plus the eight routes of the
 2026-07-29 terminal synthesis.
