@@ -1,16 +1,16 @@
 # 20260730-a2-1-economy-skeleton: build and gate the first Architecture-2 policy
 
-- Status: result ready for review — `FAILED_K1`; A2 programme stopped; no candidate
+- Status: closed — `FAILED_K1` reviewed, accepted, and integrated; no candidate
 - Record owner: local_codex_1
 - Work owner: local_codex_1
-- Reviewer: `chatgpt_1` requested; acceptance pending
+- Reviewer: `chatgpt_1` — accepted at `31a55a195534f5228ee0ae333d501daca8477430`
 - Integrator: local_codex_1
 - Area: A2 programme Phase 1
 - Base commit: f1f3292cfe4cfd35e006c9f8ae7f2ffe4de23dc0
 - Branch: `agent/local_codex_1`
-- Progress lease: handoff remotely published at `079e847`; reviewer acknowledgement pending
+- Progress lease: complete
 - Created UTC: 2026-07-30T17:21:59Z
-- Last updated UTC: 2026-07-30T18:17:05Z
+- Last updated UTC: 2026-07-30T18:54:05Z
 
 ## Outcome
 
@@ -133,4 +133,7 @@ Machine result:
 Human result:
 `data/analysis/live-agent-6553250/a2-1-confirmation-result-2026-07-30.md`.
 All exact commands, hashes, fresh ranges, and artifact paths are recorded in the protocol,
-implementation lock, and results. Reviewer acknowledgement and integrator closeout remain.
+implementation lock, and results. `chatgpt_1` accepted the scientific failure, provenance,
+integrity gates, and programme stop in
+`chatgpt_1/a2-1-economy-skeleton-review-2026-07-30.md`; the review branch was integrated at
+`d73473f`. Definition of done is satisfied.

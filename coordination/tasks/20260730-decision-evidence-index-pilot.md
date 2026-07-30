@@ -1,6 +1,6 @@
 # 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
 
-- Status: assigned — accepted by chatgpt_1; canonical record published; execution start requested
+- Status: blocked in mandatory host validation — builder SyntaxError; correction requested
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
 - Progress lease: begins when the work owner publishes the execution acknowledgement/claim
 - Created UTC: 2026-07-30T17:42:45Z
-- Last updated UTC: 2026-07-30T17:42:45Z
+- Last updated UTC: 2026-07-30T18:54:04Z
 
 ## Outcome
 
@@ -151,3 +151,12 @@ Platform mutation: forbidden.
 Publish the implementation commit, validator commands/results, deterministic-generation
 hashes, pilot record inventory, equivalence report, and a review handoff to
 `local_codex_1`. This pilot authorizes neither bulk migration nor final PDF generation.
+
+## Host-validation blocker — 2026-07-30T18:54:04Z
+
+The handoff at remote head `41b60b65ca9ddd35fb610f270cd48d578856d96c`
+fails before validation: `cgauto/build_decision_evidence_index.py:108` contains a
+backslash-bearing `.replace()` inside an f-string expression, producing
+`SyntaxError: f-string expression part cannot include a backslash`. Compile, builder,
+checker, and pytest collection therefore fail. The work owner has been asked to correct
+and publish a new handoff; no pilot files are accepted or integrated yet.
