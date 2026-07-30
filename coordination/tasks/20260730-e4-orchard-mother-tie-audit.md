@@ -1,6 +1,6 @@
 # 20260730-e4-orchard-mother-tie-audit
 
-- Status: active — claim/protocol publication pending
+- Status: active — implementation locked; full jobs-parity panel pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,19 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:05:35Z
-- Last updated UTC: 2026-07-30T22:05:35Z
+- Last updated UTC: 2026-07-30T22:14:56Z
+
+## Progress
+
+- Claim/protocol published at `bcae0425375913cc6a09c1952f272d71c5502a64`.
+- Analyzer SHA-256:
+  `968ad30331f184a7c222b4811938f720647e82b00bda9fc354a7a6f8b51b437a`.
+- Test SHA-256:
+  `df6a5952f28588e73312aca4a18cfbdabc8aec36e7fbab4374826c22e9ae58c1`.
+- Exact transform, 57/seat census, ten tied-seed registry, self-test, ten focused tests,
+  and a seed-31/motion compile smoke pass.
+- Implementation lock:
+  `local_codex_1/e4-orchard-mother-tie-audit/implementation-lock.json`.
 
 ## Outcome
 
