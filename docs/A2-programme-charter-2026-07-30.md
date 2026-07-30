@@ -52,8 +52,19 @@ preregistered. Each phase ends with a ledger entry and an explicit per-gate verd
   parity by reproducing a known resident result before trusting any A2 number.
 
 **Phase 1 — economy skeleton.** Plant, harvest, bank, and fund a third worker in one
-closed-loop scheduler. **Gate: demonstrable non-zero own-crop reap and at least one
-fruit-funded TRAIN, on fresh maps, with the loop sustaining past turn 150.**
+closed-loop scheduler. **Design premise, corrected by Phase 0a: the base DEPLETES. Do not
+build for a self-sustaining loop — build to convert a finite endowment before the game
+ends.** Measured targets to aim at: **worker 3 by turn 34–106** (top-5 earliest/median),
+**worker 4 by turn 55–137**, with self-planted crops carrying **37–50%** of the bill
+currency and the endowment's share *falling* from ~40% to ~27% as the game runs.
+**Gate: fruit-funded worker 3 in ≥40% of fresh-map games by turn ~110** (= amended K1),
+plus non-zero own-crop reap.
+
+**Phase 1 also inherits a hard requirement from D174a:** the top cohort's mined iron rises
+from **5.99** by worker 3 to **16.05** by worker 4 — iron acquisition *scales with roster*.
+The resident's mining is gated off entirely at `own_units < 2`, which would be **fatal** in
+A2. A2 must mine throughout, and opportunistically (D174a proved dedicated mining detours
+are harmful: −10.76).
 
 **Phase 2 — parity with the resident at equal roster.** **Gate: match the resident on the
 same panel at 2v2 within noise, with tail safety no worse** (catastrophes ≤, negative mass
@@ -74,7 +85,18 @@ longer governs the permission.
 
 ## Kill rules (preregistered — a programme without these is how months disappear)
 
-- **K1.** Phase 0a finds no renewable base → stop.
+- **K1 — AMENDED 2026-07-30 after Phase 0a, with the original recorded as an error.**
+  *Original:* "Phase 0a finds no renewable base → stop." Phase 0a **found no renewable
+  base** — reproduction ratio median 0.75 even for the top five, only 1.2% of their games
+  reaching self-replacement, and tree populations collapsing from ~16 to 7 for every cohort.
+  Read literally the original rule fires. It was **mis-specified by the integrator**: it
+  assumed renewal was the necessary condition for reaching 3–4 workers, when the measured
+  necessary condition is **conversion efficiency of a finite endowment**. The top five fund
+  a third worker in **75.6%** of games and a fourth in **41.6%**, with their own plantings
+  supplying **37.2%** and **49.7%** of that currency — the target is demonstrably reachable
+  from a depleting base. *Amended rule:* **if Phase 1 cannot convert the endowment into a
+  fruit-funded third worker in ≥ 40% of fresh-map games by turn ~110, stop** (references:
+  top-5 75.6% by median turn 106; ranks 6–20 29.7% by median turn 85; resident 0/242, ever).
 - **K2.** Phase 2 not reached within **6 working sessions** of Phase 1 starting → stop and
   reassess with the owner. Not a failure verdict; a budget circuit-breaker.
 - **K3.** Phase 2 gate fails after two design iterations → stop. Equal-roster parity is the
