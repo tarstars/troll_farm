@@ -10,8 +10,10 @@ Written by Fable (`claude_1`); cheap sessions execute, they do not redesign.
 > immutable thresholds — a kill rule firing is a successful outcome. Follow
 > `coordination/multi-agent-protocol.md`: check the inbox, claim before working, keep
 > your write set. Never perform any arena/platform write, submission, or TestSession —
-> and no new platform-read categories — without explicit user authorization in this
-> session. Stop at any failed gate, STOP marker, or owner-level decision (H2 go/no-go,
+> and no new platform-read categories — unless the standing authorization in
+> `docs/STATE.md` §3 covers it AND its conditions are met (QUALIFIED verdict, gain above
+> the noise band, full runbook, owner notified). Autonomous sessions do not exercise the
+> arena-controller role; leave a STOP marker instead. Stop at any failed gate, STOP marker, or owner-level decision (H2 go/no-go,
 > anything touching the arena).
 
 ## Read order at session start

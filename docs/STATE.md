@@ -42,10 +42,29 @@ rank goalpost move in the wrong direction.
 
 ## 3. Standing rules
 
-- **Arena writes require explicit user authorization per exact candidate. No
-  exceptions.** (The 2026-07-28 D171a standing grant is consumed — D171a CLOSED, never
-  triggered, does not carry over.) Promotion runs only via `docs/PROMOTION-RUNBOOK.md`
-  (tooling verified 2026-07-28; baseline read taken).
+- ★★ **STANDING ARENA AUTHORIZATION, granted by the owner 2026-07-30.** The per-candidate
+  permission gate is **lifted**: *"I want to lift this rule about my authorization of
+  interaction with arena. Submit anything worth trying."* Scope, as recorded and confirmed
+  by the integrator:
+  - **Authorized without asking:** submitting a candidate that has passed its frozen
+    protocol's gates; the full promotion protocol including the capacity A/A phase; timed
+    reads; reverts and exact-resident restore within a cycle.
+  - **Still surfaced to the owner BEFORE acting** (not a permission request — a
+    notification, because these are not what was authorized): submitting anything that has
+    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would
+    abandon a matured score with no qualified candidate in hand; more than one submission
+    cycle in flight; anything that could forfeit the ladder slot.
+  - **Replacement discipline the integrator applies in place of the owner's gate** — since
+    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:
+    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must
+    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed
+    it, because below that a submission buys an unmeasurable result at a measured cost;
+    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a
+    cycle starts and again when it terminates; (v) every submission id and terminal
+    response is logged to the ledger.
+  - **Unchanged:** mutations remain serialized through the **single arena controller**
+    (`claude_1`). No peer agent or subagent may submit. The no-churn evidence still binds
+    the judgment even though it no longer binds the permission.
 - Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
   trial costs days of standing.
 - Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11
@@ -137,7 +156,7 @@ rank goalpost move in the wrong direction.
   from chatgpt_1's review) plus five kill rules including a 6-session budget circuit-breaker.
   Phase 0 runs two parallel workstreams: **0a renewable-base feasibility** (K1: no renewable
   base → stop the programme) and **0b referee/evaluation parity harness**. The resident is
-  untouched throughout; Phase 5 (arena) needs a NEW explicit authorization per candidate.
+  untouched throughout; Phase 5 (arena) now runs under the 2026-07-30 standing authorization (§3), still requiring a QUALIFIED verdict and the full runbook.
 - ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
   **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately
   unfiltered, because the integrator's value estimates were wrong four times in the 07-29

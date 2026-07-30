@@ -65,9 +65,12 @@ same panel at 2v2 within noise, with tail safety no worse** (catastrophes ≤, n
 **Phase 4 — same-panel dominance.** **Gate: strictly dominate the resident on the shared
 panel**, then deployability (int8/slim ≤100 kB, warm p95 ≤20 ms).
 
-**Phase 5 — arena.** 🛑 **Requires a NEW explicit owner authorization for the exact
-candidate.** No goal file, charter, or qualifying result authorizes a submission. Promotion
-runs only via `docs/PROMOTION-RUNBOOK.md`, and the no-churn rule stands.
+**Phase 5 — arena.** Runs under the **2026-07-30 standing authorization** (`docs/STATE.md`
+§3): no separate per-candidate permission is needed, but the substance is unchanged — a
+**QUALIFIED** verdict from Phase 4's frozen gates, expected gain above the arena noise band,
+the full `docs/PROMOTION-RUNBOOK.md` with its capacity A/A phase, and owner notification
+before and after. The no-churn *evidence* still governs the decision even though it no
+longer governs the permission.
 
 ## Kill rules (preregistered — a programme without these is how months disappear)
 

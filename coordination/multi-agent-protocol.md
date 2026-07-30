@@ -123,8 +123,12 @@ notification, but the repository message is authoritative.
 Read-only platform work (leaderboard reads, replay collection) may be delegated to any
 agent under the existing authorization rules in `docs/STATE.md` §3. **Mutations — any
 submission, TestSession game, or anything that changes our ladder standing — are
-serialized through the single arena controller and require explicit user authorization for
-the exact candidate**, per `docs/PROMOTION-RUNBOOK.md` and backlog item B4.1.
+serialized through the single arena controller**, per `docs/PROMOTION-RUNBOOK.md`. Since
+2026-07-30 the owner's per-candidate permission gate is **lifted** (standing authorization —
+see `docs/STATE.md` §3), but the requirements it protected are not: a **QUALIFIED verdict
+from a frozen protocol**, expected gain above the arena noise band, the full runbook, and
+owner notification before and after each cycle. **No peer agent or subagent may submit** —
+the serialization through `claude_1` is unchanged and is the point.
 
 No agent submits merely because a candidate qualifies. Before any submission: confirm the
 exact artifact and its SHA-256, confirm only one controller is active, take the pre-trial
