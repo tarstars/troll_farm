@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: canonical result ready for review — B4_4_CORRECTED
+- Status: handed off for review — B4_4_CORRECTED
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:31:58Z
+- Last updated UTC: 2026-07-30T19:32:59Z
 
 ## Outcome
 
@@ -131,3 +131,6 @@ Canonical result:
 `data/analysis/live-agent-6553250/n2-b4-4-verification-result-2026-07-30.md`.
 STATE, CONSTRAINTS, BACKLOG, the approach register, and ledger volume 3 now replace stale
 B4.4 citations with the C1–C7 corrected result. Reviewer acknowledgement remains.
+
+Reviewer handoff published from canonical head
+`7c0602481391a5d35bb49791583b2fc3922e09fd`.
