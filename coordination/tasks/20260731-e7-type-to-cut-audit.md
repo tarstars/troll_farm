@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T23:28:27Z
-- Last updated UTC: 2026-07-30T23:35:40Z
+- Last updated UTC: 2026-07-30T23:40:37Z
 
 ## Progress
 
@@ -23,6 +23,7 @@
 - Seed 0 versus motion activates both seats with exact-prefix first divergences.
 - Implementation lock:
   `local_codex_1/e7-type-to-cut-audit/implementation-lock.json`.
+- Jobs-8 phase marker: 120/360 value cells complete without an integrity exception.
 
 ## Outcome
 
