@@ -9,6 +9,14 @@ project-specific hazards in §7 are new.
 There is no daemon, bus, or lock manager. The protocol is Markdown files at agreed paths,
 with Git as transport and durability.
 
+> **Transport invariant — unpushed means unsent.** A working-tree file, local commit,
+> terminal output, or statement in chat is invisible to the other agents and has **no
+> coordination effect**. A claim, progress update, blocker, handoff, acknowledgement,
+> release, integration notice, or status change becomes real only after the commit
+> containing it is pushed to `origin` and its remote SHA is fetchable. Never tell the user
+> or another agent that repository communication was sent, published, pushed, or completed
+> until that remote verification succeeds.
+
 ## 1. Topology and roles
 
 Two writing agents must never share a Git worktree: one working tree, one branch, one
@@ -33,9 +41,13 @@ Task ids: `YYYYMMDD-<area>-<short-outcome>` (e.g. `20260729-d176-mining-window-a
 One file per task at `coordination/tasks/<task-id>.md`, from `templates/task.md`, owned by
 its record owner. The assignee acknowledges by message, never by editing the record.
 
-Do not start implementation until ownership and the write set are explicit. If two
-proposed tasks need the same file, split the ownership, serialize the tasks, or give both
-changes to one owner.
+A task assignment or claim is effective only when the task record and/or claim message is
+committed and pushed to a remote ref. A local file or local commit does not reserve work;
+other agents cannot be expected to respect ownership they cannot fetch.
+
+Do not start implementation until ownership and the write set are explicit **and remotely
+published**. If two proposed tasks need the same file, split the ownership, serialize the
+tasks, or give both changes to one owner.
 
 Experiment work has a second, stricter layer that predates this protocol and outranks it:
 a frozen experiment protocol under `data/analysis/live-agent-6553250/dNNN*-protocol-*.md`
@@ -61,13 +73,15 @@ what may be changed and what the gates are. Where they disagree, the frozen prot
 
 ## 4. Synchronization artifacts
 
-**Task records** — §2, `templates/task.md`.
+**Task records** — §2, `templates/task.md`. A task record that exists only locally is not a
+scheduled task.
 
 **Agent status** — `coordination/status/<agent-id>.md`, a replaceable snapshot owned only
 by that agent, from `templates/status.md`. Update when accepting or releasing a task,
 before a long-running job, after the first reproducible result, when the write set or plan
 changes, when blocked, when a handoff is ready, and after integration. Status is a
-convenience snapshot; messages and commits are the durable history.
+convenience snapshot; messages and commits are the durable history. A status update is not
+visible or current for peers until its commit is pushed.
 
 **Immutable messages** — each sender owns `coordination/messages/<sender>/`. Filename:
 
@@ -76,12 +90,14 @@ YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md
 ```
 
 Kinds: `claim`, `progress`, `question`, `blocker`, `policy`, `stop`, `takeover`,
-`handoff`, `ack`, `release`, `integrated`. Messages are immutable once published; a
-correction is a new message naming the superseded file. All kinds except `progress`,
-`ack`, `release` and `integrated` require an `ack` from the recipient's own namespace.
+`handoff`, `ack`, `release`, `integrated`. Messages are immutable once published; here
+**published means committed and pushed to `origin`**. A correction is a new pushed message
+naming the superseded file. All kinds except `progress`, `ack`, `release` and `integrated`
+require an `ack` from the recipient's own namespace.
 
 **Handoffs** — a message using `templates/handoff.md`. A statement such as "done" without
-an inspectable commit and validation evidence is not a handoff.
+an inspectable commit and validation evidence is not a handoff. A handoff that has not been
+pushed is not a handoff at all.
 
 **Goals** — `coordination/goals/*.md`, integrator-owned: a time-boxed autonomous mission
 brief the user activates by naming the file. Self-contained: it restates the liveness and
@@ -91,32 +107,41 @@ files never authorize Arena writes by themselves — the standing authorization 
 
 ## 5. Cadence and liveness
 
-Event-triggered, not polled: **claim** before implementation → **progress** at the first
-reproducible result or material design decision → **blocker/question** immediately if work
-would otherwise diverge or stall → **handoff** after validation and push → **ack** before
-the reviewer or integrator proceeds → **integrated/release**.
+Event-triggered, not polled: **claim (write → commit → push → verify)** before
+implementation → **progress (commit → push → verify)** at the first reproducible result or
+material design decision → **blocker/question (commit → push → verify)** immediately if
+work would otherwise diverge or stall → **handoff** after validation and push → **ack**
+after fetch and review → **integrated/release** after their commits are pushed.
 
-An active task has a **15-minute progress lease**. Concrete progress is new inspectable
-evidence: a commit or diff, a test or experiment result, a narrowed failure, or a
-previously announced long-running command with traceable output. Repeating an intention or
-touching a timestamp does not renew the lease.
+The lifecycle label is not earned when a file is written or committed locally. It is earned
+only when the corresponding remote commit is fetchable. Before telling the user that a task
+is claimed, in progress, handed off, integrated, released, or done, verify the remote ref
+and describe that exact repository state.
+
+An active task has a **15-minute progress lease**. Concrete progress is new **remotely
+inspectable** evidence: a pushed commit or fetchable diff, a pushed test or experiment
+result, a narrowed failure recorded in a pushed message, or a previously announced
+long-running command with traceable output whose phase marker has been pushed. Repeating an
+intention, touching a timestamp, making a local commit, or leaving an unpushed phase marker
+does not renew the lease.
 
 *Project adaptation:* experiments here routinely run for hours. A long-running experiment
 renews its lease through **phase markers** — `.superpowers/sdd/<exp>-phase-markers.md`
 entries, or equivalent appended progress lines — which are exactly the "announced
 long-running command with traceable output" the rule contemplates. Announce the job before
-starting it and write markers as phases complete; a silent multi-hour run is a lease
-breach even if work is happening.
+starting it, commit and push that announcement, and push markers as phases complete; a
+silent or unpushed multi-hour run is a lease breach even if work is happening locally.
 
-If an agent produces no concrete progress for 15 minutes, the integrator may instruct it
-to stop and may reassign or take over without further user approval. Takeover procedure:
-inspect the peer's status, messages, branch and announced job; publish a `stop` or
-`takeover` message naming the last observed evidence; **never** clean or rewrite the
-stopped agent's worktree or commits; record the new owner and write set; continue on a
-separate branch or a new artifact version so late work cannot silently overwrite the
-takeover. The stopped agent ceases promptly, checkpoints if possible, acks, releases, and
-does not resume without reassignment. Direct user chat may duplicate an urgent
-notification, but the repository message is authoritative.
+If an agent produces no remotely inspectable concrete progress for 15 minutes, the
+integrator may instruct it to stop and may reassign or take over without further user
+approval. Takeover procedure: fetch and inspect the peer's status, messages, branch and
+announced job; publish a `stop` or `takeover` message naming the last observed remote
+evidence; **never** clean or rewrite the stopped agent's worktree or commits; record the new
+owner and write set; continue on a separate branch or a new artifact version so late work
+cannot silently overwrite the takeover. The stopped agent ceases promptly, checkpoints if
+possible, pushes the checkpoint, acks, releases, and does not resume without reassignment.
+Direct user chat may duplicate an urgent notification, but it does not create repository
+coordination state; the pushed repository message is authoritative.
 
 ## 6. Arena authority (replaces the source protocol's contest-submission section)
 
@@ -165,12 +190,15 @@ of standing.
 swept a running audit's in-progress script into an unrelated commit; content survived but
 the provenance is wrong in history.)
 
-Overlapping claims → integrator picks one owner. Unexpected peer edits inside your write
-set → stop, publish a `blocker`, let the integrator reconcile. A dirty shared worktree →
-do not operate on it; split into separate worktrees. Stale progress → the §5 procedure.
-Failed experiment → preserve the evidence, release the task, never hide a negative result
-(this project's ledger is built from negative results). Platform ambiguity → freeze new
-mutations until reconciled. Secret exposure → stop, notify the user, never re-propagate.
+Only **remotely visible** claims participate in conflict resolution. Overlapping pushed
+claims → integrator picks one owner. An agent cannot complain that a peer violated an
+ownership claim that never left its local branch. Unexpected peer edits inside your write
+set → stop, publish and push a `blocker`, let the integrator reconcile. A dirty shared
+worktree → do not operate on it; split into separate worktrees. Stale progress → the §5
+procedure. Failed experiment → preserve and push the evidence, release the task, never hide
+a negative result (this project's ledger is built from negative results). Platform
+ambiguity → freeze new mutations until reconciled. Secret exposure → stop, notify the user,
+never re-propagate.
 
 ## 9. Definition of done
 
@@ -181,16 +209,44 @@ deferred; claims and status are released; any external mutation has a recorded t
 result. For experiments, additionally: a ledger entry, a `docs/CONSTRAINTS.md` bullet for
 anything closed, and a `docs/STATE.md` update.
 
+No unpushed file, local commit, local test result, chat statement, or local status update can
+satisfy the definition of done.
+
 The user remains the authority for priorities, role changes, and Arena authorization.
 
-## 10. Transport
+## 10. Transport — the golden rule: unpushed = unsent
 
-Canonical transport is Git refs: publish by committing to your `agent/<id>` branch and
-pushing to `origin`; receive with `git fetch origin` and read peer refs, since a message
-may exist only on its sender's branch.
+Canonical transport is **remote Git refs**, not the working tree and not local Git history.
+Coordination state has four distinct levels:
+
+1. **working-tree edit** — private and invisible;
+2. **local commit** — durable only for its author, still invisible to remote agents;
+3. **pushed agent-branch commit** — published and available for claims, progress, review,
+   handoff, acknowledgement, and takeover decisions;
+4. **integrated session-branch commit** — canonical shared state.
+
+Every coordination event must follow this order:
+
+```text
+write artifact → commit explicit paths → push agent branch → verify remote SHA is fetchable → announce
+```
+
+Skipping the push or verification means the event did not happen for coordination purposes.
+If a push fails, the claim is not active, the progress lease is not renewed, the handoff is
+not delivered, and the acknowledgement/release/integration is not published. Chat may warn
+the user about the transport failure, but agents must continue to treat the last fetchable
+remote state as truth.
+
+Publish by committing to your `agent/<id>` branch and pushing to `origin`. Receive by
+running `git fetch origin` (or `scripts/inbox_sweep.py --fetch`) and reading peer refs. A
+receiver must fetch before concluding that a peer has not claimed, progressed, handed off,
+or released a task. A sender must verify the remote commit before saying that it has sent,
+pushed, published, or completed anything.
 
 The remote transport went live on 2026-07-29 (`session-2026-07-01` pushed through
 `2ebb5c6`): remote agents can clone, branch as `agent/<id>`, and their messages become
-fetchable. `scripts/inbox_sweep.py --fetch` sweeps remote refs, local refs, and the
-working tree alike. Note that a message existing only on its sender's unpushed branch is
-invisible to peers — pushing is part of sending.
+fetchable. `scripts/inbox_sweep.py --fetch` sweeps remote refs, local refs, and the working
+tree alike, but only the remote-ref result is authoritative for cross-agent coordination.
+
+**Operational shorthand:** unpushed = unsent; unverified push = not yet sent; chat is an
+alert channel, not the coordination bus.
