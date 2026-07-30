@@ -41,3 +41,43 @@ documented pre/post score, or the platform formula. Resident and Arena untouched
 Evidence:
 `data/analysis/live-agent-6553250/m1-rating-system-dynamics-result-2026-07-30.md`;
 machine bundle `local_codex_1/m1-rating-system-dynamics/`.
+
+## N2 — B4.4 reconstructed, every published claim needs correction
+
+**Question.** Can B4.4's cohort planting, reap, wood-concentration, loop, and
+scale-survival claims be reproduced with exact provenance and correct denominators?
+
+**Source finding.** No original B4.4 JSON report or manifest survives. The tracked
+8,131-game stats cut produces 23 peers / 2,700 occurrences, not 25 / 2,787. An exhaustive
+prefix scan finds one unique structural match at 8,395 records (8,336 clean), SHA-256
+`1f9e3855...`. It is an anchor-matching reconstruction, not the missing original.
+The audit hashes 5,614 raw/trajectory files and decodes 2,963 union occurrences with zero
+failures; all 2,787 anchor occurrences pass every integrity parity.
+
+**What reproduces.** Conditional group first-plant medians are resident 191.5
+(204/204), strong 29 (1,983/2,019), weak 21 (530/564). Generation-level pooled reap is
+0.928%, 15.322%, and 17.198%. Strong group score is 215.527 vs resident 185.696, with
++15.03% wood and +30.02% fruit. Resident/strong equal-roster win rates reproduce as
+58.18%/58.31%; the uncontrolled trajectory summaries also reproduce.
+
+**What fails.** The 25 per-agent plant medians span 3–254, so “all peers plant by 21–29”
+is false. Yamo, therealbeef and LeRenard reap 0%; mehdi_ayari reaps 0.189%, below the
+resident, so “every peer” is false. Self-plant→self-chop instead occurs in 100% resident,
+97.62% strong and 93.09% weak games. Pooled group composition cannot establish
+per-agent wood purity; H3's exact-opponent and quartet controls remain binding and
+invalidate the B4.4 causal survival/mechanism ranking.
+
+**Purpose correction.** Resident early crops (turn ≤50) include 18/23 self-harvested
+generations and 2,022 gained fruit. All 1,027 resident crops planted after turn 250 are
+self-chopped, yielding 1,060 wood, with zero self-harvest. Strong/weak cohorts show the
+same broad early-harvest and late-chop separation. Early orchard establishment and
+post-250 fruit-to-wood conversion are distinct compatible outcomes, not a contradiction.
+Turn alone still does not prove subjective intent or intervention value.
+
+**Verdict: B4_4_CORRECTED; C1–C7 all CORRECTED.** Cite N2, never B4.4 as written.
+D175a's controlled harmful early-plant result remains binding. Resident and Arena
+untouched.
+
+Evidence:
+`data/analysis/live-agent-6553250/n2-b4-4-verification-result-2026-07-30.md`;
+machine bundle `local_codex_1/n2-b4-4-verification/`.

@@ -276,20 +276,21 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   architecture's comparative advantage. Do not retune the planting window, concurrency cap,
   or distance bound; do not reopen production without first changing harvest capability AND
   demonstrating denial is preserved. [D175a]
-- ★★ The resident plants at median turn 191.5; all 25 two-worker Legend peers plant by
-  turn 21–29 (6.6–9× delay, not resource-constrained). Reap rate 0.93% vs STRONG 15.3% /
-  PEER-WEAK 17.2% / top-3 24.16% — the reap gap separates us from EVERY other two-worker
-  agent. At equal roster we are at exact parity with the strong cohort (58.2% vs 58.3%);
-  the whole deficit is scale-asymmetry survival (vs 3-worker: −37.1 us vs −1.8 them; vs
-  4+: 5.0% vs 13.7% wins), which is downstream of having no sustained plant-reap loop.
-  [CORRECTED by B4.5 — the DEPLOYED slim artifact contains ZERO occurrences of
-  `banana_factory`/`ScarceIntent` (pruned as provably-dead code in the 07-17 slimming);
-  the real gate is priority, not a disabled subsystem: PLANT is reachable only once a
-  worker has nothing left to CHOP. The claim below describes the dev copy only.]
-  The dev copy contains the tested `banana_factory_*` loop defaulting to
-  `enabled: false` behind a one-shot board-richness selector (D89/D91 lineage: D89's FULL
-  factory was safety-rejected at +82.9 opponent score, D91's selector fired on 5/16 maps).
-  The middle ground — early, moderate, sustained planting — is untested. [B4.4]
+- ★★ **B4.4 is corrected claim by claim; do not cite its “all/every peer,” no-loop, or
+  causal-survival wording.** Its tracked 8,131-game provenance gives 23 peers/2,700
+  occurrences, not the published 25/2,787; only one inferred 8,395-record prefix matches
+  those anchors, and the original report/manifest is missing. Conditional group first-plant
+  medians do reproduce (resident 191.5, strong 29, weak 21), but the 25 agent medians span
+  **3–254**. Pooled reap reproduces (0.928%/15.322%/17.198%), but yamo, therealbeef and
+  LeRenard are 0% and mehdi_ayari 0.189%, below the resident. Every group instead has a
+  near-universal self-plant→self-chop wood loop (100%/97.62%/93.09% of games). Outcomes
+  directly separate purposes: resident early crops include 18/23 self-harvested with
+  2,022 fruit gained; all 1,027 post-250 crops are self-chopped for 1,060 wood with zero
+  self-harvest. Early orchard establishment and late fruit-to-wood conversion are
+  compatible, not contradictory. The dev factory source facts do not explain historical
+  causality, and the deployed slim artifact pruned that subsystem. H3's controlled
+  survival/wood-purity corrections and D175a's harmful intervention remain binding. [N2;
+  corrects B4.4]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this

@@ -31,7 +31,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > (206/512 = 40.23%) but reached only **582/2,048 = 28.42%** fruit-funded worker 3 by
 > turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
-> Phase 2. **M1 is now DONE / DESCRIPTIVE_ONLY; next unassigned breadth item: N2.**
+> Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; next
+> unassigned breadth item: M2.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -56,13 +57,14 @@ continues with construction and rating-dynamics measurement, not waiting.
   hash-verified games; 307/329 complete score transitions across 45 agents), but the best
   held-agent Elo-like update model has MAE 0.477313 versus a 0.478583 zero-change
   baseline. No wins-per-+1 or terminal-margin-to-rating conversion is defensible.
-- **N2. B4.4 verification sweep.** Its figures have now been corrected twice (H3 on four
-  counts, plus unresolved provenance/definition questions). **Owner correction 2026-07-30:
-  early planting around turns 21–29 can establish a self-reproducing orchard, while
-  post-turn-250 planting converts accumulated fruit into wood; those timings describe
-  different purposes and do not contradict each other.** Re-verify or retire the remaining
-  cohort planting-purpose and wood-concentration claims that motivated D175a. Until this
-  lands, do not cite B4.4 figures in any new protocol.
+- **N2 ✅ DONE — B4_4_CORRECTED.** The original report/manifest is absent; the tracked
+  8,131 cut fails its anchors, while a unique inferred 8,395 prefix matches 25 peers/2,787
+  occurrences. Group medians 191.5/29/21 and pooled reap 0.928%/15.322%/17.198% reproduce,
+  but per-agent first-plant spans 3–254 and four peers do not exceed the resident's reap
+  rate. Every group has a near-universal self-plant→self-chop wood loop. Crop outcomes
+  directly confirm the owner's distinction: early crops can be repeatedly harvested,
+  while post-250 crops are predominantly fruit-to-wood conversions. Cite only the N2
+  corrected result, not B4.4's “all/every peer,” no-loop, or causal-survival wording.
 
 ### P1 — next build and bounded audits with a decision attached
 
@@ -294,14 +296,11 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
 - **B4.3 ✅ DONE 2026-07-28 — the scaling destination is priced**: within-agent +48.2
   margin/worker (CI [44.1,52.7]); 2→3 = +1.9 rating, 3→4 = +3.3, 4→5 = none; resident wins
   5.0% vs 4+-worker opponents. **2→4 ≈ +5.2 rating = 84% of the gap.** Gated on B3.9.
-- **B4.4 ✅ DONE 2026-07-28 — the non-scaling path is real and identified.** We plant at
-  turn 191.5 vs peers' 21–29; reap 0.93% vs 15–17% for every other two-worker agent; at
-  equal roster we are at PARITY with strong peers (58.2/58.3) — the deficit is entirely
-  scale-asymmetry survival, downstream of having no sustained plant-reap loop. The loop's
-  code exists, tested, defaulting OFF behind a rarely-firing selector (D89/D91 lineage).
-  Ranked: (1) no plant-reap loop [policy/parameter], (2) scale survival [downstream],
-  (3) suppression efficiency 0.31 vs 0.43 wood/chop [execution]. Caveat: 4/12 STRONG
-  agents share our no-loop profile and still outrank us.
+- **B4.4 ⚠ SUPERSEDED BY N2 2026-07-30.** Its group-level first-plant and reap rates
+  reproduce on a uniquely inferred cut, but its exact original provenance is missing and
+  its “all/every peer,” no-loop, wood-purity, causal-survival, and ranked-mechanism claims
+  are false or over-scoped. Use
+  `data/analysis/live-agent-6553250/n2-b4-4-verification-result-2026-07-30.md`.
 - **B4.5 ✅ / D175a ❌ CLOSED-AT-MECHANISM 2026-07-29** — "chopping always wins" pinned as
   the real gate (factory is dead/pruned code); the bounded early-planting fix moved first
   plant 199 → 13 and cost **−26.44** with Δopponent +21.09 vs Δown −5.41 and catastrophes

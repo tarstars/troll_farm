@@ -36,7 +36,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **N1** | Maturity-curve measurement | 1 session | **✅ DONE — PARTIAL / IMMATERIAL:** remaining uplift −0.1612, CI [−0.7525,+0.4567], projected mature score 21.3088; boundary-sensitive but closes passive maturity as a planning lever |
-| **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | open, unassigned |
+| **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | **✅ DONE — B4_4_CORRECTED:** unique inferred 8,395 cut matches anchors; group rates reproduce, all/every-peer and no-loop claims fail; early orchard and late wood conversion separated |
 | **M1** | **Rating-system dynamics** — how does the score actually update per win/loss? Recover the update rule from the snapshot series. If it is Elo-like, quantify how many wins a +1 move costs, which prices *every* candidate in wins rather than margin | ~1 session | **✅ DONE — PARTIAL / DESCRIPTIVE_ONLY:** 307/329 complete transitions; best held-agent MAE 0.4773 vs 0.4786 zero baseline; no wins-per-+1 |
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | open |
 | **M3** | **Seat asymmetry** — do we underperform in one seat? Never audited; if real it is a targeted fix | hours | open |
@@ -110,11 +110,13 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 ## Immediate roll
 
 **Done 2026-07-30:** N1 (PARTIAL/IMMATERIAL); M1 (PARTIAL/DESCRIPTIVE_ONLY);
+N2 (B4_4_CORRECTED);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
-pilot is in correction after its host-validation syntax blocker.
+pilot is in correction after its host generator/output-parity blocker.
 
-Priority order as of 2026-07-30, highest unassigned first: **N2** (unblocks B4.4
-citations) → evidence-index acceptance after correction → then B-tier execution and
-C/D-tier search/learning audits in id order. N4 Phase A runs separately.
+Priority order as of 2026-07-30, highest unassigned first: **M2** (opponent-specific
+systematic losses) → M3–M5 measurement audits → evidence-index acceptance after correction
+→ then B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A runs
+separately.

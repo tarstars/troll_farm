@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: first result ready — B4_4_CORRECTED; canonical wording/review pending
+- Status: canonical result ready for review — B4_4_CORRECTED
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:28:18Z
+- Last updated UTC: 2026-07-30T19:31:58Z
 
 ## Outcome
 
@@ -124,3 +124,10 @@ failures; all 2,787 anchor occurrences pass every integrity comparison. Conditio
 medians 191.5/29/21 and pooled reap 0.928%/15.322%/17.198% reproduce, but per-agent
 medians span 3–254 and four peers do not exceed the resident reap rate. Early orchard
 harvest and late fruit-to-wood self-chop are directly observed as distinct uses.
+
+## Canonical closeout prepared — 2026-07-30T19:31:58Z
+
+Canonical result:
+`data/analysis/live-agent-6553250/n2-b4-4-verification-result-2026-07-30.md`.
+STATE, CONSTRAINTS, BACKLOG, the approach register, and ledger volume 3 now replace stale
+B4.4 citations with the C1–C7 corrected result. Reviewer acknowledgement remains.

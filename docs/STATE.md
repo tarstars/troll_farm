@@ -122,9 +122,10 @@ makes the goalpost move in the wrong direction.
   Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
   **M1 DONE — PARTIAL / DESCRIPTIVE_ONLY:** 307/329 outcome-complete score transitions
   across 45 agents, but best held-agent MAE 0.4773 vs 0.4786 zero baseline. No defensible
-  wins-per-+1 conversion. Current next unassigned item: N2.
+  wins-per-+1 conversion. **N2 DONE — B4_4_CORRECTED:** group rates reproduce, but its
+  all/every-peer, no-loop and causal claims fail. Current next unassigned item: M2.
 - **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
-  offline; `chatgpt_1` has N4 Phase A; its evidence-index handoff awaits a syntax fix. Inbox:
+  offline; `chatgpt_1` has N4 Phase A; evidence-index generation still fails host parity. Inbox:
   `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12
   weekly surveillance. No Arena cycle is in flight.
