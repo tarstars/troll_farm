@@ -1,6 +1,6 @@
 # 20260730-a2-0b-referee-evaluation-parity: A2 referee and evaluation harness
 
-- Status: active — protocol design
+- Status: active — protocol frozen; implementation phase
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T15:17:31Z
+- Last updated UTC: 2026-07-30T15:22:05Z
 
 ## Outcome
 
@@ -22,10 +22,9 @@ counts before any A2 Phase 1 result is trusted.
 
 ## Protocol status
 
-Not frozen yet. The first phase selects a source-backed implementation boundary and a
-known resident reproduction target without opening sealed ranges or changing any frozen
-engine/generator source. No panel execution begins until the protocol, locks, and gates
-are remotely published.
+Frozen at `docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md`, SHA-256
+`c912896d98da164cb34255ce44c4da1e463ecb23fa9b5ebba923f4f0f1f0b432`.
+No panel execution begins until the implementation lock is remotely published.
 
 ## Exclusive write set
 
@@ -85,4 +84,3 @@ Conditional integrator closeout paths:
 ## Arena authority
 
 No read or mutation is needed. Arena, TestSession, and submission tooling are forbidden.
-
