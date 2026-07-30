@@ -112,7 +112,9 @@ rank goalpost move in the wrong direction.
     negative mass), is byte-identical at one/20 threads, zero-gates critical/unclassified
     issues, and covers all six detectors over 2,048+2,048 trajectories. Referee RNG changes
     1,781/2,048 trajectories (tail 53 / 13,646); legacy evaluation is control only.
-  - Next A2 work: freeze an A2-1 protocol with fresh ranges; no Phase 1 panel has started.
+  - **A2-1 is explicitly QUEUED, unassigned and unstarted** at
+    `coordination/tasks/20260730-a2-1-economy-skeleton.md`; freeze its protocol with fresh
+    ranges only after A2-0b review closure. No Phase 1 panel has started.
 - ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
   Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
   Current order: N1 review → A2-1 → M1 → N2 → execution/search/learning audits.

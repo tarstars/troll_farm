@@ -58,11 +58,15 @@ trajectories with all six detectors. Continued referee RNG changes 1,781/2,048
 trajectories, so Phase 1 must use only this path and fresh preregistered ranges.
 
 **Phase 1 — economy skeleton.** Plant, harvest, bank, and fund a third worker in one
-closed-loop scheduler. **Design premise, corrected by Phase 0a: the base DEPLETES. Do not
-build for a self-sustaining loop — build to convert a finite endowment before the game
-ends.** Measured targets to aim at: **worker 3 by turn 34–106** (top-5 earliest/median),
-**worker 4 by turn 55–137**, with self-planted crops carrying **37–50%** of the bill
-currency and the endowment's share *falling* from ~40% to ~27% as the game runs.
+closed-loop scheduler. **Semantic clarification from the owner, 2026-07-30:** early
+planting establishes and partially renews an orchard; late planting converts accumulated
+fruit into wood. These are complementary phases, not contradictory planting-time claims.
+Phase 0a found the population-level base **sub-critical** (median R≈0.75), so the design
+may exploit partial renewal but must not assume indefinite self-replacement; it must also
+convert the finite endowment before the game ends. Measured targets to aim at:
+**worker 3 by turn 34–106** (top-5 earliest/median), **worker 4 by turn 55–137**, with
+self-planted crops carrying **37–50%** of the bill currency and the endowment's share
+*falling* from ~40% to ~27% as the game runs.
 **Gate: fruit-funded worker 3 in ≥40% of fresh-map games by turn ~110** (= amended K1),
 plus non-zero own-crop reap.
 
@@ -92,9 +96,12 @@ longer governs the permission.
 ## Kill rules (preregistered — a programme without these is how months disappear)
 
 - **K1 — AMENDED 2026-07-30 after Phase 0a, with the original recorded as an error.**
-  *Original:* "Phase 0a finds no renewable base → stop." Phase 0a **found no renewable
-  base** — reproduction ratio median 0.75 even for the top five, only 1.2% of their games
-  reaching self-replacement, and tree populations collapsing from ~16 to 7 for every cohort.
+  *Original:* "Phase 0a finds no renewable base → stop." Phase 0a found **no reliable
+  population-level self-replacement** — reproduction ratio median 0.75 even for the top
+  five, only 1.2% of their games reaching full self-replacement, and tree populations
+  collapsing from ~16 to 7 for every cohort. This does not deny the value of early orchard
+  establishment or partial renewal, and it says nothing against separate late
+  fruit-to-wood conversion.
   Read literally the original rule fires. It was **mis-specified by the integrator**: it
   assumed renewal was the necessary condition for reaching 3–4 workers, when the measured
   necessary condition is **conversion efficiency of a finite endowment**. The top five fund

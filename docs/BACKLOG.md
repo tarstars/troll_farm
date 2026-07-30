@@ -27,6 +27,13 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > experiments; programmes stay owner-gated. Keep 2–3 audits in flight. The iteration-2
 > section below remains valid as the subset that was already prioritized.
 
+> **NEXT CONSTRUCTION ITEM — A2-1 ECONOMY SKELETON.** Phase 0 feasibility and referee
+> infrastructure are complete; A2-1 is explicitly queued at
+> `coordination/tasks/20260730-a2-1-economy-skeleton.md`. It is **unassigned and
+> unstarted**: no protocol, map range, implementation lock, or panel exists yet. The first
+> build must keep early orchard establishment/partial renewal distinct from late
+> fruit-to-wood conversion and pass the frozen charter gate before any later A2 phase.
+
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
 Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
@@ -48,19 +55,30 @@ construction.
   if maturity is worth 3–4 points, patience and submission *timing* outrank every code
   candidate we have found. Read-only, no platform interaction.
 - **N2. B4.4 verification sweep.** Its figures have now been corrected twice (H3 on four
-  counts; H5 on planting tempo, where yamo's own postmortem says turn > 250 against B4.4's
-  claimed 21–29). Re-verify or retire its remaining claims — particularly the cohort
-  planting-tempo and wood-concentration numbers, which motivated D175a. Until this lands, do
-  not cite B4.4 figures in any new protocol.
+  counts, plus unresolved provenance/definition questions). **Owner correction 2026-07-30:
+  early planting around turns 21–29 can establish a self-reproducing orchard, while
+  post-turn-250 planting converts accumulated fruit into wood; those timings describe
+  different purposes and do not contradict each other.** Re-verify or retire the remaining
+  cohort planting-purpose and wood-concentration claims that motivated D175a. Until this
+  lands, do not cite B4.4 figures in any new protocol.
 
-### P1 — bounded audits with a decision attached
+### P1 — next build and bounded audits with a decision attached
 
-- **N3. Renewable-base feasibility — the gate on H2.** H1 found worker 4 is affordable in
-  0/220 games because credited resources are a *one-time windfall from a finite tree
-  population*, yet the top cohort runs 3.55 workers. Determine from the corpus whether a
-  genuinely self-sustaining resource loop exists on these maps, or whether the top cohort
-  simply consumes a larger windfall faster. **If no renewable base exists, H2's premise
-  fails and the Architecture-2 programme should not start.**
+- **A2-1. Economy skeleton — QUEUED, UNASSIGNED, UNSTARTED.** Build a new closed-loop
+  scheduler that establishes and harvests an early orchard, banks its proceeds, mines
+  opportunistically, and funds worker 3. Population-level reproduction is sub-critical
+  (median R≈0.75), so the policy may exploit partial renewal but must not assume indefinite
+  self-replacement. Late fruit-to-wood conversion is a separate objective, not evidence
+  against early establishment. **First kill gate:** fruit-funded worker 3 in ≥40% of
+  fresh-map games by about turn 110, plus non-zero reap of our own crops. Preconditions:
+  A2-0b review closure; a remotely claimed owner/write set; a separately frozen protocol
+  with fresh ranges and a policy-owned command-quality gate. Canonical queue record:
+  `coordination/tasks/20260730-a2-1-economy-skeleton.md`.
+- **N3 / A2-0a ✅ DONE.** The corpus found a sub-critical, labor-limited crop base rather
+  than reliable population-level self-replacement. That does not kill A2: top-5 converts
+  the depleting endowment into worker 3 in 75.6% of games by median turn 106 and worker 4
+  in 41.6% by turn 137; self-planted currency supplies 37%/50% of the bills. Those numbers
+  define A2-1's gate above.
 - **N4. H6 residual as a value audit** *(chatgpt_1's, re-scoped)*. Their preflight already
   invalidated generic rollout — pair assignment is exhaustive, chop scoring models growth,
   and the MC/MOVE-residual/one-deviation/overlay families are closed. What survives is
@@ -90,11 +108,14 @@ construction.
   the panel control misses by 12×; displacement gate cannot distinguish fragmentation from
   manufacture) — recorded in CONSTRAINTS as gate-design rules.
 
-### P3 — owner programme decisions (unchanged, now better constrained)
+### P3 — owner programmes
 
-- **H2 Architecture-2** — gated on **N3**, and further contested by H5: the contest's #2
-  finisher explicitly rejected a third troll for "unfavorable cost scaling" and the #3 ran a
-  fixed two-troll roster. Do not start without N1 and N3 in hand.
+- **H2 / A2 Architecture-2 — OWNER-AUTHORIZED; Phase 0 complete.** A2-0a established the
+  measured economy target and A2-0b produced a qualified referee/evaluation substrate
+  (review acknowledgement pending). The next step is the explicit A2-1 queue item above,
+  not an implicit open-ended programme. The contest's #2 rejected a third troll for
+  unfavorable cost scaling and #3 stayed at two; A2 therefore remains optional upside and
+  must obey its kill gates rather than assuming scaling wins.
 - **H10 spatial-planes learner** — the sanctioned D172a reopening. H5 adds a data point
   worth weighing: the #1 finisher (delineate) is a **trained NN with no search at all**. Our
   closures cover *option-selection* learning and *imitation from replays*; a self-trained
