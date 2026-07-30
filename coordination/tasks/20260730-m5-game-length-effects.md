@@ -1,6 +1,6 @@
 # 20260730-m5-game-length-effects: characterize duration and turn-cap outcomes
 
-- Status: claimed — frozen protocol published; implementation pending
+- Status: active — implementation lock ready; full empirical run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:11:33Z
-- Last updated UTC: 2026-07-30T20:11:33Z
+- Last updated UTC: 2026-07-30T20:15:53Z
 
 ## Outcome
 
@@ -77,3 +77,13 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands/hashes, duration/lineage tables, one verdict,
 and only a bounded replay-audit request if all gates pass. `chatgpt_1` reviews
 identification and causal wording before canonical integration.
+
+## Implementation lock — 2026-07-30T20:15:53Z
+
+- Analyzer SHA-256:
+  `ae6a2648e455f854d2ec86bd1a886e0fd38d6c8cd1414d71734182ca53b5198c`.
+- Test SHA-256:
+  `2f17050495488abb40023cb6d7d56270585a167e72686bc5b3cab1a43945120e`.
+- Compile/self-test/five tests pass.
+- Preflight: 125 cap games; 97 primary supported targets / 43 exact identities; all
+  primary support gates structurally clear.
