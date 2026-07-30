@@ -1,6 +1,6 @@
 # 20260730-a2-0b-referee-evaluation-parity: A2 referee and evaluation harness
 
-- Status: active — v1 blocked; r1 protocol frozen before implementation lock
+- Status: active — r1 implementation locked; confirmation next
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T16:02:00Z
+- Last updated UTC: 2026-07-30T16:04:00Z
 
 ## Outcome
 
@@ -129,3 +129,13 @@ mode and executes all six standing detectors without error. Evidence:
 
 No confirmation panel has run. The next step is to publish and remotely verify the
 implementation commit, then publish a separate hash lock before any 128-map execution.
+
+## R1 implementation lock — 2026-07-30T16:04:00Z
+
+Implementation commit `cd424a19a1f746d72afcfc8b7c824284cdda4012` is remotely verified
+on both agent and session branches. The complete direct dependency lock is
+`data/analysis/live-agent-6553250/a2-0b-r1-implementation-lock.json`.
+
+No source or locked dependency may now change. Confirmation is authorized only on the
+fixed consumed 128-map range, first at one thread and then at 20 threads with external
+trajectory dumping. Reviewer acknowledgement remains asynchronous.
