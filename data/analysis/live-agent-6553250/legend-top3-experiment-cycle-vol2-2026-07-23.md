@@ -1294,3 +1294,34 @@ internally paired under their shared deterministic substrate, but they are not
 absolute referee-parity evidence where tied moves or invalid commands occur.
 Full record:
 `docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`.
+
+## 2026-07-30: A2-0b referee/evaluation parity — QUALIFIED
+
+The first frozen v1 protocol stopped correctly before lock: ordinary deterministic play
+emits source-defined noncritical referee failures, so a zero-error gate was invalid. R1
+froze 24 supported noncritical reasons with exact state-effect tests and complete
+own/opponent/phase/reason accounting; critical and unclassified outcomes remained
+zero-gated. The implementation was remotely locked at commit
+`cd424a19a1f746d72afcfc8b7c824284cdda4012` before confirmation.
+
+The consumed D173b calibration matrix (seeds 9,854,000–127, two seats, eight families)
+completed at one and 20 threads: 2,048/2,048 terminal rows, byte-identical TSV SHA
+`3f8071978cedf82c991562bb893bc1990bfc371077d3563f85fed4294b7bee2b`.
+The legacy arm reproduces the preregistered control exactly: **49 catastrophes / 12,749
+negative-margin mass**. Legality gates pass: legacy checker 88,615 supported issues
+(440 own), referee path 86,363 (229 own), with **zero critical and zero unclassified**
+in both. All own issues are simultaneous mixed-type opponent planting, where both
+commands are source-defined failures.
+
+External storage preflight passed on the labeled `medium_data` volume before the
+trajectory write. Exactly 2,048 legacy plus 2,048 referee NDJSON records were decoded,
+with no duplicates/errors and all six standing detectors executed. Continued post-map
+RNG changes 1,781/2,048 trajectories (first divergence turn 1–283, mean 15.37). Referee
+calibration ends at 53 catastrophes / 13,646 negative mass and mean margin −1.888 versus
+legacy; this is the preregistered semantics-change description, **not** an A2 value
+estimate. It demonstrates why Phase 1 must use the locked referee path and fresh ranges;
+legacy is historical control only.
+
+Scientific verdict: **QUALIFIED**. Reviewer acknowledgement is pending, so protocol
+closure and any Phase 1 panel wait. Full records:
+`a2-0b-r1-{implementation-lock,referee-parity-result}.json` and dated Markdown companions.

@@ -1,6 +1,6 @@
 # 20260730-a2-0b-referee-evaluation-parity: A2 referee and evaluation harness
 
-- Status: active — r1 implementation locked; confirmation next
+- Status: active — QUALIFIED scientifically; reviewer acknowledgement pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T16:04:00Z
+- Last updated UTC: 2026-07-30T16:18:00Z
 
 ## Outcome
 
@@ -139,3 +139,17 @@ on both agent and session branches. The complete direct dependency lock is
 No source or locked dependency may now change. Confirmation is authorized only on the
 fixed consumed 128-map range, first at one thread and then at 20 threads with external
 trajectory dumping. Reviewer acknowledgement remains asynchronous.
+
+## R1 confirmation verdict — 2026-07-30T16:18:00Z
+
+**QUALIFIED.** The locked 2,048-task panel is fully terminal, one/20-thread TSVs are
+byte-identical, and the historical legacy target reproduces exactly at 49 catastrophes /
+12,749 negative mass. Both modes have zero critical and zero unclassified issues. All
+2,048 legacy plus 2,048 referee trajectories decode exactly and run all six detectors.
+
+Continued RNG changes 1,781 tasks; the referee calibration tail is 53 catastrophes /
+13,646 negative mass. This is a semantics-change description, not a Phase 1 value
+estimate. Canonical result:
+`data/analysis/live-agent-6553250/a2-0b-r1-referee-parity-result.json`.
+
+No Phase 1 panel has started. Protocol closure waits for reviewer acknowledgement.

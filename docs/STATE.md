@@ -1,6 +1,6 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-07-29. This file is live state, not a record — the ledger volumes are
+Last updated: 2026-07-30. This file is live state, not a record — the ledger volumes are
 the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
@@ -91,98 +91,36 @@ rank goalpost move in the wrong direction.
 
 ## 4. Open thread
 
-- ★★★ **2026-07-29 (H5): the resident is a reproduction of yamo's #3-Legend published
-  bot** (`docs/reference/yann-moisan-postmortem-2026-05-26.txt`, restored) — so "this
-  architecture's ceiling" must be read against the fact that this architecture placed 3rd.
-  **yamo currently ranks 15 @ 24.70 while we rank 45 @ 21.76 at the same 2-troll roster:
-  a 2.94-point, non-architectural gap** to our own source design, 45% of the gap to the
-  bar. This is H13 and it is the strongest cheap lead available.
-- **2026-07-29 TERMINAL SYNTHESIS: the improvement space for THIS architecture is
-  closed** *(scope note: closed for the eight tested LEVERS; H13's fidelity question is
-  outside that scope and untested)*. Eight routes, each with a frozen protocol and verdict: learned selection
-  (D172a — signal abundant, unlearnable from observables), closed-loop training (D170b),
-  production/farming (D175a: −26.44, Δopponent +21.09 — third confirmation production is
-  structurally negative), scaling+mining (D174a: `can_train` hard cap; FRUIT binds the
-  real bill, not iron; mining −10.76), harvest capability (D173a/b), execution waste
-  (comparative baseline: we waste LESS than the top cohorts on all six signatures),
-  suppression efficiency (B4.6: fix class failed twice on this binary). Key structural
-  facts: at equal roster we are at parity with strong two-worker peers (58.2/58.3); the
-  whole deficit is scale-asymmetry survival; a worker prices at +2–4 rating (B4.3); we
-  reap 0.93% vs every other two-worker agent's 15–17%. Full table: ledger vol 2 TERMINAL
-  SYNTHESIS entry; reader's version: `docs/D-series-atlas.pdf` (27 pp).
-- **Direction menu (post-terminal): `docs/rank-hypotheses-2026-07-29.md`** (claude_1),
-  independently reviewed by chatgpt_1
-  (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated; H7
-  premise falsified at `docs/mechanics.md:42-44` — no cross-player blocking exists).
-  **Iteration 2 backlog formed 2026-07-29** (`docs/BACKLOG.md` LIVE PRIORITIES): leads with
-  **N1 maturity-curve measurement** — if the fresh-vs-mature effect is the documented 3–4
-  points, the true code gap to the bar is ~2.5–3.5 rather than 6.46, which re-baselines
-  every downstream decision including whether to build at all. Then N2 (retire/verify B4.4's
-  twice-corrected figures), N3 (renewable-base feasibility — the gate on H2), N4 (H6
-  residual as a value audit), N5 (missing endgame opponent-plant contest), N6 (unswept
-  denial weight), N7 (dead-accretion removal plan).
-  Working taxonomy: **all iteration-1 P0 audits CLOSED 2026-07-29** (H3, H5, H8, H13; H1 too).
-  **D176a CLOSED-AT-MECHANISM 2026-07-29 — no experiment now in flight.** The fix largely
-  worked (incidence 8.50%→2.88%, below yamo's 2.9% reference; zero de-novo; all six value
-  gates pass) but is worth only **+0.045 overall**, so the oscillation line closes
-  permanently. Two mechanism sub-gates were mis-specified by me and the errors are recorded
-  as gate-design rules in CONSTRAINTS. **Next: iteration-2 P0 — N1 maturity measurement.** **H13 DONE** — the 2.94 gap
-  to yamo is most plausibly maturity not code (≤1 pt attributable), but we oscillate at
-  6.4× yamo's rate; four accretions are structurally dead. **H5 DONE** (b)+(c) — confirms the model, corrects H6's
-  lookahead premise, and revealed that the resident reproduces yamo's #3-Legend design
-  while ranking 2.94 below it;
-  **H8 CLOSED** (B) forced — trains on the first legal turn in 219/220 games, premise was
-  a stale census, timing worth +1.31 n.s.; **H3 CLOSED** (C) — the quartet's edge does not
-  survive controls and inverts at 2v4+, B4.4 corrected on four counts, residual
-  contact-coverage lead gated into P1; **H1 CLOSED** (C) — the economy package cannot pay even at its
-  upper bound (−21.33 rating, 0/220 positive; worker 4 never affordable because credited
-  resources are a finite windfall, not a renewable stream); **preflight-gated** H4
-  (deniability census first),
-  H6 (oracle-gap audit first), H7-rewritten (action contention, after H3); **owner
-  programme decisions** H2 Architecture-2 (PRIMARY — five milestone gates in the
-  review), H10 spatial-planes learner (sanctioned long shot); **near-closed** H11;
-  **operations** H9 (capacity A/A only inside an authorized promotion), H12 (running).
-- **Coordination roster**: `local_codex_1` (integrator and arena controller);
-  `claude_1` offline by owner notice; `chatgpt_1` reviewer and N1 owner. Inbox:
-  `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`; new agents get
-  `coordination/peer-prompt.md`. The review's three findings are now
-  CONSTRAINTS bullets (no cross-player blocking; families ≠ map classes; no multi-lever
-  resident bundles) so they cannot be re-proposed.
-- **Operations running**: collection cron 05:17 (`# troll-farm-wide-collect`); B5.3
-  cold-file migration ripens ~2026-08-03; weekly surveillance cadence (H12) with
-  explicit triggers.
-- ★★ **2026-07-30 OWNER DECISION: A2 Architecture-2 programme AUTHORIZED** —
-  `docs/A2-programme-charter-2026-07-30.md`. Integrator recommendation of record was to hold
-  pending N1/N3; the owner elected to build, and N3's renewable-base question is folded into
-  **Phase 0a** rather than used as a pre-gate. Five preregistered milestone gates (adopted
-  from chatgpt_1's review) plus five kill rules including a 6-session budget circuit-breaker.
-  **Phase 0a DONE 2026-07-30 — verdict EXISTS (qualified); K1 does NOT fire; Phase 1 is
-  clearable.** A renewable base exists but is **sub-critical** (R ≈ 0.75 [0.73–0.77] top-5)
-  and **labor-limited, not capacity-limited** (realized 0.40 fruit/turn vs a 2.5–6.8
-  labor-unconstrained ceiling). Decisive: natural trees can only shrink, yet top-5 population
-  **rises 16 → 23.5 by turn 150** with **64.7% of turn-300 trees planted** — so this is not
-  windfall consumption. Worker 3 reached 75.6% (median t106), worker 4 41.6% (t137), with
-  self-planted crops funding 37%/50%; resident 0/242 ever. Iron scales 5.99 → 16.05. K1 was
-  amended to a conversion-efficiency gate (≥40% worker-3 by turn ~110) — a better gate, but
-  note the integrator's mid-flight claim that the original had fired was **wrong**. Also
-  found: an **undocumented ~24-fruit/~6-iron per-player starting bank** absent from
-  `docs/mechanics.md`. **X1 DONE 2026-07-30:** primary-source re-derivation found zero
-  unexpected core mismatch; the starting bank was already correct in D33 and was a
-  documentation omission. Two A2-blocking gaps are now explicit: equal-best movement must
-  consume the continuing referee RNG rather than use the local lexicographic tie-break,
-  and the harness must reproduce strict command validation or prove zero invalid commands.
-  Phase 0b (parity harness) still open. The resident is
-  untouched throughout; Phase 5 (arena) now runs under the 2026-07-30 standing authorization (§3), still requiring a QUALIFIED verdict and the full runbook.
-- ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
-  **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately
-  unfiltered, because the integrator's value estimates were wrong four times in the 07-29
-  sweep. **No value bar on audits** (cheap measurement is the filter); ≥+1.0 rating bar
-  retained for experiments; programmes owner-gated. Keep 2–3 audits in flight and roll.
-  Running: N1. Done: A2-0a and X1. Next: A2-0b (referee/evaluation parity), M1 (rating
-  dynamics), E1 (opening micro-optimality).
-- **Owner-authorized work now active:** A2 Architecture-2; N1 maturity audit. No further
-  owner decision is needed before A2-0b, but all Arena mutations remain serialized through
-  the controller and require a QUALIFIED candidate under the runbook.
+- ★★★ **H5/H13:** the resident reproduces yamo's published #3-Legend design, yet yamo is
+  24.70 versus our mature 21.76 at the same two-worker roster. N1's host analysis reports
+  PARTIAL / IMMATERIAL; canonical reviewer publication is pending.
+- **2026-07-29 terminal synthesis:** all eight tested levers for the resident architecture
+  are closed. At equal roster it matches strong two-worker peers; the deficit is
+  scale-asymmetry survival. Learned selection, closed-loop options, production/farming,
+  scaling/mining, harvest changes, execution waste, and suppression fixes did not clear
+  their frozen gates. See ledger vol 2 and `docs/D-series-atlas.pdf`.
+- ★★ **A2 Architecture-2 is owner-authorized** under
+  `docs/A2-programme-charter-2026-07-30.md`; the resident remains untouched.
+  - **A2-0a DONE — EXISTS-qualified:** the crop base is sub-critical (R≈0.75) and
+    labor-limited. Top-5 reaches worker 3 in 75.6% by median t106 and worker 4 in 41.6% by
+    t137; self-planted currency funds 37%/50%. Phase 1 gate: fruit-funded worker 3 in ≥40%
+    by about turn 110, plus non-zero own-crop reap.
+  - **X1 DONE:** core mechanics match; the ~24-fruit/~6-iron starting bank was a docs-only
+    omission. It exposed continuing movement RNG and strict validation as A2-0b duties.
+  - **A2-0b QUALIFIED scientifically; reviewer acknowledgement pending.** The locked
+    referee path exactly reproduces the historical control (49 catastrophes / 12,749
+    negative mass), is byte-identical at one/20 threads, zero-gates critical/unclassified
+    issues, and covers all six detectors over 2,048+2,048 trajectories. Referee RNG changes
+    1,781/2,048 trajectories (tail 53 / 13,646); legacy evaluation is control only.
+  - Next A2 work: freeze an A2-1 protocol with fresh ranges; no Phase 1 panel has started.
+- ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
+  Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
+  Current order: N1 review → A2-1 → M1 → N2 → execution/search/learning audits.
+- **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
+  offline; `chatgpt_1` is reviewer/N1 owner. Inbox:
+  `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
+- **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12
+  weekly surveillance. No Arena cycle is in flight.
 
 ## 5. Reading order & pointers
 

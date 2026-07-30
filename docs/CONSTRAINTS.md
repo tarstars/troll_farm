@@ -196,9 +196,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   documentation omission. Two gaps remain A2-blocking: local movement selects the
   lexicographic equal-best cell while `Board.getNextCell` uses the referee's continuing RNG,
   and local parsers do not reproduce strict ownership/league/skill/syntax/error semantics.
-  A referee-parity harness must preserve post-map RNG state and validate commands, or prove
-  tied moves absent and zero invalid commands over every evaluated trajectory. [X1,
+  A referee-parity harness must preserve post-map RNG state and validate commands. [X1,
   `docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`]
+- **A2-0b referee substrate:** only the implementation locked at
+  `a2-0b-r1-implementation-lock.json` may underlie A2 evaluations. It reproduces the
+  legacy control exactly (49 catastrophes / 12,749 negative mass), but continued referee
+  RNG changes 1,781/2,048 trajectories and the referee tail is 53 / 13,646. Therefore the
+  legacy engine is a historical control, never an absolute A2 value substrate. Every
+  supported noncritical referee failure must remain reason/phase/owner-accounted; critical
+  and unclassified outcomes are zero-gated. Phase 1 needs fresh ranges and its own
+  policy-owned command-quality gate. [A2-0b r1]
 - Exact field maps do not rescue legacy local evaluation: actual score/margin range coverage
   is 2/5 and 1/5, and the old zoo funds worker-3 in 15/16 cells on maps where real opponents
   prevent it. The zoo is for parity/mechanism tests only, never promotion evidence. [vol 1]

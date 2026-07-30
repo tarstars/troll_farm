@@ -51,6 +51,12 @@ preregistered. Each phase ends with a ledger entry and an explicit per-gate verd
   byte-identical thread repeats, the six waste detectors, and the promotion tooling. Prove
   parity by reproducing a known resident result before trusting any A2 number.
 
+**Phase 0b status, 2026-07-30: QUALIFIED (review acknowledgement pending).** The locked
+referee path reproduces the known legacy result exactly, is byte-identical across one and
+20 threads, zero-gates critical/unclassified errors, and covers all 2,048+2,048
+trajectories with all six detectors. Continued referee RNG changes 1,781/2,048
+trajectories, so Phase 1 must use only this path and fresh preregistered ranges.
+
 **Phase 1 — economy skeleton.** Plant, harvest, bank, and fund a third worker in one
 closed-loop scheduler. **Design premise, corrected by Phase 0a: the base DEPLETES. Do not
 build for a self-sustaining loop — build to convert a finite endowment before the game
@@ -132,7 +138,7 @@ stopping A2 mid-flight; the K-rules govern that, not the score.
 
 ## Structure
 
-Natural multi-agent programme: `claude_1` integrates and owns the charter and gates;
-workstreams go to peers or subagents on `agent/<id>` branches with handoffs. Phase 0a and
-0b are independent and run in parallel. Experiment ids `A2-0a`, `A2-0b`, `A2-1`, … each
-with its own frozen protocol before execution.
+Natural multi-agent programme: `local_codex_1` integrates and owns the gates following
+the owner's 2026-07-30 handover; `claude_1` is offline. Workstreams use `agent/<id>`
+branches with handoffs. Experiment ids `A2-0a`, `A2-0b`, `A2-1`, … each require their own
+frozen protocol before execution.

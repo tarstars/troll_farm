@@ -81,8 +81,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **A2-0a** | Renewable-base feasibility (= N3) | 1 session | **✅ DONE — EXISTS (qualified); K1 does not fire; base sub-critical and LABOR-limited (0.40 fruit/turn realized vs 2.5–6.8 ceiling)** |
-| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **running — `local_codex_1`** |
-| **A2-1…5** | A2 phases per `docs/A2-programme-charter-2026-07-30.md` | programme | gated on 0a |
+| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **✅ QUALIFIED — exact legacy reproduction; locked referee RNG/validation path; reviewer ack pending** |
+| **A2-1…5** | A2 phases per `docs/A2-programme-charter-2026-07-30.md` | programme | Phase 1 protocol next; fresh ranges required |
 | **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | open |
 
 ## F. Opponent interaction — deflated by H5 but not closed
@@ -108,13 +108,12 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 ## Immediate roll
 
-**Done 2026-07-30:** A2-0a (EXISTS-qualified); X1 (core match with two A2-0b parity
-obligations). **Claimed by `chatgpt_1`:** N1 (maturity),
-the evidence-index pilot, and N4 by authorship. **Claimed by `local_codex_1`:** A2-0b.
+**Done 2026-07-30:** A2-0a (EXISTS-qualified); X1 (core match); A2-0b
+(QUALIFIED scientifically, reviewer acknowledgement pending). **Claimed by `chatgpt_1`:**
+N1 (maturity), the evidence-index pilot, and N4 by authorship.
 
-Priority order as of 2026-07-30, highest first: **N1** (re-baselines everything) →
-**X1** (promoted: a confirmed missing rule proves the mechanics are incomplete) →
-**A2-0b** (parity harness — blocking for the whole A2 programme) → **A2-1** (economy
-skeleton, gated on 0b) → **M1** (rating dynamics: prices candidates in wins, and the goal is
-stated in score) → **N2** (unblocks B4.4 citations) → evidence-index pilot → then B-tier
-execution and C/D-tier search/learning audits in id order.
+Priority order as of 2026-07-30, highest first: **N1 review** (re-baselines everything) →
+**A2-1** (economy skeleton; protocol and fresh ranges next) → **M1** (rating dynamics:
+prices candidates in wins, and the goal is stated in score) → **N2** (unblocks B4.4
+citations) → evidence-index pilot → then B-tier execution and C/D-tier search/learning
+audits in id order.
