@@ -1,6 +1,7 @@
 # 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
 
-- Status: blocked in mandatory host validation — builder SyntaxError; correction requested
+- Status: blocked in mandatory semantic validation — line locators resolve in bounds but
+  mostly point to unrelated evidence
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +11,7 @@
 - Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
 - Progress lease: begins when the work owner publishes the execution acknowledgement/claim
 - Created UTC: 2026-07-30T17:42:45Z
-- Last updated UTC: 2026-07-30T18:54:04Z
+- Last updated UTC: 2026-07-30T21:22:05Z
 
 ## Outcome
 
@@ -160,3 +161,32 @@ backslash-bearing `.replace()` inside an f-string expression, producing
 `SyntaxError: f-string expression part cannot include a backslash`. Compile, builder,
 checker, and pytest collection therefore fail. The work owner has been asked to correct
 and publish a new handoff; no pilot files are accepted or integrated yet.
+
+## Semantic-locator blocker — 2026-07-30T21:22:05Z
+
+The compact-registry correction at peer head `f52553e` passes compilation, builder/checker,
+24 tests, deterministic rebuild, generated diff, and all four expected hashes in a clean
+detached checkout and when temporarily applied over current canonical state. It is still
+not acceptable because `validate_source()` treats any in-bounds `lines N-M` range as
+resolved without reading the cited excerpt.
+
+On current canonical `main`, eight of nine scientific `constraint_projection` locators
+point to unrelated bullets. Examples:
+
+- D161 cites 181–183; its actual resident-substrate bullet is 188–191.
+- D169 cites 553–565 (focus/N6 text); its +10.671 envelope is 608–617.
+- D172a cites 358–367; its actual closure ends at 413.
+- D175a cites 258–268; its actual bullet ends at 278.
+- D30 cites 188–193 (D161); its actual substrate bullet ends at 201.
+- H1 cites 734–749 (A2 crop facts); its actual accounting bullet is 796–811.
+- H7 cites 716–722 (D176a oscillation); its mechanics refutation is 454–460.
+
+D101's range includes its citation but omits decisive 93.3% and 10.3% figures. Only the
+two STATE owner-policy ranges remain semantically aligned.
+
+Required correction: make line-locator validation read and verify the cited content,
+include a regression where a valid-but-wrong in-bounds range fails, repair every locator
+against an immutable source revision or other durable content anchor, regenerate, and
+republish the full mandatory sequence. The generated equivalence report must not claim
+mechanical numeric coverage until the cited source excerpt itself is checked. No pilot
+file is integrated.

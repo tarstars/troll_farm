@@ -119,7 +119,7 @@ N6 (CLOSED_AT_DEVELOPMENT);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
-pilot is in correction after its host generator/output-parity blocker.
+pilot is in correction after its semantic line-locator blocker.
 
 Priority order as of 2026-07-30: evidence-index acceptance after correction → remaining
 B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A runs
