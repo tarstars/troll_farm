@@ -726,6 +726,38 @@ def source_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def compact_examples(rows: list[dict], limit: int = 16) -> dict:
+    episodes = [
+        episode
+        for row in rows
+        for side in row["sides"]
+        for episode in side["episodes"]
+    ]
+    selected = []
+    seen = set()
+    for episode in episodes:
+        interesting = (
+            (episode["immediate_positive_checks"] or 0) > 0
+            or (episode["target_changes"] or 0) > 0
+            or (episode["total_hindsight_eta_regret"] or 0) > 0
+            or episode["status"]
+            not in {"deposited_bound", "deposited_unbound"}
+        )
+        if interesting and episode["episode_id"] not in seen:
+            selected.append(episode)
+            seen.add(episode["episode_id"])
+        if len(selected) >= limit:
+            break
+    joint = [
+        check
+        for row in rows
+        for side in row["sides"]
+        for check in side["joint_checks"]
+        if check["identifiable"] and (check["eta_regret"] or 0) > 0
+    ][:limit]
+    return {"episodes": selected, "positive_joint_assignments": joint}
+
+
 def self_test() -> None:
     assert ceil_div(5, 2) == 3
     assert ceil_div(4, 2) == 2
@@ -755,6 +787,14 @@ def main() -> int:
             REPO
             / "data/analysis/live-agent-6553250/"
             "e2-banking-route-efficiency-result-2026-07-30.json"
+        ),
+    )
+    parser.add_argument(
+        "--details-output",
+        type=Path,
+        help=(
+            "full episode bundle; defaults beneath the external-backed outputs root "
+            "with the audited seed interval in its name"
         ),
     )
     parser.add_argument("--self-test", action="store_true")
@@ -787,7 +827,12 @@ def main() -> int:
                 rows.append(future.result())
         rows.sort(key=lambda row: row["seed"])
 
-    payload = {
+    details_output = args.details_output or (
+        REPO
+        / "outputs/local_codex_1/e2-banking-route-efficiency/"
+        f"e2-episode-details-{seeds[0]}-{seeds[-1]}.json"
+    )
+    details = {
         "schema": 1,
         "scope": (
             "behavior-neutral exact-live local audit on reused deterministic seeds; "
@@ -800,9 +845,37 @@ def main() -> int:
         "aggregate": aggregate(rows),
         "rows": rows,
     }
+    save(details_output, details)
+    details_digest = source_sha256(details_output)
+    try:
+        details_path = str(details_output.absolute().relative_to(REPO))
+    except ValueError:
+        details_path = str(details_output)
+    payload = {
+        key: details[key]
+        for key in (
+            "schema",
+            "scope",
+            "source",
+            "source_sha256",
+            "seed_start",
+            "seeds",
+            "aggregate",
+        )
+    }
+    payload["examples"] = compact_examples(rows)
+    payload["details"] = {
+        "path": details_path,
+        "sha256": details_digest,
+        "bytes": details_output.stat().st_size,
+    }
     save(args.output, payload)
     print(json.dumps(payload["aggregate"], indent=1, sort_keys=True))
     print(f"saved {args.output}")
+    print(
+        f"details {details_path} ({details_output.stat().st_size} bytes, "
+        f"sha256 {details_digest})"
+    )
     return 0
 
 

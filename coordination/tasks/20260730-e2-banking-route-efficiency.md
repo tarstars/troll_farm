@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:35:32Z
-- Last updated UTC: 2026-07-30T21:43:34Z
+- Last updated UTC: 2026-07-30T21:46:15Z
 
 ## Outcome
 
@@ -48,6 +48,8 @@ Outcomes:
 - `data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.{md,json}`
   (new);
 - `local_codex_1/e2-banking-route-efficiency/` (new, compact);
+- `outputs/local_codex_1/e2-banking-route-efficiency/e2-episode-details-0-199.json`
+  (new external-backed machine detail);
 - canonical approach register/BACKLOG/CONSTRAINTS/STATE/ledger only at closeout.
 
 ## Shared read-only paths
@@ -62,11 +64,13 @@ Outcomes:
 - `rust/src/bin/yamo_orchard_live.rs`, any submission/source artifact, historical analyzer or
   result, raw games, sealed/confirmation ranges, cron, TestSession, or Arena.
 - Peer-owned N4/evidence-index paths.
-- No formatter, source materialization, platform access, or bulk trajectory dump.
+- No formatter, source materialization, platform access, or raw trajectory dump. Episode
+  detail may be written only through the verified external-backed `outputs/` root.
 
 ## Acceptance
 
 - Exact-live artifact hash and seed/seat coverage are recorded.
+- The tracked JSON is compact; full episode detail has an external path, byte count, and hash.
 - Classification requires carrying cargo and a home-door MOVE/DROP; ambiguous actions are
   counted, not silently assigned.
 - Immediate inbound, target persistence, and hindsight outbound quantities are reported
