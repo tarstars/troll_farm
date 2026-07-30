@@ -103,9 +103,10 @@ def render_equivalence(records: list[dict[str, Any]]) -> str:
             if src["path"] == "docs/CONSTRAINTS.md"
             else "binding governance source; no matching CONSTRAINTS bullet"
         )
+        scope = r["scope"].replace("|", "\\|")
         lines.append(
             f"| `{r['id']}` | `{src['path']}` ({src.get('locator','')}) | "
-            f"{match_class} | {r['scope'].replace('|','\\|')} | {nums_text} |"
+            f"{match_class} | {scope} | {nums_text} |"
         )
     lines += [
         "",
