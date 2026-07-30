@@ -1,6 +1,6 @@
 # Troll Farm — The D-Series Atlas
 
-Snapshot date: 2026-07-29. A reader's guide to every numbered experiment of the Legend
+Snapshot date: **2026-07-30**. A reader's guide to every numbered experiment of the Legend
 top-3 research cycle. Chronology lives in the ledger volumes
 (`data/analysis/live-agent-6553250/legend-top3-experiment-cycle-*.md`); topic-sorted
 conclusions in `docs/CONSTRAINTS.md`; live state in `docs/STATE.md`. This atlas is a
@@ -254,6 +254,8 @@ thirty supervised selectors that all failed the same way.
 | D174a | Does an opportunistic-mining fix (B3.9) unlock worker-3 funding? | Iron acquisition worked exactly as designed (0.51→5.40 iron/game, 10.6×) — but worker-3 TRAIN stayed **0.0%** even with the `can_train` cap clause deleted, an 84.4-point shortfall against the counterfactual. Exposed instead: an unconditional `if n>=2{return false}` hard cap, and — correcting B3.8/B3.9's synthetic-spec counterfactual — the real `TUNED_CARRY` bill is **fruit**-bound (PLUM/LEMON short in 100.0%/99.5% of games), not iron. Value −10.76, all 8 families negative — opportunistic mining closed as harmful; fix order becomes planting (D175) → cap → mining (probably never) |
 | D175a | Does bounded early planting (B4.5's priority-targeted design) recover the plant-reap loop? | **CLOSED — severely harmful.** Trigger fidelity 100% (153/153); works exactly as designed (median first plant turn 13.0 vs control 199.0, peak concurrent crops 1.98) — but reap rate *fell* (0.68%→0.45%, D87's wood-conversion grammar unchanged) and the safety ratio failed decisively: Δown −5.41 vs Δopponent +21.09. Value −26.44 (CI [−28.96,−23.92]), worst family −51.31, catastrophes 229 vs 130 — all six sub-gates fail. Third independent confirmation, with D89 and B4.5, that production trades away more denial than it gains; the harvest→mining→scaling→planting chain now closes at every link |
 
+| D176a | Can a *preference* tie-break with bounded arming cure oscillation where prohibition failed? | **CLOSED-AT-MECHANISM** — and instructively. Incidence fell 8.50% → **2.88%**, *below yamo's own 2.9%*, with **zero** de-novo oscillation and **all six value gates passing** — yet worth only **+0.045** margin (CI straddling zero). Two of four mechanism gates were mis-specified by the integrator; the oscillation line closes permanently on value, not on the gates |
+
 ## 15. Arc M — The maintenance-era audits (B3.x/B4.x, 2026-07-27→29)
 
 Where Arc L's D-experiments are bounded, frozen-protocol causal tests, a parallel run of
@@ -289,6 +291,21 @@ B3.9→D174a). Together they assembled the causal chain the next section synthes
 resident's problem was never suppression, and — despite B3.8's first read — not iron
 either; it is that the plant-reap loop the rest of the field runs from turn ~25 never
 starts.
+
+### Arc M-2 — the iteration-1 hypothesis sweep (H1–H13, 2026-07-29)
+
+Twelve post-terminal hypotheses were written, independently reviewed by a second agent, and
+five were closed in a single day. The sweep's yield was less about candidates than about
+epistemics: **four of six hypotheses examined had false or stale premises.**
+
+| id | question | verdict |
+|---|---|---|
+| H7 | Can we exploit body-blocking, door camping, path denial? | **Premise impossible.** Movement collisions resolve within each player separately; enemy units may share our cells and never block BFS distance. The mechanic does not exist. Rewritten as an action-contention audit |
+| H8 | Why do we train worker 2 at turn 8 when the field trains at 2? | **(B) forced.** We train on the *first legal turn* in 219/220 games. The premise came from a stale census — same-architecture cohorts train *slower* (median 14, 20). Byproduct: shack occupancy must be checked POST-move, correcting D160/B3.8/B3.9 |
+| H3 | How do four same-profile agents survive being outnumbered? | **(C) underdetermined.** The 2v3 edge vanishes under identical-opponent matching and *inverts* at 2v4+. Four B4.4 figures corrected: "no-loop" is a misnomer, and we harvest **2–9× more** fruit than they do |
+| H5 | What did the top players publish about their own strategies? | **(b) confirms + (c).** #2 rejected a third troll for "unfavorable cost scaling"; #3 ran fixed two trolls; the field is **split on lookahead** (#1 is a trained NN with no search, #2 ran depth-12 rollout + 3-ply beam). Nobody describes *recovering* from numeric disadvantage — only preventing it. **Incidentally recovered the bot's own identity** (§27) |
+| H1 | Would the full economy package pay, even at best? | **(C) negative.** Grounded finite-windfall stress test: **−2.49** rating own-side-only, 6/220 games positive. Worker 4 affordable in **zero** games from a one-time windfall |
+| H13 | Why does our reproduction rank below its source design? | **Mostly maturity, not code.** At most ~1 point of the 2.94 deficit is attributable to code; several behaviours are equal or reversed. Real find: we oscillate at **6.4×** yamo's rate, and four accretions are **structurally dead** |
 
 ## 16. The terminal synthesis — where this architecture's ceiling is and why
 
@@ -427,6 +444,38 @@ below for what actually remains.
 - **B4.4→D174a** — the scaling gap gets a mechanism: no plant-reap loop, a fruit-bound (not iron-bound) bill, and a single unconditional clause capping the bot at two workers.
 - **D175a** — production is structurally negative for this architecture: the bounded-concurrency planting fix works exactly as designed (turn 199→13) and still costs −26.44 (Δown −5.41 vs Δopponent +21.09), the third confirmation after D89 and B4.5.
 - **B4.6 → terminal synthesis** — the one lead that played to the architecture's own strength closes on its own history (this exact fix class already lost twice on the byte-identical binary); every route the programme ever found is now closed by measurement, and further gains require a different bot.
+
+### The 2026-07-30 turn
+
+Three inflections landed within a day of each other and together they reset the programme.
+
+**The bot's identity was recovered.** It is not an independently evolved architecture: it is
+a deliberate reproduction of Yann Moisan's **#3-Legend published bot**, built from his
+postmortem in July. Both primary documents had been deleted from the tree in a
+reorganisation and were restored. That reframes every "this architecture has a ceiling"
+claim — the architecture placed third in the contest.
+
+**The gap may be half what we thought.** H13 attributes at most ~1 point of our deficit to
+code while the documented fresh-versus-mature effect is 3–4 points. If that holds, the true
+code gap is ~2.5–3.5, not 6.46. **This is still unmeasured** and is the single most
+decision-bearing open question.
+
+**The renewable base exists after all — sub-critically, and labour-limited.** A2's Phase 0a
+found reproduction ratio ≈0.75 for the top five (sub-critical, so not exponential) but
+**broad-based**, and the decisive fact is mechanical: natural trees can only shrink, since
+chopping is the sole removal mechanic, yet **top-5 population rises 16 → 23.5 by turn 150
+with 64.7% of turn-300 trees planted rather than inherited.** The binding constraint is
+**labour to service crops, not tree capacity** — 0.40 fruit/turn realised against a
+labour-unconstrained ceiling of 2.5–6.8. More harvest-capable workers therefore raise
+throughput, which is the compounding a scaling economy needs. Also found: an
+**undocumented per-player starting bank of ~24 fruit and ~6 iron**, absent from the mechanics
+document and an input to every affordability calculation in the project.
+
+An honest note belongs here. The integrator drew a confident opposite conclusion from that
+audit's partial output — "no renewable base exists anywhere" — and was corrected by the
+completed analysis. Three such corrections happened in one day, which is why the project's
+next documentation step is a decision-and-evidence index in which corrections are
+first-class rather than narrative.
 
 ## 18. Lesson learnt — what rich players' persistent jobs taught us (D35a and descendants)
 
@@ -880,37 +929,45 @@ same rules as the 168 experiments before it.
 | D168 | Proof that scripting the return always-on loses; per-game selection is the open question |
 | B3.1 | The observable opponent-scaling trigger (42–125 turns of warning) used for arming |
 
-## 25. The road ahead — backlog
+## 25. The road ahead — the 2026-07-30 settlement
 
-What remains, now that every technical route this programme could find has run to a
-verdict (the terminal synthesis, above). The operational source of truth is
-`docs/BACKLOG.md` (with gates and kill rules); this chapter is its narrative snapshot as
-of 2026-07-29.
+Five owner decisions closed the strategic questions the terminal synthesis had left open.
 
-**What remains is maintenance.** The standing wide-lens collector runs on a daily cron
-(05:17, `# troll-farm-wide-collect`), so the corpus keeps compounding at zero attention
-cost — 8,131 games at its first run (2026-07-28) and growing — without any decision
-needed. The resident (`6561795`) stays exactly as it was promoted on 2026-07-17, the
-programme's only arena win, and the no-churn rule remains absolute: no arena write
-without fresh, explicit authorization. Two genuinely minor items stay technically open
-but are not routes back into this chapter: an unbuilt oscillation-breaker successor
-(D171b, redesigned after D171a's failed mechanism fix; expected value small, since the
-baseline audit already shows the resident wastes *less* than the agents beating it) and a
-cold-file storage migration not yet ripe (B5.3, ≈2026-08-03). Both are the kind of cheap
-filler the project has always allowed alongside maintenance, nothing more.
+**The goal was re-scoped.** Rank ≤3 (bar 28.22) is superseded. The target is a **mature
+score ≥ 25.40** — the top-10 boundary, +3.64 from our frozen 21.76 — with an interim
+checkpoint at **24.70**, the score of the design this bot reproduces. Score rather than rank,
+because the pool strengthens under us: we drifted 22.0 → 21.76 with no code change at all.
+The old target was set when passive maturity looked like a live lever; that assumption died
+and the goal had never been revisited, with the effect that every result was being measured
+against a bar no identified path could reach.
 
-**What does not remain is a technical path forward.** Learned option selection,
-on-policy closed-loop training, production, scaling, mining, harvest capability,
-execution waste, and suppression efficiency are all closed by their own frozen protocols
-— the full route-closure table is above. No further experiment against the current
-architecture is evidence-permitted.
+**A second bot was authorized.** The A2 programme builds from scratch around the coupled
+economy while the resident keeps the ladder slot at zero risk — five preregistered milestone
+gates and five kill rules, including a six-session budget circuit-breaker. Phase 0a has
+passed. Its design premise is now the corrected one: convert a depleting base with
+harvest-capable labour, targeting worker 3 by turn 34–106 and worker 4 by 55–137, and mine
+throughout, since mined iron scales 6 → 16 between those workers.
 
-**The one substantive open decision belongs to the owner, not the ledger:** whether to
-scope a different bot. This architecture's shape is also its ceiling — at equal roster it
-already matches strong two-worker peers, and every measured attempt to grow past that
-roster cost more than it returned. Closing the remaining gap to rank 3 is not available to
-this bot through any route this programme found; it would require a differently-shaped
-one, and that choice is the owner's to make, not the next entry in this ledger.
+**Arena authorization became standing.** The per-candidate permission gate is lifted. What
+replaced it is written down: a QUALIFIED verdict from a frozen protocol, expected gain above
+the arena's own noise band, the full promotion runbook, notification before and after, and
+every submission id logged. Submissions remain serialized through one controller.
+
+**Strategy became breadth.** At a plateau, every feasible direction is enumerated and rolled
+rather than filtered by the integrator's judgment — justified empirically, since that
+judgment was wrong four times in a single sweep. The register holds 35 items across
+measurement, execution, search, learning, economy, opponent interaction and mechanics. **No
+value bar applies to audits**, because cheap measurement is the filter; the ≥+1.0 rating bar
+survives for experiments, which burn seed ranges and panel cycles.
+
+**And the history rewrite was declined** — 12.9 MB was not worth invalidating 380 published
+commit hashes in a project whose value is auditable provenance.
+
+What remains genuinely open: the maturity measurement that re-baselines everything; whether
+a whole-policy learned network is worth pursuing, given that the #1 finisher is exactly
+that; and the register's remaining audits, of which the systematic mechanics re-derivation
+carries the highest variance — the undocumented starting bank found in Phase 0a is evidence
+that the rules we reverse-engineered are not complete.
 
 ## 26. Where the records live
 
