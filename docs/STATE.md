@@ -166,17 +166,23 @@ rank goalpost move in the wrong direction.
   amended to a conversion-efficiency gate (≥40% worker-3 by turn ~110) — a better gate, but
   note the integrator's mid-flight claim that the original had fired was **wrong**. Also
   found: an **undocumented ~24-fruit/~6-iron per-player starting bank** absent from
-  `docs/mechanics.md`. Phase 0b (parity harness) still open. The resident is
+  `docs/mechanics.md`. **X1 DONE 2026-07-30:** primary-source re-derivation found zero
+  unexpected core mismatch; the starting bank was already correct in D33 and was a
+  documentation omission. Two A2-blocking gaps are now explicit: equal-best movement must
+  consume the continuing referee RNG rather than use the local lexicographic tie-break,
+  and the harness must reproduce strict command validation or prove zero invalid commands.
+  Phase 0b (parity harness) still open. The resident is
   untouched throughout; Phase 5 (arena) now runs under the 2026-07-30 standing authorization (§3), still requiring a QUALIFIED verdict and the full runbook.
 - ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
   **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately
   unfiltered, because the integrator's value estimates were wrong four times in the 07-29
   sweep. **No value bar on audits** (cheap measurement is the filter); ≥+1.0 rating bar
   retained for experiments; programmes owner-gated. Keep 2–3 audits in flight and roll.
-  Running: A2-0a, N1, N2. Next: X1 (mechanics re-derivation — highest variance), M1 (rating
+  Running: N1. Done: A2-0a and X1. Next: A2-0b (referee/evaluation parity), M1 (rating
   dynamics), E1 (opening micro-optimality).
-- **Awaiting owner**: (a) dispatch of the audit-ready set (H5/H3/H8 — parallel,
-  read-only, delegable to any agent); (b) the H2 Architecture-2 programme go/no-go.
+- **Owner-authorized work now active:** A2 Architecture-2; N1 maturity audit. No further
+  owner decision is needed before A2-0b, but all Arena mutations remain serialized through
+  the controller and require a QUALIFIED candidate under the runbook.
 
 ## 5. Reading order & pointers
 

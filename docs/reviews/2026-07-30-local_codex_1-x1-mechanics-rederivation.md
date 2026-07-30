@@ -128,7 +128,19 @@ that invalid commands are rare is insufficient.
 
 ## Validation
 
-The focused audit suite passes 6/6. The broader Python simulator suites and
-focused Rust game suites are the closeout gates. The resident dev-copy hash must
-remain prefixed `fff6669b`.
+Validation completed:
 
+- `python3 -m pytest -q tests/test_mechanics_rederivation.py` — **6 passed**.
+- `python3 -m pytest -q tests/test_mechanics_rederivation.py
+  tests/test_sim_engine.py tests/test_sim_mapgen.py tests/test_end_condition.py` —
+  **37 passed**.
+- Direct `rustc --test` harness over the unchanged `state.rs`, `engine.rs`, and
+  `official_mapgen.rs` modules — **2 passed** (both available Rust module tests).
+- `cargo test --manifest-path rust/Cargo.toml --lib game::` did not reach tests:
+  crate compilation requires the historical compile-time include
+  `data/analysis/live-agent-6553250/d105a-q6-expert-population.tsv`, which is
+  absent from this isolated worktree. No replacement file or symlink was made.
+- Audit CLI against the pinned referee clone — zero source, dynamic, or
+  unexpected failures.
+- Resident dev-copy SHA-256:
+  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.

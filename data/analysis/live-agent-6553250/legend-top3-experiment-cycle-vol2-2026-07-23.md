@@ -1266,3 +1266,31 @@ guards, and a 424,896,968-byte md5-verified mirror of the whole `legacy-data-ana
 tree uploaded to `//home/delivery_ml/research/tarstars/troll_farm/mirrors/`. Local repo
 23.5 → 2.76 GB; Python suite unchanged at its documented baseline (1,163 passed / 3 known
 pre-existing failures).
+
+## 2026-07-30: X1 source-backed mechanics re-derivation — core match, two A2 obligations
+
+The public referee was pinned at
+`290129129db7a7539d98739ebdb0ed63ee6ceb50`; SHA-256 identities for 16 core Java
+files plus semantic anchors were checked against the maintained Python simulator,
+the frozen Rust engine, and D33's official generator. Result:
+**CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS** — zero source failures, zero dynamic
+failures, zero unexpected mismatches. Focused tests 6/6; broader maintained Python
+mechanics tests 37/37; direct Rust game-module tests 2/2; D33 remains 120/120 exact.
+The resident remains byte-exact at SHA prefix `fff6669b`.
+
+The Legend starting state is now explicit: map height 8..11, width twice height;
+each of PLUM/LEMON/APPLE/BANANA/IRON independently uniform 2..10; the same bank is
+assigned to both players; expected fruit 24 and iron 6; initial score includes the
+fruit; starter talents `(1,1,1,1)`. This was missing documentation, **not** missing
+implementation: replay states and `official_mapgen.rs` already carried the bank, so
+no rerun is required solely for X1.
+
+Two local/referee boundaries are binding for A2-0b. `Board.getNextCell` randomly
+chooses among equal-best cells using the same RNG continued from map generation,
+whereas both local engines choose lexicographically and `generate_official` discards
+the post-map RNG state. The local parsers also omit the referee's full ownership,
+league, skill, syntax, and critical-error validation. Paired local deltas remain
+internally paired under their shared deterministic substrate, but they are not
+absolute referee-parity evidence where tied moves or invalid commands occur.
+Full record:
+`docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`.
