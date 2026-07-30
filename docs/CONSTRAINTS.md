@@ -844,3 +844,9 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   suppression end to end, optimized closed-loop — every partial composition tested (overlay,
   transplant, wrapper, imitation, fixed grammar) landed far beneath the field gap. [vol 1
   D36/D37 conclusions; Phases 12–14]
+- **The secure-orchard equal-best mother tie is closed: keep lexicographic order.** The
+  comparator is active on all 10 reused tied seeds, in both seats, and against all six
+  frozen opponent families, but reversing it loses −8.55 paired margin conditional on tied
+  maps and −0.0855 across the exact 1,000-map census. Both seat means and all six family
+  means are negative (worst −26.65). Do not reverse, tune, persist, or promote this tie.
+  [E4, 2026-07-30]

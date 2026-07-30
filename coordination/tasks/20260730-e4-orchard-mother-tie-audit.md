@@ -1,6 +1,6 @@
 # 20260730-e4-orchard-mother-tie-audit
 
-- Status: active — jobs-8 passed; full jobs-1 parity run starting
+- Status: done — `KEEP_LEXICOGRAPHIC`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:05:35Z
-- Last updated UTC: 2026-07-30T22:27:49Z
+- Last updated UTC: 2026-07-30T22:35:52Z
 
 ## Progress
 
@@ -30,6 +30,19 @@
   `local_codex_1/e4-orchard-mother-tie-audit/implementation-lock-v2.json`.
 - Jobs-8 completes 152/152 rows with 16/16 exact sentinels and provisional
   `KEEP_LEXICOGRAPHIC` at weighted margin −0.0855. Full jobs-1 row-hash parity is pending.
+- Jobs-1 matches jobs-8 in tied, sentinel, and delta row hashes; normalized payloads are
+  exact after excluding only `jobs`.
+
+## Result
+
+- Mechanism: `ACTIVE_TIE` — 10/10 seeds, both seats, 6/6 families.
+- Tied-panel margin delta: −8.55; exact 1,000-map weighted: −0.0855.
+- Seat deltas: −7.667 / −9.433; family means all negative, worst −26.65.
+- Verdict: `KEEP_LEXICOGRAPHIC`.
+- Report:
+  `data/analysis/live-agent-6553250/e4-orchard-mother-tie-audit-result-2026-07-30.md`.
+- Manifest:
+  `local_codex_1/e4-orchard-mother-tie-audit/manifest.json`.
 
 ## Outcome
 

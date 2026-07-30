@@ -38,7 +38,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > NO_MATERIAL_CONTEST_OPPORTUNITY; N6 is CLOSED_AT_DEVELOPMENT. Next: peer corrections,
 > then remaining execution/search audits. E2 is DONE / ROUTE_RESIDUAL_OBSERVED but not
 > experiment-justified (0.335 hindsight movement turn per side-game). E3 is
-> VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle.**
+> VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle. E4 is DONE /
+> KEEP_LEXICOGRAPHIC: the secure-orchard tie is active but reversing it loses −0.0855
+> exact-1,000-map-weighted margin.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -136,6 +138,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   trees grow under exact continuation, and execute multiple bundles in 87/128 tasks.
   D36 gains +10.633 margin versus its +25 upper-bound gate and explicitly closes further
   resident target/overlay iterations. Do not reopen with cluster or depth definitions.
+- **E4 ✅ DONE — KEEP_LEXICOGRAPHIC.** A comparator-only audit exhausts all ten reused
+  equal-best secure-orchard mother seeds against all six frozen opponents in both seats.
+  The tie is active on 10/10 seeds and all families, but reversing it loses −8.55 margin
+  conditional on tied maps and −0.0855 across the exact 1,000-map census. Both seats and
+  all six family means are negative. Keep the current comparator; no candidate or Arena.
 
 ### P2 — hygiene and consequences of iteration 1
 

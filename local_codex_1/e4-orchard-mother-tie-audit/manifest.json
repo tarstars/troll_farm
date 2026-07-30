@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "task": "20260730-e4-orchard-mother-tie-audit",
+  "verdict": "KEEP_LEXICOGRAPHIC",
+  "runs": {
+    "jobs_8": "python3 cgauto/e4_orchard_mother_tie_audit.py --jobs 8 --output /tmp/e4-orchard-mother-tie-j8.json",
+    "jobs_1": "python3 cgauto/e4_orchard_mother_tie_audit.py --jobs 1 --output /tmp/e4-orchard-mother-tie-j1.json",
+    "paired_rows": 152,
+    "tied_rows": 120,
+    "sentinel_rows": 32
+  },
+  "artifacts": {
+    "control": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    },
+    "analyzer": {
+      "path": "cgauto/e4_orchard_mother_tie_audit.py",
+      "sha256": "ed3901795f37b7ec5d3315e9f95c02f16260112368914b83d90aa3eb04242166"
+    },
+    "tests": {
+      "path": "tests/test_e4_orchard_mother_tie_audit.py",
+      "sha256": "fa68f5cf0e2e26571a702e40aa189affe82d40f24d3af1f368e8e07cda129a27"
+    },
+    "protocol": {
+      "path": "docs/e4-orchard-mother-tie-audit-protocol-2026-07-30.md",
+      "sha256": "0f2797f011f54a88f15dd10b1195a254a224b77176a9eccbd942c227b8101468"
+    },
+    "implementation_lock_v2": {
+      "path": "local_codex_1/e4-orchard-mother-tie-audit/implementation-lock-v2.json",
+      "sha256": "d70047e670a8a44a6047cf349c1f6e67b67fbc9edc0416177b7ce72b8b5a41c1"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/e4-orchard-mother-tie-audit-result-2026-07-30.json",
+      "sha256": "2de9ccfba859092026e984f9d606be129f8fda6941ac2d5ce33741bf7e396e86"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/e4-orchard-mother-tie-audit-result-2026-07-30.md",
+      "sha256": "1cb0da7d066741cd5eacb0f4c6f309d4b45848b71527f1fa3d11b04227058316"
+    }
+  },
+  "validation": {
+    "focused_tests": "11 passed",
+    "self_test": "ok",
+    "census_eligible_seeds_per_seat": 57,
+    "census_tied_seeds_per_seat": 10,
+    "sentinels_exact": "16/16",
+    "coverage_complete": true,
+    "stderr_bytes": 0,
+    "malformed_commands": 0,
+    "tied_rows_sha256": "1bf99fbc9cd949004390d872037aaf554a1db137f7cf155702a9a09f6de9e70f",
+    "sentinel_rows_sha256": "d4a100297d9a538869c021e6c031fdaa407c9262f2096c1b9c686385a6f7d6fc",
+    "delta_records_sha256": "aa66041cacd7e9ed3340f281fb8e2833096af184280fb64fd73edea74772418e",
+    "jobs_8_full_json_sha256": "28109c744cfe1b84619e31e5fd0f99d3a145edd6d95d413b8cf0c1053c6d0ec2",
+    "jobs_1_full_json_sha256": "0ed4a49d6896a5cf9b01c698687a5ad2698728444e0484719f4fe99cf7d1d629",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "decision": {
+    "persistent_alternate": false,
+    "candidate": false,
+    "arena_action": false
+  }
+}

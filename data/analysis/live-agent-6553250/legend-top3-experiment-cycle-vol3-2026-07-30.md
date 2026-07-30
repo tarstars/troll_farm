@@ -329,3 +329,32 @@ permutation, simulation, source, range, candidate, or Arena action.
 
 Evidence:
 `data/analysis/live-agent-6553250/e3-chop-order-scope-audit-2026-07-30.md`.
+
+## E4 — the orchard-mother tie is active but lexicographic order wins
+
+**Question.** Does reversing the live secure-orchard initializer's lexicographic secondary
+choice between equal enemy-distance mother cells improve terminal local value?
+
+**Scope and integrity.** A result-blind 0..999 census finds 57 eligible seeds per symmetric
+seat and ten two-way ties. The audit changes exactly one comparator in a temporary source,
+then exhausts ten tied seeds × six frozen opponents × both seats. Sixteen unique-best
+sentinels are exact. The `motion` opponent required a child-only deterministic clock and
+entropy shim because its wall-clock RHEA and randomized collections made repeat-control
+runs differ; no bot source byte changed. Jobs-1/jobs-8 tied, sentinel, and delta hashes
+match, all 152 rows complete, and stderr/malformed-command counts are zero.
+
+**Mechanism.** Policy streams diverge on 10/10 tied seeds, in 51/60 and 44/60 cells by
+seat, and in all six families. `ACTIVE_TIE` passes.
+
+**Value and verdict.** Reversal loses −8.55 paired margin on tied maps and **−0.0855**
+across the exact 1,000-map census. Both seat means are negative (−7.667/−9.433), and every
+family is negative (worst ringfix3 −26.65). Own score is −10.80 on tied maps while wood
+edge changes only +0.133.
+
+**Verdict: `KEEP_LEXICOGRAPHIC`.** Keep the current comparator. No persistent alternate,
+candidate, new map, resident change, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/e4-orchard-mother-tie-audit-result-2026-07-30.md`;
+compact JSON beside it; implementation lock and hashes under
+`local_codex_1/e4-orchard-mother-tie-audit/`.

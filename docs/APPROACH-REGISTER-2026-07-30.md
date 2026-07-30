@@ -52,7 +52,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **E1** | **Opening micro-optimality (first 3–5 turns)** — highest-leverage turns in the game; never audited for optimality against an exhaustive short-horizon search | ~1 session | **NARROWED_TO_N4_PREFIX_ORACLE:** first-worker/prefix/short-option searches already closed; only a terminal-valued multi-turn resident candidate-pair oracle survives, gated on accepted N4 Phase A |
 | **E2** | **Banking-route efficiency** — round-trip path choice, door selection, and whether carry is ever wasted on a suboptimal return | ~1 session | **✅ DONE — ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT:** immediate and joint ETA regret 0; no door switches; hindsight alternate door saves 134 one-turn wood legs = 0.335 turn/side-game, future-conditioned with no causal/rating estimate |
 | **E3** | **Chop-order within a tree cluster** — given several candidates, does order matter for total yield (growth during travel is modelled, but ordering may not be) | ~1 session | **✅ VOID_PREMISE_DUPLICATE:** exact-resident one-job and D36 repeated completion-boundary terminal oracles already include multi-tree ordering; D36 +10.633 vs +25 and explicitly closes further resident target/overlay iterations |
-| **E4** | **Pathfinding tie-breaks** — BFS ties are broken by incidental cell order (this caused the oscillation family); audit whether other decisions inherit the same arbitrariness | ~1 session | open |
+| **E4** | **Pathfinding tie-breaks** — BFS ties are broken by incidental cell order (this caused the oscillation family); audit whether other decisions inherit the same arbitrariness | ~1 session | **✅ DONE — KEEP_LEXICOGRAPHIC:** the distinct secure-orchard mother tie is active on 10/10 reused tied seeds and all six families, but reverse order loses −8.55 tied-map margin / −0.0855 exact-census-weighted; both seats and every family are negative |
 | **E5** | **Ripeness-wait decisions** — when the bot waits for fruit, is the wait ever longer than the alternative work? (B3.6 found 20 benign cases; a targeted audit could find costly ones) | hours | open |
 | **E6** | **Seed-carry decisions** — which seed to carry and when to drop it; never examined as a decision class | ~1 session | open |
 | **E7** | **`typeToCut` rule optimality** — the first-turn species choice is one rule applied all game; test it against per-map hindsight | ~1 session | open |
@@ -118,6 +118,7 @@ N5 (NO_MATERIAL_CONTEST_OPPORTUNITY);
 N6 (CLOSED_AT_DEVELOPMENT);
 E2 (ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT);
 E3 (VOID_PREMISE_DUPLICATE);
+E4 (KEEP_LEXICOGRAPHIC);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
