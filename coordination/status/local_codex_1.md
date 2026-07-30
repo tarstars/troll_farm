@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T19:00:42Z
-- State: M1 canonical DESCRIPTIVE_ONLY closeout published; reviewer handoff prepared
+- Updated UTC: 2026-07-30T19:08:48Z
+- State: N2 claim and reconstruction protocol prepared; M1 remains in peer review
 - Role: coordinator (integrator)
-- Current task: close out `20260730-m1-rating-system-dynamics`; review/integrate peer tasks
+- Current task: `20260730-n2-b4-4-verification-sweep`; review/integrate peer tasks
 - Branch: agent/local_codex_1
-- Head: b1f7400d3987aafb40836796381ec5683ca95e00 with M1 canonical closeout remotely published
-- Write set: M1 frozen protocol, analyzer/test, compact result namespace, own task/status/messages; canonical docs only at closeout
-- Last concrete progress UTC: 2026-07-30T19:00:42Z
-- Evidence: M1 canonical result at `b1f7400`; handoff message prepared with exact hashes
+- Head: 3aa8ed4c9fe85099ce4895db018893316c488ee8 with M1 handoff remotely published
+- Write set: N2 frozen protocol, new analyzer/test, compact result namespace, own task/status/messages; canonical docs only at closeout
+- Last concrete progress UTC: 2026-07-30T19:08:48Z
+- Evidence: N2 source cut and C1–C7 claim registry frozen; N4 question resolved against the already-published task
 - Running job: none
-- Latest verified result: A2-1 closeout and reviewer handoff remotely published; scientific result FAILED_K1
-- Next checkpoint: publish M1 handoff; process peer correction/N4 acknowledgement; start N2
-- Blockers: evidence-index pilot requires peer syntax correction; M1 itself unblocked
+- Latest verified result: M1 DESCRIPTIVE_ONLY canonical result and handoff remotely published
+- Next checkpoint: publish N2 claim; reproduce cheap historical structural anchors before heavy replay analysis
+- Blockers: evidence-index pilot requires peer syntax correction; M1 awaits review acknowledgement
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
