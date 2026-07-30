@@ -32,7 +32,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
-> DONE / NO_ACTIONABLE_MATCHUP; next unassigned breadth item: M3.**
+> DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; next
+> unassigned breadth item: M4.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -71,6 +72,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   [−81.02,+22.24], Holm p 0.229) and has only −0.087 win residual. BoatBuilder reverses
   by seat; a76a44 is positive. Do not build identity-specific behavior; retain R1FA only
   as a surveillance hint pending more exact games.
+- **M3 ✅ DONE — NO_ACTIONABLE_SEAT_ASYMMETRY.** Raw and same-opponent matching both
+  point toward seat 0 being worse, but the matched seat-1-minus-seat-0 margin is only
+  +10.09, CI [−16.81,+38.91], p 0.484. The identity-equal fixed-opponent contrast flips
+  to −1.37. No seat-specific mechanism or branch; repeat only with a larger exact panel.
 
 ### P1 — next build and bounded audits with a decision attached
 

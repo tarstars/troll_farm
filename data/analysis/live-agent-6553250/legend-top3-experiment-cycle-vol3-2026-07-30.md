@@ -106,3 +106,27 @@ hint until more exact games narrow the evidence.
 Evidence:
 `data/analysis/live-agent-6553250/m2-opponent-specific-losses-result-2026-07-30.md`;
 machine bundle `local_codex_1/m2-opponent-specific-losses/`.
+
+## M3 — no actionable resident seat asymmetry
+
+**Question.** Does exact resident `6561795` underperform in either player seat after
+same-exact-opponent, pre-outcome matching?
+
+**Evidence.** The frozen corpus has 126 seat-0 and 115 seat-1 resident games. Thirty-seven
+seat-1 targets across 23 exact opponent identities match seat-0 controls on exact
+identity/map dimensions, contemporaneous scores, and initial-tree count; all support gates
+pass.
+
+**Result.** Seat-1 minus seat-0 matched margin is +10.088, CI
+[−16.813,+38.912], two-sided cluster-null p 0.484, with +0.101 win difference. The raw,
+reverse, pseudo-lineage, score-band, time-half, and leave-one-out signs also point toward
+seat 0 being worse. The broader game-weighted fixed-opponent contrast is only +5.29 and
+the identity-equal contrast flips to −1.37.
+
+**Verdict: `NO_ACTIONABLE_SEAT_ASYMMETRY`.** The 20-point magnitude, CI, and p gates
+fail. No seat branch, replay-mechanism follow-up, resident change, simulation, or Arena
+action.
+
+Evidence:
+`data/analysis/live-agent-6553250/m3-seat-asymmetry-result-2026-07-30.md`;
+machine bundle `local_codex_1/m3-seat-asymmetry/`.

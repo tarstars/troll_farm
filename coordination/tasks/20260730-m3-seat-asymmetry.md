@@ -1,6 +1,6 @@
 # 20260730-m3-seat-asymmetry: audit exact resident seat effects
 
-- Status: active — implementation lock ready; full empirical run pending
+- Status: result ready — `NO_ACTIONABLE_SEAT_ASYMMETRY`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:48:51Z
-- Last updated UTC: 2026-07-30T19:53:59Z
+- Last updated UTC: 2026-07-30T19:55:40Z
 
 ## Outcome
 
@@ -87,3 +87,16 @@ actionability before canonical integration.
 - Compile/self-test/five tests pass.
 - Preflight: 37 supported seat-1 targets across 23 exact identities; all support gates
   structurally clear before the full uncertainty run.
+
+## Empirical result — 2026-07-30T19:55:40Z
+
+- Verdict: **`NO_ACTIONABLE_SEAT_ASYMMETRY`**.
+- All frozen hash/count and support gates pass: 126/115 raw seats, 37 supported seat-1
+  targets, and 23 exact identities.
+- Matched seat-1-minus-seat-0 margin is +10.088, CI [−16.813,+38.912], p 0.484;
+  matched win difference is +0.101.
+- Magnitude, CI, and p gates fail. The identity-equal fixed-effect sensitivity flips to
+  −1.368, reinforcing that the positive direction is not a structural mechanism finding.
+- Canonical result:
+  `data/analysis/live-agent-6553250/m3-seat-asymmetry-result-2026-07-30.md`.
+- No seat-specific implementation, replay follow-up, resident change, or Arena action.

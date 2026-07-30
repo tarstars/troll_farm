@@ -298,6 +298,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   positive. Do not build an identity-specific branch or infer a mechanism. Reopen only
   after materially more exact games or a stronger contemporaneous control design. [M2,
   2026-07-30]
+- **Seat-specific behavior has no supported target.** Same-exact-opponent matching gives
+  seat-1 minus seat-0 margin +10.09, but CI [−16.81,+38.91], p 0.484, below the frozen
+  20-point materiality gate. Raw and matched checks point toward seat 0 being worse, while
+  the identity-equal fixed-opponent contrast flips to −1.37. Do not create a seat branch
+  or infer a mechanism. Reopen only with a materially larger exact panel that clears the
+  frozen magnitude, uncertainty, and stability gates. [M3, 2026-07-30]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this

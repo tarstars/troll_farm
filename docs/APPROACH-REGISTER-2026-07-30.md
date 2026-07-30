@@ -39,7 +39,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | **✅ DONE — B4_4_CORRECTED:** unique inferred 8,395 cut matches anchors; group rates reproduce, all/every-peer and no-loop claims fail; early orchard and late wood conversion separated |
 | **M1** | **Rating-system dynamics** — how does the score actually update per win/loss? Recover the update rule from the snapshot series. If it is Elo-like, quantify how many wins a +1 move costs, which prices *every* candidate in wins rather than margin | ~1 session | **✅ DONE — PARTIAL / DESCRIPTIVE_ONLY:** 307/329 complete transitions; best held-agent MAE 0.4773 vs 0.4786 zero baseline; no wins-per-+1 |
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | **✅ DONE — NO_ACTIONABLE_MATCHUP:** 3/72 exact identities clear support; R1FA is a stable negative hint but CI, Holm, and win-effect gates fail; BoatBuilder reverses by seat |
-| **M3** | **Seat asymmetry** — do we underperform in one seat? Never audited; if real it is a targeted fix | hours | open |
+| **M3** | **Seat asymmetry** — do we underperform in one seat? Never audited; if real it is a targeted fix | hours | **✅ DONE — NO_ACTIONABLE_SEAT_ASYMMETRY:** matched seat-1−seat-0 +10.09, CI [−16.81,+38.91], p 0.484; identity-equal contrast −1.37 |
 | **M4** | **Matchmaking composition** — who do we actually play, how often, and is the mix drifting? Bears on N1 and on whether score drift is pool or us | hours | open |
 | **M5** | **Game-length / turn-limit effects** — the whole margin gap sat in 300-turn games (H3); characterise how outcome depends on length | ~1 session | open |
 
@@ -111,12 +111,13 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 **Done 2026-07-30:** N1 (PARTIAL/IMMATERIAL); M1 (PARTIAL/DESCRIPTIVE_ONLY);
 N2 (B4_4_CORRECTED); M2 (NO_ACTIONABLE_MATCHUP);
+M3 (NO_ACTIONABLE_SEAT_ASYMMETRY);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its host generator/output-parity blocker.
 
-Priority order as of 2026-07-30, highest unassigned first: **M3** (seat asymmetry) →
-M4–M5 measurement audits → evidence-index acceptance after correction
+Priority order as of 2026-07-30, highest unassigned first: **M4** (matchmaking
+composition) → M5 measurement audit → evidence-index acceptance after correction
 → then B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A runs
 separately.

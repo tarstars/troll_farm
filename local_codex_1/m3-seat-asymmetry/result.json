@@ -1,0 +1,1631 @@
+{
+ "actionability_gates": {
+  "absolute_margin_difference_at_least_20": false,
+  "both_score_bands_same_sign": true,
+  "both_time_halves_same_sign": true,
+  "ci_excludes_zero": false,
+  "leave_one_exact_opponent_out_same_sign": true,
+  "primary_support": true,
+  "pseudo_lineage_same_sign": true,
+  "reverse_orientation_same_sign": true,
+  "two_sided_p_at_most_0_05": false,
+  "win_difference_same_sign_and_at_least_0_10": true
+ },
+ "actionable": false,
+ "direction": "SEAT_0_WORSE",
+ "failed_actionability_gates": [
+  "absolute_margin_difference_at_least_20",
+  "ci_excludes_zero",
+  "two_sided_p_at_most_0_05"
+ ],
+ "leave_one_exact_opponent_out": [
+  {
+   "margin_difference": 4.868055555555555,
+   "omitted_opponent_id": 6479385,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 7.068181818181818,
+   "omitted_opponent_id": 6479863,
+   "targets_remaining": 33,
+   "win_difference": 0.06818181818181818
+  },
+  {
+   "margin_difference": 15.645833333333334,
+   "omitted_opponent_id": 6480516,
+   "targets_remaining": 36,
+   "win_difference": 0.13194444444444445
+  },
+  {
+   "margin_difference": 6.868055555555555,
+   "omitted_opponent_id": 6480545,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 8.242424242424242,
+   "omitted_opponent_id": 6480943,
+   "targets_remaining": 33,
+   "win_difference": 0.07575757575757576
+  },
+  {
+   "margin_difference": 4.8125,
+   "omitted_opponent_id": 6481142,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 9.145833333333334,
+   "omitted_opponent_id": 6481547,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 9.507352941176471,
+   "omitted_opponent_id": 6512040,
+   "targets_remaining": 34,
+   "win_difference": 0.11029411764705882
+  },
+  {
+   "margin_difference": 13.395833333333334,
+   "omitted_opponent_id": 6512056,
+   "targets_remaining": 36,
+   "win_difference": 0.13194444444444445
+  },
+  {
+   "margin_difference": 19.9453125,
+   "omitted_opponent_id": 6557848,
+   "targets_remaining": 32,
+   "win_difference": 0.1484375
+  },
+  {
+   "margin_difference": 10.645833333333334,
+   "omitted_opponent_id": 6563190,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 8.42361111111111,
+   "omitted_opponent_id": 6563637,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 9.92361111111111,
+   "omitted_opponent_id": 6566050,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 10.979166666666666,
+   "omitted_opponent_id": 6566112,
+   "targets_remaining": 36,
+   "win_difference": 0.13194444444444445
+  },
+  {
+   "margin_difference": 10.5625,
+   "omitted_opponent_id": 6567667,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 10.756944444444445,
+   "omitted_opponent_id": 6568324,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 10.756944444444445,
+   "omitted_opponent_id": 6568588,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 9.92361111111111,
+   "omitted_opponent_id": 6579750,
+   "targets_remaining": 36,
+   "win_difference": 0.0763888888888889
+  },
+  {
+   "margin_difference": 10.034722222222221,
+   "omitted_opponent_id": 6580001,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 11.506944444444445,
+   "omitted_opponent_id": 6580130,
+   "targets_remaining": 36,
+   "win_difference": 0.13194444444444445
+  },
+  {
+   "margin_difference": 9.729166666666666,
+   "omitted_opponent_id": 6581650,
+   "targets_remaining": 36,
+   "win_difference": 0.10416666666666667
+  },
+  {
+   "margin_difference": 11.721428571428572,
+   "omitted_opponent_id": 6582020,
+   "targets_remaining": 35,
+   "win_difference": 0.1357142857142857
+  },
+  {
+   "margin_difference": 8.207142857142857,
+   "omitted_opponent_id": 6582186,
+   "targets_remaining": 35,
+   "win_difference": 0.07857142857142857
+  }
+ ],
+ "primary": {
+  "control_count_max": 4,
+  "control_count_median": 1,
+  "control_count_min": 1,
+  "exact_identities": 23,
+  "margin_ci95": [
+   -16.812703804347827,
+   38.911895161290275
+  ],
+  "margin_difference": 10.087837837837839,
+  "supported_targets": 37,
+  "targets": [
+   {
+    "control_count": 2,
+    "control_game_ids": [
+     896350476,
+     896352129
+    ],
+    "expected_margin": -57.0,
+    "expected_win": 0.0,
+    "game_id": 896348043,
+    "margin_residual": 13.0,
+    "opponent_id": 6480943,
+    "opponent_pseudo": "Dridriun",
+    "record_index": 4510,
+    "target_margin": -44.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 2,
+    "control_game_ids": [
+     896349605,
+     896350338
+    ],
+    "expected_margin": -124.0,
+    "expected_win": 0.0,
+    "game_id": 896349546,
+    "margin_residual": 126.0,
+    "opponent_id": 6480545,
+    "opponent_pseudo": "BoatBuilder",
+    "record_index": 4534,
+    "target_margin": 2.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896349330
+    ],
+    "expected_margin": 92.0,
+    "expected_win": 1.0,
+    "game_id": 896349759,
+    "margin_residual": -100.0,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 4538,
+    "target_margin": -8.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896349330
+    ],
+    "expected_margin": 92.0,
+    "expected_win": 1.0,
+    "game_id": 896349795,
+    "margin_residual": -135.0,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 4539,
+    "target_margin": -43.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896349942
+    ],
+    "expected_margin": 98.0,
+    "expected_win": 1.0,
+    "game_id": 896349904,
+    "margin_residual": 44.0,
+    "opponent_id": 6481547,
+    "opponent_pseudo": "bl4sterino",
+    "record_index": 4546,
+    "target_margin": 142.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896347981
+    ],
+    "expected_margin": -162.0,
+    "expected_win": 0.0,
+    "game_id": 896349964,
+    "margin_residual": 198.0,
+    "opponent_id": 6479385,
+    "opponent_pseudo": "Meruem",
+    "record_index": 4549,
+    "target_margin": 36.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896348189
+    ],
+    "expected_margin": -100.0,
+    "expected_win": 0.0,
+    "game_id": 896350224,
+    "margin_residual": 200.0,
+    "opponent_id": 6481142,
+    "opponent_pseudo": "XSpace",
+    "record_index": 4562,
+    "target_margin": 100.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 2,
+    "control_game_ids": [
+     896351635,
+     896351931
+    ],
+    "expected_margin": -15.0,
+    "expected_win": 0.5,
+    "game_id": 896350727,
+    "margin_residual": -3.0,
+    "opponent_id": 6480943,
+    "opponent_pseudo": "Dridriun",
+    "record_index": 4575,
+    "target_margin": -18.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -0.5
+   },
+   {
+    "control_count": 4,
+    "control_game_ids": [
+     896348522,
+     896351635,
+     896351931,
+     896351976
+    ],
+    "expected_margin": -8.25,
+    "expected_win": 0.25,
+    "game_id": 896350789,
+    "margin_residual": 14.25,
+    "opponent_id": 6480943,
+    "opponent_pseudo": "Dridriun",
+    "record_index": 4577,
+    "target_margin": 6.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.75
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896351912
+    ],
+    "expected_margin": -169.0,
+    "expected_win": 0.0,
+    "game_id": 896350916,
+    "margin_residual": 48.0,
+    "opponent_id": 6512040,
+    "opponent_pseudo": "celeria",
+    "record_index": 4581,
+    "target_margin": -121.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896351842
+    ],
+    "expected_margin": 36.0,
+    "expected_win": 1.0,
+    "game_id": 896350956,
+    "margin_residual": -190.0,
+    "opponent_id": 6480516,
+    "opponent_pseudo": "Ztrk",
+    "record_index": 4584,
+    "target_margin": -154.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 2,
+    "control_game_ids": [
+     896352010,
+     896352322
+    ],
+    "expected_margin": 12.0,
+    "expected_win": 0.5,
+    "game_id": 896351071,
+    "margin_residual": 42.0,
+    "opponent_id": 6479863,
+    "opponent_pseudo": "R1FA",
+    "record_index": 4586,
+    "target_margin": 54.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.5
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896351520
+    ],
+    "expected_margin": 62.0,
+    "expected_win": 1.0,
+    "game_id": 896351274,
+    "margin_residual": -170.0,
+    "opponent_id": 6512040,
+    "opponent_pseudo": "celeria",
+    "record_index": 4590,
+    "target_margin": -108.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896349330
+    ],
+    "expected_margin": 92.0,
+    "expected_win": 1.0,
+    "game_id": 896351376,
+    "margin_residual": -72.0,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 4594,
+    "target_margin": 20.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896352494
+    ],
+    "expected_margin": -152.0,
+    "expected_win": 0.0,
+    "game_id": 896351409,
+    "margin_residual": 14.0,
+    "opponent_id": 6479863,
+    "opponent_pseudo": "R1FA",
+    "record_index": 4595,
+    "target_margin": -138.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896351912
+    ],
+    "expected_margin": -169.0,
+    "expected_win": 0.0,
+    "game_id": 896351758,
+    "margin_residual": 172.0,
+    "opponent_id": 6512040,
+    "opponent_pseudo": "celeria",
+    "record_index": 4607,
+    "target_margin": 3.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896347360
+    ],
+    "expected_margin": 43.0,
+    "expected_win": 1.0,
+    "game_id": 896351874,
+    "margin_residual": -109.0,
+    "opponent_id": 6512056,
+    "opponent_pseudo": "a76a44",
+    "record_index": 4611,
+    "target_margin": -66.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 2,
+    "control_game_ids": [
+     896350476,
+     896352129
+    ],
+    "expected_margin": -57.0,
+    "expected_win": 0.0,
+    "game_id": 896351955,
+    "margin_residual": 77.0,
+    "opponent_id": 6480943,
+    "opponent_pseudo": "Dridriun",
+    "record_index": 4616,
+    "target_margin": 20.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896351694
+    ],
+    "expected_margin": -23.0,
+    "expected_win": 0.0,
+    "game_id": 896352175,
+    "margin_residual": 28.0,
+    "opponent_id": 6479863,
+    "opponent_pseudo": "R1FA",
+    "record_index": 4626,
+    "target_margin": 5.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896352494
+    ],
+    "expected_margin": -152.0,
+    "expected_win": 0.0,
+    "game_id": 896352353,
+    "margin_residual": 56.0,
+    "opponent_id": 6479863,
+    "opponent_pseudo": "R1FA",
+    "record_index": 4633,
+    "target_margin": -96.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896350822
+    ],
+    "expected_margin": -2.0,
+    "expected_win": 0.0,
+    "game_id": 896352474,
+    "margin_residual": 66.0,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 4637,
+    "target_margin": 64.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896349330
+    ],
+    "expected_margin": 92.0,
+    "expected_win": 1.0,
+    "game_id": 896352481,
+    "margin_residual": -24.0,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 4638,
+    "target_margin": 68.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896399501
+    ],
+    "expected_margin": -30.0,
+    "expected_win": 0.0,
+    "game_id": 896399172,
+    "margin_residual": -10.0,
+    "opponent_id": 6563190,
+    "opponent_pseudo": "Bubaptik",
+    "record_index": 4725,
+    "target_margin": -40.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896421394
+    ],
+    "expected_margin": -13.0,
+    "expected_win": 0.0,
+    "game_id": 896421371,
+    "margin_residual": 70.0,
+    "opponent_id": 6563637,
+    "opponent_pseudo": "Bubaptik",
+    "record_index": 4900,
+    "target_margin": 57.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896526481
+    ],
+    "expected_margin": -12.0,
+    "expected_win": 0.0,
+    "game_id": 896525888,
+    "margin_residual": 16.0,
+    "opponent_id": 6566050,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 5987,
+    "target_margin": 4.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896548198
+    ],
+    "expected_margin": 2.0,
+    "expected_win": 1.0,
+    "game_id": 896548356,
+    "margin_residual": -22.0,
+    "opponent_id": 6566112,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 6152,
+    "target_margin": -20.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896585749
+    ],
+    "expected_margin": -49.0,
+    "expected_win": 0.0,
+    "game_id": 896586095,
+    "margin_residual": -7.0,
+    "opponent_id": 6567667,
+    "opponent_pseudo": "Bubaptik",
+    "record_index": 6666,
+    "target_margin": -56.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896649146
+    ],
+    "expected_margin": -1.0,
+    "expected_win": 0.0,
+    "game_id": 896648983,
+    "margin_residual": -14.0,
+    "opponent_id": 6568324,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8205,
+    "target_margin": -15.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     896651263
+    ],
+    "expected_margin": -36.0,
+    "expected_win": 0.0,
+    "game_id": 896651228,
+    "margin_residual": -14.0,
+    "opponent_id": 6568588,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8345,
+    "target_margin": -50.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897188452
+    ],
+    "expected_margin": -4.0,
+    "expected_win": 0.0,
+    "game_id": 897186955,
+    "margin_residual": 16.0,
+    "opponent_id": 6579750,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8443,
+    "target_margin": 12.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897219327
+    ],
+    "expected_margin": 84.0,
+    "expected_win": 1.0,
+    "game_id": 897219063,
+    "margin_residual": 12.0,
+    "opponent_id": 6580001,
+    "opponent_pseudo": "goq",
+    "record_index": 8558,
+    "target_margin": 96.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897230691
+    ],
+    "expected_margin": 12.0,
+    "expected_win": 1.0,
+    "game_id": 897242946,
+    "margin_residual": -41.0,
+    "opponent_id": 6580130,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8664,
+    "target_margin": -29.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897264459
+    ],
+    "expected_margin": -28.0,
+    "expected_win": 0.0,
+    "game_id": 897264755,
+    "margin_residual": 23.0,
+    "opponent_id": 6581650,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8779,
+    "target_margin": -5.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897304400
+    ],
+    "expected_margin": 1.0,
+    "expected_win": 1.0,
+    "game_id": 897304594,
+    "margin_residual": 19.0,
+    "opponent_id": 6582020,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8865,
+    "target_margin": 20.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897304400
+    ],
+    "expected_margin": 1.0,
+    "expected_win": 1.0,
+    "game_id": 897305474,
+    "margin_residual": -56.0,
+    "opponent_id": 6582020,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8903,
+    "target_margin": -55.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": -1.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897320844
+    ],
+    "expected_margin": -5.0,
+    "expected_win": 0.0,
+    "game_id": 897320693,
+    "margin_residual": 1.0,
+    "opponent_id": 6582186,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8977,
+    "target_margin": -4.0,
+    "target_seat": 1,
+    "target_win": 0.0,
+    "win_residual": 0.0
+   },
+   {
+    "control_count": 1,
+    "control_game_ids": [
+     897324011
+    ],
+    "expected_margin": -58.0,
+    "expected_win": 0.0,
+    "game_id": 897320747,
+    "margin_residual": 85.0,
+    "opponent_id": 6582186,
+    "opponent_pseudo": "FreZzz",
+    "record_index": 8980,
+    "target_margin": 27.0,
+    "target_seat": 1,
+    "target_win": 1.0,
+    "win_residual": 1.0
+   }
+  ],
+  "two_sided_randomization_p": 0.48437031259374813,
+  "unsupported": [
+   {
+    "game_id": 896347357,
+    "opponent_id": 6480541,
+    "opponent_pseudo": "yaichi"
+   },
+   {
+    "game_id": 896347359,
+    "opponent_id": 6482016,
+    "opponent_pseudo": "DoubtinGiyov"
+   },
+   {
+    "game_id": 896347361,
+    "opponent_id": 6483491,
+    "opponent_pseudo": "VINCE_MX"
+   },
+   {
+    "game_id": 896347362,
+    "opponent_id": 6481144,
+    "opponent_pseudo": "Sequo"
+   },
+   {
+    "game_id": 896347518,
+    "opponent_id": 6479532,
+    "opponent_pseudo": "aangairbender"
+   },
+   {
+    "game_id": 896347586,
+    "opponent_id": 6479553,
+    "opponent_pseudo": "Wld"
+   },
+   {
+    "game_id": 896347930,
+    "opponent_id": 6481143,
+    "opponent_pseudo": "Pafin"
+   },
+   {
+    "game_id": 896348406,
+    "opponent_id": 6512040,
+    "opponent_pseudo": "celeria"
+   },
+   {
+    "game_id": 896348456,
+    "opponent_id": 6480507,
+    "opponent_pseudo": "RinSakamichi"
+   },
+   {
+    "game_id": 896348573,
+    "opponent_id": 6491404,
+    "opponent_pseudo": "daaskare"
+   },
+   {
+    "game_id": 896348742,
+    "opponent_id": 6480948,
+    "opponent_pseudo": "dabino"
+   },
+   {
+    "game_id": 896348868,
+    "opponent_id": 6479842,
+    "opponent_pseudo": "icecuber"
+   },
+   {
+    "game_id": 896348944,
+    "opponent_id": 6479553,
+    "opponent_pseudo": "Wld"
+   },
+   {
+    "game_id": 896349002,
+    "opponent_id": 6480945,
+    "opponent_pseudo": "Halphas"
+   },
+   {
+    "game_id": 896349042,
+    "opponent_id": 6483325,
+    "opponent_pseudo": "Pech1"
+   },
+   {
+    "game_id": 896349276,
+    "opponent_id": 6512040,
+    "opponent_pseudo": "celeria"
+   },
+   {
+    "game_id": 896349382,
+    "opponent_id": 6481270,
+    "opponent_pseudo": "zasmu"
+   },
+   {
+    "game_id": 896349490,
+    "opponent_id": 6481142,
+    "opponent_pseudo": "XSpace"
+   },
+   {
+    "game_id": 896349687,
+    "opponent_id": 6512056,
+    "opponent_pseudo": "a76a44"
+   },
+   {
+    "game_id": 896349736,
+    "opponent_id": 6480520,
+    "opponent_pseudo": "skotz"
+   },
+   {
+    "game_id": 896349821,
+    "opponent_id": 6480520,
+    "opponent_pseudo": "skotz"
+   },
+   {
+    "game_id": 896349882,
+    "opponent_id": 6481142,
+    "opponent_pseudo": "XSpace"
+   },
+   {
+    "game_id": 896349895,
+    "opponent_id": 6479542,
+    "opponent_pseudo": "xSkyline"
+   },
+   {
+    "game_id": 896349970,
+    "opponent_id": 6481139,
+    "opponent_pseudo": "uta_ccc"
+   },
+   {
+    "game_id": 896349986,
+    "opponent_id": 6480515,
+    "opponent_pseudo": "FredericBautista"
+   },
+   {
+    "game_id": 896350017,
+    "opponent_id": 6482016,
+    "opponent_pseudo": "DoubtinGiyov"
+   },
+   {
+    "game_id": 896350026,
+    "opponent_id": 6481139,
+    "opponent_pseudo": "uta_ccc"
+   },
+   {
+    "game_id": 896350102,
+    "opponent_id": 6480520,
+    "opponent_pseudo": "skotz"
+   },
+   {
+    "game_id": 896350131,
+    "opponent_id": 6479542,
+    "opponent_pseudo": "xSkyline"
+   },
+   {
+    "game_id": 896350156,
+    "opponent_id": 6479840,
+    "opponent_pseudo": "siman"
+   },
+   {
+    "game_id": 896350256,
+    "opponent_id": 6482016,
+    "opponent_pseudo": "DoubtinGiyov"
+   },
+   {
+    "game_id": 896350365,
+    "opponent_id": 6481270,
+    "opponent_pseudo": "zasmu"
+   },
+   {
+    "game_id": 896350499,
+    "opponent_id": 6479840,
+    "opponent_pseudo": "siman"
+   },
+   {
+    "game_id": 896350773,
+    "opponent_id": 6480947,
+    "opponent_pseudo": "khanh-alice"
+   },
+   {
+    "game_id": 896350846,
+    "opponent_id": 6512056,
+    "opponent_pseudo": "a76a44"
+   },
+   {
+    "game_id": 896350890,
+    "opponent_id": 6481143,
+    "opponent_pseudo": "Pafin"
+   },
+   {
+    "game_id": 896351124,
+    "opponent_id": 6479658,
+    "opponent_pseudo": "eulerscheZahl"
+   },
+   {
+    "game_id": 896351292,
+    "opponent_id": 6483491,
+    "opponent_pseudo": "VINCE_MX"
+   },
+   {
+    "game_id": 896351446,
+    "opponent_id": 6483325,
+    "opponent_pseudo": "Pech1"
+   },
+   {
+    "game_id": 896351921,
+    "opponent_id": 6557848,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896352075,
+    "opponent_id": 6481270,
+    "opponent_pseudo": "zasmu"
+   },
+   {
+    "game_id": 896352189,
+    "opponent_id": 6482016,
+    "opponent_pseudo": "DoubtinGiyov"
+   },
+   {
+    "game_id": 896352273,
+    "opponent_id": 6483325,
+    "opponent_pseudo": "Pech1"
+   },
+   {
+    "game_id": 896352340,
+    "opponent_id": 6479914,
+    "opponent_pseudo": "FinkPloyd"
+   },
+   {
+    "game_id": 896352541,
+    "opponent_id": 6480516,
+    "opponent_pseudo": "Ztrk"
+   },
+   {
+    "game_id": 896352586,
+    "opponent_id": 6481547,
+    "opponent_pseudo": "bl4sterino"
+   },
+   {
+    "game_id": 896352596,
+    "opponent_id": 6479914,
+    "opponent_pseudo": "FinkPloyd"
+   },
+   {
+    "game_id": 896352625,
+    "opponent_id": 6479385,
+    "opponent_pseudo": "Meruem"
+   },
+   {
+    "game_id": 896352634,
+    "opponent_id": 6480545,
+    "opponent_pseudo": "BoatBuilder"
+   },
+   {
+    "game_id": 896352750,
+    "opponent_id": 6481270,
+    "opponent_pseudo": "zasmu"
+   },
+   {
+    "game_id": 896352760,
+    "opponent_id": 6481142,
+    "opponent_pseudo": "XSpace"
+   },
+   {
+    "game_id": 896409635,
+    "opponent_id": 6563484,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896410101,
+    "opponent_id": 6563484,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896420875,
+    "opponent_id": 6563637,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896422596,
+    "opponent_id": 6563637,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896484682,
+    "opponent_id": 6565503,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896491787,
+    "opponent_id": 6565556,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896504994,
+    "opponent_id": 6565654,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896525380,
+    "opponent_id": 6566050,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896526211,
+    "opponent_id": 6566050,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896526595,
+    "opponent_id": 6566050,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896547892,
+    "opponent_id": 6566112,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896580977,
+    "opponent_id": 6567585,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896588124,
+    "opponent_id": 6567772,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896588235,
+    "opponent_id": 6567772,
+    "opponent_pseudo": "Bubaptik"
+   },
+   {
+    "game_id": 896626900,
+    "opponent_id": 6568027,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896627113,
+    "opponent_id": 6568027,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896648845,
+    "opponent_id": 6568324,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896649188,
+    "opponent_id": 6568324,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 896651429,
+    "opponent_id": 6568588,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897218489,
+    "opponent_id": 6580001,
+    "opponent_pseudo": "goq"
+   },
+   {
+    "game_id": 897219440,
+    "opponent_id": 6580001,
+    "opponent_pseudo": "goq"
+   },
+   {
+    "game_id": 897264497,
+    "opponent_id": 6581650,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897265726,
+    "opponent_id": 6581650,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897304997,
+    "opponent_id": 6582020,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897309299,
+    "opponent_id": 6582020,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897320189,
+    "opponent_id": 6582186,
+    "opponent_pseudo": "FreZzz"
+   },
+   {
+    "game_id": 897322350,
+    "opponent_id": 6582186,
+    "opponent_pseudo": "FreZzz"
+   }
+  ],
+  "unsupported_targets": 78,
+  "win_difference": 0.10135135135135136
+ },
+ "protocol": {
+  "bootstrap_reps": 20000,
+  "identity_mode": "exact_agent_id",
+  "initial_tree_band": 4,
+  "null_reps": 50000,
+  "opponent_score_band": 1.0,
+  "primary_orientation": "seat_1_minus_seat_0",
+  "resident_score_band": 0.25,
+  "seed": 20260730
+ },
+ "raw": {
+  "0": {
+   "games": 126,
+   "mean_margin": -3.134920634920635,
+   "mean_opponent_final_score": 182.0079365079365,
+   "mean_resident_final_fruit": 12.015873015873016,
+   "mean_resident_final_score": 178.87301587301587,
+   "mean_resident_final_wood_points": 166.85714285714286,
+   "mean_turns": 258.8492063492063,
+   "mean_win": 0.4365079365079365
+  },
+  "1": {
+   "games": 115,
+   "mean_margin": 3.617391304347826,
+   "mean_opponent_final_score": 186.09565217391304,
+   "mean_resident_final_fruit": 10.860869565217392,
+   "mean_resident_final_score": 189.71304347826086,
+   "mean_resident_final_wood_points": 178.8521739130435,
+   "mean_turns": 272.4173913043478,
+   "mean_win": 0.508695652173913
+  },
+  "seat_1_minus_seat_0": {
+   "mean_margin": 6.752311939268461,
+   "mean_opponent_final_score": 4.087715665976532,
+   "mean_resident_final_fruit": -1.1550034506556237,
+   "mean_resident_final_score": 10.840027605244984,
+   "mean_resident_final_wood_points": 11.995031055900625,
+   "mean_turns": 13.568184955141476,
+   "mean_win": 0.07218771566597648
+  }
+ },
+ "sensitivities": {
+  "chronological_halves": {
+   "early": {
+    "identities": 10,
+    "margin_difference": 9.402777777777779,
+    "targets": 18,
+    "win_difference": 0.041666666666666664
+   },
+   "late": {
+    "identities": 15,
+    "margin_difference": 10.736842105263158,
+    "targets": 19,
+    "win_difference": 0.15789473684210525
+   }
+  },
+  "fixed_effect": {
+   "contrasts": [
+    {
+     "margin_difference": 214.5,
+     "opponent_id": 6479385,
+     "pseudo": "Meruem",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": 1.0
+    },
+    {
+     "margin_difference": 9.0,
+     "opponent_id": 6479532,
+     "pseudo": "aangairbender",
+     "seat_0_games": 1,
+     "seat_1_games": 1,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": -45.5,
+     "opponent_id": 6479553,
+     "pseudo": "Wld",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": -0.5
+    },
+    {
+     "margin_difference": -243.5,
+     "opponent_id": 6479840,
+     "pseudo": "siman",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": -0.5
+    },
+    {
+     "margin_difference": -6.0,
+     "opponent_id": 6479863,
+     "pseudo": "R1FA",
+     "seat_0_games": 4,
+     "seat_1_games": 4,
+     "win_difference": 0.25
+    },
+    {
+     "margin_difference": -81.5,
+     "opponent_id": 6479914,
+     "pseudo": "FinkPloyd",
+     "seat_0_games": 2,
+     "seat_1_games": 2,
+     "win_difference": -0.5
+    },
+    {
+     "margin_difference": -154.0,
+     "opponent_id": 6480507,
+     "pseudo": "RinSakamichi",
+     "seat_0_games": 1,
+     "seat_1_games": 1,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": -60.333333333333336,
+     "opponent_id": 6480516,
+     "pseudo": "Ztrk",
+     "seat_0_games": 3,
+     "seat_1_games": 2,
+     "win_difference": -0.16666666666666663
+    },
+    {
+     "margin_difference": 44.33333333333333,
+     "opponent_id": 6480520,
+     "pseudo": "skotz",
+     "seat_0_games": 1,
+     "seat_1_games": 3,
+     "win_difference": 0.5
+    },
+    {
+     "margin_difference": 202.83333333333334,
+     "opponent_id": 6480545,
+     "pseudo": "BoatBuilder",
+     "seat_0_games": 3,
+     "seat_1_games": 2,
+     "win_difference": 1.0
+    },
+    {
+     "margin_difference": 6.25,
+     "opponent_id": 6480943,
+     "pseudo": "Dridriun",
+     "seat_0_games": 12,
+     "seat_1_games": 4,
+     "win_difference": 0.16666666666666669
+    },
+    {
+     "margin_difference": 115.5,
+     "opponent_id": 6480947,
+     "pseudo": "khanh-alice",
+     "seat_0_games": 4,
+     "seat_1_games": 1,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": -30.0,
+     "opponent_id": 6480948,
+     "pseudo": "dabino",
+     "seat_0_games": 1,
+     "seat_1_games": 1,
+     "win_difference": -1.0
+    },
+    {
+     "margin_difference": 97.5,
+     "opponent_id": 6481142,
+     "pseudo": "XSpace",
+     "seat_0_games": 2,
+     "seat_1_games": 4,
+     "win_difference": 0.75
+    },
+    {
+     "margin_difference": -12.0,
+     "opponent_id": 6481143,
+     "pseudo": "Pafin",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": 24.0,
+     "opponent_id": 6481270,
+     "pseudo": "zasmu",
+     "seat_0_games": 2,
+     "seat_1_games": 4,
+     "win_difference": 0.5
+    },
+    {
+     "margin_difference": -25.66666666666667,
+     "opponent_id": 6481547,
+     "pseudo": "bl4sterino",
+     "seat_0_games": 3,
+     "seat_1_games": 2,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": -3.0,
+     "opponent_id": 6482016,
+     "pseudo": "DoubtinGiyov",
+     "seat_0_games": 1,
+     "seat_1_games": 4,
+     "win_difference": -0.5
+    },
+    {
+     "margin_difference": 9.0,
+     "opponent_id": 6483325,
+     "pseudo": "Pech1",
+     "seat_0_games": 3,
+     "seat_1_games": 3,
+     "win_difference": 0.3333333333333333
+    },
+    {
+     "margin_difference": -86.0,
+     "opponent_id": 6491404,
+     "pseudo": "daaskare",
+     "seat_0_games": 1,
+     "seat_1_games": 1,
+     "win_difference": -1.0
+    },
+    {
+     "margin_difference": -10.399999999999999,
+     "opponent_id": 6512040,
+     "pseudo": "celeria",
+     "seat_0_games": 3,
+     "seat_1_games": 5,
+     "win_difference": -0.2666666666666666
+    },
+    {
+     "margin_difference": -67.33333333333333,
+     "opponent_id": 6512056,
+     "pseudo": "a76a44",
+     "seat_0_games": 4,
+     "seat_1_games": 3,
+     "win_difference": -0.4166666666666667
+    },
+    {
+     "margin_difference": 1.166666666666666,
+     "opponent_id": 6557848,
+     "pseudo": "FreZzz",
+     "seat_0_games": 4,
+     "seat_1_games": 6,
+     "win_difference": 0.25
+    },
+    {
+     "margin_difference": -41.333333333333336,
+     "opponent_id": 6563190,
+     "pseudo": "Bubaptik",
+     "seat_0_games": 3,
+     "seat_1_games": 1,
+     "win_difference": -0.3333333333333333
+    },
+    {
+     "margin_difference": 55.666666666666664,
+     "opponent_id": 6563637,
+     "pseudo": "Bubaptik",
+     "seat_0_games": 1,
+     "seat_1_games": 3,
+     "win_difference": 0.6666666666666666
+    },
+    {
+     "margin_difference": 26.666666666666668,
+     "opponent_id": 6566050,
+     "pseudo": "FreZzz",
+     "seat_0_games": 3,
+     "seat_1_games": 4,
+     "win_difference": 0.5
+    },
+    {
+     "margin_difference": -21.0,
+     "opponent_id": 6566112,
+     "pseudo": "FreZzz",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": -1.0
+    },
+    {
+     "margin_difference": -7.0,
+     "opponent_id": 6567667,
+     "pseudo": "Bubaptik",
+     "seat_0_games": 1,
+     "seat_1_games": 1,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": 8.0,
+     "opponent_id": 6568027,
+     "pseudo": "FreZzz",
+     "seat_0_games": 2,
+     "seat_1_games": 2,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": -4.833333333333333,
+     "opponent_id": 6568324,
+     "pseudo": "FreZzz",
+     "seat_0_games": 2,
+     "seat_1_games": 3,
+     "win_difference": 0.16666666666666663
+    },
+    {
+     "margin_difference": -7.0,
+     "opponent_id": 6568588,
+     "pseudo": "FreZzz",
+     "seat_0_games": 1,
+     "seat_1_games": 2,
+     "win_difference": 0.0
+    },
+    {
+     "margin_difference": 26.75,
+     "opponent_id": 6579750,
+     "pseudo": "FreZzz",
+     "seat_0_games": 4,
+     "seat_1_games": 1,
+     "win_difference": 0.75
+    },
+    {
+     "margin_difference": -33.0,
+     "opponent_id": 6580001,
+     "pseudo": "goq",
+     "seat_0_games": 2,
+     "seat_1_games": 3,
+     "win_difference": -0.33333333333333337
+    },
+    {
+     "margin_difference": -26.5,
+     "opponent_id": 6580130,
+     "pseudo": "FreZzz",
+     "seat_0_games": 4,
+     "seat_1_games": 1,
+     "win_difference": -0.25
+    },
+    {
+     "margin_difference": 37.66666666666667,
+     "opponent_id": 6581650,
+     "pseudo": "FreZzz",
+     "seat_0_games": 2,
+     "seat_1_games": 3,
+     "win_difference": 0.6666666666666666
+    },
+    {
+     "margin_difference": 21.7,
+     "opponent_id": 6582020,
+     "pseudo": "FreZzz",
+     "seat_0_games": 5,
+     "seat_1_games": 4,
+     "win_difference": 0.3
+    },
+    {
+     "margin_difference": 14.75,
+     "opponent_id": 6582186,
+     "pseudo": "FreZzz",
+     "seat_0_games": 4,
+     "seat_1_games": 4,
+     "win_difference": 0.0
+    }
+   ],
+   "game_weighted_margin_difference": 5.292857142857143,
+   "game_weighted_win_difference": 0.09955908289241623,
+   "identities": 37,
+   "identity_equal_margin_difference": -1.368018018018018,
+   "identity_equal_win_difference": 0.027927927927927927
+  },
+  "opponent_score_bands": {
+   "0.5": {
+    "identities": 23,
+    "margin_difference": 10.087837837837839,
+    "targets": 37,
+    "win_difference": 0.10135135135135136
+   },
+   "1.5": {
+    "identities": 23,
+    "margin_difference": 10.087837837837839,
+    "targets": 37,
+    "win_difference": 0.10135135135135136
+   }
+  },
+  "pseudo_lineage": {
+   "margin_difference": 16.286243386243385,
+   "pseudos": 12,
+   "supported_targets": 63,
+   "unsupported_targets": 52,
+   "win_difference": 0.14329176114890402
+  },
+  "reverse_orientation": {
+   "exact_identities": 23,
+   "margin_difference": 19.564285714285713,
+   "supported_targets": 35,
+   "unsupported_targets": 91,
+   "win_difference": 0.24285714285714285
+  }
+ },
+ "source": {
+  "count_checks": {
+   "clean_games": true,
+   "exact_opponents": true,
+   "records": true,
+   "resident_games": true,
+   "seat_0_games": true,
+   "seat_1_games": true
+  },
+  "counts": {
+   "clean_games": 9018,
+   "exact_opponents": 72,
+   "records": 9082,
+   "resident_games": 241,
+   "seat_0_games": 126,
+   "seat_1_games": 115
+  },
+  "expected_hash": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+  "game_id_range": [
+   891153730,
+   897326497
+  ],
+  "game_id_range_check": true,
+  "hash_check": true,
+  "observed_hash": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+  "path": "/home/tarstars/prj/troll_farm/data/processed/games.jsonl"
+ },
+ "support_gates": {
+  "at_least_100_raw_games_each_seat": true,
+  "at_least_15_exact_identities": true,
+  "at_least_15_targets_each_half": true,
+  "at_least_30_supported_targets": true
+ },
+ "verdict": "NO_ACTIONABLE_SEAT_ASYMMETRY"
+}
