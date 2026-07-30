@@ -87,7 +87,7 @@ an inspectable commit and validation evidence is not a handoff.
 brief the user activates by naming the file. Self-contained: it restates the liveness and
 stop rules inline, lists explicit may/may-not authority, and states its end condition. The
 window begins when the receiving agent accepts, not when the file was committed. Goal
-files never authorize Arena writes.
+files never authorize Arena writes by themselves — the standing authorization in `docs/STATE.md` §3 is the only source, and its conditions apply regardless of what a goal file says.
 
 ## 5. Cadence and liveness
 
