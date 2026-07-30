@@ -1,6 +1,6 @@
 # 20260730-n5-endgame-opponent-plant-contest: quantify the missing endgame contest mechanic
 
-- Status: active — protocol frozen; implementation pending
+- Status: active — implementation locked; exact corpus run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:30:00Z
-- Last updated UTC: 2026-07-30T20:30:00Z
+- Last updated UTC: 2026-07-30T20:36:30Z
 
 ## Outcome
 
@@ -84,3 +84,14 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands/hashes, all event/value/access/gate counts, and
 one verdict. A material verdict requests a separately frozen controlled-simulation
 proposal; no other continuation is automatic.
+
+## Implementation lock — 2026-07-30T20:36:30Z
+
+- Analyzer SHA-256:
+  `f2075297ae24631714abfe3b6d92b7fc357dad17228a237cf73d36c2beedcd2d`.
+- Test SHA-256:
+  `947951899951440d4d86493df94e61841bf62dee4ec1a506d451f0eaac5699e6`.
+- Compile and self-test pass; six focused tests pass.
+- Sacred resident SHA remains
+  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+- The full 382-occurrence audit has not been run at this lock.
