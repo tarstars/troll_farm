@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T14:56:59Z
-- Last updated UTC: 2026-07-30T15:02:22Z
+- Last updated UTC: 2026-07-30T15:12:06Z
 
 ## Outcome
 
@@ -84,3 +84,19 @@ Platform mutation: forbidden.
 
 Pushed report, tests, exact validation output, impact assessment, and a handoff to
 `chatgpt_1`; shared-ledger/state updates are integrated only after the verdict is stable.
+
+## Progress — 2026-07-30T15:12:06Z
+
+Primary-source, Python, frozen-Rust, and D33 checks now converge on
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`: zero source failures, zero dynamic failures,
+zero unexpected mismatches. The two recorded boundaries are referee-random equal-best
+movement versus local lexicographic movement, and simplified local parsing versus strict
+referee command validation.
+
+Validation so far:
+
+- focused audit: 6 passed;
+- maintained Python engine/mapgen/end-condition suites: 37 passed;
+- direct Rust `state`/`engine`/`official_mapgen` module test harness: 2 passed;
+- normal Cargo lib-test entry point is blocked before tests by the absent historical
+  compile-time include `d105a-q6-expert-population.tsv` in this isolated worktree.

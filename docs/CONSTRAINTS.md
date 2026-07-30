@@ -189,6 +189,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   family is closed. Recorded-command continuation is also invalid (86.85% command match,
   57/80 exact streams). `generate_official` (SHA1PRNG port, 120/120 untouched confirmation)
   is the accepted official-map substrate. [D29c/D30/D31/D33]
+- **X1 referee-parity boundary:** the core Python/Rust mechanics audit found zero unexpected
+  mismatches, and the undocumented Legend starting bank (four independent 2..10 fruit draws
+  plus 2..10 iron, symmetric between players; expected 24 fruit / 6 iron) was already
+  implemented by the D33 official generator. No rerun is required solely for that
+  documentation omission. Two gaps remain A2-blocking: local movement selects the
+  lexicographic equal-best cell while `Board.getNextCell` uses the referee's continuing RNG,
+  and local parsers do not reproduce strict ownership/league/skill/syntax/error semantics.
+  A referee-parity harness must preserve post-map RNG state and validate commands, or prove
+  tied moves absent and zero invalid commands over every evaluated trajectory. [X1,
+  `docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`]
 - Exact field maps do not rescue legacy local evaluation: actual score/margin range coverage
   is 2/5 and 1/5, and the old zoo funds worker-3 in 15/16 cells on maps where real opponents
   prevent it. The zoo is for parity/mechanism tests only, never promotion evidence. [vol 1]

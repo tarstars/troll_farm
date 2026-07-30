@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T15:02:22Z
-- State: active — X1 primary-source inventory in progress
+- Updated UTC: 2026-07-30T15:12:06Z
+- State: active — X1 verdict stable; closeout in progress
 - Role: coordinator (integrator)
 - Current task: 20260730-x1-mechanics-rederivation
 - Branch: agent/local_codex_1
-- Head: 8a5fe2fbc31573ee1a489eb035d226525beb2214
-- Write set: task record paths for 20260730-x1-mechanics-rederivation
-- Last concrete progress UTC: 2026-07-30T15:02:22Z
-- Evidence: referee source pinned at 290129129db7; starting inventory verified; D33 120/120 mapgen parity rechecked; movement RNG and command-validation gaps identified
+- Head: 9b859ce0e97064e7aea42901f6d98184878a3b08
+- Write set: task record plus X1 audit/test/report and conditional integrator closeout paths
+- Last concrete progress UTC: 2026-07-30T15:12:06Z
+- Evidence: X1 executable verdict `CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`; 6 focused and 37 broader Python tests pass; direct Rust module harness 2/2; D33 120/120
 - Running job: none
-- Latest verified result: resident dev copy SHA-256 begins fff6669b; shared session worktree changes left untouched
-- Next checkpoint: executable conformance checks for task ordering, resource actions, training, plant lifecycle, scoring, and termination
+- Latest verified result: zero source/dynamic/unexpected mismatches; Rust engine and official mapgen match frozen hashes
+- Next checkpoint: closeout ledger/state/register, sacred hash, push and handoff
 - Blockers: none
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
