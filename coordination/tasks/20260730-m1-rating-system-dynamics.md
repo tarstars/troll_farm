@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T18:30:46Z
-- Last updated UTC: 2026-07-30T18:30:46Z
+- Last updated UTC: 2026-07-30T18:35:30Z
 
 ## Outcome
 
@@ -21,7 +21,9 @@ unidentifiable result and state what additional observation would resolve it.
 
 ## Frozen protocol
 
-`docs/m1-rating-system-dynamics-protocol-2026-07-30.md`.
+`docs/m1-rating-system-dynamics-protocol-v2-2026-07-30.md`. V2 supersedes the immutable
+v1 after pre-implementation source validation corrected the duplicate-collection timing and
+added the raw game's platform-reported `agents[].score` evidence.
 
 ## Exclusive write set
 
