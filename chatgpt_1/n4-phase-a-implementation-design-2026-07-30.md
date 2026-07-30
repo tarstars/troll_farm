@@ -21,6 +21,11 @@ The census does not reimplement the resident's planner. A Python materializer:
 
 The telemetry records every candidate per worker, command, immediate score, target kind/cell, route distance, predicted tree size/health/cooldown, fell turns/size, all stock- and target-compatible pairs, the live pre-conflict pair, and the final post-rewrite pair.
 
+The tracked Rust file contains deterministic compressed payloads for the readable probe and exporter plus a tiny `include!` stub. The Python materializer expands both before compilation. This makes the exact generated sources hashable while keeping the byte-locked resident and Cargo registry untouched. Expected decoded payload hashes from the locally tested sources:
+
+- probe source: `f03d012fc96f246b57058081d3001d022b65dafdbb692b7899bcf7b5b1cfea83`;
+- exporter source: `cecbf8ecb88d094dc68da75e8388dbec55f5bee7e297e71cfd4a24209dd4e980`.
+
 ## One-tick boundary reconstruction
 
 For each natural two-worker state in the consumed A2-0b matrix:
@@ -79,9 +84,9 @@ Completed locally:
 - Python compile: pass;
 - analyzer/materializer self-test: `self-test: ok`;
 - focused pytest suite: **10 passed**;
-- Rust source bracket/static balance check: pass;
+- decoded Rust source bracket/static balance check: pass;
 - TSV header/row column-count review: 35 columns;
-- test coverage includes exact source anchors, every hard-close family, command mismatch, missing probe/candidate data, outcome leakage, consumed-grammar collapse, a surviving non-overlap alternative, latency close, and percent-encoding roundtrip.
+- test coverage includes exact source anchors, payload decompression, every hard-close family, command mismatch, missing probe/candidate data, outcome leakage, consumed-grammar collapse, a surviving non-overlap alternative, latency close, and percent-encoding roundtrip.
 
 Not completed here:
 
@@ -102,19 +107,27 @@ python3 cgauto/n4_candidate_pair_value_audit.py self-test
 python3 -m pytest -q tests/test_n4_candidate_pair_value_audit.py
 
 instrumented=/tmp/n4-instrumented-resident.rs
+runner=/tmp/n4-candidate-pair-surface-generated.rs
 python3 cgauto/n4_candidate_pair_value_audit.py materialize \
-  --output "$instrumented"
+  --resident-output "$instrumented" \
+  --runner-output "$runner"
+sha256sum "$instrumented" "$runner"
+
 N4_INSTRUMENTED_RESIDENT="$instrumented" \
+N4_GENERATED_RUNNER="$runner" \
   cargo build --release --manifest-path rust/Cargo.toml \
   --bin n4_candidate_pair_surface
 
 # Exact-range one-map smoke only; this is not the census.
 N4_INSTRUMENTED_RESIDENT="$instrumented" \
+N4_GENERATED_RUNNER="$runner" \
   rust/target/release/n4_candidate_pair_surface \
   /tmp/n4-smoke.tsv 1 1
+sha256sum /tmp/n4-smoke.tsv rust/target/release/n4_candidate_pair_surface
+wc -l -c /tmp/n4-smoke.tsv
 ```
 
-The host should return compiler output, binary and instrumented-source hashes, smoke TSV hash/size, and any source-anchor or command-reconstruction failure. The full 128-map census must not begin until those artifacts are remotely locked.
+The host should return compiler output, decoded-source hashes, binary and smoke TSV hashes/sizes, and any source-anchor or command-reconstruction failure. The full 128-map census must not begin until those artifacts are remotely locked.
 
 ## Safety
 
