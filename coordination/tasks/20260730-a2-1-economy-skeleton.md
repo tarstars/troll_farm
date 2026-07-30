@@ -8,7 +8,7 @@
 - Area: A2 programme Phase 1
 - Base commit: f1f3292cfe4cfd35e006c9f8ae7f2ffe4de23dc0
 - Branch: `agent/local_codex_1`
-- Progress lease: handoff pending remote publication and reviewer acknowledgement
+- Progress lease: handoff remotely published at `079e847`; reviewer acknowledgement pending
 - Created UTC: 2026-07-30T17:21:59Z
 - Last updated UTC: 2026-07-30T18:17:05Z
 
