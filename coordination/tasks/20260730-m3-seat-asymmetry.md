@@ -1,6 +1,6 @@
 # 20260730-m3-seat-asymmetry: audit exact resident seat effects
 
-- Status: claimed — frozen protocol published; implementation pending
+- Status: active — implementation lock ready; full empirical run pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:48:51Z
-- Last updated UTC: 2026-07-30T19:48:51Z
+- Last updated UTC: 2026-07-30T19:53:59Z
 
 ## Outcome
 
@@ -77,3 +77,13 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands/hashes, cluster/support table, one verdict,
 and any bounded replay-mechanism follow-up request. `chatgpt_1` reviews identification and
 actionability before canonical integration.
+
+## Implementation lock — 2026-07-30T19:53:59Z
+
+- Analyzer SHA-256:
+  `2c8003e1e18b24cd5143d8440ab727ecc630e3180f0b7e3b1a65dc405c2912c5`.
+- Test SHA-256:
+  `4e585f1c8cdd71ca308e7dbdb6b560ddc152fb4d29cd02f06226763fa0451a38`.
+- Compile/self-test/five tests pass.
+- Preflight: 37 supported seat-1 targets across 23 exact identities; all support gates
+  structurally clear before the full uncertainty run.
