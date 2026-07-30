@@ -138,6 +138,13 @@ rank goalpost move in the wrong direction.
   Phase 0 runs two parallel workstreams: **0a renewable-base feasibility** (K1: no renewable
   base → stop the programme) and **0b referee/evaluation parity harness**. The resident is
   untouched throughout; Phase 5 (arena) needs a NEW explicit authorization per candidate.
+- ★ **2026-07-30 STRATEGY: breadth at the plateau.** Complete approach register at
+  **`docs/APPROACH-REGISTER-2026-07-30.md`** — 35 feasible directions, deliberately
+  unfiltered, because the integrator's value estimates were wrong four times in the 07-29
+  sweep. **No value bar on audits** (cheap measurement is the filter); ≥+1.0 rating bar
+  retained for experiments; programmes owner-gated. Keep 2–3 audits in flight and roll.
+  Running: A2-0a, N1, N2. Next: X1 (mechanics re-derivation — highest variance), M1 (rating
+  dynamics), E1 (opening micro-optimality).
 - **Awaiting owner**: (a) dispatch of the audit-ready set (H5/H3/H8 — parallel,
   read-only, delegable to any agent); (b) the H2 Architecture-2 programme go/no-go.
 

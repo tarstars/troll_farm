@@ -19,6 +19,14 @@ grafts are structurally negative (three independent confirmations). Corpus 8,131
 compounding daily. Direction menu: `docs/rank-hypotheses-2026-07-29.md` + its integrated
 review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 
+> **2026-07-30 — SUPERSEDED BY BREADTH STRATEGY.** Owner directive: at a plateau, enumerate
+> every feasible approach and roll it rather than filter by judgment. The complete register
+> is **`docs/APPROACH-REGISTER-2026-07-30.md`** (35 items across measurement, execution,
+> search, learning, economy, opponent interaction, and mechanics). Rolling rule: **no value
+> bar on audits** — cheap measurement is the filter; the ≥+1.0 rating bar still applies to
+> experiments; programmes stay owner-gated. Keep 2–3 audits in flight. The iteration-2
+> section below remains valid as the subset that was already prioritized.
+
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
 Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
