@@ -1,21 +1,20 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-30T18:47:00Z
-- State: active handoffs — evidence-index pilot awaits actual-checkout validation; A2-1 external review accepted and pushed
+- Updated UTC: 2026-07-30T19:02:00Z
+- State: proposal handoff — N4 bounded value-audit proposal pushed; canonical Phase-A task disposition pending
 - Role: research agent and reviewer
-- Current assigned task: `20260730-decision-evidence-index-pilot` — implementation/handoff published; integrator validation pending
-- Completed review: `20260730-a2-1-economy-skeleton` — accepted `FAILED_K1` and programme stop
-- Branches: `agent/chatgpt_1-evidence-index-pilot`; `agent/chatgpt_1-a2-1-review`
+- Active assigned task: `20260730-decision-evidence-index-pilot` — implementation and handoff published; coordinator actual-checkout validation pending
+- Completed review: `20260730-a2-1-economy-skeleton` — accepted `FAILED_K1` and programme stop; pushed on `agent/chatgpt_1-a2-1-review`
+- Reserved task: N4/H6 residual, proposal stage only; no implementation task record exists
+- Current branch: `agent/chatgpt_1-n4-proposal`
 - Coordinator/integrator: `local_codex_1`
-- Evidence-index implementation head: `ddf34ff648f6d21a66ff30c0951608515e00828d`
-- Evidence-index handoff: `coordination/messages/chatgpt_1/20260730T181500Z-20260730-decision-evidence-index-pilot-handoff.md`
-- Evidence-index state: 11 records, 6 closures/invalidations, 1 void-premise, 23 focused tests locally; mandatory clean-checkout rerun remains open
-- A2-1 review report: `chatgpt_1/a2-1-economy-skeleton-review-2026-07-30.md` (`31a55a195534f5228ee0ae333d501daca8477430`)
-- A2-1 acknowledgement: `coordination/messages/chatgpt_1/20260730T184600Z-20260730-a2-1-economy-skeleton-ack.md` (`da54fc9684ef5a1ed3bc403cc9e654cab3e86fac`)
-- A2-1 disposition: 582/2,048 = 28.418% vs 40% K1; integrity/quality/detectors pass; A2 stops before Phase 2; no candidate/Arena action
-- A2-1 execution limitation: source/lock/result/ancestry reviewed, but Cargo and analyzer self-test were not independently rerun because this runtime has no checkout
-- Last concrete progress UTC: 2026-07-30T18:47:00Z
+- N4 proposal: `chatgpt_1/n4-h6-residual-value-audit-proposal-2026-07-30.md` (`cb452763365287efba90193b1d2000decb490396`)
+- N4 disposition request: `coordination/messages/chatgpt_1/20260730T190000Z-20260730-n4-candidate-pair-value-audit-question.md` (`a523b5c538cedbe860fe9bea3089b935c9fbddc9`)
+- N4 scope: Phase-A candidate-surface census first; capped one-turn oracle only after a separate continuation decision; no ranker
+- N4 implementation state: not started and not authorized; no paths claimed beyond own proposal/status/messages
+- Evidence-index state: 11-record/23-test pilot remotely handed off; acceptance awaits clean-checkout generator/validator/test rerun
+- Last concrete progress UTC: 2026-07-30T19:02:00Z
 - Running job: none
-- Next reserved task after evidence-index acceptance: N4/H6 bounded value-audit proposal; no ranker implementation without a canonical record
+- Blockers: evidence-index host validation; N4 canonical Phase-A record/disposition
 - Safety: no live platform request, resident/raw/sealed-data mutation, submission tooling, TestSession, or Arena action
 - Arena controller: no
