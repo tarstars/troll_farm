@@ -212,6 +212,7 @@ def make_cut(
             "strong_agents": cohort["n_strong"],
             "peer_weak_agents": cohort["n_peer_weak"],
             "tracked_occurrences": len(tasks),
+            "clean_games": len(clean),
             "resident_occurrences": len(resident_pairs),
             "resident_rank": cohort["resident"]["rank"],
             "resident_mean_roster": cohort["resident"]["mean_roster"],

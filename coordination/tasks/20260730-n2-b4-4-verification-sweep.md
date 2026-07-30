@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:22:41Z
+- Last updated UTC: 2026-07-30T19:23:49Z
 
 ## Outcome
 
@@ -110,3 +110,9 @@ Announced command:
 local_codex_1/n2-b4-4-verification`.
 This hashes every union input and decodes the anchor/current occurrences once; no input or
 Arena write is authorized.
+
+First command stopped before the manifest phase because `clean_games` was omitted from the
+structural gate dictionary. Revised analyzer/test hashes are
+`4147bf09b29a08126676f0846c9aa4ee61935be3f2ded5490257927204c87cc9` and
+`d502b84248c731989fea4936c8ba4c30d4e24ac12e5e6ab2d5db08ec9f17e3b5`;
+compile, self-test, and four tests pass.

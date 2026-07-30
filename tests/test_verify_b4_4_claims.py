@@ -45,6 +45,13 @@ def test_anchor_check_is_joint_not_occurrence_only() -> None:
     matched, checks = anchors_match(structural)
     assert not matched
     assert not checks["peer_weak_agents"]
+    structural = dict(EXPECTED_ANCHORS)
+    structural["resident_mean_roster"] = 2
+    structural["resident_median_roster"] = 2
+    structural.pop("clean_games")
+    matched, checks = anchors_match(structural)
+    assert not matched
+    assert not checks["clean_games"]
 
 
 def test_replay_summary_keeps_conditional_coverage_and_generation_purpose() -> None:
