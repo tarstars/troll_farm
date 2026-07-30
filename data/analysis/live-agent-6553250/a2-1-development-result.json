@@ -1,0 +1,274 @@
+{
+  "command_quality": {
+    "all_reason_counts": {
+      "existing_plant": 2,
+      "move_blocked": 22462,
+      "no_capacity": 1946,
+      "nothing_to_drop": 2,
+      "opponent_plant_blocking": 4,
+      "pick_stock_lost": 6,
+      "train_affordability_lost": 444,
+      "train_shack_blocked": 18
+    },
+    "checks": {
+      "global_critical_zero": true,
+      "global_unclassified_zero": true,
+      "own_critical_zero": true,
+      "own_issue_rate_at_most_0_005": true,
+      "own_issue_task_rate_at_most_0_10": true,
+      "own_reasons_allowed": true,
+      "row_accounting_exact": true
+    },
+    "disallowed_own_reasons": {},
+    "own_commands": 355600,
+    "own_issue_rate": 5.62429696287964e-06,
+    "own_issue_task_rate": 0.00390625,
+    "own_issue_tasks": 2,
+    "own_issues": 2,
+    "own_reason_counts": {
+      "opponent_plant_blocking": 2
+    },
+    "pass": true,
+    "row_invariant_failure_examples": []
+  },
+  "coverage": {
+    "checks": {
+      "all_terminal": true,
+      "labels_exact": true,
+      "no_duplicates": true,
+      "row_count_exact": true,
+      "task_matrix_exact": true
+    },
+    "duplicate_examples": [],
+    "expected_rows": 512,
+    "missing_examples": [],
+    "observed_rows": 512,
+    "pass": true,
+    "unexpected_examples": []
+  },
+  "descriptive_value": {
+    "by_family": {
+      "compact_gold": {
+        "catastrophes": 61,
+        "fruit_funded_worker3_rate": 0.40625,
+        "mean_margin": -254.078125,
+        "mean_opponent_score": 361.15625,
+        "mean_own_score": 107.078125,
+        "negative_margin_mass": 16271,
+        "own_bill_fruit_banked": 4186,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "gold_adaptive": {
+        "catastrophes": 53,
+        "fruit_funded_worker3_rate": 0.40625,
+        "mean_margin": -174.703125,
+        "mean_opponent_score": 278.453125,
+        "mean_own_score": 103.75,
+        "negative_margin_mass": 11655,
+        "own_bill_fruit_banked": 4172,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "legend_balanced": {
+        "catastrophes": 36,
+        "fruit_funded_worker3_rate": 0.40625,
+        "mean_margin": -95.1875,
+        "mean_opponent_score": 200.09375,
+        "mean_own_score": 104.90625,
+        "negative_margin_mass": 7193,
+        "own_bill_fruit_banked": 4124,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "mybot": {
+        "catastrophes": 45,
+        "fruit_funded_worker3_rate": 0.390625,
+        "mean_margin": -92.203125,
+        "mean_opponent_score": 168.828125,
+        "mean_own_score": 76.625,
+        "negative_margin_mass": 6042,
+        "own_bill_fruit_banked": 3224,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "norx_native_three": {
+        "catastrophes": 18,
+        "fruit_funded_worker3_rate": 0.40625,
+        "mean_margin": -5.40625,
+        "mean_opponent_score": 109.796875,
+        "mean_own_score": 104.390625,
+        "negative_margin_mass": 2425,
+        "own_bill_fruit_banked": 4131,
+        "own_issues": 2,
+        "tasks": 64
+      },
+      "resident": {
+        "catastrophes": 54,
+        "fruit_funded_worker3_rate": 0.375,
+        "mean_margin": -119.78125,
+        "mean_opponent_score": 194.03125,
+        "mean_own_score": 74.25,
+        "negative_margin_mass": 7772,
+        "own_bill_fruit_banked": 3088,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "script_boss": {
+        "catastrophes": 32,
+        "fruit_funded_worker3_rate": 0.40625,
+        "mean_margin": -87.703125,
+        "mean_opponent_score": 184.828125,
+        "mean_own_score": 97.125,
+        "negative_margin_mass": 6330,
+        "own_bill_fruit_banked": 4027,
+        "own_issues": 0,
+        "tasks": 64
+      },
+      "silver_boss": {
+        "catastrophes": 35,
+        "fruit_funded_worker3_rate": 0.421875,
+        "mean_margin": -56,
+        "mean_opponent_score": 136.046875,
+        "mean_own_score": 80.046875,
+        "negative_margin_mass": 3897,
+        "own_bill_fruit_banked": 3175,
+        "own_issues": 0,
+        "tasks": 64
+      }
+    },
+    "by_seat": {
+      "0": {
+        "catastrophes": 173,
+        "fruit_funded_worker3_rate": 0.3671875,
+        "mean_margin": -116.796875,
+        "mean_opponent_score": 206.1875,
+        "mean_own_score": 89.390625,
+        "negative_margin_mass": 32052,
+        "own_bill_fruit_banked": 14098,
+        "own_issues": 1,
+        "tasks": 256
+      },
+      "1": {
+        "catastrophes": 161,
+        "fruit_funded_worker3_rate": 0.4375,
+        "mean_margin": -104.46875,
+        "mean_opponent_score": 202.12109375,
+        "mean_own_score": 97.65234375,
+        "negative_margin_mass": 29533,
+        "own_bill_fruit_banked": 16029,
+        "own_issues": 1,
+        "tasks": 256
+      }
+    },
+    "catastrophes": 334,
+    "mean_margin": -110.6328125,
+    "mean_opponent_score": 204.154296875,
+    "mean_own_score": 93.521484375,
+    "negative_margin_mass": 61585
+  },
+  "mechanism": {
+    "checks": {
+      "fruit_funded_worker3_rate_at_least_0_40": true,
+      "iron_directed_moves_zero": true,
+      "mine_roster2_positive": true,
+      "mine_roster3plus_positive": true,
+      "own_crop_bank_positive": true,
+      "own_crop_harvest_positive": true
+    },
+    "conservative_bill_needs_owned_fruit_tasks": 164,
+    "fruit_funded_worker3_rate": 0.40234375,
+    "fruit_funded_worker3_tasks": 206,
+    "iron_directed_moves": 0,
+    "mined_iron_roster2": 208,
+    "mined_iron_roster3plus": 207,
+    "own_bill_fruit_banked": 30127,
+    "own_bill_fruit_harvested": 30523,
+    "own_generations_created": 3794,
+    "pass": true,
+    "worker3_turn": {
+      "count": 227,
+      "maximum": 293,
+      "median": 33,
+      "minimum": 18
+    }
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "maps": 32,
+    "rows": 512,
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9880000
+  },
+  "schema": "troll-farm-a2-1-economy-skeleton-result-v1",
+  "stage": "development",
+  "thread_parity": {
+    "byte_identical": true,
+    "jobs1": {
+      "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs1-9880000-9880031.tsv",
+      "sha256": "c395ec1bb7ebf8b0cb30918e04e5bc03b04b3c690b0f368027092099ea37925c"
+    },
+    "jobs20": {
+      "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs20-9880000-9880031.tsv",
+      "sha256": "c395ec1bb7ebf8b0cb30918e04e5bc03b04b3c690b0f368027092099ea37925c"
+    }
+  },
+  "trajectories_and_detectors": {
+    "checks": {
+      "all_records_decoded": true,
+      "no_duplicates": true,
+      "record_count_exact": true,
+      "repeated_failed_command_zero": true,
+      "six_detectors_executed": true,
+      "task_coverage_exact": true
+    },
+    "decode_or_detector_errors": [],
+    "detectors": {
+      "door_queue": {
+        "episodes": 20912,
+        "flagged_turns": 21271
+      },
+      "harvest_slack": {
+        "episodes": 21813,
+        "flagged_turns": 206343
+      },
+      "idle_with_work": {
+        "episodes": 71887,
+        "flagged_turns": 150016
+      },
+      "late_train_window": {
+        "episodes": 56,
+        "flagged_turns": 1658
+      },
+      "repeated_failed_command": {
+        "episodes": 0,
+        "flagged_turns": 0
+      },
+      "unbanked_carry": {
+        "episodes": 602,
+        "flagged_turns": 53961
+      }
+    },
+    "duplicate_examples": [],
+    "missing_examples": [],
+    "pass": true,
+    "path": "artifacts/experiments/a2-1-economy-skeleton/a2-1-development-trajectories-9880000-9880031.ndjson",
+    "records": 512,
+    "sha256": "da848c71958411fda33f2436115954add59de012ddf27c09f5671f6257331896",
+    "unexpected_examples": [],
+    "unique_tasks": 512
+  },
+  "verdict": "READY_FOR_IMPLEMENTATION_LOCK"
+}
