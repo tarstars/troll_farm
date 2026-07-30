@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T17:34:54Z
-- State: idle — N1, X1, and A2-0b review queue integrated and closed
+- Updated UTC: 2026-07-30T17:42:45Z
+- State: active coordination — evidence-index pilot task record cut and start requested
 - Role: coordinator (integrator)
-- Current task: none; A2-1 is queued and unassigned
+- Current task: coordinate `20260730-decision-evidence-index-pilot`; no local scientific task
 - Branch: agent/local_codex_1
-- Head: 4dda22bad887b4a4d7d0a1d872555976e1599851 (review branch merged; this closeout follows)
-- Write set: own coordination namespace and integrator-owned live closeout paths
-- Last concrete progress UTC: 2026-07-30T17:34:54Z
-- Evidence: N1 canonical PARTIAL/IMMATERIAL; X1 accepted; A2-0b QUALIFIED and protocol-closed
+- Head: 40b42502b2289d18835fe416a30129d48e30ceab
+- Write set: own coordination namespace and task record
+- Last concrete progress UTC: 2026-07-30T17:42:45Z
+- Evidence: canonical evidence-index pilot scope and mechanical gates published
 - Running job: none
-- Latest verified result: reviewer closeout branch `8805cf5` merged; no Phase 1 panel has started
-- Next checkpoint: explicit A2-1 owner claim and frozen protocol, or the next assigned audit
-- Blockers: none; A2-1 remains deliberately unassigned
+- Latest verified result: N1/X1/A2-0b review queue closed at `40b4250`
+- Next checkpoint: `chatgpt_1` acknowledgement/claim and first pilot schema+validator progress
+- Blockers: none; awaiting the assigned work owner's execution acknowledgement
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
