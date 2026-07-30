@@ -33,12 +33,12 @@ the target was never revisited. No path to +6.5 has been identified in two month
 2026-07-29 terminal synthesis closed all eight known routes for this architecture.
 
 Why ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact
-two-worker roster**, so it is architecturally demonstrated rather than hypothetical; and
-H13's maturity finding (3–4 points) means it may be reachable **without any code change at
-all** — which N1 is designed to settle. **Consequence: H2 Architecture-2 is demoted from
-"required by the goal" to optional upside.** Rank-based targets are additionally avoided
-because the pool strengthens under us (22.0 → 21.76 with no code change), which makes a
-rank goalpost move in the wrong direction.
+two-worker roster**, so it is architecturally demonstrated rather than hypothetical.
+N1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:
+remaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do
+the work. **A2 remains optional upside rather than goal-required**, but waiting is no
+longer a candidate path. Rank targets are additionally avoided because pool strengthening
+makes the goalpost move in the wrong direction.
 
 ## 3. Standing rules
 
@@ -91,9 +91,10 @@ rank goalpost move in the wrong direction.
 
 ## 4. Open thread
 
-- ★★★ **H5/H13:** the resident reproduces yamo's published #3-Legend design, yet yamo is
-  24.70 versus our mature 21.76 at the same two-worker roster. N1's host analysis reports
-  PARTIAL / IMMATERIAL; canonical reviewer publication is pending.
+- ★★★ **N1 DONE — PARTIAL / IMMATERIAL:** at score 21.47 and age 10.36d, estimated
+  remaining uplift is −0.1612, CI [−0.7525,+0.4567], projected mature score 21.3088.
+  The upper bound is only 0.0433 below the frozen cutoff, so do not claim negative aging;
+  do close passive maturity as a decision-relevant planning lever.
 - **2026-07-29 terminal synthesis:** all eight tested levers for the resident architecture
   are closed. At equal roster it matches strong two-worker peers; the deficit is
   scale-asymmetry survival. Learned selection, closed-loop options, production/farming,
@@ -105,21 +106,22 @@ rank goalpost move in the wrong direction.
     labor-limited. Top-5 reaches worker 3 in 75.6% by median t106 and worker 4 in 41.6% by
     t137; self-planted currency funds 37%/50%. Phase 1 gate: fruit-funded worker 3 in ≥40%
     by about turn 110, plus non-zero own-crop reap.
-  - **X1 DONE:** core mechanics match; the ~24-fruit/~6-iron starting bank was a docs-only
-    omission. It exposed continuing movement RNG and strict validation as A2-0b duties.
-  - **A2-0b QUALIFIED scientifically; reviewer acknowledgement pending.** The locked
+  - **X1 DONE AND REVIEWED:** core mechanics match; the ~24-fruit/~6-iron starting bank
+    was a docs-only omission. A2-0b closes both continued-RNG and strict-validation duties.
+  - **A2-0b QUALIFIED AND PROTOCOL-CLOSED.** The locked
     referee path exactly reproduces the historical control (49 catastrophes / 12,749
     negative mass), is byte-identical at one/20 threads, zero-gates critical/unclassified
     issues, and covers all six detectors over 2,048+2,048 trajectories. Referee RNG changes
     1,781/2,048 trajectories (tail 53 / 13,646); legacy evaluation is control only.
   - **A2-1 is explicitly QUEUED, unassigned and unstarted** at
-    `coordination/tasks/20260730-a2-1-economy-skeleton.md`; freeze its protocol with fresh
-    ranges only after A2-0b review closure. No Phase 1 panel has started.
+    `coordination/tasks/20260730-a2-1-economy-skeleton.md`; its A2-0b precondition is now
+    satisfied, but it still needs an owner claim and frozen fresh-range protocol. No Phase
+    1 panel has started.
 - ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
   Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
-  Current order: N1 review → A2-1 → M1 → N2 → execution/search/learning audits.
+  Current order: A2-1 → M1 → N2 → execution/search/learning audits.
 - **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
-  offline; `chatgpt_1` is reviewer/N1 owner. Inbox:
+  offline; `chatgpt_1` owns the evidence-index pilot and holds N4 by authorship. Inbox:
   `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12
   weekly surveillance. No Arena cycle is in flight.

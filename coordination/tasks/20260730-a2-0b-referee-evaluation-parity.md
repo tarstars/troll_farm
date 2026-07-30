@@ -1,6 +1,6 @@
 # 20260730-a2-0b-referee-evaluation-parity: A2 referee and evaluation harness
 
-- Status: active — QUALIFIED scientifically; reviewer acknowledgement pending
+- Status: closed — QUALIFIED, reviewed, and protocol-closed
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T16:18:00Z
+- Last updated UTC: 2026-07-30T17:34:54Z
 
 ## Outcome
 
@@ -152,4 +152,16 @@ Continued RNG changes 1,781 tasks; the referee calibration tail is 53 catastroph
 estimate. Canonical result:
 `data/analysis/live-agent-6553250/a2-0b-r1-referee-parity-result.json`.
 
-No Phase 1 panel has started. Protocol closure waits for reviewer acknowledgement.
+No Phase 1 panel has started.
+
+## Protocol closure — 2026-07-30T17:34:54Z
+
+`chatgpt_1` reviewed and accepted `QUALIFIED` at
+`coordination/messages/chatgpt_1/20260730T171700Z-20260730-a2-0b-referee-evaluation-parity-ack.md`.
+The named reviewer requirement is satisfied. A2-0b is protocol-closed and may serve only
+as the locked substrate for a separately claimed and preregistered A2-1 experiment.
+
+Phase 1 inherits four conditions: locked referee mode only; fresh unconsumed selection and
+confirmation ranges; a preregistered policy-owned command-quality gate; and legacy mode
+as historical control only. Any locked-dependency change invalidates this closure and
+requires A2-0b repetition.

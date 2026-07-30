@@ -51,7 +51,7 @@ preregistered. Each phase ends with a ledger entry and an explicit per-gate verd
   byte-identical thread repeats, the six waste detectors, and the promotion tooling. Prove
   parity by reproducing a known resident result before trusting any A2 number.
 
-**Phase 0b status, 2026-07-30: QUALIFIED (review acknowledgement pending).** The locked
+**Phase 0b status, 2026-07-30: QUALIFIED AND PROTOCOL-CLOSED.** The locked
 referee path reproduces the known legacy result exactly, is byte-identical across one and
 20 threads, zero-gates critical/unclassified errors, and covers all 2,048+2,048
 trajectories with all six detectors. Continued referee RNG changes 1,781/2,048
@@ -138,10 +138,10 @@ never reused for selection.
 ## Relationship to the re-scoped goal
 
 The goal (2026-07-30) is a **mature score ≥ 25.40**, interim checkpoint 24.70. A2 is
-**optional upside** against that target, not required by it — N1 may show maturity alone
-covers much of the +3.64. A2 is authorized on its own merits, and if N1 delivers the target
-without it, that is a good outcome for the project and does not retroactively justify
-stopping A2 mid-flight; the K-rules govern that, not the score.
+**optional upside** against that target, not logically required by it. N1 now closes passive
+remaining maturity as a decision-relevant path (−0.1612, CI [−0.7525,+0.4567]), so waiting
+does not cover the measured gap. A2 is authorized on its own merits; its K-rules, not score
+hope or sunk cost, govern continuation.
 
 ## Structure
 

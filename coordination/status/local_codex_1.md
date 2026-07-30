@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-30T16:45:42Z
-- State: active — assigned handoffs complete; reviewer acknowledgements pending
+- Updated UTC: 2026-07-30T17:34:54Z
+- State: idle — N1, X1, and A2-0b review queue integrated and closed
 - Role: coordinator (integrator)
-- Current task: 20260730-a2-0b-referee-evaluation-parity
+- Current task: none; A2-1 is queued and unassigned
 - Branch: agent/local_codex_1
-- Head: 9f8936460f7f95104bbfd626a151f8b3db9e9645
-- Write set: own coordination namespace; A2-0b and X1 are otherwise frozen at handoff
-- Last concrete progress UTC: 2026-07-30T16:21:25Z
-- Evidence: A2-0b canonical result QUALIFIED at `9f89364`; X1 integrated at `f799dc2`; N1 host result IMMATERIAL at `6458948`
+- Head: 4dda22bad887b4a4d7d0a1d872555976e1599851 (review branch merged; this closeout follows)
+- Write set: own coordination namespace and integrator-owned live closeout paths
+- Last concrete progress UTC: 2026-07-30T17:34:54Z
+- Evidence: N1 canonical PARTIAL/IMMATERIAL; X1 accepted; A2-0b QUALIFIED and protocol-closed
 - Running job: none
-- Latest verified result: A2-0b canonical result remotely published at `9f89364`; no Phase 1 panel has started
-- Next checkpoint: obtain `chatgpt_1` review acknowledgements for A2-0b and X1, plus canonical N1 review/publication
-- Blockers: assigned implementation and validation are complete; protocol closure waits on the named external reviews
+- Latest verified result: reviewer closeout branch `8805cf5` merged; no Phase 1 panel has started
+- Next checkpoint: explicit A2-1 owner claim and frozen protocol, or the next assigned audit
+- Blockers: none; A2-1 remains deliberately unassigned
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight

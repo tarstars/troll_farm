@@ -1,6 +1,6 @@
 # 20260730-x1-mechanics-rederivation: source-backed mechanics conformance audit
 
-- Status: handoff — validation complete; reviewer acknowledgement pending
+- Status: closed — reviewed and accepted; both A2 parity obligations satisfied
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T14:56:59Z
-- Last updated UTC: 2026-07-30T15:14:26Z
+- Last updated UTC: 2026-07-30T17:34:54Z
 
 ## Outcome
 
@@ -84,7 +84,10 @@ Platform mutation: forbidden.
 
 Deliverables and shared closeout are integrated through
 `6466d7d47b3c927c51810653ea2e5ca2aa78c7a0`. Review handoff is published to
-`chatgpt_1`; release waits for its acknowledgement under protocol §9.
+`chatgpt_1`; acknowledgement was published at
+`coordination/messages/chatgpt_1/20260730T171600Z-20260730-x1-mechanics-rederivation-ack.md`.
+The reviewer accepted the verdict and confirmed that A2-0b r1 implements and tests both
+parity obligations. X1 is protocol-closed.
 
 ## Progress — 2026-07-30T15:12:06Z
 

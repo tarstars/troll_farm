@@ -41,19 +41,18 @@ produced one experiment (D176a, in flight). Its most consequential output was no
 candidate but a **re-baselining**: H13 found that at most ~1 point of our 2.94-point gap to
 yamo is attributable to code, while the documented fresh-vs-mature score effect is 3–4
 points. **If that holds, our true code gap to the 28.22 bar is roughly 2.5–3.5, not 6.46** —
-which changes what is worth building. Iteration 2 therefore leads with measurement, not
-construction.
+which changed what was worth measuring. **N1 has now settled the premise against passive
+maturity:** remaining uplift −0.1612 with CI [−0.7525,+0.4567]. Iteration 2 therefore
+continues with construction and rating-dynamics measurement, not waiting.
 
 ### P0 — re-baseline (cheap, read-only, and everything downstream depends on it)
 
-- **N1. Maturity-curve measurement.** *The single highest-leverage item available.* Quantify
-  the fresh-vs-mature effect empirically instead of citing a 07-16 anecdote: use the six
-  ladder snapshots (2026-07-21 → 07-29, daily since 07-28) plus the 8,131-game corpus to fit
-  score-vs-time-since-submission across the field, controlling for battle count and pool
-  composition. Deliver: our expected *mature* score, the resulting true code gap to the bar,
-  and whether score converges or plateaus. **Decision value:** re-baselines every other item;
-  if maturity is worth 3–4 points, patience and submission *timing* outrank every code
-  candidate we have found. Read-only, no platform interaction.
+- **N1 ✅ DONE — PARTIAL / IMMATERIAL.** Seven snapshots provide 41 within-agent age-bin
+  crossings with stable exact identities and snapshot/agent fixed effects, but lifetime
+  battle accumulation remains censored. Resident remaining uplift is −0.1612, CI
+  [−0.7525,+0.4567], projected mature score 21.3088. The upper edge is only 0.0433 below
+  the frozen +0.500 cutoff: close passive maturity as a planning lever, but do not claim a
+  high-margin negative aging effect.
 - **N2. B4.4 verification sweep.** Its figures have now been corrected twice (H3 on four
   counts, plus unresolved provenance/definition questions). **Owner correction 2026-07-30:
   early planting around turns 21–29 can establish a self-reproducing orchard, while
@@ -71,8 +70,8 @@ construction.
   self-replacement. Late fruit-to-wood conversion is a separate objective, not evidence
   against early establishment. **First kill gate:** fruit-funded worker 3 in ≥40% of
   fresh-map games by about turn 110, plus non-zero reap of our own crops. Preconditions:
-  A2-0b review closure; a remotely claimed owner/write set; a separately frozen protocol
-  with fresh ranges and a policy-owned command-quality gate. Canonical queue record:
+  A2-0b review closure (**satisfied**); a remotely claimed owner/write set; a separately
+  frozen protocol with fresh ranges and a policy-owned command-quality gate. Canonical record:
   `coordination/tasks/20260730-a2-1-economy-skeleton.md`.
 - **N3 / A2-0a ✅ DONE.** The corpus found a sub-critical, labor-limited crop base rather
   than reliable population-level self-replacement. That does not kill A2: top-5 converts
@@ -111,8 +110,8 @@ construction.
 ### P3 — owner programmes
 
 - **H2 / A2 Architecture-2 — OWNER-AUTHORIZED; Phase 0 complete.** A2-0a established the
-  measured economy target and A2-0b produced a qualified referee/evaluation substrate
-  (review acknowledgement pending). The next step is the explicit A2-1 queue item above,
+  measured economy target and A2-0b produced a reviewed, protocol-closed
+  referee/evaluation substrate. The next step is the explicit A2-1 queue item above,
   not an implicit open-ended programme. The contest's #2 rejected a third troll for
   unfavorable cost scaling and #3 stayed at two; A2 therefore remains optional upside and
   must obey its kill gates rather than assuming scaling wins.
@@ -124,9 +123,9 @@ construction.
 
 ### Operations
 
-- **H9 submission timing** — reclassified from "curiosity" to **strategic**, pending N1: if
-  maturity dominates, *when* we next submit matters more than what we submit. Still requires
-  explicit owner authorization and runs only inside `docs/PROMOTION-RUNBOOK.md`.
+- **H9 submission timing** — passive-maturity timing is closed by N1. Future timing is the
+  ordinary qualified-candidate promotion problem and runs only inside
+  `docs/PROMOTION-RUNBOOK.md`.
 - **H12 surveillance** — cron 05:17 running; weekly comparative refresh with explicit
   triggers. **B5.3** cold-file migration ripens ~2026-08-03. **B0.3 no-churn** absolute.
 

@@ -1,6 +1,6 @@
 # 20260730-a2-1-economy-skeleton: build and gate the first Architecture-2 policy
 
-- Status: queued — unassigned and unstarted; no protocol, range, lock, or panel exists
+- Status: queued — unassigned and unstarted; A2-0b precondition satisfied; no A2-1 protocol, range, lock, or panel exists
 - Record owner: local_codex_1
 - Work owner: unassigned
 - Reviewer: unassigned
@@ -10,7 +10,7 @@
 - Branch: none until remotely claimed
 - Progress lease: inactive until a work owner claims the task
 - Created UTC: 2026-07-30T17:21:59Z
-- Last updated UTC: 2026-07-30T17:21:59Z
+- Last updated UTC: 2026-07-30T17:34:54Z
 
 ## Outcome
 
@@ -32,7 +32,8 @@ A2-0b built the referee/evaluation substrate; neither produced a candidate bot.
 
 ## Preconditions before implementation
 
-1. A2-0b receives reviewer acknowledgement and reaches protocol closure.
+1. **Satisfied 2026-07-30:** A2-0b received reviewer acknowledgement and reached protocol
+   closure.
 2. A work owner remotely claims this task with an explicit, non-overlapping write set and
    its own worktree/branch.
 3. A separate A2-1 protocol freezes fresh, unconsumed development and confirmation ranges,

@@ -1325,3 +1325,24 @@ legacy is historical control only.
 Scientific verdict: **QUALIFIED**. Reviewer acknowledgement is pending, so protocol
 closure and any Phase 1 panel wait. Full records:
 `a2-0b-r1-{implementation-lock,referee-parity-result}.json` and dated Markdown companions.
+
+## 2026-07-30: N1 maturity curve closes waiting; X1/A2-0b reviews close
+
+`chatgpt_1` reviewed the host-executed seven-snapshot N1 panel and published the canonical
+verdict: **PARTIAL identification / IMMATERIAL remaining maturity**. Exact `agentId`
+identity is stable; 1,008 agents repeat, 41 within-agent age-bin crossings exist, and all
+2,549 score-changing intervals advance `updateTime`. Lifetime games played remains
+unidentified because battle lists are right-censored.
+
+At the latest snapshot the resident is score **21.47**, age **10.356d**. Estimated
+remaining uplift is **−0.1612**, agent-cluster bootstrap 95% CI
+**[−0.7525,+0.4567]**, projected mature score **21.3088**, gaps **3.3912** to 24.70 and
+**4.0912** to 25.40. Zero is inside the interval; the upper edge is only **0.0433** below
+the frozen +0.500 cutoff. Thus the label is boundary-sensitive and does not prove negative
+aging, but it decisively retires the anecdotal +3–4-point passive-maturity budget.
+
+The same review branch accepted X1's
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS` and confirmed both obligations implemented by
+A2-0b r1. It also accepted A2-0b as **QUALIFIED**. A2-0b is now protocol-closed; A2-1
+inherits locked referee mode, fresh ranges, a policy-owned command-quality gate, and
+legacy-as-control-only. No Phase 1 panel or Arena action occurred.

@@ -606,7 +606,7 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   `docs/reference/2026-07-11-yannbot-design.md` (both were lost in a reorganization and
   restored 2026-07-29). **Consequence: "our architecture's ceiling" arguments must account
   for the fact that this architecture finished #3 in the contest.** [H5]
-- ★★ **We score 2.94 below our own source design** — yamo 24.70 (rank 15) vs tass 21.76
+- **[maturity attribution overturned by N1]** ★★ **We score 2.94 below our own source design** — yamo 24.70 (rank 15) vs tass 21.76
   (rank 45), 2026-07-29 snapshot, same fixed 2-troll roster. **[qualified by H13: this is
   most plausibly MATURITY, not code.]** H13 could attribute at most ≈1 point to code
   deviations and found several checked behaviours equal or reversed; the documented
@@ -614,6 +614,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   while yamo has played since May. **Do not cite "we underperform our source" as a code
   claim without a maturity-controlled measurement** — on current evidence our code may
   already match or exceed yamo's. [H5, corrected by H13]
+- ★★★ **Passive remaining maturity is CLOSED as a planning lever.** N1's exact-agent,
+  seven-snapshot fixed-effects panel has PARTIAL identification support: 41 within-agent
+  age-bin crossings, 1,008 repeated agents, and no score change without advancing
+  `updateTime`, but lifetime battle accumulation is censored. At resident age 10.356d and
+  score 21.47, estimated remaining uplift is **−0.1612**, agent-cluster bootstrap 95% CI
+  **[−0.7525,+0.4567]**, projected mature score **21.3088**. The upper edge is only 0.0433
+  below the frozen +0.500 cutoff, so the categorical verdict is boundary-sensitive:
+  **do not claim negative aging**, but do not budget the anecdotal +3–4 points or wait for
+  maturation. [N1, `chatgpt_1/n1-maturity-canonical-result-2026-07-30.md`]
 - **Four accretions in the dev copy are structurally DEAD** — `ScarceIntent`,
   `banana_factory`, `task_market`, and the opponent-crop scoring family cannot fire at all
   under `main()`'s construction chain. Any analysis that treats them as live behaviour is

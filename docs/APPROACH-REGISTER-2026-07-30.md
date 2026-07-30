@@ -35,8 +35,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **N1** | Maturity-curve measurement | 1 session | **assigned to `chatgpt_1`; identifiability preflight complete; full maturity analysis NOT yet performed** (no analyzer, no verdict, nothing running). Preflight verdict CONDITIONALLY IDENTIFIABLE — raw-field audit is the prerequisite |
-| **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | **running** |
+| **N1** | Maturity-curve measurement | 1 session | **✅ DONE — PARTIAL / IMMATERIAL:** remaining uplift −0.1612, CI [−0.7525,+0.4567], projected mature score 21.3088; boundary-sensitive but closes passive maturity as a planning lever |
+| **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | open, unassigned |
 | **M1** | **Rating-system dynamics** — how does the score actually update per win/loss? Recover the update rule from the snapshot series. If it is Elo-like, quantify how many wins a +1 move costs, which prices *every* candidate in wins rather than margin | ~1 session | open |
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | open |
 | **M3** | **Seat asymmetry** — do we underperform in one seat? Never audited; if real it is a targeted fix | hours | open |
@@ -81,7 +81,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **A2-0a** | Renewable-base feasibility (= N3) | 1 session | **✅ DONE — feasibility qualified; base sub-critical and LABOR-limited (R≈0.75; 0.40 fruit/turn realized vs 2.5–6.8 ceiling); partial renewal is useful but reliable self-replacement is not assumed** |
-| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **✅ QUALIFIED — exact legacy reproduction; locked referee RNG/validation path; reviewer ack pending** |
+| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **✅ QUALIFIED AND PROTOCOL-CLOSED — exact legacy reproduction; locked referee RNG/validation path; four Phase-1 conditions carried forward** |
 | **A2-1** | Economy skeleton: early orchard establishment/reap → bank + opportunistic mine → fruit-funded worker 3; late fruit-to-wood conversion is distinct | 1–2 sessions to first gate | **QUEUED — unassigned and unstarted; canonical record `coordination/tasks/20260730-a2-1-economy-skeleton.md`; protocol and fresh ranges required** |
 | **A2-2…5** | Equal-roster parity → scale survival → same-panel dominance/deployability → Arena | programme | blocked on an A2-1 gate pass |
 | **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | open |
@@ -100,7 +100,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **X1** | **Systematic mechanics re-derivation — PROMOTED 2026-07-30.** No longer speculative: A2 Phase 0a found an **undocumented per-player starting bank of ~24 fruit / ~6 iron**, verified in `official_mapgen.rs` and absent from `docs/mechanics.md` — an input to *every* affordability calculation this project has run. If one rule was missing, others may be. Differential-test the simulator against the referee across edge cases | 1–2 sessions | **✅ DONE — core match; starting bank was documentation-only; movement RNG + strict command validation become A2-0b obligations** |
-| **H9** | Submission timing — strategic pending N1; requires explicit owner authorization per event | owner | gated |
+| **H9** | Submission timing | owner | passive-maturity timing closed by N1; ordinary qualified-candidate promotion discipline remains |
 | **H11** | Map-conditioned configuration as a controlled decomposition only (D63/D91 stand) | 1 session | open, low |
 | **H12** | Standing surveillance — cron plus weekly comparative refresh | automatic | running |
 | **B5.3** | Cold-file migration | hours | ripens ~08-03 |
@@ -109,12 +109,12 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 ## Immediate roll
 
-**Done 2026-07-30:** A2-0a (EXISTS-qualified); X1 (core match); A2-0b
-(QUALIFIED scientifically, reviewer acknowledgement pending). **Claimed by `chatgpt_1`:**
-N1 (maturity), the evidence-index pilot, and N4 by authorship.
+**Done 2026-07-30:** N1 (PARTIAL/IMMATERIAL); A2-0a (feasibility qualified); X1
+(core match, reviewed); A2-0b (QUALIFIED and protocol-closed). **Held by `chatgpt_1`:**
+the evidence-index pilot and N4 by authorship.
 
-Priority order as of 2026-07-30, highest first: **N1 review** (re-baselines everything) →
-**A2-1** (explicitly queued economy skeleton; protocol and fresh ranges next) → **M1** (rating dynamics:
+Priority order as of 2026-07-30, highest first: **A2-1** (explicitly queued economy
+skeleton; owner claim, protocol, and fresh ranges next) → **M1** (rating dynamics:
 prices candidates in wins, and the goal is stated in score) → **N2** (unblocks B4.4
 citations) → evidence-index pilot → then B-tier execution and C/D-tier search/learning
 audits in id order.
