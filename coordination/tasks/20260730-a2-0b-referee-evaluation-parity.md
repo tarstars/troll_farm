@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T15:23:35Z
+- Last updated UTC: 2026-07-30T15:28:38Z
 
 ## Outcome
 
@@ -30,6 +30,7 @@ begins until the implementation lock is remotely published.
 ## Exclusive write set
 
 - `docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md` (new)
+- `rust/src/game/a2_continued_mapgen.rs` (new)
 - `rust/src/game/a2_referee_parity.rs` (new)
 - `rust/src/game/mod.rs`
 - `rust/src/bin/a2_0b_referee_parity.rs` (new)
@@ -86,3 +87,11 @@ Conditional integrator closeout paths:
 ## Arena authority
 
 No read or mutation is needed. Arena, TestSession, and submission tooling are forbidden.
+
+## Progress — 2026-07-30T15:28:38Z
+
+The isolated continued-map/RNG layer and source-shaped movement selector are implemented
+without changing the historical engine or generator. A direct Rust module harness passes
+6/6 tests, including field identity over 1,024 seeds, direct-move zero draws, bound-one
+draws, and true-tie selection. Collision resolution accepts already-resolved targets so
+the final parser can consume RNG in referee command order.
