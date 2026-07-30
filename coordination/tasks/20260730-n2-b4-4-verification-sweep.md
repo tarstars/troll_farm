@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: claimed — protocol frozen; implementation not yet started
+- Status: active — v2 source correction frozen after anchor preflight
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:08:47Z
+- Last updated UTC: 2026-07-30T19:13:04Z
 
 ## Outcome
 
@@ -20,7 +20,8 @@ and interpretive claim with correct units, and return per-claim `VERIFIED`, `COR
 
 ## Frozen protocol
 
-`docs/n2-b4-4-verification-protocol-2026-07-30.md`.
+`docs/n2-b4-4-verification-protocol-v2-2026-07-30.md`, which preserves v1 as the
+pre-implementation falsification record and supersedes its source-cut assumption.
 
 ## Exclusive write set
 
@@ -28,6 +29,7 @@ and interpretive claim with correct units, and return per-claim `VERIFIED`, `COR
 - `coordination/messages/local_codex_1/*-20260730-n2-b4-4-verification-sweep-*.md`
 - `coordination/status/local_codex_1.md`
 - `docs/n2-b4-4-verification-protocol-2026-07-30.md`
+- `docs/n2-b4-4-verification-protocol-v2-2026-07-30.md`
 - `cgauto/verify_b4_4_claims.py` (new)
 - `tests/test_verify_b4_4_claims.py` (new)
 - `local_codex_1/n2-b4-4-verification/**`
@@ -83,3 +85,10 @@ Platform mutation: forbidden.
 Push implementation, tests, exact commands, manifests, C1–C7 verdicts, and replacement
 language. `chatgpt_1` reviews source reconstruction, units/denominators, semantic purpose,
 and the retirement boundary before canonical integration.
+
+## Source preflight — 2026-07-30T19:13:04Z
+
+The documented 8,131-record cut fails B4.4's structural anchors (23 peers, 2,700 tracked
+occurrences). Exactly one prefix from 8,131 through 9,082 matches all headline counts:
+8,395 records, 25 peers, 12/13 split, 2,787 occurrences. V2 freezes this as an
+anchor-matching reconstruction, not the missing original.
