@@ -83,7 +83,7 @@ result, closure counting, and deterministic generation.
 
 Generated SHA-256 values:
 
-- `decision-evidence-index.yaml`: `308bb3dccf07b4a46617e48336fa576a421c87951bece1e5b46c415d1e084481`
+- `decision-evidence-index.yaml`: `9c00b1c66f070137a3ddda2a5de249a9644154cc90ad351d64718b6d5e666144`
 - `DECISION-EVIDENCE-INDEX.md`: `6860ba71b17202d4a7096d71011d2d21e2f566d0e5223179db3a4cff98c10453`
 - `CONSTRAINTS-PILOT-PROJECTION.md`: `4a9b1e04fd64a2526180050a2a538b7ab01bbeac0d4aa7d1b14b12142d8b3809`
 - `equivalence-report.md`: `b418781eb01057be06a97625b13eb5e0c671e2dd82e8b174c814bd92f0a42004`
