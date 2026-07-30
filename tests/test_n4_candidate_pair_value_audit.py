@@ -35,8 +35,8 @@ def full_surface(**updates):
     return rows, frozen
 
 
-def test_instrumentation_is_anchor_exact():
-    fixture = """        #[derive(Clone, Debug)]
+def dual_output_fixture():
+    return """        #[derive(Clone, Debug)]
         struct Candidate {
             command: String,
             score: f64,
@@ -49,12 +49,35 @@ def test_instrumentation_is_anchor_exact():
                 let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
                 out.extend(selected);
                 if out.is_empty() {
+                    out.push("WAIT".to_string());
+                }
+                self.remember_selected_regeneration(view, &selected);
+                self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                self.remember_own_plant_attempts(view, &selected);
+                if let Some(farmer_id) = scarce_farmer_id {
+                    self.regeneration_commitments.remove(&farmer_id);
+                }
+                out.extend(selected);
+                if out.is_empty() {
 """
-    transformed = n4.instrument_resident(fixture)
+
+
+def test_instrumentation_uses_unique_live_path_not_generic_tail():
+    transformed = n4.instrument_resident(dual_output_fixture())
     assert "pub struct N4CandidateProbe" in transformed
     assert "n4_force_pair" in transformed
     assert "n4_selected_pre" in transformed
+    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert transformed.count("out.extend(selected);") == 2
     assert "fn main()" in n4.runner_source()
+
+
+def test_actual_sacred_source_materializes_once():
+    resident = MODULE_PATH.parents[1] / "rust/src/d171a_control_resident_snapshot.rs"
+    assert n4.sha256_file(resident) == n4.RESIDENT_SHA256
+    transformed = n4.instrument_resident(resident.read_text())
+    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert transformed.count("n4_forced_pair") >= 3
 
 
 def test_surface_clears_only_with_all_gates():
