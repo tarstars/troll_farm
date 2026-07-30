@@ -6,11 +6,11 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
-## Position summary (2026-07-29)
+## Position summary (2026-07-30)
 
 Resident `6561795`: **21.76, rank ~45** (2026-07-29T02:17Z cron snapshot; gap to the
 28.22 bar now **6.46** and widening passively as the pool strengthens), score source-side frozen,
-untouched and holding the slot. **The TERMINAL SYNTHESIS closed all eight improvement
+untouched and holding the slot. **Goal re-scoped 2026-07-30: mature score ≥ 25.40 (+3.64), interim checkpoint 24.70 = yamo; rank ≤3 superseded. H2 is now optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
 equal roster we are at parity with strong two-worker peers (58.2/58.3) — the whole
 deficit is scale-asymmetry survival; a worker prices at +2–4 rating (2→4 ≈ 84% of the

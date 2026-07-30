@@ -279,6 +279,30 @@ close before the game does?" is therefore the **first** question any Architectur
 must answer, ahead of scheduler or roster questions. Report in session scratch
 `h1-joint-upper-bound-report.md`.
 
+## 2026-07-30: OWNER DECISION — goal re-scoped from rank ≤3 to a mature score ≥ 25.40
+
+Presented with (a) keep rank ≤3, (b) re-scope to a target the evidence can reach, or (c)
+drop the rank target and optimize for knowledge, the owner chose **(b)**. Recorded target:
+**mature score ≥ 25.40** (the top-10 boundary; Escdemon 25.37) = **+3.64** from the frozen
+21.76, with an interim checkpoint at **24.70** — yamo's score, the published design this bot
+reproduces, so passing it means the reproduction surpasses its original. Completion rule
+unchanged: mature read plus a later confirmation.
+
+Reasoning of record: rank ≤3 (28.22) was set while passive maturity was believed to be a
+live lever. That belief died — the ladder recomputes fresh-agent scores rarely, so our score
+is source-side frozen — and the target was never revisited, with the effect that every
+result since has been measured against a bar no identified path reaches. The re-scoped
+target is chosen to be *architecturally demonstrated* (25 Legend agents reach ranks 7–54 at
+our exact two-worker roster) and *decision-bearing*: H13 puts the maturity effect at 3–4
+points, so ≥25.40 may be reachable with no code change, and N1 becomes a decision procedure
+rather than an interesting audit. Score rather than rank is used deliberately because the
+pool strengthens under us (22.0 → 21.76 with no code change), which would make a rank
+goalpost drift the wrong way.
+
+**Consequence: H2 Architecture-2 is demoted from goal-required to optional upside.** It
+remains an open owner decision on its own merits, gated on N1 and N3, and contested by H5's
+finding that the contest's #2 and #3 finishers both ran two-worker rosters.
+
 ## 2026-07-29: D176a CLOSED-AT-MECHANISM — the fix largely works; two of my gates were mis-specified
 
 **Verdict CLOSED-AT-MECHANISM, as recorded by the analyzer and not reinterpreted.** But the

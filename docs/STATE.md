@@ -19,11 +19,26 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 - Rank bar: 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
 - Corpus: **9,082 games** / 469+ agents, compounding daily (cron 05:17 — +951 overnight).
 
-## 2. Goal
+## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
-Formally standing: Legend **rank ≤ 3** on a mature read + confirmation. **Post-terminal
-reality (2026-07-29): this architecture cannot reach it** — closing the +6.25 gap
-requires a new bot (H2 programme) or an owner re-scope. The resident holds the slot.
+**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),
+i.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the
+design this bot reproduces, so passing it means the reproduction has surpassed its original
+(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a
+single spike.
+
+Superseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a
+live lever; that assumption died (score is source-side frozen between rare recomputes) and
+the target was never revisited. No path to +6.5 has been identified in two months, and the
+2026-07-29 terminal synthesis closed all eight known routes for this architecture.
+
+Why ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact
+two-worker roster**, so it is architecturally demonstrated rather than hypothetical; and
+H13's maturity finding (3–4 points) means it may be reachable **without any code change at
+all** — which N1 is designed to settle. **Consequence: H2 Architecture-2 is demoted from
+"required by the goal" to optional upside.** Rank-based targets are additionally avoided
+because the pool strengthens under us (22.0 → 21.76 with no code change), which makes a
+rank goalpost move in the wrong direction.
 
 ## 3. Standing rules
 
