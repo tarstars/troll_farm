@@ -1,6 +1,6 @@
 # 20260730-a2-0b-referee-evaluation-parity: A2 referee and evaluation harness
 
-- Status: active — protocol frozen; implementation phase
+- Status: active — v1 blocked; r1 protocol frozen before implementation lock
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T15:17:31Z
-- Last updated UTC: 2026-07-30T15:38:42Z
+- Last updated UTC: 2026-07-30T15:47:00Z
 
 ## Outcome
 
@@ -30,6 +30,7 @@ begins until the implementation lock is remotely published.
 ## Exclusive write set
 
 - `docs/a2-0b-referee-evaluation-parity-protocol-2026-07-30.md` (new)
+- `docs/a2-0b-referee-evaluation-parity-r1-protocol-2026-07-30.md` (new)
 - `rust/src/game/a2_continued_mapgen.rs` (new)
 - `rust/src/game/a2_referee_parity.rs` (new)
 - `rust/src/game/mod.rs`
@@ -107,3 +108,12 @@ implementation lock or confirmation run occurred. Evidence:
 Per the frozen verdict, v1 is preserved. The active task proceeds only through a
 separately frozen r1 repair protocol that models and accounts for supported noncritical
 errors while requiring zero critical or unsupported errors.
+
+## R1 protocol freeze — 2026-07-30T15:47:00Z
+
+R1 is frozen at
+`docs/a2-0b-referee-evaluation-parity-r1-protocol-2026-07-30.md`. It changes only G3:
+24 source-defined noncritical reasons are permitted with focused state-effect tests and
+complete accounting; critical, fallback, and unclassified outcomes remain zero-gated.
+All v1 RNG, resident reproduction, thread, detector, isolation, and storage gates remain
+binding.
