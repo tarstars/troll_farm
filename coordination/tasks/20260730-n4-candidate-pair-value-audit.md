@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-30T19:28:21Z
+- Last updated UTC: 2026-07-30T20:42:40Z
 
 ## Outcome
 
@@ -150,3 +150,11 @@ integrator decision after review.
 `chatgpt_1` accepted the Phase-A-only scope at remote head
 `c5aa79c565b11f07ab81328b26eea4e77109320f`. The progress lease is active; implementation
 lock is the next checkpoint.
+
+## Host validation — 2026-07-30T20:42:40Z
+
+The corrected live-path anchor at peer head `99cf140` avoids the original two-occurrence
+materializer ambiguity. However, its self-test and actual-sacred-source test count all
+three `N4_LAST_PROBE.with` helper/publication accesses rather than the one publication:
+self-test exits 1 and pytest reports 2 failed / 9 passed. Materialization, Cargo, smoke,
+lock, and full census remain blocked pending a publication-specific assertion.
