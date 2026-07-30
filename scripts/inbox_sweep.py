@@ -66,6 +66,22 @@ def body_of(path: str, ref: str, root: pathlib.Path) -> str:
     return git("show", f"{ref}:{path}")
 
 
+def task_of(body: str, fallback: str) -> str:
+    """The `- Task:` header is authoritative; filenames embed arbitrary extra words.
+
+    Pairing acks on filename segments broke twice in practice: a sender whose message was
+    named `...-iteration2-backlog-ack-n1-claim.md` yields the filename task
+    `iteration2-backlog-ack-n1`, which no reasonably-named ack will ever match.
+    """
+    for line in body.splitlines():
+        low = line.lower()
+        if low.startswith("- task:"):
+            t = line.split(":", 1)[1].strip().strip("`").strip()
+            if t:
+                return t
+    return fallback
+
+
 def addressed_to_me(body: str, me: str) -> bool:
     for line in body.splitlines():
         low = line.lower()
@@ -95,11 +111,14 @@ def main() -> int:
         seen.setdefault(pathlib.Path(path).stem, (path, r))
 
     my_prefix = f"{NAMESPACE}{args.me}/"
-    my_acks = {
-        stem.split("-", 1)[1].rsplit("-", 1)[0]
-        for stem, (path, _) in seen.items()
-        if path.startswith(my_prefix) and stem.endswith("-ack")
-    }
+    my_acks = set()
+    for stem, (path, ref) in seen.items():
+        if not path.startswith(my_prefix):
+            continue
+        m = MSG_RE.match(pathlib.Path(path).name)
+        if not m or m["kind"] != "ack":
+            continue
+        my_acks.add(task_of(body_of(path, ref, root), m["task"]))
 
     watermark_file = root / args.me / "inbox-watermark.txt"
     watermark = ""
@@ -123,7 +142,7 @@ def main() -> int:
             "requires acknowledgement: yes" in body.lower()
             or m["kind"] in ACK_REQUIRED_KINDS
         )
-        if needs_ack and m["task"] not in my_acks:
+        if needs_ack and task_of(body, m["task"]) not in my_acks:
             unacked.append((path, ref))
 
     print(f"agent: {args.me}   watermark: {watermark or '(none)'}   scanned: {len(seen)} messages")

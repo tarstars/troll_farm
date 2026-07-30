@@ -35,7 +35,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **N1** | Maturity-curve measurement | 1 session | **claimed by chatgpt_1** — preflight says CONDITIONALLY IDENTIFIABLE; raw-field audit first |
+| **N1** | Maturity-curve measurement | 1 session | **assigned to `chatgpt_1`; identifiability preflight complete; full maturity analysis NOT yet performed** (no analyzer, no verdict, nothing running). Preflight verdict CONDITIONALLY IDENTIFIABLE — raw-field audit is the prerequisite |
 | **N2** | B4.4 verification sweep — its figures corrected twice already; verify or retire the rest | 1 session | **running** |
 | **M1** | **Rating-system dynamics** — how does the score actually update per win/loss? Recover the update rule from the snapshot series. If it is Elo-like, quantify how many wins a +1 move costs, which prices *every* candidate in wins rather than margin | ~1 session | open |
 | **M2** | **Opponent-specific systematic losses** — are there agents we lose to far more than our score predicts? A single exploitable matchup is worth more than a broad 1% gain | ~1 session | open |
