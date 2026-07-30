@@ -19,8 +19,10 @@ import copy
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import statistics
+import subprocess
 import sys
 import tempfile
 
@@ -100,6 +102,58 @@ INTEGER_FIELDS = {
     "PICK": (1,),
 }
 
+CLOCK_SHIM_SOURCE = r"""
+#define _GNU_SOURCE
+#include <dlfcn.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <sys/random.h>
+#include <time.h>
+
+typedef int (*clock_gettime_fn)(clockid_t, struct timespec *);
+static __thread uint64_t e4_monotonic_ns = 0;
+static __thread uint64_t e4_entropy_state = 0x6a09e667f3bcc909ULL;
+
+static unsigned char e4_entropy_byte(void) {
+    e4_entropy_state ^= e4_entropy_state << 13;
+    e4_entropy_state ^= e4_entropy_state >> 7;
+    e4_entropy_state ^= e4_entropy_state << 17;
+    return (unsigned char)(e4_entropy_state >> 56);
+}
+
+ssize_t getrandom(void *buffer, size_t length, unsigned int flags) {
+    (void)flags;
+    unsigned char *bytes = (unsigned char *)buffer;
+    for (size_t index = 0; index < length; ++index) {
+        bytes[index] = e4_entropy_byte();
+    }
+    return (ssize_t)length;
+}
+
+int getentropy(void *buffer, size_t length) {
+    return getrandom(buffer, length, 0) == (ssize_t)length ? 0 : -1;
+}
+
+int clock_gettime(clockid_t clock_id, struct timespec *value) {
+    if (clock_id == CLOCK_MONOTONIC
+#ifdef CLOCK_MONOTONIC_RAW
+        || clock_id == CLOCK_MONOTONIC_RAW
+#endif
+    ) {
+        e4_monotonic_ns += 1000000ULL;
+        value->tv_sec = (time_t)(e4_monotonic_ns / 1000000000ULL);
+        value->tv_nsec = (long)(e4_monotonic_ns % 1000000000ULL);
+        return 0;
+    }
+    static clock_gettime_fn real_clock_gettime = 0;
+    if (!real_clock_gettime) {
+        real_clock_gettime =
+            (clock_gettime_fn)dlsym(RTLD_NEXT, "clock_gettime");
+    }
+    return real_clock_gettime(clock_id, value);
+}
+""".lstrip()
+
 
 def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
@@ -134,6 +188,22 @@ def transform_source(source: bytes) -> bytes:
     if transformed.replace(alternate, control, 1) != source:
         raise ValueError("alternate source is not a one-substring transformation")
     return transformed
+
+
+def compile_runtime_shim(directory: Path) -> Path:
+    """Build a temporary deterministic clock/entropy shim for child bots."""
+
+    source = directory / "e4_clock_shim.c"
+    library = directory / "e4_clock_shim.so"
+    source.write_text(CLOCK_SHIM_SOURCE)
+    result = subprocess.run(
+        ["cc", "-shared", "-fPIC", "-O2", str(source), "-ldl", "-o", str(library)],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        raise RuntimeError(f"runtime shim compilation failed:\n{result.stderr}")
+    return library
 
 
 def ortho_neighbors(cell: tuple[int, int]) -> list[tuple[int, int]]:
@@ -747,7 +817,11 @@ def run_audit(jobs: int) -> dict:
                 f"e4_opponent_{index}_{opponent_name}",
             )
             binaries[opponent_name] = temp / opponent_name
-        print("compiled control, temporary alternate, and six opponents", flush=True)
+        runtime_shim = compile_runtime_shim(temp)
+        print(
+            "compiled control, temporary alternate, six opponents, and virtual clock",
+            flush=True,
+        )
 
         tasks = [
             (seed, "tied", policy, opponent)
@@ -759,23 +833,38 @@ def run_audit(jobs: int) -> dict:
             for seed in SENTINEL_SEEDS
             for policy in ("control", "alternate")
         ]
-        with ThreadPoolExecutor(max_workers=jobs) as executor:
-            futures = {
-                executor.submit(
-                    paired_cell,
-                    seed,
-                    map_class,
-                    policy,
-                    opponent,
-                    binaries[policy],
-                    binaries[opponent],
-                ): (seed, map_class, policy, opponent)
-                for seed, map_class, policy, opponent in tasks
-            }
-            for completed, future in enumerate(as_completed(futures), 1):
-                rows.append(future.result())
-                if completed % 16 == 0 or completed == len(tasks):
-                    print(f"completed {completed}/{len(tasks)} paired cells", flush=True)
+        previous_preload = os.environ.get("LD_PRELOAD")
+        os.environ["LD_PRELOAD"] = (
+            str(runtime_shim)
+            if not previous_preload
+            else f"{runtime_shim}:{previous_preload}"
+        )
+        try:
+            with ThreadPoolExecutor(max_workers=jobs) as executor:
+                futures = {
+                    executor.submit(
+                        paired_cell,
+                        seed,
+                        map_class,
+                        policy,
+                        opponent,
+                        binaries[policy],
+                        binaries[opponent],
+                    ): (seed, map_class, policy, opponent)
+                    for seed, map_class, policy, opponent in tasks
+                }
+                for completed, future in enumerate(as_completed(futures), 1):
+                    rows.append(future.result())
+                    if completed % 16 == 0 or completed == len(tasks):
+                        print(
+                            f"completed {completed}/{len(tasks)} paired cells",
+                            flush=True,
+                        )
+        finally:
+            if previous_preload is None:
+                os.environ.pop("LD_PRELOAD", None)
+            else:
+                os.environ["LD_PRELOAD"] = previous_preload
 
     rows.sort(
         key=lambda row: (
@@ -841,6 +930,19 @@ def run_audit(jobs: int) -> dict:
                 }
                 for name in OPPONENT_NAMES
             },
+        },
+        "runtime": {
+            "virtual_monotonic_clock": True,
+            "clock_quantum_ns": 1_000_000,
+            "deterministic_child_entropy": True,
+            "runtime_shim_source_sha256": sha256_bytes(
+                CLOCK_SHIM_SOURCE.encode("utf-8")
+            ),
+            "scope": (
+                "child bot processes only; fixes the frozen motion opponent's "
+                "550/28 ms iteration budget and Rust randomized collection seeds "
+                "without source mutation"
+            ),
         },
         "census": census,
         "coverage": coverage,

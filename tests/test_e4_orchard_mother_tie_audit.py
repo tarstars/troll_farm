@@ -5,6 +5,7 @@ import pytest
 from cgauto.e4_orchard_mother_tie_audit import (
     adjudicate,
     ALTERNATE_SUFFIX,
+    CLOCK_SHIM_SOURCE,
     CONTROL_SUFFIX,
     geometry_for,
     LIVE_SHA256,
@@ -36,6 +37,14 @@ def test_exact_live_transform_changes_one_suffix_only():
         alternate.replace(ALTERNATE_SUFFIX.encode(), CONTROL_SUFFIX.encode(), 1)
         == source
     )
+
+
+def test_virtual_clock_has_frozen_one_millisecond_quantum():
+    assert "e4_monotonic_ns += 1000000ULL;" in CLOCK_SHIM_SOURCE
+    assert "CLOCK_MONOTONIC" in CLOCK_SHIM_SOURCE
+    assert "CLOCK_REALTIME" not in CLOCK_SHIM_SOURCE
+    assert "ssize_t getrandom" in CLOCK_SHIM_SOURCE
+    assert "int getentropy" in CLOCK_SHIM_SOURCE
 
 
 @pytest.mark.parametrize("seat", [0, 1])

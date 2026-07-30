@@ -1,0 +1,61 @@
+{
+  "schema": 2,
+  "task": "20260730-e4-orchard-mother-tie-audit",
+  "locked_utc": "2026-07-30T22:24:10Z",
+  "base_commit": "2c82f6ac886fdf89b8ea3316df40aaa6aca9fdc2",
+  "protocol": "docs/e4-orchard-mother-tie-audit-protocol-2026-07-30.md",
+  "supersedes": {
+    "artifact": "local_codex_1/e4-orchard-mother-tie-audit/implementation-lock.json",
+    "scope": "execution-harness authorization only",
+    "reason": "the first full run correctly failed all sentinel identities because the frozen motion opponent uses wall-clock search and randomized Rust collections",
+    "failed_run_result_materialized": false
+  },
+  "unchanged": {
+    "control_source": true,
+    "alternate_transform": true,
+    "opponent_sources": true,
+    "tied_seeds": true,
+    "sentinel_seeds": true,
+    "mechanism_gate": true,
+    "value_gate": true,
+    "panel_rows": true
+  },
+  "implementation": {
+    "path": "cgauto/e4_orchard_mother_tie_audit.py",
+    "sha256": "ed3901795f37b7ec5d3315e9f95c02f16260112368914b83d90aa3eb04242166"
+  },
+  "tests": {
+    "path": "tests/test_e4_orchard_mother_tie_audit.py",
+    "sha256": "fa68f5cf0e2e26571a702e40aa189affe82d40f24d3af1f368e8e07cda129a27",
+    "pytest": "11 passed",
+    "self_test": "ok"
+  },
+  "runtime_determinization": {
+    "persistent_artifact": false,
+    "scope": "child bot processes only",
+    "source_sha256": "52a879df0a3c034c202d18ded300c634feb822e17c9f335946e64552ab71bf2a",
+    "monotonic_clock_quantum_ns": 1000000,
+    "deterministic_getrandom": true,
+    "deterministic_getentropy": true,
+    "policy_source_mutation": false,
+    "opponent_source_mutation": false
+  },
+  "prelock_checks": {
+    "rust_hashmap_probe_runs": 8,
+    "rust_hashmap_unique_orders": 1,
+    "repeat_control_seed": 19,
+    "repeat_control_opponent": "motion",
+    "repeat_control_runs": 4,
+    "policy_action_streams_exact": true,
+    "opponent_action_streams_exact": true,
+    "terminal_states_exact": true,
+    "seat_margins_exact": true,
+    "seat_margins": [
+      -7,
+      140
+    ],
+    "stderr_bytes": 0,
+    "malformed_commands": 0
+  },
+  "authorized_next_action": "rerun the unchanged frozen full panel at jobs=8 and jobs=1 and require tied/sentinel/delta row hashes to match"
+}
