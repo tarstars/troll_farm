@@ -1,6 +1,6 @@
 # 20260730-n6-denial-weight-sweep: finish reproduction G1 once
 
-- Status: active — implementation/source/dependency locked; development pending
+- Status: empirical closed — `CLOSED_AT_DEVELOPMENT`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence; phase markers renew it
 - Created UTC: 2026-07-30T20:47:30Z
-- Last updated UTC: 2026-07-30T21:05:36Z
+- Last updated UTC: 2026-07-30T21:14:06Z
 
 ## Outcome
 
@@ -79,6 +79,26 @@ CONSTRAINTS, STATE, and the live ledger. No other shared path is authorized.
 - The 48 trajectory records decode, have exact state/command alignment, and execute all
   six standing detectors without an exception.
 - Ten focused tests and the analyzer self-test pass. No development panel has run.
+
+## Development closeout
+
+- Required external-storage preflight passed on `medium_data` with 452,661,989,376 free
+  bytes.
+- Exact 32-map panel completed once in 247.935 seconds: 512 rows per arm, 1,536 total,
+  zero critical/unclassified/opponent-command-mismatch issues. Panel SHA-256:
+  `f57817b3d4906c3d7941df2ab8257069ccd199b8280843db156c13f255bd41ae`.
+- LOW: 378/512 tasks diverge; 15/97 comparable first divergences are directional; paired
+  margin −0.7539; both seats negative; three positive families.
+- HIGH: 273/512 tasks diverge; 12/77 comparable first divergences are directional; paired
+  margin +0.5586; both seats positive; four positive families.
+- Neither clears the 60% directional or six-family gate; LOW also fails overall and both
+  seat gates. Verdict `CLOSED_AT_DEVELOPMENT`; no arm selected and confirmation range
+  untouched.
+- Canonical report/result:
+  `data/analysis/live-agent-6553250/n6-denial-weight-sweep-result-2026-07-30.md`
+  and its sibling development JSON. Compact bundle:
+  `local_codex_1/n6-denial-weight-sweep/`.
+- Scalar tuning is closed with no resident or Arena action. Await independent review.
 
 ## Arena authority
 

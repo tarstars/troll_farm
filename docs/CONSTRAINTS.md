@@ -552,6 +552,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   Stage-1 positives died at n=200). Early-bank wood detours are closed (only 10/429
   uncollected wood units recoverable; conversion is workforce quality: trained workers 0.349
   wood/chop vs starter 0.135). [Phases 1–5; archive/legend/session-handoff-2026-07-16.md]
+- **The denial-distance scalar is CLOSED after its one permitted nonzero sweep.** On
+  512 paired development tasks per arm, LOW 450 changes commands in 378 tasks but gains
+  only 15/97 intended comparable first divergences and loses −0.754 margin (both seats
+  negative; 3/8 families positive). HIGH 1800 changes 273 tasks and gains +0.559 margin
+  with both seats positive, but only 12/77 comparable divergences move in the intended
+  direction and 4/8 families are positive. Neither clears the frozen 60% mechanism or
+  six-family gates; confirmation maps remain unused. Keep 900; do not retry zero,
+  capable-only, intermediate weights, or a retuned grid. [N6,
+  `data/analysis/live-agent-6553250/n6-denial-weight-sweep-result-2026-07-30.md`]
 
 ## (f) Wrappers, residuals, online-search latency
 

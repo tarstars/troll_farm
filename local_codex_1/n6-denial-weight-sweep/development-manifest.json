@@ -1,0 +1,45 @@
+{
+  "schema": "troll-farm-n6-development-manifest-v1",
+  "created_utc": "2026-07-30T21:14:06Z",
+  "implementation_commit": "26ea8d2bd2b99e761112648bad6f2182703277c8",
+  "command": "N6_LOW_SOURCE=/tmp/troll-farm-n6-sources.cGbfOV/low.rs N6_CONTROL_SOURCE=/tmp/troll-farm-n6-sources.cGbfOV/control.rs N6_HIGH_SOURCE=/tmp/troll-farm-n6-sources.cGbfOV/high.rs rust/target/release/n6_denial_weight_sweep 9858000 32 artifacts/experiments/n6-denial-weight-sweep/n6-development-9858000-9858031.tsv 20 all",
+  "storage_preflight": {
+    "label": "medium_data",
+    "mount": "/media/tarstars/medium_data",
+    "required_free_gib": 1,
+    "free_bytes": 452661989376,
+    "pass": true
+  },
+  "panel": {
+    "start_seed": 9858000,
+    "maps": 32,
+    "seats": 2,
+    "opponent_families": 8,
+    "tasks_per_arm": 512,
+    "rows": 1536,
+    "threads": 20,
+    "elapsed_seconds": 247.935,
+    "path": "artifacts/experiments/n6-denial-weight-sweep/n6-development-9858000-9858031.tsv",
+    "sha256": "f57817b3d4906c3d7941df2ab8257069ccd199b8280843db156c13f255bd41ae"
+  },
+  "hashes": {
+    "protocol": "a3be014f890eaa400a5d9cd24a656a0b12831af9ab4958ef847717a81fdba0c9",
+    "analyzer": "df9fb52e40b1f6a46df66dca09cf79e4cf95612a8970877b1b9b91ebb4ef5d85",
+    "runner": "548e814dea58f53373126836e32108f3409c62fae82d8fc09aaedf8e55e0376c",
+    "tests": "576a7e8eb2cdaee51595122211b8d5dba56ade25e10075d789178db29eed0960",
+    "resident": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "referee": "518c222881ac23f8548cc13c858bacc93577ea920ecfbdbf0fd0e588cad1bf83",
+    "continued_mapgen": "8e841958c47db42920ca23150bd2afbdb88acaa06c1a13f97ee684fbfea2a84d",
+    "generated_low": "a827f7c1542f800e94f33b2e924a07d191b9e1c5a9202450744e81d5a75dee94",
+    "generated_control": "9ac22932901aeff7d8c8855e54de23d5b9a83de6e4025bde5758f020b517ac03",
+    "generated_high": "bfba6c4be4bdeed7f8a30c375a30fefd63a8f91e294a53dd532af26a837040d6",
+    "release_binary": "d1c17587458ebc5ec341321c37daac17d7a308680e90a4f5578dc8581170e821",
+    "development_result": "04ca9928161ea86a23c165013d10c8cccb59b26ed31f202b9b462f8aec711756",
+    "human_report": "00bed3c0baacd97d3dd9e9df2ceb70b0e01f9234273742c62fa5d160f80bad8b"
+  },
+  "result": {
+    "verdict": "CLOSED_AT_DEVELOPMENT",
+    "selected_arm": null,
+    "confirmation_maps_consumed": false
+  }
+}

@@ -210,3 +210,39 @@ simulation, policy change, resident change, or Arena action.
 Evidence:
 `data/analysis/live-agent-6553250/n5-endgame-opponent-plant-contest-result-2026-07-30.md`;
 machine bundle `local_codex_1/n5-endgame-opponent-plant-contest/`.
+
+## N6 — the one nonzero denial-weight sweep closes at development
+
+**Question.** Does either preregistered nonzero alternative to the resident's guessed
+`900/(1+opponent_distance)` focus bonus produce a directionally faithful, opponent-robust
+improvement?
+
+**Lock and panel.** The exact sacred resident was normalized only by moving its crate-only
+allow attribute onto three runner modules; LOW/CONTROL/HIGH then differ solely at
+450/900/1800. The A2-0b referee and continued RNG hashes remain exact. Compilation, ten
+focused tests, scalar-only diffs, jobs-1/jobs-4 smoke identity, 48 trajectory decodes, and
+all six detector executions passed before the lock. After the required `medium_data`
+preflight, fresh maps 9,858,000–031 ran once: 32 maps × two seats × eight opponent
+families = 512 paired tasks and 512 rows per arm, 1,536 total. Coverage is exact; critical,
+unclassified, ownership, and opponent-command-mismatch counts are zero. Panel SHA-256:
+`f57817b3d4906c3d7941df2ab8257069ccd199b8280843db156c13f255bd41ae`.
+
+**LOW 450.** Commands diverge in 378/512 tasks, but only 15/97 directionally comparable
+common-state first divergences move focus in the intended direction (15.46%, gate 60%).
+Mean paired margin is −0.7539; seat deltas are −1.1133/−0.3945 and only 3/8 families are
+positive. It fails mechanism, overall value, both-seat, and family-breadth gates.
+
+**HIGH 1800.** Commands diverge in 273/512 tasks. Mean margin is +0.5586 and both seats
+are positive (+0.4141/+0.7031), but only 12/77 comparable first divergences are
+directional (15.58%) and only 4/8 families are positive. Mean opponent score rises by
++0.2715. It fails mechanism and breadth; its small heterogeneous aggregate cannot select
+it for confirmation.
+
+**Verdict: `CLOSED_AT_DEVELOPMENT`.** No arm is selected. Confirmation maps
+9,859,000–127 remain untouched; there is no candidate, resident change, or Arena action.
+This completes reproduction G1 once. Keep 900 and do not retune zero, capable-only,
+intermediate weights, or a second grid.
+
+Evidence:
+`data/analysis/live-agent-6553250/n6-denial-weight-sweep-result-2026-07-30.md`;
+machine bundle `local_codex_1/n6-denial-weight-sweep/`.

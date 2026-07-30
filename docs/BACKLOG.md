@@ -35,7 +35,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
 > DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
 > NO_MATERIAL_LENGTH_ASSOCIATION; N5 is DONE /
-> NO_MATERIAL_CONTEST_OPPORTUNITY. Next: peer corrections, then N6.**
+> NO_MATERIAL_CONTEST_OPPORTUNITY; N6 is CLOSED_AT_DEVELOPMENT. Next: peer corrections,
+> then remaining execution/search audits.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -114,9 +115,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   only 51/388 targets. But even the generous deny-plus-capture factor-two ceiling is
   **11.99 per all resident games, CI [8.73,15.76]**, below the frozen 20-margin gate.
   Enemy units can share cells; this cannot body-block. No simulation or policy experiment.
-- **N6. Denial-weight sweep.** `900/(1+dist)` was never swept, despite the reproduction
-  plan's own G1 requiring it. This is an unfinished reproduction step, not a post-hoc
-  threshold retune — but it must be framed and gated as an experiment, not a tuning pass.
+- **N6 ✅ CLOSED_AT_DEVELOPMENT.** The exact 450/900/1800 sweep completed G1 once.
+  LOW is −0.754 margin and negative in both seats; HIGH is only +0.559 with four positive
+  families. Both fail the directional mechanism sharply (15/97 and 12/77 versus 60%).
+  Confirmation maps remain unused. Keep 900 and do not retune the scalar.
 
 ### P2 — hygiene and consequences of iteration 1
 
@@ -157,8 +159,8 @@ continues with construction and rating-dynamics measurement, not waiting.
 H1 (economy package, −2.49 own-side-only), H2/A2 (Phase-1 K1, 28.42% vs 40%),
 H3 (quartet edge dissolves), H5 (done), H6
 generic rollout (narrowed to N4), H7 body-blocking (mechanically impossible), H8 (worker-2
-at the floor), H11 (near-closed, D63/D91), H13 (done → D176a), plus the eight routes of the
-2026-07-29 terminal synthesis.
+at the floor), H11 (near-closed, D63/D91), H13 (done → D176a), N6 scalar tuning, plus the
+eight routes of the 2026-07-29 terminal synthesis.
 
 *Everything below this line is the historical record (tiers as they were run, verdicts
 inline). Do not re-rank it; it is the evidence base for the priorities above.*

@@ -126,10 +126,10 @@ makes the goalpost move in the wrong direction.
   three exact identities clear support, none clear all gates. **M3 DONE:** +10.09 matched,
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44 matched, CI crosses. **N5 DONE — NO_MATERIAL_CONTEST_OPPORTUNITY:**
-  generous all-game ceiling 11.99, CI [8.73,15.76], below 20.
-- **Coordination:** `local_codex_1` is integrator and arena controller; `claude_1` is
-  offline; `chatgpt_1` has N4 Phase A; evidence-index generation still fails host parity. Inbox:
-  `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
+  ceiling 11.99, CI [8.73,15.76] <20. **N6 CLOSED_AT_DEVELOPMENT:** LOW −0.754; HIGH
+  +0.559 but fails direction/breadth; scalar tuning closed and confirmation unused.
+- **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
+  `chatgpt_1` has N4 Phase A. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12
   weekly surveillance. No Arena cycle is in flight.
 
