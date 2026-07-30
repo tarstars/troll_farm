@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: active — implementation lock ready; full read-only run pending
+- Status: running — full read-only manifest and replay audit announced
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:21:50Z
+- Last updated UTC: 2026-07-30T19:22:41Z
 
 ## Outcome
 
@@ -102,3 +102,11 @@ anchor-matching reconstruction, not the missing original.
 - Compile, self-test, and four focused tests pass.
 - One real 300-turn occurrence passes decode, event/lineage reference, and first-plant
   parity checks.
+
+## Full-run phase — 2026-07-30T19:22:41Z
+
+Announced command:
+`python3 cgauto/verify_b4_4_claims.py --jobs 12 --output-dir
+local_codex_1/n2-b4-4-verification`.
+This hashes every union input and decodes the anchor/current occurrences once; no input or
+Arena write is authorized.
