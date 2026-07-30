@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "scope": "compact exact-live one-candidate deterministic local causal audit summary; not an Arena predictor or candidate",
+  "verdict": "KEEP_RIPENESS_WAIT",
+  "control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "probe_sha256": "720ebf958338a37121a2b87aa71376670eec5713010481cb10644b8491a92e38",
+  "alternate_sha256": "9e9f516556fbae8ff7158c18a1092744c8894253a916f43791c7ccfec8dc1c94",
+  "panel": {
+    "seeds": "0..59",
+    "opponents": 6,
+    "value_cells": 360,
+    "value_seat_games_per_policy": 720,
+    "total_value_games": 1440,
+    "sentinel_cells": 8,
+    "coverage_complete": true
+  },
+  "sentinel_integrity": {
+    "cells_exact": 8,
+    "seat_games_exact": 16,
+    "all_exact": true
+  },
+  "events": {
+    "events": 162,
+    "episodes": 57,
+    "episode_length_mean": 2.8421052631578947,
+    "episode_length_median": 1,
+    "episode_length_maximum": 12,
+    "plum_events": 84,
+    "lemon_events": 78,
+    "opening_events": 162,
+    "later_events": 0
+  },
+  "mechanism": {
+    "status": "ACTIVE_WAIT",
+    "activated_cells": 33,
+    "activated_seeds": [
+      6,
+      7,
+      28,
+      29,
+      45,
+      52
+    ],
+    "seat_game_counts": [
+      24,
+      21
+    ],
+    "active_families": 6,
+    "all_gates_pass": true
+  },
+  "value": {
+    "whole_panel_margin_delta": 0.10555555555555556,
+    "activated_margin_delta_descriptive": 1.1515151515151516,
+    "seat_margin_deltas": [
+      -0.2,
+      0.4111111111111111
+    ],
+    "family_margin_deltas": {
+      "motion": -0.3,
+      "taskplan": 0.36666666666666664,
+      "race": -0.06666666666666667,
+      "yield": 0.24166666666666667,
+      "ringfix3": 0.38333333333333336,
+      "chopharvest": 0.008333333333333333
+    },
+    "positive_zero_negative_cells": [
+      8,
+      346,
+      6
+    ],
+    "own_score_delta": 0.15,
+    "opponent_score_delta": 0.044444444444444446,
+    "wood_edge_delta": 0.025
+  },
+  "value_gates": {
+    "mean_margin_positive": true,
+    "mean_margin_at_least_one": false,
+    "both_seats_nonnegative": false,
+    "at_least_four_positive_families": true,
+    "worst_family_at_least_minus_one": true
+  },
+  "integrity_hashes": {
+    "value_rows_sha256": "3d9530aae7387aab25c856798c48f61095aae9cbc5b315d58e56eccc4aec1b47",
+    "sentinel_rows_sha256": "2262c8db5ae194039f550f94f9f84c2d89dafd6d86253db8094d99ce6b516941",
+    "divergence_rows_sha256": "436397a831374fc77319dac74e562a25d4fc362cbd4698a48ca4766f45952091",
+    "jobs_8_full_json_sha256": "995c89d73d72687350bb5168bb92a834c5bd18d2ca59e20733ae2ca2ca5840cb",
+    "jobs_1_full_json_sha256": "2ef4c3cb39539ad984e581337b13840648e2f8a217efb3e10dbe0549196d0d4d",
+    "normalized_payloads_excluding_jobs_exact": true
+  },
+  "decision": {
+    "keep_current_wait": true,
+    "persistent_alternate": false,
+    "candidate": false,
+    "arena_action": false,
+    "fresh_or_sealed_maps_opened": false
+  }
+}

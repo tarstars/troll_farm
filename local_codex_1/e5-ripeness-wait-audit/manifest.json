@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "task": "20260730-e5-ripeness-wait-audit",
+  "verdict": "KEEP_RIPENESS_WAIT",
+  "runs": {
+    "jobs_8": "python3 cgauto/e5_ripeness_wait_audit.py --jobs 8 --output /tmp/e5-ripeness-wait-j8.json",
+    "jobs_1": "python3 cgauto/e5_ripeness_wait_audit.py --jobs 1 --output /tmp/e5-ripeness-wait-j1.json",
+    "value_cells": 360,
+    "value_games": 1440,
+    "sentinel_cells": 8
+  },
+  "artifacts": {
+    "analyzer": {
+      "path": "cgauto/e5_ripeness_wait_audit.py",
+      "sha256": "a6979f596eb205d97e6d4d9df01ecc8135875c826d7e05cfb79f76d51746d6d8"
+    },
+    "tests": {
+      "path": "tests/test_e5_ripeness_wait_audit.py",
+      "sha256": "c8ae9c063bf9f5db4c1b25fc94504c0d6f4c8289d531dce4cdda3b70cece1a8f"
+    },
+    "protocol": {
+      "path": "docs/e5-ripeness-wait-audit-protocol-2026-07-30.md",
+      "sha256": "2b7239f3ccf7f9509c9139902f0b41fece21015304aba58bd87e5d2a2440c7ae"
+    },
+    "implementation_lock": {
+      "path": "local_codex_1/e5-ripeness-wait-audit/implementation-lock.json",
+      "sha256": "580183bd47301d290235a31021506d8380e7c4de9a8a668f732d977708d04391"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/e5-ripeness-wait-audit-result-2026-07-30.json",
+      "sha256": "fe7e7bea74a7849aff6a3a2e30d1ed782ef538e6d4f95c1123d6c0feae9fa23a"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/e5-ripeness-wait-audit-result-2026-07-30.md",
+      "sha256": "30697a584a6db65146364c85106de83e1da47c0b5b3c49d92c5c016541948255"
+    }
+  },
+  "validation": {
+    "focused_tests": "8 passed",
+    "self_test": "ok",
+    "raw_probe_sentinel_seat_games_exact": "16/16",
+    "first_divergences_explained": true,
+    "coverage_complete": true,
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0,
+    "value_rows_sha256": "3d9530aae7387aab25c856798c48f61095aae9cbc5b315d58e56eccc4aec1b47",
+    "sentinel_rows_sha256": "2262c8db5ae194039f550f94f9f84c2d89dafd6d86253db8094d99ce6b516941",
+    "divergence_rows_sha256": "436397a831374fc77319dac74e562a25d4fc362cbd4698a48ca4766f45952091",
+    "jobs_8_full_json_sha256": "995c89d73d72687350bb5168bb92a834c5bd18d2ca59e20733ae2ca2ca5840cb",
+    "jobs_1_full_json_sha256": "2ef4c3cb39539ad984e581337b13840648e2f8a217efb3e10dbe0549196d0d4d",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "decision": {
+    "persistent_alternate": false,
+    "candidate": false,
+    "arena_action": false
+  }
+}

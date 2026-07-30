@@ -358,3 +358,30 @@ Evidence:
 `data/analysis/live-agent-6553250/e4-orchard-mother-tie-audit-result-2026-07-30.md`;
 compact JSON beside it; implementation lock and hashes under
 `local_codex_1/e4-orchard-mother-tie-audit/`.
+
+## E5 — on-site ripeness replanning is real but non-material and seat-unstable
+
+**Question.** When an on-site unripe fruit candidate becomes `WAIT`, does removing only
+that candidate and taking the resident's next-best task improve terminal local value?
+
+**Integrity.** A stderr-only probe is stdout-exact on eight reused raw/probe sentinel
+cells. The temporary alternate adds one eligibility condition; no action is forced. The
+60-seed × six-opponent × both-seat panel completes 360 control/alternate cells (1,440
+games). Every first divergence has an exact common prefix and matching probe event.
+Jobs-1/jobs-8 rows and normalized payloads are exact; stderr/command gates pass.
+
+**Mechanism.** The control emits 162 waits in 57 episodes, all opening PLUM/LEMON waits.
+Replanning changes 33 cells across six seeds, both seats, and all families. `ACTIVE_WAIT`
+passes.
+
+**Value and verdict.** Whole-panel margin is only +0.1056; activated-only +1.152 is
+post-policy descriptive. Seat means split −0.200/+0.411, motion/race are negative, and
+346/360 cells are unchanged. Own score +0.150 and wood edge +0.025 are similarly small.
+
+**Verdict: `KEEP_RIPENESS_WAIT`.** Magnitude and both-seat stability fail. No persistent
+alternate, candidate, new map, resident change, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/e5-ripeness-wait-audit-result-2026-07-30.md`;
+compact JSON beside it; implementation lock and hashes under
+`local_codex_1/e5-ripeness-wait-audit/`.

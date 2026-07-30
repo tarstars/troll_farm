@@ -40,7 +40,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > experiment-justified (0.335 hindsight movement turn per side-game). E3 is
 > VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle. E4 is DONE /
 > KEEP_LEXICOGRAPHIC: the secure-orchard tie is active but reversing it loses −0.0855
-> exact-1,000-map-weighted margin.**
+> exact-1,000-map-weighted margin. E5 is DONE / KEEP_RIPENESS_WAIT: +0.1056 overall,
+> but seat 0 is negative and magnitude is below +1.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -143,6 +144,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   The tie is active on 10/10 seeds and all families, but reversing it loses −8.55 margin
   conditional on tied maps and −0.0855 across the exact 1,000-map census. Both seats and
   all six family means are negative. Keep the current comparator; no candidate or Arena.
+- **E5 ✅ DONE — KEEP_RIPENESS_WAIT.** Removing only the on-site zero-fruit candidate
+  activates in 33/360 cells across both seats and all six families. It gains only +0.1056
+  whole-panel margin; seat 0 is −0.200, motion/race are negative, and 346/360 cells are
+  unchanged. The +1 magnitude and both-seat gates fail. Keep the current wait.
 
 ### P2 — hygiene and consequences of iteration 1
 

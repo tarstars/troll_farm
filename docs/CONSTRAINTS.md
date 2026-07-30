@@ -850,3 +850,8 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   maps and −0.0855 across the exact 1,000-map census. Both seat means and all six family
   means are negative (worst −26.65). Do not reverse, tune, persist, or promote this tie.
   [E4, 2026-07-30]
+- **The on-site unripe-fruit wait is closed: keep it.** Removing only that candidate and
+  selecting the resident's next-best task activates in 33/360 reused seed/opponent cells,
+  both seats, and all six families, but gains just +0.1056 margin. Seat 0 is −0.200,
+  motion/race are negative, and 346/360 cells are unchanged. Do not rewrite arbitrary
+  WAITs, tune the predicate, persist the alternate, or promote it. [E5, 2026-07-30]
