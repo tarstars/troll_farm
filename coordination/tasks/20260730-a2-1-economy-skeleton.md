@@ -1,16 +1,16 @@
 # 20260730-a2-1-economy-skeleton: build and gate the first Architecture-2 policy
 
-- Status: queued — unassigned and unstarted; A2-0b precondition satisfied; no A2-1 protocol, range, lock, or panel exists
+- Status: active — claimed by `local_codex_1`; protocol-design phase; no A2-1 range, lock, or panel exists yet
 - Record owner: local_codex_1
-- Work owner: unassigned
+- Work owner: local_codex_1
 - Reviewer: unassigned
 - Integrator: local_codex_1
 - Area: A2 programme Phase 1
-- Base commit: 1ac918c7985d3b9a660b0ab72562d492edc744d6
-- Branch: none until remotely claimed
-- Progress lease: inactive until a work owner claims the task
+- Base commit: f1f3292cfe4cfd35e006c9f8ae7f2ffe4de23dc0
+- Branch: `agent/local_codex_1`
+- Progress lease: active from the remotely verified claim commit
 - Created UTC: 2026-07-30T17:21:59Z
-- Last updated UTC: 2026-07-30T17:34:54Z
+- Last updated UTC: 2026-07-30T17:47:05Z
 
 ## Outcome
 
@@ -47,8 +47,20 @@ task-specific A2-1 protocol must be frozen before implementation or panel execut
 
 ## Exclusive write set
 
-None reserved while unassigned. The claim must name new A2-1 policy, runner, analyzer,
-protocol, lock, result, and private coordination paths before implementation starts.
+- `docs/a2-1-economy-skeleton-protocol-2026-07-30.md` (new)
+- `rust/src/game/a2_economy_skeleton.rs` (new)
+- `rust/src/game/mod.rs` (only the A2-1 module declaration)
+- `rust/src/bin/a2_1_economy_skeleton.rs` (new)
+- `cgauto/analyze_a2_1_economy_skeleton.py` (new)
+- `tests/test_a2_1_economy_skeleton.py` (new, if a Python-focused acceptance test is needed)
+- new `data/analysis/live-agent-6553250/a2-1-*` protocol-adjacent locks, results,
+  manifests, and reports; existing files under that root remain read-only
+- `local_codex_1/a2-1/` (new private notes or handoff material)
+- this task record, `coordination/status/local_codex_1.md`, and new immutable messages
+  under `coordination/messages/local_codex_1/`
+
+The locked A2-0b referee source, checker, runner, protocol, implementation lock, and
+results are shared read-only dependencies and are not part of this write set.
 
 ## Shared read-only paths
 
