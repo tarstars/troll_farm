@@ -1,6 +1,6 @@
 # 20260730-e4-orchard-mother-tie-audit
 
-- Status: active — deterministic runtime lock v2 ready; full jobs-parity panel pending
+- Status: active — jobs-8 passed; full jobs-1 parity run starting
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T22:05:35Z
-- Last updated UTC: 2026-07-30T22:24:10Z
+- Last updated UTC: 2026-07-30T22:27:49Z
 
 ## Progress
 
@@ -28,6 +28,8 @@
 - Lock v2 adds a temporary child-only deterministic runtime without mutating any bot
   source. Eight `HashMap` probes and four complete repeat-control cells are exact:
   `local_codex_1/e4-orchard-mother-tie-audit/implementation-lock-v2.json`.
+- Jobs-8 completes 152/152 rows with 16/16 exact sentinels and provisional
+  `KEEP_LEXICOGRAPHIC` at weighted margin −0.0855. Full jobs-1 row-hash parity is pending.
 
 ## Outcome
 
