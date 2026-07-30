@@ -1,6 +1,6 @@
 # 20260730-e2-banking-route-efficiency
 
-- Status: active — full result ready; determinism and closeout pending
+- Status: result ready — `ROUTE_RESIDUAL_OBSERVED`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:35:32Z
-- Last updated UTC: 2026-07-30T21:48:03Z
+- Last updated UTC: 2026-07-30T21:51:52Z
 
 ## Outcome
 
@@ -83,3 +83,17 @@ Outcomes:
 ## Arena authority
 
 No platform access or mutation.
+
+## Result
+
+- Immediate return selection is clean: 4,855/4,855 identifiable checks have zero ETA
+  regret; 64/64 simultaneous-carrier assignments are optimal; zero confirmed returns
+  change door.
+- A hindsight-tied alternate door is one movement turn nearer the later observed task in
+  134/10,597 bound episodes: 134 total = 0.335/side-game, max one, all wood, seat 67/67.
+- Verdict: `ROUTE_RESIDUAL_OBSERVED — NOT_EXPERIMENT_JUSTIFIED`. The future-conditioned
+  static ceiling is not causal terminal value or rating and does not open source work.
+- Canonical report:
+  `data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.md`.
+- Compact result, external detail, hashes, and validation:
+  `local_codex_1/e2-banking-route-efficiency/manifest.json`.

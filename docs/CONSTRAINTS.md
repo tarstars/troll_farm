@@ -394,6 +394,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   preference-based tie-breaking instead of prohibition. Also binding: the dev copy is
   library-visible as `troll_farm::resident_policy` (lib.rs `#[path]`) — controls must
   snapshot it; never leave working-tree diffs on it during concurrent runs. [D171a]
+- **Immediate banking-route correction is CLOSED; only a small hindsight tie-break
+  residual remains.** E2 binds 11,260 exact-live deposits across 400 side-games:
+  4,855/4,855 identifiable door moves have minimum immediate ETA, 64/64 simultaneous
+  carrier assignments are jointly optimal, and zero confirmed returns change door.
+  Conditioning on the later observed task, an ETA-tied alternate door saves one movement
+  turn in 134/10,597 bound wood returns (134 total = 0.335/side-game; max one). This is a
+  static future-conditioned ceiling, not causal score or rating. Do not build an immediate
+  router or persistence fix; any lookahead successor first needs causal terminal value
+  clearing the experiment bar. [E2]
 - Field-rate corrections from the 8,1xx-game corpus (2026-07-28, frozen verdicts stand):
   the D164 top-5 P→S→P motif POPULATION rate is ≈49.7% (435/875), not the 72% measured on
   recent-10 windows — a sampling-completeness artifact (old windows over-sampled peer

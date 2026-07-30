@@ -274,3 +274,35 @@ candidate, and Arena gates remain separate.
 
 Evidence:
 `data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md`.
+
+## E2 — immediate banking routes are optimal; a small hindsight tie remains
+
+**Question.** Does the exact resident waste carrying time through a longer home-door route,
+joint door assignment, or unstable door target?
+
+**Method and integrity.** An external observer ran the exact 62,725-byte live source on
+reused seeds 0..199 in both seats. It confirms a carrying door move as banking only when
+the same cargo reaches a positive `DROP`, reproduces occupied/selected-target eligibility
+and `ceil(BFS/speed)`, enumerates simultaneous carrier assignments, and binds the first
+post-deposit productive target. Seven tests and the self-test pass; 16-seed jobs-1/jobs-8
+details are byte-identical. The 200-seed panel contains 11,260 confirmed deposits in
+400/400 side-games and 10,597 next-target-bound episodes.
+
+**Immediate result.** All 4,855 identifiable carrying door moves have zero ETA regret; all
+64 joint carrier checks have zero assignment regret; no confirmed return changes its door.
+Eighteen forced/occupied-door checks and seven terminally censored returns remain explicitly
+unidentified.
+
+**Hindsight result.** An inbound-ETA-tied alternate door is one turn nearer the later
+observed task in 134/10,597 bound episodes, all wood, balanced 67/67 by seat. The total is
+134 movement turns = 0.335 per side-game, maximum one per episode. This is conditioned on
+future scheduler output and is not causal terminal value or rating.
+
+**Verdict: `ROUTE_RESIDUAL_OBSERVED — NOT_EXPERIMENT_JUSTIFIED`.** Close immediate
+bank-router and persistence work. The small future-conditioned tie residual does not clear
+the experiment evidence bar; no source, candidate, fresh range, resident, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.md`;
+compact JSON beside it; external detail under
+`outputs/local_codex_1/e2-banking-route-efficiency/`.

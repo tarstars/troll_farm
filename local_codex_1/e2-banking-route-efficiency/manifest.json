@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "task": "20260730-e2-banking-route-efficiency",
+  "verdict": "ROUTE_RESIDUAL_OBSERVED_NOT_EXPERIMENT_JUSTIFIED",
+  "run": {
+    "command": "python3 cgauto/e2_banking_route_audit.py --seeds 200 --seed-start 0 --jobs 8",
+    "seed_start": 0,
+    "seeds": 200,
+    "side_games": 400
+  },
+  "artifacts": {
+    "source": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    },
+    "analyzer": {
+      "path": "cgauto/e2_banking_route_audit.py",
+      "sha256": "d3649bd45c201873a9302d40670e8a7434a73a7805e9198c0cd98c7d8995e835"
+    },
+    "tests": {
+      "path": "tests/test_e2_banking_route_audit.py",
+      "sha256": "bcc1632ee5b5bec1bac3ec095cf2935ae279b165615590d58d7612ee5bc407ea"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.json",
+      "sha256": "3280f8306e7f73cc679e997e54e853fb935a5f78375eeb9b1c6b3e8fa1238064"
+    },
+    "detail": {
+      "path": "outputs/local_codex_1/e2-banking-route-efficiency/e2-episode-details-0-199.json",
+      "bytes": 14794834,
+      "sha256": "54aa05584a3f77b15c8c133bede7d85e05d58d668081dfa3b1f72a76ebbc0fd1"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/e2-banking-route-efficiency-result-2026-07-30.md",
+      "sha256": "3b5322281e37cfce89202f269ab180c66a97ef6412c2ce9c31be830de091877e"
+    }
+  },
+  "validation": {
+    "focused_tests": "7 passed",
+    "self_test": "ok",
+    "jobs_1_jobs_8_seed_0_15_detail_sha256": "78a16561567cf7bcce41f1b7f4a029188ddfed6ab7691775aa5e9c1615335d7b",
+    "compact_recomputed_from_detail": true,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  }
+}

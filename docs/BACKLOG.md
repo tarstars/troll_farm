@@ -36,7 +36,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
 > NO_MATERIAL_LENGTH_ASSOCIATION; N5 is DONE /
 > NO_MATERIAL_CONTEST_OPPORTUNITY; N6 is CLOSED_AT_DEVELOPMENT. Next: peer corrections,
-> then remaining execution/search audits.**
+> then remaining execution/search audits. E2 is DONE / ROUTE_RESIDUAL_OBSERVED but not
+> experiment-justified (0.335 hindsight movement turn per side-game).**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -123,6 +124,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
   exact resident candidate pairs survives; wait for accepted N4 Phase A before protocol.
+- **E2 ✅ DONE — ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT.** Across 11,260 confirmed
+  deposits, immediate door ETA, joint two-carrier assignment, and door persistence are
+  clean. A future-conditioned alternate door saves exactly one movement turn in 134/10,597
+  next-target-bound wood returns: 0.335 turn per side-game, maximum one per episode. This
+  is not causal score/rating evidence and does not justify a policy cycle.
 
 ### P2 — hygiene and consequences of iteration 1
 

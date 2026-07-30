@@ -50,7 +50,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **N5** | Endgame opponent-plant contest — a mechanic the source design specifies and our code lacks | 1 session audit | **✅ DONE — NO_MATERIAL_CONTEST_OPPORTUNITY:** factor-two all-game ceiling 11.99, CI [8.73,15.76] < 20; no simulation |
 | **N6** | Denial-weight sweep — `900/(1+dist)` was never swept though the reproduction plan required it | 1 session | **✅ CLOSED_AT_DEVELOPMENT:** LOW −0.754; HIGH +0.559 but only 12/77 directional and 4/8 positive families; confirmation unused; keep 900 |
 | **E1** | **Opening micro-optimality (first 3–5 turns)** — highest-leverage turns in the game; never audited for optimality against an exhaustive short-horizon search | ~1 session | **NARROWED_TO_N4_PREFIX_ORACLE:** first-worker/prefix/short-option searches already closed; only a terminal-valued multi-turn resident candidate-pair oracle survives, gated on accepted N4 Phase A |
-| **E2** | **Banking-route efficiency** — round-trip path choice, door selection, and whether carry is ever wasted on a suboptimal return | ~1 session | open |
+| **E2** | **Banking-route efficiency** — round-trip path choice, door selection, and whether carry is ever wasted on a suboptimal return | ~1 session | **✅ DONE — ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT:** immediate and joint ETA regret 0; no door switches; hindsight alternate door saves 134 one-turn wood legs = 0.335 turn/side-game, future-conditioned with no causal/rating estimate |
 | **E3** | **Chop-order within a tree cluster** — given several candidates, does order matter for total yield (growth during travel is modelled, but ordering may not be) | ~1 session | open |
 | **E4** | **Pathfinding tie-breaks** — BFS ties are broken by incidental cell order (this caused the oscillation family); audit whether other decisions inherit the same arbitrariness | ~1 session | open |
 | **E5** | **Ripeness-wait decisions** — when the bot waits for fruit, is the wait ever longer than the alternative work? (B3.6 found 20 benign cases; a targeted audit could find costly ones) | hours | open |
@@ -116,6 +116,7 @@ M4 (NO_MATERIAL_MATCHMAKING_DRIFT);
 M5 (NO_MATERIAL_LENGTH_ASSOCIATION);
 N5 (NO_MATERIAL_CONTEST_OPPORTUNITY);
 N6 (CLOSED_AT_DEVELOPMENT);
+E2 (ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
