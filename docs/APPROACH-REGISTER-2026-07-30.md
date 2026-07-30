@@ -81,7 +81,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **A2-0a** | Renewable-base feasibility (= N3) | 1 session | **✅ DONE — EXISTS (qualified); K1 does not fire; base sub-critical and LABOR-limited (0.40 fruit/turn realized vs 2.5–6.8 ceiling)** |
-| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | open — offered to `chatgpt_1` |
+| **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **running — `local_codex_1`** |
 | **A2-1…5** | A2 phases per `docs/A2-programme-charter-2026-07-30.md` | programme | gated on 0a |
 | **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | open |
 
@@ -110,7 +110,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 **Done 2026-07-30:** A2-0a (EXISTS-qualified); X1 (core match with two A2-0b parity
 obligations). **Claimed by `chatgpt_1`:** N1 (maturity),
-the evidence-index pilot, and N4 by authorship. **Offered and unclaimed:** A2-0b.
+the evidence-index pilot, and N4 by authorship. **Claimed by `local_codex_1`:** A2-0b.
 
 Priority order as of 2026-07-30, highest first: **N1** (re-baselines everything) →
 **X1** (promoted: a confirmed missing rule proves the mechanics are incomplete) →
