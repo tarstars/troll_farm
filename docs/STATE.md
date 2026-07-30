@@ -130,6 +130,14 @@ rank goalpost move in the wrong direction.
 - **Operations running**: collection cron 05:17 (`# troll-farm-wide-collect`); B5.3
   cold-file migration ripens ~2026-08-03; weekly surveillance cadence (H12) with
   explicit triggers.
+- ★★ **2026-07-30 OWNER DECISION: A2 Architecture-2 programme AUTHORIZED** —
+  `docs/A2-programme-charter-2026-07-30.md`. Integrator recommendation of record was to hold
+  pending N1/N3; the owner elected to build, and N3's renewable-base question is folded into
+  **Phase 0a** rather than used as a pre-gate. Five preregistered milestone gates (adopted
+  from chatgpt_1's review) plus five kill rules including a 6-session budget circuit-breaker.
+  Phase 0 runs two parallel workstreams: **0a renewable-base feasibility** (K1: no renewable
+  base → stop the programme) and **0b referee/evaluation parity harness**. The resident is
+  untouched throughout; Phase 5 (arena) needs a NEW explicit authorization per candidate.
 - **Awaiting owner**: (a) dispatch of the audit-ready set (H5/H3/H8 — parallel,
   read-only, delegable to any agent); (b) the H2 Architecture-2 programme go/no-go.
 
