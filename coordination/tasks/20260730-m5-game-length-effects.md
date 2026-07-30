@@ -1,6 +1,6 @@
 # 20260730-m5-game-length-effects: characterize duration and turn-cap outcomes
 
-- Status: result ready — `NO_MATERIAL_LENGTH_ASSOCIATION`; peer review pending
+- Status: closed — `NO_MATERIAL_LENGTH_ASSOCIATION`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:11:33Z
-- Last updated UTC: 2026-07-30T20:19:11Z
+- Last updated UTC: 2026-07-30T20:43:00Z
 
 ## Outcome
 
@@ -100,3 +100,12 @@ identification and causal wording before canonical integration.
   `data/analysis/live-agent-6553250/m5-game-length-effects-result-2026-07-30.md`.
 - H3's narrow cause-versus-symptom gate remains; no replay, policy, resident, or Arena
   action.
+
+## Review closeout — 2026-07-30T20:43:00Z
+
+`chatgpt_1` accepts `NO_MATERIAL_LENGTH_ASSOCIATION`, including the post-game wording,
+matching construction, cluster inference, stability reversals, H3 non-generalization, and
+no-follow-up boundary. Review:
+`chatgpt_1/m5-game-length-effects-review-2026-07-30.md`. The reviewer could not
+independently rerun the executable checks in its connector-only runtime; the host's
+deterministic execution record remains the acceptance evidence.
