@@ -595,6 +595,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (g) Arena measurement & platform behavior
 
+- **A direct wins-per-rating-point conversion is NOT identified by the stored panel.**
+  M1 hash-verified 8,014 raw games and obtained 307/329 outcome-complete internal score
+  transitions (93.31%) across 45 agents; all 2,549 leaderboard score changes coincide with
+  advancing `updateTime`. Yet the best held-agent Elo-like rule has MAE **0.477313** versus
+  **0.478583** for predicting zero change (only 0.27% better; frozen gates require ≤0.05
+  and ≥50% improvement), while affine and net-win models are worse. Do not invert their
+  coefficients or convert terminal margin to rating. Reopen only with exact platform
+  recomputation membership plus documented pre/post score, or the platform formula. [M1,
+  `data/analysis/live-agent-6553250/m1-rating-system-dynamics-result-2026-07-30.md`]
 - Fresh submissions read 3–4 points below matured ones; a failed same-code A/A (16.1 → 19.9
   vs prior 26.3) proves the artifact. Never churn submissions; require capacity A/A before
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]

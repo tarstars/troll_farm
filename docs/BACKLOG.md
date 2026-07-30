@@ -31,7 +31,7 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > (206/512 = 40.23%) but reached only **582/2,048 = 28.42%** fruit-funded worker 3 by
 > turn 110 on locked confirmation. Own reap/banking, scaled mining, referee quality,
 > thread parity, and detectors pass; transfer does not. The A2 programme stops before
-> Phase 2. **Next breadth item: M1 rating-system dynamics**, then N2.
+> Phase 2. **M1 is now DONE / DESCRIPTIVE_ONLY; next unassigned breadth item: N2.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -52,6 +52,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   [−0.7525,+0.4567], projected mature score 21.3088. The upper edge is only 0.0433 below
   the frozen +0.500 cutoff: close passive maturity as a planning lever, but do not claim a
   high-margin negative aging effect.
+- **M1 ✅ DONE — PARTIAL / DESCRIPTIVE_ONLY.** Source coverage is broad (8,014
+  hash-verified games; 307/329 complete score transitions across 45 agents), but the best
+  held-agent Elo-like update model has MAE 0.477313 versus a 0.478583 zero-change
+  baseline. No wins-per-+1 or terminal-margin-to-rating conversion is defensible.
 - **N2. B4.4 verification sweep.** Its figures have now been corrected twice (H3 on four
   counts, plus unresolved provenance/definition questions). **Owner correction 2026-07-30:
   early planting around turns 21–29 can establish a self-reproducing orchard, while

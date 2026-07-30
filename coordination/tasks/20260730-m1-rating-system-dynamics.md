@@ -1,6 +1,6 @@
 # 20260730-m1-rating-system-dynamics: recover the observable ladder update rule
 
-- Status: running — first reproducible result DESCRIPTIVE_ONLY / PARTIAL
+- Status: result ready for review — DESCRIPTIVE_ONLY / PARTIAL; no wins-per-+1
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T18:30:46Z
-- Last updated UTC: 2026-07-30T18:50:54Z
+- Last updated UTC: 2026-07-30T18:59:44Z
 
 ## Outcome
 
@@ -95,3 +95,12 @@ FULL source threshold. Rule recovery nevertheless fails: the best held-agent mod
 Elo-like at MAE 0.477313 versus a 0.478583 zero-change baseline, far from both validation
 gates. The next-epoch convention and exclusion of the July 21 snapshot also fail. Final
 support is therefore PARTIAL, verdict `DESCRIPTIVE_ONLY`, and wins-per-+1 remains null.
+
+## Canonical result prepared — 2026-07-30T18:59:44Z
+
+Canonical human result:
+`data/analysis/live-agent-6553250/m1-rating-system-dynamics-result-2026-07-30.md`.
+Machine bundle: `local_codex_1/m1-rating-system-dynamics/`. STATE, CONSTRAINTS, BACKLOG,
+the approach register, and ledger volume 3 record the same consequence: stored outcomes do
+not support a ladder-score conversion, so terminal-margin gates remain binding. Reviewer
+handoff is the remaining definition-of-done step.
