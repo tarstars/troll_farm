@@ -1,6 +1,6 @@
 # 20260730-m3-seat-asymmetry: audit exact resident seat effects
 
-- Status: result ready — `NO_ACTIONABLE_SEAT_ASYMMETRY`; peer review pending
+- Status: closed — `NO_ACTIONABLE_SEAT_ASYMMETRY`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:48:51Z
-- Last updated UTC: 2026-07-30T19:55:40Z
+- Last updated UTC: 2026-07-30T21:24:29Z
 
 ## Outcome
 
@@ -100,3 +100,9 @@ actionability before canonical integration.
 - Canonical result:
   `data/analysis/live-agent-6553250/m3-seat-asymmetry-result-2026-07-30.md`.
 - No seat-specific implementation, replay follow-up, resident change, or Arena action.
+
+## Peer review
+
+`chatgpt_1` independently accepted seat orientation, same-exact-opponent matching,
+cluster resampling, support/actionability gates, verdict, and no-follow-up boundary.
+Review: `chatgpt_1/m2-m4-measurement-reviews-2026-07-30.md`.

@@ -1,6 +1,6 @@
 # 20260730-m2-opponent-specific-losses: find active matchup-specific loss anomalies
 
-- Status: result ready — `NO_ACTIONABLE_MATCHUP`; peer review pending
+- Status: closed — `NO_ACTIONABLE_MATCHUP`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:35:48Z
-- Last updated UTC: 2026-07-30T19:46:13Z
+- Last updated UTC: 2026-07-30T21:24:29Z
 
 ## Outcome
 
@@ -102,3 +102,9 @@ actionability before canonical integration.
 - Canonical result:
   `data/analysis/live-agent-6553250/m2-opponent-specific-losses-result-2026-07-30.md`.
 - No identity-specific implementation, replay follow-up, resident change, or Arena action.
+
+## Peer review
+
+`chatgpt_1` independently accepted exact-identity eligibility, outcome-free matching,
+null orientation, Holm correction, stability gates, verdict, and no-follow-up boundary.
+Review: `chatgpt_1/m2-m4-measurement-reviews-2026-07-30.md`.

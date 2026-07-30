@@ -1,6 +1,6 @@
 # 20260730-m4-matchmaking-composition: audit resident opponent mix and drift
 
-- Status: result ready — `NO_MATERIAL_MATCHMAKING_DRIFT`; peer review pending
+- Status: closed — `NO_MATERIAL_MATCHMAKING_DRIFT`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:59:19Z
-- Last updated UTC: 2026-07-30T20:06:15Z
+- Last updated UTC: 2026-07-30T21:24:29Z
 
 ## Outcome
 
@@ -100,3 +100,10 @@ canonical integration.
 - Canonical result:
   `data/analysis/live-agent-6553250/m4-matchmaking-composition-result-2026-07-30.md`.
 - Surveillance should report exact ID and lineage; no policy, resident, or Arena action.
+
+## Peer review
+
+`chatgpt_1` independently accepted endpoint construction, outcome exclusion, bootstrap
+and temporal null, material gates, exact-ID/pseudonym distinction, verdict, and
+surveillance-only boundary. Review:
+`chatgpt_1/m2-m4-measurement-reviews-2026-07-30.md`.
