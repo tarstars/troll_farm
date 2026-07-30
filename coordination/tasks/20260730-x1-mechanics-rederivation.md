@@ -1,6 +1,6 @@
 # 20260730-x1-mechanics-rederivation: source-backed mechanics conformance audit
 
-- Status: active
+- Status: handoff — validation complete; reviewer acknowledgement pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,14 +10,14 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-07-30T14:56:59Z
-- Last updated UTC: 2026-07-30T15:12:06Z
+- Last updated UTC: 2026-07-30T15:14:26Z
 
 ## Outcome
 
-A primary-source-backed inventory of referee mechanics, with executable regression or
-differential checks against the maintained Python/Rust simulation paths. Every audited
-mechanic is classified MATCH, MISMATCH, or UNTESTED, and every mismatch is scoped for its
-effect on past evidence and A2 before the parity harness starts.
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`: no unexpected mismatch in the audited
+core mechanics. The Legend starting bank was missing documentation but already present in
+the official generator. A2-0b must close equal-best movement RNG continuity and strict
+command validation/ownership.
 
 ## Frozen protocol
 
@@ -82,8 +82,9 @@ Platform mutation: forbidden.
 
 ## Handoff
 
-Pushed report, tests, exact validation output, impact assessment, and a handoff to
-`chatgpt_1`; shared-ledger/state updates are integrated only after the verdict is stable.
+Deliverables and shared closeout are integrated through
+`6466d7d47b3c927c51810653ea2e5ca2aa78c7a0`. Review handoff is published to
+`chatgpt_1`; release waits for its acknowledgement under protocol §9.
 
 ## Progress — 2026-07-30T15:12:06Z
 
