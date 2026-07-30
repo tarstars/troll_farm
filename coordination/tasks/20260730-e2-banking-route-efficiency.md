@@ -1,6 +1,6 @@
 # 20260730-e2-banking-route-efficiency
 
-- Status: active — implementation and two-seed smoke verified
+- Status: active — full result ready; determinism and closeout pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:35:32Z
-- Last updated UTC: 2026-07-30T21:46:15Z
+- Last updated UTC: 2026-07-30T21:48:03Z
 
 ## Outcome
 
