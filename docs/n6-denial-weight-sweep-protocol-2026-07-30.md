@@ -37,9 +37,19 @@ numeric literal on that exact line:
 - `CONTROL`: unchanged `900.0 / (1 + opponent_distance)`;
 - `HIGH`: `1800.0 / (1 + opponent_distance)`.
 
-No other source byte may differ. In particular, the `opponent_trolls <= 2` gate,
+The snapshot's exact leading crate-only attribute
+`#![allow(dead_code, unused_imports)]` cannot occur inside `include!` modules. The
+materializer therefore removes that one identical leading line from all three generated
+modules, while the runner applies the equivalent outer allow attribute to each module.
+The normalized CONTROL must otherwise be byte-exact to the snapshot, and LOW/HIGH may
+differ from normalized CONTROL only at the scalar line. In particular, the
+`opponent_trolls <= 2` gate,
 `typeToCut`, tree throughput score, candidate grammar, pair selector, pathing, endgame,
 and every execution repair remain exact.
+
+This wrapper-only normalization was admitted at 2026-07-30T21:05:36Z after the first
+compile attempt rejected the crate attribute inside a module and before any development
+range execution.
 
 ## 3. Locked evaluation substrate
 
@@ -71,8 +81,10 @@ For each alternative, compare against CONTROL on the identical task. It is eligi
 selection only if:
 
 1. at least 5% of tasks have a command divergence from control;
-2. at least 60% of exact common-state first divergences move the selected focus-tree
-   target in the arm's intended direction: HIGH nearer the opponent shack, LOW farther;
+2. at least 60% of directionally comparable exact common-state first divergences change
+   focus-tree intensity in the arm's intended direction: HIGH introduces a focus-tree
+   target or moves it nearer the opponent shack; LOW removes a focus-tree target or moves
+   it farther;
 3. paired mean terminal-margin delta is positive;
 4. seat-0 and seat-1 deltas are both positive;
 5. at least six of eight opponent-family deltas are positive;
@@ -116,8 +128,9 @@ Integrity:
 Mechanism:
 
 7. at least 5% of confirmation tasks diverge from control;
-8. at least 60% of common-state first divergences move focus-tree distance in the selected
-   direction;
+8. at least 60% of directionally comparable common-state first divergences change
+   focus-tree intensity in the selected direction under the same introduced/removed/
+   nearer/farther ordering;
 9. mean opponent terminal-score delta is ≤ **−1.0** point;
 10. at least six of eight family opponent-score deltas are nonpositive.
 
@@ -158,3 +171,10 @@ confirmation, remotely publish the selected development arm and exact confirmati
 command. Compilation, focused tests, a one-map/16-task three-arm smoke, source-diff
 identity, command-divergence attribution, and one/four-worker smoke identity must pass
 before the implementation lock.
+
+The direction ordering above was clarified at 2026-07-30T21:05:36Z after the one-map
+instrumentation smoke showed that first divergences commonly introduce or remove focus
+rather than select two different focus targets. Non-focus-to-non-focus divergences are
+reported but are not directionally comparable. This was a pre-lock telemetry correction:
+no development map beyond the one-map smoke had been executed, and no selection/value
+threshold changed.
