@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: running — full read-only manifest and replay audit announced
+- Status: first result ready — B4_4_CORRECTED; canonical wording/review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:23:49Z
+- Last updated UTC: 2026-07-30T19:28:18Z
 
 ## Outcome
 
@@ -116,3 +116,11 @@ structural gate dictionary. Revised analyzer/test hashes are
 `4147bf09b29a08126676f0846c9aa4ee61935be3f2ded5490257927204c87cc9` and
 `d502b84248c731989fea4936c8ba4c30d4e24ac12e5e6ab2d5db08ec9f17e3b5`;
 compile, self-test, and four tests pass.
+
+## First full result — 2026-07-30T19:28:18Z
+
+Verdict `B4_4_CORRECTED`: C1–C7 are all corrected. The 2,963-occurrence union run has zero
+failures; all 2,787 anchor occurrences pass every integrity comparison. Conditional group
+medians 191.5/29/21 and pooled reap 0.928%/15.322%/17.198% reproduce, but per-agent
+medians span 3–254 and four peers do not exceed the resident reap rate. Early orchard
+harvest and late fruit-to-wood self-chop are directly observed as distinct uses.

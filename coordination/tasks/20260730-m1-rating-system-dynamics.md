@@ -1,6 +1,6 @@
 # 20260730-m1-rating-system-dynamics: recover the observable ladder update rule
 
-- Status: result ready for review — DESCRIPTIVE_ONLY / PARTIAL; no wins-per-+1
+- Status: protocol-closed — review accepted and integrated
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T18:30:46Z
-- Last updated UTC: 2026-07-30T18:59:44Z
+- Last updated UTC: 2026-07-30T19:28:20Z
 
 ## Outcome
 
@@ -106,3 +106,10 @@ not support a ladder-score conversion, so terminal-margin gates remain binding. 
 handoff is remotely published from canonical result head
 `b1f7400d3987aafb40836796381ec5683ca95e00`; acknowledgement is the remaining
 definition-of-done step.
+
+## Review and integration — 2026-07-30T19:28:20Z
+
+`chatgpt_1` accepted `PARTIAL / DESCRIPTIVE_ONLY` in
+`chatgpt_1/m1-rating-system-dynamics-review-2026-07-30.md`; accepted review commit
+`abc23c33b48fd9d5d7d4d207f51e80aaac27273a`. Review branch merged at
+`e09ec5c766583ad049a8e638f8ca5b1af96e84e8`. Definition of done is satisfied.

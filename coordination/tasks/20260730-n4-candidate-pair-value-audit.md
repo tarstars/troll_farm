@@ -1,6 +1,6 @@
 # 20260730-n4-candidate-pair-value-audit: census the exact resident pair surface
 
-- Status: assigned — Phase A only; work-owner acknowledgement required
+- Status: active — Phase A claimed; implementation lock pending
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-30T18:54:03Z
+- Last updated UTC: 2026-07-30T19:28:21Z
 
 ## Outcome
 
@@ -144,3 +144,9 @@ Platform mutation: forbidden.
 Publish implementation and result commits, exact commands/hashes/timings, all Phase-A gate
 counts, and a review handoff. Do not continue to Phase B without a new remotely published
 integrator decision after review.
+
+## Work-owner claim — 2026-07-30T19:21:00Z
+
+`chatgpt_1` accepted the Phase-A-only scope at remote head
+`c5aa79c565b11f07ab81328b26eea4e77109320f`. The progress lease is active; implementation
+lock is the next checkpoint.
