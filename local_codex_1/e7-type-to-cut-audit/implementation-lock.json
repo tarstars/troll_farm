@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "task": "20260731-e7-type-to-cut-audit",
+  "locked_utc": "2026-07-30T23:35:40Z",
+  "base_commit": "7fb88a4e1e3672b25d41801068f4a77bb9bf2e89",
+  "protocol": "docs/e7-type-to-cut-audit-protocol-2026-07-31.md",
+  "protocol_sha256": "247178d6e343f14ae10d296ab9c9a67f0f6f422b7eddabb4c3eaf820995e1d64",
+  "implementation": {
+    "path": "cgauto/e7_type_to_cut_audit.py",
+    "sha256": "519c68a0b639bfd944e43b354ab3933ea312cd21a1a8d4385d52f037df341159"
+  },
+  "tests": {
+    "path": "tests/test_e7_type_to_cut_audit.py",
+    "sha256": "14ab365c26145c1970af1a20d5689cdaa178ae0ee133dfd59b903b29e5a0fc6b",
+    "pytest": "7 passed",
+    "self_test": "ok"
+  },
+  "control": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "flip": {
+    "persistent": false,
+    "replacement_count": 1,
+    "sha256": "09c2d9276f6ebd256e24c9e3df56c28c30c02b95e2c7233235678acde8c6c488"
+  },
+  "runtime": {
+    "source": "cgauto/e4_orchard_mother_tie_audit.py:CLOCK_SHIM_SOURCE",
+    "shim_source_sha256": "52a879df0a3c034c202d18ded300c634feb822e17c9f335946e64552ab71bf2a",
+    "bot_source_mutation": false
+  },
+  "panel": {
+    "seeds": "0..59",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "value_cells": 360,
+    "value_games": 1440,
+    "oracle_unit": "seed after averaging all six opponents"
+  },
+  "prelock_checks": {
+    "geometry_seed_count": 60,
+    "geometry_symmetric_seed_count": 60,
+    "geometry_lemon_choices": 35,
+    "geometry_plum_choices": 25,
+    "geometry_distance_ties": 4,
+    "active_smoke_seed": 0,
+    "active_smoke_opponent": "motion",
+    "active_smoke_both_seats": true,
+    "active_smoke_first_divergence_turns": [
+      2,
+      1
+    ],
+    "active_smoke_exact_common_prefixes": true,
+    "active_smoke_delta_paired_margin_not_used_for_design": -54.5,
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0
+  },
+  "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "authorized_next_action": "run the unchanged complete jobs=8 and jobs=1 panels; no source, panel, oracle, or gate changes"
+}

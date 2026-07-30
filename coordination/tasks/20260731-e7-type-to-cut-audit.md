@@ -1,6 +1,6 @@
 # 20260731-e7-type-to-cut-audit
 
-- Status: active — claim/protocol publication pending
+- Status: active — implementation locked; jobs-8/jobs-1 panel pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,19 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T23:28:27Z
-- Last updated UTC: 2026-07-30T23:28:27Z
+- Last updated UTC: 2026-07-30T23:35:40Z
+
+## Progress
+
+- Claim/protocol published at `7fb88a4e1e3672b25d41801068f4a77bb9bf2e89`.
+- Analyzer/test hashes:
+  `519c68a0b639bfd944e43b354ab3933ea312cd21a1a8d4385d52f037df341159` /
+  `14ab365c26145c1970af1a20d5689cdaa178ae0ee133dfd59b903b29e5a0fc6b`.
+- Seven focused tests and self-test pass.
+- Independent geometry: LEMON 35/60, PLUM 25/60, symmetric seats 60/60.
+- Seed 0 versus motion activates both seats with exact-prefix first divergences.
+- Implementation lock:
+  `local_codex_1/e7-type-to-cut-audit/implementation-lock.json`.
 
 ## Outcome
 
