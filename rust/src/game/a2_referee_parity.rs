@@ -13,6 +13,43 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 
 use super::a2_continued_mapgen::{generate_official_with_rng, Sha1Prng};
 
+pub const SUPPORTED_NONCRITICAL_REASONS: &[&str] = &[
+    "unit_not_found",
+    "unit_not_owned",
+    "unit_already_used",
+    "out_of_board",
+    "invalid_skill",
+    "cant_afford_train",
+    "no_plant",
+    "no_fruit",
+    "no_capacity",
+    "no_harvest",
+    "invalid_plant",
+    "no_grass",
+    "existing_plant",
+    "no_seeds",
+    "no_chop",
+    "out_of_stock",
+    "no_shack",
+    "nothing_to_drop",
+    "no_iron",
+    "move_blocked",
+    "opponent_plant_blocking",
+    "pick_stock_lost",
+    "train_affordability_lost",
+    "train_shack_blocked",
+];
+
+pub const KNOWN_CRITICAL_REASONS: &[&str] = &["unknown_command", "train_failed"];
+
+pub fn is_supported_noncritical_reason(reason: &str) -> bool {
+    SUPPORTED_NONCRITICAL_REASONS.contains(&reason)
+}
+
+pub fn is_known_critical_reason(reason: &str) -> bool {
+    KNOWN_CRITICAL_REASONS.contains(&reason)
+}
+
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct MovementRngStats {
     pub draws: u64,
@@ -281,10 +318,70 @@ impl LegalityReport {
         self.issues.len()
     }
 
+    pub fn issue_count_for_player(&self, player: usize) -> usize {
+        self.issues
+            .iter()
+            .filter(|issue| issue.player == player)
+            .count()
+    }
+
+    pub fn critical_issue_count(&self) -> usize {
+        self.issues.iter().filter(|issue| issue.critical).count()
+    }
+
+    pub fn critical_issue_count_for_player(&self, player: usize) -> usize {
+        self.issues
+            .iter()
+            .filter(|issue| issue.player == player && issue.critical)
+            .count()
+    }
+
+    pub fn unclassified_issue_count(&self) -> usize {
+        self.issues
+            .iter()
+            .filter(|issue| {
+                !is_supported_noncritical_reason(issue.reason)
+                    && !is_known_critical_reason(issue.reason)
+            })
+            .count()
+    }
+
     pub fn reason_counts(&self) -> BTreeMap<&'static str, usize> {
         let mut counts = BTreeMap::new();
         for issue in &self.issues {
             *counts.entry(issue.reason).or_insert(0) += 1;
+        }
+        counts
+    }
+
+    pub fn reason_counts_for_player(
+        &self,
+        player: usize,
+    ) -> BTreeMap<&'static str, usize> {
+        let mut counts = BTreeMap::new();
+        for issue in self.issues.iter().filter(|issue| issue.player == player) {
+            *counts.entry(issue.reason).or_insert(0) += 1;
+        }
+        counts
+    }
+
+    pub fn phase_reason_counts(
+        &self,
+    ) -> BTreeMap<(&'static str, &'static str), usize> {
+        let mut counts = BTreeMap::new();
+        for issue in &self.issues {
+            *counts.entry((issue.phase, issue.reason)).or_insert(0) += 1;
+        }
+        counts
+    }
+
+    pub fn phase_reason_counts_for_player(
+        &self,
+        player: usize,
+    ) -> BTreeMap<(&'static str, &'static str), usize> {
+        let mut counts = BTreeMap::new();
+        for issue in self.issues.iter().filter(|issue| issue.player == player) {
+            *counts.entry((issue.phase, issue.reason)).or_insert(0) += 1;
         }
         counts
     }
@@ -346,9 +443,10 @@ fn record_issue(
     player: usize,
     phase: &'static str,
     reason: &'static str,
-    critical: bool,
+    _critical_hint: bool,
     command: &str,
 ) {
+    let critical = !is_supported_noncritical_reason(reason);
     referee.legality.issues.push(LegalityIssue {
         turn: referee.game.turn,
         player,
@@ -867,7 +965,7 @@ pub fn step(referee: &mut RefereeGame, commands0: &[String], commands1: &[String
 mod tests {
     use super::*;
     use crate::game::official_mapgen;
-    use crate::game::state::from_ascii;
+    use crate::game::state::{from_ascii, Plant, Unit};
 
     fn assert_same_state(left: &GameState, right: &GameState) {
         assert_eq!(left.width, right.width);
@@ -954,6 +1052,412 @@ mod tests {
         referee
     }
 
+    fn assert_single_issue(
+        referee: &RefereeGame,
+        player: usize,
+        phase: &'static str,
+        reason: &'static str,
+        critical: bool,
+    ) {
+        assert_eq!(referee.legality.issue_count(), 1);
+        let issue = &referee.legality.issues[0];
+        assert_eq!(issue.player, player);
+        assert_eq!(issue.phase, phase);
+        assert_eq!(issue.reason, reason);
+        assert_eq!(issue.critical, critical);
+        assert_eq!(
+            referee.legality.unclassified_issue_count(),
+            usize::from(reason != "unknown_command" && reason != "train_failed" && critical)
+        );
+    }
+
+    fn plum_tree(x: i32, y: i32, fruits: i32) -> Plant {
+        Plant {
+            plant_type: "PLUM".to_owned(),
+            x,
+            y,
+            size: 1,
+            health: engine::tree_health("PLUM", 1),
+            fruits,
+            cooldown: 5,
+        }
+    }
+
+    fn second_player_zero_unit(game: &GameState) -> Unit {
+        Unit {
+            id: game.next_id,
+            player: 0,
+            x: 1,
+            y: 0,
+            ms: 1,
+            cc: 1,
+            hp: 1,
+            chop: 0,
+            carry: [0; 6],
+        }
+    }
+
+    #[test]
+    fn r1_error_taxonomy_is_frozen_and_unique() {
+        assert_eq!(SUPPORTED_NONCRITICAL_REASONS.len(), 24);
+        assert_eq!(
+            SUPPORTED_NONCRITICAL_REASONS.iter().copied().collect::<HashSet<_>>().len(),
+            SUPPORTED_NONCRITICAL_REASONS.len()
+        );
+        assert_eq!(KNOWN_CRITICAL_REASONS, ["unknown_command", "train_failed"]);
+        assert!(SUPPORTED_NONCRITICAL_REASONS
+            .iter()
+            .all(|reason| !KNOWN_CRITICAL_REASONS.contains(reason)));
+    }
+
+    #[test]
+    fn unit_lookup_reuse_and_bounds_failures_are_noncritical_and_do_not_execute() {
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        let before = referee.game.units.clone();
+        step(
+            &mut referee,
+            &["HARVEST 99".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "unit_not_found", false);
+        assert_eq!(referee.game.units, before);
+        assert_eq!(referee.game.turn, 2);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        let before = referee.game.units.clone();
+        step(
+            &mut referee,
+            &["HARVEST 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "unit_not_owned", false);
+        assert_eq!(referee.game.units, before);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        let before = referee.game.units.clone();
+        step(
+            &mut referee,
+            &["MOVE 0 0 0".to_owned(), "HARVEST 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "unit_already_used", false);
+        assert_eq!(referee.game.units, before);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        let before = referee.game.units.clone();
+        step(
+            &mut referee,
+            &["MOVE 0 -1 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "out_of_board", false);
+        assert_eq!(referee.game.units, before);
+        assert_eq!(referee.movement_rng.draws, 0);
+    }
+
+    #[test]
+    fn train_parse_failures_are_noncritical_and_do_not_create_a_unit() {
+        let mut game = from_ascii(&["0.+1"]);
+        game.inventories[0] = [100; 6];
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["TRAIN 0 1 1 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "invalid_skill", false);
+        assert_eq!(
+            referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player == 0)
+                .count(),
+            1
+        );
+
+        let mut referee = with_game(from_ascii(&["0.+1"]));
+        step(
+            &mut referee,
+            &["TRAIN 1 1 1 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "cant_afford_train", false);
+        assert_eq!(
+            referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player == 0)
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn harvest_parse_failures_preserve_fruit_and_carry() {
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        step(
+            &mut referee,
+            &["HARVEST 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_plant", false);
+        assert_eq!(referee.game.units[0].total(), 0);
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.plants.push(plum_tree(1, 0, 0));
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["HARVEST 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_fruit", false);
+        assert_eq!(referee.game.units[0].total(), 0);
+        assert_eq!(referee.game.plants[0].fruits, 0);
+        assert_eq!(referee.game.plants[0].cooldown, 4);
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.units[0].carry[engine::PLUM] = 1;
+        game.plants.push(plum_tree(1, 0, 1));
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["HARVEST 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_capacity", false);
+        assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
+        assert_eq!(referee.game.plants[0].fruits, 1);
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.units[0].hp = 0;
+        game.plants.push(plum_tree(1, 0, 1));
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["HARVEST 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_harvest", false);
+        assert_eq!(referee.game.units[0].total(), 0);
+        assert_eq!(referee.game.plants[0].fruits, 1);
+    }
+
+    #[test]
+    fn plant_parse_failures_preserve_seed_and_plant_state() {
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].carry[engine::IRON] = 1;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["PLANT 0 IRON".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "invalid_plant", false);
+        assert_eq!(referee.game.units[0].carry[engine::IRON], 1);
+        assert!(referee.game.plants.is_empty());
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].carry[engine::PLUM] = 1;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["PLANT 0 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_grass", false);
+        assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
+        assert!(referee.game.plants.is_empty());
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.units[0].carry[engine::PLUM] = 1;
+        game.plants.push(plum_tree(1, 0, 0));
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["PLANT 0 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "existing_plant", false);
+        assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
+        assert_eq!(referee.game.plants.len(), 1);
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["PLANT 0 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_seeds", false);
+        assert!(referee.game.plants.is_empty());
+    }
+
+    #[test]
+    fn chop_pick_drop_and_mine_parse_failures_do_not_apply() {
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].x = 1;
+        game.plants.push(plum_tree(1, 0, 0));
+        let original_health = game.plants[0].health;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["CHOP 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_chop", false);
+        assert_eq!(referee.game.plants[0].health, original_health);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        step(
+            &mut referee,
+            &["PICK 0 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "out_of_stock", false);
+        assert_eq!(referee.game.units[0].total(), 0);
+
+        let mut game = from_ascii(&["0...1"]);
+        game.units[0].x = 2;
+        game.inventories[0][engine::PLUM] = 1;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["PICK 0 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_shack", false);
+        assert_eq!(referee.game.inventories[0][engine::PLUM], 1);
+        assert_eq!(referee.game.units[0].total(), 0);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        step(
+            &mut referee,
+            &["DROP 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "nothing_to_drop", false);
+        assert_eq!(referee.game.inventories[0], [0; 6]);
+
+        let mut game = from_ascii(&["0..1"]);
+        game.units[0].chop = 1;
+        let mut referee = with_game(game);
+        step(
+            &mut referee,
+            &["MINE 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+        assert_single_issue(&referee, 0, "parse", "no_iron", false);
+        assert_eq!(referee.game.units[0].carry[engine::IRON], 0);
+    }
+
+    #[test]
+    fn blocked_move_is_noncritical_and_leaves_the_mover_in_place() {
+        let mut game = from_ascii(&["0..1"]);
+        let blocker = second_player_zero_unit(&game);
+        game.next_id += 1;
+        game.units.push(blocker);
+        let before = game.units.clone();
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["MOVE 0 1 0".to_owned()],
+            &["WAIT".to_owned()],
+        );
+
+        assert_single_issue(&referee, 0, "apply", "move_blocked", false);
+        assert_eq!(referee.game.units, before);
+        assert_eq!(referee.movement_rng.draws, 0);
+    }
+
+    #[test]
+    fn second_pick_loses_stock_at_apply_but_first_pick_still_executes() {
+        let mut game = from_ascii(&["0..1"]);
+        let picker = second_player_zero_unit(&game);
+        game.next_id += 1;
+        game.units.push(picker);
+        game.inventories[0][engine::PLUM] = 1;
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["PICK 0 PLUM".to_owned(), "PICK 2 PLUM".to_owned()],
+            &["WAIT".to_owned()],
+        );
+
+        assert_single_issue(&referee, 0, "apply", "pick_stock_lost", false);
+        assert_eq!(referee.game.inventories[0][engine::PLUM], 0);
+        assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
+        assert_eq!(referee.game.units[2].carry[engine::PLUM], 0);
+    }
+
+    #[test]
+    fn occupied_shack_train_failure_is_noncritical_and_spends_nothing() {
+        let mut game = from_ascii(&["0.+1"]);
+        game.inventories[0] = [2, 2, 2, 0, 2, 0];
+        let before = game.inventories[0];
+        let mut referee = with_game(game);
+
+        step(
+            &mut referee,
+            &["TRAIN 1 1 1 1".to_owned()],
+            &["WAIT".to_owned()],
+        );
+
+        assert_single_issue(&referee, 0, "apply", "train_shack_blocked", false);
+        assert_eq!(referee.game.inventories[0], before);
+        assert_eq!(
+            referee
+                .game
+                .units
+                .iter()
+                .filter(|unit| unit.player == 0)
+                .count(),
+            1
+        );
+    }
+
+    #[test]
+    fn defensive_and_future_failures_are_critical_by_construction() {
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        record_issue(
+            &mut referee,
+            0,
+            "apply",
+            "train_failed",
+            false,
+            "TRAIN 1 1 1 1",
+        );
+        assert_single_issue(&referee, 0, "apply", "train_failed", true);
+        assert_eq!(referee.legality.unclassified_issue_count(), 0);
+
+        let mut referee = with_game(from_ascii(&["0..1"]));
+        record_issue(
+            &mut referee,
+            1,
+            "apply",
+            "future_source_failure",
+            false,
+            "FUTURE",
+        );
+        assert_single_issue(
+            &referee,
+            1,
+            "apply",
+            "future_source_failure",
+            true,
+        );
+        assert_eq!(referee.legality.unclassified_issue_count(), 1);
+    }
+
     #[test]
     fn legal_move_vacates_shack_before_train() {
         let mut game = from_ascii(&["0.+1"]);
@@ -990,9 +1494,12 @@ mod tests {
             &["WAIT".to_owned()],
         );
 
-        assert_eq!(
-            referee.legality.reason_counts(),
-            BTreeMap::from([("train_affordability_lost", 1)])
+        assert_single_issue(
+            &referee,
+            0,
+            "apply",
+            "train_affordability_lost",
+            false,
         );
         assert_eq!(
             referee
@@ -1028,6 +1535,11 @@ mod tests {
                 ("unknown_command", 1),
             ])
         );
+        assert_eq!(referee.legality.issue_count_for_player(0), 4);
+        assert_eq!(referee.legality.issue_count_for_player(1), 0);
+        assert_eq!(referee.legality.critical_issue_count(), 1);
+        assert_eq!(referee.legality.critical_issue_count_for_player(0), 1);
+        assert_eq!(referee.legality.unclassified_issue_count(), 0);
     }
 
     #[test]
@@ -1049,6 +1561,14 @@ mod tests {
             referee.legality.reason_counts(),
             BTreeMap::from([("opponent_plant_blocking", 2)])
         );
+        assert!(referee
+            .legality
+            .issues
+            .iter()
+            .all(|issue| !issue.critical && issue.phase == "apply"));
+        assert_eq!(referee.legality.issue_count_for_player(0), 1);
+        assert_eq!(referee.legality.issue_count_for_player(1), 1);
+        assert_eq!(referee.legality.unclassified_issue_count(), 0);
         assert!(referee.game.plants.is_empty());
         assert_eq!(referee.game.units[0].carry[engine::PLUM], 1);
         assert_eq!(referee.game.units[1].carry[engine::LEMON], 1);

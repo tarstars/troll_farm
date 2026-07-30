@@ -8,6 +8,7 @@
 mod control_resident;
 
 use std::collections::BTreeMap;
+use std::fmt::Write as FmtWrite;
 use std::fs::File;
 use std::io::{BufWriter, Write};
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -18,7 +19,7 @@ use std::time::Instant;
 use troll_farm::game::a2_referee_parity::{self, LegalityReport, MovementRngStats};
 use troll_farm::game::engine::{has_stalled, step as legacy_step};
 use troll_farm::game::official_mapgen::generate_official;
-use troll_farm::game::state::GameState;
+use troll_farm::game::state::{GameState, Plant, Unit};
 use troll_farm::rl_macro::{MacroOpponentMode, MACRO_TOTAL_TURNS};
 use troll_farm::strategies::compact_gold::CompactGold;
 use troll_farm::strategies::gold_elite::GoldElite;
@@ -201,6 +202,50 @@ struct SideResult {
     state_hashes: Vec<u64>,
     legality: LegalityReport,
     movement_rng: MovementRngStats,
+    map_rows: Vec<String>,
+    states: Vec<StateSnapshot>,
+    turn_commands: Vec<(Vec<String>, Vec<String>)>,
+}
+
+struct StateSnapshot {
+    units: Vec<Unit>,
+    plants: Vec<Plant>,
+    inventories: [[i32; 6]; 2],
+}
+
+impl StateSnapshot {
+    fn capture(game: &GameState) -> Self {
+        Self {
+            units: game.units.clone(),
+            plants: game.plants.clone(),
+            inventories: game.inventories,
+        }
+    }
+}
+
+fn build_map_rows(game: &GameState) -> Vec<String> {
+    (0..game.height)
+        .map(|y| {
+            (0..game.width)
+                .map(|x| {
+                    let cell = (x, y);
+                    if game.shacks[0] == cell {
+                        '0'
+                    } else if game.shacks[1] == cell {
+                        '1'
+                    } else if game.iron.contains(&cell) {
+                        '+'
+                    } else if game.water.contains(&cell) {
+                        '~'
+                    } else if game.walkable.contains(&cell) {
+                        '.'
+                    } else {
+                        '#'
+                    }
+                })
+                .collect::<String>()
+        })
+        .collect()
 }
 
 fn hash_commands(mut hash: u64, commands: &[Vec<String>; 2]) -> u64 {
@@ -215,7 +260,13 @@ fn hash_commands(mut hash: u64, commands: &[Vec<String>; 2]) -> u64 {
     hash
 }
 
-fn play(mode: Mode, map_seed: i64, seat: usize, opponent_index: usize) -> SideResult {
+fn play(
+    mode: Mode,
+    map_seed: i64,
+    seat: usize,
+    opponent_index: usize,
+    dump: bool,
+) -> SideResult {
     use control_resident::bot::Bot as _;
 
     let mut legacy_game = generate_official(map_seed);
@@ -226,13 +277,23 @@ fn play(mode: Mode, map_seed: i64, seat: usize, opponent_index: usize) -> SideRe
     let mut turns_until_end = 0;
     let mut action_hash = FNV_OFFSET;
     let mut state_hashes = Vec::new();
+    let mut states = Vec::new();
+    let mut turn_commands = Vec::new();
     let mut done = false;
 
     let initial = match mode {
         Mode::Legacy => &legacy_game,
         Mode::Referee => &referee_game.game,
     };
+    let map_rows = if dump {
+        build_map_rows(initial)
+    } else {
+        Vec::new()
+    };
     state_hashes.push(canonical_state_hash(initial));
+    if dump {
+        states.push(StateSnapshot::capture(initial));
+    }
 
     while !done {
         let game = match mode {
@@ -248,6 +309,9 @@ fn play(mode: Mode, map_seed: i64, seat: usize, opponent_index: usize) -> SideRe
             [theirs_commands, ours_commands]
         };
         action_hash = hash_commands(action_hash, &commands);
+        if dump {
+            turn_commands.push((commands[0].clone(), commands[1].clone()));
+        }
 
         match mode {
             Mode::Legacy => {
@@ -259,12 +323,18 @@ fn play(mode: Mode, map_seed: i64, seat: usize, opponent_index: usize) -> SideRe
                 );
                 legacy_step(&mut legacy_game, &commands[0], &commands[1]);
                 state_hashes.push(canonical_state_hash(&legacy_game));
+                if dump {
+                    states.push(StateSnapshot::capture(&legacy_game));
+                }
                 done = legacy_game.turn > MACRO_TOTAL_TURNS
                     || has_stalled(&legacy_game, &mut turns_until_end);
             }
             Mode::Referee => {
                 a2_referee_parity::step(&mut referee_game, &commands[0], &commands[1]);
                 state_hashes.push(canonical_state_hash(&referee_game.game));
+                if dump {
+                    states.push(StateSnapshot::capture(&referee_game.game));
+                }
                 done = referee_game.game.turn > MACRO_TOTAL_TURNS
                     || has_stalled(&referee_game.game, &mut turns_until_end);
             }
@@ -298,6 +368,9 @@ fn play(mode: Mode, map_seed: i64, seat: usize, opponent_index: usize) -> SideRe
         state_hashes,
         legality,
         movement_rng,
+        map_rows,
+        states,
+        turn_commands,
     }
 }
 
@@ -325,11 +398,197 @@ fn first_divergence(left: &[u64], right: &[u64]) -> Option<usize> {
     (left.len() != right.len()).then_some(common)
 }
 
-fn run_task(task: Task) -> Row {
-    let legacy = play(Mode::Legacy, task.map_seed, task.seat, task.opponent);
-    let referee = play(Mode::Referee, task.map_seed, task.seat, task.opponent);
+fn json_escape_into(buf: &mut String, text: &str) {
+    buf.push('"');
+    for character in text.chars() {
+        match character {
+            '"' => buf.push_str("\\\""),
+            '\\' => buf.push_str("\\\\"),
+            '\n' => buf.push_str("\\n"),
+            '\r' => buf.push_str("\\r"),
+            '\t' => buf.push_str("\\t"),
+            _ => buf.push(character),
+        }
+    }
+    buf.push('"');
+}
+
+fn write_unit(buf: &mut String, unit: &Unit) {
+    write!(
+        buf,
+        "[{},{},{},{},{},{},{},{},{},{},{},{},{},{}]",
+        unit.id,
+        unit.player,
+        unit.x,
+        unit.y,
+        unit.ms,
+        unit.cc,
+        unit.hp,
+        unit.chop,
+        unit.carry[0],
+        unit.carry[1],
+        unit.carry[2],
+        unit.carry[3],
+        unit.carry[4],
+        unit.carry[5],
+    )
+    .expect("write trajectory unit");
+}
+
+fn write_plant(buf: &mut String, plant: &Plant) {
+    buf.push('[');
+    write!(buf, "{},{},", plant.x, plant.y).expect("write trajectory plant position");
+    json_escape_into(buf, &plant.plant_type);
+    write!(
+        buf,
+        ",{},{},{},{}]",
+        plant.size, plant.health, plant.fruits, plant.cooldown
+    )
+    .expect("write trajectory plant");
+}
+
+fn write_state(buf: &mut String, state: &StateSnapshot) {
+    buf.push_str("{\"u\":[");
+    for (index, unit) in state.units.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        write_unit(buf, unit);
+    }
+    buf.push_str("],\"p\":[");
+    for (index, plant) in state.plants.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        write_plant(buf, plant);
+    }
+    write!(
+        buf,
+        "],\"b\":[[{},{},{},{},{},{}],[{},{},{},{},{},{}]]}}",
+        state.inventories[0][0],
+        state.inventories[0][1],
+        state.inventories[0][2],
+        state.inventories[0][3],
+        state.inventories[0][4],
+        state.inventories[0][5],
+        state.inventories[1][0],
+        state.inventories[1][1],
+        state.inventories[1][2],
+        state.inventories[1][3],
+        state.inventories[1][4],
+        state.inventories[1][5],
+    )
+    .expect("write trajectory inventories");
+}
+
+fn write_commands(buf: &mut String, commands: &[String]) {
+    buf.push('[');
+    for (index, command) in commands.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        json_escape_into(buf, command);
+    }
+    buf.push(']');
+}
+
+fn write_trajectory_line(task: &Task, arm: &str, side: &SideResult) -> String {
+    let (score0, score1) = if task.seat == 0 {
+        (side.own_score, side.opponent_score)
+    } else {
+        (side.opponent_score, side.own_score)
+    };
+    let mut buf = String::with_capacity(4096);
+    write!(
+        buf,
+        "{{\"seed\":{},\"seat\":{},\"opp\":{},\"opp_name\":",
+        task.map_seed, task.seat, task.opponent
+    )
+    .expect("write trajectory header");
+    json_escape_into(&mut buf, MacroOpponentMode::from_index(task.opponent).label());
+    buf.push_str(",\"arm\":");
+    json_escape_into(&mut buf, arm);
+    buf.push_str(",\"map_rows\":[");
+    for (index, row) in side.map_rows.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        json_escape_into(&mut buf, row);
+    }
+    write!(
+        buf,
+        "],\"turns\":{},\"scores\":[{},{}],\"states\":[",
+        side.turn_commands.len(),
+        score0,
+        score1
+    )
+    .expect("write trajectory scores");
+    for (index, state) in side.states.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        write_state(&mut buf, state);
+    }
+    buf.push_str("],\"c0\":[");
+    for (index, (commands0, _)) in side.turn_commands.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        write_commands(&mut buf, commands0);
+    }
+    buf.push_str("],\"c1\":[");
+    for (index, (_, commands1)) in side.turn_commands.iter().enumerate() {
+        if index > 0 {
+            buf.push(',');
+        }
+        write_commands(&mut buf, commands1);
+    }
+    buf.push_str("]}\n");
+    buf
+}
+
+fn run_task(
+    task: Task,
+    dump: bool,
+    legacy_writer: Option<&Mutex<BufWriter<File>>>,
+    referee_writer: Option<&Mutex<BufWriter<File>>>,
+) -> Row {
+    let mut legacy = play(
+        Mode::Legacy,
+        task.map_seed,
+        task.seat,
+        task.opponent,
+        dump,
+    );
+    let mut referee = play(
+        Mode::Referee,
+        task.map_seed,
+        task.seat,
+        task.opponent,
+        dump,
+    );
     let first_state_divergence_turn =
         first_divergence(&legacy.state_hashes, &referee.state_hashes);
+    if dump {
+        legacy_writer
+            .expect("legacy trajectory writer")
+            .lock()
+            .expect("legacy trajectory lock")
+            .write_all(write_trajectory_line(&task, "legacy", &legacy).as_bytes())
+            .expect("write legacy trajectory");
+        referee_writer
+            .expect("referee trajectory writer")
+            .lock()
+            .expect("referee trajectory lock")
+            .write_all(write_trajectory_line(&task, "referee", &referee).as_bytes())
+            .expect("write referee trajectory");
+        legacy.map_rows.clear();
+        legacy.states.clear();
+        legacy.turn_commands.clear();
+        referee.map_rows.clear();
+        referee.states.clear();
+        referee.turn_commands.clear();
+    }
     Row {
         task,
         legacy,
@@ -347,10 +606,45 @@ fn reason_counts(report: &LegalityReport) -> String {
         .join(",")
 }
 
-fn first_issue(report: &LegalityReport) -> String {
+fn reason_counts_for_player(report: &LegalityReport, player: usize) -> String {
+    report
+        .reason_counts_for_player(player)
+        .into_iter()
+        .map(|(reason, count)| format!("{reason}={count}"))
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
+fn phase_reason_counts(report: &LegalityReport) -> String {
+    report
+        .phase_reason_counts()
+        .into_iter()
+        .map(|((phase, reason), count)| format!("{phase}:{reason}={count}"))
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
+fn phase_reason_counts_for_player(report: &LegalityReport, player: usize) -> String {
+    report
+        .phase_reason_counts_for_player(player)
+        .into_iter()
+        .map(|((phase, reason), count)| format!("{phase}:{reason}={count}"))
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
+fn first_issue(
+    report: &LegalityReport,
+    player: Option<usize>,
+    critical_only: bool,
+) -> String {
     report
         .issues
-        .first()
+        .iter()
+        .find(|issue| {
+            player.map_or(true, |expected| issue.player == expected)
+                && (!critical_only || issue.critical)
+        })
         .map(|issue| {
             format!(
                 "t{}:p{}:{}:{}:{}",
@@ -361,7 +655,8 @@ fn first_issue(report: &LegalityReport) -> String {
         .unwrap_or_default()
 }
 
-fn side_fields(side: &SideResult) -> Vec<String> {
+fn side_fields(side: &SideResult, own_player: usize) -> Vec<String> {
+    let opponent = 1 - own_player;
     vec![
         u8::from(side.done).to_string(),
         side.turn.to_string(),
@@ -373,8 +668,30 @@ fn side_fields(side: &SideResult) -> Vec<String> {
         side.own_workers_final.to_string(),
         side.legality.commands_checked.to_string(),
         side.legality.issue_count().to_string(),
+        side.legality
+            .issue_count_for_player(own_player)
+            .to_string(),
+        side.legality
+            .issue_count_for_player(opponent)
+            .to_string(),
+        side.legality.critical_issue_count().to_string(),
+        side.legality
+            .critical_issue_count_for_player(own_player)
+            .to_string(),
+        side.legality
+            .critical_issue_count_for_player(opponent)
+            .to_string(),
+        side.legality.unclassified_issue_count().to_string(),
         reason_counts(&side.legality),
-        first_issue(&side.legality),
+        reason_counts_for_player(&side.legality, own_player),
+        reason_counts_for_player(&side.legality, opponent),
+        phase_reason_counts(&side.legality),
+        phase_reason_counts_for_player(&side.legality, own_player),
+        phase_reason_counts_for_player(&side.legality, opponent),
+        first_issue(&side.legality, None, false),
+        first_issue(&side.legality, Some(own_player), false),
+        first_issue(&side.legality, Some(opponent), false),
+        first_issue(&side.legality, None, true),
         side.movement_rng.draws.to_string(),
         side.movement_rng.tied_draws.to_string(),
     ]
@@ -394,8 +711,22 @@ fn write_rows(output: &str, rows: &[Row]) {
             "own_workers_final",
             "commands_checked",
             "legality_issues",
+            "own_legality_issues",
+            "opponent_legality_issues",
+            "critical_issues",
+            "own_critical_issues",
+            "opponent_critical_issues",
+            "unclassified_issues",
             "legality_reason_counts",
+            "own_legality_reason_counts",
+            "opponent_legality_reason_counts",
+            "legality_phase_reason_counts",
+            "own_legality_phase_reason_counts",
+            "opponent_legality_phase_reason_counts",
             "first_legality_issue",
+            "first_own_legality_issue",
+            "first_opponent_legality_issue",
+            "first_critical_issue",
             "movement_rng_draws",
             "movement_tied_draws",
         ]
@@ -420,8 +751,8 @@ fn write_rows(output: &str, rows: &[Row]) {
                 .label()
                 .to_owned(),
         ];
-        fields.extend(side_fields(&row.legacy));
-        fields.extend(side_fields(&row.referee));
+        fields.extend(side_fields(&row.legacy, row.task.seat));
+        fields.extend(side_fields(&row.referee, row.task.seat));
         fields.push(
             row.first_state_divergence_turn
                 .map(|turn| turn.to_string())
@@ -438,10 +769,10 @@ fn parse<T: std::str::FromStr>(text: &str, what: &str) -> T {
 
 fn main() {
     let args: Vec<_> = std::env::args().collect();
-    assert_eq!(
-        args.len(),
-        5,
-        "usage: a2_0b_referee_parity START_SEED MAPS OUTPUT THREADS"
+    assert!(
+        args.len() == 5 || args.len() == 7,
+        "usage: a2_0b_referee_parity START_SEED MAPS OUTPUT THREADS \
+[TRAJ_LEGACY TRAJ_REFEREE]"
     );
     let start_seed: i64 = parse(&args[1], "start seed");
     let maps: i64 = parse(&args[2], "maps");
@@ -453,6 +784,21 @@ fn main() {
             && start_seed + maps <= CALIBRATION_START + CALIBRATION_MAPS,
         "A2-0b is confined to the consumed D173b calibration range"
     );
+    let dump = args.len() == 7;
+    let legacy_writer: Option<Mutex<BufWriter<File>>> = if dump {
+        Some(Mutex::new(BufWriter::new(
+            File::create(&args[5]).expect("create legacy trajectory NDJSON"),
+        )))
+    } else {
+        None
+    };
+    let referee_writer: Option<Mutex<BufWriter<File>>> = if dump {
+        Some(Mutex::new(BufWriter::new(
+            File::create(&args[6]).expect("create referee trajectory NDJSON"),
+        )))
+    } else {
+        None
+    };
 
     let work: Vec<Task> = (start_seed..start_seed + maps)
         .flat_map(|map_seed| {
@@ -468,20 +814,28 @@ fn main() {
     let work = Arc::new(work);
     let next = Arc::new(AtomicUsize::new(0));
     let rows = Arc::new(Mutex::new(Vec::with_capacity(work.len())));
+    let legacy_writer = Arc::new(legacy_writer);
+    let referee_writer = Arc::new(referee_writer);
     let started = Instant::now();
     let handles: Vec<_> = (0..threads.min(work.len()))
         .map(|_| {
             let work = Arc::clone(&work);
             let next = Arc::clone(&next);
             let rows = Arc::clone(&rows);
+            let legacy_writer = Arc::clone(&legacy_writer);
+            let referee_writer = Arc::clone(&referee_writer);
             thread::spawn(move || loop {
                 let index = next.fetch_add(1, Ordering::Relaxed);
                 let Some(task) = work.get(index).copied() else {
                     break;
                 };
-                rows.lock()
-                    .expect("A2-0b row lock")
-                    .push(run_task(task));
+                let row = run_task(
+                    task,
+                    dump,
+                    legacy_writer.as_ref().as_ref(),
+                    referee_writer.as_ref().as_ref(),
+                );
+                rows.lock().expect("A2-0b row lock").push(row);
             })
         })
         .collect();
@@ -504,6 +858,22 @@ fn main() {
     let referee_issues: usize = rows
         .iter()
         .map(|row| row.referee.legality.issue_count())
+        .sum();
+    let legacy_critical: usize = rows
+        .iter()
+        .map(|row| row.legacy.legality.critical_issue_count())
+        .sum();
+    let referee_critical: usize = rows
+        .iter()
+        .map(|row| row.referee.legality.critical_issue_count())
+        .sum();
+    let legacy_unclassified: usize = rows
+        .iter()
+        .map(|row| row.legacy.legality.unclassified_issue_count())
+        .sum();
+    let referee_unclassified: usize = rows
+        .iter()
+        .map(|row| row.referee.legality.unclassified_issue_count())
         .sum();
     let divergences = rows
         .iter()
@@ -534,5 +904,10 @@ legacy_issues={} {:?}; referee_issues={} {:?}",
         reason_totals(true),
         referee_issues,
         reason_totals(false),
+    );
+    eprintln!(
+        "r1 gates: legacy_critical={legacy_critical} \
+legacy_unclassified={legacy_unclassified}; referee_critical={referee_critical} \
+referee_unclassified={referee_unclassified}"
     );
 }
