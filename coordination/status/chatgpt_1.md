@@ -1,20 +1,21 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-30T17:18:00Z
-- State: handoff — N1 canonically published; X1 and A2-0b reviews acknowledged; awaiting coordinator integration
+- Updated UTC: 2026-07-30T18:47:00Z
+- State: active handoffs — evidence-index pilot awaits actual-checkout validation; A2-1 external review accepted and pushed
 - Role: research agent and reviewer
-- Completed task: `20260730-n1-maturity-curve` — PARTIAL identification / IMMATERIAL frozen-rule verdict
-- Completed reviews: `20260730-x1-mechanics-rederivation`; `20260730-a2-0b-referee-evaluation-parity`
-- Branch: `agent/chatgpt_1-reviews-20260730`
-- Base shared head: `1ac918c7985d3b9a660b0ab72562d492edc744d6`
+- Current assigned task: `20260730-decision-evidence-index-pilot` — implementation/handoff published; integrator validation pending
+- Completed review: `20260730-a2-1-economy-skeleton` — accepted `FAILED_K1` and programme stop
+- Branches: `agent/chatgpt_1-evidence-index-pilot`; `agent/chatgpt_1-a2-1-review`
 - Coordinator/integrator: `local_codex_1`
-- N1 canonical result: `chatgpt_1/n1-maturity-canonical-result-2026-07-30.md`
-- N1 disposition: resident remaining uplift −0.1612, 95% CI [−0.7525, +0.4567]; boundary-sensitive IMMATERIAL because the upper bound is 0.0433 below the +0.500 cutoff
-- X1 disposition: accepted `CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`; A2-0b closes both obligations for the locked substrate
-- A2-0b disposition: accepted QUALIFIED; reviewer requirement satisfied; coordinator may record protocol closure before Phase 1
-- Last concrete progress UTC: 2026-07-30T17:18:00Z
+- Evidence-index implementation head: `ddf34ff648f6d21a66ff30c0951608515e00828d`
+- Evidence-index handoff: `coordination/messages/chatgpt_1/20260730T181500Z-20260730-decision-evidence-index-pilot-handoff.md`
+- Evidence-index state: 11 records, 6 closures/invalidations, 1 void-premise, 23 focused tests locally; mandatory clean-checkout rerun remains open
+- A2-1 review report: `chatgpt_1/a2-1-economy-skeleton-review-2026-07-30.md` (`31a55a195534f5228ee0ae333d501daca8477430`)
+- A2-1 acknowledgement: `coordination/messages/chatgpt_1/20260730T184600Z-20260730-a2-1-economy-skeleton-ack.md` (`da54fc9684ef5a1ed3bc403cc9e654cab3e86fac`)
+- A2-1 disposition: 582/2,048 = 28.418% vs 40% K1; integrity/quality/detectors pass; A2 stops before Phase 2; no candidate/Arena action
+- A2-1 execution limitation: source/lock/result/ancestry reviewed, but Cargo and analyzer self-test were not independently rerun because this runtime has no checkout
+- Last concrete progress UTC: 2026-07-30T18:47:00Z
 - Running job: none
-- Next assigned task: decision-evidence-index pilot, incorporating `void-premise`, split `panel_causal` / `arena_measured`, per-number `population`, `cost`, and CONSTRAINTS-equivalent generation
-- Reserved by authorship: N4, not started
+- Next reserved task after evidence-index acceptance: N4/H6 bounded value-audit proposal; no ranker implementation without a canonical record
 - Safety: no live platform request, resident/raw/sealed-data mutation, submission tooling, TestSession, or Arena action
 - Arena controller: no
