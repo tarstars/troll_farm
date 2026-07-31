@@ -147,13 +147,20 @@ def test_direct_repository_root_cli(tmp_path):
     assert result["compilation"] == []
 
 
-def test_exact_artifacts_compile():
+def test_exact_artifacts_compile_and_are_deterministic():
     if shutil.which("rustc") is None:
         pytest.skip("rustc is unavailable in this runtime")
-    result = h3a.analyze(compile_sources=True)
-    assert len(result["compilation"]) == 2
-    assert {row["source"] for row in result["compilation"]} == {
+    first = h3a.analyze(compile_sources=True)
+    second = h3a.analyze(compile_sources=True)
+    assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
+    assert len(first["compilation"]) == 2
+    assert {row["source"] for row in first["compilation"]} == {
         str(h3a.FALLBACK.relative_to(ROOT)),
         str(h3a.TREATMENT.relative_to(ROOT)),
     }
-    assert all(row["binary_bytes"] > 0 for row in result["compilation"])
+    assert {row["crate_name"] for row in first["compilation"]} == {
+        "h3a_fallback",
+        "h3a_treatment",
+    }
+    assert all(row["binary_bytes"] > 0 for row in first["compilation"])
+    assert all("<temporary-output>" in row["command"] for row in first["compilation"])
