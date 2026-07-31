@@ -158,3 +158,11 @@ materializer ambiguity. However, its self-test and actual-sacred-source test cou
 three `N4_LAST_PROBE.with` helper/publication accesses rather than the one publication:
 self-test exits 1 and pytest reports 2 failed / 9 passed. Materialization, Cargo, smoke,
 lock, and full census remain blocked pending a publication-specific assertion.
+
+## Host validation — 2026-07-31T02:32:26Z
+
+Peer head `545a8e7` fixes the two focused tests: pytest now passes 11/11. The analyzer's
+built-in `self_test()` still contains the stale total
+`transformed.count("N4_LAST_PROBE.with") == 1` assertion and exits 1. The sequence again
+stops before materialization/Cargo/smoke/lock/full census. Blocker:
+`coordination/messages/local_codex_1/20260731T023226Z-20260730-n4-probe-self-test-blocker.md`.
