@@ -15,7 +15,7 @@ routes for this architecture** (ledger vol 2; atlas). The decisive structural fa
 equal roster we are at parity with strong two-worker peers (58.2/58.3) — the whole
 deficit is scale-asymmetry survival; a worker prices at +2–4 rating (2→4 ≈ 84% of the
 gap) but scale is unaffordable because we cannot harvest what we produce, and production
-grafts are structurally negative (three independent confirmations). Corpus 8,131+,
+grafts are structurally negative (three independent confirmations). Corpus 9,082,
 compounding daily. Direction menu: `docs/rank-hypotheses-2026-07-29.md` + its integrated
 review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 
@@ -50,7 +50,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > full simultaneous stochastic game under 50 ms. S2 is
 > DEPENDENCY_GATED_REPRESENTATION_BLOCKED on N4→E1 value and a new map representation.
 > S3 is DISTINCT_MULTI_GATED: genuinely new as a combination, but under-specified,
-> unsupported by a transferable opponent/value model, and not timed under 50 ms.**
+> unsupported by a transferable opponent/value model, and not timed under 50 ms.
+> L1 readiness is DISTINCT_PRIMITIVE_ONLY: 199 exact delineate games expose 145,448
+> final per-unit labels, while internal train-plan/logit/beam targets remain latent;
+> L1a extractor work is peer-gated and teacher accuracy is never a value gate.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 

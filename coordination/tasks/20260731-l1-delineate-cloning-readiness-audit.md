@@ -1,6 +1,6 @@
 # 20260731-l1-delineate-cloning-readiness-audit
 
-- Status: active — read-only readiness audit
+- Status: done — `DISTINCT_PRIMITIVE_ONLY`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:22:00Z
-- Last updated UTC: 2026-07-31T01:22:00Z
+- Last updated UTC: 2026-07-31T01:30:00Z
 
 ## Progress
 
@@ -22,6 +22,17 @@
   target—not from claiming delineate was previously untested.
 - Delineate's public architecture exposes the policy shape but not internal plan labels,
   logits, alternatives, beam probabilities, weights, or source.
+- All 199 raw replays are present. Existing decoding gives 59,403/59,403 matching
+  turns, zero unknown updates, and 145,448 per-unit decision rows.
+- Exact outputs comprise 144,265 explicit primitive commands and 378 actual TRAIN
+  events/specs. Internal plan and beam distributions remain latent.
+- Final verdict: `DISTINCT_PRIMITIVE_ONLY`.
+- Report:
+  `data/analysis/live-agent-6553250/l1-delineate-cloning-readiness-audit-result-2026-07-31.md`.
+- Manifest:
+  `local_codex_1/l1-delineate-cloning-readiness-audit/manifest.json`.
+- No extractor, bulk artifact, model, fit, game, source, candidate, or Arena action
+  exists.
 
 ## Outcome
 

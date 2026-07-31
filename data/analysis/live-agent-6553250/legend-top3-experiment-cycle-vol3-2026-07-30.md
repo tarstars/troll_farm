@@ -596,3 +596,47 @@ Evidence:
 `data/analysis/live-agent-6553250/h10a-spatial-planes-readiness-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/h10a-spatial-planes-readiness-audit/`.
+
+## L1 readiness — delineate replay cloning is distinct only at the primitive output
+
+**Question.** Does today's larger exact-agent corpus make behaviour cloning from
+rank-one delineate a new executable experiment, despite the project's imitation
+closures?
+
+**Corpus.** The 9,082-game parsed corpus contains 199 games with exact agent
+`6479768`, including all 26 Phase-9 games plus 173 new ones. All 199 raw replays exist;
+the panel spans 98/101 seats, 53 opponents, and 59,403 turns. The existing decoder
+matches all 59,403 trajectory turns with zero unknown updates and yields 145,448
+per-unit decision rows. Replays contain 144,265 explicit primitive commands and 378
+actual TRAIN events/specs.
+
+**Correction to the premise.** Phase 9 did test delineate: its 17,743 rows from 26 games
+reached 60.413% held-game accuracy but only 0.329 macro F1 on 18 coarse objectives. L1
+is distinct because its present surface is 7.65× more games, exact primitive targets,
+and spatial/full state—not because the #1 teacher was absent before. Phase 14's
+Norxondor controller (76.937% teacher-state intent, −172.663 paired margin closed-loop)
+and D41a's 85% MLP versus a 100% exact decoder remain binding negative priors, not
+duplicates.
+
+**Identifiability boundary.** Public map/state, final command order, unit IDs, target
+coordinates, resource kinds, actual TRAINs, and emitted history are exact. Delineate's
+continually selected train target, previous internal target, 3,290 logits, top-X
+alternatives, joint beam alternatives/probabilities, weights, PPO signals, and
+curriculum state are not replay labels. The public 104-plane four-block ResNet,
+144-candidate train head, ~101k policy parameters, ~98k-character submission, and
+2–3 ms runtime demonstrate feasibility of the architecture class, but the weights and
+hidden decisions were not published.
+
+**Verdict: `DISTINCT_PRIMITIVE_ONLY`.** L1a may begin only after peer acceptance, with
+a compose-only exact-agent state/final-command extractor and parity report on the 199
+consumed games. Do not infer task/plan/beam labels. Split by whole game, preserve a
+temporal block, and report held-opponent sensitivity. Any later teacher-forced fit is
+diagnostic only; source integration requires a separately frozen closed-loop
+official-map score/margin, family-transfer, legality, runtime, size, and substrate gate.
+No extractor, bulk dataset, model, fit, game, source, candidate, submission, or Arena
+action was created.
+
+Evidence:
+`data/analysis/live-agent-6553250/l1-delineate-cloning-readiness-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/l1-delineate-cloning-readiness-audit/`.

@@ -160,6 +160,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Native imitation of a complete macro teacher loses −172.663 paired margin through
   autoregressive covariate shift; a complete controller must be optimized and validated
   closed-loop, never fit on teacher states alone. [Phases 12–14; vol 1]
+- Exact-agent delineate replay cloning is not duplicate-closed, but its honest target is
+  primitive-only: 199 games yield 145,448 exactly decoded per-unit rows with zero unknown
+  updates, while the internal train plan, logits, alternatives, and joint beam are not
+  replay labels. L1a must begin with extractor parity; teacher-forced metrics remain
+  diagnostic until a frozen closed-loop official-map value gate. [L1 readiness]
 - The short feed-forward batch-option PPO recipe is closed: it learns state-dependent
   probability mass but changes 0/512 deterministic probe decisions. Retain the exact
   679-transition/s environment; require current-field replay evidence before choosing a
