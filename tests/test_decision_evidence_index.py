@@ -64,7 +64,9 @@ def make_repo(tmp_path: Path, record=None, build_generated=True) -> Path:
     repo = tmp_path
     (repo / "docs/evidence/discussions").mkdir(parents=True, exist_ok=True)
     (repo / "docs/evidence/generated").mkdir(parents=True, exist_ok=True)
-    (repo / "source.md").write_text("line 1\nline 2\n")
+    (repo / "source.md").write_text(
+        "Fixture value is +1.0 on 4/4 tasks. [T1]\nFixture text.\n"
+    )
     (repo / "evidence.json").write_text(json.dumps({"value": 1.0}))
     write_record(repo, record or base_record())
     if build_generated:
