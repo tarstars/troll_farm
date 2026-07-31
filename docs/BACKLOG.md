@@ -219,11 +219,18 @@ continues with construction and rating-dynamics measurement, not waiting.
   A2-0b qualified the referee substrate, and A2-1 built the first new policy. Its clean
   28.42% confirmation misses the 40% workforce-conversion floor, so the charter stops the
   programme. A2-2…5 are not backlog items without a new owner authorization.
-- **H10 spatial-planes learner** — the sanctioned D172a reopening. H5 adds a data point
-  worth weighing: the #1 finisher (delineate) is a **trained NN with no search at all**. Our
-  closures cover *option-selection* learning and *imitation from replays*; a self-trained
-  whole-policy network is a different target and was never attempted. Reframing H10 that way
-  is a legitimate owner question, and a substantially larger programme than the spatial probe.
+- **H10a readiness ✅ NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION.** The existing
+  104-channel Level-1 tensor is not a generic board extractor: 32 channels require one
+  selected curriculum unit, target recipe/deficits, episode progress, or previous
+  primitive action, none uniquely defined for D172's 13 global macro options. The exact
+  substrate is usable: 79,997 labels / 27,392 official-map state keys, zero duplicate
+  state/arm keys, and a deduplicated 72-channel table would be 477 MB. **H10a-r1 is
+  peer-gated:** player-relative 72-channel current state plus the unchanged D172
+  17-field decision block, example model 6,541 params, all D172 arms/τ/partitions/gates
+  frozen. Exporter parity must pass before fitting; no bulk/model/job exists yet.
+- **H10b whole-policy learner** remains a larger owner programme. H5's #1 finisher
+  (delineate) used a trained NN with no search, but that does not turn H10a's narrow
+  option selector into authorization for self-play over primitives.
 
 ### Operations
 

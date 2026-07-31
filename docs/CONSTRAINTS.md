@@ -428,6 +428,17 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   states on the official substrate (D29's approach, killed pre-D33 by the map-domain
   artifact, never retried) — reopening requires an owner decision citing this entry.
   [D172a]
+- **H10a cannot reuse the Level-1 104-channel tensor verbatim.** Only 72 channels have
+  generic current-state meanings after controlled-seat relabeling/canonical rotation;
+  14 encode one selected unit, 2 encode Level-1 episode progress, 15 encode its fixed
+  training recipe/deficits, and 1 encodes previous primitive-action history. D172 has no
+  single outcome-blind definition for those 32 channels. Its exact substrate is otherwise
+  ready: 79,997 labels over 27,392 unique post-D33 official-map state keys, with zero
+  duplicate state/arm keys. The only sanctioned correction is a 72-channel player-relative
+  state tensor plus D172's unchanged 17-field decision block, under the same 13 arms,
+  budget-1 semantics, τ, partitions, gates, veto, confirmation, and 12,288-parameter cap.
+  H10a-r1 requires peer acceptance and exporter parity before fitting; D29/D18 are negative
+  priors on different decisions, not duplicate closures. [H10a readiness, 2026-07-31]
 - On-policy terminal-reward closed-loop training over the budget-1 resident option space
   is CLOSED: with valid mechanics and all 13 arms live, all four objectives (pooled,
   capped, own-protected, group-DRO+protection) converged to always-KEEP (P(invoke) ≤3.3%,

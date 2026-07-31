@@ -72,7 +72,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **H10a** | Spatial-planes probe: swap D172's feature extractor for the 104-channel board, all gates frozen. The one reopening CONSTRAINTS sanctions | 1–2 sessions + GPU | open |
+| **H10a** | Spatial-planes probe: swap D172's feature extractor for the 104-channel board, all gates frozen. The one reopening CONSTRAINTS sanctions | readiness audit | **✅ NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION:** literal 104 is invalid (32 Level-1-specific channels); D172's exact official substrate supports a 72-channel current-state tensor plus its 17-field decision block |
+| **H10a-r1** | **Generic spatial-state option scorer** — compose-only state export, then one 6,541-parameter spatial fit with every D172 gate frozen | 1–2 sessions | **gated on H10a peer acceptance; no exporter, fit, or range authorized yet** |
 | **H10b** | Whole-policy self-play network over primitives — the delineate-shaped route; never attempted (our closures cover option-selection and imitation, not this) | multi-session programme | **gated** (owner) |
 | **L1** | **Behaviour cloning from delineate specifically** — it is on our ladder and in the corpus; imitation failed before on covariate shift, but never from the #1 agent with today's corpus size | 1–2 sessions | open |
 | **L2** | **Learned tie-break / target ranking inside the existing architecture** — narrow learning at one decision point rather than whole-policy or option selection; a third target neither closure covers | 1–2 sessions | open |
@@ -127,11 +128,12 @@ E7 (HINDSIGHT_RESIDUAL_ONLY);
 S1 (FULL_EXACT_INFEASIBLE);
 S2 (DEPENDENCY_GATED_REPRESENTATION_BLOCKED);
 S3 (DISTINCT_MULTI_GATED);
+H10a readiness (NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its semantic line-locator blocker.
 
-Priority order as of 2026-07-31: E7/S1/S2/S3 peer review / E7a and S3a decisions →
-evidence-index acceptance after correction → D-tier learning audits. N4 Phase A runs
-separately.
+Priority order as of 2026-07-31: E7/S1/S2/S3/H10a peer review / E7a, S3a, and
+H10a-r1 decisions → evidence-index acceptance after correction → remaining D-tier
+learning audits. N4 Phase A runs separately.

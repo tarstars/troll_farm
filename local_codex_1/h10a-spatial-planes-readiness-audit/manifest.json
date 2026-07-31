@@ -1,0 +1,49 @@
+{
+  "task": "20260731-h10a-spatial-planes-readiness-audit",
+  "generated_utc": "2026-07-31T01:07:53Z",
+  "base_commit": "83c8975261cbc18c3d241714f382287162e2bff6",
+  "verdict": "NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION",
+  "artifacts": {
+    "protocol": {
+      "path": "docs/h10a-spatial-planes-readiness-protocol-2026-07-31.md",
+      "sha256": "31c4642fe0c1a1a38ba6f9214115427094362a37fac9c4e8d90d4368f9b12391"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/h10a-spatial-planes-readiness-audit-result-2026-07-31.json",
+      "sha256": "2f451cddbaadeab1ce3d7eab298b3e2eedf1a3542cd35d4f8f0545e7e4bd5baf"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/h10a-spatial-planes-readiness-audit-result-2026-07-31.md",
+      "sha256": "714f02f2b476abd4ccdb4c694ed32757049850b47a8b7079c320531ab03a5ba2"
+    }
+  },
+  "evidence_hashes": {
+    "d172_protocol": "577d1c9798d593d2c62939492f6ef2db3fe99aa13a074078b2ae9283eae753cc",
+    "d172_lock": "82c56870ca6879061091631b0a850f8384b409d8c88ba58f806935c417fbd8af",
+    "d172_corpus_manifest": "55fd30c8efd632a1e5a45df44b3dec5c61102f32e096012763e1a83e47043d30",
+    "d172_report": "2a0453b4eab42b77182d9e63c931262a0220f738da74afe35dc24b4c8b04085b",
+    "rl_level1": "7e76be2b2fae3385a4a1d42ebf2f507efdb3c503148f055932935f2263860b17",
+    "d29_spatial_exporter": "d057ed19d241bcf3ffebc18d71ebc81856793f4bec500d0beb2f49364e465dc0",
+    "d29_protocol": "c63c526ec4b75b162689410ed6fc49cd119c3bf494a153843da525cd98a98083",
+    "d29c_result": "078369fa8f0f7c5cc9af34e7902d1bd4016bee76cd3fcff27b3a8e576ac9aa3f",
+    "d30_result": "886613a341decb1c424581b08869414b3a3f2610515ff50d196d64dd3cdf13af",
+    "d33_result": "962845d1b36208fbd42eb2c247b6b25172809cf0ae5b3c4106d111c31cf3c756",
+    "d18_protocol": "8a1f52c71647f367fb7b0b1cf7c7c870c616bdf3e973b0d57dd41bfb7d3e214a",
+    "d18_result": "8bb438386d7a411903d1771f5de16a87f79880a479ac08156c4b9f94d6e5b37a"
+  },
+  "read_only_checks": {
+    "external_storage_preflight": "PASS",
+    "existing_corpus_shards": 4,
+    "unique_state_keys": 27392,
+    "duplicate_state_arm_keys": 0,
+    "local_nvidia_smi": "unavailable"
+  },
+  "integrity": {
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "new_source_files": 0,
+    "new_bulk_files": 0,
+    "new_maps_or_labels": 0,
+    "gpu_or_yt_jobs": 0,
+    "arena_actions": 0
+  }
+}

@@ -1,6 +1,6 @@
 # 20260731-h10a-spatial-planes-readiness-audit
 
-- Status: active — source/interface matrix in progress
+- Status: done — `NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,26 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:04:00Z
-- Last updated UTC: 2026-07-31T01:04:00Z
+- Last updated UTC: 2026-07-31T01:10:00Z
+
+## Progress
+
+- Claim/protocol published at `83c8975261cbc18c3d241714f382287162e2bff6`.
+- All 104 channels were classified: 72 have generic current-state meanings after
+  player-relative adaptation; 32 are selected-unit, Level-1 target/episode, or
+  previous-action fields without a literal D172 meaning.
+- The four D172 shards exist and contain 79,997 rows, 27,392 unique state keys,
+  and zero duplicate state/arm keys on the official substrate.
+- External storage preflight passed; deduplicated 72-channel uint8 storage is
+  477,278,208 bytes. No write occurred.
+- A 72-channel state tensor plus the unchanged 17-field D172 decision block admits
+  a concrete 6,541-parameter model below the frozen 12,288 cap.
+- Final verdict: `NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION`.
+- Report:
+  `data/analysis/live-agent-6553250/h10a-spatial-planes-readiness-audit-result-2026-07-31.md`.
+- Manifest:
+  `local_codex_1/h10a-spatial-planes-readiness-audit/manifest.json`.
+- No source, bulk file, map, label, model, job, candidate, or Arena action exists.
 
 ## Outcome
 

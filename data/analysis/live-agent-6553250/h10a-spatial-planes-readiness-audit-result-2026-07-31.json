@@ -1,0 +1,163 @@
+{
+  "task": "20260731-h10a-spatial-planes-readiness-audit",
+  "generated_utc": "2026-07-31T01:07:53Z",
+  "base_commit": "83c8975261cbc18c3d241714f382287162e2bff6",
+  "protocol": "docs/h10a-spatial-planes-readiness-protocol-2026-07-31.md",
+  "protocol_sha256": "31c4642fe0c1a1a38ba6f9214115427094362a37fac9c4e8d90d4368f9b12391",
+  "literal_104_interface": {
+    "source": "rust/src/rl_level1.rs",
+    "source_sha256": "7e76be2b2fae3385a4a1d42ebf2f507efdb3c503148f055932935f2263860b17",
+    "shape": [
+      104,
+      11,
+      22
+    ],
+    "hardcoded_frame": "player 0, no player-relative canonical rotation",
+    "channel_groups": [
+      {
+        "indices": "0,1,3-6,8-67,82-85,99,103",
+        "count": 72,
+        "class": "generic current board/economy",
+        "d172_definition": "yes, after explicit controlled-seat relabeling and canonical rotation",
+        "examples": "bounds, terrain adjacency, shacks, units/carries, plants, bank, scores, worker counts, shack occupancy, home-distance plane"
+      },
+      {
+        "indices": "2,7,68-79",
+        "count": 14,
+        "class": "selected Level-1 unit",
+        "d172_definition": "no single outcome-blind definition across all 13 global macro options",
+        "examples": "selected-to-cell distance, selected marker, selected carry/stats/free capacity/home distance"
+      },
+      {
+        "indices": "80-81",
+        "count": 2,
+        "class": "Level-1 episode progress",
+        "d172_definition": "not literal; D172 already records game turn in its decision block",
+        "examples": "steps/max_turns and remaining curriculum steps"
+      },
+      {
+        "indices": "86-98,100-101",
+        "count": 15,
+        "class": "Level-1 target recipe and selected-unit need",
+        "d172_definition": "no",
+        "examples": "target worker spec/cost/deficit/affordability, carrying-needed flag, nearest-needed distance"
+      },
+      {
+        "indices": "102",
+        "count": 1,
+        "class": "Level-1 primitive-action history",
+        "d172_definition": "no frozen equivalent",
+        "examples": "previous primitive action plane"
+      }
+    ],
+    "generic_channels": 72,
+    "undefined_or_nonliteral_channels": 32,
+    "verbatim_ready": false
+  },
+  "d172_substrate": {
+    "protocol_sha256": "577d1c9798d593d2c62939492f6ef2db3fe99aa13a074078b2ae9283eae753cc",
+    "lock_sha256": "82c56870ca6879061091631b0a850f8384b409d8c88ba58f806935c417fbd8af",
+    "corpus_manifest_sha256": "55fd30c8efd632a1e5a45df44b3dec5c61102f32e096012763e1a83e47043d30",
+    "map_generator": "generate_official",
+    "seed_range": "9860000-9860511",
+    "maps": 512,
+    "tasks": 8192,
+    "families": 8,
+    "seats": 2,
+    "rows": 79997,
+    "unique_state_keys": 27392,
+    "state_key": [
+      "map_seed",
+      "seat",
+      "opponent_index",
+      "turn"
+    ],
+    "duplicate_state_arm_keys": 0,
+    "positive_states_at_least_plus2": 11077,
+    "positive_state_rate": 0.40438814252336447,
+    "stored_input": "81 float fields per candidate: 64 state plus 17 decision/arm/affordance",
+    "stored_board_tensor": false,
+    "exact_label_status": "available and unchanged; spatial replay needs no new counterfactual outcome labels",
+    "recovery_path": "compose-only control replay on the same consumed tasks, one tensor per unique state key, exact join to existing candidate rows and 81-field parity check"
+  },
+  "storage_readiness": {
+    "preflight_command": "python3 cgauto/check_external_storage.py --required-free-gib 2",
+    "preflight": "PASS",
+    "label": "medium_data",
+    "project_root": "/media/tarstars/medium_data/database/troll_farm",
+    "free_bytes": 452646973440,
+    "existing_shards_present": 4,
+    "estimates_bytes": {
+      "literal_104_uint8_per_candidate_row": 2013364496,
+      "literal_104_uint8_deduplicated_state": 689401856,
+      "generic_72_uint8_deduplicated_state": 477278208,
+      "d29_36_int16_deduplicated_state": 477278208
+    },
+    "bulk_write_performed": false
+  },
+  "prior_spatial_evidence": [
+    {
+      "id": "D29_D30_D33",
+      "decision_target": "turn-75 resident versus permanent ownership2",
+      "representation": "36 canonical raw planes plus 426 trajectory scalars",
+      "result": "generated-map pass; official activation 7/80 (8.75%); D30 attributed -72.122 of -78.045 raw shift to generated-map scalar regime; D33 later established 120/120 official map parity",
+      "relation": "not a D172 duplicate; supplies a generic player-relative plane design and explains why official-substrate replay is required"
+    },
+    {
+      "id": "D18",
+      "decision_target": "resident primitive residual action labels",
+      "representation": "137-channel selected-unit/resident-intent tensor",
+      "result": "0/40 validation recipes passed; 2% spatial tail precision 40.52% and mean -1.23",
+      "relation": "negative prior for spatial value prediction, but different action vocabulary, labels, states, and gates; not a closure of D172's 13 exact macro options"
+    }
+  ],
+  "minimal_valid_successor": {
+    "name": "H10a-r1 generic spatial-state option scorer",
+    "authorized": false,
+    "state_tensor": {
+      "channels": 72,
+      "source_semantics": "only the generic current-state groups from rl_level1",
+      "required_adaptations": [
+        "controlled-seat relabeling",
+        "canonical 180-degree orientation",
+        "exact official GameState/NavTable encoding",
+        "no selected-unit, target-recipe, episode-progress, or previous-action channels"
+      ]
+    },
+    "decision_input": "retain D172's exact 17-field turn/opponent-count/arm-one-hot/affordance block",
+    "example_model": {
+      "spatial": "Conv2d(72,8,3,padding=1) -> ReLU -> Conv2d(8,8,3,padding=1) -> ReLU -> valid-cell mean+max",
+      "decision": "Linear(17,8) -> ReLU",
+      "fusion": "Linear(24,16) -> ReLU -> Linear(16,13)",
+      "parameters": 6541,
+      "parameter_cap": 12288,
+      "within_cap": true
+    },
+    "unchanged_d172_elements": [
+      "13 exact arms and arm timing",
+      "exact counterfactual labels",
+      "budget-1 closed-loop semantics",
+      "score the offered arm's corresponding head",
+      "tau +1.0",
+      "training and 8x16-map LOBO partitions",
+      "pooled, worst-block, worst-family, activation, safety, and catastrophe gates",
+      "veto and sealed-confirmation decision tree"
+    ],
+    "first_phase_if_authorized": "compose-only exporter on consumed D172 training states; exact row-key, state-key, 81-feature, jobs parity, orientation, and tensor-hash checks before training"
+  },
+  "compute_readiness": {
+    "local_nvidia_smi": "unavailable",
+    "interpretation": "no local GPU discovered; route choice belongs to a successor protocol and is not a substrate blocker for this compact model",
+    "job_started": false
+  },
+  "verdict": "NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION",
+  "decision": "Reject literal 104-channel reuse. Preserve H10a as a corrected, peer-reviewed 72-channel player-relative current-state tensor plus D172 17-field decision block; no exporter or fit is authorized by this audit.",
+  "integrity": {
+    "new_source_files": 0,
+    "new_bulk_files": 0,
+    "new_maps_or_labels": 0,
+    "gpu_or_yt_jobs": 0,
+    "arena_actions": 0,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  }
+}

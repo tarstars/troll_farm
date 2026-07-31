@@ -558,3 +558,41 @@ Evidence:
 `data/analysis/live-agent-6553250/s3-putibuzu-rollout-beam-scope-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/s3-putibuzu-rollout-beam-scope-audit/`.
+
+## H10a readiness — the 104-channel premise is invalid, spatial reopening survives narrowly
+
+**Question.** Can D172's exact option-label experiment literally replace its 81-field
+input with the project's existing 104-channel board tensor?
+
+**Interface audit.** The tensor in `rl_level1` is not a generic board extractor. Seventy-
+two channels describe current terrain, plants, units, banks, scores, workforce, and home
+geometry after a controlled-seat adaptation. Fourteen describe one selected curriculum
+unit; two are Level-1 episode progress; fifteen encode its fixed training recipe, cost,
+deficit, affordability, and needed-resource routing; one is previous primitive-action
+history. D172's 13 global macro arms have no single outcome-blind value for those 32
+channels, and the existing encoder hardcodes player 0 without canonical rotation.
+
+**Substrate.** D172's four shards are present: 79,997 exact labels over 27,392 unique
+`(map,seat,opponent,turn)` state keys, zero duplicate state/arm keys, 512 official-map
+seeds, both seats, and eight families. The stored rows contain 81 scalar/candidate fields,
+not board tensors, but a compose-only control replay can add one tensor per consumed
+state without new outcomes. Storage preflight passed; a deduplicated 72-channel uint8
+table is 477,278,208 bytes. No write was made.
+
+**Prior evidence.** D29's 36-plane turn-75 farm selector died from the pre-D33 generated-
+map domain; D172 is already on `generate_official`. D18's 137-channel primitive residual
+scorer failed 0/40 recipes, a serious negative prior, but it did not use D172's macro
+options, exact labels, states, or gates. Neither is a duplicate closure.
+
+**Verdict: `NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION`.** Literal 104-channel reuse is
+invalid. H10a-r1, if peer-accepted, uses 72 player-relative current-state channels plus
+the unchanged 17-field D172 decision block. A two-conv design is 6,541 parameters versus
+the frozen 12,288 cap. Preserve all 13 arms, exact labels, budget-1 semantics, τ=+1,
+partitions, LOBO/safety gates, veto, and sealed confirmation. First qualify a compose-only
+exporter on consumed states; no source, bulk file, model, GPU/YT job, candidate, or Arena
+action exists now.
+
+Evidence:
+`data/analysis/live-agent-6553250/h10a-spatial-planes-readiness-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/h10a-spatial-planes-readiness-audit/`.
