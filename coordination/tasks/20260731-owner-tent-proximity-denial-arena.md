@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:15:00Z
-- Last updated UTC: 2026-07-31T15:15:00Z
+- Last updated UTC: 2026-07-31T15:20:00Z
 
 ## Owner directive
 
@@ -24,7 +24,7 @@
 - Expected size: 67,704 bytes.
 - Expected SHA-256:
   `3bd42d5b33dfb58724686ddfcca93205e953c0ac728595f520307798bb4fd900`.
-- Materialization commit: `a72c16973a74205c3283f59e496362fa29766243`.
+- Materialization commit: `a72c16998baaf7e78a4cd901224d88ac0f022e9b`.
 - At zero qualifying enemy-tent-adjacent trees, it is the exact far-denial-d3 parent.
 - At one or two, one troll ordinarily chops, collects, and banks a qualifying tree while
   the other denies opponent-planted trees without a return leg caused by that role.

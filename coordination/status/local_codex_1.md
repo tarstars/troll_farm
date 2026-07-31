@@ -1,14 +1,14 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T15:15:00Z
+- Updated UTC: 2026-07-31T15:20:00Z
 - State: owner-directed B3.13 tent-proximity Arena preflight active
 - Role: coordinator (integrator)
 - Current task: exact preflight, then one submission of the pushed B3.13 successor
 - Branch: agent/local_codex_1
 - Evidence commit: 313074c (previous Arena cycle terminal and synchronized)
 - Write set: B3.13 Arena task/report/manifest/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-07-31T15:15:00Z
-- Evidence: previous `6585578` is 160/160 clean at 22.99; exact successor SHA `3bd42d5b...`
+- Last concrete progress UTC: 2026-07-31T15:20:00Z
+- Evidence: successor bytes/sidecar and sacred SHA exact; actual introducing commit `a72c16998b`
 - Running job: none
 - Latest verified result: B3.13 candidate passed compiled boundaries, exact replay, and 8 smokes
 - Next checkpoint: pushed claim plus exact hash/test/current-agent preflight
