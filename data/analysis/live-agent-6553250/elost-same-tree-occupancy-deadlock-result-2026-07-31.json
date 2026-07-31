@@ -1,0 +1,968 @@
+{
+  "schema": "troll-farm-elost-same-tree-deadlock-v1",
+  "game": {
+    "game_id": 897556967,
+    "resident_agent_id": 6585765,
+    "resident_submission_id": 41071067,
+    "resident_seat": 1,
+    "resident_score": 132,
+    "opponent": "Elost",
+    "opponent_agent_id": 6579290,
+    "opponent_submission_id": 40706516,
+    "opponent_seat": 0,
+    "opponent_score": 160,
+    "valid": true,
+    "turns": 300,
+    "unknown_diff_updates": 0,
+    "raw_path": "data/external/elost-same-tree-occupancy-deadlock/game-897556967.json",
+    "raw_sha256": "7d2531710ecf7a3d6e71de923476e717272c6e65582cbb454d9c11d0d29f1b31",
+    "trajectory_path": "data/external/elost-same-tree-occupancy-deadlock/trajectory-897556967.jsonl",
+    "trajectory_sha256": "2a809f316e03471cc9f8e54fdd1ae9410bde3abe9f3819b82677973d78ea7ec6"
+  },
+  "incident": {
+    "tree_cell": [
+      19,
+      6
+    ],
+    "tree_type": "LEMON",
+    "occupant_unit_id": 1,
+    "occupant_stats": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "occupant_full_wood": 1,
+    "occupant_chop_before": [
+      55,
+      56,
+      57
+    ],
+    "occupant_wait_first": 58,
+    "occupant_wait_last": 67,
+    "occupant_wait_commands": 10,
+    "occupant_resume_chop": 68,
+    "mover_unit_id": 2,
+    "mover_stats": [
+      2,
+      1,
+      0,
+      2
+    ],
+    "mover_full_wood": 1,
+    "same_tree_high_target_first": 58,
+    "same_tree_high_target_last": 67,
+    "same_tree_high_target_commands": 10,
+    "ping_pong_state_first": 61,
+    "ping_pong_state_last": 68,
+    "ping_pong_states": 8,
+    "ping_pong_cells": [
+      [
+        18,
+        5
+      ],
+      [
+        18,
+        6
+      ]
+    ],
+    "root_cause": "the pair selector gives the sole far-denial tree to the faster off-tree chopper while the capable on-tree unit takes WAIT; single-turn collision detours then alternate",
+    "inherited_from_far_denial_parent": true
+  },
+  "source_reproduction": {
+    "current": {
+      "source": "cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs",
+      "source_sha256": "f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a",
+      "stdout_lines": 300,
+      "recorded_command_matches": 300,
+      "first_divergence_turn": null,
+      "stderr": ""
+    },
+    "tent_parent": {
+      "source": "cgauto/submissions/candidate-agent6585578-owner-tent-proximity-denial-split-slim.min.rs",
+      "source_sha256": "3bd42d5b33dfb58724686ddfcca93205e953c0ac728595f520307798bb4fd900",
+      "stdout_lines": 300,
+      "recorded_command_matches": 300,
+      "first_divergence_turn": null,
+      "stderr": ""
+    },
+    "far_parent": {
+      "source": "cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs",
+      "source_sha256": "307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd",
+      "stdout_lines": 300,
+      "recorded_command_matches": 300,
+      "first_divergence_turn": null,
+      "stderr": ""
+    }
+  },
+  "resolver_probe": [
+    {
+      "turn": 55,
+      "commands_before_collision_resolution": [
+        "CHOP 1",
+        "CHOP 2"
+      ]
+    },
+    {
+      "turn": 56,
+      "commands_before_collision_resolution": [
+        "CHOP 1",
+        "CHOP 2"
+      ]
+    },
+    {
+      "turn": 57,
+      "commands_before_collision_resolution": [
+        "CHOP 1",
+        "CHOP 2"
+      ]
+    },
+    {
+      "turn": 58,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 59,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 60,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 61,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 62,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 63,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 64,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 65,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 66,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 67,
+      "commands_before_collision_resolution": [
+        "WAIT",
+        "MOVE 2 19 6"
+      ]
+    },
+    {
+      "turn": 68,
+      "commands_before_collision_resolution": [
+        "CHOP 1",
+        "MOVE 2 12 5"
+      ]
+    },
+    {
+      "turn": 69,
+      "commands_before_collision_resolution": [
+        "MOVE 1 12 5",
+        "MOVE 2 11 6"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "turn": 55,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "CHOP 1",
+      "mover_position": [
+        17,
+        0
+      ],
+      "mover_next_position": [
+        17,
+        0
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "CHOP 2",
+      "tree": {
+        "type": "LEMON",
+        "health": 12,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 56,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "CHOP 1",
+      "mover_position": [
+        17,
+        0
+      ],
+      "mover_next_position": [
+        17,
+        0
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "CHOP 2",
+      "tree": {
+        "type": "LEMON",
+        "health": 11,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 57,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "CHOP 1",
+      "mover_position": [
+        17,
+        0
+      ],
+      "mover_next_position": [
+        17,
+        0
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "CHOP 2",
+      "tree": {
+        "type": "LEMON",
+        "health": 10,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 58,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        17,
+        0
+      ],
+      "mover_next_position": [
+        17,
+        2
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 17 2",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 59,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        17,
+        2
+      ],
+      "mover_next_position": [
+        17,
+        4
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 17 4",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 60,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        17,
+        4
+      ],
+      "mover_next_position": [
+        18,
+        5
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 5",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 61,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        5
+      ],
+      "mover_next_position": [
+        18,
+        6
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 6",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 62,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        6
+      ],
+      "mover_next_position": [
+        18,
+        5
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 5",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 63,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        5
+      ],
+      "mover_next_position": [
+        18,
+        6
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 6",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 64,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        6
+      ],
+      "mover_next_position": [
+        18,
+        5
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 5",
+      "tree": {
+        "type": "LEMON",
+        "health": 9,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 65,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        5
+      ],
+      "mover_next_position": [
+        18,
+        6
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 6",
+      "tree": {
+        "type": "LEMON",
+        "health": 7,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 66,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        6
+      ],
+      "mover_next_position": [
+        18,
+        5
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 5",
+      "tree": {
+        "type": "LEMON",
+        "health": 5,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 67,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "WAIT",
+      "mover_position": [
+        18,
+        5
+      ],
+      "mover_next_position": [
+        18,
+        6
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 18 6",
+      "tree": {
+        "type": "LEMON",
+        "health": 3,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 68,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "CHOP 1",
+      "mover_position": [
+        18,
+        6
+      ],
+      "mover_next_position": [
+        17,
+        5
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 17 5",
+      "tree": {
+        "type": "LEMON",
+        "health": 1,
+        "size": 4,
+        "fruits": 3
+      }
+    },
+    {
+      "turn": 69,
+      "occupant_position": [
+        19,
+        6
+      ],
+      "occupant_stats": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "occupant_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "occupant_command": "MOVE 1 18 6",
+      "mover_position": [
+        17,
+        5
+      ],
+      "mover_next_position": [
+        16,
+        4
+      ],
+      "mover_stats": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "mover_carry": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mover_command": "MOVE 2 16 4",
+      "tree": null
+    }
+  ],
+  "scientific_boundary": "exact mechanism evidence only; no terminal-value estimate"
+}
