@@ -1,6 +1,6 @@
 # 20260731-doubtingiyov-tent-proximity-denial-policy
 
-- Status: active — exact game resolved; replay materialization pending
+- Status: exact-game gate passed — successor candidate implementation active
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after its current serial review queue)
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T14:15:00Z
-- Last updated UTC: 2026-07-31T14:20:00Z
+- Last updated UTC: 2026-07-31T14:30:00Z
 
 ## Owner proposal
 
@@ -48,6 +48,22 @@ Arena cycle.
   `6585578`/`41070584`, resident seat 1, valid 208–262 loss.
 - This task treats that newest game as the owner-observed replay. The other three battle
   results are identity context only and will not be decoded.
+
+## Exact-game result
+
+- Verdict: `MECHANICALLY_COHERENT`; this is a mechanism gate, not causal value evidence.
+- Official state reconstruction is 300/300 turns with zero unknown diff updates.
+- No adjacent tree exists initially. DoubtinGiyov plants BANANA at turns 13 and 17 and
+  APPLE at turn 20; the >2 band begins at decision turn 21.
+- The resident first contacts an adjacent generation on turn 69. Before then the opponent
+  completes 12 adjacent harvests for 12 items and 19 adjacent drops for 24 items.
+- Across the game, the opponent creates 37 adjacent generations, completes 70 confirmed
+  adjacent harvests for 70 items, and performs 83 confirmed drops for 96 items.
+- The exact trigger exposure is zero 15 turns, one-or-two 150, and more-than-two 135.
+- Raw replay SHA-256:
+  `d2f2c13c6737ea110d86df1f54973e5a0d3924be5bd2140d6bd90d92dda646c3`.
+- Trajectory SHA-256:
+  `fd2d03817ca9885858a8a5e774102e63d41e939eb89708488c00019c446342dc`.
 
 ## Exclusive write set
 
