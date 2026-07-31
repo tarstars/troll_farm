@@ -1,6 +1,6 @@
 # 20260730-n4-candidate-pair-value-audit: census the exact resident pair surface
 
-- Status: Phase A pre-lock — generated compile/reconstruction pass; runtime/parity gate pending
+- Status: Phase A pre-lock validated — peer implementation lock and compute routing pending
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-31T03:30:20Z
+- Last updated UTC: 2026-07-31T03:37:50Z
 
 ## Outcome
 
@@ -187,3 +187,16 @@ live command (0/4,028 state failures), but produces 268,168 data rows / 83,327,4
 in about 10.7 minutes. Observed export/reconstruction p95 is 210.408 ms versus the
 frozen 5 ms close. Twenty-thread normalized parity is required before classifying this
 as a runtime close or instrumentation defect. No full census or implementation lock yet.
+
+## Host validation — 2026-07-31T03:37:50Z
+
+The exact 20-thread repeat completes in 235.04 seconds at 323,268 KiB maximum RSS.
+It has the same 268,169 total lines as the single-thread result. After excluding only
+the deliberately measured `latency_us` column, both outputs are byte-identical at
+SHA-256 `9177b5c925d3a534bb19588f76314f26d163192cbb75f0118d41b979bce9b3be`.
+Frozen-command reconstruction remains exact. Parallel p95 is 333.157 ms, confirming a
+serious runtime-close risk rather than a one-thread artifact.
+
+Pre-lock correctness/parity gates pass. The peer must publish the source lock before
+the full census. One seed projects roughly 10.7 GB and 8+ local hours for 128 seeds, so
+the exact census also requires external-storage preflight and non-local compute routing.
