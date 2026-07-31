@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: begins when work owner publishes acknowledgement/claim
 - Created UTC: 2026-07-31T05:25:00Z
-- Last updated UTC: 2026-07-31T10:00:00Z
+- Last updated UTC: 2026-07-31T10:15:00Z
 
 ## Result
 
@@ -25,6 +25,10 @@
 - Verdict: `TREATMENT_REPRODUCIBLE`.
 - This closes source reconstruction only. No runner, range, panel, candidate, platform, or
   Arena action is authorized.
+- Peer publication handoff `9b35b3a` was host-validated and acknowledged after becoming
+  visible post-takeover. Its scientifically equivalent canonical-path commits remain
+  preserved on the peer branch; takeover closeout `faf2bc1` remains canonical to avoid a
+  late overwrite.
 
 Evidence:
 `data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-result-2026-07-31.json`,
