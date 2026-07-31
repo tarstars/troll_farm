@@ -87,7 +87,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **A2-0b** | Referee/evaluation parity harness for a new bot | 1 session | **✅ QUALIFIED AND PROTOCOL-CLOSED — exact legacy reproduction; locked referee RNG/validation path; four Phase-1 conditions carried forward** |
 | **A2-1** | Economy skeleton: early orchard establishment/reap → bank + opportunistic mine → fruit-funded worker 3; late fruit-to-wood conversion is distinct | 1–2 sessions to first gate | **CLOSED / FAILED K1 — 582/2,048 = 28.42% by t≤110 vs 40%; mechanics and integrity pass, transfer does not** |
 | **A2-2…5** | Equal-roster parity → scale survival → same-panel dominance/deployability → Arena | programme | **CLOSED by A2-1 K1; new owner-authorized programme required to reopen** |
-| **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | open |
+| **N7** | Dead-accretion removal plan (`ScarceIntent`, `banana_factory`, `task_market`, opponent-crop scoring are unreachable) | 1 session plan | **✅ DONE — DEPLOYMENT_ALREADY_SLIM:** all four are absent from the 62,725-byte live deploy, so its additional deletion ceiling is 0 bytes; sacred source/snapshot and research APIs stay byte-exact |
 
 ## F. Opponent interaction — deflated by H5 but not closed
 

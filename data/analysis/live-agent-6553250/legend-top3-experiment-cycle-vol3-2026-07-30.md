@@ -709,3 +709,39 @@ Evidence:
 `data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/l3-learned-evaluator-scope-audit/`.
+
+## N7 — deployment already excludes the dead accretions; preserve sacred fixtures
+
+**Question.** Can H13's four live-dead source families be removed safely, and from which
+artifact?
+
+**Construction and deployment.** Independent constructor tracing reproduces H13:
+`main()` uses `SecureOrchardBot::new()` with the tuned live Yamo inner bot; ScarceIntent,
+task-market, banana-factory, and opponent-crop controls remain disabled. The current
+62,725-byte live deployment has zero occurrences of all four families. Banana factory,
+task market, and opponent-crop scoring were already absent from its 90,547-byte pre-slim
+ancestor; the fail-closed slimmer specializes the fixed-off branch and removes
+ScarceIntent plus other dead items.
+
+**Artifact boundary.** The 275,377-byte sacred development source is byte-identical with
+the D171a control snapshot, is exposed by the library as `resident_policy`, has 23 direct
+path importers, and retains specialized constructors/telemetry and embedded tests used by
+historical experiment runners. “Dead from main” is therefore not “safe to delete from
+the research fixture.”
+
+**Verdict: `DEPLOYMENT_ALREADY_SLIM`.** The exact additional live-deploy deletion ceiling
+is **0 bytes / 0%**. The 212,652-byte gross sacred-to-live difference is not attributable
+to these four families because it includes minification, tests, APIs, unrelated dead
+items, and other fixed-policy specialization. Keep the live deploy/default pointer,
+sacred source, exact snapshot, runners, and historical artifacts unchanged. No cleanup
+patch or successor is justified. A future maintainability migration, if separately
+owner-authorized, must create a versioned non-sacred module and prove consumer parity
+rather than clean the sacred file in place.
+
+No source, formatter, deletion, regeneration, compile, test, game, map, package,
+candidate, submission, or Arena action occurred.
+
+Evidence:
+`data/analysis/live-agent-6553250/n7-dead-accretion-removal-plan-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/n7-dead-accretion-removal-plan/`.

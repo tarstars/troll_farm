@@ -1,0 +1,70 @@
+{
+  "task_id": "20260731-n7-dead-accretion-removal-plan",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "DEPLOYMENT_ALREADY_SLIM",
+  "base_commit": "c380b6487db520c935d214eb418780343179f318",
+  "claim_commit": "b38792450dc95777bf49dce35024b4217d06eb4b",
+  "files": {
+    "protocol": {
+      "path": "docs/n7-dead-accretion-removal-plan-protocol-2026-07-31.md",
+      "sha256": "c1d4d1582fdef326e4b6fab2a0ed9939f57f6c3e0e9bd12f5e1b33a3aacd1458"
+    },
+    "task_claim": {
+      "path": "coordination/tasks/20260731-n7-dead-accretion-removal-plan.md",
+      "sha256": "d97a36e8cb96bdd55dfa62e911de06750061bee023fa7ce3caf10c97aafaacd6"
+    },
+    "claim_message": {
+      "path": "coordination/messages/local_codex_1/20260731T015712Z-20260731-n7-dead-accretion-claim.md",
+      "sha256": "d55f568592f629527048987b429b24eb618f41461886153b740adf7ab824922b"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/n7-dead-accretion-removal-plan-result-2026-07-31.json",
+      "sha256": "f30440e24731cdc342bc0db4da5ae2f9206f5a84f5110cfdcd2dba86c5545854"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/n7-dead-accretion-removal-plan-result-2026-07-31.md",
+      "sha256": "444a82834af6940233394019cccf93e8bc26335450b3b4613d899e58d683bfe8"
+    }
+  },
+  "binding_artifacts": {
+    "sacred_source": {
+      "path": "rust/src/bin/yamo_orchard_live.rs",
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "bytes": 275377
+    },
+    "exact_snapshot": {
+      "path": "rust/src/d171a_control_resident_snapshot.rs",
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "bytes": 275377
+    },
+    "pre_slim_submission": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs",
+      "sha256": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9",
+      "bytes": 90547
+    },
+    "live_deploy": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+      "bytes": 62725
+    },
+    "slimmer": {
+      "path": "cgauto/slim_live_source.py",
+      "sha256": "d396ae909af4645fc2b06f86ca2c359cdac2ee2e2ae8bfa206f0b9963d4117f8"
+    }
+  },
+  "counts": {
+    "direct_path_importers": 23,
+    "resident_policy_files": 11,
+    "live_deploy_family_occurrences": 0,
+    "additional_live_deploy_deletion_ceiling_bytes": 0
+  },
+  "actions_not_taken": [
+    "source edit or formatting",
+    "deletion or regeneration",
+    "compile or test",
+    "game or map",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

@@ -1,6 +1,6 @@
 # 20260731-n7-dead-accretion-removal-plan
 
-- Status: active — read-only source/consumer inventory
+- Status: closed — `DEPLOYMENT_ALREADY_SLIM`; peer review requested
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,20 +10,25 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:57:12Z
-- Last updated UTC: 2026-07-31T01:57:12Z
+- Last updated UTC: 2026-07-31T02:05:00Z
 
 ## Progress
 
 - H13 established four families as dead from the exact live construction chain.
 - The sacred development copy is also library-visible and hash-locked; live deadness
   alone is not deletion authority.
-- The audit will compare it with the already-minified current submission and enumerate
-  exact compile/test consumers.
+- Independent constructor tracing reproduces live deadness for all four families.
+- All four have zero occurrences in the 62,725-byte current live deploy; its additional
+  deletion ceiling is 0 bytes / 0%.
+- The sacred file is byte-identical with the D171a snapshot, public through
+  `resident_policy`, imported by 23 direct-path runners, and exercised by specialized
+  research callers/tests.
 
 ## Outcome
 
-Produce a safe artifact-specific disposition for the four accretions without changing
-source or invalidating research locks.
+`DEPLOYMENT_ALREADY_SLIM`. Keep the live deploy and submit pointer unchanged; keep the
+sacred source and snapshot byte-exact; retain historical research consumers. No cleanup
+patch or successor is justified.
 
 ## Frozen protocol
 
@@ -53,6 +58,7 @@ source or invalidating research locks.
 
 ## Acceptance
 
-- Exact liveness/consumer matrix and deploy-vs-sacred comparison.
-- Static deletion ceiling and lock-aware staged plan.
-- One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff.
+- Exact liveness/consumer matrix and deploy-vs-sacred comparison: passed.
+- Static deletion ceiling and lock-aware staged plan: passed, 0 live bytes.
+- One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff:
+  passed; peer acknowledgement pending.

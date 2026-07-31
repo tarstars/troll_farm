@@ -768,6 +768,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   `banana_factory`, `task_market`, and the opponent-crop scoring family cannot fire at all
   under `main()`'s construction chain. Any analysis that treats them as live behaviour is
   wrong and must be re-checked. [H13]
+- **Dead from `main()` does not authorize deletion from the sacred source.** N7 finds all
+  four H13 families already absent from the **62,725-byte live deploy**, so its additional
+  deletion ceiling is exactly **0 bytes / 0%**. The 275,377-byte sacred file is
+  byte-identical with the D171a snapshot, exposed as `resident_policy`, and retained by
+  direct experimental callers and embedded tests. Keep both fixtures byte-exact; any
+  future maintainability migration must create a separate versioned module rather than
+  clean the sacred file in place. [N7]
 - **Oscillation is a real fidelity defect with a measured achievable ceiling.** We
   oscillate in **40/220 games (18.2%), worst 133 turns**; yamo, the same architecture,
   in **4/140 (2.9%), worst 6 turns** — 6.4× incidence, 22× severity. His postmortem admits

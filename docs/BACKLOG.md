@@ -208,11 +208,12 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 ### P2 — hygiene and consequences of iteration 1
 
-- **N7. Dead-accretion cleanup plan.** `ScarceIntent`, `banana_factory`, `task_market` and
-  the opponent-crop scoring family are structurally unreachable (H13). Confirm independently,
-  then plan removal from the dev copy — they have already caused analytical errors (several
-  audits, mine included, discussed them as live behaviour). Removal touches the byte-sacred
-  file, so it needs its own protocol and a behavioural-identity proof.
+- **N7 ✅ DONE — DEPLOYMENT_ALREADY_SLIM.** Independent constructor tracing confirms
+  `ScarceIntent`, banana factory, task market, and opponent-crop scoring are unreachable
+  from `main()`. All four already have zero occurrences in the 62,725-byte live deploy,
+  making the additional deletion ceiling exactly 0 bytes. Do not edit the sacred source:
+  it is byte-identical with the D171a snapshot, library-visible as `resident_policy`, and
+  retained by direct experiment callers/tests. No cleanup patch or successor.
 - **D176a ✅ CLOSED-AT-MECHANISM 2026-07-29 — oscillation line closed permanently.** The fix
   largely worked (incidence 8.50%→2.88%, below yamo's 2.9%; zero de-novo; all six value gates
   pass) and is worth **+0.045 overall** — not a promotion cycle. Two of the four mechanism
