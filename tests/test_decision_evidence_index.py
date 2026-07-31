@@ -168,3 +168,22 @@ def test_d176a_requires_three_distinct_outcomes(tmp_path):
     repo = make_repo(tmp_path, r, build_generated=False)
     with pytest.raises(ValidationError):
         validate_repository(repo, require_pilot=False, check_generated=False)
+
+
+def test_in_bounds_but_unrelated_constraints_excerpt_fails(tmp_path):
+    r = base_record()
+    r["constraint_projection"]["source"] = {
+        "path": "docs/CONSTRAINTS.md",
+        "locator": "lines 1-1",
+    }
+    repo = make_repo(tmp_path, r, build_generated=False)
+    (repo / "docs/CONSTRAINTS.md").write_text(
+        "Unrelated result is +9.0 on 99/99 tasks. [OTHER]\n"
+        "Fixture value is +1.0 on 4/4 tasks. [T1]\n"
+    )
+    with pytest.raises(ValidationError, match="does not identify T1|omits content tokens"):
+        validate_repository(repo, require_pilot=False, check_generated=False)
+
+    r["constraint_projection"]["source"]["locator"] = "lines 2-2"
+    write_record(repo, r)
+    validate_repository(repo, require_pilot=False, check_generated=False)
