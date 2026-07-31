@@ -1,6 +1,6 @@
 # 20260731-owner-onsite-tree-owner-arena
 
-- Status: submitted once; exact new identity live; first health pending
+- Status: first completed health clean; weak live agent monitored without restore
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 asynchronously
@@ -10,7 +10,7 @@
 - Base commit: 2f27bfaa32a1b019726f8339ec7810e60b3cf71b
 - Branch: agent/local_codex_1
 - Created UTC: 2026-07-31T16:40:00Z
-- Last updated UTC: 2026-07-31T16:45:00Z
+- Last updated UTC: 2026-07-31T16:50:00Z
 
 ## Owner authority
 
@@ -68,3 +68,14 @@ tree-owner successor. It does not authorize restoring an older agent.
 - Initial checkpoint already has 2 finished and 8 pending exact rows, score 0.0,
   rank 112/113, 2 wins, mean margin +88.5, zero runtime/validity signals, identity clean.
 - No restore or second submission occurred.
+
+## First completed health
+
+- Exact checkpoint: 14 finished and one pending row; every finished result parsed,
+  zero unexpected rows and zero fetch failures.
+- Arena score 11.53, rank 111/113.
+- Six wins, zero ties, eight losses; mean margin -13.0.
+- Two catastrophic losses and negative-margin mass 498.
+- All target results valid, zero runtime markers, exact identity clean.
+- This is a clean but weak first sample. Per explicit owner direction, it triggers no
+  restore. Agent `6585801` remains live for continued observation.
