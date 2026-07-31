@@ -1,6 +1,6 @@
 # 20260731-l3-learned-evaluator-scope-audit
 
-- Status: closed — `N4_DEPENDENCY_GATED`; peer review accepted
+- Status: closed — N4 dependency ended in `RUNTIME_CLOSE`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:48:52Z
-- Last updated UTC: 2026-07-31T02:55:28Z
+- Last updated UTC: 2026-07-31T06:30:00Z
 
 ## Progress
 

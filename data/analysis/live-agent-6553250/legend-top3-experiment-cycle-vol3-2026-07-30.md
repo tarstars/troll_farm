@@ -885,3 +885,32 @@ or Arena action occurred.
 
 Evidence:
 `chatgpt_1/h11-map-conditioned-configuration-scope-audit-2026-07-31.md`.
+
+## N4 — exact compatible-pair publication is correct but runtime-closed
+
+**Question.** Can the exact resident's already-enumerated compatible two-worker pair
+surface be published cheaply enough to justify a one-turn terminal-value Phase B?
+
+**Pre-lock correctness.** The generated instrumented resident compiles against the sacred
+snapshot; py_compile, self-test, and 12 focused tests pass. On exact seed 9,854,000 across
+both seats and all eight standing families, 4,028 natural two-worker states have zero
+frozen-command reconstruction failures. Single/20-thread output has 268,169 total lines
+and is byte-identical after excluding only `latency_us`, normalized SHA `9177b5c9...`.
+
+**Runtime.** Exhaustive candidate export plus one-tick boundary reconstruction is
+210.408 ms p95 single-thread and 333.157 ms under 20-thread contention versus the frozen
+5 ms close: 42.08×/66.63×. One root emits 268,168 data rows / 83,327,440 bytes; the full
+matrix projects 34.3 million rows / 10.7 GB and more than eight parallel hours.
+
+**Verdict: `RUNTIME_CLOSE`.** Stop at the preregistered pre-lock diagnostic rather than
+run the infeasible full census. This scope does not claim full-population eligibility,
+boundary frequency, family/seat breadth, or semantic distinctness, and does not prove
+pair value absent. It closes the current exhaustive publisher, Phase B, N4-dependent
+L2/L3, and E1 reuse. A compact publisher would require a new protocol, not pruning or
+format retuning after observation. No alternative outcomes, source change, candidate,
+submission, or Arena action occurred.
+
+Evidence:
+`chatgpt_1/n4-candidate-pair-value-result.md`;
+machine result and implementation lock under
+`data/analysis/live-agent-6553250/n4-candidate-pair-value-phase-a-*`.

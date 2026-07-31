@@ -1,6 +1,6 @@
 # 20260730-e1-opening-micro-optimality-scope-audit
 
-- Status: result ready — `NARROWED_TO_N4_PREFIX_ORACLE`; peer review pending
+- Status: closed — N4 prefix route runtime-closed; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:27:30Z
-- Last updated UTC: 2026-07-30T21:29:03Z
+- Last updated UTC: 2026-07-31T06:30:00Z
 
 ## Outcome
 

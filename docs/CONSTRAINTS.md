@@ -618,11 +618,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   is a short sequence over exact resident candidate pairs followed by terminal resident
   continuation; it depends on accepted N4 Phase A instrumentation and remains a diagnostic
   oracle, not a selector/book or candidate. [E1 scope audit, 2026-07-30]
+- **N4's exact compatible-pair publication is runtime-closed.** Generated Rust, sacred
+  materialization, exact frozen-command reconstruction (0/4,028 failures), and normalized
+  1/20-thread parity pass on the accepted one-root diagnostic. But exhaustive candidate
+  export plus one-tick boundary reconstruction is 210.408/333.157 ms p95 versus the frozen
+  5 ms close, and one root emits 268,168 rows / 83.3 MB. The projected 10.7 GB full census
+  was correctly stopped. This does not prove pair value absent; it closes the current
+  exhaustive surface, Phase B, N4-dependent L2/L3, and E1 reuse. A compact surface would
+  require a new protocol, not output pruning after observation. [N4, 2026-07-31]
 - **S2 opening-book implementation is dependency-gated and representation-blocked.** Every
   implemented opening library is closed: the 27-worker grid, opening macros, turn-one
   terminal rollout, fixed prefixes, recurrent portfolio, and one/two-batch sequences.
-  The sole surviving resident-native multi-turn prefix is E1's diagnostic oracle, which
-  first requires accepted N4 candidate publication and has no terminal labels yet.
+  The former resident-native multi-turn prefix route is closed by N4's runtime gate and
+  has no terminal labels.
   Independently, pre-action map selection fails transfer: D63 AUC 0.830→0.479; D91
   selects only 5/16 maps; Phase 15's best forest is 47.059% precision / −0.277 margin;
   D153 falls from +14–17 training value to +1.820 held with 44.44% harmful choices.

@@ -1,0 +1,36 @@
+{
+  "task_id": "20260730-n4-candidate-pair-value-audit",
+  "verdict": "RUNTIME_CLOSE",
+  "scope": "exact one-root pre-lock diagnostic",
+  "files": {
+    "implementation_lock": {
+      "path": "data/analysis/live-agent-6553250/n4-candidate-pair-value-phase-a-implementation-lock.json",
+      "sha256": "005f83d07dcbd6b505784df5d342a927e2cc3d4448f57e997e17440ac3d1735f"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/n4-candidate-pair-value-phase-a-result.json",
+      "sha256": "524adec7328571c6a8490bbdf937cb09f8fb215c7e1ef2fb62f26d996de1bcf3"
+    },
+    "report": {
+      "path": "chatgpt_1/n4-candidate-pair-value-result.md",
+      "sha256": "e7fa555a826b956ffa29dd5c3bbcd4c5ea59361ed65eb4ba537c6b9909259884"
+    }
+  },
+  "validation": {
+    "python_compile": true,
+    "self_test": true,
+    "focused_pytest": "12 passed",
+    "frozen_command_reconstruction_failures": 0,
+    "normalized_thread_parity": true,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "runtime": {
+    "frozen_p95_ms": 5.0,
+    "single_thread_p95_ms": 210.408,
+    "parallel_p95_ms": 333.157,
+    "one_root_rows": 268168,
+    "one_root_bytes": 83327440
+  },
+  "full_matrix_not_run": true,
+  "phase_b_authorized": false
+}

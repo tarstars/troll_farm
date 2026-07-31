@@ -132,12 +132,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   the depleting endowment into worker 3 in 75.6% of games by median turn 106 and worker 4
   in 41.6% by turn 137; self-planted currency supplies 37%/50% of the bills. Those numbers
   define A2-1's gate above.
-- **N4. H6 residual as a value audit** *(chatgpt_1's, re-scoped)*. Their preflight already
-  invalidated generic rollout — pair assignment is exhaustive, chop scoring models growth,
-  and the MC/MOVE-residual/one-deviation/overlay families are closed. What survives is
-  intertemporal choice among the resident's *existing* candidate pairs. Wanted first: a
-  cheap bound on what better first-pair choice is worth under the resident's own objective,
-  before any three-phase implementation ladder.
+- **N4 ✅ RUNTIME_CLOSE.** Exact resident pair reconstruction, generated Cargo, frozen
+  commands, and 1/20-thread normalized parity pass on the one-root pre-lock diagnostic.
+  Exhaustive candidate export plus one-tick boundary reconstruction costs 210.408 ms p95
+  single-thread and 333.157 ms under 20-thread contention versus the frozen 5 ms close;
+  one root emits 268,168 rows / 83.3 MB. The full projected 10.7 GB census was stopped.
+  No Phase B, compact-format retune, pair pruning, or alternate boundary definition.
 - **N5 ✅ DONE — NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
   388 resident targets in 78/170 endgame-reaching games versus yamo's 205 in 37/103.
   Opponents extract 1,487 carried score-equivalent units versus our 241, and we contact
@@ -168,10 +168,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
   tasks, not map classes.
-- **E1 NARROWED_TO_N4_PREFIX_ORACLE.** “Opening never audited” was false: the complete
+- **E1 ✅ CLOSED WITH N4 RUNTIME.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
-  exact resident candidate pairs survives; wait for accepted N4 Phase A before protocol.
+  exact resident candidate pairs survived scope review; N4's exhaustive surface is
+  runtime-closed, so no authorized prefix oracle remains. A future compact publisher would
+  be a new reviewed protocol, not an N4 retune.
 - **E2 ✅ DONE — ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT.** Across 11,260 confirmed
   deposits, immediate door ETA, joint two-carrier assignment, and door persistence are
   clean. A future-conditioned alternate door saves exactly one movement turn in 134/10,597
