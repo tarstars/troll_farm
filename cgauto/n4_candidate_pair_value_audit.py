@@ -210,7 +210,13 @@ def self_test()->None:
 """
     transformed=instrument_resident(fixture)
     assert "pub struct N4Probe" in transformed and "n4_forced_pair" in transformed
-    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert transformed.count("N4_LAST_PROBE.with(|slot| {") == 1
+    assert transformed.count(
+        "N4_LAST_PROBE.with(|slot| *slot.borrow_mut() = None);"
+    ) == 1
+    assert transformed.count(
+        "N4_LAST_PROBE.with(|slot| slot.borrow_mut().take())"
+    ) == 1
     assert transformed.count("out.extend(selected);") == 2
     assert decode_field("MOVE%201%202%203")=="MOVE 1 2 3"
     frozen={}; rows=[]
