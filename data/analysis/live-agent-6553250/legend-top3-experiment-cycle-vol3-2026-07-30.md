@@ -822,3 +822,43 @@ Evidence:
 `data/analysis/live-agent-6553250/h7-action-contention-census-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/h7-action-contention-census/`.
+
+## H3′ — numeric pressure precedes reduced crop contact, including before permanent loss
+
+**Question.** Does resident opponent-crop first-contact hazard fall after an opponent
+successfully trains worker three, or is the coverage gap only a symptom of games that
+are already lost?
+
+**Population and matching.** All 200 exact D159 resident games pass frozen
+manifest/result/source identity, named-file, decode, transition, and outside-read gates.
+There are 77 scaled games and 123 no-scale games. Seventy scaled games supply complete
+50-turn pre/post windows and same-seat, sufficiently long nearest controls using only
+eight frozen pregame/map fields. They cover 29 scaled-opponent identities and both
+seats. All post-match absolute SMDs are ≤0.1806; 45 unique controls are reused at most
+five times.
+
+**Event ordering.** Scaled whole-game contact coverage is 814/2,301 = 35.38% versus
+1,131/2,368 = 47.76% without scaling, difference −12.3859 pp with game-cluster CI
+[−18.8284,−5.8550]. In matched 50-turn windows, scaled hazard falls
+13.489→8.057/1,000 risk turns while control stays 16.940→16.722; the DiD hazard ratio
+is 0.6061, CI [0.4100,0.8954]. Sixty-nine pairs over 28 identities retain the entire
+20-turn post window before permanent negative crossover: scaled 12.108→6.100 versus
+control 19.169→19.048, DiD 0.5103, CI [0.2928,0.8407].
+
+**Verdict: `TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY`.** Every frozen support,
+balance, and materiality gate passes. The decline begins after TRAIN even before
+permanent loss, so “only already-lost late turns” is insufficient. This remains
+observational—TRAIN may proxy broader opponent policy/state—and does not establish
+intervention value. H3a is recorded but peer-review-gated: only one frozen three-arm
+preflight comparing a workforce-conditioned change, the identical change always on,
+and unchanged control can show conditioning is load-bearing. No conditional bonus,
+source edit, candidate, submission, or Arena action is authorized.
+
+Validation: analyzer compiles; self-test and 7 focused tests pass; two full 200-game
+outputs are byte-identical. No raw/processed replay, simulator/referee, resident source,
+map/range, game, candidate, submission, or Arena state changed.
+
+Evidence:
+`data/analysis/live-agent-6553250/h3-numeric-pressure-contact-causality-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/h3-numeric-pressure-contact-causality/`.

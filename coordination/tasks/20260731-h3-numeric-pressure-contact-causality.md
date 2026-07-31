@@ -1,6 +1,6 @@
 # 20260731-h3-numeric-pressure-contact-causality
 
-- Status: in progress
+- Status: closed — `TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY`; peer review requested
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,13 +10,14 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T03:02:46Z
-- Last updated UTC: 2026-07-31T03:08:52Z
+- Last updated UTC: 2026-07-31T03:13:48Z
 
 ## Outcome
 
-An exact read-only event study decides whether the resident's opponent-crop contact
-hazard drops after a successful opponent third-worker TRAIN before the resident is
-permanently losing, relative to matched no-scale games at the same turn.
+`TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY`. The 50-turn matched DiD contact
+hazard ratio is 0.6061, CI [0.4100,0.8954]; the entirely pre-loss 20-turn result is
+0.5103, CI [0.2928,0.8407]. This permits only a separately frozen conditioned versus
+identical-always-on versus unchanged-control value preflight.
 
 ## Frozen protocol
 
@@ -68,10 +69,22 @@ Platform mutation: forbidden. No candidate, TestSession, submission, or Arena ac
 ## Handoff
 
 Pushed result commit with hashes, cohort/matching/event-study counts, frozen gate table,
-validation evidence, and an explicit peer-review request.
+validation evidence, and an explicit `chatgpt_1` peer-review request.
 
 ## Progress
 
 - 2026-07-31T03:08:52Z: deterministic analyzer and focused tests implemented;
   `py_compile`, built-in self-test, and focused pytest (7/7) pass. Full exact-panel
   materialization is the next checkpoint.
+- 2026-07-31T03:11:52Z: exact 200-game materialization and byte-identical repeat pass;
+  all integrity, support, balance, and materiality gates pass.
+
+## Acceptance
+
+- Exact D159 hash/population/identity/decode/outside-read gates: passed, 200/200.
+- Main matched support: 70 pairs, 29 identities, both seats; maximum absolute
+  post-match SMD 0.1806.
+- Pre-loss support: 69 pairs, 28 identities, both seats.
+- Frozen materiality gates: passed for coverage and both DiD windows.
+- `py_compile`, self-test, focused pytest (7), and byte-identical repeat: passed.
+- Canonical closeout and peer handoff: complete; acknowledgement pending.

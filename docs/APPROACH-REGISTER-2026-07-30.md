@@ -95,7 +95,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 |---|---|---|---|
 | **H4** | Deniability census: what currency paid the opponent's worker-3 bill, and was it contestable in the B3.1 window | 1 session | **✅ DONE — NO_MATERIAL_DENIABLE_BILL:** all 17 scale-linked catastrophe bills need post-start supply; 73 batches are individually mandatory, but 43 are non-deniable IRON and 30 fruit yield 0 legal already-positioned HARVEST/lethal-CHOP blocks; reachability alone fires misleadingly in 17/17 |
 | **H7′** | Action-contention audit (races, duplication, target disappearance — **not** body-blocking, which is mechanically impossible) | 1 session | **✅ DONE — NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE:** exact contention is ubiquitous (180/200 games; 3,662 dual CHOP turns), but top-20 prevalence is only +5.76 pp versus rank-41+ with identity-cluster CI [−1.64,+14.49], and its turn rate is lower (47.87 vs 78.93/1k); no controller |
-| **H3′** | Contact-coverage stability under numeric pressure — causality first, then a load-bearing-conditioning control arm | 1 session | open |
+| **H3′** | Contact-coverage stability under numeric pressure — causality first, then a load-bearing-conditioning control arm | 1 session | **✅ DONE — TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY:** exact matched DiD hazard ratio 0.606, CI [0.410,0.895]; entirely pre-loss ratio 0.510, CI [0.293,0.841]; observational only |
+| **H3a** | Three-arm numeric-pressure value preflight: conditioned change vs identical always-on change vs unchanged control | 1 session after protocol | **peer-review-gated by H3′; conditioning must prove load-bearing before any candidate claim** |
 | **F1** | **In-game opponent-archetype detection** — identify who we are playing and adapt. Endgame-switch retuning is closed; *archetype detection itself* was never tried | 1–2 sessions | open |
 
 ## G. Mechanics and platform

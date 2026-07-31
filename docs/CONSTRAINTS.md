@@ -477,12 +477,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   reversing the "most wood-concentrated" claim; and wood/chop efficiency, tree size at
   felling, specs and banking latency are statistically indistinguishable across all five.
   Do not cite the −1.8-vs-−37.1 survival gap. [H3, 2026-07-29; corrects B4.4]
-- Opponent-crop **contact-coverage stability under numeric pressure** (resident 41.3%→35.3%
-  when outnumbered, −14.5% relative, while the quartet holds flat; whole margin gap sits in
-  full-300-turn games) is a LEAD, not a candidate. Any conditional opponent-crop targeting
-  change is Phase-21-adjacent and requires, before implementation: causality established
-  (cause vs symptom-of-losing) and an always-on control arm proving the conditioning is
-  load-bearing. [H3; gated by the same standard as H4]
+- Opponent-crop **contact coverage has a temporally ordered numeric-pressure signal, but
+  no intervention value yet.** In exact D159, eventual coverage is 35.38% after successful
+  opponent third-worker scaling versus 47.76% without it (−12.39 pp, game-cluster CI
+  [−18.83,−5.85]). Same-seat, pregame-matched event studies show a 50-turn DiD contact
+  hazard ratio 0.606, CI [0.410,0.895], and an entirely pre-permanent-loss 20-turn ratio
+  0.510, CI [0.293,0.841]. This rules out “only already-lost late turns” as a sufficient
+  explanation, but remains observational: TRAIN may proxy broader opponent state/policy.
+  Do not implement a conditional opponent-crop bonus or cite value. Any H3a preflight must
+  freeze conditioned, identical always-on, and unchanged-control arms and show the
+  conditioning itself is load-bearing. [H3′, 2026-07-31]
 - ★ **Cross-player physical interference does not exist in this game.** Movement
   collisions resolve within each player's own units separately; **enemy units may share a
   cell with ours**, and units never block BFS distance. Body-blocking, door camping and

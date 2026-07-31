@@ -61,6 +61,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > H4 is NO_MATERIAL_DENIABLE_BILL: B3.1 timing replicates in 17/20 catastrophes and
 > all 17 bills need post-start supply; 73 batches are individually load-bearing, but
 > 43 are non-deniable IRON and the 30 fruit batches yield 0 legal one-command blocks.**
+> **H3′ is TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY:** matched contact-hazard DiD
+> is 0.606 (CI [0.410,0.895]) and the entirely pre-loss result is 0.510
+> (CI [0.293,0.841]). H3a is recorded but peer-review-gated: only a conditioned versus
+> identical-always-on versus unchanged-control preflight can establish value.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -143,6 +147,17 @@ continues with construction and rating-dynamics measurement, not waiting.
   LOW is −0.754 margin and negative in both seats; HIGH is only +0.559 with four positive
   families. Both fail the directional mechanism sharply (15/97 and 12/77 versus 60%).
   Confirmation maps remain unused. Keep 900 and do not retune the scalar.
+- **H3′ ✅ DONE — TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY.** Exact D159
+  contains 77 scaled and 123 no-scale games. Same-seat pregame matching supplies 70
+  complete 50-turn pairs over 29 identities: contact-hazard DiD ratio 0.606,
+  CI [0.410,0.895]. Sixty-nine pairs remain entirely before permanent loss and give
+  0.510, CI [0.293,0.841]. Every support, balance, and materiality gate passes, but the
+  event is observational and may proxy broader opponent state.
+- **H3a — PEER-REVIEW-GATED VALUE PREFLIGHT.** Preserve three arms in one frozen
+  protocol: workforce-pressure-conditioned change, the identical change always on, and
+  unchanged control. Conditioning is load-bearing only if the first arm beats both
+  alternatives under frozen breadth/integrity/value gates. Do not implement, create a
+  candidate, or touch Arena before H3′ peer acceptance and a separate claim.
 - **E1 NARROWED_TO_N4_PREFIX_ORACLE.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
