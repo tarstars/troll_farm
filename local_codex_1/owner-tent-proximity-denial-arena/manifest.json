@@ -111,5 +111,21 @@
     "initial_completed_battles": 0,
     "exactly_once": true
   },
+  "restore_initial_health": {
+    "path": "data/analysis/live-agent-6553250/owner-far-denial-restore-initial-checkpoint-2026-07-31.json",
+    "sha256": "d3c18e283854bcf24b611542e03c01bb9c571928aa01b9d45efaf2edbdeef9f7",
+    "finished_results": 12,
+    "parsed_results": 12,
+    "pending_results": 0,
+    "identity_clean": true,
+    "validity_runtime_signals": 0,
+    "score": 17.38,
+    "rank": 91,
+    "population": 113,
+    "catastrophic_games": 3,
+    "catastrophic_rate": 0.25,
+    "negative_mass": 526,
+    "interpretation": "fresh exact-source restore health only; maturity in flight"
+  },
   "status": "candidate_terminal_fail_exact_source_restore_in_flight"
 }

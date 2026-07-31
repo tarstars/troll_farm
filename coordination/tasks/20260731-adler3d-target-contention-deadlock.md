@@ -1,6 +1,6 @@
 # 20260731-adler3d-target-contention-deadlock
 
-- Status: candidate materialized — local gates pass; compact incident record pending
+- Status: candidate ready — local validation passed; peer review queued; Arena forbidden
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:30:00Z
-- Last updated UTC: 2026-07-31T15:45:00Z
+- Last updated UTC: 2026-07-31T16:00:00Z
 
 ## Owner observation
 
@@ -21,9 +21,10 @@
 - Game `897552551`, active agent/submission `6585739`/`41070944`, resident seat 1,
   opponent Adler3D agent/submission `6481971`/`40751095`, valid 97–99 loss.
 - Official reconstruction is 300/300 turns with zero unknown diff updates.
-- On decision turns 51–91, resident unit 1 remains at `(10,4)` and emits `WAIT`.
-- During the same 42-turn interval, resident unit 2 alternates between `(9,4)` and
-  `(8,4)`, emitting alternating one-cell MOVE commands.
+- On decision turns 50–91, resident unit 1 remains at `(10,4)` and emits 42 consecutive
+  `WAIT` commands.
+- Resident unit 2 emits 41 alternating MOVE commands on turns 51–91; its alternating
+  `(9,4)` / `(8,4)` decision states span turns 51–92 (42 states).
 - Both units are full of wood throughout the interval.
 - Instrumented exact-parent replay shows an equal-score same-tree contention:
   `CHOP 1 + WAIT` and `WAIT + MOVE 2 10 4` each total 90. The selector retains the
@@ -123,3 +124,19 @@ serialized Arena task.
 - Sacred source SHA remains exact:
   `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
 - No submit or restore occurred.
+
+## Exact evidence and disposition
+
+- Raw replay SHA-256:
+  `d17832e1427c40e0870a8c5df478b0694016584e6d8d021e42e942f5c7dac5c3`.
+- Trajectory SHA-256:
+  `7024f7f8ebdc772d7e8d901652fd0ecee4fa8f756dbfe14d2e39834dc8689768`.
+- Candidate implementation commit:
+  `47b2294b7baf8dedaba818a61ea4339a83b6c389`.
+- Compact report:
+  `data/analysis/live-agent-6553250/adler3d-target-contention-deadlock-result-2026-07-31.md`.
+- The candidate is locally ready for review. It is not scientifically value-qualified
+  and is not authorized for Arena while exact-source restoration
+  `6585755`/`41071034` remains in flight.
+- Review handoff:
+  `coordination/messages/local_codex_1/20260731T160000Z-20260731-adler3d-target-contention-deadlock-handoff.md`.

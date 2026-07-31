@@ -90,3 +90,13 @@ exactly once through `TestSession/submit`:
 
 The B3.13 candidate trial is terminal failed. The serialized cycle remains occupied only
 by the exact-source restoration health/maturity leg; no successor is authorized.
+
+## Restore initial health
+
+The first exact restore checkpoint has 12/12 finished games parsed, zero pending,
+identity clean, and zero runtime/validity signals. Fresh score is 17.38 at rank 91/113,
+with 3 catastrophes and negative-margin mass 526. Checkpoint SHA:
+`d3c18e283854bcf24b611542e03c01bb9c571928aa01b9d45efaf2edbdeef9f7`.
+
+This establishes healthy exact-source execution only. The restored row is still immature
+and remains the sole Arena leg.

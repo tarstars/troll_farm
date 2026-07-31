@@ -1,0 +1,174 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T07:36:13.760448+00:00",
+ "result_audit_completed_at": "2026-07-31T07:36:18.267558+00:00",
+ "role": "owner-far-denial-restore-initial",
+ "agent_id": 6585755,
+ "submission_id": 41071034,
+ "arena": {
+  "agent_id": 6585755,
+  "rank": 91,
+  "total": 113,
+  "score": 17.38,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585755,
+  "rank": 102,
+  "score": 16.22,
+  "division_index": 5
+ },
+ "battle_rows_listed": 12,
+ "matching_rows": 12,
+ "matching_finished": 12,
+ "matching_pending": 0,
+ "unexpected_rows": [],
+ "parsed_results": 12,
+ "fetch_failures": [],
+ "summary": {
+  "games": 12,
+  "wins": 7,
+  "ties": 0,
+  "losses": 5,
+  "mean_margin": 3.0833333333333335,
+  "catastrophic_losses": 3,
+  "catastrophic_rate": 0.25,
+  "negative_margin_mass": 526.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897554624,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 250.0,
+   "opponent_score": 367.0,
+   "margin": -117.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554443,
+   "opponent": "Highruler",
+   "opponent_agent_id": 6505286,
+   "our_score": 110.0,
+   "opponent_score": 284.0,
+   "margin": -174.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554321,
+   "opponent": "yveslacroix83400",
+   "opponent_agent_id": 6493051,
+   "our_score": 168.0,
+   "opponent_score": 27.0,
+   "margin": 141.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554320,
+   "opponent": "Frac",
+   "opponent_agent_id": 6481176,
+   "our_score": 220.0,
+   "opponent_score": 232.0,
+   "margin": -12.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554319,
+   "opponent": "Regulus136",
+   "opponent_agent_id": 6480942,
+   "our_score": 144.0,
+   "opponent_score": 200.0,
+   "margin": -56.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554318,
+   "opponent": "Alexdelia",
+   "opponent_agent_id": 6480519,
+   "our_score": 152.0,
+   "opponent_score": 92.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554317,
+   "opponent": "OccitanieFreelancer",
+   "opponent_agent_id": 6480996,
+   "our_score": 193.0,
+   "opponent_score": 98.0,
+   "margin": 95.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554314,
+   "opponent": "goq",
+   "opponent_agent_id": 6580001,
+   "our_score": 188.0,
+   "opponent_score": 184.0,
+   "margin": 4.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554312,
+   "opponent": "RinSakamichi",
+   "opponent_agent_id": 6480507,
+   "our_score": 176.0,
+   "opponent_score": 91.0,
+   "margin": 85.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554311,
+   "opponent": "Meruem",
+   "opponent_agent_id": 6479385,
+   "our_score": 201.0,
+   "opponent_score": 121.0,
+   "margin": 80.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554309,
+   "opponent": "wala",
+   "opponent_agent_id": 6481141,
+   "our_score": 164.0,
+   "opponent_score": 331.0,
+   "margin": -167.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897554306,
+   "opponent": "gaha",
+   "opponent_agent_id": 6481397,
+   "our_score": 155.0,
+   "opponent_score": 57.0,
+   "margin": 98.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}
