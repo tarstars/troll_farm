@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T00:13:34Z
-- Last updated UTC: 2026-07-31T00:20:15Z
+- Last updated UTC: 2026-07-31T00:26:11Z
 
 ## Progress
 
@@ -23,6 +23,9 @@
 - Seed 0/motion reaches turn 251 with 440 movement-only joint outcomes.
 - Implementation lock:
   `local_codex_1/s1-endgame-solver-feasibility/implementation-lock.json`.
+- Jobs-8 completes 720/720 games and 589 roots. Reach is 246/720 at t251, 188/720
+  at t276, and 155/720 at t291. Movement-only joint outcomes: median 600, max 6,400.
+- Provisional `FULL_EXACT_INFEASIBLE`; jobs-1 parity pending.
 
 ## Outcome
 
