@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Repair pilot CONSTRAINTS locators from unique current-content anchors.
 
-This is a one-purpose migration for the explicit pilot set. It derives line ranges from the
-current canonical `docs/CONSTRAINTS.md`, rewrites every line source in the corresponding
-canonical record, and regenerates deterministic projections. It never edits CONSTRAINTS.
+The migration derives ranges from current canonical content, plans every record byte before
+writing, and regenerates projections only in apply mode. `--check` is strictly read-only.
 """
 from __future__ import annotations
 
@@ -45,10 +44,6 @@ ANCHORS = {
         "- ★★ The unified resident-native option envelope clears the Tier-2 gate",
         "[D169]",
     ),
-    "D176a": (
-        "- **Oscillation is CLOSED permanently after two designed attempts.**",
-        "[D176a; D171a]",
-    ),
     "H7": (
         "- **Measure before you build, and re-verify the premise first.**",
         "[H5, H6-preflight, H7, H8, H13]",
@@ -58,51 +53,105 @@ ANCHORS = {
         "[H1, 2026-07-29]",
     ),
 }
+D176A_CLOSURE = (
+    "- **Oscillation is CLOSED permanently after two designed attempts.**",
+    "[D176a; D171a]",
+)
+D176A_GATE = (
+    "- ★ **Gate-design rules, learned by getting both wrong in D176a.**",
+    "passed at zero. [D176a]",
+)
 
 
-def unique_span(lines: list[str], rid: str) -> tuple[int, int]:
-    start_anchor, end_anchor = ANCHORS[rid]
+def unique_span(
+    lines: list[str], start_anchor: str, end_anchor: str, label: str
+) -> tuple[int, int]:
     starts = [index for index, line in enumerate(lines) if start_anchor in line]
     if len(starts) != 1:
-        raise ValueError(f"{rid}: expected one start anchor, found {len(starts)}")
+        raise ValueError(f"{label}: expected one start anchor, found {len(starts)}")
     start = starts[0]
     ends = [index for index in range(start, len(lines)) if end_anchor in lines[index]]
     if len(ends) != 1:
-        raise ValueError(f"{rid}: expected one end anchor after start, found {len(ends)}")
+        raise ValueError(f"{label}: expected one end anchor after start, found {len(ends)}")
     return start + 1, ends[0] + 1
 
 
-def rewrite_sources(value: Any, locator: str) -> int:
-    changed = 0
+def format_span(span: tuple[int, int]) -> str:
+    return f"lines {span[0]}-{span[1]}"
+
+
+def rewrite_sources(value: Any, locator: str) -> None:
     if isinstance(value, dict):
         if value.get("path") == "docs/CONSTRAINTS.md" and value.get("locator"):
-            if value["locator"] != locator:
-                value["locator"] = locator
-                changed += 1
+            value["locator"] = locator
         for child in value.values():
-            changed += rewrite_sources(child, locator)
+            rewrite_sources(child, locator)
     elif isinstance(value, list):
         for child in value:
-            changed += rewrite_sources(child, locator)
-    return changed
+            rewrite_sources(child, locator)
 
 
-def rewrite_record(path: Path, locator: str) -> bool:
+def replace_human_locator(line: str, locator: str) -> str:
+    return re.sub(
+        r"(`docs/CONSTRAINTS\.md`|docs/CONSTRAINTS\.md) \(lines \d+-\d+\)",
+        lambda match: f"{match.group(1)} ({locator})",
+        line,
+    )
+
+
+def rewrite_d176a_human(prefix: str, closure: str, gate: str) -> str:
+    current: str | None = None
+    output: list[str] = []
+    for line in prefix.splitlines(keepends=True):
+        if line.startswith("- **long_oscillation_rate**"):
+            current = closure
+        elif line.startswith("- **de_novo**"):
+            current = closure
+        elif line.startswith("- **overall_value**"):
+            current = None
+        elif line.startswith("- **worst_case_gate_population**"):
+            current = gate
+        if current and "docs/CONSTRAINTS.md" in line:
+            line = replace_human_locator(line, current)
+        output.append(line)
+    return "".join(output)
+
+
+def desired_record_text(path: Path, rid: str, locators: dict[str, str]) -> str:
     text = path.read_text(encoding="utf-8")
     if START not in text or END not in text:
         raise ValueError(f"{path}: canonical machine block missing")
     prefix, rest = text.split(START, 1)
     payload, suffix = rest.split(END, 1)
     record = json.loads(payload.strip())
-    changed = rewrite_sources(record, locator)
-    if changed == 0 and f"({locator})" in prefix:
-        return False
-    prefix = re.sub(
-        r"(`docs/CONSTRAINTS\.md`|docs/CONSTRAINTS\.md) \(lines \d+-\d+\)",
-        lambda match: f"{match.group(1)} ({locator})",
-        prefix,
-    )
-    rewritten = (
+
+    if rid != "D176a":
+        locator = locators[rid]
+        rewrite_sources(record, locator)
+        prefix = "".join(
+            replace_human_locator(line, locator)
+            for line in prefix.splitlines(keepends=True)
+        )
+    else:
+        closure = locators["D176a.closure"]
+        gate = locators["D176a.gate"]
+        projection = locators["D176a.projection"]
+        for claim in record["decisive_claims"]:
+            source = claim.get("source", {})
+            if source.get("path") != "docs/CONSTRAINTS.md":
+                continue
+            if claim.get("name") in {"long_oscillation_rate", "de_novo"}:
+                source["locator"] = closure
+            elif claim.get("name") == "worst_case_gate_population":
+                source["locator"] = gate
+        for evidence in record.get("textual_evidence", []):
+            source = evidence.get("source", {})
+            if source.get("path") == "docs/CONSTRAINTS.md":
+                source["locator"] = gate
+        record["constraint_projection"]["source"]["locator"] = projection
+        prefix = rewrite_d176a_human(prefix, closure, gate)
+
+    return (
         prefix
         + START
         + "\n"
@@ -111,30 +160,47 @@ def rewrite_record(path: Path, locator: str) -> bool:
         + END
         + suffix
     )
-    if rewritten == text:
-        return False
-    path.write_text(rewritten, encoding="utf-8")
-    return True
+
+
+def derive_locators(lines: list[str]) -> dict[str, str]:
+    locators: dict[str, str] = {}
+    for rid, (start_anchor, end_anchor) in sorted(ANCHORS.items()):
+        locators[rid] = format_span(
+            unique_span(lines, start_anchor, end_anchor, rid)
+        )
+    closure_span = unique_span(lines, *D176A_CLOSURE, "D176a.closure")
+    gate_span = unique_span(lines, *D176A_GATE, "D176a.gate")
+    locators["D176a.closure"] = format_span(closure_span)
+    locators["D176a.gate"] = format_span(gate_span)
+    locators["D176a.projection"] = format_span(
+        (closure_span[0], gate_span[1])
+    )
+    return locators
 
 
 def run(repo: Path, check: bool) -> dict[str, str]:
-    constraints = repo / "docs/CONSTRAINTS.md"
-    lines = constraints.read_text(encoding="utf-8").splitlines()
-    locators: dict[str, str] = {}
+    lines = (repo / "docs/CONSTRAINTS.md").read_text(
+        encoding="utf-8"
+    ).splitlines()
+    locators = derive_locators(lines)
+    record_ids = sorted(ANCHORS) + ["D176a"]
+    plans: list[tuple[Path, str]] = []
     changed: list[str] = []
-    for rid in sorted(ANCHORS):
-        start, end = unique_span(lines, rid)
-        locator = f"lines {start}-{end}"
-        locators[rid] = locator
-        record_path = repo / "docs/evidence/records" / f"{rid}.md"
-        before = record_path.read_bytes()
-        rewrite_record(record_path, locator)
-        if record_path.read_bytes() != before:
+    for rid in record_ids:
+        path = repo / "docs/evidence/records" / f"{rid}.md"
+        desired = desired_record_text(path, rid, locators)
+        plans.append((path, desired))
+        if desired != path.read_text(encoding="utf-8"):
             changed.append(rid)
-    if check and changed:
-        raise SystemExit("locator migration required: " + ", ".join(changed))
-    if not check:
-        build(repo)
+
+    if check:
+        if changed:
+            raise SystemExit("locator migration required: " + ", ".join(changed))
+        return locators
+
+    for path, desired in plans:
+        path.write_text(desired, encoding="utf-8")
+    build(repo)
     return locators
 
 
