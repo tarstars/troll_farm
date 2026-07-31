@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence; phase markers renew it
 - Created UTC: 2026-07-30T20:47:30Z
-- Last updated UTC: 2026-07-30T21:14:06Z
+- Last updated UTC: 2026-07-31T09:10:00Z
 
 ## Outcome
 
@@ -99,6 +99,13 @@ CONSTRAINTS, STATE, and the live ledger. No other shared path is authorized.
   and its sibling development JSON. Compact bundle:
   `local_codex_1/n6-denial-weight-sweep/`.
 - Scalar tuning is closed with no resident or Arena action. Await independent review.
+
+## Pre-review regression — 2026-07-31
+
+- `python3 cgauto/n6_denial_weight_sweep.py self-test`: pass.
+- Focused pytest: 10 passed.
+- Analyzer, runner, and test hashes remain exactly locked; sacred resident hash exact.
+- No panel, trajectory, map/range, or bulk artifact was opened.
 
 ## Arena authority
 
