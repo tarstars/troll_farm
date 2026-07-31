@@ -67,3 +67,14 @@ The submission-scoped reader fetched 20/20 finished results for exact agent/subm
 
 This is a fresh 20-game validity checkpoint, not a mature comparison to the resident's
 21.9 row. The candidate stays in flight; there is no restore or second submission.
+
+## 95-game maturity checkpoint
+
+The exact submission-scoped reader later fetched 95 finished results with one pending:
+
+- identity clean, 95 parsed, zero runtime validity signals;
+- score 20.14, rank 57/113 in the checkpoint; the room rounded to 20.2 at rank 56/113;
+- 12/95 catastrophic games (12.6%), negative mass 2,819.
+
+The row is rising but remains below the resident's mature 21.9 baseline. The candidate
+continues maturing; there is no restore or second submission.

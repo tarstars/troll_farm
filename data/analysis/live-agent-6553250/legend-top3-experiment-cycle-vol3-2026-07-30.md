@@ -1046,6 +1046,14 @@ targets have zero opponent yield. The primary 11.9917 mean, [8.7273,15.7603] CI,
 `NO_MATERIAL_CONTEST_OPPORTUNITY` verdict are unchanged. Narrow corrected re-review is
 pending; no simulation or Arena successor follows.
 
+### Far-denial-d3 Arena checkpoint
+
+Owner-directed agent/submission `6585578`/`41070584` has 95 finished games plus one
+pending. Identity is clean and runtime signals are zero. Score has risen from 18.22 at
+20 games to 20.14 at 95 games (rank 57/113); 12 games are catastrophic and negative mass
+is 2,819. This remains a maturing, scientifically unqualified row below the resident's
+mature 21.9 baseline. No restore or second submission is triggered.
+
 ## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
 
 The owner observed opening movement churn and zasmu harvesting and replanting lemons in

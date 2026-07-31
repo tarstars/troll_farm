@@ -66,5 +66,21 @@
     "negative_mass": 502,
     "interpretation": "fresh validity checkpoint; not a mature resident comparison"
   },
-  "status": "first_checkpoint_clean_candidate_in_flight"
+  "latest_arena_checkpoint": {
+    "finished_results": 95,
+    "parsed_results": 95,
+    "pending_results": 1,
+    "identity_clean": true,
+    "validity_runtime_signals": 0,
+    "score": 20.14,
+    "rank": 57,
+    "population": 113,
+    "room_score_rounded": 20.2,
+    "room_rank": 56,
+    "catastrophic_games": 12,
+    "catastrophic_rate": 0.12631578947368421,
+    "negative_mass": 2819,
+    "interpretation": "maturing clean row; below mature resident baseline"
+  },
+  "status": "95_game_checkpoint_clean_candidate_in_flight"
 }

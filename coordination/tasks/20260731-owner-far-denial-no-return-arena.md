@@ -1,6 +1,6 @@
 # 20260731-owner-far-denial-no-return-arena
 
-- Status: submitted — first 20-game identity/runtime checkpoint clean; candidate in flight
+- Status: submitted — 95-game identity/runtime checkpoint clean; candidate maturing
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed; peer review may follow after submission
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T12:15:00Z
-- Last updated UTC: 2026-07-31T12:50:00Z
+- Last updated UTC: 2026-07-31T13:20:00Z
 
 ## Candidate phase
 
@@ -28,6 +28,8 @@
   agent `6585578` and ten initially queued, unfinished battles.
 - First exact checkpoint fetched 20/20 finished results: identity clean, zero runtime
   signals, fresh score 18.22 at rank 86/113, 3 catastrophic games, negative mass 502.
+- Later checkpoint fetched 95 finished with one pending: identity clean, zero runtime
+  signals, score 20.14 at rank 57/113, 12 catastrophes, negative mass 2,819.
 
 ## Owner directive
 
