@@ -92,5 +92,30 @@
     "ahead_of_pretrial_resident_ranks": 12,
     "interpretation": "active row now above mature resident baseline; still maturing and unconfirmed"
   },
-  "status": "candidate_in_flight_room_above_resident_baseline"
+  "terminal_checkpoint": {
+    "path": "data/analysis/live-agent-6553250/owner-far-denial-no-return-terminal-checkpoint-2026-07-31.json",
+    "sha256": "c6937bab4c314b1c907cb89d7f09d669b066076e3ce9890561ccb39a5ccb2de6",
+    "finished_results": 160,
+    "parsed_results": 160,
+    "pending_results": 0,
+    "identity_clean": true,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "score": 22.99,
+    "rank": 34,
+    "population": 113,
+    "wins": 93,
+    "ties": 2,
+    "losses": 65,
+    "mean_margin": 19.7,
+    "catastrophic_games": 15,
+    "catastrophic_rate": 0.09375,
+    "negative_mass": 3801,
+    "ahead_of_pretrial_resident_score": 1.09,
+    "below_interim_24_70": 1.71,
+    "below_target_25_40": 2.41,
+    "interpretation": "terminal clean row; keep active resident, project goal not reached"
+  },
+  "status": "terminal_keep_current_best_below_goal"
 }

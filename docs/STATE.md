@@ -6,18 +6,17 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Resident baseline: agent `6561795`, submission `41015603`; active owner-directed candidate
-  `6585578`/`41070584` is in flight at score 23.0, rank 33/113, above the 21.9 pre-trial row.
-- Source: `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`
-  (62,725 bytes, slim Yamo/Orchard + pre-seed + orchard coverage).
-  SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
-- `cgauto/api_submit.py` default = that exact source. Keep it that way.
-- Last ladder read (timestamped snapshot discipline — cite exactly one):
-  **2026-07-29T02:17Z cron snapshot: score 21.76, rank ~45** (bar unchanged, gap now
-  **6.46**). Drifting down passively as the pool strengthens (22.0 on 07-28, 21.97 on
-  07-27) — the score is source-side frozen between rare recomputes, so this is pool
-  movement, not decay. Passive maturity is dead as a lever.
-- Rank bar: 1. delineate 31.00, 2. norxondor_gorgonax 29.52, 3. MSz 28.22.
+- Active resident: owner-directed agent `6585578`, submission `41070584`; terminal
+  160/160 clean-games checkpoint is score 22.99, rank 34/113, +1.09 over pre-trial 21.9.
+- Source: `cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs`
+  (63,033 bytes, SHA-256 `307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd`).
+  Pre-trial fallback remains agent `6561795`/`41015603`, source SHA `a8eb3b2b…`.
+- `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
+- Latest exact ladder read: **2026-07-31T06:55:38Z**, agent `6585578`, 22.99 at
+  rank 34/113; 160/160 parsed, zero pending/identity/runtime faults. This later confirms
+  the prior rounded 23.0 row; rank 33→34 is pool drift. The cycle is terminal KEEP, but
+  remains 1.71 below interim 24.70 and 2.41 below target 25.40.
+- Rank bar: 1. delineate 31.01, 2. norxondor_gorgonax 29.60, 3. MSz 28.22.
 - Corpus: **9,082 games** / 469+ agents, compounding daily (cron 05:17 — +951 overnight).
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
@@ -128,11 +127,11 @@ makes the goalpost move in the wrong direction.
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a REPRODUCIBLE:** seven exact edits, protocol not cut. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 NARROWED:** exact zasmu denial-feasibility precheck only. **B3.13 CANDIDATE READY / ARENA DEFERRED:** first-tree coordination passes local gates; no second cycle. **F1 QUEUED:** leakage-controlled readiness only.
+  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a REPRODUCIBLE:** seven exact edits, protocol not cut. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 TERMINAL KEEP:** 22.99 at 160 clean games. **B3.13 CANDIDATE READY / REVIEW PENDING:** first-tree coordination passes local gates; no automatic submission. **F1 RELEASED:** leakage-controlled readiness only.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
   `chatgpt_1` has the serial review queue after H3a takeover. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Far-denial-d3 `6585578`/`41070584` is in flight: 23.0, rank 33; no second submit.
+  surveillance. No Arena cycle is in flight; active far-denial-d3 stays at 22.99, rank 34.
 
 ## 5. Reading order & pointers
 

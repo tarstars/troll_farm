@@ -1,6 +1,6 @@
 # 20260731-owner-far-denial-no-return-arena
 
-- Status: submitted — live row now rank 33/113, score 23.0; candidate still maturing
+- Status: terminal — keep active resident at 22.99, rank 34/113; goal not reached
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed; peer review may follow after submission
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T12:15:00Z
-- Last updated UTC: 2026-07-31T14:10:00Z
+- Last updated UTC: 2026-07-31T15:10:00Z
 
 ## Candidate phase
 
@@ -32,8 +32,29 @@
   signals, score 20.14 at rank 57/113, 12 catastrophes, negative mass 2,819.
 - A later authoritative Arena-room read identifies the same active agent `6585578` at
   score 23.0, rank 33/113. This is 1.1 score and 12 ranks ahead of the pre-trial mature
-  resident row, but it remains a single maturing row rather than the required mature plus
-  confirmation result.
+  resident row. At that checkpoint it remained a single maturing row rather than the
+  required terminal read plus later confirmation.
+
+## Terminal checkpoint
+
+- A later exact submission-scoped audit lists 160/160 finished games and zero pending.
+  All 160 results parse; there are zero unexpected battle rows, fetch failures, invalid
+  results, or runtime markers, and both leaderboard endpoints identify exact agent
+  `6585578`.
+- Exact terminal score/rank: 22.99, rank 34/113. The rounded 23.0 score confirms the prior
+  room read while the one-rank movement is pool drift.
+- Results: 93 wins, 2 ties, 65 losses; mean margin +19.7; 15 catastrophic losses (9.375%);
+  negative-margin mass 3,801.
+- Checkpoint:
+  `data/analysis/live-agent-6553250/owner-far-denial-no-return-terminal-checkpoint-2026-07-31.json`,
+  SHA-256
+  `c6937bab4c314b1c907cb89d7f09d669b066076e3ce9890561ccb39a5ccb2de6`.
+- Disposition: keep the active candidate because it is +1.09 over the 21.9 pre-trial
+  row. The cycle is terminal and no restore occurs. It remains 1.71 below interim 24.70
+  and 2.41 below target 25.40; this owner-directed live result is not causal
+  qualification of broad denial policies.
+- No Arena cycle is now in flight. Any successor requires its own serialized task and
+  evidence/authority; the locally ready B3.13 candidate is not automatically submitted.
 
 ## Owner directive
 

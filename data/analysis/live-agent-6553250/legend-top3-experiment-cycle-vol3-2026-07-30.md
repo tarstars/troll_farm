@@ -1046,16 +1046,19 @@ targets have zero opponent yield. The primary 11.9917 mean, [8.7273,15.7603] CI,
 `NO_MATERIAL_CONTEST_OPPORTUNITY` verdict are unchanged. Narrow corrected re-review is
 pending; no simulation or Arena successor follows.
 
-### Far-denial-d3 Arena checkpoint
+### Far-denial-d3 Arena terminal checkpoint
 
-Owner-directed agent/submission `6585578`/`41070584` has 95 finished games plus one
-pending. Identity is clean and runtime signals are zero. Score has risen from 18.22 at
-20 games to 20.14 at 95 games (rank 57/113); 12 games are catastrophic and negative mass
-is 2,819. A later authoritative room read identifies the same active agent at score 23.0,
-rank 33/113: 1.1 score and 12 ranks ahead of the mature pre-trial resident row. This is
-positive live evidence, but remains a maturing, scientifically unqualified row without a
-later confirmation; it is 1.7 below interim 24.70 and 2.4 below target 25.40. No restore
-or second submission is triggered.
+Owner-directed agent/submission `6585578`/`41070584` now has 160/160 finished and parsed
+games with zero pending, unexpected rows, fetch failures, invalid results, or runtime
+markers. Both leaderboard endpoints identify the exact agent. Exact terminal score is
+22.99 at rank 34/113; its rounded 23.0 confirms the earlier rank-33 room read, while the
+one-rank movement is pool drift. The row contains 93 wins, two ties, 65 losses, mean
+margin +19.7, 15 catastrophic losses (9.375%), and negative-margin mass 3,801.
+
+**Disposition: terminal KEEP, project goal not reached.** The active row is +1.09 over
+the 21.9 pre-trial resident, so no restore occurs. It is still 1.71 below interim 24.70
+and 2.41 below target 25.40. This uncontrolled owner trial does not qualify broad denial.
+The single Arena cycle is closed; any successor requires a distinct serialized task.
 
 ## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
 
@@ -1160,5 +1163,6 @@ unsealed local cells (seeds 1300–1303, both seats versus fixed ringfix3) compl
 zero stderr. Sacred source remains exact at `fff6669b…`.
 
 **Disposition: `CANDIDATE_READY_LOCAL_VALIDATION_PASS_ARENA_DEFERRED`.** This candidate
-is recorded for review and later serialization. No submit occurred because owner-directed
-agent `6585578` remains the one Arena cycle in flight.
+is recorded for review and later serialization. B3.12's Arena cycle is now terminal, but
+this removes only the concurrency blocker: B3.13 still needs peer review and a distinct
+serialized submission decision.

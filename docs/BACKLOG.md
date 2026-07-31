@@ -6,11 +6,13 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
-## Position summary (2026-07-30)
+## Position summary (2026-07-31)
 
-Resident `6561795`: **21.76, rank ~45** (2026-07-29T02:17Z cron snapshot; gap to the
-28.22 bar now **6.46** and widening passively as the pool strengthens), score source-side frozen,
-untouched and holding the slot. **Goal re-scoped 2026-07-30: mature score ≥ 25.40 (+3.64), interim checkpoint 24.70 = yamo; rank ≤3 superseded. H2 is now optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
+Active resident `6585578`/`41070584`: **22.99, rank 34/113**, confirmed terminal after
+160/160 clean games. It is +1.09 over the 21.9 pre-trial row, but remains **1.71** below
+interim 24.70 and **2.41** below target 25.40. No Arena cycle is in flight. **Goal
+re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
+superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
 equal roster we are at parity with strong two-worker peers (58.2/58.3) — the whole
 deficit is scale-asymmetry survival; a worker prices at +2–4 rating (2→4 ≈ 84% of the
@@ -162,10 +164,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   and both exact sources compile. A separate protocol must preserve three arms:
   workforce-pressure-conditioned treatment, the identical treatment always on, and
   unchanged control. No runner arm, range, panel, candidate, or Arena action yet.
-- **F1 — READINESS PROPOSAL ACCEPTED / QUEUED.** Use only legal public state history,
+- **F1 — READINESS AUDIT RELEASED TO `chatgpt_1`.** Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
-  command/label deletion plus static/permutation/seat controls. Wait for N4's shared
-  artifact release and explicit activation. A classifier alone never authorizes adaptation.
+  command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is
+  integrated, and the exact A2-0b artifact hash was reverified before release. A
+  classifier alone never authorizes adaptation.
 - **H11 ✅ DONE — DECOMPOSED_NO_GENERIC_TASK.** Generic map-conditioned configuration is
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
@@ -530,11 +533,12 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   returns through turn 100, not a frozen ≥10-state oscillation. Only a read-only corpus
   audit may test whether the denial bonus can beat liquid stock, regeneration, clear
   burden, and bill timing; base wood value stays separate. E7/N6/D176a remain closed.
-  **Owner override 2026-07-31:** explicitly directed a threshold-3 implementation and
-  Arena submission without a population precheck. Exact candidate SHA `307a0755…` keeps
-  full trolls chopping far focus trees and discards lethal overflow; agent `6585578` /
-  submission `41070584` is in flight. Treat this as an owner-directed live experiment,
-  not scientific qualification or reopening of the broad closed arms.
+  **Owner override terminal 2026-07-31:** the explicitly directed threshold-3 candidate
+  SHA `307a0755…` keeps full trolls chopping far focus trees and discards lethal overflow.
+  Agent `6585578` / submission `41070584` completes 160/160 clean games at score 22.99,
+  rank 34/113: +1.09 over the 21.9 pre-trial row, but below 24.70/25.40. Keep it as the
+  active resident and close the cycle. This uncontrolled live result is not scientific
+  qualification or reopening of the broad closed arms.
 - **B3.13 — CANDIDATE_READY / ARENA_DEFERRED.** Exact DoubtinGiyov game `897547554`
   exposes the requested enemy-tent orchard: 37 adjacent planted generations, with the
   opponent banking 24 adjacent-tree items before resident contact. The coordination
@@ -543,8 +547,9 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   a denial-driven return; above two, both trolls use full non-banking adjacent denial.
   Fail-closed candidate SHA `3bd42d5b…` passes 5 compiled boundary tests, exact 300-state
   open-loop validation, and eight unsealed both-seat smoke cells. This is mechanical
-  coherence, not value qualification. Do not submit while `6585578` is still the sole
-  in-flight Arena cycle.
+  coherence, not value qualification. The Arena slot is now idle after B3.12's terminal
+  keep, but B3.13 still requires peer review and a distinct serialized decision before
+  any submission.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

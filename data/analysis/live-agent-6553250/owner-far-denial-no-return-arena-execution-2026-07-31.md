@@ -2,7 +2,7 @@
 
 Date: 2026-07-31
 Task: `20260731-owner-far-denial-no-return-arena`
-Phase: **submitted; active Arena row above the mature resident baseline**
+Phase: **terminal KEEP at 22.99; active resident above pre-trial row, below project goal**
 
 ## Candidate
 
@@ -90,3 +90,25 @@ This is positive live evidence for the distance-three rule, but not the project 
 criterion: the candidate is still maturing, remains 1.7 below the 24.70 interim score and
 2.4 below the 25.40 primary target, and has no later confirmation read yet. No restore or
 second submission is triggered.
+
+## Terminal 160-game checkpoint
+
+The later submission-scoped audit is complete:
+
+- exact agent/submission `6585578`/`41070584`;
+- 160/160 finished and parsed, zero pending;
+- zero unexpected battle rows, fetch failures, invalid results, or runtime markers;
+- both Arena-room and filtered-leaderboard endpoints identify the exact active agent;
+- score 22.99, rank 34/113;
+- 93 wins, 2 ties, 65 losses, mean margin +19.7;
+- 15 catastrophic losses (9.375%) and negative-margin mass 3,801.
+
+Checkpoint SHA:
+`c6937bab4c314b1c907cb89d7f09d669b066076e3ce9890561ccb39a5ccb2de6`.
+The stable rounded 23.0 score is the later confirmation missing at the preceding read;
+the one-rank shift is pool movement.
+
+**Terminal disposition: keep current best; project goal not reached.** The active row is
+1.09 above the 21.9 pre-trial resident, so no restore is warranted. It remains 1.71 below
+interim 24.70 and 2.41 below target 25.40. The single Arena cycle is closed; this does not
+scientifically qualify broad denial or authorize any successor submission.
