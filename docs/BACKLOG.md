@@ -535,6 +535,16 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   full trolls chopping far focus trees and discards lethal overflow; agent `6585578` /
   submission `41070584` is in flight. Treat this as an owner-directed live experiment,
   not scientific qualification or reopening of the broad closed arms.
+- **B3.13 — CANDIDATE_READY / ARENA_DEFERRED.** Exact DoubtinGiyov game `897547554`
+  exposes the requested enemy-tent orchard: 37 adjacent planted generations, with the
+  opponent banking 24 adjacent-tree items before resident contact. The coordination
+  layer now starts with the first cardinal-adjacent tree: at 1–2, one troll performs the
+  ordinary chop/collect/bank path while the other denies an opponent-planted tree without
+  a denial-driven return; above two, both trolls use full non-banking adjacent denial.
+  Fail-closed candidate SHA `3bd42d5b…` passes 5 compiled boundary tests, exact 300-state
+  open-loop validation, and eight unsealed both-seat smoke cells. This is mechanical
+  coherence, not value qualification. Do not submit while `6585578` is still the sole
+  in-flight Arena cycle.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

@@ -1132,3 +1132,33 @@ unit 1. The compact now publishes eight first-contact rows, eight joint-removal 
 all 22 ripe resident CHOP transitions. State indices are explicit; the four ripe-cycle
 opponent raw-BFS/ETA values are [3,2,3,3] post-PLANT and [3,3,3,3] at first ripe. The old
 2/1 label is withdrawn. Narrow corrected re-review is pending; no implementation follows.
+
+## B3.13 — DoubtinGiyov tent-adjacent orchard successor is locally ready
+
+Exact active-agent game `897547554` (resident `6585578`/`41070584`, seat 1, 208–262
+loss against DoubtinGiyov `6482016`/`40751228`) reconstructs 300/300 turns with zero
+unknown updates. No adjacent tree exists initially. The opponent plants the first
+cardinal-adjacent tree on turn 13, a second on 17, and a third on 20; the requested
+coordination bands therefore start on decision turns 14 and 21. Across the game there
+are 37 adjacent planted generations. Before resident first contact on turn 69, the
+opponent completes 12 confirmed adjacent harvests and 19 adjacent drops for 24 items.
+This passes a mechanical-opportunity gate only; it does not identify causal value.
+
+The owner clarified that the new layer starts with even one adjacent tree and that the
+productive worker then harvests normally. The frozen successor therefore preserves the
+exact parent at zero; at one or two trees it assigns one worker to ordinary
+chop/collect/bank and a second to opponent-planted non-banking denial; above two it sends
+both workers to distinct adjacent trees without denial-driven returns. Unrelated cargo
+must bank before a worker enters a non-banking role.
+
+The fail-closed candidate
+`candidate-agent6585578-owner-tent-proximity-denial-split-slim.min.rs` is 67,704 bytes,
+SHA `3bd42d5b…`. Five compiled boundary tests pass. On the exact 300-state teacher-forced
+stream, parent and candidate each emit 300 lines with no stderr and first diverge at
+turn 14; the cargo correction sends worker 3 toward the home bank on turn 21. Eight
+unsealed local cells (seeds 1300–1303, both seats versus fixed ringfix3) complete with
+zero stderr. Sacred source remains exact at `fff6669b…`.
+
+**Disposition: `CANDIDATE_READY_LOCAL_VALIDATION_PASS_ARENA_DEFERRED`.** This candidate
+is recorded for review and later serialization. No submit occurred because owner-directed
+agent `6585578` remains the one Arena cycle in flight.

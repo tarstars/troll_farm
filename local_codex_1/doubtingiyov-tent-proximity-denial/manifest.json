@@ -1,0 +1,87 @@
+{
+  "task_id": "20260731-doubtingiyov-tent-proximity-denial-policy",
+  "verdict": "CANDIDATE_READY_LOCAL_VALIDATION_PASS_ARENA_DEFERRED",
+  "scope": {
+    "trigger": "active standing trees at cardinal map distance one from the enemy shack",
+    "zero": "exact parent behavior",
+    "one_or_two": "one worker uses ordinary adjacent-tree chop/collect/bank; the second denies an opponent-planted tree without a denial-driven return",
+    "more_than_two": "both workers chop distinct adjacent trees without denial-driven returns",
+    "preexisting_cargo": "bank before entering any non-banking denial role"
+  },
+  "exact_game": {
+    "game_id": 897547554,
+    "our_agent_id": 6585578,
+    "our_submission_id": 41070584,
+    "our_seat": 1,
+    "opponent_agent_id": 6482016,
+    "opponent_submission_id": 40751228,
+    "scores_by_seat": [262, 208],
+    "our_score": 208,
+    "opponent_score": 262,
+    "turns": 300,
+    "unknown_diff_updates": 0,
+    "raw_sha256": "d2f2c13c6737ea110d86df1f54973e5a0d3924be5bd2140d6bd90d92dda646c3",
+    "trajectory_sha256": "fd2d03817ca9885858a8a5e774102e63d41e939eb89708488c00019c446342dc",
+    "trigger_turns": {"zero": 15, "one_or_two": 150, "more_than_two": 135},
+    "first_adjacent_tree_birth_turn": 13,
+    "first_coordination_decision_turn": 14,
+    "more_than_two_decision_turn": 21,
+    "resident_first_adjacent_contact_turn": 69,
+    "opponent_before_contact": {
+      "confirmed_adjacent_harvests": 12,
+      "confirmed_adjacent_harvest_items": 12,
+      "confirmed_adjacent_drops": 19,
+      "confirmed_adjacent_drop_items": 24
+    },
+    "opponent_whole_game": {
+      "adjacent_planted_generations": 37,
+      "confirmed_adjacent_harvest_items": 70,
+      "confirmed_adjacent_drops": 83,
+      "confirmed_adjacent_drop_items": 96
+    }
+  },
+  "artifacts": {
+    "parent": {
+      "path": "cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs",
+      "sha256": "307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd"
+    },
+    "candidate": {
+      "path": "cgauto/submissions/candidate-agent6585578-owner-tent-proximity-denial-split-slim.min.rs",
+      "bytes": 67704,
+      "sha256": "3bd42d5b33dfb58724686ddfcca93205e953c0ac728595f520307798bb4fd900"
+    },
+    "candidate_sidecar_sha256": "cb60584e61f7a7742a7cbfa1bab9276c537b3359398cb0394d5d483969c4cc47",
+    "generator_sha256": "4acde95e34769587d2ce789a7410d6ef103ec1f610e0dc2168419a8dfac194e4",
+    "candidate_test_sha256": "f6570ef92a44cb03148842d951dac9dbd74b333ee22e1ada4fb5c21f3fc02903",
+    "analysis_json_sha256": "7fee6df44687ec13c9c5a9a5e9f75034d64a39acf341babd2621bbcfcf194950",
+    "analysis_md_sha256": "81ce4a01c5e1e8aaf5fbfeedf1e1beb2e9956692b2637d1e480f41aea5e4e46f",
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "focused_tests": "8 passed: 3 exact-game analyzer plus 5 compiled candidate tests",
+    "deterministic_rebuild": true,
+    "official_open_loop": {
+      "turns": 300,
+      "parent_lines": 300,
+      "candidate_lines": 300,
+      "parent_stderr": "",
+      "candidate_stderr": "",
+      "first_divergence_turn": 14,
+      "turn_21_parent": ["MOVE 1 7 6", "CHOP 3"],
+      "turn_21_candidate": ["MOVE 1 7 6", "MOVE 3 4 3"],
+      "interpretation": "teacher-forced mechanism evidence only; no counterfactual outcome claim"
+    },
+    "unsealed_smoke": [
+      {"seed": 1300, "candidate_seat": 0, "scores": [144, 223], "terminal_turn": 300},
+      {"seed": 1300, "candidate_seat": 1, "scores": [13, 126], "terminal_turn": 300},
+      {"seed": 1301, "candidate_seat": 0, "scores": [100, 114], "terminal_turn": 219},
+      {"seed": 1301, "candidate_seat": 1, "scores": [135, 108], "terminal_turn": 229},
+      {"seed": 1302, "candidate_seat": 0, "scores": [204, 162], "terminal_turn": 265},
+      {"seed": 1302, "candidate_seat": 1, "scores": [222, 191], "terminal_turn": 300},
+      {"seed": 1303, "candidate_seat": 0, "scores": [88, 100], "terminal_turn": 194},
+      {"seed": 1303, "candidate_seat": 1, "scores": [112, 84], "terminal_turn": 201}
+    ],
+    "smoke_stderr_bytes": 0,
+    "arena_action": "none; agent 6585578 remains the only cycle in flight"
+  }
+}

@@ -1,6 +1,6 @@
 # 20260731-doubtingiyov-tent-proximity-denial-policy
 
-- Status: exact-game gate passed — successor candidate implementation active
+- Status: candidate ready — local validation passed; Arena deferred
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after its current serial review queue)
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T14:15:00Z
-- Last updated UTC: 2026-07-31T14:30:00Z
+- Last updated UTC: 2026-07-31T14:45:00Z
 
 ## Owner proposal
 
@@ -23,6 +23,9 @@
 
 - “One cell” means orthogonal map distance one from the enemy shack cell.
 - The trigger counts currently standing trees in that adjacency set.
+- Per the owner's clarification, the coordination layer starts at the first qualifying
+  tree. In the one-or-two band, the productive troll uses the ordinary harvest path:
+  chop, collect, and return the wood.
 - At zero qualifying trees, the exact active far-denial-d3 policy is unchanged.
 - At one or two, one troll prioritizes qualifying tent-adjacent trees and retains the
   normal wood-return leg; the other prioritizes opponent-planted trees and suppresses only
@@ -64,6 +67,26 @@ Arena cycle.
   `d2f2c13c6737ea110d86df1f54973e5a0d3924be5bd2140d6bd90d92dda646c3`.
 - Trajectory SHA-256:
   `fd2d03817ca9885858a8a5e774102e63d41e939eb89708488c00019c446342dc`.
+
+## Candidate result
+
+- Fail-closed successor:
+  `cgauto/submissions/candidate-agent6585578-owner-tent-proximity-denial-split-slim.min.rs`,
+  67,704 bytes, SHA-256
+  `3bd42d5b33dfb58724686ddfcca93205e953c0ac728595f520307798bb4fd900`.
+- Five compiled boundary tests cover zero, one/two, >2, the productive-bank/non-bank
+  split, pre-existing cargo, and deterministic rebuilding. Together with the three
+  exact-game analyzer tests, 8/8 focused tests pass.
+- The exact official 300-state open-loop stream produces 300 commands and no stderr for
+  both parent and candidate. First divergence is decision turn 14, immediately after the
+  first adjacent planting; at turn 21 the corrected candidate sends the second worker
+  toward the own bank before it can enter full non-banking denial.
+- Eight unsealed local smoke cells (seeds 1300–1303, both candidate seats versus fixed
+  `ringfix3`) complete legally with zero stderr.
+- Sacred source SHA remains exact:
+  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+- Local validation establishes implementation coherence, not score uplift. No Arena
+  action occurred; active agent `6585578` remains the sole cycle in flight.
 
 ## Exclusive write set
 
