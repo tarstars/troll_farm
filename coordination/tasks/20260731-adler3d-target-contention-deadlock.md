@@ -1,6 +1,6 @@
 # 20260731-adler3d-target-contention-deadlock
 
-- Status: claimed — owner-corrected sticky-bank patch active
+- Status: candidate materialized — local gates pass; compact incident record pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:30:00Z
-- Last updated UTC: 2026-07-31T15:35:00Z
+- Last updated UTC: 2026-07-31T15:45:00Z
 
 ## Owner observation
 
@@ -101,3 +101,25 @@ resolution, or policy scores.
 Read-only incident discovery is allowed. This task explicitly forbids platform mutation.
 Any later submission requires the current B3.13 cycle to terminate and a distinct
 serialized Arena task.
+
+## Materialization
+
+- Candidate:
+  `cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs`.
+- Size: 68,464 bytes.
+- SHA-256:
+  `f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a`.
+- Generator SHA-256:
+  `e61cc8ffc26d707fa451424aa66e9f08ca0337a6a40946d2ce1b11aa80cb2772`.
+- Focused test SHA-256:
+  `a7a38dd679febbc21d43f4b4925c1bde405e1db7ec4de02f0bc9a0fc6c72645b`.
+- Eight focused tests pass: three new commitment regressions plus all five original
+  tent-proximity boundaries.
+- Exact active artifact reproduces 300/300 recorded Adler3D commands. The successor first
+  diverges at turn 48, stays bankward at turns 48–91, and replaces the turn-50 parent
+  `WAIT` with `MOVE 1 10 3`.
+- Eight unsealed local smoke cells (seeds 1300–1303, both seats versus `ringfix3`)
+  terminate with zero stderr.
+- Sacred source SHA remains exact:
+  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+- No submit or restore occurred.
