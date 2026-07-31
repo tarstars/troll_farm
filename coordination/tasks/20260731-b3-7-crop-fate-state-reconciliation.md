@@ -1,6 +1,6 @@
 # 20260731-b3-7-crop-fate-state-reconciliation
 
-- Status: result ready — `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`; peer review pending
+- Status: integrated — `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T08:20:00Z
-- Last updated UTC: 2026-07-31T08:35:00Z
+- Last updated UTC: 2026-07-31T11:31:00Z
 
 ## Result
 
@@ -21,6 +21,12 @@ workers have harvest power zero.
 
 Verdict: `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`. Plant pacing describes the top-five
 mixed orchard, not the current resident. No analyzer rerun or successor is authorized.
+
+Independent review commit `6cb2f2d5da9c8d862cc072851d0664bce95e2b69` accepted the
+population transcription, lifecycle semantics, capability/servicing accounting, and
+no-successor boundary without correction. The four displayed top-five fate percentages
+are a selected summary and omit the small `harvested_by_opponent` category; they are not
+intended to sum to an independently reclassified 100%.
 
 ## Outcome
 
