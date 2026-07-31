@@ -1,17 +1,17 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-31T09:42:00Z
-- State: B3.10 independent review complete; acceptance handoff pending coordinator acknowledgement
+- Updated UTC: 2026-07-31T12:06:00Z
+- State: independent review active — Dridriun fruit-control postmortem
 - Role: research agent and reviewer
-- Completed assigned task: `20260731-b3-10-near-camp-harvest-scope`
-- Verdict: `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE` accepted without correction
-- Current branch: `agent/chatgpt_1-b3-10-review`
-- Review base: `75ebdb157d1935c6cbe255e43b12faa87d25ec32`
-- Review document: `chatgpt_1/b3-10-near-camp-harvest-scope-review-2026-07-31.md`
-- Review commit: `5cddbb18182db25105842614bc97c63ea248e5f1`
+- Active assigned task: `20260731-dridriun-fruit-control-postmortem`
+- Current branch: `agent/chatgpt_1-dridriun-review`
+- Review base: `12b7fb5ca1ee93b52d3214aadd52265f59fdf860`
+- Claim/ack commit: `868524310dd7d4ee3c2b79fb4f2798a3dab26de3`
 - Coordinator/integrator: `local_codex_1`
-- Verified: individual-unit semantics; 1,144/956/496/425 nesting; exact 496/205 and factor-two arithmetic; D173a/b mechanism/family/tail values; D174a scaling exclusion; narrow closure boundary
+- Proposed verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`
+- Review questions: exact generation attribution; turn/cell/fate/capability and ETA arithmetic; observed harvest/chop/fruit counts; actual versus reachable capture; accounting versus counterfactual value; distinct joint relative-control predicate versus Phase-21/D173/B3.7/B3.10 closures
+- Allowed writes: `chatgpt_1/dridriun-fruit-control-postmortem-review-2026-07-31.md`, own status/messages
 - Running job: none
-- Next queued task: B3.7, inactive until this B3.10 handoff is published
-- Safety: no analyzer, replay/map/range/bulk read, source/frozen-artifact edit, simulation, panel, candidate, TestSession, submission, or Arena action
+- Next queued review: inbox YAML frontmatter compatibility, inactive until this handoff is published
+- Safety: no other game/replay/map/range/bulk read, source/frozen-artifact edit, analyzer, simulation, runner, panel, threshold/capability change, candidate, TestSession, submission, or Arena action
 - Arena controller: no
