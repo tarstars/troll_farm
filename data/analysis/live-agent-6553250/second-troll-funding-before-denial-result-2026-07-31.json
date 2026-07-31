@@ -1,0 +1,371 @@
+{
+  "schema": "troll-farm-second-troll-funding-denial-v1",
+  "exact_game": {
+    "game_id": 897560637,
+    "resident_agent_id": 6585801,
+    "resident_submission_id": 41071204,
+    "resident_seat": 0,
+    "opponent": "FRHT",
+    "opponent_agent_id": 6535596,
+    "opponent_submission_id": 40941012,
+    "scores": [
+      127.0,
+      231.0
+    ],
+    "turns": 300,
+    "unknown_diff_updates": 0,
+    "raw_path": "data/external/second-troll-funding-before-denial/game-897560637.json",
+    "raw_sha256": "63ed881cd76580865b3c55d736e59a5f3d51100864bbb992c5cc2a6acf1c52ae",
+    "trajectory_path": "data/external/second-troll-funding-before-denial/trajectory-897560637.jsonl",
+    "trajectory_sha256": "5f41937f650223dd667db0d75076d5152d0a2ae10e95c171f3ddb23119a65c78"
+  },
+  "mechanism": {
+    "initial_enemy_tent_ring": [
+      {
+        "type": "BANANA",
+        "cell": [
+          11,
+          8
+        ],
+        "health": 6,
+        "fruits": 2
+      }
+    ],
+    "recorded_first_train_turn": 35,
+    "opening_commands_overwritten_through_turn_40": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      29
+    ],
+    "overwritten_count": 18,
+    "candidate_preserves_inner_on_all_overwritten_turns": true,
+    "turn_1_inner": [
+      "MOVE 0 8 0"
+    ],
+    "turn_1_parent": [
+      "MOVE 0 7 1"
+    ],
+    "turn_1_candidate": [
+      "MOVE 0 8 0"
+    ],
+    "parent_recorded_command_matches": 300,
+    "parent_stderr": "",
+    "candidate_stderr": "",
+    "first_parent_candidate_divergence": 1,
+    "root_cause": "post-planner tent denial overwrites the sole worker's active opening resource-collection command"
+  },
+  "fixed_live_slice": {
+    "listed_games": 40,
+    "full_games": 35,
+    "early_cardinal_activation_games": 21,
+    "early_cardinal_train_at_35": 14,
+    "early_cardinal_train_before_35": 7,
+    "other_games": 14,
+    "other_train_at_35": 0,
+    "other_train_before_35": 14,
+    "rows": [
+      {
+        "game_id": 897560763,
+        "turns": 244,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560696,
+        "turns": 288,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 10,
+        "first_cardinal_enemy_tent_tree_turn": 38
+      },
+      {
+        "game_id": 897560637,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560600,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 5
+      },
+      {
+        "game_id": 897560591,
+        "turns": 1,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560559,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560483,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560457,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 16,
+        "first_cardinal_enemy_tent_tree_turn": 30
+      },
+      {
+        "game_id": 897560437,
+        "turns": 247,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560420,
+        "turns": 126,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 14,
+        "first_cardinal_enemy_tent_tree_turn": 89
+      },
+      {
+        "game_id": 897560364,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 4
+      },
+      {
+        "game_id": 897560348,
+        "turns": 250,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 12,
+        "first_cardinal_enemy_tent_tree_turn": 42
+      },
+      {
+        "game_id": 897560341,
+        "turns": 1,
+        "unknown_diff_updates": 0,
+        "first_train_turn": null,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560323,
+        "turns": 292,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 40
+      },
+      {
+        "game_id": 897560303,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 4
+      },
+      {
+        "game_id": 897560270,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560252,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 10
+      },
+      {
+        "game_id": 897560238,
+        "turns": 1,
+        "unknown_diff_updates": 0,
+        "first_train_turn": null,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560217,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560199,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 20,
+        "first_cardinal_enemy_tent_tree_turn": 116
+      },
+      {
+        "game_id": 897560186,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560182,
+        "turns": 1,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560168,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 10,
+        "first_cardinal_enemy_tent_tree_turn": 14
+      },
+      {
+        "game_id": 897560153,
+        "turns": 1,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560141,
+        "turns": 153,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 16,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560124,
+        "turns": 239,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897560096,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560079,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 4
+      },
+      {
+        "game_id": 897560058,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 6
+      },
+      {
+        "game_id": 897560037,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897560010,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897559988,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 4
+      },
+      {
+        "game_id": 897559954,
+        "turns": 252,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 8,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897559928,
+        "turns": 264,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897559892,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 4
+      },
+      {
+        "game_id": 897559870,
+        "turns": 281,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 56
+      },
+      {
+        "game_id": 897559844,
+        "turns": 290,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 15,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897559816,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 20,
+        "first_cardinal_enemy_tent_tree_turn": null
+      },
+      {
+        "game_id": 897559800,
+        "turns": 300,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 35,
+        "first_cardinal_enemy_tent_tree_turn": 1
+      },
+      {
+        "game_id": 897559784,
+        "turns": 256,
+        "unknown_diff_updates": 0,
+        "first_train_turn": 1,
+        "first_cardinal_enemy_tent_tree_turn": 202
+      }
+    ],
+    "boundary": "descriptive breadth, not causal value"
+  },
+  "successor": {
+    "path": "cgauto/submissions/candidate-agent6585801-second-funding-first-diagonal-denial-slim.min.rs",
+    "bytes": 68893,
+    "sha256": "b8382910116bbfaeade378732508bf4281a7f4ee793ae8f14ae41992ece37af4",
+    "rule": "active second-worker opening collection precedes denial; after worker two or abandonment, denial uses the full eight-neighbor enemy-tent ring"
+  }
+}

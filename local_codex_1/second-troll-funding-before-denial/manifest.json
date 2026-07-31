@@ -1,0 +1,80 @@
+{
+  "schema": "troll-farm-second-troll-funding-before-denial-manifest-v1",
+  "task_id": "20260731-second-troll-funding-before-denial",
+  "exact_game": {
+    "game_id": 897560637,
+    "resident_agent_id": 6585801,
+    "resident_submission_id": 41071204,
+    "resident_seat": 0,
+    "resident_score": 127,
+    "opponent": "FRHT",
+    "opponent_agent_id": 6535596,
+    "opponent_submission_id": 40941012,
+    "opponent_score": 231,
+    "turns": 300,
+    "unknown_diff_updates": 0,
+    "raw_sha256": "63ed881cd76580865b3c55d736e59a5f3d51100864bbb992c5cc2a6acf1c52ae",
+    "trajectory_sha256": "5f41937f650223dd667db0d75076d5152d0a2ae10e95c171f3ddb23119a65c78"
+  },
+  "mechanism": {
+    "initial_enemy_tent_tree": ["BANANA", 11, 8],
+    "turn_1_inner_command": "MOVE 0 8 0",
+    "turn_1_denial_command": "MOVE 0 7 1",
+    "overwritten_turns": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 29],
+    "recorded_first_train_turn": 35,
+    "parent_recorded_command_matches": 300,
+    "root_cause": "post-planner tent denial overwrites active sole-worker resource collection",
+    "onsite_tree_owner_is_direct_cause": false
+  },
+  "fixed_live_slice": {
+    "listed_games": 40,
+    "full_games": 35,
+    "early_cardinal_activation_games": 21,
+    "early_cardinal_train_at_35": 14,
+    "early_cardinal_train_before_35": 7,
+    "other_games": 14,
+    "other_train_at_35": 0,
+    "other_train_before_35": 14,
+    "boundary": "descriptive breadth, not causal value"
+  },
+  "candidate": {
+    "path": "cgauto/submissions/candidate-agent6585801-second-funding-first-diagonal-denial-slim.min.rs",
+    "bytes": 68893,
+    "sha256": "b8382910116bbfaeade378732508bf4281a7f4ee793ae8f14ae41992ece37af4",
+    "sidecar_sha256": "4dab5e2c09237036d11bd8f54ddebd97f2357510348005c2a7e3e3c94c2a7def",
+    "generator_path": "cgauto/make_second_troll_funding_diagonal_denial_candidate.py",
+    "generator_sha256": "65a6e138f139ab6677ef95452f236abe332946e2237df1e1bb4ef2a8165edc1f",
+    "test_path": "tests/test_second_troll_funding_diagonal_denial_candidate.py",
+    "test_sha256": "5c54ef7651ca5d7d4a422926e5fe2abdd2ff7542e22a3baf5b20c6771ad22268",
+    "rule": "active second-worker collection precedes denial; subsequent denial uses the full eight-neighbor enemy-tent ring"
+  },
+  "validation": {
+    "new_compiled_tests_passed": 5,
+    "inherited_compiled_tests_passed": 11,
+    "exact_candidate_preserves_all_overwritten_inner_commands": true,
+    "exact_first_divergence_turn": 1,
+    "unsealed_smoke": [
+      {"seed": 1300, "candidate_seat": 0, "parent_train": 35, "candidate_train": 20, "scores": [156, 143], "terminal_turn": 269},
+      {"seed": 1300, "candidate_seat": 1, "parent_train": 35, "candidate_train": 20, "scores": [122, 172], "terminal_turn": 284},
+      {"seed": 1301, "candidate_seat": 0, "parent_train": 35, "candidate_train": 18, "scores": [108, 82], "terminal_turn": 197},
+      {"seed": 1301, "candidate_seat": 1, "parent_train": 35, "candidate_train": 18, "scores": [101, 120], "terminal_turn": 205},
+      {"seed": 1302, "candidate_seat": 0, "parent_train": 6, "candidate_train": 6, "scores": [192, 143], "terminal_turn": 240},
+      {"seed": 1302, "candidate_seat": 1, "parent_train": 35, "candidate_train": 10, "scores": [135, 200], "terminal_turn": 233},
+      {"seed": 1303, "candidate_seat": 0, "parent_train": 35, "candidate_train": 10, "scores": [88, 51], "terminal_turn": 150},
+      {"seed": 1303, "candidate_seat": 1, "parent_train": 35, "candidate_train": 14, "scores": [70, 84], "terminal_turn": 171}
+    ],
+    "train_earlier_cells": 7,
+    "train_same_cells": 1,
+    "train_later_cells": 0,
+    "smoke_stderr_bytes": 0,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "analyzer": {
+    "path": "cgauto/analyze_second_troll_funding_denial.py",
+    "sha256": "60e1c17709718f4fb9818b72009a215eb25792f41f293667ecdef2adde5522c7",
+    "result_json_sha256": "8a3c4ffc2a3cbd77c17328ab9ea953dd247feca06446d7289b976150481a6dca",
+    "result_md_sha256": "aa1cafd7508294d3b5ebc5b747cb0c1b2e83333bd4ce87ec36507952909ab2a6"
+  },
+  "arena_action": "none under this diagnostic task",
+  "status": "candidate_ready_local_validation_pass"
+}

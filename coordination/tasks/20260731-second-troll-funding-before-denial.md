@@ -1,6 +1,6 @@
 # 20260731-second-troll-funding-before-denial
 
-- Status: claimed; exact mechanism audit in progress
+- Status: confirmed; combined successor locally validated and materialized
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -9,7 +9,7 @@
 - Base commit: 43783602634df28ea8dc93db41d36ae8428419fc
 - Branch: agent/local_codex_1
 - Created UTC: 2026-07-31T17:00:00Z
-- Last updated UTC: 2026-07-31T17:05:00Z
+- Last updated UTC: 2026-07-31T17:15:00Z
 
 ## Owner observation and rule
 
@@ -59,3 +59,36 @@ downgrade. Exact causal attribution and a bounded successor remain to be materia
 - Re-run B3.15, sticky-bank, and tent-proximity boundaries; run exact replay and bounded
   unsealed both-seat smokes; preserve sacred SHA.
 - Materialize only. Any live replacement requires a distinct serialized Arena task.
+
+## Exact result
+
+- Exact full game `897560637`, resident `6585801`/`41071204` seat 0 versus FRHT
+  `6535596`/`40941012`: valid 127–231 loss, 300 turns, zero unknown updates.
+- The exact live source reproduces 300/300 recorded command lines with zero stderr.
+- A BANANA is cardinally adjacent to the enemy tent from turn 1. The inner opening
+  planner emits `MOVE 0 8 0`; the later tent-denial wrapper replaces it with
+  `MOVE 0 7 1`.
+- The wrapper overwrites 18 active opening decisions through turn 40:
+  turns 1–17 and 29. The recorded bot first TRAINs only on hard downgrade turn 35.
+- In a fixed 40-game B3.15 slice, 35 games are full length. Of 21 with cardinal
+  activation by turn 34, 14 TRAIN at turn 35 and seven earlier. Of the other 14,
+  zero TRAIN at 35 and all 14 earlier. This is descriptive breadth, not causal value.
+- Root cause is B3.13 post-planner precedence, not the B3.15 on-site ownership predicate.
+
+## Successor and gates
+
+- Candidate:
+  `cgauto/submissions/candidate-agent6585801-second-funding-first-diagonal-denial-slim.min.rs`.
+- Size: 68,893 bytes; SHA-256
+  `b8382910116bbfaeade378732508bf4281a7f4ee793ae8f14ae41992ece37af4`.
+- While own roster is below two and the opening objective remains active, the denial
+  wrapper returns the inner opening command unchanged. After worker two exists or the
+  opening is abandoned, denial resumes over all eight enemy-tent neighbors.
+- The successor preserves the inner command on all 18 exact overwritten decisions.
+- Five new compiled boundaries pass: cardinal and diagonal opening precedence, diagonal
+  activation with two workers, activation after abandonment, and deterministic bounded
+  rebuild. All 11 inherited on-site/sticky/tent tests also pass.
+- On eight unsealed both-seat smoke cells versus fixed `ringfix3`, worker 2 TRAIN is
+  earlier in 7/8 cells and unchanged in 1/8; never later. All terminate with zero stderr.
+- Direct `rustc`, exact sidecar/size, and sacred SHA pass.
+- This task made no Arena mutation.
