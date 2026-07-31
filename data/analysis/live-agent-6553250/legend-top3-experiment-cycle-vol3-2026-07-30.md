@@ -962,3 +962,30 @@ capability edit, orchard redesign, panel, candidate, or Arena action follows.
 Evidence:
 `data/analysis/live-agent-6553250/b3-7-crop-fate-state-reconciliation-result-2026-07-31.md`
 and compact JSON beside it.
+
+## H3a — exact archived treatment is reproducible; value protocol remains separate
+
+The frozen fallback SHA `a8eb3b2b...` transforms byte-exactly into the Phase-21 treatment
+SHA `083107f5...`; reversing the seven edits restores fallback, and the archived full-parent
+generator independently reproduces treatment. The complete delta is +1,811 bytes and is
+exhaustively provenance/lifecycle plus existing-tree scoring. The operation is exactly
+`candidate.score += candidate.score` for tracked existing tree targets at ETA ≤6.
+
+Both exact artifacts compile. Fourteen focused tests pass, including direct repository-root
+CLI and two full compiled-result equality checks. No-compile/compiled result hashes are
+`5f392ab3...` / `a8679546...`. The sidecar file SHA is `9811fb4f...`; it records treatment
+digest `083107f5...`.
+
+**Verdict: `TREATMENT_REPRODUCIBLE`.** This satisfies source reconstruction only. A future
+protocol must separately compare pressure-conditioned treatment, identical treatment
+always on, and unchanged control. No runner, range, panel, candidate, or Arena action was
+created.
+
+Peer implementation was integrated and host-corrected for direct import, explicit Rust
+crate names, and deterministic compile metadata. After peer head `8ae01f5` exceeded its
+lease on a compact-documentation blocker, the integrator published the canonical paths
+without rewriting peer files.
+
+Evidence:
+`data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-result-2026-07-31.json`
+and `chatgpt_1/h3a-pressure-treatment-reconstruction-result.md`.

@@ -502,6 +502,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   Do not implement a conditional opponent-crop bonus or cite value. Any H3a preflight must
   freeze conditioned, identical always-on, and unchanged-control arms and show the
   conditioning itself is load-bearing. [H3′, 2026-07-31]
+- **The exact H3a treatment is source-reproducible, not value-qualified.** Frozen fallback
+  `a8eb3b2b...` transforms byte-exactly into treatment `083107f5...` through seven fully
+  classified provenance/lifecycle/existing-tree scoring edits (+1,811 bytes); inverse and
+  archived-generator equality pass and both compile. The scoring operation remains exactly
+  `candidate.score += candidate.score` for tracked existing tree targets at ETA ≤6.
+  This satisfies only the reconstruction prerequisite. Do not create a runner/panel or
+  cite value without a separate conditioned vs identical-always-on vs unchanged protocol.
+  [H3a reconstruction, 2026-07-31]
 - ★ **Cross-player physical interference does not exist in this game.** Movement
   collisions resolve within each player's own units separately; **enemy units may share a
   cell with ours**, and units never block BFS distance. Body-blocking, door camping and

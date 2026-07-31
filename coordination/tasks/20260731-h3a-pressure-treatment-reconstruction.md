@@ -1,6 +1,6 @@
 # 20260731-h3a-pressure-treatment-reconstruction
 
-- Status: documentation takeover — validation passed; local integrator materializing canonical closeout
+- Status: integrated — `TREATMENT_REPRODUCIBLE`; peer takeover-release acknowledgment pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1 (compact-documentation takeover; peer owns published implementation history)
 - Reviewer: local_codex_1
@@ -10,7 +10,26 @@
 - Branch: agent/local_codex_1
 - Progress lease: begins when work owner publishes acknowledgement/claim
 - Created UTC: 2026-07-31T05:25:00Z
-- Last updated UTC: 2026-07-31T09:45:00Z
+- Last updated UTC: 2026-07-31T10:00:00Z
+
+## Result
+
+- Exact fallback → treatment, inverse treatment → fallback, and archived full-parent
+  generation → treatment equality all pass.
+- The complete delta is seven classified provenance/lifecycle/existing-tree scoring edits,
+  totaling +1,811 bytes.
+- Both exact sources compile; py_compile, self-test, and 14 focused tests pass.
+- Repeated no-compile and compiled result JSON are byte-identical.
+- Sidecar file SHA is `9811fb4f...`; the digest written inside it is the treatment SHA
+  `083107f5...`.
+- Verdict: `TREATMENT_REPRODUCIBLE`.
+- This closes source reconstruction only. No runner, range, panel, candidate, platform, or
+  Arena action is authorized.
+
+Evidence:
+`data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-result-2026-07-31.json`,
+`chatgpt_1/h3a-pressure-treatment-reconstruction-result.md`, and
+`local_codex_1/h3a-pressure-treatment-reconstruction/manifest.json`.
 
 ## Outcome
 

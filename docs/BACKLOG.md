@@ -63,7 +63,7 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > 43 are non-deniable IRON and the 30 fruit batches yield 0 legal one-command blocks.**
 > **H3′ is TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY:** matched contact-hazard DiD
 > is 0.606 (CI [0.410,0.895]) and the entirely pre-loss result is 0.510
-> (CI [0.293,0.841]). H3a source reconstruction is assigned: only the exact archived
+> (CI [0.293,0.841]). H3a source reconstruction is exact and accepted: only the archived
 > treatment, conditioned versus identical-always-on versus unchanged control, can
 > establish value.**
 
@@ -155,12 +155,12 @@ continues with construction and rating-dynamics measurement, not waiting.
   CI [0.410,0.895]. Sixty-nine pairs remain entirely before permanent loss and give
   0.510, CI [0.293,0.841]. Every support, balance, and materiality gate passes, but the
   event is observational and may proxy broader opponent state.
-- **H3a — SOURCE RECONSTRUCTION ASSIGNED.** The exact archived Phase-21 dual-value
-  treatment exists at SHA `083107f5...`; fallback is `a8eb3b2b...`. First prove a
-  deterministic byte-exact fallback↔treatment recipe and exhaustively classify the delta.
-  Only after peer acceptance may a separate protocol preserve three arms:
+- **H3a — SOURCE RECONSTRUCTION ✅ TREATMENT_REPRODUCIBLE.** The exact archived Phase-21
+  dual-value treatment `083107f5...` is a deterministic seven-edit transform of fallback
+  `a8eb3b2b...`; inverse and archived-generator equality pass, total delta +1,811 bytes,
+  and both exact sources compile. A separate protocol must preserve three arms:
   workforce-pressure-conditioned treatment, the identical treatment always on, and
-  unchanged control. No runner arm, panel, candidate, or Arena action yet.
+  unchanged control. No runner arm, range, panel, candidate, or Arena action yet.
 - **F1 — READINESS PROPOSAL ACCEPTED / QUEUED.** Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
   command/label deletion plus static/permutation/seat controls. Wait for N4's shared
