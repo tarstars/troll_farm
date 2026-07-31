@@ -3,7 +3,8 @@
 Date: 2026-07-31
 Game: `896352129`
 Result: resident 252, Dridriun 276
-Verdict: **`NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`**
+Provisional verdict pending corrected re-review:
+**`NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`**
 
 ## Decision
 
@@ -39,32 +40,33 @@ close:
 
 ## 1. Enemy-door orchard: denial came late and removal stayed slow
 
-Dridriun planted nine successive APPLE generations at `(9,2)`. They produced **83
-observed opponent HARVEST commands**. The resident issued 84 CHOP commands against those
-generations and removed eight; the ninth remained alive and was harvested 18 times before
-game end.
+Dridriun planted nine successive APPLE generations at `(9,2)`. The decoder separates
+command pressure from material flow: all **83 HARVEST commands succeeded**, each produced
+one APPLE unit, and zero were failed/zero-gain. The resident issued 84 CHOP commands, 82
+classified successful. Eight trees disappeared on turns when both resident unit 3 and
+Dridriun unit 1 issued successful CHOP; the ninth survived.
 
-| planted | first opponent harvest | harvests | first resident chop | resident chops | removed |
-|---:|---:|---:|---:|---:|---:|
-| 3 | 14 | 33 | 63 | 14 | 80 |
-| 83 | 94 | 4 | 91 | 10 | 102 |
-| 105 | 116 | 6 | 120 | 10 | 129 |
-| 132 | 144 | 6 | 147 | 10 | 156 |
-| 159 | 170 | 10 | 182 | 10 | 191 |
-| 194 | 206 | 5 | 207 | 10 | 216 |
-| 219 | 230 | 1 | 224 | 10 | 233 |
-| 236 | — | 0 | 241 | 10 | 250 |
-| 253 | 266 | 18 | — | 0 | alive |
+| planted | first HARVEST | commands | successful | fruit units | zero/failed | first resident CHOP | resident CHOP cmd/success | fate |
+|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 3 | 14 | 33 | 33 | 33 | 0 | 63 | 14/14 | joint removal t80 |
+| 83 | 94 | 4 | 4 | 4 | 0 | 91 | 10/10 | joint removal t102 |
+| 105 | 116 | 6 | 6 | 6 | 0 | 120 | 10/10 | joint removal t129 |
+| 132 | 144 | 6 | 6 | 6 | 0 | 147 | 10/10 | joint removal t156 |
+| 159 | 170 | 10 | 10 | 10 | 0 | 182 | 10/10 | joint removal t191 |
+| 194 | 206 | 5 | 5 | 5 | 0 | 207 | 10/10 | joint removal t216 |
+| 219 | 230 | 1 | 1 | 1 | 0 | 224 | 10/9 | joint removal t233 |
+| 236 | — | 0 | 0 | 0 | 0 | 241 | 10/9 | joint removal t250 |
+| 253 | 266 | 18 | 18 | 18 | 0 | — | 0/0 | alive |
 
 The first generation is the clearest error: **60 turns** elapsed between planting and the
-resident's first chop. Dridriun harvested 25 apples before resident contact and 33 before
-removal. Later contact was usually earlier, but ten low-lethality chop turns still allowed
-fruit production during removal. The problem is therefore both target timing and time to
-kill, not literally “the bot never chopped.”
+resident's first chop. The 25 commands before contact are confirmed as 25 fruit units,
+and the full generation produced 33. Later contact was usually earlier, but ten
+low-lethality chop turns still allowed fruit production during removal. The problem is
+therefore both target timing and time to kill, not literally “the bot never chopped.”
 
-The 83 harvests are observed flow, not 83 causal recoverable points. Earlier attack would
-replace other work, tree growth interacts with chop damage, and Dridriun could replant or
-change policy.
+The 83 fruit units are observed carried-resource flow, not 83 causal recoverable points.
+Earlier attack would replace other work, tree growth interacts with chop damage, and
+Dridriun could replant or change policy.
 
 ## 2. Resident production under opponent capture capacity
 
@@ -72,9 +74,12 @@ The resident planted nine APPLE generations on its doors: six at `(8,4)` and thr
 `(9,5)`. Five were planted by the harvest-capable starter; four by the trained
 `harvest_power=0`, `chop_power=2` worker.
 
-At planting, the nearest opponent harvest-capable troll was BFS 1–5 away. For the first
-two ripe `(8,4)` cycles the distance was only 2 and 1. That troll later co-located with
-the ripe tree on turn 225 and turns 240–244.
+Access now uses explicit state indices. On each post-PLANT state, the selected opponent
+unit is unit 1 (`movement=1`, `capacity=1`, `harvest=1`, `chop=1`); raw BFS spans 1–5
+across all nine resident plants. For the four generations that later ripen, raw BFS/ETA
+at planting is 3/3, 2/2, 3/3, 3/3. At each first-ripe state it is **3/3**. The old 2/1
+label mixed semantics and is withdrawn. Unit 1 later co-locates on turn 225 and turns
+240–244.
 
 Important correction: **Dridriun harvested zero apples from these resident generations.**
 It contested/chopped them instead. Thus “we produced fruit the opponent could harvest” is
@@ -92,16 +97,23 @@ Across the four ripe resident generations:
 - resident CHOP commands while fruit was present: **22**;
 - fruit stock present on the final removal turns: **8** total.
 
-The two strongest episodes were starter-controlled:
+| generation | plant/ripe state | first ripe CHOP | actor `(ms,cc,hp,chop)` | free | opponent BFS/ETA at ripe | ripe CHOPs | max/removal fruit |
+|---|---|---:|---|---:|---|---:|---|
+| `205:8:4` | 205/213 | 214 | u0 `(1,1,1,1)` | 1 | 3/3 | 12 | 3/3 |
+| `228:8:4` | 228/236 | 237 | u0 `(1,1,1,1)` | 1 | 3/3 | 8 | 3/3 |
+| `264:8:4` | 264/272 | 273 | u3 `(2,2,0,2)` | 2 | 3/3 | 1 | 1/1 |
+| `287:8:4` | 287/295 | 296 | u3 `(2,2,0,2)` | 2 | 3/3 | 1 | 1/1 |
 
-| planted | cell | first ripe chop | ripe chop commands | max fruit | fruit at removal |
-|---:|---|---:|---:|---:|---:|
-| 205 | `(8,4)` | 214 | 12 | 3 | 3 |
-| 228 | `(8,4)` | 237 | 8 | 3 | 3 |
+For the first two generations, unit 0 is co-located, has `harvest_power=1`, carries
+nothing, has one free slot, and therefore has a legal useful HARVEST alternative at first
+ripeness. It nevertheless selects CHOP on every ripe command. Two later
+`harvest_power=0` worker cycles destroy one fruit each.
 
-Unit 0 had `harvest_power=1`, stood on the tree, and selected CHOP every turn. This is
-exactly the owner's “we had leverage but did not collect” observation. Two later
-`harvest_power=0` worker cycles destroyed one fruit each.
+The compact JSON contains all 22 ripe CHOP transitions for turns 214–225, 237–244, 273,
+and 296. Each row records unit stats, carry/free capacity, tree health/fruit before and
+after, command success and gain, plus the selected opponent harvester's raw BFS and
+speed-adjusted ETA. It also contains all eight first resident contacts and all eight joint
+removal transitions. Command turn `t` is explicitly `states[t-1] → states[t]`.
 
 The eight-point final stock is direct one-game accounting, not a causal gain. HARVEST
 would delay wood conversion and DROP/scheduling costs remain; D173a/b showed that these
@@ -128,4 +140,5 @@ closed broad arms. It must report actual opponent capture separately from mere r
 must preserve wood/scheduling costs.
 
 No source edit, threshold, capability change, runner, range, panel, candidate, submission,
-TestSession, or Arena action is authorized.
+TestSession, or Arena action is authorized. The narrow verdict is not canonical until the
+corrected compact passes independent re-review.

@@ -401,8 +401,8 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   the omitted cost through the same compact_gold, catastrophe, and negative-mass failures.
   Outside chop-shadow scope is not action value; do not add a target or tune distance.
   [B3.10 scope audit, 2026-07-31]
-- **One exact Dridriun game provisionally narrows a relative fruit-control precheck; its compact
-  is correction-blocked and does not reopen broad arms.** In game `896352129`, nine opponent-door APPLE generations
+- **One exact Dridriun game provisionally narrows a relative fruit-control precheck; its correction
+  awaits narrow re-review and does not reopen broad arms.** In game `896352129`, nine opponent-door APPLE generations
   received 83 opponent HARVEST commands; the first waited 60 turns for resident contact.
   Four resident door-APPLE generations ripened while being converted: 22 resident
   ripe-CHOP commands, zero resident HARVEST, and eight fruit present at final removal.
@@ -410,7 +410,7 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   resident-created apples. Preserve actual capture versus reach and observed flow versus
   causal savings. Only a read-only corpus frequency/joint-predicate precheck may follow;
   do not retune Phase 21/D173, edit policy/capability, or create a runner/panel.
-  HARVEST rows are commands, not confirmed fruit flow; decisive-state and BFS/ETA evidence must pass narrow re-review. [B3.11 review, 2026-07-31]
+  All 83 HARVEST commands yield 83 units; exact joint-removal, decisive-state, and BFS/ETA rows are published. Await narrow re-review. [B3.11 correction, 2026-07-31]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"

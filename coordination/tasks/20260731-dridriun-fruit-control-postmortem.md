@@ -1,6 +1,6 @@
 # 20260731-dridriun-fruit-control-postmortem
 
-- Status: review blocked pending compact evidence correction
+- Status: compact correction published; narrow corrected re-review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (blocked handoff received; narrow re-review required after correction)
@@ -10,22 +10,38 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T11:00:00Z
-- Last updated UTC: 2026-07-31T12:58:00Z
+- Last updated UTC: 2026-07-31T13:45:00Z
 
 ## Result
 
 - Exact 300-turn decode has zero unknown updates; final score is 252–276.
-- Nine Dridriun door-APPLE generations received 83 opponent HARVEST commands. The first
-  waited 60 turns for resident contact and received 25 commands before contact, 33 total.
+- Nine Dridriun door-APPLE generations received 83 opponent HARVEST commands; all 83
+  succeeded and produced 83 confirmed APPLE units, with zero failed/zero-gain commands.
+  The first waited 60 turns for contact and produced 25 units before it.
 - Nine resident door-APPLE generations received zero resident and zero opponent HARVEST.
   Four ripened: 22 resident ripe-CHOP commands and eight fruit present at final removal.
-- In the first two ripe cycles, resident unit 0 had `harvest_power=1` and stood on the
-  tree; the current ETA 2/1 labels require raw-BFS/state-index correction before reliance.
+- In the first two ripe cycles, resident unit 0 had `harvest_power=1`, one free slot, and
+  stood on the tree. Opponent unit 1 is raw BFS/ETA 3 at all four first-ripe states.
 - Actual capture and reachable capture are separated: Dridriun harvested none of our
   apples in this replay.
 - Verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`. Only a read-only existing-corpus
   joint-predicate proposal may follow after corrected re-review; all broad interventions
   remain closed.
+
+## Corrected compact — 2026-07-31
+
+- The invalid base is replaced by exact
+  `c2df655468a39c9f6f90da77a798f92b247ec6a8`.
+- Per enemy generation, command count, successful count, confirmed fruit-unit gain, and
+  failed/zero-gain count are separated and total 83/83/83/0.
+- Resident CHOP count/success is 84/82. Every one of eight removals is a joint transition:
+  resident unit 3 and opponent unit 1 both issue successful final CHOP and gain wood.
+- The compact publishes eight first-contact rows, eight joint-removal rows, and all 22
+  ripe resident CHOP transitions with unit stats, carry/free capacity, tree state/effect,
+  raw BFS, movement speed, ETA, co-location, and explicit state indices.
+- Four ripe-cycle opponent raw-BFS/ETA values are [3,2,3,3] at post-PLANT states and
+  [3,3,3,3] at first-ripe states. The old 2/1 mixed label is withdrawn.
+- Corrected compact SHA-256 `c0ca3ce9…`; human report SHA-256 `399b347a…`.
 
 Evidence:
 `data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md`,

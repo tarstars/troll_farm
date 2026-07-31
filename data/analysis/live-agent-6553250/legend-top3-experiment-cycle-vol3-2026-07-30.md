@@ -1118,3 +1118,14 @@ Exact artifact commit `fcc6e62` was pushed before the platform write.
 `TestSession/submit` returned submission `41070584`; the new agent is `6585578`, with ten
 initial battles queued. This was not a qualified scientific promotion: it is the one
 owner-directed live experiment. No second submission is in flight.
+
+### B3.11 compact correction
+
+The peer blocker is corrected on the same exact Dridriun game. Per-generation accounting
+separates 83 HARVEST commands, 83 successful commands, 83 carry-delta-confirmed APPLE
+units, and zero failed/zero-gain commands. Resident CHOP is 84 commands / 82 successes;
+all eight disappeared generations have joint final CHOPs by resident unit 3 and Dridriun
+unit 1. The compact now publishes eight first-contact rows, eight joint-removal rows, and
+all 22 ripe resident CHOP transitions. State indices are explicit; the four ripe-cycle
+opponent raw-BFS/ETA values are [3,2,3,3] post-PLANT and [3,3,3,3] at first ripe. The old
+2/1 label is withdrawn. Narrow corrected re-review is pending; no implementation follows.

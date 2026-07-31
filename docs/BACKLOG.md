@@ -511,15 +511,15 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   missing cost: compact_gold negative, catastrophes +5/+3, negative mass 1.096/1.081.
   Being outside D173b's chop-shadow is not value evidence. No target, threshold, capability
   change, panel, or scaling rationale.
-- **B3.11 — REVIEW-BLOCKED PENDING COMPACT CORRECTION.** Owner postmortem game
+- **B3.11 — CORRECTED / RE-REVIEW PENDING.** Owner postmortem game
   `896352129` (252–276 vs Dridriun) is exact: nine successive opponent-door APPLE
   generations yielded 83 opponent HARVEST commands; the first waited 60 turns for resident
   contact. The resident also issued 22 ripe CHOP commands over four own-door APPLE
   generations, including 20 by a starter already capable of HARVEST, and destroyed eight
   fruit at removal. Correction: the opponent harvested zero resident-created apples;
   capture was reachable, not realized. Only a read-only corpus precheck of the joint
-  relative-control predicate may follow only after command/unit-flow, decisive-state, and
-  BFS/ETA corrections pass narrow re-review. Phase 21/D173 broad arms remain closed.
+  The 83 commands are 83 confirmed fruit units; removals are joint final CHOPs, and exact
+  contact/ripe/BFS rows are published. Await narrow re-review; broad arms remain closed.
 - **B3.12 — NARROWED_TO_FEASIBILITY_PRECHECK.** Owner postmortem game `896352750`
   (206–184 vs zasmu) is exact: at the first resident lemon chop, seven mature LEMON trees
   hold 84 health, so even a no-travel full clear needs 21 turns of combined chop power.

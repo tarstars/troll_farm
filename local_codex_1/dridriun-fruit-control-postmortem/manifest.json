@@ -1,5 +1,6 @@
 {
   "task_id": "20260731-dridriun-fruit-control-postmortem",
+  "base_commit": "c2df655468a39c9f6f90da77a798f92b247ec6a8",
   "verdict": "NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK",
   "inputs": {
     "data/raw/games/896352129.json": "eee9f3485204dea948efa36d39b2fb7783752cec419e931bc08577f943adb1c0",
@@ -8,19 +9,26 @@
     "cgauto/replay_state.py": "4f38829baa533bc8af940fb0eeed6cf5a746357b74abe38f42f5060cb9101569"
   },
   "outputs": {
-    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json": "ea2c14486c6898b0f80c93b490581eee0aa077f834f316849e617524a74dd2c0",
-    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md": "f621fdf30e8ef3aaf7d8627623b4443264ac9ea37cb9b83b12cf8db75ce72cfc"
+    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json": "c0ca3ce9bfb86cc5f12551b27ff893e0711a8c248c24181cf883cdce4b6a03da",
+    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md": "399b347a84b6fea84ec43c5dc1e961324a432ba5ff02e0460553174581f5650b"
   },
   "validation": {
     "json_valid": true,
     "decoded_turns": 300,
     "unknown_diff_updates": 0,
     "generation_accounting_reconciled": true,
+    "harvest_commands_success_units_failed": "83/83/83/0",
+    "enemy_first_contact_rows": 8,
+    "joint_enemy_removal_rows": 8,
+    "resident_ripe_chop_state_rows": 22,
+    "exact_state_appendix_source_comparison": "8 contacts, 8 joint removals, 22 ripe rows; field-exact",
+    "raw_bfs_and_speed_adjusted_eta_separated": true,
+    "state_index_convention_explicit": true,
     "git_diff_check": true,
     "decision_evidence_semantic_check": "11 records; 6 closures excluding void; 1 void premise",
     "decision_evidence_pytest": "25 passed",
     "state_lines": 150,
-    "ledger_bytes": 60645,
+    "ledger_bytes": 67022,
     "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
   },
   "actions": {
@@ -29,5 +37,33 @@
     "bulk_write": false,
     "runner_or_panel": false,
     "candidate_or_platform_mutation": false
+  },
+  "review_correction": {
+    "status": "published_narrow_rereview_pending",
+    "harvest_command_success_unit_failed_totals": [
+      83,
+      83,
+      83,
+      0
+    ],
+    "resident_chop_command_success_totals": [
+      84,
+      82
+    ],
+    "joint_enemy_removals": 8,
+    "enemy_first_contact_rows": 8,
+    "resident_ripe_chop_rows": 22,
+    "ripe_cycle_raw_bfs_eta_at_plant": [
+      "3/3",
+      "2/2",
+      "3/3",
+      "3/3"
+    ],
+    "ripe_cycle_raw_bfs_eta_at_first_ripe": [
+      "3/3",
+      "3/3",
+      "3/3",
+      "3/3"
+    ]
   }
 }
