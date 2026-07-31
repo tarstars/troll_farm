@@ -1045,3 +1045,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   111/113 with four catastrophes. Treat this as immature monitoring evidence; do not
   generalize it to banking-route value, tree-order persistence, or broad oscillation
   reopening. [B3.14, 2026-07-31]
+- **A capable worker already on a live tree owns that tree for the current decision.**
+  Exact Elost game `897556967` proves the inherited selector can instead give the tree
+  to a faster off-tree worker: the occupant emits ten WAITs while the mover targets the
+  same cell and ping-pongs across eight states. B3.15 removes that chop candidate only
+  from other workers; it does not retie different trees or add cross-turn memory. Exact
+  replay, 11 compiled boundaries, and eight unsealed smokes pass. The owner directed
+  submission `6585801`/`41071204`; its first 14-game health is clean but weak at 11.53,
+  rank 111/113. Treat this as mechanism correction and monitoring evidence only, not
+  field value or permission to reopen global ordering/oscillation. [B3.15, 2026-07-31]

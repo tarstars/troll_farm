@@ -1215,3 +1215,31 @@ unexpected/fetch/runtime signals. The score is 9.64, rank 111/113; record is
 immature checkpoint. It is an owner-directed incident successor, not frozen-protocol
 qualification and not evidence for the broad tent policy. No further Arena mutation is
 authorized automatically.
+
+## B3.15 — Elost on-site tree ownership fix live
+
+Exact game `897556967` (resident `6585765`/`41071067`, seat 1, valid 132–160 loss)
+reconstructs 300 turns with zero unknown updates. Resident unit 1 is full with wood and
+standing on LEMON `(19,6)`. It CHOPs on turns 55–57, then emits ten WAITs on 58–67 while
+full unit 2 receives that same tree before collision resolution. Unit 2 alternates
+between `(18,5)` and `(18,6)` across eight decision states. The sticky, tent-parent, and
+far-denial sources each reproduce all 300 commands, so the failure is inherited.
+
+The narrow correction suppresses a live tree's chop candidate for another worker when a
+capable own worker already occupies the tree. It changes no different-tree score/order,
+banking rule, collision resolver, or cross-turn memory. Candidate
+`candidate-agent6585765-onsite-tree-owner-slim.min.rs` is 68,620 bytes, SHA
+`fab84019…`. On the exact stream it first activates at turn 48 with a capable on-tree
+unit and changes every reported turn 58–67 from occupant WAIT to CHOP. Three new
+compiled boundaries plus all eight prior tent/banking tests pass; eight unsealed
+both-seat smokes terminate with zero stderr; sacred source remains `fff6669b…`.
+
+The owner directed “fix the agent” under the standing “don't restore previous stabe,
+send new” instruction. The exact candidate was submitted once: platform submission
+`41071204`, new agent `6585801`. First completed health has 14/14 parsed with one
+pending, exact identity, zero unexpected/fetch/runtime faults, score 11.53 at rank
+111/113, 6 wins/8 losses, mean margin −13.0, two catastrophes, and negative mass 498.
+
+**Disposition: LIVE / CLEAN WEAK FIRST HEALTH / NO AUTOMATIC RESTORE.** This removes the
+reproduced same-tree assignment mechanism but is not a frozen value qualification. The
+owner explicitly rejected restoration; continued monitoring is read-only.

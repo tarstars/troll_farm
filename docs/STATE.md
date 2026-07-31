@@ -6,14 +6,14 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Active resident: owner-directed sticky-bank agent `6585765`, submission `41071067`;
-  first health is 12/12 parsed at score 9.64, rank 111/113, with one pending.
-- Source: `cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs`
-  (68,464 bytes, SHA-256 `f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a`).
-  Prior far-denial row reached 22.99; its clean restore was displaced by owner direction.
+- Active resident: owner-directed on-site tree-owner agent `6585801`, submission
+  `41071204`; first health is 14/14 parsed at score 11.53, rank 111/113, with one pending.
+- Source: `cgauto/submissions/candidate-agent6585765-onsite-tree-owner-slim.min.rs`
+  (68,620 bytes, SHA-256 `fab84019558e19491a0ce3408d584e4483f398a11da3140bf9adc5de30a90efc`).
+  The owner directed this Elost deadlock fix and forbade restoring the prior stable.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Latest exact ladder read: **2026-07-31T07:46:58Z**, agent `6585765`, 9.64 at
-  rank 111/113; 12/12 parsed, one pending, zero identity/runtime faults. This is a weak,
+- Latest exact ladder read: **2026-07-31T08:24:02Z**, agent `6585801`, 11.53 at
+  rank 111/113; 14/14 parsed, one pending, zero identity/runtime faults. This is a weak,
   immature read; per owner direction monitoring continues without an automatic restore.
 - Rank bar: 1. delineate 31.01, 2. norxondor_gorgonax 29.63, 3. MSz 28.22.
 - Corpus: **9,082 games** / 469+ agents, compounding daily (cron 05:17 — +951 overnight).
@@ -126,11 +126,11 @@ makes the goalpost move in the wrong direction.
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a REPRODUCIBLE:** seven exact edits, protocol not cut. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 HISTORICAL KEEP:** 22.99/160. **B3.13 TERMINAL FAIL:** 11.96/101. **B3.14 LIVE:** sticky bank 9.64/12, clean but weak; no auto-restore. **F1 RELEASED:** leakage-controlled readiness only.
+  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a REPRODUCIBLE:** seven exact edits, protocol not cut. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 HISTORICAL KEEP:** 22.99/160. **B3.13 TERMINAL FAIL:** 11.96/101. **B3.14 DISPLACED:** sticky bank 9.64/12. **B3.15 LIVE:** on-site tree owner 11.53/14, clean but weak; no auto-restore. **F1 RELEASED:** leakage-controlled readiness only.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
   `chatgpt_1` has the serial review queue after H3a takeover. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: sticky-bank `6585765`/`41071067`; read-only monitoring.
+  surveillance. Sole Arena leg: on-site tree owner `6585801`/`41071204`; read-only monitoring.
 
 ## 5. Reading order & pointers
 
