@@ -1,6 +1,6 @@
 # 20260730-n4-candidate-pair-value-audit: census the exact resident pair surface
 
-- Status: Phase A pre-lock validated — peer implementation lock and compute routing pending
+- Status: closing — `RUNTIME_CLOSE` from exact pre-lock smoke; compact peer lock/report pending
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-31T03:37:50Z
+- Last updated UTC: 2026-07-31T05:25:00Z
 
 ## Outcome
 
@@ -200,3 +200,16 @@ serious runtime-close risk rather than a one-thread artifact.
 Pre-lock correctness/parity gates pass. The peer must publish the source lock before
 the full census. One seed projects roughly 10.7 GB and 8+ local hours for 128 seeds, so
 the exact census also requires external-storage preflight and non-local compute routing.
+
+## Integrator stop decision — 2026-07-31T05:25:00Z
+
+The pre-lock smoke exists to prevent an infeasible full census. It covers all eight
+families, both seats, 4,028 natural two-worker states, exact command reconstruction, and
+1/20-thread semantic parity. Its measured p95 is 210.408/333.157 ms, 42–67× the frozen
+5 ms close; one root already emits 83.3 MB. The task closes `RUNTIME_CLOSE` without
+spending an estimated 10.7 GB and 8+ local hours merely to remeasure a decisive runtime
+miss. The final compact report must state the one-root diagnostic scope and may not claim
+full-matrix coverage for non-runtime gates.
+
+No Phase B, N4→E1 continuation, L2/L3 learner, optimization retune, or alternate census
+format is authorized.

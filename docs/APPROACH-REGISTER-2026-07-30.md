@@ -96,8 +96,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **H4** | Deniability census: what currency paid the opponent's worker-3 bill, and was it contestable in the B3.1 window | 1 session | **✅ DONE — NO_MATERIAL_DENIABLE_BILL:** all 17 scale-linked catastrophe bills need post-start supply; 73 batches are individually mandatory, but 43 are non-deniable IRON and 30 fruit yield 0 legal already-positioned HARVEST/lethal-CHOP blocks; reachability alone fires misleadingly in 17/17 |
 | **H7′** | Action-contention audit (races, duplication, target disappearance — **not** body-blocking, which is mechanically impossible) | 1 session | **✅ DONE — NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE:** exact contention is ubiquitous (180/200 games; 3,662 dual CHOP turns), but top-20 prevalence is only +5.76 pp versus rank-41+ with identity-cluster CI [−1.64,+14.49], and its turn rate is lower (47.87 vs 78.93/1k); no controller |
 | **H3′** | Contact-coverage stability under numeric pressure — causality first, then a load-bearing-conditioning control arm | 1 session | **✅ DONE — TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY:** exact matched DiD hazard ratio 0.606, CI [0.410,0.895]; entirely pre-loss ratio 0.510, CI [0.293,0.841]; observational only |
-| **H3a** | Three-arm numeric-pressure value preflight: conditioned change vs identical always-on change vs unchanged control | 1 session after protocol | **peer-review-gated by H3′; conditioning must prove load-bearing before any candidate claim** |
-| **F1** | **In-game opponent-archetype detection** — identify who we are playing and adapt. Endgame-switch retuning is closed; *archetype detection itself* was never tried | 1–2 sessions | open |
+| **H3a** | Three-arm numeric-pressure value preflight: conditioned change vs identical always-on change vs unchanged control | 1 session after protocol | **SOURCE RECONSTRUCTION ASSIGNED:** first prove the archived exact dual-value arm is byte-reproducible; no runner arm or panel yet |
+| **F1** | **In-game opponent-archetype detection** — identify who we are playing and adapt. Endgame-switch retuning is closed; *archetype detection itself* was never tried | 1–2 sessions | **READINESS PROPOSAL ACCEPTED / QUEUED:** legal state history, whole-map-root folds, command/label deletion, static/permutation controls; no adaptation |
 
 ## G. Mechanics and platform
 
@@ -105,7 +105,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 |---|---|---|---|
 | **X1** | **Systematic mechanics re-derivation — PROMOTED 2026-07-30.** No longer speculative: A2 Phase 0a found an **undocumented per-player starting bank of ~24 fruit / ~6 iron**, verified in `official_mapgen.rs` and absent from `docs/mechanics.md` — an input to *every* affordability calculation this project has run. If one rule was missing, others may be. Differential-test the simulator against the referee across edge cases | 1–2 sessions | **✅ DONE — core match; starting bank was documentation-only; movement RNG + strict command validation become A2-0b obligations** |
 | **H9** | Submission timing | owner | passive-maturity timing closed by N1; ordinary qualified-candidate promotion discipline remains |
-| **H11** | Map-conditioned configuration as a controlled decomposition only (D63/D91 stand) | 1 session | open, low |
+| **H11** | Map-conditioned configuration as a controlled decomposition only (D63/D91 stand) | 1 session | **✅ DONE — DECOMPOSED_NO_GENERIC_TASK:** D63/D64 and D91 close the umbrella; E7a and S2 remain separately gated children |
 | **H12** | Standing surveillance — cron plus weekly comparative refresh | automatic | running |
 | **B5.3** | Cold-file migration | hours | ripens ~08-03 |
 

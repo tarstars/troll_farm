@@ -63,8 +63,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > 43 are non-deniable IRON and the 30 fruit batches yield 0 legal one-command blocks.**
 > **H3′ is TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY:** matched contact-hazard DiD
 > is 0.606 (CI [0.410,0.895]) and the entirely pre-loss result is 0.510
-> (CI [0.293,0.841]). H3a is recorded but peer-review-gated: only a conditioned versus
-> identical-always-on versus unchanged-control preflight can establish value.**
+> (CI [0.293,0.841]). H3a source reconstruction is assigned: only the exact archived
+> treatment, conditioned versus identical-always-on versus unchanged control, can
+> establish value.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -153,11 +154,20 @@ continues with construction and rating-dynamics measurement, not waiting.
   CI [0.410,0.895]. Sixty-nine pairs remain entirely before permanent loss and give
   0.510, CI [0.293,0.841]. Every support, balance, and materiality gate passes, but the
   event is observational and may proxy broader opponent state.
-- **H3a — PEER-REVIEW-GATED VALUE PREFLIGHT.** Preserve three arms in one frozen
-  protocol: workforce-pressure-conditioned change, the identical change always on, and
-  unchanged control. Conditioning is load-bearing only if the first arm beats both
-  alternatives under frozen breadth/integrity/value gates. Do not implement, create a
-  candidate, or touch Arena before H3′ peer acceptance and a separate claim.
+- **H3a — SOURCE RECONSTRUCTION ASSIGNED.** The exact archived Phase-21 dual-value
+  treatment exists at SHA `083107f5...`; fallback is `a8eb3b2b...`. First prove a
+  deterministic byte-exact fallback↔treatment recipe and exhaustively classify the delta.
+  Only after peer acceptance may a separate protocol preserve three arms:
+  workforce-pressure-conditioned treatment, the identical treatment always on, and
+  unchanged control. No runner arm, panel, candidate, or Arena action yet.
+- **F1 — READINESS PROPOSAL ACCEPTED / QUEUED.** Use only legal public state history,
+  whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
+  command/label deletion plus static/permutation/seat controls. Wait for N4's shared
+  artifact release and explicit activation. A classifier alone never authorizes adaptation.
+- **H11 ✅ DONE — DECOMPOSED_NO_GENERIC_TASK.** Generic map-conditioned configuration is
+  closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
+  under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
+  tasks, not map classes.
 - **E1 NARROWED_TO_N4_PREFIX_ORACLE.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over

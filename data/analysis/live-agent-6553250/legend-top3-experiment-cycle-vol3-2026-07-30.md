@@ -862,3 +862,26 @@ Evidence:
 `data/analysis/live-agent-6553250/h3-numeric-pressure-contact-causality-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/h3-numeric-pressure-contact-causality/`.
+
+## H11 — generic map-conditioned configuration decomposes into named gated children
+
+**Question.** Does a generic “choose configuration from the map” task survive the
+project's existing map-selection evidence?
+
+**Audit.** Static map-to-workforce selection collapsed from discovery AUC 0.830 to
+validation 0.479 in D63/D64. D91 selected only 5/16 maps and sits above a factory already
+closed for feeding the opponent. Opponent families are policies, not map classes.
+N6/E2/E4/E5 and the economy configuration menus are closed or immaterial and cannot be
+rescued by adding a selector.
+
+**Verdict: `DECOMPOSED_NO_GENERIC_TASK`.** Close H11 itself. Preserve only E7a's
+prospective binary `typeToCut` selector question and S2's opening-book question under
+their separate representation/value gates. F1, H3a, H10a, and N4 use behavior/current
+decision state rather than pre-action map class. Reopening requires an exact non-closed
+finite intervention, a material conditional terminal oracle, outcome-blind predecision
+features, root-grouped validation, static baselines, and prospective value above the best
+static configuration. No analyzer, fit, map range, source edit, candidate, submission,
+or Arena action occurred.
+
+Evidence:
+`chatgpt_1/h11-map-conditioned-configuration-scope-audit-2026-07-31.md`.

@@ -891,6 +891,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   evidence — static map/opening features already failed workforce-policy selection
   (discovery AUC 0.830 → validation 0.479, D63) and D91's map selector lacked cluster
   support. [D63, D91; misclassification caught in the H11 review, 2026-07-29]
+- **Generic H11 map-conditioned configuration is decomposed and closed.** D63/D64 close
+  map-to-workforce selection and D91 lacks cluster support on an already harmful factory.
+  The only named map-conditioned children are E7a's binary `typeToCut` selector question
+  and S2's representation/value-blocked opening book. F1, H3a, H10a, and N4 use observed
+  behavior or current decision state and must not be relabelled as map classes. Reopening
+  requires an exact non-closed finite intervention, a material map-conditional terminal
+  oracle, outcome-blind predecision features, root-grouped splits, static baselines, and
+  prospective value above the best static configuration. [H11, 2026-07-31]
 - ★★ **The joint economy package cannot pay on this scheduler.** Measured as a grounded
   finite-windfall accounting stress test (NOT a formal upper bound over all
   complementarities; CI conditional on fixed pricing constants — correction adopted from
