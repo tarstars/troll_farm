@@ -217,6 +217,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   making the additional deletion ceiling exactly 0 bytes. Do not edit the sacred source:
   it is byte-identical with the D171a snapshot, library-visible as `resident_policy`, and
   retained by direct experiment callers/tests. No cleanup patch or successor.
+- **H7′ ✅ DONE — NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE.** Mechanically exact
+  contention occurs in 180/200 D159 games, including 3,662 dual CHOP turns and 598
+  duplicated wood units. Top-20 event prevalence is only +5.76 pp over rank-41+, with
+  opponent-identity-cluster CI [−1.64,+14.49], and the strong turn rate is lower
+  (47.87 vs 78.93/1k). Close without a controller; body-blocking remains impossible.
 - **D176a ✅ CLOSED-AT-MECHANISM 2026-07-29 — oscillation line closed permanently.** The fix
   largely worked (incidence 8.50%→2.88%, below yamo's 2.9%; zero de-novo; all six value gates
   pass) and is worth **+0.045 overall** — not a promotion cycle. Two of the four mechanism
@@ -255,7 +260,8 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 H1 (economy package, −2.49 own-side-only), H2/A2 (Phase-1 K1, 28.42% vs 40%),
 H3 (quartet edge dissolves), H5 (done), H6
-generic rollout (narrowed to N4), H7 body-blocking (mechanically impossible), H8 (worker-2
+generic rollout (narrowed to N4), H7/H7′ (body-blocking impossible; real contention is
+ubiquitous but not a strong-cohort signature), H8 (worker-2
 at the floor), H11 (near-closed, D63/D91), H13 (done → D176a), N6 scalar tuning, plus the
 eight routes of the 2026-07-29 terminal synthesis.
 
@@ -433,13 +439,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   chatgpt_1 (`docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`, integrated
   2026-07-29). Working taxonomy after review:
   **audit-ready (parallel, read-only):** H5 postmortems, H3 no-loop quartet, H8 worker-2
-  timing; **needs rewrite/preflight before any work:** H4 (deniability census first),
-  H6 (oracle-gap audit first), H7 (rewritten: action-contention, not body-blocking —
-  premise falsified at mechanics.md:42-44), H11 (near-closed, D63); **owner programme
+  timing; **completed after rewrite:** H4 bill deniability and H7′ action contention;
+  **needs rewrite/preflight before any work:** H6 (oracle-gap audit first), H11
+  (near-closed, D63); **owner programme
   decision:** H2 architecture-2 (primary), H1 only as read-only joint upper-bound audit
   → staged Architecture-2 prototype (never the four-lever resident bundle), H10 spatial
   learner (sanctioned long shot); **operations, not hypotheses:** H9 (promotion
-  prerequisite only), H12 (already-running maintenance).
+  prerequisite only), H12 (already-running maintenance). H7's original body-blocking
+  premise remains falsified at `docs/mechanics.md:42-44`.
 - **B4.6 ❌ CLOSED 2026-07-29 — no cycle warranted; the last lead is spent.** Mechanism
   pinned (`chop_candidates` is origin-blind throughput scoring; the gap is tree size +
   kind mix, with travel/contention/capacity all ruled out and our travel actually better

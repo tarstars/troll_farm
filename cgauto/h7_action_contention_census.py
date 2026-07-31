@@ -496,6 +496,11 @@ def cohort_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "direct_duplication_score_ceiling": sum(
             int(row["direct_duplication_score_ceiling"]) for row in rows
         ),
+        "direct_duplication_score_ceiling_per_game": (
+            sum(int(row["direct_duplication_score_ceiling"]) for row in rows) / games
+            if games
+            else None
+        ),
         "counts": counts,
         "mean_margin": statistics.fmean(row["margin"] for row in rows)
         if rows
@@ -507,6 +512,16 @@ def cohort_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         else None,
         "non_event_game_mean_margin": statistics.fmean(
             row["margin"] for row in rows if not row["primary_event_game"]
+        )
+        if games > event_games
+        else None,
+        "event_game_mean_turns": statistics.fmean(
+            row["turns"] for row in rows if row["primary_event_game"]
+        )
+        if event_games
+        else None,
+        "non_event_game_mean_turns": statistics.fmean(
+            row["turns"] for row in rows if not row["primary_event_game"]
         )
         if games > event_games
         else None,
@@ -725,18 +740,27 @@ def run(
         "verdict": verdict,
         "frozen_inputs": {
             "manifest": {
-                "path": str(manifest_path),
+                "path": (
+                    "data/analysis/live-agent-6553250/"
+                    "d159a-current-resident-all-finished-effect-refresh-raw.json"
+                ),
                 "sha256": manifest_hash,
             },
             "accepted_result": {
-                "path": str(accepted_result_path),
+                "path": (
+                    "data/analysis/live-agent-6553250/"
+                    "d159a-current-resident-all-finished-effect-refresh-result.json"
+                ),
                 "sha256": accepted_hash,
             },
             "resident_source": {
-                "path": str(source_path),
+                "path": (
+                    "cgauto/submissions/"
+                    "candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+                ),
                 "sha256": source_hash,
             },
-            "data_root": str(data_root),
+            "data_root": "data",
             "game_ids": len(game_ids),
         },
         "integrity": {

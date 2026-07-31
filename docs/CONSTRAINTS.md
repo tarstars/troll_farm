@@ -487,11 +487,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   collisions resolve within each player's own units separately; **enemy units may share a
   cell with ours**, and units never block BFS distance. Body-blocking, door camping and
   path denial against the opponent are therefore mechanically impossible — do not propose,
-  audit, or build a controller for them. What is real and unaudited is *action*
-  contention: co-location on the same harvest/chop target, last-fruit duplication, race
-  timing, and target disappearance causing wasted travel. [`docs/mechanics.md:42-45`,
-  verified against `sim/engine.py:134-150`; falsification of hypothesis H7 by chatgpt_1,
-  2026-07-29, confirmed independently by claude_1]
+  audit, or build a controller for them. H7′ confirms real *action* contention is
+  ubiquitous (180/200 games; 3,662 dual CHOP turns; 598 duplicated wood), but not a
+  strong-agent signature: top-20 event prevalence 97.22% vs rank-41+ 91.46%, difference
+  +5.76 pp with opponent-identity-cluster CI [−1.64,+14.49], while event rate is lower
+  (47.87 vs 78.93/1k turns). The 11.97/game duplicated-item ceiling is shared created
+  material, not opponent-attributed or causal margin. Do not build an action-contention
+  controller or reopen body-blocking. [`docs/mechanics.md:42-45`, H7′, 2026-07-31]
 - Exact 1:1 dual-value opponent-crop scoring is closed: 111/131 admissible official-prefix
   activations, all pre-arena gates passed — and −7.77 rating at the clean 63-game arena
   checkpoint. Do not tune its multiplier or ETA; prefix coverage is not complete-policy

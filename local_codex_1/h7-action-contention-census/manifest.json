@@ -1,0 +1,91 @@
+{
+  "task_id": "20260731-h7-action-contention-census",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE",
+  "base_commit": "b8c82d4c9c2e7aea59bcaa0a97ea588aad70ee06",
+  "claim_commit": "74022e6efb5574f92be75d2edd93ef4109789a88",
+  "implementation_commit": "b7232d152b57ceeedb4cb143b5b2ef135e10c9dd",
+  "files": {
+    "protocol": {
+      "path": "docs/h7-action-contention-census-protocol-2026-07-31.md",
+      "sha256": "9d238ce710b36f416557c6e7732a806b3b3f3e11a3420fdf8dcd54054dbbc63b"
+    },
+    "task_claim": {
+      "path": "coordination/tasks/20260731-h7-action-contention-census.md",
+      "sha256": "98c0fbba915fe914fd7e15fec1ce13fbcd213688fc6934e55ce14084bfbf102a"
+    },
+    "claim_message": {
+      "path": "coordination/messages/local_codex_1/20260731T023650Z-20260731-h7-action-contention-census-claim.md",
+      "sha256": "9d5c78ba3ffd1442c3565d8e1b53398496031bcd2f7f9cde3774d8ac7e6e7ab0"
+    },
+    "analyzer": {
+      "path": "cgauto/h7_action_contention_census.py",
+      "sha256": "ff9a3fab032d4f4ea4797bee4b10c28159d0ff3835b328ba9cf277c156ec5a35"
+    },
+    "tests": {
+      "path": "tests/test_h7_action_contention_census.py",
+      "sha256": "2ea69c420791f1cf5de968b0571095a0df2c386b2666661fc0191b30e6abbde6"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/h7-action-contention-census-result-2026-07-31.json",
+      "sha256": "2a8e157f20409deb9e670b0898c356c4661b0ec5c461f50d68dd913a26ca876f"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/h7-action-contention-census-result-2026-07-31.md",
+      "sha256": "d6f91bb45fd17c9e3b18e077a574b14bd109c32ceac5909759b62c1800314950"
+    }
+  },
+  "frozen_inputs": {
+    "d159_manifest": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-raw.json",
+      "sha256": "97dc82a730b5a691f2bf63036834b1a9ed23bc186b00d09b874ac092efddf443"
+    },
+    "d159_accepted_result": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-result.json",
+      "sha256": "bd3fe4571aec423cdb57d514a2f610c0dcfe9845099b5500a6721e98d72965ac"
+    },
+    "resident_source": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    }
+  },
+  "validation": {
+    "py_compile": "pass",
+    "self_test": "self-test: ok",
+    "pytest": "7 passed",
+    "repeat_output_byte_identical": true,
+    "transition_errors": 0,
+    "outside_game_ids_read": 0
+  },
+  "decisive_counts": {
+    "frozen_games": 200,
+    "decoded_turns": 53427,
+    "primary_event_games": 180,
+    "primary_event_opponent_identities": 61,
+    "same_tree_colocation_turns": 6836,
+    "dual_chop_turns": 3662,
+    "combined_only_kills": 558,
+    "duplicated_wood": 598,
+    "dual_harvest_turns": 3,
+    "duplicated_fruit": 2,
+    "resident_move_targets_removed": 13,
+    "resident_move_targets_depleted": 28,
+    "strong_event_game_prevalence": 0.9722222222222222,
+    "comparator_event_game_prevalence": 0.9146341463414634,
+    "strong_minus_comparator_percentage_points": 5.758807588075876,
+    "cluster_ci95_percentage_points": [
+      -1.635254988913526,
+      14.492753623188403
+    ],
+    "strong_events_per_1000_turns": 47.86609240407204,
+    "comparator_events_per_1000_turns": 78.92882311486963
+  },
+  "actions_not_taken": [
+    "raw or processed data write",
+    "source policy or simulator/referee edit",
+    "map, range, or unlisted game read",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

@@ -1,6 +1,6 @@
 # 20260731-h7-action-contention-census
 
-- Status: in progress — analyzer/tests implemented; full frozen census next
+- Status: closed — `NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE`; peer review requested
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,14 +10,14 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T02:36:50Z
-- Last updated UTC: 2026-07-31T02:42:59Z
+- Last updated UTC: 2026-07-31T02:48:58Z
 
 ## Outcome
 
-An exact read-only census decides whether the 200-game D159 resident panel contains a
-material strong-opponent signature in mechanically real cross-player action contention:
-simultaneous legal HARVEST/CHOP, duplication/combined kills, and exact target-removal
-races. It explicitly excludes body-blocking and all policy work.
+`NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE`. Exact contention is ubiquitous
+(180/200 games; 3,662 dual CHOP turns), but top-20 prevalence is only +5.76 pp over
+rank-41+ with opponent-identity-cluster CI [−1.64,+14.49], and the strong per-turn rate
+is lower. Close H7′ without a controller.
 
 ## Frozen protocol
 
@@ -47,18 +47,14 @@ races. It explicitly excludes body-blocking and all policy work.
   map, cron, source policy, simulator/referee, peer path, submission tooling, or Arena.
 - No formatter over `rust/src/bin/` or `cgauto/`.
 
-## Deliverables
+## Acceptance
 
-- Frozen H7′ protocol, analyzer, synthetic tests, compact JSON/report/manifest.
-- One frozen verdict, canonical closeout, and handoff to `chatgpt_1`.
-
-## Acceptance checks
-
-- Exact D159 population/identity/decode/hash gates and zero out-of-panel reads.
-- Every event reconstructed from issued commands plus exact pre/post state; illegal or
-  ambiguous actions excluded from causal families.
-- Deterministic opponent-identity-cluster bootstrap for top-20 versus rank-41+ games.
-- `py_compile`, built-in self-test, focused pytest, repeated output byte identity.
+- Exact D159 population/identity/decode/hash gates: passed, 200/200.
+- Issued-command legality and exact carry/plant transitions: passed, zero errors.
+- Deterministic 10,000-replicate opponent-identity-cluster bootstrap: passed.
+- `py_compile`, built-in self-test, focused pytest (7), repeated output: passed.
+- Frozen verdict, compact artifacts, canonical closeout, handoff: passed; peer
+  acknowledgement pending.
 
 ## Arena authority
 

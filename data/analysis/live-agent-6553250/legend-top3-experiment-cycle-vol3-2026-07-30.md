@@ -783,3 +783,42 @@ Evidence:
 `data/analysis/live-agent-6553250/h4-opponent-bill-deniability-census-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/h4-opponent-bill-deniability-census/`.
+
+## H7′ — action contention exists, but is not a strong-opponent signature
+
+**Question.** Do strong opponents distinctively exploit the cross-player interaction
+mechanics that actually exist: simultaneous HARVEST/CHOP, last-item duplication,
+combined-only kills, and exact target-removal/depletion races?
+
+**Integrity.** The exact 200-game D159 resident panel decodes with zero unknown updates
+and zero accepted-event transition mismatches. Frozen manifest/result/source hashes,
+identity, file presence, 200 unique IDs, both comparison-cohort seats, and the
+zero-outside-read gate all pass. The strong cohort is 36 rank-1–20 games / 18 identities;
+the comparator is 82 rank-41+ games / 28 identities.
+
+**Mechanics.** Contention is common: 180/200 primary-event games, 6,836 cross-player
+same-tree co-location turns, 3,662 legal dual CHOP turns, 558 combined-only kills, 598
+duplicated wood units, 3 dual-HARVEST turns with 2 duplicated fruits, and 41 exact
+resident MOVE targets removed/depleted by the opponent. The reverse direction has 291
+events. The direct duplicated-item ceiling is 2,394 score-equivalent total, 11.97/game,
+but this is shared created material—not opponent-attributed, banked, or causal margin.
+
+**Strong-cohort test.** Top-20 primary-event prevalence is 35/36 (97.22%) versus 75/82
+(91.46%) for rank-41+, difference +5.7588 pp. The 10,000-replicate
+opponent-identity-cluster interval is [−1.6353,+14.4928] pp. Both the frozen +10 pp gate
+and positive-lower-bound gate fail. Per-turn frequency points the other way: 47.87 versus
+78.93 events/1,000 turns; duplication ceiling is 11.22 versus 15.12/game.
+
+**Verdict: `NO_STRONG_COHORT_ACTION_CONTENTION_SIGNATURE`.** Real contention is
+ubiquitous background behavior, not evidence of a learned strong-agent tactic. Close
+H7′ without a causal panel or controller. Never reopen the mechanically impossible
+body-blocking premise. No source, simulator/referee, raw/processed replay, map, game,
+candidate, submission, or Arena state changed.
+
+Validation: analyzer compiles; self-test passes; 7 focused tests pass; two full outputs
+are byte-identical.
+
+Evidence:
+`data/analysis/live-agent-6553250/h7-action-contention-census-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/h7-action-contention-census/`.
