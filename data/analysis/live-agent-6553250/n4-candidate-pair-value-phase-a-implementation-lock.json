@@ -1,0 +1,100 @@
+{
+  "schema": "troll-farm-n4-candidate-pair-phase-a-implementation-lock-v1",
+  "locked_utc": "2026-07-31T05:30:00Z",
+  "status": "LOCKED_BEFORE_FULL_CENSUS",
+  "task_id": "20260730-n4-candidate-pair-value-audit",
+  "branch": "agent/chatgpt_1-n4-phase-a",
+  "implementation_commit": "e46f315a06944426ef4917153edc8ec508a956ea",
+  "source_state_commits": {
+    "analyzer_materializer": "49d93c3c3c7ade52af788fb1a282bf7a558cac12",
+    "focused_tests_and_cargo_regression": "3bcad5c6d667c88e9edcd384001fc830890034a9"
+  },
+  "tracked_source_git_blob_sha1": {
+    "cgauto/n4_candidate_pair_value_audit.py": "25aa99beab5731f96ee01917d3e4f15fc32c961b",
+    "tests/test_n4_candidate_pair_value_audit.py": "19075ba2724800e39b218da1a88627f396b1f095",
+    "rust/src/bin/n4_candidate_pair_surface.rs": "e8695220e7a7fc4c65cea96818bf0de0490dff25"
+  },
+  "frozen_dependencies": {
+    "a2_0b_lock_path": "data/analysis/live-agent-6553250/a2-0b-r1-implementation-lock.json",
+    "a2_0b_implementation_commit": "cd424a19a1f746d72afcfc8b7c824284cdda4012",
+    "a2_0b_referee_commit": "290129129db7a7539d98739ebdb0ed63ee6ceb50",
+    "sacred_resident_path": "rust/src/d171a_control_resident_snapshot.rs",
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "a2_referee_parity_sha256": "518c222881ac23f8548cc13c858bacc93577ea920ecfbdbf0fd0e588cad1bf83",
+    "a2_continued_mapgen_sha256": "8e841958c47db42920ca23150bd2afbdb88acaa06c1a13f97ee684fbfea2a84d",
+    "engine_sha256": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "official_mapgen_sha256": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "module_registry_sha256": "7c7a0b3229e72b22e0c80288dd85e47ac0166a60f80ee15925d94d06816304a7"
+  },
+  "generated_sha256": {
+    "instrumented_resident": "37baf749f8b8f615432d089ff979a1a7c56e984c56acf8b5102540377fa3a744",
+    "generated_runner": "cecbf8ecb88d094dc68da75e8388dbec55f5bee7e297e71cfd4a24209dd4e980",
+    "release_binary": "9854cb1314b2dad1f632a19e0af7d40b558a1f03bf907437c6283506fd57a00c",
+    "normalized_one_seed_smoke": "9177b5c925d3a534bb19588f76314f26d163192cbb75f0118d41b979bce9b3be"
+  },
+  "host_validation": {
+    "coordinator_review_commit": "28776cfd5d909835fb80239f63c337943688bb93",
+    "python_compile": "passed",
+    "analyzer_self_test": "passed",
+    "focused_pytest": "12 passed, 0 failed",
+    "generated_cargo_regression": "passed",
+    "sacred_materialization": "passed",
+    "release_build": "passed",
+    "smoke_seed_count": 1,
+    "smoke_tasks": 16,
+    "natural_two_worker_states": 4028,
+    "frozen_command_reconstruction_failures": 0,
+    "single_thread_data_rows": 268168,
+    "single_thread_total_lines": 268169,
+    "single_thread_bytes": 83327440,
+    "single_thread_elapsed_approx_seconds": 642,
+    "single_thread_p95_ms": 210.408,
+    "parallel_threads": 20,
+    "parallel_total_lines": 268169,
+    "parallel_elapsed_seconds": 235.04,
+    "parallel_max_rss_kib": 323268,
+    "parallel_p95_ms": 333.157,
+    "normalized_parity_excluded_columns": [
+      "latency_us"
+    ],
+    "normalized_parity_equal": true,
+    "pre_lock_verdict": "PRE_LOCK_GATES_PASS_RUNTIME_RISK"
+  },
+  "validation_commands": {
+    "python_compile": "python3 -m py_compile cgauto/n4_candidate_pair_value_audit.py",
+    "self_test": "python3 cgauto/n4_candidate_pair_value_audit.py self-test",
+    "focused_tests": "python3 -m pytest -q tests/test_n4_candidate_pair_value_audit.py",
+    "materialize": "python3 cgauto/n4_candidate_pair_value_audit.py materialize --resident rust/src/d171a_control_resident_snapshot.rs --resident-output <instrumented.rs> --runner-output <generated-runner.rs>",
+    "release_build": "N4_INSTRUMENTED_RESIDENT=<instrumented.rs> N4_GENERATED_RUNNER=<generated-runner.rs> cargo build --manifest-path rust/Cargo.toml --release --bin n4_candidate_pair_surface",
+    "normalized_parity": "drop exactly latency_us; sort semantic TSV rows; compare row count and SHA-256"
+  },
+  "full_census_authority": {
+    "start_seed": 9854000,
+    "maps": 128,
+    "seats": 2,
+    "opponent_families": 8,
+    "tasks": 2048,
+    "trajectory_path": "artifacts/experiments/a2-0b-referee-parity/a2-0b-trajectories-referee-9854000-9854127.ndjson",
+    "external_storage_preflight_required": true,
+    "non_local_compute_required": true,
+    "local_launch_forbidden": true,
+    "phase_b_authorized": false,
+    "source_change_after_lock": "invalidates this lock and requires complete pre-lock revalidation"
+  },
+  "runtime_risk": {
+    "frozen_p95_close_ms": 5.0,
+    "observed_single_thread_multiple": 42.0816,
+    "observed_parallel_multiple": 66.6314,
+    "projected_full_rows": 34325504,
+    "projected_full_bytes": 10665912320,
+    "projected_single_thread_hours": 22.8267,
+    "interpretation": "correctness and parity pass; the full census is expected to trigger the frozen runtime close unless the exact full-population measurement materially differs"
+  },
+  "safety": {
+    "resident_modified": false,
+    "module_registry_modified": false,
+    "alternative_terminal_outcomes_generated": false,
+    "phase_b_started": false,
+    "arena_or_platform_action": false
+  }
+}
