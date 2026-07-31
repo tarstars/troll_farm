@@ -386,6 +386,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   (+5 / +3), negative mass (1.096 / 1.081) — so delaying wood for fruit carries a real,
   trigger-independent cost against specific opponents. Any successor must budget for it.
   [D173a, D173b]
+- **Near-camp opportunistic harvest is CLOSED by direct-value headroom.** B3.8's 496
+  “capturable” observations are individual one-point fruit units across 205 games and use
+  an optimistic ≤2-turn walking detour that explicitly omits HARVEST, DROP, and scheduling
+  displacement. Full own credit is only 2.42 score/game; factor-two deny-plus-capture is
+  4.84 margin/game, still below the current residual experiment bar. D173a/b already show
+  the omitted cost through the same compact_gold, catastrophe, and negative-mass failures.
+  Outside chop-shadow scope is not action value; do not add a target or tune distance.
+  [B3.10 scope audit, 2026-07-31]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"

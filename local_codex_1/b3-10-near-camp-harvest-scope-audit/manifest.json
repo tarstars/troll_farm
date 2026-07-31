@@ -1,0 +1,30 @@
+{
+  "task_id": "20260731-b3-10-near-camp-harvest-scope",
+  "verdict": "CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE",
+  "inputs": {
+    "cgauto/training_currency_audit.py": "7cf1b9ad49f6c39571d6e405a315deb274e20aff2252399b6c24a243d91f94c1",
+    "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md": "dabfab8b6e0f8d1af9c3aea3ced6205b21079eecc45846f5ed3cccefe2db775b",
+    "data/analysis/live-agent-6553250/d173a-harvest-before-chop-result.json": "373dbda1c86ca67910c94f928b2f187d99971c3f1867bca1411ef9a0a7d34441",
+    "data/analysis/live-agent-6553250/d173b-harvest-before-chop-result.json": "30a475cdb06190717ed7a86e4069cc4791a2281e440acccf5b730b06dda3e1dd",
+    "data/analysis/live-agent-6553250/d174a-opportunistic-mining-result.json": "3ebd374936bfc219bd2ab998c4a6fe33350180bd8a0e9f5efd2d9ef442974acd"
+  },
+  "outputs": {
+    "data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.json": "c8388cfedb84879cffebe54be8a3495fa9d6803d768e2cf88ae8dafa17a73720",
+    "data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.md": "7527b8a821e67b06f719570100dcdbc18b53237ddf8329043da4dd477608c00b"
+  },
+  "validation": {
+    "json_valid": true,
+    "git_diff_check": true,
+    "decision_evidence_semantic_check": "11 records; 6 closures excluding void; 1 void premise",
+    "decision_evidence_pytest": "25 passed",
+    "state_lines": 150,
+    "ledger_bytes": 55634,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "actions": {
+    "analyzer_run": false,
+    "source_or_input_artifact_write": false,
+    "map_or_panel_read": false,
+    "candidate_or_platform_action": false
+  }
+}

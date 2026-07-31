@@ -501,10 +501,13 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   all. What do the strong two-worker agents do that we don't? Read-only field comparison
   of score composition, production, suppression, timing, and terminal behaviour. This is
   the only direction that is neither closed nor affordability-gated.
-- **B3.10 (new, OPEN, conditional): near-camp opportunistic harvest** — 956 bill-relevant
-  near-camp events, 71.8% outside the tested scope, 43.4% cheaply capturable. Justified by
-  DIRECT fruit value only (B3.8 closed the scaling rationale), and must budget for the
-  trigger-independent family/tail cost both D173 variants paid. Design only after B3.9.
+- **B3.10 ✅ CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE.** The 496 optimistically
+  capturable observations are individual one-point fruit units across 205 games; all-credit
+  own-score ceiling is 2.42/game and even factor-two deny-plus-capture is 4.84 margin/game.
+  The detour estimate omits HARVEST/DROP and scheduling cost. D173a/b already expose the
+  missing cost: compact_gold negative, catastrophes +5/+3, negative mass 1.096/1.081.
+  Being outside D173b's chop-shadow is not value evidence. No target, threshold, capability
+  change, panel, or scaling rationale.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

@@ -1,6 +1,6 @@
 # 20260731-b3-10-near-camp-harvest-scope
 
-- Status: claimed — read-only scope audit
+- Status: result ready — `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,21 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T07:55:00Z
-- Last updated UTC: 2026-07-31T07:55:00Z
+- Last updated UTC: 2026-07-31T08:10:00Z
+
+## Result
+
+- B3.8's 496 optimistic captures are individual fruit units across 205 games.
+- Gross all-credit own-score ceiling: 2.4195/game.
+- Gross factor-two deny-plus-capture ceiling: 4.8390 margin/game.
+- The underlying walking-detour estimate omits HARVEST, DROP, and scheduling displacement.
+- D173a/b both fail compact_gold, catastrophe, negative-mass, and mechanism gates.
+- Scaling rationale is excluded by task and by D174a's live-bill correction.
+- Verdict: `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE`.
+
+Evidence:
+`data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.md`
+and compact JSON beside it.
 
 ## Outcome
 

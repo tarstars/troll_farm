@@ -914,3 +914,28 @@ Evidence:
 `chatgpt_1/n4-candidate-pair-value-result.md`;
 machine result and implementation lock under
 `data/analysis/live-agent-6553250/n4-candidate-pair-value-phase-a-*`.
+
+## B3.10 — near-camp fruit count has too little direct-value headroom
+
+**Premise.** B3.8's 1,144 near-camp observations are individual unharvested fruit units;
+956 are PLUM/LEMON/APPLE, 71.8% lie outside D173b's chop-shadow scope, and 496 total /
+425 bill-relevant units have an optimistic walking detour at most two turns. The detour
+explicitly excludes HARVEST and DROP and credits at first reach, so it is stock accounting,
+not a feasible action oracle.
+
+**Upper bound.** Banking every one of the 496 units gives 2.4195 own score per all 205
+resident games. Treating every unit as simultaneous opponent denial doubles the bound to
+4.8390 margin/game before any action or scheduling cost.
+
+**Robustness.** D173a/b already establish that fruit-for-wood displacement is not free:
+compact_gold −2.0625/−1.3906, catastrophes +5/+3, and negative-margin mass
+1.0959/1.0812. Both mechanism gates also fail. D174a prevents reuse of B3.8's synthetic
+worker-bill rationale.
+
+**Verdict: `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE`.** Being outside a prior
+trigger's scope does not create terminal value. No near-camp target, distance tuning,
+harvest-capability change, panel, candidate, or Arena action follows.
+
+Evidence:
+`data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.md`
+and compact JSON beside it.
