@@ -24,10 +24,14 @@ import pathlib
 import re
 import subprocess
 import sys
+from collections.abc import Iterable
 
 NAMESPACE = "coordination/messages/"
 ACK_REQUIRED_KINDS = {"claim", "question", "blocker", "policy", "stop", "takeover", "handoff"}
 MSG_RE = re.compile(r"^(?P<stamp>\d{8}T\d{6}Z)-(?P<task>.+)-(?P<kind>[a-z]+)\.md$")
+YAML_FIELD_RE = re.compile(
+    r"^[ \t]*(?P<key>[A-Za-z_][A-Za-z0-9_-]*)[ \t]*:[ \t]*(?P<value>.*?)[ \t]*$"
+)
 
 
 def git(*args: str) -> str:
@@ -66,30 +70,128 @@ def body_of(path: str, ref: str, root: pathlib.Path) -> str:
     return git("show", f"{ref}:{path}")
 
 
+def yaml_front_matter(body: str) -> dict[str, str]:
+    """Return flat fields from an optional leading YAML front matter block."""
+    lines = body.splitlines()
+    start = 0
+    while start < len(lines) and not lines[start].strip():
+        start += 1
+    if start >= len(lines) or lines[start].strip() != "---":
+        return {}
+
+    fields: dict[str, str] = {}
+    for line in lines[start + 1:]:
+        if line.strip() == "---":
+            return fields
+        match = YAML_FIELD_RE.match(line)
+        if match:
+            fields[match["key"].lower()] = match["value"].strip()
+    return {}
+
+
+def legacy_values(body: str, key: str) -> list[str]:
+    """Return exact `- Key:` values without accepting longer key prefixes."""
+    field = re.compile(
+        rf"^[ \t]*-[ \t]*{re.escape(key)}[ \t]*:[ \t]*(.*?)[ \t]*$",
+        re.IGNORECASE,
+    )
+    return [
+        match.group(1)
+        for line in body.splitlines()
+        if (match := field.match(line))
+    ]
+
+
+def scalar_value(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'`":
+        return value[1:-1].strip()
+    return value
+
+
 def task_of(body: str, fallback: str) -> str:
-    """The `- Task:` header is authoritative; filenames embed arbitrary extra words.
+    """Explicit metadata is authoritative; filenames embed arbitrary extra words.
 
     Pairing acks on filename segments broke twice in practice: a sender whose message was
     named `...-iteration2-backlog-ack-n1-claim.md` yields the filename task
     `iteration2-backlog-ack-n1`, which no reasonably-named ack will ever match.
     """
-    for line in body.splitlines():
-        low = line.lower()
-        if low.startswith("- task:"):
-            t = line.split(":", 1)[1].strip().strip("`").strip()
-            if t:
-                return t
+    yaml = yaml_front_matter(body)
+    if "task_id" in yaml:
+        return scalar_value(yaml["task_id"]) or fallback
+    legacy = legacy_values(body, "Task")
+    if legacy:
+        return scalar_value(legacy[0]) or fallback
     return fallback
 
 
+def recipient_tokens(value: str) -> set[str]:
+    """Tokenize ids exactly, including YAML list and comma-separated forms."""
+    return {token.lower() for token in re.findall(r"[A-Za-z0-9_]+", value)}
+
+
 def addressed_to_me(body: str, me: str) -> bool:
-    for line in body.splitlines():
-        low = line.lower()
-        if low.startswith(("- to:", "- cc:")):
-            targets = low.split(":", 1)[1]
-            if me in targets or "both" in targets or "all" in targets:
-                return True
-    return False
+    yaml = yaml_front_matter(body)
+    if "to" in yaml or "cc" in yaml:
+        values = [yaml[key] for key in ("to", "cc") if key in yaml]
+    else:
+        values = legacy_values(body, "To") + legacy_values(body, "CC")
+    targets = set().union(*(recipient_tokens(value) for value in values))
+    return bool({me.lower(), "both", "all"} & targets)
+
+
+def parse_boolean(value: str) -> bool | None:
+    normalized = scalar_value(value).lower()
+    if normalized in {"true", "yes", "1", "on"}:
+        return True
+    if normalized in {"false", "no", "0", "off"}:
+        return False
+    return None
+
+
+def message_kind(body: str, fallback: str) -> str:
+    """Normalize the current YAML type vocabulary, falling back to the filename."""
+    raw = scalar_value(yaml_front_matter(body).get("type", "")).lower().replace("-", "_")
+    aliases = {
+        "ack": "ack",
+        "acknowledgement": "ack",
+        "review_ack": "ack",
+        "blocker": "blocker",
+        "review_blocker": "blocker",
+        "handoff": "handoff",
+        "review_handoff": "handoff",
+        "claim": "claim",
+        "question": "question",
+        "policy": "policy",
+        "stop": "stop",
+        "takeover": "takeover",
+        "update": "update",
+        "release": "release",
+    }
+    return aliases.get(raw, fallback)
+
+
+def requires_ack(body: str, kind: str) -> bool:
+    yaml = yaml_front_matter(body)
+    yaml_required = parse_boolean(yaml["requires_ack"]) if "requires_ack" in yaml else None
+    legacy_required = bool(
+        re.search(
+            r"requires[ \t]+acknowledgement[ \t]*:[ \t]*yes\b",
+            body,
+            re.IGNORECASE,
+        )
+    )
+    return yaml_required is True or legacy_required or kind in ACK_REQUIRED_KINDS
+
+
+def deduplicate_messages(
+    locations: Iterable[tuple[str, str]],
+) -> dict[str, tuple[str, str]]:
+    """Deduplicate the same immutable path across refs, not filename stems."""
+    seen: dict[str, tuple[str, str]] = {}
+    for path, ref in locations:
+        seen.setdefault(path, (path, ref))
+    return seen
 
 
 def main() -> int:
@@ -103,22 +205,24 @@ def main() -> int:
     if args.fetch:
         git("fetch", "-q", "origin")
 
-    seen: dict[str, tuple[str, str]] = {}  # filename stem -> (path, ref)
+    locations: list[tuple[str, str]] = []
     for ref in refs():
-        for path, r in messages_on(ref):
-            seen.setdefault(pathlib.Path(path).stem, (path, r))
-    for path, r in messages_in_worktree(root):
-        seen.setdefault(pathlib.Path(path).stem, (path, r))
+        locations.extend(messages_on(ref))
+    locations.extend(messages_in_worktree(root))
+    seen = deduplicate_messages(locations)
 
     my_prefix = f"{NAMESPACE}{args.me}/"
     my_acks = set()
-    for stem, (path, ref) in seen.items():
+    for path, ref in seen.values():
         if not path.startswith(my_prefix):
             continue
         m = MSG_RE.match(pathlib.Path(path).name)
-        if not m or m["kind"] != "ack":
+        if not m:
             continue
-        my_acks.add(task_of(body_of(path, ref, root), m["task"]))
+        body = body_of(path, ref, root)
+        if message_kind(body, m["kind"]) != "ack":
+            continue
+        my_acks.add(task_of(body, m["task"]))
 
     watermark_file = root / args.me / "inbox-watermark.txt"
     watermark = ""
@@ -126,7 +230,7 @@ def main() -> int:
         watermark = watermark_file.read_text(encoding="utf-8").strip()
 
     new_items, unacked = [], []
-    for stem, (path, ref) in sorted(seen.items()):
+    for path, ref in sorted(seen.values()):
         m = MSG_RE.match(pathlib.Path(path).name)
         if not m:
             continue
@@ -138,10 +242,7 @@ def main() -> int:
             continue
         if m["stamp"] > watermark:
             new_items.append((path, ref))
-        needs_ack = (
-            "requires acknowledgement: yes" in body.lower()
-            or m["kind"] in ACK_REQUIRED_KINDS
-        )
+        needs_ack = requires_ack(body, message_kind(body, m["kind"]))
         if needs_ack and task_of(body, m["task"]) not in my_acks:
             unacked.append((path, ref))
 
