@@ -1,6 +1,7 @@
 # 20260731-owner-tent-banker-commitment-arena
 
-- Status: submitted — agent `6585765` / submission `41071067`; initial games queued
+- Status: active — agent `6585765` / submission `41071067`; first health clean, weak,
+  monitoring without restore
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (review remains useful but is not a submission blocker after the
@@ -12,7 +13,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete remote evidence
 - Created UTC: 2026-07-31T16:05:00Z
-- Last updated UTC: 2026-07-31T16:10:00Z
+- Last updated UTC: 2026-07-31T16:15:00Z
 
 ## Owner authorization and override
 
@@ -90,3 +91,17 @@ without relabeling local mechanism tests as field-value qualification.
   `data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-initial-checkpoint-2026-07-31.json`,
   SHA-256 `778f1b4dded61d953044a1935b49d51d068900fffc5a4a8fd704e72dfe6c9495`.
 - No automatic restore will be issued.
+
+## First completed-game health
+
+- Observed `2026-07-31T07:46:54Z`; audit completed `07:46:58Z`.
+- Exact identity `6585765`/`41071067`: 12 finished and parsed, one pending, zero
+  unexpected rows, fetch failures, or validity/runtime signals; `identity_clean=true`.
+- Arena score 9.64, rank 111/113; filtered score 11.38.
+- Two wins, one tie, nine losses; mean margin −91.583; four catastrophic losses
+  (33.33%); negative-margin mass 1,159.
+- Checkpoint:
+  `data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-first-health-2026-07-31.json`,
+  SHA-256 `5501453492153e09e281feb6beaf95bbd0526a9690b8e60adcedc53d45f8e69f`.
+- This is a clean but very immature and materially weak initial read. Per the owner's
+  override, monitoring continues and no automatic restore is made.

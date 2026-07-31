@@ -38,6 +38,25 @@
     "identity_clean": false,
     "identity_note": "no finished row existed yet; all ten listed rows matched the exact new identity"
   },
+  "first_completed_health": {
+    "path": "data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-first-health-2026-07-31.json",
+    "sha256": "5501453492153e09e281feb6beaf95bbd0526a9690b8e60adcedc53d45f8e69f",
+    "matching_finished": 12,
+    "matching_pending": 1,
+    "arena_score": 9.64,
+    "arena_rank": 111,
+    "arena_rank_total": 113,
+    "wins": 2,
+    "ties": 1,
+    "losses": 9,
+    "mean_margin": -91.58333333333333,
+    "catastrophic_losses": 4,
+    "negative_margin_mass": 1159,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "identity_clean": true
+  },
   "automatic_restore_authorized": false,
-  "status": "submitted_initial_games_queued"
+  "status": "first_health_clean_weak_monitoring_without_restore"
 }
