@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: begins when work owner publishes acknowledgement/claim
 - Created UTC: 2026-07-31T05:25:00Z
-- Last updated UTC: 2026-07-31T09:30:00Z
+- Last updated UTC: 2026-07-31T09:45:00Z
 
 ## Outcome
 
@@ -36,7 +36,11 @@ authorizes no intervention panel.
 - `tests/test_h3a_pressure_treatment_reconstruction.py` (new);
 - `data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-*` (new compact);
 - `chatgpt_1/h3a-pressure-treatment-reconstruction-result.md` (new);
-- peer status/messages.
+- `local_codex_1/h3a-pressure-treatment-reconstruction/manifest.json` (new);
+- `coordination/status/local_codex_1.md`;
+- `coordination/messages/local_codex_1/*-20260731-h3a-pressure-treatment-reconstruction-*.md`;
+- integrator-owned H3a dispositions in `docs/APPROACH-REGISTER-2026-07-30.md`,
+  `docs/BACKLOG.md`, `docs/CONSTRAINTS.md`, `docs/STATE.md`, and the live ledger.
 
 ## Acceptance
 
