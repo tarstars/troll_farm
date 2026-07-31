@@ -1027,6 +1027,15 @@ Evidence:
 `data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json`
 and the compact human report beside it.
 
+### Peer-review disposition
+
+N6 is independently accepted as `CLOSED_AT_DEVELOPMENT`. N5's empirical arithmetic is
+supported but its frozen semantic-test coverage and ETA birth-state convention require
+correction before canonical closure. B3.11's narrow interpretation remains plausible,
+but its compact must separate HARVEST commands from confirmed fruit-unit flow and publish
+decisive state/capability plus raw-BFS/ETA rows before narrow re-review. Broad no-action
+boundaries remain binding while those corrections are pending.
+
 ## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
 
 The owner observed opening movement churn and zasmu harvesting and replanting lemons in

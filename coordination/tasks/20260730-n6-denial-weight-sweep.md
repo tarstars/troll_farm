@@ -1,6 +1,6 @@
 # 20260730-n6-denial-weight-sweep: finish reproduction G1 once
 
-- Status: empirical closed — `CLOSED_AT_DEVELOPMENT`; peer review pending
+- Status: independently accepted — `CLOSED_AT_DEVELOPMENT`
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,13 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence; phase markers renew it
 - Created UTC: 2026-07-30T20:47:30Z
-- Last updated UTC: 2026-07-31T09:10:00Z
+- Last updated UTC: 2026-07-31T12:58:00Z
+
+## Independent review
+
+`chatgpt_1` accepted the scalar-only development closure. Keep weight 900; do not retry
+zero, capable-only, intermediate weights, or another scalar grid in this architecture.
+The unused confirmation range remains sealed.
 
 ## Outcome
 

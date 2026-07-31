@@ -1,6 +1,6 @@
 # 20260730-n5-endgame-opponent-plant-contest: quantify the missing endgame contest mechanic
 
-- Status: result ready — `NO_MATERIAL_CONTEST_OPPORTUNITY`; peer review pending
+- Status: empirical arithmetic supported; review blocked pending protocol correction
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,15 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:30:00Z
-- Last updated UTC: 2026-07-30T20:39:00Z
+- Last updated UTC: 2026-07-31T12:58:00Z
+
+## Independent review
+
+`chatgpt_1` supports the reported population and ceiling arithmetic but withholds canonical
+acceptance until (1) the frozen synthetic semantic-test obligations are covered and
+(2) `subject_eta_at_birth` is corrected to the literal birth state or explicitly frozen,
+renamed, and tested as a pre-PLANT convention. No successor experiment follows before a
+narrow corrected re-review.
 
 ## Outcome
 

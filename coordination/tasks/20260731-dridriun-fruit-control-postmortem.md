@@ -1,30 +1,31 @@
 # 20260731-dridriun-fruit-control-postmortem
 
-- Status: result ready — `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`; peer review queued
+- Status: review blocked pending compact evidence correction
 - Record owner: local_codex_1
 - Work owner: local_codex_1
-- Reviewer: chatgpt_1 (after B3.7/N5/N6; no active review lease)
+- Reviewer: chatgpt_1 (blocked handoff received; narrow re-review required after correction)
 - Integrator: local_codex_1
 - Area: owner-observed fruit control / B3.7, B3.10, H3 boundary
-- Base commit: c2df65565e49316b187a7d37babf69e09a2427a0
+- Base commit: c2df655468a39c9f6f90da77a798f92b247ec6a8
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T11:00:00Z
-- Last updated UTC: 2026-07-31T11:20:00Z
+- Last updated UTC: 2026-07-31T12:58:00Z
 
 ## Result
 
 - Exact 300-turn decode has zero unknown updates; final score is 252–276.
 - Nine Dridriun door-APPLE generations received 83 opponent HARVEST commands. The first
-  waited 60 turns for resident contact and yielded 25 harvests before contact, 33 total.
+  waited 60 turns for resident contact and received 25 commands before contact, 33 total.
 - Nine resident door-APPLE generations received zero resident and zero opponent HARVEST.
   Four ripened: 22 resident ripe-CHOP commands and eight fruit present at final removal.
 - In the first two ripe cycles, resident unit 0 had `harvest_power=1` and stood on the
-  tree; the opponent harvest-capable troll was ETA 2/1 and later co-located.
+  tree; the current ETA 2/1 labels require raw-BFS/state-index correction before reliance.
 - Actual capture and reachable capture are separated: Dridriun harvested none of our
   apples in this replay.
 - Verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`. Only a read-only existing-corpus
-  joint-predicate proposal may follow; all broad interventions remain closed.
+  joint-predicate proposal may follow after corrected re-review; all broad interventions
+  remain closed.
 
 Evidence:
 `data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md`,

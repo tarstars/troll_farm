@@ -34,8 +34,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
 > DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
 > DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
-> NO_MATERIAL_LENGTH_ASSOCIATION; N5 is DONE /
-> NO_MATERIAL_CONTEST_OPPORTUNITY; N6 is CLOSED_AT_DEVELOPMENT. Next: peer corrections,
+> NO_MATERIAL_LENGTH_ASSOCIATION; N5 arithmetic supports NO_MATERIAL_CONTEST_OPPORTUNITY
+> but review is correction-blocked; N6 is independently accepted / CLOSED_AT_DEVELOPMENT. Next: peer corrections,
 > then remaining execution/search audits. E2 is DONE / ROUTE_RESIDUAL_OBSERVED but not
 > experiment-justified (0.335 hindsight movement turn per side-game). E3 is
 > VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle. E4 is DONE /
@@ -139,13 +139,14 @@ continues with construction and rating-dynamics measurement, not waiting.
   single-thread and 333.157 ms under 20-thread contention versus the frozen 5 ms close;
   one root emits 268,168 rows / 83.3 MB. The full projected 10.7 GB census was stopped.
   No Phase B, compact-format retune, pair pruning, or alternate boundary definition.
-- **N5 ✅ DONE — NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
+- **N5 REVIEW-BLOCKED — arithmetic supports NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
   388 resident targets in 78/170 endgame-reaching games versus yamo's 205 in 37/103.
   Opponents extract 1,487 carried score-equivalent units versus our 241, and we contact
   only 51/388 targets. But even the generous deny-plus-capture factor-two ceiling is
   **11.99 per all resident games, CI [8.73,15.76]**, below the frozen 20-margin gate.
-  Enemy units can share cells; this cannot body-block. No simulation or policy experiment.
-- **N6 ✅ CLOSED_AT_DEVELOPMENT.** The exact 450/900/1800 sweep completed G1 once.
+  Enemy units can share cells; this cannot body-block. Add the frozen semantic tests and
+  correct/freeze the ETA birth-state convention before canonical closure; no simulation.
+- **N6 ✅ INDEPENDENTLY ACCEPTED / CLOSED_AT_DEVELOPMENT.** The exact 450/900/1800 sweep completed G1 once.
   LOW is −0.754 margin and negative in both seats; HIGH is only +0.559 with four positive
   families. Both fail the directional mechanism sharply (15/97 and 12/77 versus 60%).
   Confirmation maps remain unused. Keep 900 and do not retune the scalar.
@@ -510,15 +511,15 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   missing cost: compact_gold negative, catastrophes +5/+3, negative mass 1.096/1.081.
   Being outside D173b's chop-shadow is not value evidence. No target, threshold, capability
   change, panel, or scaling rationale.
-- **B3.11 — NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK.** Owner postmortem game
+- **B3.11 — REVIEW-BLOCKED PENDING COMPACT CORRECTION.** Owner postmortem game
   `896352129` (252–276 vs Dridriun) is exact: nine successive opponent-door APPLE
   generations yielded 83 opponent HARVEST commands; the first waited 60 turns for resident
   contact. The resident also issued 22 ripe CHOP commands over four own-door APPLE
   generations, including 20 by a starter already capable of HARVEST, and destroyed eight
   fruit at removal. Correction: the opponent harvested zero resident-created apples;
   capture was reachable, not realized. Only a read-only corpus precheck of the joint
-  relative-control predicate may follow. Phase 21/D173 broad arms remain closed; no code,
-  threshold, capability, panel, candidate, or Arena action.
+  relative-control predicate may follow only after command/unit-flow, decisive-state, and
+  BFS/ETA corrections pass narrow re-review. Phase 21/D173 broad arms remain closed.
 - **B3.12 — NARROWED_TO_FEASIBILITY_PRECHECK.** Owner postmortem game `896352750`
   (206–184 vs zasmu) is exact: at the first resident lemon chop, seven mature LEMON trees
   hold 84 health, so even a no-travel full clear needs 21 turns of combined chop power.

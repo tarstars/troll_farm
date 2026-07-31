@@ -323,14 +323,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   lineage omissions reverse signs. Duration is post-game; do not build a cap-conditioned
   policy or call this a causal turn-limit effect. H3's narrower contact-coverage lead
   retains its cause-versus-symptom and always-on-control gates. [M5, 2026-07-30]
-- **Late opponent planting is common but its observed-yield opportunity is below the
-  current experiment bar.** Exact lineage finds 388 opponent generations planted after
+- **Late opponent planting arithmetic is supported, but canonical N5 closure is correction-blocked.**
+  Exact lineage finds 388 opponent generations planted after
   turn 250 while the resident leads, in 78/170 endgame-reaching games. The resident
   contacts only 51; opponents extract 1,487 carried score-equivalent units versus 241.
   Yet a generous deny-plus-capture factor-two ceiling averages 11.99 across all 242
   resident games, whole-game bootstrap CI [8.73,15.76], below 20. Extracted cargo is not
   banked score and the bound is replay-conditioned, not causal. Enemy units can share
-  cells, so never describe this as body-blocking or reopen H7. [N5, 2026-07-30]
+  cells, so never describe this as body-blocking or reopen H7. Frozen semantic tests and the ETA birth-state convention still require correction and narrow re-review. [N5 review, 2026-07-31]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this
@@ -401,8 +401,8 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   the omitted cost through the same compact_gold, catastrophe, and negative-mass failures.
   Outside chop-shadow scope is not action value; do not add a target or tune distance.
   [B3.10 scope audit, 2026-07-31]
-- **One exact Dridriun game narrows a relative fruit-control precheck; it does not reopen
-  the closed broad arms.** In game `896352129`, nine opponent-door APPLE generations
+- **One exact Dridriun game provisionally narrows a relative fruit-control precheck; its compact
+  is correction-blocked and does not reopen broad arms.** In game `896352129`, nine opponent-door APPLE generations
   received 83 opponent HARVEST commands; the first waited 60 turns for resident contact.
   Four resident door-APPLE generations ripened while being converted: 22 resident
   ripe-CHOP commands, zero resident HARVEST, and eight fruit present at final removal.
@@ -410,7 +410,7 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   resident-created apples. Preserve actual capture versus reach and observed flow versus
   causal savings. Only a read-only corpus frequency/joint-predicate precheck may follow;
   do not retune Phase 21/D173, edit policy/capability, or create a runner/panel.
-  [B3.11 owner postmortem, 2026-07-31]
+  HARVEST rows are commands, not confirmed fruit flow; decisive-state and BFS/ETA evidence must pass narrow re-review. [B3.11 review, 2026-07-31]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"
