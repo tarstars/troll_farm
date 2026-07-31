@@ -1,14 +1,14 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T09:10:00Z
+- Updated UTC: 2026-07-31T09:15:00Z
 - State: stale D176a/D170b labels corrected; B3.7/B3.10/H3a peer closeouts pending
 - Role: coordinator (integrator)
 - Current task: coordinate H3a correction and B3.7/B3.10 reviews
 - Branch: agent/local_codex_1
 - Head: de4474a (backlog status reconciliation claim remotely published)
 - Write set: task records plus own status/messages and authorized canonical dispositions
-- Last concrete progress UTC: 2026-07-31T09:10:00Z
-- Evidence: N5 6/6 and N6 10/10 pre-review regressions pass; locked hashes exact
+- Last concrete progress UTC: 2026-07-31T09:15:00Z
+- Evidence: STATE coordination pointer corrected from closed N4 to H3a/review queue
 - Running job: none
 - Latest verified result: H7′ real contention ubiquitous but top-20 uplift +5.76 pp, CI crosses zero
 - Next checkpoint: corrected H3a compact handoff, then serial independent reviews
