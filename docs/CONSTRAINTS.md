@@ -401,6 +401,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   the omitted cost through the same compact_gold, catastrophe, and negative-mass failures.
   Outside chop-shadow scope is not action value; do not add a target or tune distance.
   [B3.10 scope audit, 2026-07-31]
+- **One exact Dridriun game narrows a relative fruit-control precheck; it does not reopen
+  the closed broad arms.** In game `896352129`, nine opponent-door APPLE generations
+  received 83 opponent HARVEST commands; the first waited 60 turns for resident contact.
+  Four resident door-APPLE generations ripened while being converted: 22 resident
+  ripe-CHOP commands, zero resident HARVEST, and eight fruit present at final removal.
+  The opponent harvest-capable troll could reach/collocate, but actually harvested zero
+  resident-created apples. Preserve actual capture versus reach and observed flow versus
+  causal savings. Only a read-only corpus frequency/joint-predicate precheck may follow;
+  do not retune Phase 21/D173, edit policy/capability, or create a runner/panel.
+  [B3.11 owner postmortem, 2026-07-31]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"

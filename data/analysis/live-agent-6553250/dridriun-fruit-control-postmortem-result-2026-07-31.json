@@ -1,0 +1,289 @@
+{
+  "schema": "troll-farm-dridriun-fruit-control-postmortem-v1",
+  "task_id": "20260731-dridriun-fruit-control-postmortem",
+  "verdict": "NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK",
+  "game": {
+    "game_id": 896352129,
+    "resident_agent_id": 6561795,
+    "resident_seat": 0,
+    "opponent": "Dridriun",
+    "opponent_agent_id": 6480943,
+    "final_score": [
+      252,
+      276
+    ],
+    "turns": 300
+  },
+  "integrity": {
+    "raw_path": "data/raw/games/896352129.json",
+    "raw_sha256": "eee9f3485204dea948efa36d39b2fb7783752cec419e931bc08577f943adb1c0",
+    "trajectory_path": "data/processed/trajectories/896352129.jsonl",
+    "trajectory_sha256": "b4f42a5f46791de61aaa5a91e4c19f35aba3b711e9399666565fdb61a3983593",
+    "decoded_turns": 300,
+    "unknown_diff_updates": 0
+  },
+  "geometry": {
+    "resident_shack": [
+      8,
+      5
+    ],
+    "opponent_shack": [
+      9,
+      3
+    ],
+    "resident_doors": [
+      [
+        8,
+        6
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        8,
+        4
+      ]
+    ],
+    "opponent_doors": [
+      [
+        9,
+        4
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        8,
+        3
+      ]
+    ]
+  },
+  "enemy_door_apple": {
+    "cell": [
+      9,
+      2
+    ],
+    "resident_door_bfs": 3,
+    "opponent_door_bfs": 0,
+    "generations": [
+      {
+        "plant_turn": 3,
+        "first_opponent_harvest_turn": 14,
+        "opponent_harvests": 33,
+        "harvests_before_first_resident_chop": 25,
+        "first_resident_chop_turn": 63,
+        "resident_chop_commands": 14,
+        "removed_turn": 80,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 83,
+        "first_opponent_harvest_turn": 94,
+        "opponent_harvests": 4,
+        "harvests_before_first_resident_chop": 0,
+        "first_resident_chop_turn": 91,
+        "resident_chop_commands": 10,
+        "removed_turn": 102,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 105,
+        "first_opponent_harvest_turn": 116,
+        "opponent_harvests": 6,
+        "harvests_before_first_resident_chop": 2,
+        "first_resident_chop_turn": 120,
+        "resident_chop_commands": 10,
+        "removed_turn": 129,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 132,
+        "first_opponent_harvest_turn": 144,
+        "opponent_harvests": 6,
+        "harvests_before_first_resident_chop": 2,
+        "first_resident_chop_turn": 147,
+        "resident_chop_commands": 10,
+        "removed_turn": 156,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 159,
+        "first_opponent_harvest_turn": 170,
+        "opponent_harvests": 10,
+        "harvests_before_first_resident_chop": 6,
+        "first_resident_chop_turn": 182,
+        "resident_chop_commands": 10,
+        "removed_turn": 191,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 194,
+        "first_opponent_harvest_turn": 206,
+        "opponent_harvests": 5,
+        "harvests_before_first_resident_chop": 1,
+        "first_resident_chop_turn": 207,
+        "resident_chop_commands": 10,
+        "removed_turn": 216,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 219,
+        "first_opponent_harvest_turn": 230,
+        "opponent_harvests": 1,
+        "harvests_before_first_resident_chop": 0,
+        "first_resident_chop_turn": 224,
+        "resident_chop_commands": 10,
+        "removed_turn": 233,
+        "max_fruit_stock": 2
+      },
+      {
+        "plant_turn": 236,
+        "first_opponent_harvest_turn": null,
+        "opponent_harvests": 0,
+        "harvests_before_first_resident_chop": 0,
+        "first_resident_chop_turn": 241,
+        "resident_chop_commands": 10,
+        "removed_turn": 250,
+        "max_fruit_stock": 3
+      },
+      {
+        "plant_turn": 253,
+        "first_opponent_harvest_turn": 266,
+        "opponent_harvests": 18,
+        "harvests_before_first_resident_chop": 18,
+        "first_resident_chop_turn": null,
+        "resident_chop_commands": 0,
+        "removed_turn": null,
+        "max_fruit_stock": 3
+      }
+    ],
+    "generation_count": 9,
+    "opponent_harvests_total": 83,
+    "resident_chop_commands_total": 84,
+    "removed_generations": 8,
+    "alive_at_end_generations": 1,
+    "first_generation_plant_to_resident_chop_delay": 60,
+    "first_generation_harvests_before_resident_chop": 25
+  },
+  "resident_door_apples": {
+    "generation_count": 9,
+    "cells": {
+      "8,4": 6,
+      "9,5": 3
+    },
+    "planter_capability": {
+      "harvest_power_1_generations": 5,
+      "harvest_power_0_generations": 4
+    },
+    "resident_harvests": 0,
+    "opponent_harvests": 0,
+    "resident_chop_commands": 104,
+    "opponent_chop_commands": 26,
+    "generations_reaching_fruit": 4,
+    "resident_chop_commands_while_ripe": 22,
+    "fruit_stock_present_at_final_removal": 8,
+    "actual_opponent_capture": false,
+    "opponent_harvest_capable_eta_at_plant": {
+      "minimum": 1,
+      "maximum": 5,
+      "first_two_ripe_cycles": [
+        2,
+        1
+      ]
+    },
+    "ripe_cycles": [
+      {
+        "plant_turn": 205,
+        "cell": [
+          8,
+          4
+        ],
+        "planter_unit": 0,
+        "planter_harvest_power": 1,
+        "first_ripe_chop_turn": 214,
+        "resident_ripe_chop_commands": 12,
+        "max_fruit_stock": 3,
+        "fruit_stock_at_removal": 3,
+        "removed_turn": 225,
+        "opponent_harvest_capable_collocation_turns": [
+          225
+        ]
+      },
+      {
+        "plant_turn": 228,
+        "cell": [
+          8,
+          4
+        ],
+        "planter_unit": 0,
+        "planter_harvest_power": 1,
+        "first_ripe_chop_turn": 237,
+        "resident_ripe_chop_commands": 8,
+        "max_fruit_stock": 3,
+        "fruit_stock_at_removal": 3,
+        "removed_turn": 244,
+        "opponent_harvest_capable_collocation_turns": [
+          240,
+          241,
+          242,
+          243,
+          244
+        ]
+      },
+      {
+        "plant_turn": 264,
+        "cell": [
+          8,
+          4
+        ],
+        "planter_unit": 3,
+        "planter_harvest_power": 0,
+        "first_ripe_chop_turn": 273,
+        "resident_ripe_chop_commands": 1,
+        "max_fruit_stock": 1,
+        "fruit_stock_at_removal": 1,
+        "removed_turn": 273,
+        "opponent_harvest_capable_collocation_turns": []
+      },
+      {
+        "plant_turn": 287,
+        "cell": [
+          8,
+          4
+        ],
+        "planter_unit": 3,
+        "planter_harvest_power": 0,
+        "first_ripe_chop_turn": 296,
+        "resident_ripe_chop_commands": 1,
+        "max_fruit_stock": 1,
+        "fruit_stock_at_removal": 1,
+        "removed_turn": 296,
+        "opponent_harvest_capable_collocation_turns": []
+      }
+    ]
+  },
+  "prior_scope_reconciliation": {
+    "phase21_dual_value": "covers generic opponent-crop target urgency but not own production restraint or own ripe-tree action choice; closed at -7.77 Arena rating",
+    "d173a_d173b": "covers harvest-before-chop for harvest-capable local assignments but not early enemy-orchard denial or unsafe planting; broad variants fail family, catastrophe, and negative-mass gates",
+    "b3_7": "conversion-by-design remains the population fact; this replay isolates the rare resident generations that did ripen before conversion",
+    "b3_10": "the 4.84/game aggregate direct-stock closure remains binding for generic near-camp harvest; it does not identify a recurring enemy-door stream or a joint relative-control predicate",
+    "h3a": "source reconstruction only; no treatment value or panel is authorized"
+  },
+  "boundaries": {
+    "opponent_harvests_are_observed_not_causal_savings": true,
+    "resident_destroyed_fruit_stock_is_not_independent_turn_value": true,
+    "opponent_harvest_of_resident_apples_observed": false,
+    "one_game_establishes_frequency_or_value": false,
+    "existing_broad_failed_interventions_may_not_be_repackaged": true
+  },
+  "decision": {
+    "three_observations_reconstructed": true,
+    "joint_relative_control_predicate_previously_tested": false,
+    "read_only_existing_corpus_precheck_may_be_proposed": true,
+    "source_or_policy_change_authorized": false,
+    "runner_or_panel_authorized": false,
+    "candidate_or_platform_action_authorized": false
+  }
+}

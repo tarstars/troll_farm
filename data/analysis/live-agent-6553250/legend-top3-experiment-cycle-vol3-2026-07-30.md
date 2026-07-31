@@ -989,3 +989,40 @@ without rewriting peer files.
 Evidence:
 `data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-result-2026-07-31.json`
 and `chatgpt_1/h3a-pressure-treatment-reconstruction-result.md`.
+
+## B3.11 — Dridriun relative fruit-control postmortem narrows a precheck
+
+The owner identified three related errors in game `896352129`, resident 252 versus
+Dridriun 276: late removal of the enemy-door orchard, creating apples under opponent
+harvest capacity, and chopping a controlled ripe own-door apple without harvesting.
+Exact raw SHA `eee9f348...` and trajectory SHA `b4f42a5f...` decode 300/300 turns with
+zero unknown updates.
+
+Dridriun planted nine APPLE generations at opponent door `(9,2)`. They received 83
+observed opponent HARVEST commands. The first generation was planted at turn 3, first
+harvested at 14, first chopped by the resident only at 63, and removed at 80: 25 harvests
+before resident contact, 33 total. Later generations were usually contacted sooner, but
+ten chop turns still allowed continuing harvest; the final generation was harvested 18
+times and survived game end.
+
+The resident planted nine door apples of its own. Four ripened. It issued zero HARVEST
+and 22 CHOP commands while they held fruit, destroying final stock 3+3+1+1 = 8. The
+strongest two cycles were starter-controlled at `(8,4)`: the unit had harvest power one,
+stood on fruit up to stock three, and still chopped. The opponent harvest-capable troll
+was ETA 2/1 at planting and later co-located with both ripe trees.
+
+Correction: Dridriun actually harvested **zero** resident-created apples; it contested
+them by reach/chop. The production concern is therefore feasible capture, not observed
+capture. The 83 opponent harvests and eight destroyed own fruit are observed accounting,
+not causal recoverable margin.
+
+**Verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`.** Phase 21 covers generic
+enemy-crop urgency and lost −7.77 Arena rating; D173 covers broad harvest-before-chop and
+fails family/tail gates; B3.7 conversion-by-design and B3.10's 4.84/game generic
+direct-stock closure remain binding. What is untested is only their joint strict
+relative-control predicate. A read-only existing-corpus frequency/precheck may be
+proposed; no code, threshold, capability, runner, panel, candidate, or Arena action.
+
+Evidence:
+`data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json`
+and the compact human report beside it.

@@ -1,0 +1,33 @@
+{
+  "task_id": "20260731-dridriun-fruit-control-postmortem",
+  "verdict": "NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK",
+  "inputs": {
+    "data/raw/games/896352129.json": "eee9f3485204dea948efa36d39b2fb7783752cec419e931bc08577f943adb1c0",
+    "data/processed/trajectories/896352129.jsonl": "b4f42a5f46791de61aaa5a91e4c19f35aba3b711e9399666565fdb61a3983593",
+    "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+    "cgauto/replay_state.py": "4f38829baa533bc8af940fb0eeed6cf5a746357b74abe38f42f5060cb9101569"
+  },
+  "outputs": {
+    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json": "ea2c14486c6898b0f80c93b490581eee0aa077f834f316849e617524a74dd2c0",
+    "data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md": "f621fdf30e8ef3aaf7d8627623b4443264ac9ea37cb9b83b12cf8db75ce72cfc"
+  },
+  "validation": {
+    "json_valid": true,
+    "decoded_turns": 300,
+    "unknown_diff_updates": 0,
+    "generation_accounting_reconciled": true,
+    "git_diff_check": true,
+    "decision_evidence_semantic_check": "11 records; 6 closures excluding void; 1 void premise",
+    "decision_evidence_pytest": "25 passed",
+    "state_lines": 150,
+    "ledger_bytes": 60645,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "actions": {
+    "other_game_or_replay_read_after_claim": false,
+    "new_analyzer_or_source_edit": false,
+    "bulk_write": false,
+    "runner_or_panel": false,
+    "candidate_or_platform_mutation": false
+  }
+}

@@ -510,6 +510,15 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   missing cost: compact_gold negative, catastrophes +5/+3, negative mass 1.096/1.081.
   Being outside D173b's chop-shadow is not value evidence. No target, threshold, capability
   change, panel, or scaling rationale.
+- **B3.11 — NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK.** Owner postmortem game
+  `896352129` (252–276 vs Dridriun) is exact: nine successive opponent-door APPLE
+  generations yielded 83 opponent HARVEST commands; the first waited 60 turns for resident
+  contact. The resident also issued 22 ripe CHOP commands over four own-door APPLE
+  generations, including 20 by a starter already capable of HARVEST, and destroyed eight
+  fruit at removal. Correction: the opponent harvested zero resident-created apples;
+  capture was reachable, not realized. Only a read-only corpus precheck of the joint
+  relative-control predicate may follow. Phase 21/D173 broad arms remain closed; no code,
+  threshold, capability, panel, candidate, or Arena action.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

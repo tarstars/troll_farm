@@ -1,6 +1,6 @@
 # 20260731-dridriun-fruit-control-postmortem
 
-- Status: claimed — exact one-game scope audit active
+- Status: result ready — `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`; peer review queued
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after B3.7/N5/N6; no active review lease)
@@ -10,7 +10,26 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T11:00:00Z
-- Last updated UTC: 2026-07-31T11:00:00Z
+- Last updated UTC: 2026-07-31T11:20:00Z
+
+## Result
+
+- Exact 300-turn decode has zero unknown updates; final score is 252–276.
+- Nine Dridriun door-APPLE generations received 83 opponent HARVEST commands. The first
+  waited 60 turns for resident contact and yielded 25 harvests before contact, 33 total.
+- Nine resident door-APPLE generations received zero resident and zero opponent HARVEST.
+  Four ripened: 22 resident ripe-CHOP commands and eight fruit present at final removal.
+- In the first two ripe cycles, resident unit 0 had `harvest_power=1` and stood on the
+  tree; the opponent harvest-capable troll was ETA 2/1 and later co-located.
+- Actual capture and reachable capture are separated: Dridriun harvested none of our
+  apples in this replay.
+- Verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`. Only a read-only existing-corpus
+  joint-predicate proposal may follow; all broad interventions remain closed.
+
+Evidence:
+`data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md`,
+compact JSON beside it, and
+`local_codex_1/dridriun-fruit-control-postmortem/manifest.json`.
 
 ## Outcome
 
@@ -29,10 +48,10 @@ The three hypotheses are:
 - Platform game `896352129`, resident agent `6561795` versus Dridriun agent `6480943`,
   final score 252–276.
 - Raw replay:
-  `/home/tarstars/prj/troll_farm/data/raw/games/896352129.json`,
+  `data/raw/games/896352129.json`,
   SHA-256 `eee9f3485204dea948efa36d39b2fb7783752cec419e931bc08577f943adb1c0`.
 - Exact trajectory:
-  `/home/tarstars/prj/troll_farm/data/processed/trajectories/896352129.jsonl`,
+  `data/processed/trajectories/896352129.jsonl`,
   SHA-256 `b4f42a5f46791de61aaa5a91e4c19f35aba3b711e9399666565fdb61a3983593`.
 - Existing exact replay decoder plus frozen H3/H3a, D173a/b, B3.7, B3.10, and Phase-21
   results/constraints.
