@@ -1,6 +1,6 @@
 # 20260731-s1-endgame-exact-solver-scope-audit
 
-- Status: active — claim/protocol publication pending
+- Status: active — implementation locked; jobs-8/jobs-1 census pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,19 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T00:13:34Z
-- Last updated UTC: 2026-07-31T00:13:34Z
+- Last updated UTC: 2026-07-31T00:20:15Z
+
+## Progress
+
+- Claim/protocol published at `c980127c3817baee2f562f4efb1015983c418afc`.
+- Analyzer/test hashes:
+  `a1bc3175ddbae9b0628c970b318446d16ee484cbc37d0b889f8b6a1b7bdaf3cb` /
+  `2acb4ec93e8a19b3ae3f5abb15f4b03b814c62b561b200924dc6d75bf53cbbd0`.
+- Six focused tests and self-test pass.
+- Exact movement resolver matches the engine on collision/swap/stay/speed fixtures.
+- Seed 0/motion reaches turn 251 with 440 movement-only joint outcomes.
+- Implementation lock:
+  `local_codex_1/s1-endgame-solver-feasibility/implementation-lock.json`.
 
 ## Outcome
 
