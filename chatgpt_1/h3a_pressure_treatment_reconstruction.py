@@ -31,11 +31,11 @@ def digest_text(text: str) -> str:
 
 
 def digest_file(path: Path) -> str:
-    h = hashlib.sha256()
+    digest = hashlib.sha256()
     with path.open("rb") as stream:
         for block in iter(lambda: stream.read(1 << 20), b""):
-            h.update(block)
-    return h.hexdigest()
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def replace_once(text: str, before: str, after: str, label: str) -> str:
@@ -91,11 +91,9 @@ METHODS = (
     "if eta<=6{candidate.score+=candidate.score;}}}"
 )
 BASE_RECONCILE = "fn reconcile_regeneration_commitments(&mut self,view:&GameState)"
-
 EDITS = (
     Edit(
-        "add_provenance_state_fields",
-        "provenance",
+        "add_provenance_state_fields", "provenance",
         "external_protected_tree:Option<Cell>,}",
         "external_protected_tree:Option<Cell>,plant_history_initialized:bool,"
         "previous_plants:BTreeSet<Cell>,own_plant_attempts:BTreeSet<Cell>,"
@@ -103,8 +101,7 @@ EDITS = (
         ("adds only provenance state",),
     ),
     Edit(
-        "initialize_provenance_state",
-        "provenance",
+        "initialize_provenance_state", "provenance",
         "external_protected_tree:None,}}pub fn tuned_carry_regeneration_transit_idle_harvest",
         "external_protected_tree:None,plant_history_initialized:false,"
         "previous_plants:BTreeSet::new(),own_plant_attempts:BTreeSet::new(),"
@@ -112,10 +109,8 @@ EDITS = (
         ("initializes only provenance state",),
     ),
     Edit(
-        "add_provenance_and_dual_value_methods",
-        "provenance_and_scoring",
-        BASE_RECONCILE,
-        METHODS + BASE_RECONCILE,
+        "add_provenance_and_dual_value_methods", "provenance_and_scoring",
+        BASE_RECONCILE, METHODS + BASE_RECONCILE,
         (
             "new live plant not preceded by our PLANT is opponent provenance",
             "existing Target::Tree only",
@@ -124,8 +119,7 @@ EDITS = (
         ),
     ),
     Edit(
-        "reconcile_provenance_before_opening",
-        "provenance_lifecycle",
+        "reconcile_provenance_before_opening", "provenance_lifecycle",
         "fn commands(&mut self,view:&GameState)->Vec<String>{"
         "self.reconcile_regeneration_commitments(view);self.ensure_opening(view);",
         "fn commands(&mut self,view:&GameState)->Vec<String>{"
@@ -134,8 +128,7 @@ EDITS = (
         ("adds provenance reconciliation before unchanged opening logic",),
     ),
     Edit(
-        "apply_dual_value_to_existing_candidates",
-        "scoring_hook",
+        "apply_dual_value_to_existing_candidates", "scoring_hook",
         "self.persistent_regeneration,protected_tree,self.opponent_eta_penalty,)};"
         "if endgame&&self.idle_harvest",
         "self.persistent_regeneration,protected_tree,self.opponent_eta_penalty,)};"
@@ -144,8 +137,7 @@ EDITS = (
         ("scores the existing candidate vector only",),
     ),
     Edit(
-        "remember_main_loop_own_plant_attempts",
-        "provenance_lifecycle",
+        "remember_main_loop_own_plant_attempts", "provenance_lifecycle",
         "MoisanBot::resolve_move_conflicts(view,&mut selected);"
         "self.remember_selected_regeneration(&selected);out.extend(selected);",
         "MoisanBot::resolve_move_conflicts(view,&mut selected);"
@@ -154,8 +146,7 @@ EDITS = (
         ("records selected PLANT commands after unchanged conflict resolution",),
     ),
     Edit(
-        "remember_orchard_wrapper_own_plant_attempts",
-        "provenance_lifecycle",
+        "remember_orchard_wrapper_own_plant_attempts", "provenance_lifecycle",
         "&BTreeSet::from([geometry.mother]),);commands}}}",
         "&BTreeSet::from([geometry.mother]),);"
         "self.inner.remember_own_plant_attempts(view,&commands);commands}}}",
@@ -220,19 +211,26 @@ def verify_semantics() -> dict[str, Any]:
     if present:
         raise ValueError(f"prohibited fragments present: {present}")
     fixtures = {
-        "eligible_eta_6": dual_value_score(12.5, tracked_opponent_crop=True, tree_target=True,
-                                             reachable_distance_cells=12, movement_speed=2),
-        "ineligible_eta_7": dual_value_score(12.5, tracked_opponent_crop=True, tree_target=True,
-                                               reachable_distance_cells=13, movement_speed=2),
-        "ineligible_untracked": dual_value_score(12.5, tracked_opponent_crop=False,
-                                                   tree_target=True, reachable_distance_cells=1,
-                                                   movement_speed=1),
-        "ineligible_non_tree": dual_value_score(12.5, tracked_opponent_crop=True,
-                                                  tree_target=False, reachable_distance_cells=1,
-                                                  movement_speed=1),
-        "ineligible_unreachable": dual_value_score(12.5, tracked_opponent_crop=True,
-                                                     tree_target=True, reachable_distance_cells=None,
-                                                     movement_speed=1),
+        "eligible_eta_6": dual_value_score(
+            12.5, tracked_opponent_crop=True, tree_target=True,
+            reachable_distance_cells=12, movement_speed=2
+        ),
+        "ineligible_eta_7": dual_value_score(
+            12.5, tracked_opponent_crop=True, tree_target=True,
+            reachable_distance_cells=13, movement_speed=2
+        ),
+        "ineligible_untracked": dual_value_score(
+            12.5, tracked_opponent_crop=False, tree_target=True,
+            reachable_distance_cells=1, movement_speed=1
+        ),
+        "ineligible_non_tree": dual_value_score(
+            12.5, tracked_opponent_crop=True, tree_target=False,
+            reachable_distance_cells=1, movement_speed=1
+        ),
+        "ineligible_unreachable": dual_value_score(
+            12.5, tracked_opponent_crop=True, tree_target=True,
+            reachable_distance_cells=None, movement_speed=1
+        ),
     }
     expected = {
         "eligible_eta_6": 25.0,
@@ -265,18 +263,33 @@ def sidecar_digest() -> str:
     return values[0]
 
 
+def crate_name(source: Path) -> str:
+    if source == FALLBACK:
+        return "h3a_fallback"
+    if source == TREATMENT:
+        return "h3a_treatment"
+    raise ValueError(f"unexpected compile source: {source}")
+
+
 def compile_artifact(source: Path, output: Path) -> dict[str, Any]:
     rustc = shutil.which("rustc")
     if rustc is None:
         raise RuntimeError("rustc is unavailable")
-    actual = [rustc, "--edition=2021", "-O", str(source), "-o", str(output)]
+    name = crate_name(source)
+    actual = [
+        rustc, "--crate-name", name, "--edition=2021", "-O",
+        str(source), "-o", str(output),
+    ]
     completed = subprocess.run(actual, cwd=ROOT, capture_output=True, text=True, timeout=180)
     if completed.returncode != 0:
         raise RuntimeError(f"compile failed for {source}:\n{completed.stdout}\n{completed.stderr}")
     return {
         "source": str(source.relative_to(ROOT)),
-        "command": ["rustc", "--edition=2021", "-O", str(source.relative_to(ROOT)),
-                    "-o", "<temporary-output>"],
+        "crate_name": name,
+        "command": [
+            "rustc", "--crate-name", name, "--edition=2021", "-O",
+            str(source.relative_to(ROOT)), "-o", "<temporary-output>",
+        ],
         "binary_sha256": digest_file(output),
         "binary_bytes": output.stat().st_size,
     }
@@ -311,10 +324,10 @@ def analyze(*, compile_sources: bool = True) -> dict[str, Any]:
     compilation: list[dict[str, Any]] = []
     if compile_sources:
         with tempfile.TemporaryDirectory(prefix="h3a-reconstruction-") as directory:
-            root = Path(directory)
+            temp = Path(directory)
             compilation = [
-                compile_artifact(FALLBACK, root / "fallback"),
-                compile_artifact(TREATMENT, root / "treatment"),
+                compile_artifact(FALLBACK, temp / "fallback"),
+                compile_artifact(TREATMENT, temp / "treatment"),
             ]
     return {
         "schema": "troll-farm-h3a-pressure-treatment-reconstruction-v1",
@@ -356,10 +369,14 @@ def self_test() -> None:
     fixture = "A" + EDITS[0].before + "B"
     changed = replace_once(fixture, EDITS[0].before, EDITS[0].after, "fixture")
     assert replace_once(changed, EDITS[0].after, EDITS[0].before, "inverse") == fixture
-    assert dual_value_score(3.0, tracked_opponent_crop=True, tree_target=True,
-                            reachable_distance_cells=6, movement_speed=1) == 6.0
-    assert dual_value_score(3.0, tracked_opponent_crop=True, tree_target=True,
-                            reachable_distance_cells=7, movement_speed=1) == 3.0
+    assert dual_value_score(
+        3.0, tracked_opponent_crop=True, tree_target=True,
+        reachable_distance_cells=6, movement_speed=1
+    ) == 6.0
+    assert dual_value_score(
+        3.0, tracked_opponent_crop=True, tree_target=True,
+        reachable_distance_cells=7, movement_speed=1
+    ) == 3.0
     verify_semantics()
     print("self-test: ok")
 
