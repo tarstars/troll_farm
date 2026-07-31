@@ -1166,3 +1166,52 @@ zero stderr. Sacred source remains exact at `fff6669b…`.
 is recorded for review and later serialization. B3.12's Arena cycle is now terminal, but
 this removes only the concurrency blocker: B3.13 still needs peer review and a distinct
 serialized submission decision.
+
+## B3.13 Arena terminal failure and exact-source restore
+
+The owner-directed tent-proximity artifact, SHA `3bd42d5b…`, was submitted once as
+agent/submission `6585739`/`41070944`. Its terminal clean checkpoint has 101 finished
+and parsed games, zero pending/unexpected/fetch/runtime faults, score 11.96 at rank
+111/113, 42 wins, one tie, 58 losses, mean margin −38.881, 25 catastrophes (24.752%),
+and negative-margin mass 6,669. This is 11.03 below the far-denial source's 22.99
+terminal comparator.
+
+**Disposition: terminal FAIL.** Mechanical opportunity and local boundary tests did not
+transfer to field value. The standing safety rule restored the exact far-denial artifact,
+63,033 bytes, SHA `307a0755…`, once as `6585755`/`41071034`. Its first checkpoint was
+12/12 clean at 17.38; immediately before the later owner override it was 41/41 clean,
+score 19.56, rank 64/113, with zero runtime signals. The restore was healthy but not
+mature.
+
+Evidence:
+`owner-tent-proximity-denial-arena-safety-checkpoint-2026-07-31.json` (SHA
+`6ee76070…`) and `owner-far-denial-restore-initial-checkpoint-2026-07-31.json` (SHA
+`d3c18e28…`).
+
+## B3.14 — Adler3D sticky productive-bank successor live
+
+Exact game `897552551` identified an inherited deadlock. After the productive
+tent-adjacent worker acquired one wood and its target disappeared, the planner forgot
+its bank role. Two full carriers then produced 42 consecutive WAITs and 41 alternating
+MOVEs around one contested tree. Equal 90-point pairs plus collision detouring explain
+the visible loop; the broad B3.13 artifact reproduces all 300 recorded commands.
+
+The owner rule is persistent rather than score-based: once the productive one-or-two-band
+worker has cargo and starts banking, it remains on the existing bank path until `DROP`
+succeeds or cargo is empty. Candidate
+`candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs` is 68,464 bytes, SHA
+`f26e3781…`. Three new compiled commitment tests plus the five B3.13 boundaries pass;
+exact replay first diverges bankward on turn 48; eight unsealed both-seat smokes complete
+without stderr. Sacred source remains `fff6669b…`.
+
+The owner explicitly directed “don't restore previous stabe, send new”. The exact
+candidate was submitted once: platform submission `41071067`, agent `6585765`.
+The initial queue contained ten exact matching rows. First completed health at
+2026-07-31T07:46:58Z is 12/12 parsed with one pending, exact identity, and zero
+unexpected/fetch/runtime signals. The score is 9.64, rank 111/113; record is
+2 wins/1 tie/9 losses, mean margin −91.583, four catastrophes, negative mass 1,159.
+
+**Disposition: LIVE / MONITOR WITHOUT AUTOMATIC RESTORE.** This is a clean but weak and
+immature checkpoint. It is an owner-directed incident successor, not frozen-protocol
+qualification and not evidence for the broad tent policy. No further Arena mutation is
+authorized automatically.

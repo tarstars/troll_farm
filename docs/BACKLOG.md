@@ -8,9 +8,11 @@ may run in parallel and are claimable by any agent under
 
 ## Position summary (2026-07-31)
 
-Active resident `6585578`/`41070584`: **22.99, rank 34/113**, confirmed terminal after
-160/160 clean games. It is +1.09 over the 21.9 pre-trial row, but remains **1.71** below
-interim 24.70 and **2.41** below target 25.40. No Arena cycle is in flight. **Goal
+Active resident `6585765`/`41071067` is the owner-directed sticky-bank successor:
+first clean health is **9.64, rank 111/113** after 12 finished games, with one pending
+and zero identity/runtime faults. The far-denial source's historical terminal comparator
+is 22.99/160; B3.13 then failed at 11.96/101, and its exact-source restore was displaced
+by owner direction. Monitoring continues without automatic restore. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
@@ -536,10 +538,10 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   **Owner override terminal 2026-07-31:** the explicitly directed threshold-3 candidate
   SHA `307a0755…` keeps full trolls chopping far focus trees and discards lethal overflow.
   Agent `6585578` / submission `41070584` completes 160/160 clean games at score 22.99,
-  rank 34/113: +1.09 over the 21.9 pre-trial row, but below 24.70/25.40. Keep it as the
-  active resident and close the cycle. This uncontrolled live result is not scientific
+  rank 34/113: +1.09 over the 21.9 pre-trial row, but below 24.70/25.40. This is now a
+  historical comparator rather than the active resident. The uncontrolled live result is not scientific
   qualification or reopening of the broad closed arms.
-- **B3.13 — CANDIDATE_READY / ARENA_DEFERRED.** Exact DoubtinGiyov game `897547554`
+- **B3.13 — TERMINAL FAIL / DISPLACED RESTORE.** Exact DoubtinGiyov game `897547554`
   exposes the requested enemy-tent orchard: 37 adjacent planted generations, with the
   opponent banking 24 adjacent-tree items before resident contact. The coordination
   layer now starts with the first cardinal-adjacent tree: at 1–2, one troll performs the
@@ -547,9 +549,18 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   a denial-driven return; above two, both trolls use full non-banking adjacent denial.
   Fail-closed candidate SHA `3bd42d5b…` passes 5 compiled boundary tests, exact 300-state
   open-loop validation, and eight unsealed both-seat smoke cells. This is mechanical
-  coherence, not value qualification. The Arena slot is now idle after B3.12's terminal
-  keep, but B3.13 still requires peer review and a distinct serialized decision before
-  any submission.
+  coherence, not value qualification. Its exact live trial `6585739`/`41070944` failed
+  cleanly after 101 games at score 11.96, rank 111/113, with 25 catastrophes and
+  negative-margin mass 6,669. Exact far-denial restore `6585755`/`41071034` was clean
+  at 41 games and 19.56 immediately before the owner displaced it.
+- **B3.14 — OWNER-DIRECTED LIVE / MONITORING.** Adler3D game `897552551` identified an
+  inherited deadlock: the productive worker forgot its bank role after target removal,
+  while two full carriers entered a 42-WAIT/41-MOVE contention loop. Candidate SHA
+  `f26e3781…` makes that productive bank commitment sticky until `DROP` or empty cargo;
+  8 focused compiled tests, exact replay mechanism evidence, and 8 unsealed smokes pass.
+  The owner explicitly directed submission instead of restoration. Agent
+  `6585765`/`41071067` is identity-clean with zero runtime signals at 12 games, but the
+  first score is only 9.64 (rank 111/113; four catastrophes). No automatic restore.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

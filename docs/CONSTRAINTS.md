@@ -1029,3 +1029,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   but below 24.70/25.40. Keep it as the active resident, but do not treat this uncontrolled
   live result as evidence that the precheck or closed broad arms passed. The cycle is
   terminal; any successor needs a distinct serialized task. [B3.12, 2026-07-31]
+- **Local mechanism coherence did not qualify the broad tent-adjacent coordination
+  layer.** B3.13 passed five compiled boundaries, exact teacher-forced replay, and eight
+  smokes, yet its owner-directed live agent `6585739` / submission `41070944` terminated
+  at 101 clean games with score **11.96**, rank 111/113, mean margin −38.881,
+  **25 catastrophes (24.75%)**, and negative-margin mass 6,669. Do not resubmit the
+  unmodified coordination layer or cite the local gates as field value. [B3.13,
+  2026-07-31]
+- **Sticky productive banking is an incident correction, not yet a value claim.** Exact
+  Adler3D game `897552551` proves the productive carrier can forget its return role and
+  enter a 42-WAIT/41-MOVE full-cargo loop. B3.14 preserves that worker's bank commitment
+  until `DROP` or empty cargo; eight focused tests and replay/smoke checks pass. The owner
+  directed its live submission as `6585765`/`41071067` and explicitly rejected automatic
+  restoration. Its first 12-game checkpoint is identity-clean but only 9.64 at rank
+  111/113 with four catastrophes. Treat this as immature monitoring evidence; do not
+  generalize it to banking-route value, tree-order persistence, or broad oscillation
+  reopening. [B3.14, 2026-07-31]

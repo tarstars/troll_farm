@@ -1,6 +1,6 @@
 # 20260731-adler3d-target-contention-deadlock
 
-- Status: candidate ready — local validation passed; peer review queued; Arena forbidden
+- Status: candidate submitted through distinct owner-directed Arena task; peer review queued
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:30:00Z
-- Last updated UTC: 2026-07-31T16:00:00Z
+- Last updated UTC: 2026-07-31T16:15:00Z
 
 ## Owner observation
 
@@ -140,3 +140,6 @@ serialized Arena task.
   `6585755`/`41071034` remains in flight.
 - Review handoff:
   `coordination/messages/local_codex_1/20260731T160000Z-20260731-adler3d-target-contention-deadlock-handoff.md`.
+- Subsequent owner override and live execution are recorded separately under
+  `20260731-owner-tent-banker-commitment-arena`; this incident task itself made no
+  platform mutation.

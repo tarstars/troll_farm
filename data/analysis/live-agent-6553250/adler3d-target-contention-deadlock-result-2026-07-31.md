@@ -78,3 +78,11 @@ tent-proximity trial failed independently at score 11.96 and exact-source restor
 `6585755`/`41071034` is the sole in-flight Arena leg. The sticky-bank successor remains
 an unsubmitted incident fix until restoration is terminal and a distinct decision is
 serialized.
+
+## Subsequent owner override
+
+The owner later directed “don't restore previous stabe, send new”. A distinct serialized
+Arena task submitted this exact candidate once as agent/submission
+`6585765`/`41071067`. The first completed-game health is identity-clean with zero runtime
+signals but weak: score 9.64, rank 111/113 after 12 games. Monitoring continues without
+automatic restoration; this does not change the mechanism-only scientific boundary above.
