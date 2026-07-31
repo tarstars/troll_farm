@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-import importlib.util
 import json
 from pathlib import Path
 import shutil
+import sys
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-MODULE_PATH = ROOT / "chatgpt_1/h3a_pressure_treatment_reconstruction.py"
-spec = importlib.util.spec_from_file_location("h3a_reconstruction", MODULE_PATH)
-h3a = importlib.util.module_from_spec(spec)
-assert spec.loader is not None
-spec.loader.exec_module(h3a)
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from chatgpt_1 import h3a_pressure_treatment_reconstruction as h3a
 
 
 def test_frozen_hashes_and_three_way_exact_reconstruction():
