@@ -1,0 +1,90 @@
+{
+  "schema": "troll-farm-n4-candidate-pair-phase-a-result-v1",
+  "task_id": "20260730-n4-candidate-pair-value-audit",
+  "generated_utc": "2026-07-31T06:10:00Z",
+  "verdict": "RUNTIME_CLOSE",
+  "phase_b_authorized": false,
+  "scope": {
+    "kind": "pre-lock one-root diagnostic",
+    "map_seeds": [9854000],
+    "seats": [0, 1],
+    "opponent_families": 8,
+    "tasks": 16,
+    "natural_two_worker_states": 4028,
+    "full_matrix_tasks": 2048,
+    "full_matrix_run": false,
+    "reason_full_matrix_not_run": "Integrator stop decision: exact smoke p95 exceeds the frozen 5 ms close by 42-67x and projects approximately 10.7 GB / more than eight parallel hours."
+  },
+  "integrity": {
+    "python_compile": true,
+    "analyzer_self_test": true,
+    "focused_pytest": "12 passed, 0 failed",
+    "generated_cargo_regression": true,
+    "sacred_materialization": true,
+    "release_build": true,
+    "frozen_command_reconstruction_failures": 0,
+    "normalized_thread_parity": true,
+    "normalized_parity_excluded_columns": ["latency_us"],
+    "normalized_sha256": "9177b5c925d3a534bb19588f76314f26d163192cbb75f0118d41b979bce9b3be"
+  },
+  "runtime": {
+    "frozen_p95_close_ms": 5.0,
+    "single_thread_p95_ms": 210.408,
+    "parallel_20_thread_p95_ms": 333.157,
+    "single_thread_multiple_of_gate": 42.0816,
+    "parallel_multiple_of_gate": 66.6314,
+    "single_thread_elapsed_seconds_approx": 642,
+    "parallel_elapsed_seconds": 235.04,
+    "parallel_max_rss_kib": 323268,
+    "single_thread_data_rows": 268168,
+    "total_lines_per_run": 268169,
+    "single_thread_bytes": 83327440,
+    "projected_full_rows": 34325504,
+    "projected_full_bytes": 10665912320,
+    "projected_single_thread_hours": 22.8267
+  },
+  "hard_closes": {
+    "latency_p95_above_5ms": true,
+    "eligible_games_below_103": null,
+    "boundary_games_below_41": null,
+    "not_distinct_from_consumed_grammar": null,
+    "eligible_families_below_6": null,
+    "seat_share_below_30pct": null,
+    "source_or_outcome_integrity_failure": false,
+    "live_reconstruction_not_exact": false
+  },
+  "not_evaluated": [
+    "full-matrix eligible-game count",
+    "full-matrix boundary-game count",
+    "full-matrix family breadth",
+    "full-matrix seat concentration",
+    "full-matrix consumed-grammar distinctness"
+  ],
+  "source_lock": {
+    "path": "data/analysis/live-agent-6553250/n4-candidate-pair-value-phase-a-implementation-lock.json",
+    "commit": "5c940549e7ea3d11c645b392aaf66fdf53826b39",
+    "implementation_commit": "e46f315a06944426ef4917153edc8ec508a956ea",
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "instrumented_resident_sha256": "37baf749f8b8f615432d089ff979a1a7c56e984c56acf8b5102540377fa3a744",
+    "generated_runner_sha256": "cecbf8ecb88d094dc68da75e8388dbec55f5bee7e297e71cfd4a24209dd4e980",
+    "release_binary_sha256": "9854cb1314b2dad1f632a19e0af7d40b558a1f03bf907437c6283506fd57a00c"
+  },
+  "decision": {
+    "integrator_commit": "2e68fba2a802017f1c45046eee858d84b1a0c90a",
+    "stop_reason": "The preregistered pre-lock smoke exists to prevent an infeasible full census. Correctness and parity pass; runtime fails decisively.",
+    "full_census_authorized": false,
+    "format_optimization_authorized": false,
+    "phase_b_authorized": false,
+    "downstream": {
+      "L2": "closed with N4",
+      "L3": "closed with N4",
+      "E1": "requires a separately authorized compact runtime-feasible surface; current exhaustive exporter cannot be reused"
+    }
+  },
+  "safety": {
+    "resident_modified": false,
+    "module_registry_modified": false,
+    "alternative_terminal_outcomes_generated": false,
+    "arena_or_platform_action": false
+  }
+}
