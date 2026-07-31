@@ -75,5 +75,41 @@
     "filtered_ladder_score": 12.6,
     "interpretation": "fresh validity checkpoint only; too immature for policy value"
   },
-  "status": "submitted_initial_health_clean_maturity_in_flight"
+  "safety_failure_checkpoint": {
+    "path": "data/analysis/live-agent-6553250/owner-tent-proximity-denial-arena-safety-checkpoint-2026-07-31.json",
+    "sha256": "6ee760707f3ee07fd7bfba3427c245c1aa1492ba00fe20ce4ba9afe0738920ed",
+    "agent_id": 6585739,
+    "submission_id": 41070944,
+    "finished_results": 101,
+    "parsed_results": 101,
+    "pending_results": 1,
+    "identity_clean": true,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "score": 11.96,
+    "rank": 111,
+    "population": 113,
+    "wins": 42,
+    "ties": 1,
+    "losses": 58,
+    "mean_margin": -38.881188118811885,
+    "catastrophic_games": 25,
+    "catastrophic_rate": 0.24752475247524752,
+    "negative_mass": 6669,
+    "filtered_ladder_score": 12.27,
+    "below_previous_terminal_score": 11.03,
+    "disposition": "terminal_fail_restore_exact_previous_source"
+  },
+  "restore_submission": {
+    "source_path": "cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs",
+    "source_sha256": "307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd",
+    "submit_endpoint": "TestSession/submit",
+    "submission_id": 41071034,
+    "agent_id": 6585755,
+    "initial_queued_battles": 10,
+    "initial_completed_battles": 0,
+    "exactly_once": true
+  },
+  "status": "candidate_terminal_fail_exact_source_restore_in_flight"
 }

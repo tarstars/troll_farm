@@ -1,6 +1,6 @@
 # 20260731-owner-tent-proximity-denial-arena
 
-- Status: submitted — initial health clean; maturity in flight
+- Status: candidate terminal FAIL — exact-source restore in flight
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed submission; chatgpt_1 receives immutable evidence
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:15:00Z
-- Last updated UTC: 2026-07-31T15:25:00Z
+- Last updated UTC: 2026-07-31T15:50:00Z
 
 ## Owner directive
 
@@ -113,3 +113,15 @@ candidate after the serialized claim is pushed and every precondition remains ex
   second submission occurred.
 - Initial checkpoint SHA-256:
   `b17a509bb3d9441f29db191bf070ae4c46ff9a25972c4f416ca23a66e96670e6`.
+- Safety checkpoint: 101 finished/parsed, one pending, exact identity, score 11.96 at
+  rank 111/113, 25 catastrophes (24.8%), negative-margin mass 6,669, and zero
+  runtime/validity signals.
+- Safety checkpoint SHA-256:
+  `6ee760707f3ee07fd7bfba3427c245c1aa1492ba00fe20ce4ba9afe0738920ed`.
+- This clean row is 11.03 below the previous terminal 22.99 score, so the candidate is a
+  terminal policy failure and the explicit restore rule fired.
+- The exact previous source SHA `307a0755…` was restored exactly once through
+  `TestSession/submit`: restore submission `41071034`, agent `6585755`, ten battles
+  initially queued.
+- The cycle remains serialized until the restore leg passes identity/runtime health and
+  matures; no successor submission is authorized.

@@ -2,7 +2,7 @@
 
 Date: 2026-07-31
 Task: `20260731-owner-tent-proximity-denial-arena`
-Phase: **submitted; initial identity/runtime health clean; maturity in flight**
+Phase: **candidate terminal FAIL at 11.96; exact-source restoration in flight**
 
 ## Exact candidate
 
@@ -60,3 +60,33 @@ Machine checkpoint SHA:
 `b17a509bb3d9441f29db191bf070ae4c46ff9a25972c4f416ca23a66e96670e6`.
 This tiny sample is a validity checkpoint, not evidence for policy value. The candidate
 remains in flight for a submission-scoped maturity audit; no restore is triggered.
+
+## Safety checkpoint and failure
+
+The exact submission-scoped reader later captured 101 finished games with one pending:
+
+- exact agent/submission `6585739`/`41070944`;
+- 101/101 finished games parsed, zero unexpected identities or fetch failures;
+- score 11.96, rank 111/113;
+- 42 wins, 1 tie, 58 losses, mean margin -38.88;
+- 25 catastrophic losses (24.8%) and negative-margin mass 6,669;
+- zero invalid results or runtime markers.
+
+Checkpoint SHA:
+`6ee760707f3ee07fd7bfba3427c245c1aa1492ba00fe20ce4ba9afe0738920ed`.
+The row is 11.03 below the previous terminal 22.99 score, far outside the Arena noise
+band. This is a clean policy failure, not a runtime or identity artifact.
+
+## Exact-source restore
+
+The cycle's authorized restore rule therefore fired. The exact previous artifact
+`candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs`, 63,033 bytes, SHA
+`307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd`, was submitted
+exactly once through `TestSession/submit`:
+
+- restore submission ID `41071034`;
+- restore player-agent ID `6585755`;
+- first discovery: ten matching battles, all queued.
+
+The B3.13 candidate trial is terminal failed. The serialized cycle remains occupied only
+by the exact-source restoration health/maturity leg; no successor is authorized.
