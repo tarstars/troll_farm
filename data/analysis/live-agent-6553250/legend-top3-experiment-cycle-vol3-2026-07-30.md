@@ -745,3 +745,41 @@ Evidence:
 `data/analysis/live-agent-6553250/n7-dead-accretion-removal-plan-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/n7-dead-accretion-removal-plan/`.
+
+## H4 — scaling warning replicates, but no individual bill source is deniable
+
+**Question.** What pays the opponent's worker-three bill in scale-linked catastrophes,
+and can one recorded-state resident action make the original TRAIN unaffordable?
+
+**Population and bill.** All 200 exact D159 resident games decode cleanly. The B3.1
+signature independently reproduces: 17/20 catastrophes have an opponent third-worker
+TRAIN before the permanent crossover, spanning 12 exact identities and both seats, with
+median 70-turn lead (range 13–125). All 17 bills require post-start supply after bounding
+what can remain from starting stock following the earlier TRAIN. Across the bills,
+minimum post-start contribution is 81 PLUM, 169 LEMON, 11 APPLE, and 68 IRON units.
+IRON cannot be denied because mining does not deplete a shared stock.
+
+**Provenance correction.** Broad source reachability is not causal bill control. The
+replays contain 455 external pre-TRAIN acquisition batches, 407 definitely deposited
+without carry ambiguity, and 371 fruit batches satisfying a loose BFS/ETA reachability
+upper bound; every primary game has at least one. Fungible-bank bounds identify 73
+individually mandatory batches, but 43 are non-deniable IRON. Of 30 mandatory fruit
+batches, only one has a co-located resident, that unit cannot legally HARVEST, and none
+has a prior one-command lethal-CHOP opportunity.
+
+**Verdict: `NO_MATERIAL_DENIABLE_BILL`.** The strict gate credits only an
+already-positioned, referee-order-valid HARVEST or lethal CHOP that removes enough
+individually necessary fruit to block the original TRAIN. It finds 0/17 games, zero
+identities, and zero seats. Support gates pass; every action-materiality gate fails.
+The scaling event itself arrives after payment. Do not implement a timed denial scorer,
+reuse Phase 21, open a causal panel, or treat hypothetical MOVE reachability as evidence.
+H7′ action contention retains its distinct races/duplication scope.
+
+Validation: analyzer compiles; self-test passes; 7 focused tests pass; a second full run
+is byte-identical. No raw/processed data, simulator/referee, resident source, map/range,
+game, candidate, submission, or Arena state changed.
+
+Evidence:
+`data/analysis/live-agent-6553250/h4-opponent-bill-deniability-census-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/h4-opponent-bill-deniability-census/`.

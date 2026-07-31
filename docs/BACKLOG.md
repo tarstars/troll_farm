@@ -57,7 +57,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > N4_DEPENDENCY_GATED: the exact compatible two-worker pair sum-max is the sole
 > non-closed material live ranker, so no L2a precedes accepted N4 coverage and value.
 > L3 is likewise N4_DEPENDENCY_GATED: fixed grammar does not bound repeated score
-> authority; imitation and single-state/broad value learners are already consumed.**
+> authority; imitation and single-state/broad value learners are already consumed.
+> H4 is NO_MATERIAL_DENIABLE_BILL: B3.1 timing replicates in 17/20 catastrophes and
+> all 17 bills need post-start supply; 73 batches are individually load-bearing, but
+> 43 are non-deniable IRON and the 30 fruit batches yield 0 legal one-command blocks.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 

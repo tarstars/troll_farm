@@ -1,6 +1,6 @@
 # 20260731-h4-opponent-bill-deniability-census
 
-- Status: active — claim and frozen read-only census protocol
+- Status: closed — `NO_MATERIAL_DENIABLE_BILL`; peer review requested
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,13 +10,14 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T02:10:32Z
-- Last updated UTC: 2026-07-31T02:10:32Z
+- Last updated UTC: 2026-07-31T02:23:37Z
 
 ## Outcome
 
-On the exact consumed D159 resident panel, determine what paid the opponent's successful
-third-worker bill and whether replay-observable supply contains a material strict
-one-action denial surface. This is diagnosis only, not a denial policy.
+`NO_MATERIAL_DENIABLE_BILL`. All 17 scale-linked catastrophe bills require post-start
+supply. Of 73 individually mandatory batches, 43 are non-deniable IRON; among 30 fruit
+batches only one has a co-located resident, it is not a legal HARVEST, and no lethal-CHOP
+opportunity exists. Strict blocks remain 0/17. Close without a denial policy or panel.
 
 ## Frozen protocol
 
@@ -49,9 +50,11 @@ one-action denial surface. This is diagnosis only, not a denial policy.
 
 ## Acceptance
 
-- Exact population/identity/decode gates and successful third-TRAIN reconstruction.
-- Per-item bill, bank-stock attribution intervals, exact acquisition/deposit provenance,
+- Exact population/identity/decode gates and successful third-TRAIN reconstruction:
+  passed on 200/200 games.
+- Per-item bill, bank-stock attribution intervals, acquisition/deposit provenance,
   strict one-action causal-block census, redundancy/unknown accounting, and displacement
-  class.
-- Synthetic tests for fungible-bank bounds and strict denial semantics.
-- One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff.
+  class: passed; strict surface 0/17.
+- Synthetic tests for fungible-bank bounds and strict denial semantics: 8 passed.
+- One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff:
+  passed; peer acknowledgement pending.

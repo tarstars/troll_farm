@@ -714,6 +714,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   signal is upstream: opponent scaling past two workers precedes the crossover by 42–125
   turns in 84% of catastrophes (83% of catastrophic mass) and the resident never
   conditions on it. [B3.1 audit 2026-07-27, vol 2]
+- **Opponent worker-three bill denial is CLOSED at the read-only census.** B3.1 timing
+  reproduces in 17/20 catastrophes (12 identities, both seats; median 70-turn scale lead),
+  and all 17 exact bills require post-start supply after earlier TRAIN payments. Of 455
+  acquisitions / 407 definite deposits, 73 batches are individually mandatory: 43 are
+  non-deniable IRON, while among 30 fruit batches only one has a resident co-located, that
+  unit cannot legally HARVEST, and none has a prior one-command lethal CHOP. Thus strict
+  blocks are **0/17** even though 371 fruit batches pass a loose reachability upper bound.
+  Do not implement timed denial or treat BFS reachability as causal bill control. [H4]
 
 ## (g) Arena measurement & platform behavior
 
