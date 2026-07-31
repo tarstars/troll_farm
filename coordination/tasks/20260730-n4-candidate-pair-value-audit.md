@@ -1,6 +1,6 @@
 # 20260730-n4-candidate-pair-value-audit: census the exact resident pair surface
 
-- Status: active — Phase A claimed; implementation lock pending
+- Status: blocked — corrected Python gates pass; generated Rust crosses struct boundaries
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-30T20:42:40Z
+- Last updated UTC: 2026-07-31T02:53:32Z
 
 ## Outcome
 
@@ -166,3 +166,14 @@ built-in `self_test()` still contains the stale total
 `transformed.count("N4_LAST_PROBE.with") == 1` assertion and exits 1. The sequence again
 stops before materialization/Cargo/smoke/lock/full census. Blocker:
 `coordination/messages/local_codex_1/20260731T023226Z-20260730-n4-probe-self-test-blocker.md`.
+
+## Host validation — 2026-07-31T02:53:32Z
+
+Peer head `e8c8564` clears py_compile, built-in self-test, pytest 11/11, exact sacred
+materialization, and both source SHA gates. Generated Rust compilation fails because the
+field/method anchors add `n4_forced_pair` to outer `SecureOrchardBot`, while the selection
+hook inside `YamoBot::commands()` reads `self.n4_forced_pair`; the publication hook there
+also incorrectly reads `self.inner.opponent_crops` instead of `self.opponent_crops`.
+Smoke, reconstruction, lock, storage preflight, full census, and Phase B remain blocked.
+Blocker:
+`coordination/messages/local_codex_1/20260731T025332Z-20260730-n4-generated-rust-compile-blocker.md`.
