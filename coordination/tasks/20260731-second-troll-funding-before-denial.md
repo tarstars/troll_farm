@@ -9,12 +9,16 @@
 - Base commit: 43783602634df28ea8dc93db41d36ae8428419fc
 - Branch: agent/local_codex_1
 - Created UTC: 2026-07-31T17:00:00Z
-- Last updated UTC: 2026-07-31T17:00:00Z
+- Last updated UTC: 2026-07-31T17:05:00Z
 
 ## Owner observation and rule
 
 > looks like this rule blocks training the second troll. Check it. If it is, prioritise
 > collection of resources for the second troll over denial logic
+
+Owner follow-up:
+
+> also include diagonal trees into denial policy
 
 ## Preliminary diagnosis
 
@@ -49,6 +53,9 @@ downgrade. Exact causal attribution and a bounded successor remain to be materia
 - The successor must preserve the inner opening resource command while own roster is one
   and the opening objective remains active; after training or explicit opening
   abandonment, denial must remain exact-parent.
+- After that opening precedence gate, tent proximity must use the full eight-neighbor
+  ring rather than only cardinal neighbors. Focused tests must prove diagonal activation
+  after worker 2 and non-activation over opening collection before worker 2.
 - Re-run B3.15, sticky-bank, and tent-proximity boundaries; run exact replay and bounded
   unsealed both-seat smokes; preserve sacred SHA.
 - Materialize only. Any live replacement requires a distinct serialized Arena task.
