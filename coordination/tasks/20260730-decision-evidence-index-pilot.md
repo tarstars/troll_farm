@@ -1,6 +1,6 @@
 # 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
 
-- Status: blocked in semantic correction — current-main D30 wording normalization remains
+- Status: closed — semantic decision-evidence pilot accepted and integrated
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
 - Progress lease: begins when the work owner publishes the execution acknowledgement/claim
 - Created UTC: 2026-07-30T17:42:45Z
-- Last updated UTC: 2026-07-31T03:41:25Z
+- Last updated UTC: 2026-07-31T06:05:00Z
 
 ## Outcome
 
@@ -219,3 +219,25 @@ constraint projection to `all 80 official roots` clears the checker; pytest pass
 generation is deterministic, and `git diff --check` passes after removing trailing spaces
 from the changed human line. The work owner must publish that record/migration correction
 and regenerated views before integration.
+
+## Final integration — 2026-07-31T06:05:00Z
+
+The D30 correction, semantic checker, valid/wrong fixtures, read-only content-anchor
+migration, nine migrated scientific records, and generated views are integrated over
+current canonical documents. The accepted H11 constraint insertion shifted H1; rerunning
+the same deterministic migration updated only H1's locator to `lines 902-917` and the
+three affected generated projections/manifest.
+
+Final gates pass:
+
+- py_compile;
+- migration `--check`;
+- builder `--check`;
+- semantic checker: 11 records, 6 closures excluding void, 1 void-premise;
+- focused pytest 25/25;
+- repeated generated views byte-identical;
+- `git diff --check`.
+
+Final generated SHA-256 values: index `6860ba71...`, projection `be6f450e...`, YAML
+`263428a0...`, equivalence `2aa5bf7a...`, manifest `164606f9...`. No canonical
+CONSTRAINTS/STATE/BACKLOG/ledger content was changed by the migration itself.
