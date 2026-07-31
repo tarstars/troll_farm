@@ -1,6 +1,6 @@
 # 20260731-h3a-pressure-treatment-reconstruction
 
-- Status: in progress — claim accepted; direct CLI import blocker returned to work owner
+- Status: in progress — claim accepted; CLI/compile/test blockers returned to work owner
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-h3a-reconstruction
 - Progress lease: begins when work owner publishes acknowledgement/claim
 - Created UTC: 2026-07-31T05:25:00Z
-- Last updated UTC: 2026-07-31T06:45:00Z
+- Last updated UTC: 2026-07-31T06:50:00Z
 
 ## Outcome
 
