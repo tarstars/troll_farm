@@ -55,7 +55,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > final per-unit labels, while internal train-plan/logit/beam targets remain latent;
 > L1a extractor work is peer-gated and teacher accuracy is never a value gate. L2 is
 > N4_DEPENDENCY_GATED: the exact compatible two-worker pair sum-max is the sole
-> non-closed material live ranker, so no L2a precedes accepted N4 coverage and value.**
+> non-closed material live ranker, so no L2a precedes accepted N4 coverage and value.
+> L3 is likewise N4_DEPENDENCY_GATED: fixed grammar does not bound repeated score
+> authority; imitation and single-state/broad value learners are already consumed.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 

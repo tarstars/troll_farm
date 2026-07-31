@@ -674,3 +674,38 @@ Evidence:
 `data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/l2-learned-target-ranking-scope-audit/`.
+
+## L3 — learned evaluator is also dependency-gated on N4
+
+**Question.** Is replacing the live scheduler's hand-tuned score with a fitted evaluator
+a distinct experiment merely because it retains the existing action grammar?
+
+**Score flow.** The active tuned Yamo inner bot hard-generates and filters phase-specific
+candidates before scoring them. Scores mix categorical bands with travel/wait,
+wood-per-turn, denial distance, bank, conversion, and endgame terms. Hard filters can
+force egress/WAIT, protect orchard cells, or suppress PICKs. The selector then takes a
+one-worker argmax or compatible two-worker summed-score maximum. Collision handling and
+the outer secure-orchard wrapper can rewrite the result afterward. Scores cannot directly
+change TRAIN, legality, the roster cap, or invariant rewrites; nevertheless, replacing
+them can change the ordinary command pair repeatedly and therefore the whole trajectory.
+
+**Labels and closures.** Numeric-score or resident-action regression is imitation, not
+improvement; D41a demonstrates the approximation risk. One-deviation terminal advantage
+on exact resident alternatives is closed by D16-D19. Repeated broad evaluation is closed
+or expands to a new programme under D36, D41-D44, D79-D84, D97-D158, and D169-D172.
+N6 directly shows the nonlocal authority of even one live score scalar: its LOW/HIGH
+weights alter 73.83%/53.32% of task command streams yet yield −0.754/+0.559, with HIGH
+positive in only 4/8 families. H10a's spatial D172 option scorer remains a separate,
+peer-gated budget-1 item.
+
+**Verdict: `N4_DEPENDENCY_GATED`.** The only unconsumed exact-live evaluator label is
+compatible-pair continuation value, whose surface is owned by N4. Do not create L3a,
+instrument/export candidates, fit a scorer, or open a panel. If N4 Phase A closes, L3
+closes with it. If a separately authorized Phase B later demonstrates material value,
+replace L2/L3 with one precisely bounded compatible-pair residual item. No source, model,
+game, candidate, submission, or Arena action was created.
+
+Evidence:
+`data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/l3-learned-evaluator-scope-audit/`.

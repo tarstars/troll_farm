@@ -1,0 +1,153 @@
+{
+  "audit": "L3 learned evaluator scope",
+  "date": "2026-07-31",
+  "verdict": "N4_DEPENDENCY_GATED",
+  "question": "Does replacing the exact live scheduler's hand-tuned score with a learned evaluator define a distinct, currently measurable experiment?",
+  "integrity": {
+    "read_only": true,
+    "source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "source_unchanged": true,
+    "instrumentation": false,
+    "candidate_export": false,
+    "model_or_fit": false,
+    "games_or_maps_opened": false,
+    "arena_action": false
+  },
+  "live_construction": {
+    "entrypoint": "SecureOrchardBot::new()",
+    "entrypoint_lines": "rust/src/bin/yamo_orchard_live.rs:6008-6019",
+    "inner": "YamoBot::tuned_carry_regeneration_transit_idle_harvest()",
+    "constructor_lines": "rust/src/bin/yamo_orchard_live.rs:1685-1695,1723-1745,3823-3832",
+    "active_flags": [
+      "idle_regeneration",
+      "persistent_regeneration",
+      "door_unblocking",
+      "partial_bank_transit",
+      "idle_harvest"
+    ],
+    "inactive_accretions_excluded": [
+      "task_market",
+      "banana_factory",
+      "opponent-crop scoring",
+      "ScarceIntent"
+    ]
+  },
+  "score_flow": [
+    {
+      "order": 1,
+      "layer": "hard candidate grammar and eligibility",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:871-1327,3084-3431",
+      "role": "constructs only feasible phase-specific WAIT, bank, harvest, mine, chop, plant/conversion, and MOVE candidates; many branches return early"
+    },
+    {
+      "order": 2,
+      "layer": "hand-tuned immediate candidate score",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:780-813,903-960,1050-1117,1223-1319,3200-3425",
+      "role": "mixes categorical priority bands with travel, wait, rate, wood, denial-distance, conversion, and endgame terms"
+    },
+    {
+      "order": 3,
+      "layer": "live filters and forced candidate-set rewrites",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:3433-3628",
+      "role": "chooses phase generator, applies protected-tree and TRAIN filters, can force door clearing or external idle, then freezes the candidate map"
+    },
+    {
+      "order": 4,
+      "layer": "joint selection",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1354-1413,3629-3630",
+      "role": "single-worker argmax or exhaustive compatible two-worker summed-score maximum"
+    },
+    {
+      "order": 5,
+      "layer": "post-selection rewrites",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1425-1528,3650-3673",
+      "role": "collision/path logic may replace selected MOVE commands; bookkeeping does not restore the original rank"
+    },
+    {
+      "order": 6,
+      "layer": "secure-orchard outer authority",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:5288-5428",
+      "role": "may replace the starter command, protect the mother, and resolve conflicts again independently of inner candidate scores"
+    }
+  ],
+  "authority": {
+    "score_can_change": "ordinary command or compatible command pair on every state where alternatives exist",
+    "score_cannot_change_directly": [
+      "candidate legality or phase grammar",
+      "TRAIN emission/specification",
+      "hard roster cap",
+      "forced door clearing",
+      "protected-tree filters",
+      "collision rewrites",
+      "secure-orchard forced starter commands"
+    ],
+    "locality_conclusion": "Despite retaining the grammar, a learned score can select a different command pair repeatedly and therefore replace the whole trajectory. Same action space is not a bounded authority guarantee."
+  },
+  "interpretations": [
+    {
+      "interpretation": "regress the resident's numeric scores",
+      "label": "exact deterministic source score",
+      "policy_effect": "none if exact; approximation error otherwise",
+      "prior_or_dependency": "D41a exact-prior diagnosis",
+      "status": "IMITATION_NOT_IMPROVEMENT"
+    },
+    {
+      "interpretation": "imitate resident selected actions",
+      "label": "resident command or pair",
+      "policy_effect": "clones the current ceiling, with autoregressive approximation risk",
+      "prior_or_dependency": "D41a and L1 boundaries",
+      "status": "IMITATION_NOT_IMPROVEMENT"
+    },
+    {
+      "interpretation": "fit per-candidate one-deviation terminal advantage",
+      "label": "one alternative followed by resident continuation",
+      "policy_effect": "sparse residual command replacement",
+      "prior_or_dependency": "D16-D19 resident residual closure; D41d-D44 continuation/value closure as corroboration",
+      "status": "DUPLICATE_CLOSED"
+    },
+    {
+      "interpretation": "fit broad candidate values and replace the score globally",
+      "label": "offline terminal counterfactual or on-policy terminal return",
+      "policy_effect": "repeated full-trajectory controller",
+      "prior_or_dependency": "D36, D79-D84, D97-D158, D169-D172",
+      "status": "DUPLICATE_CLOSED_OR_PROGRAMME_EXPANSION"
+    },
+    {
+      "interpretation": "fit compatible-pair continuation value as a residual to the live sum-score",
+      "label": "terminal value of one or more exact live compatible-pair alternatives",
+      "policy_effect": "bounded only after coverage and intervention budget are measured",
+      "prior_or_dependency": "peer-owned N4 Phase A and possible separately authorized Phase B",
+      "status": "N4_DEPENDENCY"
+    },
+    {
+      "interpretation": "add spatial planes to D172 option evaluation",
+      "label": "D172 exact option counterfactuals",
+      "policy_effect": "budget-1 macro option, not live candidate-score replacement",
+      "prior_or_dependency": "H10a-r1 peer-gated separate item",
+      "status": "SEPARATE_SCOPE"
+    }
+  ],
+  "binding_evidence": {
+    "n4_task": "coordination/tasks/20260730-n4-candidate-pair-value-audit.md",
+    "n4_owner": "chatgpt_1",
+    "n4_peer_head": "99cf140",
+    "l2_verdict": "N4_DEPENDENCY_GATED",
+    "d18": "0/40 compact resident primitive-residual spatial recipes passed",
+    "d19": "larger capacity and oracle opponent identity also failed; single-state terminal-advantage distillation closed",
+    "d36": "four resident-anchored joint overlay epochs gained 10.633 margin versus the frozen 25 floor and closed further overlay work",
+    "d41a": "learned score imitation reached 84.386-84.960% while an exact decoder reproduced 85047/85047 decisions",
+    "d41e": "the strongest prospective D40 residual selector gained 4.116 versus the 5 floor and stopped before Stage B",
+    "d42_d44": "context-complete sign selection, sparse closed-loop PPO, and actor-score reuse failed discrimination gates",
+    "d79": "all 32 random broad target scorers changed 64/64 task hashes and became global controllers",
+    "d83": "snapshot response-value ridge gained 1.188 and failed selection gates",
+    "d84": "short exact online response search missed both value and latency conjunctions",
+    "d172": "exact dense option labels existed, but 0/4 fitted selectors were admitted",
+    "n6": "changing one live score weight altered 53.32-73.83% of task command streams; LOW lost 0.754 and HIGH gained only 0.559 with 4/8 positive families"
+  },
+  "decision": {
+    "distinct_ready_surface": null,
+    "reason": "Score/action imitation cannot establish improvement; exact-resident single-state advantage distillation and broad scorer/value families are closed; H10a is separate. The only non-closed exact-live evaluator label is compatible-pair continuation value, whose surface and ownership are N4.",
+    "successor": "Do not create L3a. Wait for accepted N4 Phase A. If N4 closes, close L3 with it. If N4 and a separately authorized material Phase B clear, replace L2/L3 with one precisely bounded compatible-pair residual-evaluator item rather than two competing experiments.",
+    "register_action": "mark L3 dependency-gated on N4"
+  }
+}

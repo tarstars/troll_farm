@@ -934,3 +934,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   primitive learning; greater-than-two ranking is unreachable; D171/D176, E2, and E4
   close the live path/orchard tie families; broad scorers remain closed by
   D18/D41a/D79-D84/D97-D172. Do not create L2a, export pairs, or fit first. [L2, N4]
+- **L3 learned evaluation is also gated on N4; “same action space” is not locality.**
+  Live scores rank only hard-generated/filtered candidates and cannot directly change
+  TRAIN, legality, the roster cap, collision rewrites, or orchard invariants. But a fitted
+  score can change the compatible command pair on every ordinary turn and thereby replace
+  the whole trajectory. Regressing resident scores/actions establishes fidelity only;
+  D16-D19 close exact-resident single-state terminal-advantage distillation; D36,
+  D41-D44, D79-D84, D97-D172 close or strongly bind broad repeated evaluators. The only
+  unconsumed exact-live label is compatible-pair continuation value owned by N4. Do not
+  create L3a; if material N4 Phase B ever clears, replace L2/L3 with one bounded pair
+  residual item. [L3, N4]

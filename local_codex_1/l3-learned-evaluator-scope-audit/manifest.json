@@ -1,0 +1,60 @@
+{
+  "task_id": "20260731-l3-learned-evaluator-scope-audit",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "N4_DEPENDENCY_GATED",
+  "base_commit": "6eb16624c452925be437f271851cdd2383fdfee0",
+  "claim_commit": "5161e3940bf8d33c343414fea0c277e19a818f2b",
+  "files": {
+    "protocol": {
+      "path": "docs/l3-learned-evaluator-scope-protocol-2026-07-31.md",
+      "sha256": "f92b2849f317a7961edf3cab75e975edc6122cc1bd0e111a6ed7d9b81932dc2d"
+    },
+    "task_claim": {
+      "path": "coordination/tasks/20260731-l3-learned-evaluator-scope-audit.md",
+      "sha256": "eed7a8e864d2c7c262fea83154920304aaf738aa9129e52ba91c9983e2f7f9ab"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.json",
+      "sha256": "b1fb25b3a32f3ebf498ffcfdebc70beba80ffac79bfe689675dc12abe64c71b7"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.md",
+      "sha256": "df154e3c293b6bada19bb4620fa1f4b6ccf061a2df3efc148074142a1fd44ca4"
+    }
+  },
+  "locks": {
+    "sacred_source": {
+      "path": "rust/src/bin/yamo_orchard_live.rs",
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+    },
+    "n4_task": {
+      "path": "coordination/tasks/20260730-n4-candidate-pair-value-audit.md",
+      "sha256": "6b3a4feb4cb82600684d016fb1a5b0cc1b3bc18d98f7a3a27212e0e012e7b748",
+      "owner": "chatgpt_1",
+      "peer_head_observed": "99cf140"
+    }
+  },
+  "evidence_hashes": {
+    "d18_report": "8bb438386d7a411903d1771f5de16a87f79880a479ac08156c4b9f94d6e5b37a",
+    "d19_report": "c39cbc3273bc4cef19ef9c544d8b3052390c0f9dc40c5956d793658e1520e0f8",
+    "d36_report": "42bc541be4b5e57f221dfcf2a7a2d4b30d3bc51177da0ed2bee39c0e0255561d",
+    "d41a_report": "ae3a4e277d3d9c66b6541ecb581c328389db37496882540479d7afbb15cf2b7f",
+    "d41e_report": "63114cf25355d2c8241fe58dd7d7de0a0646f8de75970260e45b4c8c67befc41",
+    "d42_report": "ecb4f921fccf58e5e337fc790022f6d10f9834c460c63fa69fb402a14a66f02e",
+    "d43_report": "c6074db10e45ca775fcf52e654b7a2bef24a6390a11fe1a58545d38833e97555",
+    "d44_report": "bcf8dcbd7878488a146efecd0b28d162b1203a2027d0a5d0bef4b22632bf35ca",
+    "d79_report": "71b2f0ff235eb8f6ad1779aa5c6b4690dd2ff2c37294c1b2f4a3d6c0aa2a7f97",
+    "d172_report": "2a0453b4eab42b77182d9e63c931262a0220f738da74afe35dc24b4c8b04085b",
+    "n6_report": "00bed3c0baacd97d3dd9e9df2ceb70b0e01f9234273742c62fa5d160f80bad8b"
+  },
+  "actions_not_taken": [
+    "source edit",
+    "instrumentation",
+    "candidate export",
+    "model or fit",
+    "game or map",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

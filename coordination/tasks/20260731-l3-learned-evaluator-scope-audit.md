@@ -1,6 +1,6 @@
 # 20260731-l3-learned-evaluator-scope-audit
 
-- Status: active — read-only scope audit
+- Status: done — `N4_DEPENDENCY_GATED`
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,19 +10,22 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:48:52Z
-- Last updated UTC: 2026-07-31T01:48:52Z
+- Last updated UTC: 2026-07-31T01:53:59Z
 
 ## Progress
 
 - L2 established that the live compatible two-worker pair ranker is N4-owned.
 - L3 is broader: it could mean score imitation, primitive-action imitation, candidate
-  terminal value, or joint-pair continuation value; the audit will separate them.
+  terminal value, or joint-pair continuation value; the audit separates them.
 - Closed learned-scorer families are binding evidence, not permission to retune.
+- The live score can alter ordinary command pairs repeatedly despite a fixed grammar;
+  same action space is not a bounded-authority interface.
 
 ## Outcome
 
-Resolve whether L3 contains one distinct executable evaluator target after N4/L2 and the
-closed D36/D41/D42-D44/D79-D84/D97-D172 families are accounted for.
+`N4_DEPENDENCY_GATED`. Score/action imitation cannot improve the resident; exact-resident
+single-state value and broad evaluator families are closed; the only non-closed exact-live
+label is compatible-pair continuation value owned by N4.
 
 ## Frozen protocol
 
@@ -55,3 +58,9 @@ closed D36/D41/D42-D44/D79-D84/D97-D172 families are accounted for.
 - Complete live score-flow graph and label/overlap matrix.
 - One frozen verdict and successor only if non-overlapping.
 - Compact JSON/report/manifest, canonical closeout, and peer handoff.
+
+## Result
+
+- `data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.json`
+- `data/analysis/live-agent-6553250/l3-learned-evaluator-scope-audit-result-2026-07-31.md`
+- `local_codex_1/l3-learned-evaluator-scope-audit/manifest.json`
