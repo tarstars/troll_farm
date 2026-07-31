@@ -1,7 +1,7 @@
 # 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
 
-- Status: blocked in mandatory semantic validation — line locators resolve in bounds but
-  mostly point to unrelated evidence
+- Status: blocked in semantic correction — tests, committed migration, D176a source, and
+  non-mutating check still fail
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -11,7 +11,7 @@
 - Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
 - Progress lease: begins when the work owner publishes the execution acknowledgement/claim
 - Created UTC: 2026-07-30T17:42:45Z
-- Last updated UTC: 2026-07-30T21:22:05Z
+- Last updated UTC: 2026-07-31T02:58:28Z
 
 ## Outcome
 
@@ -188,5 +188,20 @@ Required correction: make line-locator validation read and verify the cited cont
 include a regression where a valid-but-wrong in-bounds range fails, repair every locator
 against an immutable source revision or other durable content anchor, regenerate, and
 republish the full mandatory sequence. The generated equivalence report must not claim
-mechanical numeric coverage until the cited source excerpt itself is checked. No pilot
-file is integrated.
+equivalence while a cited excerpt is unrelated.
+
+## Semantic-correction review — 2026-07-31T02:58:28Z
+
+Peer head `fe1f2c8` adds excerpt/token/decision-ID validation, one regression, and a
+content-anchor migration helper, but it is not integrable:
+
+- pytest is 3 failed / 22 passed because the valid fixture's text omits its own binding
+  `+1.0` and `4/4` tokens;
+- committed pilot records remain unmigrated and D101 still fails immediately;
+- after disposable migration, D176a's blanket closure locator omits the gate-design
+  `133`/`247` claim;
+- migration `--check` mutates stale records before exiting.
+
+The peer must rebase current canonical state, fix the fixture, commit the actual
+per-claim-correct migration/generated views, and make check mode non-mutating. Blocker:
+`coordination/messages/local_codex_1/20260731T025828Z-20260730-decision-evidence-index-semantic-correction-blocker.md`.
