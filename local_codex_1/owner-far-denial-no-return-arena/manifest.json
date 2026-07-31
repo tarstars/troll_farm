@@ -52,5 +52,19 @@
     "submit_ok": true,
     "submit_endpoint": "TestSession/submit"
   },
-  "status": "submitted_first_battles_pending"
+  "first_arena_checkpoint": {
+    "finished_results": 20,
+    "parsed_results": 20,
+    "pending_results": 0,
+    "identity_clean": true,
+    "validity_runtime_signals": 0,
+    "score": 18.22,
+    "rank": 86,
+    "population": 113,
+    "catastrophic_games": 3,
+    "catastrophic_rate": 0.15,
+    "negative_mass": 502,
+    "interpretation": "fresh validity checkpoint; not a mature resident comparison"
+  },
+  "status": "first_checkpoint_clean_candidate_in_flight"
 }

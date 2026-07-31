@@ -2,7 +2,7 @@
 
 Date: 2026-07-31
 Task: `20260731-owner-far-denial-no-return-arena`
-Phase: **submitted; first Arena battles pending**
+Phase: **submitted; first Arena checkpoint identity/runtime clean**
 
 ## Candidate
 
@@ -55,3 +55,15 @@ submission was made:
 - previous ranked row remained resident agent `6561795` at 21.9 while the queue started.
 
 No second candidate or control submission is in flight.
+
+## First Arena checkpoint
+
+The submission-scoped reader fetched 20/20 finished results for exact agent/submission
+`6585578`/`41070584`:
+
+- identity clean, 20 parsed, zero pending, zero runtime validity signals;
+- fresh score 18.22, rank 86/113;
+- 3/20 catastrophic games (15.0%), negative mass 502.
+
+This is a fresh 20-game validity checkpoint, not a mature comparison to the resident's
+21.9 row. The candidate stays in flight; there is no restore or second submission.
