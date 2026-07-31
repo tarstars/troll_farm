@@ -6,8 +6,8 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Resident baseline: agent `6561795`, submission `41015603`; owner-directed candidate agent `6585578`,
-  submission `41070584`, is in flight; 95-game checkpoint clean at score 20.14, rank 57/113.
+- Resident baseline: agent `6561795`, submission `41015603`; active owner-directed candidate
+  `6585578`/`41070584` is in flight at score 23.0, rank 33/113, above the 21.9 pre-trial row.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`
   (62,725 bytes, slim Yamo/Orchard + pre-seed + orchard coverage).
   SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
@@ -132,7 +132,7 @@ makes the goalpost move in the wrong direction.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
   `chatgpt_1` has the serial review queue after H3a takeover. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Far-denial-d3 `6585578`/`41070584` is in flight: 20.14 at 95 games; no second submit.
+  surveillance. Far-denial-d3 `6585578`/`41070584` is in flight: 23.0, rank 33; no second submit.
 
 ## 5. Reading order & pointers
 

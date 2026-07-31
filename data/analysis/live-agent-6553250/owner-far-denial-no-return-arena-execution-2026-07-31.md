@@ -2,7 +2,7 @@
 
 Date: 2026-07-31
 Task: `20260731-owner-far-denial-no-return-arena`
-Phase: **submitted; first Arena checkpoint identity/runtime clean**
+Phase: **submitted; active Arena row above the mature resident baseline**
 
 ## Candidate
 
@@ -78,3 +78,15 @@ The exact submission-scoped reader later fetched 95 finished results with one pe
 
 The row is rising but remains below the resident's mature 21.9 baseline. The candidate
 continues maturing; there is no restore or second submission.
+
+## Later Arena-room checkpoint
+
+At the owner-requested leaderboard read, the authoritative room endpoint returned exact
+active agent `6585578` at score 23.0 and rank 33/113 in Legend. The same candidate has
+therefore improved by 2.86 score and 24 ranks since the submission-scoped 95-game
+checkpoint, and is now 1.1 score and 12 ranks ahead of the pre-trial mature resident row.
+
+This is positive live evidence for the distance-three rule, but not the project completion
+criterion: the candidate is still maturing, remains 1.7 below the 24.70 interim score and
+2.4 below the 25.40 primary target, and has no later confirmation read yet. No restore or
+second submission is triggered.

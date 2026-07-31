@@ -1,6 +1,6 @@
 # 20260731-owner-far-denial-no-return-arena
 
-- Status: submitted — 95-game identity/runtime checkpoint clean; candidate maturing
+- Status: submitted — live row now rank 33/113, score 23.0; candidate still maturing
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed; peer review may follow after submission
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T12:15:00Z
-- Last updated UTC: 2026-07-31T13:20:00Z
+- Last updated UTC: 2026-07-31T14:10:00Z
 
 ## Candidate phase
 
@@ -30,6 +30,10 @@
   signals, fresh score 18.22 at rank 86/113, 3 catastrophic games, negative mass 502.
 - Later checkpoint fetched 95 finished with one pending: identity clean, zero runtime
   signals, score 20.14 at rank 57/113, 12 catastrophes, negative mass 2,819.
+- A later authoritative Arena-room read identifies the same active agent `6585578` at
+  score 23.0, rank 33/113. This is 1.1 score and 12 ranks ahead of the pre-trial mature
+  resident row, but it remains a single maturing row rather than the required mature plus
+  confirmation result.
 
 ## Owner directive
 

@@ -1051,8 +1051,11 @@ pending; no simulation or Arena successor follows.
 Owner-directed agent/submission `6585578`/`41070584` has 95 finished games plus one
 pending. Identity is clean and runtime signals are zero. Score has risen from 18.22 at
 20 games to 20.14 at 95 games (rank 57/113); 12 games are catastrophic and negative mass
-is 2,819. This remains a maturing, scientifically unqualified row below the resident's
-mature 21.9 baseline. No restore or second submission is triggered.
+is 2,819. A later authoritative room read identifies the same active agent at score 23.0,
+rank 33/113: 1.1 score and 12 ranks ahead of the mature pre-trial resident row. This is
+positive live evidence, but remains a maturing, scientifically unqualified row without a
+later confirmation; it is 1.7 below interim 24.70 and 2.4 below target 25.40. No restore
+or second submission is triggered.
 
 ## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
 

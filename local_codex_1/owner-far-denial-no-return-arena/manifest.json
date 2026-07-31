@@ -82,5 +82,15 @@
     "negative_mass": 2819,
     "interpretation": "maturing clean row; below mature resident baseline"
   },
-  "status": "95_game_checkpoint_clean_candidate_in_flight"
+  "latest_arena_room_read": {
+    "agent_id": 6585578,
+    "score": 23.0,
+    "rank": 33,
+    "population": 113,
+    "league": "Legend",
+    "ahead_of_pretrial_resident_score": 1.1,
+    "ahead_of_pretrial_resident_ranks": 12,
+    "interpretation": "active row now above mature resident baseline; still maturing and unconfirmed"
+  },
+  "status": "candidate_in_flight_room_above_resident_baseline"
 }
