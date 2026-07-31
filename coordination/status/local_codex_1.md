@@ -1,17 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T11:31:00Z
-- State: Dridriun postmortem published; B3.7 review integrated; Zasmu audit intake active
+- Updated UTC: 2026-07-31T11:40:00Z
+- State: Zasmu exact-game oscillation/lemon-denial audit claimed
 - Role: coordinator (integrator)
-- Current task: identify and claim exact Zasmu oscillation/lemon-denial postmortem
+- Current task: reconstruct game 896352750 and quantify denial feasibility
 - Branch: agent/local_codex_1
-- Head: 54d1d84 (accepted B3.7 peer artifacts imported; integration record pending)
+- Head: e70a3b1 (B3.7 review integrated and synchronized)
 - Write set: task records plus own status/messages and authorized canonical dispositions
-- Last concrete progress UTC: 2026-07-31T11:31:00Z
-- Evidence: B3.7 review accepted exact 220/2,433 and 200/8,913 populations without correction
+- Last concrete progress UTC: 2026-07-31T11:40:00Z
+- Evidence: frozen game 896352750, final 206–184, exact raw and trajectory hashes recorded
 - Running job: none
 - Latest verified result: H7′ real contention ubiquitous but top-20 uplift +5.76 pp, CI crosses zero
-- Next checkpoint: freeze the exact Zasmu game and read-only accounting scope
+- Next checkpoint: zero-unknown decode plus opening oscillation and lemon-generation tables
 - Blockers: peer H3a takeover-release acknowledgment; N5/N6 independent reviews;
   parser, Dridriun, and Zasmu independent reviews follow their queue
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
