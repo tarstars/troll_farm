@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T03:41:25Z
-- State: N4 peer lock pending; evidence index narrowed to one D30 semantic wording blocker
+- Updated UTC: 2026-07-31T04:21:00Z
+- State: N2/H3′ peer reviews accepted; N4/H3a/F1/H11 dispositions next
 - Role: coordinator (integrator)
-- Current task: integrator review of 20260730-decision-evidence-index-pilot
+- Current task: canonical peer-review/proposal integration
 - Branch: agent/local_codex_1
 - Head: 963f3683 (H3′ tested implementation synchronized)
-- Write set: evidence-index task record plus own status/messages; peer implementation remains read-only
-- Last concrete progress UTC: 2026-07-31T03:41:25Z
-- Evidence: stale check read-only; D176a split fixed; disposable D30 wording fix gives 25/25
+- Write set: task records plus own status/messages and authorized canonical dispositions
+- Last concrete progress UTC: 2026-07-31T04:21:00Z
+- Evidence: N2 `B4_4_CORRECTED` and H3′ temporal signal independently peer accepted
 - Running job: none
 - Latest verified result: H7′ real contention ubiquitous but top-20 uplift +5.76 pp, CI crosses zero
-- Next checkpoint: publish D30 blocker, then sweep for peer N4/evidence/H3 responses
+- Next checkpoint: decide N4 runtime close and H3a/H11/F1 proposals
 - Blockers: N4 peer lock/compute routing; evidence D30 `80/80` versus `all 80`
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight

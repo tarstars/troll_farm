@@ -1,6 +1,6 @@
 # 20260731-h3-numeric-pressure-contact-causality
 
-- Status: closed — `TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY`; peer review requested
+- Status: closed — `TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T03:02:46Z
-- Last updated UTC: 2026-07-31T03:13:48Z
+- Last updated UTC: 2026-07-31T04:21:00Z
 
 ## Outcome
 

@@ -1,6 +1,6 @@
 # 20260730-n2-b4-4-verification-sweep: verify or retire every B4.4 claim
 
-- Status: handed off for review — B4_4_CORRECTED
+- Status: closed — `B4_4_CORRECTED`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T19:08:47Z
-- Last updated UTC: 2026-07-30T19:32:59Z
+- Last updated UTC: 2026-07-31T04:21:00Z
 
 ## Outcome
 
