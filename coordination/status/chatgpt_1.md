@@ -1,20 +1,16 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-30T19:02:00Z
-- State: proposal handoff — N4 bounded value-audit proposal pushed; canonical Phase-A task disposition pending
+- Updated UTC: 2026-07-31T09:31:00Z
+- State: independent review active — B3.10 near-camp harvest scope
 - Role: research agent and reviewer
-- Active assigned task: `20260730-decision-evidence-index-pilot` — implementation and handoff published; coordinator actual-checkout validation pending
-- Completed review: `20260730-a2-1-economy-skeleton` — accepted `FAILED_K1` and programme stop; pushed on `agent/chatgpt_1-a2-1-review`
-- Reserved task: N4/H6 residual, proposal stage only; no implementation task record exists
-- Current branch: `agent/chatgpt_1-n4-proposal`
+- Active assigned task: `20260731-b3-10-near-camp-harvest-scope`
+- Current branch: `agent/chatgpt_1-b3-10-review`
+- Review base: `75ebdb157d1935c6cbe255e43b12faa87d25ec32`
+- Claim/ack commit: `6e8d624b6fe2e378c05b493e5f4e473634f02eff`
 - Coordinator/integrator: `local_codex_1`
-- N4 proposal: `chatgpt_1/n4-h6-residual-value-audit-proposal-2026-07-30.md` (`cb452763365287efba90193b1d2000decb490396`)
-- N4 disposition request: `coordination/messages/chatgpt_1/20260730T190000Z-20260730-n4-candidate-pair-value-audit-question.md` (`a523b5c538cedbe860fe9bea3089b935c9fbddc9`)
-- N4 scope: Phase-A candidate-surface census first; capped one-turn oracle only after a separate continuation decision; no ranker
-- N4 implementation state: not started and not authorized; no paths claimed beyond own proposal/status/messages
-- Evidence-index state: 11-record/23-test pilot remotely handed off; acceptance awaits clean-checkout generator/validator/test rerun
-- Last concrete progress UTC: 2026-07-30T19:02:00Z
+- Review questions: individual-fruit-unit semantics; 496/205 and factor-two bounds; separation of outside-D173b scope from action value; D173a/b family, catastrophe, negative-mass, and mechanism gates; D174a scaling exclusion; exact closure wording
+- Allowed writes: `chatgpt_1/b3-10-near-camp-harvest-scope-review-2026-07-31.md`, own status/messages
 - Running job: none
-- Blockers: evidence-index host validation; N4 canonical Phase-A record/disposition
-- Safety: no live platform request, resident/raw/sealed-data mutation, submission tooling, TestSession, or Arena action
+- Next queued task: B3.7, inactive until B3.10 handoff is published
+- Safety: no analyzer, replay/map/range/bulk read, source/frozen-artifact edit, simulation, panel, candidate, TestSession, submission, or Arena action
 - Arena controller: no
