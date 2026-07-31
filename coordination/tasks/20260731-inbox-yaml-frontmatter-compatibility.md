@@ -1,6 +1,6 @@
 # 20260731-inbox-yaml-frontmatter-compatibility
 
-- Status: claimed — implementation pending
+- Status: queued after user-priority Dridriun postmortem — claim preserved; no active lease
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after the current serial review queue; no active review lease)
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T10:45:00Z
-- Last updated UTC: 2026-07-31T10:45:00Z
+- Last updated UTC: 2026-07-31T11:00:00Z
 
 ## Outcome
 
