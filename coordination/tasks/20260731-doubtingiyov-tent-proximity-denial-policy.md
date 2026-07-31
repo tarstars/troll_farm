@@ -1,6 +1,6 @@
 # 20260731-doubtingiyov-tent-proximity-denial-policy
 
-- Status: claimed — exact-game reconstruction pending
+- Status: active — exact game resolved; replay materialization pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after its current serial review queue)
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T14:15:00Z
-- Last updated UTC: 2026-07-31T14:15:00Z
+- Last updated UTC: 2026-07-31T14:20:00Z
 
 ## Owner proposal
 
@@ -40,6 +40,15 @@ frozen triggers describe the tactical opportunity, and—only if mechanically co
 materialize a locally validated successor candidate. This task does not authorize another
 Arena cycle.
 
+## Exact observed game
+
+- The current TestSession battle list contains four finished games against exact opponent
+  agent/submission `6482016`/`40751228`.
+- The newest is game `897547554`, exact active agent/submission
+  `6585578`/`41070584`, resident seat 1, valid 208–262 loss.
+- This task treats that newest game as the owner-observed replay. The other three battle
+  results are identity context only and will not be decoded.
+
 ## Exclusive write set
 
 - this task record;
@@ -48,14 +57,15 @@ Arena cycle.
 - `cgauto/analyze_doubtingiyov_tent_denial.py` and focused test;
 - `data/analysis/live-agent-6553250/doubtingiyov-tent-proximity-denial-result-2026-07-31.*`;
 - `local_codex_1/doubtingiyov-tent-proximity-denial/manifest.json`;
+- `data/external/doubtingiyov-tent-proximity-denial/game-897547554.json` and matching
+  decoded trajectory cache (new external-backed replay evidence);
 - `cgauto/make_tent_proximity_denial_candidate.py` and focused test;
 - one new immutable successor candidate plus checksum under `cgauto/submissions/`;
 - integrator-owned live docs/ledger disposition only after the exact-game verdict.
 
 ## Shared read-only paths
 
-- exact Codingame battle/replay discovered by opponent name and active agent `6585578`;
-- the matching exact raw replay and processed trajectory only;
+- exact Codingame game `897547554`, opponent `6482016`, active agent `6585578`;
 - `cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs`;
 - existing replay decoder, simulator/referee, and unsealed smoke-map tooling.
 
