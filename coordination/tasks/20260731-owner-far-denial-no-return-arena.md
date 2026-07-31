@@ -35,6 +35,8 @@
 - `coordination/status/local_codex_1.md`;
 - `coordination/messages/local_codex_1/*-20260731-owner-far-denial-no-return-arena-*.md`;
 - one new candidate and checksum under `cgauto/submissions/`;
+- `cgauto/make_far_denial_no_return_candidate.py` and
+  `tests/test_far_denial_no_return_candidate.py`;
 - one compact result under `data/analysis/live-agent-6553250/`;
 - one manifest under `local_codex_1/owner-far-denial-no-return-arena/`;
 - integrator-owned live docs/ledger disposition;
