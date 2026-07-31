@@ -1,6 +1,6 @@
 # 20260731-adler3d-target-contention-deadlock
 
-- Status: claimed — exact incident patch active
+- Status: claimed — owner-corrected sticky-bank patch active
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:30:00Z
-- Last updated UTC: 2026-07-31T15:30:00Z
+- Last updated UTC: 2026-07-31T15:35:00Z
 
 ## Owner observation
 
@@ -28,19 +28,26 @@
 - Instrumented exact-parent replay shows an equal-score same-tree contention:
   `CHOP 1 + WAIT` and `WAIT + MOVE 2 10 4` each total 90. The selector retains the
   first equal pair, and collision resolution repeatedly detours unit 2 backward.
+- The earlier causal transition is role loss: unit 1 was the productive adjacent-tree
+  worker, acquired one wood, and then ceased to be bank-bound when the qualifying tree
+  disappeared. The ordinary far-denial planner was free to retarget the full carrier.
 - The exact far-denial-d3 parent reproduces every stuck command through turn 91. The
   active tent-proximity artifact reproduces all 300 recorded commands, so this incident
   is inherited rather than introduced by B3.13.
 - The tent-proximity trigger later breaks the deadlock at turn 92 in the observed game.
   Restoring far-denial-d3 would therefore not repair the incident.
 
-## Frozen patch
+## Owner clarification and frozen patch
 
-On an exactly equal two-unit candidate-pair score, prefer the pair with more immediate
-productive actions (`CHOP`, `HARVEST`, `DROP`, `PICK`, `PLANT`, or `MINE`) over a pair
-that substitutes a MOVE toward the same claimed target. Do not change unequal-score
-selection, target compatibility, movement conflict resolution, policy scoring, or any
-other command path.
+> trolls with wood, when decided to bring wood to tent, should do it
+
+Persist a bank commitment for the productive worker selected in the one-or-two
+tent-adjacent band. Once that worker has cargo, every subsequent command remains on the
+bank path until `DROP` succeeds or cargo is empty—even if the adjacent-tree trigger
+disappears or another denial target scores higher. Do not apply this commitment to the
+non-banking planted-tree worker or the >2 full-denial workers. Do not change the global
+selector, its equal/unequal-score tie order, target compatibility, movement conflict
+resolution, or policy scores.
 
 ## Exclusive write set
 
@@ -48,7 +55,7 @@ other command path.
 - `coordination/status/local_codex_1.md`;
 - `coordination/messages/local_codex_1/*-20260731-adler3d-target-contention-deadlock-*.md`;
 - one compact incident analyzer and focused tests under `cgauto/` and `tests/`;
-- one fail-closed generator and focused tests under `cgauto/` and `tests/`;
+- one fail-closed sticky-bank generator and focused tests under `cgauto/` and `tests/`;
 - one immutable successor candidate plus checksum under `cgauto/submissions/`;
 - compact result report under `data/analysis/live-agent-6553250/`;
 - compact manifest under `local_codex_1/adler3d-target-contention-deadlock/`;
@@ -79,10 +86,11 @@ other command path.
   outcome.
 - Prove the exact parent reproduces the stuck interval and the active candidate reproduces
   the recorded 300-command stream.
-- Generate fail-closed from the exact active artifact and alter only equal-score pair
-  tie-breaking.
-- Compiled regression must select `CHOP 1 + WAIT` at the incident boundary and preserve
-  unequal-score choices.
+- Generate fail-closed from the exact active artifact and add only the productive-role
+  bank commitment.
+- Compiled regression must retain bankward progress across trigger disappearance and
+  higher-scoring retarget opportunities until an exact `DROP`; the non-banking/full-
+  denial roles and global selector remain byte-unchanged.
 - Re-run B3.13 boundary tests and bounded unsealed both-seat smokes; sacred SHA remains
   exact.
 - Materialize and push only. No submit, restore, or second Arena cycle while exact
