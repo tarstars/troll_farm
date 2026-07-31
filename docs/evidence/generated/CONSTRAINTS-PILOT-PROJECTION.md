@@ -31,7 +31,7 @@ Generated review artifact. This does **not** replace or modify `docs/CONSTRAINTS
 ## Substrate & evaluation validity
 
 - D40/q6 is closed as a resident-competition substrate: its full terminal oracle is only +3.42 vs resident (CI [−8.70,+15.54]) and catastrophes rise 22→43. Use the exact resident or first prove same-panel dominance. [D161; D158]
-- Generated-map results are not field evidence: 80/80 official roots lie outside the legacy synthetic model support (−78.05 total shift, −72.12 from scalars). Use the SHA1PRNG official generator, confirmed 120/120; do not rescue the synthetic substrate by more seeds or tuning. [D29c/D30/D31/D33]
+- Generated-map results are not field evidence: all 80 official roots lie outside the legacy synthetic model support (−78.05 total shift, −72.12 from scalars). Use the SHA1PRNG official generator, confirmed 120/120; do not rescue the synthetic substrate by more seeds or tuning. [D29c/D30/D31/D33]
 
 ## Workforce & scaling
 
