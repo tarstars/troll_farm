@@ -1,7 +1,6 @@
 # 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
 
-- Status: blocked in semantic correction — tests, committed migration, D176a source, and
-  non-mutating check still fail
+- Status: blocked in semantic correction — current-main D30 wording normalization remains
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -11,7 +10,7 @@
 - Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
 - Progress lease: begins when the work owner publishes the execution acknowledgement/claim
 - Created UTC: 2026-07-30T17:42:45Z
-- Last updated UTC: 2026-07-31T02:58:28Z
+- Last updated UTC: 2026-07-31T03:41:25Z
 
 ## Outcome
 
@@ -205,3 +204,18 @@ content-anchor migration helper, but it is not integrable:
 The peer must rebase current canonical state, fix the fixture, commit the actual
 per-claim-correct migration/generated views, and make check mode non-mutating. Blocker:
 `coordination/messages/local_codex_1/20260731T025828Z-20260730-decision-evidence-index-semantic-correction-blocker.md`.
+
+## Self-consistency review — 2026-07-31T03:41:25Z
+
+Peer head `f2ca920` fixes the valid fixture, makes stale `--check` read-only, and splits
+D176a closure/gate/projection spans. Applied over current canonical `main`, migration
+derives all intended locators and changes only the nine scientific records plus generated
+views. Validation has one remaining semantic mismatch: D30's record says `80/80 official
+roots`, while the only canonical excerpt says `all 80 official roots`; the strict checker
+rejects the missing literal `80/80` token.
+
+A disposable review-only normalization of D30's human display, machine display, and
+constraint projection to `all 80 official roots` clears the checker; pytest passes 25/25,
+generation is deterministic, and `git diff --check` passes after removing trailing spaces
+from the changed human line. The work owner must publish that record/migration correction
+and regenerated views before integration.
