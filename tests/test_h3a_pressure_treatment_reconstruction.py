@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 
 import pytest
@@ -124,6 +125,28 @@ def test_machine_result_is_deterministic_without_compile():
     assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
 
 
+def test_direct_repository_root_cli(tmp_path):
+    output = tmp_path / "result.json"
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "chatgpt_1/h3a_pressure_treatment_reconstruction.py",
+            "--skip-compile",
+            "--output",
+            str(output),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert completed.returncode == 0, completed.stdout + "\n" + completed.stderr
+    result = json.loads(output.read_text())
+    assert result["verdict"] == "TREATMENT_REPRODUCIBLE"
+    assert all(result["equality"].values())
+    assert result["compilation"] == []
+
+
 def test_exact_artifacts_compile():
     if shutil.which("rustc") is None:
         pytest.skip("rustc is unavailable in this runtime")
@@ -133,4 +156,4 @@ def test_exact_artifacts_compile():
         str(h3a.FALLBACK.relative_to(ROOT)),
         str(h3a.TREATMENT.relative_to(ROOT)),
     }
-    assert all(row["output_bytes"] > 0 for row in result["compilation"])
+    assert all(row["binary_bytes"] > 0 for row in result["compilation"])
