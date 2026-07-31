@@ -1,6 +1,6 @@
 # 20260731-owner-tent-proximity-denial-arena
 
-- Status: claimed — exact preflight active
+- Status: submitted — initial health clean; maturity in flight
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed submission; chatgpt_1 receives immutable evidence
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T15:15:00Z
-- Last updated UTC: 2026-07-31T15:20:00Z
+- Last updated UTC: 2026-07-31T15:25:00Z
 
 ## Owner directive
 
@@ -99,3 +99,17 @@
 
 The owner's explicit directive above authorizes one platform submission of this exact
 candidate after the serialized claim is pushed and every precondition remains exact.
+
+## Execution
+
+- Claim pushed at commit `88746497850d1447289f35bd2a75847aecf1f784`.
+- Candidate size/hash/sidecar, compilation, five focused tests, sacred source, and the
+  previous 160/160 terminal identity all passed immediately before submission.
+- Exactly one `TestSession/submit` call succeeded with submission ID `41070944`.
+- The platform resolved player-agent ID `6585739` and initially listed ten queued battles.
+- First checkpoint: 7 finished, 3 pending, 7 parsed, exact identity, zero fetch failures,
+  and zero runtime/validity signals.
+- The 3–4 record with two catastrophes is too immature for a policy verdict. No restore or
+  second submission occurred.
+- Initial checkpoint SHA-256:
+  `b17a509bb3d9441f29db191bf070ae4c46ff9a25972c4f416ca23a66e96670e6`.

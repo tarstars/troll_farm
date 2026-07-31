@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T15:20:00Z
-- State: owner-directed B3.13 tent-proximity Arena preflight active
+- Updated UTC: 2026-07-31T15:25:00Z
+- State: B3.13 successor submitted; initial identity/runtime health clean
 - Role: coordinator (integrator)
-- Current task: exact preflight, then one submission of the pushed B3.13 successor
+- Current task: monitor exact `6585739`/`41070944` to a maturity disposition
 - Branch: agent/local_codex_1
-- Evidence commit: 313074c (previous Arena cycle terminal and synchronized)
+- Evidence commit: 019b30f (claim and corrected candidate identity pushed before submit)
 - Write set: B3.13 Arena task/report/manifest/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-07-31T15:20:00Z
-- Evidence: successor bytes/sidecar and sacred SHA exact; actual introducing commit `a72c16998b`
+- Last concrete progress UTC: 2026-07-31T15:25:00Z
+- Evidence: submission `41070944`, agent `6585739`; 7 finished/3 pending, identity clean
 - Running job: none
 - Latest verified result: B3.13 candidate passed compiled boundaries, exact replay, and 8 smokes
-- Next checkpoint: pushed claim plus exact hash/test/current-agent preflight
-- Blockers: none if platform identity and terminal state remain exact
-- Arena controller: yes; slot claimed for one owner-directed submission; no write yet
+- Next checkpoint: exact submission-scoped 20-game validity/maturity read
+- Blockers: none
+- Arena controller: yes; one cycle in flight; no submit or restore by any peer
