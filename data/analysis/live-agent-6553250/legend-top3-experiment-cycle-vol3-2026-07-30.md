@@ -1243,3 +1243,34 @@ pending, exact identity, zero unexpected/fetch/runtime faults, score 11.53 at ra
 **Disposition: LIVE / CLEAN WEAK FIRST HEALTH / NO AUTOMATIC RESTORE.** This removes the
 reproduced same-tree assignment mechanism but is not a frozen value qualification. The
 owner explicitly rejected restoration; continued monitoring is read-only.
+
+## B3.16 — Second-worker funding before diagonal tent denial live
+
+The owner's suspected TRAIN blockage is confirmed, but the direct cause is B3.13's
+post-planner tent wrapper rather than B3.15's same-tree ownership predicate. Exact game
+`897560637` (resident `6585801`/`41071204`, seat 0, valid 127–231 loss to FRHT)
+reconstructs all 300 turns with zero unknown updates and exact source reproduction.
+A BANANA is cardinally adjacent to the enemy tent from turn 1. The inner opening planner
+emits `MOVE 0 8 0`; denial replaces it with `MOVE 0 7 1`. Eighteen active opening
+commands are overwritten through turn 40 (turns 1–17 and 29), and TRAIN occurs only on
+the hard downgrade turn 35.
+
+In a fixed 40-game live slice, 35 games are full. Of 21 with cardinal activation by turn
+34, 14 TRAIN at turn 35 and seven earlier; among the other 14, zero TRAIN at 35 and all
+14 earlier. This establishes breadth, not causal field value.
+
+The owner directed that worker-2 resource collection outrank denial and added diagonal
+tent trees. The successor returns the inner opening command while roster <2 and the
+opening objective is active. After worker 2 exists or opening abandonment, denial uses
+all eight neighboring cells. Candidate
+`candidate-agent6585801-second-funding-first-diagonal-denial-slim.min.rs` is 68,893
+bytes, SHA `b8382910…`. It preserves all 18 exact inner commands. Five new plus 11
+inherited compiled tests pass. Across eight unsealed both-seat smokes, worker-2 TRAIN is
+earlier in 7/8, unchanged in one, never later; every game terminates with zero stderr.
+
+The exact candidate was submitted once as `6585846`/`41071360`. First completed health
+has 11/11 parsed with one pending, score 16.97 at rank 95/113, 6 wins/5 losses, mean
+margin +40.182, zero catastrophes, negative mass 165, and zero identity/runtime faults.
+
+**Disposition: LIVE / CLEAN POSITIVE FIRST HEALTH / NO AUTOMATIC RESTORE.** The first
+sample is encouraging but immature. Continued Arena interaction is read-only.

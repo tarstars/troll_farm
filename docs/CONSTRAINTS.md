@@ -1054,3 +1054,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   submission `6585801`/`41071204`; its first 14-game health is clean but weak at 11.53,
   rank 111/113. Treat this as mechanism correction and monitoring evidence only, not
   field value or permission to reopen global ordering/oscillation. [B3.15, 2026-07-31]
+- **Second-worker opening collection precedes the tent-denial wrapper.** Exact B3.15
+  game `897560637` proves B3.13's post-planner layer overwrites 18 active sole-worker
+  collection decisions and defers TRAIN to the turn-35 downgrade. In the fixed 40-game
+  slice, 14/21 full games with early cardinal activation TRAIN at 35 versus 0/14 without
+  it. B3.16 returns the inner command only while roster <2 and the opening is active;
+  after worker 2 or abandonment, denial resumes over the full eight-neighbor enemy-tent
+  ring, including diagonals. Five new plus 11 inherited tests pass; local smoke TRAIN is
+  earlier in 7/8 and never later. Live `6585846`/`41071360` starts clean at 16.97/95
+  over 11 games. Do not generalize this precedence fix into arbitrary TRAIN timing or
+  global denial suppression. [B3.16, 2026-07-31]
