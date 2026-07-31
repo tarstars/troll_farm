@@ -407,3 +407,40 @@ range, candidate, or Arena action.
 
 Evidence:
 `data/analysis/live-agent-6553250/e6-seed-carry-scope-audit-2026-07-30.md`.
+
+## E7 — blanket focus inversion loses, but a per-seed hindsight residual is material
+
+**Question.** The resident chooses LEMON or PLUM once by the summed initial home-shack BFS
+distance and applies that species all game. Is the other binary choice better, and what is
+the exhaustive per-map hindsight ceiling?
+
+**Integrity.** Control is the exact 62,725-byte live source. A temporary source changes
+only the unique `type_to_cut` initialization and maps LEMON↔PLUM. Independent geometry
+finds 35 LEMON and 25 PLUM choices with 60/60 symmetric-seat agreement. Reused seeds
+0..59 × six frozen opponents × both policies × both seats complete 360 cells / 1,440
+games. All 720 seat-games diverge from an exact common prefix; the opponent never leads.
+Jobs 1 and 8 have byte-identical normalized payloads and matching value, geometry,
+divergence, and oracle hashes. Command/stderr gates pass and the sacred resident remains
+`fff6669b…`.
+
+**Direct result.** Blanket inversion loses **−12.1736** paired margin. Both seats lose
+(−7.400/−16.947), and all six families are negative (−5.950 to −20.525). Own score is
+−1.014 while opponent score rises +11.160. `ACTIVE_FOCUS` passes, but every direct value
+gate fails.
+
+**Hindsight result.** The frozen oracle averages all six opponent deltas per seed and then
+chooses CONTROL or FLIP once. It chooses FLIP on 24/60 seeds and gains **+10.5097**
+seed-balanced margin; selected-policy seat gains are +10.886/+10.133. Every
+leave-one-family-out evaluation is positive (+5.450 to +15.450), so the residual is not an
+opponent-specific choice artifact.
+
+**Verdict: `HINDSIGHT_RESIDUAL_ONLY`.** Keep the current default and do not persist the
+flip. The binary species decision contains a large local hindsight residual, but the
+consumed synthetic-map labels are not a prospective selector or field estimate. E7a records
+a peer-review-gated decision about a separately frozen, disjoint-map selector protocol; no
+fit, candidate, source change, or Arena action follows from E7.
+
+Evidence:
+`data/analysis/live-agent-6553250/e7-type-to-cut-audit-result-2026-07-31.md`;
+compact JSON beside it; implementation lock and hashes under
+`local_codex_1/e7-type-to-cut-audit/`.

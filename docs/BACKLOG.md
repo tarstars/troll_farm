@@ -42,7 +42,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > KEEP_LEXICOGRAPHIC: the secure-orchard tie is active but reversing it loses −0.0855
 > exact-1,000-map-weighted margin. E5 is DONE / KEEP_RIPENESS_WAIT: +0.1056 overall,
 > but seat 0 is negative and magnitude is below +1. E6 is VOID_PREMISE_DUPLICATE under
-> D167/D168's acquisition/pre-carry/species/terminal-value coverage.**
+> D167/D168's acquisition/pre-carry/species/terminal-value coverage. E7 is DONE /
+> HINDSIGHT_RESIDUAL_ONLY: blanket inversion −12.174, but a seed-level binary hindsight
+> ceiling is +10.510 with 24/60 flips and 6/6 positive leave-one-family-out evaluations.
+> Keep the default; E7a is a peer-review-gated prospective-selector decision.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -153,6 +156,14 @@ continues with construction and rating-dynamics measurement, not waiting.
   BANK_SEED; field 67.5%; pre-carry 40.5%), and D168 causally tests post-return/pre-carry
   with a frozen species rule: −6.732/−8.207, all active families negative. `DROP` is
   generic banking, not selective seed disposal. Do not retune species, horizons, or carry.
+- **E7 ✅ DONE — HINDSIGHT_RESIDUAL_ONLY.** The exact one-site LEMON/PLUM inversion
+  activates all 360 reused cells but loses −12.174 margin, with both seats and all six
+  families negative. Choosing once per seed after six-opponent averaging gains +10.510;
+  24/60 seeds prefer FLIP, both selected-policy seats are positive, and every
+  leave-one-family-out evaluation remains positive. Keep the current default. **E7a is
+  gated on peer acceptance:** decide whether this warrants a prospective, disjoint-map
+  selector protocol under the static-feature and synthetic-substrate constraints; do not
+  fit on the consumed E7 labels or build a candidate.
 
 ### P2 — hygiene and consequences of iteration 1
 

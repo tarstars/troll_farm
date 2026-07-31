@@ -1,6 +1,6 @@
 # 20260731-e7-type-to-cut-audit
 
-- Status: active — implementation locked; jobs-8/jobs-1 panel pending
+- Status: done — `HINDSIGHT_RESIDUAL_ONLY`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T23:28:27Z
-- Last updated UTC: 2026-07-30T23:53:14Z
+- Last updated UTC: 2026-07-31T00:09:00Z
 
 ## Progress
 
@@ -28,6 +28,16 @@
   `HINDSIGHT_RESIDUAL_ONLY`: blanket FLIP −12.1736; seed hindsight +10.5097;
   24/60 seeds prefer FLIP; 6/6 leave-one-family-out means positive.
 - Jobs-1 parity phase marker: 120/360 cells complete without an integrity exception.
+- Jobs-1 completes and matches jobs-8 in normalized payload, value, geometry, divergence,
+  and oracle hashes.
+- Final result: `ACTIVE_FOCUS`; blanket FLIP −12.1736; seed hindsight +10.5097;
+  `HINDSIGHT_RESIDUAL_ONLY`.
+- Report:
+  `data/analysis/live-agent-6553250/e7-type-to-cut-audit-result-2026-07-31.md`.
+- Manifest:
+  `local_codex_1/e7-type-to-cut-audit/manifest.json`.
+- E7a is recorded as a peer-review-gated prospective-selector decision; no selector,
+  candidate, persistent source, or Arena action exists.
 
 ## Outcome
 

@@ -862,3 +862,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   species tie-break and dynamic destination checks. `DROP` is generic banking, not a
   seed-specific disposal decision. Do not retune species, horizons, or carry timing.
   [D167, D168, E6]
+- **Do not blanket-invert the resident's once-per-game `typeToCut`; retain the current
+  default.** Exact LEMON↔PLUM inversion activates all 360 reused seed/opponent cells but
+  loses −12.1736 margin; both seats (−7.400/−16.947) and all six families are negative.
+  A seed-level six-opponent hindsight oracle nevertheless gains +10.5097, chooses FLIP on
+  24/60 seeds, and stays positive in 6/6 leave-one-family-out evaluations. This is a real
+  binary decision residual, not a deployable selector: the labels are consumed local
+  hindsight on synthetic maps. Reopening is only an E7a prospective-selector decision
+  after peer review, with disjoint-map validation and the static-feature/field-substrate
+  constraints binding; no direct label fit, persistent flip, candidate, or Arena action.
+  [E7, 2026-07-31]

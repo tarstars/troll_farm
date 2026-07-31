@@ -55,7 +55,8 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | **E4** | **Pathfinding tie-breaks** — BFS ties are broken by incidental cell order (this caused the oscillation family); audit whether other decisions inherit the same arbitrariness | ~1 session | **✅ DONE — KEEP_LEXICOGRAPHIC:** the distinct secure-orchard mother tie is active on 10/10 reused tied seeds and all six families, but reverse order loses −8.55 tied-map margin / −0.0855 exact-census-weighted; both seats and every family are negative |
 | **E5** | **Ripeness-wait decisions** — when the bot waits for fruit, is the wait ever longer than the alternative work? (B3.6 found 20 benign cases; a targeted audit could find costly ones) | hours | **✅ DONE — KEEP_RIPENESS_WAIT:** next-best-task replanning activates 33/360 cells across both seats/all families, but gains only +0.1056; seat 0 −0.200, motion/race negative, 346/360 unchanged |
 | **E6** | **Seed-carry decisions** — which seed to carry and when to drop it; never examined as a decision class | ~1 session | **✅ VOID_PREMISE_DUPLICATE:** D167 covers acquisition and field pre-carry; D168 covers post/pre timing, species tie-break, destination, and terminal displacement (−6.732/−8.207; all active families negative); DROP is generic banking |
-| **E7** | **`typeToCut` rule optimality** — the first-turn species choice is one rule applied all game; test it against per-map hindsight | ~1 session | open |
+| **E7** | **`typeToCut` rule optimality** — the first-turn species choice is one rule applied all game; test it against per-map hindsight | ~1 session | **✅ DONE — HINDSIGHT_RESIDUAL_ONLY:** blanket inversion loses −12.174, both seats/all families negative; seed-level hindsight gains +10.510, 24/60 seeds prefer FLIP, and 6/6 leave-one-family-out evaluations are positive; keep default |
+| **E7a** | **Prospective `typeToCut` selector decision** — determine whether the E7 hindsight residual warrants a disjoint-map, predecision-feature selector protocol | hours audit | **gated on E7 peer acceptance:** specialized H11/L2 instance; no fitting, source edit, fresh panel, or candidate until transfer/substrate constraints are resolved |
 
 ## C. Search and lookahead — putibuzu reached #2 with depth-12 rollout + 3-ply beam
 
@@ -121,11 +122,12 @@ E3 (VOID_PREMISE_DUPLICATE);
 E4 (KEEP_LEXICOGRAPHIC);
 E5 (KEEP_RIPENESS_WAIT);
 E6 (VOID_PREMISE_DUPLICATE);
+E7 (HINDSIGHT_RESIDUAL_ONLY);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its semantic line-locator blocker.
 
-Priority order as of 2026-07-30: evidence-index acceptance after correction → remaining
-B-tier execution and C/D-tier search/learning audits in id order. N4 Phase A runs
+Priority order as of 2026-07-31: E7 peer review / E7a decision → evidence-index acceptance
+after correction → remaining C/D-tier search/learning audits in id order. N4 Phase A runs
 separately.
