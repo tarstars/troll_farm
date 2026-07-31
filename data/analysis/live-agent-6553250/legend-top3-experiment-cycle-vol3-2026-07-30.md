@@ -1072,3 +1072,22 @@ runner, panel, candidate, submission, TestSession, or Arena action follows.
 Evidence:
 `data/analysis/live-agent-6553250/zasmu-lemon-denial-oscillation-postmortem-result-2026-07-31.json`
 and the compact human report beside it.
+
+### Owner-directed B3.12 Arena override
+
+After the read-only verdict, the owner explicitly directed a concrete threshold: for
+initial focused denial, a tree at terrain BFS distance >3 from the nearest own door must
+not trigger a wood return. The implementation leaves distance ≤3 and every non-denial
+return unchanged; at >3 it removes return/wood value from the target and permits a
+full-capacity troll to keep CHOPping, so lethal overflow is discarded by the referee.
+
+The fail-closed generator reconstructs exact resident SHA `a8eb3b2b…`; candidate
+`candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs` is 63,033 bytes, SHA
+`307a0755…`. A compiled boundary fixture emits bank-directed MOVE at distance 3 and CHOP
+at 4; 2/2 focused tests and eight unsealed local smoke cells pass. Sacred source remains
+`fff6669b…`.
+
+Exact artifact commit `fcc6e62` was pushed before the platform write.
+`TestSession/submit` returned submission `41070584`; the new agent is `6585578`, with ten
+initial battles queued. This was not a qualified scientific promotion: it is the one
+owner-directed live experiment. No second submission is in flight.

@@ -2,7 +2,7 @@
 
 Date: 2026-07-31
 Task: `20260731-owner-far-denial-no-return-arena`
-Phase: **candidate committed; platform write pending**
+Phase: **submitted; first Arena battles pending**
 
 ## Candidate
 
@@ -47,4 +47,11 @@ and endgame behavior retain the resident path.
   not rely on that draft.
 
 The owner explicitly directed this unqualified candidate to Arena. Exactly one candidate
-submission is authorized; no concurrent cycle exists.
+submission was made:
+
+- TestSession submission response: `41070584`;
+- new candidate agent: `6585578`;
+- first discovery: ten queued battles, all initially `done=false`;
+- previous ranked row remained resident agent `6561795` at 21.9 while the queue started.
+
+No second candidate or control submission is in flight.

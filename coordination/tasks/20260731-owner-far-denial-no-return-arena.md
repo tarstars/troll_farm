@@ -1,6 +1,6 @@
 # 20260731-owner-far-denial-no-return-arena
 
-- Status: candidate ready — exact artifact commit/push pending before Arena write
+- Status: submitted — agent `6585578`, submission `41070584`; first battles pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: owner-directed; peer review may follow after submission
@@ -11,7 +11,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T12:15:00Z
-- Last updated UTC: 2026-07-31T12:35:00Z
+- Last updated UTC: 2026-07-31T12:45:00Z
 
 ## Candidate phase
 
@@ -19,10 +19,13 @@
 - Boundary test compiles the artifact: distance 3 keeps banking; distance 4 emits CHOP at
   full capacity.
 - Four unsealed local seeds × both seats complete without runtime failure.
-- Arena still identifies resident agent/submission `6561795`/`41015603`; no concurrent
-  cycle exists.
+- Before submission, Arena identified resident agent/submission `6561795`/`41015603`;
+  no concurrent cycle existed.
 - IDE draft mismatch `51380661…` is unsent editor state, not the Arena source: rank identity
   and 20/20 latest sampled battles remain the exact resident.
+- Exact candidate commit `fcc6e62` was pushed before the platform write.
+- `TestSession/submit` returned success with submission `41070584`; discovery resolved new
+  agent `6585578` and ten initially queued, unfinished battles.
 
 ## Owner directive
 

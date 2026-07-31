@@ -44,6 +44,13 @@
     "ide_draft_sha256": "5138066175177a9b198c2c3f51deeef30d13d6207bee316227fae607662a6f82",
     "ide_draft_is_live_arena_source": false
   },
-  "platform_submission": null,
-  "status": "candidate_committed_platform_write_pending"
+  "platform_submission": {
+    "submission_id": 41070584,
+    "agent_id": 6585578,
+    "initial_queued_battles": 10,
+    "initial_completed_battles": 0,
+    "submit_ok": true,
+    "submit_endpoint": "TestSession/submit"
+  },
+  "status": "submitted_first_battles_pending"
 }

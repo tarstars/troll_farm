@@ -529,6 +529,11 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   returns through turn 100, not a frozen ≥10-state oscillation. Only a read-only corpus
   audit may test whether the denial bonus can beat liquid stock, regeneration, clear
   burden, and bill timing; base wood value stays separate. E7/N6/D176a remain closed.
+  **Owner override 2026-07-31:** explicitly directed a threshold-3 implementation and
+  Arena submission without a population precheck. Exact candidate SHA `307a0755…` keeps
+  full trolls chopping far focus trees and discards lethal overflow; agent `6585578` /
+  submission `41070584` is in flight. Treat this as an owner-directed live experiment,
+  not scientific qualification or reopening of the broad closed arms.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

@@ -1023,4 +1023,7 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   separating base wood/conversion value from the `900/(1+distance)` denial bonus and
   comparing liquid currency plus protected regeneration against travel/chop clear time
   and the next bill. E7's blanket inversion, N6's scalar retune, H4's reachability logic,
-  and D176a's oscillation line remain closed. [B3.12, 2026-07-31]
+  and D176a's oscillation line remain closed. **Owner exception:** on 2026-07-31 the owner
+  explicitly directed one threshold-3 live candidate anyway; agent `6585578` / submission
+  `41070584` is an in-flight experiment, not evidence that the precheck or closed broad
+  arms passed. [B3.12, 2026-07-31]

@@ -6,7 +6,8 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Resident: agent `6561795`, submission `41015603`, live since 2026-07-19, untouched.
+- Resident baseline: agent `6561795`, submission `41015603`; owner-directed candidate agent `6585578`,
+  submission `41070584`, is in flight with first battles pending.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`
   (62,725 bytes, slim Yamo/Orchard + pre-seed + orchard coverage).
   SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
@@ -130,8 +131,8 @@ makes the goalpost move in the wrong direction.
   terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a REPRODUCIBLE:** seven exact edits, protocol not cut. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 NARROWED:** exact Dridriun fruit-control precheck only. **B3.12 NARROWED:** exact zasmu denial-feasibility precheck only. **F1 QUEUED:** leakage-controlled readiness only.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
   `chatgpt_1` has the serial review queue after H3a takeover. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
-- **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12
-  weekly surveillance. No Arena cycle is in flight.
+- **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
+  surveillance. One Arena cycle is in flight: far-denial-d3 agent `6585578`, submission `41070584`; no second submit.
 
 ## 5. Reading order & pointers
 
@@ -145,6 +146,5 @@ makes the goalpost move in the wrong direction.
 6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
    `docs/archive/INDEX.md` (superseded docs).
 
-Per-experiment obligations: ledger entry; CONSTRAINTS bullet for anything closed; §4
-update here. First session ending with the live volume over 100 KB freezes it and opens
-the next.
+Per-experiment obligations: ledger entry; CONSTRAINTS bullet for anything closed; §4 update here.
+First session ending with the live volume over 100 KB freezes it and opens the next.
