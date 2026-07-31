@@ -1,6 +1,6 @@
 # 20260731-owner-funding-first-diagonal-denial-arena
 
-- Status: claimed; exact preflight pending
+- Status: submitted once; new identity queued; first health pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 asynchronously
@@ -10,7 +10,7 @@
 - Base commit: 2ef378bcc60da8dc4cfb1aab2083029b8b3c28f2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-07-31T17:20:00Z
-- Last updated UTC: 2026-07-31T17:20:00Z
+- Last updated UTC: 2026-07-31T17:25:00Z
 
 ## Owner authority
 
@@ -51,3 +51,18 @@ combined, locally validated successor.
 - No automatic restore is authorized by the owner's standing direction.
 - No second submission, fallback-path submit, or unrelated change.
 - Exact replay and local smokes prove mechanism and safety, not mature Arena value.
+
+## Submission result
+
+- Parent pre-submit: exact `6585801`/`41071204`, 129 parsed and one pending game,
+  score 14.25, rank 110/113, 24 catastrophes, negative mass 6,345, zero
+  runtime/validity signals, identity clean.
+- Full preflight passed: exact rebuild/hash/sidecar/size, direct compile, 16 compiled
+  tests, and sacred SHA.
+- `cgauto/api_submit.py` was called exactly once on the explicit candidate path.
+- Response: `TestSession/submit: 200 41071360`.
+- New exact identity: agent/submission `6585846`/`41071360`.
+- Initial listing has ten exact pending rows and zero unexpected rows. Filtered ladder
+  already reports the new agent; the Arena room still reports the displaced parent, so
+  initial identity is correctly false until the first result/recompute.
+- No restore or second submission occurred.
