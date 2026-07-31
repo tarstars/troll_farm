@@ -1,6 +1,6 @@
 # 20260731-b3-10-near-camp-harvest-scope
 
-- Status: result ready — `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE`; peer review pending
+- Status: closed — `CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T07:55:00Z
-- Last updated UTC: 2026-07-31T08:10:00Z
+- Last updated UTC: 2026-07-31T10:31:00Z
 
 ## Result
 
@@ -25,6 +25,12 @@
 Evidence:
 `data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.md`
 and compact JSON beside it.
+
+Independent review:
+`chatgpt_1/b3-10-near-camp-harvest-scope-review-2026-07-31.md`,
+commit `5cddbb18182db25105842614bc97c63ea248e5f1`, accepted without correction.
+The review preserves the 4.8390 figure as a generous direct-stock swing bound rather than
+a causal estimate or universal production-architecture ceiling.
 
 ## Outcome
 
