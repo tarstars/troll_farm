@@ -44,16 +44,16 @@ def instrument_resident(source:str)->str:
         }
 """
     source=replace_once(source,candidate,candidate+probe_source(),"probe types")
-    field="            banana_factory_worker_three_bridge_post_training_commands: usize,\n"
-    source=replace_once(source,field,field+"            n4_forced_pair: Option<Vec<String>>,\n","forced field")
-    init="                    banana_factory_worker_three_bridge_post_training_commands: 0,\n"
-    source=replace_once(source,init,init+"                    n4_forced_pair: None,\n","forced init")
+    field="            opponent_crop_harvest_rewrites: usize,\n"
+    source=replace_once(source,field,field+"            n4_forced_pair: Option<Vec<String>>,\n","forced inner field")
+    init="                    opponent_crop_harvest_rewrites: 0,\n"
+    source=replace_once(source,init,init+"                    n4_forced_pair: None,\n","forced inner init")
     method="            pub fn fresh_harvest_regeneration_telemetry(\n"
     added="""            pub fn n4_force_pair(&mut self, commands: Vec<String>) {
-                self.n4_forced_pair = Some(commands);
+                self.inner.n4_forced_pair = Some(commands);
             }
 """
-    source=replace_once(source,method,added+method,"forced method")
+    source=replace_once(source,method,added+method,"outer forwarding method")
     select="""                let tree_targets = Self::tree_targets_by_command(&by_id);
                 let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
 """
@@ -82,7 +82,7 @@ def instrument_resident(source:str)->str:
                 N4_LAST_PROBE.with(|slot| {
                     *slot.borrow_mut() = Some(N4Probe::capture(
                         view, &n4_candidates, &view.inventories[0],
-                        &self.inner.opponent_crops, &n4_selected_pre, &selected,
+                        &self.opponent_crops, &n4_selected_pre, &selected,
                     ));
                 });
                 out.extend(selected);
@@ -190,8 +190,8 @@ def self_test()->None:
             score: f64,
             target: Target,
         }
-            banana_factory_worker_three_bridge_post_training_commands: usize,
-                    banana_factory_worker_three_bridge_post_training_commands: 0,
+            opponent_crop_harvest_rewrites: usize,
+                    opponent_crop_harvest_rewrites: 0,
             pub fn fresh_harvest_regeneration_telemetry(
                 let tree_targets = Self::tree_targets_by_command(&by_id);
                 let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
@@ -210,6 +210,8 @@ def self_test()->None:
 """
     transformed=instrument_resident(fixture)
     assert "pub struct N4Probe" in transformed and "n4_forced_pair" in transformed
+    assert "self.inner.n4_forced_pair = Some(commands);" in transformed
+    assert "&self.opponent_crops" in transformed
     assert transformed.count("N4_LAST_PROBE.with(|slot| {") == 1
     assert transformed.count(
         "N4_LAST_PROBE.with(|slot| *slot.borrow_mut() = None);"
