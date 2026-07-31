@@ -62,12 +62,22 @@ def dual_output_fixture():
 """
 
 
+def assert_probe_accesses(transformed):
+    assert transformed.count("N4_LAST_PROBE.with(|slot| {") == 1
+    assert transformed.count(
+        "N4_LAST_PROBE.with(|slot| *slot.borrow_mut() = None);"
+    ) == 1
+    assert transformed.count(
+        "N4_LAST_PROBE.with(|slot| slot.borrow_mut().take())"
+    ) == 1
+
+
 def test_instrumentation_uses_unique_live_path_not_generic_tail():
     transformed = n4.instrument_resident(dual_output_fixture())
     assert "pub struct N4CandidateProbe" in transformed
     assert "n4_force_pair" in transformed
     assert "n4_selected_pre" in transformed
-    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert_probe_accesses(transformed)
     assert transformed.count("out.extend(selected);") == 2
     assert "fn main()" in n4.runner_source()
 
@@ -76,7 +86,7 @@ def test_actual_sacred_source_materializes_once():
     resident = MODULE_PATH.parents[1] / "rust/src/d171a_control_resident_snapshot.rs"
     assert n4.sha256_file(resident) == n4.RESIDENT_SHA256
     transformed = n4.instrument_resident(resident.read_text())
-    assert transformed.count("N4_LAST_PROBE.with") == 1
+    assert_probe_accesses(transformed)
     assert transformed.count("n4_forced_pair") >= 3
 
 
