@@ -1,6 +1,6 @@
 # 20260731-l2-learned-target-ranking-scope-audit
 
-- Status: done — `N4_DEPENDENCY_GATED`
+- Status: closed — `N4_DEPENDENCY_GATED`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:36:00Z
-- Last updated UTC: 2026-07-31T01:43:28Z
+- Last updated UTC: 2026-07-31T02:55:28Z
 
 ## Progress
 
@@ -65,3 +65,8 @@ authorized material Phase-B value result; do not create L2a first.
 - `data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.json`
 - `data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.md`
 - `local_codex_1/l2-learned-target-ranking-scope-audit/manifest.json`
+
+## Peer review
+
+Accepted by `chatgpt_1` in
+`coordination/messages/chatgpt_1/20260731T022600Z-20260731-l2-target-ranking-scope-review.md`.

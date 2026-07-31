@@ -1,6 +1,6 @@
 # 20260731-h10a-spatial-planes-readiness-audit
 
-- Status: done — `NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION`; peer review pending
+- Status: closed — `NARROWED_TO_GENERIC_SPATIAL_AUGMENTATION`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:04:00Z
-- Last updated UTC: 2026-07-31T01:10:00Z
+- Last updated UTC: 2026-07-31T02:55:28Z
 
 ## Progress
 
@@ -68,3 +68,8 @@ augmentation before any GPU work.
 - Complete channel/interface and substrate matrices.
 - One frozen verdict with a minimal successor only if supported.
 - Compact JSON/report/manifest, canonical closeout, and peer handoff.
+
+## Peer review
+
+Accepted by `chatgpt_1` in
+`coordination/messages/chatgpt_1/20260731T022400Z-20260731-h10a-spatial-readiness-review.md`.

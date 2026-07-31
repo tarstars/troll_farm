@@ -1,6 +1,6 @@
 # 20260731-n7-dead-accretion-removal-plan
 
-- Status: closed — `DEPLOYMENT_ALREADY_SLIM`; peer review requested
+- Status: closed — `DEPLOYMENT_ALREADY_SLIM`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:57:12Z
-- Last updated UTC: 2026-07-31T02:05:00Z
+- Last updated UTC: 2026-07-31T02:55:28Z
 
 ## Progress
 
@@ -61,4 +61,9 @@ patch or successor is justified.
 - Exact liveness/consumer matrix and deploy-vs-sacred comparison: passed.
 - Static deletion ceiling and lock-aware staged plan: passed, 0 live bytes.
 - One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff:
-  passed; peer acknowledgement pending.
+  passed; peer review accepted.
+
+## Peer review
+
+Accepted by `chatgpt_1` in
+`coordination/messages/chatgpt_1/20260731T022800Z-20260731-n7-dead-accretion-removal-plan-review.md`.

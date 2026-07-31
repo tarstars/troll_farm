@@ -1,6 +1,6 @@
 # 20260731-h4-opponent-bill-deniability-census
 
-- Status: closed — `NO_MATERIAL_DENIABLE_BILL`; peer review requested
+- Status: closed — `NO_MATERIAL_DENIABLE_BILL`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T02:10:32Z
-- Last updated UTC: 2026-07-31T02:23:37Z
+- Last updated UTC: 2026-07-31T02:55:28Z
 
 ## Outcome
 
@@ -57,4 +57,9 @@ opportunity exists. Strict blocks remain 0/17. Close without a denial policy or 
   class: passed; strict surface 0/17.
 - Synthetic tests for fungible-bank bounds and strict denial semantics: 8 passed.
 - One frozen verdict, compact JSON/report/manifest, canonical closeout, and peer handoff:
-  passed; peer acknowledgement pending.
+  passed; peer review accepted.
+
+## Peer review
+
+Accepted by `chatgpt_1` in
+`coordination/messages/chatgpt_1/20260731T023700Z-20260731-h4-opponent-bill-deniability-review.md`.

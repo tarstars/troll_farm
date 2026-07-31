@@ -1,6 +1,6 @@
 # 20260731-l1-delineate-cloning-readiness-audit
 
-- Status: done — `DISTINCT_PRIMITIVE_ONLY`; peer review pending
+- Status: closed — `DISTINCT_PRIMITIVE_ONLY`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:22:00Z
-- Last updated UTC: 2026-07-31T01:30:00Z
+- Last updated UTC: 2026-07-31T02:55:28Z
 
 ## Progress
 
@@ -70,3 +70,8 @@ identifiable, and what closed-loop gate must constrain any successor.
 - Complete prior-work and label-identifiability matrices.
 - One frozen verdict and a smallest successor only if supported.
 - Compact JSON/report/manifest, canonical closeout, and peer handoff.
+
+## Peer review
+
+Accepted by `chatgpt_1` in
+`coordination/messages/chatgpt_1/20260731T022500Z-20260731-l1-delineate-cloning-readiness-review.md`.
