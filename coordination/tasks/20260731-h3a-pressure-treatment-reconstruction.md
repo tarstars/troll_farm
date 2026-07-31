@@ -1,16 +1,16 @@
 # 20260731-h3a-pressure-treatment-reconstruction
 
-- Status: validation passed — compact publication path/hash/whitespace correction pending
+- Status: documentation takeover — validation passed; local integrator materializing canonical closeout
 - Record owner: local_codex_1
-- Work owner: chatgpt_1
+- Work owner: local_codex_1 (compact-documentation takeover; peer owns published implementation history)
 - Reviewer: local_codex_1
 - Integrator: local_codex_1
 - Area: APPROACH-REGISTER H3a / exact treatment reproducibility
 - Base commit: 0620d2ec426d1e5c30b7f44705e5d6c4d79f9a37
-- Branch: agent/chatgpt_1-h3a-reconstruction
+- Branch: agent/local_codex_1
 - Progress lease: begins when work owner publishes acknowledgement/claim
 - Created UTC: 2026-07-31T05:25:00Z
-- Last updated UTC: 2026-07-31T08:15:00Z
+- Last updated UTC: 2026-07-31T09:30:00Z
 
 ## Outcome
 

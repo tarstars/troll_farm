@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T09:15:00Z
-- State: stale D176a/D170b labels corrected; B3.7/B3.10/H3a peer closeouts pending
+- Updated UTC: 2026-07-31T09:30:00Z
+- State: H3a canonical documentation takeover active; B3.7/B3.10 reviews pending
 - Role: coordinator (integrator)
-- Current task: coordinate H3a correction and B3.7/B3.10 reviews
+- Current task: materialize corrected canonical H3a result/report and closeout
 - Branch: agent/local_codex_1
-- Head: de4474a (backlog status reconciliation claim remotely published)
+- Head: c2d84ca (live coordination pointer synchronized before takeover)
 - Write set: task records plus own status/messages and authorized canonical dispositions
-- Last concrete progress UTC: 2026-07-31T09:15:00Z
-- Evidence: STATE coordination pointer corrected from closed N4 to H3a/review queue
+- Last concrete progress UTC: 2026-07-31T09:30:00Z
+- Evidence: peer H3a head 8ae01f5 stale beyond lease; documentation-only takeover cut
 - Running job: none
 - Latest verified result: H7′ real contention ubiquitous but top-20 uplift +5.76 pp, CI crosses zero
-- Next checkpoint: corrected H3a compact handoff, then serial independent reviews
-- Blockers: peer-owned H3a correction plus B3.10/B3.7/N5/N6 reviews
+- Next checkpoint: publish corrected H3a canonical closeout, then serial reviews
+- Blockers: B3.10/B3.7/N5/N6 independent reviews
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight
