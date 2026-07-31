@@ -925,3 +925,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   after peer review, with disjoint-map validation and the static-feature/field-substrate
   constraints binding; no direct label fit, persistent flip, candidate, or Arena action.
   [E7, 2026-07-31]
+- **L2 learned tie-breaking is gated on N4, not an independent experiment.** The exact
+  live resident's only non-closed material multi-worker ranker exhaustively maximizes the
+  summed score of compatible two-worker pairs; N4 owns its coverage, reconstruction,
+  boundary, and latency census. Exact-score ties have no value label before that census,
+  and unequal-score reranking additionally needs a separately authorized material
+  terminal-value Phase B. Single-worker ranking overlaps the N4-gated E1 prefix and
+  primitive learning; greater-than-two ranking is unreachable; D171/D176, E2, and E4
+  close the live path/orchard tie families; broad scorers remain closed by
+  D18/D41a/D79-D84/D97-D172. Do not create L2a, export pairs, or fit first. [L2, N4]

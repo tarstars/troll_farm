@@ -640,3 +640,37 @@ Evidence:
 `data/analysis/live-agent-6553250/l1-delineate-cloning-readiness-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/l1-delineate-cloning-readiness-audit/`.
+
+## L2 — learned target ranking is dependency-gated on N4
+
+**Question.** Does “learned tie-break / target ranking inside the existing architecture”
+name a third live, labeled decision surface outside the project's selector closures?
+
+**Live graph.** `main()` constructs `SecureOrchardBot::new()`, whose active inner bot is
+the tuned Yamo policy; task-market, banana-factory, opponent-crop, and ScarceIntent
+accretions are dead and excluded. Candidate generation emits primitive command, score,
+and target. One worker takes a score argmax; exactly two workers exhaustively maximize
+the summed score over compatible pairs; greater-than-two greedy ranking is unreachable
+under the hard roster cap. Collision/path resolution then rewrites MOVE conflicts. The
+outer orchard wrapper has a mother comparator and fixed starter/protection rewrites.
+
+**Overlap.** The compatible-pair loop is exactly the peer-owned N4 Phase-A census object.
+An exact-score tie has no value label before N4 measures its coverage/boundaries; an
+unequal-score reranker additionally requires separately authorized terminal
+counterfactual value. Single-worker choice is transient opening/primitive policy and E1
+is already narrowed to an N4-prefix oracle. D171/D176 close collision/detour ties on
+value; E4 closes the mother tie; E2 finds immediate/joint home-door routing already
+optimal and only a 0.335-turn/side-game future-conditioned residual. D18, D41a,
+D79-D84, D97-D158, and D172 bind broad primitive/target/value scorers. L1 and L3 are
+separate register objects, not aliases.
+
+**Verdict: `N4_DEPENDENCY_GATED`.** Do not create L2a, instrument/export pairs, fit a
+ranker, edit source, or open a panel. Wait for accepted N4 Phase A. If it clears, a
+separate Phase-B decision must establish material terminal value before any residual
+ranker can be scoped. No source, model, game, candidate, submission, or Arena action was
+created.
+
+Evidence:
+`data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/l2-learned-target-ranking-scope-audit/`.

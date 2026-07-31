@@ -1,6 +1,6 @@
 # 20260731-l2-learned-target-ranking-scope-audit
 
-- Status: active — read-only scope audit
+- Status: done — `N4_DEPENDENCY_GATED`
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T01:36:00Z
-- Last updated UTC: 2026-07-31T01:36:00Z
+- Last updated UTC: 2026-07-31T01:43:28Z
 
 ## Progress
 
@@ -18,13 +18,15 @@
   by summed immediate score; this is the peer-owned N4 Phase-A surface.
 - The known post-selection detour tie is closed permanently by D171/D176 on value, and
   the secure-orchard mother tie is closed by E4.
-- Broad learned concrete-target scoring and snapshot value ranking have prior closures;
-  the audit will determine whether any third live surface survives.
+- Broad learned concrete-target scoring and snapshot value ranking have prior closures.
+- The live construction graph excludes dead accretions, makes the greater-than-two greedy
+  branch unreachable, and leaves no third measured, labeled learned-ranking surface.
 
 ## Outcome
 
-Resolve whether L2 is distinct and executable without racing N4 or reopening closed
-tie/ranker families.
+`N4_DEPENDENCY_GATED`. The only non-closed material live ranker is N4's exact compatible
+two-worker pair surface. L2 remains idle through accepted N4 Phase A and any separately
+authorized material Phase-B value result; do not create L2a first.
 
 ## Frozen protocol
 
@@ -57,3 +59,9 @@ tie/ranker families.
 - Complete live-selection graph and overlap matrix.
 - One frozen verdict and successor only if non-overlapping.
 - Compact JSON/report/manifest, canonical closeout, and peer handoff.
+
+## Result
+
+- `data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.json`
+- `data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.md`
+- `local_codex_1/l2-learned-target-ranking-scope-audit/manifest.json`

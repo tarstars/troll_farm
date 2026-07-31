@@ -53,7 +53,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > unsupported by a transferable opponent/value model, and not timed under 50 ms.
 > L1 readiness is DISTINCT_PRIMITIVE_ONLY: 199 exact delineate games expose 145,448
 > final per-unit labels, while internal train-plan/logit/beam targets remain latent;
-> L1a extractor work is peer-gated and teacher accuracy is never a value gate.**
+> L1a extractor work is peer-gated and teacher accuracy is never a value gate. L2 is
+> N4_DEPENDENCY_GATED: the exact compatible two-worker pair sum-max is the sole
+> non-closed material live ranker, so no L2a precedes accepted N4 coverage and value.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 

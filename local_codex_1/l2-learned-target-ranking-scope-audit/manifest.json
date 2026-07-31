@@ -1,0 +1,55 @@
+{
+  "task_id": "20260731-l2-learned-target-ranking-scope-audit",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "N4_DEPENDENCY_GATED",
+  "base_commit": "f885f7f4015e39a85837c4cb03fc7b1db0e0e5a6",
+  "claim_commit": "82dbd23d5ad61f85a406cde457023246e21d4a63",
+  "files": {
+    "protocol": {
+      "path": "docs/l2-learned-target-ranking-scope-protocol-2026-07-31.md",
+      "sha256": "d7b14d61095c9dbd9d202abda685102fd4be9a791f6773b0cc91a2acb3752a49"
+    },
+    "task_claim": {
+      "path": "coordination/tasks/20260731-l2-learned-target-ranking-scope-audit.md",
+      "sha256": "3e68d7e6b2113ab8277b5d7ad49f26cbe220600e0c6780f5302b7e6985f9864d"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.json",
+      "sha256": "ad594149718c649352a38e62893265318329a6d5c9edca38d97234fad513083a"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/l2-learned-target-ranking-scope-audit-result-2026-07-31.md",
+      "sha256": "bbcc1f499cd21332121102b0b9877f17fa4341e9b3e559eea75f31b4d3019c6c"
+    }
+  },
+  "locks": {
+    "sacred_source": {
+      "path": "rust/src/bin/yamo_orchard_live.rs",
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+    },
+    "n4_task": {
+      "path": "coordination/tasks/20260730-n4-candidate-pair-value-audit.md",
+      "sha256": "6b3a4feb4cb82600684d016fb1a5b0cc1b3bc18d98f7a3a27212e0e012e7b748",
+      "owner": "chatgpt_1",
+      "peer_head_observed": "99cf140"
+    }
+  },
+  "evidence_hashes": {
+    "d18_report": "8bb438386d7a411903d1771f5de16a87f79880a479ac08156c4b9f94d6e5b37a",
+    "d41a_report": "ae3a4e277d3d9c66b6541ecb581c328389db37496882540479d7afbb15cf2b7f",
+    "d79_report": "71b2f0ff235eb8f6ad1779aa5c6b4690dd2ff2c37294c1b2f4a3d6c0aa2a7f97",
+    "e2_report": "3b5322281e37cfce89202f269ab180c66a97ef6412c2ce9c31be830de091877e",
+    "e4_report": "1cb0da7d066741cd5eacb0f4c6f309d4b45848b71527f1fa3d11b04227058316",
+    "d176_report": "ab24df1d9e2ea5c984f43c4e1ef29c39ef59d15f3155a7f64c662d4b73f0538a"
+  },
+  "actions_not_taken": [
+    "source edit",
+    "instrumentation",
+    "candidate export",
+    "model or fit",
+    "game or map",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

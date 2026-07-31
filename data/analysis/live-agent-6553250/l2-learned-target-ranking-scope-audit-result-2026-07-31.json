@@ -1,0 +1,141 @@
+{
+  "audit": "L2 learned tie-break / target-ranking scope",
+  "date": "2026-07-31",
+  "verdict": "N4_DEPENDENCY_GATED",
+  "question": "Does L2 name a distinct, currently measurable learned ranking surface inside the exact live resident without racing N4 or reopening a closed selector family?",
+  "integrity": {
+    "read_only": true,
+    "source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "source_unchanged": true,
+    "instrumentation": false,
+    "candidate_export": false,
+    "model_or_fit": false,
+    "games_or_maps_opened": false,
+    "arena_action": false
+  },
+  "live_construction": {
+    "entrypoint": "SecureOrchardBot::new()",
+    "entrypoint_lines": "rust/src/bin/yamo_orchard_live.rs:6008-6019",
+    "inner": "YamoBot::tuned_carry_regeneration_transit_idle_harvest()",
+    "constructor_lines": "rust/src/bin/yamo_orchard_live.rs:3823-3832",
+    "inactive_accretions_excluded": [
+      "task_market",
+      "banana_factory",
+      "opponent-crop scoring",
+      "ScarceIntent"
+    ],
+    "worker_cap": 2
+  },
+  "selection_graph": [
+    {
+      "order": 1,
+      "surface": "hand-written candidate generation",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1535-1590",
+      "authority": "constructs primitive commands, immediate scores, and semantic targets"
+    },
+    {
+      "order": 2,
+      "surface": "single-worker score argmax",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1362-1368",
+      "authority": "one primitive command",
+      "disposition": "transient opening/primitive policy; a learned unequal-score override overlaps E1 and D18/L1"
+    },
+    {
+      "order": 3,
+      "surface": "two-worker compatible-pair exhaustive sum-max",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1369-1388",
+      "authority": "joint pair of primitive commands",
+      "disposition": "only live ordinary multi-worker reranking surface; exactly N4 Phase A"
+    },
+    {
+      "order": 4,
+      "surface": "greater-than-two greedy ranking",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1390-1412",
+      "authority": "greedy primitive-command sequence",
+      "disposition": "unreachable in the exact resident because can_train hard-caps workforce at two"
+    },
+    {
+      "order": 5,
+      "surface": "post-selection move conflict priority and detour",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:1425-1528",
+      "authority": "rewrites selected MOVE commands",
+      "disposition": "D171/D176 oscillation family permanently closed on value"
+    },
+    {
+      "order": 6,
+      "surface": "secure-orchard mother comparator",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:4173-4198",
+      "authority": "one orchard mother cell",
+      "disposition": "E4 exact tie intervention closed; retain lexicographic order"
+    },
+    {
+      "order": 7,
+      "surface": "secure-orchard forced starter and mother-protection rewrites",
+      "lines": "rust/src/bin/yamo_orchard_live.rs:4482-4548,5209-5428",
+      "authority": "overrides one or both selected commands for a fixed orchard invariant",
+      "disposition": "rule/protection layer, not a scored scheduler; nearest alternate-door/path ties fall under closed E2/E4/D176 path-choice families and have no separate labels"
+    }
+  ],
+  "interpretations": [
+    {
+      "interpretation": "learn only exact-score tie order inside the two-worker selector",
+      "teacher_or_label": "none until N4 measures exact tie/boundary coverage; resident first-enumerated choice is imitation, not value",
+      "prior_or_dependency": "N4 Phase A",
+      "status": "N4_DEPENDENCY"
+    },
+    {
+      "interpretation": "rerank unequal-score compatible pairs",
+      "teacher_or_label": "requires separately authorized terminal counterfactual value after N4 Phase A",
+      "prior_or_dependency": "N4 Phase A and possible Phase B",
+      "status": "N4_DEPENDENCY"
+    },
+    {
+      "interpretation": "learn a single-worker opening target ranker",
+      "teacher_or_label": "resident imitation is observable but not evidence of improvement; terminal prefix value remains gated",
+      "prior_or_dependency": "E1 narrowed to the N4-prefix oracle; D18 and L1 are negative-prior/primitive boundaries",
+      "status": "DEPENDENCY_OR_DUPLICATE"
+    },
+    {
+      "interpretation": "learn the post-selection collision/path tie",
+      "teacher_or_label": "D176 measured causal candidate value",
+      "prior_or_dependency": "D171/D176",
+      "status": "DUPLICATE_CLOSED"
+    },
+    {
+      "interpretation": "learn secure-orchard mother or alternate-door ties",
+      "teacher_or_label": "E4 causal tie panel; E2 immediate/joint route audit and hindsight ceiling",
+      "prior_or_dependency": "E2/E4, with D176 as the generic detour closure",
+      "status": "DUPLICATE_CLOSED_OR_UNLABELLED_MICRO"
+    },
+    {
+      "interpretation": "replace candidate scores broadly",
+      "teacher_or_label": "resident action imitation or offline terminal counterfactuals",
+      "prior_or_dependency": "D18/D41a/D79-D84/D97-D158/D172; L1 and L3 are separate register scopes",
+      "status": "DUPLICATE_OR_SCOPE_EXPANSION"
+    }
+  ],
+  "binding_evidence": {
+    "n4_task": "coordination/tasks/20260730-n4-candidate-pair-value-audit.md",
+    "n4_owner": "chatgpt_1",
+    "n4_peer_head": "99cf140",
+    "n4_status": "Phase A blocked before the exact 2,048-game census by a publication-anchor assertion that counts all three probe accesses",
+    "d18": "0/40 resident primitive-residual spatial recipes passed",
+    "d41a": "84.386-84.960% learned scorer accuracy versus 85047/85047 exact tuple-decoder matches",
+    "d79": "all 32 random target scorers changed 64/64 task hashes and became global controllers",
+    "d80": "one blind intervention activated in 253/256 tasks; value remained unopened",
+    "d81": "364 noncontrol arms missed the frozen 400-arm support floor",
+    "d82": "semantic threatened-own-crop action set has +11.240 safe hindsight headroom",
+    "d83": "snapshot ridge captured +1.188 and failed selection gates",
+    "d84": "32-decision exact rollout gained +3.160 but missed value and 50 ms latency gates",
+    "d172": "exact dense option labels existed, but 0/4 fitted selectors were admitted",
+    "e2": "4855/4855 immediate door checks and 64/64 joint assignments were optimal; only a 0.335-turn/side-game hindsight residual remained",
+    "e4": "reversing the active mother tie lost 8.55 conditional and 0.0855 census-weighted margin",
+    "d176": "oscillation preference reduced long-run incidence to 2.88% with zero de novo events but gained only 0.045 margin, CI [-0.024,0.114]"
+  },
+  "decision": {
+    "distinct_ready_surface": null,
+    "reason": "The only non-closed, material live ranking surface is the exact two-worker compatible-pair surface already reserved to N4. All other readings are inactive, primitive/opening-policy overlap, fixed invariant rewrites, or closed tie/ranker families.",
+    "successor": "Wait for accepted N4 Phase A. If it clears, decide separately whether a Phase B terminal-value oracle is justified. Only an accepted material Phase B result may define an L2 residual ranker; L2 must not export, label, fit, or alter that surface first.",
+    "register_action": "mark L2 dependency-gated on N4; do not create L2a"
+  }
+}
