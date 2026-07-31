@@ -48,7 +48,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > Keep the default; E7a is a peer-review-gated prospective-selector decision. S1 is DONE /
 > FULL_EXACT_INFEASIBLE: 589 late roots show a manageable first ply but not a 10–50-turn
 > full simultaneous stochastic game under 50 ms. S2 is
-> DEPENDENCY_GATED_REPRESENTATION_BLOCKED on N4→E1 value and a new map representation.**
+> DEPENDENCY_GATED_REPRESENTATION_BLOCKED on N4→E1 value and a new map representation.
+> S3 is DISTINCT_MULTI_GATED: genuinely new as a combination, but under-specified,
+> unsupported by a transferable opponent/value model, and not timed under 50 ms.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -184,6 +186,18 @@ continues with construction and rating-dynamics measurement, not waiting.
   precision / −0.277), and D153 (+14–17 train→+1.820 held, 44.44% harmful) supply no
   accepted pre-action map representation. Keep S2 gated; no sequence enumeration, feature
   fit, panel, book, candidate, or Arena action.
+- **S3 ✅ DONE — DISTINCT_MULTI_GATED.** Putibuzu's public shape combines about 30 joint
+  task/local-action candidates, values averaged at depths 3/5/7/9/12, a three-ply
+  `5→3→all` beam on large maps, and explicit-opponent maximin on small maps. That full
+  combination is outside Phases 3–8/11/16, D36, and D84, although its individual pieces
+  overlap them. It is not reproducible from the prose: evaluator weights, candidate/tie
+  rules, beam semantics, map cutoff, opponent breadth, and chance handling are missing.
+  Our model substrate also fails transfer (rollout candidate 21.7 vs 24.1 control; robust
+  29-option selection inert), while exact-resident subsets cost 92.852–130.047 ms p95.
+  Runtime remains only provisional for a new lightweight policy because the GoldElite
+  subset reached 28.53 ms p95. **S3a is peer/N4-gated:** first choose exact resident-pair
+  overlap versus a clean-room new controller and qualify specification/latency before
+  value. No simulator, source, panel, candidate, or Arena action now.
 
 ### P2 — hygiene and consequences of iteration 1
 

@@ -1,6 +1,6 @@
 # 20260731-s3-putibuzu-rollout-beam-scope-audit
 
-- Status: active — premise matrix in progress
+- Status: done — `DISTINCT_MULTI_GATED`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,24 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T00:52:00Z
-- Last updated UTC: 2026-07-31T00:52:00Z
+- Last updated UTC: 2026-07-31T00:58:00Z
+
+## Progress
+
+- Claim/protocol published at `a4b010ccbc10036d925de89419e10ea7b195fafd`.
+- The exact public architectural shape was recovered from putibuzu's 2026-05-25
+  post and separated from its unspecified implementation details.
+- Seven canonical comparison rows cover Phases 3–8, GoldElite residual search,
+  Phase 11, Phase 16, D36, D84, and S1.
+- The full combination is materially distinct, while specification and opponent/value
+  modeling are directly blocked and runtime is provisionally blocked for any new
+  lightweight continuation.
+- Final verdict: `DISTINCT_MULTI_GATED`.
+- Report:
+  `data/analysis/live-agent-6553250/s3-putibuzu-rollout-beam-scope-audit-result-2026-07-31.md`.
+- Manifest:
+  `local_codex_1/s3-putibuzu-rollout-beam-scope-audit/manifest.json`.
+- No simulator, source, map, game, panel, candidate, or Arena action exists.
 
 ## Outcome
 

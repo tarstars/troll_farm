@@ -614,6 +614,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Broad and bank-only resident MOVE residual search is closed: the prospective bank-only
   replication gains just +0.508 margin at 92.852 ms p95. Primitive command mutation and short
   asset-bonus horizons remain closed for macro decisions. [Phase 16]
+- **The complete putibuzu-shaped rollout-plus-beam combination is distinct but not
+  implementation-ready.** Its public description joins about 30 joint task/local-action
+  candidates, 3/5/7/9/12-depth averaging, a three-ply `5→3→all` beam, and small-map
+  explicit-opponent maximin under a lightweight greedy policy. No existing project family
+  combines those dimensions, so do not call it a duplicate. But the prose omits the
+  evaluator weights, candidate/tie rules, exact beam semantics, map cutoff, opponent breadth,
+  and chance handling. The project's continuation substrate is also unsafe: the live
+  single-model rollout scored 21.7 versus 24.1 control and the eight-model repair selected
+  nothing robustly. Exact-resident strict subsets cost 92.852–130.047 ms p95; an old
+  lightweight GoldElite subset reached 28.53 ms p95, so runtime for a new lightweight
+  policy is unresolved rather than impossible. S3a requires peer acceptance and the N4
+  ownership fork before even a specification/latency preflight. Do not build a simulator,
+  panel, source, candidate, or Arena action from S3. [S3, 2026-07-31]
 - **A full exact last-N-turn solver is infeasible under the current representation and
   50 ms runtime contract; do not relabel a candidate restriction as exact.** On 720 reused
   exact-live games, 246 (34.17%) reach t251 and 155 (21.53%) reach t291. Across 589 roots,

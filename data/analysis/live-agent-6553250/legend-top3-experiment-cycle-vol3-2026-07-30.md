@@ -521,3 +521,40 @@ Evidence:
 `data/analysis/live-agent-6553250/s2-opening-book-scope-audit-result-2026-07-31.md`;
 compact JSON beside it and manifest under
 `local_codex_1/s2-opening-book-scope-audit/`.
+
+## S3 — putibuzu's rollout-plus-beam combination is distinct but multi-gated
+
+**Question.** Is the #2 finisher's public search architecture already inside a closed
+project family, or does it define a genuinely new experiment?
+
+**Public shape.** Putibuzu describes about 30 joint combinations from top-three tree
+targets plus local actions, one lightweight greedy policy for generation and both-side
+continuation, values averaged at depths 3/5/7/9/12, a large-map three-ply `5→3→all`
+beam, and small-map explicit-opponent maximin. The evaluator mixes score differential,
+distance-discounted carries, tree ownership/proximity, and future production.
+
+**Closure matrix.** No project experiment combines those dimensions. Phases 3–8 are
+turn-one terminal option selection; Phase 11 chooses between two complete macros;
+Phase 16 changes at most one MOVE target and keeps direct work immutable; D36 is an
+offline repeated bundle upper bound; D84 has at most three threat-response arms and no
+beam. S1 establishes that pruning to ~30 actions is approximate, not exact. The nearest
+staged-search ancestors test strict subsets.
+
+**Three gates.** The public prose omits implementation-defining weights, candidate/tie
+rules, exact beam semantics, map cutoff, opponent breadth, and chance handling. The
+opponent/value substrate has already failed transfer: the live rollout candidate reached
+21.7 versus 24.1 control, while the 29-option/eight-model repair selected nothing robustly.
+Exact-resident strict subsets cost 92.852–130.047 ms p95. An old lightweight GoldElite
+subset did reach 28.53 ms p95, so a new lightweight policy is not proven impossible;
+runtime is provisional while specification and model gates are direct.
+
+**Verdict: `DISTINCT_MULTI_GATED`.** Do not implement or value-test S3. S3a is a
+peer-review-gated specification/latency decision after N4 Phase A: choose explicitly
+between exact resident candidate-pair overlap and a clean-room new broad controller,
+then qualify legality/timing on consumed states before any score panel. No source, map,
+game, candidate, submission, or Arena action was created.
+
+Evidence:
+`data/analysis/live-agent-6553250/s3-putibuzu-rollout-beam-scope-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/s3-putibuzu-rollout-beam-scope-audit/`.
