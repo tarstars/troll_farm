@@ -81,10 +81,10 @@ def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
         a, b = map(int, m.groups())
         if a < 1 or b < a:
             raise ValidationError(f"{context}: invalid line range")
-        line_count = sum(1 for _ in path.open(encoding="utf-8", errors="replace"))
-        if b > line_count:
-            raise ValidationError(f"{context}: line range exceeds {source['path']} ({line_count})")
-        return None
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        if b > len(lines):
+            raise ValidationError(f"{context}: line range exceeds {source['path']} ({len(lines)})")
+        return "\n".join(lines[a-1:b])
     if path.suffix.lower() != ".json":
         raise ValidationError(f"{context}: JSON pointer requires .json source")
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -92,6 +92,19 @@ def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
 
 def numeric_tokens(text: str) -> list[str]:
     return NUM_RE.findall(text)
+
+def require_excerpt_tokens(excerpt: Any, tokens: list[str], context: str) -> None:
+    if not isinstance(excerpt, str):
+        return
+    missing = [token for token in dict.fromkeys(tokens) if token not in excerpt]
+    if missing:
+        raise ValidationError(f"{context}: cited excerpt omits content tokens {missing}")
+
+def require_constraints_identity(source: dict[str, Any], excerpt: Any, rid: str, context: str) -> None:
+    if source.get("path") != "docs/CONSTRAINTS.md":
+        return
+    if not isinstance(excerpt, str) or rid not in excerpt:
+        raise ValidationError(f"{context}: CONSTRAINTS excerpt does not identify {rid}")
 
 def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
     missing = sorted(REQUIRED - record.keys())
@@ -119,7 +132,8 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
         pf = record.get("premise_failure")
         if not isinstance(pf, dict) or not pf.get("false_premise") or not pf.get("refutation"):
             raise ValidationError(f"{rid}: void-premise requires premise_failure")
-        validate_source(repo, pf.get("source", {}), f"{rid}.premise_failure")
+        excerpt = validate_source(repo, pf.get("source", {}), f"{rid}.premise_failure")
+        require_constraints_identity(pf.get("source", {}), excerpt, rid, f"{rid}.premise_failure")
     elif "premise_failure" in record and record["premise_failure"]:
         raise ValidationError(f"{rid}: premise_failure only valid for void-premise")
     has_arena = False
@@ -132,6 +146,9 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
             raise ValidationError(f"{ctx}: invalid evidence strength")
         has_arena |= c["evidence_strength"] == "arena_measured"
         resolved = validate_source(repo, c["source"], ctx)
+        if c["source"].get("locator"):
+            require_excerpt_tokens(resolved, numeric_tokens(c["display"]), ctx)
+            require_constraints_identity(c["source"], resolved, rid, ctx)
         if "expected_value" in c and resolved != c["expected_value"]:
             raise ValidationError(f"{ctx}: JSON pointer value differs from expected_value")
         other = c.get("compared_population")
@@ -148,7 +165,11 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
     for i, e in enumerate(record["textual_evidence"]):
         if not e.get("claim"):
             raise ValidationError(f"{rid}.textual_evidence[{i}]: claim required")
-        validate_source(repo, e.get("source", {}), f"{rid}.textual_evidence[{i}]")
+        ctx = f"{rid}.textual_evidence[{i}]"
+        excerpt = validate_source(repo, e.get("source", {}), ctx)
+        if e.get("source", {}).get("locator"):
+            require_excerpt_tokens(excerpt, numeric_tokens(e["claim"]), ctx)
+            require_constraints_identity(e.get("source", {}), excerpt, rid, ctx)
     for rel in record["relations"]:
         if rel.get("type") not in ALLOWED_RELATIONS:
             raise ValidationError(f"{rid}: invalid relation type {rel.get('type')}")
@@ -160,14 +181,19 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
     cp = record["constraint_projection"]
     if not cp.get("section") or not cp.get("bullet"):
         raise ValidationError(f"{rid}: constraint projection section/bullet required")
-    validate_source(repo, cp.get("source", {}), f"{rid}.constraint_projection")
+    cp_excerpt = validate_source(repo, cp.get("source", {}), f"{rid}.constraint_projection")
     bullet = cp["bullet"]
+    binding_tokens: list[str] = []
     for c in record["decisive_claims"]:
         if not c.get("binding", True):
             continue
         for token in numeric_tokens(c["display"]):
+            binding_tokens.append(token)
             if token not in bullet:
                 raise ValidationError(f"{rid}: projection omits decisive numeric token {token}")
+    if cp.get("source", {}).get("locator"):
+        require_excerpt_tokens(cp_excerpt, binding_tokens, f"{rid}.constraint_projection")
+        require_constraints_identity(cp.get("source", {}), cp_excerpt, rid, f"{rid}.constraint_projection")
     if rid == "D176a":
         outcomes = record.get("outcomes", {})
         if outcomes != {"mechanism":"successful","value":"immaterial","protocol_quality":"gate_design_error"}:
