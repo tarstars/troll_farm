@@ -1,0 +1,163 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T08:56:49.256888+00:00",
+ "result_audit_completed_at": "2026-07-31T08:56:52.975486+00:00",
+ "role": "funding-first-diagonal-first-health",
+ "agent_id": 6585846,
+ "submission_id": 41071360,
+ "arena": {
+  "agent_id": 6585846,
+  "rank": 95,
+  "total": 113,
+  "score": 16.97,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585846,
+  "rank": 106,
+  "score": 15.97,
+  "division_index": 5
+ },
+ "battle_rows_listed": 12,
+ "matching_rows": 12,
+ "matching_finished": 11,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 11,
+ "fetch_failures": [],
+ "summary": {
+  "games": 11,
+  "wins": 6,
+  "ties": 0,
+  "losses": 5,
+  "mean_margin": 40.18181818181818,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": 0.0,
+  "negative_margin_mass": 165.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897565407,
+   "opponent": "ATsibin",
+   "opponent_agent_id": 6575572,
+   "our_score": 179.0,
+   "opponent_score": 190.0,
+   "margin": -11.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565324,
+   "opponent": "yveslacroix83400",
+   "opponent_agent_id": 6493051,
+   "our_score": 176.0,
+   "opponent_score": 29.0,
+   "margin": 147.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565323,
+   "opponent": "Highruler",
+   "opponent_agent_id": 6505286,
+   "our_score": 39.0,
+   "opponent_score": 63.0,
+   "margin": -24.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565322,
+   "opponent": "Zabym",
+   "opponent_agent_id": 6483514,
+   "our_score": 233.0,
+   "opponent_score": 19.0,
+   "margin": 214.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565321,
+   "opponent": "OldJohn",
+   "opponent_agent_id": 6543596,
+   "our_score": 160.0,
+   "opponent_score": 92.0,
+   "margin": 68.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565320,
+   "opponent": "Halphas",
+   "opponent_agent_id": 6480945,
+   "our_score": 148.0,
+   "opponent_score": 132.0,
+   "margin": 16.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565319,
+   "opponent": "Kheopsian",
+   "opponent_agent_id": 6479388,
+   "our_score": 132.0,
+   "opponent_score": 66.0,
+   "margin": 66.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565318,
+   "opponent": "Ztrk",
+   "opponent_agent_id": 6480516,
+   "our_score": 156.0,
+   "opponent_score": 60.0,
+   "margin": 96.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565317,
+   "opponent": "DoubtinGiyov",
+   "opponent_agent_id": 6482016,
+   "our_score": 111.0,
+   "opponent_score": 124.0,
+   "margin": -13.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565316,
+   "opponent": "Astrobytes",
+   "opponent_agent_id": 6482167,
+   "our_score": 87.0,
+   "opponent_score": 121.0,
+   "margin": -34.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897565315,
+   "opponent": "Bubaptik",
+   "opponent_agent_id": 6568138,
+   "our_score": 148.0,
+   "opponent_score": 231.0,
+   "margin": -83.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

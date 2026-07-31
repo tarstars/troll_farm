@@ -1,6 +1,6 @@
 # 20260731-owner-funding-first-diagonal-denial-arena
 
-- Status: submitted once; new identity queued; first health pending
+- Status: first completed health clean and positive; monitoring
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 asynchronously
@@ -10,7 +10,7 @@
 - Base commit: 2ef378bcc60da8dc4cfb1aab2083029b8b3c28f2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-07-31T17:20:00Z
-- Last updated UTC: 2026-07-31T17:25:00Z
+- Last updated UTC: 2026-07-31T17:30:00Z
 
 ## Owner authority
 
@@ -66,3 +66,14 @@ combined, locally validated successor.
   already reports the new agent; the Arena room still reports the displaced parent, so
   initial identity is correctly false until the first result/recompute.
 - No restore or second submission occurred.
+
+## First completed health
+
+- Exact checkpoint: 11 finished/parsed and one pending row; zero unexpected rows or
+  fetch failures.
+- Arena score 16.97, rank 95/113; filtered read 15.97 at rank 106.
+- Six wins, zero ties, five losses; mean margin +40.182.
+- Zero catastrophic losses; negative-margin mass 165.
+- All target results valid, zero runtime markers, exact identity clean.
+- This is a clean positive first sample, not a mature verdict. Agent `6585846` remains
+  live for read-only monitoring.
