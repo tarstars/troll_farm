@@ -1,7 +1,13 @@
 import importlib.util
+import os
 from pathlib import Path
+import shutil
+import subprocess
 
-MODULE_PATH = Path(__file__).parents[1] / "cgauto/n4_candidate_pair_value_audit.py"
+import pytest
+
+ROOT = Path(__file__).parents[1]
+MODULE_PATH = ROOT / "cgauto/n4_candidate_pair_value_audit.py"
 spec = importlib.util.spec_from_file_location("n4", MODULE_PATH)
 n4 = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -42,8 +48,8 @@ def dual_output_fixture():
             score: f64,
             target: Target,
         }
-            banana_factory_worker_three_bridge_post_training_commands: usize,
-                    banana_factory_worker_three_bridge_post_training_commands: 0,
+            opponent_crop_harvest_rewrites: usize,
+                    opponent_crop_harvest_rewrites: 0,
             pub fn fresh_harvest_regeneration_telemetry(
                 let tree_targets = Self::tree_targets_by_command(&by_id);
                 let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
@@ -72,22 +78,58 @@ def assert_probe_accesses(transformed):
     ) == 1
 
 
+def assert_inner_outer_ownership(transformed):
+    assert "n4_forced_pair: Option<Vec<String>>" in transformed
+    assert "self.inner.n4_forced_pair = Some(commands);" in transformed
+    assert "let mut selected = self.n4_forced_pair.take()" in transformed
+    assert "&self.opponent_crops, &n4_selected_pre, &selected" in transformed
+    assert "&self.inner.opponent_crops" not in transformed
+
+
 def test_instrumentation_uses_unique_live_path_not_generic_tail():
     transformed = n4.instrument_resident(dual_output_fixture())
     assert "pub struct N4CandidateProbe" in transformed
-    assert "n4_force_pair" in transformed
     assert "n4_selected_pre" in transformed
+    assert_inner_outer_ownership(transformed)
     assert_probe_accesses(transformed)
     assert transformed.count("out.extend(selected);") == 2
     assert "fn main()" in n4.runner_source()
 
 
 def test_actual_sacred_source_materializes_once():
-    resident = MODULE_PATH.parents[1] / "rust/src/d171a_control_resident_snapshot.rs"
+    resident = ROOT / "rust/src/d171a_control_resident_snapshot.rs"
     assert n4.sha256_file(resident) == n4.RESIDENT_SHA256
     transformed = n4.instrument_resident(resident.read_text())
     assert_probe_accesses(transformed)
-    assert transformed.count("n4_forced_pair") >= 3
+    assert_inner_outer_ownership(transformed)
+
+
+def test_generated_rust_compiles(tmp_path):
+    if shutil.which("cargo") is None:
+        pytest.skip("Cargo is unavailable in this runtime")
+    resident = ROOT / "rust/src/d171a_control_resident_snapshot.rs"
+    instrumented = tmp_path / "n4_instrumented_resident.rs"
+    runner = tmp_path / "n4_generated_runner.rs"
+    instrumented.write_text(n4.instrument_resident(resident.read_text()))
+    runner.write_text(n4.runner_source())
+    env = os.environ.copy()
+    env.update({
+        "N4_INSTRUMENTED_RESIDENT": str(instrumented),
+        "N4_GENERATED_RUNNER": str(runner),
+        "CARGO_TARGET_DIR": str(tmp_path / "cargo-target"),
+    })
+    completed = subprocess.run(
+        [
+            "cargo", "check", "--manifest-path", "rust/Cargo.toml",
+            "--bin", "n4_candidate_pair_surface",
+        ],
+        cwd=ROOT,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+    assert completed.returncode == 0, completed.stdout + "\n" + completed.stderr
 
 
 def test_surface_clears_only_with_all_gates():
