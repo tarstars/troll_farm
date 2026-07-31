@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T16:25:00Z
-- State: Elost inherited loop reproduced exactly; narrow ownership candidate next
+- Updated UTC: 2026-07-31T16:35:00Z
+- State: Elost on-site tree-owner candidate locally ready; Arena claim next
 - Role: coordinator (integrator)
-- Current task: exact game `897556967` incident diagnosis; live monitoring in parallel
+- Current task: publish exact-game successor; serialize owner-authorized live replacement
 - Branch: agent/local_codex_1
-- Evidence commit: e7497d9 (Elost claim remotely published)
+- Evidence commit: c21dc5d (exact Elost mechanism remotely published)
 - Write set: B3.13 Arena task/report/manifest/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-07-31T16:25:00Z
-- Evidence: 3x300 source reproduction; 10 WAIT/same-tree targets; 8-state ping-pong
+- Last concrete progress UTC: 2026-07-31T16:35:00Z
+- Evidence: 11 compiled tests; exact Elost divergence; 8/8 unsealed smokes; sacred SHA
 - Running job: none
 - Latest verified result: B3.13 candidate passed compiled boundaries, exact replay, and 8 smokes
-- Next checkpoint: pushed mechanism evidence; fail-closed ownership candidate/tests
+- Next checkpoint: pushed candidate handoff and distinct Arena claim
 - Blockers: none
 - Arena controller: yes; sticky-bank trial is the sole live leg; no automatic restore

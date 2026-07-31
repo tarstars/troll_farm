@@ -1,6 +1,6 @@
 # 20260731-elost-same-tree-occupancy-deadlock
 
-- Status: exact inherited mechanism reproduced; narrow on-site ownership candidate next
+- Status: candidate materialized; local mechanism and safety gates pass
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 after materialization
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete remote evidence
 - Created UTC: 2026-07-31T16:20:00Z
-- Last updated UTC: 2026-07-31T16:25:00Z
+- Last updated UTC: 2026-07-31T16:35:00Z
 
 ## Owner observation
 
@@ -108,3 +108,31 @@ If a capable own worker already occupies a live tree, suppress that tree's chop 
 for every other worker for the current decision. This keeps the on-site CHOP candidate
 instead of selecting `WAIT + off-tree MOVE`; it does not globally retie scores, reorder
 different trees, or add cross-turn memory.
+
+## Materialization and validation
+
+- Generator:
+  `cgauto/make_onsite_tree_owner_candidate.py`, SHA-256
+  `b45a273c0d20f3e3d2a42597f8260a87b8b5489ab9f676bd0203fe4afc09fbfe`.
+- Candidate:
+  `cgauto/submissions/candidate-agent6585765-onsite-tree-owner-slim.min.rs`,
+  68,620 bytes, SHA-256
+  `fab84019558e19491a0ce3408d584e4483f398a11da3140bf9adc5de30a90efc`.
+- Focused test:
+  `tests/test_onsite_tree_owner_candidate.py`, SHA-256
+  `aa5a7070454db0c149d2bc52d864b317c9252adc2dd2db1ff2694ae0d99ad955`.
+- Three new compiled boundaries pass: capable on-site ownership, incapable occupant
+  non-reservation, and exact-parent off-tree behavior. All eight prior tent-proximity
+  and sticky-bank tests also pass.
+- The exact parent reproduces 300/300 recorded Elost commands with zero stderr. On the
+  teacher-forced exact stream the successor first diverges at turn 48, where the capable
+  unit already on LEMON `(19,6)` changes from leaving the tree to `CHOP 2`.
+- At the reported interval, turns 58–67, the successor changes every occupant `WAIT`
+  to `CHOP 1` and sends unit 2 elsewhere. The same-tree target and its collision
+  ping-pong are absent.
+- Eight unsealed local smoke cells (seeds 1300–1303, both candidate seats versus fixed
+  `ringfix3`) terminate legally with zero stderr.
+- Sacred source SHA remains exact:
+  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+- This incident task remains Arena read-only. The owner-authorized replacement, if
+  executed, must use a distinct serialized Arena task.

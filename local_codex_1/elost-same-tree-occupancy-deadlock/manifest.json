@@ -1,0 +1,67 @@
+{
+  "schema": "troll-farm-elost-same-tree-occupancy-deadlock-manifest-v1",
+  "task_id": "20260731-elost-same-tree-occupancy-deadlock",
+  "exact_game": {
+    "game_id": 897556967,
+    "resident_agent_id": 6585765,
+    "resident_submission_id": 41071067,
+    "resident_seat": 1,
+    "resident_score": 132,
+    "opponent": "Elost",
+    "opponent_agent_id": 6579290,
+    "opponent_submission_id": 40706516,
+    "opponent_seat": 0,
+    "opponent_score": 160,
+    "turns": 300,
+    "unknown_diff_updates": 0,
+    "raw_sha256": "7d2531710ecf7a3d6e71de923476e717272c6e65582cbb454d9c11d0d29f1b31",
+    "trajectory_sha256": "2a809f316e03471cc9f8e54fdd1ae9410bde3abe9f3819b82677973d78ea7ec6"
+  },
+  "incident": {
+    "tree_cell": [19, 6],
+    "tree_type": "LEMON",
+    "occupant_unit_id": 1,
+    "occupant_wait_turns": [58, 67],
+    "occupant_wait_commands": 10,
+    "mover_unit_id": 2,
+    "same_tree_target_commands": 10,
+    "ping_pong_state_turns": [61, 68],
+    "ping_pong_states": 8,
+    "inherited_parent_reproductions": 3
+  },
+  "candidate": {
+    "path": "cgauto/submissions/candidate-agent6585765-onsite-tree-owner-slim.min.rs",
+    "bytes": 68620,
+    "sha256": "fab84019558e19491a0ce3408d584e4483f398a11da3140bf9adc5de30a90efc",
+    "sidecar_sha256": "2c05333f9c4d780bf6b98edb9e4f7010e4c24c5bef1372b74fe6ca97b210feac",
+    "generator_path": "cgauto/make_onsite_tree_owner_candidate.py",
+    "generator_sha256": "b45a273c0d20f3e3d2a42597f8260a87b8b5489ab9f676bd0203fe4afc09fbfe",
+    "test_path": "tests/test_onsite_tree_owner_candidate.py",
+    "test_sha256": "aa5a7070454db0c149d2bc52d864b317c9252adc2dd2db1ff2694ae0d99ad955",
+    "rule": "a capable own worker currently on a live tree owns that tree for the current decision"
+  },
+  "validation": {
+    "new_compiled_tests_passed": 3,
+    "prior_tent_and_banking_tests_passed": 8,
+    "exact_parent_recorded_command_matches": 300,
+    "parent_stderr": "",
+    "candidate_stderr": "",
+    "first_teacher_forced_divergence_turn": 48,
+    "reported_interval_turns": [58, 67],
+    "reported_interval_successor_occupant_command": "CHOP 1",
+    "unsealed_smoke": [
+      {"seed": 1300, "candidate_seat": 0, "scores": [136, 198], "terminal_turn": 289},
+      {"seed": 1300, "candidate_seat": 1, "scores": [13, 130], "terminal_turn": 300},
+      {"seed": 1301, "candidate_seat": 0, "scores": [112, 119], "terminal_turn": 218},
+      {"seed": 1301, "candidate_seat": 1, "scores": [137, 104], "terminal_turn": 229},
+      {"seed": 1302, "candidate_seat": 0, "scores": [220, 168], "terminal_turn": 272},
+      {"seed": 1302, "candidate_seat": 1, "scores": [219, 210], "terminal_turn": 297},
+      {"seed": 1303, "candidate_seat": 0, "scores": [80, 88], "terminal_turn": 185},
+      {"seed": 1303, "candidate_seat": 1, "scores": [111, 92], "terminal_turn": 206}
+    ],
+    "smoke_stderr_bytes": 0,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "arena_action": "none under this incident task",
+  "status": "candidate_ready_local_validation_pass"
+}
