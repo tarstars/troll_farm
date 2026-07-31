@@ -5,16 +5,16 @@
 - Reviewed coordinator base: `c2df655468a39c9f6f90da77a798f92b247ec6a8`
 - Review date: 2026-07-31
 - Empirical verdict under review: **`NO_MATERIAL_CONTEST_OPPORTUNITY`**
-- Review state: **empirical result supported; unconditional acceptance pending two frozen-protocol corrections/clarifications**
+- Review disposition: **`BLOCKED_PENDING_PROTOCOL_CORRECTION`**
 
-## Preliminary decision
+## Decision
 
 The recorded population, generation-identity logic, carried-resource valuation, all-game
 arithmetic, clustered bootstrap, verdict gates, and observational wording support the
 reported `NO_MATERIAL_CONTEST_OPPORTUNITY` conclusion. I found no numerical contradiction
 in the compact or machine results.
 
-Unconditional acceptance is not yet appropriate because:
+Unconditional acceptance is blocked because:
 
 1. the frozen protocol requires synthetic lineage/outcome/access tests that the published
    six-test suite does not contain;
@@ -22,7 +22,8 @@ Unconditional acceptance is not yet appropriate because:
    the birth transition, while the protocol says “at birth.” The convention must be made
    exact and tested, or the audit must be recomputed from the post-birth state.
 
-Neither finding authorizes simulation, source policy work, or an Arena action.
+These are protocol-validation blockers, not evidence for a material opportunity. Neither
+finding authorizes simulation, source policy work, or an Arena action.
 
 ## 1. Population and source integrity
 
@@ -133,7 +134,7 @@ The recorded resident interval is:
 The upper bound is `20 - 15.760330578512397 = 4.239669421487603` below the frozen gate.
 All source/decode/target/support gates pass; the material lower-bound gate fails and the
 strict no-material upper-bound gate passes. `decide_verdict` therefore returns
-`NO_MATERIAL_CONTEST_OPPORTUNITY` exactly as the protocol specifies.
+`NO_MATERIAL_CONTEST_OPPORTUNITY` exactly as the implementation specifies.
 
 Yamo is calculated with the same definition but is not used as a verdict gate.
 
@@ -173,7 +174,7 @@ missing frozen semantics are required before unconditional acceptance. If analyz
 remain unchanged, this correction does not require a full-corpus rerun; if analyzer bytes
 change, outputs and hashes must be regenerated.
 
-## 8. Protocol question — which state is “at birth”?
+## 8. Protocol mismatch — which state is “at birth”?
 
 `reconstruct_generation_actions` creates a generation on turn `t` from the transition
 `states[t - 1] -> states[t]` and stores it in lineage state `t`. The current access helper
@@ -185,12 +186,21 @@ This mixes a pre-PLANT position state with a post-birth remaining-turn budget un
 protocol intentionally defines the diagnostic as the pre-turn decision state. The owner
 must either:
 
-- recompute from `states[birth_turn]` and refresh outputs; or
+- recompute from `states[birth_turn]`, add an indexing test, and refresh outputs/hashes; or
 - explicitly freeze and document the pre-PLANT convention, rename/reword the field, and
   add a state-indexing test explaining the excluded simultaneous turn.
 
 The exact verdict may remain stable, but protocol compliance cannot be inferred without
 that resolution.
+
+## Final disposition
+
+The empirical evidence is numerically coherent and supports a no-material conclusion under
+the implemented convention. The independent review is handed back as
+`BLOCKED_PENDING_PROTOCOL_CORRECTION`, limited to the two issues above. After the owner
+publishes a correction and validation evidence, a narrow re-review can decide unconditional
+acceptance. Until then, no canonical closeout or successor experiment should be inferred
+from this review.
 
 ## Safety
 
