@@ -939,3 +939,26 @@ harvest-capability change, panel, candidate, or Arena action follows.
 Evidence:
 `data/analysis/live-agent-6553250/b3-10-near-camp-harvest-scope-audit-result-2026-07-31.md`
 and compact JSON beside it.
+
+## B3.7 bookkeeping reconciliation — completed crop-fate result is conversion-by-design
+
+The live backlog incorrectly retained `IN FLIGHT` after the 2026-07-29 full-corpus census.
+No rerun was needed.
+
+Resident: 220 games / 2,433 crops; 98.97% self-chopped, 0.90% self-harvested, 0.12%
+opponent-taken, zero alive; 96.8% of self-chopped crops never bore fruit. All 220 trained
+resident workers have harvest power zero. True residual ripe service is only 41 episodes,
+median two turns; real capacity waste is about 1.6%.
+
+Top five: 200 games / 8,913 crops; 29.81% harvested, 42.98% self-chopped, 15.71%
+opponent-chopped, 11.28% alive, with 2.5–3.0 live crops per capable worker versus the
+resident's 0.08→0.40.
+
+**Verdict: `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`.** The top cohort has a mixed,
+capacity-limited orchard; the resident deliberately converts crops to wood. Plant pacing
+does not transfer, and theft remains secondary at 2.60 wood/resident game. No new rule,
+capability edit, orchard redesign, panel, candidate, or Arena action follows.
+
+Evidence:
+`data/analysis/live-agent-6553250/b3-7-crop-fate-state-reconciliation-result-2026-07-31.md`
+and compact JSON beside it.

@@ -417,10 +417,11 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   outcomes; round 2's "wood-race" flagship falsified (11% clean loss, ≤68 pts). No fix
   candidate. **Deferred chore:** gate the detector on free capacity (blocked while D173b
   uses `waste_sweep.py`).
-- **B3.7 crop-fate census — IN FLIGHT** (owner-originated): what happens to the ~99% of
-  our crops we never reap — harvested/chopped-by-us/taken/expired/alive — plus
-  live-crops-per-capable-worker vs the top cohort. Verdict shapes whether a plant-pacing
-  rule, denial, or an orchard rethink is warranted.
+- **B3.7 ✅ DONE — CONVERSION_BY_DESIGN.** Full corpus: resident 220 games / 2,433 crops,
+  98.97% self-chopped, 0.90% self-harvested, 0.12% opponent-taken, 0% alive; 96.8% of
+  self-chopped crops never bore fruit. Top five 200 games / 8,913 crops: 29.81% harvested,
+  42.98% self-chopped, 15.71% opponent-chopped, 11.28% alive. All 220 resident trained
+  workers have harvest power zero. Pacing fits the top cohort, not this resident.
 - **B3.8 ✅ DONE 2026-07-28 — verdict (c) NO: the bootstrap is IRON-limited.** All
   uncollected fruit (ours + opponent's) would open a cheap-helper window in ~10% of games,
   balanced spec 0/205 ever; IRON limits 97.3–100% of failures. Owner's near-camp

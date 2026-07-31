@@ -369,6 +369,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   Rosters: resident 2.00, top-5 3.55, ranks 6–20 2.50. Our efficiency is the efficiency of
   a small economy. Take cheap positive execution fixes, but do not expect a large vein and
   do not frame waste as the gap. [comparative baseline 2026-07-28]
+- **The resident orchard is conversion-by-design, not a paced fruit farm.** Across 220
+  games / 2,433 resident crops, 98.97% are self-chopped, 0.90% self-harvested, 0.12%
+  opponent-taken, and none survive; 96.8% of self-chopped crops never bear fruit. Every
+  one of 220 trained resident workers has harvest power zero. The top five are genuinely
+  mixed (29.81% harvest, 42.98% self-chop, 15.71% opponent-chop, 11.28% alive), but their
+  pacing problem does not transfer. Theft is secondary at 2.60 wood/resident game. Do not
+  add a resident plant-pacing rule or infer harvest-capacity shortage. [B3.7, 2026-07-29]
 - ★ Worker-3 scaling is IRON-limited, not fruit-limited: crediting EVERY uncollected
   reachable fruit (ours + opponent's) opens a cheap-helper window in only ~10% of games
   and the balanced spec in 0/205 ever, while IRON limits 97.3–100% of remaining failures

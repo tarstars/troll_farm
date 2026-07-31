@@ -1,6 +1,6 @@
 # 20260731-b3-7-crop-fate-state-reconciliation
 
-- Status: claimed — reconcile already-complete result into live state
+- Status: result ready — `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,17 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T08:20:00Z
-- Last updated UTC: 2026-07-31T08:20:00Z
+- Last updated UTC: 2026-07-31T08:35:00Z
+
+## Result
+
+The July 29 audit was complete; only live state was stale. Exact resident population is
+220 games / 2,433 crops: 98.97% self-chopped, 0.90% harvested, 0.12% opponent-taken,
+none alive, and 96.8% of self-chopped crops never bore fruit. All 220 trained resident
+workers have harvest power zero.
+
+Verdict: `ALREADY_COMPLETE_CONVERSION_BY_DESIGN`. Plant pacing describes the top-five
+mixed orchard, not the current resident. No analyzer rerun or successor is authorized.
 
 ## Outcome
 
