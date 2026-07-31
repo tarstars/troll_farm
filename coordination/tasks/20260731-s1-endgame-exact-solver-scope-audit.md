@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T00:13:34Z
-- Last updated UTC: 2026-07-31T00:26:11Z
+- Last updated UTC: 2026-07-31T00:30:15Z
 
 ## Progress
 
@@ -26,6 +26,7 @@
 - Jobs-8 completes 720/720 games and 589 roots. Reach is 246/720 at t251, 188/720
   at t276, and 155/720 at t291. Movement-only joint outcomes: median 600, max 6,400.
 - Provisional `FULL_EXACT_INFEASIBLE`; jobs-1 parity pending.
+- Jobs-1 phase marker: 240/720 games complete without an integrity exception.
 
 ## Outcome
 
