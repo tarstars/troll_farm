@@ -47,7 +47,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > ceiling is +10.510 with 24/60 flips and 6/6 positive leave-one-family-out evaluations.
 > Keep the default; E7a is a peer-review-gated prospective-selector decision. S1 is DONE /
 > FULL_EXACT_INFEASIBLE: 589 late roots show a manageable first ply but not a 10–50-turn
-> full simultaneous stochastic game under 50 ms.**
+> full simultaneous stochastic game under 50 ms. S2 is
+> DEPENDENCY_GATED_REPRESENTATION_BLOCKED on N4→E1 value and a new map representation.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -174,6 +175,15 @@ continues with construction and rating-dynamics measurement, not waiting.
   restricting to resident candidates duplicates N4/D36/S3. Close S1 under the current
   representation; reopen only with proof-preserving full-game state reduction and an
   exact referee chance model.
+- **S2 DEPENDENCY_GATED_REPRESENTATION_BLOCKED.** The complete first-worker grid,
+  opening macros, terminal turn-one rollout, fixed source prefixes, recurrent portfolio,
+  and one/two-batch sequences are all closed. The only surviving action/value object is
+  E1's multi-turn resident candidate-pair prefix, which is not enumerable until N4 Phase A
+  is accepted and has no terminal value until a separate E1 oracle runs. Independently,
+  D63 (AUC 0.830→0.479), D91 (5/16 map support), Phase 15 (best map-only forest 47.059%
+  precision / −0.277), and D153 (+14–17 train→+1.820 held, 44.44% harmful) supply no
+  accepted pre-action map representation. Keep S2 gated; no sequence enumeration, feature
+  fit, panel, book, candidate, or Arena action.
 
 ### P2 — hygiene and consequences of iteration 1
 

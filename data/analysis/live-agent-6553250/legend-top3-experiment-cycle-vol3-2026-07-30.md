@@ -484,3 +484,40 @@ Evidence:
 `data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.md`;
 compact JSON beside it; implementation lock and hashes under
 `local_codex_1/s1-endgame-solver-feasibility/`.
+
+## S2 — opening book lacks both its surviving action library and map representation
+
+**Question.** Can the project now precompute strong first-K-turn sequences by map class
+and look them up at runtime?
+
+**Required chain.** A book requires a non-closed sequence library, terminal continuation
+labels, a prospective pre-action map representation, a class→sequence policy with
+abstention/held transfer, and only then a cheap lookup. Lookup latency cannot repair
+missing upstream objects.
+
+**Action evidence.** E1 already reconstructs the complete first-worker grid, opening
+macros, terminal turn-one rollout, fixed source prefixes, recurrent portfolio, and all
+one/two-batch semantic sequences. They are closed by no robust activation, −97.57/−56.78
+macro losses, Arena decay 21.7 vs 24.1, 45–60% receipt, −1.758 recurrent value, or
+38.54% breadth / 3.455 spread. The sole survivor is E1's bounded multi-turn resident
+candidate-pair prefix. It is not enumerable before accepted N4 Phase A and has no terminal
+labels until a separate E1 oracle runs.
+
+**Representation evidence.** D63 static opening/map behavior selection falls from AUC
+0.830 discovery to 0.479 validation. D91's large development selector occupies only 5/16
+maps. Phase 15's expanded oracle misses its 90% gate at 89.615%, while the best fixed
+map-only forest reaches 47.059% precision and −0.277 margin. D153 conditional value falls
+from +14–17 training to +1.820 held with 44.44% harmful choices. Generated-map scalars
+also place all 80 official roots outside support. These do not prove all future
+representations impossible; they do leave S2 without an accepted one.
+
+**Verdict: `DEPENDENCY_GATED_REPRESENTATION_BLOCKED`.** Keep S2 on the register but do
+not implement it. Reopen only after material N4→E1 terminal sequence value and a genuinely
+new pre-action representation transfer on disjoint official maps and held opponents. Do
+not enumerate sequences, fit classes, reuse consumed panels, build a book/source/candidate,
+or run Arena. H11, N4, and E1 retain their distinct scopes.
+
+Evidence:
+`data/analysis/live-agent-6553250/s2-opening-book-scope-audit-result-2026-07-31.md`;
+compact JSON beside it and manifest under
+`local_codex_1/s2-opening-book-scope-audit/`.

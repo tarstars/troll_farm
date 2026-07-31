@@ -596,6 +596,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   is a short sequence over exact resident candidate pairs followed by terminal resident
   continuation; it depends on accepted N4 Phase A instrumentation and remains a diagnostic
   oracle, not a selector/book or candidate. [E1 scope audit, 2026-07-30]
+- **S2 opening-book implementation is dependency-gated and representation-blocked.** Every
+  implemented opening library is closed: the 27-worker grid, opening macros, turn-one
+  terminal rollout, fixed prefixes, recurrent portfolio, and one/two-batch sequences.
+  The sole surviving resident-native multi-turn prefix is E1's diagnostic oracle, which
+  first requires accepted N4 candidate publication and has no terminal labels yet.
+  Independently, pre-action map selection fails transfer: D63 AUC 0.830→0.479; D91
+  selects only 5/16 maps; Phase 15's best forest is 47.059% precision / −0.277 margin;
+  D153 falls from +14–17 training value to +1.820 held with 44.44% harmful choices.
+  These results do not prove every future representation impossible, but no accepted
+  representation currently supplies a book. Do not enumerate sequences, fit classes,
+  reuse consumed labels, or open a book panel. Reopen only after material N4→E1 terminal
+  value and a genuinely new pre-action representation transfer on disjoint official maps
+  and held opponents. [S2 scope audit, 2026-07-31]
 - Signature-only late switching is path-dependent and prospectively loses (−6.169 margin on
   seeds 270–299); do not retune its four consumed signature regions. [Phase 10]
 - Broad and bank-only resident MOVE residual search is closed: the prospective bank-only
