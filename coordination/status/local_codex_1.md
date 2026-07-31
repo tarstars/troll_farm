@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T16:15:00Z
-- State: sticky-bank agent clean but weak at 12 games; monitoring without restore
+- Updated UTC: 2026-07-31T16:20:00Z
+- State: reconstructing exact Elost same-tree occupancy deadlock; live bot unchanged
 - Role: coordinator (integrator)
-- Current task: monitor exact sticky-bank agent `6585765`/`41071067`
+- Current task: exact game `897556967` incident diagnosis; live monitoring in parallel
 - Branch: agent/local_codex_1
-- Evidence commit: 1bab04b (terminal submit identity and queue checkpoint published)
+- Evidence commit: d1d3436 (current live identity/ledger synchronized)
 - Write set: B3.13 Arena task/report/manifest/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-07-31T16:15:00Z
-- Evidence: 12/12 parsed, identity clean, score 9.64, zero runtime signals
+- Last concrete progress UTC: 2026-07-31T16:20:00Z
+- Evidence: exact Elost identity resolved; scoped claim prepared
 - Running job: none
 - Latest verified result: B3.13 candidate passed compiled boundaries, exact replay, and 8 smokes
-- Next checkpoint: later maturity read plus peer implementation review
+- Next checkpoint: pushed claim, exact 300-turn reconstruction, causal interval
 - Blockers: none
 - Arena controller: yes; sticky-bank trial is the sole live leg; no automatic restore
