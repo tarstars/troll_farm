@@ -1,6 +1,6 @@
 # 20260730-e2-banking-route-efficiency
 
-- Status: result ready — `ROUTE_RESIDUAL_OBSERVED`; peer review pending
+- Status: closed — `ROUTE_RESIDUAL_OBSERVED / NOT_EXPERIMENT_JUSTIFIED`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:35:32Z
-- Last updated UTC: 2026-07-30T21:51:52Z
+- Last updated UTC: 2026-07-31T03:30:20Z
 
 ## Outcome
 

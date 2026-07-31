@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T03:13:48Z
-- State: H3′ exact signal closed; peer acknowledgement/review pending
+- Updated UTC: 2026-07-31T03:30:20Z
+- State: review queue integrated; N4 compile/reconstruction pass, runtime/parity gate pending
 - Role: coordinator (integrator)
-- Current task: 20260731-h3-numeric-pressure-contact-causality
+- Current task: integrator review of 20260730-n4-candidate-pair-value-audit Phase A
 - Branch: agent/local_codex_1
 - Head: 963f3683 (H3′ tested implementation synchronized)
-- Write set: new H3′ task/protocol/analyzer/tests/results/manifest; own status/messages; canonical closeout
-- Last concrete progress UTC: 2026-07-31T03:13:48Z
-- Evidence: H3′ DiD 0.606 CI [0.410,0.895]; pre-loss 0.510 CI [0.293,0.841]
+- Write set: N4 task record plus own status/messages; peer N4 source remains read-only
+- Last concrete progress UTC: 2026-07-31T03:30:20Z
+- Evidence: N4 correction 12/12 + release compile; 0 reconstruction failures, smoke p95 210.408 ms
 - Running job: none
 - Latest verified result: H7′ real contention ubiquitous but top-20 uplift +5.76 pp, CI crosses zero
-- Next checkpoint: synchronize closeout, then sweep peer corrections/reviews
-- Blockers: N4 generated Rust anchor ownership; evidence-index review/integration
+- Next checkpoint: publish review/N4 checkpoint, then run 20-thread normalized smoke parity
+- Blockers: N4 runtime/parity classification; evidence-index review/integration
 - Arena controller: yes, by protocol default following the integrator; no Arena action is in flight

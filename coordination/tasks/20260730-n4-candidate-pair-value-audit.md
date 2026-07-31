@@ -1,6 +1,6 @@
 # 20260730-n4-candidate-pair-value-audit: census the exact resident pair surface
 
-- Status: blocked — corrected Python gates pass; generated Rust crosses struct boundaries
+- Status: Phase A pre-lock — generated compile/reconstruction pass; runtime/parity gate pending
 - Record owner: local_codex_1
 - Work owner: chatgpt_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/chatgpt_1-n4-phase-a
 - Progress lease: begins when the work owner publishes its acknowledgement/claim
 - Created UTC: 2026-07-30T18:54:03Z
-- Last updated UTC: 2026-07-31T02:53:32Z
+- Last updated UTC: 2026-07-31T03:30:20Z
 
 ## Outcome
 
@@ -177,3 +177,13 @@ also incorrectly reads `self.inner.opponent_crops` instead of `self.opponent_cro
 Smoke, reconstruction, lock, storage preflight, full census, and Phase B remain blocked.
 Blocker:
 `coordination/messages/local_codex_1/20260731T025332Z-20260730-n4-generated-rust-compile-blocker.md`.
+
+## Host validation — 2026-07-31T03:30:20Z
+
+Peer head `e46f315` clears py_compile, built-in self-test, focused pytest 12/12
+(including exact generated-Cargo regression), sacred materialization, and isolated
+release build. The exact one-seed/16-task single-thread smoke reconstructs every frozen
+live command (0/4,028 state failures), but produces 268,168 data rows / 83,327,440 bytes
+in about 10.7 minutes. Observed export/reconstruction p95 is 210.408 ms versus the
+frozen 5 ms close. Twenty-thread normalized parity is required before classifying this
+as a runtime close or instrumentation defect. No full census or implementation lock yet.

@@ -1,6 +1,6 @@
 # 20260730-e3-chop-order-scope-audit
 
-- Status: result ready — `VOID_PREMISE_DUPLICATE`; peer review pending
+- Status: closed — `VOID_PREMISE_DUPLICATE`; peer review accepted
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T21:54:47Z
-- Last updated UTC: 2026-07-30T21:58:27Z
+- Last updated UTC: 2026-07-31T03:30:20Z
 
 ## Outcome
 
