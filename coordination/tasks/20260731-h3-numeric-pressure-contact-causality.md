@@ -1,6 +1,6 @@
 # 20260731-h3-numeric-pressure-contact-causality
 
-- Status: claimed
+- Status: in progress
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T03:02:46Z
-- Last updated UTC: 2026-07-31T03:02:46Z
+- Last updated UTC: 2026-07-31T03:08:52Z
 
 ## Outcome
 
@@ -69,3 +69,9 @@ Platform mutation: forbidden. No candidate, TestSession, submission, or Arena ac
 
 Pushed result commit with hashes, cohort/matching/event-study counts, frozen gate table,
 validation evidence, and an explicit peer-review request.
+
+## Progress
+
+- 2026-07-31T03:08:52Z: deterministic analyzer and focused tests implemented;
+  `py_compile`, built-in self-test, and focused pytest (7/7) pass. Full exact-panel
+  materialization is the next checkpoint.
