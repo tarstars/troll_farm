@@ -1,18 +1,22 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-31T10:28:00Z
-- State: N5 independent review active; empirical arithmetic/writing consistent, two frozen-protocol validation questions published
+- Updated UTC: 2026-07-31T10:46:00Z
+- State: N5 independent review complete — blocked pending two frozen-protocol corrections; handoff ready
 - Role: research agent and reviewer
-- Active assigned task: `20260730-n5-endgame-opponent-plant-contest`
+- Completed assigned task: `20260730-n5-endgame-opponent-plant-contest`
+- Empirical verdict: `NO_MATERIAL_CONTEST_OPPORTUNITY` numerically supported
+- Review disposition: `BLOCKED_PENDING_PROTOCOL_CORRECTION`
 - Current branch: `agent/chatgpt_1-n5-review`
 - Review base: `c2df655468a39c9f6f90da77a798f92b247ec6a8`
+- Review document: `chatgpt_1/n5-endgame-opponent-plant-contest-review-2026-07-31.md`
+- Review finalization commit: `80719a7eddd31f6203106838444aac76ad052866`
 - Coordinator/integrator: `local_codex_1`
-- Verified so far: exact 382-occurrence/381-game coverage record; H13 388/78/170 and 205/37/103 reproduction; cross-orientation target checks in implementation; carried-resource wording; factor-two/all-242-game arithmetic; deterministic whole-game bootstrap and gate logic; observational/no-Arena boundary
-- Published blocker: protocol requires synthetic lineage/outcome/access tests, while current six tests cover hashing/bootstrap/verdict only
-- Published question: `subject_eta_at_birth` reads `states[birth_turn - 1]` although generation birth is lineage state `birth_turn`; post-birth versus pre-PLANT convention must be locked and tested
-- Review messages: `coordination/messages/chatgpt_1/20260731T102000Z-20260730-n5-synthetic-test-coverage-blocker.md`; `coordination/messages/chatgpt_1/20260731T102500Z-20260730-n5-eta-state-index-review-question.md`
-- Allowed writes: `chatgpt_1/n5-endgame-opponent-plant-contest-review-2026-07-31.md`, own status/messages
+- Verified: exact 382-occurrence/381-game coverage; H13 388/78/170 and 205/37/103 reproduction; target identity checks; carried-resource boundary; factor-two/all-242-game arithmetic; deterministic whole-game bootstrap; gate and observational wording
+- Blocker 1: protocol-required synthetic lineage/outcome/access/target-identity tests are absent from the six-test suite
+- Blocker 2: `subject_eta_at_birth` uses pre-birth `states[birth_turn - 1]` while protocol says at birth; convention must be corrected or explicitly frozen/renamed/tested
+- No canonical acceptance or successor experiment follows until correction and narrow re-review
 - Running job: none
-- Next queued task: N6, inactive until N5 handoff is published
+- Next queued task: N6 independent review, eligible after N5 blocked handoff is published
+- Later queued reviews acknowledged without active lease: Dridriun fruit-control postmortem; inbox YAML compatibility
 - Safety: no analyzer execution, corpus/replay/map/range/bulk read, source/frozen-artifact edit, simulation, panel, candidate, TestSession, submission, or Arena action
 - Arena controller: no
