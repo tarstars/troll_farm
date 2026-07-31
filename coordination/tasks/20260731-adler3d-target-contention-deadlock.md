@@ -1,0 +1,95 @@
+# 20260731-adler3d-target-contention-deadlock
+
+- Status: claimed — exact incident patch active
+- Record owner: local_codex_1
+- Work owner: local_codex_1
+- Reviewer: chatgpt_1 after materialization
+- Integrator: local_codex_1
+- Area: live incident / equal-score same-tree contention deadlock
+- Base commit: 74c06112b00e29a46377d87a939fcc96c8cbe0ae
+- Branch: agent/local_codex_1
+- Progress lease: 15 minutes without concrete evidence
+- Created UTC: 2026-07-31T15:30:00Z
+- Last updated UTC: 2026-07-31T15:30:00Z
+
+## Owner observation
+
+> immediate problem in game against adler3d: trolls stuck
+
+## Exact incident
+
+- Game `897552551`, active agent/submission `6585739`/`41070944`, resident seat 1,
+  opponent Adler3D agent/submission `6481971`/`40751095`, valid 97–99 loss.
+- Official reconstruction is 300/300 turns with zero unknown diff updates.
+- On decision turns 51–91, resident unit 1 remains at `(10,4)` and emits `WAIT`.
+- During the same 42-turn interval, resident unit 2 alternates between `(9,4)` and
+  `(8,4)`, emitting alternating one-cell MOVE commands.
+- Both units are full of wood throughout the interval.
+- Instrumented exact-parent replay shows an equal-score same-tree contention:
+  `CHOP 1 + WAIT` and `WAIT + MOVE 2 10 4` each total 90. The selector retains the
+  first equal pair, and collision resolution repeatedly detours unit 2 backward.
+- The exact far-denial-d3 parent reproduces every stuck command through turn 91. The
+  active tent-proximity artifact reproduces all 300 recorded commands, so this incident
+  is inherited rather than introduced by B3.13.
+- The tent-proximity trigger later breaks the deadlock at turn 92 in the observed game.
+  Restoring far-denial-d3 would therefore not repair the incident.
+
+## Frozen patch
+
+On an exactly equal two-unit candidate-pair score, prefer the pair with more immediate
+productive actions (`CHOP`, `HARVEST`, `DROP`, `PICK`, `PLANT`, or `MINE`) over a pair
+that substitutes a MOVE toward the same claimed target. Do not change unequal-score
+selection, target compatibility, movement conflict resolution, policy scoring, or any
+other command path.
+
+## Exclusive write set
+
+- this task record;
+- `coordination/status/local_codex_1.md`;
+- `coordination/messages/local_codex_1/*-20260731-adler3d-target-contention-deadlock-*.md`;
+- one compact incident analyzer and focused tests under `cgauto/` and `tests/`;
+- one fail-closed generator and focused tests under `cgauto/` and `tests/`;
+- one immutable successor candidate plus checksum under `cgauto/submissions/`;
+- compact result report under `data/analysis/live-agent-6553250/`;
+- compact manifest under `local_codex_1/adler3d-target-contention-deadlock/`;
+- optional exact raw/trajectory cache only under
+  `data/external/adler3d-target-contention-deadlock/` after external-storage preflight;
+- integrator-owned backlog/approach/ledger disposition after validation.
+
+## Shared read-only paths
+
+- exact Codingame game `897552551`;
+- active B3.13 candidate and its far-denial-d3 parent;
+- replay decoder, state serializers, simulator/referee, and unsealed smoke tooling.
+
+## Do not touch
+
+- `rust/src/bin/yamo_orchard_live.rs` (byte-sacred);
+- either parent artifact;
+- the current Arena cycle, except read-only submission-scoped health checks;
+- any other replay, map, frozen artifact, peer write set, raw collection, or the 05:17
+  cron;
+- sealed/official/confirmation data.
+
+## Acceptance
+
+- Lock exact game/agent/submission/seat identities and raw/trajectory hashes.
+- Reconstruct every turn with zero unknown updates and publish the exact 42-turn deadlock
+  interval, unit state, commands, candidate-pair scores, selector decision, and conflict
+  outcome.
+- Prove the exact parent reproduces the stuck interval and the active candidate reproduces
+  the recorded 300-command stream.
+- Generate fail-closed from the exact active artifact and alter only equal-score pair
+  tie-breaking.
+- Compiled regression must select `CHOP 1 + WAIT` at the incident boundary and preserve
+  unequal-score choices.
+- Re-run B3.13 boundary tests and bounded unsealed both-seat smokes; sacred SHA remains
+  exact.
+- Materialize and push only. No submit, restore, or second Arena cycle while exact
+  `6585739`/`41070944` is in flight.
+
+## Arena authority
+
+Read-only incident discovery is allowed. This task explicitly forbids platform mutation.
+Any later submission requires the current B3.13 cycle to terminate and a distinct
+serialized Arena task.
