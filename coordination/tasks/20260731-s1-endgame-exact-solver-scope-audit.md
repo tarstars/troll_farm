@@ -1,6 +1,6 @@
 # 20260731-s1-endgame-exact-solver-scope-audit
 
-- Status: active — implementation locked; jobs-8/jobs-1 census pending
+- Status: done — `FULL_EXACT_INFEASIBLE`; peer review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T00:13:34Z
-- Last updated UTC: 2026-07-31T00:30:15Z
+- Last updated UTC: 2026-07-31T00:38:03Z
 
 ## Progress
 
@@ -27,6 +27,14 @@
   at t276, and 155/720 at t291. Movement-only joint outcomes: median 600, max 6,400.
 - Provisional `FULL_EXACT_INFEASIBLE`; jobs-1 parity pending.
 - Jobs-1 phase marker: 240/720 games complete without an integrity exception.
+- Jobs-1 completes and matches jobs-8 in normalized payload, game rows, and root rows.
+- Final `FULL_EXACT_INFEASIBLE`: first-ply branching is not the sole rejection; full
+  remaining-horizon simultaneous exactness fails the current state/runtime object.
+- Report:
+  `data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.md`.
+- Manifest:
+  `local_codex_1/s1-endgame-solver-feasibility/manifest.json`.
+- N4 and S3 remain unchanged; no solver, source, candidate, or Arena action exists.
 
 ## Outcome
 

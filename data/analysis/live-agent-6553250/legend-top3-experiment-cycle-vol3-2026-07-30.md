@@ -444,3 +444,43 @@ Evidence:
 `data/analysis/live-agent-6553250/e7-type-to-cut-audit-result-2026-07-31.md`;
 compact JSON beside it; implementation lock and hashes under
 `local_codex_1/e7-type-to-cut-audit/`.
+
+## S1 — exact endgame solver is infeasible under the current representation
+
+**Question.** Is “solve the last N turns exactly” a distinct and plausibly deployable
+50 ms direction, or does every tractable version reduce to a closed candidate/rollout
+interface?
+
+**Scope.** Full exactness means both players' simultaneous primitive commands, referee
+chance, and exact stall/mercy/turn-cap transitions. Known-policy continuation instead
+requires cloning bot processes after counterfactual branches. Resident-candidate
+restriction is not exact and overlaps N4/D36/S3. Existing endgame-switch retuning,
+threatened-response MC, shared-state MC, MOVE residual, and overlays stay closed.
+
+**Census and integrity.** The exact resident runs reused seeds 0..59 × six opponents ×
+both seats: 720 games. Public roots are captured at t251/t276/t291. Coverage is exact;
+jobs 1/8 normalized payload and game/root hashes match; six focused tests include
+exhaustive engine agreement on collision vectors; command/stderr gates pass; the sacred
+source remains `fff6669b…`.
+
+Late states are relevant: 246/720 (34.17%) reach t251, 188 (26.11%) reach t276, and 155
+(21.53%) reach t291, giving 589 roots. Exact movement-only simultaneous one-ply position
+outcomes are median 600/max 6,400 overall. At t291, with ten nominal turns left, they are
+median 450/p90 1,944/max 3,825. First-ply branching alone is not the decisive rejection.
+
+**Feasibility.** The distinct full-game object must expand that lower bound across 10–50
+turns and add every opponent, referee-chance, plant, resource, and non-MOVE branch. The
+live bot does not observe continuing referee RNG state. Known-policy `BotSession` processes
+expose stdin/stdout only and cannot serialize/fork; branch replay is not deployable.
+Candidate restriction is the only tractable shortcut and returns to N4/D36/S3. Strict
+subset searches already cost 92.852–279.46 ms p95 versus the 50 ms budget.
+
+**Verdict: `FULL_EXACT_INFEASIBLE`.** Close S1 under the current representation. Reopen
+only with a proof-preserving compact full-game state reduction plus an exact referee chance
+model. Do not implement a candidate wrapper, known-opponent replay, deeper horizon/beam,
+source edit, fresh panel, candidate, or Arena action. N4 and S3 remain unchanged.
+
+Evidence:
+`data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.md`;
+compact JSON beside it; implementation lock and hashes under
+`local_codex_1/s1-endgame-solver-feasibility/`.

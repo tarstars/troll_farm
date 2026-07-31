@@ -63,7 +63,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 | id | approach | cost | status |
 |---|---|---|---|
 | **N4** | H6 residual: intertemporal choice among the resident's *existing* candidate pairs (value bound first) | 1 session | open — **reserved for `chatgpt_1`** |
-| **S1** | **Endgame exact solver** — the last N turns have a small reachable state space; solve them exactly instead of greedily | 1–2 sessions | open |
+| **S1** | **Endgame exact solver** — the last N turns have a small reachable state space; solve them exactly instead of greedily | 1–2 sessions | **✅ DONE — FULL_EXACT_INFEASIBLE:** 34.17% reach t251 and 21.53% reach t291; movement-only simultaneous one-ply outcomes are median 600/max 6,400, but full exactness spans 10–50 turns plus opponent/chance/non-MOVE branches; known-policy processes cannot clone and candidate restriction duplicates N4/D36/S3 |
 | **S2** | **Opening book per map class** — precompute strong first-K-turn sequences offline, look them up at runtime for ~0 ms | 1–2 sessions | open |
 | **S3** | **putibuzu-shaped rollout+beam, scoped precisely** — several MC/rollout families are closed; determine exactly which and whether his specific combination is outside them before proposing | 1 session audit | open |
 
@@ -123,11 +123,11 @@ E4 (KEEP_LEXICOGRAPHIC);
 E5 (KEEP_RIPENESS_WAIT);
 E6 (VOID_PREMISE_DUPLICATE);
 E7 (HINDSIGHT_RESIDUAL_ONLY);
+S1 (FULL_EXACT_INFEASIBLE);
 A2-0a (feasibility qualified); X1
 (core match, reviewed); A2-0b (QUALIFIED and protocol-closed); A2-1
 (FAILED K1, programme stopped). **Held by `chatgpt_1`:** N4 Phase A; the evidence-index
 pilot is in correction after its semantic line-locator blocker.
 
-Priority order as of 2026-07-31: E7 peer review / E7a decision → evidence-index acceptance
-after correction → remaining C/D-tier search/learning audits in id order. N4 Phase A runs
-separately.
+Priority order as of 2026-07-31: E7/S1 peer review / E7a decision → evidence-index
+acceptance after correction → S2/S3 then D-tier learning audits. N4 Phase A runs separately.

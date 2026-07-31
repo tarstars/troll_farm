@@ -45,7 +45,9 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > D167/D168's acquisition/pre-carry/species/terminal-value coverage. E7 is DONE /
 > HINDSIGHT_RESIDUAL_ONLY: blanket inversion −12.174, but a seed-level binary hindsight
 > ceiling is +10.510 with 24/60 flips and 6/6 positive leave-one-family-out evaluations.
-> Keep the default; E7a is a peer-review-gated prospective-selector decision.**
+> Keep the default; E7a is a peer-review-gated prospective-selector decision. S1 is DONE /
+> FULL_EXACT_INFEASIBLE: 589 late roots show a manageable first ply but not a 10–50-turn
+> full simultaneous stochastic game under 50 ms.**
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -164,6 +166,14 @@ continues with construction and rating-dynamics measurement, not waiting.
   gated on peer acceptance:** decide whether this warrants a prospective, disjoint-map
   selector protocol under the static-feature and synthetic-substrate constraints; do not
   fit on the consumed E7 labels or build a candidate.
+- **S1 ✅ DONE — FULL_EXACT_INFEASIBLE.** In 720 reused control games, 34.17% reach
+  turn 251 and 21.53% reach 291. Exact movement-only simultaneous one-ply outcomes are
+  median 600/max 6,400 overall and median 450 at t291, so first-ply size is not the sole
+  blocker. Full exactness still spans 10–50 turns and adds opponent, chance, plant,
+  resource, and non-MOVE branches. Known-policy `BotSession` processes cannot clone;
+  restricting to resident candidates duplicates N4/D36/S3. Close S1 under the current
+  representation; reopen only with proof-preserving full-game state reduction and an
+  exact referee chance model.
 
 ### P2 — hygiene and consequences of iteration 1
 

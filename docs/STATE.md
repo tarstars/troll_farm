@@ -127,7 +127,7 @@ makes the goalpost move in the wrong direction.
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44, CI crosses. **N5 DONE:** ceiling 11.99, CI [8.73,15.76] <20. **N6
   CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal early pairs await N4. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree-job ordering closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106 but seat 0 loses. **E6 VOID:** seed carry covered. **E7 DONE:** blanket flip −12.174; seed hindsight +10.510; E7a peer-gated.
+  terminal early pairs await N4. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry covered. **E7 DONE:** flip −12.174; hindsight +10.510. **S1 DONE:** full exact infeasible.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is offline;
   `chatgpt_1` has N4 Phase A. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12

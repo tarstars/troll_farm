@@ -601,6 +601,17 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Broad and bank-only resident MOVE residual search is closed: the prospective bank-only
   replication gains just +0.508 margin at 92.852 ms p95. Primitive command mutation and short
   asset-bonus horizons remain closed for macro decisions. [Phase 16]
+- **A full exact last-N-turn solver is infeasible under the current representation and
+  50 ms runtime contract; do not relabel a candidate restriction as exact.** On 720 reused
+  exact-live games, 246 (34.17%) reach t251 and 155 (21.53%) reach t291. Across 589 roots,
+  exact movement-only simultaneous one-ply position outcomes are median 600/max 6,400
+  (t291 median 450 with ten turns left); this omits every non-MOVE/resource/tree branch.
+  Full exactness must additionally branch both players and referee chance across 10–50
+  turns. External known-policy processes are not serializable/forkable, while resident-
+  candidate restriction duplicates N4/D36/S3. Existing strict subsets already cost
+  92.852–279.46 ms p95. Reopen only with proof-preserving compact full-game state
+  reduction and an exact chance model, not a deeper horizon/beam, wrapper, or process replay.
+  [S1, 2026-07-31]
 - Resident-local persistent one-job redirection is closed: the exact hindsight oracle selects
   broadly but averages +18.584 on selected roots vs the frozen +20.0 floor (median +11.5). No
   target-count/checkpoint tuning, no selector fitting on this grammar. [vol 1]
