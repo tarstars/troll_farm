@@ -1,0 +1,43 @@
+{
+  "schema": "troll-farm-owner-tent-banker-commitment-arena-v1",
+  "task_id": "20260731-owner-tent-banker-commitment-arena",
+  "owner_override": "don't restore previous stabe, send new",
+  "candidate": {
+    "path": "cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs",
+    "bytes": 68464,
+    "sha256": "f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a",
+    "focused_tests_passed": 8,
+    "compiled": true
+  },
+  "displaced_restore": {
+    "agent_id": 6585755,
+    "submission_id": 41071034,
+    "finished_games_at_preflight": 41,
+    "score_at_preflight": 19.56,
+    "rank_at_preflight": 64,
+    "rank_total": 113,
+    "identity_clean": true,
+    "validity_runtime_signals": []
+  },
+  "submission": {
+    "calls": 1,
+    "service": "TestSession/submit",
+    "http_status": 200,
+    "submission_id": 41071067,
+    "agent_id": 6585765,
+    "response_log": "data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-submit-2026-07-31.log"
+  },
+  "initial_checkpoint": {
+    "path": "data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-initial-checkpoint-2026-07-31.json",
+    "sha256": "778f1b4dded61d953044a1935b49d51d068900fffc5a4a8fd704e72dfe6c9495",
+    "matching_finished": 0,
+    "matching_pending": 10,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "identity_clean": false,
+    "identity_note": "no finished row existed yet; all ten listed rows matched the exact new identity"
+  },
+  "automatic_restore_authorized": false,
+  "status": "submitted_initial_games_queued"
+}

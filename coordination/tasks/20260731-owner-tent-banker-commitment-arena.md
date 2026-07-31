@@ -1,6 +1,6 @@
 # 20260731-owner-tent-banker-commitment-arena
 
-- Status: active — owner-directed submission preflight
+- Status: submitted — agent `6585765` / submission `41071067`; initial games queued
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (review remains useful but is not a submission blocker after the
@@ -12,7 +12,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete remote evidence
 - Created UTC: 2026-07-31T16:05:00Z
-- Last updated UTC: 2026-07-31T16:05:00Z
+- Last updated UTC: 2026-07-31T16:10:00Z
 
 ## Owner authorization and override
 
@@ -70,3 +70,23 @@ separately justified protocol decision.
 This is an owner-directed live incident successor, not a frozen-protocol QUALIFIED
 promotion and not causal evidence for the broad tent-proximity policy. Record the outcome
 without relabeling local mechanism tests as field-value qualification.
+
+## Submission
+
+- Exact preflight repeated from current bytes: artifact and sidecar SHA match, size is
+  68,464 bytes, sacred source is exact, direct `rustc` compilation succeeds, and all
+  eight focused tests pass.
+- Displaced restore `6585755`/`41071034` was identity-clean at 41/41 finished games,
+  score 19.56, rank 64/113, with zero runtime/validity signals immediately before the
+  new submit.
+- One explicit command was issued:
+  `python3 cgauto/api_submit.py cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs`.
+- Terminal response: `TestSession/submit: 200 41071067`; `SUBMIT-OK`.
+- New exact agent/submission: `6585765`/`41071067`.
+- Initial listing: ten matching queued battles, zero finished. The zero-game checkpoint
+  therefore has `identity_clean=false` by construction, not because of a mismatched row;
+  it has zero unexpected rows, fetch failures, or runtime signals.
+- Initial queue checkpoint:
+  `data/analysis/live-agent-6553250/owner-tent-banker-commitment-arena-initial-checkpoint-2026-07-31.json`,
+  SHA-256 `778f1b4dded61d953044a1935b49d51d068900fffc5a4a8fd704e72dfe6c9495`.
+- No automatic restore will be issued.
