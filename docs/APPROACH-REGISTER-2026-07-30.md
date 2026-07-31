@@ -47,7 +47,7 @@ only on a cleared bar. Status legend: `open` / `running` / `done` / `closed` / `
 
 | id | approach | cost | status |
 |---|---|---|---|
-| **N5** | Endgame opponent-plant contest — a mechanic the source design specifies and our code lacks | 1 session audit | **REVIEW-BLOCKED:** arithmetic supports ceiling 11.99, CI [8.73,15.76] < 20; semantic tests and ETA birth-state convention require correction before canonical closure |
+| **N5** | Endgame opponent-plant contest — a mechanic the source design specifies and our code lacks | 1 session audit | **CORRECTED / RE-REVIEW PENDING:** 12 semantic tests pass; literal post-birth ETA leaves ceiling 11.99, CI [8.73,15.76] < 20 unchanged |
 | **N6** | Denial-weight sweep — `900/(1+dist)` was never swept though the reproduction plan required it | 1 session | **✅ INDEPENDENTLY ACCEPTED / CLOSED_AT_DEVELOPMENT:** LOW −0.754; HIGH +0.559 but only 12/77 directional and 4/8 positive families; confirmation unused; keep 900 |
 | **E1** | **Opening micro-optimality (first 3–5 turns)** — highest-leverage turns in the game; never audited for optimality against an exhaustive short-horizon search | ~1 session | **✅ CLOSED WITH N4 RUNTIME:** only the resident-pair prefix oracle survived scope review; N4's exhaustive publication is 210/333 ms p95 vs 5 ms, so no authorized surface remains |
 | **E2** | **Banking-route efficiency** — round-trip path choice, door selection, and whether carry is ever wasted on a suboptimal return | ~1 session | **✅ DONE — ROUTE_RESIDUAL_OBSERVED / NO EXPERIMENT:** immediate and joint ETA regret 0; no door switches; hindsight alternate door saves 134 one-turn wood legs = 0.335 turn/side-game, future-conditioned with no causal/rating estimate |

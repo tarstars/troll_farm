@@ -4,7 +4,7 @@
 - Exact replay coverage: 382/382 cohort occurrences (381 unique games).
 - Resident targets: 388 generations in 78 games; 262 targets in 75 games yield carried resources to the opponent.
 - Resident replay-conditioned factor-two observed-yield ceiling across all games: 11.991736, bootstrap 95% CI [8.727273, 15.760331] versus 20.
-- Subject contact: 51/388; optimistic reach within remaining turns: 368/388.
+- Subject contact: 51/388; optimistic reach within remaining turns: 366/388.
 - H13 fidelity census: resident 388 targets / 78 games, yamo 205 targets / 37 games.
 
 ## Boundary

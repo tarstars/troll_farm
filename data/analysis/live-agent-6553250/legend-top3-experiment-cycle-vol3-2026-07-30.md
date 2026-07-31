@@ -1036,6 +1036,16 @@ but its compact must separate HARVEST commands from confirmed fruit-unit flow an
 decisive state/capability plus raw-BFS/ETA rows before narrow re-review. Broad no-action
 boundaries remain binding while those corrections are pending.
 
+### N5 protocol correction
+
+N5 now uses literal post-birth `states[birth_turn]` access and has twelve focused tests
+covering the previously missing semantic surface. The exact frozen 382-occurrence manifest
+was reused after the live collector advanced; every referenced input hash remains exact.
+Resident ETA-0 changes 5→0 and reachable-within-remaining changes 368→366, but both removed
+targets have zero opponent yield. The primary 11.9917 mean, [8.7273,15.7603] CI, and
+`NO_MATERIAL_CONTEST_OPPORTUNITY` verdict are unchanged. Narrow corrected re-review is
+pending; no simulation or Arena successor follows.
+
 ## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
 
 The owner observed opening movement churn and zasmu harvesting and replanting lemons in

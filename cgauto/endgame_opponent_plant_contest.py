@@ -27,6 +27,7 @@ from pathlib import Path
 import random
 import statistics
 import sys
+from types import SimpleNamespace
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -47,6 +48,9 @@ COHORTS = (("resident", RESIDENT_AGENT_ID), ("yamo", YAMO_AGENT_ID))
 
 EXPECTED_INDEX_HASH = "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d"
 EXPECTED_INDEX_RECORDS = 9_082
+EXPECTED_FROZEN_MANIFEST_HASH = (
+    "53ee5cf3347fbc72dcd1021369cb2b41ce48eb6c3ca22fc9981f7abf14a2b26f"
+)
 EXPECTED_COHORTS = {
     "resident": {
         "count": 242,
@@ -242,6 +246,20 @@ def cohort_game_ids(rows: list[dict], agent_id: int) -> list[int]:
     )
 
 
+def cohort_game_ids_from_manifest(manifest: dict) -> dict[str, list[int]]:
+    selected = {}
+    for label, agent_id in COHORTS:
+        entries = [
+            entry
+            for entry in manifest.get("entries", [])
+            if entry.get("cohort") == label
+        ]
+        if any(int(entry.get("agent_id", -1)) != agent_id for entry in entries):
+            raise ValueError(f"{label}: frozen manifest agent mismatch")
+        selected[label] = sorted(int(entry["game_id"]) for entry in entries)
+    return selected
+
+
 def build_input_manifest(corpus_root: Path, selected: dict[str, list[int]]) -> dict:
     file_cache: dict[int, dict] = {}
     entries = []
@@ -363,10 +381,51 @@ def generation_fate(
     return {"death_turn": death_turn, "feller": feller, "survived_to_end": False}
 
 
+def is_target_generation(meta: dict, birth_turn: int, margin_series: list[int]) -> bool:
+    return (
+        meta.get("origin") == "opponent"
+        and birth_turn > ENDGAME_TURN_EXCLUSIVE
+        and birth_turn < len(margin_series)
+        and margin_series[birth_turn - 1] > 0
+    )
+
+
+def generation_identity_checks(
+    generation_id: str,
+    meta: dict,
+    birth_turn: int,
+    counterpart: dict | None,
+    subject_lineage: list[dict],
+    opponent_lineage: list[dict],
+    opponent_events: list[dict],
+) -> tuple[bool, bool]:
+    cell = tuple(meta["cell"])
+    lineage_agreement = bool(
+        counterpart
+        and counterpart.get("origin") == "actor"
+        and int(counterpart["birth_turn"]) == birth_turn
+        and list(counterpart["cell"]) == list(meta["cell"])
+        and counterpart["kind"] == meta["kind"]
+        and birth_turn < len(subject_lineage)
+        and birth_turn < len(opponent_lineage)
+        and subject_lineage[birth_turn].get(cell) == generation_id
+        and opponent_lineage[birth_turn].get(cell) == generation_id
+    )
+    plant_events = [
+        event
+        for event in opponent_events
+        if event.get("success")
+        and event.get("verb") == "PLANT"
+        and event.get("created_generation") == generation_id
+        and event.get("created_origin") == "actor"
+    ]
+    return lineage_agreement, len(plant_events) == 1
+
+
 def subject_eta_at_birth(game, birth_turn: int, cell: tuple[int, int]) -> int | None:
-    before = game.states[birth_turn - 1]
+    at_birth = game.states[birth_turn]
     best = None
-    for unit in before["units"]:
+    for unit in at_birth["units"]:
         if int(unit["player"]) != game.me:
             continue
         distances = bfs(game.board["walkable"], [(int(unit["x"]), int(unit["y"]))])
@@ -431,36 +490,18 @@ def analyze_game(
             ),
         ):
             birth_turn = int(meta["birth_turn"])
-            if (
-                meta["origin"] != "opponent"
-                or birth_turn <= ENDGAME_TURN_EXCLUSIVE
-                or birth_turn >= len(game.margin_series)
-                or game.margin_series[birth_turn - 1] <= 0
-            ):
+            if not is_target_generation(meta, birth_turn, game.margin_series):
                 continue
             counterpart = opponent_generations.get(generation_id)
-            lineage_agreement = bool(
-                counterpart
-                and counterpart.get("origin") == "actor"
-                and int(counterpart["birth_turn"]) == birth_turn
-                and list(counterpart["cell"]) == list(meta["cell"])
-                and counterpart["kind"] == meta["kind"]
-                and birth_turn < len(subject_lineage)
-                and birth_turn < len(opponent_lineage)
-                and subject_lineage[birth_turn].get(tuple(meta["cell"]))
-                == generation_id
-                and opponent_lineage[birth_turn].get(tuple(meta["cell"]))
-                == generation_id
+            lineage_agreement, unique_plant_event = generation_identity_checks(
+                generation_id,
+                meta,
+                birth_turn,
+                counterpart,
+                subject_lineage,
+                opponent_lineage,
+                opponent_events,
             )
-            plant_events = [
-                event
-                for event in opponent_events
-                if event.get("success")
-                and event.get("verb") == "PLANT"
-                and event.get("created_generation") == generation_id
-                and event.get("created_origin") == "actor"
-            ]
-            unique_plant_event = len(plant_events) == 1
             subject = action_summary(subject_events, generation_id)
             opponent = action_summary(opponent_events, generation_id)
             cell = (int(meta["cell"][0]), int(meta["cell"][1]))
@@ -792,6 +833,38 @@ def self_test() -> None:
         ci_hi=25.0,
     )
     assert verdict == "UNIDENTIFIABLE"
+    summary = action_summary(
+        [
+            {
+                "success": True,
+                "target_generation": "g",
+                "verb": "HARVEST",
+                "turn": 4,
+                "gained": {"APPLE": 2},
+            },
+            {
+                "success": True,
+                "target_generation": "g",
+                "verb": "CHOP",
+                "turn": 5,
+                "gained": {"WOOD": 1},
+            },
+        ],
+        "g",
+    )
+    assert summary["extracted_score_equivalent"] == 6
+    assert is_target_generation(
+        {"origin": "opponent"}, 251, [0] * 250 + [1, 1]
+    )
+    game = SimpleNamespace(
+        states=[
+            {"units": [{"player": 0, "x": 3, "y": 0, "ms": 1}]},
+            {"units": [{"player": 0, "x": 0, "y": 0, "ms": 2}]},
+        ],
+        board={"walkable": {(0, 0), (1, 0), (2, 0), (3, 0)}},
+        me=0,
+    )
+    assert subject_eta_at_birth(game, 1, (3, 0)) == 2
     print("self-test: ok")
 
 
@@ -800,9 +873,19 @@ def run(args: argparse.Namespace) -> tuple[dict, dict, list[dict]]:
     index_path = corpus_root / "data/processed/games.jsonl"
     index_hash = sha256_file(index_path)
     rows = load_index(index_path)
-    selected = {
-        label: cohort_game_ids(rows, agent_id) for label, agent_id in COHORTS
-    }
+    frozen_manifest = None
+    frozen_manifest_hash = None
+    if args.frozen_input_manifest is not None:
+        frozen_manifest_path = args.frozen_input_manifest.resolve()
+        frozen_manifest_hash = sha256_file(frozen_manifest_path)
+        frozen_manifest = json.loads(frozen_manifest_path.read_text())
+        selected = cohort_game_ids_from_manifest(frozen_manifest)
+        selection_mode = "frozen_input_manifest"
+    else:
+        selected = {
+            label: cohort_game_ids(rows, agent_id) for label, agent_id in COHORTS
+        }
+        selection_mode = "live_index"
     dependency_checks = {}
     for relative, expected in EXPECTED_DEPENDENCIES.items():
         actual = sha256_file(REPO / relative)
@@ -827,16 +910,26 @@ def run(args: argparse.Namespace) -> tuple[dict, dict, list[dict]]:
                 and len(selected[label]) == len(set(selected[label]))
             ),
         }
-    source_checks = {
-        "index_hash": index_hash == EXPECTED_INDEX_HASH,
-        "index_records": len(rows) == EXPECTED_INDEX_RECORDS,
-        "dependency_hashes": all(row["pass"] for row in dependency_checks.values()),
-        "cohort_lists": all(row["pass"] for row in cohort_checks.values()),
-    }
-    source_integrity = all(source_checks.values())
     manifest = build_input_manifest(corpus_root, selected)
-    source_checks["all_inputs_present"] = not manifest["missing"]
-    source_integrity = source_integrity and source_checks["all_inputs_present"]
+    if frozen_manifest is None:
+        source_checks = {
+            "index_hash": index_hash == EXPECTED_INDEX_HASH,
+            "index_records": len(rows) == EXPECTED_INDEX_RECORDS,
+            "dependency_hashes": all(row["pass"] for row in dependency_checks.values()),
+            "cohort_lists": all(row["pass"] for row in cohort_checks.values()),
+            "all_inputs_present": not manifest["missing"],
+        }
+    else:
+        source_checks = {
+            "frozen_manifest_hash": (
+                frozen_manifest_hash == EXPECTED_FROZEN_MANIFEST_HASH
+            ),
+            "frozen_manifest_inputs_unchanged": manifest == frozen_manifest,
+            "dependency_hashes": all(row["pass"] for row in dependency_checks.values()),
+            "cohort_lists": all(row["pass"] for row in cohort_checks.values()),
+            "all_inputs_present": not manifest["missing"],
+        }
+    source_integrity = all(source_checks.values())
 
     tasks = [
         (str(corpus_root), label, agent_id, game_id)
@@ -901,8 +994,12 @@ def run(args: argparse.Namespace) -> tuple[dict, dict, list[dict]]:
         },
         "source": {
             "logical_index": "data/processed/games.jsonl",
-            "index_sha256": index_hash,
-            "index_records": len(rows),
+            "selection_mode": selection_mode,
+            "frozen_index_sha256": EXPECTED_INDEX_HASH,
+            "frozen_index_records": EXPECTED_INDEX_RECORDS,
+            "live_index_sha256": index_hash,
+            "live_index_records": len(rows),
+            "frozen_input_manifest_sha256": frozen_manifest_hash,
             "checks": source_checks,
             "dependencies": dependency_checks,
             "cohorts": cohort_checks,
@@ -945,7 +1042,7 @@ def write_outputs(
     result_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     with targets_path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=TARGET_FIELDS)
+        writer = csv.DictWriter(handle, fieldnames=TARGET_FIELDS, lineterminator="\n")
         writer.writeheader()
         for row in targets:
             writer.writerow({field: row.get(field) for field in TARGET_FIELDS})
@@ -965,6 +1062,14 @@ def parse_args() -> argparse.Namespace:
         help="repository worktree containing the frozen logical data paths",
     )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--frozen-input-manifest",
+        type=Path,
+        help=(
+            "reuse the exact previously validated 382-occurrence manifest when the "
+            "append-only live index has advanced"
+        ),
+    )
     parser.add_argument("--jobs", type=int, default=4)
     parser.add_argument("--bootstrap-reps", type=int, default=BOOTSTRAP_REPS)
     parser.add_argument("--self-test", action="store_true")

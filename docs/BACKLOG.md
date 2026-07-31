@@ -34,8 +34,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > Phase 2. **M1 is DONE / DESCRIPTIVE_ONLY; N2 is DONE / B4_4_CORRECTED; M2 is
 > DONE / NO_ACTIONABLE_MATCHUP; M3 is DONE / NO_ACTIONABLE_SEAT_ASYMMETRY; M4 is
 > DONE / NO_MATERIAL_MATCHMAKING_DRIFT; M5 is DONE /
-> NO_MATERIAL_LENGTH_ASSOCIATION; N5 arithmetic supports NO_MATERIAL_CONTEST_OPPORTUNITY
-> but review is correction-blocked; N6 is independently accepted / CLOSED_AT_DEVELOPMENT. Next: peer corrections,
+> NO_MATERIAL_LENGTH_ASSOCIATION; N5 correction preserves NO_MATERIAL_CONTEST_OPPORTUNITY
+> and awaits narrow re-review; N6 is independently accepted / CLOSED_AT_DEVELOPMENT. Next: peer corrections,
 > then remaining execution/search audits. E2 is DONE / ROUTE_RESIDUAL_OBSERVED but not
 > experiment-justified (0.335 hindsight movement turn per side-game). E3 is
 > VOID_PREMISE_DUPLICATE under the exact-resident repeated job oracle. E4 is DONE /
@@ -139,13 +139,13 @@ continues with construction and rating-dynamics measurement, not waiting.
   single-thread and 333.157 ms under 20-thread contention versus the frozen 5 ms close;
   one root emits 268,168 rows / 83.3 MB. The full projected 10.7 GB census was stopped.
   No Phase B, compact-format retune, pair pruning, or alternate boundary definition.
-- **N5 REVIEW-BLOCKED — arithmetic supports NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
+- **N5 CORRECTED / RE-REVIEW PENDING — NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
   388 resident targets in 78/170 endgame-reaching games versus yamo's 205 in 37/103.
   Opponents extract 1,487 carried score-equivalent units versus our 241, and we contact
   only 51/388 targets. But even the generous deny-plus-capture factor-two ceiling is
   **11.99 per all resident games, CI [8.73,15.76]**, below the frozen 20-margin gate.
-  Enemy units can share cells; this cannot body-block. Add the frozen semantic tests and
-  correct/freeze the ETA birth-state convention before canonical closure; no simulation.
+  Enemy units can share cells; this cannot body-block. Twelve semantic tests pass and
+  literal post-birth ETA leaves the primary value unchanged; await narrow re-review.
 - **N6 ✅ INDEPENDENTLY ACCEPTED / CLOSED_AT_DEVELOPMENT.** The exact 450/900/1800 sweep completed G1 once.
   LOW is −0.754 margin and negative in both seats; HIGH is only +0.559 with four positive
   families. Both fail the directional mechanism sharply (15/97 and 12/77 versus 60%).

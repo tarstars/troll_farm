@@ -11,9 +11,10 @@ change, submission, TestSession, or Arena action follows.
 
 The audit decoded all **382/382 cohort occurrences**: 242 resident occurrences and 140
 yamo occurrences, representing 381 unique games because game `896350293` contains both.
-The exact index, cohort-list, dependency, resident, raw-game, and trajectory hashes match.
-There are zero decode, turn-count, target-origin, unique-PLANT, or cross-orientation
-lineage failures.
+The original frozen index selection was reused through its exact previously validated
+input manifest after the live collector advanced from 9,082 to 9,372 rows. The manifest,
+cohort-list, dependency, resident, raw-game, and trajectory hashes match. There are zero
+decode, turn-count, target-origin, unique-PLANT, or cross-orientation lineage failures.
 
 The exact generation reconstruction reproduces H13:
 
@@ -30,8 +31,9 @@ The geometry supports the design intuition. **287/388 = 73.97%** of target gener
 are within Manhattan distance two of the opponent shack. Yet the resident has a unit at
 ETA ≤1 for only **24/388 = 6.19%**, and subsequently contacts only
 **51/388 = 13.14%**. Static-board reach within the observed remaining turns is much
-broader, **368/388 = 94.85%**; this is optimistic access, not evidence that diverting a
-unit is free.
+broader, **366/388 = 94.33%**; this is optimistic access, not evidence that diverting a
+unit is free. ETA now uses the literal post-birth lineage state; zero resident targets
+have ETA 0, while 24 have ETA ≤1.
 
 Opponents extract 1,487 carried score-equivalent units from the resident target
 generations, while the resident extracts 241. These are `fruit + 4×wood` cargo gains.
@@ -72,11 +74,28 @@ python3 cgauto/endgame_opponent_plant_contest.py --self-test
 python3 -m pytest -q tests/test_endgame_opponent_plant_contest.py
 python3 cgauto/endgame_opponent_plant_contest.py \
   --corpus-root ../troll_farm \
+  --frozen-input-manifest \
+    ../troll_farm/local_codex_1/n5-endgame-opponent-plant-contest/input-manifest.json \
   --output-dir local_codex_1/n5-endgame-opponent-plant-contest \
   --jobs 4
 ```
 
-Compile and self-test pass; six tests pass. A second four-process full run reproduces all
-four output hashes byte-for-byte. Canonical compact result:
+Compile and self-test pass; twelve tests pass. A second four-process full run reproduces
+all four output hashes byte-for-byte. Canonical compact result:
 `data/analysis/live-agent-6553250/n5-endgame-opponent-plant-contest-result.json`.
 Machine bundle: `local_codex_1/n5-endgame-opponent-plant-contest/`.
+
+## Review correction
+
+The independent review found two protocol blockers. Both are corrected:
+
+- `subject_eta_at_birth` now reads `states[birth_turn]`, the state containing the new
+  generation, rather than the pre-PLANT state;
+- focused tests now cover successful exact-generation cargo accounting, death/feller
+  classification, BFS plus movement-speed ceiling division, strict turn/origin/pre-margin
+  target filtering, unique successful PLANT, and cross-orientation lineage agreement.
+
+The literal indexing change moves resident ETA-0 count 5→0 and reachable-within-remaining
+count 368→366; the two removed reachable targets have zero opponent yield. Therefore the
+primary mean, interval, and verdict remain exactly 11.9917, [8.7273,15.7603], and
+`NO_MATERIAL_CONTEST_OPPORTUNITY`. Canonical closure awaits narrow corrected re-review.

@@ -1,6 +1,6 @@
 # 20260730-n5-endgame-opponent-plant-contest: quantify the missing endgame contest mechanic
 
-- Status: empirical arithmetic supported; review blocked pending protocol correction
+- Status: protocol correction published; narrow corrected re-review pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:30:00Z
-- Last updated UTC: 2026-07-31T12:58:00Z
+- Last updated UTC: 2026-07-31T13:15:00Z
 
 ## Independent review
 
@@ -19,6 +19,23 @@ acceptance until (1) the frozen synthetic semantic-test obligations are covered 
 (2) `subject_eta_at_birth` is corrected to the literal birth state or explicitly frozen,
 renamed, and tested as a pre-PLANT convention. No successor experiment follows before a
 narrow corrected re-review.
+
+## Corrected implementation and rerun — 2026-07-31
+
+- Analyzer SHA-256:
+  `0d4668b974b99d0af5ac414b1fc7e250bf695a5b48480a9605bc9025b5633ba2`.
+- Test SHA-256:
+  `c3fb025e1f431170ba6747b1f81f4431d068ecfd3bca05b3ab80a00321150f35`.
+- Twelve focused tests plus self-test pass.
+- The frozen 382-occurrence manifest remains byte-exact at
+  `53ee5cf3347fbc72dcd1021369cb2b41ce48eb6c3ca22fc9981f7abf14a2b26f`;
+  all referenced raw/trajectory hashes still match.
+- Literal post-birth ETA changes resident ETA-0 5→0 and reachable 368→366, but the two
+  removed reachable targets have zero opponent yield. Mean 11.9917 and CI
+  [8.7273,15.7603] are unchanged; verdict remains
+  `NO_MATERIAL_CONTEST_OPPORTUNITY`.
+- Deterministic output hashes: result `3a701cb5…`, targets `3bce3047…`, report
+  `6d1c4e90…`; a second four-process run reproduced all exact hashes.
 
 ## Outcome
 
