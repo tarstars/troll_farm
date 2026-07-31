@@ -70,7 +70,8 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
 Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
-produced one experiment (D176a, in flight). Its most consequential output was not a
+produced one experiment (D176a, subsequently closed at mechanism/value). Its most
+consequential output was not a
 candidate but a **re-baselining**: H13 found that at most ~1 point of our 2.94-point gap to
 yamo is attributable to code, while the documented fresh-vs-mature score effect is 3–4
 points. **If that holds, our true code gap to the 28.22 bar is roughly 2.5–3.5, not 6.46** —
@@ -341,14 +342,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   coverage. Every option negative always-on — value is pure per-game selection. No
   D169b needed (all six PASS conditions held on the first pass). *(The one-time Fable
   STOP for D170 authoring was satisfied 2026-07-28; no pause is in force.)*
-- **B2.2 → D170 — IN FLIGHT (D170b re-run executing 2026-07-28).** History: D170a
+- **B2.2 / D170a history — IMPLEMENTATION-INVALIDATED; D170b COMPLETED BELOW.** D170a
   protocol frozen (Fable) → Phase 1 trained 8 fits → resume validation exposed a
   structural trig-arming bug in the new composition code → **CLOSED-AT-PHASE-1
   adjudicated as implementation invalidation** (no value ever computed; frozen vocabulary
-  intact) → **D170b** mechanics-only repair protocol frozen and now executing (repair +
+  intact) → **D170b** mechanics-only repair protocol frozen and executed (repair +
   activation verification + offered-conditional exploration semantics; all science
   inherited). Chain: `d170a-...-protocol`, `d170a-...-result` (the invalidation record),
-  `d170b-...-repair-protocol`. Four-objective comparison (the skipped-D109 question) →
+  `d170b-...-repair-protocol`; accepted D170b closure is the next bullet. Four-objective comparison (the skipped-D109 question) →
   LOBO admission/selection → veto → sealed confirmation → int8 deployability → 🛑 user
   arena gate.
   Recurrent policy over the B2.1 options with exact-resident action zero; objective =

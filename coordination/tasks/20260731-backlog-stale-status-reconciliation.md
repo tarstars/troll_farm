@@ -1,6 +1,6 @@
 # 20260731-backlog-stale-status-reconciliation
 
-- Status: claimed — canonical status-only reconciliation
+- Status: integrated — stale D176a/D170b labels corrected; peer notification ack pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: local_codex_1
@@ -10,7 +10,14 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T08:45:00Z
-- Last updated UTC: 2026-07-31T08:45:00Z
+- Last updated UTC: 2026-07-31T08:50:00Z
+
+## Result
+
+- D176a iteration history now says it was subsequently closed at mechanism/value.
+- D170a history now says D170b was executed and points to the adjacent accepted closure.
+- No decisive number, verdict, priority, or experimental boundary changed.
+- Exact stale-pattern scan is empty; `git diff --check` and sacred source hash pass.
 
 ## Outcome
 
