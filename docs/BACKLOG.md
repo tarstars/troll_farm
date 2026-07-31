@@ -519,6 +519,16 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   capture was reachable, not realized. Only a read-only corpus precheck of the joint
   relative-control predicate may follow. Phase 21/D173 broad arms remain closed; no code,
   threshold, capability, panel, candidate, or Arena action.
+- **B3.12 — NARROWED_TO_FEASIBILITY_PRECHECK.** Owner postmortem game `896352750`
+  (206–184 vs zasmu) is exact: at the first resident lemon chop, seven mature LEMON trees
+  hold 84 health, so even a no-travel full clear needs 21 turns of combined chop power.
+  The resident uses 28 CHOP commands over turns 26–67 to remove five initial trees,
+  destroying 13 fruit but collecting nine wood. Zasmu harvests 25 lemons, including 19
+  from a protected planted tree, replants one harvested seed, and exactly funds the
+  eleven-/twelve-lemon bills for workers 3 and 4. Opening churn is three short A-B-A
+  returns through turn 100, not a frozen ≥10-state oscillation. Only a read-only corpus
+  audit may test whether the denial bonus can beat liquid stock, regeneration, clear
+  burden, and bill timing; base wood value stays separate. E7/N6/D176a remain closed.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

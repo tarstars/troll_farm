@@ -1,6 +1,6 @@
 # 20260731-zasmu-lemon-denial-oscillation-postmortem
 
-- Status: claimed — exact one-game read-only audit
+- Status: result ready — `NARROWED_TO_FEASIBILITY_PRECHECK`; peer review queued
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: chatgpt_1 (after its existing serial review queue; no active review lease)
@@ -10,7 +10,31 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T11:40:00Z
-- Last updated UTC: 2026-07-31T11:40:00Z
+- Last updated UTC: 2026-07-31T12:05:00Z
+
+## Result
+
+- The exact trajectory reconstructs 217/217 turns with zero unknown updates.
+- The opening contains three short A-B-A position returns through turn 100, but zero
+  episodes at the frozen ≥10-state sustained-oscillation threshold.
+- Immediately before the first resident lemon chop, seven mature LEMON trees hold 84
+  health. The no-travel full-clear lower bound is 21 turns at combined chop power four.
+- The resident spends 28 lemon CHOP commands and turns 26–67 removing five initial trees.
+  It destroys 13 standing fruit and collects nine wood; one natural and one zasmu-planted
+  lemon remain.
+- Zasmu harvests 25 lemons: 19 from its turn-6 planted tree and six from the surviving
+  natural tree. One harvested lemon is replanted on turn 97.
+- Ten planted-tree harvests plus one banked remainder exactly pay the turn-62 eleven-lemon
+  TRAIN bill. Fifteen later harvests minus one replant leave 14 banked for the turn-106
+  twelve-lemon bill, with two remaining.
+- Verdict: `NARROWED_TO_FEASIBILITY_PRECHECK`. Only a read-only existing-corpus audit may
+  ask whether the denial bonus can beat liquid stock, regeneration, clear burden, and bill
+  timing while keeping independent wood value separate.
+
+Evidence:
+`data/analysis/live-agent-6553250/zasmu-lemon-denial-oscillation-postmortem-result-2026-07-31.md`,
+compact JSON beside it, and
+`local_codex_1/zasmu-lemon-denial-oscillation-postmortem/manifest.json`.
 
 ## Outcome
 

@@ -1026,3 +1026,49 @@ proposed; no code, threshold, capability, runner, panel, candidate, or Arena act
 Evidence:
 `data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.json`
 and the compact human report beside it.
+
+## B3.12 — zasmu lemon-denial economics narrow a feasibility precheck
+
+The owner observed opening movement churn and zasmu harvesting and replanting lemons in
+exact resident game `896352750`, a 206–184 win. Raw SHA `c7209f23...` and trajectory SHA
+`a62b5b48...` reconstruct 217/217 turns with zero unknown updates.
+
+The visual oscillation is real but short. Starter unit 1 makes five exact A-B-A position
+episodes, three through turn 100; the longest has four states and none reaches the frozen
+B3.2/D176a ≥10-state class. All opening MOVEs land and no teammate is adjacent in those
+episode states. Their counterfactual task value is not identified, and D176a already
+closed a working sustained-oscillation fix at only +0.045 overall margin.
+
+The lemon economics are stronger. Six initial lemon trees start at 40 health. Zasmu
+plants a seventh on turn 6. Immediately before the resident's first lemon chop, all seven
+are mature: 84 health and seven standing fruit. With resident chop powers 1+3, even an
+impossible no-travel full clear needs 21 turns.
+
+The resident spends 28 lemon CHOP commands from first contact on turn 26 through the fifth
+initial removal on 67. It deals 60 damage, destroys 13 fruit present at removal, and
+collects nine wood. One initial zasmu-side lemon and the planted orchard remain, holding
+24 health and six fruit at turn 67. The resident never reaches species extinction; zasmu
+self-converts the surviving supply only by turn 120.
+
+Zasmu harvests 25 lemons: 19 from the protected turn-6 plant at `(7,8)` (BFS 3 from its
+door, 17 from ours) and six from the remaining natural tree. On turn 97, unit 2 spends
+one of two lemons just harvested at `(3,9)` to plant on its own door—the owner's observed
+harvest-to-replant transition.
+
+The bill provenance is exact. After turn-2 training, zasmu has one banked lemon. Ten
+harvests from the planted tree raise the bank to eleven and exactly pay worker 3 on turn
+62. After that, 15 more harvests minus the replant seed leave 14 banked; worker 4 costs
+12 on turn 106 and two remain. The natural-tree sweep therefore does not deny either
+later lemon bill.
+
+**Verdict: `NARROWED_TO_FEASIBILITY_PRECHECK`.** This is not permission to disable lemon
+chopping: the same five removals yielded nine resident wood, and the resident won.
+Only a read-only existing-corpus audit may separate base wood/conversion value from the
+denial bonus and compare opponent bank/carry, protected regeneration, travel/chop clear
+time, and next-bill timing. Blanket focus inversion (E7), denial-weight retuning (N6),
+reachability-as-causality (H4), and oscillation changes (D176a) remain closed. No source,
+runner, panel, candidate, submission, TestSession, or Arena action follows.
+
+Evidence:
+`data/analysis/live-agent-6553250/zasmu-lemon-denial-oscillation-postmortem-result-2026-07-31.json`
+and the compact human report beside it.

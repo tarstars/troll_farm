@@ -1,0 +1,56 @@
+{
+  "schema": "troll-farm-zasmu-lemon-denial-oscillation-postmortem-manifest-v1",
+  "task_id": "20260731-zasmu-lemon-denial-oscillation-postmortem",
+  "author": "local_codex_1",
+  "base_commit": "e70a3b1",
+  "claim_commit": "12b7fb5",
+  "scope": {
+    "game_id": 896352750,
+    "read_only": true,
+    "other_game_or_replay_read_after_claim": false,
+    "new_analyzer_created": false,
+    "simulator_run": false,
+    "bulk_write": false,
+    "source_or_frozen_artifact_changed": false,
+    "map_or_range_opened": false,
+    "panel_or_candidate_created": false,
+    "platform_write": false,
+    "arena_action": false
+  },
+  "inputs": {
+    "data/raw/games/896352750.json": "c7209f23ad36bb9fa363a57cfd0152c71a7aea5a30fbf38c13c48aff3521a817",
+    "data/processed/trajectories/896352750.jsonl": "a62b5b48aad1f4e5d2250f8ec7ef477f937001208aad72053ae11a27466e424d",
+    "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f",
+    "cgauto/replay_state.py": "4f38829baa533bc8af940fb0eeed6cf5a746357b74abe38f42f5060cb9101569",
+    "cgauto/replay_conformance.py": "9a532218a6e76c83900f6d99996131267746341d397baa1263169b20f5dd738a",
+    "cgauto/top_player_opening_analysis.py": "7a29292677cb310cdc94ffcd4035f5b28744d704f970aac1e855d911dd858fcd"
+  },
+  "outputs": {
+    "data/analysis/live-agent-6553250/zasmu-lemon-denial-oscillation-postmortem-result-2026-07-31.json": "357dee7517ad3eaa59f48d3be5716a74642c7c9244e92cc7a3cdefe0e1eebbc8",
+    "data/analysis/live-agent-6553250/zasmu-lemon-denial-oscillation-postmortem-result-2026-07-31.md": "6a2e0583903b22e3fcf0367bee6b93b20ede7240aa665c4c0d54da4854a7dccd"
+  },
+  "reconstruction": {
+    "trajectory_rows": 217,
+    "resolved_states_after_initial": 217,
+    "unknown_updates": 0,
+    "resident_player": 1,
+    "opponent_player": 0
+  },
+  "validation": {
+    "result_json_valid": true,
+    "raw_and_trajectory_hashes_match": true,
+    "state_line_count": 150,
+    "live_ledger_bytes": 63530,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "generated_evidence_index_current": true,
+    "semantic_evidence_check": {
+      "status": "ok",
+      "records": 11,
+      "closures_excluding_void": 6,
+      "void_premise": 1
+    },
+    "decision_evidence_tests_passed": 25,
+    "git_diff_check": true
+  },
+  "verdict": "NARROWED_TO_FEASIBILITY_PRECHECK"
+}

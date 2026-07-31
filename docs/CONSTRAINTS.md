@@ -1014,3 +1014,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   unconsumed exact-live label is compatible-pair continuation value owned by N4. Do not
   create L3a; if material N4 Phase B ever clears, replace L2/L3 with one bounded pair
   residual item. [L3, N4]
+- **Species focus is not evidence that species denial is feasible.** In exact game
+  `896352750`, seven mature lemons held 84 health at the first resident chop; five
+  removals consumed 28 CHOP commands over 42 elapsed turns while zasmu harvested 25
+  lemons, replanted one harvested seed, and funded workers 3/4. But those removals also
+  yielded nine resident wood, so the game does not justify forbidding LEMON chops or
+  changing the default focus. Any successor must first be a read-only corpus precheck
+  separating base wood/conversion value from the `900/(1+distance)` denial bonus and
+  comparing liquid currency plus protected regeneration against travel/chop clear time
+  and the next bill. E7's blanket inversion, N6's scalar retune, H4's reachability logic,
+  and D176a's oscillation line remain closed. [B3.12, 2026-07-31]
