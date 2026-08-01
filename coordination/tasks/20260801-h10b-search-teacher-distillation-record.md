@@ -1,6 +1,6 @@
 # 20260801-h10b-search-teacher-distillation-record
 
-- Status: documentation complete — integration pending
+- Status: integrated — documentation complete; feasibility charter not started
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,7 +8,7 @@
 - Base commit: 278c7041cdae933fe06f28766129a68a4c779ab6
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-01T19:47:00Z
-- Last updated UTC: 2026-08-01T19:55:00Z
+- Last updated UTC: 2026-08-01T19:49:31Z
 
 ## Outcome
 

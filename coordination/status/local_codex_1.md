@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-01T19:55:00Z
-- State: H10b-r1 search-teacher distillation note complete; integration pending
+- Updated UTC: 2026-08-01T19:49:31Z
+- State: H10b-r1 search-teacher distillation note integrated; programme remains charter-gated
 - Role: coordinator (integrator)
-- Current task: `20260801-h10b-search-teacher-distillation-record`
+- Current task: none
 - Branch: agent/local_codex_1
-- Evidence commit: 3012ef8 (documentation claim remotely published)
-- Write set: H10b-r1 task record, approach register, backlog, own status
-- Last concrete progress UTC: 2026-08-01T19:55:00Z
-- Evidence: H10b-r1 entry added to the approach register and backlog with feasibility gates
+- Evidence commit: 7ac816e (H10b-r1 note integrated into canonical session branch)
+- Write set: none
+- Last concrete progress UTC: 2026-08-01T19:49:31Z
+- Evidence: H10b-r1 entry published in the approach register and backlog with feasibility gates
 - Running job: none
 - Latest verified result: H10b is open as a whole-policy programme; exact teacher-distillation composition was previously unrecorded
-- Next checkpoint: publish and integrate the documentation commit
+- Next checkpoint: a separately frozen H10b-r1 feasibility charter, only if the owner starts it
 - Blockers: none
 - Arena controller: yes; funding-first diagonal-denial agent 6585846 is the sole live leg
