@@ -1,6 +1,6 @@
 # 20260801-h10b-search-teacher-distillation-record
 
-- Status: claimed — documentation only
+- Status: documentation complete — integration pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,6 +8,7 @@
 - Base commit: 278c7041cdae933fe06f28766129a68a4c779ab6
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-01T19:47:00Z
+- Last updated UTC: 2026-08-01T19:55:00Z
 
 ## Outcome
 
@@ -34,3 +35,10 @@ by the compact student, while the Arena artifact runs the distilled network with
 
 Documentation only. No data/replay/map/range read, bulk write, source/model/training change,
 simulation, panel, candidate, TestSession, submission, or Arena action.
+
+## Result
+
+H10b-r1 is recorded in the rolling approach register and backlog as an owner-requested
+programme concept. The note preserves the training-only search/search-free deployment
+split, closed-loop student-state relabelling, population conditioning, planning prior,
+distinctness from closed lineages, bounded feasibility sequence, and authorization boundary.

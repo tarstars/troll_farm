@@ -281,6 +281,39 @@ continues with construction and rating-dynamics measurement, not waiting.
 - **H10b whole-policy learner** remains a larger owner programme. H5's #1 finisher
   (delineate) used a trained NN with no search, but that does not turn H10a's narrow
   option selector into authorization for self-play over primitives.
+- **H10b-r1 search-teacher distillation — OWNER-REQUESTED PROGRAMME CONCEPT;
+  CHARTER NOT YET FROZEN.** Adapt AlphaZero-style expert iteration rather than copying it
+  literally: an expensive offline search teacher produces dense policy, expected-margin,
+  and catastrophe targets against a population of opponents; the student is evaluated
+  closed-loop, and search relabels states that the student itself visits. Pure symmetric
+  self-play and one-pass teacher-state imitation are excluded because ladder transfer and
+  autoregressive covariate shift are already demonstrated risks. The Arena artifact is a
+  compact, search-free int8 network; training-time search does not inherit the 50 ms turn
+  budget.
+
+  This is distinct from H10a-r1's 13-option spatial scorer, L1's replay-only primitive
+  labels, D170b's sparse terminal-reward option training, and S3's proposed online
+  rollout-plus-beam controller. It directly instantiates the new dense-counterfactual-credit
+  plus new-representation route left open by D170b/D172a. Positive priors are D169a's
+  +10.671 hindsight envelope, the field evidence for both neural policy and lookahead, and
+  the solved sub-100-kB int8 deployment pattern. Main risks are opponent-model transfer,
+  combinatorial simultaneous joint actions, search cost, and loss of value during
+  distillation.
+
+  **Planning prior only, not an empirical result or acceptance gate:** 50–70% chance that a
+  bounded search teacher shows material local improvement; 25–35% that a compact student
+  clears closed-loop local gates; 10–20% that the first programme yields an Arena-worthy
+  candidate. This makes a bounded feasibility phase worth doing, not a large training run
+  worth starting blindly.
+
+  Before any fit, range, or bulk job, freeze a charter with: (1) exact referee/search
+  determinism, legality, chance, and joint-action semantics; (2) a warm start and
+  population-conditioned opponent protocol; (3) fresh unsealed official-map development
+  and held-family teacher-value gates; (4) iterative student-state relabelling and a
+  closed-loop student value-retention/tail-safety gate; and (5) deterministic int8 source
+  at ≤100 kB and warm p95 <50 ms. No model, compute job, candidate, TestSession,
+  submission, or Arena action is authorized by this backlog entry. [owner direction,
+  2026-08-01]
 
 ### Operations
 
