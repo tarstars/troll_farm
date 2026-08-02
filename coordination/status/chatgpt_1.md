@@ -1,27 +1,27 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T14:31:00Z
-- State: independent initial-state sector audit complete and handed off; awaiting integrator acknowledgement and three-agent reconciliation release
+- Updated UTC: 2026-08-02T15:20:00Z
+- State: improved E7a t0 sector sign analysis published; exact terminal-value pricing blocked on untracked root-level deltas
 - Role: research agent and reviewer
 - Current task: `20260802-initial-state-sector-policy-audit`
 - Current branch: `agent/chatgpt_1-top-player-full-review`
 - Task base: `43d8aa21008427edc58517968364496d3696ea82`
-- Release boundary: shared task was queued; owner directly instructed `chatgpt_1` to get and perform it after the preceding cross-review handoff, treated as owner release for this agent only
-- Independence: no peer initial-sector report read
-- Output: `chatgpt_1/initial-state-sector-policy-audit-2026-08-02.md`
-- Report commit: `b951e269e81deeefc1a1d852f1d970b181f8e62c`
-- Report Git blob: `b208bbb88fc9a7707593e8239dec7141115c4d93`
-- Report length/hash: 372 lines; local SHA-256 `6116a976084331f3d491ae88d04e1cb1ab47c8d55ede21d57ca6f6d115b1d6e9`
-- Handoff: `coordination/messages/chatgpt_1/20260802T143000Z-20260802-initial-state-sector-policy-audit-handoff.md`
-- Handoff commit: `3bde26e1ae317f9fd4086659fde60ca8ac9c2fd6`
-- Verdict: `SECTOR_PREFLIGHT_CANDIDATE`, E7a only
-- Survivor: exact persistent E7 LEMON/PLUM `typeToCut` flip, because blanket FLIP is `-12.1736` but root hindsight is `+10.5097`, `24/60` roots prefer FLIP, and `6/6` leave-one-family-out checks are positive
-- Owner example: rich initial state / early bill / worker three is `UNIDENTIFIABLE_FROM_EXISTING_DATA` and overlaps D63/D64, Phase 15, D52-D59, H1 and A2-1
-- Required first gate: tracked compact root-level E7 paired-delta manifest plus feature-overlap audit against D63/Phase15/D91; aggregate summaries alone are insufficient and consumed ranges stay closed
-- Proposed representation: player-relative t0 FLIP-minus-default species-flow geometry plus exact joint starting banks; no outcome, later state, opponent-family or seat selector features
-- Proposed future protocol: C0 unchanged / A1 always-FLIP / C1 sector-FLIP; fresh root-grouped discovery/validation/untouched confirmation; both seats; held opponents; beat the better static arm; displacement and tail gates
-- Authorization: report only; no source, fit, ranges, runner, build, simulation, candidate, TestSession, Arena/API/submission, or platform action
-- Previous task: full-review cross-review complete and integrated on shared branch; own branch remains intentionally unmerged
+- Release boundary: owner directly requested the improved analysis after the independent audit handoff; no peer initial-sector report was read
+- Initial audit: `chatgpt_1/initial-state-sector-policy-audit-2026-08-02.md`, commit `b951e269e81deeefc1a1d852f1d970b181f8e62c`
+- Improved report: `chatgpt_1/e7a-improved-initial-sector-analysis-2026-08-02.md`
+- Improved report commit/blob: `9e7622ff69eb9a1ff976f1b9c558d88f88ea7252` / `3ef82e759863e52a2a9a9a42aacac167e8d7ba26`
+- Reproducibility rows: `chatgpt_1/e7a-initial-sector-sign-preflight-2026-08-02.csv`
+- CSV correction commit/blob: `9d8964b3849cec68f93c73609fd7304c05b09034` / `581b5dfdf977ede7606538cd881539dc86b00c70`
+- CSV local SHA-256: `0c6b77a0221be2b17cd0fd8fc12d1189b544cf5a55fac6a1b079867e0ca082da`
+- Verdict: `MEASUREMENT_ONLY — EXPLORATORY_SIGN_SECTOR_FOUND; TERMINAL_VALUE_UNIDENTIFIED`
+- Exploratory sector: default `typeToCut` species LEMON and `sum_distance(PLUM)-sum_distance(LEMON) <= 8`
+- Nested leave-one-root-out rule: selected identically in 60/60 folds; support 13/60; 10 TP / 3 FP; precision 76.92%, recall 41.67%, accuracy 71.67%, balanced accuracy 66.67%
+- Nested 100k permutation: precision p=0.00477, balanced p=0.01318, accuracy p=0.00801; exploratory because the rule class was designed after diagnostics
+- Primary ten-feature ridge: precision 55%, fails the proposed 65% sign gate
+- Integrity: exact t0 reconstruction reproduces 35 LEMON / 25 PLUM, four ties, 60/60 seat symmetry
+- Evidence blocker: original full E7 jobs JSON was written to `/tmp`; tracked compact result preserves positive-root labels but not delta magnitudes, preventing `C1-C0`, `C1-A1`, displacement, seat/family and tail pricing
+- Extraction request: `coordination/messages/chatgpt_1/20260802T151800Z-20260802-e7a-root-delta-extraction-request.md`, commit `b0e7812b35fa21125fe4e3178b0f6d5964858a9d`
 - Coordinator/integrator: `local_codex_1`
-- Next checkpoint: integrator acknowledgement; preserve blindness until all three independent handoffs, then reconciliation review release
+- Next checkpoint: integrator acknowledgement and host check for hash-pinned original E7 full output; then exact no-fit pricing of the frozen exploratory rule
+- Authorization: analysis/report/derived t0 rows only; no source, replay panel, build, simulation, fit on fresh data, candidate, TestSession, Arena/API/submission, or platform action
 - Arena controller: no
