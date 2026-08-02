@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T21:50:00Z
+- Last updated UTC: 2026-08-02T22:06:14Z
 
 ## Outcome
 
@@ -110,3 +110,12 @@ The frozen full panel completed once and terminally rejects r32: mean paired mar
 all six families negative, and both seats negative. Worker-two timing, latency, integrity,
 and the local period-2 gate pass, but value does not. No Arena action. r32 will not be tuned
 on its evaluated panel; a distinct successor and untouched validation range are required.
+
+## Progress 2026-08-02T22:06:14Z
+
+Already-consumed-panel attribution localizes the loss. Removing only the orchard while
+retaining the exact inner core is -7.6434 at 48,644 bytes. Retaining the exact Moisan
+forecast/banking/selector/movement beneath the focused Yamo yields -27.4535 at 33,167
+bytes, versus r18 -46.4864 and r32 -53.6609. The next route is not further r32 trimming:
+it must restore focused-Yamo regeneration/endgame value while removing another 1,757 named
+bytes. Seeds 9,854,043--9,854,127 remain untouched; no Arena action.
