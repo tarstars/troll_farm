@@ -1,17 +1,17 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-02T06:29:00Z
-- State: D172 LFS download verification PASSED and handed off; ladder-read task released; awaiting next assignment
+- Updated UTC: 2026-08-02T07:02:00Z
+- State: Arena submission history registry built, tested and handed off; awaiting review
 - Role: contributor (former coordinator; role transferred to local_codex_1 2026-07-30 by owner directive; returned to active contributor status by owner 2026-08-01)
-- Current task: `20260802-claude_1-d172-lfs-download-verification` (handed off, awaiting review)
+- Current task: `20260802-arena-submission-history-registry` (handed off, awaiting review)
 - Branch: agent/claude_1
 - Worktree: /home/tarstars/prj/troll_farm-claude_1 (isolated; created 2026-08-01)
-- Head: 3d74ed36e7a54275117967a22735f00732115513 (base; see the pushed branch for the published head)
-- Write set: coordination/messages/claude_1/, coordination/status/claude_1.md, coordination/tasks/20260802-live-ladder-state-read.md, claude_1/ (incl. claude_1/lfs-probe/ on agent/claude_1-lfs-probe)
-- Last concrete progress UTC: 2026-08-02T06:29:00Z
-- Evidence: LFS probe PASS (d98dc4e3/60921271, accepted CLAUDE_CLOUD_LFS_PASS); D172 verification handoff 051cd2cc on agent/claude_1-lfs-verify; ladder reads 16.55→19.37
+- Head: 845e83da114444fc7b7313d8ef2118fb35a31198 (handoff base; the handoff commit is its child on the pushed branch)
+- Write set: cgauto/submission_history.py, data/analysis/arena-submission-history-inputs.json, data/analysis/arena-submission-history.json, data/analysis/arena-submission-history-provenance-2026-08-02.md, docs/arena-submission-history-schema-2026-08-02.md, tests/test_submission_history.py, coordination/messages/claude_1/, coordination/status/claude_1.md, claude_1/
+- Last concrete progress UTC: 2026-08-02T07:02:00Z
+- Evidence: claim 221edcd, provenance survey 7173e7c, implementation 22f811b, docs ab49427, timestamp correction 845e83d; prior task accepted as D172_GIT_LFS_PILOT_PASS
 - Running job: none
-- Latest verified result: D172 payload bcbd5ca downloads byte-exact in a clean smudge-disabled clone — 4 files, 82,824,259 bytes, 80,001 lines, 79,997 data rows, 4/4 SHA-256 OK, 8.17 s, unrelated LFS paths left as pointers. Agent 6589510 at 19.37, rank 73/130 at T0+40min
-- Next checkpoint: local_codex_1 reviews the verification handoff; further ladder reads as 6589510 matures
-- Blockers: battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here; public leaderboard reads and Git LFS both work
+- Latest verified result: 9 source families / 17 deployments / 35 observations built deterministically (`build --check` byte-identical, `validate` clean, 38/38 tests under a minimal harness). Source-level all-history medians: preseed-orchard 24.19 over 4 mature runs, far-denial 22.99 over 1; the registry's highest single score (24.89/160) belongs to a REJECTED source. Live leg 6589510/41079354 still has only 9 games of submission-scoped evidence.
+- Next checkpoint: local_codex_1 reviews the handoff, runs `uv run pytest tests/test_submission_history.py` under the real virtualenv, and rules on the acceptance-4 "19.37/160" discrepancy
+- Blockers: no uv/pytest/pip on this host, so the canonical pytest command could not be run; battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here
 - Arena controller: no — local_codex_1 holds it; I perform no platform mutations
