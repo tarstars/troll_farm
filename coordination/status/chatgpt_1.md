@@ -1,27 +1,24 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T14:10:00Z
-- State: cross-review complete and handed off; both cross-review reports remotely visible; awaiting integrator disposition
+- Updated UTC: 2026-08-02T14:32:00Z
+- State: independent initial-state sector audit complete; report published; handoff pending
 - Role: research agent and reviewer
-- Current task: `20260802-top-player-full-review-replication`
+- Current task: `20260802-initial-state-sector-policy-audit`
 - Current branch: `agent/chatgpt_1-top-player-full-review`
-- Base at assignment: `1ff8b81776dcaa457036ff6d3bac5c72aa473223`
-- Shared branch is one release commit ahead; local branch remains intentionally unmerged and contains only assigned own-namespace/status work
-- Initial report: `chatgpt_1/top-player-full-review-replication-2026-08-02.md`
-- Initial report commit: `cf51247a5f435d00cc4be95c7d2a310ce61d3897`
-- Cross-review output: `chatgpt_1/top-player-full-review-cross-review-of-claude_1-2026-08-02.md`
-- Cross-review report commit: `cc47bceafefd377bf270d715c19316d7a8b45df0`
-- Cross-review handoff: `coordination/messages/chatgpt_1/20260802T140900Z-20260802-top-player-full-review-replication-cross-review-handoff.md`
-- Cross-review handoff commit: `483af6850866c15698e928c1bf1bfe4ebc752dc3`
-- Reviewed peer report: Claude SHA-256 `97286f95b9788b383f53332a8a549e07d34a07b25468389947560f916175ef69` at handoff commit `b389c9d7b903d366ea61df8664783f61a6f935c0`
-- Claude cross-review of ChatGPT is also remotely visible at `claude_1/top-player-full-review-cross-review-of-chatgpt_1-2026-08-02.md`
+- Task base: `43d8aa21008427edc58517968364496d3696ea82`
+- Release boundary: shared task was queued; owner directly instructed `chatgpt_1` to get and perform it after the preceding cross-review handoff, treated as owner release for this agent only
+- Independence: no peer initial-sector report read
+- Output: `chatgpt_1/initial-state-sector-policy-audit-2026-08-02.md`
+- Report commit: `b951e269e81deeefc1a1d852f1d970b181f8e62c`
+- Report length/hash: 372 lines; local SHA-256 `6116a976084331f3d491ae88d04e1cb1ab47c8d55ede21d57ca6f6d115b1d6e9`
+- Verdict: `SECTOR_PREFLIGHT_CANDIDATE`, E7a only
+- Survivor: exact persistent E7 LEMON/PLUM `typeToCut` flip, because blanket FLIP is `-12.1736` but root hindsight is `+10.5097`, `24/60` roots prefer FLIP, and `6/6` leave-one-family-out checks are positive
+- Owner example: rich initial state / early bill / worker three is `UNIDENTIFIABLE_FROM_EXISTING_DATA` and overlaps D63/D64, Phase 15, D52-D59, H1 and A2-1
+- Required first gate: tracked compact root-level E7 paired-delta manifest plus feature-overlap audit against D63/Phase15/D91; aggregate summaries alone are insufficient and consumed ranges stay closed
+- Proposed representation: player-relative t0 FLIP-minus-default species-flow geometry plus exact joint starting banks; no outcome, later state, opponent-family or seat selector features
+- Proposed future protocol: C0 unchanged / A1 always-FLIP / C1 sector-FLIP; fresh root-grouped discovery/validation/untouched confirmation; both seats; held opponents; beat the better static arm; displacement and tail gates
+- Authorization: report only; no source, fit, ranges, runner, build, simulation, candidate, TestSession, Arena/API/submission, or platform action
+- Previous task: full-review cross-review complete and handed off at `483af6850866c15698e928c1bf1bfe4ebc752dc3`
 - Coordinator/integrator: `local_codex_1`
-- Overall peer disposition: `ACCEPT_WITH_CORRECTIONS`
-- Corrected ranking: H3a remains top future protocol but is `BLOCKED_PENDING_CONDITIONED_SOURCE_AND_VALUE_RUNNER`; endgame removal race rejected; no rank 2 or rank 3 qualifies
-- Temporal reconciliation: opponent workforce divergence can exist by t150; score crossover and largest damage are late
-- Self-correction: earlier ChatGPT multi-game H3a preflight, rank-2 discriminator, and direct-game WAIT legality audit are not runnable from the frozen package and are removed from the immediate ranking
-- Package defect: reject `planted_ok_* / plant_cmd_*` ratios because the numerator can exceed the denominator
-- Cross-review release: `43d8aa21008427edc58517968364496d3696ea82`
-- Next checkpoint: integrator reconciliation, acknowledgement, and integration; no further peer work assigned
-- Safety: no raw/host-only path, sealed data, source/shared-doc edit, analyzer, build, simulation, candidate, TestSession, Arena/API/submission, cron, or platform action
+- Next checkpoint: publish task-specific handoff; then await all three independent reports and reconciliation release
 - Arena controller: no
