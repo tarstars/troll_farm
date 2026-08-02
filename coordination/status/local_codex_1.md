@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-01T19:49:31Z
-- State: H10b-r1 search-teacher distillation note integrated; programme remains charter-gated
+- Updated UTC: 2026-08-02T05:42:35Z
+- State: preflight complete for owner-directed restoration of best mature far-denial bot
 - Role: coordinator (integrator)
-- Current task: none
+- Current task: `20260802-restore-best-far-denial-arena`
 - Branch: agent/local_codex_1
-- Evidence commit: 7ac816e (H10b-r1 note integrated into canonical session branch)
-- Write set: none
-- Last concrete progress UTC: 2026-08-01T19:49:31Z
-- Evidence: H10b-r1 entry published in the approach register and backlog with feasibility gates
+- Evidence commit: pending remote publication of exact restore preflight and start notice
+- Write set: restore task/report, own status/messages, live dispositions; one serialized Arena submission
+- Last concrete progress UTC: 2026-08-02T05:42:35Z
+- Evidence: current 16.37/265 versus far-denial terminal 22.99/160; exact restore SHA `307a0755…`
 - Running job: none
-- Latest verified result: H10b is open as a whole-policy programme; exact teacher-distillation composition was previously unrecorded
-- Next checkpoint: a separately frozen H10b-r1 feasibility charter, only if the owner starts it
+- Latest verified result: current agent identity clean but maturely inferior; exact platform source and restore artifact verified
+- Next checkpoint: publish start notice, submit once, discover exact agent/submission identity, take initial health
 - Blockers: none
 - Arena controller: yes; funding-first diagonal-denial agent 6585846 is the sole live leg
