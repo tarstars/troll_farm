@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-02T05:46:14Z
-- State: best mature far-denial source restored; clean initial health, monitoring read-only
+- Updated UTC: 2026-08-02T05:58:47Z
+- State: Git LFS capability audit claimed; Claude/ChatGPT probes awaiting acknowledgement
 - Role: coordinator (integrator)
-- Current task: `20260802-restore-best-far-denial-arena`
+- Current task: `20260802-git-lfs-shared-artifact-pilot`
 - Branch: agent/local_codex_1
-- Evidence commit: 576c3e9 (preflight and start notice remotely published before mutation)
-- Write set: restore task/report/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-08-02T05:46:14Z
-- Evidence: submission 41079354 / agent 6589510; 9 parsed/1 pending, clean identity, zero runtime signals
+- Evidence commit: ed29c27 (Arena restore record integrated; LFS task publication pending)
+- Write set: LFS task/plan/environment matrix, own status/messages, gated shared-lfs pilot
+- Last concrete progress UTC: 2026-08-02T05:58:47Z
+- Evidence: local LFS 3.0.2/fetch endpoint available; D172 pilot 82,824,259 bytes; external preflight pass
 - Running job: none
-- Latest verified result: exact far-denial SHA `307a0755…` accepted once; fresh score 0.0 is immature against historical 22.99/160
-- Next checkpoint: publish result, integrate live state, continue read-only maturation monitoring
+- Latest verified result: no LFS objects currently tracked; remote upload/download capability unknown
+- Next checkpoint: publish probe assignments and durable migration plan; collect remote answers
 - Blockers: none
 - Arena controller: yes; restored far-denial agent 6589510 is the sole live leg
