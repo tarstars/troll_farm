@@ -6,15 +6,16 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Active resident: owner-directed restoration of the strongest mature source, far-denial
-  d3 agent `6589510`, submission `41079354`; first health is 9/9 parsed with one pending,
-  identity clean and zero runtime signals. Historical same-source terminal: 22.99/160.
-- Source: `cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs`
-  (63,033 bytes, SHA-256 `307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd`).
+- Active resident: owner-directed deployment of the registry's literal top mature score,
+  opponent-crop b100 e6 agent `6589709`, submission `41079653`. Its historical single run
+  was 24.89/160, but preflight flags `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`.
+- Source: `cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs`
+  (64,522 bytes, SHA-256 `6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19`).
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Latest exact read: **2026-08-02T05:44:29Z**, agent `6589510`, fresh score 0.0 at
-  rank 129/130; 9/9 parsed, one pending, 4W/5L, +13.667 mean margin, one catastrophe,
-  zero identity/runtime faults. This initialization is immature; monitoring is read-only.
+- Latest exact read: **2026-08-02T07:47:43Z**, agent `6589709`, score 13.58 at rank
+  123/130; 21/21 parsed plus one pending, 11W/10L, +29.667 mean margin, one catastrophe,
+  clean identity and zero runtime signals. This adverse read is immature; monitoring is
+  read-only and the deployment is not a scientific promotion.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.21.
 - Corpus: **9,082 games** / 469+ agents, compounding daily (cron 05:17 — +951 overnight).
 

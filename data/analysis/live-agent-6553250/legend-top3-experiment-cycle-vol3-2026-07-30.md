@@ -1297,3 +1297,27 @@ catastrophe, and negative mass 378. The rating is an immature initialization; th
 is terminal and monitoring is read-only. Evidence is
 `owner-best-far-denial-restore-execution-2026-08-02.md` and the submit/checkpoint files it
 hashes.
+
+## 2026-08-02 — owner-directed deployment of the registry's literal top score
+
+The new deterministic submission-history query ranks opponent-crop b100 e6 first under
+`best --min-finished 100 --evidence mature --scope all`: its one mature historical run was
+24.89/160 at rank 17/107. The exact source is 64,522 bytes, SHA-256 `6f992a5a…`.
+Mandatory preflight raised `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`; the
+frozen matched protocol had rejected the source because it was only about +0.12 over its
+control. The owner was notified before mutation and maintained the literal top-score
+submission directive, so this is an owner override rather than a scientific promotion.
+
+Immediately before replacement, authenticated reads placed far-denial
+`6589510`/`41079354` at 19.37, rank 73/130, with 160/160 listed battles finished. The exact
+opponent-crop artifact was submitted once. `TestSession/submit` returned HTTP 200 and
+submission `41079653`; no retry occurred. Platform agent `6589709` had ten exact pending
+rows on the immediate read.
+
+The first immutable checkpoint has 21/21 parsed games plus one pending, clean identity,
+zero runtime signals, score 13.58 at rank 123/130, 11W/10L, mean margin +29.667, one
+catastrophe (4.8%), and negative-margin mass 559. **Disposition: owner directive complete;
+adverse immature first health; read-only monitoring.** This does not validate the
+historical cross-era score. Evidence is
+`owner-top-score-opponent-crop-arena-execution-2026-08-02.md` and
+`owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json`.

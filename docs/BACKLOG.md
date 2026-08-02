@@ -22,12 +22,13 @@ may run in parallel and are claimable by any agent under
 
 ## Position summary (2026-08-02)
 
-Active resident `6589510`/`41079354` is the owner-directed restoration of the strongest
-mature artifact, far-denial d3 SHA `307a0755…`. First health is 9/9 parsed with one
-pending, clean identity, zero runtime signals, and an immature score 0.0/rank 129/130;
-the same source's historical terminal comparator is 22.99/160. It replaces the
-funding-first successor, whose encouraging 16.97/11 first read matured to only 16.37/265
-with 40 catastrophes. Monitoring is read-only. **Goal
+Active resident `6589709`/`41079653` is the owner-directed deployment of the registry's
+literal top mature score, opponent-crop b100 e6 SHA `6f992a5a…` (historical 24.89/160).
+Preflight explicitly warned `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`; this
+was an owner override, not a qualified promotion. First health is identity-clean at 21/21
+parsed plus one pending, zero runtime signals, and an adverse immature score 13.58/rank
+123/130 with one catastrophe. It displaced far-denial at 19.37/rank 73/130. Monitoring is
+read-only. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at

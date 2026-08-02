@@ -700,6 +700,13 @@ def source_summary(
         "score_range": (max(scores) - min(scores)) if len(scores) > 1 else None,
         "latest_observation": latest,
         "eras": sorted({d["era_id"] for d in deployments if d["era_id"]}),
+        "evidence_eras": sorted(
+            {
+                run["submission"]["era_id"]
+                for run in runs
+                if run["submission"]["era_id"]
+            }
+        ),
         "warnings": [],
     }
     summary["warnings"] = _warnings(registry, summary)
@@ -709,11 +716,14 @@ def source_summary(
 def _warnings(registry: dict[str, Any], summary: dict[str, Any]) -> list[str]:
     warnings: list[str] = []
     dispositions = set(summary.get("dispositions") or [])
-    if dispositions and dispositions <= {"rejected", "failed"}:
+    # A later owner-directed redeployment is an action, not evidence that the frozen
+    # rejection disappeared. Keep the historical warning attached to the exact source.
+    if dispositions & {"rejected", "failed"}:
         warnings.append(
-            "REJECTED_SOURCE: every deployment of this exact hash was rejected or failed "
-            f"({', '.join(sorted(dispositions))}); a high score does not overturn the "
-            "verdict its protocol reached against a matched control"
+            "REJECTED_SOURCE: this exact hash has a rejected or failed deployment "
+            f"({', '.join(sorted(dispositions))}); a high score or later owner-directed "
+            "redeployment does not overturn the verdict its protocol reached against a "
+            "matched control"
         )
     if summary["mature_runs"] == 0:
         warnings.append(
@@ -762,9 +772,10 @@ def _warnings(registry: dict[str, Any], summary: dict[str, Any]) -> list[str]:
             if s["disposition"] == "active" and s["era_id"]
         }
     )
-    if live_eras and summary["eras"] and not set(summary["eras"]) & set(live_eras):
+    evidence_eras = summary.get("evidence_eras") or []
+    if live_eras and evidence_eras and not set(evidence_eras) & set(live_eras):
         warnings.append(
-            f"CROSS_ERA: its evidence comes from {', '.join(summary['eras'])} but the "
+            f"CROSS_ERA: its mature evidence comes from {', '.join(evidence_eras)} but the "
             f"live field is {', '.join(live_eras)}; the pool has changed under it"
         )
     return warnings

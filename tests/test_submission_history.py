@@ -278,10 +278,23 @@ def test_a_fault_beats_an_override() -> None:
     assert source == "fault_rule"
 
 
-def test_the_nine_game_live_checkpoint_is_cold_start(registry: dict) -> None:
+def test_the_nine_game_far_denial_checkpoint_is_cold_start(registry: dict) -> None:
     obs = next(o for o in registry["observations"] if o["observation_id"] == "obs-41079354-initial9")
     assert obs["games_finished"] == 9
     assert obs["evidence_maturity"] == "cold_start"
+
+
+def test_the_live_opponent_crop_checkpoint_is_provisional(registry: dict) -> None:
+    obs = next(
+        o
+        for o in registry["observations"]
+        if o["observation_id"] == "obs-41079653-health21"
+    )
+    assert obs["games_finished"] == 21
+    assert obs["score"] == 13.58
+    assert obs["evidence_maturity"] == "provisional"
+    assert obs["runtime_faults"] == 0
+    assert obs["identity_faults"] == 0
 
 
 def test_the_19_37_read_is_provisional_with_no_game_count(registry: dict) -> None:
@@ -344,6 +357,7 @@ def test_rejected_source_is_flagged_even_when_it_scores_highest(registry: dict) 
     top = ranked[0]
     assert top["source_id"] == "opponent-crop-b100-e6-slim"
     assert any(w.startswith("REJECTED_SOURCE") for w in top["warnings"])
+    assert any(w.startswith("CROSS_ERA") for w in top["warnings"])
 
 
 def test_cross_era_comparison_is_flagged(registry: dict) -> None:
@@ -453,7 +467,7 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
     for submission_id in (
         41009795, 41009911, 41009991, 41012256, 41012399, 41012593,
         41012867, 41012883, 41015603, 41070584, 41070944, 41071034,
-        41071067, 41071204, 41071360, 41079354,
+        41071067, 41071204, 41071360, 41079354, 41079653,
     ):
         assert submission_id in covered, f"submission {submission_id} is missing"
     assert registry["unresolved"], "the unresolved list must state what is NOT covered"
@@ -462,8 +476,8 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 def test_exactly_one_submission_is_active(registry: dict) -> None:
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41079354
-    assert live[0]["agent_id"] == 6589510
+    assert live[0]["submission_id"] == 41079653
+    assert live[0]["agent_id"] == 6589709
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:

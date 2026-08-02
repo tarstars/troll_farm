@@ -1,6 +1,6 @@
 # 20260802-owner-top-score-opponent-crop-arena
 
-- Status: platform mutation complete; initial health pending
+- Status: complete — submitted once; exact identity; adverse clean first health
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator / sole Arena controller: local_codex_1
@@ -64,3 +64,16 @@ branch cleanup, automatic retry, or second submission.
 `SUBMIT-OK`; no retry occurred. The platform assigned agent `6589709`. Its first battle-list
 read contains exactly ten matching rows, all pending, each identifying agent `6589709` and
 submission `41079653`. The displaced leaderboard row remains visible until games complete.
+
+## First health and disposition
+
+The immutable submission-scoped checkpoint at 2026-08-02T07:47:43Z has 22 exact matching
+rows: 21 finished and parsed, one pending, no unexpected rows, no fetch failures, and clean
+agent/submission identity. Agent `6589709` is 13.58 at rank 123/130 (filtered read 13.01,
+rank 126). Battle health is 11W/10L, mean margin +29.667, one catastrophic loss (4.8%),
+negative-margin mass 559, and zero validity/runtime signals.
+
+The owner directive is complete because the literal registry leader was submitted exactly
+once. The result is an adverse immature first health, not a qualified promotion or evidence
+that the historical 24.89 transfers to this era. Monitoring is read-only; no second Arena
+cycle is in flight.
