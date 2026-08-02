@@ -1,8 +1,10 @@
 # 20260802-top-player-new-games-multiagent-analysis
 
-- Status: claimed — shared cohort ready; simultaneous independent reports in progress
+- Status: takeover — three independent read-only tracks complete; final synthesis in progress
 - Record owner / integrator: local_codex_1
-- Work owners: local_codex_1, claude_1, chatgpt_1
+- Work owner: local_codex_1 (lease takeover at 2026-08-02T11:33:00Z)
+- Unavailable assignees: claude_1, chatgpt_1 (no acknowledgement or task progress after the
+  corrected fetchable assignment)
 - Created UTC: 2026-08-02T10:52:42Z
 - Branch: `agent/local_codex_1`
 - Area: read-only analysis of newly collected games against top players
@@ -74,6 +76,15 @@ Each review checks evidence provenance, arithmetic, constraint collisions, test 
 and rank ordering. The integrator publishes a final consensus/dissent ranking only after all
 reviews or an explicit lease-based blocker.
 
+### Lease-takeover substitution
+
+The external ring was not entered because neither external assignee acknowledged or
+published an initial report. After the 15-minute lease elapsed, the integrator formally
+took over their unstarted write sets. Three isolated read-only tracks had completed in
+parallel: quantitative matchup, economy/action-flow, and exact direct-game postmortem.
+Their completed ring is economy→matchup, matchup→direct, direct→economy. The final report
+must distinguish these completed reviews from the two missing external handoffs.
+
 ## Exclusive write sets
 
 - local_codex_1: this task, shared corpus/manifest under
@@ -93,6 +104,8 @@ idea is not authorization to implement or deploy it.
 
 ## Acceptance
 
-Three initial reports, three cross-reviews, a compact shared corpus with deterministic
-hashes, and one integrated ranked list with immediately runnable checks. Claims, handoffs,
-reviews and integration must be pushed and remotely verified under the protocol.
+Three independent read-only track reports, three cross-reviews, a compact shared corpus
+with deterministic hashes, and one integrated ranked list with immediately runnable
+checks. The final report must record the lease takeover and must not imply that the two
+unavailable external assignees contributed. Claims, takeover, reviews and integration must
+be pushed and remotely verified under the protocol.
