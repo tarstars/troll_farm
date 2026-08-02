@@ -2,7 +2,8 @@
 
 Date: 2026-08-02
 
-Status: capability audit in progress; no research dataset uploaded yet.
+Status: project-host capability PASS; remote-agent probes pending; no research dataset
+uploaded yet.
 
 ## Purpose
 
@@ -53,6 +54,12 @@ clean download before Phase 1.
 
 Capability results are collected in `coordination/ENVIRONMENTS.md`. Probe branches and
 private probe objects are evidence only and are not migration payloads.
+
+Project-host result: PASS on 2026-08-02. Git LFS 3.0.2 converted the 90-byte probe to
+pointer OID SHA-256 `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da5d4f2`,
+uploaded it successfully at commit `61f1118`, and a fresh standalone clone with smudge
+disabled selectively downloaded byte-identical content. This clears only the host half of
+the Phase-0 gate.
 
 ## Phase 1 — 82.8 MB D172 corpus pilot
 
@@ -122,4 +129,3 @@ compact evidence, and do not integrate the pointer commit. LFS objects already u
 remain billable even if a branch or pointer is removed, so repeated trial uploads are
 forbidden. Fallback distribution options are a checksummed release/object-store artifact or
 task-specific YT export; neither is authorized by this plan alone.
-

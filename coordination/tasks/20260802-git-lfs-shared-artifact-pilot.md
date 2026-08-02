@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: remote capability probes assigned; migration plan and environment registry ready
+- Status: local LFS upload/download PASS; remote probe answers pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -65,3 +65,12 @@ experiment, model fit, source change, USB deletion, or history rewrite.
 - Claude and ChatGPT probe assignments are remotely published at `0747756` and await
   acknowledgements/results.
 - No research payload has been copied or uploaded.
+
+## Local capability result
+
+- Git LFS 3.0.2 recognized the private probe as an index pointer.
+- Push `61f1118` uploaded one 90-byte LFS object successfully.
+- A standalone clean clone with smudge disabled selectively pulled the object from GitHub.
+- Source/download SHA-256 is exact:
+  `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da5d4f2`.
+- Verdict: `PROJECT_HOST_LFS_PASS`. Phase 1 remains gated on a non-host PASS.
