@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T19:58:33Z
+- Last updated UTC: 2026-08-02T20:21:09Z
 
 ## Outcome
 
@@ -76,3 +76,11 @@ identity, health, or no-ambiguous-retry rules.
 
 Exact candidate, source-size proof, non-obfuscation audit, full validation evidence, live
 identity/checkpoint, and final requirement-by-requirement audit.
+
+## Progress 2026-08-02T20:21:09Z
+
+`INTEGRATED_HALF r5` is 30,949 bytes (50.73% below the exact 62,820-byte baseline), SHA-256
+`6692fa59...`; standalone optimized compile, empty input, dead-code lint, baseline hash, and
+sacred hash gates pass. Static report:
+`data/analysis/live-agent-6553250/e7a-half-size-r5-static-qualification-2026-08-02.md`.
+Behavioral, liveness, latency, and value qualification remain in progress; no Arena action.
