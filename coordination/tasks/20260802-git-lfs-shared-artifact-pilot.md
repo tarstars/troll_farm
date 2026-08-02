@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: local LFS upload/download PASS; remote probe answers pending
+- Status: active — Phase 0 PASS; Phase 1 D172 pilot started
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,7 +8,7 @@
 - Base commit: ed29c27c12239760b98269ad7c46bd9e2129bde2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:58:45Z
-- Last updated UTC: 2026-08-02T06:02:00Z
+- Last updated UTC: 2026-08-02T06:15:05Z
 
 ## Owner directive
 
@@ -61,10 +61,14 @@ experiment, model fit, source change, USB deletion, or history rewrite.
 
 - Durable plan: `docs/git-lfs-shared-artifact-migration-plan-2026-08-02.md`.
 - Capability registry: `coordination/ENVIRONMENTS.md`.
-- Local endpoint/fetch inspection passes; upload and independent download remain pending.
-- Claude and ChatGPT probe assignments are remotely published at `0747756` and await
-  acknowledgements/results.
-- No research payload has been copied or uploaded.
+- Project-host upload and independent clean-clone selective download PASS.
+- Claude cloud upload and independent clean-clone selective download PASS at probe commit
+  `d98dc4e`; Claude also downloaded the host probe with its published SHA-256.
+- ChatGPT's probe remains assigned and unacknowledged; it no longer gates the pilot because
+  the required non-host proof now exists.
+- Source storage, four shard sizes, 79,997 data rows, and all four SHA-256 values were
+  revalidated after a fresh `medium_data` preflight. Phase 1 copying may now begin.
+- No research payload had been copied or uploaded at this checkpoint.
 
 ## Local capability result
 
@@ -73,4 +77,14 @@ experiment, model fit, source change, USB deletion, or history rewrite.
 - A standalone clean clone with smudge disabled selectively pulled the object from GitHub.
 - Source/download SHA-256 is exact:
   `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da5d4f2`.
-- Verdict: `PROJECT_HOST_LFS_PASS`. Phase 1 remains gated on a non-host PASS.
+- Verdict: `PROJECT_HOST_LFS_PASS`. The non-host gate is now cleared by Claude's PASS below.
+
+## Non-host capability result
+
+- Claude cloud installed Git LFS 3.4.1 and uploaded one 551-byte LFS object successfully.
+- A separate smudge-disabled clone selectively pulled that object with source/download
+  SHA-256 `6e5046dda80c2ac86f068bb5a0d9f05ed53c575e2df1d7fc9ad6a726d3516c4a`.
+- The same clean clone pulled the host object and reproduced SHA-256
+  `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da5d4f2`.
+- Verdict: `CLAUDE_CLOUD_LFS_PASS`. The Phase-0 gate is open; ChatGPT remains a useful but
+  non-blocking environment audit.

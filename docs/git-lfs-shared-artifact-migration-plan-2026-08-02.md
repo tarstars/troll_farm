@@ -2,8 +2,8 @@
 
 Date: 2026-08-02
 
-Status: project-host capability PASS; remote-agent probes pending; no research dataset
-uploaded yet.
+Status: project-host and Claude-cloud capability PASS; Phase 1 started; no research dataset
+uploaded at this checkpoint.
 
 ## Purpose
 
@@ -60,6 +60,13 @@ pointer OID SHA-256 `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da
 uploaded it successfully at commit `61f1118`, and a fresh standalone clone with smudge
 disabled selectively downloaded byte-identical content. This clears only the host half of
 the Phase-0 gate.
+
+Claude-cloud result: PASS on 2026-08-02. After installing Git LFS 3.4.1, Claude uploaded a
+551-byte probe at commit `d98dc4e`; an independent smudge-disabled clone selectively pulled
+it with exact SHA-256 `6e5046dda80c2ac86f068bb5a0d9f05ed53c575e2df1d7fc9ad6a726d3516c4a`.
+The same clone pulled the host probe and reproduced its published hash. This clears the
+non-host half of Phase 0. ChatGPT's separate environment probe remains pending but does not
+block the pilot.
 
 ## Phase 1 — 82.8 MB D172 corpus pilot
 
