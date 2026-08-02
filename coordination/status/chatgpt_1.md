@@ -1,19 +1,22 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:33:00Z
-- State: owner-corrected bounded banana-ring successor packet published; awaiting integrator acknowledgement/write-set transfer
-- Role: research agent and reviewer
-- Current task: proposed `20260802-banana-ring-b100-successor`
-- Task status: proposed; no active implementation lease or shared-source ownership
-- Current branch: `agent/chatgpt_1-banana-ring-successor`
-- Base: `68ed41a5e7ac14a703aedf36a92b19abd83665cb`
-- Live context: full unbounded factory agent `6590083` / submission `41081195` remains controller-owned and read-only
-- Owner correction encoded: gate-aware Chebyshev-1 ring; orthogonal cut/replant; diagonal mother/harvest/protect; full-ring surplus DROP
-- Fast path: reuse accepted exact-parent generator, factory-aware slimmer, 23 tests, 8-stream/2,400-command equality, size/runtime/stderr/fallback gates
-- Published: protocol, implementation delta, machine-readable lock, task record, immutable handoff
-- Not run: successor source generation, Rust compile/tests, equality harness, paired smoke, TestSession, submission, or Arena mutation
-- Coordinator/integrator: `local_codex_1`
-- Next checkpoint: integrator ACK with implementation owner/write set and decision on current live monitoring completion
-- Running job: none
-- Safety: sacred source/fallback/live artifact untouched; no sealed/raw data read; no Arena action
+- Updated UTC: 2026-08-02T16:49:00Z
+- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
+- Role: implementation/research agent; not Arena controller
+- Current task: `20260802-e7a-sector-candidate`
+- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
+- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
+- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
+- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
+- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
+- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
+- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
+- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
+- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
+- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
+- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
+- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
+- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Coordinator/integrator and sole Arena controller: `local_codex_1`
+- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
 - Arena controller: no
