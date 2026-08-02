@@ -1340,3 +1340,32 @@ preseed's repeated 24.19 median. **Disposition: collection complete / registry e
 updated / no Arena mutation.** Evidence:
 `wide-corpus-catchup-2026-08-02.md` and
 `owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json`.
+
+## 2026-08-02 — owner-directed banana-factory + b100/e6 live override
+
+GitHub branch `agent/chatgpt_1-banana-factory-restoration` contained a pre-lock generator and
+four-arm plan, not a candidate or qualification result. The owner twice directed publication.
+The controller surfaced that the source was unqualified and would replace the mature 23.12
+resident; the owner maintained the instruction and corrected the expected reconvergence interval
+to approximately 30 minutes.
+
+The exact generated composition is the existing closed-loop banana factory plus flat +100,
+ETA<=6 opponent-crop priority, excluding the selector, source separation, dual-value scoring, and
+worker-three bridge. The first compact was 146,702 bytes. A first 99,656-byte old-specialization
+slim compiled but failed command-stream equality on 8/8 games, as early as turn 7, and was
+rejected before platform mutation. The accepted factory-aware artifact is 99,440 bytes, SHA
+`2d164ecbaf8a…`; 23 semantic tests pass; 8/8 full games and 2,400 commands equal the full source;
+stderr is zero; latency p95 is 1.556 ms and maximum 4.582 ms. Sacred source remains `fff6669b…`.
+
+Pre-submit evidence was remotely published at commit `986fad9`. Fresh IDE recovery matched the
+displaced 64,522-byte b100/e6 SHA; authenticated baseline was 23.3 at rank 32/131. The exact
+banana artifact was submitted once. `TestSession/submit` returned HTTP 200 and submission
+`41081195`; no retry occurred. Platform agent `6590083` owns the exact new rows.
+
+Initial immutable health is 10/10 matching, finished and parsed, zero pending/unexpected/fetch/
+runtime/identity faults. The room read is 0.0 at rank 130/131; filtered is 13.7 at rank 124.
+Battle health is 4W/6L, mean margin -32.3, five catastrophes, negative mass 749.
+
+**Disposition: mutation terminal / owner override live / clean but very weak initialization.**
+This is not a scientific verdict. Monitoring is read-only through the approximately 30-minute
+reconvergence checkpoint; no automatic restore or second submission follows.

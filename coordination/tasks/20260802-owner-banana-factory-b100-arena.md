@@ -1,6 +1,6 @@
 # 20260802-owner-banana-factory-b100-arena
 
-- Status: pre-submit gate passed; serialized Arena mutation announced
+- Status: submitted once; exact identity and clean initial checkpoint; read-only monitoring
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator / sole Arena controller: local_codex_1
@@ -64,3 +64,20 @@ checkpoint read-only; no automatic second candidate follows.
 
 No sacred-source edit, formatter, sealed-data read, raw-game mutation, automatic retry, or peer
 Arena mutation is authorized.
+
+## Platform result
+
+The exact artifact was submitted once. `TestSession/submit` returned HTTP 200 with submission
+`41081195` and `SUBMIT-OK`; no retry occurred. The platform assigned agent `6590083` and the
+battle endpoint immediately contained only exact agent/submission rows.
+
+## Initial checkpoint
+
+At 2026-08-02T16:00:50Z the immutable checkpoint has 10/10 matching, finished, fetched, and
+parsed rows, zero pending/unexpected/fetch/runtime signals, and clean identity. The room read is
+score 0.0 at rank 130/131; the filtered ladder read is 13.7 at rank 124. Battle health is 4W/6L,
+mean margin -32.3, five catastrophes (50%), and negative-margin mass 749.
+
+This is a weak initialization, not a transfer verdict. The mutation is terminal and the cycle is
+now read-only. Capture the approximately 30-minute reconvergence checkpoint; do not submit a
+second candidate or restore automatically.
