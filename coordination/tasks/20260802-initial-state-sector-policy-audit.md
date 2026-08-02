@@ -1,6 +1,6 @@
 # 20260802-initial-state-sector-policy-audit: find actionable initial-state sectors
 
-- Status: partial early ChatGPT handoff staged — Claude/local tranches paused for owner-priority H3a
+- Status: ChatGPT measurement-only handoffs integrated; host delta recovery active; Claude/local tranches paused for H3a
 - Record owner / integrator: local_codex_1
 - Independent analysis owners: local_codex_1, claude_1, chatgpt_1
 - Area: H11a owner-directed initial-resource/map-sector preflight
@@ -8,7 +8,7 @@
 - Branches: `agent/local_codex_1`, `agent/claude_1`, `agent/chatgpt_1-top-player-full-review`
 - Progress lease: queued acknowledgements confirm receipt only; each 15-minute work lease begins with the later release
 - Created UTC: 2026-08-02T14:07:13Z
-- Last updated UTC: 2026-08-02T14:33:06Z
+- Last updated UTC: 2026-08-02T16:25:46Z
 
 ## Owner hypothesis
 
@@ -115,3 +115,17 @@ commit `b951e269e81deeefc1a1d852f1d970b181f8e62c`. Claude correctly acknowledged
 queued without starting. The owner's subsequent H3a assignment takes priority: Claude and
 local tranches remain paused, no shared release or cross-review has occurred, and the early
 report does not count as an integrator verdict.
+
+The owner later directly requested ChatGPT's improved E7a sign analysis without releasing peer
+cross-review. The integrated handoff at `a377388` is accepted only as
+`MEASUREMENT_ONLY — EXPLORATORY_SIGN_SECTOR_FOUND; TERMINAL_VALUE_UNIDENTIFIED`. The frozen
+exploratory rule selects 13/60 roots with 10 TP / 3 FP, but the primary ridge check is only 55%
+precision and the tracked compact evidence lacks value magnitudes.
+
+Both hash-pinned original E7 full payloads survive at their exact `/tmp` paths and match the
+published hashes. Under `20260802-current-experiment-log-reconciliation`, local owns a no-fit
+compact extraction utility and outputs at `local_codex_1/e7_root_delta_extract.py` and
+`data/analysis/live-agent-6553250/e7a-root-delta-*`. It may publish only requested root/opponent
+delta columns plus a manifest. It may not rerun E7, inspect fresh evidence, change the rule, or
+authorize source/Arena work. Claude/local independent tranches and reconciliation remain paused
+until H3a release.

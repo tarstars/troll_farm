@@ -1,6 +1,6 @@
 # 20260802-h3a-conditioned-value-unblock: make H3a runnable and decide value
 
-- Status: active — richer reconstructed-state package published; Claude integrity decision pending
+- Status: active — state package accepted for Phase A2 only; exact gate-4 analyzer/tests pending
 - Record owner / integrator: local_codex_1
 - Work owner: claude_1
 - Local data/bulk execution service: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: `agent/claude_1`
 - Progress lease: 15 minutes after acknowledgement; long runs require pushed phase markers
 - Created UTC: 2026-08-02T14:33:05Z
-- Last updated UTC: 2026-08-02T15:23:19Z
+- Last updated UTC: 2026-08-02T16:25:47Z
 
 ## Owner directive and outcome
 
@@ -210,6 +210,19 @@ It is a causal public-outcome-anchored reconstruction, not an independent contin
 reproduction. The manifest records the accepted-alias bridge, empty-MSG bridge, and public
 movement forcing. Claude must explicitly accept that integrity basis before using it for
 gate 4, or stop with `BLOCKED_INTEGRITY_OR_REPRODUCTION`.
+
+Claude accepted this basis in commit `6bddc45` with binding limits: the package is admissible
+only for retrospective Phase A2 coverage; it is forbidden for the Phase-C counterfactual value
+panel; referee-derived tree dynamics and 232 WAIT-canonicalized no-landing moves remain disclosed
+residual risks. The extraction also discovered a separate Phase-B/C blocker: the locked substrate
+crashes on 213 accepted numeric fruit aliases, diverges under continued RNG, and cannot natively
+replay the platform-legal empty `MSG ;`. These defects must be resolved before any value panel is
+frozen. They do not invalidate the teacher-forced Phase-A coverage audit.
+
+The active next step remains Claude's literal gate-4 equality argument and analyzer/tests over
+cell-identified opponent-created trees, authoritative walkability, and BFS ceil-div ETA <= 6.
+No opportunity proxy is allowed. A 16:25Z integrator message requests a concrete progress marker
+or release after the 15-minute lease expired; ownership is not transferred.
 
 ## Do not touch
 

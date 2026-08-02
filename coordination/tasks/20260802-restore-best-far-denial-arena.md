@@ -1,6 +1,6 @@
 # 20260802-restore-best-far-denial-arena
 
-- Status: submitted — clean initial health; read-only maturation monitoring
+- Status: complete — mature repeat 19.37/160; displaced by later owner-directed submissions
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -9,7 +9,7 @@
 - Base commit: 7e0fec5c862fdf338cf5aaaf75be665d00a47dfb
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:42:33Z
-- Last updated UTC: 2026-08-02T05:46:14Z
+- Last updated UTC: 2026-08-02T16:25:46Z
 
 ## Owner directive
 
@@ -68,3 +68,9 @@ Evidence:
 `data/analysis/live-agent-6553250/owner-best-far-denial-restore-execution-2026-08-02.md`
 and the exact submit log/checkpoint named there.
 
+## Terminal reconciliation
+
+The restored agent later completed 160/160 at score 19.37, rank 73/130, with clean identity and
+zero runtime signals. It was displaced first by owner-directed b100/e6 submission `41079653` and
+then by banana-factory+b100/e6 submission `41081195`. No monitoring or restore action remains open
+under this task.

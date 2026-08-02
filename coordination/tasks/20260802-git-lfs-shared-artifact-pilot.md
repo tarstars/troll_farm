@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: Phase 1 COMPLETE / PASS; ChatGPT capability answer pending separately
+- Status: complete — D172 Git LFS pilot PASS; ChatGPT environment separately recorded FAIL
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,7 +8,7 @@
 - Base commit: ed29c27c12239760b98269ad7c46bd9e2129bde2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:58:45Z
-- Last updated UTC: 2026-08-02T06:34:50Z
+- Last updated UTC: 2026-08-02T16:25:46Z
 
 ## Owner directive
 
@@ -64,8 +64,8 @@ experiment, model fit, source change, USB deletion, or history rewrite.
 - Project-host upload and independent clean-clone selective download PASS.
 - Claude cloud upload and independent clean-clone selective download PASS at probe commit
   `d98dc4e`; Claude also downloaded the host probe with its published SHA-256.
-- ChatGPT's probe remains assigned and unacknowledged; it no longer gates the pilot because
-  the required non-host proof now exists.
+- ChatGPT's probe closed separately as `FAIL_NO_LFS_CAPABILITY_IN_CURRENT_SHELL`; it did not gate
+  the pilot because Claude supplied the required non-host upload and independent-download proof.
 - Source storage, four shard sizes, 79,997 data rows, and all four SHA-256 values were
   revalidated after a fresh `medium_data` preflight. Phase 1 copying may now begin.
 - No research payload had been copied or uploaded at this checkpoint.
@@ -109,4 +109,4 @@ experiment, model fit, source change, USB deletion, or history rewrite.
   rows, and all four committed SHA-256 values `OK`.
 - No auth, quota, bandwidth, pointer, smudge, or filesystem error occurred.
 - Verdict: `D172_GIT_LFS_PILOT_PASS`. Canonical integration is now allowed. The ChatGPT
-  environment probe remains assigned so its distinct access status is not forgotten.
+  environment failure is preserved in its separate task and environment audit.
