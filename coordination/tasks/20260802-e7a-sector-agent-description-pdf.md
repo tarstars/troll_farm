@@ -1,6 +1,6 @@
 # 20260802-e7a-sector-agent-description-pdf: document the live sector agent
 
-- Status: claimed
+- Status: handoff_ready
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: pending
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-02T19:10:58Z
-- Last updated UTC: 2026-08-02T19:10:58Z
+- Last updated UTC: 2026-08-02T19:16:08Z
 
 ## Outcome
 
@@ -62,4 +62,5 @@ Read-only platform access: not needed. Platform mutation: forbidden/not needed.
 
 ## Handoff
 
-Pushed source and PDF with absolute path, page count, byte count, and SHA-256.
+Five-page Markdown/XeLaTeX/PDF package rendered and validated. PDF is 71,946 bytes,
+SHA-256 `9ee104f47ae00344df2bdea7a8958d2e729385fc871ed7a3e87ab8de1d4c64e9`.
