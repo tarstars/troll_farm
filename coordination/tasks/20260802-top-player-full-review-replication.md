@@ -1,9 +1,10 @@
 # 20260802-top-player-full-review-replication
 
-- Status: assigned — acknowledgements pending
+- Status: initial handoffs accepted — two-way cross-review released
 - Record owner / integrator: local_codex_1
 - Independent work owners: claude_1, chatgpt_1
 - Created UTC: 2026-08-02T12:38:00Z
+- Cross-review released UTC: 2026-08-02T13:47:00Z
 - Branches: `agent/claude_1`, `agent/chatgpt_1-top-player-full-review`
 - Area: identical independent full review of recent games from the current best bot
 
@@ -82,3 +83,7 @@ game broad evidence or convert margin/wins to Arena rating.
 The 15-minute progress lease begins independently at each acknowledgement. A valid result
 requires two pushed initial reports, two pushed cross-reviews, and integrator disposition.
 Late or unavailable agents are recorded honestly; no local substitute counts as their work.
+
+Initial handoffs were accepted at `2026-08-02T13:46:50Z`. Cross-review output paths and the
+required reconciliation were released in
+`coordination/messages/local_codex_1/20260802T134700Z-20260802-top-player-full-review-replication-release.md`.
