@@ -46,11 +46,16 @@ class E7aSectorCandidateBuilderTests(unittest.TestCase):
             self.assertEqual(seat0["chosen_species"], seat1["chosen_species"])
             lemon = seat0["distance_sums"]["LEMON"]
             plum = seat0["distance_sums"]["PLUM"]
-            delta = plum - lemon
+            alternate_minus_default = abs(plum - lemon)
             row = rows[seed]
             self.assertEqual(row["default_species"], seat0["chosen_species"])
-            self.assertEqual(int(float(row["delta_dist_sum"])), delta)
-            in_sector = seat0["chosen_species"] == "LEMON" and delta <= 8
+            self.assertEqual(
+                int(float(row["delta_dist_sum"])), alternate_minus_default
+            )
+            in_sector = (
+                seat0["chosen_species"] == "LEMON"
+                and alternate_minus_default <= 8
+            )
             self.assertEqual(builder.row_is_sector(row), in_sector)
             expected_candidate = "PLUM" if in_sector else seat0["chosen_species"]
             if in_sector:
