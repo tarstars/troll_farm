@@ -504,6 +504,7 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
         41009795, 41009911, 41009991, 41012256, 41012399, 41012593,
         41012867, 41012883, 41015603, 41070584, 41070944, 41071034,
         41071067, 41071204, 41071360, 41079354, 41079653, 41081195,
+        41081465, 41081503,
     ):
         assert submission_id in covered, f"submission {submission_id} is missing"
     assert registry["unresolved"], "the unresolved list must state what is NOT covered"
@@ -512,8 +513,8 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 def test_exactly_one_submission_is_active(registry: dict) -> None:
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41081195
-    assert live[0]["agent_id"] == 6590083
+    assert live[0]["submission_id"] == 41081503
+    assert live[0]["agent_id"] == 6590141
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:

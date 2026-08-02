@@ -6,16 +6,16 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Active resident: owner-directed banana-factory + opponent-crop b100/e6 agent `6590083`,
-  submission `41081195`. The 30-minute checkpoint is clean at 98/98 parsed plus one pending,
-  score 12.99, rank 127/131; it remains provisional and weak, not a qualified promotion.
-- Source: `local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs`
-  (99,440 bytes, SHA-256 `2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533`).
+- Active resident: owner-directed E7a sector agent `6590141`, submission `41081503`.
+  Initial exact checkpoint: 16/16 parsed plus one pending, score 19.42, rank 69/131,
+  zero catastrophes/runtime signals; exploratory value remains unresolved.
+- Source: `cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs`
+  (62,820 bytes, SHA-256 `97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595`).
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Latest exact read: **2026-08-02T16:29:58Z**, agent `6590083`; 49W/49L, +4.643 mean
-  margin, 22 catastrophes (22.45%), negative mass 4,851, clean identity and zero runtime
-  signals. Monitoring remains read-only; no automatic restore or second candidate follows.
-- Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.21.
+- Latest exact read: **2026-08-02T17:44:40Z**, agent `6590141`; 11W/1T/4L, +41.688 mean
+  margin, zero catastrophes, negative mass 175, clean identity and zero runtime signals.
+  Monitoring is read-only; this is initial health, not a promotion verdict.
+- Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
 - Corpus: **10,470 games** / 513 agents, zero parse failures. The 2026-08-02 manual wide
   catch-up added 282; the 05:17 cron was healthy and the prior STATE count was stale.
 
@@ -127,12 +127,12 @@ makes the goalpost move in the wrong direction.
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; E7a exact deltas recovered for frozen no-fit pricing. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a ACTIVE:** Phase-A package accepted with limits; literal gate 4 pending; substrate defects block Phase B/C. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 DISPLACED:** far-denial historical 22.99/160, repeat 19.37. **OWNER BANANA LIVE:** exact `6590083`/`41081195`; clean but weak provisional 12.99/98, rank 127/131. **B3.13 TERMINAL FAIL:** 11.96/101. **B3.14 AUDIT-ONLY:** bank-loss ceiling 0.444 own points/game. **B3.15 DISPLACED / NO CURRENT RECURRENCE.** **B3.16 TERMINAL FAIL:** funding-first diagonal denial 16.37/265. **B3.17 REJECTED FROM RANKING:** cohort attribution unavailable; no defensible value. **F1 RELEASED:** leakage-controlled readiness only.
+  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** `6590141`/`41081503`, clean 19.42/16 initial owner override. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 ASSIGNED:** unbounded/ring publications implementation-invalid, not algorithm evidence; Claude retries stable-parent restoration. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is an active
   contributor without platform credentials; `chatgpt_1` is a contributor. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: banana-factory+b100/e6 `6590083`/`41081195`; next local-only
-  build is the bounded gate-aware banana ring, with no source or Arena handoff yet.
+  surveillance. Sole Arena leg: E7a sector `6590141`/`41081503`, read-only. Next build is
+  Claude's stable-parent banana restoration r2; implementation validity precedes value.
 
 ## 5. Reading order & pointers
 

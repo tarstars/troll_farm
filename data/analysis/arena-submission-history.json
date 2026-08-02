@@ -2,11 +2,11 @@
   "schema_version": "arena-submission-history/1",
   "generator": "cgauto/submission_history.py",
   "manifest_path": "data/analysis/arena-submission-history-inputs.json",
-  "manifest_sha256": "b63703f0f8733bc4b51e78de62f43e0c23ed3b47fa9e32fdf4791ab845abf75e",
+  "manifest_sha256": "d3f6301538939a19ff8ed86799f39ad8e3db7faae8714bb6a4b5ec5418236de5",
   "counts": {
-    "sources": 10,
-    "submissions": 19,
-    "observations": 39,
+    "sources": 12,
+    "submissions": 21,
+    "observations": 41,
     "unresolved": 5
   },
   "eras": [
@@ -60,7 +60,23 @@
         "denial_opponent_resource",
         "economy_planting_harvest_conversion"
       ],
-      "notes": "Owner-directed composition of the closed-loop banana factory with the flat opponent-crop b100/e6 treatment; unqualified for promotion."
+      "notes": "Owner-directed composition of the closed-loop banana factory with the flat opponent-crop b100/e6 treatment; implementation-invalid because it violated the intended bounded geometry and collection lifecycle."
+    },
+    {
+      "source_id": "banana-ring-b100-e6-owner-override",
+      "family_id": "d2d8f65804991fed5ca8cdaacc1b62fd90ab553ee6952c6286029497e525eecc",
+      "path": "local_codex_1/banana-ring-b100-successor/banana-ring-b100-e6.arena.rs",
+      "bytes": 99990,
+      "sha256": "d2d8f65804991fed5ca8cdaacc1b62fd90ab553ee6952c6286029497e525eecc",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "banana-factory-b100-e6-owner-override",
+      "strategy_categories": [
+        "denial_opponent_resource",
+        "economy_planting_harvest_conversion",
+        "movement_coordination_banking_deadlock"
+      ],
+      "notes": "Owner-directed bounded gate-aware banana ring; implementation-invalid after exact live period-2 movement in game 897829265."
     },
     {
       "source_id": "compact-gold-rollout30",
@@ -160,6 +176,21 @@
         "movement_coordination_banking_deadlock"
       ],
       "notes": null
+    },
+    {
+      "source_id": "preseed-e7a-lemon-near-tie",
+      "family_id": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "bytes": 62820,
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "preseed-orchard-coverage-slim",
+      "strategy_categories": [
+        "baseline_controller",
+        "denial_opponent_resource"
+      ],
+      "notes": "Frozen E7a initial-map sector: flip LEMON focus to PLUM only inside the near-tie sector; mechanically exact but consumed-panel and owner-directed rather than prospectively qualified."
     },
     {
       "source_id": "preseed-orchard-coverage-slim",
@@ -610,16 +641,63 @@
       "comparison_basis": "candidate_vs_control",
       "authority": "owner_directed_override",
       "parent_submission_id": 41079653,
-      "replaced_by_submission_id": null,
+      "replaced_by_submission_id": 41081465,
       "task_id": "20260802-owner-banana-factory-b100-arena",
       "protocol_id": null,
-      "disposition": "active",
-      "disposition_rationale": "Owner twice directed publication after the unqualified evidence status and displacement of the 23.12/160 resident were surfaced. The clean 98-game checkpoint remains provisional and weak at 12.99, rank 127/131.",
+      "disposition": "failed",
+      "disposition_rationale": "Owner twice directed publication after the unqualified evidence status was surfaced. The 98-game checkpoint was weak at 12.99/rank 127; the implementation also violated the intended bounded geometry and collection lifecycle, so it was replaced by the bounded ring attempt.",
       "provenance": [
         "data/analysis/live-agent-6553250/owner-banana-factory-b100-arena-execution-2026-08-02.md",
         "coordination/tasks/20260802-owner-banana-factory-b100-arena.md"
       ],
-      "notes": "Exact banana-factory plus b100/e6 owner override. It is active platform state, not a qualified scientific promotion."
+      "notes": "Exact banana-factory plus b100/e6 owner override. Classify as implementation-invalid, not a banana-algorithm verdict."
+    },
+    {
+      "record_id": "submission-41081465",
+      "submission_id": 41081465,
+      "agent_id": 6590136,
+      "source_id": "banana-ring-b100-e6-owner-override",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": null,
+      "era_id": "legend-131",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41081195,
+      "replaced_by_submission_id": 41081503,
+      "task_id": "20260802-banana-ring-b100-successor",
+      "protocol_id": null,
+      "disposition": "failed",
+      "disposition_rationale": "Displaced after exact live replay 897829265 proved long period-2 worker movement; authenticated pre-replacement room score was 11.0 at rank 129/131.",
+      "provenance": [
+        "data/analysis/live-agent-6553250/banana-ring-b100-arena-execution-2026-08-02.md",
+        "data/analysis/live-agent-6553250/banana-ring-live-oscillation-incident-2026-08-02.md",
+        "coordination/tasks/20260802-banana-ring-b100-successor.md"
+      ],
+      "notes": "Mechanically smoke-qualified but implementation-invalid in the live state space; never use as banana-value evidence."
+    },
+    {
+      "record_id": "submission-41081503",
+      "submission_id": 41081503,
+      "agent_id": 6590141,
+      "source_id": "preseed-e7a-lemon-near-tie",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": "2026-08-02T17:43:00Z",
+      "era_id": "legend-131",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41081465,
+      "replaced_by_submission_id": null,
+      "task_id": "20260802-e7a-sector-owner-override-publication",
+      "protocol_id": null,
+      "disposition": "active",
+      "disposition_rationale": "Owner explicitly directed replacement of the implementation-invalid ring bot with the mechanically exact frozen E7a sector candidate after the exploratory value status was surfaced.",
+      "provenance": [
+        "data/analysis/live-agent-6553250/e7a-sector-owner-override-arena-execution-2026-08-02.md",
+        "coordination/tasks/20260802-e7a-sector-owner-override-publication.md"
+      ],
+      "notes": "Active owner override. The consumed-panel +4.0083 estimate is not prospective qualification; initial live health is clean but provisional."
     }
   ],
   "observations": [
@@ -1841,6 +1919,68 @@
       "evidence_kind": "checkpoint_json",
       "evidence_path": "data/analysis/live-agent-6553250/owner-banana-factory-b100-reconvergence-checkpoint-20260802T162907Z.json",
       "evidence_sha256": "83983d63e671bec97832d1937b14e674cf65f5852c66e053f9488ed516bb452e",
+      "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41081465-initial10",
+      "submission_id": 41081465,
+      "record_id": null,
+      "agent_id": 6590136,
+      "observed_at": "2026-08-02T17:33:09.795203+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 10,
+      "games_pending": 1,
+      "score": 0.0,
+      "rank": 130,
+      "field_size": 131,
+      "division_index": 5,
+      "wins": 4,
+      "ties": 0,
+      "losses": 6,
+      "mean_margin": -110.8,
+      "catastrophic_losses": 5,
+      "catastrophic_rate": 0.5,
+      "negative_margin_mass": 1301.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": false,
+      "evidence_maturity": "cold_start",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/banana-ring-b100-arena-initial-clean-20260802T-postsubmit.json",
+      "evidence_sha256": "5889cacda8a07a3e3dd733afd4af12094da083e8894ee241a517c6f31eff5331",
+      "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41081503-initial16",
+      "submission_id": 41081503,
+      "record_id": null,
+      "agent_id": 6590141,
+      "observed_at": "2026-08-02T17:44:40.016009+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 16,
+      "games_pending": 1,
+      "score": 19.42,
+      "rank": 69,
+      "field_size": 131,
+      "division_index": 5,
+      "wins": 11,
+      "ties": 1,
+      "losses": 4,
+      "mean_margin": 41.6875,
+      "catastrophic_losses": 0,
+      "catastrophic_rate": 0.0,
+      "negative_margin_mass": 175.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": false,
+      "evidence_maturity": "cold_start",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/e7a-sector-owner-override-initial-checkpoint-20260802T174600Z.json",
+      "evidence_sha256": "8b6bfd08e1ceac46881a33dfa44a4d843ee6da7fcaf8b0af395a3b27c2054816",
       "evidence_quote": null
     }
   ],

@@ -1,6 +1,6 @@
 # 20260802-e7a-sector-owner-override-publication: replace defective ring bot with sector candidate
 
-- Status: in progress — pre-submission checks pass; one Arena mutation pending
+- Status: complete — exact sector source live as `6590141` / `41081503`; clean initial checkpoint
 - Owner / arena controller: `local_codex_1`
 - Branch: `agent/local_codex_1`
 - Created UTC: 2026-08-02T17:41:07Z
@@ -44,3 +44,8 @@ Fresh host checks immediately before the mutation:
 Record the exact API response, returned submission and agent identities, artifact recovery hash,
 first clean submission-scoped checkpoint, registry/default-source decision, ledger entry, and
 post-mutation notification. Do not represent the consumed-panel estimate as fresh validation.
+
+Completed: `TestSession/submit` returned HTTP 200 exactly once; platform recovery matched the
+candidate hash. The first submission-scoped checkpoint has 16/16 parsed plus one pending, score
+19.42/rank 69/131, zero catastrophes/runtime signals, and clean identity. Execution record:
+`data/analysis/live-agent-6553250/e7a-sector-owner-override-arena-execution-2026-08-02.md`.

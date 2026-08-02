@@ -1,0 +1,152 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T17:33:09.795203+00:00",
+ "result_audit_completed_at": "2026-08-02T17:33:13.276167+00:00",
+ "role": "banana-ring-initial-clean",
+ "agent_id": 6590136,
+ "submission_id": 41081465,
+ "arena": {
+  "agent_id": 6590136,
+  "rank": 130,
+  "total": 131,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6590136,
+  "rank": 126,
+  "score": 13.46,
+  "division_index": 5
+ },
+ "battle_rows_listed": 11,
+ "matching_rows": 11,
+ "matching_finished": 10,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 10,
+ "fetch_failures": [],
+ "summary": {
+  "games": 10,
+  "wins": 4,
+  "ties": 0,
+  "losses": 6,
+  "mean_margin": -110.8,
+  "catastrophic_losses": 5,
+  "catastrophic_rate": 0.5,
+  "negative_margin_mass": 1301.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897828751,
+   "opponent": "Stephen Kondaveti",
+   "opponent_agent_id": 6588456,
+   "our_score": 205.0,
+   "opponent_score": 401.0,
+   "margin": -196.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828750,
+   "opponent": "PhOeNyX",
+   "opponent_agent_id": 6588481,
+   "our_score": 186.0,
+   "opponent_score": 460.0,
+   "margin": -274.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828749,
+   "opponent": "nwin",
+   "opponent_agent_id": 6588416,
+   "our_score": 168.0,
+   "opponent_score": 93.0,
+   "margin": 75.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828748,
+   "opponent": "Shun_PI",
+   "opponent_agent_id": 6481094,
+   "our_score": 153.0,
+   "opponent_score": 712.0,
+   "margin": -559.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828747,
+   "opponent": "boumagik",
+   "opponent_agent_id": 6489550,
+   "our_score": 229.0,
+   "opponent_score": 331.0,
+   "margin": -102.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828746,
+   "opponent": "Epigene",
+   "opponent_agent_id": 6480950,
+   "our_score": 211.0,
+   "opponent_score": 280.0,
+   "margin": -69.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828745,
+   "opponent": "m4l0s4n",
+   "opponent_agent_id": 6480544,
+   "our_score": 326.0,
+   "opponent_score": 311.0,
+   "margin": 15.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828744,
+   "opponent": "Pafin",
+   "opponent_agent_id": 6481143,
+   "our_score": 222.0,
+   "opponent_score": 179.0,
+   "margin": 43.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828743,
+   "opponent": "Konstant",
+   "opponent_agent_id": 6479657,
+   "our_score": 110.0,
+   "opponent_score": 211.0,
+   "margin": -101.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828742,
+   "opponent": "Stounate",
+   "opponent_agent_id": 6491563,
+   "our_score": 296.0,
+   "opponent_score": 236.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

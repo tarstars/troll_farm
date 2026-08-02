@@ -1393,3 +1393,41 @@ frozen exploratory sector; no source or Arena action follows from recovery alone
 Finally, inbox acknowledgements are now freshness-aware: a task ACK covers only strictly earlier
 messages for that task. This closes the bookkeeping defect where an old ACK could hide a later
 question or blocker; the focused suite passes 11/11.
+
+## 2026-08-02 — bounded banana ring invalidated by live oscillation
+
+The owner-corrected bounded ring artifact was 99,990 bytes, exact SHA `d2d8f658...`. Its focused
+packet passed 39 semantic checks, research/Arena equality on eight inherited streams / 2,400
+commands, compile/empty-input/latency checks, and a 16-game behavioral smoke. The owner directed
+publication despite weak descriptive value. One exact submit returned `41081465`; platform agent
+`6590136` recovered to the same hash. Initial clean health was 10/10 parsed plus one pending,
+4W/6L, mean margin -110.8, five catastrophes, negative mass 1,301, and zero runtime/identity faults.
+
+The live game exposed a gate failure that the packet missed. In exact game `897829265`, worker 2
+alternates `(10,4)<->(11,4)` for turns 20--29 and `(8,2)<->(8,3)` for turns 269--280, emitting a
+reversing MOVE each turn. The engine executes those commands, so this is policy/source liveness,
+not blocked motion. Pre-replacement room score was 11.0 at rank 129/131.
+
+**Disposition: IMPLEMENTATION_INVALID / DISPLACED.** The unbounded predecessor also violated the
+owner's bounded geometry and collection lifecycle. Neither live score is evidence against banana
+production. Claude owns a clean stable-parent restoration r2; broad inactive equality, research/
+compact parity on live counterexamples, and explicit oscillation/contention/banking/funding gates
+must pass before any value test.
+
+## 2026-08-02 — E7a frozen sector live by owner override
+
+The replacement is the exact mechanically materialized sector source: stable parent chooses PLUM
+instead of default LEMON only when `sum_distance(PLUM)-sum_distance(LEMON) <= 8`. Source is 62,820
+bytes, SHA `97bfe71e...`; regeneration, five focused tests, optimized compile, and the 16/16 exact
+inside-FLIP/outside-control bridge pass. Consumed-panel pricing is +4.0083 margin versus parent,
+root-bootstrap 95% interval [-1.5875,+13.1015]. It remains exploratory and not prospectively
+qualified; the owner explicitly overrode that value gate after the ring defect.
+
+The first client invocation failed locally on a path lookup before any HTTP request. The controller
+then submitted the same verified bytes by absolute path. Exactly one `TestSession/submit` request
+returned HTTP 200 and submission `41081503`; new agent `6590141` recovered to the candidate hash.
+First exact health is 16/16 parsed plus one pending, score 19.42/rank 69/131, 11W/1T/4L, mean
+margin +41.6875, zero catastrophes/runtime signals, negative mass 175, and clean identity.
+
+**Disposition: LIVE / OWNER OVERRIDE / CLEAN INITIAL HEALTH / VALUE UNRESOLVED.** Monitoring is
+read-only. The submit tool's default remains the exact stable parent as intentional fallback.
