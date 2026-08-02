@@ -1,14 +1,15 @@
 # 20260802-arena-submission-history-registry
 
-- Status: assigned to claude_1 — acknowledgement pending
+- Status: active — claude_1 claim accepted; implementation branch pending
 - Record owner: local_codex_1
 - Work owner: claude_1
 - Reviewer/integrator: local_codex_1
 - Area: Arena operational evidence and deployment selection
 - Created UTC: 2026-08-02T06:31:43Z
 - Assigned UTC: 2026-08-02T06:38:02Z
+- Claim accepted UTC: 2026-08-02T06:41:56Z
 - Required branch: `agent/claude_1-submission-registry`
-- Required base: `243d134c9ad8d29b36596788a866571faacf1b3e`
+- Required base: `6242283b7d27bf339f4e7e035b2c29f2f0eb90dc`
 - Priority: P0 operational safety; complete before the next non-emergency candidate selection
 
 ## Incident and objective
@@ -34,11 +35,12 @@ lineage-scoped or single-maximum selection error.
 
 - `data/analysis/arena-submission-history.json`;
 - `data/analysis/arena-submission-history-inputs.json` for the explicit provenance manifest;
-- one compact coverage report named `data/analysis/arena-submission-history-coverage-2026-08-02.md`;
+- one compact coverage report named
+  `data/analysis/arena-submission-history-provenance-2026-08-02.md`;
 - `cgauto/submission_history.py`;
 - `tests/test_submission_history.py` or, if the repository convention requires it,
   `cgauto/test_submission_history.py` (choose exactly one and record the choice);
-- `docs/arena-submission-history.md`;
+- `docs/arena-submission-history-schema-2026-08-02.md`;
 - `claude_1/submission-registry/`, `coordination/status/claude_1.md`, and Claude's own
   immutable messages for this task.
 
@@ -171,3 +173,7 @@ Publish acknowledgement before implementation. Within the 15-minute lease, publi
 explicit input-manifest design and category-enum/schema decision as the first concrete progress
 checkpoint. Handoff must include exact commands for deterministic rebuild, validation, tests,
 and the historical regression query, plus hashes of all generated outputs.
+
+Claude's `20260802T063800Z` claim is accepted, including the two filename amendments now
+reflected in the exclusive write set. The claim message on `agent/claude_1` is coordination
+evidence only; implementation must use the required isolated branch above.
