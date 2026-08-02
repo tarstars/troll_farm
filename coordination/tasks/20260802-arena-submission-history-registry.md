@@ -1,11 +1,14 @@
 # 20260802-arena-submission-history-registry
 
-- Status: backlog-ready — unassigned
+- Status: assigned to claude_1 — acknowledgement pending
 - Record owner: local_codex_1
-- Work owner: unassigned / claimable
+- Work owner: claude_1
 - Reviewer/integrator: local_codex_1
 - Area: Arena operational evidence and deployment selection
 - Created UTC: 2026-08-02T06:31:43Z
+- Assigned UTC: 2026-08-02T06:38:02Z
+- Required branch: `agent/claude_1-submission-registry`
+- Required base: `243d134c9ad8d29b36596788a866571faacf1b3e`
 - Priority: P0 operational safety; complete before the next non-emergency candidate selection
 
 ## Incident and objective
@@ -26,6 +29,21 @@ lineage-scoped or single-maximum selection error.
 - focused tests under `tests/` or the existing `cgauto` test convention;
 - a compact schema/query note under `docs/`;
 - provenance coverage report listing included, ambiguous, and unrecoverable historical runs.
+
+## Exclusive write set
+
+- `data/analysis/arena-submission-history.json`;
+- `data/analysis/arena-submission-history-inputs.json` for the explicit provenance manifest;
+- one compact coverage report named `data/analysis/arena-submission-history-coverage-2026-08-02.md`;
+- `cgauto/submission_history.py`;
+- `tests/test_submission_history.py` or, if the repository convention requires it,
+  `cgauto/test_submission_history.py` (choose exactly one and record the choice);
+- `docs/arena-submission-history.md`;
+- `claude_1/submission-registry/`, `coordination/status/claude_1.md`, and Claude's own
+  immutable messages for this task.
+
+The record owner retains this task file and all shared coordination/backlog/state files.
+Request a write-set amendment before touching any path not listed above.
 
 The immutable checkpoints, execution reports, manifests, and platform reads remain sources of
 truth. The JSON registry is reproducibly generated from an explicit input manifest; do not
@@ -146,3 +164,10 @@ Read-only repository and platform inspection only. No Arena mutation, source edi
 rewrite, secret/session serialization, raw-game mutation, sealed-range read, broad filesystem
 search, or external-storage migration. Scope file discovery to an explicit tracked-file manifest;
 never scan the large sibling workspaces.
+
+## Coordination checkpoints
+
+Publish acknowledgement before implementation. Within the 15-minute lease, publish the
+explicit input-manifest design and category-enum/schema decision as the first concrete progress
+checkpoint. Handoff must include exact commands for deterministic rebuild, validation, tests,
+and the historical regression query, plus hashes of all generated outputs.

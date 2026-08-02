@@ -8,7 +8,7 @@ may run in parallel and are claimable by any agent under
 
 ## P0 operational safety — Arena submission registry
 
-- **R1 READY / UNASSIGNED — categorized submission-history registry and query tool.** The
+- **R1 ASSIGNED TO `claude_1` — categorized submission-history registry and query tool.** The
   2026-08-02 selection mistake considered only the recent owner-directed lineage and one
   22.99 far-denial maximum, omitting repeated stronger preseed-resident evidence. The repeated
   far-denial source has now terminated at 19.37, rank 73/130. Build a deterministic JSON
