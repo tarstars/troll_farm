@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "created_utc": "2026-08-02T15:56:54Z",
+  "status": "OWNER_OVERRIDE_CANDIDATE_READY_NOT_QUALIFIED",
+  "candidate": {
+    "path": "local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs",
+    "bytes": 99440,
+    "sha256": "2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533"
+  },
+  "parents": {
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "control_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19",
+    "generated_compact_sha256": "37469297692a5a06337098c8c2f4f621ca7144ce6466dc11c6ddf9c10ace4b61"
+  },
+  "gates": {
+    "standalone_compile": "PASS",
+    "empty_input_exit": "PASS",
+    "semantic_tests": {"passed": 23, "failed": 0},
+    "fail_closed_mutated_parent": "PASS",
+    "stream_equality": {
+      "status": "PASS",
+      "streams": 8,
+      "commands": 2400,
+      "exact_streams": 8,
+      "stderr_bytes": 0,
+      "seeds": [1300, 1301, 1302, 1303],
+      "seats": [0, 1],
+      "opponents": ["ringfix3", "taskplan"]
+    },
+    "latency_ms": {
+      "mean": 0.9838473378719451,
+      "p50": 0.96529396250844,
+      "p95": 1.5564020723104477,
+      "maximum": 4.581630928441882
+    }
+  },
+  "rejected_intermediate": {
+    "reason": "compiled but diverged from full source on 8/8 streams",
+    "earliest_mismatch_turn": 7,
+    "retained_for_submission": false
+  },
+  "baseline": {
+    "read_utc": "2026-08-02T15:55:00Z",
+    "agent_id": 6589709,
+    "submission_id": 41079653,
+    "score": 23.3,
+    "rank": 32,
+    "population": 131,
+    "fresh_recovered_source_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "troll-farm-banana-factory-b100-e6-research-build-v1",
+  "status": "research_only_not_submission_ready",
+  "repo": "/home/tarstars/prj/troll_farm-local_codex_1",
+  "inputs": {
+    "source": "rust/src/bin/yamo_orchard_live.rs",
+    "source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "control": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+    "control_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  },
+  "intervention": {
+    "constructor": "banana_seed_factory_opponent_crop_b100_e6",
+    "opponent_crop_bonus": 100,
+    "opponent_crop_eta_limit": 6,
+    "opponent_crop_start_turn": 1,
+    "opponent_crop_min_seen": 1,
+    "banana_factory": true,
+    "selector": false,
+    "dual_value": false,
+    "worker_three_bridge": false
+  },
+  "outputs": {
+    "research": {
+      "path": "local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.research.rs",
+      "sha256": "d43d3730392043b9cf106abeef5e6413a8781a6460c2f9408061f162fd6b3edd",
+      "bytes": 275799
+    },
+    "compact": {
+      "path": "local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.compact.rs",
+      "sha256": "37469297692a5a06337098c8c2f4f621ca7144ce6466dc11c6ddf9c10ace4b61",
+      "bytes": 146702,
+      "under_100000_bytes": false
+    }
+  },
+  "required_next_gates": [
+    "standalone Rust compile",
+    "source semantic tests",
+    "generic b100/e6 versus deployed artifact equality",
+    "research versus compact/slim command-stream equality",
+    "factory-aware slimming if compact source exceeds 100000 bytes",
+    "latency and stderr checks",
+    "four-arm prospective panel"
+  ]
+}

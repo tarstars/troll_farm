@@ -1,0 +1,66 @@
+# 20260802-owner-banana-factory-b100-arena
+
+- Status: pre-submit gate passed; serialized Arena mutation announced
+- Record owner: local_codex_1
+- Work owner: local_codex_1
+- Integrator / sole Arena controller: local_codex_1
+- Created UTC: 2026-08-02T15:57:22Z
+- Branch: `agent/local_codex_1`
+- Area: owner-directed banana-factory + opponent-crop b100/e6 Arena deployment
+
+## Owner directive and evidence status
+
+The owner twice directed publication of the new banana bot. GitHub branch
+`agent/chatgpt_1-banana-factory-restoration` supplied a pre-lock generator/analysis packet,
+not a qualified candidate. Before acting, the controller surfaced that distinction and that
+the live 23.12/160 resident would be replaced. The owner maintained the directive and corrected
+the expected reconvergence interval to about 30 minutes. This is an explicit owner-directed
+live override, not a `QUALIFIED` promotion and not a reopening of D88--D92.
+
+## Exact composition
+
+The candidate is the existing closed-loop `banana_seed_factory()` composed with the current
+flat opponent-crop policy: bonus 100, ETA limit 6, start turn 1, minimum seen 1. It excludes
+the D91 selector, source separation, dual-value scoring, and worker-three bridge. Parent hashes:
+
+- sacred research source: `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`;
+- deployed b100/e6 control: `6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19`.
+
+## Candidate and local gate
+
+- Arena artifact:
+  `local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs`;
+- bytes: 99,440 (strictly below the 100,000-byte limit);
+- SHA-256: `2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533`;
+- fail-closed slimmer SHA-256:
+  `5cfa0009361d0cb68acddd3d608655883767844b935d56adf953ecc5e48991e5`.
+
+Standalone optimized compilation and empty-input exit pass. All 23 embedded semantic tests pass.
+The final slim exactly matches the full generated source on eight open games, both seats, 2,400
+commands, with zero stderr. Interactive latency is 0.984 ms mean, 1.556 ms p95, and 4.582 ms
+maximum. A deliberately mutated compact parent is rejected by the input hash guard.
+
+The first attempted reuse of the old general specialization compiled at 99,656 bytes but failed
+the equality gate on all eight streams (first mismatch as early as turn 7). It was rejected and
+is not retained as a submission artifact.
+
+## Pre-mutation baseline and contract
+
+Authenticated read at 2026-08-02T15:55Z: resident agent `6589709`, submission `41079653`,
+score 23.3, rank 32/131. Fresh IDE recovery is byte-exact to the 64,522-byte control SHA above.
+`local_codex_1` is the sole Arena controller. Submit the exact Arena artifact once, preserve the
+terminal response and new identity, and never retry an ambiguous response. No other mutation is
+in flight. Observe an initial checkpoint and the owner's approximately 30-minute reconvergence
+checkpoint read-only; no automatic second candidate follows.
+
+## Exclusive write set
+
+- this task record;
+- `coordination/status/local_codex_1.md` and local sender messages;
+- the new slimmer and owner-override artifact directory;
+- immutable preflight/execution/checkpoint records under
+  `data/analysis/live-agent-6553250/`;
+- integrator-owned STATE/BACKLOG/live-ledger updates after the terminal platform response.
+
+No sacred-source edit, formatter, sealed-data read, raw-game mutation, automatic retry, or peer
+Arena mutation is authorized.
