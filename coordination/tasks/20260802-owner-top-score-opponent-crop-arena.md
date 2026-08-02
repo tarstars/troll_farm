@@ -1,6 +1,6 @@
 # 20260802-owner-top-score-opponent-crop-arena
 
-- Status: active — preflight complete; owner-directed submission start
+- Status: platform mutation complete; initial health pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator / sole Arena controller: local_codex_1
@@ -57,3 +57,10 @@ may start concurrently.
 
 No source edit, formatter, sealed-data read, simulation, model fit, history rewrite, unrelated
 branch cleanup, automatic retry, or second submission.
+
+## Platform result
+
+`TestSession/submit` returned HTTP 200 exactly once with submission id `41079653` and
+`SUBMIT-OK`; no retry occurred. The platform assigned agent `6589709`. Its first battle-list
+read contains exactly ten matching rows, all pending, each identifying agent `6589709` and
+submission `41079653`. The displaced leaderboard row remains visible until games complete.
