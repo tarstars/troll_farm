@@ -1,0 +1,111 @@
+{
+  "schema": "troll-farm-new-agent-aggregate-sector-audit/1",
+  "task_id": "20260802-new-agent-sector-6590141",
+  "identity": {
+    "agent_id": 6590141,
+    "submission_id": 41081503,
+    "user_id": 1302251,
+    "source_path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "source_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+    "parent_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "frozen_sector_rule": {
+    "definition": "parent default is LEMON and aggregate BFS distance PLUM minus LEMON is <= 8",
+    "parent_tie_break": "LEMON",
+    "unreachable_tree_distance": 10000,
+    "refit_or_retune": false
+  },
+  "evidence": {
+    "initial_checkpoint": "data/analysis/live-agent-6553250/e7a-sector-owner-override-initial-checkpoint-20260802T174600Z.json",
+    "mature_agent_report": "docs/reports/2026-08-02-e7a-sector-agent-description.md",
+    "exact_game_inventory": "data/analysis/live-agent-6553250/top15-public-battle-inventory-2026-08-02.json",
+    "live_game_collector": "chatgpt_1/new_agent_sector_6590141_collect.py",
+    "live_game_collector_commit": "cdd28acb92ce372b139dbb490034aaf0584824d6"
+  },
+  "initial_16": {
+    "games": 16,
+    "wins": 11,
+    "ties": 1,
+    "losses": 4,
+    "mean_margin": 41.6875,
+    "total_margin": 667,
+    "catastrophes": 0,
+    "catastrophe_rate": 0.0,
+    "negative_margin_mass": 175,
+    "mean_loss_margin": -43.75,
+    "positive_margin_mass": 842,
+    "mean_win_margin": 76.54545454545455,
+    "score": 19.42,
+    "rank": 69,
+    "field_size": 131
+  },
+  "mature_160": {
+    "games": 160,
+    "wins": 82,
+    "ties": 3,
+    "losses": 75,
+    "mean_margin_reported_one_decimal": -29.3,
+    "catastrophes": 35,
+    "catastrophe_rate": 0.21875,
+    "negative_margin_mass": 10045,
+    "mean_loss_margin": -133.93333333333334,
+    "score_at_reported_mature_checkpoint": 25.34,
+    "rank_at_reported_mature_checkpoint": 11,
+    "later_inventory_score": 25.26,
+    "later_inventory_rank": 11,
+    "field_size": 131
+  },
+  "games_after_initial_checkpoint": {
+    "games": 144,
+    "wins": 71,
+    "ties": 2,
+    "losses": 71,
+    "catastrophes": 35,
+    "catastrophe_rate": 0.24305555555555555,
+    "negative_margin_mass": 9870,
+    "mean_loss_margin": -139.01408450704224,
+    "mean_margin_approx_from_rounded_mature_mean": -37.1875,
+    "mean_margin_is_approximate": true,
+    "interpretation": "the initial 16-game sample concealed the mature losing tail"
+  },
+  "behavioral_sectors": {
+    "period2_move_liveness": {
+      "affected_games": 25,
+      "game_rate": 0.15625,
+      "maximum_known_run_turns": 127,
+      "example_game_id": 897832286,
+      "example_cargo": "2 WOOD"
+    },
+    "renewable_crop_reap": {
+      "attributed_created_crops": 1704,
+      "own_crops_reaped": 10,
+      "reap_rate": 0.005868544600938967
+    },
+    "endgame_conversion": {
+      "successful_post_turn_250_planted_and_chopped_conversions": 942,
+      "active_at_scale": true
+    },
+    "workforce": {
+      "resident_cap": 2,
+      "architectural_scale_gap_remains": true
+    }
+  },
+  "frozen_map_sector_transfer": {
+    "status": "PENDING_EXACT_COMPACT_TURN1_EXTRACTION",
+    "selected_game_count": null,
+    "selected_vs_unselected_margin": null,
+    "reason": "the committed mature artifacts contain exact game ids and aggregate results, but not per-game decoded turn-1 geometry; the host decoded corpus has not yet published its compact side rows",
+    "collector_output_expected": [
+      "chatgpt_1/new-agent-6590141-live-sector-games-2026-08-02.csv",
+      "chatgpt_1/new-agent-6590141-live-sector-analysis-2026-08-02.json"
+    ],
+    "no_inference_from_development_support": true
+  },
+  "causal_boundary": {
+    "same_window_parent_control": false,
+    "candidate_only_observational_games": true,
+    "live_rating_difference_is_causal_proof": false,
+    "selected_vs_unselected_live_difference_would_be_causal_proof": false
+  },
+  "verdict": "LIVE_RATING_TRANSFER_POSITIVE_BUT_TAIL_HEAVY; BEHAVIORAL_FAILURE_SECTORS_CONFIRMED; EXACT_FROZEN_MAP_SECTOR_SPLIT_PENDING_COMPACT_EXTRACTION"
+}
