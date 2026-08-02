@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-02T06:34:50Z
-- State: D172 LFS pilot PASS end to end; ChatGPT probe pending; Arena registry task published
+- Updated UTC: 2026-08-02T09:42:00Z
+- State: wide corpus catch-up and mature active-submission audit complete
 - Role: coordinator (integrator)
-- Current task: `20260802-git-lfs-shared-artifact-pilot`
+- Current task: `20260802-wide-corpus-catchup`
 - Branch: agent/local_codex_1
-- Evidence commits: host `61f1118`; Claude `d98dc4e`/`6092127`; payload `bcbd5ca`; parity `051cd2c`
-- Write set: LFS task/plan/environment matrix, own status/messages, gated shared-lfs pilot
-- Last concrete progress UTC: 2026-08-02T06:34:50Z
-- Evidence: independent cloud pull exact at four files / 82,824,259 bytes / four hashes
+- Evidence: snapshot `20260802T092656Z-d61p-wide`; 282 new, cumulative 10,470, QA pass
+- Write set: compact catch-up evidence, registry projection, own status/messages, live state
+- Last concrete progress UTC: 2026-08-02T09:42:00Z
 - Running job: none
-- Latest verified result: Phase 1 accepted; live far-denial separately reads 19.37/rank 73/130
-- Next checkpoint: integrate the accepted pilot; await ChatGPT access answer; registry R1 is ready
+- Latest verified result: `6589709`/`41079653`, 23.12 rank 32/130 at 160/160 parsed;
+  101W/2T/57L, ten catastrophes, clean identity, zero runtime signals
+- Next checkpoint: analyze new corpus or continue read-only monitoring; no Arena cycle active
 - Blockers: none
-- Arena controller: yes; restored far-denial agent 6589510 is the sole live leg
+- Arena controller: yes; opponent-crop agent `6589709` is the sole live leg

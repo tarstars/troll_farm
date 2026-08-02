@@ -512,16 +512,38 @@
       "comparison_basis": "same_source_repeat",
       "authority": "owner_directed_override",
       "parent_submission_id": 41071360,
-      "replaced_by_submission_id": null,
+      "replaced_by_submission_id": 41079653,
       "task_id": "20260802-restore-best-far-denial-arena",
       "protocol_id": null,
-      "disposition": "active",
-      "disposition_rationale": "Sole live leg since 2026-08-02. Owner directed restoration of the best measured bot.",
+      "disposition": "displaced_superseded",
+      "disposition_rationale": "Reached 19.37 at rank 73/130, then was displaced when the owner directed submission of the registry's literal top historical score.",
       "provenance": [
         "data/analysis/live-agent-6553250/owner-best-far-denial-restore-execution-2026-08-02.md",
         "coordination/tasks/20260802-restore-best-far-denial-arena.md"
       ],
       "notes": "Third deployment of the far-denial source. The selection that produced it is the incident this registry exists to prevent."
+    },
+    {
+      "submission_id": 41079653,
+      "agent_id": 6589709,
+      "source_id": "opponent-crop-b100-e6-slim",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": null,
+      "era_id": "legend-130",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "cross_era_historical",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41079354,
+      "replaced_by_submission_id": null,
+      "task_id": "20260802-owner-top-score-opponent-crop-arena",
+      "protocol_id": "opponent-crop-controlled-transfer-protocol-2026-07-18",
+      "disposition": "active",
+      "disposition_rationale": "Owner explicitly directed submission of the registry's literal top mature score after the rejected/single-run/cross-era warnings were surfaced.",
+      "provenance": [
+        "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-arena-execution-2026-08-02.md",
+        "coordination/tasks/20260802-owner-top-score-opponent-crop-arena.md"
+      ],
+      "notes": "Second recorded deployment of this exact source. Its current mature repeat is 23.12/160; the frozen matched-control rejection still makes this an owner override, not a qualified promotion."
     }
   ],
   "checkpoint_inputs": [
@@ -788,6 +810,28 @@
       "sha256": "f63943d0ef5fff6630299994ff418fc08be6ec01eb5753e59fc387f7f19e20d2",
       "expect_agent_id": 6589510,
       "expect_submission_id": 41079354,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41079653-health21",
+      "path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json",
+      "sha256": "d3e7eb491aa82d988bbfccfd4aaea2660c7a6f071a8021ea67af40146ea9fc05",
+      "expect_agent_id": 6589709,
+      "expect_submission_id": 41079653,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41079653-mature160",
+      "path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json",
+      "sha256": "f6367e7feb6b1a6ce219eaedb08d575e3d1ab9ce0ec6eab2be7671ac38f13831",
+      "expect_agent_id": 6589709,
+      "expect_submission_id": 41079653,
       "observation_scope": "submission_scoped",
       "observed_at_override": null,
       "observed_at_override_evidence": null,
@@ -1101,14 +1145,14 @@
       "recoverable_by": "A platform query by the Arena controller, or an archived submission log if one exists off-repo."
     },
     {
-      "item": "Deployment timestamps for submissions 41012256, 41012399, 41012593, 41012867, 41012883, 41015603, 41070584, 41071034, 41071067, 41071204 and 41071360.",
+      "item": "Deployment timestamps for submissions 41012256, 41012399, 41012593, 41012867, 41012883, 41015603, 41070584, 41071034, 41071067, 41071204, 41071360 and 41079653.",
       "reason": "The execution reports record the checkpoint times but not the submit-call time.",
       "recoverable_by": "The submit logs, where preserved, or a platform query."
     },
     {
-      "item": "A submission-scoped maturity audit of the live agent 6589510 / submission 41079354.",
+      "item": "A submission-scoped maturity audit of displaced agent 6589510 / submission 41079354.",
       "reason": "Only a 9-game initial health checkpoint exists; the later 16.55-19.37 series is unauthenticated public-leaderboard data with no game count.",
-      "recoverable_by": "The Arena controller running the submission-scoped checkpoint reader. This is the single largest evidence gap in the registry and it concerns the CURRENTLY LIVE agent."
+      "recoverable_by": "Not recoverable now that its battle stream has been replaced; retain the public series as provisional evidence only."
     },
     {
       "item": "Wins/ties/losses and mean margin for every curated arena_room and public_leaderboard observation.",

@@ -12,7 +12,8 @@ On 2026-08-02 a "best bot" selection searched only the recent owner-directed lin
 chose the far-denial source from a single 22.99/160 run. The complete source history shows
 the exact stable preseed resident with **four** mature runs — 24.1/142, 24.77/160,
 24.28/160, 23.05/171, plus a 24.4 room read of unknown sample. The far-denial repeat
-terminated at 19.37, rank 73/130.
+has a latest **provisional public read** of 19.37, rank 73/130; no submission-scoped mature
+audit of that repeat is preserved yet.
 
 Two failure modes produced that: **lineage-scoped search** and **single-maximum
 selection**. Every query here is shaped against both.

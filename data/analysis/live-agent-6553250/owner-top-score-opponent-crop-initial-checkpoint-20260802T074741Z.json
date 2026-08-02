@@ -1,0 +1,273 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T07:47:43.523616+00:00",
+ "result_audit_completed_at": "2026-08-02T07:47:50.744191+00:00",
+ "role": "owner-top-score-opponent-crop-initial",
+ "agent_id": 6589709,
+ "submission_id": 41079653,
+ "arena": {
+  "agent_id": 6589709,
+  "rank": 123,
+  "total": 130,
+  "score": 13.58,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6589709,
+  "rank": 126,
+  "score": 13.01,
+  "division_index": 5
+ },
+ "battle_rows_listed": 22,
+ "matching_rows": 22,
+ "matching_finished": 21,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 21,
+ "fetch_failures": [],
+ "summary": {
+  "games": 21,
+  "wins": 11,
+  "ties": 0,
+  "losses": 10,
+  "mean_margin": 29.666666666666668,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.047619047619047616,
+  "negative_margin_mass": 559.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897781062,
+   "opponent": "ghhttt",
+   "opponent_agent_id": 6588342,
+   "our_score": 132.0,
+   "opponent_score": 105.0,
+   "margin": 27.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897781057,
+   "opponent": "FRHT",
+   "opponent_agent_id": 6535596,
+   "our_score": 251.0,
+   "opponent_score": 195.0,
+   "margin": 56.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897781036,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 116.0,
+   "opponent_score": 189.0,
+   "margin": -73.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897781012,
+   "opponent": "FRHT",
+   "opponent_agent_id": 6535596,
+   "our_score": 208.0,
+   "opponent_score": 168.0,
+   "margin": 40.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780985,
+   "opponent": "MTLKS",
+   "opponent_agent_id": 6588458,
+   "our_score": 269.0,
+   "opponent_score": 265.0,
+   "margin": 4.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780979,
+   "opponent": "Elost",
+   "opponent_agent_id": 6579290,
+   "our_score": 191.0,
+   "opponent_score": 192.0,
+   "margin": -1.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780970,
+   "opponent": "ghhttt",
+   "opponent_agent_id": 6588342,
+   "our_score": 108.0,
+   "opponent_score": 103.0,
+   "margin": 5.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780958,
+   "opponent": "Adler3D",
+   "opponent_agent_id": 6481971,
+   "our_score": 225.0,
+   "opponent_score": 240.0,
+   "margin": -15.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780951,
+   "opponent": "MTLKS",
+   "opponent_agent_id": 6588458,
+   "our_score": 265.0,
+   "opponent_score": 303.0,
+   "margin": -38.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780939,
+   "opponent": "Stephen Kondaveti",
+   "opponent_agent_id": 6588456,
+   "our_score": 238.0,
+   "opponent_score": 36.0,
+   "margin": 202.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780926,
+   "opponent": "Stephen Kondaveti",
+   "opponent_agent_id": 6588456,
+   "our_score": 285.0,
+   "opponent_score": 93.0,
+   "margin": 192.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780893,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 234.0,
+   "opponent_score": 96.0,
+   "margin": 138.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780892,
+   "opponent": "gybson_samara",
+   "opponent_agent_id": 6588480,
+   "our_score": 132.0,
+   "opponent_score": 136.0,
+   "margin": -4.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780891,
+   "opponent": "sZoom",
+   "opponent_agent_id": 6493247,
+   "our_score": 292.0,
+   "opponent_score": 458.0,
+   "margin": -166.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780890,
+   "opponent": "abderrazzak_",
+   "opponent_agent_id": 6480944,
+   "our_score": 331.0,
+   "opponent_score": 42.0,
+   "margin": 289.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780889,
+   "opponent": "hello_me_world",
+   "opponent_agent_id": 6482161,
+   "our_score": 144.0,
+   "opponent_score": 102.0,
+   "margin": 42.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780888,
+   "opponent": "daaskare",
+   "opponent_agent_id": 6491404,
+   "our_score": 197.0,
+   "opponent_score": 10.0,
+   "margin": 187.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780887,
+   "opponent": "Dridriun",
+   "opponent_agent_id": 6480943,
+   "our_score": 172.0,
+   "opponent_score": 208.0,
+   "margin": -36.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780886,
+   "opponent": "R1FA",
+   "opponent_agent_id": 6479863,
+   "our_score": 192.0,
+   "opponent_score": 272.0,
+   "margin": -80.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780885,
+   "opponent": "Konstant",
+   "opponent_agent_id": 6479657,
+   "our_score": 224.0,
+   "opponent_score": 300.0,
+   "margin": -76.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897780884,
+   "opponent": "Astrobytes",
+   "opponent_agent_id": 6482167,
+   "our_score": 333.0,
+   "opponent_score": 403.0,
+   "margin": -70.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

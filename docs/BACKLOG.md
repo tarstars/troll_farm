@@ -8,7 +8,7 @@ may run in parallel and are claimable by any agent under
 
 ## P0 operational safety — Arena submission registry
 
-- **R1 READY / UNASSIGNED — categorized submission-history registry and query tool.** The
+- **R1 DONE / INTEGRATED — categorized submission-history registry and query tool.** The
   2026-08-02 selection mistake considered only the recent owner-directed lineage and one
   22.99 far-denial maximum, omitting repeated stronger preseed-resident evidence. The repeated
   far-denial source has now terminated at 19.37, rank 73/130. Build a deterministic JSON
@@ -16,16 +16,20 @@ may run in parallel and are claimable by any agent under
   deployment purpose, evidence maturity, disposition, comparison type, and authority. Default
   source ranking must aggregate repeated mature runs and expose cross-era comparability; it
   must never select by a single maximum. Task and acceptance contract:
-  `coordination/tasks/20260802-arena-submission-history-registry.md`.
+  `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
+  `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
+  deterministic build/validation pass and the real pytest suite is 40/40.
 
 ## Position summary (2026-08-02)
 
-Active resident `6589510`/`41079354` is the owner-directed restoration of the strongest
-mature artifact, far-denial d3 SHA `307a0755…`. First health is 9/9 parsed with one
-pending, clean identity, zero runtime signals, and an immature score 0.0/rank 129/130;
-the same source's historical terminal comparator is 22.99/160. It replaces the
-funding-first successor, whose encouraging 16.97/11 first read matured to only 16.37/265
-with 40 catastrophes. Monitoring is read-only. **Goal
+Active resident `6589709`/`41079653` is the owner-directed deployment of the registry's
+then-literal top score, opponent-crop b100 e6 SHA `6f992a5a…`. Its current exact repeat is
+23.12/160, rank 32/130, with clean identity, zero runtime signals, and ten catastrophes;
+combined with the historical 24.89/160 run, its cross-era median is 24.01. That new repeat
+removes the single-run gap but does not overturn the frozen rejection. The registry now
+ranks repeated preseed evidence first at median 24.19. No Arena mutation follows
+automatically. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
+failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at

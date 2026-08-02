@@ -1297,3 +1297,46 @@ catastrophe, and negative mass 378. The rating is an immature initialization; th
 is terminal and monitoring is read-only. Evidence is
 `owner-best-far-denial-restore-execution-2026-08-02.md` and the submit/checkpoint files it
 hashes.
+
+## 2026-08-02 — owner-directed deployment of the registry's literal top score
+
+The new deterministic submission-history query ranks opponent-crop b100 e6 first under
+`best --min-finished 100 --evidence mature --scope all`: its one mature historical run was
+24.89/160 at rank 17/107. The exact source is 64,522 bytes, SHA-256 `6f992a5a…`.
+Mandatory preflight raised `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`; the
+frozen matched protocol had rejected the source because it was only about +0.12 over its
+control. The owner was notified before mutation and maintained the literal top-score
+submission directive, so this is an owner override rather than a scientific promotion.
+
+Immediately before replacement, authenticated reads placed far-denial
+`6589510`/`41079354` at 19.37, rank 73/130, with 160/160 listed battles finished. The exact
+opponent-crop artifact was submitted once. `TestSession/submit` returned HTTP 200 and
+submission `41079653`; no retry occurred. Platform agent `6589709` had ten exact pending
+rows on the immediate read.
+
+The first immutable checkpoint has 21/21 parsed games plus one pending, clean identity,
+zero runtime signals, score 13.58 at rank 123/130, 11W/10L, mean margin +29.667, one
+catastrophe (4.8%), and negative-margin mass 559. **Disposition: owner directive complete;
+adverse immature first health; read-only monitoring.** This does not validate the
+historical cross-era score. Evidence is
+`owner-top-score-opponent-crop-arena-execution-2026-08-02.md` and
+`owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json`.
+
+## 2026-08-02 — wide corpus catch-up and opponent-crop mature repeat
+
+The apparent cron gap was a stale STATE count: the 05:17 collector had completed every day
+from July 29 through August 2, and the cache already held 10,188 games. A fresh read-only
+wide run explicitly included current agent `6589709` plus Legend ranks 1–50. Snapshot
+`20260802T092656Z-d61p-wide` fetched 282 missing replays (6,400 already present), with
+50/50 battle lists, 333 requests, and zero acquisition failures. Snapshot QA parsed all
+6,682 wanted games; the cumulative rebuild reached 10,470/10,470 raw/parsed, zero failures,
+10,470 maps, and 513 agents. No cron configuration or Arena state changed.
+
+All 160 current-resident games were newly recovered and have exact submission `41079653`
+identity. The mature checkpoint is clean at 23.12, rank 32/130, 101W/2T/57L, mean margin
++23.44375, ten catastrophes (6.25%), negative-margin mass 3,318, and zero runtime signals.
+This is 1.77 below the historical 24.89 run; the two-run cross-era median is 24.005, below
+preseed's repeated 24.19 median. **Disposition: collection complete / registry evidence
+updated / no Arena mutation.** Evidence:
+`wide-corpus-catchup-2026-08-02.md` and
+`owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json`.

@@ -278,10 +278,36 @@ def test_a_fault_beats_an_override() -> None:
     assert source == "fault_rule"
 
 
-def test_the_nine_game_live_checkpoint_is_cold_start(registry: dict) -> None:
+def test_the_nine_game_far_denial_checkpoint_is_cold_start(registry: dict) -> None:
     obs = next(o for o in registry["observations"] if o["observation_id"] == "obs-41079354-initial9")
     assert obs["games_finished"] == 9
     assert obs["evidence_maturity"] == "cold_start"
+
+
+def test_the_live_opponent_crop_checkpoint_is_provisional(registry: dict) -> None:
+    obs = next(
+        o
+        for o in registry["observations"]
+        if o["observation_id"] == "obs-41079653-health21"
+    )
+    assert obs["games_finished"] == 21
+    assert obs["score"] == 13.58
+    assert obs["evidence_maturity"] == "provisional"
+    assert obs["runtime_faults"] == 0
+    assert obs["identity_faults"] == 0
+
+
+def test_the_live_opponent_crop_repeat_is_mature(registry: dict) -> None:
+    obs = next(
+        o
+        for o in registry["observations"]
+        if o["observation_id"] == "obs-41079653-mature160"
+    )
+    assert obs["games_finished"] == 160
+    assert obs["score"] == 23.12
+    assert obs["evidence_maturity"] == "mature"
+    assert obs["runtime_faults"] == 0
+    assert obs["identity_faults"] == 0
 
 
 def test_the_19_37_read_is_provisional_with_no_game_count(registry: dict) -> None:
@@ -339,11 +365,20 @@ def test_min_finished_gate_excludes_small_samples(registry: dict) -> None:
     assert 16.97 not in scores
 
 
-def test_rejected_source_is_flagged_even_when_it_scores_highest(registry: dict) -> None:
+def test_rejected_source_warning_survives_a_live_mature_repeat(registry: dict) -> None:
     ranked = sh.rank_sources(registry)
-    top = ranked[0]
-    assert top["source_id"] == "opponent-crop-b100-e6-slim"
-    assert any(w.startswith("REJECTED_SOURCE") for w in top["warnings"])
+    by_id = {summary["source_id"]: summary for summary in ranked}
+    opponent_crop = by_id["opponent-crop-b100-e6-slim"]
+    assert opponent_crop["best_score"] == 24.89
+    assert opponent_crop["mature_runs"] == 2
+    assert any(w.startswith("REJECTED_SOURCE") for w in opponent_crop["warnings"])
+    assert any(w.startswith("CROSS_ERA") for w in opponent_crop["warnings"])
+
+
+def test_repeated_preseed_evidence_now_ranks_above_opponent_crop(registry: dict) -> None:
+    ranked = sh.rank_sources(registry)
+    assert ranked[0]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[0]["median_score"] > ranked[1]["median_score"]
 
 
 def test_cross_era_comparison_is_flagged(registry: dict) -> None:
@@ -434,13 +469,26 @@ def test_scope_filter_is_printed_prominently(registry, capsys) -> None:
     assert "preseed-orchard-coverage-slim" not in out
 
 
+def test_min_finished_is_accepted_after_best_subcommand(capsys) -> None:
+    assert sh.main(["best", "--min-finished", "150", "--scope", "all"]) == 0
+    out = capsys.readouterr().out
+    assert "min-finished=150" in out
+
+
+def test_min_finished_is_accepted_after_preflight_subcommand(capsys) -> None:
+    path = "cgauto/submissions/candidate-agent6561795-owner-far-denial-no-return-d3-slim.min.rs"
+    assert sh.main(["preflight", path, "--min-finished", "150"]) == 0
+    out = capsys.readouterr().out
+    assert "min-finished=150" in out
+
+
 def test_every_deployment_since_the_restored_resident_era_is_covered(registry: dict) -> None:
     """Acceptance 3: no silent gaps in the era this registry is responsible for."""
     covered = {s["submission_id"] for s in registry["submissions"]}
     for submission_id in (
         41009795, 41009911, 41009991, 41012256, 41012399, 41012593,
         41012867, 41012883, 41015603, 41070584, 41070944, 41071034,
-        41071067, 41071204, 41071360, 41079354,
+        41071067, 41071204, 41071360, 41079354, 41079653,
     ):
         assert submission_id in covered, f"submission {submission_id} is missing"
     assert registry["unresolved"], "the unresolved list must state what is NOT covered"
@@ -449,8 +497,8 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 def test_exactly_one_submission_is_active(registry: dict) -> None:
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41079354
-    assert live[0]["agent_id"] == 6589510
+    assert live[0]["submission_id"] == 41079653
+    assert live[0]["agent_id"] == 6589709
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:
