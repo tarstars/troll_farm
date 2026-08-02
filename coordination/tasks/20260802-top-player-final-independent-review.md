@@ -1,6 +1,7 @@
 # 20260802-top-player-final-independent-review
 
-- Status: assigned — awaiting `claude_1` acknowledgement
+- Status: handoff accepted — `ACCEPT_WITH_CORRECTIONS` at `cc95a09`; future work superseded
+  by `20260802-top-player-full-review-replication`
 - Record owner / integrator: local_codex_1
 - Work owner: claude_1
 - Reviewer: local_codex_1

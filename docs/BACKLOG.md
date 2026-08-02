@@ -183,6 +183,15 @@ continues with construction and rating-dynamics measurement, not waiting.
   and both exact sources compile. A separate protocol must preserve three arms:
   workforce-pressure-conditioned treatment, the identical treatment always on, and
   unchanged control. No runner arm, range, panel, candidate, or Arena action yet.
+  **All-agent full review completed:** H3a is the sole surviving ranked route, but the
+  conditioned source, equality bridge, value runner, and multi-game trigger-preflight
+  package do not exist. Treat it as blocked future work, not an immediate check. Endgame
+  removal race and WAIT are rejected from the ranking; B3.14 remains measurement-only.
+  Reconciled PDF: `docs/reports/2026-08-02-top-player-all-agent-analysis.pdf`.
+  **Owner-priority unblock assigned to `claude_1`:** cheap exact-17-game trigger preflight
+  first; on pass only, freeze/build C1, equality bridge and three-arm runner, then one
+  6,144-task development panel. Estimated 4–8 hours to the stop gate, 3–5 working days for
+  the full path. Task: `coordination/tasks/20260802-h3a-conditioned-value-unblock.md`.
 - **F1 — READINESS AUDIT RELEASED TO `chatgpt_1`.** Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
   command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is
@@ -192,6 +201,17 @@ continues with construction and rating-dynamics measurement, not waiting.
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
   tasks, not map classes.
+- **H11a PARTIAL / PAUSED — OWNER-DIRECTED INITIAL-STATE SECTOR PREFLIGHT.** All three protocol
+  agents will independently test whether the joint starting-resource vector and
+  pre-command map configuration can identify a sector where one exact finite behavior
+  change has incremental terminal value. This does not reopen generic “rich map → train”
+  selection: D63/D64, Phase 15, D91, H1, A2-1, and H11 remain binding. A positive audit
+  must compare unchanged, identical-always-on, and sector-conditioned arms; use
+  outcome-blind features and root-grouped held validation; beat the best static arm; and
+  price displacement/opponent leakage. Task:
+  `coordination/tasks/20260802-initial-state-sector-policy-audit.md`. ChatGPT's early
+  independent handoff is staged; Claude/local work is paused behind the owner-priority H3a
+  unblock.
 - **E1 ✅ CLOSED WITH N4 RUNTIME.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
