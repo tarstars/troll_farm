@@ -1,0 +1,76 @@
+{
+  "candidate": {
+    "b100_e6": true,
+    "constructor": "banana_seed_factory_opponent_crop_b100_e6",
+    "dual_value": false,
+    "factory": true,
+    "selector": false,
+    "source_separated": false,
+    "worker_three_bridge": false
+  },
+  "created_date": "2026-08-02",
+  "current_control": {
+    "bytes": 64522,
+    "path": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+    "policy": {
+      "bonus": 100,
+      "eta_limit": 6,
+      "minimum_seen": 1,
+      "start_turn": 1
+    },
+    "sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  },
+  "experiment": {
+    "confirmation_maps": 32,
+    "design": "four_arm_factorial",
+    "discovery_maps": 32,
+    "opponents": 8,
+    "primary_contrast": "banana_factory_opponent_crop_b100_e6 - opponent_crop_b100_e6",
+    "profiles": [
+      "resident",
+      "opponent_crop_b100_e6",
+      "banana_seed_factory",
+      "banana_factory_opponent_crop_b100_e6"
+    ],
+    "repeats": [
+      1,
+      20
+    ],
+    "seats": 2,
+    "seed_ranges": "TO_BE_ALLOCATED_AND_COLLISION_SCANNED_BY_INTEGRATOR_BEFORE_LOCK"
+  },
+  "inspected_commit": "8e95a966d618c538829b184ad71a1539a76d2e29",
+  "inspected_ref": "session-2026-07-01",
+  "packet_validation": {
+    "arena": "NOT_RUN",
+    "packet_unit_tests": "PASS: fail-closed constructor/main injection; second-injection rejection; four-arm synthetic positive panel; incomplete-repeat integrity quarantine",
+    "python_syntax": "PASS: py_compile on generator and analyzer",
+    "repository_panel": "NOT_RUN: repository protocol requires a remotely published claim and explicit write-set transfer before implementation",
+    "rust_compile": "NOT_RUN: no repository checkout or Rust toolchain in this environment"
+  },
+  "publication_format": "compact_repository_packet",
+  "published_branch": "agent/chatgpt_1-banana-factory-restoration",
+  "published_utc": "2026-08-02T15:22:53Z",
+  "ref_advance_check": {
+    "base": "9c261ef58847083d9edb5152f73bcdfdd9ec53ba",
+    "head": "8e95a966d618c538829b184ad71a1539a76d2e29",
+    "relevant_candidate_or_source_paths_changed": false
+  },
+  "relevant_code_commit": "9c261ef58847083d9edb5152f73bcdfdd9ec53ba",
+  "repository": "tarstars/troll_farm",
+  "repository_paths": {
+    "analyzer": "cgauto/analyze_banana_factory_b100_restoration.py",
+    "checksums": "chatgpt_1/banana-factory-b100-restoration/SHA256SUMS",
+    "generator": "cgauto/make_banana_factory_b100_candidate.py",
+    "protocol": "chatgpt_1/banana-factory-b100-restoration/protocol.md",
+    "task_record": "coordination/tasks/20260802-banana-factory-b100-restoration.md",
+    "validation": "chatgpt_1/banana-factory-b100-restoration/packet-validation.json"
+  },
+  "sacred_source": {
+    "mode": "compile_then_restore_only",
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "schema": "troll-farm-banana-restore-packet-v1",
+  "status": "PUBLISHED_PREEXECUTION_PACKET"
+}

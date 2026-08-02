@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "python_compile",
+      "result": "PASS",
+      "targets": [
+        "make_banana_factory_b100_candidate.py",
+        "analyze_banana_factory_b100_restoration.py"
+      ]
+    },
+    {
+      "details": [
+        "inserts exactly one candidate constructor",
+        "replaces exactly one main activation anchor",
+        "does not alter input string",
+        "rejects a second application"
+      ],
+      "name": "generator_fail_closed",
+      "result": "PASS"
+    },
+    {
+      "details": "four profiles, both seats, all eight opponents; decision PASS_OPEN_CONFIRMATION",
+      "name": "analyzer_positive_synthetic_panel",
+      "result": "PASS"
+    },
+    {
+      "details": "non-identical/incomplete repeat returns QUARANTINE_INTEGRITY",
+      "name": "analyzer_integrity_negative_control",
+      "result": "PASS"
+    },
+    {
+      "name": "rust_candidate_compile",
+      "reason": "Not run: publication contains a fail-closed generator and protocol, not an integrated Rust candidate.",
+      "result": "NOT_RUN"
+    },
+    {
+      "name": "prospective_game_panel",
+      "reason": "Not run: this publication intentionally stops before integrator allocation of a frozen write set and fresh ranges.",
+      "result": "NOT_RUN"
+    }
+  ],
+  "publication": {
+    "base_commit": "8e95a966d618c538829b184ad71a1539a76d2e29",
+    "branch": "agent/chatgpt_1-banana-factory-restoration",
+    "published_utc": "2026-08-02T15:22:53Z"
+  },
+  "schema": "troll-farm-banana-restore-packet-validation-v1",
+  "status": "PASS_FOR_PUBLISHED_PRELOCK_HANDOFF"
+}
