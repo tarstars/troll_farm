@@ -1,0 +1,38 @@
+name: chatgpt_1 new-agent public battle probe
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-new-agent-sector-6590141
+    paths:
+      - .github/workflows/chatgpt_1-new-agent-sector-probe.yml
+      - chatgpt_1/probe_new_agent_6590141.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1-new-agent-sector-6590141
+
+      - name: Probe public CodinGame endpoint
+        run: python3 chatgpt_1/probe_new_agent_6590141.py
+
+      - name: Commit probe result to agent branch
+        run: |
+          git config user.name "chatgpt_1 sector probe"
+          git config user.email "noreply@openai.com"
+          git add -- chatgpt_1/new-agent-6590141-public-battles-probe.json
+          if git diff --cached --quiet; then
+            echo "probe output unchanged"
+          else
+            git commit -m "data: record new-agent public battle probe"
+            git push origin HEAD:agent/chatgpt_1-new-agent-sector-6590141
+          fi
