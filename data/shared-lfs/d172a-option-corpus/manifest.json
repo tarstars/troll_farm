@@ -1,0 +1,50 @@
+{
+  "schema": "troll-farm-shared-lfs-dataset-v1",
+  "dataset": "d172a-option-corpus",
+  "created_at_utc": "2026-08-02T06:17:00Z",
+  "authority": "medium_data",
+  "source_manifest": "data/analysis/live-agent-6553250/d172a-dense-counterfactual-option-policy-corpus-manifest.json",
+  "seed_range": {"start": 9860000, "count": 512},
+  "tasks": 8192,
+  "maps": 512,
+  "seats": 2,
+  "families": 8,
+  "total_files": 4,
+  "total_bytes": 82824259,
+  "total_data_rows": 79997,
+  "total_physical_lines": 80001,
+  "files": [
+    {
+      "name": "d172a-corpus.shard-9860000-9860127.tsv",
+      "source": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860000-9860127.tsv",
+      "bytes": 20862015,
+      "data_rows": 20149,
+      "physical_lines": 20150,
+      "sha256": "e9d46b5e3411d94be2df14935971a7f3cec6799069b9db35ad0575bb880aab51"
+    },
+    {
+      "name": "d172a-corpus.shard-9860128-9860255.tsv",
+      "source": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860128-9860255.tsv",
+      "bytes": 20608837,
+      "data_rows": 19906,
+      "physical_lines": 19907,
+      "sha256": "82541a97a714e5115735e83b49988ef25f7c92721efc5bfc16aad07fd7d499ad"
+    },
+    {
+      "name": "d172a-corpus.shard-9860256-9860383.tsv",
+      "source": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860256-9860383.tsv",
+      "bytes": 20642952,
+      "data_rows": 19939,
+      "physical_lines": 19940,
+      "sha256": "d0a79ea73867a793a5ed6bbf55a092e6b8f6ab13cd760ad495163bc1f466ba6c"
+    },
+    {
+      "name": "d172a-corpus.shard-9860384-9860511.tsv",
+      "source": "artifacts/experiments/d172a-dense-counterfactual-option-policy/corpus/d172a-corpus.shard-9860384-9860511.tsv",
+      "bytes": 20710455,
+      "data_rows": 20003,
+      "physical_lines": 20004,
+      "sha256": "bd83cf3188b3597d8eb864adc68a7893745855a09eda2aed38285664a159b630"
+    }
+  ]
+}
