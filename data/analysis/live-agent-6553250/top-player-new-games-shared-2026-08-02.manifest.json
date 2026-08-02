@@ -1,0 +1,190 @@
+{
+  "counts": {
+    "all_new_open_games": 275,
+    "current_new_open_games": 153,
+    "current_open_outcomes": {
+      "losses": 56,
+      "ties": 2,
+      "wins": 95
+    },
+    "current_open_seats": {
+      "0": 68,
+      "1": 85
+    },
+    "current_open_splits": {
+      "calibration_only": 93,
+      "discovery": 56,
+      "validation": 4
+    },
+    "direct_current_vs_top20_games": 1,
+    "direct_game_id": 897780884,
+    "new_top20_source_open_games": 3,
+    "sealed_games_excluded": 7,
+    "side_rows": 5672,
+    "top20_side_rows": 2853,
+    "top20_source_open_games": 2684,
+    "top20_vs_top20_open_games": 169,
+    "union_open_games": 2836
+  },
+  "definitions": {
+    "current_agent_id": 6589709,
+    "current_submission_id": 41079653,
+    "new": "acquisition.status == fetched",
+    "sealed_policy": "only processed/open was read; sealed_confirmation was excluded",
+    "shared_rows": "union(current new open games, all open top20-source games)",
+    "top20": "snapshot players legend_order 1..20"
+  },
+  "files": {
+    "top-player-new-games-shared-2026-08-02.direct-game.json": {
+      "bytes": 374173,
+      "physical_lines": 4542,
+      "sha256": "e1a94b84653493765ca224f80a83fad5563b4ae0efd09fa1793630e77e0e3ba5"
+    },
+    "top-player-new-games-shared-2026-08-02.direct-trajectory.json": {
+      "bytes": 79504,
+      "physical_lines": 6302,
+      "sha256": "c9d77aedc73e1e1537b17dc08d0948946023795d90aa67fea8e4dca63a228c27"
+    },
+    "top-player-new-games-shared-2026-08-02.sides.csv": {
+      "bytes": 1885870,
+      "physical_lines": 5673,
+      "sha256": "e4e4923446b6449dca35999fc83e6883cdc78b24fa4f2d17b957e394c1068883"
+    }
+  },
+  "inputs": {
+    "direct_raw_sha256": "91e5c063f740c7514bf544fc5899b5e190abfdb2a9ec73504f640ab7e1659250",
+    "direct_trajectory_sha256": "18d534807911afdf51cba58f349ae732998e197cfa96136d2fe23765f4b39be1",
+    "open_games_sha256": "b0366e1ff8e1a59909b6c725a437312f6d3012c74c4c627e1bb1c88fd5e600cc",
+    "players_sha256": "905690ec8024bdd12d6c174bc25bda2d47b8c07f718a084cd271964140ca45b8"
+  },
+  "schema": "troll-farm-top-player-new-games-shared-v1",
+  "snapshot": {
+    "completed_at_utc": "2026-08-02T09:30:28.490Z",
+    "manifest_sha256": "27f00b482266f9290903a529ea4119dc96d2bb7825fef53b2ce38cbcae2fcfe4",
+    "qa_sha256": "f64096ba7c692b9a3574457875801610d1a0a304143cbea0e334a415ec785dab",
+    "snapshot_id": "20260802T092656Z-d61p-wide"
+  },
+  "task_id": "20260802-top-player-new-games-multiagent-analysis",
+  "top20_roster": [
+    {
+      "agent_id": 6479768,
+      "name": "delineate",
+      "rank": 1,
+      "score": 31.02
+    },
+    {
+      "agent_id": 6480540,
+      "name": "norxondor_gorgonax",
+      "rank": 2,
+      "score": 29.67
+    },
+    {
+      "agent_id": 6479460,
+      "name": "MSz",
+      "rank": 3,
+      "score": 28.21
+    },
+    {
+      "agent_id": 6481504,
+      "name": "viewlagoon",
+      "rank": 4,
+      "score": 27.03
+    },
+    {
+      "agent_id": 6568138,
+      "name": "Bubaptik",
+      "rank": 5,
+      "score": 26.97
+    },
+    {
+      "agent_id": 6481397,
+      "name": "gaha",
+      "rank": 6,
+      "score": 26.89
+    },
+    {
+      "agent_id": 6491563,
+      "name": "Stounate",
+      "rank": 7,
+      "score": 26.5
+    },
+    {
+      "agent_id": 6480541,
+      "name": "yaichi",
+      "rank": 8,
+      "score": 26.44
+    },
+    {
+      "agent_id": 6480520,
+      "name": "skotz",
+      "rank": 9,
+      "score": 25.56
+    },
+    {
+      "agent_id": 6483545,
+      "name": "Escdemon",
+      "rank": 10,
+      "score": 25.37
+    },
+    {
+      "agent_id": 6482055,
+      "name": "laconic_pixel",
+      "rank": 11,
+      "score": 25.31
+    },
+    {
+      "agent_id": 6559862,
+      "name": "therealbeef",
+      "rank": 12,
+      "score": 25.06
+    },
+    {
+      "agent_id": 6482167,
+      "name": "Astrobytes",
+      "rank": 13,
+      "score": 24.99
+    },
+    {
+      "agent_id": 6481141,
+      "name": "wala",
+      "rank": 14,
+      "score": 24.82
+    },
+    {
+      "agent_id": 6479779,
+      "name": "putibuzu",
+      "rank": 15,
+      "score": 24.6
+    },
+    {
+      "agent_id": 6479420,
+      "name": "Risen",
+      "rank": 16,
+      "score": 24.59
+    },
+    {
+      "agent_id": 6479814,
+      "name": "yamo",
+      "rank": 17,
+      "score": 24.41
+    },
+    {
+      "agent_id": 6481142,
+      "name": "XSpace",
+      "rank": 18,
+      "score": 24.38
+    },
+    {
+      "agent_id": 6480941,
+      "name": "Bondo416",
+      "rank": 19,
+      "score": 24.3
+    },
+    {
+      "agent_id": 6481139,
+      "name": "uta_ccc",
+      "rank": 20,
+      "score": 24.19
+    }
+  ]
+}

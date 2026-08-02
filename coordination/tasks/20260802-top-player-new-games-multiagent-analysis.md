@@ -23,13 +23,18 @@ Source snapshot: `20260802T092656Z-d61p-wide`, completed
 - Our bot means exact agent/submission `6589709`/`41079653`.
 - Top players means snapshot-time Legend ranks 1–20, matching the collector's established
   `legend_top20` definition.
-- Primary cohort: new open games of our bot against those top-20 identities.
-- Context cohorts: all 160 new open current-bot games, rank-21–50 opponents, and new open
-  games sourced from top-20 agents.
+- Current-new cohort: 153 open fetched games of our exact bot; seven further fetched current
+  games are sealed-tagged and excluded.
+- Direct top-20 slice: exactly one open current-vs-top20 game, `897780884` versus rank-13
+  Astrobytes. It supports an exact postmortem but cannot establish breadth or value alone.
+- Benchmark cohort: 2,684 open games sourced from snapshot top-20 agents, including prior
+  cache entries; only three of those games are newly fetched. Benchmark comparisons are
+  observational context, never direct current-vs-top evidence.
 - The seven sealed-confirmation-tagged games are excluded from every shared row and analysis.
 
-`local_codex_1` will publish a compact, sanitized, hash-pinned shared corpus derived from
-the snapshot so cloud agents need neither platform credentials nor the host raw cache.
+`local_codex_1` publishes a compact, sanitized, hash-pinned shared corpus derived from the
+snapshot so cloud agents need neither platform credentials nor the host raw cache. The
+union contains 2,836 open games / 5,672 side rows.
 
 ## Parallel tracks
 
