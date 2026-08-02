@@ -10,7 +10,7 @@
 - Branch: `agent/claude_1`
 - Progress lease: 15 minutes after acknowledgement; long runs require pushed phase markers
 - Created UTC: 2026-08-02T14:33:05Z
-- Last updated UTC: 2026-08-02T14:42:30Z
+- Last updated UTC: 2026-08-02T15:07:58Z
 
 ## Owner directive and outcome
 
@@ -185,6 +185,17 @@ Claude owns new files only under:
 `local_codex_1` owns the compact preflight-package prefix, exact local extraction utility if
 needed, bulk execution records, task record, integration messages, shared docs, and ledger.
 No other agent writes either set.
+
+For Claude's Phase-A gate-4 extraction request, local additionally owns these exact new paths:
+
+- `local_codex_1/h3a_authoritative_state_export.py`;
+- `rust/src/bin/h3a_open_trajectory_state_export.rs`;
+- `data/analysis/live-agent-6553250/h3a-trigger-preflight-state-package-2026-08-02.*`.
+
+The richer export replays only the same 17 open-game command streams under the locked A2-0b
+referee. It does not modify a source arm or frozen referee dependency. Trees are identified
+exactly as the archived policy identifies them, by cell; any row-order index is audit metadata,
+not a fabricated persistent referee ID.
 
 ## Do not touch
 
