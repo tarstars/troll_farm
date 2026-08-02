@@ -14,6 +14,8 @@
   127/131, 49W/49L, zero identity/runtime faults; evidence remains provisional
 - Next checkpoint: shared-doc/ledger reconciliation, full consistency audit, final push
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
+- Queued successor: accepted owner-corrected gate-aware banana ring; local owns the new-only
+  build paths after the P0 reconciliation audit; no Arena authority follows
 - H3a: Claude accepted Phase-A package with limits; exact gate-4 work pending after lease renewal
 - Initial-sector audit: ChatGPT measurement-only handoffs integrated; peer tranches remain paused
 - Blockers: none
