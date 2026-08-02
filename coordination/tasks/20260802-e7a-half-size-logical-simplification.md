@@ -1,6 +1,6 @@
 # 20260802-e7a-half-size-logical-simplification: halve live source without leaving top 15
 
-- Status: claimed
+- Status: in_progress
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: pending
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T19:52:10Z
+- Last updated UTC: 2026-08-02T19:58:33Z
 
 ## Outcome
 

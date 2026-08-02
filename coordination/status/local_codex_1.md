@@ -1,15 +1,15 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-02T19:52:10Z
-- State: owner-directed E7a half-size logical simplification claimed and protocol-frozen
+- Updated UTC: 2026-08-02T19:58:33Z
+- State: E7a half-size Stage A complete; integrated logical replacement starting
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260802-e7a-half-size-logical-simplification`
 - Branch: `agent/local_codex_1`
 - Candidate: 62,820 bytes, SHA-256 `97bfe71e3f2f…`; five focused tests, compile, and 16/16
   exact semantic bridge pass; consumed-panel value remains unqualified
 - Write set: versioned half-size source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-02T19:52:10Z
-- Running job: none; Stage A source/behavior attribution begins after remote claim
+- Last concrete progress UTC: 2026-08-02T19:58:33Z
+- Running job: none; exact byte attribution complete (45,996 bytes across seven blocks)
 - Live identity: E7a sector `6590141`/`41081503`; exact recovery pass; 16/16 parsed plus one
   pending, score 19.42 rank 69/131, zero catastrophes/runtime signals, clean identity
 - Next checkpoint: fetch/decode 2,072 unique public replays and aggregate 2,318 top-agent sides
