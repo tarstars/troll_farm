@@ -2,12 +2,12 @@
   "schema_version": "arena-submission-history/1",
   "generator": "cgauto/submission_history.py",
   "manifest_path": "data/analysis/arena-submission-history-inputs.json",
-  "manifest_sha256": "2272e6ceba7b006b5ea8bb438c9b7f86fec69d69c5c6e5e101bd38186e0df902",
+  "manifest_sha256": "a054858412678a075eead3c7981ea4e878f7257215a2f74871037418b88d8717",
   "counts": {
     "sources": 9,
     "submissions": 18,
-    "observations": 36,
-    "unresolved": 6
+    "observations": 37,
+    "unresolved": 5
   },
   "eras": [
     {
@@ -574,7 +574,7 @@
         "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-arena-execution-2026-08-02.md",
         "coordination/tasks/20260802-owner-top-score-opponent-crop-arena.md"
       ],
-      "notes": "Second recorded deployment of this exact source. First health is adverse and immature, so this is not a qualified promotion."
+      "notes": "Second recorded deployment of this exact source. Its current mature repeat is 23.12/160; the frozen matched-control rejection still makes this an owner override, not a qualified promotion."
     }
   ],
   "observations": [
@@ -1704,6 +1704,37 @@
       "evidence_path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json",
       "evidence_sha256": "d3e7eb491aa82d988bbfccfd4aaea2660c7a6f071a8021ea67af40146ea9fc05",
       "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41079653-mature160",
+      "submission_id": 41079653,
+      "record_id": null,
+      "agent_id": 6589709,
+      "observed_at": "2026-08-02T09:40:12.589002+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 160,
+      "games_pending": 0,
+      "score": 23.12,
+      "rank": 32,
+      "field_size": 130,
+      "division_index": 5,
+      "wins": 101,
+      "ties": 2,
+      "losses": 57,
+      "mean_margin": 23.44375,
+      "catastrophic_losses": 10,
+      "catastrophic_rate": 0.0625,
+      "negative_margin_mass": 3318.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": false,
+      "evidence_maturity": "mature",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json",
+      "evidence_sha256": "f6367e7feb6b1a6ce219eaedb08d575e3d1ab9ce0ec6eab2be7671ac38f13831",
+      "evidence_quote": null
     }
   ],
   "unresolved": [
@@ -1721,11 +1752,6 @@
       "item": "A submission-scoped maturity audit of displaced agent 6589510 / submission 41079354.",
       "reason": "Only a 9-game initial health checkpoint exists; the later 16.55-19.37 series is unauthenticated public-leaderboard data with no game count.",
       "recoverable_by": "Not recoverable now that its battle stream has been replaced; retain the public series as provisional evidence only."
-    },
-    {
-      "item": "A mature submission-scoped audit of live agent 6589709 / submission 41079653.",
-      "reason": "The current immutable checkpoint contains only 21 finished games and is provisional.",
-      "recoverable_by": "Read-only monitoring by the Arena controller after at least 100 finished games."
     },
     {
       "item": "Wins/ties/losses and mean margin for every curated arena_room and public_leaderboard observation.",

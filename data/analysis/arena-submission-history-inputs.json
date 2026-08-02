@@ -543,7 +543,7 @@
         "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-arena-execution-2026-08-02.md",
         "coordination/tasks/20260802-owner-top-score-opponent-crop-arena.md"
       ],
-      "notes": "Second recorded deployment of this exact source. First health is adverse and immature, so this is not a qualified promotion."
+      "notes": "Second recorded deployment of this exact source. Its current mature repeat is 23.12/160; the frozen matched-control rejection still makes this an owner override, not a qualified promotion."
     }
   ],
   "checkpoint_inputs": [
@@ -819,6 +819,17 @@
       "observation_id": "obs-41079653-health21",
       "path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json",
       "sha256": "d3e7eb491aa82d988bbfccfd4aaea2660c7a6f071a8021ea67af40146ea9fc05",
+      "expect_agent_id": 6589709,
+      "expect_submission_id": 41079653,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41079653-mature160",
+      "path": "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json",
+      "sha256": "f6367e7feb6b1a6ce219eaedb08d575e3d1ab9ce0ec6eab2be7671ac38f13831",
       "expect_agent_id": 6589709,
       "expect_submission_id": 41079653,
       "observation_scope": "submission_scoped",
@@ -1142,11 +1153,6 @@
       "item": "A submission-scoped maturity audit of displaced agent 6589510 / submission 41079354.",
       "reason": "Only a 9-game initial health checkpoint exists; the later 16.55-19.37 series is unauthenticated public-leaderboard data with no game count.",
       "recoverable_by": "Not recoverable now that its battle stream has been replaced; retain the public series as provisional evidence only."
-    },
-    {
-      "item": "A mature submission-scoped audit of live agent 6589709 / submission 41079653.",
-      "reason": "The current immutable checkpoint contains only 21 finished games and is provisional.",
-      "recoverable_by": "Read-only monitoring by the Arena controller after at least 100 finished games."
     },
     {
       "item": "Wins/ties/losses and mean margin for every curated arena_room and public_leaderboard observation.",

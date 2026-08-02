@@ -47,3 +47,18 @@ owner-directed submission request is complete; subsequent monitoring is read-onl
 second Arena cycle is in flight.
 
 No session handle, cookie, credential, or secret response content is stored in this report.
+
+## Mature follow-up
+
+The later wide-corpus catch-up recovered the active submission's complete 160-game window.
+The repository-standard checkpoint observed at 2026-08-02T09:40:12Z confirms exact
+agent/submission identity, 160/160 finished and parsed, zero pending/unexpected/fetch/runtime
+faults, score 23.12 at rank 32/130, 101W/2T/57L, mean margin +23.44375, ten catastrophic
+losses (6.25%), and negative-margin mass 3,318. Evidence:
+`owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json`, SHA-256
+`f6367e7feb6b1a6ce219eaedb08d575e3d1ab9ce0ec6eab2be7671ac38f13831`.
+
+This current-era repeat is 1.77 below the historical 24.89 run. Their cross-era median is
+24.005, now below the preseed source's four-run median 24.19. The live result is materially
+better than the displaced far-denial row (19.37), but it still does not overturn the
+candidate's frozen matched-control rejection or meet the 24.70/25.40 project checkpoints.

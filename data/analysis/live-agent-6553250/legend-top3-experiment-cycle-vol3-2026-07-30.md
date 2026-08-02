@@ -1321,3 +1321,22 @@ adverse immature first health; read-only monitoring.** This does not validate th
 historical cross-era score. Evidence is
 `owner-top-score-opponent-crop-arena-execution-2026-08-02.md` and
 `owner-top-score-opponent-crop-initial-checkpoint-20260802T074741Z.json`.
+
+## 2026-08-02 — wide corpus catch-up and opponent-crop mature repeat
+
+The apparent cron gap was a stale STATE count: the 05:17 collector had completed every day
+from July 29 through August 2, and the cache already held 10,188 games. A fresh read-only
+wide run explicitly included current agent `6589709` plus Legend ranks 1–50. Snapshot
+`20260802T092656Z-d61p-wide` fetched 282 missing replays (6,400 already present), with
+50/50 battle lists, 333 requests, and zero acquisition failures. Snapshot QA parsed all
+6,682 wanted games; the cumulative rebuild reached 10,470/10,470 raw/parsed, zero failures,
+10,470 maps, and 513 agents. No cron configuration or Arena state changed.
+
+All 160 current-resident games were newly recovered and have exact submission `41079653`
+identity. The mature checkpoint is clean at 23.12, rank 32/130, 101W/2T/57L, mean margin
++23.44375, ten catastrophes (6.25%), negative-margin mass 3,318, and zero runtime signals.
+This is 1.77 below the historical 24.89 run; the two-run cross-era median is 24.005, below
+preseed's repeated 24.19 median. **Disposition: collection complete / registry evidence
+updated / no Arena mutation.** Evidence:
+`wide-corpus-catchup-2026-08-02.md` and
+`owner-top-score-opponent-crop-mature-checkpoint-20260802T094000Z.json`.

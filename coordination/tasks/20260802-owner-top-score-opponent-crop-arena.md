@@ -1,6 +1,6 @@
 # 20260802-owner-top-score-opponent-crop-arena
 
-- Status: complete — submitted once; exact identity; adverse clean first health
+- Status: complete — submitted once; exact identity; mature repeat observed at 23.12/160
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator / sole Arena controller: local_codex_1
@@ -77,3 +77,12 @@ The owner directive is complete because the literal registry leader was submitte
 once. The result is an adverse immature first health, not a qualified promotion or evidence
 that the historical 24.89 transfers to this era. Monitoring is read-only; no second Arena
 cycle is in flight.
+
+## Mature follow-up
+
+The 2026-08-02 catch-up later captured the full 160-game visible window. A fresh immutable
+submission-scoped checkpoint confirms 160/160 matching and parsed, zero pending/unexpected/
+fetch/runtime faults, score 23.12 at rank 32/130, 101W/2T/57L, mean margin +23.444, ten
+catastrophes (6.25%), and negative-margin mass 3,318. This is a clean mature repeat but is
+1.77 below the historical run. The two-run cross-era median is 24.005; repeated preseed
+evidence now ranks above it at 24.19. No Arena mutation follows automatically.

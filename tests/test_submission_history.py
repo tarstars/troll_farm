@@ -297,6 +297,19 @@ def test_the_live_opponent_crop_checkpoint_is_provisional(registry: dict) -> Non
     assert obs["identity_faults"] == 0
 
 
+def test_the_live_opponent_crop_repeat_is_mature(registry: dict) -> None:
+    obs = next(
+        o
+        for o in registry["observations"]
+        if o["observation_id"] == "obs-41079653-mature160"
+    )
+    assert obs["games_finished"] == 160
+    assert obs["score"] == 23.12
+    assert obs["evidence_maturity"] == "mature"
+    assert obs["runtime_faults"] == 0
+    assert obs["identity_faults"] == 0
+
+
 def test_the_19_37_read_is_provisional_with_no_game_count(registry: dict) -> None:
     """It is a public-leaderboard placement row, not a "19.37/160 mature repeat"."""
     obs = next(o for o in registry["observations"] if o["observation_id"] == "obs-41079354-public-t40")
@@ -352,12 +365,20 @@ def test_min_finished_gate_excludes_small_samples(registry: dict) -> None:
     assert 16.97 not in scores
 
 
-def test_rejected_source_is_flagged_even_when_it_scores_highest(registry: dict) -> None:
+def test_rejected_source_warning_survives_a_live_mature_repeat(registry: dict) -> None:
     ranked = sh.rank_sources(registry)
-    top = ranked[0]
-    assert top["source_id"] == "opponent-crop-b100-e6-slim"
-    assert any(w.startswith("REJECTED_SOURCE") for w in top["warnings"])
-    assert any(w.startswith("CROSS_ERA") for w in top["warnings"])
+    by_id = {summary["source_id"]: summary for summary in ranked}
+    opponent_crop = by_id["opponent-crop-b100-e6-slim"]
+    assert opponent_crop["best_score"] == 24.89
+    assert opponent_crop["mature_runs"] == 2
+    assert any(w.startswith("REJECTED_SOURCE") for w in opponent_crop["warnings"])
+    assert any(w.startswith("CROSS_ERA") for w in opponent_crop["warnings"])
+
+
+def test_repeated_preseed_evidence_now_ranks_above_opponent_crop(registry: dict) -> None:
+    ranked = sh.rank_sources(registry)
+    assert ranked[0]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[0]["median_score"] > ranked[1]["median_score"]
 
 
 def test_cross_era_comparison_is_flagged(registry: dict) -> None:

@@ -773,7 +773,12 @@ def _warnings(registry: dict[str, Any], summary: dict[str, Any]) -> list[str]:
         }
     )
     evidence_eras = summary.get("evidence_eras") or []
-    if live_eras and evidence_eras and not set(evidence_eras) & set(live_eras):
+    if len(evidence_eras) > 1:
+        warnings.append(
+            f"CROSS_ERA: its mature aggregate mixes {', '.join(evidence_eras)}; "
+            "the pool changed between runs, so treat the median as historical context"
+        )
+    elif live_eras and evidence_eras and not set(evidence_eras) & set(live_eras):
         warnings.append(
             f"CROSS_ERA: its mature evidence comes from {', '.join(evidence_eras)} but the "
             f"live field is {', '.join(live_eras)}; the pool has changed under it"

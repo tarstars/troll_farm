@@ -23,12 +23,13 @@ may run in parallel and are claimable by any agent under
 ## Position summary (2026-08-02)
 
 Active resident `6589709`/`41079653` is the owner-directed deployment of the registry's
-literal top mature score, opponent-crop b100 e6 SHA `6f992a5a…` (historical 24.89/160).
-Preflight explicitly warned `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`; this
-was an owner override, not a qualified promotion. First health is identity-clean at 21/21
-parsed plus one pending, zero runtime signals, and an adverse immature score 13.58/rank
-123/130 with one catastrophe. It displaced far-denial at 19.37/rank 73/130. Monitoring is
-read-only. **Goal
+then-literal top score, opponent-crop b100 e6 SHA `6f992a5a…`. Its current exact repeat is
+23.12/160, rank 32/130, with clean identity, zero runtime signals, and ten catastrophes;
+combined with the historical 24.89/160 run, its cross-era median is 24.01. That new repeat
+removes the single-run gap but does not overturn the frozen rejection. The registry now
+ranks repeated preseed evidence first at median 24.19. No Arena mutation follows
+automatically. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
+failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
