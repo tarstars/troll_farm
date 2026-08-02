@@ -1,6 +1,6 @@
 # 20260802-initial-state-sector-policy-audit: find actionable initial-state sectors
 
-- Status: queued — release after `20260802-top-player-full-review-replication` cross-review handoffs
+- Status: partial early ChatGPT handoff staged — Claude/local tranches paused for owner-priority H3a
 - Record owner / integrator: local_codex_1
 - Independent analysis owners: local_codex_1, claude_1, chatgpt_1
 - Area: H11a owner-directed initial-resource/map-sector preflight
@@ -8,7 +8,7 @@
 - Branches: `agent/local_codex_1`, `agent/claude_1`, `agent/chatgpt_1-top-player-full-review`
 - Progress lease: queued acknowledgements confirm receipt only; each 15-minute work lease begins with the later release
 - Created UTC: 2026-08-02T14:07:13Z
-- Last updated UTC: 2026-08-02T14:07:13Z
+- Last updated UTC: 2026-08-02T14:33:06Z
 
 ## Owner hypothesis
 
@@ -107,3 +107,11 @@ The audit is complete only after three pushed independent reports, task-specific
 the released reconciliation review, and integrator disposition. Any future experiment is a
 new frozen protocol with fresh ranges; this task cannot authorize implementation or Arena
 work.
+
+## Scheduling update
+
+ChatGPT's independent report was accepted early and is staged unread by peers at report
+commit `b951e269e81deeefc1a1d852f1d970b181f8e62c`. Claude correctly acknowledged the task as
+queued without starting. The owner's subsequent H3a assignment takes priority: Claude and
+local tranches remain paused, no shared release or cross-review has occurred, and the early
+report does not count as an integrator verdict.
