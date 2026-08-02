@@ -28,6 +28,9 @@ closed-loop banana factory with b100/e6. Exact source is 99,440 bytes, SHA `2d16
 Its approximately 30-minute checkpoint is mechanically clean but weak: 98/98 parsed plus one
 pending, score 12.99/rank 127/131, 49W/49L, mean margin +4.643, and 22 catastrophes. It remains
 provisional under the 100-finished rule; monitoring is read-only and no automatic mutation follows.
+The owner-corrected next build is a gate-aware Chebyshev-1 banana ring: diagonal seed mothers,
+orthogonal cut/replant wood trees, and surplus fruit banked at a full ring. Its pre-lock packet is
+integrated and local build paths are assigned; no successor source or Arena authority exists yet.
 The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
 registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
@@ -256,7 +259,9 @@ continues with construction and rating-dynamics measurement, not waiting.
   MEASUREMENT_ONLY:** the exploratory sign rule marks 13/60 roots (10 TP / 3 FP), while the
   primary ridge gate fails at 55% precision. The original exact delta magnitudes are now
   compactly recovered; price only the already frozen rule without fitting or retuning. Do not
-  build a candidate or touch Arena.
+  confuse mechanical readiness with value: exact candidate `97bfe71e...` now compiles, passes
+  4/4 construction tests and a 16/16 inside-FLIP/outside-control bridge, but remains unqualified
+  and `arena_authorized: false`. Do not touch Arena without a separate owner/controller decision.
 - **S1 ✅ DONE — FULL_EXACT_INFEASIBLE.** In 720 reused control games, 34.17% reach
   turn 251 and 21.53% reach 291. Exact movement-only simultaneous one-ply outcomes are
   median 600/max 6,400 overall and median 450 at t291, so first-ply size is not the sole

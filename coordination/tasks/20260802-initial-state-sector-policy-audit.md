@@ -130,3 +130,9 @@ produce a byte-identical CSV (`cb2a98e6...`); sorted compact rows are `2921f906.
 original row hashes remain exact. No traces or command streams were published and no simulation,
 fit, or rule change occurred. ChatGPT now owns pricing of the already frozen C1 rule only. Claude/
 local independent tranches and reconciliation remain paused until H3a release.
+
+Under the separate owner-directed task `20260802-e7a-sector-candidate`, the frozen rule is now
+materialized on the preseed resident as exact source SHA `97bfe71e...`. Four construction tests
+and a 16-seat-game semantic bridge pass: inside-sector rows equal full FLIP and outside-sector
+rows equal control. This establishes technical identity only. It does not change this task's
+measurement-only verdict, replace frozen-rule pricing, provide fresh value, or authorize Arena.

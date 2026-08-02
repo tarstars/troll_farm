@@ -1,0 +1,68 @@
+name: chatgpt_1 E7a sector candidate
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-e7a-sector-candidate
+    paths:
+      - .github/workflows/chatgpt_1-e7a-sector-candidate.yml
+      - chatgpt_1/e7a_sector_candidate_builder.py
+      - chatgpt_1/e7a_sector_candidate_bridge.py
+      - chatgpt_1/e7a-initial-sector-sign-preflight-2026-08-02.csv
+      - tests/test_e7a_sector_candidate_builder.py
+      - cgauto/e7_type_to_cut_audit.py
+      - cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs
+      - sim/mapgen.py
+      - sim/engine.py
+      - sim/state.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          python3 --version
+          rustc --version
+
+      - name: Materialize exact candidate
+        run: |
+          mkdir -p dist
+          python3 chatgpt_1/e7a_sector_candidate_builder.py \
+            --candidate dist/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs \
+            --manifest dist/e7a-sector-candidate-manifest.json
+
+      - name: Run focused construction tests
+        run: |
+          python3 -m unittest discover -s tests \
+            -p 'test_e7a_sector_candidate_builder.py' -v
+
+      - name: Prove exact control-or-FLIP command-stream bridge
+        run: |
+          python3 chatgpt_1/e7a_sector_candidate_bridge.py \
+            --output dist/e7a-sector-candidate-bridge.json
+
+      - name: Record immutable artifact hashes
+        run: |
+          sha256sum \
+            dist/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs \
+            dist/e7a-sector-candidate-manifest.json \
+            dist/e7a-sector-candidate-bridge.json \
+            > dist/SHA256SUMS
+          cat dist/SHA256SUMS
+
+      - name: Upload candidate packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: e7a-sector-candidate-packet
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30

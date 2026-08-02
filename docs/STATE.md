@@ -131,7 +131,8 @@ makes the goalpost move in the wrong direction.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is an active
   contributor without platform credentials; `chatgpt_1` is a contributor. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: banana-factory+b100/e6 `6590083`/`41081195`.
+  surveillance. Sole Arena leg: banana-factory+b100/e6 `6590083`/`41081195`; next local-only
+  build is the bounded gate-aware banana ring, with no source or Arena handoff yet.
 
 ## 5. Reading order & pointers
 

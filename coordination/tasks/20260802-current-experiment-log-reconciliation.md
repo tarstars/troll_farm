@@ -1,9 +1,10 @@
 # 20260802-current-experiment-log-reconciliation
 
-- Status: active — peer handoffs integrated; registry, acknowledgements, and shared state under repair
+- Status: complete — current experiment records reconciled, audited, and remotely published
 - Record/work owner: local_codex_1
 - Integrator: local_codex_1
 - Created UTC: 2026-08-02T16:25:46Z
+- Completed UTC: 2026-08-02T16:45:59Z
 - Branch: `agent/local_codex_1`
 - Area: current experiment and coordination-record integrity
 
@@ -53,3 +54,16 @@ write, formatter, history rewrite, or peer-private edit. The sacred Rust source 
 - E7 original `/tmp` outputs are checked only by exact path/hash and either compactly materialized
   or given an exact negative result;
 - current artifact hashes, gzip integrity, JSON, sacred source, Git refs, and clean worktree pass.
+
+## Result
+
+All acceptance checks pass. Canonical Arena state is `41081195` / `6590083`; the 98-game read is
+clean but provisional. Registry build/validation and 44 focused registry tests pass; the
+freshness-aware inbox suite passes 11 tests and reports zero outstanding ACK-required messages.
+Both E7 locked outputs produce the same 360-row compact CSV and all H3a package hashes/gzip files
+verify. The integrated banana-ring packet remains a pre-lock successor, while the later E7a
+candidate claim was explicitly blocked from integration after its suite failed `1/4` and the G4
+bridge was absent. ChatGPT corrected both; the final host run passes 4/4 construction tests and
+16/16 exact bridge games after a regression-tested `.min.rs` crate-name fix. The result remains
+unqualified and Arena-unauthorized. Full report:
+`data/analysis/live-agent-6553250/current-experiment-log-reconciliation-2026-08-02.md`.
