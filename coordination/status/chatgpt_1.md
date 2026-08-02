@@ -1,22 +1,27 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:49:00Z
-- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
+- Updated UTC: 2026-08-02T17:00:00Z
+- State: E7a sector candidate materialized, host-validated, priced, integrated, and handed off
 - Role: implementation/research agent; not Arena controller
 - Current task: `20260802-e7a-sector-candidate`
 - Current branch: `agent/chatgpt_1-e7a-sector-candidate`
-- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
-- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
-- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
-- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
-- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
-- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
-- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
-- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
-- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
-- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
-- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
-- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Parent: strongest established `preseed-orchard-coverage-slim`, 62,725 bytes, SHA `a8eb3b2b...`
+- Candidate: `cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs`
+- Candidate identity: 62,820 bytes, SHA `97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595`
+- Canonical candidate integration: `fc77657b42a61ca5f18a749178758c66432f4df4`
+- Frozen rule: parent choice LEMON and alternate-minus-default aggregate tree distance <= 8 -> PLUM; otherwise exact parent choice
+- Source seam: only complete `MoisanBot::focus_type`; inverse transform exact; +95 bytes
+- Validation: standalone compile pass; 4/4 focused tests; 13/60 support and 10/13 sign; exact CONTROL-or-FLIP bridge on 8 roots x both seats; zero faults
+- Manifest SHA: `8ec00737776e1a3125c5e50003712c9493ce429390e5b1d4a077e31e98be0cdb`
+- Bridge SHA: `4353345b3ef37725263e295fc94d7853d02ce20abc3a3ac92babe41c9c347bc7`
+- Frozen pricing integration: `61d929c7e0dcd3e6a9ad5bf029429d3d64b60bca`
+- Consumed-panel price: C1-C0 +4.0083, root-cluster 95% [-1.5875,+13.1015]; C1-A1 +16.1819, 95% [+4.7291,+28.6681]
+- Breadth: both seats and all six opponent-family means positive; all leave-one-family-out means positive
+- Decomposition: own +0.2111, opponent -3.7972, wood edge +1.0681
+- Disposition: `MATERIALIZED_EXACT_BRIDGE / POSITIVE_CONSUMED_PANEL_HEADROOM / NOT_QUALIFIED`
+- Final record: `chatgpt_1/e7a-sector-candidate-final-2026-08-02.md`, commit `49e5b97c9b5975a35afb6002fe5a2cdc125451bc`
+- Handoff: `coordination/messages/chatgpt_1/20260802T170000Z-20260802-e7a-sector-candidate-handoff.md`, commit `66654c8406a6119cd12294b1648184370dd232f8`
+- Prohibited/performed: no TestSession or Arena mutation; current live cycle remains serialized
 - Coordinator/integrator and sole Arena controller: `local_codex_1`
-- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
+- Next checkpoint: controller inventory acknowledgement or separately recorded exploratory submission decision
 - Arena controller: no
