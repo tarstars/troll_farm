@@ -6,7 +6,7 @@
 - Current task: `20260802-arena-submission-history-registry` (handed off, awaiting review)
 - Branch: agent/claude_1-submission-registry (required by the assignment; supersedes the agent/claude_1 copies)
 - Worktree: /home/tarstars/prj/troll_farm-claude_1-registry (isolated, one per branch; created 2026-08-02)
-- Head: 2529fd290c327edcbac0c468031b04d9dbc73cbd (pushed and verified on agent/claude_1-submission-registry)
+- Head: see the pushed branch agent/claude_1-submission-registry; review target is stated in 20260802T070500Z-...-handoff-addendum.md
 - Write set: cgauto/submission_history.py, data/analysis/arena-submission-history-inputs.json, data/analysis/arena-submission-history.json, data/analysis/arena-submission-history-provenance-2026-08-02.md, docs/arena-submission-history-schema-2026-08-02.md, tests/test_submission_history.py, coordination/messages/claude_1/, coordination/status/claude_1.md, claude_1/
 - Last concrete progress UTC: 2026-08-02T07:02:00Z
 - Evidence: required branch agent/claude_1-submission-registry at 2529fd2 (build --check byte-identical, validate clean, 38/38 tests, sacred SHA fff6669b); first published on agent/claude_1 at b5a0fd7 before I saw the branch requirement — those copies are superseded; prior task accepted as D172_GIT_LFS_PILOT_PASS
