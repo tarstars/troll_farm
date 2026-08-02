@@ -1,0 +1,868 @@
+{
+  "schema": 1,
+  "scope": "consumed seeds 1300..1307, both seats; paired smoke, not a fitted estimate",
+  "status": "CLOSED",
+  "behavior": {
+    "plants_outside_ring": 0,
+    "max_own_banana_chebyshev_from_tent": 1,
+    "max_concurrent_own_ring_bananas": 8,
+    "orthogonal_chop_actions": 726,
+    "diagonal_ordinary_chops": 11,
+    "banana_drops_after_full_ring": 339,
+    "full_ring_bank_picks": 0,
+    "wood_deposit_increase": 946
+  },
+  "behavior_invariants_pass": false,
+  "no_severe_tail_regression": true,
+  "arms": {
+    "fallback_b100_e6": {
+      "games": 16,
+      "wins": 12,
+      "ties": 0,
+      "mean_margin": 24.5,
+      "median_margin": 6.5,
+      "catastrophes_le_minus_40": 2,
+      "negative_margin_mass": 199,
+      "rows": [
+        {
+          "seed": 1300,
+          "seat": 0,
+          "score": 233,
+          "opponent_score": 230,
+          "margin": 3,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1300,
+          "seat": 1,
+          "score": 164,
+          "opponent_score": 156,
+          "margin": 8,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 0,
+          "score": 128,
+          "opponent_score": 123,
+          "margin": 5,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 1,
+          "score": 116,
+          "opponent_score": 99,
+          "margin": 17,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 0,
+          "score": 284,
+          "opponent_score": 185,
+          "margin": 99,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 1,
+          "score": 220,
+          "opponent_score": 198,
+          "margin": 22,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 0,
+          "score": 88,
+          "opponent_score": 39,
+          "margin": 49,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 1,
+          "score": 88,
+          "opponent_score": 83,
+          "margin": 5,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 0,
+          "score": 244,
+          "opponent_score": 107,
+          "margin": 137,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 1,
+          "score": 184,
+          "opponent_score": 133,
+          "margin": 51,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 0,
+          "score": 176,
+          "opponent_score": 207,
+          "margin": -31,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 1,
+          "score": 176,
+          "opponent_score": 193,
+          "margin": -17,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 0,
+          "score": 219,
+          "opponent_score": 25,
+          "margin": 194,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 1,
+          "score": 212,
+          "opponent_score": 211,
+          "margin": 1,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 0,
+          "score": 235,
+          "opponent_score": 323,
+          "margin": -88,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 1,
+          "score": 204,
+          "opponent_score": 267,
+          "margin": -63,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        }
+      ]
+    },
+    "live_unbounded_factory": {
+      "games": 16,
+      "wins": 7,
+      "ties": 0,
+      "mean_margin": 7.4375,
+      "median_margin": -7.0,
+      "catastrophes_le_minus_40": 5,
+      "negative_margin_mass": 589,
+      "rows": [
+        {
+          "seed": 1300,
+          "seat": 0,
+          "score": 204,
+          "opponent_score": 346,
+          "margin": -142,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1300,
+          "seat": 1,
+          "score": 188,
+          "opponent_score": 333,
+          "margin": -145,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 0,
+          "score": 255,
+          "opponent_score": 275,
+          "margin": -20,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 1,
+          "score": 243,
+          "opponent_score": 244,
+          "margin": -1,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 0,
+          "score": 428,
+          "opponent_score": 300,
+          "margin": 128,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 1,
+          "score": 320,
+          "opponent_score": 290,
+          "margin": 30,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 0,
+          "score": 191,
+          "opponent_score": 179,
+          "margin": 12,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 1,
+          "score": 175,
+          "opponent_score": 219,
+          "margin": -44,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 0,
+          "score": 441,
+          "opponent_score": 225,
+          "margin": 216,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 1,
+          "score": 377,
+          "opponent_score": 301,
+          "margin": 76,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 0,
+          "score": 455,
+          "opponent_score": 315,
+          "margin": 140,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 1,
+          "score": 456,
+          "opponent_score": 350,
+          "margin": 106,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 0,
+          "score": 315,
+          "opponent_score": 328,
+          "margin": -13,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 1,
+          "score": 303,
+          "opponent_score": 385,
+          "margin": -82,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 0,
+          "score": 375,
+          "opponent_score": 413,
+          "margin": -38,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 1,
+          "score": 339,
+          "opponent_score": 443,
+          "margin": -104,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 0,
+            "max_concurrent_own_ring_bananas": 0,
+            "orthogonal_chop_actions": 0,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 0
+          }
+        }
+      ]
+    },
+    "bounded_ring": {
+      "games": 16,
+      "wins": 6,
+      "ties": 0,
+      "mean_margin": -7.625,
+      "median_margin": -8.0,
+      "catastrophes_le_minus_40": 5,
+      "negative_margin_mass": 548,
+      "rows": [
+        {
+          "seed": 1300,
+          "seat": 0,
+          "score": 262,
+          "opponent_score": 296,
+          "margin": -34,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 6,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 61,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 49
+          }
+        },
+        {
+          "seed": 1300,
+          "seat": 1,
+          "score": 230,
+          "opponent_score": 300,
+          "margin": -70,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 6,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 61,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 41
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 0,
+          "score": 217,
+          "opponent_score": 223,
+          "margin": -6,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 5,
+            "orthogonal_chop_actions": 65,
+            "diagonal_ordinary_chops": 1,
+            "banana_drops_after_full_ring": 28,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 48
+          }
+        },
+        {
+          "seed": 1301,
+          "seat": 1,
+          "score": 186,
+          "opponent_score": 196,
+          "margin": -10,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 5,
+            "orthogonal_chop_actions": 69,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 18,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 40
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 0,
+          "score": 346,
+          "opponent_score": 247,
+          "margin": 99,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 8,
+            "orthogonal_chop_actions": 48,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 26,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 78
+          }
+        },
+        {
+          "seed": 1302,
+          "seat": 1,
+          "score": 258,
+          "opponent_score": 273,
+          "margin": -15,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 8,
+            "orthogonal_chop_actions": 47,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 7,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 61
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 0,
+          "score": 190,
+          "opponent_score": 183,
+          "margin": 7,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 33,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 1,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 46
+          }
+        },
+        {
+          "seed": 1303,
+          "seat": 1,
+          "score": 135,
+          "opponent_score": 214,
+          "margin": -79,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 36,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 33
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 0,
+          "score": 350,
+          "opponent_score": 229,
+          "margin": 121,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 6,
+            "orthogonal_chop_actions": 19,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 14,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 82
+          }
+        },
+        {
+          "seed": 1304,
+          "seat": 1,
+          "score": 265,
+          "opponent_score": 267,
+          "margin": -2,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 24,
+            "diagonal_ordinary_chops": 1,
+            "banana_drops_after_full_ring": 7,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 64
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 0,
+          "score": 357,
+          "opponent_score": 283,
+          "margin": 74,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 5,
+            "orthogonal_chop_actions": 93,
+            "diagonal_ordinary_chops": 1,
+            "banana_drops_after_full_ring": 10,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 84
+          }
+        },
+        {
+          "seed": 1305,
+          "seat": 1,
+          "score": 304,
+          "opponent_score": 219,
+          "margin": 85,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 5,
+            "orthogonal_chop_actions": 66,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 19,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 69
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 0,
+          "score": 233,
+          "opponent_score": 277,
+          "margin": -44,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 23,
+            "diagonal_ordinary_chops": 8,
+            "banana_drops_after_full_ring": 26,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 47
+          }
+        },
+        {
+          "seed": 1306,
+          "seat": 1,
+          "score": 124,
+          "opponent_score": 371,
+          "margin": -247,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 7,
+            "orthogonal_chop_actions": 6,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 54,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 13
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 0,
+          "score": 416,
+          "opponent_score": 376,
+          "margin": 40,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 8,
+            "orthogonal_chop_actions": 88,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 0,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 100
+          }
+        },
+        {
+          "seed": 1307,
+          "seat": 1,
+          "score": 386,
+          "opponent_score": 427,
+          "margin": -41,
+          "metrics": {
+            "plants_outside_ring": 0,
+            "max_own_banana_chebyshev_from_tent": 1,
+            "max_concurrent_own_ring_bananas": 8,
+            "orthogonal_chop_actions": 97,
+            "diagonal_ordinary_chops": 0,
+            "banana_drops_after_full_ring": 7,
+            "full_ring_bank_picks": 0,
+            "wood_deposit_increase": 91
+          }
+        }
+      ]
+    }
+  }
+}

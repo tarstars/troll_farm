@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "status": "CLOSED",
+  "candidate": {
+    "path": "local_codex_1/banana-ring-b100-successor/banana-ring-b100-e6.arena.rs",
+    "bytes": 99500,
+    "sha256": "090a92334b909a38f391b27ab3ca8dabbbe5c3272a2f0937cefa6420f53a7d01"
+  },
+  "fresh_generation": {
+    "schema": "troll-farm-banana-ring-b100-e6-research-build-v1",
+    "status": "research_only_not_submission_ready",
+    "inputs": {
+      "source": "rust/src/bin/yamo_orchard_live.rs",
+      "source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "control": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+      "control_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+    },
+    "intervention": {
+      "constructor": "banana_ring_opponent_crop_b100_e6",
+      "banana_ring": true,
+      "opponent_crop_bonus": 100,
+      "opponent_crop_eta_limit": 6
+    },
+    "outputs": {
+      "research": {
+        "path": "/tmp/banana-ring-gate-fboeycgp/generated/banana-ring-b100-e6.research.rs",
+        "sha256": "2e93cd0136920cbd314116390a1340db0b03e1287ed4567aba2ff904b6914619",
+        "bytes": 305013
+      },
+      "compact": {
+        "path": "/tmp/banana-ring-gate-fboeycgp/generated/banana-ring-b100-e6.compact.rs",
+        "sha256": "874fc967b480dba25da4c62d4ac44991918f60e89fd043b4746b4ec6bb515a83",
+        "bytes": 162680
+      }
+    }
+  },
+  "gates": {
+    "semantic_tests": {
+      "passed": 34,
+      "failed": 0,
+      "summary": "test result: ok. 34 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+    },
+    "mutated_parent_rejected": true,
+    "standalone_compile": "PASS",
+    "empty_input_zero_stderr": "PASS",
+    "stream_equality": {
+      "streams": 8,
+      "exact_streams": 8,
+      "commands": 2400,
+      "rows": [
+        {
+          "seed": 1300,
+          "seat": 0,
+          "opponent": "ringfix3",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1300,
+          "seat": 1,
+          "opponent": "taskplan",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1301,
+          "seat": 0,
+          "opponent": "ringfix3",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1301,
+          "seat": 1,
+          "opponent": "taskplan",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1302,
+          "seat": 0,
+          "opponent": "ringfix3",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1302,
+          "seat": 1,
+          "opponent": "taskplan",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1303,
+          "seat": 0,
+          "opponent": "ringfix3",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        },
+        {
+          "seed": 1303,
+          "seat": 1,
+          "opponent": "taskplan",
+          "turns": 300,
+          "terminal_turn": 300,
+          "exact": true
+        }
+      ]
+    },
+    "latency": {
+      "commands": 2400,
+      "mean_ms": 1.2767639393374945,
+      "p50_ms": 1.2753910850733519,
+      "p95_ms": 2.0149911288172007,
+      "maximum_ms": 4.466536920517683,
+      "p95_gate_ms": 2.0,
+      "maximum_gate_ms": 10.0,
+      "passed": false
+    }
+  }
+}
