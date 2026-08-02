@@ -1,6 +1,9 @@
 # 20260802-top-player-new-games-multiagent-analysis
 
 - Status: integrated — COMPLETE_WITH_EXTERNAL_LEASE_TAKEOVER at `73eb3ea`
+- Post-closeout correction: takeover chronology corrected in
+  `20260802T122000Z-...-correction.md`; a separate independent review is assigned under
+  `20260802-top-player-final-independent-review`.
 - Record owner / integrator: local_codex_1
 - Work owner: local_codex_1 (lease takeover at 2026-08-02T11:33:00Z)
 - Unavailable assignees: claude_1, chatgpt_1 (no acknowledgement or task progress after the
