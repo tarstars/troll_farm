@@ -6,6 +6,18 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## P0 operational safety — Arena submission registry
+
+- **R1 READY / UNASSIGNED — categorized submission-history registry and query tool.** The
+  2026-08-02 selection mistake considered only the recent owner-directed lineage and one
+  22.99 far-denial maximum, omitting repeated stronger preseed-resident evidence. The repeated
+  far-denial source has now terminated at 19.37, rank 73/130. Build a deterministic JSON
+  projection plus query/preflight tool, categorized independently by strategy/architecture,
+  deployment purpose, evidence maturity, disposition, comparison type, and authority. Default
+  source ranking must aggregate repeated mature runs and expose cross-era comparability; it
+  must never select by a single maximum. Task and acceptance contract:
+  `coordination/tasks/20260802-arena-submission-history-registry.md`.
+
 ## Position summary (2026-08-02)
 
 Active resident `6589510`/`41079354` is the owner-directed restoration of the strongest
