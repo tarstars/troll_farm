@@ -26,6 +26,7 @@ new LFS namespace without rewriting Git history or deleting the authoritative US
 - this task record;
 - `coordination/status/local_codex_1.md`;
 - own immutable messages for this task and probe assignments;
+- `local_codex_1/lfs-probe/` for one tiny host upload/download proof;
 - `coordination/ENVIRONMENTS.md`;
 - `docs/git-lfs-shared-artifact-migration-plan-2026-08-02.md`;
 - a new `data/shared-lfs/` namespace and only its exact `.gitattributes`, manifests, and
@@ -64,4 +65,3 @@ experiment, model fit, source change, USB deletion, or history rewrite.
 - Claude and ChatGPT probe assignments are remotely published at `0747756` and await
   acknowledgements/results.
 - No research payload has been copied or uploaded.
-
