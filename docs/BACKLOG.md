@@ -620,6 +620,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   to 16.37 over 265 clean parsed games with 40 catastrophes and negative mass 10,285.
   The owner directed restoration of the best bot; far-denial d3 SHA `307a0755…` was
   submitted exactly once as `6589510`/`41079354`. Initial health is clean but immature.
+- **B3.17 — ENDGAME REMOVAL-RACE PREFLIGHT / NO SOURCE.** In the sole open direct
+  current-vs-top20 game `897780884`, Astrobytes fells all five resident endgame APPLE
+  conversions and captures seven wood; KEEP_BANK conservatively retains five resident
+  points, while +33 margin is only a replay-conditioned optimistic ceiling. Run a read-only
+  provenance census over the 153 exact open IDs. Stop unless recurrence across both seats
+  and identities raises the frozen whole-corpus optimistic ceiling to 20 margin/game. Only
+  then may a pre-PICK opponent-removal-race boundary be proposed; do not change turn 250,
+  plant pacing, salvage, species, bonus, or focus.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

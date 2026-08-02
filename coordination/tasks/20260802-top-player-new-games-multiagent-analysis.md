@@ -1,8 +1,13 @@
 # 20260802-top-player-new-games-multiagent-analysis
 
-- Status: claimed — shared cohort preparation in progress
+- Status: integrated — COMPLETE_WITH_EXTERNAL_LEASE_TAKEOVER at `73eb3ea`
+- Post-closeout correction: takeover chronology corrected in
+  `20260802T122000Z-...-correction.md`; a separate independent review is assigned under
+  `20260802-top-player-final-independent-review`.
 - Record owner / integrator: local_codex_1
-- Work owners: local_codex_1, claude_1, chatgpt_1
+- Work owner: local_codex_1 (lease takeover at 2026-08-02T11:33:00Z)
+- Unavailable assignees: claude_1, chatgpt_1 (no acknowledgement or task progress after the
+  corrected fetchable assignment)
 - Created UTC: 2026-08-02T10:52:42Z
 - Branch: `agent/local_codex_1`
 - Area: read-only analysis of newly collected games against top players
@@ -23,13 +28,18 @@ Source snapshot: `20260802T092656Z-d61p-wide`, completed
 - Our bot means exact agent/submission `6589709`/`41079653`.
 - Top players means snapshot-time Legend ranks 1–20, matching the collector's established
   `legend_top20` definition.
-- Primary cohort: new open games of our bot against those top-20 identities.
-- Context cohorts: all 160 new open current-bot games, rank-21–50 opponents, and new open
-  games sourced from top-20 agents.
+- Current-new cohort: 153 open fetched games of our exact bot; seven further fetched current
+  games are sealed-tagged and excluded.
+- Direct top-20 slice: exactly one open current-vs-top20 game, `897780884` versus rank-13
+  Astrobytes. It supports an exact postmortem but cannot establish breadth or value alone.
+- Benchmark cohort: 2,684 open games sourced from snapshot top-20 agents, including prior
+  cache entries; only three of those games are newly fetched. Benchmark comparisons are
+  observational context, never direct current-vs-top evidence.
 - The seven sealed-confirmation-tagged games are excluded from every shared row and analysis.
 
-`local_codex_1` will publish a compact, sanitized, hash-pinned shared corpus derived from
-the snapshot so cloud agents need neither platform credentials nor the host raw cache.
+`local_codex_1` publishes a compact, sanitized, hash-pinned shared corpus derived from the
+snapshot so cloud agents need neither platform credentials nor the host raw cache. The
+union contains 2,836 open games / 5,672 side rows.
 
 ## Parallel tracks
 
@@ -69,6 +79,15 @@ Each review checks evidence provenance, arithmetic, constraint collisions, test 
 and rank ordering. The integrator publishes a final consensus/dissent ranking only after all
 reviews or an explicit lease-based blocker.
 
+### Lease-takeover substitution
+
+The external ring was not entered because neither external assignee acknowledged or
+published an initial report. After the 15-minute lease elapsed, the integrator formally
+took over their unstarted write sets. Three isolated read-only tracks had completed in
+parallel: quantitative matchup, economy/action-flow, and exact direct-game postmortem.
+Their completed ring is economy→matchup, matchup→direct, direct→economy. The final report
+must distinguish these completed reviews from the two missing external handoffs.
+
 ## Exclusive write sets
 
 - local_codex_1: this task, shared corpus/manifest under
@@ -88,6 +107,8 @@ idea is not authorization to implement or deploy it.
 
 ## Acceptance
 
-Three initial reports, three cross-reviews, a compact shared corpus with deterministic
-hashes, and one integrated ranked list with immediately runnable checks. Claims, handoffs,
-reviews and integration must be pushed and remotely verified under the protocol.
+Three independent read-only track reports, three cross-reviews, a compact shared corpus
+with deterministic hashes, and one integrated ranked list with immediately runnable
+checks. The final report must record the lease takeover and must not imply that the two
+unavailable external assignees contributed. Claims, takeover, reviews and integration must
+be pushed and remotely verified under the protocol.
