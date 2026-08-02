@@ -30,7 +30,6 @@ TARGET_BYTES = 31_410
 
 
 YAMO_STRUCT = """pub struct YamoBot {
-            announced: bool,
             type_to_cut: Option<PlantKind>,
             desired_second: Option<Stats>,
         }"""
@@ -38,7 +37,7 @@ YAMO_STRUCT = """pub struct YamoBot {
 
 YAMO_IMPL = r"""impl YamoBot {
             pub fn new() -> Self {
-                Self { announced: false, type_to_cut: None, desired_second: None }
+                Self { type_to_cut: None, desired_second: None }
             }
 
             fn ensure_opening(&mut self, view: &GameState) {
@@ -56,10 +55,30 @@ YAMO_IMPL = r"""impl YamoBot {
                     .filter(|cell| view.walkable.contains(cell))
                     .collect();
                 let distance = bfs_distances(&view.walkable, &doors);
+                let nearest_tree = |kind| view.plants
+                    .iter()
+                    .filter(|plant| plant.kind == kind && plant.health > 0)
+                    .filter_map(|plant| {
+                        let travel = *distance.get(&plant.cell)?;
+                        let wait = (MoisanBot::ticks_until_fruit(view, plant) - travel).max(0);
+                        Some((travel, wait))
+                    })
+                    .min()
+                    .unwrap_or((10_000, 0));
+                let resource_cost = [
+                    nearest_tree(PlantKind::Plum),
+                    nearest_tree(PlantKind::Lemon),
+                    (view.iron.iter()
+                        .flat_map(|cell| ortho_neighbors(*cell))
+                        .filter_map(|cell| distance.get(&cell))
+                        .copied()
+                        .min()
+                        .unwrap_or(10_000), 0),
+                ];
                 let choices = [
                     (2, 2, 2),
                     (2, 2, 3),
-                    (2, 2, 1),
+                    (1, 2, 1),
                     (3, 2, 2),
                     (2, 3, 2),
                     (1, 2, 2),
@@ -77,28 +96,11 @@ YAMO_IMPL = r"""impl YamoBot {
                         let cost = training_cost(1, stats.tuple());
                         let eta = [PLUM, LEMON, IRON]
                             .into_iter()
-                            .filter(|item| *item != IRON || !view.iron.is_empty())
-                            .map(|item| {
+                            .zip(resource_cost)
+                            .filter(|(item, _)| *item != IRON || !view.iron.is_empty())
+                            .map(|(item, (travel, wait))| {
                                 let missing = (cost[item] - view.inventories[0][item]).max(0);
-                                let travel = if item == IRON {
-                                    view.iron.iter()
-                                        .flat_map(|cell| ortho_neighbors(*cell))
-                                        .filter_map(|cell| distance.get(&cell))
-                                        .copied()
-                                        .min()
-                                } else {
-                                    let kind = if item == PLUM {
-                                        PlantKind::Plum
-                                    } else {
-                                        PlantKind::Lemon
-                                    };
-                                    view.plants.iter()
-                                        .filter(|plant| plant.kind == kind && plant.health > 0)
-                                        .filter_map(|plant| distance.get(&plant.cell))
-                                        .copied()
-                                        .min()
-                                }.unwrap_or(10_000);
-                                missing * (2 * travel + 2)
+                                missing * (2 * travel + 2) + wait
                             })
                             .sum::<i32>();
                         (
@@ -119,66 +121,23 @@ YAMO_IMPL = r"""impl YamoBot {
                     .unwrap()
             }
 
-            fn fixed_bank_candidates(view: &GameState, unit: &Unit) -> Vec<Candidate> {
-                let starts: Vec<Cell> = ortho_neighbors(view.shacks[0])
-                    .into_iter()
-                    .filter(|cell| view.walkable.contains(cell))
-                    .collect();
-                let distance = bfs_distances(&view.walkable, &[unit.cell]);
-                let door = if starts.contains(&unit.cell) {
-                    Some(unit.cell)
+            fn fruit_kind(stock: &[i32; 6], bank: bool) -> Option<PlantKind> {
+                let order = if bank {
+                    [BANANA, PLUM, LEMON, APPLE]
                 } else {
-                    let mut reachable: Vec<Cell> = starts
-                        .into_iter()
-                        .filter(|cell| distance.contains_key(cell))
-                        .collect();
-                    reachable.sort();
-                    let slot = view.units.iter().filter(|other| {
-                        other.player == 0 && other.id < unit.id
-                    }).count();
-                    (!reachable.is_empty()).then(|| reachable[slot % reachable.len()])
+                    [PLUM, LEMON, APPLE, BANANA]
                 };
-                let Some(door) = door else { return vec![MoisanBot::wait()] };
-                vec![Candidate {
-                    command: if unit.cell == door {
-                        format!("DROP {}", unit.id)
-                    } else {
-                        format!("MOVE {} {} {}", unit.id, door.0, door.1)
-                    },
-                    score: if unit.cell == door { 21_000.0 } else { 20_000.0 },
-                    target: Target::Bank(door),
-                }, MoisanBot::wait()]
-            }
-
-            fn carried_fruit(unit: &Unit) -> Option<PlantKind> {
-                [
-                    (PLUM, PlantKind::Plum),
-                    (LEMON, PlantKind::Lemon),
-                    (APPLE, PlantKind::Apple),
-                    (BANANA, PlantKind::Banana),
-                ]
-                .into_iter()
-                .find(|(item, _)| unit.carry[*item] > 0)
-                .map(|(_, kind)| kind)
-            }
-
-            fn bank_fruit(view: &GameState) -> Option<PlantKind> {
-                [
-                    (BANANA, PlantKind::Banana),
-                    (PLUM, PlantKind::Plum),
-                    (LEMON, PlantKind::Lemon),
-                    (APPLE, PlantKind::Apple),
-                ]
-                .into_iter()
-                .find(|(item, _)| view.inventories[0][*item] > 0)
-                .map(|(_, kind)| kind)
-            }
-
-            fn conversion_chop_turns(
-                kind: PlantKind,
-                chop_power: i32,
-            ) -> i32 {
-                MoisanBot::ceil_div(tree_health(kind, 1), chop_power)
+                for item in order {
+                    if stock[item] > 0 {
+                        return Some(match item {
+                            PLUM => PlantKind::Plum,
+                            LEMON => PlantKind::Lemon,
+                            APPLE => PlantKind::Apple,
+                            _ => PlantKind::Banana,
+                        });
+                    }
+                }
+                None
             }
 
             fn endgame_candidates(
@@ -187,12 +146,12 @@ YAMO_IMPL = r"""impl YamoBot {
                 focus: Option<PlantKind>,
             ) -> Vec<Candidate> {
                 if unit.carry[WOOD] > 0 {
-                    return Self::fixed_bank_candidates(view, unit);
+                    return MoisanBot::bank_candidates(view, unit);
                 }
                 let turns_left = TOTAL_TURNS - view.turn + 1;
-                if let Some(kind) = Self::carried_fruit(unit) {
+                if let Some(kind) = Self::fruit_kind(&unit.carry, false) {
                     if view.turn <= 250 && (view.turn < 100 || view.plants.len() > 2) {
-                        return Self::fixed_bank_candidates(view, unit);
+                        return MoisanBot::bank_candidates(view, unit);
                     }
                     let distance = bfs_distances(&view.walkable, &[unit.cell]);
                     let target = ortho_neighbors(view.shacks[0])
@@ -205,15 +164,15 @@ YAMO_IMPL = r"""impl YamoBot {
                         }))
                         .min_by_key(|cell| (distance[cell], *cell));
                     let Some(cell) = target else {
-                        return Self::fixed_bank_candidates(view, unit);
+                        return MoisanBot::bank_candidates(view, unit);
                     };
                     let travel = MoisanBot::ceil_div(
                         distance[&cell], unit.stats.movement_speed
                     );
-                    if travel + Self::conversion_chop_turns(
-                        kind, unit.stats.chop_power
+                    if travel + MoisanBot::ceil_div(
+                        tree_health(kind, 1), unit.stats.chop_power
                     ) + 3 > turns_left {
-                        return Self::fixed_bank_candidates(view, unit);
+                        return MoisanBot::bank_candidates(view, unit);
                     }
                     return vec![Candidate {
                         command: if unit.cell == cell {
@@ -226,7 +185,7 @@ YAMO_IMPL = r"""impl YamoBot {
                     }];
                 }
                 if unit.total_carried() > 0 {
-                    return Self::fixed_bank_candidates(view, unit);
+                    return MoisanBot::bank_candidates(view, unit);
                 }
                 let mut out = vec![MoisanBot::wait()];
                 let chops = MoisanBot::chop_candidates(view, unit, focus);
@@ -240,11 +199,11 @@ YAMO_IMPL = r"""impl YamoBot {
                     return out;
                 }
                 if view.turn > 250 || view.turn >= 100 && view.plants.len() <= 2 {
-                    if let Some(kind) = Self::bank_fruit(view) {
+                    if let Some(kind) = Self::fruit_kind(&view.inventories[0], true) {
                     if is_adjacent(unit.cell, view.shacks[0])
                         && view.plant_at(unit.cell).is_none()
-                        && Self::conversion_chop_turns(
-                            kind, unit.stats.chop_power
+                        && MoisanBot::ceil_div(
+                            tree_health(kind, 1), unit.stats.chop_power
                         ) + 3 <= turns_left
                     {
                         out.push(Candidate {
@@ -259,18 +218,6 @@ YAMO_IMPL = r"""impl YamoBot {
                 out
             }
 
-            fn ordinary_candidates(
-                view: &GameState,
-                unit: &Unit,
-                early: bool,
-                desired: Stats,
-                focus: PlantKind,
-            ) -> Vec<Candidate> {
-                if early {
-                    return MoisanBot::early_candidates(view, unit, desired);
-                }
-                Self::endgame_candidates(view, unit, Some(focus))
-            }
         }"""
 
 
@@ -291,10 +238,6 @@ BOT_IMPL = r"""impl Bot for YamoBot {
                 let desired = self.desired_second.unwrap();
                 let train_now = MoisanBot::can_train(view, desired);
                 let mut output = Vec::new();
-                if !self.announced {
-                    self.announced = true;
-                    output.push("MSG e7a-half-size-logical".to_string());
-                }
                 if train_now {
                     output.push(format!(
                         "TRAIN {} {} {} {}",
@@ -310,18 +253,12 @@ BOT_IMPL = r"""impl Bot for YamoBot {
                     .collect();
                 units.sort_by_key(|unit| unit.id);
                 let early = units.len() < 2 && !train_now;
-                let mut candidates_by_id = BTreeMap::new();
+                let mut candidate_groups = Vec::new();
                 for unit in units {
-                    let mut candidates = if view.turn > 250 {
+                    let mut candidates = if view.turn > 250 || !early {
                         Self::endgame_candidates(view, unit, self.type_to_cut)
                     } else {
-                        Self::ordinary_candidates(
-                            view,
-                            unit,
-                            early,
-                            desired,
-                            self.type_to_cut.unwrap(),
-                        )
+                        MoisanBot::early_candidates(view, unit, desired)
                     };
                     if train_now
                         && unit.cell == view.shacks[0]
@@ -338,17 +275,48 @@ BOT_IMPL = r"""impl Bot for YamoBot {
                             });
                         }
                     }
-                    candidates_by_id.insert(unit.id, candidates);
+                    candidate_groups.push(candidates);
                 }
                 let mut selected = MoisanBot::select(
-                    candidates_by_id, &view.inventories[0]
+                    candidate_groups, &view.inventories[0]
                 );
                 MoisanBot::resolve_move_conflicts(view, &mut selected);
                 output.extend(selected);
-                if output.is_empty() { output.push("WAIT".to_string()); }
                 output
             }
         }"""
+
+
+STABLE_BANK_CANDIDATES = r"""fn bank_candidates(
+                view: &GameState,
+                unit: &Unit,
+            ) -> Vec<Candidate> {
+                let distance = bfs_distances(&view.walkable, &[unit.cell]);
+                let mut doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                    .into_iter()
+                    .filter(|cell| view.walkable.contains(cell))
+                    .filter(|cell| distance.contains_key(cell))
+                    .collect();
+                doors.sort();
+                if doors.is_empty() { return vec![Self::wait()] }
+                let slot = view.units.iter()
+                    .filter(|other| other.player == 0 && other.id < unit.id)
+                    .count();
+                let door = if doors.contains(&unit.cell) {
+                    unit.cell
+                } else {
+                    doors[slot % doors.len()]
+                };
+                vec![Candidate {
+                    command: if unit.cell == door {
+                        format!("DROP {}", unit.id)
+                    } else {
+                        format!("MOVE {} {} {}", unit.id, door.0, door.1)
+                    },
+                    score: 20_000.0,
+                    target: Target::Bank(door),
+                }, Self::wait()]
+            }"""
 
 
 DIRECT_CHOP_CANDIDATES = r"""fn chop_candidates(
@@ -406,24 +374,23 @@ DIRECT_CHOP_CANDIDATES = r"""fn chop_candidates(
 
 
 TWO_WORKER_SELECT = r"""fn select(
-                candidates_by_id: BTreeMap<i32, Vec<Candidate>>,
+                candidates: Vec<Vec<Candidate>>,
                 inventory: &[i32; 6],
             ) -> Vec<String> {
-                let ids: Vec<i32> = candidates_by_id.keys().copied().collect();
-                if ids.is_empty() {
+                if candidates.is_empty() {
                     return Vec::new();
                 }
-                if ids.len() == 1 {
-                    return candidates_by_id[&ids[0]]
+                if candidates.len() == 1 {
+                    return candidates[0]
                         .iter()
                         .max_by(|a, b| a.score.total_cmp(&b.score))
                         .map(|row| vec![row.command.clone()])
                         .unwrap_or_default();
                 }
                 let mut best: Option<(f64, String, String)> = None;
-                for a in &candidates_by_id[&ids[0]] {
-                    for b in &candidates_by_id[&ids[1]] {
-                        if !Self::compatible(a.target, b.target)
+                for a in &candidates[0] {
+                    for b in &candidates[1] {
+                        if a.target != Target::None && a.target == b.target
                             || !Self::stock_compatible(a, b, inventory)
                         {
                             continue;
@@ -444,22 +411,24 @@ TWO_WORKER_MOVE_GUARD = r"""fn resolve_move_conflicts(view: &GameState, commands
                     .filter(|unit| unit.player == 0)
                     .collect();
                 own.sort_by_key(|unit| unit.id);
-                let mut reserved: BTreeSet<Cell> = view.units
+                let mut reserved: BTreeSet<Cell> = own
                     .iter()
-                    .filter(|unit| unit.player == 0)
                     .map(|unit| unit.cell)
                     .collect();
-                let mut order: Vec<usize> = (0..commands.len()).collect();
-                order.sort_by_key(|index| {
-                    own.get(*index).map(|unit| unit.total_carried() == 0).unwrap_or(true)
-                });
-                let mut forced = BTreeSet::new();
+                let mut order = [0, 1];
+                if own.len() == 2
+                    && own[0].total_carried() == 0
+                    && own[1].total_carried() > 0
+                {
+                    order.swap(0, 1);
+                }
+                let mut forced = None;
                 for index in order {
-                    if forced.contains(&index) { continue; }
+                    if index >= commands.len() || forced == Some(index) { continue; }
                     let Some((id, target)) = Self::move_command(&commands[index]) else {
                         continue;
                     };
-                    let Some(unit) = view.unit(id) else { continue };
+                    let unit = own[index];
                     let landing = next_cell(
                         &view.walkable,
                         unit.cell,
@@ -470,30 +439,15 @@ TWO_WORKER_MOVE_GUARD = r"""fn resolve_move_conflicts(view: &GameState, commands
                         commands[index] = "WAIT".to_string();
                         continue;
                     }
-                    if unit.total_carried() > 0 && reserved.contains(&landing) {
-                        let blocker = own.iter().find(|other| other.cell == landing);
-                        if let Some(blocker) = blocker.filter(|other| other.total_carried() == 0) {
-                            let egress = ortho_neighbors(blocker.cell)
-                                .into_iter()
-                                .filter(|cell| view.walkable.contains(cell))
-                                .filter(|cell| !own.iter().any(|other| {
-                                    other.id != blocker.id && other.cell == *cell
-                                }))
-                                .min_by_key(|cell| (manhattan(*cell, view.shacks[0]), *cell))
-                                .or_else(|| {
-                                    is_adjacent(blocker.cell, unit.cell).then_some(unit.cell)
-                                });
-                            if let (Some(egress), Some(blocker_index)) = (
-                                egress,
-                                own.iter().position(|other| other.id == blocker.id),
-                            ) {
-                                commands[blocker_index] = format!(
-                                    "MOVE {} {} {}", blocker.id, egress.0, egress.1
-                                );
-                                forced.insert(blocker_index);
-                                reserved.remove(&landing);
-                                reserved.insert(egress);
-                            }
+                    if own.len() == 2 && unit.total_carried() > 0 {
+                        let blocker_index = 1 - index;
+                        let blocker = own[blocker_index];
+                        if blocker.total_carried() == 0 && blocker.cell == landing {
+                            commands[blocker_index] = format!(
+                                "MOVE {} {} {}", blocker.id, unit.cell.0, unit.cell.1
+                            );
+                            forced = Some(blocker_index);
+                            reserved.remove(&landing);
                         }
                     }
                     commands[index] = if !reserved.contains(&landing) {
@@ -590,6 +544,11 @@ def build(source: str) -> tuple[str, dict]:
         }
     )
     replace("pub struct YamoBot", YAMO_STRUCT, "focused_state_replacement")
+    replace(
+        "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>{let dist=",
+        STABLE_BANK_CANDIDATES,
+        "stable_bank_consolidation",
+    )
     replace("impl YamoBot", YAMO_IMPL, "focused_two_worker_orchestration")
     replace("impl Bot for YamoBot", BOT_IMPL, "focused_two_worker_orchestration")
     remove(
@@ -605,6 +564,7 @@ def build(source: str) -> tuple[str, dict]:
         "direct_harvest_cycle_replacement",
     )
     replace("fn select(", TWO_WORKER_SELECT, "two_worker_selector_replacement")
+    remove("fn compatible(", "two_worker_target_model_simplified")
     replace(
         "fn resolve_move_conflicts(",
         TWO_WORKER_MOVE_GUARD,
@@ -623,6 +583,7 @@ def build(source: str) -> tuple[str, dict]:
     result = result.replace("Self::carrying_any(unit)", "unit.total_carried() > 0", 1)
     remove("fn carry_total(", "redundant_carry_helpers_removed")
     remove("fn carrying_any(", "redundant_carry_helpers_removed")
+    remove("pub fn unit(&self", "orphaned_game_state_api_removed")
     remove("pub fn item_index(self)", "orphaned_plant_kind_api_removed")
     remove("pub fn plant_cooldown(", "orphaned_growth_rules_removed")
     remove("pub fn water_boost(", "orphaned_growth_rules_removed")
@@ -645,11 +606,30 @@ def build(source: str) -> tuple[str, dict]:
         ),
         ("use crate::bot::moisan::SecureOrchardBot;", "use crate::bot::moisan::YamoBot;"),
         ("let mut bot=SecureOrchardBot::new();", "let mut bot=YamoBot::new();"),
+        ("use std::collections::{BTreeMap,BTreeSet};", "use std::collections::BTreeSet;"),
+        (
+            "enum Target{None,Shack,Bank(Cell),Cell(Cell),Tree(Cell),}",
+            "enum Target{None,Cell(Cell),}",
+        ),
     )
     for old, new in replacements:
         if result.count(old) != 1:
             raise ValueError(f"expected one main fragment {old!r}")
         result = result.replace(old, new, 1)
+    for old in ("Target::Bank(", "Target::Tree("):
+        occurrences = result.count(old)
+        if occurrences == 0:
+            raise ValueError(f"expected at least one simplified target {old!r}")
+        before = len(result.encode())
+        result = result.replace(old, "Target::Cell(")
+        gross_removed.append(
+            {
+                "block": "two_worker_target_model_simplified",
+                "marker": old,
+                "occurrences": occurrences,
+                "gross_removed_bytes": before - len(result.encode()),
+            }
+        )
     baseline_identifiers = lexical_identifiers(source)
     candidate_identifiers = lexical_identifiers(result)
     manifest = {

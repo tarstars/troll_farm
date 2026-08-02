@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T21:12:00Z
+- Last updated UTC: 2026-08-02T21:45:15Z
 
 ## Outcome
 
@@ -92,3 +92,13 @@ Repairs through r18 restored the same smoke to -6.625 with 3/16 catastrophes and
 period-2 target run 3, but r18 is 35,146 bytes, 3,736 over the ceiling.  r19's larger chop
 forecast regressed to -11.4375 and was rejected.  Reproducible runner, exact r18/r19 JSON,
 and the negative iteration report are prepared for publication; no Arena action.
+
+## Progress 2026-08-02T21:45:15Z
+
+r32 is frozen at 31,387 bytes, SHA-256 `abb202db...`: 23 bytes under the ceiling and a
+50.034% real logical reduction. Strict optimized compilation, empty input, sacred hash,
+and all 10 semantic fixtures pass. Motion smoke is -6.625 with equal catastrophes and
+maximum period-2 target run 3 versus 6. The one-map continued-referee smoke is negative
+(-9.9167) but has 12/12 worker-two coverage and zero median delay; one/four-thread task rows
+are byte-identical. The exact 43-map/516-task command is now published and locked. No Arena
+action; full value and exact live-counterexample liveness gates remain pending.
