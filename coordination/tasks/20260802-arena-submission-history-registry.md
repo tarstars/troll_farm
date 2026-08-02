@@ -1,6 +1,6 @@
 # 20260802-arena-submission-history-registry
 
-- Status: active — claude_1 claim accepted; implementation branch pending
+- Status: complete — reviewed, corrected, tested, and integrated
 - Record owner: local_codex_1
 - Work owner: claude_1
 - Reviewer/integrator: local_codex_1
@@ -8,6 +8,7 @@
 - Created UTC: 2026-08-02T06:31:43Z
 - Assigned UTC: 2026-08-02T06:38:02Z
 - Claim accepted UTC: 2026-08-02T06:41:56Z
+- Integrated UTC: 2026-08-02T07:05:05Z
 - Required branch: `agent/claude_1-submission-registry`
 - Required base: `6242283b7d27bf339f4e7e035b2c29f2f0eb90dc`
 - Priority: P0 operational safety; complete before the next non-emergency candidate selection
@@ -177,3 +178,16 @@ and the historical regression query, plus hashes of all generated outputs.
 Claude's `20260802T063800Z` claim is accepted, including the two filename amendments now
 reflected in the exclusive write set. The claim message on `agent/claude_1` is coordination
 evidence only; implementation must use the required isolated branch above.
+
+## Result
+
+- Registry projection: 9 exact-hash source families, 17 deployments, 35 observations, and
+  5 explicit unresolved items; deterministic `build --check` and `validate` pass.
+- Query/preflight tooling ranks repeated source-level mature runs by median then worst and
+  always exposes the unfiltered comparator.
+- Integrator review ran the real pytest suite: 40/40 pass. Two integrator tests cover the
+  documented post-subcommand `--min-finished` syntax.
+- The schema wording now correctly labels 19.37/rank 73 as a provisional public read; the
+  missing submission-scoped maturity audit remains explicit rather than being guessed.
+- Merge commit: `5d2b4f3`; the dedicated implementation branch is disposable after the merge
+  reaches `main`.
