@@ -1,18 +1,18 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-02T17:46:40Z
-- State: E7a sector replacement live/reconciled; banana restoration r2 assigned to Claude
+- Updated UTC: 2026-08-02T18:47:18Z
+- State: collecting and auditing public recent battles for current Arena top 15
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260802-banana-restoration-r2` oversight; Claude acknowledgement pending
+- Current task: `20260802-top15-public-battle-audit`; banana restoration r2 remains delegated
 - Branch: `agent/local_codex_1`
 - Candidate: 62,820 bytes, SHA-256 `97bfe71e3f2f…`; five focused tests, compile, and 16/16
   exact semantic bridge pass; consumed-panel value remains unqualified
-- Write set: restoration task/messages/status and host replay gate; sector monitoring read-only
-- Last concrete progress UTC: 2026-08-02T17:46:40Z
+- Write set: new top-15 audit script, compact evidence, report, and own coordination artifacts
+- Last concrete progress UTC: 2026-08-02T18:47:18Z
 - Running job: none
 - Live identity: E7a sector `6590141`/`41081503`; exact recovery pass; 16/16 parsed plus one
   pending, score 19.42 rank 69/131, zero catastrophes/runtime signals, clean identity
-- Next checkpoint: receive Claude ACK/claim; supply host replay execution after its validator lands
+- Next checkpoint: publish exact collection inventory, deduplicate battles, then behavioral audit
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Banana-ring successor: `SMOKE_QUALIFIED`; owner explicitly directs publication and local owns
   the sole controller lane
