@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-07-31T17:35:00Z
-- State: funding-first diagonal-denial agent 6585846 live; positive first health
+- Updated UTC: 2026-08-02T06:34:50Z
+- State: D172 LFS pilot PASS end to end; ChatGPT probe pending; Arena registry task published
 - Role: coordinator (integrator)
-- Current task: `20260731-owner-funding-first-diagonal-denial-arena`
+- Current task: `20260802-git-lfs-shared-artifact-pilot`
 - Branch: agent/local_codex_1
-- Evidence commit: 2ef378b (exact audit and combined candidate remotely published)
-- Write set: B3.13 Arena task/report/manifest/checkpoints, own status/messages, live dispositions
-- Last concrete progress UTC: 2026-07-31T17:35:00Z
-- Evidence: 11 parsed/1 pending; score 16.97 rank 95/113; clean +40.182 mean
+- Evidence commits: host `61f1118`; Claude `d98dc4e`/`6092127`; payload `bcbd5ca`; parity `051cd2c`
+- Write set: LFS task/plan/environment matrix, own status/messages, gated shared-lfs pilot
+- Last concrete progress UTC: 2026-08-02T06:34:50Z
+- Evidence: independent cloud pull exact at four files / 82,824,259 bytes / four hashes
 - Running job: none
-- Latest verified result: B3.13 candidate passed compiled boundaries, exact replay, and 8 smokes
-- Next checkpoint: integrate current history; read-only live monitoring and peer review
+- Latest verified result: Phase 1 accepted; live far-denial separately reads 19.37/rank 73/130
+- Next checkpoint: integrate the accepted pilot; await ChatGPT access answer; registry R1 is ready
 - Blockers: none
-- Arena controller: yes; sticky-bank trial is the sole live leg; no automatic restore
+- Arena controller: yes; restored far-denial agent 6589510 is the sole live leg

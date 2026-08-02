@@ -1,0 +1,141 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T05:44:29.884395+00:00",
+ "result_audit_completed_at": "2026-08-02T05:44:33.204673+00:00",
+ "role": "restored-best",
+ "agent_id": 6589510,
+ "submission_id": 41079354,
+ "arena": {
+  "agent_id": 6589510,
+  "rank": 129,
+  "total": 130,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6589510,
+  "rank": 129,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 9,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 9,
+ "fetch_failures": [],
+ "summary": {
+  "games": 9,
+  "wins": 4,
+  "ties": 0,
+  "losses": 5,
+  "mean_margin": 13.666666666666666,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.1111111111111111,
+  "negative_margin_mass": 378.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897777035,
+   "opponent": "MTLKS",
+   "opponent_agent_id": 6588458,
+   "our_score": 188.0,
+   "opponent_score": 20.0,
+   "margin": 168.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777034,
+   "opponent": "Ramdeath",
+   "opponent_agent_id": 6588460,
+   "our_score": 187.0,
+   "opponent_score": 30.0,
+   "margin": 157.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777033,
+   "opponent": "timothee1910",
+   "opponent_agent_id": 6559646,
+   "our_score": 156.0,
+   "opponent_score": 232.0,
+   "margin": -76.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777032,
+   "opponent": "Lanfeust",
+   "opponent_agent_id": 6488464,
+   "our_score": 168.0,
+   "opponent_score": 360.0,
+   "margin": -192.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777031,
+   "opponent": "Ticasali",
+   "opponent_agent_id": 6541416,
+   "our_score": 168.0,
+   "opponent_score": 169.0,
+   "margin": -1.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777030,
+   "opponent": "Quentin18",
+   "opponent_agent_id": 6481265,
+   "our_score": 200.0,
+   "opponent_score": 232.0,
+   "margin": -32.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777029,
+   "opponent": "Sequo",
+   "opponent_agent_id": 6481144,
+   "our_score": 120.0,
+   "opponent_score": 60.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777028,
+   "opponent": "BoatBuilder",
+   "opponent_agent_id": 6480545,
+   "our_score": 144.0,
+   "opponent_score": 28.0,
+   "margin": 116.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897777027,
+   "opponent": "Risen",
+   "opponent_agent_id": 6479420,
+   "our_score": 108.0,
+   "opponent_score": 185.0,
+   "margin": -77.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

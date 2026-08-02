@@ -6,13 +6,26 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
-## Position summary (2026-07-31)
+## P0 operational safety — Arena submission registry
 
-Active resident `6585765`/`41071067` is the owner-directed sticky-bank successor:
-first clean health is **9.64, rank 111/113** after 12 finished games, with one pending
-and zero identity/runtime faults. The far-denial source's historical terminal comparator
-is 22.99/160; B3.13 then failed at 11.96/101, and its exact-source restore was displaced
-by owner direction. Monitoring continues without automatic restore. **Goal
+- **R1 READY / UNASSIGNED — categorized submission-history registry and query tool.** The
+  2026-08-02 selection mistake considered only the recent owner-directed lineage and one
+  22.99 far-denial maximum, omitting repeated stronger preseed-resident evidence. The repeated
+  far-denial source has now terminated at 19.37, rank 73/130. Build a deterministic JSON
+  projection plus query/preflight tool, categorized independently by strategy/architecture,
+  deployment purpose, evidence maturity, disposition, comparison type, and authority. Default
+  source ranking must aggregate repeated mature runs and expose cross-era comparability; it
+  must never select by a single maximum. Task and acceptance contract:
+  `coordination/tasks/20260802-arena-submission-history-registry.md`.
+
+## Position summary (2026-08-02)
+
+Active resident `6589510`/`41079354` is the owner-directed restoration of the strongest
+mature artifact, far-denial d3 SHA `307a0755…`. First health is 9/9 parsed with one
+pending, clean identity, zero runtime signals, and an immature score 0.0/rank 129/130;
+the same source's historical terminal comparator is 22.99/160. It replaces the
+funding-first successor, whose encouraging 16.97/11 first read matured to only 16.37/265
+with 40 catastrophes. Monitoring is read-only. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
@@ -281,6 +294,39 @@ continues with construction and rating-dynamics measurement, not waiting.
 - **H10b whole-policy learner** remains a larger owner programme. H5's #1 finisher
   (delineate) used a trained NN with no search, but that does not turn H10a's narrow
   option selector into authorization for self-play over primitives.
+- **H10b-r1 search-teacher distillation — OWNER-REQUESTED PROGRAMME CONCEPT;
+  CHARTER NOT YET FROZEN.** Adapt AlphaZero-style expert iteration rather than copying it
+  literally: an expensive offline search teacher produces dense policy, expected-margin,
+  and catastrophe targets against a population of opponents; the student is evaluated
+  closed-loop, and search relabels states that the student itself visits. Pure symmetric
+  self-play and one-pass teacher-state imitation are excluded because ladder transfer and
+  autoregressive covariate shift are already demonstrated risks. The Arena artifact is a
+  compact, search-free int8 network; training-time search does not inherit the 50 ms turn
+  budget.
+
+  This is distinct from H10a-r1's 13-option spatial scorer, L1's replay-only primitive
+  labels, D170b's sparse terminal-reward option training, and S3's proposed online
+  rollout-plus-beam controller. It directly instantiates the new dense-counterfactual-credit
+  plus new-representation route left open by D170b/D172a. Positive priors are D169a's
+  +10.671 hindsight envelope, the field evidence for both neural policy and lookahead, and
+  the solved sub-100-kB int8 deployment pattern. Main risks are opponent-model transfer,
+  combinatorial simultaneous joint actions, search cost, and loss of value during
+  distillation.
+
+  **Planning prior only, not an empirical result or acceptance gate:** 50–70% chance that a
+  bounded search teacher shows material local improvement; 25–35% that a compact student
+  clears closed-loop local gates; 10–20% that the first programme yields an Arena-worthy
+  candidate. This makes a bounded feasibility phase worth doing, not a large training run
+  worth starting blindly.
+
+  Before any fit, range, or bulk job, freeze a charter with: (1) exact referee/search
+  determinism, legality, chance, and joint-action semantics; (2) a warm start and
+  population-conditioned opponent protocol; (3) fresh unsealed official-map development
+  and held-family teacher-value gates; (4) iterative student-state relabelling and a
+  closed-loop student value-retention/tail-safety gate; and (5) deterministic int8 source
+  at ≤100 kB and warm p95 <50 ms. No model, compute job, candidate, TestSession,
+  submission, or Arena action is authorized by this backlog entry. [owner direction,
+  2026-08-01]
 
 ### Operations
 
@@ -539,8 +585,9 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   SHA `307a0755…` keeps full trolls chopping far focus trees and discards lethal overflow.
   Agent `6585578` / submission `41070584` completes 160/160 clean games at score 22.99,
   rank 34/113: +1.09 over the 21.9 pre-trial row, but below 24.70/25.40. This is now a
-  historical comparator rather than the active resident. The uncontrolled live result is not scientific
-  qualification or reopening of the broad closed arms.
+  restored active source as agent/submission `6589510`/`41079354`; its initial 9/9+1
+  pending checkpoint is identity-clean with zero runtime signals. The uncontrolled live
+  result is not scientific qualification or reopening of the broad closed arms.
 - **B3.13 — TERMINAL FAIL / DISPLACED RESTORE.** Exact DoubtinGiyov game `897547554`
   exposes the requested enemy-tent orchard: 37 adjacent planted generations, with the
   opponent banking 24 adjacent-tree items before resident contact. The coordination
@@ -561,6 +608,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   The owner explicitly directed submission instead of restoration. Agent
   `6585765`/`41071067` is identity-clean with zero runtime signals at 12 games, but the
   first score is only 9.64 (rank 111/113; four catastrophes). No automatic restore.
+- **B3.15 — DISPLACED.** The same-tree occupancy fix removed the exact Elost assignment
+  deadlock mechanically, but its first live row was only 11.53/14. It was superseded by
+  owner direction; do not infer field value from the mechanism fix.
+- **B3.16 — TERMINAL FAIL / BEST-SOURCE RESTORE.** Funding-first diagonal denial passed
+  exact replay, compiled boundaries, and smoke checks and opened at 16.97/11, but matured
+  to 16.37 over 265 clean parsed games with 40 catastrophes and negative mass 10,285.
+  The owner directed restoration of the best bot; far-denial d3 SHA `307a0755…` was
+  submitted exactly once as `6589510`/`41079354`. Initial health is clean but immature.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 
