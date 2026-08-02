@@ -1,0 +1,630 @@
+{
+  "accepted_syntax_normalization": {
+    "counts": {
+      "empty_msg_normalized": 600
+    },
+    "reason": "The platform accepts an empty MSG command (`MSG ;`). The locked parser classifies trimmed `MSG` as unknown while accepting `MSG <text>`. The replay wrapper supplies inert text only to the unchanged referee step; raw issued commands remain preserved in decision rows."
+  },
+  "created_utc": "2026-08-02T15:17:51Z",
+  "exact_ids_only": true,
+  "files": {
+    "h3a-trigger-preflight-state-package-2026-08-02.decisions.jsonl.gz": {
+      "bytes": 271903,
+      "rows": 5100,
+      "sha256": "a60cbf05a81fecd33c1cda48d514f238199a9ea3171ed5e2cef98ef6c4980f1d",
+      "uncompressed_bytes": 14812991,
+      "uncompressed_sha256": "c7c6567f53d02a0103fd0cff255f9c4c01979243eba7e7b29e39b1d012ac4a0d"
+    },
+    "h3a-trigger-preflight-state-package-2026-08-02.maps.jsonl.gz": {
+      "bytes": 3322,
+      "rows": 17,
+      "sha256": "decfa8f49580a0fb5723c5a35549f3d2b10a423f247bc77fc84ab46aed94ccd7",
+      "uncompressed_bytes": 25123,
+      "uncompressed_sha256": "ea35cda59db6c145e27bed7ca85461c9546169798c864a6b3ff671ce732380d7"
+    }
+  },
+  "games": [
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "13c71e8eb2f86b457c384e9c531f51f6367fbda1698463103b7f3698da57067f",
+      "game_id": 897780891,
+      "map_uncompressed_sha256": "af2f85622ac0f671b9f8e340841125cca98e48c122b76d5144c670537d02fa0c",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 645,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 67,
+      "referee_seed": 1175504858531153200,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          458,
+          292
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 645,
+        "plant_facts_checked": 63,
+        "train_facts_checked": 3,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "5af0c25968045d9a0a9d57d788cdf337d9f801dcb0ab3b7f33073ca0457edf69",
+      "game_id": 897781216,
+      "map_uncompressed_sha256": "ac24d8e57e53598efc70c6411004cd3644b12178e58c4d471cf16a4ebcfed7c0",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 506,
+        "replaced_with_wait": 63
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 5657156289370532000,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          346,
+          220
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 506,
+        "plant_facts_checked": 38,
+        "train_facts_checked": 3,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "13e4d7c2871707dafd5d60efbc0ecaf06be38aaa4629a87eee95bf07bf507667",
+      "game_id": 897781413,
+      "map_uncompressed_sha256": "79287c8aa5a5b0c2c6721faaa18557881dd7461f0120ce84257bd505fd2a36cd",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 877,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 131306520917913620,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 300
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          162,
+          381
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 877,
+        "plant_facts_checked": 36,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "4059b570695304c4d090fe90bf4af0c4a21351f609e8de33ba9f2519263f3f86",
+      "game_id": 897781719,
+      "map_uncompressed_sha256": "f1bb69695964522de4f72f27110646ee514d18b805e40442f84be6ff389e1234",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 744,
+        "replaced_with_wait": 63
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": -6117725345832031000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          227,
+          643
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 744,
+        "plant_facts_checked": 71,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "0518451401af0e7ce3a5653b3f113beb00fbb3c5ebbc6a5be0ccd2f1ddbec49e",
+      "game_id": 897781840,
+      "map_uncompressed_sha256": "338ee0ea03bf5edc7af033cc67b7c0745733fdea4e5f722cacdaff2c2a6ebd7b",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 812,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": -2506402106942491600,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 300
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          496,
+          355
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 812,
+        "plant_facts_checked": 49,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "8f147eddcdd9eb1d46062b62ea22af05152dcbfa8a7e85999ae5138034ae5cd8",
+      "game_id": 897781987,
+      "map_uncompressed_sha256": "1a4229184cf69c0424de4f0a4adf6176904320d8b9ffee4ec236833a09770c86",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 750,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": -8831471389884669000,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          285,
+          185
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {
+          "no_fruit": 1
+        },
+        "legality_issues": 1,
+        "movement_facts_checked": 750,
+        "plant_facts_checked": 43,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "4498ed4fa55f64ed09f489d89b154d5d18b0662a79a7bf9bb969115163b89ae3",
+      "game_id": 897782076,
+      "map_uncompressed_sha256": "f8897553bcd245c414009d61e3826e4e733825bec17399778ca5abd90989e31d",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 870,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 1852204302631640800,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          339,
+          224
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 870,
+        "plant_facts_checked": 32,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "b2f152b4873dda8388674690846805e1867a88782faf933d18e14b494840595d",
+      "game_id": 897782213,
+      "map_uncompressed_sha256": "40f3bff2c744888748ce3ff02aab9b6532e3045e18f69ce8587d490934445934",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 737,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 56,
+      "referee_seed": -2985823898078608400,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          222,
+          335
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {
+          "pick_stock_lost": 1
+        },
+        "legality_issues": 1,
+        "movement_facts_checked": 737,
+        "plant_facts_checked": 53,
+        "train_facts_checked": 3,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "743e6f546cfa801368d5c58cdea324c4207de94e28a6781dc3f045084b9f003a",
+      "game_id": 897782302,
+      "map_uncompressed_sha256": "40fc244c237cc93f67f887eb76b16c3e4628e78ab92874422046110bd50c92fe",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 738,
+        "replaced_with_wait": 4
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 5868616297142270000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          183,
+          352
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 738,
+        "plant_facts_checked": 72,
+        "train_facts_checked": 3,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "catastrophe",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "ef8fd8775c2fa2bccb4db7ee6df4a398a38d06136075121cf837791c9a4804d1",
+      "game_id": 897782366,
+      "map_uncompressed_sha256": "20be7fe1a3440e5e86e2b6eb0cf7c66f1e759f66be9ab703772011db7a7be9ba",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 783,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 6585435544971929000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          220,
+          329
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {
+          "no_fruit": 3
+        },
+        "legality_issues": 3,
+        "movement_facts_checked": 783,
+        "plant_facts_checked": 47,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "3b11d773d308e42f927a57569b11ded290a0c3856fd08b98296d986853a72aa9",
+      "game_id": 897782128,
+      "map_uncompressed_sha256": "58081e52df247b95bf97b70555ec12cf59dc36d7a613216830cac65ccfb369b5",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 548,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 6522885453031351000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          173,
+          15
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 548,
+        "plant_facts_checked": 36,
+        "train_facts_checked": 1,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "cdc23e0e4f06a9c264d0b35cbf1c8bf8311d984d70388642228681e8ea2b9787",
+      "game_id": 897782246,
+      "map_uncompressed_sha256": "f7b292613c51830f2770e03314a1dc54c522c31ed6df0b0a5ae0507e08f16539",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 533,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 3762414590278613500,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          15,
+          172
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 533,
+        "plant_facts_checked": 34,
+        "train_facts_checked": 1,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "aeef7663172016d90f89e56c2596ef3b2803d40f722a87f891eeea8d7a566ab7",
+      "game_id": 897781650,
+      "map_uncompressed_sha256": "a80e2d2fc24d7a42e016229dee7faed09415ce160105416da1758d264e29f44e",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 569,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": 3248405857157827000,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          15,
+          209
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 569,
+        "plant_facts_checked": 33,
+        "train_facts_checked": 1,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "ff959918492017f51a8795e6a654492449625bd1e955ae1a6902e4bc243ad2a2",
+      "game_id": 897781674,
+      "map_uncompressed_sha256": "8730242886b5421d9145565902615393afb893e5f6aed0e846df4c0df4b102ca",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 561,
+        "replaced_with_wait": 102
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": -5602200133029929000,
+      "seat": 1,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          243,
+          334
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 561,
+        "plant_facts_checked": 61,
+        "train_facts_checked": 4,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "1bc9f17e54abff80e2228c8e6caf96e7a7d861c10f7891c473eadd29123d5f51",
+      "game_id": 897782379,
+      "map_uncompressed_sha256": "c7cb58c77a9a7376b6e7f492cbeda64c6618986bb4d85626c369be3ae3cd7d71",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 308,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 0,
+      "referee_seed": -9204726158248525000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          280,
+          73
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 308,
+        "plant_facts_checked": 29,
+        "train_facts_checked": 2,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "536c0382749f627f4e999d1cab1fa3bdd9da2c71d7e25ed7b652ac7d7c11d987",
+      "game_id": 897782201,
+      "map_uncompressed_sha256": "0372a9fb73d51bdac2580df455b3f37255bb11f89b0693ec976e9c21b5ee11dc",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 503,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 36,
+      "referee_seed": 5316876432370307000,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          163,
+          16
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 503,
+        "plant_facts_checked": 39,
+        "train_facts_checked": 1,
+        "unclassified_issues": 0
+      }
+    },
+    {
+      "cohort": "matched_win",
+      "decision_rows": 300,
+      "decision_uncompressed_sha256": "7b082b3986ea736cbb1e36ee71b318ed347718cea62c9d16ace2cb63637458ac",
+      "game_id": 897782068,
+      "map_uncompressed_sha256": "b157046ed410f29b19990602d6a27b55fe3f2e4a7b37a77c76a2f9f68e1dc2cf",
+      "movement_outcome_forcing": {
+        "forced_to_public_landing": 661,
+        "replaced_with_wait": 0
+      },
+      "numeric_aliases_normalized": 54,
+      "referee_seed": -1006350478336963200,
+      "seat": 0,
+      "syntax_normalization": {
+        "empty_msg_normalized": 0
+      },
+      "validation": {
+        "critical_issues": 0,
+        "final_scores": [
+          199,
+          80
+        ],
+        "inventory_snapshots_checked": 301,
+        "issue_reasons": {},
+        "legality_issues": 0,
+        "movement_facts_checked": 661,
+        "plant_facts_checked": 43,
+        "train_facts_checked": 2,
+        "unclassified_issues": 0
+      }
+    }
+  ],
+  "locked_sources": {
+    "rust/src/bin/a2_0b_referee_parity.rs": "1054a047a410b23ca952e3ed6b96df12662615bb630597f68b1d551b9b056a3f",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/game/a2_referee_parity.rs": "518c222881ac23f8548cc13c858bacc93577ea920ecfbdbf0fd0e588cad1bf83"
+  },
+  "numeric_alias_normalization": {
+    "affected_game_ids": [
+      897780891,
+      897782213,
+      897782201,
+      897782068
+    ],
+    "count": 213,
+    "counts": {
+      "PICK_0": 8,
+      "PICK_1": 32,
+      "PICK_2": 2,
+      "PICK_3": 22,
+      "PLANT_0": 14,
+      "PLANT_1": 30,
+      "PLANT_2": 2,
+      "PLANT_3": 103
+    },
+    "mapping": {
+      "0": "PLUM",
+      "1": "LEMON",
+      "2": "APPLE",
+      "3": "BANANA"
+    },
+    "reason": "The locked parser explicitly accepts numeric fruit aliases but passes the raw numeric token to the historical engine, which panics. The extraction wrapper canonicalizes only that accepted token before the unchanged locked referee step; raw issued commands remain preserved in decision rows."
+  },
+  "public_movement_outcome_forcing": {
+    "counts": {
+      "forced_to_public_landing": 11145,
+      "replaced_with_wait": 232
+    },
+    "reason": "The locked continued-RNG replay first diverged from a public landed MOVE at game 897781216 turn 12. Each raw MOVE is therefore replaced only for the unchanged referee step by its same-turn public summary landing, or WAIT when no landing occurred. Raw commands remain in decision rows. Current-turn outcomes are used only to construct the next decision state."
+  },
+  "referee_binary": {
+    "logical_build_path": "rust/target/release/h3a_open_trajectory_state_export",
+    "sha256": "e4635d17dab25578d7f83c19dda85d2daf1d6b533b3440e76c4ad97cee8dd1bb",
+    "source_logical_path": "rust/src/bin/h3a_open_trajectory_state_export.rs",
+    "source_sha256": "61b0a8dfb8685b056ac2cb331e485e4c0830db402a5a1be3390551c364406447"
+  },
+  "schema": "One static-map row per game and one outcome-blind authoritative state row per resident decision. Trees use exact policy cell identity plus current input order; created_by is causal initial/landed-plant provenance.",
+  "schema_version": 1,
+  "sealed_data_included": false,
+  "source_package": {
+    "games_sha256": "e3029c7e506e3da23c7d2dba5547cbb219df435b9924208db0c3a01701d2c49b",
+    "manifest_sha256": "f3b28d735fe69a5b84ff005b718ec841167d75ba2c767f14c75bfde5583d053c"
+  },
+  "task_id": "20260802-h3a-conditioned-value-unblock",
+  "validation": {
+    "critical_issues": 0,
+    "decision_rows": 5100,
+    "games": 17,
+    "inventory_snapshots_checked": 5117,
+    "legality_issue_reasons": {
+      "no_fruit": 4,
+      "pick_stock_lost": 1
+    },
+    "legality_issues": 5,
+    "map_rows": 17,
+    "movement_facts_checked": 11145,
+    "outcome_fields_in_decision_rows": false,
+    "plant_facts_checked": 779,
+    "train_facts_checked": 48,
+    "unclassified_issues": 0
+  }
+}

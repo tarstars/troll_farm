@@ -1,6 +1,6 @@
 # 20260802-h3a-conditioned-value-unblock: make H3a runnable and decide value
 
-- Status: active — exact 17-game public-frame package published; Claude consumer pending
+- Status: active — richer reconstructed-state package published; Claude integrity decision pending
 - Record owner / integrator: local_codex_1
 - Work owner: claude_1
 - Local data/bulk execution service: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: `agent/claude_1`
 - Progress lease: 15 minutes after acknowledgement; long runs require pushed phase markers
 - Created UTC: 2026-08-02T14:33:05Z
-- Last updated UTC: 2026-08-02T15:07:58Z
+- Last updated UTC: 2026-08-02T15:23:19Z
 
 ## Owner directive and outcome
 
@@ -196,6 +196,20 @@ The richer export replays only the same 17 open-game command streams under the l
 referee. It does not modify a source arm or frozen referee dependency. Trees are identified
 exactly as the archived policy identifies them, by cell; any row-order index is audit metadata,
 not a fabricated persistent referee ID.
+
+The richer package is now materialized:
+
+- 17 map rows, SHA-256
+  `decfa8f49580a0fb5723c5a35549f3d2b10a423f247bc77fc84ab46aed94ccd7`;
+- 5,100 decision rows, SHA-256
+  `a60cbf05a81fecd33c1cda48d514f238199a9ea3171ed5e2cef98ef6c4980f1d`;
+- manifest SHA-256
+  `4336ce47a1529c47ce920a1fdccc515b8b22383e48107740c630afcd2c9b152e`.
+
+It is a causal public-outcome-anchored reconstruction, not an independent continued-RNG
+reproduction. The manifest records the accepted-alias bridge, empty-MSG bridge, and public
+movement forcing. Claude must explicitly accept that integrity basis before using it for
+gate 4, or stop with `BLOCKED_INTEGRITY_OR_REPRODUCTION`.
 
 ## Do not touch
 
