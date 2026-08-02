@@ -1,6 +1,6 @@
 # 20260802-top15-public-battle-audit: rank immediately testable lessons from public top-15 games
 
-- Status: claimed
+- Status: in_progress
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: pending
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T18:47:18Z
-- Last updated UTC: 2026-08-02T18:47:18Z
+- Last updated UTC: 2026-08-02T18:55:07Z
 
 ## Outcome
 
@@ -26,6 +26,7 @@ form hypotheses but cannot qualify a candidate or consume sealed map ranges.
 ## Exclusive write set
 
 - `scripts/top15_public_battle_audit.py`
+- `data/analysis/live-agent-6553250/top15-public-battle-inventory-2026-08-02.json`
 - `data/analysis/live-agent-6553250/top15-public-battle-audit-2026-08-02.json`
 - `data/analysis/live-agent-6553250/top15-public-battle-audit-2026-08-02.md`
 - `docs/reports/2026-08-02-top15-public-battle-audit.md`
@@ -57,7 +58,7 @@ form hypotheses but cannot qualify a candidate or consume sealed map ranges.
 
 ## Acceptance checks
 
-- `python3 scripts/top15_public_battle_audit.py --help` exits zero.
+- `/home/tarstars/prj/troll_farm/.venv/bin/python scripts/top15_public_battle_audit.py --help` exits zero.
 - Re-running the analyzer on its captured compact input reproduces the reported aggregates.
 - Every ranked idea cites players, battle support, and a falsifiable local check.
 - `git diff --exit-code -- rust/src/bin/yamo_orchard_live.rs data/raw/games/` is empty.
