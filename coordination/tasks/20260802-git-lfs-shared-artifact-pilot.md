@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: claimed — remote capability probes assigned; migration plan pending publication
+- Status: remote capability probes assigned; migration plan and environment registry ready
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,6 +8,7 @@
 - Base commit: ed29c27c12239760b98269ad7c46bd9e2129bde2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:58:45Z
+- Last updated UTC: 2026-08-02T06:02:00Z
 
 ## Owner directive
 
@@ -54,4 +55,13 @@ The `medium_data` preflight currently passes with 452,645,679,104 free bytes.
 
 No secrets or credential output, sealed data, raw-game mutation, Arena action, bulk
 experiment, model fit, source change, USB deletion, or history rewrite.
+
+## Plan checkpoint
+
+- Durable plan: `docs/git-lfs-shared-artifact-migration-plan-2026-08-02.md`.
+- Capability registry: `coordination/ENVIRONMENTS.md`.
+- Local endpoint/fetch inspection passes; upload and independent download remain pending.
+- Claude and ChatGPT probe assignments are remotely published at `0747756` and await
+  acknowledgements/results.
+- No research payload has been copied or uploaded.
 
