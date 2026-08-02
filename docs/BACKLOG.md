@@ -6,13 +6,14 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
-## Position summary (2026-07-31)
+## Position summary (2026-08-02)
 
-Active resident `6585765`/`41071067` is the owner-directed sticky-bank successor:
-first clean health is **9.64, rank 111/113** after 12 finished games, with one pending
-and zero identity/runtime faults. The far-denial source's historical terminal comparator
-is 22.99/160; B3.13 then failed at 11.96/101, and its exact-source restore was displaced
-by owner direction. Monitoring continues without automatic restore. **Goal
+Active resident `6589510`/`41079354` is the owner-directed restoration of the strongest
+mature artifact, far-denial d3 SHA `307a0755…`. First health is 9/9 parsed with one
+pending, clean identity, zero runtime signals, and an immature score 0.0/rank 129/130;
+the same source's historical terminal comparator is 22.99/160. It replaces the
+funding-first successor, whose encouraging 16.97/11 first read matured to only 16.37/265
+with 40 catastrophes. Monitoring is read-only. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
 routes for this architecture** (ledger vol 2; atlas). The decisive structural facts: at
@@ -572,8 +573,9 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   SHA `307a0755…` keeps full trolls chopping far focus trees and discards lethal overflow.
   Agent `6585578` / submission `41070584` completes 160/160 clean games at score 22.99,
   rank 34/113: +1.09 over the 21.9 pre-trial row, but below 24.70/25.40. This is now a
-  historical comparator rather than the active resident. The uncontrolled live result is not scientific
-  qualification or reopening of the broad closed arms.
+  restored active source as agent/submission `6589510`/`41079354`; its initial 9/9+1
+  pending checkpoint is identity-clean with zero runtime signals. The uncontrolled live
+  result is not scientific qualification or reopening of the broad closed arms.
 - **B3.13 — TERMINAL FAIL / DISPLACED RESTORE.** Exact DoubtinGiyov game `897547554`
   exposes the requested enemy-tent orchard: 37 adjacent planted generations, with the
   opponent banking 24 adjacent-tree items before resident contact. The coordination
@@ -594,6 +596,14 @@ invalidation was substrate-only). Prereq chain, each gate preregistered:
   The owner explicitly directed submission instead of restoration. Agent
   `6585765`/`41071067` is identity-clean with zero runtime signals at 12 games, but the
   first score is only 9.64 (rank 111/113; four catastrophes). No automatic restore.
+- **B3.15 — DISPLACED.** The same-tree occupancy fix removed the exact Elost assignment
+  deadlock mechanically, but its first live row was only 11.53/14. It was superseded by
+  owner direction; do not infer field value from the mechanism fix.
+- **B3.16 — TERMINAL FAIL / BEST-SOURCE RESTORE.** Funding-first diagonal denial passed
+  exact replay, compiled boundaries, and smoke checks and opened at 16.97/11, but matured
+  to 16.37 over 265 clean parsed games with 40 catastrophes and negative mass 10,285.
+  The owner directed restoration of the best bot; far-denial d3 SHA `307a0755…` was
+  submitted exactly once as `6589510`/`41079354`. Initial health is clean but immature.
 
 ## Tier 4 — arena protocol (standing, entered only by qualified candidates)
 

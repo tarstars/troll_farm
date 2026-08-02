@@ -1,6 +1,6 @@
 # 20260802-restore-best-far-denial-arena
 
-- Status: preflight complete — one restore submission authorized and pending
+- Status: submitted — clean initial health; read-only maturation monitoring
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -9,6 +9,7 @@
 - Base commit: 7e0fec5c862fdf338cf5aaaf75be665d00a47dfb
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:42:33Z
+- Last updated UTC: 2026-08-02T05:46:14Z
 
 ## Owner directive
 
@@ -53,4 +54,17 @@ far-denial d3 artifact once.
 Stop without retry on checksum/source mismatch, HTTP 422, ambiguous terminal response,
 unexpected agent identity, concurrent mutation, or sacred-source drift. Do not touch sealed
 ranges, raw games, cron, experiment sources, or unrelated working-tree changes.
+
+## Result
+
+- The exact source was submitted once; `TestSession/submit` returned HTTP 200 and
+  submission `41079354`.
+- New agent `6589510` owns ten exact matching battle rows.
+- First health: 9/9 parsed, one pending, identity clean, zero runtime signals, score 0.0,
+  rank 129/130, 4W/5L, mean margin +13.667, one catastrophe, negative mass 378.
+- Platform mutation is terminal; monitoring is read-only.
+
+Evidence:
+`data/analysis/live-agent-6553250/owner-best-far-denial-restore-execution-2026-08-02.md`
+and the exact submit log/checkpoint named there.
 

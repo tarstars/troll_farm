@@ -1274,3 +1274,26 @@ margin +40.182, zero catastrophes, negative mass 165, and zero identity/runtime 
 
 **Disposition: LIVE / CLEAN POSITIVE FIRST HEALTH / NO AUTOMATIC RESTORE.** The first
 sample is encouraging but immature. Continued Arena interaction is read-only.
+
+## 2026-08-02 — owner-directed restoration of the best measured artifact
+
+The B3.16 first-health optimism did not mature. Immediately before replacement, exact
+agent/submission `6585846`/`41071360` had 265/265 parsed games, score 16.37 at rank
+109/130, 40 catastrophes (15.1%), negative-margin mass 10,285, zero runtime signals, and
+clean identity. This is a terminal live failure of the combined owner successor, not a
+causal closure of each component.
+
+The owner directed submission of the current best bot. Mature evidence selects the exact
+far-denial d3 source: its historical `6585578`/`41070584` row terminated at 22.99/160.
+Platform recovery matched the displaced source; the restore source is 63,033 bytes, exact
+SHA-256 `307a07556ab79a3089995841575c07f4b001f2ea08ee5b13ff7586f0149c76cd`;
+sacred source remains `fff6669b…`; the remotely published preflight/start notice is
+`576c3e9`.
+
+`TestSession/submit` returned HTTP 200 exactly once with submission `41079354`; new agent
+`6589510` owns ten matching rows. First health has 9/9 parsed plus one pending, exact
+identity, zero runtime signals, score 0.0/rank 129/130, 4W/5L, mean margin +13.667, one
+catastrophe, and negative mass 378. The rating is an immature initialization; the mutation
+is terminal and monitoring is read-only. Evidence is
+`owner-best-far-denial-restore-execution-2026-08-02.md` and the submit/checkpoint files it
+hashes.
