@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T22:06:14Z
+- Last updated UTC: 2026-08-02T23:00:27Z
 
 ## Outcome
 
@@ -119,3 +119,24 @@ forecast/banking/selector/movement beneath the focused Yamo yields -27.4535 at 3
 bytes, versus r18 -46.4864 and r32 -53.6609. The next route is not further r32 trimming:
 it must restore focused-Yamo regeneration/endgame value while removing another 1,757 named
 bytes. Seeds 9,854,043--9,854,127 remain untouched; no Arena action.
+
+## Progress 2026-08-02T22:34:10Z
+
+Two consumed-panel ablations recover most of the focused-Yamo loss. Deleting the
+unconditional 10,000-point current-tree commitment improves the 516-task mean from
+-27.4535 to -20.6298 while shrinking 33,167 -> 32,819 bytes. Restoring the exact tuned
+opening then improves it to -9.8101 at 36,059 bytes. A fixed worker, approximate all-profile
+search, partial-wood banking, score-aware endgame boundary, and blunt liveness router were
+rejected on 96-task probes. The remaining problem is to specialize the exact opening
+decisions and remove 4,649 bytes without losing their value. Untouched seeds remain closed;
+no Arena action.
+
+## Progress 2026-08-02T23:00:27Z
+
+A distinct size-qualified successor now exists at 31,401 bytes (50.014% reduction),
+SHA-256 `923395d8...`. It preserves exact initial tuned-opening decisions and exact Moisan
+economics while deleting general policy, priority-router, N-worker, unused trait, and
+unused protocol logic. Adding `WAIT` to bank routes repairs an empty-pair single-door case
+and improves the 516-task mean to -6.9574, bootstrap lower -13.0213, catastrophes 19 -> 22,
+and negative mass 4,138 -> 5,012. Size/compile/latency pass; value and liveness do not, so
+the source is not frozen for untouched validation and no Arena action is allowed.

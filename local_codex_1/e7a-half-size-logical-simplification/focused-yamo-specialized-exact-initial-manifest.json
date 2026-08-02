@@ -1,0 +1,73 @@
+{
+  "arm": "FOCUSED_YAMO_SPECIALIZED_EXACT_INITIAL",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 33641,
+  "candidate_sha256": "c17cb1f396ff2a9260aab3470e7f9da176007a49798d957f69822cf3608c1ca1",
+  "evidence_boundary": "oversized attribution arm; cannot qualify for Arena",
+  "identifier_renaming": false,
+  "logical_change": "remove forced current-tree commitment and specialize the exact tuned-carry initial objective into one policy-free method",
+  "minification": false,
+  "removed_or_replaced_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 383,
+      "replacement_bytes": 117
+    },
+    {
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14506,
+      "replacement_bytes": 7774
+    },
+    {
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": 124,
+      "replacement_bytes": 2872
+    },
+    {
+      "bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": -822,
+      "replacement_bytes": 3961
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}
