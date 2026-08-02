@@ -1,0 +1,76 @@
+{
+  "schema": "banana-ring-b100-successor-prelock-v1",
+  "created_utc": "2026-08-02T16:32:00Z",
+  "status": "PRE_LOCK_NO_ARENA_AUTHORITY",
+  "base_commit": "68ed41a5e7ac14a703aedf36a92b19abd83665cb",
+  "live_full_factory": {
+    "agent_id": 6590083,
+    "submission_id": 41081195,
+    "source_path": "local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs",
+    "bytes": 99440,
+    "sha256": "2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533"
+  },
+  "parents": {
+    "formatted_source": "rust/src/bin/yamo_orchard_live.rs",
+    "formatted_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "fallback_source": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+    "fallback_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  },
+  "geometry": {
+    "maximum_chebyshev_distance_from_tent": 1,
+    "frontdoor_choke_threshold": 8,
+    "frontdoor_min_farm_cells": 4,
+    "frontdoor_radius": 2,
+    "maximum_cells": 8,
+    "spread_outside_ring": false
+  },
+  "roles": {
+    "diagonal": {
+      "role": "mother",
+      "harvest": true,
+      "ordinary_chop": false,
+      "release_turns_remaining": 34,
+      "release_raid_bfs": 4
+    },
+    "orthogonal": {
+      "role": "cut_replant",
+      "minimum_chop_size": 2,
+      "harvest": false
+    }
+  },
+  "seed_and_bank": {
+    "bootstrap_goal": "min(initial_bank_bananas, eligible_ring_cells)",
+    "bank_pick_requires_empty_target": true,
+    "bank_pick_max_move_turns_to_target": 2,
+    "nearby_mother_harvest_beats_pick": true,
+    "full_ring_action_for_carried_banana": "resident_bank_move_or_drop",
+    "clear_harvest_seed_flag_after_drop": true
+  },
+  "trained_worker_priority": [
+    "known opponent crop ETA<=6",
+    "orthogonal ring banana size>=2",
+    "resident chop_or_bank",
+    "WAIT"
+  ],
+  "publication_pipeline": {
+    "reuse_generator": "cgauto/make_banana_factory_b100_candidate.py",
+    "reuse_slimmer_template": "cgauto/slim_banana_factory_b100_candidate.py",
+    "stream_seeds": [1300, 1301, 1302, 1303],
+    "stream_seats": [0, 1],
+    "stream_opponents": ["ringfix3", "taskplan"],
+    "expected_commands": 2400,
+    "source_limit_bytes": 100000,
+    "research_arena_stream_equality": "100%",
+    "stderr_bytes": 0
+  },
+  "forbidden": [
+    "plant outside eligible ring",
+    "ordinary diagonal chop",
+    "full-ring bank PICK",
+    "harvest orthogonal cut tree",
+    "own ring plant classified as opponent crop",
+    "ETA<=6 opponent-crop displacement",
+    "PICK/DROP or target-retarget oscillation",
+    "peer Arena mutation"
+  ]
+}
