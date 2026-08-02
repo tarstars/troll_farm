@@ -183,6 +183,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   and both exact sources compile. A separate protocol must preserve three arms:
   workforce-pressure-conditioned treatment, the identical treatment always on, and
   unchanged control. No runner arm, range, panel, candidate, or Arena action yet.
+  **All-agent full review completed:** H3a is the sole surviving ranked route, but the
+  conditioned source, equality bridge, value runner, and multi-game trigger-preflight
+  package do not exist. Treat it as blocked future work, not an immediate check. Endgame
+  removal race and WAIT are rejected from the ranking; B3.14 remains measurement-only.
+  Reconciled PDF: `docs/reports/2026-08-02-top-player-all-agent-analysis.pdf`.
 - **F1 — READINESS AUDIT RELEASED TO `chatgpt_1`.** Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
   command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is

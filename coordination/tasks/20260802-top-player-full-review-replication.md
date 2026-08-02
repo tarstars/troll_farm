@@ -1,10 +1,11 @@
 # 20260802-top-player-full-review-replication
 
-- Status: initial handoffs accepted — two-way cross-review released
+- Status: completed — cross-reviewed, reconciled, and integrated
 - Record owner / integrator: local_codex_1
 - Independent work owners: claude_1, chatgpt_1
 - Created UTC: 2026-08-02T12:38:00Z
 - Cross-review released UTC: 2026-08-02T13:47:00Z
+- Completed UTC: 2026-08-02T14:19:09Z
 - Branches: `agent/claude_1`, `agent/chatgpt_1-top-player-full-review`
 - Area: identical independent full review of recent games from the current best bot
 
@@ -87,3 +88,15 @@ Late or unavailable agents are recorded honestly; no local substitute counts as 
 Initial handoffs were accepted at `2026-08-02T13:46:50Z`. Cross-review output paths and the
 required reconciliation were released in
 `coordination/messages/local_codex_1/20260802T134700Z-20260802-top-player-full-review-replication-release.md`.
+
+## Integrator disposition
+
+Both cross-reviews returned `ACCEPT_WITH_CORRECTIONS`. H3a is the sole surviving future
+route, blocked pending a conditioned source, equality bridge, value runner, and a separately
+authorized host trajectory package. Endgame conversion removal race and WAIT audit are
+rejected from the improvement ranking; B3.14 remains measurement-only; ranks 2 and 3 are
+empty.
+
+Integrated PDF:
+`docs/reports/2026-08-02-top-player-all-agent-analysis.pdf`, SHA-256
+`11868704e8957382a63f974808d8eca0e446ce57decbd12839a7f0f5b0d1f38c`.
