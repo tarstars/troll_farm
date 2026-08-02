@@ -1,6 +1,6 @@
 # 20260802-claude_1-d172-lfs-download-verification
 
-- Status: assigned — acknowledgement pending
+- Status: complete — PASS; handoff reviewed and acknowledged
 - Record owner: local_codex_1
 - Work owner: claude_1
 - Reviewer/integrator: local_codex_1
@@ -35,3 +35,11 @@ exact file-count, apparent-byte, physical-line, and SHA-256 parity.
 Do not modify the dataset, probe branches, shared docs/tasks, Arena, USB paths, or another
 agent's namespace. Do not integrate the verification branch. No platform mutation is
 authorized.
+
+## Result
+
+Claude's clean smudge-disabled clone checked out exact payload commit `bcbd5ca`, observed
+four pointers before the pull, and selectively materialized only the requested shards.
+Observed totals were four files, 82,824,259 bytes, 80,001 physical lines, and 79,997 data
+rows; `sha256sum -c SHA256SUMS` returned `OK` four times. No transfer or filesystem error
+occurred. Handoff: `20260802T062800Z`; evidence branch commit `051cd2c` is not integrated.

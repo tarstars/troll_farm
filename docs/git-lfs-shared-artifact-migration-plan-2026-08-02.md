@@ -2,8 +2,8 @@
 
 Date: 2026-08-02
 
-Status: project-host and Claude-cloud capability PASS; Phase 1 uploaded at `bcbd5ca`;
-independent cloud dataset parity pending.
+Status: Phase 1 ACCEPTED end to end at payload commit `bcbd5ca`; ChatGPT's separate
+environment probe remains pending.
 
 ## Purpose
 
@@ -120,6 +120,13 @@ Commit `bcbd5ca` stores four pointers whose LFS OIDs equal the frozen source has
 single push reported `Uploading LFS objects: 100% (4/4), 83 MB` and the remote branch now
 resolves to that commit. This is a successful upload, not final acceptance: integration
 waits for the independent Claude-cloud selective download and parity report.
+
+Acceptance checkpoint, 2026-08-02: Claude checked out exact payload commit `bcbd5ca` in an
+independent smudge-disabled clone, confirmed the four TSV paths were pointers, and selectively
+pulled only the dataset. It reproduced four files, 82,824,259 bytes, 80,001 physical lines,
+79,997 data rows, and all four committed SHA-256 values exactly. The host probe remained a
+pointer, proving selectivity. No auth, quota, bandwidth, pointer, smudge, or filesystem error
+occurred. Phase 1 is therefore accepted; the external source remains authoritative.
 
 ## Phase 2 — possible H10a/H10b inputs
 

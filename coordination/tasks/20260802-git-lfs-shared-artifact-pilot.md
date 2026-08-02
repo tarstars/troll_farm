@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: active — Phase 1 uploaded; independent cloud parity pending
+- Status: Phase 1 COMPLETE / PASS; ChatGPT capability answer pending separately
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,7 +8,7 @@
 - Base commit: ed29c27c12239760b98269ad7c46bd9e2129bde2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:58:45Z
-- Last updated UTC: 2026-08-02T06:19:18Z
+- Last updated UTC: 2026-08-02T06:34:50Z
 
 ## Owner directive
 
@@ -98,3 +98,15 @@ experiment, model fit, source change, USB deletion, or history rewrite.
   push. Remote branch `agent/local_codex_1` resolves to that exact commit.
 - The USB source is unchanged. Integration remains gated on a clean Claude-cloud selective
   pull and exact four-file/byte/hash parity.
+
+## Phase 1 independent-download result
+
+- Claude checked out exact payload commit `bcbd5ca` in an independent clean clone with
+  automatic smudge disabled and confirmed all four pre-pull worktree files were pointers.
+- A selective pull materialized only the D172 shards in 8.173 seconds; the unrelated host
+  probe remained a pointer.
+- Observed parity is exact: four files, 82,824,259 bytes, 80,001 physical lines, 79,997 data
+  rows, and all four committed SHA-256 values `OK`.
+- No auth, quota, bandwidth, pointer, smudge, or filesystem error occurred.
+- Verdict: `D172_GIT_LFS_PILOT_PASS`. Canonical integration is now allowed. The ChatGPT
+  environment probe remains assigned so its distinct access status is not forgotten.
