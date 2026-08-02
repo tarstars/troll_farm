@@ -2,8 +2,8 @@
 
 Date: 2026-08-02
 
-Status: project-host and Claude-cloud capability PASS; Phase 1 started; no research dataset
-uploaded at this checkpoint.
+Status: project-host and Claude-cloud capability PASS; Phase 1 uploaded at `bcbd5ca`;
+independent cloud dataset parity pending.
 
 ## Purpose
 
@@ -114,6 +114,12 @@ Procedure:
 - At least one clean non-host download passes.
 - No unexpected LFS objects, broad attribute matches, ordinary-Git history growth, source
   deletion, symlink change, or secret output.
+
+Upload checkpoint, 2026-08-02: the four USB files were revalidated and copied byte-exact.
+Commit `bcbd5ca` stores four pointers whose LFS OIDs equal the frozen source hashes. Its
+single push reported `Uploading LFS objects: 100% (4/4), 83 MB` and the remote branch now
+resolves to that commit. This is a successful upload, not final acceptance: integration
+waits for the independent Claude-cloud selective download and parity report.
 
 ## Phase 2 — possible H10a/H10b inputs
 

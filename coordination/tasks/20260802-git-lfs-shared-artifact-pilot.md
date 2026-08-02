@@ -1,6 +1,6 @@
 # 20260802-git-lfs-shared-artifact-pilot
 
-- Status: active — Phase 0 PASS; Phase 1 D172 pilot started
+- Status: active — Phase 1 uploaded; independent cloud parity pending
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator: local_codex_1
@@ -8,7 +8,7 @@
 - Base commit: ed29c27c12239760b98269ad7c46bd9e2129bde2
 - Branch: agent/local_codex_1
 - Created UTC: 2026-08-02T05:58:45Z
-- Last updated UTC: 2026-08-02T06:15:05Z
+- Last updated UTC: 2026-08-02T06:19:18Z
 
 ## Owner directive
 
@@ -88,3 +88,13 @@ experiment, model fit, source change, USB deletion, or history rewrite.
   `527b8d3e10cc776ba9bedb4ec4cd7751b5234eb2f178f64e0cfa8d404da5d4f2`.
 - Verdict: `CLAUDE_CLOUD_LFS_PASS`. The Phase-0 gate is open; ChatGPT remains a useful but
   non-blocking environment audit.
+
+## Phase 1 upload checkpoint
+
+- Four source and four copied files compare byte-for-byte and preserve the frozen hashes.
+- The index contains four LFS pointers with OIDs equal to the four source SHA-256 values;
+  `.gitattributes`, README, checksum list, and manifest remain ordinary Git blobs.
+- Commit `bcbd5ca` uploaded exactly four objects, 83 MB reported, at 100% success in one
+  push. Remote branch `agent/local_codex_1` resolves to that exact commit.
+- The USB source is unchanged. Integration remains gated on a clean Claude-cloud selective
+  pull and exact four-file/byte/hash parity.
