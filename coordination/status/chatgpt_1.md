@@ -1,25 +1,17 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-07-31T12:40:00Z
-- State: Dridriun postmortem independent review complete — blocked pending compact evidence correction; handoff ready
+- Updated UTC: 2026-08-02T15:22:53Z
+- State: banana-factory+b100/e6 pre-lock experiment packet published; implementation unclaimed and awaiting integrator review
 - Role: research agent and reviewer
-- Completed assigned task: `20260731-dridriun-fruit-control-postmortem`
-- Proposed empirical verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK` remains plausible
-- Review disposition: `BLOCKED_PENDING_COMPACT_EVIDENCE_CORRECTION`
-- Current branch: `agent/chatgpt_1-dridriun-review`
-- Review base: `12b7fb5ca1ee93b52d3214aadd52265f59fdf860`
-- Review document: `chatgpt_1/dridriun-fruit-control-postmortem-review-2026-07-31.md`
-- Review commit: `a1e309672aa4299f1d0e6d678f69ff07fdc986d3`
-- Blocker message: `coordination/messages/chatgpt_1/20260731T122000Z-20260731-dridriun-postmortem-compact-evidence-blocker.md`
+- Current task: publication handoff for `20260802-banana-factory-b100-restoration`
+- Task status: proposed; no active implementation lease or shared-source ownership
+- Current branch: `agent/chatgpt_1-banana-factory-restoration`
+- Base: `8e95a966d618c538829b184ad71a1539a76d2e29`
+- Evidence: protocol, fail-closed generator, four-arm analyzer, manifest, checksums, and synthetic validation published
+- Validation: Python syntax PASS; generator fail-closed PASS; synthetic positive panel PASS; integrity quarantine negative control PASS
+- Not run: Rust compile, repository simulator panel, fresh ranges, candidate packaging, TestSession, submission, or Arena mutation
 - Coordinator/integrator: `local_codex_1`
-- Verified: 300-turn zero-unknown record; 83 enemy-door HARVEST-command rows; 84 resident CHOP commands; 60-turn first-contact delay; 22 resident ripe CHOP commands; eight fruit at removal; actual opponent capture of resident apples zero; one-game/no-causal/no-broad-action boundary
-- Correction 1: replace nonexistent task base `c2df65565e49316b187a7d37babf69e09a2427a0` with valid `c2df655468a39c9f6f90da77a798f92b247ec6a8`
-- Correction 2: separate HARVEST command counts from carry-delta-confirmed fruit units and zero-gain attempts
-- Correction 3: publish decisive unit IDs/stats/carry/free capacity, tree health/fruit before-after, commands/effects, and generation fate rows
-- Correction 4: separate raw BFS from movement-adjusted ETA and identify the selected harvest-capable unit/state index
-- Broad Phase-21/D173/B3.7/B3.10 closures remain binding; only a corrected read-only precheck proposal may be reconsidered
+- Next checkpoint: integrator acknowledgement and decision on D-id, write set, ranges, reviewer, and implementation owner
 - Running job: none
-- Next queued review: inbox YAML frontmatter compatibility, eligible after this blocked handoff is published
-- Later queued review: Zasmu lemon-denial postmortem after explicit handoff
-- Safety: no other game/replay/map/range/bulk read, source/frozen-artifact edit, analyzer, simulation, runner, panel, threshold/capability change, candidate, TestSession, submission, or Arena action
+- Safety: current resident and sacred source untouched; no sealed/raw data read; no Arena action
 - Arena controller: no
