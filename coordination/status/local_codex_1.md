@@ -12,5 +12,7 @@
 - Latest verified result: `6589709`/`41079653`, 23.12 rank 32/130 at 160/160 parsed;
   101W/2T/57L, ten catastrophes, clean identity, zero runtime signals
 - Next checkpoint: both cross-review handoffs, then integrator reconciliation and integration
+- Queued next: independent three-agent `20260802-initial-state-sector-policy-audit`; work
+  starts only after the current cross-review handoffs and a separate release
 - Blockers: none
 - Arena controller: yes; opponent-crop agent `6589709` is the sole live leg

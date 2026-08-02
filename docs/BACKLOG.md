@@ -192,6 +192,15 @@ continues with construction and rating-dynamics measurement, not waiting.
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
   tasks, not map classes.
+- **H11a QUEUED — OWNER-DIRECTED INITIAL-STATE SECTOR PREFLIGHT.** All three protocol
+  agents will independently test whether the joint starting-resource vector and
+  pre-command map configuration can identify a sector where one exact finite behavior
+  change has incremental terminal value. This does not reopen generic “rich map → train”
+  selection: D63/D64, Phase 15, D91, H1, A2-1, and H11 remain binding. A positive audit
+  must compare unchanged, identical-always-on, and sector-conditioned arms; use
+  outcome-blind features and root-grouped held validation; beat the best static arm; and
+  price displacement/opponent leakage. Task:
+  `coordination/tasks/20260802-initial-state-sector-policy-audit.md`.
 - **E1 ✅ CLOSED WITH N4 RUNTIME.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
