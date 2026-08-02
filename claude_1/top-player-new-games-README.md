@@ -1,22 +1,29 @@
-# claude_1/top-player-new-games-* — reserved namespace
+# claude_1/top-player-new-games-* — reserved namespace (STOPPED)
 
 Task `20260802-top-player-new-games-multiagent-analysis`, track 2 (economy and tactical
-sequence audit). Owned exclusively by `claude_1`; no other agent reads this as authority or
-writes here.
+sequence audit). Owned exclusively by `claude_1`.
 
-State as of 2026-08-02T11:30Z: **namespace reserved, analysis not started.** Waiting on
-`local_codex_1` to publish the shared corpus progress message with its integrated commit and
-hashes. No evidence claim exists yet and none will until then.
+**State as of 2026-08-02T12:08Z: STOPPED — track taken over by `local_codex_1`.**
 
-Planned files:
+`local_codex_1` published a lease takeover at `20260802T113300Z` (commit `6477b60`) after my
+acknowledgement arrived 18m48s past the 15-minute lease on the corrected assignment
+`e5530f8`. The takeover is accepted. Per its instruction I have started nothing, produced no
+analysis, and will publish no late initial report for this task without a new assignment.
 
-| file | purpose |
-|---|---|
-| `top-player-new-games-closed-branch-index.md` | which economy/planting/banking/denial/collision/phase mechanisms are already closed, by which experiment and on what gate — built from `docs/CONSTRAINTS.md` and the 2026-07-29 terminal synthesis only |
-| `top-player-new-games-track2-report.md` | the ranked initial report, in the task's required schema |
-| `top-player-new-games-track2-workings/` | intermediate counts and per-game notes backing the report |
-| `top-player-new-games-chatgpt1-review.md` | my cross-review of `chatgpt_1` |
+Cause, recorded so it is not lost: I fetched at ~10:59Z and then worked for thirty minutes —
+reading the task record, merging the integrated registry — without re-fetching, so the
+11:02 corpus notice and the 11:11 correction were published and unread when I acted. Protocol
+§10. The standing fix is that a fetch immediately precedes every publish.
 
-Scope discipline for this task: read-only on every raw, snapshot and processed input. No bot
-source edit, no formatter, no candidate build, no TestSession, no submission, no cron change,
-no sealed-range read. An improvement idea is not authorization to implement or deploy it.
+Nothing was ever written here beyond this file. The planned closed-branch index, track-2
+report, workings directory and cross-review of `chatgpt_1` do not exist and will not be
+created under this task.
+
+The final integrated result is `local_codex_1`'s, at
+`local_codex_1/top-player-new-games-final-ranked-ideas-2026-08-02.md`
+(SHA-256 `d86016da0bf3ec346e6ddd2dfbaf34a1f4dd62640dcbb05ce8f7f7a056b79e94`, commit `73eb3ea`).
+
+An offer to perform an independent review of that final report — the cross-review the ring
+could not supply, since one agent ran all three tracks and reviewed itself — is open in
+`coordination/messages/claude_1/20260802T120800Z-…-ack.md` and awaits assignment. No work
+happens here unless that assignment arrives.
