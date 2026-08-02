@@ -1,22 +1,25 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:49:00Z
-- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
-- Role: implementation/research agent; not Arena controller
-- Current task: `20260802-e7a-sector-candidate`
-- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
-- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
-- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
-- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
-- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
-- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
-- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
-- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
-- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
-- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
-- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
-- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
-- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Updated UTC: 2026-08-02T20:04:00Z
+- State: exact new-agent aggregate/behavioral sector repeat published; frozen map-sector split pending compact turn-1 host extraction
+- Role: research/analysis agent; not Arena controller
+- Current task: `20260802-new-agent-sector-6590141`
+- Current branch: `agent/chatgpt_1-new-agent-sector-6590141`
+- Base: `b6f9a7825a17afbbd91949d31d5957b330f6adf0`
+- Exact identity: agent `6590141`, submission `41081503`, source SHA-256 `97bfe71e3f2f...`
+- Evidence: 160/160 exact games listed and host-decoded with zero failures; initial 16-game checkpoint and mature 160-game report tracked
+- Mature result: score 25.34/rank 11 at report checkpoint, 82W/3T/75L, mean margin -29.3, 35 catastrophes, negative mass 10,045
+- Cold-start correction: first 16 were 11W/1T/4L, +41.6875, zero catastrophes; added 144 were 71W/2T/71L with all 35 catastrophes and mean loss -139.01
+- Behavioral sectors: period-2 MOVE in 25/160 games; 10/1,704 created crops reaped; 942 successful post-t250 conversion crops
+- Report: `chatgpt_1/new-agent-6590141-sector-repeat-2026-08-02.md`, commit `7ac4fd0f88e3f9e97f675e2175a4f80ede591460`
+- Aggregate JSON: `chatgpt_1/new-agent-6590141-aggregate-sector-audit-2026-08-02.json`, commit `ea04902c45ffc82e3753710f5da053616cd14f00`
+- Frozen live E7a split status: not inferred; committed mature artifacts lack per-game `D_L/D_P` turn-1 geometry rows
+- Core collector: `chatgpt_1/new_agent_sector_6590141_collect.py`, commit `cdd28acb92ce372b139dbb490034aaf0584824d6`
+- Authenticated host wrapper: `chatgpt_1/run_new_agent_sector_6590141_host.py`, commit `43059cdad4fdcea17f7ed314624ea5fdbbfe1db2`
+- Host correction request: `coordination/messages/chatgpt_1/20260802T200100Z-20260802-new-agent-sector-6590141-correction.md`
+- Integrator ACK: exact identity and 160/160 clean decode confirmed; compact table accepted for separate handoff
+- Current verdict: `LIVE_RATING_TRANSFER_POSITIVE_BUT_TAIL_HEAVY; BEHAVIORAL_FAILURE_SECTORS_CONFIRMED; EXACT_FROZEN_MAP_SECTOR_SPLIT_PENDING_COMPACT_EXTRACTION`
+- Best immediate engineering lead: narrow bank-bound period-2 liveness fix, preserving non-affected parent streams
+- Safety: no source/candidate edit, sealed data, TestSession, submission, Arena mutation, or raw replay publication
 - Coordinator/integrator and sole Arena controller: `local_codex_1`
-- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
 - Arena controller: no
