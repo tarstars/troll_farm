@@ -1,0 +1,59 @@
+# 20260802-owner-top-score-opponent-crop-arena
+
+- Status: active — preflight complete; owner-directed submission start
+- Record owner: local_codex_1
+- Work owner: local_codex_1
+- Integrator / sole Arena controller: local_codex_1
+- Created UTC: 2026-08-02T07:42:29Z
+- Branch: `agent/local_codex_1`
+- Area: owner-directed Arena deployment from the submission-history registry
+
+## Owner directive
+
+Check the bot-version query program, find the best scored bot so far, and submit it to the
+platform.
+
+## Registry result and selection
+
+The unfiltered, source-level `best --min-finished 100 --evidence mature --scope all` query
+ranks `opponent-crop-b100-e6-slim` first at 24.89/160. Exact artifact:
+
+- path: `cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs`;
+- bytes: 64,522;
+- SHA-256: `6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19`;
+- historical agent/submission: `6560269` / `41012399`;
+- terminal observation: 24.89, rank 17/107, 160 finished games.
+
+The mandatory preflight reports no higher historical mature median, but raises three
+warnings: `REJECTED_SOURCE`, `SINGLE_MATURE_RUN`, and `CROSS_ERA`. Its frozen matched protocol
+rejected it because the live score was only about +0.12 over its control. Therefore this is
+not a scientific promotion. The owner was explicitly notified of those facts before the
+write; the literal top-score directive is treated as an owner-directed live override.
+
+## Pre-mutation baseline
+
+Authenticated read at 2026-08-02T07:41Z: active far-denial agent `6589510` is 19.37 at rank
+73/130 with 160 listed, 160 finished, and zero pending battles. `local_codex_1` is the sole
+Arena controller. The candidate and sacred source hashes are exact; sacred source remains
+`fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+
+## Mutation contract
+
+Submit the exact artifact once through `cgauto/api_submit.py`. Record the terminal API
+response, submission id, new agent id when observable, exact identity, initial queue, and
+first completed health. Never retry an ambiguous response. No other candidate or Arena cycle
+may start concurrently.
+
+## Exclusive write set
+
+- this task record;
+- `coordination/status/local_codex_1.md` and local_codex_1 messages for this task;
+- new immutable execution/checkpoint/log artifacts under
+  `data/analysis/live-agent-6553250/`;
+- integrator-owned `docs/STATE.md`, `docs/BACKLOG.md`, and the live ledger after the terminal
+  platform result.
+
+## Prohibitions
+
+No source edit, formatter, sealed-data read, simulation, model fit, history rewrite, unrelated
+branch cleanup, automatic retry, or second submission.
