@@ -191,3 +191,8 @@ evidence only; implementation must use the required isolated branch above.
   missing submission-scoped maturity audit remains explicit rather than being guessed.
 - Merge commit: `5d2b4f3`; the dedicated implementation branch is disposable after the merge
   reaches `main`.
+- Handoff-addendum decisions: the carried immutable ladder-read message is accepted as an
+  explicit build dependency in Claude's own namespace; the evidence-faithful provisional
+  classification of 19.37 is accepted, while the literal `19.37/160 mature` claim remains
+  unproven until a submission-scoped audit; canonical pytest, not the fallback harness, is
+  now observed at 40/40.
