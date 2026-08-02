@@ -102,6 +102,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   pressure. Lineage-boundary ablation changes only 19/256 tasks; yaichi's ATTACK is an
   exhaustion-time bank blockade, mostly inert; first-boundary factory selectors fail map
   transfer (selection on 5/16 maps). [D88–D91]
+- **The 2026-08-02 live banana publications do not test that architectural result.** The
+  unbounded factory violates the owner's bounded gate/collection lifecycle, while the bounded-ring
+  successor has exact long period-2 movement episodes in live replay `897829265` despite passing a
+  small stream-equality/smoke packet. Classify both as `IMPLEMENTATION_INVALID`, not evidence that
+  banana production is harmful. A restoration must start from the exact stable parent, preserve
+  parent commands outside declared activation, prove research/compact equality on broad open and
+  live-counterexample streams, and zero-gate target oscillation, same-cell contention, lost banking,
+  unbounded planting, opponent-favored fruit creation, and second-worker funding displacement before
+  any score or Arena result is scientifically interpretable. [banana restoration r2, 2026-08-02]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns

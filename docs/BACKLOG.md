@@ -18,19 +18,23 @@ may run in parallel and are claimable by any agent under
   must never select by a single maximum. Task and acceptance contract:
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
-  deterministic build/validation pass and the maintained real pytest suite is 44/44. `current`
-  names exact live submission `41081195` / agent `6590083`.
+  deterministic build/validation pass and the maintained real pytest suite is 44/44. The live
+  registry projection must be advanced to sector submission `41081503` / agent `6590141`.
 
 ## Position summary (2026-08-02)
 
-Active resident `6590083`/`41081195` is the owner's unqualified live override combining the
-closed-loop banana factory with b100/e6. Exact source is 99,440 bytes, SHA `2d164ecbaf8a…`.
-Its approximately 30-minute checkpoint is mechanically clean but weak: 98/98 parsed plus one
-pending, score 12.99/rank 127/131, 49W/49L, mean margin +4.643, and 22 catastrophes. It remains
-provisional under the 100-finished rule; monitoring is read-only and no automatic mutation follows.
-The owner-corrected next build is a gate-aware Chebyshev-1 banana ring: diagonal seed mothers,
-orthogonal cut/replant wood trees, and surplus fruit banked at a full ring. Its pre-lock packet is
-integrated and local build paths are assigned; no successor source or Arena authority exists yet.
+Active resident is owner-directed E7a sector agent `6590141` / submission `41081503`, exact source
+SHA `97bfe71e3f2f...`. Initial identity-clean checkpoint: 16/16 parsed plus one pending, score
+19.42/rank 69/131, zero catastrophes/runtime signals, negative mass 175; Arena-room read was 21.1.
+It is a consumed-panel owner override, not prospective validation.
+
+**P0 BANANA RESTORATION R2 — assigned to Claude.** The unbounded factory
+`6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not
+evidence rejecting banana production. The ring bot has exact long period-2 movement in live game
+`897829265`; the unbounded bot violated the intended geometry/collection lifecycle. Claude retries
+from stable parent `a8eb3b2b...` under `coordination/tasks/20260802-banana-restoration-r2.md`.
+Implementation validity, broad inactive-state equality, and exact counterexample liveness precede
+any value test.
 The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
 registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
