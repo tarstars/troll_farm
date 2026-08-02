@@ -1,6 +1,6 @@
 # 20260802-top-player-new-games-multiagent-analysis
 
-- Status: takeover — three independent read-only tracks complete; final synthesis in progress
+- Status: integrated — COMPLETE_WITH_EXTERNAL_LEASE_TAKEOVER at `73eb3ea`
 - Record owner / integrator: local_codex_1
 - Work owner: local_codex_1 (lease takeover at 2026-08-02T11:33:00Z)
 - Unavailable assignees: claude_1, chatgpt_1 (no acknowledgement or task progress after the
