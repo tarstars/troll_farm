@@ -51,6 +51,11 @@ YAMO_IMPL = r"""impl YamoBot {
             }
 
             fn choose_second_troll(view: &GameState) -> Stats {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                    .into_iter()
+                    .filter(|cell| view.walkable.contains(cell))
+                    .collect();
+                let distance = bfs_distances(&view.walkable, &doors);
                 let choices = [
                     (2, 2, 2),
                     (2, 2, 3),
@@ -68,20 +73,47 @@ YAMO_IMPL = r"""impl YamoBot {
                         harvest_power: 0,
                         chop_power,
                     })
-                    .min_by_key(|stats| {
+                    .max_by_key(|stats| {
                         let cost = training_cost(1, stats.tuple());
-                        let deficit = [PLUM, LEMON, APPLE, IRON]
+                        let eta = [PLUM, LEMON, IRON]
                             .into_iter()
                             .filter(|item| *item != IRON || !view.iron.is_empty())
                             .map(|item| {
-                                (cost[item] - view.inventories[0][item]).max(0)
+                                let missing = (cost[item] - view.inventories[0][item]).max(0);
+                                let travel = if item == IRON {
+                                    view.iron.iter()
+                                        .flat_map(|cell| ortho_neighbors(*cell))
+                                        .filter_map(|cell| distance.get(&cell))
+                                        .copied()
+                                        .min()
+                                } else {
+                                    let kind = if item == PLUM {
+                                        PlantKind::Plum
+                                    } else {
+                                        PlantKind::Lemon
+                                    };
+                                    view.plants.iter()
+                                        .filter(|plant| plant.kind == kind && plant.health > 0)
+                                        .filter_map(|plant| distance.get(&plant.cell))
+                                        .copied()
+                                        .min()
+                                }.unwrap_or(10_000);
+                                missing * (2 * travel + 2)
                             })
                             .sum::<i32>();
                         (
-                            deficit,
-                            -(stats.movement_speed
-                                + stats.carry_capacity
-                                + stats.chop_power),
+                            eta <= 15,
+                            if eta <= 15 {
+                                stats.movement_speed
+                                    + stats.carry_capacity
+                                    + stats.chop_power
+                            } else {
+                                -eta
+                            },
+                            -eta,
+                            stats.chop_power,
+                            stats.carry_capacity,
+                            stats.movement_speed,
                         )
                     })
                     .unwrap()
@@ -93,10 +125,19 @@ YAMO_IMPL = r"""impl YamoBot {
                     .filter(|cell| view.walkable.contains(cell))
                     .collect();
                 let distance = bfs_distances(&view.walkable, &[unit.cell]);
-                let door = starts
-                    .into_iter()
-                    .filter(|cell| distance.contains_key(cell))
-                    .min();
+                let door = if starts.contains(&unit.cell) {
+                    Some(unit.cell)
+                } else {
+                    let mut reachable: Vec<Cell> = starts
+                        .into_iter()
+                        .filter(|cell| distance.contains_key(cell))
+                        .collect();
+                    reachable.sort();
+                    let slot = view.units.iter().filter(|other| {
+                        other.player == 0 && other.id < unit.id
+                    }).count();
+                    (!reachable.is_empty()).then(|| reachable[slot % reachable.len()])
+                };
                 let Some(door) = door else { return vec![MoisanBot::wait()] };
                 vec![Candidate {
                     command: if unit.cell == door {
@@ -104,9 +145,9 @@ YAMO_IMPL = r"""impl YamoBot {
                     } else {
                         format!("MOVE {} {} {}", unit.id, door.0, door.1)
                     },
-                    score: 20_000.0,
+                    score: if unit.cell == door { 21_000.0 } else { 20_000.0 },
                     target: Target::Bank(door),
-                }]
+                }, MoisanBot::wait()]
             }
 
             fn carried_fruit(unit: &Unit) -> Option<PlantKind> {
@@ -140,12 +181,19 @@ YAMO_IMPL = r"""impl YamoBot {
                 MoisanBot::ceil_div(tree_health(kind, 1), chop_power)
             }
 
-            fn endgame_candidates(view: &GameState, unit: &Unit) -> Vec<Candidate> {
+            fn endgame_candidates(
+                view: &GameState,
+                unit: &Unit,
+                focus: Option<PlantKind>,
+            ) -> Vec<Candidate> {
                 if unit.carry[WOOD] > 0 {
                     return Self::fixed_bank_candidates(view, unit);
                 }
                 let turns_left = TOTAL_TURNS - view.turn + 1;
                 if let Some(kind) = Self::carried_fruit(unit) {
+                    if view.turn <= 250 && (view.turn < 100 || view.plants.len() > 2) {
+                        return Self::fixed_bank_candidates(view, unit);
+                    }
                     let distance = bfs_distances(&view.walkable, &[unit.cell]);
                     let target = ortho_neighbors(view.shacks[0])
                         .into_iter()
@@ -181,7 +229,7 @@ YAMO_IMPL = r"""impl YamoBot {
                     return Self::fixed_bank_candidates(view, unit);
                 }
                 let mut out = vec![MoisanBot::wait()];
-                let chops = MoisanBot::chop_candidates(view, unit, None);
+                let chops = MoisanBot::chop_candidates(view, unit, focus);
                 if let Some(mut current) = chops
                     .iter()
                     .find(|candidate| candidate.command == format!("CHOP {}", unit.id))
@@ -191,7 +239,8 @@ YAMO_IMPL = r"""impl YamoBot {
                     out.push(current);
                     return out;
                 }
-                if let Some(kind) = Self::bank_fruit(view) {
+                if view.turn > 250 || view.turn >= 100 && view.plants.len() <= 2 {
+                    if let Some(kind) = Self::bank_fruit(view) {
                     if is_adjacent(unit.cell, view.shacks[0])
                         && view.plant_at(unit.cell).is_none()
                         && Self::conversion_chop_turns(
@@ -203,6 +252,7 @@ YAMO_IMPL = r"""impl YamoBot {
                             score: 8_000.0,
                             target: Target::Cell(unit.cell),
                         });
+                    }
                     }
                 }
                 out.extend(chops);
@@ -216,15 +266,10 @@ YAMO_IMPL = r"""impl YamoBot {
                 desired: Stats,
                 focus: PlantKind,
             ) -> Vec<Candidate> {
-                if unit.total_carried() > 0 {
-                    return Self::fixed_bank_candidates(view, unit);
-                }
                 if early {
                     return MoisanBot::early_candidates(view, unit, desired);
                 }
-                let mut out = vec![MoisanBot::wait()];
-                out.extend(MoisanBot::chop_candidates(view, unit, Some(focus)));
-                out
+                Self::endgame_candidates(view, unit, Some(focus))
             }
         }"""
 
@@ -268,7 +313,7 @@ BOT_IMPL = r"""impl Bot for YamoBot {
                 let mut candidates_by_id = BTreeMap::new();
                 for unit in units {
                     let mut candidates = if view.turn > 250 {
-                        Self::endgame_candidates(view, unit)
+                        Self::endgame_candidates(view, unit, self.type_to_cut)
                     } else {
                         Self::ordinary_candidates(
                             view,
@@ -394,13 +439,26 @@ TWO_WORKER_SELECT = r"""fn select(
 
 
 TWO_WORKER_MOVE_GUARD = r"""fn resolve_move_conflicts(view: &GameState, commands: &mut [String]) {
+                let mut own: Vec<&Unit> = view.units
+                    .iter()
+                    .filter(|unit| unit.player == 0)
+                    .collect();
+                own.sort_by_key(|unit| unit.id);
                 let mut reserved: BTreeSet<Cell> = view.units
                     .iter()
                     .filter(|unit| unit.player == 0)
                     .map(|unit| unit.cell)
                     .collect();
-                for command in commands {
-                    let Some((id, target)) = Self::move_command(command) else { continue };
+                let mut order: Vec<usize> = (0..commands.len()).collect();
+                order.sort_by_key(|index| {
+                    own.get(*index).map(|unit| unit.total_carried() == 0).unwrap_or(true)
+                });
+                let mut forced = BTreeSet::new();
+                for index in order {
+                    if forced.contains(&index) { continue; }
+                    let Some((id, target)) = Self::move_command(&commands[index]) else {
+                        continue;
+                    };
                     let Some(unit) = view.unit(id) else { continue };
                     let landing = next_cell(
                         &view.walkable,
@@ -409,21 +467,38 @@ TWO_WORKER_MOVE_GUARD = r"""fn resolve_move_conflicts(view: &GameState, commands
                         unit.stats.movement_speed,
                     );
                     if landing == unit.cell {
-                        *command = "WAIT".to_string();
+                        commands[index] = "WAIT".to_string();
                         continue;
                     }
-                    let chosen = if !reserved.contains(&landing) {
-                        Some(landing)
-                    } else {
-                        ortho_neighbors(unit.cell)
-                            .into_iter()
-                            .filter(|cell| view.walkable.contains(cell))
-                            .filter(|cell| !reserved.contains(cell))
-                            .min_by_key(|cell| (manhattan(*cell, target), *cell))
-                    };
-                    *command = if let Some(cell) = chosen {
-                        reserved.insert(cell);
-                        format!("MOVE {} {} {}", id, cell.0, cell.1)
+                    if unit.total_carried() > 0 && reserved.contains(&landing) {
+                        let blocker = own.iter().find(|other| other.cell == landing);
+                        if let Some(blocker) = blocker.filter(|other| other.total_carried() == 0) {
+                            let egress = ortho_neighbors(blocker.cell)
+                                .into_iter()
+                                .filter(|cell| view.walkable.contains(cell))
+                                .filter(|cell| !own.iter().any(|other| {
+                                    other.id != blocker.id && other.cell == *cell
+                                }))
+                                .min_by_key(|cell| (manhattan(*cell, view.shacks[0]), *cell))
+                                .or_else(|| {
+                                    is_adjacent(blocker.cell, unit.cell).then_some(unit.cell)
+                                });
+                            if let (Some(egress), Some(blocker_index)) = (
+                                egress,
+                                own.iter().position(|other| other.id == blocker.id),
+                            ) {
+                                commands[blocker_index] = format!(
+                                    "MOVE {} {} {}", blocker.id, egress.0, egress.1
+                                );
+                                forced.insert(blocker_index);
+                                reserved.remove(&landing);
+                                reserved.insert(egress);
+                            }
+                        }
+                    }
+                    commands[index] = if !reserved.contains(&landing) {
+                        reserved.insert(landing);
+                        format!("MOVE {} {} {}", id, landing.0, landing.1)
                     } else {
                         "WAIT".to_string()
                     };

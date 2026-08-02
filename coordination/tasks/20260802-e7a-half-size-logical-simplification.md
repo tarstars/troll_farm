@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T20:21:09Z
+- Last updated UTC: 2026-08-02T21:12:00Z
 
 ## Outcome
 
@@ -84,3 +84,11 @@ identity/checkpoint, and final requirement-by-requirement audit.
 sacred hash gates pass. Static report:
 `data/analysis/live-agent-6553250/e7a-half-size-r5-static-qualification-2026-08-02.md`.
 Behavioral, liveness, latency, and value qualification remain in progress; no Arena action.
+
+## Progress 2026-08-02T21:12:00Z
+
+r5 failed the 16-game closed-loop smoke (-262.5 mean paired margin; 14/16 catastrophes).
+Repairs through r18 restored the same smoke to -6.625 with 3/16 catastrophes and maximum
+period-2 target run 3, but r18 is 35,146 bytes, 3,736 over the ceiling.  r19's larger chop
+forecast regressed to -11.4375 and was rejected.  Reproducible runner, exact r18/r19 JSON,
+and the negative iteration report are prepared for publication; no Arena action.
