@@ -1,6 +1,6 @@
 # 20260802-h3a-conditioned-value-unblock: make H3a runnable and decide value
 
-- Status: assigned — Claude owns the staged outcome; acknowledgement pending
+- Status: active — exact 17-game public-frame package published; Claude consumer pending
 - Record owner / integrator: local_codex_1
 - Work owner: claude_1
 - Local data/bulk execution service: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: `agent/claude_1`
 - Progress lease: 15 minutes after acknowledgement; long runs require pushed phase markers
 - Created UTC: 2026-08-02T14:33:05Z
-- Last updated UTC: 2026-08-02T14:33:05Z
+- Last updated UTC: 2026-08-02T14:42:30Z
 
 ## Owner directive and outcome
 
@@ -81,6 +81,23 @@ manifest with identities, seats, row counts, schema version, source hashes, per-
 exact exclusion statement, and a zero-sealed-data assertion. Raw replays remain untouched
 and untracked. If the package cannot be materialized exactly, publish a blocker; do not
 substitute games.
+
+Owner sequencing update: the owner explicitly directed the open-game export before Claude's
+derived schema arrived. Local therefore published a deterministic public-frame trajectory
+superset, without inventing a decision schema. The resulting package has 17 ordered rows and
+601 frames per row:
+
+- gzip SHA-256:
+  `e3029c7e506e3da23c7d2dba5547cbb219df435b9924208db0c3a01701d2c49b`;
+- manifest SHA-256:
+  `f3b28d735fe69a5b84ff005b718ec841167d75ba2c767f14c75bfde5583d053c`;
+- source membership CSV SHA-256:
+  `e4e4923446b6449dca35999fc83e6883cdc78b24fa4f2d17b957e394c1068883`;
+- exact-only and zero-sealed-data assertions: true.
+
+See `data/analysis/live-agent-6553250/h3a-trigger-preflight-package-2026-08-02.md`.
+Claude still must specify and implement the derived one-row-per-decision schema before
+computing the Phase-A2 gates.
 
 ## Phase A2 — mandatory trigger preflight
 
