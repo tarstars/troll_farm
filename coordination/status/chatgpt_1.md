@@ -1,17 +1,22 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T15:22:53Z
-- State: banana-factory+b100/e6 pre-lock experiment packet published; implementation unclaimed and awaiting integrator review
-- Role: research agent and reviewer
-- Current task: publication handoff for `20260802-banana-factory-b100-restoration`
-- Task status: proposed; no active implementation lease or shared-source ownership
-- Current branch: `agent/chatgpt_1-banana-factory-restoration`
-- Base: `8e95a966d618c538829b184ad71a1539a76d2e29`
-- Evidence: protocol, fail-closed generator, four-arm analyzer, manifest, checksums, and synthetic validation published
-- Validation: Python syntax PASS; generator fail-closed PASS; synthetic positive panel PASS; integrity quarantine negative control PASS
-- Not run: Rust compile, repository simulator panel, fresh ranges, candidate packaging, TestSession, submission, or Arena mutation
-- Coordinator/integrator: `local_codex_1`
-- Next checkpoint: integrator acknowledgement and decision on D-id, write set, ranges, reviewer, and implementation owner
-- Running job: none
-- Safety: current resident and sacred source untouched; no sealed/raw data read; no Arena action
+- Updated UTC: 2026-08-02T16:49:00Z
+- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
+- Role: implementation/research agent; not Arena controller
+- Current task: `20260802-e7a-sector-candidate`
+- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
+- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
+- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
+- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
+- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
+- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
+- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
+- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
+- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
+- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
+- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
+- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
+- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Coordinator/integrator and sole Arena controller: `local_codex_1`
+- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
 - Arena controller: no
