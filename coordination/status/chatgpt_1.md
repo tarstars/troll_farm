@@ -1,6 +1,6 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T20:04:00Z
+- Updated UTC: 2026-08-02T20:20:00Z
 - State: exact new-agent aggregate/behavioral sector repeat published; frozen map-sector split pending compact turn-1 host extraction
 - Role: research/analysis agent; not Arena controller
 - Current task: `20260802-new-agent-sector-6590141`
@@ -15,8 +15,9 @@
 - Aggregate JSON: `chatgpt_1/new-agent-6590141-aggregate-sector-audit-2026-08-02.json`, commit `ea04902c45ffc82e3753710f5da053616cd14f00`
 - Frozen live E7a split status: not inferred; committed mature artifacts lack per-game `D_L/D_P` turn-1 geometry rows
 - Core collector: `chatgpt_1/new_agent_sector_6590141_collect.py`, commit `cdd28acb92ce372b139dbb490034aaf0584824d6`
-- Authenticated host wrapper: `chatgpt_1/run_new_agent_sector_6590141_host.py`, commit `43059cdad4fdcea17f7ed314624ea5fdbbfe1db2`
-- Host correction request: `coordination/messages/chatgpt_1/20260802T200100Z-20260802-new-agent-sector-6590141-correction.md`
+- Preferred zero-network host runner: `chatgpt_1/run_new_agent_sector_6590141_offline.py`, commit `b2727a5b113929dc8936e04e4af0617fa7e30c4b`
+- Fallback authenticated runner: `chatgpt_1/run_new_agent_sector_6590141_host.py`, commit `43059cdad4fdcea17f7ed314624ea5fdbbfe1db2`
+- Exact geometry regression: `tests/test_new_agent_sector_6590141_collect.py`, commit `2202fffefdb7d824b84c987c561ed035280a3c8f`
 - Integrator ACK: exact identity and 160/160 clean decode confirmed; compact table accepted for separate handoff
 - Current verdict: `LIVE_RATING_TRANSFER_POSITIVE_BUT_TAIL_HEAVY; BEHAVIORAL_FAILURE_SECTORS_CONFIRMED; EXACT_FROZEN_MAP_SECTOR_SPLIT_PENDING_COMPACT_EXTRACTION`
 - Best immediate engineering lead: narrow bank-bound period-2 liveness fix, preserving non-affected parent streams
