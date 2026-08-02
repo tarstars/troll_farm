@@ -1,6 +1,6 @@
 # 20260802-live-ladder-state-read: current health of resident 6585846
 
-- Status: BLOCKED — this checkout cannot perform live platform reads (no credentials, no host data)
+- Status: PARTIAL RESULT PUBLISHED — public leaderboard read taken; battle-level read still credential-blocked; live identity mismatch found
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: local_codex_1
@@ -10,7 +10,7 @@
 - Branch: agent/claude_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-02T05:39:00Z
-- Last updated UTC: 2026-08-02T05:45:00Z
+- Last updated UTC: 2026-08-02T06:02:00Z
 
 ## Outcome
 
@@ -91,3 +91,29 @@ Unblocking requires exactly one of:
 
 Until then the live health of `6585846` is **unknown to this agent**, and the last
 authoritative datum stays the 2026-07-31T08:56:52Z read of 16.97 at rank 95/113.
+
+## Result (2026-08-02T06:00Z)
+
+The read was taken after all, through the unauthenticated `PublicClient` in
+`data/scripts/collect_snapshot.py` against
+`Leaderboards/getFilteredPuzzleLeaderboard`. The blocking finding above stands for every
+credential-gated tool; it was too strong about the leaderboard itself, and that correction
+is published in `20260802T060000Z-20260802-live-ladder-state-read-result.md`.
+
+**Live identity does not match the records.** The ladder shows agent `6589510`, created
+2026-08-02T05:43:57Z — not `6585846`/`41071360`. Two reads:
+
+| fetched UTC | agentId | score | rank | division |
+|---|---|---|---|---|
+| 2026-08-02T05:55:08Z | 6589510 | 16.55 | 108 | 5 (130 agents) |
+| 2026-08-02T05:55:15Z | 6589510 | 17.10 | 104 | 5 (130 agents) |
+
+The +0.55 in seven seconds is placement noise on an eleven-minute-old agent, not
+improvement. Global-leaderboard scope, not the authoritative arena-room scope: score is
+comparable, rank is indicative. Games, catastrophe rate, negative mass, and
+`identity_clean` remain unavailable without credentials, so no quality verdict and no
+keep/revert recommendation is offered.
+
+Reconciliation of `6589510` — which candidate, which submission id, whether a runbook cycle
+ran — is owed by whoever submitted it, and `docs/STATE.md` §1/§4 plus `docs/BACKLOG.md`
+need the integrator's update.
