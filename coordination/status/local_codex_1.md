@@ -1,6 +1,6 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-02T18:55:07Z
+- Updated UTC: 2026-08-02T19:00:33Z
 - State: collecting and auditing public recent battles for current Arena top 15
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260802-top15-public-battle-audit`; banana restoration r2 remains delegated
@@ -8,8 +8,8 @@
 - Candidate: 62,820 bytes, SHA-256 `97bfe71e3f2f…`; five focused tests, compile, and 16/16
   exact semantic bridge pass; consumed-panel value remains unqualified
 - Write set: new top-15 audit script, compact evidence, report, and own coordination artifacts
-- Last concrete progress UTC: 2026-08-02T18:55:07Z
-- Running job: none; inventory complete (2,318 occurrences / 2,072 unique games)
+- Last concrete progress UTC: 2026-08-02T19:00:33Z
+- Running job: announced 2,072-game read-only fetch/decode, 12 workers; five-game smoke clean
 - Live identity: E7a sector `6590141`/`41081503`; exact recovery pass; 16/16 parsed plus one
   pending, score 19.42 rank 69/131, zero catastrophes/runtime signals, clean identity
 - Next checkpoint: fetch/decode 2,072 unique public replays and aggregate 2,318 top-agent sides
