@@ -1369,3 +1369,27 @@ Battle health is 4W/6L, mean margin -32.3, five catastrophes, negative mass 749.
 **Disposition: mutation terminal / owner override live / clean but very weak initialization.**
 This is not a scientific verdict. Monitoring is read-only through the approximately 30-minute
 reconvergence checkpoint; no automatic restore or second submission follows.
+
+## 2026-08-02 — banana reconvergence read and experiment-record reconciliation
+
+The owner-specified approximately 30-minute read is complete. Exact active identity remains
+agent/submission `6590083`/`41081195`. The checkpoint has 99 matching rows: 98 finished,
+fetched, and parsed plus one pending; zero unexpected rows, fetch failures, runtime signals, or
+identity faults. Score is 12.99 at rank 127/131; results are 49W/49L, mean margin +4.642857,
+22 catastrophes (22.45%), and negative-margin mass 4,851. SHA-256 is `83983d63...`.
+
+This recovers average margin from the ten-game landing but does not recover ladder position and
+remains just below the registry's 100-game maturity rule. **Disposition: active owner override /
+clean weak provisional evidence / read-only; no automatic mutation.** The deterministic Arena
+registry now names this exact deployment current and records the displaced 23.12/160 b100/e6
+parent separately; 10 sources, 19 submissions, and 39 observations validate cleanly.
+
+Record reconciliation also recovered both exact E7 full `/tmp` payloads without rerunning the
+consumed panel. A deterministic extractor verified the normalized payload and all four original
+row hashes, then published only 360 root/opponent delta rows. Jobs-1 and jobs-8 yield the same CSV
+(`cb2a98e6...`; sorted compact rows `2921f906...`). ChatGPT owns no-fit pricing of the already
+frozen exploratory sector; no source or Arena action follows from recovery alone.
+
+Finally, inbox acknowledgements are now freshness-aware: a task ACK covers only strictly earlier
+messages for that task. This closes the bookkeeping defect where an old ACK could hide a later
+question or blocker; the focused suite passes 11/11.

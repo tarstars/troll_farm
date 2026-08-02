@@ -16,6 +16,10 @@ Usage:
     python3 scripts/inbox_sweep.py --me claude_1 --fetch    # git fetch first
 
 Exit status is 1 if anything addressed to me is unacknowledged, else 0.
+
+Acknowledgements are task-scoped but time-ordered: an ACK only covers messages for the
+same task whose immutable filename timestamp is strictly earlier than the ACK.  This
+prevents an old ACK from hiding a later question or blocker that reused the task id.
 """
 from __future__ import annotations
 
@@ -194,6 +198,13 @@ def deduplicate_messages(
     return seen
 
 
+def acknowledged_by_later_ack(
+    task: str, message_stamp: str, latest_ack_stamp_by_task: dict[str, str]
+) -> bool:
+    """Return whether a strictly later ACK exists for this task message."""
+    return latest_ack_stamp_by_task.get(task, "") > message_stamp
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--me", required=True, help="my agent id, e.g. claude_1")
@@ -212,7 +223,7 @@ def main() -> int:
     seen = deduplicate_messages(locations)
 
     my_prefix = f"{NAMESPACE}{args.me}/"
-    my_acks = set()
+    latest_ack_stamp_by_task: dict[str, str] = {}
     for path, ref in seen.values():
         if not path.startswith(my_prefix):
             continue
@@ -222,7 +233,10 @@ def main() -> int:
         body = body_of(path, ref, root)
         if message_kind(body, m["kind"]) != "ack":
             continue
-        my_acks.add(task_of(body, m["task"]))
+        task = task_of(body, m["task"])
+        latest_ack_stamp_by_task[task] = max(
+            latest_ack_stamp_by_task.get(task, ""), m["stamp"]
+        )
 
     watermark_file = root / args.me / "inbox-watermark.txt"
     watermark = ""
@@ -243,7 +257,10 @@ def main() -> int:
         if m["stamp"] > watermark:
             new_items.append((path, ref))
         needs_ack = requires_ack(body, message_kind(body, m["kind"]))
-        if needs_ack and task_of(body, m["task"]) not in my_acks:
+        task = task_of(body, m["task"])
+        if needs_ack and not acknowledged_by_later_ack(
+            task, m["stamp"], latest_ack_stamp_by_task
+        ):
             unacked.append((path, ref))
 
     print(f"agent: {args.me}   watermark: {watermark or '(none)'}   scanned: {len(seen)} messages")

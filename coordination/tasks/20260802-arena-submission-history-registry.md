@@ -196,3 +196,13 @@ evidence only; implementation must use the required isolated branch above.
   classification of 19.37 is accepted, while the literal `19.37/160 mature` claim remains
   unproven until a submission-scoped audit; canonical pytest, not the fallback harness, is
   now observed at 40/40.
+
+## 2026-08-02 maintenance update
+
+The deterministic manifest now includes the later owner-directed banana-factory deployment and
+its exact source. Submission `41079653` is displaced by `41081195`; `current` returns agent
+`6590083`, source SHA `2d164ecb...`. The 10-game cold-start and 98-game reconvergence checkpoints
+are both submission-scoped and clean; the latter is deliberately still `provisional` because it
+does not meet the 100-finished rule. Current projection: 10 sources, 19 submissions, 39
+observations, five unresolved. Validation passes, deterministic `build --check` passes, and the
+updated real pytest suite passes 44/44.

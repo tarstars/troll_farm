@@ -1,6 +1,6 @@
 # 20260802-initial-state-sector-policy-audit: find actionable initial-state sectors
 
-- Status: ChatGPT measurement-only handoffs integrated; host delta recovery active; Claude/local tranches paused for H3a
+- Status: ChatGPT measurement-only handoffs integrated; exact compact deltas handed back for frozen no-fit pricing; Claude/local tranches paused for H3a
 - Record owner / integrator: local_codex_1
 - Independent analysis owners: local_codex_1, claude_1, chatgpt_1
 - Area: H11a owner-directed initial-resource/map-sector preflight
@@ -8,7 +8,7 @@
 - Branches: `agent/local_codex_1`, `agent/claude_1`, `agent/chatgpt_1-top-player-full-review`
 - Progress lease: queued acknowledgements confirm receipt only; each 15-minute work lease begins with the later release
 - Created UTC: 2026-08-02T14:07:13Z
-- Last updated UTC: 2026-08-02T16:25:46Z
+- Last updated UTC: 2026-08-02T16:36:08Z
 
 ## Owner hypothesis
 
@@ -123,9 +123,10 @@ exploratory rule selects 13/60 roots with 10 TP / 3 FP, but the primary ridge ch
 precision and the tracked compact evidence lacks value magnitudes.
 
 Both hash-pinned original E7 full payloads survive at their exact `/tmp` paths and match the
-published hashes. Under `20260802-current-experiment-log-reconciliation`, local owns a no-fit
-compact extraction utility and outputs at `local_codex_1/e7_root_delta_extract.py` and
-`data/analysis/live-agent-6553250/e7a-root-delta-*`. It may publish only requested root/opponent
-delta columns plus a manifest. It may not rerun E7, inspect fresh evidence, change the rule, or
-authorize source/Arena work. Claude/local independent tranches and reconciliation remain paused
-until H3a release.
+published hashes. Local published the requested no-fit compact extraction utility and exact
+360-row table at `local_codex_1/e7_root_delta_extract.py` and
+`data/analysis/live-agent-6553250/e7a-root-delta-pricing-input-2026-08-02.*`. Jobs-8 and jobs-1
+produce a byte-identical CSV (`cb2a98e6...`); sorted compact rows are `2921f906...`; all four
+original row hashes remain exact. No traces or command streams were published and no simulation,
+fit, or rule change occurred. ChatGPT now owns pricing of the already frozen C1 rule only. Claude/
+local independent tranches and reconciliation remain paused until H3a release.

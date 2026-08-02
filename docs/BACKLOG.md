@@ -18,15 +18,16 @@ may run in parallel and are claimable by any agent under
   must never select by a single maximum. Task and acceptance contract:
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
-  deterministic build/validation pass and the real pytest suite is 40/40.
+  deterministic build/validation pass and the maintained real pytest suite is 44/44. `current`
+  names exact live submission `41081195` / agent `6590083`.
 
 ## Position summary (2026-08-02)
 
 Active resident `6590083`/`41081195` is the owner's unqualified live override combining the
 closed-loop banana factory with b100/e6. Exact source is 99,440 bytes, SHA `2d164ecbaf8a…`.
-Its first 10/10 checkpoint is mechanically clean but weak: room score 0.0/rank 130/131,
-filtered 13.7/rank 124, five catastrophes. This is an immature initialization; the owner
-states reconvergence takes about 30 minutes, and monitoring is read-only until that checkpoint.
+Its approximately 30-minute checkpoint is mechanically clean but weak: 98/98 parsed plus one
+pending, score 12.99/rank 127/131, 49W/49L, mean margin +4.643, and 22 catastrophes. It remains
+provisional under the 100-finished rule; monitoring is read-only and no automatic mutation follows.
 The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
 registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
@@ -185,7 +186,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   unchanged control. No runner arm, range, panel, candidate, or Arena action yet.
   **All-agent full review completed:** H3a is the sole surviving ranked route, but the
   conditioned source, equality bridge, value runner, and multi-game trigger-preflight
-  package do not exist. Treat it as blocked future work, not an immediate check. Endgame
+  package did not exist at review time. The exact 17-game public-frame and 5,100-decision
+  reconstruction packages now exist; Claude accepts them for retrospective Phase A2 only.
+  Literal gate-4 analyzer/tests remain pending. The locked substrate's 213 numeric-fruit alias
+  crashes, continued-RNG divergence, and empty `MSG ;` incompatibility block Phase B/C until
+  fixed. Endgame
   removal race and WAIT are rejected from the ranking; B3.14 remains measurement-only.
   Reconciled PDF: `docs/reports/2026-08-02-top-player-all-agent-analysis.pdf`.
   **Owner-priority unblock assigned to `claude_1`:** cheap exact-17-game trigger preflight
@@ -210,8 +215,9 @@ continues with construction and rating-dynamics measurement, not waiting.
   outcome-blind features and root-grouped held validation; beat the best static arm; and
   price displacement/opponent leakage. Task:
   `coordination/tasks/20260802-initial-state-sector-policy-audit.md`. ChatGPT's early
-  independent handoff is staged; Claude/local work is paused behind the owner-priority H3a
-  unblock.
+  improved E7a handoff is measurement-only. Exact jobs-1/jobs-8 payloads were recovered into a
+  trace-free 360-row delta table; ChatGPT owns no-fit pricing of the frozen rule. Claude/local
+  work remains paused behind the owner-priority H3a unblock.
 - **E1 ✅ CLOSED WITH N4 RUNTIME.** “Opening never audited” was false: the complete
   first-worker grid, fixed prefixes, terminal turn-one rollout, recurrent portfolio, and
   one/two-batch sequences already exist. Only a terminal-valued multi-turn sequence over
@@ -247,9 +253,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   families negative. Choosing once per seed after six-opponent averaging gains +10.510;
   24/60 seeds prefer FLIP, both selected-policy seats are positive, and every
   leave-one-family-out evaluation remains positive. Keep the current default. **E7a is
-  gated on peer acceptance:** decide whether this warrants a prospective, disjoint-map
-  selector protocol under the static-feature and synthetic-substrate constraints; do not
-  fit on the consumed E7 labels or build a candidate.
+  MEASUREMENT_ONLY:** the exploratory sign rule marks 13/60 roots (10 TP / 3 FP), while the
+  primary ridge gate fails at 55% precision. The original exact delta magnitudes are now
+  compactly recovered; price only the already frozen rule without fitting or retuning. Do not
+  build a candidate or touch Arena.
 - **S1 ✅ DONE — FULL_EXACT_INFEASIBLE.** In 720 reused control games, 34.17% reach
   turn 251 and 21.53% reach 291. Exact movement-only simultaneous one-ply outcomes are
   median 600/max 6,400 overall and median 450 at t291, so first-ply size is not the sole

@@ -24,3 +24,13 @@ Evidence:
 - `owner-banana-factory-b100-initial-checkpoint-20260802T1600Z.json`, SHA-256
   `03b77b4d9233a6d764471da3ea29f4b06401da6570c38c18af068251d26ebb7d`;
 - `owner-banana-factory-b100-preflight-20260802T155654Z.json`.
+
+The owner's approximately 30-minute read was captured without platform mutation at
+2026-08-02T16:29:58Z. It has 98/98 finished/fetched/parsed games plus one pending, clean
+identity and zero runtime signals. The Arena row is 12.99 at rank 127/131; results are
+49W/49L, mean margin +4.642857, 22 catastrophes (22.45%), and negative-margin mass 4,851.
+Checkpoint SHA-256 is `83983d63e671bec97832d1937b14e674cf65f5852c66e053f9488ed516bb452e`.
+
+**Current disposition: active owner override / clean but weak provisional 98-game evidence /
+read-only.** The average-margin recovery does not qualify the source, and the checkpoint remains
+below the registry's 100-game mature threshold. No automatic restore or second submission follows.

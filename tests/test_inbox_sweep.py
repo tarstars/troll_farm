@@ -99,6 +99,26 @@ def test_deduplication_is_by_full_message_path():
     assert seen[same_path][1] == "refs/heads/one"
 
 
+def test_ack_must_be_strictly_later_for_the_same_task():
+    latest = {
+        "same-task": "20260802T120000Z",
+        "other-task": "20260802T140000Z",
+    }
+
+    assert inbox_sweep.acknowledged_by_later_ack(
+        "same-task", "20260802T115959Z", latest
+    )
+    assert not inbox_sweep.acknowledged_by_later_ack(
+        "same-task", "20260802T120000Z", latest
+    )
+    assert not inbox_sweep.acknowledged_by_later_ack(
+        "same-task", "20260802T120001Z", latest
+    )
+    assert not inbox_sweep.acknowledged_by_later_ack(
+        "unacked-task", "20260802T000000Z", latest
+    )
+
+
 def test_mark_preserves_latest_stamp_watermark_behavior(tmp_path, monkeypatch):
     message_path = (
         "coordination/messages/chatgpt_1/"

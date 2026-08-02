@@ -284,7 +284,7 @@ def test_the_nine_game_far_denial_checkpoint_is_cold_start(registry: dict) -> No
     assert obs["evidence_maturity"] == "cold_start"
 
 
-def test_the_live_opponent_crop_checkpoint_is_provisional(registry: dict) -> None:
+def test_the_displaced_opponent_crop_checkpoint_is_provisional(registry: dict) -> None:
     obs = next(
         o
         for o in registry["observations"]
@@ -297,7 +297,7 @@ def test_the_live_opponent_crop_checkpoint_is_provisional(registry: dict) -> Non
     assert obs["identity_faults"] == 0
 
 
-def test_the_live_opponent_crop_repeat_is_mature(registry: dict) -> None:
+def test_the_displaced_opponent_crop_repeat_is_mature(registry: dict) -> None:
     obs = next(
         o
         for o in registry["observations"]
@@ -306,6 +306,21 @@ def test_the_live_opponent_crop_repeat_is_mature(registry: dict) -> None:
     assert obs["games_finished"] == 160
     assert obs["score"] == 23.12
     assert obs["evidence_maturity"] == "mature"
+    assert obs["runtime_faults"] == 0
+    assert obs["identity_faults"] == 0
+
+
+def test_the_live_banana_factory_checkpoint_is_clean_but_provisional(registry: dict) -> None:
+    obs = next(
+        o
+        for o in registry["observations"]
+        if o["observation_id"] == "obs-41081195-reconvergence98"
+    )
+    assert obs["games_finished"] == 98
+    assert obs["score"] == 12.99
+    assert obs["rank"] == 127
+    assert obs["field_size"] == 131
+    assert obs["evidence_maturity"] == "provisional"
     assert obs["runtime_faults"] == 0
     assert obs["identity_faults"] == 0
 
@@ -488,7 +503,7 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
     for submission_id in (
         41009795, 41009911, 41009991, 41012256, 41012399, 41012593,
         41012867, 41012883, 41015603, 41070584, 41070944, 41071034,
-        41071067, 41071204, 41071360, 41079354, 41079653,
+        41071067, 41071204, 41071360, 41079354, 41079653, 41081195,
     ):
         assert submission_id in covered, f"submission {submission_id} is missing"
     assert registry["unresolved"], "the unresolved list must state what is NOT covered"
@@ -497,8 +512,8 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 def test_exactly_one_submission_is_active(registry: dict) -> None:
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41079653
-    assert live[0]["agent_id"] == 6589709
+    assert live[0]["submission_id"] == 41081195
+    assert live[0]["agent_id"] == 6590083
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:

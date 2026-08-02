@@ -32,6 +32,13 @@
       "field_size": 130,
       "first_seen": "2026-08-02",
       "last_seen": "2026-08-02"
+    },
+    {
+      "era_id": "legend-131",
+      "label": "Legend division, 131-agent field",
+      "field_size": 131,
+      "first_seen": "2026-08-02",
+      "last_seen": "2026-08-02"
     }
   ],
   "sources": [
@@ -154,6 +161,20 @@
         "workforce_training"
       ],
       "notes": "Second-troll funding prioritized before denial, plus the diagonal tent ring."
+    },
+    {
+      "source_id": "banana-factory-b100-e6-owner-override",
+      "path": "local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs",
+      "bytes": 99440,
+      "sha256": "2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "opponent-crop-b100-e6-slim",
+      "strategy_categories": [
+        "denial_opponent_resource",
+        "economy_planting_harvest_conversion"
+      ],
+      "notes": "Owner-directed composition of the closed-loop banana factory with the flat opponent-crop b100/e6 treatment; unqualified for promotion."
     }
   ],
   "submissions": [
@@ -534,16 +555,38 @@
       "comparison_basis": "cross_era_historical",
       "authority": "owner_directed_override",
       "parent_submission_id": 41079354,
-      "replaced_by_submission_id": null,
+      "replaced_by_submission_id": 41081195,
       "task_id": "20260802-owner-top-score-opponent-crop-arena",
       "protocol_id": "opponent-crop-controlled-transfer-protocol-2026-07-18",
-      "disposition": "active",
-      "disposition_rationale": "Owner explicitly directed submission of the registry's literal top mature score after the rejected/single-run/cross-era warnings were surfaced.",
+      "disposition": "displaced_superseded",
+      "disposition_rationale": "Owner explicitly directed submission of the registry's literal top mature score after the rejected/single-run/cross-era warnings were surfaced; it was later displaced by the owner-directed banana-factory composite.",
       "provenance": [
         "data/analysis/live-agent-6553250/owner-top-score-opponent-crop-arena-execution-2026-08-02.md",
         "coordination/tasks/20260802-owner-top-score-opponent-crop-arena.md"
       ],
-      "notes": "Second recorded deployment of this exact source. Its current mature repeat is 23.12/160; the frozen matched-control rejection still makes this an owner override, not a qualified promotion."
+      "notes": "Second recorded deployment of this exact source. Its mature repeat was 23.12/160; the frozen matched-control rejection still makes this an owner override, not a qualified promotion."
+    },
+    {
+      "submission_id": 41081195,
+      "agent_id": 6590083,
+      "source_id": "banana-factory-b100-e6-owner-override",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": null,
+      "era_id": "legend-131",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41079653,
+      "replaced_by_submission_id": null,
+      "task_id": "20260802-owner-banana-factory-b100-arena",
+      "protocol_id": null,
+      "disposition": "active",
+      "disposition_rationale": "Owner twice directed publication after the unqualified evidence status and displacement of the 23.12/160 resident were surfaced. The clean 98-game checkpoint remains provisional and weak at 12.99, rank 127/131.",
+      "provenance": [
+        "data/analysis/live-agent-6553250/owner-banana-factory-b100-arena-execution-2026-08-02.md",
+        "coordination/tasks/20260802-owner-banana-factory-b100-arena.md"
+      ],
+      "notes": "Exact banana-factory plus b100/e6 owner override. It is active platform state, not a qualified scientific promotion."
     }
   ],
   "checkpoint_inputs": [
@@ -832,6 +875,28 @@
       "sha256": "f6367e7feb6b1a6ce219eaedb08d575e3d1ab9ce0ec6eab2be7671ac38f13831",
       "expect_agent_id": 6589709,
       "expect_submission_id": 41079653,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41081195-initial10",
+      "path": "data/analysis/live-agent-6553250/owner-banana-factory-b100-initial-checkpoint-20260802T1600Z.json",
+      "sha256": "03b77b4d9233a6d764471da3ea29f4b06401da6570c38c18af068251d26ebb7d",
+      "expect_agent_id": 6590083,
+      "expect_submission_id": 41081195,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41081195-reconvergence98",
+      "path": "data/analysis/live-agent-6553250/owner-banana-factory-b100-reconvergence-checkpoint-20260802T162907Z.json",
+      "sha256": "83983d63e671bec97832d1937b14e674cf65f5852c66e053f9488ed516bb452e",
+      "expect_agent_id": 6590083,
+      "expect_submission_id": 41081195,
       "observation_scope": "submission_scoped",
       "observed_at_override": null,
       "observed_at_override_evidence": null,

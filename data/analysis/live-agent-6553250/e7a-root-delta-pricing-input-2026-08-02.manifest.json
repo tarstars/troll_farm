@@ -1,0 +1,54 @@
+{
+  "constraints": {
+    "fit_performed": false,
+    "frozen_rule_changed": false,
+    "simulation_performed": false,
+    "trace_or_command_streams_published": false
+  },
+  "purpose": "trace-free no-fit input for frozen E7a sector pricing",
+  "schema": 1,
+  "source": {
+    "normalized_payload_sha256": "c7a9d614ca607227b1dfb9649783a034212b4446cf5838250768695dff0044a5",
+    "original_row_hashes": {
+      "divergence_rows_sha256": "220e4b7f0d790ca8bd5f04dca5ef9a2e61a76c9a5ad4b430cfaf95703e4c4e02",
+      "geometry_rows_sha256": "cf22b763f5fa738a8bd31ac6f4eabc79c58a4a79c4572e696579d3c91a64461a",
+      "oracle_rows_sha256": "0ed6247f419c986e45a8fcbf78a6102a63c1ae9876f8e1befdcba4ce4949dba1",
+      "value_rows_sha256": "d3f3687945983c4809518388a0269db97d8a50c6ba6917fc12c63ef418410c76"
+    },
+    "source_jobs": 8,
+    "source_path": "/tmp/e7-type-to-cut-j8.json",
+    "source_sha256": "18648731768f0756c787ddc52fe83a547213e60e2f35e993b80d2fd45c7fea14"
+  },
+  "table": {
+    "column_contract": {
+      "control_species": "string enum: LEMON|PLUM",
+      "delta_opponent_score": "finite number",
+      "delta_paired_margin": "finite number",
+      "delta_paired_wood_edge": "finite number",
+      "delta_policy_score": "finite number",
+      "delta_seat_margins": "JSON array of two finite numbers",
+      "opponent": "string",
+      "seed": "integer"
+    },
+    "columns": [
+      "seed",
+      "opponent",
+      "control_species",
+      "delta_paired_margin",
+      "delta_seat_margins",
+      "delta_policy_score",
+      "delta_opponent_score",
+      "delta_paired_wood_edge"
+    ],
+    "csv_sha256": "cb2a98e63c245534b743501000b3ef8529cca674c7bb3ea226717e767abd4d6a",
+    "format": "CSV; delta_seat_margins is compact JSON",
+    "path": "data/analysis/live-agent-6553250/e7a-root-delta-pricing-input-2026-08-02.csv",
+    "row_count": 360,
+    "sorted_by": [
+      "seed",
+      "opponent"
+    ],
+    "sorted_rows_sha256": "2921f906254036daa421070bc05999d75f4d7212137cc156821b4d1ac896076e"
+  },
+  "task": "20260802-initial-state-sector-policy-audit"
+}

@@ -1,6 +1,6 @@
 # 20260802-owner-banana-factory-b100-arena
 
-- Status: submitted once; exact identity and clean initial checkpoint; read-only monitoring
+- Status: submitted once; exact identity; clean but weak 98-game reconvergence checkpoint; read-only
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Integrator / sole Arena controller: local_codex_1
@@ -79,5 +79,17 @@ score 0.0 at rank 130/131; the filtered ladder read is 13.7 at rank 124. Battle 
 mean margin -32.3, five catastrophes (50%), and negative-margin mass 749.
 
 This is a weak initialization, not a transfer verdict. The mutation is terminal and the cycle is
-now read-only. Capture the approximately 30-minute reconvergence checkpoint; do not submit a
-second candidate or restore automatically.
+now read-only. Do not submit a second candidate or restore automatically.
+
+## Approximately 30-minute checkpoint
+
+The read-only checkpoint observed at 2026-08-02T16:29:58Z contains 99 matching rows: 98
+finished/fetched/parsed and one pending, with zero unexpected rows, fetch failures,
+validity/runtime signals, or identity faults. The Arena row is score 12.99, rank 127/131.
+Battle health is 49W/49L, mean margin +4.642857, 22 catastrophes (22.45%), and negative-margin
+mass 4,851.
+
+This improves average margin from the ten-game initialization but remains weak and just below
+the registry's 100-finished mature-evidence threshold. It is provisional platform state, not a
+scientific promotion or a reason for another automatic Arena mutation. Evidence SHA-256:
+`83983d63e671bec97832d1937b14e674cf65f5852c66e053f9488ed516bb452e`.
