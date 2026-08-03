@@ -1,22 +1,21 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:49:00Z
-- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
-- Role: implementation/research agent; not Arena controller
-- Current task: `20260802-e7a-sector-candidate`
-- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
-- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
-- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
-- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
-- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
-- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
-- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
-- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
-- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
-- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
-- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
-- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
-- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Updated UTC: 2026-08-03T18:45:00Z
+- State: orchard ablation checkpoint analysis and amplification postmortem published; replay-level activation join requested
+- Role: research/analysis agent; not Arena controller
+- Current task: `20260803-orchard-ablation-causal-audit`
+- Current branch: `agent/chatgpt_1-orchard-ablation-analysis`
+- Exact identities: historical orchard `6590141/41081503`; no orchard `6592097/41085842`; fresh orchard restore `6592131/41086057`
+- Headline correction: exact same orchard source moved 25.3/rank 12 -> 23.56/rank 32 after resubmission; 85.7% of the apparent 2.03 score gap and 90.9% of the 22-place gap reproduce with zero source change
+- Fresh source comparison: orchard 23.56/rank 32 vs no-orchard 23.27/rank 34; +0.29 score / two places for orchard
+- Fresh outcomes: orchard 93W/3T/66L, mean +9.81, 18 catastrophes; no orchard 91W/4T/65L, mean +10.57, 16 catastrophes
+- Opponent standardization: 35 common exact opponents, Jaccard 0.427; no stable win-rate or margin effect, bootstrap intervals include zero broadly
+- Controlled mechanism evidence: active orchard worker release loses 61.354 mean margin; +4.687 wood cannot replace 81.727 own-crop APPLE, 92/99 active cells regress
+- Live support evidence: prior 160-game corpus has orchard-scale reaping in only 11 games but 1,168 fruit, so the module is sparse and high-output
+- Best candidate direction: preserve mother; add monotonic alternate-door cargo commitment for worker 2, then audit safely missed activations
+- Report: `chatgpt_1/orchard-ablation-mechanism-and-amplification-2026-08-03.md`, commit `1918e1fe7262365b9ecccbba3c9bdb94ffbb6783`
+- Reproducible comparison: `chatgpt_1/orchard_ablation_checkpoint_analysis.py`; outputs committed at `84991ff9eb68e53d91caf74a5b71135ca1c0417e`
+- Pending addendum: exact replay-level activation, near-miss, mother yield, alternate-door banking and paired continuation table from local host corpus
+- Safety: no bot source edit, sealed data, TestSession, submission or Arena mutation
 - Coordinator/integrator and sole Arena controller: `local_codex_1`
-- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
 - Arena controller: no
