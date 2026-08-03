@@ -1,0 +1,261 @@
+{
+  "candidate_sha256": "d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a",
+  "divergent_games": 1,
+  "games": 25,
+  "identical_games": 24,
+  "note": "teacher-forced replay on frozen live states; divergent games are exactly where the orchard would activate; post-divergence turns are counterfactual because real states would drift",
+  "packet_sha256": "fb8e968ff65fc55c6f6f9d2f2b678434ab2dfda8eba84fdb6d0384d41856c7e2",
+  "rows": [
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897829892,
+      "identical": true,
+      "opponent": "a76a44",
+      "stderr_clean": true,
+      "turns": 262
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897829998,
+      "identical": true,
+      "opponent": "VINCE_MX",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897830203,
+      "identical": true,
+      "opponent": "FredericBautista",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897830380,
+      "identical": true,
+      "opponent": "mikmak",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897830573,
+      "identical": true,
+      "opponent": "Pech1",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897830964,
+      "identical": true,
+      "opponent": "khanh-alice",
+      "stderr_clean": true,
+      "turns": 119
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897831441,
+      "identical": true,
+      "opponent": "wala",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897831471,
+      "identical": true,
+      "opponent": "putibuzu",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897831896,
+      "identical": true,
+      "opponent": "XSpace",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897831950,
+      "identical": true,
+      "opponent": "gaha",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897832002,
+      "identical": true,
+      "opponent": "skotz",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897832054,
+      "identical": true,
+      "opponent": "viewlagoon",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897832286,
+      "identical": true,
+      "opponent": "Stounate",
+      "stderr_clean": true,
+      "turns": 286
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897832355,
+      "identical": true,
+      "opponent": "Astrobytes",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897832823,
+      "identical": true,
+      "opponent": "delineate",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833014,
+      "identical": true,
+      "opponent": "Stounate",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 113,
+      "exit": 0,
+      "first_divergent_turn": 79,
+      "game_id": 897833045,
+      "identical": false,
+      "opponent": "viewlagoon",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833067,
+      "identical": true,
+      "opponent": "MSz",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833408,
+      "identical": true,
+      "opponent": "skotz",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833474,
+      "identical": true,
+      "opponent": "Bubaptik",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833558,
+      "identical": true,
+      "opponent": "yaichi",
+      "stderr_clean": true,
+      "turns": 267
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833625,
+      "identical": true,
+      "opponent": "yaichi",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833740,
+      "identical": true,
+      "opponent": "laconic_pixel",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897833923,
+      "identical": true,
+      "opponent": "laconic_pixel",
+      "stderr_clean": true,
+      "turns": 300
+    },
+    {
+      "divergent_lines": 0,
+      "exit": 0,
+      "first_divergent_turn": null,
+      "game_id": 897834266,
+      "identical": true,
+      "opponent": "gaha",
+      "stderr_clean": true,
+      "turns": 300
+    }
+  ],
+  "schema": "troll-farm-e7a-no-orchard-ablation-replay-v1"
+}
