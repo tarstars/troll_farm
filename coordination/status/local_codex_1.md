@@ -1,15 +1,15 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T05:15:20Z
-- State: 62,278-byte single-deletion source development-qualified by exact equality
+- Updated UTC: 2026-08-03T05:22:27Z
+- State: single-deletion untouched equality gate locked locally; range unopened
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260803-e7a-single-logical-deletion`
 - Branch: `agent/local_codex_1`
 - Best current arm: remove unreachable generic selector, 62,278 bytes, SHA-256
   `ab093474...`; 542 bytes deleted, 7,234 live lines and 516 development tasks exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T05:15:20Z
-- Running job: collision-audit and freeze a new untouched exact-equality range
+- Last concrete progress UTC: 2026-08-03T05:22:27Z
+- Running job: publish and remotely verify the 9,867,000--042 lock, then run once
 - Live identity: E7a sector `6590141`/`41081503`; 160/160 finished; latest exact read rank 11
 - Next checkpoint: distinct logical successor or terminal attribution boundary
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing

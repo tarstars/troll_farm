@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-03T05:03:59Z
-- Last updated UTC: 2026-08-03T05:15:20Z
+- Last updated UTC: 2026-08-03T05:22:27Z
 
 ## Outcome
 
@@ -72,3 +72,18 @@ candidate maximum 6.276 ms.
 **Disposition: DEVELOPMENT EXACT-EQUALITY PASS / UNTOUCHED TRANSFER PENDING / NO ARENA
 ACTION.** Full evidence is in
 `data/analysis/live-agent-6553250/e7a-single-logical-deletion-development-qualification-2026-08-03.md`.
+
+## Progress 2026-08-03T05:22:27Z
+
+Scoped exact-token searches of canonical compact records, the current task tree, tracked
+filenames, and Git history found no recorded use of seeds 9,867,000--9,867,042. The broad text
+`9,867` has one unrelated byte-count prose match; it is not a map seed. In accordance with the
+owner's search-safety instruction, no recursive scan traversed huge mounted bulk repositories.
+No map in the range has been generated or inspected.
+
+The dedicated evaluator hard-codes 43 maps, both seats, six families, eight threads, 50,000
+bootstrap samples, and exact terminal equality; it exposes only output paths. Compile-only
+preflight passes without map generation. Candidate, range, runner transformation, evaluator,
+development/live/semantic evidence, hashes, gates, and the one-shot command are frozen in
+`candidate-e7a-remove-generic-selector-fresh-lock.json`. The range remains unopened until this
+lock is committed, pushed, and remotely verified. No Arena action.

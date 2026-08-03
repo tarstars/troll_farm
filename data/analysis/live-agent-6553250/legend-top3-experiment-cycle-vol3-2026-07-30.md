@@ -1605,3 +1605,16 @@ catastrophes 19 -> 19, negative mass 4,138 -> 4,138, and zero differences in sco
 turns, training, workers, liveness, or issue fields. Latency passes at p95 ratio 1.0041 and
 candidate maximum 6.276 ms. **Disposition: DEVELOPMENT EXACT-EQUALITY PASS / UNTOUCHED TRANSFER
 PENDING / NO ARENA ACTION.**
+
+## 2026-08-03 — single-deletion untouched equality lock
+
+Scoped canonical-record, task-tree, tracked-filename, and Git-history searches found no exact
+record of seeds 9,867,000--042. One broad `9,867` prose match is an unrelated byte count. Per the
+owner's search-safety instruction, no recursive search crossed the huge mounted bulk repositories;
+no map was generated or inspected.
+
+The dedicated evaluator hard-codes 43 maps, both seats, six families, eight threads, 50,000
+bootstrap samples, and exact equality across every terminal field. Compile-only preflight passes
+without map generation. Candidate, range, evaluator, runner, evidence hashes, gates, and one-shot
+command are frozen in `candidate-e7a-remove-generic-selector-fresh-lock.json`. **Disposition:
+LOCKED LOCALLY / UNOPENED / REMOTE PUBLICATION REQUIRED / NO ARENA ACTION.**
