@@ -1733,3 +1733,18 @@ worst 23.56, best 25.26. No Arena or cron mutation occurred.
 Payload commit `90e8890e` uploaded exactly one 5.8 MB LFS object. A fresh smudge-disabled clone
 observed the pointer and selectively downloaded exact SHA `f9567974...` at 5,812,614 bytes;
 remote publication is therefore verified, not merely inferred from the push response.
+
+## 2026-08-03 — four-cycle orchard/no-orchard overnight replication
+
+The owner directed four live repetitions of orchard versus no-orchard, one hour per version, with
+all games and results written to Git. The controller freezes the strict sequence `N→O` ×4 so the
+eighth leg ends with exact orchard active. Exact sources are E7a SHA `97bfe71e...` and no-orchard
+SHA `d1f32c35...`; pre-cycle exact E7a is 23.56/rank 32/137 over 162 clean games, with an immediate
+23.4/rank-33 read.
+
+The one-call submitter has no compatibility fallback or automatic retry. Each accepted leg gets
+three pushed 15-minute phase markers, a settled one-hour identity/runtime checkpoint, complete
+sanitized LFS replays, and a pushed result before the next mutation. A 05:14–05:31 local network
+blackout avoids the daily collector. **Status: PREPARED / SOLE CONTROLLER `local_codex_1` / FIRST
+MUTATION GATED ON REMOTE START-COMMIT VERIFICATION.** Runtime state will live at
+`data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`.

@@ -1,21 +1,21 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T18:12:32Z
-- State: no-orchard rejected; exact E7a restore `6592131`/`41086057` active and clean
+- Updated UTC: 2026-08-03T19:07:37Z
+- State: eight-leg orchard/no-orchard night cycle prepared; start push pending
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: collection complete; integration and E7a simplification coordination
+- Current task: sole controller for `20260803-orchard-ab-night-cycle`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T18:07:22Z
-- Running job: none
-- Live identity: exact E7a restore `6592131`/`41086057`; 162/162 clean, 23.56/rank 32/137
-- Next checkpoint: passive ladder surveillance; no collection or Arena mutation in flight
+- Last concrete progress UTC: 2026-08-03T19:07:37Z
+- Running job: prepared; systemd unit starts only after remote start-commit verification
+- Live identity: pre-cycle exact E7a `6592131`/`41086057`; dynamic after unit start
+- Next checkpoint: launch unit, verify exact no-orchard leg-1 acceptance and pushed IDs
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; no mutation cycle in flight and lock released
+- Arena controller: yes; exclusive night-cycle lock reserved, no competing mutation permitted
 
 ## Latest evidence
 

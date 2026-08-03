@@ -6,7 +6,7 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Active resident: exact E7a restore agent `6592131`, submission `41086057`.
+- Pre-cycle resident: exact E7a restore `6592131`/`41086057`; night A/B identities become dynamic.
   Complete checkpoint: 162/162, score 23.56, rank 32/137, 93W/3T/66L;
   identity/source/runtime clean, 18 catastrophes and negative mass 5,569.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs`
@@ -132,8 +132,8 @@ makes the goalpost move in the wrong direction.
 - **E7a ITERATIVE DELETION:** round 28 is 56,314 bytes with all delegated equality gates exact;
   round 22 passed 516 development tasks. Rounds 29–30 then one final untouched gate remain.
 - **Coordination:** `local_codex_1` integrates/controls Arena; Claude/ChatGPT contribute.
-- **Operations:** cron 05:17; H12 weekly surveillance; no-orchard cycle closed by
-  `local_codex_1`; exact E7a restored, Arena mutation lock free.
+- **Operations:** cron 05:17; H12 weekly surveillance; `local_codex_1` owns the serialized
+  `N→O` ×4 night cycle; read its runtime `state.json`; no competing Arena mutation.
 
 ## 5. Reading order & pointers
 
