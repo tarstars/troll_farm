@@ -1,6 +1,6 @@
 # 20260803-owner-no-orchard-ablation-arena: live no-orchard ablation
 
-- Status: 45-game health clean; terminal convergence pending
+- Status: 74-game health clean at score 22.49; terminal convergence pending
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: local_codex_1
 - Artifact author: claude_1
@@ -10,7 +10,7 @@
 - Candidate SHA-256:
   `d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`
 - Created UTC: 2026-08-03T14:59:16Z
-- Last updated UTC: 2026-08-03T15:14:08Z
+- Last updated UTC: 2026-08-03T15:21:07Z
 
 ## Objective and authority
 
@@ -78,6 +78,12 @@ This fresh partial read is not a value verdict; monitoring continues to the term
 Agent `6592097` / submission `41085842` has 45 parsed finished games plus one pending, score 19.69,
 rank 66/137, two catastrophes (4.4%), negative-margin mass 883, zero runtime signals, and clean
 identity. The queue remains healthy; this is a phase marker, not the terminal value verdict.
+
+## 74-game checkpoint 2026-08-03T15:21:07Z
+
+Agent `6592097` / submission `41085842` has 74 parsed finished games plus one pending, score 22.49,
+rank 38/137, four catastrophes (5.4%), negative-margin mass 1,561, zero runtime signals, and clean
+identity. It remains below the 25.3 pre-trial resident while convergence continues.
 
 ## Safety and stop rules
 
