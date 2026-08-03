@@ -1,0 +1,26 @@
+{
+  "audit_sha256": "8c29f433982fa9df05e16203bccdc15f290bae36ff5801084e862a882547af5a",
+  "expected_turns": 7234,
+  "games": 25,
+  "games_present_in_audit": 25,
+  "histogram_deviations": [
+    {
+      "audit_minus_packet": {
+        "CHOP": 1
+      },
+      "game_id": 897833625,
+      "opponent": "yaichi",
+      "packet_minus_audit": {
+        "MOVE": 1
+      }
+    }
+  ],
+  "histogram_exact_games": 24,
+  "missing_from_audit": [],
+  "note": "the parity gates compare candidate vs baseline binary outputs on identical transcripts and never read the audit histograms; a histogram deviation localizes to the audit summary layer, not the parity substrate",
+  "packet_sha256": "fb8e968ff65fc55c6f6f9d2f2b678434ab2dfda8eba84fdb6d0384d41856c7e2",
+  "required_game_present": true,
+  "schema": "troll-farm-e7a-offline-packet-provenance-v1",
+  "total_turns": 7234,
+  "verdict": "PACKET_PROVENANCE_CONSISTENT"
+}
