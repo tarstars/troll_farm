@@ -1,0 +1,184 @@
+{
+  "evidence_boundary": "already-consumed development maps; exact equality can qualify development only, never untouched transfer",
+  "exact_equality": {
+    "differences": [],
+    "different_tasks": 0,
+    "field_pairs": [
+      [
+        "baseline_score",
+        "candidate_score"
+      ],
+      [
+        "baseline_opponent_score",
+        "candidate_opponent_score"
+      ],
+      [
+        "baseline_margin",
+        "candidate_margin"
+      ],
+      [
+        "baseline_wood",
+        "candidate_wood"
+      ],
+      [
+        "baseline_opponent_wood",
+        "candidate_opponent_wood"
+      ],
+      [
+        "baseline_turn",
+        "candidate_turn"
+      ],
+      [
+        "baseline_train_turn",
+        "candidate_train_turn"
+      ],
+      [
+        "baseline_workers",
+        "candidate_workers"
+      ],
+      [
+        "baseline_period2",
+        "candidate_period2"
+      ],
+      [
+        "baseline_issues",
+        "candidate_issues"
+      ],
+      [
+        "baseline_critical",
+        "candidate_critical"
+      ],
+      [
+        "baseline_unclassified",
+        "candidate_unclassified"
+      ]
+    ],
+    "tasks": 516
+  },
+  "gates": {
+    "bootstrap_lower_above_minus_2": true,
+    "both_seat_means_nonnegative": true,
+    "catastrophes_not_increased": true,
+    "coverage_at_least_512": true,
+    "exact_terminal_equality_516": true,
+    "five_of_six_family_means_nonnegative": true,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": true,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": true,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 56651,
+      "path": "claude_1/e7a-incremental-simplification/candidate-r22-delete-opening-policy-record.rs",
+      "sha256": "2943ad840ccaf2332ab515ab768aa8c97bac2de894a7eda6228b92ea5f0707cc"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "3f134d34835776fdc0f1d7f9132dc1bc9aff6f14f7e2664285b17627681dacce",
+      "runner_sha256": "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "/home/tarstars/prj/troll_farm-local_codex_1/local_codex_1/e7a-iterative-logical-deletion/candidate-r22-delete-opening-policy-record-development.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": 0,
+    "catastrophes": {
+      "baseline": 19,
+      "candidate": 19
+    },
+    "family_mean_delta": {
+      "compact_gold": 0,
+      "gold_adaptive": 0,
+      "legend_balanced": 0,
+      "mybot": 0,
+      "norx_native_three": 0,
+      "resident": 0
+    },
+    "issues": {
+      "baseline": 18474,
+      "candidate": 18474
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 6.381011,
+        "maximum_ns": 6381011,
+        "p95_ms": 0.441134,
+        "p95_ns": 441134,
+        "samples": 139985
+      },
+      "candidate": {
+        "maximum_ms": 7.117466,
+        "maximum_ns": 7117466,
+        "p95_ms": 0.45037,
+        "p95_ns": 450370,
+        "samples": 139985
+      },
+      "candidate_p95_ratio": 1.0209369488636106
+    },
+    "maximum_period2": {
+      "baseline": 244,
+      "candidate": 244
+    },
+    "mean_margin_delta": 0,
+    "mean_opponent_score": {
+      "baseline": 123.25387596899225,
+      "candidate": 123.25387596899225
+    },
+    "mean_score": {
+      "baseline": 200.53488372093022,
+      "candidate": 200.53488372093022
+    },
+    "negative_margin_mass": {
+      "baseline": 4138,
+      "candidate": 4138
+    },
+    "period2_ge6": {
+      "baseline": 115,
+      "candidate": 115
+    },
+    "seat_mean_delta": {
+      "0": 0,
+      "1": 0
+    },
+    "training": {
+      "baseline_games": 516,
+      "candidate_on_baseline_games": 516,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 50000,
+    "maps": 43,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000,
+    "tasks": 516
+  },
+  "run_stderr": "saved 516 paired tasks in 120.322s",
+  "schema": "troll-farm-e7a-single-logical-deletion-development-equality-v1",
+  "verdict": "DEVELOPMENT_EXACT_EQUALITY_PASS"
+}
