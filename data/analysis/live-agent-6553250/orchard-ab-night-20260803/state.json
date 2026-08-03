@@ -99,7 +99,7 @@
     }
   ],
   "maturity_seconds_per_leg": 3600,
-  "phase": "maturity-wait-t+30m",
+  "phase": "maturity-wait-t+45m",
   "schema": "orchard-ab-night-cycle-v1",
   "sequence": [
     "no-orchard",
@@ -114,5 +114,5 @@
   "started_at_utc": "2026-08-03T19:16:14Z",
   "status": "running",
   "task_id": "20260803-orchard-ab-night-cycle",
-  "updated_at_utc": "2026-08-03T22:56:39Z"
+  "updated_at_utc": "2026-08-03T23:11:22Z"
 }
