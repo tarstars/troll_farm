@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T00:15:16Z
+- Last updated UTC: 2026-08-03T01:13:00Z
 
 ## Outcome
 
@@ -165,3 +165,25 @@ remains +3.3043 and period-2 >=6 remains zero, but bootstrap lower is -6.3450 an
 mass increases 4,385 -> 4,891. Roots 9,854,062 and 9,854,065 account for +643 negative mass,
 but regressions span multiple families. No Arena action and no tuning on the fresh block; a
 new logical successor and newly reserved untouched range are required.
+
+## Progress 2026-08-03T01:13:00Z
+
+A distinct 31,398-byte successor, SHA-256 `ec4b3140...`, repairs both traced transfer
+mechanisms without threshold tuning: front-to-back bank convoy priority prevents a faster rear
+wood carrier from pinning the front carrier, and a mixed-door orchard is admitted only when a
+third home door remains available. Standalone optimized compile and empty input pass. Ten/ten
+semantic fixtures now reference the exact live E7a training choices and pass; the 16-game motion
+packet has candidate maximum period-2 run four and one fewer catastrophe.
+
+On consumed seeds 9,854,000--042 it passes all 516-task gates at +9.033 mean / +3.789 lower,
+catastrophes 19 -> 12, negative mass 4,138 -> 3,853, all families and seats positive, worker-two
+coverage 100%, delay zero, and no long period-2 episode. Replaying the already-opened rejected
+block is diagnostic only but also passes (+9.079 / +1.052; negative mass 4,385 -> 3,968), closing
+the two observed failure mechanisms.
+
+Exact-token/history/artifact-name collision checks selected unrecorded seeds
+**9,863,000--9,863,042** for the required 43-map/516-task untouched gate. The dedicated launcher
+exposes no range arguments and compiled successfully without generating a map. Source, range,
+runner transformation, evaluator, thresholds, families, seats, bootstrap, and one-shot rule are
+frozen in `focused-yamo-bank-convoy-spare-door-orchard-fresh-lock.json`. At this marker the new
+range remains unopened. The lock must be committed and pushed before execution; no Arena action.

@@ -169,6 +169,13 @@ def analyze(
     bootstrap_samples: int,
     compiler: dict,
     panel_path: Path,
+    candidate: Path = CANDIDATE,
+    candidate_sha256: str = CANDIDATE_SHA256,
+    runner: Path = RUNNER,
+    evidence_boundary: str = (
+        "continued-referee engineering gate on already-consumed official maps; "
+        "not an Arena predictor"
+    ),
 ) -> dict:
     expected = maps * 2 * len(OPPONENTS)
     keys = {(row["map_seed"], row["seat"], row["opponent"]) for row in rows}
@@ -242,10 +249,7 @@ def analyze(
     full_panel = len(rows) >= 512
     return {
         "schema": "troll-farm-e7a-half-size-open-panel-v1",
-        "evidence_boundary": (
-            "continued-referee engineering gate on already-consumed official maps; "
-            "not an Arena predictor"
-        ),
+        "evidence_boundary": evidence_boundary,
         "inputs": {
             "baseline": {
                 "path": str(BASELINE.relative_to(REPO)),
@@ -253,12 +257,12 @@ def analyze(
                 "sha256": BASELINE_SHA256,
             },
             "candidate": {
-                "path": str(CANDIDATE.relative_to(REPO)),
-                "bytes": CANDIDATE.stat().st_size,
-                "sha256": CANDIDATE_SHA256,
+                "path": str(candidate.relative_to(REPO)),
+                "bytes": candidate.stat().st_size,
+                "sha256": candidate_sha256,
             },
             "sacred_sha256": SACRED_SHA256,
-            "runner": str(RUNNER.relative_to(REPO)),
+            "runner": str(runner.relative_to(REPO)),
             "compiler": compiler,
             "panel_tsv": str(panel_path),
         },

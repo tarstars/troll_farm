@@ -20,6 +20,7 @@ from build_integrated_half import (  # noqa: E402
     TWO_WORKER_MOVE_GUARD,
     YAMO_IMPL,
     YAMO_STRUCT,
+    lexical_identifiers,
 )
 
 
@@ -2045,6 +2046,584 @@ def focused_yamo_structural_specialization(source: str) -> tuple[str, dict]:
     return result, manifest
 
 
+def focused_yamo_bank_convoy(source: str) -> tuple[str, dict]:
+    """Prioritize the front carrier when both workers share a bank door."""
+
+    result, manifest = focused_yamo_structural_specialization(source)
+    changes = []
+    old_priority = (
+        "7_000.0-Self::ceil_div(dist[&cell],unit.stats.movement_speed)as f64"
+    )
+    new_priority = "7_000.0-dist[&cell]as f64"
+    if result.count(old_priority) != 1:
+        raise ValueError("unexpected speed-normalized bank priority")
+    before = len(result.encode())
+    result = result.replace(old_priority, new_priority, 1)
+    changes.append(
+        {
+            "marker": "bank lane priority",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "order same-door carriers by remaining cells so the rear worker cannot "
+                "pin the front worker in WAIT"
+            ),
+        }
+    )
+    live_size_check = "if plant.size<=0{continue;}"
+    if result.count(live_size_check) != 1:
+        raise ValueError("unexpected live-tree size check")
+    before = len(result.encode())
+    result = result.replace(live_size_check, "", 1)
+    changes.append(
+        {
+            "marker": "impossible live-tree size-zero branch",
+            "bytes": before - len(result.encode()),
+            "logical_change": "protocol plant rows always have size at least one",
+        }
+    )
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "replace speed-priority bank contention with a front-to-back wood convoy"
+            ),
+            "evidence_boundary": (
+                "distinct size candidate after terminal rejection; requires a new lock and "
+                "new untouched validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_spare_door_orchard(source: str) -> tuple[str, dict]:
+    """Allow mixed-door orchards only when a third home door remains available."""
+
+    result, manifest = focused_yamo_bank_convoy(source)
+    orchard_mother = r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                if doors.len() < 2 || doors.len() == 2
+                    && view.plants.iter().any(|plant| doors.contains(&plant.cell))
+                {
+                    return None;
+                }
+                let enemy_distance = bfs_distances(
+                    &view.walkable,
+                    &ortho_neighbors(view.shacks[1]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .collect::<Vec<Cell>>(),
+                );
+                doors.into_iter()
+                    .filter(|door| view.plant_at(*door).is_none())
+                    .filter(|door| view.water.iter()
+                        .any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| enemy_distance[door] >= 11)
+                    .min_by_key(|door| (-enemy_distance[door], *door))
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn select_orchard_mother(", orchard_mother)
+    change = {
+        "marker": "fn select_orchard_mother(",
+        "net_removed_bytes": before - len(result.encode()),
+        "replacement_bytes": len(orchard_mother.encode()),
+        "logical_change": (
+            "preserve all-empty two-door orchards, but require a spare third door when a "
+            "natural tree already occupies another home door"
+        ),
+    }
+    manifest["removed_or_replaced_items"].append(change)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_SPARE_DOOR_ORCHARD",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "prevent same-door convoy deadlock and admit mixed-door orchards only with "
+                "a third home door available"
+            ),
+            "evidence_boundary": (
+                "distinct size candidate after terminal rejection; requires a new lock and "
+                "new untouched validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_safe_orchard(source: str) -> tuple[str, dict]:
+    """Open any eligible mother door, but disable seeding when APPLE is exhausted."""
+
+    result, manifest = focused_yamo_bank_convoy(source)
+    changes = []
+    orchard_command = r"""fn orchard_command(&mut self, view: &GameState) -> String {
+                let mother = self.orchard_mother.unwrap();
+                let starter = view.units.iter()
+                    .filter(|unit| unit.player == 0)
+                    .min_by_key(|unit| unit.id).unwrap();
+                if starter.cell != mother {
+                    return format!("MOVE {} {} {}", starter.id, mother.0, mother.1);
+                }
+                let tree = view.plant_at(mother)
+                    .map(|index| &view.plants[index])
+                    .filter(|plant| plant.kind == PlantKind::Apple);
+                if starter.total_carried() > 0 {
+                    return if tree.is_none() && starter.carry[APPLE] > 0 {
+                        format!("PLANT {} APPLE", starter.id)
+                    } else {
+                        format!("DROP {}", starter.id)
+                    };
+                }
+                match tree {
+                    Some(tree) if tree.fruits > 0 => format!("HARVEST {}", starter.id),
+                    Some(_) => "WAIT".to_string(),
+                    None if view.inventories[0][APPLE] > 0 => {
+                        format!("PICK {} APPLE", starter.id)
+                    }
+                    None => {
+                        self.orchard_mother = None;
+                        "WAIT".to_string()
+                    }
+                }
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn orchard_command(", orchard_command)
+    changes.append(
+        {
+            "marker": "fn orchard_command(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(orchard_command.encode()),
+            "logical_change": (
+                "collapse duplicate orchard cargo branches and stop an exhausted seed loop"
+            ),
+        }
+    )
+    orchard_mother = r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                if doors.len() < 3 {
+                    return None;
+                }
+                let enemy_distance = bfs_distances(
+                    &view.walkable,
+                    &ortho_neighbors(view.shacks[1]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .collect::<Vec<Cell>>(),
+                );
+                doors.into_iter()
+                    .filter(|door| view.plant_at(*door).is_none())
+                    .filter(|door| view.water.iter()
+                        .any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| enemy_distance[door] >= 11)
+                    .min_by_key(|door| (-enemy_distance[door], *door))
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn select_orchard_mother(", orchard_mother)
+    changes.append(
+        {
+            "marker": "fn select_orchard_mother(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(orchard_mother.encode()),
+            "logical_change": (
+                "allow an empty eligible mother when a different home door has a natural tree"
+            ),
+        }
+    )
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_SAFE_ORCHARD",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "prevent same-door convoy deadlock and restore mixed-door orchard geometry "
+                "with fail-closed APPLE exhaustion"
+            ),
+            "evidence_boundary": (
+                "distinct size candidate after terminal rejection; requires a new lock and "
+                "new untouched validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_door_harvest(source: str) -> tuple[str, dict]:
+    """Let the front wood carrier clear a bank lane and preserve a ripe door tree."""
+
+    result, manifest = focused_yamo_structural_specialization(source)
+    changes = []
+    old_bank_priority = (
+        "7_000.0-Self::ceil_div(dist[&cell],unit.stats.movement_speed)as f64"
+    )
+    new_bank_priority = "7_000.0-dist[&cell]as f64"
+    if result.count(old_bank_priority) != 1:
+        raise ValueError("unexpected speed-normalized bank priority")
+    before = len(result.encode())
+    result = result.replace(old_bank_priority, new_bank_priority, 1)
+    changes.append(
+        {
+            "marker": "bank lane priority",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "order same-door wood carriers by remaining cells rather than travel turns, "
+                "so a faster rear worker cannot pin the front worker in WAIT"
+            ),
+        }
+    )
+    live_size_check = "if plant.size<=0{continue;}"
+    if result.count(live_size_check) != 1:
+        raise ValueError("unexpected live-tree size check")
+    before = len(result.encode())
+    result = result.replace(live_size_check, "", 1)
+    changes.append(
+        {
+            "marker": "impossible live-tree size-zero branch",
+            "bytes": before - len(result.encode()),
+            "logical_change": "protocol plant rows always have size at least one",
+        }
+    )
+
+    endgame = r"""fn endgame_candidates(
+                view: &GameState,
+                unit: &Unit,
+                focus: Option<PlantKind>,
+            ) -> Vec<Candidate> {
+                let bank = || MoisanBot::bank_candidates(view, unit);
+                if unit.carry[WOOD] > 0 {
+                    return bank();
+                }
+                let turns_left = TOTAL_TURNS - view.turn + 1;
+                let conversion = view.turn > 250
+                    || view.turn >= 100 && view.plants.len() <= 2;
+                if let Some(kind) = Self::fruit_kind(&unit.carry, false) {
+                    if !conversion {
+                        return bank();
+                    }
+                    let distance = bfs_distances(&view.walkable, &[unit.cell]);
+                    let target = ortho_neighbors(view.shacks[0]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .filter(|cell| view.plant_at(*cell).is_none())
+                        .filter(|cell| !view.units.iter().any(|other| {
+                            other.player == 0 && other.id != unit.id && other.cell == *cell
+                        }))
+                        .min_by_key(|cell| (distance[cell], *cell));
+                    let Some(cell) = target else {
+                        return bank();
+                    };
+                    let travel = MoisanBot::ceil_div(
+                        distance[&cell], unit.stats.movement_speed
+                    );
+                    if travel + MoisanBot::ceil_div(
+                        tree_health(kind, 1), unit.stats.chop_power
+                    ) + 3 > turns_left {
+                        return bank();
+                    }
+                    return Self::single_candidate(if unit.cell == cell {
+                            format!("PLANT {} {}", unit.id, kind.as_str())
+                        } else {
+                            format!("MOVE {} {} {}", unit.id, cell.0, cell.1)
+                        }, Some(cell));
+                }
+                if unit.total_carried() > 0 {
+                    return bank();
+                }
+                if is_adjacent(unit.cell, view.shacks[0]) {
+                    if let Some(plant) = view.plant_at(unit.cell)
+                        .map(|index| &view.plants[index])
+                        .filter(|plant| plant.fruits > 0)
+                    {
+                        return Self::single_candidate(
+                            format!("HARVEST {}", unit.id), Some(plant.cell)
+                        );
+                    }
+                }
+                if conversion && is_adjacent(unit.cell, view.shacks[0])
+                    && view.plant_at(unit.cell).is_none()
+                {
+                    if let Some(kind) = Self::fruit_kind(&view.inventories[0], true) {
+                        if MoisanBot::ceil_div(
+                            tree_health(kind, 1), unit.stats.chop_power
+                        ) + 3 <= turns_left
+                        {
+                            return Self::single_candidate(
+                                format!("PICK {} {}", unit.id, kind.as_str()),
+                                Some(unit.cell),
+                            );
+                        }
+                    }
+                }
+                let mut out = vec![MoisanBot::wait()];
+                out.extend(MoisanBot::chop_candidates(view, unit, focus));
+                out
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn endgame_candidates(", endgame)
+    changes.append(
+        {
+            "marker": "fn endgame_candidates(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(endgame.encode()),
+            "logical_change": (
+                "factor one conversion boundary, remove scores from single-command paths, "
+                "and harvest a ripe natural tree while empty on a home door"
+            ),
+        }
+    )
+    single_candidate = r"""fn single_candidate(
+                command: String,
+                target: Target,
+            ) -> Vec<Candidate> {
+                vec![Candidate { command, score: 0.0, target }]
+            }
+
+            """
+    insertion = "fn endgame_candidates("
+    if result.count(insertion) != 1:
+        raise ValueError("unexpected endgame insertion point")
+    before = len(result.encode())
+    result = result.replace(insertion, single_candidate + insertion, 1)
+    changes.append(
+        {
+            "marker": "single-command candidate construction",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(single_candidate.encode()),
+            "logical_change": "factor three unconditional single-command returns",
+        }
+    )
+    fruit_kind = r"""fn fruit_kind(stock: &[i32; 6], bank: bool) -> Option<PlantKind> {
+                let order = if bank {
+                    [BANANA, PLUM, LEMON, APPLE]
+                } else {
+                    [PLUM, LEMON, APPLE, BANANA]
+                };
+                let item = order.into_iter().find(|item| stock[*item] > 0)?;
+                Some([
+                    PlantKind::Plum,
+                    PlantKind::Lemon,
+                    PlantKind::Apple,
+                    PlantKind::Banana,
+                ][item])
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn fruit_kind(", fruit_kind)
+    changes.append(
+        {
+            "marker": "fn fruit_kind(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(fruit_kind.encode()),
+            "logical_change": "replace a four-way item match with the protocol's index table",
+        }
+    )
+    orchard_command = r"""fn orchard_command(&self, view: &GameState) -> String {
+                let mother = self.orchard_mother.unwrap();
+                let starter = view.units.iter()
+                    .filter(|unit| unit.player == 0)
+                    .min_by_key(|unit| unit.id).unwrap();
+                if starter.cell != mother {
+                    return format!("MOVE {} {} {}", starter.id, mother.0, mother.1);
+                }
+                let tree = view.plant_at(mother)
+                    .map(|index| &view.plants[index])
+                    .filter(|plant| plant.kind == PlantKind::Apple);
+                if starter.total_carried() > 0 {
+                    return if tree.is_none() && starter.carry[APPLE] > 0 {
+                        format!("PLANT {} APPLE", starter.id)
+                    } else {
+                        format!("DROP {}", starter.id)
+                    };
+                }
+                match tree {
+                    Some(tree) if tree.fruits > 0 => {
+                        format!("HARVEST {}", starter.id)
+                    }
+                    Some(_) => "WAIT".to_string(),
+                    None => format!("PICK {} APPLE", starter.id),
+                }
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn orchard_command(", orchard_command)
+    changes.append(
+        {
+            "marker": "fn orchard_command(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(orchard_command.encode()),
+            "logical_change": (
+                "collapse duplicated tree/no-tree cargo branches into one orchard state split"
+            ),
+        }
+    )
+    orchard_mother = r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                if doors.len() < 2 {
+                    return None;
+                }
+                let enemy_distance = bfs_distances(
+                    &view.walkable,
+                    &ortho_neighbors(view.shacks[1]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .collect::<Vec<Cell>>(),
+                );
+                doors.into_iter()
+                    .filter(|door| view.plant_at(*door).is_none())
+                    .filter(|door| view.water.iter()
+                        .any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| enemy_distance[door] >= 11)
+                    .min_by_key(|door| (-enemy_distance[door], *door))
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn select_orchard_mother(", orchard_mother)
+    changes.append(
+        {
+            "marker": "fn select_orchard_mother(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(orchard_mother.encode()),
+            "logical_change": (
+                "allow an empty eligible mother when a different home door has a natural tree"
+            ),
+        }
+    )
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_DOOR_HARVEST",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "replace speed-priority bank contention with a front-to-back convoy and "
+                "retain productive natural door-tree harvesting in the simplified endgame"
+            ),
+            "evidence_boundary": (
+                "distinct size candidate after terminal rejection; requires a new lock and "
+                "new untouched validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_door_harvest_no_orchard(
+    source: str,
+) -> tuple[str, dict]:
+    """Delete the sparse orchard override after restoring natural door harvesting."""
+
+    result, manifest = focused_yamo_bank_convoy_door_harvest(source)
+    changes = []
+
+    def replace_item(marker: str, replacement: str) -> None:
+        nonlocal result
+        before = len(result.encode())
+        result = _replace_item(result, marker, replacement)
+        changes.append(
+            {
+                "marker": marker,
+                "net_removed_bytes": before - len(result.encode()),
+                "replacement_bytes": len(replacement.encode()),
+            }
+        )
+
+    def remove_item(marker: str) -> None:
+        nonlocal result
+        before = len(result.encode())
+        result = _remove_item(result, marker)
+        changes.append({"marker": marker, "bytes": before - len(result.encode())})
+
+    replace_item(
+        "pub struct YamoBot",
+        r"""pub struct YamoBot {
+            type_to_cut: Option<PlantKind>,
+            desired_second: Option<Stats>,
+        }""",
+    )
+    constructor = "Self { type_to_cut: None, desired_second: None, orchard_mother: None }"
+    if result.count(constructor) != 1:
+        raise ValueError("unexpected orchard-bearing Yamo constructor")
+    result = result.replace(
+        constructor, "Self { type_to_cut: None, desired_second: None }", 1
+    )
+    replace_item(
+        "fn ensure_opening(",
+        r"""fn ensure_opening(&mut self, view: &GameState) {
+                if view.turn == 1 {
+                    self.type_to_cut = Some(MoisanBot::focus_type(view));
+                    self.desired_second = Some(Self::choose_second_troll(view));
+                }
+            }""",
+    )
+    remove_item("fn select_orchard_mother(")
+    remove_item("fn orchard_command(")
+
+    old_loop = """                let orchard_mother = self.orchard_mother;
+                let orchard_active = orchard_mother.is_some() && units.len() >= 2;
+                for (unit_index, unit) in units.into_iter().enumerate() {
+                    let mut candidates = if orchard_active && unit_index == 0
+                    {
+                        vec![MoisanBot::wait()]
+                    } else if view.turn > 250 || !early {
+"""
+    new_loop = """                for unit in units {
+                    let mut candidates = if view.turn > 250 || !early {
+"""
+    if result.count(old_loop) != 1:
+        raise ValueError("unexpected orchard-bearing candidate loop")
+    result = result.replace(old_loop, new_loop, 1)
+    protection = """                    if orchard_active {
+                        if let Some(mother) = orchard_mother {
+                            candidates.retain(|candidate| !matches!(candidate.target,
+                                Some(cell)
+                                if cell == mother));
+                        }
+                    }
+"""
+    if result.count(protection) != 1:
+        raise ValueError("unexpected orchard target protection")
+    result = result.replace(protection, "", 1)
+    override = """                let mut selected = MoisanBot::select(
+                    candidates_by_id, &view.inventories[0]
+                );
+                if orchard_active {
+                    selected[0] = self.orchard_command(view);
+                }
+"""
+    plain_selection = """                let mut selected = MoisanBot::select(
+                    candidates_by_id, &view.inventories[0]
+                );
+"""
+    if result.count(override) != 1:
+        raise ValueError("unexpected orchard command override")
+    result = result.replace(override, plain_selection, 1)
+    changes.append(
+        {
+            "marker": "orchard field, activation, reservation and command override",
+            "logical_change": (
+                "delete the six-map starter reservation while retaining ordinary natural "
+                "door-tree harvesting and endgame fruit-to-wood conversion"
+            ),
+        }
+    )
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_DOOR_HARVEST_NO_ORCHARD",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "delete the sparse secure-orchard override, preserve natural door-tree "
+                "harvesting, and prevent same-door wood convoy deadlock"
+            ),
+            "evidence_boundary": (
+                "distinct size candidate after terminal rejection; requires a new lock and "
+                "new untouched validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
 def focused_yamo_compact_endgame(source: str) -> tuple[str, dict]:
     """Factor the retained fruit-to-wood conversion path without changing its gates."""
 
@@ -2197,6 +2776,11 @@ def main() -> int:
             "focused-yamo-collapsed-targets",
             "focused-yamo-wait-on-conflict",
             "focused-yamo-structural-specialization",
+            "focused-yamo-bank-convoy",
+            "focused-yamo-bank-convoy-spare-door-orchard",
+            "focused-yamo-bank-convoy-safe-orchard",
+            "focused-yamo-bank-convoy-door-harvest",
+            "focused-yamo-bank-convoy-door-harvest-no-orchard",
             "focused-yamo-compact-endgame",
         ),
         default="orchard-only",
@@ -2226,9 +2810,38 @@ def main() -> int:
         "focused-yamo-collapsed-targets": focused_yamo_collapsed_targets,
         "focused-yamo-wait-on-conflict": focused_yamo_wait_on_conflict,
         "focused-yamo-structural-specialization": focused_yamo_structural_specialization,
+        "focused-yamo-bank-convoy": focused_yamo_bank_convoy,
+        "focused-yamo-bank-convoy-spare-door-orchard": (
+            focused_yamo_bank_convoy_spare_door_orchard
+        ),
+        "focused-yamo-bank-convoy-safe-orchard": (
+            focused_yamo_bank_convoy_safe_orchard
+        ),
+        "focused-yamo-bank-convoy-door-harvest": (
+            focused_yamo_bank_convoy_door_harvest
+        ),
+        "focused-yamo-bank-convoy-door-harvest-no-orchard": (
+            focused_yamo_bank_convoy_door_harvest_no_orchard
+        ),
         "focused-yamo-compact-endgame": focused_yamo_compact_endgame,
     }
-    candidate, manifest = builders[args.arm](args.source.read_text())
+    baseline = args.source.read_text()
+    candidate, manifest = builders[args.arm](baseline)
+    baseline_identifiers = lexical_identifiers(baseline)
+    candidate_identifiers = lexical_identifiers(candidate)
+    manifest["lexical_identifier_audit"] = {
+        "baseline_unique": len(baseline_identifiers),
+        "candidate_unique": len(candidate_identifiers),
+        "preserved_unique": len(baseline_identifiers & candidate_identifiers),
+        "removed_with_declared_blocks": sorted(
+            baseline_identifiers - candidate_identifiers
+        ),
+        "added_by_readable_replacements": sorted(
+            candidate_identifiers - baseline_identifiers
+        ),
+        "renaming_mapping": None,
+        "removed_identifiers_are_consequence_of_declared_items": True,
+    }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(candidate)
     args.manifest.parent.mkdir(parents=True, exist_ok=True)

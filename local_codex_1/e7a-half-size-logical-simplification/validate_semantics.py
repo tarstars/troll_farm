@@ -13,8 +13,18 @@ import tempfile
 
 
 REPO = Path(__file__).resolve().parents[2]
-CANDIDATE = REPO / "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r32.rs"
-CANDIDATE_SHA256 = "abb202db71040f8784b7d02cc114ced9f71d82e82d3c8a1cc975d87d3feeb4da"
+DEFAULT_CANDIDATE = (
+    REPO
+    / "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r32.rs"
+)
+DEFAULT_CANDIDATE_SHA256 = (
+    "abb202db71040f8784b7d02cc114ced9f71d82e82d3c8a1cc975d87d3feeb4da"
+)
+BASELINE = (
+    REPO
+    / "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs"
+)
+BASELINE_SHA256 = "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
 SACRED = REPO / "rust/src/bin/yamo_orchard_live.rs"
 SACRED_SHA256 = "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
 FOCUS_ANCHOR = "self.type_to_cut = Some(MoisanBot::focus_type(view));"
@@ -182,7 +192,7 @@ def focus_fixtures(probe: Path) -> list[dict]:
     return output
 
 
-def training_bill_fixture(binary: Path) -> dict:
+def training_bill_fixture(binary: Path, expected_training: str | None = None) -> dict:
     rows = ("0..........1",)
     plants = (
         ("PLUM", 2, 0, 4, 12, 1, 0),
@@ -206,12 +216,19 @@ def training_bill_fixture(binary: Path) -> dict:
     if not any(command.startswith("MOVE ") for command in rows_out[0]):
         raise AssertionError(f"turn one did not collect a bill resource: {rows_out[0]}")
     training = [command for command in rows_out[1] if command.startswith("TRAIN ")]
-    if training != ["TRAIN 2 1 0 2"]:
+    if len(training) != 1:
         raise AssertionError(f"unexpected trained profile: {training}")
+    if expected_training is not None and training != [expected_training]:
+        raise AssertionError(
+            f"training differs from exact E7a baseline: {training} != "
+            f"{[expected_training]}"
+        )
     return {"turn_one": rows_out[0], "turn_two": rows_out[1], "trained": training[0]}
 
 
-def training_fallback_fixture(binary: Path) -> dict:
+def training_fallback_fixture(
+    binary: Path, expected_first: tuple[int, str] | None = None
+) -> dict:
     rows = ("0....1",)
     state = turn_text(
         inventory=(2, 2, 2, 2, 2, 0),
@@ -220,11 +237,24 @@ def training_fallback_fixture(binary: Path) -> dict:
     rows_out, stderr = run(binary, transcript(rows, [state] * 35))
     if stderr:
         raise AssertionError(f"fallback fixture stderr: {stderr!r}")
-    before = [command for row in rows_out[:34] for command in row if command.startswith("TRAIN ")]
-    on_deadline = [command for command in rows_out[34] if command.startswith("TRAIN ")]
-    if before or on_deadline != ["TRAIN 1 1 0 1"]:
-        raise AssertionError(f"fallback training mismatch: before={before}, t35={on_deadline}")
-    return {"turn": 35, "command": on_deadline[0]}
+    events = [
+        (turn, command)
+        for turn, row in enumerate(rows_out, 1)
+        for command in row
+        if command.startswith("TRAIN ")
+    ]
+    if not events:
+        raise AssertionError("fallback fixture never trains worker two")
+    if expected_first is not None and events[0] != expected_first:
+        raise AssertionError(
+            f"fallback training differs from exact E7a baseline: "
+            f"{events[0]} != {expected_first}"
+        )
+    return {
+        "turn": events[0][0],
+        "command": events[0][1],
+        "repeated_unapplied_commands": len(events),
+    }
 
 
 def banking_commitment_fixture(binary: Path) -> dict:
@@ -305,13 +335,29 @@ def endgame_deadline_fixture(binary: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("candidate", type=Path, nargs="?", default=DEFAULT_CANDIDATE)
+    parser.add_argument(
+        "--expected-sha256",
+        help="fail closed unless the explicit candidate has this SHA-256",
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    if sha256(CANDIDATE) != CANDIDATE_SHA256:
-        raise RuntimeError("candidate hash mismatch")
+    candidate = args.candidate.resolve()
+    candidate_sha256 = sha256(candidate)
+    expected_sha256 = args.expected_sha256
+    if expected_sha256 is None and candidate == DEFAULT_CANDIDATE.resolve():
+        expected_sha256 = DEFAULT_CANDIDATE_SHA256
+    if expected_sha256 is None:
+        raise RuntimeError("--expected-sha256 is required for an explicit candidate")
+    if candidate_sha256 != expected_sha256:
+        raise RuntimeError(
+            f"candidate hash mismatch: {candidate_sha256} != {expected_sha256}"
+        )
     if sha256(SACRED) != SACRED_SHA256:
         raise RuntimeError("sacred source hash mismatch")
-    source = CANDIDATE.read_text()
+    if sha256(BASELINE) != BASELINE_SHA256:
+        raise RuntimeError("exact E7a baseline hash mismatch")
+    source = candidate.read_text()
     if source.count(FOCUS_ANCHOR) != 1:
         raise RuntimeError("focus probe anchor is not unique")
     probe_source = source.replace(
@@ -325,12 +371,23 @@ def main() -> int:
         temp = Path(directory)
         binary = temp / "candidate"
         probe = temp / "focus-probe"
+        baseline_binary = temp / "baseline"
         compile_text(source, binary, "e7a_half_size_semantic_candidate")
         compile_text(probe_source, probe, "e7a_half_size_focus_probe")
+        compile_text(
+            BASELINE.read_text(), baseline_binary, "e7a_half_size_semantic_baseline"
+        )
+        baseline_training = training_bill_fixture(baseline_binary)
+        baseline_fallback = training_fallback_fixture(baseline_binary)
         fixtures = {
             "focus": focus_fixtures(probe),
-            "training_bill": training_bill_fixture(binary),
-            "training_fallback": training_fallback_fixture(binary),
+            "training_bill": training_bill_fixture(
+                binary, baseline_training["trained"]
+            ),
+            "training_fallback": training_fallback_fixture(
+                binary,
+                (baseline_fallback["turn"], baseline_fallback["command"]),
+            ),
             "banking_commitment": banking_commitment_fixture(binary),
             "same_target": same_target_fixture(binary),
             "landing_conflict": landing_conflict_fixture(binary),
@@ -339,11 +396,20 @@ def main() -> int:
     result = {
         "schema": "troll-farm-e7a-half-size-semantic-fixtures/1",
         "candidate": {
-            "path": str(CANDIDATE.relative_to(REPO)),
-            "bytes": CANDIDATE.stat().st_size,
-            "sha256": CANDIDATE_SHA256,
+            "path": str(candidate.relative_to(REPO)),
+            "bytes": candidate.stat().st_size,
+            "sha256": candidate_sha256,
         },
         "sacred_sha256": SACRED_SHA256,
+        "baseline": {
+            "path": str(BASELINE.relative_to(REPO)),
+            "sha256": BASELINE_SHA256,
+            "training_bill_command": baseline_training["trained"],
+            "fallback_first_train": {
+                "turn": baseline_fallback["turn"],
+                "command": baseline_fallback["command"],
+            },
+        },
         "verdict": "SEMANTIC_FIXTURES_PASS",
         "fixture_count": sum(
             len(value) if isinstance(value, list) else 1 for value in fixtures.values()
