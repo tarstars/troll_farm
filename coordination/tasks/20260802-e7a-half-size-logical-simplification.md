@@ -261,3 +261,15 @@ evaluator, generated runner, shared analyzer, library, development/diagnostic ev
 and the exact command are frozen in `focused-yamo-bank-convoy-no-backtrack-fresh-lock.json`.
 The range remains unopened until this lock commit is pushed and remotely verified. No Arena
 action.
+
+## Progress 2026-08-03T03:00:05Z
+
+The exact locked command ran once over all 516 tasks and terminally rejects the 31,248-byte
+candidate. Twelve of thirteen gates pass: mean +3.9167, lower -1.1822, catastrophes 14 -> 8,
+negative mass 3,908 -> 3,549, both seats positive, worker-two/liveness/latency/integrity green,
+and period-2 >=6 at zero. The family-transfer gate fails because legend-balanced is -2.9884 and
+resident is -1.4419; the other four families are positive.
+
+The range is consumed. There will be no rerun, row exclusion, threshold relaxation, or Arena
+action. Diagnostic attribution can compare distinct logic on the preserved rows, but another
+qualification attempt requires a distinct source and a new untouched lock.

@@ -1462,3 +1462,22 @@ mass 6,149 -> 5,374.
 **Disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.** A new
 collision-audited untouched range must be locked and published before its one-shot run. Full
 evidence is in `e7a-half-size-funded-evacuation-tail-attribution-2026-08-03.md`.
+
+## 2026-08-03 — no-backtrack half-size untouched transfer rejection
+
+Before execution, exact-token, tracked-filename, Git-history, task-tree, and verified external
+project-root searches found zero recorded collision for seeds 9,865,000--042. A dedicated
+launcher hard-coded 43 maps, both seats, six families, eight threads, and 50,000 bootstrap
+samples; compile-only preflight generated no map. Candidate, runner, evaluator, evidence, range,
+gates, and command were remotely frozen at commit `db1903b` while the range was unopened.
+
+The exact locked command then ran once over all 516 tasks in 105.477 seconds. The 31,248-byte
+source remains positive overall at +3.9167 mean with bootstrap lower -1.1822; catastrophes improve
+14 -> 8, negative mass 3,908 -> 3,549, both seats are positive, worker-two coverage is 100% with
+zero delay, period-2 >=6 improves 90 -> 0, latency passes, and integrity is clean.
+
+The source nevertheless fails the frozen family-transfer gate. Four means are positive, while
+legend-balanced is -2.9884 and resident is -1.4419. The legend total (-257) is dominated by one
+-265 row, but row removal and threshold relaxation are forbidden; resident's -124 total spans 50
+negative rows. **Disposition: TERMINAL FRESH REJECTION / NO RERUN / NO ARENA ACTION.** The range
+is consumed. Exact evidence is in `e7a-half-size-no-backtrack-fresh-result-2026-08-03.md`.
