@@ -1,10 +1,10 @@
 # 20260803-orchard-ab-night-cycle: four repeated orchard/no-orchard live cycles
 
-- Status: prepared; start commit and remote verification pending
+- Status: preflight abort corrected and restore verified; correction push pending clean restart
 - Priority: direct owner assignment
 - Owner / Arena controller: local_codex_1
 - Created UTC: 2026-08-03T19:07:37Z
-- Last updated UTC: 2026-08-03T19:07:37Z
+- Last updated UTC: 2026-08-03T19:14:58Z
 - Branch: `agent/local_codex_1`
 - Runtime state: `data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`
 - Systemd unit: `troll-farm-orchard-ab-night-20260803.service`
@@ -35,6 +35,20 @@ Pre-cycle resident is exact orchard agent `6592131`, submission `41086057`, sour
 runtime-clean. Latest complete checkpoint is 23.56/rank 32/137 over 162 games; immediate start
 read is 23.4/rank 33/137. Sacred `rust/src/bin/yamo_orchard_live.rs` remains exact at SHA prefix
 `fff6669b`.
+
+## First-launch preflight abort
+
+The first controller launch submitted no-orchard once as `41086801`, but its read-only source
+verifier looked for the untracked session file inside the isolated worktree. It therefore stopped
+before opening a maturity window and made the declared one-call orchard safety restore,
+`6592329`/`41086809`. This approximately 66-second exposure is not an experiment leg. The durable
+abort record is `preflight-abort-20260803T191126Z.json`. The correction passes the controller's
+explicit credential path to read-only recovery and extends only the propagation-read gate to five
+minutes. The clean eight-leg sequence restarts from no-orchard after the correction is tested,
+pushed, and the orchard restore is source-verified.
+
+Restore source verification passed at 19:14:40Z: exactly 62,820 bytes and SHA-256 `97bfe71e...`.
+All six focused controller/export tests pass after the correction.
 
 ## Per-leg protocol
 

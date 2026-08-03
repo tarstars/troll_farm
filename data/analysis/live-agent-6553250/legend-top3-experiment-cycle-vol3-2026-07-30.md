@@ -1748,3 +1748,10 @@ sanitized LFS replays, and a pushed result before the next mutation. A 05:14–0
 blackout avoids the daily collector. **Status: PREPARED / SOLE CONTROLLER `local_codex_1` / FIRST
 MUTATION GATED ON REMOTE START-COMMIT VERIFICATION.** Runtime state will live at
 `data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`.
+
+The first launch at 19:11:26Z stopped before maturity because read-only source recovery searched
+for the untracked controller credential in the isolated worktree. No-orchard submission
+`41086801` was exposed for approximately 66 seconds, then the declared single orchard safety
+restore was accepted as `6592329`/`41086809`. This is a preflight abort, not one of the eight legs.
+The restart is gated on an explicit verifier credential path, a five-minute propagation-read
+window, exact restore verification, tests, and a remotely verified correction commit.

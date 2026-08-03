@@ -130,10 +130,11 @@ def discover_agent(submission_id: int, timeout_seconds: int = 300) -> int:
     raise RuntimeError(f"agent discovery timed out for submission {submission_id}")
 
 
-def recover_source(expected_sha256: str) -> None:
+def recover_source(expected_sha256: str, timeout_seconds: int = 300) -> None:
     with tempfile.TemporaryDirectory(prefix="troll-farm-source-check-") as directory:
         output = Path(directory) / "source.rs"
-        for _attempt in range(6):
+        deadline = time.monotonic() + timeout_seconds
+        while time.monotonic() < deadline:
             result = run(
                 [
                     sys.executable,
@@ -141,11 +142,16 @@ def recover_source(expected_sha256: str) -> None:
                     str(output),
                     "--expected-sha256",
                     expected_sha256,
+                    "--session-file",
+                    str(api_submit_once.SESSION_FILE),
                 ],
                 check=False,
             )
             if result.returncode == 0:
                 return
+            diagnostic = (result.stdout + result.stderr).strip().splitlines()
+            if diagnostic:
+                print(f"[{utc()}] source gate: {diagnostic[-1]}", flush=True)
             time.sleep(10)
     raise RuntimeError("platform source recovery did not reach the expected hash")
 
