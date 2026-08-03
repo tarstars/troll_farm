@@ -1531,3 +1531,14 @@ The exact source subsequently passed the ordinary consumed development panel at 
 both seats positive, worker-two delay zero, and period-2 >=6 at zero. The generated-map motion
 packet was liveness-clean but mildly adverse and remains a non-authoritative discriminator.
 **Updated disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.**
+
+## 2026-08-03 — tree-edge successor untouched transfer lock
+
+Scoped live-record, task-tree, tracked-filename, Git-history, and verified external-project-root
+searches found no recorded collision for official-generator seeds 9,866,000--042. No map in the
+range was generated or inspected. A dedicated evaluator hard-codes 43 maps, both seats, six
+families, eight threads, and 50,000 bootstrap samples; compile-only preflight passes without map
+generation. Candidate, evaluator, generated runner, range, gates, evidence hashes, and the exact
+one-shot command are frozen in
+`focused-yamo-bank-convoy-tree-edge-reversal-fresh-lock.json`. **Disposition: LOCKED LOCALLY /
+UNOPENED / REMOTE PUBLICATION REQUIRED BEFORE EXECUTION / NO ARENA ACTION.**

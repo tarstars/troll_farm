@@ -300,3 +300,16 @@ mildly adverse; it is not a promotion gate.
 
 **Disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.** A new untouched
 range must be collision-audited and remotely locked before one-shot execution.
+
+## Progress 2026-08-03T04:11:44Z
+
+Exact-token searches of scoped live records and the task tree, current and historical tracked
+filenames, Git content history, and filenames beneath all five verified external project roots
+found no recorded collision for seeds 9,866,000--9,866,042. No map was generated or inspected.
+
+The dedicated tree-edge evaluator hard-codes 43 maps, both seats, the six frozen families, eight
+threads, and 50,000 bootstrap samples; it exposes only panel/output paths and refuses pre-existing
+outputs. Compile-only preflight passes without map generation. Candidate, range, evaluator,
+generated runner, shared analyzer, library, development/diagnostic evidence, gates, and exact
+command are frozen in `focused-yamo-bank-convoy-tree-edge-reversal-fresh-lock.json`. The range
+remains unopened until this lock commit is pushed and remotely verified. No Arena action.

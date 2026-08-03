@@ -1,0 +1,151 @@
+{
+  "schema": "troll-farm-e7a-half-size-fresh-gate-lock-v1",
+  "task_id": "20260802-e7a-half-size-logical-simplification",
+  "locked_at_utc": "2026-08-03T04:11:44Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-tree-edge-reversal.rs",
+    "bytes": 31407,
+    "sha256": "acbada47b9a3cf279ff5356a32e2965eb44cbb5ccc8d7b7e8c6f5dda3f92e847"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9866000,
+    "seed_end_inclusive": 9866042,
+    "maps": 43,
+    "seats": [
+      0,
+      1
+    ],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false,
+    "map_count_arguments_exposed": false,
+    "thread_count_arguments_exposed": false,
+    "bootstrap_arguments_exposed": false
+  },
+  "gates": {
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "mean_margin_delta_minimum": -0.5,
+    "bootstrap_95_lower_strictly_above": -2,
+    "catastrophes_may_increase": false,
+    "negative_margin_mass_may_increase": false,
+    "minimum_nonnegative_family_means": 5,
+    "both_seat_means_nonnegative": true,
+    "worker2_coverage_minimum": 0.95,
+    "median_worker2_delay_maximum": 10,
+    "candidate_period2_ge6_maximum": 0,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_SEED_COLLISION",
+    "live_record_roots": [
+      "docs",
+      "coordination",
+      "cgauto",
+      "scripts",
+      "local_codex_1/e7a-half-size-logical-simplification",
+      "data/analysis/live-agent-6553250"
+    ],
+    "exact_tokens": [
+      "9866000",
+      "9_866_000",
+      "9,866,000",
+      "9,866"
+    ],
+    "tracked_live_record_matches_before_reservation": 0,
+    "task_working_tree_matches_before_reservation": 0,
+    "tracked_filename_matches_before_reservation": 0,
+    "tracked_history_exact_matches_before_reservation": 0,
+    "tracked_history_filename_matches_before_reservation": 0,
+    "external_artifact_filename_matches_before_reservation": 0,
+    "external_roots_verified_beneath_project_volume": true,
+    "external_roots_checked": [
+      "artifacts",
+      "outputs",
+      "yt_work",
+      "data/generated",
+      "data/external"
+    ],
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063",
+      "9863000-9863042",
+      "9864000-9864042",
+      "9865000-9865042"
+    ]
+  },
+  "hashes": {
+    "builder": "771a8a31efe5fad35e338c3b55f7691c848e7614b6760510c17e5fdadfc48eea",
+    "candidate_manifest": "6c7d7bf08907fb49be58c67d5e6874fa3c7e9c8a9a3f57f39706f038eda65677",
+    "semantic_validator": "fcf279595cd5663796014d2d85a3c1db989ce46a8e2dee83947201ef2a3fb5ff",
+    "semantic_result": "d73ea1c277915104c4afcfd32918bfd10cbff911c77a21d2faf76e3d56b0d8fd",
+    "motion_evaluator": "aeccde7b73891fbfa03a57c657ce230c65e1930ef04ff735c081cbf4134b6258",
+    "motion_result": "8e5fa69088f12af826a117fcbf541b118dcf10f08bf63c6fa503028016c5e8f7",
+    "live_packet_evaluator": "ff43268181e88b563257f2c8eace5649ab5bba076beb96f9b49e76876fb44d9a",
+    "live_packet_result": "700086044d6630242cd85d4686c3cf7355dd0214574c0f291f17b765186821c0",
+    "shared_panel_analyzer": "fa1fc5c29d857b4d6c5fd3116f678f33d51be46566af2c503307ae4f21d8acff",
+    "fresh_evaluator": "8dc160a69ebb7f370dbd9b191c7cf5321c2b9b74482a59f546fb57dcda96ea2f",
+    "runner_template": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+    "generated_fresh_runner": "542003188108650d365692b6c64ab3e67ffbc9fcac4e84403e39433847bfcccd",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660",
+    "consumed_development_tsv": "3f0f5010772b66b6dfc1e4449b4be845d541f435af540cf5099602bc09eadcf3",
+    "consumed_development_result": "a27736aeb733f62fb9995374ee72a4b5109e9bc8ffd1615251b80857dec1f604",
+    "consumed_transfer_driver": "634e2ec7ccc0cbc354ce6aecbab1cfb11522ba74402ca141c1d820a847d55f37",
+    "consumed_transfer_tsv": "191d4bd3745603a867673ccb5c30ea59273be6762c5b6db117bc1871c3a5bf17",
+    "consumed_transfer_result": "8575d3b150c70ebfc170cd596a760ea8a37d799987e3c9f921799df9bfd8acf0",
+    "trace_comparison": "1ed67ec9a6ef614fca3377925948465037923577e629061620a0036aefbacf8f"
+  },
+  "pre_run_checks": {
+    "standalone_optimized_compile": true,
+    "empty_input_exit_zero": true,
+    "empty_input_stdout_bytes": 0,
+    "empty_input_stderr_bytes": 0,
+    "semantic_fixtures": "PASS_10_OF_10",
+    "consumed_development_panel": "QUALIFIED_OPEN_PANEL",
+    "consumed_transfer_diagnostic": "ANALYTICAL_PASS_CANNOT_QUALIFY",
+    "live_period2_packet": "PASS_25_OF_25_MAXIMUM_5",
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "one_shot_command": [
+    "python3",
+    "local_codex_1/e7a-half-size-logical-simplification/evaluate_fresh_tree_edge_reversal_gate.py",
+    "--panel",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-tree-edge-reversal-fresh-panel.tsv",
+    "--output",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-tree-edge-reversal-fresh-panel.json"
+  ],
+  "evidence_boundary": "Untouched engineering transfer gate; not an Arena-rating predictor"
+}
