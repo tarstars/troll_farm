@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-02T23:00:27Z
+- Last updated UTC: 2026-08-03T00:04:17Z
 
 ## Outcome
 
@@ -140,3 +140,12 @@ unused protocol logic. Adding `WAIT` to bank routes repairs an empty-pair single
 and improves the 516-task mean to -6.9574, bootstrap lower -13.0213, catastrophes 19 -> 22,
 and negative mass 4,138 -> 5,012. Size/compile/latency pass; value and liveness do not, so
 the source is not frozen for untouched validation and no Arena action is allowed.
+
+## Progress 2026-08-03T00:04:17Z
+
+A structural-specialization successor is now 31,337 bytes, 73 below the ceiling, SHA-256
+`7fd755c2...`. It deletes unused runtime state and zero-harvest/training/rule/target/container
+generality without renaming or formatting compression. Standalone compile and empty input pass.
+Its 96 non-latency task rows are byte-identical to the prior wait-on-conflict smoke: +6.03125
+mean, +0.88542 lower, and zero period-2 episodes >=6. Full 516-task consumed evaluation is the
+next phase; untouched maps remain closed and no Arena action is allowed.

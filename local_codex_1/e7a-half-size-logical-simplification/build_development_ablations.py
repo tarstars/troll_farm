@@ -1107,6 +1107,1065 @@ def focused_yamo_bank_wait_fallback(source: str) -> tuple[str, dict]:
     return result, manifest
 
 
+def focused_yamo_compact_opening_eta(source: str) -> tuple[str, dict]:
+    """Express the exact 27-profile opening choice without general policy scaffolding."""
+
+    result, manifest = focused_yamo_bank_wait_fallback(source)
+    chooser = r"""fn choose_second_troll(view: &GameState) -> Stats {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                    .into_iter()
+                    .filter(|cell| view.walkable.contains(cell))
+                    .collect();
+                let distance = bfs_distances(&view.walkable, &doors);
+                let collection_eta = |level: i32, item: usize, kind: Option<PlantKind>| {
+                    let missing = (1 + level * level - view.inventories[0][item]).max(0);
+                    if missing == 0 {
+                        return 0;
+                    }
+                    if let Some(kind) = kind {
+                        return view.plants.iter()
+                            .filter(|plant| plant.kind == kind && plant.health > 0)
+                            .filter_map(|plant| {
+                                let travel = distance.get(&plant.cell).copied()?;
+                                let wait = (MoisanBot::ticks_until_fruit(view, plant) - travel)
+                                    .max(0);
+                                Some(missing * (2 * travel + 2) + wait)
+                            })
+                            .min()
+                            .unwrap_or(10_000);
+                    }
+                    view.iron.iter()
+                        .flat_map(|iron| ortho_neighbors(*iron))
+                        .filter_map(|cell| distance.get(&cell).copied())
+                        .min()
+                        .map_or(10_000, |travel| missing * (2 * travel + 2))
+                };
+                let mut options = Vec::new();
+                for movement_speed in 1..=3 {
+                    for carry_capacity in 1..=3 {
+                        for chop_power in 1..=3 {
+                            let stats = Stats {
+                                movement_speed,
+                                carry_capacity,
+                                harvest_power: 0,
+                                chop_power,
+                            };
+                            let eta = collection_eta(
+                                movement_speed, PLUM, Some(PlantKind::Plum),
+                            ) + collection_eta(
+                                carry_capacity, LEMON, Some(PlantKind::Lemon),
+                            ) + if view.iron.is_empty() {
+                                0
+                            } else {
+                                collection_eta(chop_power, IRON, None)
+                            };
+                            options.push((stats, eta));
+                        }
+                    }
+                }
+                let key = |(stats, eta): &(Stats, i32)| {
+                    (stats.movement_speed + stats.carry_capacity + stats.chop_power,
+                        -*eta, stats.chop_power, stats.carry_capacity, stats.movement_speed)
+                };
+                let baseline = options.iter()
+                    .filter(|(_, eta)| *eta <= 15)
+                    .max_by_key(|option| key(option))
+                    .copied()
+                    .unwrap_or(options[0]);
+                if baseline.0.carry_capacity >= 2 {
+                    return baseline.0;
+                }
+                let allowed_eta = (baseline.1 + 15).min(34);
+                options.iter()
+                    .filter(|(stats, eta)| stats.carry_capacity >= 2 && *eta <= allowed_eta)
+                    .max_by_key(|option| key(option))
+                    .copied()
+                    .unwrap_or(baseline)
+                    .0
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn choose_second_troll(", chooser)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "fn choose_second_troll(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(chooser.encode()),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_COMPACT_OPENING_ETA",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "preserve the exact 27-profile opening choice while deriving each resource "
+                "bill directly from the corresponding worker stat"
+            ),
+            "evidence_boundary": "development refactor; requires exact behavioral parity",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_compact_orchard(source: str) -> tuple[str, dict]:
+    """Restore the active orchard sector with a small stateful override."""
+
+    result, manifest = focused_yamo_compact_opening_eta(source)
+    old_fields = """            desired_second: Option<Stats>,
+        }"""
+    new_fields = """            desired_second: Option<Stats>,
+            orchard_mother: Option<Cell>,
+        }"""
+    if result.count(old_fields) != 1:
+        raise ValueError("unexpected focused Yamo fields")
+    result = result.replace(old_fields, new_fields, 1)
+    old_constructor = "Self { type_to_cut: None, desired_second: None }"
+    new_constructor = (
+        "Self { type_to_cut: None, desired_second: None, "
+        "orchard_mother: None }"
+    )
+    if result.count(old_constructor) != 1:
+        raise ValueError("unexpected focused Yamo constructor")
+    result = result.replace(old_constructor, new_constructor, 1)
+    opening_tail = """                if self.desired_second.is_none() {
+                    self.desired_second = Some(Self::choose_second_troll(view));
+                }
+"""
+    orchard_initialization = """                if view.turn == 1 {
+                    self.orchard_mother = Self::select_orchard_mother(view);
+                }
+"""
+    if result.count(opening_tail) != 1:
+        raise ValueError("unexpected focused opening tail")
+    result = result.replace(opening_tail, opening_tail + orchard_initialization, 1)
+    methods = r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                    .into_iter()
+                    .filter(|cell| view.walkable.contains(cell))
+                    .collect();
+                if doors.len() < 2 {
+                    return None;
+                }
+                if view.plants.iter().any(|plant| doors.contains(&plant.cell)) {
+                    return None;
+                }
+                let enemy_distance = bfs_distances(
+                    &view.walkable,
+                    &ortho_neighbors(view.shacks[1]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .collect::<Vec<Cell>>(),
+                );
+                doors
+                    .into_iter()
+                    .filter(|door| view.plant_at(*door).is_none())
+                    .filter(|door| view.water.iter().any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| enemy_distance.get(door).copied().unwrap_or(10_000) >= 11)
+                    .min_by_key(|door| {
+                        (-enemy_distance.get(door).copied().unwrap_or(10_000), *door)
+                    })
+            }
+
+            fn orchard_command(&mut self, view: &GameState) -> Option<String> {
+                let mother = self.orchard_mother?;
+                if view.units.iter().filter(|unit| unit.player == 0).count() < 2 {
+                    return None;
+                }
+                let starter = view.units
+                    .iter()
+                    .filter(|unit| unit.player == 0)
+                    .min_by_key(|unit| unit.id)?;
+                if starter.cell != mother {
+                    return Some(format!(
+                        "MOVE {} {} {}", starter.id, mother.0, mother.1,
+                    ));
+                }
+                if let Some(tree) = view.plant_at(mother)
+                    .map(|index| &view.plants[index])
+                    .filter(|plant| plant.kind == PlantKind::Apple && plant.health > 0)
+                {
+                    return Some(if starter.total_carried() > 0 {
+                        format!("DROP {}", starter.id)
+                    } else if tree.fruits > 0 && starter.free_capacity() > 0 {
+                        format!("HARVEST {}", starter.id)
+                    } else {
+                        "WAIT".to_string()
+                    });
+                }
+                Some(if starter.carry[APPLE] > 0 {
+                    format!("PLANT {} APPLE", starter.id)
+                } else if starter.total_carried() > 0 {
+                    format!("DROP {}", starter.id)
+                } else {
+                    format!("PICK {} APPLE", starter.id)
+                })
+            }
+
+            """
+    if result.count("fn fruit_kind(") != 1:
+        raise ValueError("unexpected fruit-kind insertion point")
+    result = result.replace("fn fruit_kind(", methods + "fn fruit_kind(", 1)
+    candidate_loop = """                for unit in units {
+                    let mut candidates = if view.turn > 250 || !early {
+"""
+    reserved_starter = """                let orchard_mother = self.orchard_mother;
+                let orchard_active = orchard_mother.is_some() && units.len() >= 2;
+                for (unit_index, unit) in units.into_iter().enumerate() {
+                    let mut candidates = if orchard_active && unit_index == 0
+                    {
+                        vec![MoisanBot::wait()]
+                    } else if view.turn > 250 || !early {
+"""
+    if result.count(candidate_loop) != 1:
+        raise ValueError("unexpected candidate-loop insertion point")
+    result = result.replace(candidate_loop, reserved_starter, 1)
+    candidate_tail = """                    } else {
+                        MoisanBot::early_candidates(view, unit, desired)
+                    };
+"""
+    protection = """                    if orchard_active {
+                        if let Some(mother) = orchard_mother {
+                            candidates.retain(|candidate| !matches!(candidate.target,
+                                Target::Tree(cell) | Target::Bank(cell) | Target::Cell(cell)
+                                if cell == mother));
+                        }
+                    }
+"""
+    if result.count(candidate_tail) != 1:
+        raise ValueError("unexpected candidate-protection insertion point")
+    result = result.replace(candidate_tail, candidate_tail + protection, 1)
+    resolve = "MoisanBot::resolve_move_conflicts(view, &mut selected);"
+    override_command = """if let Some(command) = self.orchard_command(view) {
+                    if !selected.is_empty() {
+                        selected[0] = command;
+                    }
+                }
+                """
+    if result.count(resolve) != 1:
+        raise ValueError("unexpected movement-resolution insertion point")
+    result = result.replace(resolve, override_command + resolve, 1)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_COMPACT_ORCHARD",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain the size-qualified bank-wait core and restore a compact stateful "
+                "apple orchard only in the exact six-map geometry sector"
+            ),
+            "evidence_boundary": "oversized attribution arm; cannot qualify for Arena",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_direct_chop_forecast(source: str) -> tuple[str, dict]:
+    """Price current health/size directly instead of simulating future tree growth."""
+
+    result, manifest = focused_yamo_compact_orchard(source)
+    changes = []
+    chop_candidates = item_text(result, "fn chop_candidates(")
+    prediction = (
+        "let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{continue;};"
+        "if predicted.size<=0||predicted.health<=0{continue;}"
+    )
+    direct_health = (
+        "if plant.size<=0||plant.health<=0{continue;}"
+        "let chop_turns=Self::ceil_div(plant.health,unit.stats.chop_power);"
+    )
+    outcome = (
+        "let Some((chop_turns,final_size))="
+        "Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{continue;};"
+    )
+    if chop_candidates.count(prediction) != 1 or chop_candidates.count(outcome) != 1:
+        raise ValueError("unexpected chop forecast call sites")
+    chop_candidates = chop_candidates.replace(prediction, direct_health, 1)
+    chop_candidates = chop_candidates.replace(outcome, "let final_size=plant.size;", 1)
+    before = len(result.encode())
+    result = _replace_item(result, "fn chop_candidates(", chop_candidates)
+    changes.append(
+        {
+            "marker": "fn chop_candidates(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(chop_candidates.encode()),
+        }
+    )
+    for marker in (
+        "fn predicted_opp_chop(",
+        "struct PredictedTree",
+        "fn predict_tree(",
+        "fn chop_outcome(",
+    ):
+        before = len(result.encode())
+        result = _remove_item(result, marker)
+        changes.append({"marker": marker, "bytes": before - len(result.encode())})
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_DIRECT_CHOP_FORECAST",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "delete opponent/growth forecasting and price chop time from the tree's "
+                "observed health and size"
+            ),
+            "evidence_boundary": "oversized consumed-panel ablation; cannot qualify",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_runtime_state_pruning(source: str) -> tuple[str, dict]:
+    """Delete parsed state never read by the compact policy and reachable-target routing."""
+
+    result, manifest = focused_yamo_direct_chop_forecast(source)
+    replacements = (
+        ("pub width:i32,pub height:i32,", "", 2),
+        ("pub scores:[i32;2],", "", 1),
+        ("pub next_id:i32,", "", 1),
+        ("let width=parts.next()?.parse().ok()?;", "let _width:i32=parts.next()?.parse().ok()?;", 1),
+        ("Some(parse_static_map(width,height,&rows))", "Some(parse_static_map(&rows))", 1),
+        (
+            "pub fn parse_static_map(width:i32,height:i32,rows:&[String])->StaticMap",
+            "pub fn parse_static_map(rows:&[String])->StaticMap",
+            1,
+        ),
+        ("StaticMap{width,height,walkable,shacks,iron,water,}",
+         "StaticMap{walkable,shacks,iron,water,}", 1),
+        ("let mut next_id=0;", "", 1),
+        ("next_id=next_id.max(values[0]+1);", "", 1),
+        (
+            "Some(GameState{width:map.width,height:map.height,walkable:map.walkable.clone(),"
+            "shacks:map.shacks,inventories,units,plants,scores:[0;2],turn,next_id,"
+            "iron:map.iron.clone(),water:map.water.clone(),})",
+            "Some(GameState{walkable:map.walkable.clone(),shacks:map.shacks,inventories,"
+            "units,plants,turn,iron:map.iron.clone(),water:map.water.clone(),})",
+            1,
+        ),
+    )
+    removed = 0
+    for old, new, expected in replacements:
+        if result.count(old) != expected:
+            raise ValueError(f"unexpected unused-state fragment: {old!r}")
+        removed += expected * (len(old.encode()) - len(new.encode()))
+        result = result.replace(old, new, expected)
+    reachable_router = r"""pub fn next_cell(
+                walkable: &BTreeSet<Cell>,
+                current: Cell,
+                target: Cell,
+                speed: i32,
+            ) -> Cell {
+                let from_current = bfs_distances(walkable, &[current]);
+                let to_target = bfs_distances(walkable, &[target]);
+                from_current.iter()
+                    .filter(|(cell, distance)| {
+                        **distance <= speed && to_target.contains_key(*cell)
+                    })
+                    .map(|(cell, _)| *cell)
+                    .min_by_key(|cell| (to_target[cell], *cell))
+                    .unwrap_or(current)
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "pub fn next_cell(", reachable_router)
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {"marker": "unused parsed GameState/StaticMap fields", "bytes": removed},
+            {
+                "marker": "pub fn next_cell(",
+                "net_removed_bytes": before - len(result.encode()),
+                "replacement_bytes": len(reachable_router.encode()),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_RUNTIME_STATE_PRUNING",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "discard dimensions, scores and next-id state never read by the policy, and "
+                "route only among reachable policy targets"
+            ),
+            "evidence_boundary": "development refactor; requires behavioral parity",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_collapsed_targets(source: str) -> tuple[str, dict]:
+    """Collapse target provenance that is used only as a same-cell mutex."""
+
+    result, manifest = focused_yamo_direct_chop_forecast(source)
+    target = "enum Target{None,Cell(Cell),}"
+    before = len(result.encode())
+    result = _replace_item(result, "enum Target", target)
+    target_saving = before - len(result.encode())
+    result = result.replace("Target::Bank(", "Target::Cell(")
+    result = result.replace("Target::Tree(", "Target::Cell(")
+    compatible = (
+        "fn compatible(a:Target,b:Target)->bool{"
+        "a==Target::None||b==Target::None||a!=b}"
+    )
+    before = len(result.encode())
+    result = _replace_item(result, "fn compatible(", compatible)
+    compatible_saving = before - len(result.encode())
+    repeated_target_pattern = (
+        "Target::Cell(cell) | Target::Cell(cell) | Target::Cell(cell)"
+    )
+    if result.count(repeated_target_pattern) != 1:
+        raise ValueError("unexpected orchard target protection")
+    result = result.replace(repeated_target_pattern, "Target::Cell(cell)", 1)
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {
+                "marker": "enum Target",
+                "net_removed_bytes": target_saving,
+                "replacement_bytes": len(target.encode()),
+            },
+            {
+                "marker": "fn compatible(",
+                "net_removed_bytes": compatible_saving,
+                "replacement_bytes": len(compatible.encode()),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_COLLAPSED_TARGETS",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "represent every non-idle assignment target by cell because target kind "
+                "never affects scoring or compatibility"
+            ),
+            "evidence_boundary": "semantic refactor; requires behavioral parity",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_wait_on_conflict(source: str) -> tuple[str, dict]:
+    """Delete collision detour search and wait when two chosen moves land together."""
+
+    result, manifest = focused_yamo_collapsed_targets(source)
+    resolver = r"""fn resolve_move_conflicts(view: &GameState, commands: &mut [String]) {
+                let mut moves: Vec<(i32, usize, Cell, Cell)> = commands.iter()
+                    .enumerate()
+                    .filter_map(|(index, command)| {
+                        let (id, target) = Self::move_command(command)?;
+                        let unit = view.unit(id)?;
+                        Some((id, index, unit.cell, next_cell(
+                            &view.walkable, unit.cell, target, unit.stats.movement_speed,
+                        )))
+                    })
+                    .collect();
+                let moving_ids: BTreeSet<i32> = moves.iter()
+                    .filter(|(_, _, current, landing)| current != landing)
+                    .map(|(id, _, _, _)| *id)
+                    .collect();
+                let mut reserved: BTreeSet<Cell> = view.units.iter()
+                    .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
+                    .map(|unit| unit.cell)
+                    .collect();
+                moves.sort_by(|a, b| b.0.cmp(&a.0));
+                for (id, index, current, landing) in moves {
+                    if landing == current || !reserved.insert(landing) {
+                        commands[index] = "WAIT".to_string();
+                    } else {
+                        commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
+                    }
+                }
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn resolve_move_conflicts(", resolver)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "fn resolve_move_conflicts(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(resolver.encode()),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_WAIT_ON_CONFLICT",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "remove one-step collision detour planning and make conflicting chosen "
+                "moves wait in deterministic worker order"
+            ),
+            "evidence_boundary": "development liveness ablation; cannot qualify alone",
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_structural_specialization(source: str) -> tuple[str, dict]:
+    """Delete protocol and policy generality impossible in the two-worker controller."""
+
+    result, manifest = focused_yamo_wait_on_conflict(source)
+    changes = []
+
+    def replace_item(marker: str, replacement: str) -> None:
+        nonlocal result
+        before = len(result.encode())
+        result = _replace_item(result, marker, replacement)
+        changes.append(
+            {
+                "marker": marker,
+                "net_removed_bytes": before - len(result.encode()),
+                "replacement_bytes": len(replacement.encode()),
+            }
+        )
+
+    def remove_item(marker: str) -> None:
+        nonlocal result
+        before = len(result.encode())
+        result = _remove_item(result, marker)
+        changes.append({"marker": marker, "bytes": before - len(result.encode())})
+
+    # The deployed policy only ever asks for harvest level zero.  Keep parsing the
+    # referee's fourteen unit fields, but do not retain or propagate the unused value.
+    replace_item(
+        "pub struct Stats",
+        "pub struct Stats{pub movement_speed:i32,pub carry_capacity:i32,"
+        "pub chop_power:i32,}",
+    )
+    remove_item("impl Stats")
+    before_zero_harvest_plumbing = len(result.encode())
+    for old, new, expected in (
+        ("harvest_power:values[6],", "", 1),
+        ("harvest_power: 0,", "", 2),
+        ("desired.harvest_power,", "0,", 1),
+    ):
+        if result.count(old) != expected:
+            raise ValueError(f"unexpected zero-harvest fragment: {old!r}")
+        result = result.replace(old, new, expected)
+    changes.append(
+        {
+            "marker": "zero-harvest parser and TRAIN plumbing",
+            "bytes": before_zero_harvest_plumbing - len(result.encode()),
+        }
+    )
+
+    # Before worker two exists, n is exactly one and the zero-harvest APPLE bill is
+    # already covered by the official starting inventory.  Price only live deficits.
+    remove_item("pub fn training_cost(")
+    replace_item(
+        "fn can_train(",
+        r"""fn can_train(view: &GameState, stats: Stats) -> bool {
+                if view.units.iter().filter(|unit| unit.player == 0).count() >= 2
+                    || TOTAL_TURNS - view.turn <= 20
+                {
+                    return false;
+                }
+                let inventory = &view.inventories[0];
+                inventory[PLUM] >= 1 + stats.movement_speed * stats.movement_speed
+                    && inventory[LEMON] >= 1 + stats.carry_capacity * stats.carry_capacity
+                    && (view.iron.is_empty()
+                        || inventory[IRON] >= 1 + stats.chop_power * stats.chop_power)
+            }""",
+    )
+    replace_item(
+        "fn early_candidates(",
+        r"""fn early_candidates(
+                view: &GameState,
+                unit: &Unit,
+                desired: Stats,
+            ) -> Vec<Candidate> {
+                let mut out = vec![Self::wait()];
+                if unit.total_carried() > 0 || unit.free_capacity() <= 0 {
+                    out.extend(Self::bank_candidates(view, unit));
+                    return out;
+                }
+                let needs = [
+                    (PLUM, 1 + desired.movement_speed * desired.movement_speed),
+                    (LEMON, 1 + desired.carry_capacity * desired.carry_capacity),
+                    (IRON, 1 + desired.chop_power * desired.chop_power),
+                ];
+                for (item, required) in needs {
+                    if required <= view.inventories[0][item] {
+                        continue;
+                    }
+                    if item == IRON {
+                        out.extend(Self::iron_candidates(view, unit, 6_100.0));
+                    } else {
+                        let kind = if item == PLUM {
+                            PlantKind::Plum
+                        } else {
+                            PlantKind::Lemon
+                        };
+                        out.extend(Self::fruit_candidates(view, unit, kind, 6_000.0));
+                    }
+                }
+                if out.len() == 1 {
+                    out.extend(Self::chop_candidates(view, unit, None));
+                }
+                out
+            }""",
+    )
+
+    # The former loop is an exact arithmetic progression: the current cooldown, then
+    # one effective cooldown for every remaining growth step through size four.
+    replace_item(
+        "fn ticks_until_fruit(",
+        r"""fn ticks_until_fruit(view: &GameState, plant: &Plant) -> i32 {
+                if plant.fruits > 0 {
+                    return 0;
+                }
+                let near_water = view.water.iter().any(|water| {
+                    is_adjacent(*water, plant.cell)
+                });
+                let reset = match plant.kind {
+                    PlantKind::Plum | PlantKind::Lemon => if near_water { 3 } else { 8 },
+                    PlantKind::Apple => if near_water { 2 } else { 9 },
+                    PlantKind::Banana => if near_water { 4 } else { 6 },
+                };
+                plant.cooldown.max(1)
+                    + reset * (4 - plant.size).max(0)
+            }""",
+    )
+    remove_item("pub fn effective_cooldown(")
+    remove_item("pub fn plant_cooldown(")
+    remove_item("pub fn water_boost(")
+    replace_item(
+        "pub fn tree_health(",
+        r"""pub fn tree_health(kind: PlantKind, size: i32) -> i32 {
+            match kind {
+                PlantKind::Plum | PlantKind::Lemon => 4 + 2 * size,
+                PlantKind::Apple => 8 + 3 * size,
+                PlantKind::Banana => 2 + size,
+            }
+        }""",
+    )
+    remove_item("pub fn tree_health_params(")
+
+    # The three-way selector is algebraically identical to one near-tie comparison.
+    replace_item(
+        "fn focus_type(",
+        r"""fn focus_type(view: &GameState) -> PlantKind {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                let distance = bfs_distances(&view.walkable, &doors);
+                let sum = |kind| view.plants.iter()
+                    .filter(|plant| plant.kind == kind)
+                    .map(|plant| distance.get(&plant.cell).copied().unwrap_or(10_000))
+                    .sum::<i32>();
+                if sum(PlantKind::Plum) - sum(PlantKind::Lemon) <= 8 {
+                    PlantKind::Plum
+                } else {
+                    PlantKind::Lemon
+                }
+            }""",
+    )
+
+    for old in ("effective_cooldown,", "training_cost,", "item_index,"):
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected removed rules import: {old!r}")
+        result = result.replace(old, "", 1)
+    old_rules_import = "PlantKind,Stock,APPLE,IRON,LEMON,PLUM,WOOD"
+    if result.count(old_rules_import) != 1:
+        raise ValueError("unexpected rules type import")
+    result = result.replace(
+        old_rules_import, "PlantKind", 1
+    )
+    remove_item("pub fn item_index(")
+    replace_item(
+        "fn picked_item(",
+        "fn picked_item(command:&str)->Option<usize>{"
+        "let item=command.strip_prefix(\"PICK \")?.split_whitespace().nth(1)?;"
+        "match item{\"PLUM\"=>Some(PLUM),\"LEMON\"=>Some(LEMON),"
+        "\"APPLE\"=>Some(APPLE),\"BANANA\"=>Some(BANANA),"
+        "\"IRON\"=>Some(IRON),\"WOOD\"=>Some(WOOD),_=>None}}",
+    )
+    replace_item(
+        "pub fn parse(",
+        "pub fn parse(value:&str)->Option<PlantKind>{match value{"
+        "\"PLUM\"=>Some(PlantKind::Plum),\"LEMON\"=>Some(PlantKind::Lemon),"
+        "\"APPLE\"=>Some(PlantKind::Apple),\"BANANA\"=>Some(PlantKind::Banana),"
+        "_=>None}}",
+    )
+
+    # All generated chop targets are reachable from a worker that originated at the
+    # home component, so return distance is present.  Remove duplicate feasibility work.
+    chop = item_text(result, "fn chop_candidates(")
+    chop_replacements = (
+        ("if plant.size<=0||plant.health<=0{continue;}",
+         "if plant.size<=0{continue;}"),
+        (
+            "let return_turns=to_shack.get(&plant.cell).map(|d|Self::ceil_div(*d,"
+            "unit.stats.movement_speed)).unwrap_or_else(||{Self::ceil_div(manhattan("
+            "plant.cell,view.shacks[0]),unit.stats.movement_speed,)});",
+            "let return_turns=Self::ceil_div(to_shack[&plant.cell],"
+            "unit.stats.movement_speed);",
+        ),
+        ("let final_size=plant.size;", ""),
+        (
+            "let turns=(travel_turns+chop_turns+return_turns+1).max(1);",
+            "let turns=travel_turns+chop_turns+return_turns+1;",
+        ),
+        ("let wood=final_size.min(unit.free_capacity());",
+         "let wood=plant.size.min(unit.free_capacity());"),
+        ("if wood<=0{continue;}", ""),
+    )
+    for old, new in chop_replacements:
+        if chop.count(old) != 1:
+            raise ValueError(f"unexpected direct-chop fragment: {old!r}")
+        chop = chop.replace(old, new, 1)
+    replace_item("fn chop_candidates(", chop)
+
+    # Target provenance is only an optional same-cell mutex in this controller.
+    replace_item("enum Target", "type Target=Option<Cell>;")
+    target_derive = "#[derive(Clone,Copy,PartialEq)]type Target=Option<Cell>;"
+    if result.count(target_derive) != 1:
+        raise ValueError("unexpected target derive after optional-target specialization")
+    result = result.replace(target_derive, "type Target=Option<Cell>;", 1)
+    before_optional_target_sites = len(result.encode())
+    result = result.replace("Target::None", "None")
+    result = result.replace("Target::Cell(", "Some(")
+    changes.append(
+        {
+            "marker": "optional-cell target use sites",
+            "bytes": before_optional_target_sites - len(result.encode()),
+        }
+    )
+    replace_item(
+        "fn compatible(",
+        "fn compatible(a:Target,b:Target)->bool{a.is_none()||b.is_none()||a!=b}",
+    )
+
+    # Vec membership is sufficient for two movers and preserves the same id priority.
+    resolver = r"""fn resolve_move_conflicts(view: &GameState, commands: &mut [String]) {
+                let mut moves: Vec<(i32, usize, Cell, Cell)> = commands.iter()
+                    .enumerate()
+                    .filter_map(|(index, command)| {
+                        let (id, target) = Self::move_command(command)?;
+                        let unit = view.units.iter().find(|unit| unit.id == id)?;
+                        Some((id, index, unit.cell, next_cell(
+                            &view.walkable, unit.cell, target, unit.stats.movement_speed,
+                        )))
+                    })
+                    .collect();
+                let moving_ids: Vec<i32> = moves.iter()
+                    .filter(|(_, _, current, landing)| current != landing)
+                    .map(|(id, _, _, _)| *id)
+                    .collect();
+                let mut reserved: Vec<Cell> = view.units.iter()
+                    .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
+                    .map(|unit| unit.cell)
+                    .collect();
+                moves.sort_by(|a, b| b.0.cmp(&a.0));
+                for (id, index, current, landing) in moves {
+                    if landing == current || reserved.contains(&landing) {
+                        commands[index] = "WAIT".to_string();
+                    } else {
+                        reserved.push(landing);
+                        commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
+                    }
+                }
+            }"""
+    replace_item("fn resolve_move_conflicts(", resolver)
+    remove_item("pub fn unit(")
+    old_import = "use std::collections::{BTreeMap,BTreeSet};"
+    if result.count(old_import) != 1:
+        raise ValueError("unexpected compact-bot collections import")
+    result = result.replace(old_import, "use std::collections::BTreeMap;", 1)
+
+    # Dimensions, synthetic scores, and next-id were retained compatibility fields only.
+    # The parser still validates every input token and consumes every protocol line.
+    before_unused_state = len(result.encode())
+    for old, new, expected in (
+        ("pub width:i32,pub height:i32,", "", 2),
+        ("pub scores:[i32;2],", "", 1),
+        ("pub next_id:i32,", "", 1),
+        ("let width=parts.next()?.parse().ok()?;",
+         "let _width:i32=parts.next()?.parse().ok()?;", 1),
+        ("Some(parse_static_map(width,height,&rows))",
+         "Some(parse_static_map(&rows))", 1),
+        ("pub fn parse_static_map(width:i32,height:i32,rows:&[String])->StaticMap",
+         "pub fn parse_static_map(rows:&[String])->StaticMap", 1),
+        ("StaticMap{width,height,walkable,shacks,iron,water,}",
+         "StaticMap{walkable,shacks,iron,water,}", 1),
+        ("let mut next_id=0;", "", 1),
+        ("next_id=next_id.max(values[0]+1);", "", 1),
+        (
+            "Some(GameState{width:map.width,height:map.height,walkable:map.walkable.clone(),"
+            "shacks:map.shacks,inventories,units,plants,scores:[0;2],turn,next_id,"
+            "iron:map.iron.clone(),water:map.water.clone(),})",
+            "Some(GameState{walkable:map.walkable.clone(),shacks:map.shacks,inventories,"
+            "units,plants,turn,iron:map.iron.clone(),water:map.water.clone(),})",
+            1,
+        ),
+    ):
+        if result.count(old) != expected:
+            raise ValueError(f"unexpected unused-state fragment: {old!r}")
+        result = result.replace(old, new, expected)
+    changes.append(
+        {
+            "marker": "unused parsed GameState and StaticMap fields",
+            "bytes": before_unused_state - len(result.encode()),
+        }
+    )
+
+    replace_item(
+        "pub fn next_cell(",
+        r"""pub fn next_cell(
+                walkable: &BTreeSet<Cell>,
+                current: Cell,
+                target: Cell,
+                speed: i32,
+            ) -> Cell {
+                let from_current = bfs_distances(walkable, &[current]);
+                let to_target = bfs_distances(walkable, &[target]);
+                from_current.iter()
+                    .filter(|(cell, distance)| {
+                        **distance <= speed && to_target.contains_key(*cell)
+                    })
+                    .map(|(cell, _)| *cell)
+                    .min_by_key(|cell| (to_target[cell], *cell))
+                    .unwrap_or(current)
+            }""",
+    )
+
+    # Protocol delivery always starts at turn one, so initialize all three immutable
+    # opening decisions together instead of probing two Option fields every turn.
+    replace_item(
+        "fn ensure_opening(",
+        r"""fn ensure_opening(&mut self, view: &GameState) {
+                if view.turn == 1 {
+                    self.type_to_cut = Some(MoisanBot::focus_type(view));
+                    self.desired_second = Some(Self::choose_second_troll(view));
+                    self.orchard_mother = Self::select_orchard_mother(view);
+                }
+            }""",
+    )
+
+    # Orchard command generation is called only when a mother and both workers exist.
+    replace_item(
+        "fn orchard_command(",
+        r"""fn orchard_command(&self, view: &GameState) -> String {
+                let mother = self.orchard_mother.unwrap();
+                let starter = view.units.iter()
+                    .filter(|unit| unit.player == 0)
+                    .min_by_key(|unit| unit.id).unwrap();
+                if starter.cell != mother {
+                    return format!("MOVE {} {} {}", starter.id, mother.0, mother.1);
+                }
+                if let Some(tree) = view.plant_at(mother)
+                    .map(|index| &view.plants[index])
+                    .filter(|plant| plant.kind == PlantKind::Apple && plant.health > 0)
+                {
+                    return if starter.total_carried() > 0 {
+                        format!("DROP {}", starter.id)
+                    } else if tree.fruits > 0 && starter.free_capacity() > 0 {
+                        format!("HARVEST {}", starter.id)
+                    } else {
+                        "WAIT".to_string()
+                    };
+                }
+                if starter.carry[APPLE] > 0 {
+                    format!("PLANT {} APPLE", starter.id)
+                } else if starter.total_carried() > 0 {
+                    format!("DROP {}", starter.id)
+                } else {
+                    format!("PICK {} APPLE", starter.id)
+                }
+            }""",
+    )
+    old_override = """if let Some(command) = self.orchard_command(view) {
+                    if !selected.is_empty() {
+                        selected[0] = command;
+                    }
+                }
+                """
+    new_override = """if orchard_active {
+                    selected[0] = self.orchard_command(view);
+                }
+                """
+    if result.count(old_override) != 1:
+        raise ValueError("unexpected orchard command override")
+    result = result.replace(old_override, new_override, 1)
+
+    # Every door was already proved empty before this iterator, and official map doors
+    # share one connected component, so the second empty check/fallback is redundant.
+    replace_item(
+        "fn select_orchard_mother(",
+        r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                if doors.len() < 2
+                    || view.plants.iter().any(|plant| doors.contains(&plant.cell))
+                {
+                    return None;
+                }
+                let enemy_doors: Vec<Cell> = ortho_neighbors(view.shacks[1]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                let enemy_distance = bfs_distances(&view.walkable, &enemy_doors);
+                doors.into_iter()
+                    .filter(|door| view.water.iter()
+                        .any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| enemy_distance[door] >= 11)
+                    .min_by_key(|door| (-enemy_distance[door], *door))
+            }""",
+    )
+
+    replace_item(
+        "fn fruit_kind(",
+        r"""fn fruit_kind(stock: &[i32; 6], bank: bool) -> Option<PlantKind> {
+                let items = if bank {
+                    [BANANA, PLUM, LEMON, APPLE]
+                } else {
+                    [PLUM, LEMON, APPLE, BANANA]
+                };
+                items.into_iter()
+                    .find(|item| stock[*item] > 0)
+                    .map(|item| match item {
+                        PLUM => PlantKind::Plum,
+                        LEMON => PlantKind::Lemon,
+                        APPLE => PlantKind::Apple,
+                        _ => PlantKind::Banana,
+                    })
+            }""",
+    )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_STRUCTURAL_SPECIALIZATION",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "specialize protocol state, training bill, growth timing, target mutex, "
+                "collision storage and orchard preconditions to the exact two-worker policy"
+            ),
+            "evidence_boundary": (
+                "size candidate; requires exact consumed-panel parity before qualification"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_compact_endgame(source: str) -> tuple[str, dict]:
+    """Factor the retained fruit-to-wood conversion path without changing its gates."""
+
+    result, manifest = focused_yamo_wait_on_conflict(source)
+    fruit_kind = r"""fn fruit_kind(stock: &[i32; 6], bank: bool) -> Option<PlantKind> {
+                let items = if bank {
+                    [BANANA, PLUM, LEMON, APPLE]
+                } else {
+                    [PLUM, LEMON, APPLE, BANANA]
+                };
+                items.into_iter()
+                    .find(|item| stock[*item] > 0)
+                    .map(|item| match item {
+                        PLUM => PlantKind::Plum,
+                        LEMON => PlantKind::Lemon,
+                        APPLE => PlantKind::Apple,
+                        _ => PlantKind::Banana,
+                    })
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn fruit_kind(", fruit_kind)
+    fruit_saving = before - len(result.encode())
+    endgame = r"""fn endgame_candidates(
+                view: &GameState,
+                unit: &Unit,
+                focus: Option<PlantKind>,
+            ) -> Vec<Candidate> {
+                if unit.carry[WOOD] > 0 {
+                    return MoisanBot::bank_candidates(view, unit);
+                }
+                let turns_left = TOTAL_TURNS - view.turn + 1;
+                let conversion_turns = |kind, travel| {
+                    travel + MoisanBot::ceil_div(
+                        tree_health(kind, 1), unit.stats.chop_power,
+                    ) + 3
+                };
+                if let Some(kind) = Self::fruit_kind(&unit.carry, false) {
+                    if view.turn <= 250 && (view.turn < 100 || view.plants.len() > 2) {
+                        return MoisanBot::bank_candidates(view, unit);
+                    }
+                    let distance = bfs_distances(&view.walkable, &[unit.cell]);
+                    let target = ortho_neighbors(view.shacks[0]).into_iter()
+                        .filter(|cell| view.walkable.contains(cell))
+                        .filter(|cell| view.plant_at(*cell).is_none())
+                        .filter(|cell| distance.contains_key(cell))
+                        .filter(|cell| !view.units.iter().any(|other| {
+                            other.player == 0 && other.id != unit.id && other.cell == *cell
+                        }))
+                        .min_by_key(|cell| (distance[cell], *cell));
+                    let Some(cell) = target else {
+                        return MoisanBot::bank_candidates(view, unit);
+                    };
+                    let travel = MoisanBot::ceil_div(
+                        distance[&cell], unit.stats.movement_speed,
+                    );
+                    if conversion_turns(kind, travel) > turns_left {
+                        return MoisanBot::bank_candidates(view, unit);
+                    }
+                    return vec![Candidate {
+                        command: if unit.cell == cell {
+                            format!("PLANT {} {}", unit.id, kind.as_str())
+                        } else {
+                            format!("MOVE {} {} {}", unit.id, cell.0, cell.1)
+                        },
+                        score: 9_000.0 - travel as f64,
+                        target: Target::Cell(cell),
+                    }];
+                }
+                if unit.total_carried() > 0 {
+                    return MoisanBot::bank_candidates(view, unit);
+                }
+                let mut candidates = vec![MoisanBot::wait()];
+                if view.turn > 250 || view.turn >= 100 && view.plants.len() <= 2 {
+                    if let Some(kind) = Self::fruit_kind(&view.inventories[0], true) {
+                        if is_adjacent(unit.cell, view.shacks[0])
+                            && view.plant_at(unit.cell).is_none()
+                            && conversion_turns(kind, 0) <= turns_left
+                        {
+                            candidates.push(Candidate {
+                                command: format!("PICK {} {}", unit.id, kind.as_str()),
+                                score: 8_000.0,
+                                target: Target::Cell(unit.cell),
+                            });
+                        }
+                    }
+                }
+                candidates.extend(MoisanBot::chop_candidates(view, unit, focus));
+                candidates
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn endgame_candidates(", endgame)
+    endgame_saving = before - len(result.encode())
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {
+                "marker": "fn fruit_kind(",
+                "net_removed_bytes": fruit_saving,
+                "replacement_bytes": len(fruit_kind.encode()),
+            },
+            {
+                "marker": "fn endgame_candidates(",
+                "net_removed_bytes": endgame_saving,
+                "replacement_bytes": len(endgame.encode()),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_COMPACT_ENDGAME",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain the same fruit banking and late fruit-to-wood gates while sharing "
+                "conversion-time calculation and direct fruit selection"
+            ),
+            "evidence_boundary": "semantic refactor; requires behavioral parity",
+        }
+    )
+    return result, manifest
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
@@ -1131,6 +2190,14 @@ def main() -> int:
             "focused-yamo-live-trait-pruning",
             "focused-yamo-precomputed-opening-eta",
             "focused-yamo-bank-wait-fallback",
+            "focused-yamo-compact-opening-eta",
+            "focused-yamo-compact-orchard",
+            "focused-yamo-direct-chop-forecast",
+            "focused-yamo-runtime-state-pruning",
+            "focused-yamo-collapsed-targets",
+            "focused-yamo-wait-on-conflict",
+            "focused-yamo-structural-specialization",
+            "focused-yamo-compact-endgame",
         ),
         default="orchard-only",
     )
@@ -1152,6 +2219,14 @@ def main() -> int:
         "focused-yamo-live-trait-pruning": focused_yamo_live_trait_pruning,
         "focused-yamo-precomputed-opening-eta": focused_yamo_precomputed_opening_eta,
         "focused-yamo-bank-wait-fallback": focused_yamo_bank_wait_fallback,
+        "focused-yamo-compact-opening-eta": focused_yamo_compact_opening_eta,
+        "focused-yamo-compact-orchard": focused_yamo_compact_orchard,
+        "focused-yamo-direct-chop-forecast": focused_yamo_direct_chop_forecast,
+        "focused-yamo-runtime-state-pruning": focused_yamo_runtime_state_pruning,
+        "focused-yamo-collapsed-targets": focused_yamo_collapsed_targets,
+        "focused-yamo-wait-on-conflict": focused_yamo_wait_on_conflict,
+        "focused-yamo-structural-specialization": focused_yamo_structural_specialization,
+        "focused-yamo-compact-endgame": focused_yamo_compact_endgame,
     }
     candidate, manifest = builders[args.arm](args.source.read_text())
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -152,8 +152,6 @@ fn baseline_view(game: &GameState, player: usize) -> baseline::game::GameState {
 fn candidate_view(game: &GameState, player: usize) -> candidate::game::GameState {
     let opponent = 1 - player;
     candidate::game::GameState {
-        width: game.width,
-        height: game.height,
         walkable: game.walkable.iter().copied().collect(),
         shacks: [game.shacks[player], game.shacks[opponent]],
         inventories: [game.inventories[player], game.inventories[opponent]],
@@ -164,7 +162,6 @@ fn candidate_view(game: &GameState, player: usize) -> candidate::game::GameState
             stats: candidate::game::types::Stats {
                 movement_speed: unit.ms,
                 carry_capacity: unit.cc,
-                harvest_power: unit.hp,
                 chop_power: unit.chop,
             },
             carry: unit.carry,
@@ -178,9 +175,7 @@ fn candidate_view(game: &GameState, player: usize) -> candidate::game::GameState
             fruits: plant.fruits,
             cooldown: plant.cooldown,
         }).collect(),
-        scores: [game.scores[player], game.scores[opponent]],
         turn: game.turn,
-        next_id: game.next_id,
         iron: game.iron.iter().copied().collect(),
         water: game.water.iter().copied().collect(),
     }
