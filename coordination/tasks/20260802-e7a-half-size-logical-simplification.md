@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T00:04:17Z
+- Last updated UTC: 2026-08-03T00:10:33Z
 
 ## Outcome
 
@@ -149,3 +149,11 @@ generality without renaming or formatting compression. Standalone compile and em
 Its 96 non-latency task rows are byte-identical to the prior wait-on-conflict smoke: +6.03125
 mean, +0.88542 lower, and zero period-2 episodes >=6. Full 516-task consumed evaluation is the
 next phase; untouched maps remain closed and no Arena action is allowed.
+
+## Progress 2026-08-03T00:10:33Z
+
+The exact 31,337-byte successor passes every full 516-task consumed gate: mean +5.5310,
+lower +1.8178, catastrophes 19 -> 11, negative mass 4,138 -> 3,695, six/six positive
+families, both seats positive, worker-two coverage 100% with delay 0, and period-2 >=6
+115 -> 0. Candidate and evaluator hashes are locked. Fresh seeds 9,854,043--9,854,085
+were unopened before the lock and are now reserved for transfer validation. No Arena action.
