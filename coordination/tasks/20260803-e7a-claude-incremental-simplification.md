@@ -1,6 +1,6 @@
 # 20260803-e7a-claude-incremental-simplification: continue exact bot reduction
 
-- Status: round14 accepted; round15 credential-free parity delegated to claude_1
+- Status: round22 handoff acknowledged; 516-task accumulated checkpoint running
 - Priority: direct owner assignment; supersedes Claude's queued, unreleased work
 - Record owner: local_codex_1
 - Work owner: claude_1
@@ -12,7 +12,7 @@
 - Progress lease: begins when Claude publishes its acknowledgement; 15 minutes between concrete
   evidence or phase markers
 - Created UTC: 2026-08-03T07:33:14Z
-- Last updated UTC: 2026-08-03T09:57:22Z
+- Last updated UTC: 2026-08-03T13:45:35Z
 
 ## Objective
 
@@ -137,3 +137,13 @@ period-2 episode 128, and `LIVE_COMMAND_PARITY_PASS`. Its result SHA-256 is `56c
 The packet and evaluator were pushed and remotely hash-verified in commit
 `9caa06dc024c278ade577bed40c7a9a705b0cdcd`. Round 15 is authorized by the accompanying policy
 message; the exact-equality and immediate-stop rules remain unchanged.
+
+## Round-22 checkpoint intake 2026-08-03T13:45:35Z
+
+Claude completed rounds 15–22, consuming the single-valued `YamoOpeningPolicy` record and its
+plumbing one declared block at a time. The 56,651-byte head candidate has SHA-256
+`2943ad840ccaf2332ab515ab768aa8c97bac2de894a7eda6228b92ea5f0707cc`; every delegated local gate
+reports exact. The branch and immutable evidence were integrated without changing the sacred
+source. The integrator accepted round 22 as an accumulated checkpoint and started the same
+516-task development equality panel used at round 13. Untouched-range expenditure and the two
+remaining deletion rulings will be published with the checkpoint verdict.
