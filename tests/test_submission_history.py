@@ -390,21 +390,24 @@ def test_rejected_source_warning_survives_a_live_mature_repeat(registry: dict) -
     assert any(w.startswith("CROSS_ERA") for w in opponent_crop["warnings"])
 
 
-def test_repeated_preseed_evidence_now_ranks_above_opponent_crop(registry: dict) -> None:
+def test_repeated_e7a_evidence_now_ranks_above_preseed_and_opponent_crop(
+    registry: dict,
+) -> None:
     ranked = sh.rank_sources(registry)
-    assert ranked[0]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[0]["source_id"] == "preseed-e7a-lemon-near-tie"
+    assert ranked[0]["mature_runs"] == 2
+    assert ranked[0]["median_score"] == pytest.approx(24.41)
     assert ranked[0]["median_score"] > ranked[1]["median_score"]
+    assert ranked[1]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[2]["source_id"] == "opponent-crop-b100-e6-slim"
 
 
-def test_single_e7a_mature_run_does_not_outrank_repeated_evidence(registry: dict) -> None:
+def test_repeated_e7a_no_longer_has_single_run_warning(registry: dict) -> None:
     ranked = sh.rank_sources(registry)
     by_id = {summary["source_id"]: summary for summary in ranked}
-    preseed = by_id["preseed-orchard-coverage-slim"]
     e7a = by_id["preseed-e7a-lemon-near-tie"]
-    assert e7a["mature_runs"] == 1
-    assert e7a["median_score"] > preseed["median_score"]
-    assert ranked.index(preseed) < ranked.index(e7a)
-    assert any(w.startswith("SINGLE_MATURE_RUN") for w in e7a["warnings"])
+    assert e7a["mature_runs"] == 2
+    assert not any(w.startswith("SINGLE_MATURE_RUN") for w in e7a["warnings"])
 
 
 def test_cross_era_comparison_is_flagged(registry: dict) -> None:

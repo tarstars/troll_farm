@@ -1,0 +1,1495 @@
+{
+  "agent_id": 6592131,
+  "battle_index": "battle-index-agent6592131-submission41086057.json",
+  "battle_index_bytes": 33050,
+  "battle_index_sha256": "b5839f6ce9c6752d7740b7bcf412fc8e0732ec04266d7e6fda1cee77c0d5b21c",
+  "game_count": 162,
+  "game_id_max": 897928618,
+  "game_id_min": 897921883,
+  "games": [
+    {
+      "export_line_sha256": "423e688d9e343b1b07962ddc99e1500d6a40f565b609d466a3ef5931ad511d9c",
+      "game_id": 897921883,
+      "opponent_agent_id": 6480520,
+      "opponent_submission_id": 40707676,
+      "source_sha256": "848b9b02e5f820d5645414ae0ce749e08b25e9b1255298b439d190661040e9f8",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "590438e22ebaad4f041ff4ead47ad575424faa2459b9e5e4fa468700c11b9d8e",
+      "game_id": 897921884,
+      "opponent_agent_id": 6479420,
+      "opponent_submission_id": 40708915,
+      "source_sha256": "43d358d3f080b2b231bf0b5e9b06ecee5ceef380519fc70da36536292f644a82",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "c958bd2d5880a2b34d3c1fd61faa9232425f766643a814f50fec7ce60444aed4",
+      "game_id": 897921885,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "d00f32d3adb47db7f0c741befa40bb0bc1b05a2692b53169d6fdebd0627cd159",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "67ead16b8da360510f7bdc58698039cdfd5438e0bf5749284646b5f58fc4c7ef",
+      "game_id": 897921886,
+      "opponent_agent_id": 6491567,
+      "opponent_submission_id": 40782415,
+      "source_sha256": "a796168c3cf00384862e86c75c52783c34cf13386355d5e7c27379d6e6937206",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "1295ce15270ee3b8d33a8439c84e44c31476c7b29de95b09366705c1efcf6e57",
+      "game_id": 897921887,
+      "opponent_agent_id": 6481265,
+      "opponent_submission_id": 40698597,
+      "source_sha256": "dd78650fb03ca5b5294ab35fff1af3592b9dc5b662052e0b81c02954bcd5fdde",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "082aa3fdc2384a08bb80879bf6e5277b3f4cd68e6baa8cb244e76909babd0dfc",
+      "game_id": 897921888,
+      "opponent_agent_id": 6479932,
+      "opponent_submission_id": 40709185,
+      "source_sha256": "7af98f8c01db5f5d4df7b80635ad1277799df6a1322ef6a727997e79fd74448a",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "a160d85906b9088f880569dbfdc527d50274f2c37a55f9fcf84f3a0a36b02206",
+      "game_id": 897921889,
+      "opponent_agent_id": 6505286,
+      "opponent_submission_id": 40766581,
+      "source_sha256": "11ae12e962b35ad14078f1cf526a5b8a474ec3a09de759d3a2f98e819e89f7c5",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "8900c6e2b61e5e958008564209db8b2a25123ecbb885ef1ae86d553476d47d02",
+      "game_id": 897921890,
+      "opponent_agent_id": 6588481,
+      "opponent_submission_id": 40762438,
+      "source_sha256": "b82717cda52a20b1360d0a9cbd5e0b662d955299cd2387a93bda262b0096cae3",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "5bef0be6d9f6830f8aae84be3336a81c437c0db8a39733a27badef0d43704f6e",
+      "game_id": 897921891,
+      "opponent_agent_id": 6588454,
+      "opponent_submission_id": 40708113,
+      "source_sha256": "6af64d5efbb0acd70a9968c77f9285f06733cd0b9d94876aa7c6cbc9ecce54db",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "3f71110bda60b6150b09bce4c46411713bc21246fc73059cfdc18942ab553b05",
+      "game_id": 897921892,
+      "opponent_agent_id": 6588482,
+      "opponent_submission_id": 40705011,
+      "source_sha256": "f2afa4bac1bc082581c7c1954214757ae2a018c10afba524849619419acbc692",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "42936645d1d54da9ad4dc95c4d4c3ead26c5976b5a19284b3f6fa6d3e39d82ea",
+      "game_id": 897921935,
+      "opponent_agent_id": 6588478,
+      "opponent_submission_id": 40709436,
+      "source_sha256": "b2b0d309b243e990df8119c48a07d20189d9621ba3c1511ecea7d3d161cd99c5",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "556d4b87bb01be6efd60b02f6255853bc340d20ff319504d3ba34cfc4e3f7ccb",
+      "game_id": 897921962,
+      "opponent_agent_id": 6488464,
+      "opponent_submission_id": 40703958,
+      "source_sha256": "7538941b63681708150d374ea1ec4572dbbc9d7e41ab3ae5c5e1ecab617e8e15",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "2ea5a6d99caa470866b7da7e88daf36c254a6c406eb08cd2210acda82c82648f",
+      "game_id": 897921971,
+      "opponent_agent_id": 6480942,
+      "opponent_submission_id": 40701878,
+      "source_sha256": "1da1b43befb9f9fd14437b24daa973ca05f1c332645347c46ad921a0f9aa5b02",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "6f439e8f1eb345238f238324a5d82783970bbb746ca769356a2cf45cb842e42b",
+      "game_id": 897921985,
+      "opponent_agent_id": 6491198,
+      "opponent_submission_id": 40778974,
+      "source_sha256": "395cac9a50865d59cfdab5fd05bb7b7a77c0864488a07ef6414f1f47e22fb56b",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "9ebffabbe63181964158fc82cd67c18d67acdb6dac9055cc027c121e88554117",
+      "game_id": 897922021,
+      "opponent_agent_id": 6488393,
+      "opponent_submission_id": 40709364,
+      "source_sha256": "211988f33a9ed9b783cdd9ef43f59b192018c0e49e53f1676dd4e07b30f8eebf",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "d1a9b143e8e5eebe69fe0d4ef765a4ab1db52cade66e22608de503c037f5d9f3",
+      "game_id": 897922036,
+      "opponent_agent_id": 6491198,
+      "opponent_submission_id": 40778974,
+      "source_sha256": "e56f2a7ee0e0ef503585d94484e5c0fcd1fad2ae7e89204c93782222100d7606",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "be3f9e353828e0c29040fc85316dc0089d30f6c5ec248a5cdad20d0398a03f45",
+      "game_id": 897922075,
+      "opponent_agent_id": 6541377,
+      "opponent_submission_id": 40696017,
+      "source_sha256": "1b95eefe106b977a87e47a4dcf3a81a8bdf04c655018579eb7374790b9688bdf",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "bb43666edd73e8057adb5b32e906d37f90b5678b5a645ccb93bfade667f61e3f",
+      "game_id": 897922104,
+      "opponent_agent_id": 6489542,
+      "opponent_submission_id": 40709376,
+      "source_sha256": "5c016bc86250eb2d975acb800dedac3c877d93eb3e4f1118939033307fd511c6",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "0016072c2057a994dc14d3d16daa697b11e2b77c80c3d184a5115e12cd6eb5b4",
+      "game_id": 897922119,
+      "opponent_agent_id": 6505286,
+      "opponent_submission_id": 40766581,
+      "source_sha256": "448f8aac0106688e4cf59461992eb4321d83dd124e003a24f2db78c1381c6034",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "f829d17f0402e5d9286e9b11aa02e8607a3b75a4d21b7b68db60e70cb732d72c",
+      "game_id": 897922189,
+      "opponent_agent_id": 6505286,
+      "opponent_submission_id": 40766581,
+      "source_sha256": "5a37cca18952432fd2839087bfa84d663dba36f9e79654af8bdc6bce3b3161ef",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "899e9add435589920b36ba414c189f3b046db2718621a3ec7f5a6b84a990c0b4",
+      "game_id": 897922219,
+      "opponent_agent_id": 6588416,
+      "opponent_submission_id": 40708616,
+      "source_sha256": "6764fbeac9d0c35aa3578e6e3d9ee942b97f8341fd4db439b030c5de7c91dc48",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "399f1637e5f24bd68adff34616bb0d39a682930b950fb196462680af1c4511c8",
+      "game_id": 897922231,
+      "opponent_agent_id": 6479932,
+      "opponent_submission_id": 40709185,
+      "source_sha256": "60a5799b8d2245767101ea4df52821d126305c5d275e131b6c2609921b4424bb",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "0428b872f724160c584e28f4840a1a3679133a57d77dec9a5c0d893e9d91a8cf",
+      "game_id": 897922251,
+      "opponent_agent_id": 6489538,
+      "opponent_submission_id": 40703186,
+      "source_sha256": "89c7a15536fe22e6fa9a1a10b2ded969c47c59cc90cb1f1f1fdf767c1616b11a",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "dbaf65284536e56c147763a7b3bb5fdc7c35cc12a99af1b2aa209970a13304e1",
+      "game_id": 897922289,
+      "opponent_agent_id": 6575572,
+      "opponent_submission_id": 41047663,
+      "source_sha256": "0b148d706f174cfc86584da2d2d63e319880f8f6976e63dfa341981154825834",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "0aae5edb88eff57f32963723349b11f1bd6be53c8aeb330e835a51638560e866",
+      "game_id": 897922316,
+      "opponent_agent_id": 6505286,
+      "opponent_submission_id": 40766581,
+      "source_sha256": "ce6d0d604ca9b8d5e07a8c9d61b798fe960337eb611703104a25b2682257685f",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "044d5475dd8f61320714b8ac7a670b57b7170a872e2a809b3b55dc9699d898d6",
+      "game_id": 897922360,
+      "opponent_agent_id": 6483514,
+      "opponent_submission_id": 40756960,
+      "source_sha256": "faada059b4291cf272945d2fa16fc354a3af1958bb1fb5fd5b5bfba91543d730",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "f78d703b923d2077c2855eb8150ce6247f7a3f66efa443673325f5792b3fe26e",
+      "game_id": 897922384,
+      "opponent_agent_id": 6488390,
+      "opponent_submission_id": 40751031,
+      "source_sha256": "d96faf9110b45ee6f658497ac2e9b60d8eed2a44b77074ff5127179c96cf2b63",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "f55d2b82c2cd84fcaaa6f5631acb928b374c0a964872776ad0793b6e30b4352e",
+      "game_id": 897922398,
+      "opponent_agent_id": 6482161,
+      "opponent_submission_id": 40707311,
+      "source_sha256": "9bab2428bcfdc5f7445a8c94fa98d8088bcdf15a83b51cc9d98b77b9eefe8c20",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "81bf03952b4459f8ea44534f4d66d63d4c6d4a34f31793da5e2deea39f74040e",
+      "game_id": 897922420,
+      "opponent_agent_id": 6489542,
+      "opponent_submission_id": 40709376,
+      "source_sha256": "5d66780230213f2b86a6626e99d06624bb67071ff58622063263bf37f94315d8",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "a909ca94183e40a523e52900447a6a3f7b66db01c904e3cc1cd79ca8b49b2961",
+      "game_id": 897922437,
+      "opponent_agent_id": 6541377,
+      "opponent_submission_id": 40696017,
+      "source_sha256": "de99a51ce37c2c5153080f5ad7311b8d99222e74810cf2f4ed9a23e8135fc955",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "052f32d3b75494a18c049aded8f9332b896d98c4b7fb7f0921a670fcac18dacb",
+      "game_id": 897922453,
+      "opponent_agent_id": 6588479,
+      "opponent_submission_id": 40992511,
+      "source_sha256": "5996bb18afc06331e822e2d3c48e08177749ca87e97f26ecacef7b28e8a0d9a1",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "954182d6767c011a84c5d01943a8e7e84d7e73625265fae1b472299c1d5fab54",
+      "game_id": 897922476,
+      "opponent_agent_id": 6480951,
+      "opponent_submission_id": 40707059,
+      "source_sha256": "724af13294ea972d5e58cb22c8982e05cd0fba1cba9157f4817ac7d89124ac51",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "72bc5fe35f47dbf206974759774b8a971f206834abf431895618b6d194291130",
+      "game_id": 897922488,
+      "opponent_agent_id": 6482161,
+      "opponent_submission_id": 40707311,
+      "source_sha256": "755789750118a74105a4d3367e7d46e59976cd4894a32d149af623163428738f",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "c0ae5cb9567199dc1cc308a5c184c71249b7f2e46d4840de2f7993fbe344513b",
+      "game_id": 897922498,
+      "opponent_agent_id": 6483321,
+      "opponent_submission_id": 40707106,
+      "source_sha256": "90cf83db6646bf3e5f8c0626058843941e8ea11451247638b662d11f21165d1a",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "2b91f971ed174621b6e339ee0722405489111a2b563e6c2b2a2487f3638f8c63",
+      "game_id": 897922516,
+      "opponent_agent_id": 6491404,
+      "opponent_submission_id": 40781604,
+      "source_sha256": "11f0f4814da6b7ce760ec7f41f77e32c4d5f48de79a5d73d170a554479936046",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "b7bce9cae8371bef57937afecbd268145d4929cf8fec4236da42574493a54f35",
+      "game_id": 897922543,
+      "opponent_agent_id": 6483491,
+      "opponent_submission_id": 40756564,
+      "source_sha256": "89d8a1a8daa0d2c8370545349d712f825bead504d513ceeb4559234bea78976c",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "c7b4cec8d13f09d8e1466e69a37a67c9d9374721f86130039d104848bbb5e5f8",
+      "game_id": 897922559,
+      "opponent_agent_id": 6480950,
+      "opponent_submission_id": 40705395,
+      "source_sha256": "a95fc77f1147fc0ccabf4e82b1bfbfca61badaeabb115b2c9b57f932ba4f236f",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "cef2857adc50b6f6970682440f3c7d52237a992314acc222d33eec4a0fe6f550",
+      "game_id": 897922569,
+      "opponent_agent_id": 6483491,
+      "opponent_submission_id": 40756564,
+      "source_sha256": "5868f87739c128e239de1665d588ba4a1278ce9c6e7260c77b2980a19d7e35a3",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "fc2c7a584b47e9f32b4fcf2029bafefc461c3d2f13185f39294ccf56cf4d5b08",
+      "game_id": 897922583,
+      "opponent_agent_id": 6588479,
+      "opponent_submission_id": 40992511,
+      "source_sha256": "ef78a8691991e52374f31eaf83ca502f873401398fa16345b51b7ce2ea582857",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "a677cbb1f23f38a4af5196feed977af8f96353384365a118a8d1e81a93f94ba9",
+      "game_id": 897922620,
+      "opponent_agent_id": 6479388,
+      "opponent_submission_id": 40707808,
+      "source_sha256": "d2117c3a8d63c50899e477c2cd1cf843df7e9fbd6897cbdb7dcd4ed1a824a9a9",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "0a2dc6d9cf9a5e25a263e2396d9b3b8a79ca329f00d4d531edb34e89bbecdccb",
+      "game_id": 897922635,
+      "opponent_agent_id": 6480950,
+      "opponent_submission_id": 40705395,
+      "source_sha256": "19ecfc465cd7fa8149abd8a5c877001c690d11b8d03d727d2324348e651975f6",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "e7143c23df6b61af33057fbd8b8edea4f6df9fb2d04617643c57302abcf641cf",
+      "game_id": 897922651,
+      "opponent_agent_id": 6479842,
+      "opponent_submission_id": 40701933,
+      "source_sha256": "2b95c833366142ade40334134cff10f14c3f4597fa67ad0ef362505e5a62fd3d",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "2cc1aa46900e0d96898daf0b31c928f93dbcc345940e6b43396ebd3dc5548640",
+      "game_id": 897922664,
+      "opponent_agent_id": 6479388,
+      "opponent_submission_id": 40707808,
+      "source_sha256": "54224f3b6a4ae9c96135de98d85770ae4007c1b2dd5d2093678ab1d9c12f745e",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "fc81138f673fce375a731bb76c52015eb199134f3782ebd33433b38ab14af932",
+      "game_id": 897922679,
+      "opponent_agent_id": 6479388,
+      "opponent_submission_id": 40707808,
+      "source_sha256": "8e642c50d3e1d39d396dce449087b47a9557b52937307439e190a483cadc4ea6",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "cd0477c9c824baa9884ad7c9b123c3c8aa748b8c0f4cec3a55fb0393a43f0585",
+      "game_id": 897922688,
+      "opponent_agent_id": 6480943,
+      "opponent_submission_id": 40708449,
+      "source_sha256": "d1e54acdedc0fea3de61d186f6fddb430039dee97b1e61697796ada9f5d9037a",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "7bcfe72eb13c93041c7e661f355a7b055a4a0ce416b4feee2529632f7725508f",
+      "game_id": 897922704,
+      "opponent_agent_id": 6479504,
+      "opponent_submission_id": 40706357,
+      "source_sha256": "2359462c69926d639f708408b88f700535d9f8b1f9c16a92979fbb0433090ef2",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "52fb099720191086903c77cbee74e88dfb7cd5df68f3cdb52b02f2451cf49866",
+      "game_id": 897922721,
+      "opponent_agent_id": 6479842,
+      "opponent_submission_id": 40701933,
+      "source_sha256": "b49ea7dee1a3fd2f12ff28ee2d007899fb94df49679c2214ec2657eb339a8e04",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "24f8aaf4043e1f1c5203992620d208cb988979a347480b9c9e1aa35a6c9949ba",
+      "game_id": 897922733,
+      "opponent_agent_id": 6483325,
+      "opponent_submission_id": 40708752,
+      "source_sha256": "0b6aba29684021db161424ea55295535998095ca2ce1ed68829a047ae6a974a4",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "e37593b6cd414c337a3bf33fc9ebe1e875caf2a0c804b17412179a37678c8e62",
+      "game_id": 897922754,
+      "opponent_agent_id": 6479842,
+      "opponent_submission_id": 40701933,
+      "source_sha256": "f97bb78ea5178e65de86a1a6bf6e9709fe85935f26a98bd7741ea2986810a738",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "872ba2cb55aaa716b010aa2d46fcb8d8a93adb2ef4cc0311d30a390faeda4290",
+      "game_id": 897922768,
+      "opponent_agent_id": 6479553,
+      "opponent_submission_id": 40707800,
+      "source_sha256": "f214193af394a0de0c17b34a463c45d93eaf0195fad9ee8514f094a17dbaeba9",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "edfced4fdb8ff19c92a95de3b29ad593cda9ef67f7b51b9e615464e0778166c4",
+      "game_id": 897922796,
+      "opponent_agent_id": 6480516,
+      "opponent_submission_id": 40707262,
+      "source_sha256": "77eeba08c27b511d1938f3ad59373da2b5360246ae28d0759d1482d968383375",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "4cfdfe857a569aa05aae386bfdd8c2fbf68c7aaea9146dd1988e3cdceec7260f",
+      "game_id": 897922835,
+      "opponent_agent_id": 6480507,
+      "opponent_submission_id": 40702132,
+      "source_sha256": "f92c668d4a58589b2839ed4e27bd42ac4c420d42cadc8d8a182bf7e8464d0ddb",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "4d622975d1724539d8ca305a4eca0f7d7270fec3aa28543b6fd92845aa82002b",
+      "game_id": 897922860,
+      "opponent_agent_id": 6479421,
+      "opponent_submission_id": 40705776,
+      "source_sha256": "7a810eeebe3a89af1b2611aa2b5a2c5246dfd21ac2404629bba35532b1225504",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "63849d23d512200cece3135e7f0299351e3fe67304893fb2afd2d3d38ac36215",
+      "game_id": 897922889,
+      "opponent_agent_id": 6479421,
+      "opponent_submission_id": 40705776,
+      "source_sha256": "682f2e828ef6ed5068a33f958ff90a1aed47ab5b3974e9dd88b991b0140cc20c",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "93220fe3af5883069d791893b38ee10b71a9a7d48a4ecaaaa74d650e831054dc",
+      "game_id": 897922905,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "384432e272bf2e7ccff45d8e252db48aa353ef8cc879d50ea7eb180191137055",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "64717cb488d3915db669b2ba95e3d03f8acabda5d6b4732cc74fc060146a7394",
+      "game_id": 897922957,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "ab44293e271175fc418290afd17ecb82134f49e108efe43219fd71cea75f6f5d",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "c6193a2c00a801b27df516636d6932a157fb0e60f59024eba1181dea0ae56587",
+      "game_id": 897922974,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "8eae7b0e8bbbb625568d0305a577e99ef60f55e5bdd1ab2cebe9f5d7fa803ea6",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "7a15512734527d557b406449a8a18b936cacb09a4cdcff75ec2fe88cb58081cc",
+      "game_id": 897922989,
+      "opponent_agent_id": 6479658,
+      "opponent_submission_id": 40700655,
+      "source_sha256": "6f78e57149dbc2429902284183cdb8ec44853d4b2d020e384cfc35fa59a22434",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "e18834b279348027cc41b8045a8f1e1429a606cc976d6082f4ea41bccea034a2",
+      "game_id": 897923017,
+      "opponent_agent_id": 6483325,
+      "opponent_submission_id": 40708752,
+      "source_sha256": "4b622ddba4101ff793bc221016bda9949819e65c215c080ef120bb4de385d562",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "39504ec46b2c752215eb1093652e5c069e4c4f5025e1868b6600f9610cfdb9e0",
+      "game_id": 897923104,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "7ac8a9a8eb936b20b3c35063dba6f2898e68883d561279654ba5079025f6e546",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "5f7a25411ed842ed910d2e0cb5a5c9abf5001cbd6773d0f0889615916f6c5ae6",
+      "game_id": 897923161,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "947ef0e58b3698eafa8567227ce2e577229424e9ff454e9e06aae465b9127524",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "9d30d85024c173166fa5934c609db27b6b5e33d89cea0e58e875f9f4f2a59693",
+      "game_id": 897923201,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "587212ab2d2785b9c16532d143305bb3265e8da481e93da98682583efed090af",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "898f28bda66e0d43314720441e07af5ea402ce2924810d0cf5ee69f9f52b2c86",
+      "game_id": 897923258,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "c6ab9d41f30191325bca62dd05814c5a62f6671e776df4a764cf58496bb94d2d",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "b2e5948681b77bc930b944457fb863912a958a6b2fd900d092ed6cee85702b57",
+      "game_id": 897923330,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "0376470a832a43e2ed5c36dca4ebb8b9ec0c2adf117e7450d9c6c9b96dafed03",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "018c23bf7f137a0cf218e216d2fdc6af8672d55aa119b56da6d577e293befde6",
+      "game_id": 897923393,
+      "opponent_agent_id": 6479658,
+      "opponent_submission_id": 40700655,
+      "source_sha256": "01f1158126ff9a1b361ace59dcf1088225fcd1cadbb8e5bc849d83cc458121a6",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "6786cf0e6688aaf45328f44c5131cac3b8d1a6877eba6b5a85a86d74b56827dc",
+      "game_id": 897923480,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "0418b0a3c1bbc3bb49867ff5bf40e40afd86c2504f81d2eaea1d8b00e5e17914",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "dd4e95fda559c09a17dedd9f016ce8be18d14490da36c76f4a11f19b780bc20f",
+      "game_id": 897923522,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "20cfdad078062ec125dd3cbae35818a5f4f16555521ba7c9d9077df9653bbf2a",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "b4934a0ab5768f183fd2170a1ac311af01067595f0d187ac1c4026b5c44bf9d3",
+      "game_id": 897923565,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "71946a158f2c290f9d94921196036c171a4a98145e9296f944e12958a05a62f6",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "b12918e9f84712f19ce09cb00cc9e75bf7b244ae3b07ee6cac15499d2cfa5811",
+      "game_id": 897923606,
+      "opponent_agent_id": 6481139,
+      "opponent_submission_id": 40709105,
+      "source_sha256": "b5476b630e871670ed649e8c508fa76dcc0f03479c5b75d04d61fce961d05064",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "a2e2c1d5bfaf467f8665c6e2beb1179387450117d764b47140e9137d81f24ac1",
+      "game_id": 897923651,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "4feea1250c3c33fae0e82273d91a0f36dc182dbf600b8dceb3081cbbd3b6e488",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "3bb2e57ffdb67b3dad6c1128ec067040aa2690ac1fe938ee8119b3e5e4de87d5",
+      "game_id": 897923683,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "525cb06d979f9b84e93b618d156228f415ba39901112b05f33560297f56152df",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "85b43ac66081f953c6375c10e23353e2ee6c827148e89399f5093a4098637fa2",
+      "game_id": 897923731,
+      "opponent_agent_id": 6481225,
+      "opponent_submission_id": 40708730,
+      "source_sha256": "7d5a0376bb88bcc804ca097bcc1a8e977eabce7c15e72ee89bcaffb752d956e2",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "43fce0baf274491d503524ab35dae44a09ee78fc8a8df380227ff35cccb9f8c8",
+      "game_id": 897923769,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "7aa74ac2d1cd3511b061fcde9d7394aa9e2bd354eb8776c603737bd11489cea7",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "3ed488a608e8ac631c1821f1711364a117d494515809bac800200a5b475c64da",
+      "game_id": 897923805,
+      "opponent_agent_id": 6512040,
+      "opponent_submission_id": 40851046,
+      "source_sha256": "54494f1929618dc7024b8aaf82a643b1d6db9f23c645218f81d77351f779031e",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "545d644582d5a2c4398da7c7cf5f49861e9fcd9cb2cac784a6bb9878e5c1adb6",
+      "game_id": 897923834,
+      "opponent_agent_id": 6481143,
+      "opponent_submission_id": 40706379,
+      "source_sha256": "32ebec0427c46878fc75430b68502ad8e3bf0dbe559686bc3943a1d75f1a871f",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "cc474b6d8272fda13818a13098a8a4b7d0d5ad93782a6b955a2386ea3ac0a21d",
+      "game_id": 897923885,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "ee03ec41d30728e3570f19f52e67337c8c40979a409d763d9f323e18eef0bc5f",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "7f999cdd7172ad724fbed4fb7d2c718cb68cc0b71dc05f9878f6b7d7e6664e0f",
+      "game_id": 897923932,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "ac4e85f291c3ddf7ce89c74a37d9f0cf590f0b65876bb569ace6f65b411dcefb",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "300f8aa0e841187a0d00598b7d5a4838d0126e94b17dcf3b4bdfbb93607bb1f2",
+      "game_id": 897923985,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "69e823b99aa2723a8d6f657c436c2c8fdbedb26e8b0d009920b76fa20e9b9276",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "1fd657b1625838c4c086f23f3bfb4c728754bfd897c29c71cadbb813b6cd1142",
+      "game_id": 897924018,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "205f01390e8ed4ee10c97abf206eccc2b6019a92fd01ef6c53d085b8e4e8af4c",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "7f1f13113ca33c7149c10075709242dd5c77b2b470ca45a424b10a7c40de2453",
+      "game_id": 897924044,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "5ae6348636750de59d7b53d69e0f17738ff868be65afc39e1325cfca1584e08b",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "4f8d683af482a65348130afd358ec087f5fab66d6e990cd0f22ba3e81e0b6dfb",
+      "game_id": 897924075,
+      "opponent_agent_id": 6481143,
+      "opponent_submission_id": 40706379,
+      "source_sha256": "2499e85d7e82a97bfb2c0b372162811b89c8c7244f896574cb05589a192cce49",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ea07dc012b7ef09552c36c40382093de19e6a19159b9103f87075d7576db627f",
+      "game_id": 897924135,
+      "opponent_agent_id": 6479542,
+      "opponent_submission_id": 40707465,
+      "source_sha256": "2feb291024738cac752bca487bc01fe2ca98bb7147a41aeb5a15178a95500abe",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "088f4cb0d91e0380cdc074888920e3eca6f96394a240d2afa988c98b03e4bd01",
+      "game_id": 897924165,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "08edc90371fc1561d91b28ec03373f5c97f65324e19c5ec752ed420302cb2707",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "7cd3370d914fded02c07200d842350dc4a7083041a8f886f863e6af05af55bd6",
+      "game_id": 897924196,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "fd438d3b80e345e6fee4ba91f4151d1bc6102eceebd746a02c4cee7b9ac0d5e7",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "884e19365437d04bf377658672986d00d00d9ee6077439238878453da97d3343",
+      "game_id": 897924224,
+      "opponent_agent_id": 6481225,
+      "opponent_submission_id": 40708730,
+      "source_sha256": "49433d1f4efcf1dad01e7761c36fddd6f99a01cddf865531790c4aa9a33f8404",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "59566d586d2674c8b636da8b76e3656d2c6abab554953eafddf41a1a0e2ff8cf",
+      "game_id": 897924287,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "0207517cffe790cb54a8dcae2a387b9f60731113a99e7044a555dc8ee249682b",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "e5dd12b07f41173eb0004968c3f247782eec42bef911b097e62306a8ef744324",
+      "game_id": 897924328,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "e5509e77e6a07fcc6f60911468bfd2bea2b30244d70cfb0a2ca82d818416cc64",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "167f81e3ff6bb12adfc67c4b828be959621530b2e33137c51d5336ddbedda138",
+      "game_id": 897924355,
+      "opponent_agent_id": 6479658,
+      "opponent_submission_id": 40700655,
+      "source_sha256": "fe45f47118458a1338e60f46d6090fe5415d784bf466d9bc8e90b6116437d953",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "5bb8c4f3661029f58c8bc90be1bc8bb45797d08e8b00da8505b119afef5a0db4",
+      "game_id": 897924426,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "73aa0d7489f7bf6bcf390bdf3f561355a0844df0ee730cb84d1816e11ff64e60",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "87edd5b11063011bd80ca5e3a7dd724bfa271f8cde8be6ce3bff38242fdd2e82",
+      "game_id": 897924468,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "c11a7bc765b1f28c4a43afec2a54d820280b2371ccc4a9397740209672674dd8",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "378faff992fe72b81841d63fad0a9af2cb84b490a0c1cff4bb427c6daba8f67c",
+      "game_id": 897924503,
+      "opponent_agent_id": 6479542,
+      "opponent_submission_id": 40707465,
+      "source_sha256": "fc27d9ea68af763fc595c84f1f7cc08b3fa68412fd450018d7a1fb78dec6de99",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "bdd7503c02b97e34daf70818c56c338d4548bfe79f3bc2de021907c68161408e",
+      "game_id": 897924551,
+      "opponent_agent_id": 6512040,
+      "opponent_submission_id": 40851046,
+      "source_sha256": "1041652328ccad8905fc4d775808e233b618cb33cb48cfa6b291b0b7135eb5ec",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "bbb9af0de9e909178ce02ce90d0de0e34e7ad8b058f73c35f07f9d7f78e67764",
+      "game_id": 897924591,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "4b55abfecbb55cd3fa27b3210fe76a7b4e1df343f2343cc1cb29236d04feeb59",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "c01977c7bca83e2e79f29f7283b63a9b4533511457fd0d8cc20c1469f4baed7b",
+      "game_id": 897924626,
+      "opponent_agent_id": 6481143,
+      "opponent_submission_id": 40706379,
+      "source_sha256": "673259058ac42c4ba1fe5a8eca4bf9cc1dc3f0b2fd6ff72734c199f9c60e18b2",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "b7cf48bf51f1cbb8686939f2172d8f46adf6d107fe73598c5f747ba1657ef16e",
+      "game_id": 897924683,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "65d417a4baadc337e2e9687c84e36ba092189c52feda606e8cbc88353e416f16",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "5248add52fd367f6dc7619e525005ba871c43e082f6317bcea95c0443f6b7141",
+      "game_id": 897924704,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "6f6963d839a31215696f475e52c16e20f72febad6a6385fb69a605e254fcb684",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "9a6f8bc654144d8457deda1b96b33c3d67e5324325fbb1faf27770e4af127faf",
+      "game_id": 897924740,
+      "opponent_agent_id": 6479840,
+      "opponent_submission_id": 40707649,
+      "source_sha256": "16e9dd8642145b725a518ab6b20feb5b82ce288c4f7138e3330c8677af5d9c4b",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "f77b335fb42313042e331fc7b5bdf3f916260855992fad632dea39399865c7bd",
+      "game_id": 897924777,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "c9f896fdd0c63df3e201a3e65dacc5fad594b4cda972b67a7be7a1e3b687b6b9",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "709feec7ac84b620e7b03d923023444ea82ac47f21883ca91b9f97660546d986",
+      "game_id": 897924805,
+      "opponent_agent_id": 6479750,
+      "opponent_submission_id": 40708706,
+      "source_sha256": "63fcd08ff70c60ff02c04cf524d395be7426d01e1bf7a6fc35c8ea0e9b31f029",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "ee7299480e0f16f25e9cd3902cf6f8c4945fa79d6727a4e954ef1ee79da4d0c3",
+      "game_id": 897924842,
+      "opponent_agent_id": 6481225,
+      "opponent_submission_id": 40708730,
+      "source_sha256": "21518b0f46aef1c77956299dab1b1e22cc6f1e12d16b0a6cd5d360db5162deae",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "490d843b616427825cd82209a5ebb384efc03677a7742c50deadbef1cc922471",
+      "game_id": 897924921,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "46b1133eacf03e813440ebfafc2d6d763d9f2e1381aa9a0b69572b883424bf01",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "02f7ac83717f5341c09ca12f3e32cd4d50311f0886294fdb3b1d6e355f253c94",
+      "game_id": 897924951,
+      "opponent_agent_id": 6481139,
+      "opponent_submission_id": 40709105,
+      "source_sha256": "f23b32b031c41175c560c18c2451690e14631ece653afc82cf730ac7dc4c0c92",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "4b99e9bd2440cf1b207b6291d8f7ed7ac29b74c5c03f91a518c0761fe3435cf4",
+      "game_id": 897924999,
+      "opponent_agent_id": 6512040,
+      "opponent_submission_id": 40851046,
+      "source_sha256": "a32ef5b4944b7a918d86dc9439241404e1e96ce36f0d98c73b583c92985eb3c4",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "375b163313305c045c3b02549c7eeeaf8da89e42621cfee9e1b78c55688c5c53",
+      "game_id": 897925034,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "155f80653c79b5f5717a9e517b8df153b700161bc0b04f65e37b2678c01a7168",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "deff5e71636fb8df8ec5aa6182e3c62878dffac153ae6d2b8056d30cd45dbf5f",
+      "game_id": 897925074,
+      "opponent_agent_id": 6479542,
+      "opponent_submission_id": 40707465,
+      "source_sha256": "7b6d5a007eb464cb4ece6f6c1e2debdd8bf764f85ef67db94fe52c8880403ca0",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "2b4f4fc107924c3253f9d89f39c67978df606437f88653e1eac0696db19b1b71",
+      "game_id": 897925119,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "ff5d54aa35d1e28c4016a8a3ed8d2b297d7104ca41495e92e3d8d1bd0336f6ed",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "a2ac6ad0ff852c0570b831a7ca8bc43755d8443566405fe97a1a3834db9d5228",
+      "game_id": 897925152,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "e2b554dd6f92c474b15c79406fdffd491b4e646e096e6bc8976bab647a2a6ae8",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ef85300677931e860a3df34bc0737b923bacd81afab038013c576d7a870f21f6",
+      "game_id": 897925174,
+      "opponent_agent_id": 6480516,
+      "opponent_submission_id": 40707262,
+      "source_sha256": "064d56b1e9322c9c83e147b699c05c46b30a130d944ef4a9f6a59b4118233bd2",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "ce0e78f8ac8011e2307903b2a63c03ab5f1e301b5a8964d79e634fdd4f8fa2bc",
+      "game_id": 897925255,
+      "opponent_agent_id": 6512040,
+      "opponent_submission_id": 40851046,
+      "source_sha256": "51f4e3221df576f9e6c019875d5debbeb80613ccaba393f8be71e8b481352615",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "134f971c1fdb54b0dc147a5a928db362a716680e4602178ca9d15b94949da0e7",
+      "game_id": 897925282,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "904aa1a35a89980e397e0d50acdfa8455a93ae52318553ca9c010c320e65c1df",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "a1398fc8b39d82f0ae49b36c5b17e6d125a2ee6fb924c4169fed41c25354dfcd",
+      "game_id": 897925312,
+      "opponent_agent_id": 6479542,
+      "opponent_submission_id": 40707465,
+      "source_sha256": "e85122970d324650c7adb0206d20cede01fbcc51011425c0fb9dd827529f49f8",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "74a1830ae910bd7d8c9856af9fb2398ca93ecb1ab0d18f02b1c5e339cf39edb9",
+      "game_id": 897925352,
+      "opponent_agent_id": 6479840,
+      "opponent_submission_id": 40707649,
+      "source_sha256": "9081faaa3e8da6324b89855307e886382f558fce5e50a5c1ad132fafa3875c9d",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "c9a0d91d0ee51b7ed383d0f6798337354ce1fa8a7b4b9136da35bc758c2e8ac4",
+      "game_id": 897925435,
+      "opponent_agent_id": 6481143,
+      "opponent_submission_id": 40706379,
+      "source_sha256": "969450b41f7e318d5536b246d7551f3a9c3077d20086a202d66781ef99b32006",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "a1a145f30eec943e5a4b1c51e4ddf9feaeeae6edba99f866fa31b08ea45a2cdb",
+      "game_id": 897925480,
+      "opponent_agent_id": 6481225,
+      "opponent_submission_id": 40708730,
+      "source_sha256": "eced8e6eec8d48ce5bbc64ca50db9e168125de90f9313981279c30c78896dc82",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "348c6dd62c1bac9ab7fd22475ee129b94d0d23be75352ba6b33791d1bfbf5771",
+      "game_id": 897925548,
+      "opponent_agent_id": 6481143,
+      "opponent_submission_id": 40706379,
+      "source_sha256": "c8361f67f47d65f4f110c8dcbf26d3d46126843c38807472e87c4165a4cbb54c",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "f15a3ff0739724ca4a32ac222c3ad9e69eee3574ed53038ad7bf291d5d918c43",
+      "game_id": 897925586,
+      "opponent_agent_id": 6479840,
+      "opponent_submission_id": 40707649,
+      "source_sha256": "118b264a4894ac0dba5ed02553c9aebb93b48c3967fea9c78018f82e8d462ded",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "5a248c99c669b1e688f7860b9466d5fb704c4cbc4183bac5672cd9f7fbf05aa9",
+      "game_id": 897925623,
+      "opponent_agent_id": 6480515,
+      "opponent_submission_id": 40709486,
+      "source_sha256": "ac64307643da5e2a7a43c1f27b24c8aebee1a3552b93f34d3eeaac767a776a38",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "55e9d0ffef1f3222314abb105bcead7246e6bfa5027484bfc25f413e6aa4cd2b",
+      "game_id": 897925707,
+      "opponent_agent_id": 6481139,
+      "opponent_submission_id": 40709105,
+      "source_sha256": "64f048799e19abbab27c73d654e78cdf619e34c445dea9b24e8d352f3f9f42ed",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "16555f0effe12344d840982e58dd417a1b1691a6dc67063a77106946ae189e06",
+      "game_id": 897925747,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "3f36c4048871ef6ce052e2573a0b25ac667d3b42256ff4352398c6410cef733e",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "4a6afe048c1158fe3bc17a2a9ac760679d144a6ca35b326a1f8a792f9ef56bc0",
+      "game_id": 897925776,
+      "opponent_agent_id": 6512040,
+      "opponent_submission_id": 40851046,
+      "source_sha256": "eb41e58394bad446bd2fae071c45b0766e32e6e406b821f107b37f6cce9fd450",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "fb98b984fda7541b098b0c0bc64e5641685514df9d4b667fa9f578eedb036ddf",
+      "game_id": 897925806,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "1129585abeba4211e055588d08fc9367f272653c813e6ff4af6f59c5c4461e3d",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "37641b35aa1409a3657c1a18f68feb820c3937a4f857cd3f77aaacb080877b6f",
+      "game_id": 897925836,
+      "opponent_agent_id": 6479420,
+      "opponent_submission_id": 40708915,
+      "source_sha256": "3cb4d0199e7e4b5c88dca5bde8e1b5d270e62ba0d4c103291a0b6eb704024ce4",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "c3cbd6207a54edbc1bcc31f2fde7ad1861694e7a8cc627d66ffed1dd68d01da1",
+      "game_id": 897925871,
+      "opponent_agent_id": 6481270,
+      "opponent_submission_id": 40705977,
+      "source_sha256": "a872efda5e6be7b028f6959710f2c32ec3aa29e0680def604ce2540f79d33b46",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "e5c3f3343af2a3d8f77d35607545d8920d179c441f9a82799efae1c59eb7c07a",
+      "game_id": 897925940,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "15e72506b481bb08029a6009e2f9bfb68299d29921a3a7cc41491d4f8f3da89e",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "0d9267404722d55ffb4696637cc76b882f42200cefbde69aaef0f0bc23463cb6",
+      "game_id": 897925964,
+      "opponent_agent_id": 6479420,
+      "opponent_submission_id": 40708915,
+      "source_sha256": "06131ae90da6ba8a8f0b0f580290db711513574d0ec592deec98f05693ae7043",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ef9fa7ed652df698b6a4d6412b15a25055c0b13dfd5f95c6eb3c8c7d5c8a94f4",
+      "game_id": 897925982,
+      "opponent_agent_id": 6480947,
+      "opponent_submission_id": 40705790,
+      "source_sha256": "0df6bff3d927059253060d59033370925c2059a53dc53a9291edad544dbc5ecc",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "7d69fbce289cda76a110f0497c27a69c4cd1888a49f7a9260af5842f352b388a",
+      "game_id": 897926012,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "192e98524232b07cb1b73ee8aec17deef609039e4e1fd47bfc32b03aab72f51b",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ab73ee539bac3369463047d48f0e57445d394e071feef64790efc9afe61c485f",
+      "game_id": 897926031,
+      "opponent_agent_id": 6479840,
+      "opponent_submission_id": 40707649,
+      "source_sha256": "93aefba211f475049de65b07889b22ec4303990d609bf7031dbbb12c67866720",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "d017d543b59eda4e82439486536a89138b1fa70aa90679ef86aba2884ea43ac3",
+      "game_id": 897926043,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "9845aadefb7b1b26b0fe4d3da94b18526e6511d758a93661af97d71e8cea138d",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "20117eaa6e595d7027410b9f45bd81d795ac5ca79f9b37ffabbf8df05e60928d",
+      "game_id": 897926054,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "2f1c77763695887639d923d42edf0f0d1be956be6990eedf456f4848d350e3fa",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "cf151773a4e204aee74633f023ca14f46710165b3230f3e13a0d1df1298fd3e0",
+      "game_id": 897926065,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "dc82c879bdee5f665486e779eb81d22c5fbf6e7949c5b668475d4e89953ff59c",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "3043d2159f0ff25fe8d19aa2adc4bbd179fff7aaeecaeb38e5f21a955447df0a",
+      "game_id": 897926074,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "be125b86af09ed1a35f346d7835855e2bd7938dd33ba54fdd0a4f729dee27a12",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ce9d5883c1a83e67b0267a00e5a2eb0fbbabf120fbe6948d1052dcae7b22dd5c",
+      "game_id": 897926084,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "fb6d4a793e4d690b32ecee7e467c5b18cd9626acb5c6b406ddcedb2dab28daac",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "e3eba72c567671f748132434970d4facdc2ccf00cfa46d3cf52a161daa35a645",
+      "game_id": 897926093,
+      "opponent_agent_id": 6479532,
+      "opponent_submission_id": 40709510,
+      "source_sha256": "2d98656330fd7b18f593c401399fa14171e1816f19ddad1399e2e42cdc9c283a",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "65a8046aeba6d00a9902e392377e8b60ab063e54cee098610382ae4a8250dc9a",
+      "game_id": 897926106,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "15d6e3affe422a00da2f713afb2f173aaa2b2a0300ce85b10c38f066a48e270b",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "10441a9e776ac841deb7e1af59c022c7f1d57579b76e64a1deeee3eff9cd5e14",
+      "game_id": 897926116,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "a4ae4da5095085e4b717f6a659a8ac3938f288a731e4c78a8848fc0a0c8259fe",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "f4dc83bfe796935fa9e83c391956fa9d087993e0f5e579ed29ab0875b66a0178",
+      "game_id": 897926124,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "0d4e251d142363e6e8fd5ca93993b5beab2c7c866359c43f61e3e227d6c4033d",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "78c6e14ffdcfd8c0fabc16fe3772e5238be8ebcae3c14eaad40333a827ab52f4",
+      "game_id": 897926139,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "b6504b4408e5d5adde3667e046f0d0956622acbb8397b79b47fbda9c29b2d930",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "6dbece27de187a8661b99f4e92f486a64f386d30827172182ddceb6d1d04b766",
+      "game_id": 897926145,
+      "opponent_agent_id": 6479814,
+      "opponent_submission_id": 40706161,
+      "source_sha256": "b8059f9e98b58d522f192a9857803f4acc23a96e514356a3d7625449df14c387",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "0b0c2c1b4cf2ace5396c1df56c8910b381a08cd338091d6139e9fffe20d636b6",
+      "game_id": 897926177,
+      "opponent_agent_id": 6479840,
+      "opponent_submission_id": 40707649,
+      "source_sha256": "e55a8a2d57fb089fa2848ce745ceec7f9282442284347ae0377326f3a44a358b",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "bddaf095870f8a1ea2659924d1c59ba826ac687eb542c98dbe56c0a3895a3a33",
+      "game_id": 897926223,
+      "opponent_agent_id": 6482016,
+      "opponent_submission_id": 40751228,
+      "source_sha256": "65250eda9b1e27f4e3aac1962cde13ac2a95903c888fe13bf5d48a436b8dbccc",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ec240ceace043e72496230a5a9fa40a92ba71475c860b843339637df1e37bc66",
+      "game_id": 897926231,
+      "opponent_agent_id": 6479914,
+      "opponent_submission_id": 40680297,
+      "source_sha256": "d5b2ae4e8c164f7bd6f4552b24a6d2f90e1814a2b4a44c2bc60b1ccc38323eea",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "f2fc87cec319d4d953bdad69a88877246f14f03d4cbaeb0f2f179a846d045417",
+      "game_id": 897926242,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "b9e76c29f4eefdf0d0dc5bca42a247fc9fe85d44ff565d61f4d952ea1a38e09f",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "9ae16611375e52fccf057666f370f744102bead9439f81d5fb02fadb8ceb7473",
+      "game_id": 897926251,
+      "opponent_agent_id": 6480516,
+      "opponent_submission_id": 40707262,
+      "source_sha256": "1ecc8e3bda63277fab57248c46e9b6fcdabca535e241e2667d08ac114381c5b7",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "ef22b41c5381ba85060e501e974cf6e53c4bb87256b370d2855ec528974b039e",
+      "game_id": 897926270,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "c3256e234be29c85e3f67ce021e17db527be846c9118e19b4b0cf53958b8ce9b",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "15649469b27b1dae379026519831ef06450cb8d5eb87eb4e7299d7d021d5ecaf",
+      "game_id": 897926285,
+      "opponent_agent_id": 6592021,
+      "opponent_submission_id": 41084994,
+      "source_sha256": "1a86ad4f05aefed0f5a78e300dd1ef43575cd4cc88cea5345037ce242f3c07ca",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "615e60a3e6829138f1c31abbb1cd5ec3ade7bbb73b5684479816158e3de8bb82",
+      "game_id": 897926293,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "16d039d9c1845272bb4bdbdb6f467b1ad500ee567bf6a68b345c3e8bfdeeb58b",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "4aabe6cdb506e921859945a364438c2da4093a5b09658acf2d05f3b39d26ccea",
+      "game_id": 897926305,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "53af92701ef69e6987cc1de9d9c2f78eccb934bc875b5a6a5d066578f9396333",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "bf51b99a3376aaa0566a8e8d575590993ec3f193c7b9742b72893782821f52bd",
+      "game_id": 897926317,
+      "opponent_agent_id": 6479814,
+      "opponent_submission_id": 40706161,
+      "source_sha256": "2d2e15e0db1afb29b7d8fdad631555c592edbb34160cc7d1ea6a115bb0f02f02",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "625127d36dc0fa42b87e3080c81ab27675be3c646aa99e7694d3aa0d382c9769",
+      "game_id": 897926325,
+      "opponent_agent_id": 6480515,
+      "opponent_submission_id": 40709486,
+      "source_sha256": "2ff12e0f2a62bf3898d4a516e28a49982ce650c457ee7ae8cdf8326b2ad217b0",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "965c99f4c3b4336b5e6df4fcff65c6265ed1c0491c968c8a03c03f274c9001a8",
+      "game_id": 897926350,
+      "opponent_agent_id": 6479542,
+      "opponent_submission_id": 40707465,
+      "source_sha256": "528ac7ae381aff775c4743acfd9add61e74777e289e202dfc161fb7717d6aaff",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "4272960a3bf7be8d4814301102d8284a5796a4782ea65e173fc7b15f4c8439c6",
+      "game_id": 897926364,
+      "opponent_agent_id": 6481270,
+      "opponent_submission_id": 40705977,
+      "source_sha256": "11f41db78b7756fcf2e7fee4b2fc6e5b51ef142d02d261c773cd39c3a0a7df03",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "755a355d35e01a10068b580cdbc38afaa018b50e288e5f8d32c82485968c8072",
+      "game_id": 897926379,
+      "opponent_agent_id": 6480515,
+      "opponent_submission_id": 40709486,
+      "source_sha256": "3bc8cac3555ae8c10b455eb8d73bb2701b2450cc5b0b8143a4e58609b062e737",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "8c30fb4f633e5428b3765948fc5064ce09bdb31568e075ef3a8ee6bdb1e22b30",
+      "game_id": 897926410,
+      "opponent_agent_id": 6481547,
+      "opponent_submission_id": 40749176,
+      "source_sha256": "b8b4c0a305be6ec773bd679b0fda84c3bb26117923ff4b783a863407401436e0",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "081f33c5ae36c8a8c92b2f68a7c23e4c09db592869c428c4b36cbb7527ff6391",
+      "game_id": 897926430,
+      "opponent_agent_id": 6479657,
+      "opponent_submission_id": 40706152,
+      "source_sha256": "ce7b993485bfad83c00047bb9cd69eb053398de4613a357358c67bf4890ffe92",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "ac3eea82d9a09fdb99efd9f6be7b941491a535891bc339becf66fb0b69eb690b",
+      "game_id": 897926443,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "8fe81636c4f56fdeecf0f8a03b8691801a04384ac73ab397591b6b73d0481772",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "18f56bcdd68ab5bfb11a4b506508410163c3711838e1225877d77b89a61fde2d",
+      "game_id": 897926476,
+      "opponent_agent_id": 6480545,
+      "opponent_submission_id": 40709587,
+      "source_sha256": "e2c168a9952c82caa192d9c91048752cf98fbce9ac05bc3cc544b240fb903045",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "69ff328fd5c1ea03376f116ec101045dd9c8a60dc6afb533030b130c4003bda0",
+      "game_id": 897926500,
+      "opponent_agent_id": 6479863,
+      "opponent_submission_id": 40707957,
+      "source_sha256": "15f33176402673f85bc03500cfcb13bacabe444429324ef6a7d6c055b5e2244e",
+      "target_index": 1,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "48c3f83a3e6b4d774b486012ad088e8e9f82ce23059e261f766b4a7f6510ee59",
+      "game_id": 897926516,
+      "opponent_agent_id": 6481270,
+      "opponent_submission_id": 40705977,
+      "source_sha256": "1bd3357979d5fe0f7607d36624d1767c10222fa9d2f0ab12139e7d7ca71cb70a",
+      "target_index": 0,
+      "target_position": 1
+    },
+    {
+      "export_line_sha256": "1e22256b3830088a895d58253b3706d1507cf061d3a2aebb4883d37cce578ecd",
+      "game_id": 897926544,
+      "opponent_agent_id": 6479814,
+      "opponent_submission_id": 40706161,
+      "source_sha256": "f07f665438bd0882deb8fcb94a305d1ee5670e6d65fa4fe6df38e181a0b735a3",
+      "target_index": 1,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "3adc5487c30224767f7fb4d57387ea0b10ae00ae1cea30395da7d9b40f8ffcc8",
+      "game_id": 897926948,
+      "opponent_agent_id": 6592151,
+      "opponent_submission_id": 41086197,
+      "source_sha256": "d42a0e42149a87ce333d5da7409c7c1e7717caec534ac8186bb70a733f03bf23",
+      "target_index": 0,
+      "target_position": 0
+    },
+    {
+      "export_line_sha256": "339ea3280e0e5b229f677c2ce9b29de12e3b087ff8402cf548600382e89ef48d",
+      "game_id": 897928618,
+      "opponent_agent_id": 6592170,
+      "opponent_submission_id": 41086367,
+      "source_sha256": "0805688025ab0fe7654b16ff471b94e78795ce02d108b0f4317622709f6483f4",
+      "target_index": 1,
+      "target_position": 1
+    }
+  ],
+  "observed_at_utc": "2026-08-03T17:57:57Z",
+  "package": "games-agent6592131-submission41086057.jsonl.gz",
+  "package_bytes": 5812614,
+  "package_sha256": "f9567974865fc4c940f6aa4f214758a3cb4e1b9467605dbdb236c8921fffcc23",
+  "privacy": {
+    "pseudonyms": "replaced with PLAYER_<position>",
+    "removed_keys": [
+      "avatar",
+      "publicHandle",
+      "testSessionHandle",
+      "userId",
+      "user_id"
+    ],
+    "retained_identifiers": [
+      "game_id",
+      "agent_id",
+      "submission_id"
+    ],
+    "structural_private_key_scan": "PASS"
+  },
+  "schema": "troll-farm-sanitized-agent-replays-v1",
+  "source_battle_list": "data/raw/battles/6592131.json",
+  "source_battle_list_sha256": "1d65caf993036e078a50fbb4d716e6960b5e97d735b10f3037b50e5c2ce721fe",
+  "source_raw_bytes": 40902888,
+  "source_raw_root": "data/raw/games",
+  "submission_id": 41086057
+}

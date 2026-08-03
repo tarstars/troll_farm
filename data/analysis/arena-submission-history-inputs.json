@@ -1097,6 +1097,17 @@
       "observed_at_override": null,
       "observed_at_override_evidence": null,
       "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41086057-collected162",
+      "path": "data/analysis/live-agent-6553250/e7a-restore-collected-games-checkpoint-20260803T175757Z.json",
+      "sha256": "7abbdbdb1acff2ef07a9e840afb4df4ac468bcc12fb2c8eb756ff770fb05079e",
+      "expect_agent_id": 6592131,
+      "expect_submission_id": 41086057,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": true
     }
   ],
   "curated_observations": [

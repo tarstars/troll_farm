@@ -1715,3 +1715,17 @@ The source and initial-health restore gates pass. The fresh restore score is not
 passive convergence requires no further platform mutation. Full result:
 `no-orchard-ablation-arena-result-2026-08-03.md`. Registry active identity is
 `6592131`/`41086057`; any successor requires a distinct serialized task.
+
+## 2026-08-03 — exact E7a restore replay collection and shared export
+
+The owner's targeted collection requested the active restore's games in the repository. The
+public battle list returned 162 finished rows, all exact agent/submission `6592131`/`41086057`.
+All 162 replay bodies fetched with zero failures. The independent checkpoint is clean at score
+23.56, rank 32/137, 93W/3T/66L, 18 catastrophes, negative mass 5,569, and zero runtime signals.
+
+The 40,902,888 raw bytes remain in the canonical local cache and were deterministically exported
+as a 5,812,614-byte sanitized JSONL-gzip Git LFS object at
+`data/shared-lfs/e7a-restore-agent-6592131/`, SHA `f9567974...`. Names are replaced by positional
+placeholders; user IDs, avatars, public handles, and session handles are absent. The manifest pins
+all 162 game IDs and source/export hashes. Exact E7a now has two mature registry runs: median 24.41,
+worst 23.56, best 25.26. No Arena or cron mutation occurred.

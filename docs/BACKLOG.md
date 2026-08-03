@@ -18,17 +18,18 @@ may run in parallel and are claimable by any agent under
   must never select by a single maximum. Task and acceptance contract:
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
-  deterministic build/validation pass and the maintained real pytest suite is 44/44. The live
+  deterministic build/validation pass and the maintained real pytest suite is 45/45. The live
   registry is current through rejected no-orchard `41085842` and active exact E7a restore
-  `41086057` / agent `6592131`; deterministic validation passes with 44 observations.
+  `41086057` / agent `6592131`; deterministic validation passes with 45 observations.
 
 ## Position summary (2026-08-02)
 
 Active resident is exact E7a restore agent `6592131` / submission `41086057`, source SHA
-`97bfe71e3f2f...`. Its first identity-clean checkpoint has 15 finished plus one pending, score
-18.57/rank 84/137 and zero runtime signals; it is cold-start only. The preceding exact deployment
-read 25.3/rank 12 before the owner-directed no-orchard ablation, which terminated at 23.27/rank 34
-and was rejected. E7a remains a consumed-panel owner override, not prospective validation.
+`97bfe71e3f2f...`. Its complete identity-clean checkpoint has 162/162 finished, score 23.56/rank
+32/137, 93W/3T/66L, and zero runtime signals. The preceding exact deployment read 25.3/rank 12;
+the exact source now has two mature runs at median 24.41. The owner-directed no-orchard ablation
+terminated at 23.27/rank 34 and was rejected. E7a remains a consumed-panel owner override, not
+prospective validation.
 
 **P0 BANANA RESTORATION R2 — assigned to Claude.** The unbounded factory
 `6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not
@@ -37,8 +38,8 @@ evidence rejecting banana production. The ring bot has exact long period-2 movem
 from stable parent `a8eb3b2b...` under `coordination/tasks/20260802-banana-restoration-r2.md`.
 Implementation validity, broad inactive-state equality, and exact counterexample liveness precede
 any value test.
-The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
-registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
+The displaced b100/e6 resident finished at 23.12/160; repeated exact E7a evidence is now the
+registry leader at median 24.41. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
