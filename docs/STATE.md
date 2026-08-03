@@ -14,6 +14,8 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
 - Latest exact stored read: **2026-08-02T18:55:03Z**, agent `6590141`; 160/160 games,
   score 25.26 at rank 11/131, one exact submission hash and zero runtime signals.
+- **No-orchard ablation cycle in flight:** controller `local_codex_1`, candidate `d1f32c35...`;
+  pre-trial E7a is source-exact and 160/160 clean at score 25.3/rank 12. No parallel mutation.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
 - Corpus: **10,470 games** / 513 agents, zero parse failures. The 2026-08-02 manual wide
   catch-up added 282; the 05:17 cron was healthy and the prior STATE count was stale.
@@ -127,16 +129,11 @@ makes the goalpost move in the wrong direction.
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
   terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** `6590141`/`41081503`, mature 25.34/160 at rank 11. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 ASSIGNED:** unbounded/ring publications implementation-invalid, not algorithm evidence; Claude retries stable-parent restoration. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
-- **E7a ITERATIVE DELETION R13 QUALIFIED / NOT DEPLOYED:** after the first unreachable selector,
-  thirteen additional blocks were removed and tested one by one. The 57,677-byte source is 5,143
-  bytes below live E7a and matches 7,234 public-live command lines, 516 development tasks, and
-  516 one-shot untouched tasks exactly. Its expected gain is zero, so the mature rank-11 Arena
-  bot remains unchanged under no-churn. Further rounds need a newly declared invariant.
-- **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is an active
-  contributor without platform credentials; `chatgpt_1` is a contributor. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
-- **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: E7a sector `6590141`/`41081503`, read-only. Iterative deletion
-  round 13 is untouched-qualified but not submitted because exact equality gives no rating gain.
+- **E7a ITERATIVE DELETION:** round 28 is 56,314 bytes with all delegated equality gates exact;
+  round 22 passed 516 development tasks. Rounds 29–30 then one final untouched gate remain.
+- **Coordination:** `local_codex_1` integrates/controls Arena; Claude/ChatGPT contribute.
+- **Operations:** cron 05:17; H12 weekly surveillance; no-orchard cycle serialized through
+  `local_codex_1`, pre-trial identity `6590141`/`41081503`.
 
 ## 5. Reading order & pointers
 
@@ -144,9 +141,8 @@ makes the goalpost move in the wrong direction.
 2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
 3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
 4. `coordination/README.md` + inbox sweep — mandatory for any agent before writing.
-5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md`
-   (vol 2 `...-vol2-2026-07-23.md` frozen after A2-1; vol 1
-   `...-2026-07-18.md` frozen at D166). Atlas: `docs/D-series-atlas.pdf`.
+5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md`;
+   prior volumes are frozen. Atlas: `docs/D-series-atlas.pdf`.
 6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
    `docs/archive/INDEX.md` (superseded docs).
 

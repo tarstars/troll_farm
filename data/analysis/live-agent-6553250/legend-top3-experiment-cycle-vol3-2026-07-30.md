@@ -1652,3 +1652,23 @@ liveness, and passing latency.
 **Disposition: ROUND-13 UNTOUCHED EXACT-EQUALITY PASS / QUALIFIED CHECKPOINT / NOT DEPLOYED / LIVE
 RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Further deletion requires a newly recorded invariant.
 Exact evidence is in `e7a-iterative-logical-deletion-r13-result-2026-08-03.md`.
+
+## 2026-08-03 — owner-directed no-orchard ablation Arena cycle
+
+The owner explicitly directed a live Arena ablation of the simplified round-28 bot with secure
+orchard activation disabled. This is deliberately behavior-changing and not frozen-protocol
+qualified. The exact 56,200-byte artifact is
+`claude_1/no-orchard-arena/candidate-e7a-r28-no-orchard.rs`, SHA-256
+`d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`. Independent rebuild,
+optimized compile, empty input, and ten semantic fixtures pass. Frozen replay is identical in
+24/25 games and first differs in game `897833045` at turn 79, one turn after the orchard would
+activate. The owner was surfaced the measured mature-leg cost and selected the Arena experiment.
+
+**Cycle status: IN FLIGHT / SOLE CONTROLLER `local_codex_1` / NO AUTOMATIC RETRY.**
+
+| Timestamp (UTC) | Action | Result |
+|---|---|---|
+| 2026-08-03T14:57:23Z | Submission-history preflight | Exact candidate hash has never been deployed; experiment has no measured score history. |
+| 2026-08-03T14:57:23Z | Recover current platform source | 62,820 bytes; exact resident SHA-256 `97bfe71e...`. |
+| 2026-08-03T14:57:23Z | Pre-trial Arena-room read | Resident `6590141` score 25.3, rank 12/137; top three 30.84 / 29.56 / 28.34. |
+| 2026-08-03T14:57:23Z | Pre-trial battle/identity checkpoint | 160/160 finished, 82W/3T/75L, 35 catastrophes, negative mass 10,045, zero runtime signals, identity clean. |

@@ -1,21 +1,21 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T13:50:52Z
-- State: round 22 development-exact; Claude authorized to continue at round 23
+- Updated UTC: 2026-08-03T14:59:18Z
+- State: owner-directed no-orchard Arena cycle in flight; preflight exact, submission pending
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: integrator/reviewer for `20260803-e7a-claude-incremental-simplification`
+- Current task: Arena controller for `20260803-owner-no-orchard-ablation-arena`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T13:50:52Z
-- Running job: publish checkpoint verdict and await Claude round 23
+- Last concrete progress UTC: 2026-08-03T14:59:18Z
+- Running job: push cycle start, then submit exact no-orchard ablation once
 - Live identity: E7a sector `6590141`/`41081503`; 160/160 finished; latest exact read rank 11
-- Next checkpoint: review continued one-block rounds; spend one untouched range at terminal source
+- Next checkpoint: capture submit response/ids, then monitor fast Arena convergence
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; sector replacement terminal; no mutation cycle in flight
+- Arena controller: yes; sole serialized no-orchard ablation mutation cycle in flight
 
 ## Latest evidence
 
