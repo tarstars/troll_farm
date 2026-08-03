@@ -1,17 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T15:33:58Z
-- State: no-orchard 125-game health clean at 23.26/rank 34; convergence continues
+- Updated UTC: 2026-08-03T15:45:15Z
+- State: no-orchard terminal 23.27/rank 34 rejected; exact E7a restore pending
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: Arena controller for `20260803-owner-no-orchard-ablation-arena`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T15:33:58Z
-- Running job: read-only fast-convergence monitoring of agent 6592097 / submission 41085842
+- Last concrete progress UTC: 2026-08-03T15:45:15Z
+- Running job: publish terminal rejection, then restore exact E7a within the cycle
 - Live identity: E7a sector `6590141`/`41081503`; 160/160 finished; latest exact read rank 11
-- Next checkpoint: terminal 160-game convergence read and experiment disposition
+- Next checkpoint: capture restore response/ids and verify initial health
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges

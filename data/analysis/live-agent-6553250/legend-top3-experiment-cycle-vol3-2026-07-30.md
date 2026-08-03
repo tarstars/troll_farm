@@ -1689,3 +1689,14 @@ activate. The owner was surfaced the measured mature-leg cost and selected the A
 | 2026-08-03T15:31:35Z | Lightweight queue identity/count poll | Exact agent/submission match: 113 finished, one pending. |
 | 2026-08-03T15:33:58Z | Lightweight queue identity/count poll | Exact agent/submission match reached 123 finished and one pending before the full checkpoint. |
 | 2026-08-03T15:33:58Z | 125-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 23.26, rank 34/137, 125 finished plus one pending, ten catastrophes (8.0%), negative mass 3,281, zero runtime signals, identity clean. |
+| 2026-08-03T15:39:33Z | Lightweight queue identity/count poll | Exact agent/submission match: 143 finished, one pending. |
+| 2026-08-03T15:41:50Z | Lightweight queue identity/count poll | Exact agent/submission match: 154 finished, one pending. |
+| 2026-08-03T15:43:10Z | Terminal queue identity/count poll | Exact agent/submission match: 160/160 finished, zero pending. |
+| 2026-08-03T15:43:10Z | Terminal candidate health/rank checkpoint | No-orchard `6592097`/`41085842`: score 23.27, rank 34/137, 91W/4T/65L, mean margin +10.56875, 16 catastrophes (10.0%), negative mass 5,441, zero runtime signals, identity clean. Pre-trial score/rank delta is −2.03 / +22 places. |
+| 2026-08-03T15:45:15Z | Recover terminal platform source before disposition | 56,200 bytes; exact no-orchard SHA-256 `d1f32c35...`. Controller verdict: materially below resident, reject ablation and restore exact E7a in-cycle. |
+
+**Terminal ablation disposition: REJECT NO-ORCHARD / PRESERVE ORCHARD / EXACT E7A RESTORE
+REQUIRED.** The score loss exceeds the Arena noise band. The reduced catastrophe rate is not
+enough to retain a bot that finishes roughly two rating points lower, and terminal matchup sets
+differ, so component-value language remains bounded to this live ablation rather than a clean
+paired causal estimate.

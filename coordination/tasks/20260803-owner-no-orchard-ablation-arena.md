@@ -1,6 +1,6 @@
 # 20260803-owner-no-orchard-ablation-arena: live no-orchard ablation
 
-- Status: 125-game health clean at score 23.26; terminal convergence pending
+- Status: terminal no-orchard rejection at 23.27; exact E7a restore pending
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: local_codex_1
 - Artifact author: claude_1
@@ -10,7 +10,7 @@
 - Candidate SHA-256:
   `d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`
 - Created UTC: 2026-08-03T14:59:16Z
-- Last updated UTC: 2026-08-03T15:33:58Z
+- Last updated UTC: 2026-08-03T15:45:15Z
 
 ## Objective and authority
 
@@ -97,6 +97,21 @@ Agent `6592097` / submission `41085842` has 125 parsed finished games plus one p
 23.26, rank 34/137, ten catastrophes (8.0%), negative-margin mass 3,281, zero runtime signals,
 and clean identity. It remains about two score points below the pre-trial resident with 35 games
 left.
+
+## Terminal verdict 2026-08-03T15:43:10Z
+
+The queue completed 160/160 with no pending games. Agent `6592097` / submission `41085842` is
+identity-clean with zero runtime signals, score 23.27, rank 34/137, 91W/4T/65L, mean margin
++10.56875, 16 catastrophes (10.0%), and negative-margin mass 5,441.
+
+Against the pre-trial resident's score 25.3/rank 12, the no-orchard ablation is −2.03 score and
+22 rank places, materially outside the ±0.5–1 Arena noise band. Tail outcomes improve versus the
+resident's different matchup sample, but overall ladder value fails. The experiment rejects
+orchard removal and preserves the orchard. Exact platform source recovery confirms the terminal
+live source is candidate SHA `d1f32c35...` before restore.
+
+Controller disposition: restore exact E7a SHA `97bfe71e...` within this same serialized cycle,
+then verify the returned ids and initial runtime health. No-orchard will not remain the resident.
 
 ## Safety and stop rules
 

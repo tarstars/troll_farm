@@ -14,8 +14,8 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
 - Latest exact stored read: **2026-08-02T18:55:03Z**, agent `6590141`; 160/160 games,
   score 25.26 at rank 11/131, one exact submission hash and zero runtime signals.
-- **No-orchard ablation cycle in flight:** candidate `d1f32c35...`, agent `6592097`, submission
-  `41085842`; pre-trial E7a was exact/clean at score 25.3/rank 12. No parallel mutation.
+- **No-orchard cycle terminal-rejected:** `6592097`/`41085842` finished 160 at 23.27/rank 34
+  versus pre-trial E7a 25.3/rank 12; preserve orchard. Exact E7a restore is pending.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
 - Corpus: **10,470 games** / 513 agents, zero parse failures. The 2026-08-02 manual wide
   catch-up added 282; the 05:17 cron was healthy and the prior STATE count was stale.
