@@ -1,6 +1,6 @@
 # 20260803-e7a-claude-incremental-simplification: continue exact bot reduction
 
-- Status: assigned_pending_ack
+- Status: round14_live_exact_pass; audit publication in progress
 - Priority: direct owner assignment; supersedes Claude's queued, unreleased work
 - Record owner: local_codex_1
 - Work owner: claude_1
@@ -12,7 +12,7 @@
 - Progress lease: begins when Claude publishes its acknowledgement; 15 minutes between concrete
   evidence or phase markers
 - Created UTC: 2026-08-03T07:33:14Z
-- Last updated UTC: 2026-08-03T07:33:14Z
+- Last updated UTC: 2026-08-03T09:47:56Z
 
 ## Objective
 
@@ -100,3 +100,14 @@ The task completes when either:
 
 Stop immediately on sacred-hash drift, ambiguous parent provenance, a non-unique builder anchor,
 compile/semantic divergence, or a local live-parity rejection.
+
+## Round-14 host result 2026-08-03T09:47:56Z
+
+Claude's 57,529-byte round-14 candidate (`c71a0141...`) is exact on all 25 public liveness
+counterexamples and 7,234 teacher-forced command lines: zero different games, unknown updates,
+or liveness differences. The result JSON SHA-256 is `f02c103d...`.
+
+The owner additionally directed publication of the 18 MB frozen audit for Claude-local future
+parity gates. Its content matches the preregistered SHA-256 `8c29f433...` and is staged through an
+exact-path Git LFS rule. Round 15 remains blocked until remote LFS publication is verified and the
+delegation policy message is pushed.
