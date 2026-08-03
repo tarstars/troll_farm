@@ -1,0 +1,17 @@
+{
+  "behavior_exact": false,
+  "candidate": {
+    "bytes": 56200,
+    "path": "claude_1/no-orchard-arena/candidate-e7a-r28-no-orchard.rs",
+    "sha256": "d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a"
+  },
+  "expected_divergence": "only games where the orchard would activate; 1/25 in the frozen public packet (game 897833045)",
+  "logical_change": "replace the Dormant-phase activation branch with an unconditional return, so SecureOrchardBot never enters CarryingSeed; the external idle/protected-tree reservations stay disengaged and YamoBot output passes through unmodified on every turn",
+  "parent": {
+    "bytes": 56314,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r28-delete-preferred-min-chop-binding.rs",
+    "sha256": "c77504639b4282c1cd773dd102d4f678fb90622d67edb1da2173050411e5810e"
+  },
+  "purpose": "owner-directed arena ablation: orchard permanently dormant; every map degenerates to pure YamoBot passthrough",
+  "schema": "troll-farm-e7a-no-orchard-ablation-v1"
+}

@@ -165,6 +165,93 @@ ROUNDS = {
             "policy parameters with their call-site arguments"
         ),
     },
+    23: {
+        "field": "constant-false 15<=0 disjunct",
+        "ops": [
+            ("if 15<=0||(", "if(", 1),
+        ],
+        "residue": ["15<=0"],
+        "logical_change": (
+            "fold the constant-false 15<=0 disjunct out of the opening-upgrade "
+            "guard, preserving the surviving conjunction verbatim"
+        ),
+    },
+    24: {
+        "field": "unused Debug derives",
+        "ops": [
+            (",Debug,", ",", 9),
+            (",Debug)", ")", 3),
+        ],
+        "residue": ["Debug"],
+        "logical_change": (
+            "delete all twelve unused Debug derive tokens ({:?} occurs nowhere), "
+            "removing only the trait token and its adjacent comma per the "
+            "integrator's classification ruling"
+        ),
+    },
+    25: {
+        "field": "unused Hash derive on PlantKind",
+        "ops": [
+            (",Hash)", ")", 1),
+        ],
+        "residue": ["Hash"],
+        "logical_change": (
+            "delete the unused Hash derive on PlantKind (no hash collections "
+            "exist; all maps are BTree, which require Ord)"
+        ),
+    },
+    26: {
+        "field": "single-valued opening_options parameters",
+        "ops": [
+            (
+                "fn opening_options(view:&GameState,max_carry_capacity:i32,"
+                "max_chop_power:i32,)->Vec<OpeningObjective>",
+                "fn opening_options(view:&GameState)->Vec<OpeningObjective>",
+                1,
+            ),
+            (
+                "let max_carry_capacity=max_carry_capacity.clamp(1,3);",
+                "let max_carry_capacity=3i32.clamp(1,3);",
+                1,
+            ),
+            (
+                "let max_chop_power=max_chop_power.clamp(1,3);",
+                "let max_chop_power=3i32.clamp(1,3);",
+                1,
+            ),
+            ("opening_options(view,3,3)", "opening_options(view)", 2),
+        ],
+        "residue": ["opening_options(view,"],
+        "logical_change": (
+            "delete the opening_options parameters whose only surviving call "
+            "arguments are literal 3,3 and seed the body's shadowing locals with "
+            "the same literals"
+        ),
+    },
+    27: {
+        "field": "constant preferred_min_carry binding",
+        "ops": [
+            ("let preferred_min_carry=2i32.clamp(1,3i32.clamp(1,3));", "", 1),
+            (">=preferred_min_carry", ">=2", 2),
+        ],
+        "residue": ["preferred_min_carry"],
+        "logical_change": (
+            "delete the constant local binding preferred_min_carry=2 and inline "
+            "the literal at both comparison reads"
+        ),
+    },
+    28: {
+        "field": "constant preferred_min_chop binding",
+        "ops": [
+            ("let preferred_min_chop=1i32.clamp(1,3i32.clamp(1,3));", "", 1),
+            (">=preferred_min_chop", ">=1", 2),
+        ],
+        "residue": ["preferred_min_chop"],
+        "logical_change": (
+            "delete the constant local binding preferred_min_chop=1 and inline "
+            "the literal at both comparison reads"
+        ),
+    },
 }
 
 
