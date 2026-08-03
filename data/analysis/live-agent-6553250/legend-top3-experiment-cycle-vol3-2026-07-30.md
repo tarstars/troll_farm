@@ -1591,3 +1591,17 @@ identifier renaming, minification, compression, or formatting reduction. Rebuild
 compile, empty input, baseline/sacred hashes, and all ten live-baseline semantic fixtures pass
 exactly. **Disposition: STATIC/SEMANTIC PASS / LIVE COMMAND PARITY AND DEVELOPMENT EQUALITY
 PENDING / NO ARENA ACTION.**
+
+## 2026-08-03 — single deletion development exact-equality qualification
+
+The 62,278-byte candidate matches exact live E7a on all 7,234 command lines from the 25 immutable
+public liveness counterexamples: zero different games, unknown updates, or stderr. Both retain the
+inherited maximum period-2 episode of 128; the deletion is behavior-preserving, not a liveness
+repair.
+
+The generated live-type runner adapter (`d9a118d...`) then executed 43 official-generator maps,
+both seats, and six frozen opponent families. All 516 terminal rows are exact: mean/lower 0.0,
+catastrophes 19 -> 19, negative mass 4,138 -> 4,138, and zero differences in scores, resources,
+turns, training, workers, liveness, or issue fields. Latency passes at p95 ratio 1.0041 and
+candidate maximum 6.276 ms. **Disposition: DEVELOPMENT EXACT-EQUALITY PASS / UNTOUCHED TRANSFER
+PENDING / NO ARENA ACTION.**

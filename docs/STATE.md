@@ -127,11 +127,14 @@ makes the goalpost move in the wrong direction.
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
   terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** `6590141`/`41081503`, mature 25.34/160 at rank 11. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 ASSIGNED:** unbounded/ring publications implementation-invalid, not algorithm evidence; Claude retries stable-parent restoration. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
+- **E7a SINGLE DELETION:** owner superseded the 50% target. The 62,278-byte source deletes
+  the unreachable roster-above-two selector and matches 7,234 public-live command lines plus
+  all 516 development terminal rows exactly; untouched equality is pending.
 - **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is an active
   contributor without platform credentials; `chatgpt_1` is a contributor. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
 - **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: E7a sector `6590141`/`41081503`, read-only. Half-size work
-  continues with consumed-tail attribution; any successor needs distinct logic and a fresh lock.
+  surveillance. Sole Arena leg: E7a sector `6590141`/`41081503`, read-only. Single-deletion
+  source is development-equal; it needs a new remotely published untouched equality lock.
 
 ## 5. Reading order & pointers
 

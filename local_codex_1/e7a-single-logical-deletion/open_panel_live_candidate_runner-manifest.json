@@ -1,0 +1,22 @@
+{
+  "changes": [
+    {
+      "marker": "candidate live GameState adapter",
+      "new_bytes": 1496,
+      "old_bytes": 1307
+    },
+    {
+      "new": "Candidate(candidate::bot::moisan::SecureOrchardBot)",
+      "old": "Candidate(candidate::bot::moisan::YamoBot)"
+    },
+    {
+      "new": "Self::Candidate(candidate::bot::moisan::SecureOrchardBot::new())",
+      "old": "Self::Candidate(candidate::bot::moisan::YamoBot::new())"
+    }
+  ],
+  "input_sha256": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+  "output_sha256": "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18",
+  "policy_change": false,
+  "purpose": "adapt only candidate type construction and view conversion from the half-size layout to the exact live E7a layout",
+  "schema": "troll-farm-e7a-single-logical-deletion-runner-adapter-v1"
+}

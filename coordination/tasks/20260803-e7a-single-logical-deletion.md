@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-03T05:03:59Z
-- Last updated UTC: 2026-08-03T05:07:37Z
+- Last updated UTC: 2026-08-03T05:15:20Z
 
 ## Outcome
 
@@ -56,3 +56,19 @@ both exact sources and reports byte-identical outcomes on all ten frozen semanti
 focus sector (four cases), training bill, training deadline fallback, wood banking, same-target
 assignment, landing collision, and endgame deadline. Exact live-replay command parity and the
 516-task development equality panel remain pending. No Arena action.
+
+## Progress 2026-08-03T05:15:20Z
+
+Exact public-live parity passes on 25/25 immutable counterexample games and 7,234 command lines
+with zero differing games, zero unknown updates, and zero stderr. The inherited maximum period-2
+episode is 128 in both sources; this deletion is behavior-preserving, not a liveness repair.
+
+A generated live-type adapter then ran the full 43-map / both-seat / six-family development
+panel. All 516 terminal rows are exact between baseline and candidate: mean/lower 0.0,
+catastrophes 19 -> 19, negative mass 4,138 -> 4,138, and zero differences in scores, resources,
+turns, training, workers, liveness, or issue fields. Latency passes at p95 ratio 1.0041 and
+candidate maximum 6.276 ms.
+
+**Disposition: DEVELOPMENT EXACT-EQUALITY PASS / UNTOUCHED TRANSFER PENDING / NO ARENA
+ACTION.** Full evidence is in
+`data/analysis/live-agent-6553250/e7a-single-logical-deletion-development-qualification-2026-08-03.md`.
