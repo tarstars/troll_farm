@@ -1672,3 +1672,5 @@ activate. The owner was surfaced the measured mature-leg cost and selected the A
 | 2026-08-03T14:57:23Z | Recover current platform source | 62,820 bytes; exact resident SHA-256 `97bfe71e...`. |
 | 2026-08-03T14:57:23Z | Pre-trial Arena-room read | Resident `6590141` score 25.3, rank 12/137; top three 30.84 / 29.56 / 28.34. |
 | 2026-08-03T14:57:23Z | Pre-trial battle/identity checkpoint | 160/160 finished, 82W/3T/75L, 35 catastrophes, negative mass 10,045, zero runtime signals, identity clean. |
+| 2026-08-03T15:02:24Z | Submit exact no-orchard candidate once | `TestSession/submit` HTTP 200; submission `41085842`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
+| 2026-08-03T15:02:35Z | Immediate identity discovery and rank read | New agent `6592097`; ten queued unfinished battles carry exact submission `41085842`. Arena-room still displayed old resident `6590141`, score 25.3/rank 12 while queue had no finished result. |

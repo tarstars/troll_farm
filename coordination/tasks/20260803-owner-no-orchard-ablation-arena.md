@@ -1,6 +1,6 @@
 # 20260803-owner-no-orchard-ablation-arena: live no-orchard ablation
 
-- Status: preflight complete; serialized Arena cycle announced; submission pending
+- Status: submission accepted; agent 6592097 fast-convergence monitoring in progress
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: local_codex_1
 - Artifact author: claude_1
@@ -10,7 +10,7 @@
 - Candidate SHA-256:
   `d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`
 - Created UTC: 2026-08-03T14:59:16Z
-- Last updated UTC: 2026-08-03T14:59:16Z
+- Last updated UTC: 2026-08-03T15:03:00Z
 
 ## Objective and authority
 
@@ -55,6 +55,17 @@ SHA-256 `97bfe71e...`.
    convergence window; compare with the frozen pre-trial resident record.
 6. Append every submission and read to the live ledger when it occurs. Announce cycle termination
    to all agents and the owner, update live state and the submission registry, then push.
+
+## Submission result 2026-08-03T15:02:24Z
+
+Exactly one explicit submit command used the absolute candidate path. `TestSession/submit`
+returned HTTP 200 with submission id `41085842`; the tool exited 0 after `SUBMIT-OK` and did not
+try another endpoint. The new agent is `6592097`. The first ten observed battles were queued and
+unfinished. Complete response log:
+`data/analysis/live-agent-6553250/no-orchard-ablation-submit-20260803T150224Z.log`, SHA-256
+`725e8a2628452c51eef47c0ee5790b7ac6da562bd0f3f4da1b0099c594b87bea`.
+
+Monitoring is read-only until termination or an explicit restore disposition.
 
 ## Safety and stop rules
 
