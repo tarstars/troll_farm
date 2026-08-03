@@ -1,17 +1,18 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-02T14:17:00Z
-- State: cross-review handed off; initial-state sector audit acknowledged as QUEUED, not started; awaiting the integrator release
-- Role: contributor (former coordinator; role transferred to local_codex_1 2026-07-30 by owner directive; returned to active contributor status by owner 2026-08-01)
-- Current task: `20260802-initial-state-sector-policy-audit` (QUEUED, not begun; work lease starts at release). `20260802-top-player-full-review-replication` fully handed off
-- Branch: agent/claude_1 (contributor transport branch; the closed registry task lives on agent/claude_1-submission-registry)
-- Worktree: /home/tarstars/prj/troll_farm-claude_1 (isolated; created 2026-08-01)
-- Head: see the pushed branch agent/claude_1-submission-registry; review target is stated in 20260802T070500Z-...-handoff-addendum.md
-- Write set: claude_1/top-player-full-review-cross-review-of-chatgpt_1-2026-08-02.md, claude_1/top-player-full-review-replication-2026-08-02.md, coordination/messages/claude_1/*-top-player-full-review-replication-*, coordination/status/claude_1.md
-- Last concrete progress UTC: 2026-08-02T14:17:00Z
-- Evidence: required branch agent/claude_1-submission-registry at 2529fd2 (build --check byte-identical, validate clean, 38/38 tests, sacred SHA fff6669b); first published on agent/claude_1 at b5a0fd7 before I saw the branch requirement — those copies are superseded; prior task accepted as D172_GIT_LFS_PILOT_PASS
-- Running job: none
-- Latest verified result: cross-review 89bc00df, ACCEPT_WITH_CORRECTIONS - every number in chatgpt_1 report reproduced exactly; their rank 2 folded into rank 1 (host-only, zero of 17 named games has a trajectory), their rank 3 rejected, and I WITHDREW my own rank 2. Corrected peer ranking is one entry. PRIOR: replication report 97286f95, 281 lines. Independent phase decomposition over 96 full games: our per-window scoring never declines (36.92->42.56 vs scaled opponents) while theirs multiplies 12x (8.64->102.19); our mean final score is HIGHER in losses (234.28) than wins (198.58); opponent final by roster 29.25/156.48/232.95/334.57, break-even at their worker 3. Consequence: own-economy candidates cannot close the gap. Ranked H3a 1st (rubric 82), removal race 2nd (60), B3.14 moved to measurement-only - a disagreement with the local report. PRIOR: ACCEPT_WITH_CORRECTIONS on d86016da. Rank 1 reproduces to the digit (46/153, -28.91 vs +46.41, difference -75.32, CI [-109.57,-41.87], 36/96, full t150 trajectory). Five corrections; 1,268 not reproducible (I get 1,330); B3.14 turn-level layer HOST_ONLY (one trajectory in the package). Report 78df9d64, 251 lines. PRIOR: 9 source families / 17 deployments / 35 observations built deterministically (`build --check` byte-identical, `validate` clean, 38/38 tests under a minimal harness). Source-level all-history medians: preseed-orchard 24.19 over 4 mature runs, far-denial 22.99 over 1; the registry's highest single score (24.89/160) belongs to a REJECTED source. Live leg 6589510/41079354 still has only 9 games of submission-scoped evidence.
-- Next checkpoint: local_codex_1 releases the sector audit and answers my two scoping questions (is the shared sides.csv an in-scope feature source; does the starting bank vary at all). Also dispositions both cross-reviews; the open decision I raised is that H3a's first check needs host trajectories no cloud agent has. also still owed the "successful two-worker" predicate behind 1,268 and corrections 1 and 4 from the narrower review. Still open from the closed registry task: the proposed obs-41079354-mature160 manifest entry (non-blocking)
-- Blockers: none; standing fix after three §10 breaches today — a fetch immediately precedes every publish. No uv/pytest/pip on this host; battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here
+- Updated UTC: 2026-08-03T08:51:00Z
+- State: active — owner assignment accepted, round-14 work starting
+- Role: contributor (coordinator/integrator/arena controller = local_codex_1)
+- Current task: 20260803-e7a-claude-incremental-simplification (direct owner assignment; supersedes queued Claude work per the claim)
+- Branch: agent/claude_1-e7a-incremental-simplification
+- Base: fd5962be40dab92dbaee000fabbdd5a90b234f87 (round-13 qualification commit; fetched immediately before branching)
+- Worktree: /home/tarstars/prj/troll_farm-claude_1
+- Write set: claude_1/e7a-incremental-simplification/, coordination/messages/claude_1/*20260803-e7a-claude-incremental-simplification*, coordination/status/claude_1.md
+- Last concrete progress UTC: 2026-08-03T09:35:00Z (round-14 packet published; host-run request out)
+- Parent artifact: local_codex_1/e7a-iterative-logical-deletion/candidate-r13-remove-movement-tie-mode.rs, 57,677 bytes, SHA-256 6b9fdc99c960b4ddc969729d9452b1e5b7b252b06f8314a8567e969e27f5ba34 (verified in-tree)
+- Round 14 delivered: candidate-r14-inline-opening-policy-constructor.rs, 57,529 bytes (−148), SHA-256 c71a0141a02a1d149041db8248b417ff08049ec4dbeeaa6db2225431feb7cfe2; byte-identical rebuild, compile + empty-input, and all ten semantic fixtures EXACT PASS locally; contract + inventory + builder published
+- Running job: none — waiting on the integrator's 25-game live parity run (sole outstanding host request, 20260803T093500Z message)
+- Next checkpoint: on pushed exact-pass, round-15 contract (YamoOpeningPolicy per-field inlining per the published inventory); on any difference, immediate stop + divergence report
+- Queued behind this task: 20260802-banana-restoration-r2 (ack pending), 20260802-h3a-conditioned-value-unblock (gate-4 analyzer pending), 20260802-initial-state-sector-policy-audit (paused), inbox backlog acks
+- Blockers: none; standing fix after the 2026-08-02 §10 breaches — a fetch immediately precedes every publish. No uv/pytest/pip on this host; battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here
 - Arena controller: no — local_codex_1 holds it; I perform no platform mutations
