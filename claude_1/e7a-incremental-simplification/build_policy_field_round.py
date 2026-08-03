@@ -126,6 +126,45 @@ ROUNDS = {
             "initializer; the opening_options parameter and locals are untouched"
         ),
     },
+    22: {
+        "field": "YamoOpeningPolicy record",
+        "ops": [
+            (
+                "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoOpeningPolicy{}"
+                "impl YamoOpeningPolicy{pub const TUNED_CARRY:Self=Self{};}",
+                "",
+                1,
+            ),
+            ("opening_policy:YamoOpeningPolicy,", "", 1),
+            ("opening_policy:YamoOpeningPolicy::TUNED_CARRY,", "", 1),
+            (
+                "fn choose_second_troll(view:&GameState,policy:YamoOpeningPolicy)->",
+                "fn choose_second_troll(view:&GameState)->",
+                1,
+            ),
+            (
+                "fn strongest_affordable(view:&GameState,policy:YamoOpeningPolicy,)->",
+                "fn strongest_affordable(view:&GameState)->",
+                1,
+            ),
+            (
+                "Self::choose_second_troll(view,self.opening_policy)",
+                "Self::choose_second_troll(view)",
+                1,
+            ),
+            (
+                "Self::strongest_affordable(view,self.opening_policy)",
+                "Self::strongest_affordable(view)",
+                1,
+            ),
+        ],
+        "residue": ["YamoOpeningPolicy", "opening_policy", "policy"],
+        "logical_change": (
+            "delete the empty zero-sized YamoOpeningPolicy record, its TUNED_CARRY "
+            "const, the opening_policy field and initializer, and the two never-read "
+            "policy parameters with their call-site arguments"
+        ),
+    },
 }
 
 
