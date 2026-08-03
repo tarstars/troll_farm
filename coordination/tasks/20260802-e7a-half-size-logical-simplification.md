@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T00:10:33Z
+- Last updated UTC: 2026-08-03T00:15:16Z
 
 ## Outcome
 
@@ -157,3 +157,11 @@ lower +1.8178, catastrophes 19 -> 11, negative mass 4,138 -> 3,695, six/six posi
 families, both seats positive, worker-two coverage 100% with delay 0, and period-2 >=6
 115 -> 0. Candidate and evaluator hashes are locked. Fresh seeds 9,854,043--9,854,085
 were unopened before the lock and are now reserved for transfer validation. No Arena action.
+
+## Progress 2026-08-03T00:15:16Z
+
+The locked exact source is terminally rejected on the reserved 516-task fresh block. Mean
+remains +3.3043 and period-2 >=6 remains zero, but bootstrap lower is -6.3450 and negative
+mass increases 4,385 -> 4,891. Roots 9,854,062 and 9,854,065 account for +643 negative mass,
+but regressions span multiple families. No Arena action and no tuning on the fresh block; a
+new logical successor and newly reserved untouched range are required.
