@@ -1686,3 +1686,6 @@ activate. The owner was surfaced the measured mature-leg cost and selected the A
 | 2026-08-03T15:21:07Z | 74-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 22.49, rank 38/137, 74 finished plus one pending, four catastrophes (5.4%), negative mass 1,561, zero runtime signals, identity clean. |
 | 2026-08-03T15:26:32Z | Lightweight queue identity/count poll | Exact agent/submission match reached 94 finished and one pending before the full checkpoint. |
 | 2026-08-03T15:26:32Z | 96-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 22.85, rank 37/137, 96 finished plus one pending, seven catastrophes (7.3%), negative mass 2,426, zero runtime signals, identity clean. |
+| 2026-08-03T15:31:35Z | Lightweight queue identity/count poll | Exact agent/submission match: 113 finished, one pending. |
+| 2026-08-03T15:33:58Z | Lightweight queue identity/count poll | Exact agent/submission match reached 123 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:33:58Z | 125-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 23.26, rank 34/137, 125 finished plus one pending, ten catastrophes (8.0%), negative mass 3,281, zero runtime signals, identity clean. |
