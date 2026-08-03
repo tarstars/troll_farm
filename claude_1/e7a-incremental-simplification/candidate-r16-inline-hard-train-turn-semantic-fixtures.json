@@ -1,0 +1,100 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "candidate": {
+    "bytes": 57379,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r16-inline-hard-train-turn.rs",
+    "sha256": "782b91d24d240721bddffdef404d396757b9871fdbc14d4112f3e845b48f35e8"
+  },
+  "exact_fixture_parity": true,
+  "fixture_count": 10,
+  "fixtures": {
+    "banking_commitment": {
+      "commands": [
+        [
+          "MOVE 0 4 0"
+        ],
+        [
+          "MOVE 0 2 0"
+        ],
+        [
+          "DROP 0"
+        ]
+      ],
+      "door": [
+        1,
+        0
+      ]
+    },
+    "endgame_deadline": {
+      "turn_295": [
+        "PICK 0 BANANA"
+      ],
+      "turn_296": [
+        "WAIT"
+      ]
+    },
+    "focus": [
+      {
+        "expected": "PLUM",
+        "fixture": "near_tie_below",
+        "observed": "PLUM"
+      },
+      {
+        "expected": "PLUM",
+        "fixture": "near_tie_boundary",
+        "observed": "PLUM"
+      },
+      {
+        "expected": "LEMON",
+        "fixture": "lemon_clear",
+        "observed": "LEMON"
+      },
+      {
+        "expected": "PLUM",
+        "fixture": "parent_plum",
+        "observed": "PLUM"
+      }
+    ],
+    "landing_conflict": {
+      "commands": [
+        "WAIT",
+        "MOVE 1 1 1"
+      ],
+      "landings": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "same_target": {
+      "active_workers": 1,
+      "commands": [
+        "WAIT",
+        "MOVE 1 5 0"
+      ]
+    },
+    "training_bill": {
+      "trained": "TRAIN 2 1 0 3",
+      "turn_one": [
+        "MOVE 0 2 0"
+      ],
+      "turn_two": [
+        "TRAIN 2 1 0 3",
+        "MOVE 0 2 0"
+      ]
+    },
+    "training_fallback": {
+      "command": "TRAIN 1 1 0 3",
+      "repeated_unapplied_commands": 35,
+      "turn": 1
+    }
+  },
+  "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "schema": "troll-farm-e7a-single-logical-deletion-semantics-v1",
+  "verdict": "SEMANTIC_FIXTURES_EXACT_PASS"
+}
