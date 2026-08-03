@@ -1,0 +1,88 @@
+{
+  "schema": "troll-farm-e7a-half-size-consumed-trace-comparison-v1",
+  "evidence_boundary": "single-task traces on already-consumed seeds; diagnostic only and cannot qualify a source",
+  "driver": {
+    "path": "local_codex_1/e7a-half-size-logical-simplification/trace_consumed_task.py",
+    "sha256": "cc2baab3223f64e212778648884265f059421b045bcfb36ffed24a27d60cf55d"
+  },
+  "candidates": {
+    "strict": "3f8c37711a87da571e2504ca3a091ef00e33c1d7bd8768f9b0d9deea2b22cd85",
+    "five_step": "04052901b36905f67fd0c3274f4e0960daab0dc5af3eb4e0c25aa268f772ca9f",
+    "role": "323cd18747b9853bf3fce38550bf2f8e7ce8ce6bb0e0f0b5b7e1b889651cf356",
+    "tree_edge": "acbada47b9a3cf279ff5356a32e2965eb44cbb5ccc8d7b7e8c6f5dda3f92e847"
+  },
+  "tasks": [
+    {
+      "seed": 9865036,
+      "seat": 0,
+      "opponent": "legend_balanced",
+      "strict_margin": 117,
+      "alternative": "five_step",
+      "alternative_margin": -96,
+      "tree_edge_margin": 117,
+      "mechanism": "trained worker leaves a just-chopped tree",
+      "traces": {
+        "strict": {
+          "path": "persistent-target-reversal-map9865036-seat0-legend.trace.tsv",
+          "sha256": "c021307bd705f0eece6bbc2198890d09eacd7808af0eb378ed903387de33258f"
+        },
+        "alternative": {
+          "path": "five-step-reversal-map9865036-seat0-legend.trace.tsv",
+          "sha256": "a69343c13a7249f95a7f7c30d1fd0d06661b016cab4397069dbb431c0fe333b4"
+        },
+        "tree_edge": {
+          "path": "tree-edge-reversal-map9865036-seat0-legend.trace.tsv",
+          "sha256": "381c698acb16e226ab39b39046a07bd970a6de6cd828d0d521fdc80ffaebf868"
+        }
+      }
+    },
+    {
+      "seed": 9865038,
+      "seat": 0,
+      "opponent": "legend_balanced",
+      "strict_margin": 32,
+      "alternative": "role",
+      "alternative_margin": -69,
+      "tree_edge_margin": 32,
+      "mechanism": "starter returns onto a damaged tree",
+      "traces": {
+        "strict": {
+          "path": "persistent-target-reversal-map9865038-seat0-legend-plants.trace.tsv",
+          "sha256": "91ff65e89e493dd809967c4131379deab95b58e09da85d9d718a5595d2455c53"
+        },
+        "alternative": {
+          "path": "role-reversal-map9865038-seat0-legend.trace.tsv",
+          "sha256": "a86e4f6a7348b874ef677ea63a51183688ffee124dfee9f21b0c4d42f2a377e7"
+        },
+        "tree_edge": {
+          "path": "tree-edge-reversal-map9865038-seat0-legend.trace.tsv",
+          "sha256": "91ff65e89e493dd809967c4131379deab95b58e09da85d9d718a5595d2455c53"
+        }
+      }
+    },
+    {
+      "seed": 9865021,
+      "seat": 1,
+      "opponent": "resident",
+      "strict_margin": -4,
+      "alternative": "five_step",
+      "alternative_margin": 16,
+      "tree_edge_margin": 16,
+      "mechanism": "empty route correction with no tree at either endpoint",
+      "traces": {
+        "strict": {
+          "path": "persistent-target-reversal-map9865021-seat1-resident-plants.trace.tsv",
+          "sha256": "c6039b51666544159c4f576ad0a4ba431fc96db9c366f16a20bf8feb79633975"
+        },
+        "alternative": {
+          "path": "five-step-reversal-map9865021-seat1-resident.trace.tsv",
+          "sha256": "03a8db2fd1594b790b67621c799b9d2eddd893840862e81ab1ee52cc01aff9d3"
+        },
+        "tree_edge": {
+          "path": "tree-edge-reversal-map9865021-seat1-resident.trace.tsv",
+          "sha256": "c87975f1940389ea273196b93682946c74b2cc3a295911c37622e5759abe8cd5"
+        }
+      }
+    }
+  ]
+}

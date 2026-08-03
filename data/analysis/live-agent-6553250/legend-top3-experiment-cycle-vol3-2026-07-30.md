@@ -1481,3 +1481,45 @@ legend-balanced is -2.9884 and resident is -1.4419. The legend total (-257) is d
 -265 row, but row removal and threshold relaxation are forbidden; resident's -124 total spans 50
 negative rows. **Disposition: TERMINAL FRESH REJECTION / NO RERUN / NO ARENA ACTION.** The range
 is consumed. Exact evidence is in `e7a-half-size-no-backtrack-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — half-size family-transfer attribution and tree-edge successor
+
+Replay of the consumed 9,865,000--042 rows compared strict, five-step, opponent-workforce,
+own-roster, and worker-role reversal guards. Exact single-task traces falsified opponent
+workforce as the discriminator. The two largest legend regressions reversed onto or away from
+a tree, while a resident improvement was an empty-route correction with no tree at either
+endpoint.
+
+A distinct 31,407-byte source, SHA `acbada47...`, stops the second consecutive reversal when
+the current or landing cell is a tree and otherwise caps the episode below six MOVE decisions.
+It removes unreachable zero-chop and selector-cardinality branches and specializes its internal
+MOVE parser to commands it generates; no renaming or minification is used. Optimized compile,
+ten semantic fixtures, and all 25 exact live counterexamples pass with maximum period-2 five.
+
+On the consumed transfer rows the exact source passes all thirteen gates: +4.6783 mean / -0.2926
+lower, catastrophes 14 -> 8, negative mass 3,908 -> 3,422, five/six nonnegative families, both
+seats positive, worker-two delay zero, and no period-2 episode >=6. **Disposition: CONSUMED
+DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION.** These rows cannot qualify the
+source. Exact evidence is in
+`e7a-half-size-tree-edge-reversal-attribution-2026-08-03.md`.
+
+## 2026-08-03 — half-size family-transfer attribution and tree-edge successor
+
+Replay of the consumed 9,865,000--042 rows compared strict, five-step, opponent-workforce,
+own-roster, and worker-role reversal guards. Exact single-task traces falsified opponent
+workforce as the discriminator. The two largest legend regressions reversed onto or away from
+a tree, while a resident improvement was an empty-route correction with no tree at either
+endpoint.
+
+A distinct 31,407-byte source, SHA `acbada47...`, stops the second consecutive reversal when
+the current or landing cell is a tree and otherwise caps the episode below six MOVE decisions.
+It removes unreachable zero-chop and selector-cardinality branches and specializes its internal
+MOVE parser to commands it generates; no renaming or minification is used. Optimized compile,
+ten semantic fixtures, and all 25 exact live counterexamples pass with maximum period-2 five.
+
+On the consumed transfer rows the exact source passes all thirteen gates: +4.6783 mean / -0.2926
+lower, catastrophes 14 -> 8, negative mass 3,908 -> 3,422, five/six nonnegative families, both
+seats positive, worker-two delay zero, and no period-2 episode >=6. **Disposition: CONSUMED
+DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION.** These rows cannot qualify the
+source. Exact evidence is in
+`e7a-half-size-tree-edge-reversal-attribution-2026-08-03.md`.

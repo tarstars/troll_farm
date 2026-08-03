@@ -2995,6 +2995,721 @@ def focused_yamo_bank_convoy_no_backtrack(
     return result, manifest
 
 
+def focused_yamo_bank_convoy_wood_no_backtrack(
+    source: str,
+) -> tuple[str, dict]:
+    """Suppress immediate backtracks only for wood carriers committed to banking."""
+
+    result, manifest = focused_yamo_bank_convoy_no_backtrack(source)
+    old_guard = r"""                moves.retain(|(_, index, current, landing)| {
+                    if previous_cells[*index] == Some(*landing) && current != landing {
+"""
+    new_guard = r"""                moves.retain(|(id, index, current, landing)| {
+                    if view.units.iter().any(|unit| {
+                        unit.id == *id && unit.carry[WOOD] > 0
+                    }) && previous_cells[*index] == Some(*landing) && current != landing {
+"""
+    if result.count(old_guard) != 1:
+        raise ValueError("unexpected no-backtrack guard")
+    before = len(result.encode())
+    result = result.replace(old_guard, new_guard, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "generic immediate-backtrack guard",
+            "net_added_bytes": len(result.encode()) - before,
+            "logical_change": (
+                "limit suppression to a worker carrying wood and therefore already "
+                "committed to a bank route"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_WOOD_NO_BACKTRACK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation and suppress an immediate "
+                "landing backtrack only for wood carriers committed to banking"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_carrying_no_backtrack(
+    source: str,
+) -> tuple[str, dict]:
+    """Suppress immediate backtracks only while a worker carries a resource."""
+
+    result, manifest = focused_yamo_bank_convoy_wood_no_backtrack(source)
+    wood_condition = "unit.id == *id && unit.carry[WOOD] > 0"
+    carrying_condition = "unit.id == *id && unit.total_carried() > 0"
+    if result.count(wood_condition) != 1:
+        raise ValueError("unexpected wood-carrier backtrack condition")
+    before = len(result.encode())
+    result = result.replace(wood_condition, carrying_condition, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "wood-carrier backtrack condition",
+            "net_added_bytes": len(result.encode()) - before,
+            "logical_change": "cover every worker carrying a committed resource",
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_CARRYING_NO_BACKTRACK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation and suppress an immediate "
+                "landing backtrack only while a worker carries a resource"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_empty_or_wood_no_backtrack(
+    source: str,
+) -> tuple[str, dict]:
+    """Keep job-carrying reversals, but stop empty and wood banking backtracks."""
+
+    result, manifest = focused_yamo_bank_convoy_wood_no_backtrack(source)
+    wood_condition = "unit.id == *id && unit.carry[WOOD] > 0"
+    job_condition = (
+        "unit.id == *id && (unit.total_carried() == 0 || unit.carry[WOOD] > 0)"
+    )
+    if result.count(wood_condition) != 1:
+        raise ValueError("unexpected wood-carrier backtrack condition")
+    before = len(result.encode())
+    result = result.replace(wood_condition, job_condition, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "wood-carrier backtrack condition",
+            "net_added_bytes": len(result.encode()) - before,
+            "logical_change": (
+                "also cover empty workers while preserving reversals for fruit and "
+                "iron carrying jobs"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_EMPTY_OR_WOOD_NO_BACKTRACK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation and suppress immediate "
+                "backtracks for empty workers or wood carriers, while preserving "
+                "fruit and iron carrying job reversals"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_repeated_backtrack(
+    source: str,
+) -> tuple[str, dict]:
+    """Allow one reversal, then wait on a repeated immediate backtrack."""
+
+    result, manifest = focused_yamo_bank_convoy_no_backtrack(source)
+    replacements = {
+        "previous_cells: [Option<Cell>; 2],": (
+            "move_state: [Option<(Cell, bool)>; 2],"
+        ),
+        "previous_cells: [None; 2]": "move_state: [None; 2]",
+        (
+            "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+            "previous_cells: &[Option<Cell>; 2])"
+        ): (
+            "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+            "move_state: &mut [Option<(Cell, bool)>; 2])"
+        ),
+    }
+    for old, new in replacements.items():
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected repeated-backtrack marker: {old}")
+        result = result.replace(old, new, 1)
+
+    old_guard = r"""                moves.retain(|(_, index, current, landing)| {
+                    if previous_cells[*index] == Some(*landing) && current != landing {
+                        commands[*index] = "WAIT".to_string();
+                        false
+                    } else {
+                        true
+                    }
+                });
+"""
+    new_guard = r"""                moves.retain(|(_, index, current, landing)| {
+                    let (previous, repeated) = move_state[*index]
+                        .unwrap_or((*current, false));
+                    let reversal = previous == *landing && current != landing;
+                    move_state[*index] = Some((*current, reversal));
+                    if reversal && repeated {
+                        commands[*index] = "WAIT".to_string();
+                        false
+                    } else {
+                        true
+                    }
+                });
+"""
+    if result.count(old_guard) != 1:
+        raise ValueError("unexpected generic no-backtrack guard")
+    before = len(result.encode())
+    result = result.replace(old_guard, new_guard, 1)
+
+    old_call = r"""MoisanBot::resolve_move_conflicts(view, &mut selected, &self.previous_cells);
+                for (index, unit) in units.iter().enumerate() {
+                    self.previous_cells[index] = Some(unit.cell);
+                }"""
+    new_call = "MoisanBot::resolve_move_conflicts(view, &mut selected, &mut self.move_state);"
+    if result.count(old_call) != 1:
+        raise ValueError("unexpected no-backtrack resolver call and update")
+    result = result.replace(old_call, new_call, 1)
+
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "generic immediate-backtrack guard",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "allow one reversal and wait only when the immediately reversing "
+                "movement repeats"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_REPEATED_BACKTRACK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation, permit one job reversal, "
+                "and suppress only a repeated immediate landing backtrack"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_repeated_target_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Allow one A-B-A target reversal, then stop the repeated alternation."""
+
+    result, manifest = focused_yamo_bank_convoy_no_backtrack(source)
+    replacements = {
+        "previous_cells: [Option<Cell>; 2],": (
+            "move_state: [Option<(Cell, Cell, bool)>; 2],"
+        ),
+        "previous_cells: [None; 2]": "move_state: [None; 2]",
+        (
+            "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+            "previous_cells: &[Option<Cell>; 2])"
+        ): (
+            "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+            "move_state: &mut [Option<(Cell, Cell, bool)>; 2])"
+        ),
+    }
+    for old, new in replacements.items():
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected target-reversal marker: {old}")
+        result = result.replace(old, new, 1)
+
+    old_parse = "let (id, target) = Self::move_command(command)?;"
+    new_parse = r"""let Some((id, target)) = Self::move_command(command) else {
+                            move_state[index] = None;
+                            return None;
+                        };"""
+    if result.count(old_parse) != 1:
+        raise ValueError("unexpected MOVE parser in conflict resolver")
+    result = result.replace(old_parse, new_parse, 1)
+
+    old_guard = r"""                moves.retain(|(_, index, current, landing)| {
+                    if previous_cells[*index] == Some(*landing) && current != landing {
+                        commands[*index] = "WAIT".to_string();
+                        false
+                    } else {
+                        true
+                    }
+                });
+"""
+    new_guard = r"""                moves.retain(|(_, index, _, landing)| {
+                    let (two_back, previous, repeated) = move_state[*index]
+                        .unwrap_or((*landing, *landing, false));
+                    let reversal = two_back == *landing && previous != *landing;
+                    move_state[*index] = Some((previous, *landing, reversal));
+                    if reversal && repeated {
+                        commands[*index] = "WAIT".to_string();
+                        false
+                    } else {
+                        true
+                    }
+                });
+"""
+    if result.count(old_guard) != 1:
+        raise ValueError("unexpected generic no-backtrack guard")
+    before = len(result.encode())
+    result = result.replace(old_guard, new_guard, 1)
+
+    old_call = r"""MoisanBot::resolve_move_conflicts(view, &mut selected, &self.previous_cells);
+                for (index, unit) in units.iter().enumerate() {
+                    self.previous_cells[index] = Some(unit.cell);
+                }"""
+    new_call = "MoisanBot::resolve_move_conflicts(view, &mut selected, &mut self.move_state);"
+    if result.count(old_call) != 1:
+        raise ValueError("unexpected no-backtrack resolver call and update")
+    result = result.replace(old_call, new_call, 1)
+
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "generic immediate-backtrack guard",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "reset history on non-MOVE, allow one A-B-A landing-target reversal, "
+                "and wait only when that reversal repeats"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_REPEATED_TARGET_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation, allow one candidate target "
+                "reversal, and suppress only repeated A-B-A-B movement"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_persistent_target_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Retain target-reversal history across intervening non-MOVE jobs."""
+
+    result, manifest = focused_yamo_bank_convoy_repeated_target_reversal(source)
+    reset_parse = r"""let Some((id, target)) = Self::move_command(command) else {
+                            move_state[index] = None;
+                            return None;
+                        };"""
+    move_parse = "let (id, target) = Self::move_command(command)?;"
+    if result.count(reset_parse) != 1:
+        raise ValueError("unexpected non-MOVE history reset")
+    before = len(result.encode())
+    result = result.replace(reset_parse, move_parse, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "non-MOVE target-history reset",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "represent history over MOVE decisions, retaining evidence of a loop "
+                "across an intervening job action"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_PERSISTENT_TARGET_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation, allow one target reversal, "
+                "and suppress a repeated A-B loop over MOVE-decision history"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_five_step_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Permit a bounded five-MOVE A-B episode before breaking the loop."""
+
+    result, manifest = focused_yamo_bank_convoy_persistent_target_reversal(source)
+    replacements = {
+        "move_state: [Option<(Cell, Cell, bool)>; 2],": (
+            "move_state: [Option<(Cell, Cell, u8)>; 2],"
+        ),
+        "move_state: &mut [Option<(Cell, Cell, bool)>; 2])": (
+            "move_state: &mut [Option<(Cell, Cell, u8)>; 2])"
+        ),
+        ".unwrap_or((*landing, *landing, false));": (
+            ".unwrap_or((*landing, *landing, 0));"
+        ),
+    }
+    for old, new in replacements.items():
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected five-step reversal marker: {old}")
+        result = result.replace(old, new, 1)
+
+    old_guard = r"""                    let reversal = two_back == *landing && previous != *landing;
+                    move_state[*index] = Some((previous, *landing, reversal));
+                    if reversal && repeated {
+"""
+    new_guard = r"""                    let reversal = two_back == *landing && previous != *landing;
+                    let repeated=if reversal{repeated+1}else{0};
+                    move_state[*index] = Some((previous, *landing, repeated));
+                    if repeated>3 {
+"""
+    if result.count(old_guard) != 1:
+        raise ValueError("unexpected persistent target-reversal guard")
+    before = len(result.encode())
+    result = result.replace(old_guard, new_guard, 1)
+
+    chop_guard = "if unit.stats.chop_power<=0||unit.free_capacity()<=0{return out;}"
+    capacity_guard = "if unit.free_capacity()<=0{return out;}"
+    if result.count(chop_guard) != 1:
+        raise ValueError("unexpected chop-power guard")
+    result = result.replace(chop_guard, capacity_guard, 1)
+
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {
+                "marker": "persistent target-reversal threshold",
+                "net_added_bytes": len(result.encode()) - before,
+                "logical_change": (
+                    "allow three consecutive target reversals, then suppress the "
+                    "fourth so an A-B loop cannot reach six MOVE decisions"
+                ),
+            },
+            {
+                "marker": "unreachable zero-chop worker guard",
+                "logical_change": (
+                    "remove a branch unreachable for the starter and every worker "
+                    "profile constructed by this specialized controller"
+                ),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_FIVE_STEP_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation, permit a bounded five-MOVE "
+                "target-reversal episode, and remove the unreachable zero-chop branch"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_workforce_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Use the strict reversal bound only after the opponent scales past two."""
+
+    result, manifest = focused_yamo_bank_convoy_five_step_reversal(source)
+    old_threshold = "if repeated>3 {"
+    new_threshold = (
+        "if repeated>3||repeated>1&&view.units.iter()"
+        ".filter(|unit|unit.player==1).count()>2{"
+    )
+    if result.count(old_threshold) != 1:
+        raise ValueError("unexpected five-step reversal threshold")
+    before = len(result.encode())
+    result = result.replace(old_threshold, new_threshold, 1)
+
+    empty_selector = "if ids.is_empty(){return Vec::new();}"
+    two_worker_branch = "if ids.len()==2{"
+    branch_tail = (
+        "if let Some((a,b))=best_pair{return vec![a,b];}}"
+        "vec![\"WAIT\".to_string();2]"
+    )
+    direct_tail = (
+        "if let Some((a,b))=best_pair{return vec![a,b];}"
+        "vec![\"WAIT\".to_string();2]"
+    )
+    for marker in (empty_selector, two_worker_branch, branch_tail):
+        if result.count(marker) != 1:
+            raise ValueError(f"unexpected specialized selector marker: {marker}")
+    result = result.replace(empty_selector, "", 1)
+    result = result.replace(two_worker_branch, "", 1)
+    result = result.replace(branch_tail, direct_tail, 1)
+
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {
+                "marker": "opponent-workforce reversal threshold",
+                "net_added_bytes": len(result.encode()) - before,
+                "logical_change": (
+                    "break the loop after three MOVE decisions against a scaled "
+                    "opponent, but preserve the five-decision bound at roster two"
+                ),
+            },
+            {
+                "marker": "unreachable zero-worker and over-two-worker selector branches",
+                "logical_change": (
+                    "specialize the selector to the controller's invariant roster of "
+                    "one starter plus at most its single trained worker"
+                ),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_WORKFORCE_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "adapt the bounded reversal guard to observable opponent workforce "
+                "and specialize selection to the controller's one-or-two-worker roster"
+            ),
+            "evidence_boundary": (
+                "distinct liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_roster_phase_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Use the strict reversal bound during the single-worker opening."""
+
+    result, manifest = focused_yamo_bank_convoy_workforce_reversal(source)
+    opponent_workforce = (
+        "repeated>1&&view.units.iter().filter(|unit|unit.player==1).count()>2"
+    )
+    own_single_worker = (
+        "repeated>1&&view.units.iter().filter(|unit|unit.player==0).count()<2"
+    )
+    if result.count(opponent_workforce) != 1:
+        raise ValueError("unexpected opponent-workforce threshold")
+    before = len(result.encode())
+    result = result.replace(opponent_workforce, own_single_worker, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "roster-phase reversal threshold",
+            "net_added_bytes": len(result.encode()) - before,
+            "logical_change": (
+                "use the strict three-decision bound while the starter works alone, "
+                "then permit the five-decision bound after worker two materializes"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_ROSTER_PHASE_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "adapt the bounded reversal guard to the controller's own roster "
+                "phase and specialize selection to its one-or-two-worker invariant"
+            ),
+            "evidence_boundary": (
+                "distinct trace-derived liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_role_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Give the starter more routing flexibility than the trained chopper."""
+
+    result, manifest = focused_yamo_bank_convoy_workforce_reversal(source)
+    opponent_workforce = (
+        "repeated>1&&view.units.iter().filter(|unit|unit.player==1).count()>2"
+    )
+    trained_worker = "repeated>1&&*index>0"
+    if result.count(opponent_workforce) != 1:
+        raise ValueError("unexpected opponent-workforce threshold")
+    before = len(result.encode())
+    result = result.replace(opponent_workforce, trained_worker, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "worker-role reversal threshold",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "permit the starter's bounded five-decision route correction, but "
+                "stop the trained chopper after three alternating MOVE decisions"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_ROLE_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "use a smaller role-specific reversal bound and specialize selection "
+                "to the controller's one-or-two-worker invariant"
+            ),
+            "evidence_boundary": (
+                "distinct trace-derived liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_trained_only_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Guard only the trained chopper slot; leave the starter route unchanged."""
+
+    result, manifest = focused_yamo_bank_convoy_role_reversal(source)
+    bounded_roles = "repeated>3||repeated>1&&*index>0"
+    trained_only = "repeated>1&&*index>0"
+    if result.count(bounded_roles) != 1:
+        raise ValueError("unexpected role-specific threshold")
+    before = len(result.encode())
+    result = result.replace(bounded_roles, trained_only, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "starter reversal threshold",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "remove reversal suppression from the orchard starter while retaining "
+                "the strict three-decision bound for the trained chopper"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_TRAINED_ONLY_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain liveness state only where the specialized trained-worker role "
+                "needs it and remove the starter's guard branch"
+            ),
+            "evidence_boundary": (
+                "distinct trace-derived liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_starter_only_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Bound the orchard starter; leave the trained worker's job routing unchanged."""
+
+    result, manifest = focused_yamo_bank_convoy_role_reversal(source)
+    bounded_roles = "repeated>3||repeated>1&&*index>0"
+    starter_only = "repeated>3&&*index==0"
+    if result.count(bounded_roles) != 1:
+        raise ValueError("unexpected role-specific threshold")
+    before = len(result.encode())
+    result = result.replace(bounded_roles, starter_only, 1)
+    manifest["removed_or_replaced_items"].append(
+        {
+            "marker": "trained-worker reversal threshold",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "retain the five-decision liveness bound for the orchard starter, "
+                "but remove suppression from trained-worker job routing"
+            ),
+        }
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_STARTER_ONLY_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain liveness suppression only for the orchard starter and remove "
+                "the trained-worker guard branch"
+            ),
+            "evidence_boundary": (
+                "distinct trace-derived liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_tree_edge_reversal(
+    source: str,
+) -> tuple[str, dict]:
+    """Break tree-edge bounces early while allowing bounded open-route corrections."""
+
+    result, manifest = focused_yamo_bank_convoy_role_reversal(source)
+    ignored_current = "moves.retain(|(_, index, _, landing)| {"
+    observed_current = "moves.retain(|(_, index, current, landing)| {"
+    role_threshold = "repeated>1&&*index>0"
+    tree_edge_threshold = (
+        "repeated>1&&(view.plant_at(*current).is_some()"
+        "||view.plant_at(*landing).is_some())"
+    )
+    case_insensitive_move = '!fields[0].eq_ignore_ascii_case("MOVE")'
+    internal_move = 'fields[0]!="MOVE"'
+    for marker in (ignored_current, role_threshold, case_insensitive_move):
+        if result.count(marker) != 1:
+            raise ValueError(f"unexpected tree-edge marker: {marker}")
+    before = len(result.encode())
+    result = result.replace(ignored_current, observed_current, 1)
+    result = result.replace(role_threshold, tree_edge_threshold, 1)
+    result = result.replace(case_insensitive_move, internal_move, 1)
+    manifest["removed_or_replaced_items"].extend(
+        [
+            {
+                "marker": "tree-edge reversal threshold",
+                "net_added_bytes": len(result.encode()) - before,
+                "logical_change": (
+                    "stop the second consecutive reversal when either endpoint is a "
+                    "tree; otherwise retain the five-decision liveness bound"
+                ),
+            },
+            {
+                "marker": "case-insensitive internal MOVE parser",
+                "logical_change": (
+                    "specialize parsing to uppercase commands emitted by this "
+                    "controller's own candidate generators"
+                ),
+            },
+        ]
+    )
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_TREE_EDGE_REVERSAL",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "use an observable tree-edge reversal bound, retain a bounded open-route "
+                "correction, and specialize selection to the one-or-two-worker invariant"
+            ),
+            "evidence_boundary": (
+                "distinct trace-derived liveness/value successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
 def focused_yamo_bank_convoy_period2_simple_clock(
     source: str,
 ) -> tuple[str, dict]:
@@ -3758,6 +4473,19 @@ def main() -> int:
             "focused-yamo-bank-convoy-period2-coordination-d1",
             "focused-yamo-bank-convoy-period2-coordination-d2",
             "focused-yamo-bank-convoy-no-backtrack",
+            "focused-yamo-bank-convoy-wood-no-backtrack",
+            "focused-yamo-bank-convoy-carrying-no-backtrack",
+            "focused-yamo-bank-convoy-empty-or-wood-no-backtrack",
+            "focused-yamo-bank-convoy-repeated-backtrack",
+            "focused-yamo-bank-convoy-repeated-target-reversal",
+            "focused-yamo-bank-convoy-persistent-target-reversal",
+            "focused-yamo-bank-convoy-five-step-reversal",
+            "focused-yamo-bank-convoy-workforce-reversal",
+            "focused-yamo-bank-convoy-roster-phase-reversal",
+            "focused-yamo-bank-convoy-role-reversal",
+            "focused-yamo-bank-convoy-trained-only-reversal",
+            "focused-yamo-bank-convoy-starter-only-reversal",
+            "focused-yamo-bank-convoy-tree-edge-reversal",
             "focused-yamo-bank-convoy-period2-simple-clock",
             "focused-yamo-bank-convoy-safe-orchard",
             "focused-yamo-bank-convoy-door-harvest",
@@ -3818,6 +4546,45 @@ def main() -> int:
         ),
         "focused-yamo-bank-convoy-no-backtrack": (
             focused_yamo_bank_convoy_no_backtrack
+        ),
+        "focused-yamo-bank-convoy-wood-no-backtrack": (
+            focused_yamo_bank_convoy_wood_no_backtrack
+        ),
+        "focused-yamo-bank-convoy-carrying-no-backtrack": (
+            focused_yamo_bank_convoy_carrying_no_backtrack
+        ),
+        "focused-yamo-bank-convoy-empty-or-wood-no-backtrack": (
+            focused_yamo_bank_convoy_empty_or_wood_no_backtrack
+        ),
+        "focused-yamo-bank-convoy-repeated-backtrack": (
+            focused_yamo_bank_convoy_repeated_backtrack
+        ),
+        "focused-yamo-bank-convoy-repeated-target-reversal": (
+            focused_yamo_bank_convoy_repeated_target_reversal
+        ),
+        "focused-yamo-bank-convoy-persistent-target-reversal": (
+            focused_yamo_bank_convoy_persistent_target_reversal
+        ),
+        "focused-yamo-bank-convoy-five-step-reversal": (
+            focused_yamo_bank_convoy_five_step_reversal
+        ),
+        "focused-yamo-bank-convoy-workforce-reversal": (
+            focused_yamo_bank_convoy_workforce_reversal
+        ),
+        "focused-yamo-bank-convoy-roster-phase-reversal": (
+            focused_yamo_bank_convoy_roster_phase_reversal
+        ),
+        "focused-yamo-bank-convoy-role-reversal": (
+            focused_yamo_bank_convoy_role_reversal
+        ),
+        "focused-yamo-bank-convoy-trained-only-reversal": (
+            focused_yamo_bank_convoy_trained_only_reversal
+        ),
+        "focused-yamo-bank-convoy-starter-only-reversal": (
+            focused_yamo_bank_convoy_starter_only_reversal
+        ),
+        "focused-yamo-bank-convoy-tree-edge-reversal": (
+            focused_yamo_bank_convoy_tree_edge_reversal
         ),
         "focused-yamo-bank-convoy-period2-simple-clock": (
             focused_yamo_bank_convoy_period2_simple_clock

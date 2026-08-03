@@ -273,3 +273,19 @@ resident is -1.4419; the other four families are positive.
 The range is consumed. There will be no rerun, row exclusion, threshold relaxation, or Arena
 action. Diagnostic attribution can compare distinct logic on the preserved rows, but another
 qualification attempt requires a distinct source and a new untouched lock.
+
+## Progress 2026-08-03T03:53:51Z
+
+Trace comparison rejected opponent-workforce, own-roster, and fixed-role thresholds. The two
+largest legend losses were reversals onto or away from a tree, while a resident gain was an open
+empty-route correction. A distinct tree-edge source now stops the second consecutive reversal
+when either endpoint is a tree and otherwise bounds the episode below six MOVE decisions.
+
+The exact source is 31,407 bytes, three below the ceiling, SHA-256 `acbada47...`; no renaming or
+minification is used. Optimized compile, ten semantic fixtures, and the exact 25-game live packet
+pass with maximum period-2 five. On the consumed 9,865,000--042 attribution panel all gates pass:
++4.6783 mean / -0.2926 lower, catastrophes 14 -> 8, negative mass 3,908 -> 3,422, five/six
+nonnegative families, both seats positive, worker-two delay zero, and period-2 >=6 at zero.
+
+This is diagnostic evidence only. The ordinary consumed development panel and motion packet are
+pending; afterward a new collision-audited untouched lock is required. No Arena action.

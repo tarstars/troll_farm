@@ -1,31 +1,27 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T03:00:05Z
-- State: 31,248-byte successor terminally fresh-rejected; no Arena action
+- Updated UTC: 2026-08-03T03:53:51Z
+- State: 31,407-byte tree-edge successor passes consumed attribution; development pending
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260802-e7a-half-size-logical-simplification`
 - Branch: `agent/local_codex_1`
-- Best size-qualified arm: bank-convoy no-backtrack, 31,248 bytes, SHA-256
-  `a767e362...`; consumed development +9.141/lower +3.859 and exact 25-game liveness pass
+- Best current arm: tree-edge reversal, 31,407 bytes, SHA-256 `acbada47...`; exact live
+  packet passes and consumed transfer attribution is +4.678/lower -0.293 with all gates green
 - Write set: versioned half-size source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T03:00:05Z
-- Running job: publish terminal result, then attribute the two negative family sectors
+- Last concrete progress UTC: 2026-08-03T03:53:51Z
+- Running job: publish tree-edge checkpoint, then run exact consumed development panel
 - Live identity: E7a sector `6590141`/`41081503`; 160/160 finished; latest exact read rank 11
-- Next checkpoint: distinct logical successor restores family transfer under ceiling
+- Next checkpoint: exact motion and 9,854,000--042 consumed development gates
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Half-size boundary: no Arena action until the frozen 512-task open-panel and liveness gates pass
-- Blockers: none; 9,865,000--042 is consumed and cannot qualify another source
+- Blockers: none; 9,865,000--042 is diagnostic-only and cannot qualify this source
 - Arena controller: yes; sector replacement terminal; no mutation cycle in flight
 
 ## Latest evidence
 
-The previous 31,405-byte transfer failure is attributed to an unconditional funded-shack
-evacuation collapse. The new 31,248-byte source retains the original condition and holds the
-consumed transfer panel at 26 catastrophes while improving mean +10.260 and lower bound +2.612.
-It passes all consumed development, semantic, motion, latency, training, and live-liveness gates.
-No untouched qualification or Arena action has occurred.
-
-The exact locked 9,865,000--9,865,042 run is terminally rejected only by family transfer:
-legend-balanced -2.988 and resident -1.442, while four families and both seats are positive.
-Overall mean is +3.917, lower bound -1.182, catastrophes improve 14 -> 8, and negative mass
-improves 3,908 -> 3,549. No rerun, threshold change, or Arena action is allowed.
+The 31,248-byte no-backtrack source remains terminally rejected on its untouched range. Exact
+trace attribution now replaces its global guard with a tree-edge state distinction. The new
+31,407-byte source is a 50.004776% logical reduction and passes all 25 live counterexamples.
+On preserved 9,865,000--042 rows it passes every analytic gate at +4.678 mean / -0.293 lower,
+catastrophes 14 -> 8, negative mass 3,908 -> 3,422, and five/six nonnegative families. Those
+rows are consumed and diagnostic only; development and a newly locked untouched run remain.
