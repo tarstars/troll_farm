@@ -1,6 +1,6 @@
 # 20260803-e7a-single-logical-deletion: remove one unreachable live block safely
 
-- Status: in_progress
+- Status: complete_qualified_not_deployed
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: pending
@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-03T05:03:59Z
-- Last updated UTC: 2026-08-03T05:22:27Z
+- Last updated UTC: 2026-08-03T05:34:00Z
 
 ## Outcome
 
@@ -87,3 +87,16 @@ preflight passes without map generation. Candidate, range, runner transformation
 development/live/semantic evidence, hashes, gates, and the one-shot command are frozen in
 `candidate-e7a-remove-generic-selector-fresh-lock.json`. The range remains unopened until this
 lock is committed, pushed, and remotely verified. No Arena action.
+
+## Final result 2026-08-03T05:34:00Z
+
+Commit `3857f309` and all lock inputs were remotely verified byte-exact before the one-shot command
+ran. The untouched range produced 516 paired tasks across 43 maps, both seats, and six families.
+Every terminal field is exact: zero differing tasks, mean/lower 0.0, catastrophes 30 -> 30,
+negative mass 6,084 -> 6,084, and identical training and liveness metrics. Latency passes at a
+1.0260 p95 ratio and 8.215 ms candidate maximum.
+
+**Disposition: UNTOUCHED EXACT-EQUALITY PASS / TASK COMPLETE / QUALIFIED BUT NOT DEPLOYED.**
+The expected score gain is exactly zero, so publishing would only reset the mature rank-11 bot;
+the standing no-churn rule keeps Arena unchanged. Full evidence is in
+`data/analysis/live-agent-6553250/e7a-single-logical-deletion-fresh-result-2026-08-03.md`.

@@ -1618,3 +1618,18 @@ bootstrap samples, and exact equality across every terminal field. Compile-only 
 without map generation. Candidate, range, evaluator, runner, evidence hashes, gates, and one-shot
 command are frozen in `candidate-e7a-remove-generic-selector-fresh-lock.json`. **Disposition:
 LOCKED LOCALLY / UNOPENED / REMOTE PUBLICATION REQUIRED / NO ARENA ACTION.**
+
+## 2026-08-03 — single-deletion untouched exact-equality qualification
+
+The lock was committed, pushed, and remotely verified at `3857f309` before the frozen one-shot
+command ran. Seeds 9,867,000--042 produced 516 paired tasks over 43 maps, both seats, and six
+families. All terminal fields match: zero differing tasks, mean/lower 0.0, catastrophes 30 -> 30,
+negative mass 6,084 -> 6,084, all family and seat deltas zero, identical training and liveness,
+and no critical or unclassified issues. Latency passes at p95 ratio 1.0260 and candidate maximum
+8.215 ms.
+
+The 62,278-byte source is therefore a fully qualified, 542-byte-smaller equivalent of live E7a.
+It has exactly zero measured and expected score gain, so publishing would only reset maturity.
+**Disposition: UNTOUCHED EXACT-EQUALITY PASS / TASK COMPLETE / QUALIFIED BUT NOT DEPLOYED / LIVE
+RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Exact evidence is in
+`e7a-single-logical-deletion-fresh-result-2026-08-03.md`.
