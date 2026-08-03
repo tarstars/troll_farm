@@ -1,6 +1,6 @@
 # 20260802-e7a-half-size-logical-simplification: halve live source without leaving top 15
 
-- Status: in_progress
+- Status: superseded_by_owner_rescope
 - Record owner: local_codex_1
 - Work owner: local_codex_1
 - Reviewer: pending
@@ -346,3 +346,10 @@ chronological approaches, current results, evidence boundary, and next work:
 `data/analysis/live-agent-6553250/e7a-half-size-last-eight-hours-report-2026-08-03.pdf`.
 Its SHA-256 is `c61b07b907d1044f71b8a468cae69feaffa68703d05178102a32bd8b7600e447`.
 No Arena action.
+
+## Progress 2026-08-03T05:03:59Z
+
+The owner softened the requirement from an exact 50% reduction to deleting one meaningful
+logical block. This task is superseded by `20260803-e7a-single-logical-deletion`; all prior
+half-size candidates and their fresh verdicts remain immutable evidence. The live bot is
+unchanged.

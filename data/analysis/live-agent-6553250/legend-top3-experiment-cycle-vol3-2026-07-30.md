@@ -1577,3 +1577,17 @@ The full work session is synthesized for a beginner in the seven-page PDF
 all test terminology, the chronological candidates, untouched one-shot validation, exact current
 status, and next work. **Disposition: JOINT GOAL INCOMPLETE / LIVE RANK-11 BOT UNCHANGED / NO
 ARENA ACTION.**
+
+## 2026-08-03 — owner-rescoped single logical deletion
+
+The owner softened the rigid half-size requirement to deleting one meaningful source block.
+The frozen successor protocol starts again from exact 62,820-byte live E7a and keeps behavior
+equality strict. Its first arm deletes the generic greedy selector for rosters above two friendly
+trolls while preserving the exact zero/one/two selector; the live policy's `can_train` hard cap
+makes the deleted path unreachable. Unexpected larger rosters fail safe to `WAIT`.
+
+The exact candidate is 62,278 bytes (542 bytes / 0.863% removed), SHA `ab093474...`, with no
+identifier renaming, minification, compression, or formatting reduction. Rebuild, optimized
+compile, empty input, baseline/sacred hashes, and all ten live-baseline semantic fixtures pass
+exactly. **Disposition: STATIC/SEMANTIC PASS / LIVE COMMAND PARITY AND DEVELOPMENT EQUALITY
+PENDING / NO ARENA ACTION.**
