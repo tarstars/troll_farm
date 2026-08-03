@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T02:06:05Z
+- Last updated UTC: 2026-08-03T02:13:08Z
 
 ## Outcome
 
@@ -205,3 +205,13 @@ families, both seats positive, worker-two coverage 100%, and zero long period-2 
 
 The exact source is development-qualified, not transfer-qualified. A new untouched range must
 be collision-audited and locked before one-shot execution. No Arena action.
+
+## Progress 2026-08-03T02:13:08Z
+
+Exact-token, task-tree, tracked-filename, Git-history, and verified external-root filename
+checks found no recorded collision for seeds 9,864,000--9,864,042. The dedicated evaluator
+hard-codes 43 maps, eight threads, 50,000 bootstrap samples, both seats, and the six frozen
+families; it exposes only output paths and refuses pre-existing outputs. Compile-only preflight
+passes with generated runner SHA-256 `1dee8d70...` and no map generation. Candidate, range,
+evaluator, generated runner, shared analyzer, library, evidence hashes, gates, and exact command
+are frozen in the new lock. The range remains unopened until the lock commit is pushed.
