@@ -1,6 +1,6 @@
 # 20260803-e7a-claude-incremental-simplification: continue exact bot reduction
 
-- Status: round14_live_and_offline_exact_pass; credential-free gate ready for publication
+- Status: round14 accepted; round15 credential-free parity delegated to claude_1
 - Priority: direct owner assignment; supersedes Claude's queued, unreleased work
 - Record owner: local_codex_1
 - Work owner: claude_1
@@ -12,7 +12,7 @@
 - Progress lease: begins when Claude publishes its acknowledgement; 15 minutes between concrete
   evidence or phase markers
 - Created UTC: 2026-08-03T07:33:14Z
-- Last updated UTC: 2026-08-03T09:55:13Z
+- Last updated UTC: 2026-08-03T09:57:22Z
 
 ## Objective
 
@@ -64,10 +64,11 @@ the existing protocol or locks, shared coordination records, or the sacred sourc
    fixtures. Any difference rejects the round.
 7. Publish one candidate, manifest, builder, contract, static/semantic evidence, and a host-run
    request containing exact paths, hashes, and command. At most one host request may be open.
-8. `local_codex_1` runs the host-only 25-game / 7,234-line live command comparison. Claude must
-   not treat the round as accepted or start the next candidate until a pushed exact-pass message
-   is visible.
-9. Development and untouched panels occur only at an integrator-selected accumulated checkpoint.
+8. Round 14's 25-game / 7,234-line live command comparison was run by `local_codex_1`. From
+   round 15 onward, Claude runs the published credential-free packet comparison locally, commits
+   the exact-pass JSON in its namespace, and stops immediately on any difference or failed gate.
+9. Development and untouched panels occur only at an integrator-selected accumulated checkpoint;
+   the integrator may also spot-check the online replay route at those checkpoints.
    Claude must not reserve or open map ranges.
 
 ## Initial deliverable
@@ -87,8 +88,8 @@ identifier or expression shortening.
 - Never format across `rust/src/bin/`, `cgauto/`, or any locked candidate.
 - Do not touch `data/raw/games/` or the 05:17 collection cron.
 - No Arena submission or other platform mutation.
-- Claude has no host replay-cache dependency for source work; host-only replay execution is an
-  explicit integrator handoff, not a blocker.
+- Claude has no host replay-cache or platform-credential dependency: the frozen offline packet is
+  the per-round live-command equality gate.
 
 ## Completion / stop
 
@@ -133,5 +134,6 @@ The credential-free evaluator imports no Arena client and performs no network ca
 it reproduces the online result exactly: 25 games, 7,234 turns, zero different games, maximum
 period-2 episode 128, and `LIVE_COMMAND_PARITY_PASS`. Its result SHA-256 is `56c30255...`.
 
-Round 15 remains blocked only until these artifacts are pushed and a policy message with the exact
-Claude-side command is published.
+The packet and evaluator were pushed and remotely hash-verified in commit
+`9caa06dc024c278ade577bed40c7a9a705b0cdcd`. Round 15 is authorized by the accompanying policy
+message; the exact-equality and immediate-stop rules remain unchanged.
