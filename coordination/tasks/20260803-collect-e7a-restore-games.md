@@ -1,10 +1,10 @@
 # 20260803-collect-e7a-restore-games: collect active restore replays
 
-- Status: complete — 162 games collected, sanitized LFS corpus published locally
+- Status: complete — 162 games collected; sanitized LFS corpus remotely verified
 - Priority: direct owner assignment
 - Owner / worker: local_codex_1
 - Created UTC: 2026-08-03T17:57:31Z
-- Last updated UTC: 2026-08-03T18:07:22Z
+- Last updated UTC: 2026-08-03T18:12:32Z
 - Agent / submission: `6592131` / `41086057`
 
 ## Objective
@@ -45,3 +45,8 @@ cron, bot source, and Arena state were not otherwise changed.
 The submission registry now includes the complete restore row: exact E7a has two mature runs,
 median 24.41, worst 23.56, best 25.26. Report:
 `data/analysis/live-agent-6553250/e7a-restore-games-collection-2026-08-03.md`.
+
+Remote payload commit `90e8890e` pushed once with `Uploading LFS objects: 100% (1/1), 5.8 MB`.
+A fresh standalone clone with smudge disabled first materialized the exact LFS pointer, then a
+selective pull reproduced payload SHA `f9567974...` and 5,812,614 bytes. The remote branch and
+local head both resolve to `90e8890e21237a9be9fe11c94c658be4d2c60beb` at this checkpoint.

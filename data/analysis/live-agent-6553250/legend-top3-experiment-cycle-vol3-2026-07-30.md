@@ -1729,3 +1729,7 @@ as a 5,812,614-byte sanitized JSONL-gzip Git LFS object at
 placeholders; user IDs, avatars, public handles, and session handles are absent. The manifest pins
 all 162 game IDs and source/export hashes. Exact E7a now has two mature registry runs: median 24.41,
 worst 23.56, best 25.26. No Arena or cron mutation occurred.
+
+Payload commit `90e8890e` uploaded exactly one 5.8 MB LFS object. A fresh smudge-disabled clone
+observed the pointer and selectively downloaded exact SHA `f9567974...` at 5,812,614 bytes;
+remote publication is therefore verified, not merely inferred from the push response.

@@ -61,3 +61,11 @@ exported replay rows and battle-index rows passed with no forbidden key.
 
 The deterministic exporter and its regression test are `cgauto/export_agent_replays.py` and
 `tests/test_export_agent_replays.py`.
+
+## Remote verification
+
+Commit `90e8890e` uploaded one LFS object at 5.8 MB and was accepted by the remote branch. A fresh
+standalone clone with automatic LFS smudging disabled showed the expected three-line pointer. A
+selective pull then materialized 5,812,614 bytes at exact SHA-256
+`f9567974865fc4c940f6aa4f214758a3cb4e1b9467605dbdb236c8921fffcc23`. Local and remote commit
+IDs matched exactly before this compact verification addendum.
