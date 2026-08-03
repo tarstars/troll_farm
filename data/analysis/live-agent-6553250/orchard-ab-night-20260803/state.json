@@ -1,26 +1,11 @@
 {
+  "current_agent_id": 6592330,
   "current_leg": 1,
-  "current_submission_id": 41086801,
-  "current_variant": "orchard-restore-after-failure",
-  "error": "RuntimeError: platform source recovery did not reach the expected hash",
-  "failure_restore": {
-    "accepted": true,
-    "ambiguous": false,
-    "attempted_at_utc": "2026-08-03T19:12:32Z",
-    "endpoint": "TestSession/submit",
-    "http_status": 200,
-    "mutation_calls": 1,
-    "phase": "submit",
-    "reason": "safe orchard restore after non-ambiguous cycle failure",
-    "response": "41086809",
-    "source": "/home/tarstars/prj/troll_farm-local_codex_1/cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
-    "source_bytes": 62820,
-    "source_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
-    "submission_id": 41086809
-  },
+  "current_submission_id": 41086822,
+  "current_variant": "no-orchard",
   "legs": [],
   "maturity_seconds_per_leg": 3600,
-  "phase": "failed",
+  "phase": "maturity-wait",
   "schema": "orchard-ab-night-cycle-v1",
   "sequence": [
     "no-orchard",
@@ -32,8 +17,8 @@
     "no-orchard",
     "orchard"
   ],
-  "started_at_utc": "2026-08-03T19:11:26Z",
-  "status": "failed",
+  "started_at_utc": "2026-08-03T19:16:14Z",
+  "status": "running",
   "task_id": "20260803-orchard-ab-night-cycle",
-  "updated_at_utc": "2026-08-03T19:12:29Z"
+  "updated_at_utc": "2026-08-03T19:16:18Z"
 }
