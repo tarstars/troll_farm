@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 61713,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r2-remove-idle-gate.rs",
+    "removed_from_initial_62278": 565,
+    "removed_this_round": 403,
+    "sha256": "b89aacaf5c94249f0c4e55a3ba47b4de5253b791f62124a8b6cd3e43e0265388"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the require-idle-starter field, helper and activation gate after round 1 proves the only executable constructor fixes the policy to false",
+  "minification": false,
+  "parent": {
+    "bytes": 62116,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r1-inline-constructor.rs",
+    "sha256": "29f2cfd8a697502bd8239a1ba6b9f5e8cc89ef7c5189b3c732ec0e3cbb45d922"
+  },
+  "round": 2,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

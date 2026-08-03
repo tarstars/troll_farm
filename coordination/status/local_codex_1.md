@@ -1,17 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T05:34:00Z
-- State: single-deletion task complete; exact-qualified smaller source retained, Arena unchanged
+- Updated UTC: 2026-08-03T06:47:33Z
+- State: 13 deletion rounds development-exact; untouched range locked locally and unopened
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260803-e7a-single-logical-deletion`
+- Current task: `20260803-e7a-iterative-logical-deletion`
 - Branch: `agent/local_codex_1`
-- Best current arm: remove unreachable generic selector, 62,278 bytes, SHA-256
-  `ab093474...`; 542 bytes deleted, 7,234 live lines and 516 development tasks exact
+- Best current arm: iterative round 13, 57,677 bytes, SHA-256 `6b9fdc99...`; 5,143 bytes
+  below live E7a, 7,234 live lines and 516 development tasks exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T05:34:00Z
-- Running job: none
+- Last concrete progress UTC: 2026-08-03T06:47:33Z
+- Running job: publish and remotely verify the 9,868,000--042 lock, then run once
 - Live identity: E7a sector `6590141`/`41081503`; 160/160 finished; latest exact read rank 11
-- Next checkpoint: distinct logical successor or terminal attribution boundary
+- Next checkpoint: one-shot untouched exact-equality disposition
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: all equality gates pass; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
