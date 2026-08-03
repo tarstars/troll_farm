@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T02:13:08Z
+- Last updated UTC: 2026-08-03T02:18:23Z
 
 ## Outcome
 
@@ -215,3 +215,13 @@ families; it exposes only output paths and refuses pre-existing outputs. Compile
 passes with generated runner SHA-256 `1dee8d70...` and no map generation. Candidate, range,
 evaluator, generated runner, shared analyzer, library, evidence hashes, gates, and exact command
 are frozen in the new lock. The range remains unopened until the lock commit is pushed.
+
+## Progress 2026-08-03T02:18:23Z
+
+The exact locked command ran once over all 516 tasks and terminally rejects the 31,405-byte
+candidate. Mean +9.4574, bootstrap lower +1.7442, all six families and both seats positive,
+negative mass 6,149 -> 5,421, worker-two/liveness/latency/integrity gates all pass, but
+catastrophes increase 26 -> 27. Nine candidate-only catastrophe rows outweigh eight
+baseline-only rescues. The range is consumed; there will be no rerun, threshold relaxation, or
+Arena action. A next attempt requires categorical mechanism attribution, a distinct source,
+and a new untouched lock.
