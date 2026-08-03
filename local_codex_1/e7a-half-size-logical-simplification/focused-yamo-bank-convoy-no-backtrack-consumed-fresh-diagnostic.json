@@ -1,0 +1,136 @@
+{
+  "consumed_range": {
+    "end_inclusive": 9864042,
+    "qualification_allowed": false,
+    "start": 9864000
+  },
+  "diagnostic_driver_sha256": "634e2ec7ccc0cbc354ce6aecbab1cfb11522ba74402ca141c1d820a847d55f37",
+  "evidence_boundary": "diagnostic replay of consumed transfer maps; cannot qualify a source",
+  "gates": {
+    "bootstrap_lower_above_minus_2": true,
+    "both_seat_means_nonnegative": true,
+    "catastrophes_not_increased": true,
+    "coverage_at_least_512": true,
+    "five_of_six_family_means_nonnegative": true,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": true,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": true,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 31248,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-no-backtrack.rs",
+      "sha256": "a767e36228c872ad566b4347825f5282f95e50ae9f59fcf5a42b682989d85fea"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "d18bca53fac3560f19063c28ec5e94429eddedf9df658be40f63ec8e4e526585",
+      "evaluator_sha256": "cfffdf323ab2bb05a3fd9147b76f0bd8e0a77ab9bdc7e68fda43df17caa78a67",
+      "fresh_runner_sha256": "1dee8d70fce255ed0802afd40e1e5b516bcbea6501209e83a4d84b4837fac723",
+      "runner_template_sha256": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-no-backtrack-consumed-fresh-diagnostic.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": 2.6124031007751936,
+    "catastrophes": {
+      "baseline": 26,
+      "candidate": 26
+    },
+    "family_mean_delta": {
+      "compact_gold": 1.941860465116279,
+      "gold_adaptive": 16.453488372093023,
+      "legend_balanced": 9.895348837209303,
+      "mybot": 9.186046511627907,
+      "norx_native_three": 11.976744186046512,
+      "resident": 12.104651162790697
+    },
+    "issues": {
+      "baseline": 22030,
+      "candidate": 21621
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 16.923872,
+        "maximum_ns": 16923872,
+        "p95_ms": 0.417303,
+        "p95_ns": 417303,
+        "samples": 136267
+      },
+      "candidate": {
+        "maximum_ms": 1.110279,
+        "maximum_ns": 1110279,
+        "p95_ms": 0.353842,
+        "p95_ns": 353842,
+        "samples": 142155
+      },
+      "candidate_p95_ratio": 0.8479258476454758
+    },
+    "maximum_period2": {
+      "baseline": 115,
+      "candidate": 0
+    },
+    "mean_margin_delta": 10.25968992248062,
+    "mean_opponent_score": {
+      "baseline": 137.8701550387597,
+      "candidate": 141.06976744186048
+    },
+    "mean_score": {
+      "baseline": 206.88178294573643,
+      "candidate": 220.34108527131784
+    },
+    "negative_margin_mass": {
+      "baseline": 6149,
+      "candidate": 5374
+    },
+    "period2_ge6": {
+      "baseline": 105,
+      "candidate": 0
+    },
+    "seat_mean_delta": {
+      "0": 10.875968992248062,
+      "1": 9.643410852713178
+    },
+    "training": {
+      "baseline_games": 516,
+      "candidate_on_baseline_games": 516,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 50000,
+    "maps": 43,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9864000,
+    "tasks": 516
+  },
+  "run_stderr": "saved 516 paired tasks in 104.362s",
+  "schema": "troll-farm-e7a-half-size-consumed-fresh-diagnostic-v1",
+  "verdict": "QUALIFIED_OPEN_PANEL"
+}

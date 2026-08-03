@@ -225,3 +225,25 @@ catastrophes increase 26 -> 27. Nine candidate-only catastrophe rows outweigh ei
 baseline-only rescues. The range is consumed; there will be no rerun, threshold relaxation, or
 Arena action. A next attempt requires categorical mechanism attribution, a distinct source,
 and a new untouched lock.
+
+## Progress 2026-08-03T02:47:04Z
+
+Consumed-panel cumulative attribution isolates the extra catastrophe to the unconditional
+funded-shack evacuation simplification. The stock/helper deletion holds catastrophes at 26,
+while adding the evacuation collapse produces 27 and exactly reproduces the rejected 31,405-byte
+source before its final neutral deletions.
+
+A distinct successor is now 31,248 bytes (50.258% reduction), SHA-256 `a767e362...`. It retains
+the original funded-shack evacuation, removes neutral terminal predicates, and replaces the
+larger A-B-A history with a previous-observed-cell no-backtrack guard. Rebuild is byte-identical;
+optimized compile, empty input, ten semantic fixtures, and the sacred hash pass.
+
+The exact 25-game live counterexample packet passes with maximum period-2 run four and zero games
+at or above six. The 516-task consumed development panel passes at +9.1415 mean / +3.8585 lower,
+catastrophes 19 -> 14, negative mass 4,138 -> 3,871, six/six positive families, both seats
+positive, worker-two coverage 100%, and zero long period-2 runs. Diagnostic replay on the consumed
+transfer panel also closes the categorical failure: +10.2597 / +2.6124, catastrophes 26 -> 26,
+negative mass 6,149 -> 5,374.
+
+This is development evidence only. A new collision-audited untouched range and immutable lock are
+required before one-shot transfer validation. No Arena action.

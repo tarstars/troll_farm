@@ -2757,6 +2757,244 @@ def focused_yamo_bank_convoy_period2_lean_coordination(
     return result, manifest
 
 
+def focused_yamo_bank_convoy_period2_coordination_diagnostic(
+    source: str, steps: int
+) -> tuple[str, dict]:
+    """Apply the size-funding deletions cumulatively for consumed-panel attribution."""
+
+    if steps not in (1, 2):
+        raise ValueError("diagnostic steps must be 1 or 2")
+    result, manifest = focused_yamo_bank_convoy_spare_door_slot_period2(source)
+    changes = []
+
+    selector = item_text(result, "fn select(")
+    stock_guard = "||!Self::stock_compatible(a,b,inventory)"
+    if selector.count(stock_guard) != 1:
+        raise ValueError("unexpected simultaneous-PICK stock guard")
+    before = len(result.encode())
+    selector = selector.replace(stock_guard, "", 1)
+    result = _replace_item(result, "fn select(", selector)
+    changes.append(
+        {
+            "marker": "simultaneous-PICK stock guard",
+            "bytes": before - len(result.encode()),
+        }
+    )
+    for marker in ("fn picked_item(", "fn stock_compatible("):
+        item_before = len(result.encode())
+        result = _remove_item(result, marker)
+        changes.append({"marker": marker, "bytes": item_before - len(result.encode())})
+
+    if steps >= 2:
+        old_evacuation = r"""                    if train_now
+                        && unit.cell == view.shacks[0]
+                        && !candidates.iter().any(|row| row.command.starts_with("MOVE "))
+                    {
+                        if let Some(cell) = ortho_neighbors(view.shacks[0])
+                            .into_iter()
+                            .find(|cell| view.walkable.contains(cell))
+                        {
+                            candidates.push(Candidate {
+                                command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                                score: 19_000.0,
+                                target: Some(cell),
+                            });
+                        }
+                    }
+"""
+        new_evacuation = r"""                    if train_now && unit.cell == view.shacks[0] {
+                        let cell = ortho_neighbors(view.shacks[0]).into_iter()
+                            .find(|cell| view.walkable.contains(cell)).unwrap();
+                        candidates.push(Candidate {
+                            command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                            score: 19_000.0,
+                            target: Some(cell),
+                        });
+                    }
+"""
+        if result.count(old_evacuation) != 1:
+            raise ValueError("unexpected conditional training evacuation block")
+        before = len(result.encode())
+        result = result.replace(old_evacuation, new_evacuation, 1)
+        changes.append(
+            {
+                "marker": "conditional training evacuation block",
+                "bytes": before - len(result.encode()),
+            }
+        )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": f"FOCUSED_YAMO_BANK_CONVOY_PERIOD2_COORDINATION_D{steps}",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "cumulative consumed-panel attribution of the size-funding deletions"
+            ),
+            "evidence_boundary": (
+                "diagnostic source for consumed transfer maps; cannot qualify"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_period2_coordination_d1(
+    source: str,
+) -> tuple[str, dict]:
+    return focused_yamo_bank_convoy_period2_coordination_diagnostic(source, 1)
+
+
+def focused_yamo_bank_convoy_period2_coordination_d2(
+    source: str,
+) -> tuple[str, dict]:
+    return focused_yamo_bank_convoy_period2_coordination_diagnostic(source, 2)
+
+
+def focused_yamo_bank_convoy_no_backtrack(
+    source: str,
+) -> tuple[str, dict]:
+    """Prevent immediate landing backtracks using one prior position per worker slot."""
+
+    result, manifest = focused_yamo_bank_convoy_period2_coordination_d1(source)
+    changes = []
+
+    occupied_conversion_door = r"""                        .filter(|cell| !view.units.iter().any(|other| {
+                            other.player == 0 && other.id != unit.id && other.cell == *cell
+                        }))
+"""
+    if result.count(occupied_conversion_door) != 1:
+        raise ValueError("unexpected terminal occupied-door prefilter")
+    before = len(result.encode())
+    result = result.replace(occupied_conversion_door, "", 1)
+    changes.append(
+        {"marker": "terminal occupied-door prefilter", "bytes": before - len(result.encode())}
+    )
+
+    redundant_live_health = "if plant.health<=0||!from_unit.contains_key(&plant.cell)"
+    reachable_live_tree = "if !from_unit.contains_key(&plant.cell)"
+    if result.count(redundant_live_health) != 1:
+        raise ValueError("unexpected live-tree chop predicate")
+    before = len(result.encode())
+    result = result.replace(redundant_live_health, reachable_live_tree, 1)
+    changes.append(
+        {"marker": "redundant live-tree chop health predicate", "bytes": before - len(result.encode())}
+    )
+
+    old_select = "fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;6],)"
+    new_select = "fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>)"
+    if result.count(old_select) != 1:
+        raise ValueError("unexpected selector inventory parameter")
+    before = len(result.encode())
+    result = result.replace(old_select, new_select, 1)
+    old_select_call = "MoisanBot::select(\n                    candidates_by_id, &view.inventories[0]\n                )"
+    new_select_call = "MoisanBot::select(candidates_by_id)"
+    if result.count(old_select_call) != 1:
+        raise ValueError("unexpected selector call")
+    result = result.replace(old_select_call, new_select_call, 1)
+    changes.append(
+        {"marker": "unused selector inventory parameter", "bytes": before - len(result.encode())}
+    )
+
+    old_field = "move_history: [(i32, Cell, Cell); 2],"
+    new_field = "previous_cells: [Option<Cell>; 2],"
+    if result.count(old_field) != 1:
+        raise ValueError("unexpected period-2 history field")
+    result = result.replace(old_field, new_field, 1)
+    old_constructor = "move_history: [(0, (0, 0), (0, 0)); 2]"
+    new_constructor = "previous_cells: [None; 2]"
+    if result.count(old_constructor) != 1:
+        raise ValueError("unexpected period-2 history constructor")
+    result = result.replace(old_constructor, new_constructor, 1)
+
+    resolver = item_text(result, "fn resolve_move_conflicts(")
+    old_signature = (
+        "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+        "move_history: &mut [(i32, Cell, Cell); 2])"
+    )
+    new_signature = (
+        "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+        "previous_cells: &[Option<Cell>; 2])"
+    )
+    if resolver.count(old_signature) != 1:
+        raise ValueError("unexpected period-2 resolver signature")
+    resolver = resolver.replace(old_signature, new_signature, 1)
+    old_guard = r"""                moves.retain(|(_, index, _, landing)| {
+                    let (turn, two_back, previous) = move_history[*index];
+                    if turn + 1 == view.turn
+                        && two_back == *landing && previous != *landing
+                    {
+                        commands[*index] = "WAIT".to_string();
+                        move_history[*index] = (view.turn, *landing, *landing);
+                        false
+                    } else {
+                        move_history[*index] = (
+                            view.turn,
+                            if turn + 1 == view.turn { previous } else { *landing },
+                            *landing,
+                        );
+                        true
+                    }
+                });
+"""
+    new_guard = r"""                moves.retain(|(_, index, current, landing)| {
+                    if previous_cells[*index] == Some(*landing) && current != landing {
+                        commands[*index] = "WAIT".to_string();
+                        false
+                    } else {
+                        true
+                    }
+                });
+"""
+    if resolver.count(old_guard) != 1:
+        raise ValueError("unexpected period-2 history guard")
+    before = len(result.encode())
+    resolver = resolver.replace(old_guard, new_guard, 1)
+    result = _replace_item(result, "fn resolve_move_conflicts(", resolver)
+
+    old_call = "MoisanBot::resolve_move_conflicts(view, &mut selected, &mut self.move_history);"
+    new_call = r"""MoisanBot::resolve_move_conflicts(view, &mut selected, &self.previous_cells);
+                for (index, unit) in units.iter().enumerate() {
+                    self.previous_cells[index] = Some(unit.cell);
+                }"""
+    if result.count(old_call) != 1:
+        raise ValueError("unexpected period-2 resolver call")
+    result = result.replace(old_call, new_call, 1)
+    consuming_unit_loop = "for (unit_index, unit) in units.into_iter().enumerate()"
+    borrowing_unit_loop = "for (unit_index, unit) in units.iter().copied().enumerate()"
+    if result.count(consuming_unit_loop) != 1:
+        raise ValueError("unexpected two-worker candidate loop")
+    result = result.replace(consuming_unit_loop, borrowing_unit_loop, 1)
+    changes.append(
+        {
+            "marker": "third-A-B-A landing history",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "reject any immediate landing backtrack using the prior observed cell "
+                "for each stable two-worker action slot"
+            ),
+        }
+    )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_NO_BACKTRACK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact funded-shack evacuation while replacing the three-state "
+                "period-2 clock with a prior-position backtrack guard"
+            ),
+            "evidence_boundary": (
+                "distinct liveness and size-funding successor; requires all gates"
+            ),
+        }
+    )
+    return result, manifest
+
+
 def focused_yamo_bank_convoy_period2_simple_clock(
     source: str,
 ) -> tuple[str, dict]:
@@ -3517,6 +3755,9 @@ def main() -> int:
             "focused-yamo-bank-convoy-spare-door-slot-period2",
             "focused-yamo-bank-convoy-period2-lean-safe",
             "focused-yamo-bank-convoy-period2-lean-coordination",
+            "focused-yamo-bank-convoy-period2-coordination-d1",
+            "focused-yamo-bank-convoy-period2-coordination-d2",
+            "focused-yamo-bank-convoy-no-backtrack",
             "focused-yamo-bank-convoy-period2-simple-clock",
             "focused-yamo-bank-convoy-safe-orchard",
             "focused-yamo-bank-convoy-door-harvest",
@@ -3568,6 +3809,15 @@ def main() -> int:
         ),
         "focused-yamo-bank-convoy-period2-lean-coordination": (
             focused_yamo_bank_convoy_period2_lean_coordination
+        ),
+        "focused-yamo-bank-convoy-period2-coordination-d1": (
+            focused_yamo_bank_convoy_period2_coordination_d1
+        ),
+        "focused-yamo-bank-convoy-period2-coordination-d2": (
+            focused_yamo_bank_convoy_period2_coordination_d2
+        ),
+        "focused-yamo-bank-convoy-no-backtrack": (
+            focused_yamo_bank_convoy_no_backtrack
         ),
         "focused-yamo-bank-convoy-period2-simple-clock": (
             focused_yamo_bank_convoy_period2_simple_clock

@@ -1431,3 +1431,34 @@ margin +41.6875, zero catastrophes/runtime signals, negative mass 175, and clean
 
 **Disposition: LIVE / OWNER OVERRIDE / CLEAN INITIAL HEALTH / VALUE UNRESOLVED.** Monitoring is
 read-only. The submit tool's default remains the exact stable parent as intentional fallback.
+
+## 2026-08-03 — E7a half-size categorical attribution and no-backtrack successor
+
+The exact live E7a source is 62,820 bytes, so the owner's 50% ceiling is 31,410. The prior
+31,405-byte period-2 lean-coordination source passed its value, liveness, training, latency, and
+integrity gates but was terminally rejected on untouched seeds 9,864,000--042 because
+catastrophes increased 26 -> 27.
+
+Cumulative diagnostic replay on that consumed panel now isolates the categorical cause. Removing
+only stock compatibility/helper blocks produces a 31,848-byte source at +10.058 mean / +2.517
+lower with catastrophes 26 -> 26. Also collapsing the original conditional funded-shack
+evacuation produces a 31,614-byte source at +9.457 / +1.744 with catastrophes 26 -> 27, exactly
+the rejected source's metrics before its last neutral deletions. The evacuation collapse caused
+the observed tail failure; stock deletion did not.
+
+A distinct source retains the original funded-shack evacuation, removes neutral predicates, and
+replaces the larger three-state A-B-A guard with one previous observed cell per stable worker
+slot. It is 31,248 bytes, a 50.258% logical reduction, SHA `a767e362...`; its manifest records no
+renaming, minification, compression, or formatting reduction. Rebuild, optimized compile, empty
+input, sacred SHA, and ten semantic fixtures pass.
+
+All 25 exact live period-2 counterexamples pass with maximum candidate run four and zero unknown
+updates or stderr. The 516-task consumed development panel passes at +9.141 mean / +3.859 lower,
+catastrophes 19 -> 14, negative mass 4,138 -> 3,871, six/six positive families, both seats
+positive, worker-two coverage 100%, and period-2 >=6 at zero. Diagnostic replay on the consumed
+transfer panel also passes analytically at +10.260 / +2.612, catastrophes 26 -> 26, and negative
+mass 6,149 -> 5,374.
+
+**Disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.** A new
+collision-audited untouched range must be locked and published before its one-shot run. Full
+evidence is in `e7a-half-size-funded-evacuation-tail-attribution-2026-08-03.md`.

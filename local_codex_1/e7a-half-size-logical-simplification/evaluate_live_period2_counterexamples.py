@@ -164,8 +164,10 @@ def longest_period2(lines: list[str]) -> int:
     return longest
 
 
-def compile_candidate(directory: Path) -> Path:
-    if sha256(CANDIDATE) != CANDIDATE_SHA256:
+def compile_candidate(
+    directory: Path, candidate: Path, candidate_sha256: str
+) -> Path:
+    if sha256(candidate) != candidate_sha256:
         raise RuntimeError("candidate hash mismatch")
     binary = directory / "candidate"
     completed = subprocess.run(
@@ -176,7 +178,7 @@ def compile_candidate(directory: Path) -> Path:
             "--edition=2021",
             "-O",
             "-Awarnings",
-            str(CANDIDATE),
+            str(candidate),
             "-o",
             str(binary),
         ],
@@ -267,12 +269,19 @@ def evaluate_game(binary: Path, selected: dict) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--audit", type=Path, required=True)
+    parser.add_argument("--candidate", type=Path, default=CANDIDATE)
+    parser.add_argument("--candidate-sha256", default=CANDIDATE_SHA256)
     parser.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args()
+    candidate = arguments.candidate.resolve()
+    if not candidate.is_file():
+        raise FileNotFoundError(candidate)
     audit = json.loads(arguments.audit.read_text())
     selected = select_rows(audit)
     with tempfile.TemporaryDirectory(prefix="e7a-live-period2-") as directory:
-        binary = compile_candidate(Path(directory))
+        binary = compile_candidate(
+            Path(directory), candidate, arguments.candidate_sha256
+        )
         rows = [evaluate_game(binary, row) for row in selected]
     candidate_maximum = max(
         row["candidate_teacher_forced_period2"] for row in rows
@@ -293,9 +302,9 @@ def main() -> int:
             "games": len(rows),
         },
         "candidate": {
-            "path": str(CANDIDATE.relative_to(REPO)),
-            "bytes": CANDIDATE.stat().st_size,
-            "sha256": CANDIDATE_SHA256,
+            "path": str(candidate.relative_to(REPO)),
+            "bytes": candidate.stat().st_size,
+            "sha256": arguments.candidate_sha256,
         },
         "quality": {
             "games_fetched": len(rows),
