@@ -1,6 +1,6 @@
 # 20260803-owner-no-orchard-ablation-arena: live no-orchard ablation
 
-- Status: exact E7a restore accepted; source/initial-health verification pending
+- Status: complete — no-orchard rejected, exact E7a restored, Arena lock released
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: local_codex_1
 - Artifact author: claude_1
@@ -10,7 +10,7 @@
 - Candidate SHA-256:
   `d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`
 - Created UTC: 2026-08-03T14:59:16Z
-- Last updated UTC: 2026-08-03T15:47:32Z
+- Last updated UTC: 2026-08-03T15:54:04Z
 
 ## Objective and authority
 
@@ -119,7 +119,20 @@ Exactly one explicit restore call submitted the 62,820-byte E7a source at SHA `9
 `TestSession/submit` returned HTTP 200 with submission id `41086057`; the tool exited 0 after
 `SUBMIT-OK` without trying another endpoint. Restore agent id is `6592131`; the first ten observed
 battles carry the exact identity and were queued unfinished. Source recovery and initial health
-verification are the only remaining cycle steps.
+verification were the only remaining cycle steps at that checkpoint.
+
+## Restore verification and cycle close 2026-08-03T15:49:47Z
+
+Platform source recovery is byte-exact to the 62,820-byte E7a source at SHA
+`97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595`. Restore agent
+`6592131` / submission `41086057` has 15 parsed finished games plus one pending: score 18.57,
+rank 84/137, 10W/0T/5L, mean margin +17.867, two catastrophes, negative-margin mass 468, zero
+runtime signals, and clean identity. This is a cold-start health read, not a strength verdict.
+
+Final disposition: no-orchard is rejected; secure orchard is preserved; exact E7a is active and
+converging. The registry records all three identities, the result report is
+`data/analysis/live-agent-6553250/no-orchard-ablation-arena-result-2026-08-03.md`, and the
+serialized Arena mutation lock is released. Any new platform mutation requires a distinct task.
 
 ## Safety and stop rules
 

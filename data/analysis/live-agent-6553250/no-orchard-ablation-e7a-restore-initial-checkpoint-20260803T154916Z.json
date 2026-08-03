@@ -1,0 +1,207 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-03T15:49:34.581652+00:00",
+ "result_audit_completed_at": "2026-08-03T15:49:47.377178+00:00",
+ "role": "resident-restore",
+ "agent_id": 6592131,
+ "submission_id": 41086057,
+ "arena": {
+  "agent_id": 6592131,
+  "rank": 84,
+  "total": 137,
+  "score": 18.57,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6592131,
+  "rank": 85,
+  "score": 18.49,
+  "division_index": 5
+ },
+ "battle_rows_listed": 16,
+ "matching_rows": 16,
+ "matching_finished": 15,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 15,
+ "fetch_failures": [],
+ "summary": {
+  "games": 15,
+  "wins": 10,
+  "ties": 0,
+  "losses": 5,
+  "mean_margin": 17.866666666666667,
+  "catastrophic_losses": 2,
+  "catastrophic_rate": 0.13333333333333333,
+  "negative_margin_mass": 468.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897922021,
+   "opponent": "Ra07Ch",
+   "opponent_agent_id": 6488393,
+   "our_score": 132.0,
+   "opponent_score": 178.0,
+   "margin": -46.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921985,
+   "opponent": "Renatys",
+   "opponent_agent_id": 6491198,
+   "our_score": 180.0,
+   "opponent_score": 102.0,
+   "margin": 78.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921971,
+   "opponent": "Regulus136",
+   "opponent_agent_id": 6480942,
+   "our_score": 143.0,
+   "opponent_score": 62.0,
+   "margin": 81.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921962,
+   "opponent": "Lanfeust",
+   "opponent_agent_id": 6488464,
+   "our_score": 201.0,
+   "opponent_score": 189.0,
+   "margin": 12.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921935,
+   "opponent": "Mmdrlol",
+   "opponent_agent_id": 6588478,
+   "our_score": 235.0,
+   "opponent_score": 181.0,
+   "margin": 54.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921892,
+   "opponent": "Med_Marzouki",
+   "opponent_agent_id": 6588482,
+   "our_score": 301.0,
+   "opponent_score": 173.0,
+   "margin": 128.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921891,
+   "opponent": "Kenshi235",
+   "opponent_agent_id": 6588454,
+   "our_score": 238.0,
+   "opponent_score": 266.0,
+   "margin": -28.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921890,
+   "opponent": "PhOeNyX",
+   "opponent_agent_id": 6588481,
+   "our_score": 346.0,
+   "opponent_score": 564.0,
+   "margin": -218.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921889,
+   "opponent": "Highruler",
+   "opponent_agent_id": 6505286,
+   "our_score": 169.0,
+   "opponent_score": 160.0,
+   "margin": 9.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921888,
+   "opponent": "frictionless",
+   "opponent_agent_id": 6479932,
+   "our_score": 148.0,
+   "opponent_score": 91.0,
+   "margin": 57.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921887,
+   "opponent": "Quentin18",
+   "opponent_agent_id": 6481265,
+   "our_score": 166.0,
+   "opponent_score": 201.0,
+   "margin": -35.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921886,
+   "opponent": "_H3R0_",
+   "opponent_agent_id": 6491567,
+   "our_score": 133.0,
+   "opponent_score": 39.0,
+   "margin": 94.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921885,
+   "opponent": "FinkPloyd",
+   "opponent_agent_id": 6479914,
+   "our_score": 129.0,
+   "opponent_score": 88.0,
+   "margin": 41.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921884,
+   "opponent": "Risen",
+   "opponent_agent_id": 6479420,
+   "our_score": 241.0,
+   "opponent_score": 382.0,
+   "margin": -141.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897921883,
+   "opponent": "skotz",
+   "opponent_agent_id": 6480520,
+   "our_score": 201.0,
+   "opponent_score": 19.0,
+   "margin": 182.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

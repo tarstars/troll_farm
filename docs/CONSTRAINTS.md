@@ -1080,3 +1080,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   earlier in 7/8 and never later. Live `6585846`/`41071360` starts clean at 16.97/95
   over 11 games. Do not generalize this precedence fix into arbitrary TRAIN timing or
   global denial suppression. [B3.16, 2026-07-31]
+- **Do not remove the secure-orchard layer globally.** The owner-directed pure-Yamo
+  passthrough ablation `6592097`/`41085842` terminated cleanly at 160 games, score
+  **23.27**, rank **34/137**, versus the exact E7a pre-trial row at 25.3/rank 12:
+  −2.03 score and 22 places, outside the live-noise allowance. Its catastrophe rate was
+  lower (10.0% versus 21.875%), but opponent queues differ, so that tail contrast is not
+  a paired causal estimate. Reject blanket deletion; future orchard work must be bounded
+  activation or coordination refinement. Exact E7a was restored source-exact as
+  `6592131`/`41086057`. [20260803-owner-no-orchard-ablation-arena]

@@ -39,6 +39,13 @@
       "field_size": 131,
       "first_seen": "2026-08-02",
       "last_seen": "2026-08-02"
+    },
+    {
+      "era_id": "legend-137",
+      "label": "Legend division, 137-agent field",
+      "field_size": 137,
+      "first_seen": "2026-08-03",
+      "last_seen": "2026-08-03"
     }
   ],
   "sources": [
@@ -204,6 +211,20 @@
         "denial_opponent_resource"
       ],
       "notes": "Frozen E7a initial-map sector: flip LEMON focus to PLUM only inside the near-tie sector; mechanically exact but consumed-panel and owner-directed rather than prospectively qualified."
+    },
+    {
+      "source_id": "e7a-r28-no-orchard-ablation",
+      "path": "claude_1/no-orchard-arena/candidate-e7a-r28-no-orchard.rs",
+      "bytes": 56200,
+      "sha256": "d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "preseed-e7a-lemon-near-tie",
+      "strategy_categories": [
+        "baseline_controller",
+        "denial_opponent_resource"
+      ],
+      "notes": "Owner-directed secure-orchard activation ablation of simplified E7a round 28. It terminated materially below the exact E7a pre-trial row and was rejected; exact E7a was restored."
     }
   ],
   "submissions": [
@@ -651,16 +672,62 @@
       "comparison_basis": "candidate_vs_control",
       "authority": "owner_directed_override",
       "parent_submission_id": 41081465,
-      "replaced_by_submission_id": null,
+      "replaced_by_submission_id": 41085842,
       "task_id": "20260802-e7a-sector-owner-override-publication",
       "protocol_id": null,
-      "disposition": "active",
-      "disposition_rationale": "Owner explicitly directed replacement of the implementation-invalid ring bot with the mechanically exact frozen E7a sector candidate after the exploratory value status was surfaced.",
+      "disposition": "displaced_superseded",
+      "disposition_rationale": "Owner explicitly directed replacement of the implementation-invalid ring bot with the mechanically exact frozen E7a sector candidate. Its mature pre-ablation read was 25.3/rank 12 in the 137-agent field; it was displaced by the owner-directed no-orchard ablation and later restored byte-identically as submission 41086057.",
       "provenance": [
         "data/analysis/live-agent-6553250/e7a-sector-owner-override-arena-execution-2026-08-02.md",
         "coordination/tasks/20260802-e7a-sector-owner-override-publication.md"
       ],
-      "notes": "Active owner override. The consumed-panel +4.0083 estimate is not prospective qualification; initial live health is clean but provisional."
+      "notes": "The consumed-panel +4.0083 estimate was not prospective qualification. This deployment matured cleanly but tail-heavy before the controlled source restoration created a new submission identity."
+    },
+    {
+      "submission_id": 41085842,
+      "agent_id": 6592097,
+      "source_id": "e7a-r28-no-orchard-ablation",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": "2026-08-03T15:02:24Z",
+      "era_id": "legend-137",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41081503,
+      "replaced_by_submission_id": 41086057,
+      "task_id": "20260803-owner-no-orchard-ablation-arena",
+      "protocol_id": null,
+      "disposition": "rejected",
+      "disposition_rationale": "Terminal 160-game score 23.27/rank 34 was 2.03 points and 22 places below the exact E7a pre-trial 25.3/rank 12 row, outside the Arena noise band. Reject blanket orchard removal and preserve the orchard.",
+      "provenance": [
+        "coordination/tasks/20260803-owner-no-orchard-ablation-arena.md",
+        "data/analysis/live-agent-6553250/no-orchard-ablation-terminal-checkpoint-20260803T154310Z.json",
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md"
+      ],
+      "notes": "The candidate had fewer catastrophes than the pre-trial row, but matchup sets differ; this is live ablation evidence, not a paired causal estimate."
+    },
+    {
+      "submission_id": 41086057,
+      "agent_id": 6592131,
+      "source_id": "preseed-e7a-lemon-near-tie",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": "2026-08-03T15:46:51Z",
+      "era_id": "legend-137",
+      "deployment_purpose": "safety_restore",
+      "comparison_basis": "same_source_repeat",
+      "authority": "standing_restore_authority",
+      "parent_submission_id": 41085842,
+      "replaced_by_submission_id": null,
+      "task_id": "20260803-owner-no-orchard-ablation-arena",
+      "protocol_id": null,
+      "disposition": "active",
+      "disposition_rationale": "The exact 62,820-byte E7a source was restored after the no-orchard terminal rejection. Platform source recovery is byte-exact and the first 15 finished games are identity- and runtime-clean.",
+      "provenance": [
+        "coordination/tasks/20260803-owner-no-orchard-ablation-arena.md",
+        "data/analysis/live-agent-6553250/no-orchard-ablation-e7a-restore-initial-checkpoint-20260803T154916Z.json",
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md"
+      ],
+      "notes": "Active exact-source restore; its fresh score/rank is still converging and must not be compared as mature evidence."
     }
   ],
   "checkpoint_inputs": [
@@ -993,6 +1060,39 @@
       "sha256": "8b6bfd08e1ceac46881a33dfa44a4d843ee6da7fcaf8b0af395a3b27c2054816",
       "expect_agent_id": 6590141,
       "expect_submission_id": 41081503,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41081503-preablation160",
+      "path": "data/analysis/live-agent-6553250/no-orchard-ablation-pretrial-checkpoint-20260803T145723Z.json",
+      "sha256": "7affe7b80150178b52cfd22fb0a79d38d32c03692cdaef8079f0514580d9ae77",
+      "expect_agent_id": 6590141,
+      "expect_submission_id": 41081503,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": true
+    },
+    {
+      "observation_id": "obs-41085842-terminal160",
+      "path": "data/analysis/live-agent-6553250/no-orchard-ablation-terminal-checkpoint-20260803T154310Z.json",
+      "sha256": "0f43280535246d5ce8037cb06f44ff3d814907a52908019c224cfbd82471ea22",
+      "expect_agent_id": 6592097,
+      "expect_submission_id": 41085842,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": true
+    },
+    {
+      "observation_id": "obs-41086057-initial15",
+      "path": "data/analysis/live-agent-6553250/no-orchard-ablation-e7a-restore-initial-checkpoint-20260803T154916Z.json",
+      "sha256": "08de36ecb24e9b8bad6986d14325fda5a264e48da5aba212ce59d92f1371dbe6",
+      "expect_agent_id": 6592131,
+      "expect_submission_id": 41086057,
       "observation_scope": "submission_scoped",
       "observed_at_override": null,
       "observed_at_override_evidence": null,

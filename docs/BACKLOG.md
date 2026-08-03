@@ -19,14 +19,16 @@ may run in parallel and are claimable by any agent under
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
   deterministic build/validation pass and the maintained real pytest suite is 44/44. The live
-  registry projection must be advanced to sector submission `41081503` / agent `6590141`.
+  registry is current through rejected no-orchard `41085842` and active exact E7a restore
+  `41086057` / agent `6592131`; deterministic validation passes with 44 observations.
 
 ## Position summary (2026-08-02)
 
-Active resident is owner-directed E7a sector agent `6590141` / submission `41081503`, exact source
-SHA `97bfe71e3f2f...`. Initial identity-clean checkpoint: 16/16 parsed plus one pending, score
-19.42/rank 69/131, zero catastrophes/runtime signals, negative mass 175; Arena-room read was 21.1.
-It is a consumed-panel owner override, not prospective validation.
+Active resident is exact E7a restore agent `6592131` / submission `41086057`, source SHA
+`97bfe71e3f2f...`. Its first identity-clean checkpoint has 15 finished plus one pending, score
+18.57/rank 84/137 and zero runtime signals; it is cold-start only. The preceding exact deployment
+read 25.3/rank 12 before the owner-directed no-orchard ablation, which terminated at 23.27/rank 34
+and was rejected. E7a remains a consumed-panel owner override, not prospective validation.
 
 **P0 BANANA RESTORATION R2 — assigned to Claude.** The unbounded factory
 `6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not

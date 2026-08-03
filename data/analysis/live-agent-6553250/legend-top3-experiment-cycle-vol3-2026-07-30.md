@@ -1707,3 +1707,11 @@ Restore execution:
 |---|---|---|
 | 2026-08-03T15:46:51Z | Submit exact E7a restore once | `TestSession/submit` HTTP 200; submission `41086057`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
 | 2026-08-03T15:47:05Z | Immediate restore identity/rank read | New restore agent `6592131`; ten queued unfinished battles carry exact submission `41086057`. Arena-room still displayed terminal ablation `6592097`, score 23.2/rank 34 while restore had no finished result. |
+| 2026-08-03T15:49:34Z | Recover restore platform source | Exact 62,820-byte E7a SHA-256 `97bfe71e...`; source gate passes. |
+| 2026-08-03T15:49:34Z | Initial restore health/rank checkpoint | Restore `6592131`/`41086057`: 15 finished plus one pending, score 18.57, rank 84/137, 10W/0T/5L, two catastrophes, negative mass 468, zero runtime signals, identity clean. Cold-start placement only. |
+
+**Cycle status: TERMINATED / NO-ORCHARD REJECTED / EXACT E7A ACTIVE / ARENA LOCK RELEASED.**
+The source and initial-health restore gates pass. The fresh restore score is not mature evidence;
+passive convergence requires no further platform mutation. Full result:
+`no-orchard-ablation-arena-result-2026-08-03.md`. Registry active identity is
+`6592131`/`41086057`; any successor requires a distinct serialized task.
