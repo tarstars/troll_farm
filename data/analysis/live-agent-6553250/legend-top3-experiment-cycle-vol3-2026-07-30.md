@@ -1633,3 +1633,22 @@ It has exactly zero measured and expected score gain, so publishing would only r
 **Disposition: UNTOUCHED EXACT-EQUALITY PASS / TASK COMPLETE / QUALIFIED BUT NOT DEPLOYED / LIVE
 RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Exact evidence is in
 `e7a-single-logical-deletion-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — iterative deletion rounds 1--13 exact qualification
+
+Starting from the qualified 62,278-byte equivalent, thirteen logical blocks were removed and
+tested sequentially. They delete single-use configurability, fixed policy switches, three
+disabled modes, a redundant geometry check, and the opponent-risk calculation behind a fixed
+zero penalty. Every intermediate program rebuilds exactly, compiles, passes ten semantic
+fixtures, and matches all 7,234 commands on 25 public liveness counterexamples before becoming
+the next parent.
+
+The accumulated source is 57,677 bytes (`6b9fdc99...`), 4,601 below that parent and 5,143 below
+live E7a. All 516 development tasks are terminal-exact. The 9,868,000--042 lock was remotely
+verified at `666e8e62` before its one-shot execution; all 516 untouched tasks are also exact:
+mean/lower 0.0, catastrophes 28 -> 28, negative mass 6,539 -> 6,539, identical training and
+liveness, and passing latency.
+
+**Disposition: ROUND-13 UNTOUCHED EXACT-EQUALITY PASS / QUALIFIED CHECKPOINT / NOT DEPLOYED / LIVE
+RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Further deletion requires a newly recorded invariant.
+Exact evidence is in `e7a-iterative-logical-deletion-r13-result-2026-08-03.md`.
