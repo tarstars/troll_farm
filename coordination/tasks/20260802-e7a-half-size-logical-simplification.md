@@ -247,3 +247,17 @@ negative mass 6,149 -> 5,374.
 
 This is development evidence only. A new collision-audited untouched range and immutable lock are
 required before one-shot transfer validation. No Arena action.
+
+## Progress 2026-08-03T02:54:31Z
+
+Exact-token searches of scoped live records and the task tree, tracked filenames, Git history,
+and filenames beneath all five verified external project roots found no recorded collision for
+seeds 9,865,000--9,865,042. No map in the range was generated or inspected.
+
+The dedicated no-backtrack evaluator hard-codes 43 maps, both seats, the six frozen families,
+eight threads, and 50,000 bootstrap samples; it exposes only panel/output paths and refuses
+pre-existing outputs. Compile-only preflight passes without generating a map. Candidate, range,
+evaluator, generated runner, shared analyzer, library, development/diagnostic evidence, gates,
+and the exact command are frozen in `focused-yamo-bank-convoy-no-backtrack-fresh-lock.json`.
+The range remains unopened until this lock commit is pushed and remotely verified. No Arena
+action.
