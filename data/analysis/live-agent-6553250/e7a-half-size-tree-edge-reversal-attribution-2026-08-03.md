@@ -1,6 +1,6 @@
 # E7a half-size tree-edge reversal attribution — 2026-08-03
 
-Status: **CONSUMED-DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION**
+Status: **DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION**
 
 ## Exact source
 
@@ -80,8 +80,28 @@ All thirteen analytic gates pass over 516 tasks:
 Five of six families are nonnegative, so the frozen breadth rule passes. This is stronger than
 the terminal 31,248-byte source on the same rows, but remains development evidence only.
 
+## Consumed development panel
+
+The exact source also passes every gate on the ordinary consumed 9,854,000--042 development
+panel over 516 tasks:
+
+- mean paired margin **+8.22481**;
+- bootstrap 95% lower bound **+3.01550**;
+- catastrophes improve **19 -> 12**;
+- negative-margin mass improves **4,138 -> 3,864**;
+- all six family means are positive, from resident +6.9302 to legend-balanced +9.2791;
+- both seats are positive: +11.6240 and +4.8256;
+- worker-two coverage is 516/516 with median delay zero;
+- period-2 >=6 improves **115 -> 0**, maximum four;
+- latency p95 ratio is 0.8415, maximum 1.357 ms;
+- zero critical and unclassified issues.
+
+The separate 32-game generated-map motion discriminator is mildly adverse (-5.5 mean and one
+additional catastrophe) but liveness-clean at maximum four. It is explicitly not an Arena or
+promotion gate; both official-map continued-referee panels pass their frozen tail gates.
+
 ## Next boundary
 
-Run the exact source on the ordinary consumed 9,854,000--042 development panel and the motion
-packet. Only if every gate passes may a new seed range be collision-audited and frozen before
-one-shot untouched execution. No Arena mutation follows from this diagnostic result.
+Collision-audit and freeze a new untouched 43-map range before one-shot execution. Development
+results do not authorize an Arena mutation; only a qualified untouched transfer verdict can do
+so.

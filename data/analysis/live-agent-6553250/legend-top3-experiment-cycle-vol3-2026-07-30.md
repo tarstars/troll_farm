@@ -1523,3 +1523,11 @@ seats positive, worker-two delay zero, and no period-2 episode >=6. **Dispositio
 DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION.** These rows cannot qualify the
 source. Exact evidence is in
 `e7a-half-size-tree-edge-reversal-attribution-2026-08-03.md`.
+
+## 2026-08-03 — tree-edge successor development qualification addendum
+
+The exact source subsequently passed the ordinary consumed development panel at +8.2248 mean /
++3.0155 lower, catastrophes 19 -> 12, negative mass 4,138 -> 3,864, all six families positive,
+both seats positive, worker-two delay zero, and period-2 >=6 at zero. The generated-map motion
+packet was liveness-clean but mildly adverse and remains a non-authoritative discriminator.
+**Updated disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.**
