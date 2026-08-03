@@ -65,10 +65,40 @@
         "wins": 93
       },
       "variant": "orchard"
+    },
+    {
+      "agent_id": 6592383,
+      "arena": {
+        "agent_id": 6592383,
+        "division_index": 5,
+        "rank": 54,
+        "score": 20.44,
+        "total": 137
+      },
+      "checkpoint": "data/analysis/live-agent-6553250/orchard-ab-night-20260803/leg-03-no-orchard/checkpoint.json",
+      "completed_at_utc": "2026-08-03T22:25:55Z",
+      "game_count": 160,
+      "leg": 3,
+      "package_bytes": 5937234,
+      "package_manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-03-no-orchard/manifest.json",
+      "package_sha256": "817595fc87a5639c42c18f2dd51aa7fee6a226f0b495c4eda9e50c3549c9f0fe",
+      "submission_id": 41087215,
+      "summary": {
+        "catastrophic_losses": 22,
+        "catastrophic_rate": 0.1375,
+        "games": 160,
+        "losses": 67,
+        "mean_margin": 9.4125,
+        "negative_margin_mass": 6151.0,
+        "ties": 1,
+        "validity_runtime_signals": [],
+        "wins": 92
+      },
+      "variant": "no-orchard"
     }
   ],
   "maturity_seconds_per_leg": 3600,
-  "phase": "maturity-wait-t+45m",
+  "phase": "leg-complete",
   "schema": "orchard-ab-night-cycle-v1",
   "sequence": [
     "no-orchard",
@@ -83,5 +113,5 @@
   "started_at_utc": "2026-08-03T19:16:14Z",
   "status": "running",
   "task_id": "20260803-orchard-ab-night-cycle",
-  "updated_at_utc": "2026-08-03T22:08:08Z"
+  "updated_at_utc": "2026-08-03T22:25:55Z"
 }
