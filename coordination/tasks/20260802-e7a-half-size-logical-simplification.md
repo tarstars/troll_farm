@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T02:18:23Z
+- Last updated UTC: 2026-08-03T04:42:38Z
 
 ## Outcome
 
@@ -325,3 +325,24 @@ worsens 4,567 -> 4,826.
 The range is consumed. There will be no rerun, row exclusion, threshold relaxation, or Arena
 action for this hash. Diagnostic attribution may compare distinct logic on the preserved rows;
 another qualification attempt requires a distinct source and newly locked untouched range.
+
+## Progress 2026-08-03T04:42:38Z
+
+Consumed-row diagnostics show the fresh tail is not caused by the tree-edge rule, stock
+reservation deletion, or terminal-door deletion alone. On the exact 9,866,000--042 rows,
+strict no-backtrack, a five-step guard, tree-edge reversal, an over-limit exact-logic control,
+and a stock-retaining control all remain positive at +6.22 to +6.53 mean but fail tail gates.
+Tree-edge improves strict no-backtrack by three catastrophes and 191 negative-mass points.
+
+Exact command traces for the worst task, seed 9,866,014 / seat 0 / gold-adaptive, first diverge
+strategically when the half-size parent returns home and activates its compact APPLE orchard
+while the baseline continues toward a natural tree. Globally deleting the orchard is falsified:
+the readable 28,517-byte no-orchard control falls to -38.717 mean, catastrophes 12 -> 48, and
+negative mass 4,567 -> 15,719. The next source should preserve orchard value while making
+activation fail closed or closer to the exact parent decision.
+
+A seven-page beginner-readable report now records the full session, test vocabulary,
+chronological approaches, current results, evidence boundary, and next work:
+`data/analysis/live-agent-6553250/e7a-half-size-last-eight-hours-report-2026-08-03.pdf`.
+Its SHA-256 is `c61b07b907d1044f71b8a468cae69feaffa68703d05178102a32bd8b7600e447`.
+No Arena action.

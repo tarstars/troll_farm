@@ -1554,3 +1554,26 @@ catastrophes outweigh five rescues; five new catastrophes share seed 9,866,014, 
 forbidden. **Disposition: TERMINAL FRESH REJECTION / RANGE CONSUMED / NO RERUN / NO ARENA
 ACTION.** Exact evidence is in
 `e7a-half-size-tree-edge-reversal-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — consumed tail attribution and eight-hour report
+
+Five controlled sources were replayed on the consumed 9,866,000--042 panel. Strict
+no-backtrack, five-step reversal, tree-edge reversal, an over-limit exact-logic control, and a
+stock-retaining control all remain positive at +6.22 to +6.53 mean but fail the preserved tail
+gates. Tree-edge improves strict no-backtrack from 19 to 16 catastrophes and negative mass from
+5,017 to 4,826, so its liveness distinction is not the tail cause. An orchard-free 28,517-byte
+control falsifies global orchard deletion at -38.717 mean, catastrophes 12 -> 48, and negative
+mass 4,567 -> 15,719.
+
+Exact paired command traces on the worst task (seed 9,866,014, seat 0, gold-adaptive) match
+through turn 14. At turn 15 the baseline starter continues outward toward a natural tree while
+the half-size parent returns home; at turns 18--19 it picks and plants APPLE, activating the
+compact orchard while the opponent scales. The current boundary is therefore to preserve the
+orchard's broad value but make its activation fail closed or closer to the exact parent.
+
+The full work session is synthesized for a beginner in the seven-page PDF
+`e7a-half-size-last-eight-hours-report-2026-08-03.pdf`, SHA-256
+`c61b07b907d1044f71b8a468cae69feaffa68703d05178102a32bd8b7600e447`. It explains the game,
+all test terminology, the chronological candidates, untouched one-shot validation, exact current
+status, and next work. **Disposition: JOINT GOAL INCOMPLETE / LIVE RANK-11 BOT UNCHANGED / NO
+ARENA ACTION.**
