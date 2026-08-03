@@ -1542,3 +1542,15 @@ generation. Candidate, evaluator, generated runner, range, gates, evidence hashe
 one-shot command are frozen in
 `focused-yamo-bank-convoy-tree-edge-reversal-fresh-lock.json`. **Disposition: LOCKED LOCALLY /
 UNOPENED / REMOTE PUBLICATION REQUIRED BEFORE EXECUTION / NO ARENA ACTION.**
+
+## 2026-08-03 — tree-edge half-size untouched transfer rejection
+
+The lock was remotely verified at commit `4fab81bc` before the exact command ran once. It saved
+516 tasks in 98.920 seconds with exact source, runner, library, and range hashes. Eleven of
+thirteen gates pass: +6.2926 mean / -1.3469 lower, five/six nonnegative families, both seats
+positive, worker-two delay zero, period-2 >=6 at zero, latency and integrity green. The frozen
+tail gates fail: catastrophes worsen 12 -> 16 and negative mass worsens 4,567 -> 4,826. Nine new
+catastrophes outweigh five rescues; five new catastrophes share seed 9,866,014, but row removal is
+forbidden. **Disposition: TERMINAL FRESH REJECTION / RANGE CONSUMED / NO RERUN / NO ARENA
+ACTION.** Exact evidence is in
+`e7a-half-size-tree-edge-reversal-fresh-result-2026-08-03.md`.

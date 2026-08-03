@@ -778,6 +778,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   unit cannot legally HARVEST, and none has a prior one-command lethal CHOP. Thus strict
   blocks are **0/17** even though 371 fruit batches pass a loose reachability upper bound.
   Do not implement timed denial or treat BFS reachability as causal bill control. [H4]
+- **The exact 31,407-byte tree-edge half-size source is transfer-rejected on tail safety,
+  not central value or liveness.** On untouched seeds 9,866,000--042 it gains +6.293 mean
+  with lower -1.347, five/six nonnegative families, both seats positive, and period-2 >=6
+  reduced 103 -> 0, but catastrophes worsen 12 -> 16 and negative mass 4,567 -> 4,826.
+  Nine new catastrophes outweigh five rescues. Do not rerun, remove seed 9,866,014, relax
+  the tail gates, or submit hash `acbada47...`; a successor needs distinct logic and a new
+  untouched lock. [E7a half-size tree-edge, 2026-08-03]
 
 ## (g) Arena measurement & platform behavior
 

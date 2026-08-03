@@ -313,3 +313,15 @@ outputs. Compile-only preflight passes without map generation. Candidate, range,
 generated runner, shared analyzer, library, development/diagnostic evidence, gates, and exact
 command are frozen in `focused-yamo-bank-convoy-tree-edge-reversal-fresh-lock.json`. The range
 remains unopened until this lock commit is pushed and remotely verified. No Arena action.
+
+## Progress 2026-08-03T04:17:29Z
+
+The exact locked command ran once over all 516 tasks and terminally rejects the 31,407-byte
+tree-edge candidate. Eleven of thirteen gates pass: mean +6.2926, lower -1.3469, five/six
+nonnegative families, both seats positive, worker-two/liveness/latency/integrity green, and
+period-2 >=6 at zero. The tail gates fail because catastrophes worsen 12 -> 16 and negative mass
+worsens 4,567 -> 4,826.
+
+The range is consumed. There will be no rerun, row exclusion, threshold relaxation, or Arena
+action for this hash. Diagnostic attribution may compare distinct logic on the preserved rows;
+another qualification attempt requires a distinct source and newly locked untouched range.
