@@ -1755,3 +1755,8 @@ for the untracked controller credential in the isolated worktree. No-orchard sub
 restore was accepted as `6592329`/`41086809`. This is a preflight abort, not one of the eight legs.
 The restart is gated on an explicit verifier credential path, a five-minute propagation-read
 window, exact restore verification, tests, and a remotely verified correction commit.
+
+Correction commit `9f21ef69` was remote-verified. The clean run restarted at 19:16:14Z; leg 1 is
+no-orchard agent `6592330`, submission `41086822`, with exact recovered source and one canonical
+mutation call. Start commit `1ff538c7` is remote-verified. The approximately 66-second preflight
+exposure remains excluded from all eight experimental legs.

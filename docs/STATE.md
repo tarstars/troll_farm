@@ -6,7 +6,7 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Night preflight safety restore: exact E7a `6592329`/`41086809`; clean A/B restart pending.
+- Night A/B leg 1/8: exact no-orchard `6592330`/`41086822`; maturity clock active.
   Complete checkpoint: 162/162, score 23.56, rank 32/137, 93W/3T/66L;
   identity/source/runtime clean, 18 catastrophes and negative mass 5,569.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs`

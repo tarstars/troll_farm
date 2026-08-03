@@ -1,17 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T19:14:58Z
-- State: first launch abort preserved; exact orchard restored; corrected clean restart pending push
+- Updated UTC: 2026-08-03T19:17:00Z
+- State: corrected eight-leg night cycle running; leg 1/8 exact no-orchard
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: sole controller for `20260803-orchard-ab-night-cycle`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
 - Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T19:14:58Z
-- Running job: failed unit stopped; no controller process active
-- Live identity: orchard safety restore `6592329`/`41086809`; source SHA exact
-- Next checkpoint: push correction/abort record, restart clean eight-leg unit
+- Last concrete progress UTC: 2026-08-03T19:16:30Z
+- Running job: `troll-farm-orchard-ab-night-20260803.service`, active maturity wait
+- Live identity: no-orchard leg 1 `6592330`/`41086822`; source SHA exact
+- Next checkpoint: immutable T+15 minute lease marker, then T+30/T+45 and terminal collection
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges

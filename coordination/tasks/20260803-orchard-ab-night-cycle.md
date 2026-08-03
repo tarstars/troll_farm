@@ -1,10 +1,10 @@
 # 20260803-orchard-ab-night-cycle: four repeated orchard/no-orchard live cycles
 
-- Status: preflight abort corrected and restore verified; correction push pending clean restart
+- Status: running; clean leg 1/8 no-orchard maturity window
 - Priority: direct owner assignment
 - Owner / Arena controller: local_codex_1
 - Created UTC: 2026-08-03T19:07:37Z
-- Last updated UTC: 2026-08-03T19:14:58Z
+- Last updated UTC: 2026-08-03T19:17:00Z
 - Branch: `agent/local_codex_1`
 - Runtime state: `data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`
 - Systemd unit: `troll-farm-orchard-ab-night-20260803.service`
@@ -49,6 +49,10 @@ pushed, and the orchard restore is source-verified.
 
 Restore source verification passed at 19:14:40Z: exactly 62,820 bytes and SHA-256 `97bfe71e...`.
 All six focused controller/export tests pass after the correction.
+
+The corrected controller restarted at 19:16:14Z. Clean leg 1 is exact no-orchard agent `6592330`,
+submission `41086822`; the recovered platform source is byte-exact. Start commit `1ff538c7` is
+remote-verified and the one-hour maturity clock is active.
 
 ## Per-leg protocol
 
