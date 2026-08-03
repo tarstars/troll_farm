@@ -1675,3 +1675,9 @@ activate. The owner was surfaced the measured mature-leg cost and selected the A
 | 2026-08-03T15:02:24Z | Submit exact no-orchard candidate once | `TestSession/submit` HTTP 200; submission `41085842`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
 | 2026-08-03T15:02:35Z | Immediate identity discovery and rank read | New agent `6592097`; ten queued unfinished battles carry exact submission `41085842`. Arena-room still displayed old resident `6590141`, score 25.3/rank 12 while queue had no finished result. |
 | 2026-08-03T15:04:31Z | First candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: 13 finished plus one pending, score 17.93, rank 97/137, one catastrophe, negative mass 302, zero runtime signals, identity clean. Public row momentarily read 18.7/rank 81; fresh partial read is not a verdict. |
+| 2026-08-03T15:06Z | Lightweight queue identity/count poll | Exact agent/submission match: 21 finished, one pending. |
+| 2026-08-03T15:08Z | Lightweight queue identity/count poll | Exact agent/submission match: 24 finished, one pending. |
+| 2026-08-03T15:10Z | Lightweight queue identity/count poll | Exact agent/submission match: 28 finished, one pending. |
+| 2026-08-03T15:12Z | Lightweight queue identity/count poll | Exact agent/submission match: 31 finished, one pending. |
+| 2026-08-03T15:14:08Z | Lightweight queue identity/count poll | Exact agent/submission match reached 43 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:14:08Z | 45-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 19.69, rank 66/137, 45 finished plus one pending, two catastrophes (4.4%), negative mass 883, zero runtime signals, identity clean. |
