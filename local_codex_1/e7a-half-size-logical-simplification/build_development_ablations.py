@@ -2154,6 +2154,740 @@ def focused_yamo_bank_convoy_spare_door_orchard(source: str) -> tuple[str, dict]
     return result, manifest
 
 
+def focused_yamo_bank_convoy_spare_door_safe_select(
+    source: str,
+) -> tuple[str, dict]:
+    """Emit one action per worker when a reserved orchard cell empties a candidate set."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_orchard(source)
+    changes = []
+
+    selector = item_text(result, "fn select(")
+    empty_pair = "}Vec::new()}"
+    wait_pair = "}vec![\"WAIT\".to_string();2]}"
+    if selector.count(empty_pair) != 1:
+        raise ValueError("unexpected empty two-worker selector fallback")
+    before = len(result.encode())
+    selector = selector.replace(empty_pair, wait_pair, 1)
+    result = _replace_item(result, "fn select(", selector)
+    changes.append(
+        {
+            "marker": "empty two-worker selector fallback",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": (
+                "emit an explicit WAIT for each worker when reserved-cell filtering "
+                "leaves no compatible pair"
+            ),
+        }
+    )
+
+    redundant_health = "plant.kind == PlantKind::Apple && plant.health > 0"
+    live_apple = "plant.kind == PlantKind::Apple"
+    if result.count(redundant_health) != 1:
+        raise ValueError("unexpected orchard live-tree health predicate")
+    before = len(result.encode())
+    result = result.replace(redundant_health, live_apple, 1)
+    changes.append(
+        {
+            "marker": "redundant orchard live-tree health predicate",
+            "bytes": before - len(result.encode()),
+            "logical_change": "protocol plant rows contain only live trees",
+        }
+    )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_SPARE_DOOR_SAFE_SELECT",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain the bank-convoy and spare-door orchard while making the "
+                "two-worker selector total after reserved-cell filtering"
+            ),
+            "evidence_boundary": (
+                "distinct liveness repair; requires a new lock and new untouched "
+                "validation block"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_spare_door_period2_guard(
+    source: str,
+) -> tuple[str, dict]:
+    """Stop a third A-B-A landing before collision reservations are finalized."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_safe_select(source)
+    changes = []
+
+    old_struct = item_text(result, "pub struct YamoBot")
+    new_struct = old_struct.replace(
+        "orchard_mother: Option<Cell>,",
+        "orchard_mother: Option<Cell>,\n"
+        "            move_history: [Option<(i32, Cell, Cell)>; 4],",
+        1,
+    )
+    if new_struct == old_struct:
+        raise ValueError("unexpected compact YamoBot fields")
+    before = len(result.encode())
+    result = _replace_item(result, "pub struct YamoBot", new_struct)
+    changes.append(
+        {
+            "marker": "pub struct YamoBot",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": "remember two consecutive landing cells for each live unit id",
+        }
+    )
+
+    old_constructor = (
+        "Self { type_to_cut: None, desired_second: None, orchard_mother: None }"
+    )
+    new_constructor = (
+        "Self { type_to_cut: None, desired_second: None, orchard_mother: None, "
+        "move_history: [None; 4] }"
+    )
+    if result.count(old_constructor) != 1:
+        raise ValueError("unexpected compact YamoBot constructor")
+    result = result.replace(old_constructor, new_constructor, 1)
+
+    resolver = r"""fn resolve_move_conflicts(
+                view: &GameState,
+                commands: &mut [String],
+                move_history: &mut [Option<(i32, Cell, Cell)>; 4],
+            ) {
+                let mut moves: Vec<(i32, usize, Cell, Cell)> = commands.iter()
+                    .enumerate()
+                    .filter_map(|(index, command)| {
+                        let (id, target) = Self::move_command(command)?;
+                        let unit = view.units.iter().find(|unit| unit.id == id)?;
+                        Some((id, index, unit.cell, next_cell(
+                            &view.walkable, unit.cell, target, unit.stats.movement_speed,
+                        )))
+                    })
+                    .collect();
+                moves.retain(|(id, index, _, landing)| {
+                    let history = &mut move_history[*id as usize];
+                    let previous = (*history).filter(|row| row.0 + 1 == view.turn);
+                    if previous.is_some_and(|row| row.1 == *landing && row.2 != *landing) {
+                        commands[*index] = "WAIT".to_string();
+                        *history = None;
+                        false
+                    } else {
+                        *history = Some((
+                            view.turn,
+                            previous.map_or(*landing, |row| row.2),
+                            *landing,
+                        ));
+                        true
+                    }
+                });
+                let moving_ids: Vec<i32> = moves.iter()
+                    .filter(|(_, _, current, landing)| current != landing)
+                    .map(|(id, _, _, _)| *id)
+                    .collect();
+                let mut reserved: Vec<Cell> = view.units.iter()
+                    .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
+                    .map(|unit| unit.cell)
+                    .collect();
+                moves.sort_by(|a, b| b.0.cmp(&a.0));
+                for (id, index, current, landing) in moves {
+                    if landing == current || reserved.contains(&landing) {
+                        commands[index] = "WAIT".to_string();
+                    } else {
+                        reserved.push(landing);
+                        commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
+                    }
+                }
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn resolve_move_conflicts(", resolver)
+    changes.append(
+        {
+            "marker": "fn resolve_move_conflicts(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(resolver.encode()),
+            "logical_change": (
+                "turn the third consecutive A-B-A landing into WAIT before reserving "
+                "the remaining worker's landing"
+            ),
+        }
+    )
+
+    old_call = "MoisanBot::resolve_move_conflicts(view, &mut selected);"
+    new_call = (
+        "MoisanBot::resolve_move_conflicts("
+        "view, &mut selected, &mut self.move_history);"
+    )
+    if result.count(old_call) != 1:
+        raise ValueError("unexpected compact movement resolver call")
+    result = result.replace(old_call, new_call, 1)
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_SPARE_DOOR_PERIOD2_GUARD",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain the safe two-worker selector and break any third consecutive "
+                "A-B-A landing before collision resolution"
+            ),
+            "evidence_boundary": (
+                "live-counterexample liveness repair; over-ceiling output is diagnostic "
+                "until paired with a declared logical simplification"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_spare_door_slot_period2(
+    source: str,
+) -> tuple[str, dict]:
+    """Break A-B-A landings with two stable action-slot history records."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_safe_select(source)
+    changes = []
+
+    old_struct = item_text(result, "pub struct YamoBot")
+    new_struct = old_struct.replace(
+        "orchard_mother: Option<Cell>,",
+        "orchard_mother: Option<Cell>,\n"
+        "            move_history: [(i32, Cell, Cell); 2],",
+        1,
+    )
+    if new_struct == old_struct:
+        raise ValueError("unexpected compact YamoBot fields")
+    before = len(result.encode())
+    result = _replace_item(result, "pub struct YamoBot", new_struct)
+    changes.append(
+        {
+            "marker": "pub struct YamoBot",
+            "net_removed_bytes": before - len(result.encode()),
+            "logical_change": "remember the last two consecutive landings in each worker slot",
+        }
+    )
+
+    old_constructor = (
+        "Self { type_to_cut: None, desired_second: None, orchard_mother: None }"
+    )
+    new_constructor = (
+        "Self { type_to_cut: None, desired_second: None, orchard_mother: None, "
+        "move_history: [(0, (0, 0), (0, 0)); 2] }"
+    )
+    if result.count(old_constructor) != 1:
+        raise ValueError("unexpected compact YamoBot constructor")
+    result = result.replace(old_constructor, new_constructor, 1)
+
+    resolver = item_text(result, "fn resolve_move_conflicts(")
+    old_signature = "fn resolve_move_conflicts(view: &GameState, commands: &mut [String])"
+    new_signature = (
+        "fn resolve_move_conflicts(view: &GameState, commands: &mut [String], "
+        "move_history: &mut [(i32, Cell, Cell); 2])"
+    )
+    if resolver.count(old_signature) != 1:
+        raise ValueError("unexpected compact movement resolver signature")
+    resolver = resolver.replace(old_signature, new_signature, 1)
+    collection_tail = "                    .collect();\n"
+    if resolver.count(collection_tail) != 3:
+        raise ValueError("unexpected movement resolver collection structure")
+    guard = r"""                moves.retain(|(_, index, _, landing)| {
+                    let (turn, two_back, previous) = move_history[*index];
+                    if turn + 1 == view.turn
+                        && two_back == *landing && previous != *landing
+                    {
+                        commands[*index] = "WAIT".to_string();
+                        move_history[*index] = (view.turn, *landing, *landing);
+                        false
+                    } else {
+                        move_history[*index] = (
+                            view.turn,
+                            if turn + 1 == view.turn { previous } else { *landing },
+                            *landing,
+                        );
+                        true
+                    }
+                });
+"""
+    resolver = resolver.replace(collection_tail, collection_tail + guard, 1)
+    before = len(result.encode())
+    result = _replace_item(result, "fn resolve_move_conflicts(", resolver)
+    changes.append(
+        {
+            "marker": "fn resolve_move_conflicts(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(resolver.encode()),
+            "logical_change": "turn the third consecutive A-B-A landing into WAIT",
+        }
+    )
+
+    old_call = "MoisanBot::resolve_move_conflicts(view, &mut selected);"
+    new_call = (
+        "MoisanBot::resolve_move_conflicts("
+        "view, &mut selected, &mut self.move_history);"
+    )
+    if result.count(old_call) != 1:
+        raise ValueError("unexpected compact movement resolver call")
+    result = result.replace(old_call, new_call, 1)
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_SPARE_DOOR_SLOT_PERIOD2",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact opening and terminal economics while breaking a third "
+                "A-B-A landing in either stable worker action slot"
+            ),
+            "evidence_boundary": (
+                "live-counterexample liveness repair; over-ceiling output is diagnostic "
+                "until paired with a declared logical simplification"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_period2_lean_safe(
+    source: str,
+) -> tuple[str, dict]:
+    """Fund the slot liveness guard by removing narrow policy generality."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_slot_period2(source)
+    changes = []
+
+    orchard_mother = r"""fn select_orchard_mother(view: &GameState) -> Option<Cell> {
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0]).into_iter()
+                    .filter(|cell| view.walkable.contains(cell)).collect();
+                if doors.len() < 2 || doors.len() == 2
+                    && view.plants.iter().any(|plant| doors.contains(&plant.cell))
+                {
+                    return None;
+                }
+                doors.into_iter()
+                    .filter(|door| view.plant_at(*door).is_none())
+                    .filter(|door| view.water.iter()
+                        .any(|water| is_adjacent(*water, *door)))
+                    .filter(|door| manhattan(*door, view.shacks[1]) >= 11)
+                    .min_by_key(|door| (-manhattan(*door, view.shacks[1]), *door))
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn select_orchard_mother(", orchard_mother)
+    changes.append(
+        {
+            "marker": "fn select_orchard_mother(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(orchard_mother.encode()),
+            "logical_change": (
+                "retain the enemy-distance floor but use conservative Manhattan distance "
+                "instead of a second BFS"
+            ),
+        }
+    )
+
+    old_evacuation = r"""                    if train_now
+                        && unit.cell == view.shacks[0]
+                        && !candidates.iter().any(|row| row.command.starts_with("MOVE "))
+                    {
+                        if let Some(cell) = ortho_neighbors(view.shacks[0])
+                            .into_iter()
+                            .find(|cell| view.walkable.contains(cell))
+                        {
+                            candidates.push(Candidate {
+                                command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                                score: 19_000.0,
+                                target: Some(cell),
+                            });
+                        }
+                    }
+"""
+    new_evacuation = r"""                    if train_now && unit.cell == view.shacks[0] {
+                        let cell = ortho_neighbors(view.shacks[0]).into_iter()
+                            .find(|cell| view.walkable.contains(cell)).unwrap();
+                        candidates.push(Candidate {
+                            command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                            score: 19_000.0,
+                            target: Some(cell),
+                        });
+                    }
+"""
+    if result.count(old_evacuation) != 1:
+        raise ValueError("unexpected conditional training evacuation block")
+    before = len(result.encode())
+    result = result.replace(old_evacuation, new_evacuation, 1)
+    changes.append(
+        {
+            "marker": "conditional training evacuation block",
+            "bytes": before - len(result.encode()),
+            "logical_change": (
+                "official shacks always have a walkable door, so always add the same-turn "
+                "evacuation move when a funded worker is trained"
+            ),
+        }
+    )
+
+    fruit_kind = r"""fn fruit_kind(stock: &[i32; 6]) -> Option<PlantKind> {
+                [BANANA, PLUM, LEMON, APPLE].into_iter()
+                    .find(|item| stock[*item] > 0)
+                    .map(|item| match item {
+                        PLUM => PlantKind::Plum,
+                        LEMON => PlantKind::Lemon,
+                        APPLE => PlantKind::Apple,
+                        _ => PlantKind::Banana,
+                    })
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn fruit_kind(", fruit_kind)
+    for old, new, expected in (
+        ("Self::fruit_kind(&unit.carry, false)", "Self::fruit_kind(&unit.carry)", 1),
+        ("Self::fruit_kind(&view.inventories[0], true)",
+         "Self::fruit_kind(&view.inventories[0])", 1),
+    ):
+        if result.count(old) != expected:
+            raise ValueError(f"unexpected terminal fruit-priority call: {old!r}")
+        result = result.replace(old, new, expected)
+    changes.append(
+        {
+            "marker": "fn fruit_kind(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(fruit_kind.encode()),
+            "logical_change": "use one banana-first terminal conversion priority",
+        }
+    )
+
+    for old, new in (
+        (
+            "if view.turn <= 250 && (view.turn < 100 || view.plants.len() > 2)",
+            "if view.turn <= 250",
+        ),
+        (
+            "if view.turn > 250 || view.turn >= 100 && view.plants.len() <= 2",
+            "if view.turn > 250",
+        ),
+    ):
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected preterminal conversion condition: {old!r}")
+        before = len(result.encode())
+        result = result.replace(old, new, 1)
+        changes.append(
+            {
+                "marker": old,
+                "bytes": before - len(result.encode()),
+                "logical_change": "bank fruit before turn 251 and convert only in the terminal phase",
+            }
+        )
+
+    occupied_conversion_door = r"""                        .filter(|cell| !view.units.iter().any(|other| {
+                            other.player == 0 && other.id != unit.id && other.cell == *cell
+                        }))
+"""
+    if result.count(occupied_conversion_door) != 1:
+        raise ValueError("unexpected terminal occupied-door prefilter")
+    before = len(result.encode())
+    result = result.replace(occupied_conversion_door, "", 1)
+    changes.append(
+        {
+            "marker": "terminal occupied-door prefilter",
+            "bytes": before - len(result.encode()),
+            "logical_change": (
+                "delete the redundant prospective occupancy scan; the shared landing "
+                "resolver already makes an occupied conversion door wait"
+            ),
+        }
+    )
+
+    redundant_live_health = "if plant.health<=0||!from_unit.contains_key(&plant.cell)"
+    reachable_live_tree = "if !from_unit.contains_key(&plant.cell)"
+    if result.count(redundant_live_health) != 1:
+        raise ValueError("unexpected live-tree chop predicate")
+    before = len(result.encode())
+    result = result.replace(redundant_live_health, reachable_live_tree, 1)
+    changes.append(
+        {
+            "marker": "redundant live-tree chop health predicate",
+            "bytes": before - len(result.encode()),
+            "logical_change": "protocol plant rows contain only live trees",
+        }
+    )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_PERIOD2_LEAN_SAFE",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "combine the slot period-2 guard with conservative orchard geometry, "
+                "unconditional funded-shack evacuation, and one terminal conversion mode"
+            ),
+            "evidence_boundary": (
+                "size-eligible development successor; requires consumed semantic and "
+                "value gates before any fresh lock"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_period2_lean_coordination(
+    source: str,
+) -> tuple[str, dict]:
+    """Fund the slot guard by deleting redundant two-worker coordination layers."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_slot_period2(source)
+    changes = []
+
+    selector = item_text(result, "fn select(")
+    stock_guard = "||!Self::stock_compatible(a,b,inventory)"
+    if selector.count(stock_guard) != 1:
+        raise ValueError("unexpected simultaneous-PICK stock guard")
+    before = len(result.encode())
+    selector = selector.replace(stock_guard, "", 1)
+    result = _replace_item(result, "fn select(", selector)
+    stock_guard_bytes = before - len(result.encode())
+    for marker in ("fn picked_item(", "fn stock_compatible("):
+        item_before = len(result.encode())
+        result = _remove_item(result, marker)
+        changes.append({"marker": marker, "bytes": item_before - len(result.encode())})
+    changes.append(
+        {
+            "marker": "simultaneous-PICK stock guard",
+            "bytes": stock_guard_bytes,
+            "logical_change": (
+                "delete speculative same-item stock reservation; the two workers already "
+                "reserve distinct action cells and failed excess PICK is a legal no-op"
+            ),
+        }
+    )
+
+    old_evacuation = r"""                    if train_now
+                        && unit.cell == view.shacks[0]
+                        && !candidates.iter().any(|row| row.command.starts_with("MOVE "))
+                    {
+                        if let Some(cell) = ortho_neighbors(view.shacks[0])
+                            .into_iter()
+                            .find(|cell| view.walkable.contains(cell))
+                        {
+                            candidates.push(Candidate {
+                                command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                                score: 19_000.0,
+                                target: Some(cell),
+                            });
+                        }
+                    }
+"""
+    new_evacuation = r"""                    if train_now && unit.cell == view.shacks[0] {
+                        let cell = ortho_neighbors(view.shacks[0]).into_iter()
+                            .find(|cell| view.walkable.contains(cell)).unwrap();
+                        candidates.push(Candidate {
+                            command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+                            score: 19_000.0,
+                            target: Some(cell),
+                        });
+                    }
+"""
+    if result.count(old_evacuation) != 1:
+        raise ValueError("unexpected conditional training evacuation block")
+    before = len(result.encode())
+    result = result.replace(old_evacuation, new_evacuation, 1)
+    changes.append(
+        {
+            "marker": "conditional training evacuation block",
+            "bytes": before - len(result.encode()),
+            "logical_change": (
+                "official shacks always have a walkable door, so always add the same-turn "
+                "evacuation move when a funded worker is trained"
+            ),
+        }
+    )
+
+    occupied_conversion_door = r"""                        .filter(|cell| !view.units.iter().any(|other| {
+                            other.player == 0 && other.id != unit.id && other.cell == *cell
+                        }))
+"""
+    if result.count(occupied_conversion_door) != 1:
+        raise ValueError("unexpected terminal occupied-door prefilter")
+    before = len(result.encode())
+    result = result.replace(occupied_conversion_door, "", 1)
+    changes.append(
+        {
+            "marker": "terminal occupied-door prefilter",
+            "bytes": before - len(result.encode()),
+            "logical_change": (
+                "delete the redundant prospective occupancy scan; the shared landing "
+                "resolver already makes an occupied conversion door wait"
+            ),
+        }
+    )
+
+    redundant_live_health = "if plant.health<=0||!from_unit.contains_key(&plant.cell)"
+    reachable_live_tree = "if !from_unit.contains_key(&plant.cell)"
+    if result.count(redundant_live_health) != 1:
+        raise ValueError("unexpected live-tree chop predicate")
+    before = len(result.encode())
+    result = result.replace(redundant_live_health, reachable_live_tree, 1)
+    changes.append(
+        {
+            "marker": "redundant live-tree chop health predicate",
+            "bytes": before - len(result.encode()),
+            "logical_change": "protocol plant rows contain only live trees",
+        }
+    )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_PERIOD2_LEAN_COORDINATION",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "retain exact opening, orchard, and conversion economics while replacing "
+                "redundant stock, evacuation, and occupancy coordination with the shared "
+                "two-worker landing guard"
+            ),
+            "evidence_boundary": (
+                "size-eligible development successor; requires consumed semantic and "
+                "value gates before any fresh lock"
+            ),
+        }
+    )
+    return result, manifest
+
+
+def focused_yamo_bank_convoy_period2_simple_clock(
+    source: str,
+) -> tuple[str, dict]:
+    """Pair the period-2 guard with travel-only opening and terminal conversion."""
+
+    result, manifest = focused_yamo_bank_convoy_spare_door_period2_guard(source)
+    changes = []
+
+    fruit_candidates = item_text(result, "fn fruit_candidates(")
+    old_fruit_wait = (
+        "let wait=(Self::ticks_until_fruit(view,plant)-travel).max(0);"
+        "out.push(Candidate{command:format!(\"MOVE {} {} {}\",unit.id,plant.cell.0,"
+        "plant.cell.1),score:base_score-(travel+wait)as f64,target:Some(plant.cell),});"
+    )
+    new_fruit_wait = (
+        "out.push(Candidate{command:format!(\"MOVE {} {} {}\",unit.id,plant.cell.0,"
+        "plant.cell.1),score:base_score-travel as f64,target:Some(plant.cell),});"
+    )
+    if fruit_candidates.count(old_fruit_wait) != 1:
+        raise ValueError("unexpected opening fruit wait forecast")
+    before = len(result.encode())
+    fruit_candidates = fruit_candidates.replace(old_fruit_wait, new_fruit_wait, 1)
+    result = _replace_item(result, "fn fruit_candidates(", fruit_candidates)
+    changes.append(
+        {
+            "marker": "opening fruit target growth wait",
+            "bytes": before - len(result.encode()),
+            "logical_change": "rank bill-fruit sources by reachable travel rather than growth forecast",
+        }
+    )
+
+    chooser = item_text(result, "fn choose_second_troll(")
+    old_eta_wait = (
+        "let wait = (MoisanBot::ticks_until_fruit(view, plant) - travel)\n"
+        "                                    .max(0);\n"
+        "                                Some(missing * (2 * travel + 2) + wait)"
+    )
+    new_eta_wait = "Some(missing * (2 * travel + 2))"
+    if chooser.count(old_eta_wait) != 1:
+        raise ValueError("unexpected worker-profile growth wait forecast")
+    before = len(result.encode())
+    chooser = chooser.replace(old_eta_wait, new_eta_wait, 1)
+    result = _replace_item(result, "fn choose_second_troll(", chooser)
+    changes.append(
+        {
+            "marker": "worker-profile growth wait forecast",
+            "bytes": before - len(result.encode()),
+            "logical_change": "price each bill resource by collection travel only",
+        }
+    )
+
+    before = len(result.encode())
+    result = _remove_item(result, "fn ticks_until_fruit(")
+    changes.append(
+        {
+            "marker": "fn ticks_until_fruit(",
+            "bytes": before - len(result.encode()),
+            "logical_change": "delete the now-unused species/water growth-clock predictor",
+        }
+    )
+
+    fruit_kind = r"""fn fruit_kind(stock: &[i32; 6]) -> Option<PlantKind> {
+                [BANANA, PLUM, LEMON, APPLE].into_iter()
+                    .find(|item| stock[*item] > 0)
+                    .map(|item| match item {
+                        PLUM => PlantKind::Plum,
+                        LEMON => PlantKind::Lemon,
+                        APPLE => PlantKind::Apple,
+                        _ => PlantKind::Banana,
+                    })
+            }"""
+    before = len(result.encode())
+    result = _replace_item(result, "fn fruit_kind(", fruit_kind)
+    for old, new, expected in (
+        ("Self::fruit_kind(&unit.carry, false)", "Self::fruit_kind(&unit.carry)", 1),
+        ("Self::fruit_kind(&view.inventories[0], true)",
+         "Self::fruit_kind(&view.inventories[0])", 1),
+    ):
+        if result.count(old) != expected:
+            raise ValueError(f"unexpected terminal fruit-priority call: {old!r}")
+        result = result.replace(old, new, expected)
+    changes.append(
+        {
+            "marker": "fn fruit_kind(",
+            "net_removed_bytes": before - len(result.encode()),
+            "replacement_bytes": len(fruit_kind.encode()),
+            "logical_change": "use one banana-first terminal conversion priority",
+        }
+    )
+
+    for old, new in (
+        (
+            "if view.turn <= 250 && (view.turn < 100 || view.plants.len() > 2)",
+            "if view.turn <= 250",
+        ),
+        (
+            "if view.turn > 250 || view.turn >= 100 && view.plants.len() <= 2",
+            "if view.turn > 250",
+        ),
+    ):
+        if result.count(old) != 1:
+            raise ValueError(f"unexpected preterminal conversion condition: {old!r}")
+        before = len(result.encode())
+        result = result.replace(old, new, 1)
+        changes.append(
+            {
+                "marker": old,
+                "bytes": before - len(result.encode()),
+                "logical_change": "bank fruit before turn 251 and convert only in the terminal phase",
+            }
+        )
+
+    manifest["removed_or_replaced_items"].extend(changes)
+    manifest.update(
+        {
+            "arm": "FOCUSED_YAMO_BANK_CONVOY_PERIOD2_SIMPLE_CLOCK",
+            "candidate_bytes": len(result.encode()),
+            "candidate_sha256": sha256_bytes(result.encode()),
+            "logical_change": (
+                "combine a total two-worker period-2 guard with travel-only opening "
+                "pricing and one terminal fruit-conversion mode"
+            ),
+            "evidence_boundary": (
+                "size-eligible development successor; requires consumed semantic and "
+                "value gates before any fresh lock"
+            ),
+        }
+    )
+    return result, manifest
+
+
 def focused_yamo_bank_convoy_safe_orchard(source: str) -> tuple[str, dict]:
     """Open any eligible mother door, but disable seeding when APPLE is exhausted."""
 
@@ -2778,6 +3512,12 @@ def main() -> int:
             "focused-yamo-structural-specialization",
             "focused-yamo-bank-convoy",
             "focused-yamo-bank-convoy-spare-door-orchard",
+            "focused-yamo-bank-convoy-spare-door-safe-select",
+            "focused-yamo-bank-convoy-spare-door-period2-guard",
+            "focused-yamo-bank-convoy-spare-door-slot-period2",
+            "focused-yamo-bank-convoy-period2-lean-safe",
+            "focused-yamo-bank-convoy-period2-lean-coordination",
+            "focused-yamo-bank-convoy-period2-simple-clock",
             "focused-yamo-bank-convoy-safe-orchard",
             "focused-yamo-bank-convoy-door-harvest",
             "focused-yamo-bank-convoy-door-harvest-no-orchard",
@@ -2813,6 +3553,24 @@ def main() -> int:
         "focused-yamo-bank-convoy": focused_yamo_bank_convoy,
         "focused-yamo-bank-convoy-spare-door-orchard": (
             focused_yamo_bank_convoy_spare_door_orchard
+        ),
+        "focused-yamo-bank-convoy-spare-door-safe-select": (
+            focused_yamo_bank_convoy_spare_door_safe_select
+        ),
+        "focused-yamo-bank-convoy-spare-door-period2-guard": (
+            focused_yamo_bank_convoy_spare_door_period2_guard
+        ),
+        "focused-yamo-bank-convoy-spare-door-slot-period2": (
+            focused_yamo_bank_convoy_spare_door_slot_period2
+        ),
+        "focused-yamo-bank-convoy-period2-lean-safe": (
+            focused_yamo_bank_convoy_period2_lean_safe
+        ),
+        "focused-yamo-bank-convoy-period2-lean-coordination": (
+            focused_yamo_bank_convoy_period2_lean_coordination
+        ),
+        "focused-yamo-bank-convoy-period2-simple-clock": (
+            focused_yamo_bank_convoy_period2_simple_clock
         ),
         "focused-yamo-bank-convoy-safe-orchard": (
             focused_yamo_bank_convoy_safe_orchard

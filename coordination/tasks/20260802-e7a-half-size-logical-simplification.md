@@ -10,7 +10,7 @@
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-02T19:52:10Z
-- Last updated UTC: 2026-08-03T01:13:00Z
+- Last updated UTC: 2026-08-03T02:06:05Z
 
 ## Outcome
 
@@ -187,3 +187,21 @@ exposes no range arguments and compiled successfully without generating a map. S
 runner transformation, evaluator, thresholds, families, seats, bootstrap, and one-shot rule are
 frozen in `focused-yamo-bank-convoy-spare-door-orchard-fresh-lock.json`. At this marker the new
 range remains unopened. The lock must be committed and pushed before execution; no Arena action.
+
+## Progress 2026-08-03T02:06:05Z
+
+The 31,398-byte source passed its untouched 9,863,000--042 gate at +5.5465 mean / +1.2868
+lower with all frozen gates green, but it is superseded: exact live replay 897830380 exposed an
+empty selector panic, and the totalized safe selector still reproduced period-2 runs >=6 in
+10/25 exact live counterexamples. The consumed range remains valid only for its old exact hash.
+
+A distinct 31,405-byte successor, SHA-256 `9a202242...`, adds a two-slot A-B-A landing guard and
+funds it by deleting speculative simultaneous-PICK stock reservation, redundant funded-shack
+evacuation checks, terminal occupied-door prefiltering, and a dead live-tree health predicate.
+No renaming or compression is used. It passes ten semantic fixtures, the 25/25 exact live
+counterexample packet with maximum period-2 two, and all 516 consumed-panel gates at +9.4535
+mean / +4.0426 lower, catastrophes 19 -> 13, negative mass 4,138 -> 3,855, six/six positive
+families, both seats positive, worker-two coverage 100%, and zero long period-2 episodes.
+
+The exact source is development-qualified, not transfer-qualified. A new untouched range must
+be collision-audited and locked before one-shot execution. No Arena action.

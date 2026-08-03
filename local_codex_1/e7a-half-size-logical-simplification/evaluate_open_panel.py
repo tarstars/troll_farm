@@ -57,10 +57,14 @@ def module_source(source: str, module: str) -> str:
     return source
 
 
-def compile_runner(directory: Path) -> tuple[Path, dict]:
+def compile_runner(
+    directory: Path,
+    candidate: Path = CANDIDATE,
+    candidate_sha256: str = CANDIDATE_SHA256,
+) -> tuple[Path, dict]:
     if sha256(BASELINE) != BASELINE_SHA256:
         raise RuntimeError("baseline hash mismatch")
-    if sha256(CANDIDATE) != CANDIDATE_SHA256:
+    if sha256(candidate) != candidate_sha256:
         raise RuntimeError("candidate hash mismatch")
     if sha256(SACRED) != SACRED_SHA256:
         raise RuntimeError("sacred hash mismatch")
@@ -71,7 +75,7 @@ def compile_runner(directory: Path) -> tuple[Path, dict]:
     baseline_module = directory / "baseline_module.rs"
     candidate_module = directory / "candidate_module.rs"
     baseline_module.write_text(module_source(BASELINE.read_text(), "baseline"))
-    candidate_module.write_text(module_source(CANDIDATE.read_text(), "candidate"))
+    candidate_module.write_text(module_source(candidate.read_text(), "candidate"))
     binary = directory / "open_panel_runner"
     environment = dict(os.environ)
     environment.update(
@@ -338,32 +342,48 @@ def main() -> int:
     parser.add_argument("--maps", type=int, required=True)
     parser.add_argument("--threads", type=int, default=8)
     parser.add_argument("--bootstrap", type=int, default=50_000)
+    parser.add_argument("--candidate", type=Path, default=CANDIDATE)
+    parser.add_argument("--candidate-sha256", default=CANDIDATE_SHA256)
+    parser.add_argument(
+        "--analyze-only",
+        action="store_true",
+        help="reuse the existing panel TSV without compiling or simulating",
+    )
     parser.add_argument("--panel", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args()
+    arguments.candidate = arguments.candidate.resolve()
     if not (OPEN_START <= arguments.start < arguments.start + arguments.maps <= OPEN_END):
         parser.error("range must stay inside the consumed A2-0b calibration maps")
     if arguments.threads <= 0 or arguments.bootstrap <= 0:
         parser.error("threads and bootstrap must be positive")
 
-    with tempfile.TemporaryDirectory(prefix="e7a-half-open-panel-") as temporary:
-        binary, compiler = compile_runner(Path(temporary))
-        completed = subprocess.run(
-            [
-                str(binary),
-                str(arguments.start),
-                str(arguments.maps),
-                str(arguments.panel),
-                str(arguments.threads),
-            ],
-            cwd=REPO,
-            text=True,
-            capture_output=True,
-            timeout=3600,
-        )
-        if completed.returncode:
-            raise RuntimeError(f"panel failed:\n{completed.stderr[-12000:]}")
-        run_stderr = completed.stderr.strip()
+    if arguments.analyze_only:
+        if not arguments.panel.is_file():
+            parser.error("--analyze-only requires an existing panel TSV")
+        compiler = {"analysis_only_reuse": True}
+        run_stderr = ""
+    else:
+        with tempfile.TemporaryDirectory(prefix="e7a-half-open-panel-") as temporary:
+            binary, compiler = compile_runner(
+                Path(temporary), arguments.candidate, arguments.candidate_sha256
+            )
+            completed = subprocess.run(
+                [
+                    str(binary),
+                    str(arguments.start),
+                    str(arguments.maps),
+                    str(arguments.panel),
+                    str(arguments.threads),
+                ],
+                cwd=REPO,
+                text=True,
+                capture_output=True,
+                timeout=3600,
+            )
+            if completed.returncode:
+                raise RuntimeError(f"panel failed:\n{completed.stderr[-12000:]}")
+            run_stderr = completed.stderr.strip()
 
     rows, latency = parse_panel(arguments.panel)
     result = analyze(
@@ -373,6 +393,8 @@ def main() -> int:
         bootstrap_samples=arguments.bootstrap,
         compiler=compiler,
         panel_path=arguments.panel,
+        candidate=arguments.candidate,
+        candidate_sha256=arguments.candidate_sha256,
     )
     result["run_stderr"] = run_stderr
     arguments.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
