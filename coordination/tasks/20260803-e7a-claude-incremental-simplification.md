@@ -1,6 +1,6 @@
 # 20260803-e7a-claude-incremental-simplification: continue exact bot reduction
 
-- Status: round14_live_exact_pass; audit publication in progress
+- Status: round14_live_and_offline_exact_pass; credential-free gate ready for publication
 - Priority: direct owner assignment; supersedes Claude's queued, unreleased work
 - Record owner: local_codex_1
 - Work owner: claude_1
@@ -12,7 +12,7 @@
 - Progress lease: begins when Claude publishes its acknowledgement; 15 minutes between concrete
   evidence or phase markers
 - Created UTC: 2026-08-03T07:33:14Z
-- Last updated UTC: 2026-08-03T09:47:56Z
+- Last updated UTC: 2026-08-03T09:55:13Z
 
 ## Objective
 
@@ -108,6 +108,30 @@ counterexamples and 7,234 teacher-forced command lines: zero different games, un
 or liveness differences. The result JSON SHA-256 is `f02c103d...`.
 
 The owner additionally directed publication of the 18 MB frozen audit for Claude-local future
-parity gates. Its content matches the preregistered SHA-256 `8c29f433...` and is staged through an
-exact-path Git LFS rule. Round 15 remains blocked until remote LFS publication is verified and the
-delegation policy message is pushed.
+parity gates. Its content matches the preregistered SHA-256 `8c29f433...` and is remotely
+published through an exact-path Git LFS rule.
+
+## Credential-free gate correction 2026-08-03T09:55:13Z
+
+The audit itself is not a replay corpus: it contains decoded summaries and game selection fields,
+but no `frames` or `view` payloads. The original evaluator calls Codingame's
+`gameResult/findByGameId` endpoint for every selected game, so the audit alone cannot authorize a
+Claude-local gate on a host without platform credentials.
+
+The integrator therefore froze a compact, deterministic gzip packet containing the exact 25
+teacher-forced transcripts and 7,234 exact live-baseline output lines:
+
+- packet:
+  `data/analysis/live-agent-6553250/e7a-live-command-parity-offline-packet-2026-08-03.json.gz`;
+- packet SHA-256: `fb8e968ff65fc55c6f6f9d2f2b678434ab2dfda8eba84fdb6d0384d41856c7e2`;
+- evaluator:
+  `local_codex_1/e7a-iterative-logical-deletion/evaluate_live_command_parity_offline.py`;
+- builder/provenance:
+  `local_codex_1/e7a-iterative-logical-deletion/build_live_command_parity_offline_packet.py`.
+
+The credential-free evaluator imports no Arena client and performs no network calls. On round 14
+it reproduces the online result exactly: 25 games, 7,234 turns, zero different games, maximum
+period-2 episode 128, and `LIVE_COMMAND_PARITY_PASS`. Its result SHA-256 is `56c30255...`.
+
+Round 15 remains blocked only until these artifacts are pushed and a policy message with the exact
+Claude-side command is published.
