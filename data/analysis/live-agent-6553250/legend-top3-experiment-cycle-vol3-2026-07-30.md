@@ -1700,3 +1700,10 @@ REQUIRED.** The score loss exceeds the Arena noise band. The reduced catastrophe
 enough to retain a bot that finishes roughly two rating points lower, and terminal matchup sets
 differ, so component-value language remains bounded to this live ablation rather than a clean
 paired causal estimate.
+
+Restore execution:
+
+| Timestamp (UTC) | Action | Result |
+|---|---|---|
+| 2026-08-03T15:46:51Z | Submit exact E7a restore once | `TestSession/submit` HTTP 200; submission `41086057`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
+| 2026-08-03T15:47:05Z | Immediate restore identity/rank read | New restore agent `6592131`; ten queued unfinished battles carry exact submission `41086057`. Arena-room still displayed terminal ablation `6592097`, score 23.2/rank 34 while restore had no finished result. |

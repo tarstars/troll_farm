@@ -1,6 +1,6 @@
 # 20260803-owner-no-orchard-ablation-arena: live no-orchard ablation
 
-- Status: terminal no-orchard rejection at 23.27; exact E7a restore pending
+- Status: exact E7a restore accepted; source/initial-health verification pending
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: local_codex_1
 - Artifact author: claude_1
@@ -10,7 +10,7 @@
 - Candidate SHA-256:
   `d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`
 - Created UTC: 2026-08-03T14:59:16Z
-- Last updated UTC: 2026-08-03T15:45:15Z
+- Last updated UTC: 2026-08-03T15:47:32Z
 
 ## Objective and authority
 
@@ -112,6 +112,14 @@ live source is candidate SHA `d1f32c35...` before restore.
 
 Controller disposition: restore exact E7a SHA `97bfe71e...` within this same serialized cycle,
 then verify the returned ids and initial runtime health. No-orchard will not remain the resident.
+
+## Restore submission 2026-08-03T15:46:51Z
+
+Exactly one explicit restore call submitted the 62,820-byte E7a source at SHA `97bfe71e...`.
+`TestSession/submit` returned HTTP 200 with submission id `41086057`; the tool exited 0 after
+`SUBMIT-OK` without trying another endpoint. Restore agent id is `6592131`; the first ten observed
+battles carry the exact identity and were queued unfinished. Source recovery and initial health
+verification are the only remaining cycle steps.
 
 ## Safety and stop rules
 
