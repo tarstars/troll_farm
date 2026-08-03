@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 57304,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r17-inline-max-extra-eta.rs",
+    "removed_from_initial_62278": 4974,
+    "removed_this_round": 75,
+    "sha256": "326213a3d4888f8fb853195358b0c1257bb6e4a76018fb3df3cd01c8c6eb5092"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "inline the sole-value max_extra_eta 15 at its guard and allowance reads and delete the field and TUNED_CARRY initializer; the now-constant 15<=0 disjunct is preserved verbatim for a separately declared round",
+  "minification": false,
+  "parent": {
+    "bytes": 57379,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r16-inline-hard-train-turn.rs",
+    "sha256": "782b91d24d240721bddffdef404d396757b9871fdbc14d4112f3e845b48f35e8"
+  },
+  "round": 17,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}
