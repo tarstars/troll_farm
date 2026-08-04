@@ -1,11 +1,11 @@
 # 20260804-orchard-code-cost-ablation: physically remove apple-orchard implementation
 
-- Status: reassigned to established Claude agent; acknowledgement required before implementation
+- Status: complete; handoff independently verified and integrated on `agent/local_codex_1`
 - Priority: direct owner assignment
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Created UTC: 2026-08-04T06:35:15Z
-- Updated UTC: 2026-08-04T06:40:02Z
+- Updated UTC: 2026-08-04T09:07:13Z
 - Required branch: `agent/claude_1-orchard-code-cost`
 - Arena authority: none; static source-cost audit only
 
@@ -87,3 +87,17 @@ The owner cancelled the unacknowledged `local_claude_1` assignment at 2026-08-04
 reassigned the work to the established `claude_1` agent. Before implementation, acknowledge from
 the `claude_1` namespace and claim the explicit write set. This direct owner assignment may begin
 at Claude's current idle authorization boundary; do not resume overlapping older work in parallel.
+
+## Result and integrator verification
+
+Claude handoff `7bc3e07a` reports exact orchard cost of **15,013 bytes/characters**, 23.898% of
+the 62,820-character baseline and 15.013% of the platform allowance. The stripped source is
+47,807 bytes at SHA `102caecd...`; the activation-disabled reference is 62,581 bytes at SHA
+`8fc1b7f3...`.
+
+The integrator cherry-picked the acknowledgement and handoff as `bb369a71` and `3561ca3d`, then
+independently regenerated the sources, rechecked all hashes, compiled both optimized artifacts,
+confirmed empty-input cleanliness, reran 10/10 semantic fixtures for each, and reran both equality
+panels. Reference versus baseline is 24/25 exact with only known orchard game `897833045`
+diverging; stripped versus reference is 25/25 games and 7,234/7,234 command lines exact. Sacred
+source remains SHA `fff6669b...`; no Arena action occurred.
