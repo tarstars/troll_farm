@@ -231,6 +231,7 @@
         "total": 137
       },
       "checkpoint": "data/analysis/live-agent-6553250/orchard-ab-night-20260803/leg-08-orchard/checkpoint.json",
+      "commit": "ced00045df6d9b283b484d8be969664dfe65fdc3",
       "completed_at_utc": "2026-08-04T03:42:12Z",
       "game_count": 160,
       "leg": 8,
@@ -253,7 +254,7 @@
     }
   ],
   "maturity_seconds_per_leg": 3600,
-  "phase": "leg-complete",
+  "phase": "complete",
   "schema": "orchard-ab-night-cycle-v1",
   "sequence": [
     "no-orchard",
@@ -266,7 +267,7 @@
     "orchard"
   ],
   "started_at_utc": "2026-08-03T19:16:14Z",
-  "status": "running",
+  "status": "complete",
   "task_id": "20260803-orchard-ab-night-cycle",
-  "updated_at_utc": "2026-08-04T03:42:12Z"
+  "updated_at_utc": "2026-08-04T03:42:32Z"
 }
