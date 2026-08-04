@@ -1,8 +1,9 @@
 # 20260804-readable-orchard-loc-cost: measure orchard cost in canonical readable lines
 
-- Status: claimed by direct owner assignment; implementation starts after remote claim verification
+- Status: complete; 375-line readable orchard cost verified
 - Owner / worker / integrator: `local_codex_1`
-- Created / updated UTC: 2026-08-04T10:16:15Z
+- Created UTC: 2026-08-04T10:16:15Z
+- Updated UTC: 2026-08-04T10:25:03Z
 - Branch: `agent/local_codex_1`
 - Arena authority: none; source reconstruction and static measurement only
 
@@ -48,3 +49,16 @@ mutation. Sacred source must remain SHA prefix `fff6669b`.
 - readable with-orchard, activation-disabled, and stripped sources;
 - manifest with hashes, line counts, exact commands, and gates;
 - plain-language report answering the readable LOC question.
+
+## Result
+
+The canonical exact-parent expansion is 1,850 physical / 1,845 code lines with orchard and 1,475
+physical / 1,470 code lines after physical stripping: **375 lines removed**. Six lines are the
+activation edit and 369 are the subsequently removable implementation. Grouped inventory is
+12 lines of types/state, 242 helper/strategy lines, 108 per-turn driver lines, and 13 reservation/
+import/main-wiring lines.
+
+All three readable sources compact to their known exact hashes, compile optimized, handle empty
+input, and carry 10/10 semantic-fixture evidence. Readable baseline is 25/25 and 7,234/7,234 exact;
+activation-disabled differs only in game `897833045` at turn 79; stripped is 25/25 and 7,234/7,234
+exact to activation-disabled. Sacred source remains `fff6669b...`; no Arena action occurred.
