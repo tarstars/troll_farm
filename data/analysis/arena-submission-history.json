@@ -2,11 +2,11 @@
   "schema_version": "arena-submission-history/1",
   "generator": "cgauto/submission_history.py",
   "manifest_path": "data/analysis/arena-submission-history-inputs.json",
-  "manifest_sha256": "24b392fdba8f22e8637d08277734ab9dfdbd3f562b9ce72b7402eff5adb36337",
+  "manifest_sha256": "c9cb8ce0ad90f916a9a65512d1df7e7b20d2614146dc70ff7c7550d153eb8ba7",
   "counts": {
-    "sources": 13,
-    "submissions": 23,
-    "observations": 45,
+    "sources": 15,
+    "submissions": 25,
+    "observations": 47,
     "unresolved": 5
   },
   "eras": [
@@ -50,7 +50,7 @@
       "label": "Legend division, 137-agent field",
       "field_size": 137,
       "first_seen": "2026-08-03",
-      "last_seen": "2026-08-03"
+      "last_seen": "2026-08-04"
     }
   ],
   "sources": [
@@ -113,6 +113,36 @@
         "denial_opponent_resource"
       ],
       "notes": "Owner-directed secure-orchard activation ablation of simplified E7a round 28. It terminated materially below the exact E7a pre-trial row and was rejected; exact E7a was restored."
+    },
+    {
+      "source_id": "e7a-r36-simplified",
+      "family_id": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381",
+      "path": "cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs",
+      "bytes": 55799,
+      "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "preseed-e7a-lemon-near-tie",
+      "strategy_categories": [
+        "baseline_controller",
+        "denial_opponent_resource"
+      ],
+      "notes": "Round-36 behavior-exact logical simplification. It passed compile/fixtures, 7,234 live command lines, and 0/516 development terminal equality before owner-directed complexity-versus-standing deployment."
+    },
+    {
+      "source_id": "e7a-readable-no-orchard-code-cost",
+      "family_id": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+      "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+      "bytes": 75634,
+      "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+      "language": "rust",
+      "recoverability": "in_repo",
+      "derived_from_source_id": "e7a-r28-no-orchard-ablation",
+      "strategy_categories": [
+        "baseline_controller",
+        "denial_opponent_resource"
+      ],
+      "notes": "Immutable platform-recovered copy of the owner-directed readable expansion of the orchard-stripped E7a policy. The source is byte-distinct because whitespace/comments are retained, but its compact token stream and commands match the stripped parent."
     },
     {
       "source_id": "onsite-tree-owner-slim",
@@ -760,14 +790,62 @@
       "replaced_by_submission_id": null,
       "task_id": "20260803-owner-no-orchard-ablation-arena",
       "protocol_id": null,
-      "disposition": "active",
+      "disposition": "displaced_superseded",
       "disposition_rationale": "The exact 62,820-byte E7a source was restored after the no-orchard terminal rejection. Platform source recovery is byte-exact and the first 15 finished games are identity- and runtime-clean.",
       "provenance": [
         "coordination/tasks/20260803-owner-no-orchard-ablation-arena.md",
         "data/analysis/live-agent-6553250/no-orchard-ablation-e7a-restore-initial-checkpoint-20260803T154916Z.json",
         "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md"
       ],
-      "notes": "Active exact-source restore; its fresh score/rank is still converging and must not be compared as mature evidence."
+      "notes": "Exact-source restore later displaced by owner-directed orchard/no-orchard and code-cost measurements; its 162-game checkpoint remains mature same-source evidence."
+    },
+    {
+      "record_id": "submission-41089629",
+      "submission_id": 41089629,
+      "agent_id": 6593838,
+      "source_id": "e7a-readable-no-orchard-code-cost",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": "2026-08-04T11:29:00Z",
+      "era_id": "legend-137",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": null,
+      "replaced_by_submission_id": 41090606,
+      "task_id": "20260804-readable-no-orchard-arena",
+      "protocol_id": null,
+      "disposition": "displaced_superseded",
+      "disposition_rationale": "The owner-directed readable no-orchard code-cost source completed cleanly at 24.76/rank 21 over 160 games, then was displaced by the qualified round-36 complexity-versus-standing measurement.",
+      "provenance": [
+        "coordination/tasks/20260804-readable-no-orchard-arena.md",
+        "data/analysis/live-agent-6553250/readable-no-orchard-arena-20260804/submit.json",
+        "data/analysis/live-agent-6553250/r36-simplified-pretrial-current-readable-no-orchard-2026-08-04.json"
+      ],
+      "notes": "Exact readable source recovery and terminal pretrial checkpoint are identity-clean; this is a behavior-changing no-orchard experiment, not a strength promotion."
+    },
+    {
+      "record_id": "submission-41090606",
+      "submission_id": 41090606,
+      "agent_id": 6594200,
+      "source_id": "e7a-r36-simplified",
+      "source_attribution_confidence": "hash_verified_in_report",
+      "deployed_at": "2026-08-04T14:56:50Z",
+      "era_id": "legend-137",
+      "deployment_purpose": "owner_directed_live_experiment",
+      "comparison_basis": "candidate_vs_control",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41089629,
+      "replaced_by_submission_id": null,
+      "task_id": "20260804-r36-simplified-arena",
+      "protocol_id": null,
+      "disposition": "active",
+      "disposition_rationale": "Round 36 passed 0/516 exact development equality and was submitted once for the owner-directed complexity-versus-standing measurement. Platform source recovery and initial runtime/identity health are exact and clean; settled standing is pending.",
+      "provenance": [
+        "coordination/tasks/20260804-r36-simplified-arena.md",
+        "data/analysis/live-agent-6553250/e7a-r36-development-qualification-2026-08-04.md",
+        "data/analysis/live-agent-6553250/e7a-r36-arena-execution-2026-08-04.md"
+      ],
+      "notes": "Behavior-exact to E7a on frozen gates; do not interpret the cold initial score as a complexity value."
     }
   ],
   "observations": [
@@ -2175,6 +2253,68 @@
       "evidence_kind": "checkpoint_json",
       "evidence_path": "data/analysis/live-agent-6553250/e7a-restore-collected-games-checkpoint-20260803T175757Z.json",
       "evidence_sha256": "7abbdbdb1acff2ef07a9e840afb4df4ac468bcc12fb2c8eb756ff770fb05079e",
+      "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41089629-pretrial160",
+      "submission_id": 41089629,
+      "record_id": null,
+      "agent_id": 6593838,
+      "observed_at": "2026-08-04T14:51:53.527270+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 160,
+      "games_pending": 0,
+      "score": 24.76,
+      "rank": 21,
+      "field_size": 137,
+      "division_index": 5,
+      "wins": 94,
+      "ties": 2,
+      "losses": 64,
+      "mean_margin": 10.10625,
+      "catastrophic_losses": 17,
+      "catastrophic_rate": 0.10625,
+      "negative_margin_mass": 4986.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": true,
+      "evidence_maturity": "terminal",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/r36-simplified-pretrial-current-readable-no-orchard-2026-08-04.json",
+      "evidence_sha256": "2ae203692d69c21045015451c61fa4ad472efe8e6cd38882b4b04bf766d2b01a",
+      "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41090606-initial11",
+      "submission_id": 41090606,
+      "record_id": null,
+      "agent_id": 6594200,
+      "observed_at": "2026-08-04T14:57:50.105179+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 11,
+      "games_pending": 1,
+      "score": 0.0,
+      "rank": 136,
+      "field_size": 137,
+      "division_index": 5,
+      "wins": 7,
+      "ties": 0,
+      "losses": 4,
+      "mean_margin": 11.636363636363637,
+      "catastrophic_losses": 1,
+      "catastrophic_rate": 0.09090909090909091,
+      "negative_margin_mass": 375.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": false,
+      "evidence_maturity": "cold_start",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/r36-simplified-initial-health-2026-08-04.json",
+      "evidence_sha256": "0958891e6f99a271edd497cc3860df93e6df2e6a305e52b506a5a898bdf21414",
       "evidence_quote": null
     }
   ],

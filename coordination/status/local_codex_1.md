@@ -1,7 +1,7 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T14:53:49Z
-- State: round 36 qualified; Arena start record awaiting remote verification
+- Updated UTC: 2026-08-04T14:58:39Z
+- State: round 36 exact and active; initial health clean; settling read-only
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260804-r36-simplified-arena`
 - Branch: `agent/local_codex_1`
@@ -9,14 +9,14 @@
   live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, round-36 evaluator/results, new immutable submission artifact,
   live ledger/state/registry records required by the controller runbook
-- Last concrete progress UTC: 2026-08-04T14:53:49Z
-- Running job: none; one canonical Arena call pending remote start-record verification
-- Live identity: readable no-orchard `6593838`/`41089629`; exact source, initial rank 87/137
-- Next checkpoint: remote start-record verification, then submit once and recover exact source
+- Last concrete progress UTC: 2026-08-04T14:58:39Z
+- Running job: none; Arena mutation forbidden while round 36 settles
+- Live identity: round-36 simplified E7a `6594200`/`41090606`; exact source, initial health clean
+- Next checkpoint: read-only settled standing; H1 G4 may proceed locally without Arena action
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; conditional one-call mutation directly authorized by owner after qualification
+- Arena controller: yes; authorized one-call cycle complete, no further mutation
 
 ## Latest evidence
 

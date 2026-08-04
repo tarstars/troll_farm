@@ -1808,3 +1808,21 @@ negative mass 4,986, zero runtime signals, and clean identity.
 
 **Status: QUALIFIED / OWNER-DIRECTED ONE-CALL MUTATION PREPARED / REMOTE START-RECORD
 VERIFICATION REQUIRED / SOLE CONTROLLER `local_codex_1`.**
+
+Remote start commit `a913ba7f` was verified. One canonical call at 14:56:50Z returned HTTP 200 and
+submission `41090606`; no retry occurred. The new agent is `6594200`. Immediate read-only source
+recovery is exact at 55,799 bytes and full SHA `2caac7c6...`.
+
+Initial submission-scoped health at 14:57:50Z has 11 finished plus one pending, 7W/0T/4L, one
+catastrophe, negative mass 375, zero runtime signals, and clean identity. The Arena-room endpoint
+still read 0/rank 136 while the filtered ladder read 17.55/rank 102; both are cold asynchronous
+placement, not a strength verdict.
+
+**Status: COMPLETE / EXACT ROUND-36 SOURCE ACTIVE / INITIAL HEALTH CLEAN / NO RETRY OR RESTORE /
+ARENA READ-ONLY WHILE SETTLING.**
+
+## 2026-08-04 — volume 3 frozen
+
+The round-36 execution closeout leaves this volume above its 100 KB rotation threshold. Volume 3
+is now frozen; the live ledger continues in
+`legend-top3-experiment-cycle-vol4-2026-08-04.md`.

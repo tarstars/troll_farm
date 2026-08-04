@@ -1,12 +1,12 @@
 # 20260804-r36-simplified-arena: qualify and publish round 36
 
-- Status: qualified — one-call Arena mutation gated on remote start-record verification
+- Status: execution complete — exact source active, settling without further mutation
 - Priority: direct owner instruction
 - Record owner / integrator / Arena controller: `local_codex_1`
 - Candidate preparer: `claude_1`
 - Branch: `agent/local_codex_1`
 - Created UTC: 2026-08-04T14:41:57Z
-- Last updated UTC: 2026-08-04T14:53:49Z
+- Last updated UTC: 2026-08-04T14:58:39Z
 
 ## Objective
 
@@ -83,3 +83,14 @@ Submission-history preflight reports this exact hash has never been deployed. Re
 recovery confirms current source SHA `98628e98...`; current readable no-orchard
 `6593838`/`41089629` is complete at 160 games, score 24.76/rank 21/137, with clean identity and
 zero runtime signals. One canonical submission is next after remote verification of this record.
+
+## Arena execution result
+
+Remote start record `a913ba7f` was verified, then one canonical call returned HTTP 200 with
+submission `41090606`; new agent is `6594200`. There was no retry. Read-only platform recovery is
+byte-exact at 55,799 bytes / candidate SHA `2caac7c6...`.
+
+Initial health at 11 finished plus one pending is clean: exact agent/submission identity, 7W/0T/4L,
+one catastrophe, negative mass 375, and zero runtime signals. The Arena-room 0/rank-136 and
+filtered-ladder 17.55/rank-102 reads are asynchronously cold and not a strength verdict. Execution
+is complete; no further Arena mutation is allowed while the source settles.
