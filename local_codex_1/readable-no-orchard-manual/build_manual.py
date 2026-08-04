@@ -92,11 +92,14 @@ body {{ font-family: 'Noto Sans', 'DejaVu Sans', sans-serif; color: #17202a;
 h1, h2, h3, h4 {{ color: #102a43; page-break-after: avoid; line-height: 1.18; }}
 h1 {{ font-size: 23pt; border-bottom: 2px solid #2f80a7; padding-bottom: 5px;
      margin-top: 1.1em; }}
+body > h1 {{ break-before: page; }}
+.title-page + h1 {{ break-before: auto; }}
 h2 {{ font-size: 16pt; margin-top: 1.25em; }}
 h3 {{ font-size: 12.5pt; margin-top: 1.1em; }}
 h4 {{ font-size: 10.5pt; }}
 p, li {{ orphans: 3; widows: 3; }}
 a {{ color: #176b87; text-decoration: none; }}
+.headerlink {{ display: none; }}
 code {{ font-family: 'Noto Sans Mono', 'DejaVu Sans Mono', monospace; font-size: 8.8pt;
        background: #edf2f7; padding: 0.08em 0.25em; border-radius: 2px; }}
 pre {{ white-space: pre-wrap; overflow-wrap: anywhere; background: #f6f8fa;
@@ -126,14 +129,9 @@ blockquote {{ margin: 0.8em 0; padding: 0.45em 0.9em; background: #fff7df;
 hr {{ border: 0; border-top: 1px solid #b9c5ce; margin: 1.4em 0; }}
 {pygments_css}
 """
-    metadata = (
-        f"Source SHA-256: {index['sha256']} · "
-        f"{index['code_lines']} code lines · generated manual build"
-    )
     html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>Troll Farm bot: Rust from zero</title>
-<style>{css}</style></head><body>{body}
-<p class="small">{metadata}</p></body></html>"""
+<style>{css}</style></head><body>{body}</body></html>"""
     HTML.write_text(html, encoding="utf-8")
 
 

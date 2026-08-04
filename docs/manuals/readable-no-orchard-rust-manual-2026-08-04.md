@@ -1,4 +1,4 @@
-<div class="title-page">
+<div class="title-page" markdown="1">
 
 # Troll Farm Bot, from Zero
 
@@ -17,6 +17,8 @@ jump to Part III, “The algorithm.”
 </div>
 
 # How to use this manual
+
+[TOC]
 
 The program is short enough to fit on CodinGame, but dense enough to look hostile to a new reader.
 This manual unfolds it in layers. First you learn the game vocabulary. Then you learn only the Rust
@@ -736,7 +738,7 @@ ties by coordinate. If no detour exists, it emits WAIT.
 Finally, even successful MOVE text is rewritten to the predicted **one-turn landing cell**, not the
 original far destination. The policy replans from a fresh snapshot next turn.
 
-<div class="callout warning">
+<div class="callout warning" markdown="1">
 This collision layer has no cross-turn route memory. Replanning plus deterministic equal-choice
 rules can create period-2 movement oscillation. The project measured and separately studied that
 limitation; this source keeps the original behavior.
@@ -1253,3 +1255,414 @@ concrete `YamoBot` type is known.
 The program is single-threaded, synchronous, and deterministic given snapshots plus its own memory.
 It uses no `unsafe`, no external crates, no files, no network, no random number generator, and no
 wall clock. Standard library collections, I/O, arithmetic, and string formatting are enough.
+
+# Part VI — Build, run, observe, and change it safely
+
+## 43. Compile the exact source
+
+The file is a complete one-file Rust crate. From the repository worktree:
+
+```bash
+rustc --edition=2021 -O \
+  local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs \
+  -o /tmp/troll-farm-readable-bot
+```
+
+`--edition=2021` selects the language edition used by constructs such as array
+`into_iter`. `-O` enables optimization, matching deployment intent. The output path is outside the
+repository because the executable is a reproducible build artifact, not research data.
+
+Check empty-input behavior:
+
+```bash
+/tmp/troll-farm-readable-bot </dev/null
+echo $?
+```
+
+It should print nothing and exit with status 0 because `read_static_map` sees EOF and `main`
+returns.
+
+## 44. Run it with a transcript
+
+The program needs one static map followed by complete turn snapshots. A hand-written toy input is
+easy to get wrong because every inventory, tree, and troll field is positional. Prefer a sanitized
+captured transcript or a project fixture.
+
+```bash
+/tmp/troll-farm-readable-bot < input.txt > commands.txt 2> debug.txt
+```
+
+There must be exactly one output line per complete turn. The first normally includes `MSG`; later
+lines do not. Split a line on semicolons to inspect individual commands.
+
+<div class="callout warning" markdown="1">
+Never print debugging text to stdout: CodinGame parses stdout as commands, so a friendly
+“selected tree A” message can become an unknown command and lose the game. Use `eprintln!`, which
+writes stderr, or the legal `MSG` command when you intentionally want visible game text.
+</div>
+
+## 45. Verify you are studying the same application
+
+Before comparing behavior, hash the source:
+
+```bash
+sha256sum \
+  local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs
+```
+
+Expected:
+
+```text
+98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29
+```
+
+The manual builder performs the same check and refuses to render against a different file:
+
+```bash
+python3 local_codex_1/readable-no-orchard-manual/build_manual.py
+```
+
+It also extracts the symbol inventory into `source-index.json`. This prevents a manual from
+quietly drifting to a similarly named but behaviorally different bot.
+
+## 46. A practical debugging method
+
+When a move looks wrong in a replay, do not begin by changing a weight. Trace these layers in order:
+
+1. **Snapshot:** Are inventory, cargo, tree health/size/cooldown, positions, and turn parsed as you
+   think?
+2. **Phase:** Was the troll opening, normal, endgame, or regeneration-committed?
+3. **Candidate set:** Which commands existed? A missing action is a generation/filter issue, not a
+   scoring issue.
+4. **Score:** What numeric score did each surviving candidate receive?
+5. **Pair filter:** Was the best single candidate rejected because the other troll reserved its
+   target or the same last seed?
+6. **Door rewrite:** Did unique-door logic replace the candidate list?
+7. **Move rewrite:** Did projected landing conflict turn a MOVE into a detour or WAIT?
+8. **Referee:** Did task priority, occupancy, affordability, or a rule reject the emitted command?
+
+This sequence mirrors the program. Jumping straight from replay symptom to one scoring constant
+often edits the wrong layer.
+
+### 46.1 Useful temporary diagnostics
+
+In a learning copy, print to stderr:
+
+```rust
+eprintln!(
+    "turn={} unit={} cmd={} score={} target={:?}",
+    view.turn, unit.id, candidate.command, candidate.score, candidate.target
+);
+```
+
+`Target` derives `Debug`, so `{:?}` works. Candidate does not derive `Debug`, but its fields can be
+printed individually. Remove or gate verbose output before deployment; logging can consume the
+50 ms turn budget.
+
+## 47. How to make a safe learning copy
+
+The exact live/readable artifact is hash-locked evidence. Do not edit it in place if you want
+comparisons to remain meaningful. Copy it to a new, clearly named learning file, then experiment.
+
+Good first exercises:
+
+1. Replace the first-turn announcement string and confirm only the first output line changes.
+2. Add a unit test for `training_cost(1, (2,3,0,3)) == [5,10,1,0,10,0]`.
+3. Instrument `focus_type` and build a tiny map where LEMON wins only after exceeding the eight-step
+   PLUM preference margin.
+4. Create two candidate lists and test that same-tree pairs are rejected.
+5. Construct a movement diamond and inspect the lexicographic equal-path landing.
+
+Do not start by changing several systems at once. A source that trains different stats, changes
+tree score, and rewrites collisions simultaneously cannot teach you which change caused an
+observed result.
+
+## 48. Testing levels
+
+| Level | Question answered | Example |
+|---|---|---|
+| arithmetic unit test | Is a formula implemented correctly? | training bill, cooldown, ceil division |
+| component fixture | Does one layer choose the expected candidate? | tree forecast, pair compatibility |
+| transcript equality | Does a source reproduce commands on recorded snapshots? | exact command stream |
+| closed-loop simulation | Do changed actions create stable future states? | full games on valid referee model |
+| live health | Does it compile and emit legal commands on platform? | runtime/identity checkpoint |
+| live value | Does mature score improve under controlled measurement? | serialized Arena experiment |
+
+Teacher-forced transcript equality is powerful for refactors, but insufficient for strategy
+changes: once one command differs, the future snapshots that the new bot would create are no longer
+the recorded snapshots.
+
+# Part VII — Limitations and design consequences
+
+## 49. What the bot cannot reason about
+
+### 49.1 It cannot scale beyond two trolls
+
+`can_train` and `training_affordable` reject `n>=2`. The candidate selector has a generic greedy
+branch for more workers, but the live policy cannot reach it. Removing one condition would not
+solve workforce funding, production, mining, or multi-worker task allocation.
+
+### 49.2 The trained troll cannot harvest
+
+All 27 opening specs hard-code `harvest_power: 0`. The second troll is a mover/carrier/chopper.
+This is why the idle-harvest fallback mostly belongs to the starter and why planted fruit is usually
+converted into WOOD rather than farmed as a renewable resource.
+
+### 49.3 Opponent modeling is narrow
+
+The bot sees enemy count, position, skills, and current tree contact. It predicts current/inferred
+enemy chop while we travel and uses enemy-shack distance for denial. It does not predict enemy
+training bills, harvest plans, planting, target switches, or future movement. The compiled
+opponent-arrival penalty is disabled at zero.
+
+### 49.4 The tree forecast is local, not a referee clone
+
+It simulates growth and damage needed for target valuation. It does not simulate simultaneous
+actions, last-wood duplication, continued opponent chop after arrival, or alternative enemy
+commands. Its output is a useful job estimate, not an exact counterfactual future.
+
+### 49.5 Ordinary jobs have no commitment
+
+Only regeneration PICKs create persistent memory. A troll moving toward a natural tree may change
+its mind next turn. This gives responsiveness but can induce target reversals and movement
+oscillation when small score or tie differences flip repeatedly.
+
+### 49.6 Denial is a geometry bonus, not an economic proof
+
+The `900/(1+distance)` term does not calculate remaining focus resources, enemy harvest throughput,
+time to clear the species, or whether the enemy can replant. It can therefore spend turns on
+denial that is strategically ineffective on a rich or already renewable map.
+
+### 49.7 Friendly movement repair is myopic
+
+The resolver protects only current landings. It has no path reservation across turns. A detour
+chosen now can be reversed next turn. Enemy bodies are correctly ignored because cross-player
+physical blocking does not exist.
+
+### 49.8 Local path ties differ from the official referee
+
+The source selects lexicographically among equal-best next cells. The referee uses randomness from
+its continuing RNG state. Most decisions remain sensible, but exact local/replay parity requires
+proving ties absent or modeling the referee RNG.
+
+### 49.9 Malformed input ends silently
+
+Protocol functions collapse errors into `Option::None`; the turn loop exits. That is compact for a
+trusted judge but less diagnosable than a production parser with structured error messages.
+
+### 49.10 Score bands hide trade-offs
+
+A 7000 banking move beats any 300-point chop even if banking one low-value item costs a long
+detour. This is intentional policy priority, not a common-unit value function. Changing band
+boundaries can alter behavior discontinuously.
+
+## 50. Time and space complexity
+
+Let `V` be walkable cells, `T` trees, `U` own trolls (at most 2), and `Cᵢ` candidates for troll i.
+
+- One BFS: `O(V)` time and memory.
+- Tree candidate generation: several BFS calls plus up to 100 forecast iterations per tree,
+  approximately `O(V + 100T)` per troll.
+- Two-troll selection: `O(C₁×C₂)`.
+- Movement repair: `O(U×V)` in the worst small-grid view because detour ranking can BFS.
+- Persistent storage: map/snapshot collections `O(V+T+allUnits)` plus a tiny commitment map.
+
+The implementation repeats BFS rather than caching all distance maps. On the small contest boards
+and two-worker roster this is comfortably simple. On a large map or many-worker architecture,
+distance caching and typed job structures would matter.
+
+## 51. Architectural character
+
+The algorithm is best described as a **two-agent, throughput-priced, rule-priority scheduler**:
+
+- *two-agent*: exact coordination relies on only two workers;
+- *throughput-priced*: normal economic work is valued by delivered wood per total job time;
+- *rule-priority*: opening, banking, conversion, and traffic use separated score bands and guards;
+- *scheduler*: it chooses current jobs, not a long action sequence;
+- *stateful at narrow boundaries*: permanent opening/focus decisions and seed commitments survive.
+
+This label is more accurate than “greedy bot.” Greedy describes the immediate selection horizon,
+but not the whole-job cost model, exact pair optimization, traffic state machine, and commitment
+mechanism that shape the choices.
+
+## 52. Where the orchard went
+
+The exact deployed readable source is the physically stripped variant. Compared with the same
+readable parent that included the secure apple-orchard layer:
+
+| Form | Code lines | Compact characters |
+|---|---:|---:|
+| exact E7a with orchard | 1,845 | 62,820 |
+| activation disabled, code retained | 1,839 | 62,581 |
+| physically stripped, this manual's subject | 1,470 | 47,807 |
+
+The removed 375 readable lines were 12 lines of orchard types/state, 242 helper/strategy lines,
+108 per-turn wrapper lines, and 13 reservation/import/main-wiring lines. Generic APPLE parsing,
+harvesting, chopping, cargo, planting, and denial remain because the base policy uses them.
+
+Live measurements found blanket orchard removal weaker in an earlier run. This manual describes
+the requested stripped deployment; it does not claim removal is the strongest strategy.
+
+# Part VIII — Source map and glossary
+
+## 53. Call graph at a glance
+
+<div class="flow">
+main
+ ├─ read_static_map → parse_static_map
+ ├─ YamoBot::tuned_carry_regeneration_transit_idle_harvest
+ └─ per turn: read_turn
+       └─ YamoBot::commands
+           ├─ reconcile_regeneration_commitments
+           ├─ ensure_opening
+           │   ├─ MoisanBot::focus_type → bfs_distances
+           │   └─ choose_second_troll
+           │       ├─ opening_options → opening_objective
+           │       └─ collection_eta → ticks_until_fruit / bfs_distances
+           ├─ enforce_training_deadline → strongest_affordable
+           ├─ per unit candidate generator
+           │   ├─ early_candidates → fruit_candidates / iron_candidates / bank_candidates
+           │   ├─ main_candidates → yamo_chop_candidates / bank_candidates
+           │   └─ endgame_candidates → conversion_chop_turns / chop candidates
+           ├─ force_unique_door_clear
+           ├─ MoisanBot::select → compatible / stock_compatible
+           ├─ resolve_move_conflicts → next_cell / bfs_distances
+           └─ remember_selected_regeneration
+</div>
+
+The tree-work subgraph is:
+
+<div class="flow">
+yamo_chop_candidates
+ └─ MoisanBot::chop_candidates
+     ├─ bfs_distances (travel and return)
+     ├─ predict_tree
+     │   └─ predicted_opp_chop + cooldown/health rules
+     ├─ chop_outcome
+     └─ throughput score + optional focus denial bonus
+</div>
+
+## 54. Exhaustive function and type index
+
+### 54.1 Core types, rules, navigation, and protocol
+
+| Symbol | Start | Purpose |
+|---|---:|---|
+| `Cell`, `Stock`, item constants | L9 | coordinate and six-resource representation |
+| `PlantKind::{parse,as_str,item_index}` | L19 | typed species and protocol/resource conversion |
+| `Stats::tuple` | L39 | four-skill record and training-cost tuple |
+| `Unit::{total_carried,free_capacity}` | L47 | troll snapshot and cargo helpers |
+| `Plant` | L58 | dynamic tree snapshot |
+| `GameState::{plant_at,unit}` | L61 | full turn snapshot and lookup helpers |
+| `plant_cooldown`, `water_boost` | L83 | species timing constants |
+| `tree_health_params`, `tree_health` | L93 | species health model |
+| `effective_cooldown` | L102 | water-adjusted cooldown |
+| `training_cost` | L110 | nonlinear bill formula |
+| `score`, `rules::item_index` | L120 | bank scoring and command-item parsing |
+| `manhattan`, `ortho_neighbors`, `is_adjacent` | L137 | elementary grid geometry |
+| `bfs_distances` | L147 | exact walkable shortest paths |
+| `next_cell` | L167 | one-turn landing prediction |
+| `StaticMap` | L197 | immutable map data |
+| `read_line` | L201 | CR/LF-safe line read |
+| `read_static_map`, `parse_static_map` | L207 | initialization parser |
+| `read_turn` | L245 | dynamic snapshot parser |
+
+### 54.2 Candidate and opening system
+
+| Symbol | Start | Purpose |
+|---|---:|---|
+| `Target`, `Candidate` | L315 | executable option plus reservation key |
+| `YamoOpeningPolicy::TUNED_CARRY` | L322 | opening thresholds and tie preferences |
+| `OpeningObjective` | L331 | stats plus estimated funding ETA |
+| `YamoBot` | L334 | persistent controller memory |
+| `PredictedTree` | L337 | arrival-time forecast subset |
+| `focus_type` | L341 | permanent PLUM/LEMON focus choice |
+| `ceil_div`, `carry_total`, `carrying_any` | L357 | arithmetic/cargo helpers |
+| `MoisanBot::bank_candidates` | L371 | DROP/return choices |
+| `can_train` | L400 | cap, time, and affordability gate |
+| `ticks_until_fruit` | L409 | next-ripe estimator |
+| `early_candidates` | L432 | opening phase dispatcher |
+| `fruit_candidates` | L463 | HARVEST/approach for a missing fruit |
+| `iron_candidates` | L485 | MINE/approach for missing iron |
+| `collection_eta` | L805 | approximate bill-acquisition cost |
+| `opening_objective`, `opening_key` | L827 | evaluate/rank one training spec |
+| `opening_options` | L848 | enumerate 27 specs |
+| `choose_second_troll` | L865 | horizon/preference constrained choice |
+| `training_affordable`, `strongest_affordable` | L899 | exact fallback candidates |
+| `enforce_training_deadline` | L914 | turn-35 downgrade/abandonment |
+| `fallback_second_troll` | L942 | minimum `(1,1,0,1)` spec |
+
+### 54.3 Tree work, coordination, and movement
+
+| Symbol | Start | Purpose |
+|---|---:|---|
+| `predicted_opp_chop` | L509 | current/inferred enemy tree damage |
+| `predict_tree` | L522 | simulate tree until our arrival |
+| `chop_outcome` | L556 | simulate our chopping and growth |
+| `chop_candidates` | L582 | full-job throughput candidates |
+| `wait` | L638 | zero-score safe candidate |
+| `compatible` | L643 | spatial reservation rule |
+| `picked_item`, `stock_compatible` | L655 | same-seed inventory reservation |
+| `select` | L665 | one-worker max, exact pair max, generic greedy fallback |
+| `move_command` | L713 | parse MOVE text |
+| `resolve_move_conflicts*` | L720 | project, reserve, detour, or wait |
+| `YamoBot::bank_candidates` | L947 | occupancy-filtered bank choices |
+| `unique_shack_door`, `forced_move` | L956 | traffic primitives |
+| `carries_committed_fruit`, `planned_egress` | L965 | protect seed jobs and inspect exits |
+| `force_unique_door_clear` | L978 | two-troll doorway state machine |
+| `yamo_chop_candidates` | L1128 | optional opponent-arrival penalty wrapper |
+
+### 54.4 Regeneration, endgame, and application entry
+
+| Symbol | Start | Purpose |
+|---|---:|---|
+| `reconcile_regeneration_commitments` | L1094 | end completed/stale persistent seed jobs |
+| `remember_selected_regeneration` | L1112 | create commitment from selected PICK |
+| `main_candidates` | L1167 | ordinary post-opening scheduler |
+| `carried_fruit`, `inventory_fruits` | L1201 | fruit detection and fixed seed order |
+| `conversion_chop_turns` | L1207 | planted-tree chop forecast |
+| `endgame_candidates` | L1233 | plant/chop/bank/remaining-tree scheduler |
+| `idle_harvest_candidates` | L1340 | tiny work-conservation harvest fallback |
+| `endgame` | L1371 | late or sparse-behind trigger |
+| `YamoBot::commands` | L1376 | complete per-turn policy driver |
+| `Bot::commands` | L1444 | controller interface contract |
+| `main` | L1458 | construct, read, decide, write, flush loop |
+
+## 55. Glossary
+
+| Term | Meaning in this manual |
+|---|---|
+| bank / inventory | resources already deposited at a shack; only these score |
+| BFS | breadth-first search; exact shortest path on the walkable unweighted grid |
+| candidate | one possible current command with a score and reservation target |
+| capacity | maximum total cargo units a troll can hold |
+| commitment | remembered seed-conversion intent for one troll and species |
+| conversion | spend one banked fruit to plant, chop the new tree, and bank WOOD |
+| cooldown | turns until a tree's next growth or fruit event |
+| door | walkable grass orthogonally adjacent to a shack |
+| endgame | turn >250, or ≤4 plants while our bank score trails |
+| focus kind | permanent PLUM/LEMON species receiving enemy-shack denial bonus |
+| free capacity | `carry_capacity - total_carried` |
+| heuristic | a hand-designed estimate/rule used instead of exact future optimization |
+| landing | cell reached this turn by a possibly farther MOVE target |
+| opening | one-troll phase devoted to funding troll two |
+| pair selection | exhaustive maximum over compatible candidate pairs for two trolls |
+| reservation target | internal cell/tree/door identity used to prevent duplicate assignments |
+| score band | large numeric range encoding priority between job classes |
+| snapshot | complete referee state supplied at the start of one turn |
+| throughput | collectible WOOD divided by full travel/chop/return/drop time |
+| waypoint | rewritten one-turn MOVE landing, replanned next snapshot |
+
+## 56. Final mental model
+
+When reading any function, ask four questions:
+
+1. **What snapshot facts does it observe?** Positions, bank, cargo, skills, tree state, time.
+2. **What alternatives does it create or remove?** Candidate generation and filters.
+3. **What priority does it encode?** Score formula, score band, early return, or forced rewrite.
+4. **What survives?** Usually nothing; only focus, training objective, opening state, announcement,
+   and seed commitments cross turn boundaries.
+
+If you can trace those four answers from `read_turn` through `commands` to `writeln!`, you
+understand the application. The rest is arithmetic, Rust syntax, and the consequences of doing
+short-horizon scheduling in a competitive world.
