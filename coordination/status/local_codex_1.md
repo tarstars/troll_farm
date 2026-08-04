@@ -1,18 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T16:26:42Z
-- State: round 36 exact and active; settled checkpoint recorded at 22.81/rank 32
+- Updated UTC: 2026-08-04T16:34:38Z
+- State: exporting the settled round-36 160-game full replay corpus
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260804-r36-simplified-arena`
+- Current task: `20260804-collect-r36-games`
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
   live parity and 516-task terminal equality exact
-- Write set: own task/messages/status, round-36 evaluator/results, new immutable submission artifact,
-  live ledger/state/registry records required by the controller runbook
-- Last concrete progress UTC: 2026-08-04T16:26:42Z
-- Running job: none
+- Write set: own task/messages/status, scoped replay fetcher, sanitized shared-LFS corpus, collection report
+- Last concrete progress UTC: 2026-08-04T16:34:38Z
+- Running job: fetch exact 160 replay bodies into verified `data/external/` root
 - Live identity: round-36 simplified E7a `6594200`/`41090606`; 22.81/rank 32 over 160, exact/clean
-- Next checkpoint: H1 G4 may proceed locally without Arena action
+- Next checkpoint: sanitized game-ID/frame/hash validation and fresh-clone LFS pull
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
