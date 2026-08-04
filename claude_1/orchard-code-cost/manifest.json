@@ -1,0 +1,63 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "characters": 62820,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "commands": {
+    "build": "python3 claude_1/orchard-code-cost/build_orchard_code_cost.py --baseline cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs --reference claude_1/orchard-code-cost/activation-disabled-reference.rs --stripped claude_1/orchard-code-cost/e7a-without-orchard-code.rs --manifest claude_1/orchard-code-cost/manifest.json",
+    "compile": "rustc --edition=2021 -O -Awarnings -o <bin> <source>",
+    "fixtures": "python3 local_codex_1/e7a-single-logical-deletion/validate_live_baseline_semantics.py <source> --expected-sha256 <sha> --output <json>",
+    "panel": "python3 claude_1/orchard-code-cost/run_equality_panel.py --packet data/analysis/live-agent-6553250/e7a-live-command-parity-offline-packet-2026-08-03.json.gz ..."
+  },
+  "cost": {
+    "bytes_removed_vs_baseline": 15013,
+    "characters_removed_vs_baseline": 15013,
+    "orchard_block_bytes": 13992,
+    "percent_of_100k_allowance": 15.013,
+    "percent_of_baseline": 23.898
+  },
+  "gates": {
+    "reference_compile_empty_input": "PASS (exit 0, zero output bytes)",
+    "reference_fixtures": "SEMANTIC_FIXTURES_EXACT_PASS 10/10",
+    "reference_vs_baseline_25_games": "24/25 identical; sole difference is orchard-activation game 897833045 (expected)",
+    "stripped_compile_empty_input": "PASS (exit 0, zero output bytes)",
+    "stripped_fixtures": "SEMANTIC_FIXTURES_EXACT_PASS 10/10",
+    "stripped_vs_reference_25_games": "25/25 identical, 7234/7234 lines (central safety gate)"
+  },
+  "inventory_bytes": {
+    "enum_orchard_phase": 97,
+    "impl_bot_for_secure_orchard_bot": 3373,
+    "impl_secure_orchard_bot": 10241,
+    "reservation_channel_and_main_switch": 782,
+    "struct_orchard_cycle": 98,
+    "struct_orchard_geometry": 124,
+    "struct_secure_orchard_bot": 298,
+    "total": 15013
+  },
+  "reference": {
+    "bytes": 62581,
+    "characters": 62581,
+    "path": "claude_1/orchard-code-cost/activation-disabled-reference.rs",
+    "semantic_change": "secure apple orchard never activates; nothing else",
+    "sha256": "8fc1b7f3499a407e5df546bbc688843c56c0f6e7d9382b18ba359592b586693d"
+  },
+  "schema": "troll-farm-orchard-code-cost-v1",
+  "secondary_metrics": {
+    "gzip9_baseline": 13980,
+    "gzip9_delta": 2922,
+    "gzip9_stripped": 11058,
+    "note": "secondary: baseline is a one-line minified submission",
+    "tokens_baseline": 20788,
+    "tokens_delta": 4656,
+    "tokens_stripped": 16132
+  },
+  "stripped": {
+    "bytes": 47807,
+    "characters": 47807,
+    "path": "claude_1/orchard-code-cost/e7a-without-orchard-code.rs",
+    "sha256": "102caecde916b03dde0c02d1d8c13c9333b6ee3a26f13df34ad21fbebaae0fd6"
+  },
+  "task_id": "20260804-orchard-code-cost-ablation"
+}
