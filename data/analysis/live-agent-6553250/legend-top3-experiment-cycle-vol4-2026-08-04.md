@@ -18,3 +18,16 @@ mean margin +8.925, 21 catastrophes, negative-margin mass 6,381, zero runtime si
 identity. Exact checkpoint SHA is `0f476514...`.
 
 This read is recorded without Arena mutation. Round 36 remains active.
+
+## 2026-08-04 — round-36 full replay corpus exported
+
+The 160 settled games for agent `6594200`, submission `41090606`, are now available to agents
+without platform access as a sanitized full-frame Git LFS corpus under
+`data/shared-lfs/r36-agent-6594200/`. All 160 public replay fetches succeeded, with 86,940 frames
+and exact game-ID equality to the settled checkpoint. The 40,006,551-byte staging set compresses
+to 5,774,722 bytes at SHA `59f6283b...`; personal/session fields are removed and player names are
+replaced by positional placeholders.
+
+Payload commit `936cf577` uploaded successfully. A fresh smudge-disabled clone exposed the exact
+LFS pointer and then reproduced the full payload and hash through an exact-path selective pull.
+This was read-only with respect to both Arena and the collector-owned `data/raw/games/` cache.

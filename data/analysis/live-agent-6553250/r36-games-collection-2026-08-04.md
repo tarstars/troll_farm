@@ -46,4 +46,9 @@ submission IDs remain because they are required to select versions and matchups 
 
 ## Remote verification
 
-Pending the payload commit, LFS upload, and a selective pull from a fresh smudge-disabled clone.
+Payload commit `936cf577` uploaded one 5.8 MB LFS object successfully. A fresh standalone clone
+with automatic LFS smudging disabled first contained the expected 132-byte, three-line pointer.
+The tested selective pull using `--include=<exact path>` then materialized exactly 5,774,722 bytes
+at SHA-256 `59f6283beaa10df378335e91d81021bb1a275140266cecf7cdc3a965e8c77549`.
+The clone, local checkout, and remote branch all resolved to
+`936cf577736573978d1aca92860cb0e46d5433a5` at that verification checkpoint.

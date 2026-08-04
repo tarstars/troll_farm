@@ -1,10 +1,10 @@
 # 20260804-collect-r36-games: export the settled round-36 replay corpus
 
-- Status: in progress — all 160 fetched and locally validated; LFS remote verification pending
+- Status: complete — 160 full games published; fresh-clone LFS materialization verified
 - Priority: direct owner assignment
 - Owner / worker: local_codex_1
 - Created UTC: 2026-08-04T16:34:38Z
-- Last updated UTC: 2026-08-04T16:39:43Z
+- Last updated UTC: 2026-08-04T16:42:35Z
 - Agent / submission: `6594200` / `41090606`
 
 ## Objective
@@ -38,3 +38,11 @@ All 160 full replay responses were fetched successfully into `data/external/r36-
 The exact settled game-ID set is present, every replay has frames, and the published export has
 86,940 frames total. Privacy, per-line hashes, exporter regression, and a byte-exact second export
 pass. The 40,006,551 staging bytes produce a 5,774,722-byte package at SHA `59f6283b...`.
+
+## Result
+
+Payload commit `936cf577` uploaded the one 5.8 MB LFS object. A fresh smudge-disabled clone first
+showed the correct 132-byte pointer, then an exact-path selective pull reproduced 5,774,722 bytes
+at SHA `59f6283b...`. The remote, fresh clone, and local payload checkpoint were all commit
+`936cf577736573978d1aca92860cb0e46d5433a5`. Cloud agents can now materialize and analyze every
+one of the 160 full replay bodies using the command in the corpus README.

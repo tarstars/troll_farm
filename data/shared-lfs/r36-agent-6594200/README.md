@@ -14,8 +14,7 @@ smudging disabled, materialize only this corpus with:
 
 ```bash
 git lfs pull \
-  --include="data/shared-lfs/r36-agent-6594200/games-agent6594200-submission41090606.jsonl.gz" \
-  --exclude="*"
+  --include="data/shared-lfs/r36-agent-6594200/games-agent6594200-submission41090606.jsonl.gz"
 ```
 
 Rebuild from the authorized external staging cache on the project host:
