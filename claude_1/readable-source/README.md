@@ -1,77 +1,85 @@
-# Human-readable source for the simplified E7a bot
+# Human-readable source for the simplified bot
 
-`e7a-r36-readable.rs` is a **new file**, not an edit of anything existing. It is the
-human-readable form of the current simplified bot, and compacting it reproduces the
-compacted artifact exactly.
+`e7a-r36-readable.rs` is a **new file** (2,552 lines) written to be *read*: idiomatic rustfmt
+layout, module overviews, and inline explanations of the major blocks. It is the same program
+as the compacted artifact, and that is verified rather than claimed.
 
-## The guarantee
+## Why you can trust that it is the real program
 
 ```bash
 python3 cgauto/compact_rust_source.py \
   claude_1/readable-source/e7a-r36-readable.rs out.rs
-printf '\n' >> out.rs      # lineage file convention, see note below
+printf '\n' >> out.rs
 sha256sum out.rs
 # 2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381
 ```
 
-That is byte-for-byte
-`claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs`,
-verified — not asserted — in `round-trip-report.json`.
+That is byte-for-byte the round-36 candidate. Checked on every generation and recorded in
+`round-trip-report.json`.
 
-## Why it is guaranteed rather than lucky
+## What "no garbage" means here concretely
 
-The project compactor is lexical: it deletes comments and deletes whitespace *except* where
-two adjacent tokens would otherwise merge into a different token. The generator
-(`expand_to_readable.py`) re-emits the compacted file's exact token stream and only ever
-*adds* whitespace and comments — it never removes an existing separator. So every pair that
-needs a space keeps one, every other pair collapses back to nothing, and all comments
-disappear. The round trip cannot drift.
+Thirty-six behaviour-exact deletion rounds removed **6,479 bytes (10.4 %)** of code that could
+not affect play: configuration records with exactly one possible value, switches permanently
+fixed on or off, a risk calculation whose penalty was zero, unused derives, constant local
+bindings, a struct field computed every turn and never read, and two helpers that duplicated
+an existing method. Nothing that influences a decision was touched — every round had to
+reproduce all 7,234 command lines of 25 real ladder games exactly.
 
-A first attempt used `rustfmt` instead and failed by 130 bytes: rustfmt inserts trailing
-commas, which are real tokens and survive compaction. That is why this generator exists.
+What is left is load-bearing policy code. Where a block is *rarely* used rather than dead, the
+annotations say so with numbers instead of deleting it.
 
-## What you may edit freely
+## How it is generated
 
-Comments, blank lines and indentation — they are erased by the compactor and cannot change
-the artifact. Use them liberally; that is the point of the file.
+`format_readable.py`:
 
-## What you may not edit casually
+1. runs rustfmt (`reorder_imports = false`, `max_width = 100`) for idiomatic layout;
+2. rustfmt makes token-level edits that are meaningless in Rust but would survive compaction —
+   it adds and removes trailing commas and wraps multi-line closure bodies in braces. The
+   generator diffs the token streams and undoes exactly those, then **asserts** the token
+   stream matches the target. Anything beyond inert punctuation aborts the build rather than
+   being guessed at;
+3. injects the file header, module overviews and block annotations as comments;
+4. compacts the result and compares.
 
-Any **token**. Changing one changes the compacted output, so it is a new candidate and must
-pass the same per-round gates as any other: byte-identical rebuild, optimized compile,
-empty input, the ten frozen semantic fixtures, and the 25-game / 7,234-line offline live
-command parity. Regenerate this file from the new compacted candidate rather than
-hand-editing both and hoping they agree.
+An earlier version indented at braces only, which left expressions dense
+(`let x=foo(a,b).iter().count();`). This one gives real Rust formatting.
 
-## Annotations
+## Reading order suggestion
 
-Block comments are injected from `claude_1/block-index/blocks.json`, so a reader meeting
-`force_unique_door_clear` sees inline what the block is, what it costs (5,991 bytes, 9.5 %
-of the live program), and that its action paths have never been observed executing. Extend
-the index, regenerate, and the annotations follow.
+| Module | What it is |
+|---|---|
+| `game::types` | The vocabulary: cells, plant kinds, unit stats, the per-turn `GameState`. Start here. |
+| `game::rules` | Referee arithmetic: growth cooldowns, tree health, training costs, scoring. |
+| `game::nav` | Grid navigation: neighbours, Manhattan distance, breadth-first distance maps. |
+| `game::protocol` | Parses the platform's turn protocol from stdin. |
+| `bot::moisan` | The policy: candidate generation, scoring, conflict resolution, orchard wrapper. |
+
+Good Rust to study on the way through: `Option` combinators (`and_then`, `filter`,
+`unwrap_or`, `is_some_and`), iterator chains with `filter_map` and `min_by_key`, `BTreeMap` /
+`BTreeSet` for deterministic ordering, `matches!`, let-else early returns, and closures
+capturing borrowed state.
+
+## Editing rules
+
+- **Comments, blank lines, indentation** — free. The compactor erases them; they cannot change
+  the program. Annotate as much as you like.
+- **Any token** — that is a new candidate. Regenerate this file from the new compacted
+  artifact rather than hand-editing both, and put it through the usual gates: compile, empty
+  input, ten semantic fixtures, and 25-game / 7,234-line live command parity.
 
 ## Verification recorded
 
 | Check | Result |
 |---|---|
-| Canonical token stream identical | yes |
-| End-to-end SHA-256 vs the r36 candidate | identical (`2caac7c6…`) |
-| Readable file compiles directly (`rustc --edition=2021 -O`) | yes |
-| Empty input on the readable build | exit 0, no output |
-| Ten frozen semantic fixtures on the compacted output | `SEMANTIC_FIXTURES_EXACT_PASS` |
-| Offline live command parity on the compacted output | `LIVE_COMMAND_PARITY_PASS`, 25 games / 7,234 lines / 0 different |
+| Token stream identical to the compacted artifact | yes (asserted during generation) |
+| End-to-end SHA-256 after compaction | `2caac7c6…`, identical |
+| Compiles directly (`rustc --edition=2021 -O`) | yes |
+| Ten frozen semantic fixtures | `SEMANTIC_FIXTURES_EXACT_PASS` |
+| Offline live command parity | `LIVE_COMMAND_PARITY_PASS`, 25 games / 7,234 lines / 0 different |
 
-## One provenance note worth keeping
+## Provenance note
 
-The compactor's CLI writes **no** trailing newline, but every candidate in this lineage
-carries one, inherited from the original ancestor file. So the compacted output differs from
-the committed candidate by exactly that one byte, which the recipe above appends. The token
-streams are identical. Worth deciding project-wide which form is canonical; until then this
-file documents the delta rather than hiding it.
-
-## Sizes
-
-| File | Bytes | Lines |
-|---|---:|---:|
-| Compacted candidate (r36) | 55,799 | 1 |
-| This readable source | 92,484 | 1,778 |
+The compactor's CLI writes no trailing newline, while every candidate in this lineage carries
+one inherited from the original ancestor file — hence the `printf '\n'` above. Token streams
+are identical; the delta is that single byte, documented rather than hidden.
