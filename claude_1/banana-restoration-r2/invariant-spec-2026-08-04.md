@@ -33,7 +33,9 @@ specification, not a copy of either rejected wrapper.
   by the parent's `ticks_until_fruit` simulator on the just-planted state (grow to size 4, then
   one more cooldown period; approx. 4–5 periods = 16–20 turns near water, 24–30 dry).
 - `starter` — the own unit with minimal id at turn 1 (as in `SecureOrchardBot::initialize`);
-  the "resident" of the contract is the starter (resolution recorded under B3).
+  the "resident" of the contract is the starter (resolution recorded under B3). In
+  banana-enabled games the starter **is** the banana worker; the trained second worker stays on
+  the main economy and is never claimed by the feature (rev. 2026-08-04, integrator item 1).
 - Attribution: a command at turn `t` is *banana-attributable* iff it differs from the stable
   parent's command on the identical input stream (the acceptance-check-4 seam makes this
   well-defined: outside declared banana activation states, commands equal the parent exactly).
@@ -64,9 +66,11 @@ commands are rewritten wholesale (`banana_factory_trained_role_rewrites`).
   `PICK <starter> BANANA` commands attributable to the feature is `<= B_boot = 1` per game.
   After the first successful own harvest, every seed used by the feature has harvest provenance.
 - **I-3 (self-reproduction).** For all `t in [t0 + T_ripe, T_late]` (T_late from I-5): if the
-  live own-banana count in `Ring` dropped below the mother floor `M_min = 1` for a reason
-  attributable to our own commands (not opponent chop), a replant `PLANT BANANA` in `Ring`
-  is issued within `CD_dry = 6` turns whenever a seed (carried or banked) exists.
+  live **own**-banana count in `diag(tent)` dropped below the mother floor `M_min = 1` for a
+  reason attributable to our own commands (not opponent chop), a replant `PLANT BANANA` in
+  `diag(tent)` is issued within `CD_dry = 6` turns whenever a seed (carried or banked) exists.
+  The floor counts diagonal mothers only — an orthogonal wood tree cannot mask the absence of
+  every mother (rev. 2026-08-04, integrator item 3).
 
 **Ambiguities and resolutions**
 
@@ -122,8 +126,11 @@ violation), semantic test area "late conversion".
 **Invariants**
 
 - **I-7 (ownership predicate).** Own fruit at cell `c` is *owned* at `t` iff
-  `min_u eta_u(c,t) < eta_opp_h(c,t)` **strictly**, minimum over own workers not
-  wood-committed (I-19); ties are treated as not owned.
+  `eta_res(c,t) < eta_opp_h(c,t)` **strictly**, where `eta_res` is the ETA of the **committed
+  harvester** — the resident (= the starter, B3) — not a minimum over all workers: another
+  worker's proximity cannot certify fruit the resident would lose (rev. 2026-08-04, integrator
+  item 4). While the resident is wood-committed (I-19), the fruit is not owned until the
+  commitment ends; ties are treated as not owned.
 - **I-8 (banking latency).** For every own `HARVEST` of banana at turn `t` by unit `u`: each
   harvested banana is, within `A = 6` turns, either (a) consumed by a `PLANT BANANA` of `u`, or
   (b) present in `inv[BANANA]` via a `DROP` at a door, or (c) still carried with a live replant
@@ -135,8 +142,11 @@ violation), semantic test area "late conversion".
 **Ambiguities and resolutions**
 
 - *"the resident" = who?* → Resolve: the starter (min-id unit at turn 1), the same deterministic
-  choice as `SecureOrchardBot::starter_id`. Rationale: deterministic, and keeps the trained
-  worker free for funding/denial (B6).
+  choice as `SecureOrchardBot::starter_id`. In banana-enabled games the starter is the resident
+  and performs all banana work; the trained second worker stays on the main economy
+  (funding/denial per B6). Any non-starter banana-worker selection (as in the pre-revision seam
+  step B.2) contradicts this resolution and is disallowed. Rationale: deterministic, and keeps
+  the trained worker free for funding/denial (B6).
 - *"owns the resource" = what test?* → Resolve: strict ETA comparison of I-7, opponent side
   restricted to harvest-capable units, ties to the opponent. Rationale: `enemy_eta` already
   exists in the parent; strictness is required because simultaneous arrival is contested and the
@@ -157,14 +167,27 @@ violation), semantic test area "late conversion".
   `eta_opp_h(c,t) > min_u eta_u(c,t)` (strict, ties forbidden) **and**
   `eta_opp_x(c,t) > 2` (an opponent chopper 2 turns away kills a fresh `health = 3` sapling
   before it matters). For `Ring` cells this is normally automatic; it must still be checked.
-- **I-11 (lifetime non-forfeiture).** No fruit on an own-planted banana is ever harvested by an
-  opponent: there is no `t` with an opponent unit standing on an own-planted banana cell whose
-  `fruits` decreases while that opponent's banana carry increases. Count over the game: 0.
+- **I-10a (dynamic ownership-loss response, rev. 2026-08-04, integrator item 7).** If
+  ownership of a live own banana asset is lost after plant time (I-7 flips false at some `t`
+  through opponent movement), the resident responds deterministically at the first such `t`:
+  if a ripe fruit is harvestable immediately, **harvest now**; otherwise **convert** (chop at
+  current size, orthogonal arithmetic of B2) iff the conversion completes strictly before
+  `eta_opp`, else **abandon** (no further commands invested in the asset). The choice is a pure
+  function of `S_t`, hence trace-checkable.
+- **I-11 (lifetime non-forfeiture — replay-outcome gate, reclassified rev. 2026-08-04,
+  integrator item 7).** No fruit on an own-planted banana is ever harvested by an opponent:
+  there is no `t` with an opponent unit standing on an own-planted banana cell whose `fruits`
+  decreases while that opponent's banana carry increases. Count over the mandated replay
+  panels: 0. I-11 is **not** a universal implementation invariant — no plant-time test can
+  guarantee it against later opponent movement; where a violation remains despite I-10 and the
+  I-10a response, it is a replay-outcome **gate failure** to triage, not a wrapper proof
+  obligation.
 
 **Ambiguities and resolutions**
 
-- *static (plant-time) or dynamic (lifetime) obligation?* → Resolve: both; I-10 is the decision
-  rule, I-11 the trace-level ground truth the replay gate checks. Rationale: the factory's only
+- *static (plant-time) or dynamic (lifetime) obligation?* → Resolve: both — I-10 is the
+  plant-time decision rule, I-10a the dynamic in-life response to ownership loss, and I-11 the
+  trace-level replay-outcome gate (rev. 2026-08-04, integrator item 7). Rationale: the factory's only
   guard was `from_home[c] <= from_enemy[c]` on **door** BFS distances — a half-plane test that
   ignores actual opponent worker positions and speeds.
 - *margin?* → Resolve: strict inequality, no extra margin for `Ring` cells (own ETA is 0–2
@@ -184,9 +207,11 @@ violation), semantic test area "late conversion".
   tent exactly 1, walkable): plants outside `Ring` = 0, for the whole game.
 - **I-13 (capacity).** Concurrent live own-banana count `<= |Ring| <= 8`; cumulative distinct
   own-banana plant cells over the game `<= |Ring|`; live mothers `<= |diag(tent)| <= 4`.
-  Service-rate note: one resident sustains at most `~2` fruit-bearing mothers
-  (`cycle ~ 3-4 turns` vs `CD_wet = 4`), so mothers beyond 2 are held as protected reserve, not
-  serviced targets.
+  R2 caps the **protected**-mother set at exactly one — the single protected mother of I-29;
+  additional diagonal plants are geometrically permitted but carry no protection claim
+  (rev. 2026-08-04, integrator item 3). Service-rate note: one resident sustains at most `~2`
+  fruit-bearing mothers (`cycle ~ 3-4 turns` vs `CD_wet = 4`), so mothers beyond 2 are
+  unserviced surplus, not protected reserve.
 - **I-14 (role map).** `c in diag(tent)` planted => mother: protected, harvest-only, never
   chopped by us. `c in orth(tent)` planted => wood slot: cut at size >= 2, replant per I-5.
 - **I-15 (gate-awareness).** After any own plant/commitment, every own non-resident worker still
@@ -272,7 +297,10 @@ violation), semantic test area "late conversion".
 
 - **I-22 (distinct nontrivial targets).** At every `t`, for distinct own `u, v`: if both targets
   are nontrivial (tree/plant/mine cell), `target(u,t) != target(v,t)`; exception: the bank-door
-  *set* may be shared but the chosen door cells must differ when both are banking.
+  *set* may be shared; when two or more doors are reachable the chosen door cells must differ.
+  When only a single door is reachable, banking is **serialized deterministically** — resident
+  first, then ascending unit id — rather than requiring distinct doors, which would make the
+  invariant unsatisfiable (rev. 2026-08-04, integrator item 8).
 - **I-23 (no landing on a working peer).** No own `MOVE` whose `next_cell` landing equals the
   cell of another own unit that is stationary-working there (verb in
   `HARVEST/CHOP/PLANT/PICK/DROP/MINE/WAIT`), for 2+ consecutive turns; single-turn transients
@@ -374,7 +402,7 @@ functions of these inputs. All thresholds are **0 episodes** unless stated.
 
 Semantic test map (check 7): bootstrap → I-1/I-2; renewable harvest/replant → I-3/I-9; bounded
 placement → I-12..I-15; late conversion → I-4..I-6; banking → I-7..I-9; enemy ETA suppression →
-I-10/I-11/I-18; two-worker arbitration → I-16/I-17/I-22/I-23; destroyed/occupied target
+I-10/I-10a/I-11/I-18; two-worker arbitration → I-16/I-17/I-22/I-23; destroyed/occupied target
 recovery → I-24(i)/I-26 (invalidation clause + blocked-turn forcing).
 
 ---
@@ -395,12 +423,17 @@ and the apple mother physically occupies an orthogonal ring slot.
 
 - **I-27 (exclusivity).** In any single game, at most one of {apple orchard, banana ring} ever
   leaves its dormant phase; there is no turn at which both features have issued an attributable
-  command.
-- **I-28 (priority rule).** Decided once, at the end of turn-1 initialization, from the static
-  map and initial plants only: if `SecureOrchardBot::initialize` produces
-  `geometry = Some(..)` (an eligible water-adjacent mother door exists and the natural-median
-  test passes), the apple orchard owns the game and the banana feature is permanently disabled;
-  otherwise the banana feature is enabled and the orchard remains structurally dormant.
+  command. Evidence standard (rev. 2026-08-04, integrator item 2): **zero dual-attributable
+  commands over the whole game**, checked on the full command stream — not post-hoc inspection
+  of wrapper fields.
+- **I-28 (priority rule).** Decided once, **before the first delegated call** (at the top of
+  turn 1, when `SecureOrchardBot.geometry` and `starter_id` are still uninitialized), by
+  **reproducing** `SecureOrchardBot::initialize`'s eligibility test **read-only** on the static
+  map and initial plants: if the reproduced test yields an eligible water-adjacent mother door
+  (i.e. `geometry` would be `Some(..)` and the natural-median test passes), the apple orchard
+  owns the game and the banana feature is permanently disabled; otherwise the banana feature is
+  enabled and the orchard remains structurally dormant. The wrapper never delegates first and
+  inspects inner fields afterwards to learn the decision (rev. 2026-08-04, integrator item 2).
 - Rationale: (1) apple-first because the orchard is the qualified, live-deployed lineage
   while the banana feature is exactly the unproven thing under test — priority defaults to
   the qualified incumbent. (Register v2 note: the orchard's live value is currently
@@ -416,8 +449,11 @@ and the apple mother physically occupies an orthogonal ring slot.
 - **I-29 (runtime non-interference).** In banana games the orchard's fields never transition
   out of Dormant/uninitialized-geometry, and the banana wrapper must not clear or repurpose the
   inner policy's reservations the way the factory did (`external_idle_unit = None`,
-  `regeneration_commitments.clear()` each turn); it sets only its own declared reservation
-  (resident id + protected-mother forbidden set) through the same seam the orchard uses.
+  `regeneration_commitments.clear()` each turn); it sets only its own declared reservation:
+  the resident id plus a **single banana-side protected cell** (the one R2 protected mother of
+  I-13), carried by the seam's dedicated `banana_protected_cell:Option<Cell>` reservation that
+  mirrors `external_protected_tree`. A set-valued multi-cell reservation is deferred beyond R2;
+  I-29 is never claimed from `banana_idle_unit` alone (rev. 2026-08-04, integrator item 5).
 
 ---
 
@@ -438,19 +474,23 @@ and the apple mother physically occupies an orthogonal ring slot.
    mode changes (resident-duty / wood-cycle / inner fallthrough) pass through the same steps
    1–3, and every active mode returns a definite command (no `None` fallthrough).
 
-**Why this provably prevents A->B->A (D-1 with k >= 3):** (i) Within any hold interval the
+**Why this is designed to suppress A->B->A (D-1 with k >= 3) — design rationale, not a
+theorem (rev. 2026-08-04, integrator item 6):** (i) Within any hold interval the
 target is fixed, and I-26 makes BFS distance to it strictly decrease on every unblocked turn,
 so `pos(u, t+2) != pos(u, t)` — a period-2 position cycle is impossible without a block; (ii) a
 2-turn block triggers clause 1 invalidation, ending the episode with a retarget, so a blocked
-oscillation cannot reach length 6; (iii) an oscillation driven by target flapping needs a
-retarget at least every 2 turns, but clause 2 enforces 3 turns between non-invalidation
-switches, and invalidation-driven flapping A→B→A→B requires A to become valid again within one
-turn while `eps`-dominating — excluded because clause 3's margin plus the strict total order
-make the preference relation acyclic on any fixed state, and `hold_age` reset makes each flip
-cost 3 turns. Hence any surviving 6-turn alternation must contain a progress event, which D-1
-exempts by construction. Constants: `H = 3` is the minimal hold strictly exceeding the observed
-period (2) plus the 1-turn resolver allowance; `eps = 1.0` equals the score value of one saved
-travel turn — switches that save less than one turn cannot pay for themselves.
+oscillation cannot reach length 6; (iii) an oscillation driven by preference flapping on a
+fixed state needs a retarget at least every 2 turns, but clause 2 enforces 3 turns between
+non-invalidation switches, and clause 3's margin plus the strict total order make the
+preference relation acyclic on any fixed state, with each flip costing a `hold_age` reset.
+**Known gap:** clause 1 invalidation bypasses the `H = 3` hold, and a changing occupancy state
+can repeatedly make A and B valid in alternation, so invalidation-driven `A->B->A` is *not*
+excluded by this argument; the acyclicity reasoning applies only to preference-driven switches
+on a fixed state. Constants: `H = 3` (minimal hold strictly exceeding the observed period 2
+plus the 1-turn resolver allowance) and `eps = 1.0` (the score value of one saved travel turn)
+are **candidate parameters**, not proven-sufficient values. Acceptance for B9 therefore rests
+on detector D-1 returning 0 episodes plus the exact-game gate on `897829265` (both cited
+windows), not on this paragraph.
 
 **Failure evidence this rule targets:** the factory re-ran `min_by_key` selection every turn
 with tie-breaks that shift as the unit moves, invalidated `banana_factory_plant_target` on any
@@ -458,3 +498,33 @@ transient occupant, and fell through to the inner policy whenever `starter_comma
 `None` — three independent flap sources, all closed by clauses 1–4; the live period-2 episodes
 (game 897829265, worker 2, `(10,4)<->(11,4)` turns 20–29 and `(8,2)<->(8,3)` turns 269–280) are
 the acceptance-gate counterexamples for this section.
+
+---
+
+## Revision 2026-08-04 (integrator review 20260804T194501Z)
+
+Corrections from `local_codex_1`'s ACK review, applied in place (no invariant renumbered; the
+one added invariant uses the suffix form I-10a):
+
+1. Resident contradiction → §0 (`starter` definition), B3 ambiguity resolution → in
+   banana-enabled games the banana worker is the starter (resident); the trained second worker
+   stays on the main economy; non-starter selection language disallowed.
+2. Turn-1 arbitration ordering → I-27, I-28 → decision moved to before the first delegated call
+   by reproducing the eligibility test read-only; I-27's evidence standard is zero
+   dual-attributable commands over the whole game, not field inspection after delegation.
+3. Mother accounting → I-3, I-13 → the mother floor now counts live own bananas in `diag(tent)`
+   (an orthogonal wood tree cannot mask a missing mother); R2 caps the protected-mother set at
+   a single protected mother.
+4. Ownership actor → I-7 → ownership compares the ETA of the committed harvester (the
+   resident/starter), not the minimum over all non-wood-committed workers.
+5. Protection seam → I-29 → protection is a single banana-side protected cell carried by the
+   seam's dedicated `banana_protected_cell:Option<Cell>` reservation; set-valued reservation
+   deferred beyond R2; I-29 never claimed from `banana_idle_unit` alone.
+6. Hysteresis gate-not-proof → section (e) → "provably prevents" theorem wording removed;
+   mechanism kept; known invalidation-bypass gap stated; H=3/eps=1.0 are candidate parameters;
+   acceptance rests on detector D-1 plus the exact-game gate on 897829265.
+7. Lifetime safety → B4: new I-10a, I-11, ambiguity resolution, semantic test map → dynamic
+   ownership-loss response defined (harvest now / convert / abandon, deterministically); I-11
+   reclassified as a replay-outcome gate where residual, not a universal invariant.
+8. Single-door maps → I-22 → single-reachable-door banking is serialized deterministically
+   (resident first, then ascending unit id) instead of requiring distinct doors.

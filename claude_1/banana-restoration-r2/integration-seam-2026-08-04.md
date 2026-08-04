@@ -1,6 +1,7 @@
 # Integration seam report — banana wood-printer on parent a8eb3b2b
 
-Status: PUBLISHED 2026-08-04. Produced by a claude_1 subagent; all five insertion anchors,
+Status: PUBLISHED 2026-08-04; REVISED same day per integrator review 20260804T194501Z (see
+revision block at end). Produced by a claude_1 subagent; all five original insertion anchors,
 all collision counts, replace_action reuse, and the compactor-idempotence claim
 (parent == compact(parent) + newline) independently re-verified by claude_1 against the
 frozen parent bytes before publication.
@@ -51,7 +52,8 @@ Constraint restated: insert-only transform. The modified source must be
 `parent + inserted strings at unique anchors`; inverse transform = delete those exact strings.
 No replacements, no delimiter comments (minified). Therefore every behavioral change must be
 expressible as pure insertion — the two enabling tricks are (1) Rust let-shadowing in `main`
-and (2) a new reservation field in `YamoBot` that defaults to `None`.
+and (2) new reservation fields in `YamoBot` that default to `None` (`banana_idle_unit`, and
+per integrator item 5 the dedicated `banana_protected_cell` mirroring `external_protected_tree`).
 
 ### Recommended architecture: outer `BananaBot` wrapper (SecureOrchardBot precedent)
 
@@ -60,37 +62,65 @@ and (2) a new reservation field in `YamoBot` that defaults to `None`.
 
 1. Update `BananaPhase` (Dormant / Planting / Renewing / Converting / Banking / Abandoned — exact
    lifecycle per task record; claude_1 pins the invariants).
-2. Arbitration (the single deterministic point): read `self.inner.starter_id` and
-   `self.inner.phase` (module-private fields are visible inside `mod moisan` — legal, no
-   accessor insertion needed). The banana worker is chosen deterministically (e.g. lowest-id
-   player-0 unit) **always excluding** the orchard starter, and only when a non-starter,
-   non-funding worker exists. Apple orchard and banana plot can never claim the same worker.
-3. If active: set `self.inner.inner.banana_idle_unit=Some(worker)` **before** delegating
-   (YamoBot reads it during the delegated call); else set it to `None`.
+2. Arbitration (the single deterministic point; rewritten 2026-08-04, integrator items 1–2):
+   in banana games the banana worker **is the starter** — the min-id own unit at turn 1, the
+   identical rule `SecureOrchardBot::initialize` uses — matching spec B3/I-7; there is **no
+   non-starter selection**, and the trained second worker stays on the main economy. Because
+   `self.inner.geometry` and `self.inner.starter_id` are uninitialized until the first
+   delegated call, BananaBot decides eligibility **before the first delegation** by
+   **reproducing the orchard eligibility test read-only** from the static map and initial
+   plants at the top of turn 1 (module-private fields stay visible inside `mod moisan` for
+   later cross-checks, but the decision never depends on post-delegation field inspection).
+   Apple-eligible game: banana permanently Dormant. Banana game: the starter is the resident;
+   apple orchard and banana plot can never claim the same worker, and spec I-27 is evidenced
+   as zero dual-attributable commands over the whole game.
+3. If active: set `self.inner.inner.banana_idle_unit=Some(worker)` and
+   `self.inner.inner.banana_protected_cell` (the single protected mother cell per spec
+   I-13/I-29, or `None` while no mother is live) **before** delegating (YamoBot reads both
+   during the delegated call); else set both to `None`.
 4. `let mut commands=self.inner.commands(view);`
 5. If active: compute the banana action and apply it via the existing
    `SecureOrchardBot::replace_action(&mut commands,&unit_ids,worker,action)` (same-module private
    assoc fn — reusable, no insertion into SecureOrchardBot needed).
 6. Return `commands`.
 
-### Insertion set (5 insertions; every anchor verified count == 1 in the parent)
+### Insertion set (6 insertions; every anchor verified count == 1 in the parent)
 
 | # | Anchor (exact parent substring, count=1) | Insert position | Inserted string (sketch) |
 |---|---|---|---|
 | I1 | `pub struct SecureOrchardBot{` | immediately **before** anchor | entire banana block: `enum BananaPhase{...}pub struct BananaBot{inner:SecureOrchardBot,...}impl BananaBot{pub fn new(inner:SecureOrchardBot)->Self{...}...}impl Bot for BananaBot{fn commands(&mut self,view:&GameState)->Vec<String>{...}}` (item order is irrelevant in Rust; `Bot` is already in scope in moisan) |
-| I2 | `external_protected_tree:Option<Cell>,}` | after the `,` inside anchor (before `}`) | `banana_idle_unit:Option<i32>,` |
-| I3 | `external_protected_tree:None,}}` | after the first `,` inside anchor | `banana_idle_unit:None,` |
+| I2 | `external_protected_tree:Option<Cell>,}` | after the `,` inside anchor (before `}`) | `banana_idle_unit:Option<i32>,banana_protected_cell:Option<Cell>,` (extended 2026-08-04, integrator item 5) |
+| I3 | `external_protected_tree:None,}}` | after the first `,` inside anchor | `banana_idle_unit:None,banana_protected_cell:None,` (extended 2026-08-04, integrator item 5) |
 | I4 | `if let Some(id)=self.external_idle_unit{by_id.insert(id,vec![MoisanBot::wait()]);}` | immediately **after** anchor | `if let Some(id)=self.banana_idle_unit{by_id.insert(id,vec![MoisanBot::wait()]);}` |
 | I5 | `else{return;};let mut bot=SecureOrchardBot::new();` | after `let mut bot=SecureOrchardBot::new();` | `#[allow(unused_mut)]let mut bot=crate::bot::moisan::BananaBot::new(bot);` (shadowing rebind; fully qualified path avoids a `use` insertion; the outer allow-attr suppresses the `unused_mut` warning the shadowing induces on the *new* binding — see risk R2) |
+| I6 | the full `external_protected_tree` retain-filter statement (exact bytes below; contains `\|`, so quoted outside the table) | immediately **after** anchor | the same retain statement with `self.banana_protected_cell` in place of `self.external_protected_tree` (exact bytes below) — one retain-filter read in YamoBot mirroring the protected-tree pattern (added 2026-08-04, integrator item 5) |
 
-Verified counts in the parent: each anchor above occurs exactly 1 time; the collision-side
-counts `BananaBot` = 0, `BananaPhase` = 0, `banana_idle_unit` = 0, `banana_` = 0,
-`#[allow(` = 0. Every inserted string contains a `Banana`/`banana_` token or `#[allow(unused_mut)]`,
-none of which occur in the parent, and no inserted string is a substring of another, so the
-**inverse transform is well-defined**: delete each inserted string (each occurs exactly once in
-the modified file, pairwise non-overlapping) -> parent bytes restored. The patch script must
-assert, mechanically: (a) each anchor count == 1 in parent; (b) each inserted string count == 0
-in parent and == 1 in output; (c) sha256(output with insertions removed) == `a8eb3b2b...`.
+I6 anchor, exact parent substring — **verified count == 1** in
+`/tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/banana/parent-a8eb3b2b.min.rs`
+on 2026-08-04 (`grep -oF | wc -l` = 1; the shorter prefix
+`if let Some(protected)=self.external_protected_tree{` is also count == 1):
+
+```
+if let Some(protected)=self.external_protected_tree{candidates.retain(|candidate|{!matches!(candidate.target,Target::Tree(cell)|Target::Bank(cell)|Target::Cell(cell)if cell==protected)});}
+```
+
+I6 inserted string (count == 0 in parent — `banana_protected_cell` = 0 verified):
+
+```
+if let Some(protected)=self.banana_protected_cell{candidates.retain(|candidate|{!matches!(candidate.target,Target::Tree(cell)|Target::Bank(cell)|Target::Cell(cell)if cell==protected)});}
+```
+
+Verified counts in the parent: each anchor above (I1–I6) occurs exactly 1 time; the
+collision-side counts `BananaBot` = 0, `BananaPhase` = 0, `banana_idle_unit` = 0,
+`banana_protected_cell` = 0, `banana_` = 0, `#[allow(` = 0. Every inserted string contains a
+`Banana`/`banana_` token or `#[allow(unused_mut)]`, none of which occur in the parent, and no
+inserted string of the six is a substring of another (the extended I2/I3 strings and the I6
+retain read share the `banana_protected_cell` token but are pairwise non-containing), so the
+**inverse transform is well-defined**: delete each of the **six** inserted strings (each occurs
+exactly once in the modified file, pairwise non-overlapping) -> parent bytes restored. The
+patch script must assert, mechanically, over all **six insertions I1..I6**: (a) each anchor
+count == 1 in parent; (b) each inserted string count == 0 in parent and == 1 in output;
+(c) sha256(output with the six insertions removed) == `a8eb3b2b...`.
 
 ### Alternatives considered
 
@@ -160,9 +190,11 @@ readable view from it, plus per-block round-trip asserts for the newly authored 
   `self.inner.commands(view)` is called (YamoBot reads it inside that call), and must be reset to
   `None` on every dormant turn — `SecureOrchardBot::commands` overwrites `external_idle_unit`
   every turn but will never touch `banana_idle_unit`, so stale reservations are BananaBot's
-  responsibility. Accesses are sequential `&mut self`; no aliasing. Do NOT reuse
-  `external_idle_unit` (overwritten each turn by the orchard — that is exactly the contention
-  the dedicated field avoids).
+  responsibility. The same discipline applies to `banana_protected_cell` (I6): write before
+  delegation, reset to `None` on dormant turns, never reuse `external_protected_tree`
+  (overwritten each turn by the orchard). Accesses are sequential `&mut self`; no aliasing.
+  Do NOT reuse `external_idle_unit` (overwritten each turn by the orchard — that is exactly
+  the contention the dedicated fields avoid).
 - **R2 Shadowing warning**: the rebind in I5 makes rustc warn `unused_mut`-adjacent lint noise on
   one of the bindings depending on final shape; the inserted `#[allow(unused_mut)]` covers it.
   Verify with `cargo build --release 2>&1` that the candidate compiles warning-clean (check 8
@@ -170,7 +202,8 @@ readable view from it, plus per-block round-trip asserts for the newly authored 
   If the attribute placement on the let-statement proves awkward, drop it and accept the
   compile-time warning — it never reaches runtime stderr — but decide once and record it.
 - **R3 Name collisions**: verified absent from parent: `banana_` (0), `BananaBot` (0),
-  `BananaPhase` (0), `banana_idle_unit` (0). `Banana` occurs 10 times, all `PlantKind::Banana` /
+  `BananaPhase` (0), `banana_idle_unit` (0), `banana_protected_cell` (0, re-verified
+  2026-08-04). `Banana` occurs 10 times, all `PlantKind::Banana` /
   `"BANANA"` protocol sites — the plant kind exists and is what the module targets; choose all
   new identifiers with the `Banana`/`banana_` prefix so every inserted string stays unique.
 - **R4 Module-privacy coupling**: BananaBot reads `SecureOrchardBot.starter_id`/`phase` and
@@ -181,19 +214,21 @@ readable view from it, plus per-block round-trip asserts for the newly authored 
   always a live player-0 unit present in the inner command set, but the semantic tests
   (check 7, destroyed/occupied recovery) must cover the worker-death turn so a pushed duplicate
   command can never appear.
-- **R6 Worker scarcity / funding invariant**: activation gate must require a claimable worker
-  that is neither the orchard starter nor the pre-funding second worker ("preserve second-worker
-  funding before denial work" + no TRAIN displacement, checks 5/7). With <=1 eligible worker,
-  BananaPhase stays Dormant. This is a spec invariant claude_1 must restate explicitly before
-  implementation (task record demands the ambiguity be restated as invariants).
+- **R6 Worker scarcity / funding invariant** (rewritten 2026-08-04, integrator item 1): in
+  banana games the banana worker is the starter; funding is preserved not by excluding the
+  starter but because the trained second worker stays on the main economy and the feature
+  stays Dormant until `TRAIN` has been issued or is permanently infeasible (spec I-16/I-18;
+  "preserve second-worker funding before denial work" + no TRAIN displacement, checks 5/7).
+  No non-starter selection exists anywhere in the seam.
 - **R7 Compile-time surface**: I1 must only reference items already in scope in moisan
   (`GameState`, `Cell`, `PlantKind`, `BTreeMap/BTreeSet`, `MoisanBot`, `YamoBot`,
   `SecureOrchardBot`, `Bot`, nav helpers). Keep the block self-contained; unused helpers trigger
   dead-code lints — either keep the block minimal or open it with `#[allow(dead_code)]`.
   Byte budget: parent 62,725 + insertions must stay < 100,000 (check 8) — ~37 KB headroom.
 - **R8 Check-4 inertness proof obligation**: structural argument — the only behavioral
-  insertions are I4 (no-op while `banana_idle_unit == None`) and I5 (identity delegation while
-  `BananaPhase == Dormant`); I1–I3 add unreached code and a `None` field. Evidence to supply:
+  insertions are I4 (no-op while `banana_idle_unit == None`), I6 (no-op while
+  `banana_protected_cell == None`) and I5 (identity delegation while
+  `BananaPhase == Dormant`); I1–I3 add unreached code and two `None` fields. Evidence to supply:
   (a) replay equality parent-binary vs candidate-binary command streams over a broad open panel;
   (b) a deterministic activation detector (separate probe build writing activation turn/state to
   a file — never stderr) proving which games never left Dormant, so the equality claim is scoped
@@ -203,3 +238,29 @@ readable view from it, plus per-block round-trip asserts for the newly authored 
   banana activation on this parent. `local_codex_1` must supply: the broad open panel for the
   dormant-equality claim, every banana-live replay (check 3), and the host-only gate on game
   `897829265` (check 6, period-2 windows turns 20–29 and 269–280).
+
+---
+
+## Revision 2026-08-04 (integrator review 20260804T194501Z)
+
+Corrections from `local_codex_1`'s ACK review, applied in place:
+
+1. Resident contradiction → section B step 2 (arbitration), risk R6 → banana worker is the
+   starter in banana games (same min-id rule as `SecureOrchardBot::initialize`); all
+   non-starter selection language removed; trained second worker stays on the main economy.
+2. Turn-1 arbitration ordering → section B step 2 → eligibility is decided before the first
+   delegated call by reproducing the orchard eligibility test read-only from the static map
+   and initial plants (inner `geometry`/`starter_id` are uninitialized until first delegation);
+   I-27 evidenced as zero dual-attributable commands over the whole game.
+3. Mother accounting → spec-only (I-3/I-13); no seam element changed.
+4. Ownership actor → spec-only (I-7); no seam element changed.
+5. Protection seam → section B intro, step 3, insertion table (I2/I3 extended, new I6),
+   verified-counts/inverse-transform/patch-assert paragraph, risks R1/R3/R8 → added
+   `banana_protected_cell:Option<Cell>` field + `None` init (extending I2/I3 at their existing
+   count==1 anchors) and one retain-filter read I6 mirroring `external_protected_tree`; I6
+   anchors immediately after the parent's protected-tree retain statement, whose count in
+   `parent-a8eb3b2b.min.rs` was verified == 1 on 2026-08-04; inverse transform and patch-script
+   asserts updated to cover six insertions I1..I6.
+6. Hysteresis gate-not-proof → spec-only (section (e)); no seam element changed.
+7. Lifetime safety → spec-only (I-10a/I-11); no seam element changed.
+8. Single-door maps → spec-only (I-22); no seam element changed.
