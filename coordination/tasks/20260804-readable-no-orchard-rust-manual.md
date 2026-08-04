@@ -1,10 +1,17 @@
 # 20260804-readable-no-orchard-rust-manual: beginner manual and PDF
 
-- Status: claimed — awaiting remote claim verification before implementation
+- Status: in progress — source inventory and beginner skeleton complete
 - Priority: direct owner assignment
 - Record owner / work owner: `local_codex_1`
 - Created UTC: 2026-08-04T11:35:00Z
-- Last updated UTC: 2026-08-04T11:35:00Z
+- Last updated UTC: 2026-08-04T11:53:53Z
+
+## Progress
+
+The first canonical draft is 1,939 words: game orientation, the Rust constructs used by this
+source, and the complete turn pipeline. A hash-locked builder verifies the exact source, extracts
+106 constants/types/functions/traits with line numbers into `source-index.json`, and renders print
+HTML. Detailed algorithm chapters, examples, appendices, and PDF validation remain.
 
 ## Objective
 
