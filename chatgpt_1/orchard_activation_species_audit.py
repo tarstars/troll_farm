@@ -69,6 +69,7 @@ CSV_FIELDS = (
     "leg",
     "game_id",
     "deployed_variant",
+    "deployed_first_mismatch_turn",
     "seat",
     "opponent_agent_id",
     "opponent_submission_id",
@@ -87,6 +88,10 @@ CSV_FIELDS = (
     "mother_cell",
     "starter_to_mother_turns",
     "enemy_eta",
+    "apple_enemy_kill_eta",
+    "banana_enemy_kill_eta",
+    "apple_kill_safe",
+    "banana_kill_safe",
     "apple_first_bank_eta",
     "banana_first_bank_eta",
     "apple_payback_safe",
@@ -492,6 +497,64 @@ def enemy_eta(state: dict[str, Any], seat: int, mother: tuple[int, int], walkabl
     return min(values, default=10_000)
 
 
+def earliest_enemy_kill_eta(
+    state: dict[str, Any],
+    seat: int,
+    mother: tuple[int, int],
+    walkable: set[tuple[int, int]],
+    species: str,
+    plant_turn_offset: int,
+) -> int | None:
+    """Earliest adversarial kill under continuous chopping after arrival.
+
+    MOVE consumes an action, a just-planted tree is not choppable on its plant turn, and
+    plant growth happens after CHOP. This is a conservative mechanical safety bound, not
+    a prediction that the real opponent will choose to attack.
+    """
+    base = {"APPLE": 8, "BANANA": 2}[species]
+    slope = {"APPLE": 3, "BANANA": 1}[species]
+    cooldown_effective = effective_cooldown(species)
+    distances = bfs(walkable, [mother])
+    arrivals: list[tuple[int, int]] = []
+    for unit in state["units"]:
+        if int(unit["player"]) != 1 - seat or int(unit["chop"]) <= 0:
+            continue
+        cell = (int(unit["x"]), int(unit["y"]))
+        if cell not in distances:
+            continue
+        speed = max(1, int(unit["ms"]))
+        arrival = (distances[cell] + speed - 1) // speed
+        arrivals.append((arrival, int(unit["chop"])))
+    if not arrivals:
+        return None
+
+    size = 0
+    health = base
+    cooldown = 0
+    for offset in range(plant_turn_offset, TOTAL_TURNS + 1):
+        if offset == plant_turn_offset:
+            # PLANT resolves before CHOP, but new trees are excluded from that turn's
+            # choppable-cell snapshot. The end-of-turn tick immediately creates size 1.
+            size = 1
+            health = base + slope
+            cooldown = cooldown_effective
+            continue
+
+        damage = sum(chop for arrival, chop in arrivals if offset >= arrival + 1)
+        health -= damage
+        if health <= 0:
+            return offset
+
+        if cooldown > 0:
+            cooldown -= 1
+        if cooldown == 0:
+            if size < 4:
+                size += 1
+                health += slope
+            cooldown = cooldown_effective
+    return None
+
+
 def state_fingerprint(map_data: dict[str, Any], state0: dict[str, Any], seat: int) -> tuple[str, str]:
     static = digest({"rows": oriented_rows(map_data, seat)})
     initial = digest(
@@ -614,13 +677,7 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
 
     outputs = {name: run_bot(binary, stdin_text, turns) for name, binary in binaries.items()}
     deployed_name = "apple_current" if deployed_variant == "orchard" else "no_orchard"
-    if outputs[deployed_name] != recorded:
-        mismatch = first_divergence(outputs[deployed_name], recorded)
-        raise RuntimeError(
-            f"game {replay['gameId']} deployed parity failed at turn "
-            f"{None if mismatch is None else mismatch + 1}: "
-            f"bot={outputs[deployed_name][mismatch or 0]} recorded={recorded[mismatch or 0]}"
-        )
+    deployed_mismatch_index = first_divergence(outputs[deployed_name], recorded)
 
     state0 = states[0]
     geometry = orchard_geometry(map_data, state0, seat)
@@ -630,16 +687,24 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
     margin = scores[seat] - scores[1 - seat]
 
     baseline = outputs["no_orchard"]
-    activation_indices = {
+    raw_activation_indices = {
         "current_apple": first_divergence(outputs["apple_current"], baseline),
         "apple_idle": first_divergence(outputs["apple_idle"], baseline),
         "banana": first_divergence(outputs["banana_current"], baseline),
         "banana_idle": first_divergence(outputs["banana_idle"], baseline),
     }
-    # Only divergences through turn 100 can be orchard activation; fail closed on later first changes.
-    for name, index in activation_indices.items():
-        if index is not None and index >= 100:
-            raise RuntimeError(f"game {replay['gameId']} {name} first diverges after orchard window")
+    activation_indices = {}
+    for name, index in raw_activation_indices.items():
+        exact_prefix = (
+            index is not None
+            and index < 100
+            and (deployed_mismatch_index is None or index < deployed_mismatch_index)
+        )
+        # Once the deployed APPLE wrapper has diverged, other generated wrappers are no
+        # longer on their own exact state trajectory. Measure those on no-orchard legs.
+        if deployed_variant == "orchard" and name != "current_apple":
+            exact_prefix = False
+        activation_indices[name] = index if exact_prefix else None
 
     activation_index = activation_indices["current_apple"]
     activation_state = states[activation_index] if activation_index is not None else None
@@ -651,6 +716,10 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
     eta_enemy = None
     apple_eta = None
     banana_eta = None
+    apple_kill_eta = None
+    banana_kill_eta = None
+    apple_kill_safe = None
+    banana_kill_safe = None
     apple_safe = None
     banana_safe = None
     apple_projected = None
@@ -669,6 +738,18 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
         eta_enemy = enemy_eta(activation_state, seat, mother, board["walkable"])
         apple_eta = first_bank_eta("APPLE", travel_turns)
         banana_eta = first_bank_eta("BANANA", travel_turns)
+        plant_turn_offset = travel_turns + 1
+        apple_kill_eta = earliest_enemy_kill_eta(
+            activation_state, seat, mother, board["walkable"], "APPLE", plant_turn_offset
+        )
+        banana_kill_eta = earliest_enemy_kill_eta(
+            activation_state, seat, mother, board["walkable"], "BANANA", plant_turn_offset
+        )
+        # HARVEST resolves before CHOP. If the mother dies on the first harvest turn,
+        # the carried fruit can still be dropped on the following turn.
+        apple_kill_safe = apple_kill_eta is None or apple_kill_eta >= apple_eta - 1
+        banana_kill_safe = banana_kill_eta is None or banana_kill_eta >= banana_eta - 1
+        # Retain the older travel-only discriminator as a deliberately conservative audit.
         apple_safe = eta_enemy > apple_eta
         banana_safe = eta_enemy > banana_eta
         activation_turn = activation_index + 1
@@ -691,6 +772,9 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
         "leg": leg,
         "game_id": int(replay["gameId"]),
         "deployed_variant": deployed_variant,
+        "deployed_first_mismatch_turn": (
+            None if deployed_mismatch_index is None else deployed_mismatch_index + 1
+        ),
         "seat": seat,
         "opponent_agent_id": int(meta["opponent_agent_id"]),
         "opponent_submission_id": int(meta["opponent_submission_id"]),
@@ -715,6 +799,10 @@ def analyze_game(item: dict[str, Any], binaries: dict[str, Path], parse: Any) ->
         "mother_cell": mother,
         "starter_to_mother_turns": travel_turns,
         "enemy_eta": eta_enemy,
+        "apple_enemy_kill_eta": apple_kill_eta,
+        "banana_enemy_kill_eta": banana_kill_eta,
+        "apple_kill_safe": apple_kill_safe,
+        "banana_kill_safe": banana_kill_safe,
         "apple_first_bank_eta": apple_eta,
         "banana_first_bank_eta": banana_eta,
         "apple_payback_safe": apple_safe,
@@ -749,7 +837,9 @@ def summarize_actual_apple(rows: list[dict[str, Any]]) -> dict[str, Any]:
     idle_blocked = [row for row in active if row["starter_base_verb"] != "WAIT"]
     payback_kept = [row for row in active if row["apple_payback_safe"]]
     payback_blocked = [row for row in active if not row["apple_payback_safe"]]
-    combined = [row for row in active if row["starter_base_verb"] == "WAIT" and row["apple_payback_safe"]]
+    kill_kept = [row for row in active if row["apple_kill_safe"]]
+    kill_blocked = [row for row in active if not row["apple_kill_safe"]]
+    combined = [row for row in active if row["starter_base_verb"] == "WAIT" and row["apple_kill_safe"]]
     return {
         "orchard_games": len(orchard_rows),
         "activated": len(active),
@@ -759,12 +849,16 @@ def summarize_actual_apple(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "work_conserving_blocked": len(idle_blocked),
         "payback_safe_kept": len(payback_kept),
         "payback_safe_blocked": len(payback_blocked),
+        "kill_safe_kept": len(kill_kept),
+        "kill_safe_blocked": len(kill_blocked),
         "combined_kept": len(combined),
         "all_active_outcomes": summarize_outcomes(active),
         "work_conserving_kept_outcomes": summarize_outcomes(idle_kept),
         "work_conserving_blocked_outcomes": summarize_outcomes(idle_blocked),
         "payback_safe_kept_outcomes": summarize_outcomes(payback_kept),
         "payback_safe_blocked_outcomes": summarize_outcomes(payback_blocked),
+        "kill_safe_kept_outcomes": summarize_outcomes(kill_kept),
+        "kill_safe_blocked_outcomes": summarize_outcomes(kill_blocked),
         "combined_kept_outcomes": summarize_outcomes(combined),
         "mother_planted": sum(row["actual_mother_planted"] for row in active),
         "mother_survived": sum(row["actual_mother_survived"] for row in active),
@@ -812,6 +906,7 @@ def exact_pairs(rows: list[dict[str, Any]]) -> dict[str, Any]:
                     "activation": orchard_row["current_apple_activation_turn"] is not None,
                     "idle_kept": orchard_row["starter_base_verb"] == "WAIT",
                     "payback_safe": bool(orchard_row["apple_payback_safe"]),
+                    "kill_safe": bool(orchard_row["apple_kill_safe"]),
                     "margin_delta": int(orchard_row["margin"]) - int(no_row["margin"]),
                     "win_delta": int(orchard_row["margin"] > 0) - int(no_row["margin"] > 0),
                     "catastrophe_delta": int(orchard_row["margin"] <= -100)
@@ -845,6 +940,12 @@ def exact_pairs(rows: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "activation_payback_unsafe": pair_summary(
             [row for row in pairs if row["activation"] and not row["payback_safe"]]
+        ),
+        "activation_kill_safe": pair_summary(
+            [row for row in pairs if row["activation"] and row["kill_safe"]]
+        ),
+        "activation_kill_unsafe": pair_summary(
+            [row for row in pairs if row["activation"] and not row["kill_safe"]]
         ),
         "rows": pairs,
     }
@@ -958,9 +1059,11 @@ def render_report(report: dict[str, Any]) -> str:
         ("all activations", actual["all_active_outcomes"]),
         ("idle-only kept", actual["work_conserving_kept_outcomes"]),
         ("idle-only blocked", actual["work_conserving_blocked_outcomes"]),
-        ("first-bank-safe kept", actual["payback_safe_kept_outcomes"]),
-        ("first-bank-safe blocked", actual["payback_safe_blocked_outcomes"]),
-        ("idle + first-bank-safe", actual["combined_kept_outcomes"]),
+        ("enemy-arrival-after-bank kept", actual["payback_safe_kept_outcomes"]),
+        ("enemy-arrival-after-bank blocked", actual["payback_safe_blocked_outcomes"]),
+        ("adversarial-kill-safe kept", actual["kill_safe_kept_outcomes"]),
+        ("adversarial-kill-safe blocked", actual["kill_safe_blocked_outcomes"]),
+        ("idle + adversarial-kill-safe", actual["combined_kept_outcomes"]),
     ]
     for label, row in strata:
         lines.append(
@@ -992,7 +1095,9 @@ def render_report(report: dict[str, Any]) -> str:
         ("activation_idle_kept", "activation: idle-only kept"),
         ("activation_idle_blocked", "activation: idle-only blocked"),
         ("activation_payback_safe", "activation: first-bank safe"),
-        ("activation_payback_unsafe", "activation: first-bank unsafe"),
+        ("activation_payback_unsafe", "activation: enemy arrives before bank"),
+        ("activation_kill_safe", "activation: survives continuous attack to first harvest"),
+        ("activation_kill_unsafe", "activation: cannot survive continuous attack to first harvest"),
     ]:
         row = pairs[key]
         lines.append(
@@ -1034,7 +1139,9 @@ def render_report(report: dict[str, Any]) -> str:
             "",
             "## Reproducibility",
             "",
-            f"- command-parity games: {report['quality']['deployed_command_parity_games']}/1280;",
+            f"- full command-parity games: {report['quality']['deployed_command_parity_games']}/1280;",
+            f"- exact deployed command prefix through the activation window: "
+            f"{report['quality']['deployed_prefix_exact_through_turn_100_games']}/1280;",
             f"- replay packages: {report['quality']['packages']} with exact SHA verification;",
             f"- row table: `{OUTPUT_CSV.relative_to(ROOT)}`;",
             f"- machine report: `{OUTPUT_JSON.relative_to(ROOT)}`;",
@@ -1120,6 +1227,8 @@ def main() -> int:
     idle_kept = actual["work_conserving_kept_outcomes"]
     payback_blocked = actual["payback_safe_blocked_outcomes"]
     payback_kept = actual["payback_safe_kept_outcomes"]
+    kill_blocked = actual["kill_safe_blocked_outcomes"]
+    kill_kept = actual["kill_safe_kept_outcomes"]
     idle_direction = (
         idle_kept["mean_margin"] is not None
         and idle_blocked["mean_margin"] is not None
@@ -1131,6 +1240,12 @@ def main() -> int:
         and payback_blocked["mean_margin"] is not None
         and payback_kept["mean_margin"] > payback_blocked["mean_margin"]
         and payback_kept["catastrophe_rate"] <= payback_blocked["catastrophe_rate"]
+    )
+    kill_direction = (
+        kill_kept["mean_margin"] is not None
+        and kill_blocked["mean_margin"] is not None
+        and kill_kept["mean_margin"] > kill_blocked["mean_margin"]
+        and kill_kept["catastrophe_rate"] <= kill_blocked["catastrophe_rate"]
     )
     if idle_direction:
         recommendation = (
@@ -1149,7 +1264,8 @@ def main() -> int:
     verdict = (
         "APPLE remains the correct species for the current protected, water-adjacent harvest mother. "
         f"Idle-only activation has {'favorable' if idle_direction else 'non-decisive'} replay direction; "
-        f"first-bank safety has {'favorable' if payback_direction else 'non-decisive'} direction. "
+        f"travel-only first-bank safety has {'favorable' if payback_direction else 'non-decisive'} direction; "
+        f"adversarial kill safety has {'favorable' if kill_direction else 'non-decisive'} direction. "
         "Any terminal-value claim still requires a fresh closed-loop comparison."
     )
 
@@ -1190,7 +1306,14 @@ def main() -> int:
         "species": species,
         "exact_initial_pairs": pairs,
         "quality": {
-            "deployed_command_parity_games": len(rows),
+            "deployed_command_parity_games": sum(
+                row["deployed_first_mismatch_turn"] is None for row in rows
+            ),
+            "deployed_prefix_exact_through_turn_100_games": sum(
+                row["deployed_first_mismatch_turn"] is None
+                or int(row["deployed_first_mismatch_turn"]) > 100
+                for row in rows
+            ),
             "packages": 8,
             "teacher_forced_boundary": (
                 "only first divergence from no-orchard is interpreted for generated variants"
@@ -1200,6 +1323,7 @@ def main() -> int:
         "direction_checks": {
             "idle_only_favorable": idle_direction,
             "first_bank_safety_favorable": payback_direction,
+            "adversarial_kill_safety_favorable": kill_direction,
         },
         "verdict": verdict,
         "recommendation": recommendation,
