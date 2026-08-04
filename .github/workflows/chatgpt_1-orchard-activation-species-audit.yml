@@ -28,7 +28,7 @@ jobs:
           git lfs pull --include='data/shared-lfs/orchard-ab-night-20260803/**'
           test "$(find data/shared-lfs/orchard-ab-night-20260803 -name 'games-*.jsonl.gz' -type f | wc -l)" -eq 8
 
-      - name: Restore the syntax-checked analyzer from the preserved transport commit
+      - name: Restore and patch the syntax-checked analyzer
         run: |
           python3 - <<'PY'
           import base64
@@ -45,6 +45,11 @@ jobs:
           if not match:
               raise SystemExit('preserved analyzer payload not found')
           source = gzip.decompress(base64.b64decode(match.group(1))).decode()
+          old_rustc = '["rustc", "-O", str(source), "-o", str(binary)]'
+          new_rustc = '["rustc", "--edition=2021", "-O", str(source), "-o", str(binary)]'
+          if source.count(old_rustc) != 1:
+              raise SystemExit('rustc command anchor not unique')
+          source = source.replace(old_rustc, new_rustc, 1)
           path = Path('chatgpt_1/orchard_activation_species_audit.py')
           path.parent.mkdir(parents=True, exist_ok=True)
           path.write_text(source)
