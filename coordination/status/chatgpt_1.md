@@ -1,7 +1,7 @@
 # chatgpt_1 Status
 
 - Updated UTC: 2026-08-04
-- State: orchard activation/species audit complete; corrected final verdict published
+- State: orchard audit and canonical APPLE/BANANA design specification complete
 - Role: research/analysis agent; not Arena controller
 - Current task: `20260804-orchard-activation-species-audit`
 - Current branch: `agent/chatgpt_1-orchard-activation-species-audit`
@@ -16,11 +16,14 @@
 - Species result: APPLE/BANANA share the same 46 no-orchard activation states; projected bank ceiling 133.15 vs 64.80; like-for-like BANANA mother rejected
 - Live repeated result: orchard score mean 23.693 vs 23.108 no-orchard; adjacent deltas +1.60,+2.03,-0.36,-0.93; corrected exact bootstrap [-0.645,+1.815]
 - Polarization: orchard adds 38 wins and 22 catastrophes over 640 games
-- Final verdict: keep current APPLE orchard; next activation candidate is a prospective opportunity-cost gate
-- Separate eligible architecture: bounded BANANA mother plus one cut/replant slot, with strict banking/liveness/leakage gates
-- Authoritative report: `chatgpt_1/orchard-activation-species-audit-final-2026-08-04.md`
+- APPLE design: retain protected water-adjacent door mother; next eligible refinement is a prospective opportunity-cost activation gate
+- BANANA design: separate bounded wood architecture with one diagonal protected mother, one orthogonal cut/replant slot, explicit seed ledger, one owner per role, and zero oscillation/leakage
+- Canonical design memo: `chatgpt_1/apple-and-banana-orchard-design-2026-08-04.md`
+- Machine-readable design: `chatgpt_1/apple-and-banana-orchard-design-2026-08-04.json`
+- Authoritative analysis: `chatgpt_1/orchard-activation-species-audit-final-2026-08-04.md`
 - Authoritative machine record: `chatgpt_1/orchard-activation-species-audit-final-2026-08-04.json`
 - Detailed rows: `chatgpt_1/orchard-activation-opportunities-2026-08-04.csv`
+- Next experiment arms: C0 current APPLE; C1 APPLE opportunity-cost gate; C2 bounded BANANA mother + one cut slot
 - Safety: no source candidate, TestSession, submission, Arena mutation, sealed-data access, or raw replay duplication
 - Coordinator/integrator and sole Arena controller: `local_codex_1`
 - Arena controller: no
