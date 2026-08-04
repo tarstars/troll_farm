@@ -1,21 +1,22 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T12:14:37Z
-- State: 43-page beginner Rust/application manual complete and validated
+- Updated UTC: 2026-08-04T14:41:57Z
+- State: round-36 516-task exact-equality qualification starting
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260804-readable-no-orchard-rust-manual`
+- Current task: `20260804-r36-simplified-arena`
 - Branch: `agent/local_codex_1`
-- Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
-  below live E7a; static/fixture/live and 516-task development gates exact
-- Write set: exact manual Markdown/PDF, narrow build helpers, own task/messages/status
-- Last concrete progress UTC: 2026-08-04T12:14:37Z
-- Running job: none
+- Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
+  live parity exact; 516-task qualification now pending
+- Write set: own task/messages/status, round-36 evaluator/results, new immutable submission artifact,
+  live ledger/state/registry records required by the controller runbook
+- Last concrete progress UTC: 2026-08-04T14:41:57Z
+- Running job: frozen consumed 43-map / 516-task exact-equality panel
 - Live identity: readable no-orchard `6593838`/`41089629`; exact source, initial rank 87/137
-- Next checkpoint: owner review; manual write set released
+- Next checkpoint: exact-equality verdict; submit once only on 0/516 and all gates green
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; no Arena mutation authorized or needed for the manual
+- Arena controller: yes; conditional one-call mutation directly authorized by owner after qualification
 
 ## Latest evidence
 
