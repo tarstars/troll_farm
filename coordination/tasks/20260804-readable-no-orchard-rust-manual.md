@@ -4,7 +4,7 @@
 - Priority: direct owner assignment
 - Record owner / work owner: `local_codex_1`
 - Created UTC: 2026-08-04T11:35:00Z
-- Last updated UTC: 2026-08-04T11:53:53Z
+- Last updated UTC: 2026-08-04T12:00:37Z
 
 ## Progress
 
@@ -12,6 +12,11 @@ The first canonical draft is 1,939 words: game orientation, the Rust constructs 
 source, and the complete turn pipeline. A hash-locked builder verifies the exact source, extracts
 106 constants/types/functions/traits with line numbers into `source-index.json`, and renders print
 HTML. Detailed algorithm chapters, examples, appendices, and PDF validation remain.
+
+The second checkpoint expands the draft to 8,941 words. Every active policy layer and six worked
+turns are line-referenced, and the Rust clinic ties ownership, options, iterators, strings, traits,
+and deterministic collections to concrete source behavior. Build/debug, limitations, exhaustive
+index, and PDF inspection remain.
 
 ## Objective
 
