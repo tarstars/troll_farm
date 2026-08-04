@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "validated_at": "2026-08-04T12:14:37Z",
+  "subject": {
+    "path": "local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs",
+    "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+    "bytes": 75634,
+    "physical_lines": 1475,
+    "code_lines": 1470,
+    "optimized_compile": "pass",
+    "empty_input_exit": 0,
+    "empty_input_stdout_bytes": 0,
+    "empty_input_stderr_bytes": 0
+  },
+  "manual": {
+    "path": "docs/manuals/readable-no-orchard-rust-manual-2026-08-04.md",
+    "bytes": 75869,
+    "lines": 1668,
+    "words": 11790
+  },
+  "pdf": {
+    "path": "docs/manuals/readable-no-orchard-rust-manual-2026-08-04.pdf",
+    "sha256": "ed6757feb351d84bc9fb7196e870f509f63db16236535b901e5061a13b919ce6",
+    "bytes": 1057499,
+    "pages": 43,
+    "page_size": "A4",
+    "pdf_version": "1.4",
+    "renderer": "HeadlessChrome 149 / Skia PDF m149",
+    "tagged": true,
+    "encrypted": false
+  },
+  "content_validation": {
+    "source_symbols_indexed": 106,
+    "extracted_text_lines": 1900,
+    "extracted_text_words": 11503,
+    "required_sections_found": true,
+    "raw_html_or_toc_markers_in_extracted_text": false,
+    "pages_raster_audited": 43,
+    "near_blank_pages": 0,
+    "minimum_nonwhite_fraction": 0.058617226482169334,
+    "visually_inspected_pages": [1, 2, 8, 16, 24, 32, 40, 43],
+    "visual_overflow_or_missing_glyphs_observed": false
+  },
+  "integrity": {
+    "builder_py_compile": "pass",
+    "git_diff_check": "pass",
+    "protected_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  }
+}

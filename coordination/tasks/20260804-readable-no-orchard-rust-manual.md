@@ -1,10 +1,10 @@
 # 20260804-readable-no-orchard-rust-manual: beginner manual and PDF
 
-- Status: in progress — source inventory and beginner skeleton complete
+- Status: complete — Markdown and validated 43-page PDF published
 - Priority: direct owner assignment
 - Record owner / work owner: `local_codex_1`
 - Created UTC: 2026-08-04T11:35:00Z
-- Last updated UTC: 2026-08-04T12:00:37Z
+- Last updated UTC: 2026-08-04T12:14:37Z
 
 ## Progress
 
@@ -17,6 +17,12 @@ The second checkpoint expands the draft to 8,941 words. Every active policy laye
 turns are line-referenced, and the Rust clinic ties ownership, options, iterators, strings, traits,
 and deterministic collections to concrete source behavior. Build/debug, limitations, exhaustive
 index, and PDF inspection remain.
+
+Final result: 11,790-word Markdown and 43-page A4 PDF. The PDF is 1,057,499 bytes at SHA-256
+`ed6757feb351d84bc9fb7196e870f509f63db16236535b901e5061a13b919ce6`. Exact source hash,
+optimized compile, empty input, 106-symbol index, extracted required sections, raw-markup absence,
+43/43 nonblank raster pages, and representative visual inspection pass. Validation is recorded in
+`local_codex_1/readable-no-orchard-manual/validation.json`.
 
 ## Objective
 
