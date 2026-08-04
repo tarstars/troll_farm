@@ -1,22 +1,26 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:49:00Z
-- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
-- Role: implementation/research agent; not Arena controller
-- Current task: `20260802-e7a-sector-candidate`
-- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
-- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
-- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
-- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
-- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
-- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
-- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
-- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
-- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
-- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
-- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
-- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
-- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
+- Updated UTC: 2026-08-04
+- State: orchard activation/species audit complete; corrected final verdict published
+- Role: research/analysis agent; not Arena controller
+- Current task: `20260804-orchard-activation-species-audit`
+- Current branch: `agent/chatgpt_1-orchard-activation-species-audit`
+- Base: completed eight-leg orchard/no-orchard corpus on `agent/local_codex_1`
+- Data: 8 LFS packages, 1,280 games, all hashes verified
+- Replay quality: 696/1,280 full deployed command parity; 911/1,280 exact through turn-100 activation window; later drift is equal-choice MOVE/path tie behavior
+- Current orchard activation: 54/640; underlying inner starter actions MOVE 50, CHOP 1, WAIT 3
+- Orchard output: 52 mothers planted, 51 games banked fruit, 5,615 APPLE banked, median 121 per activated game
+- Idle-only result: keeps 3/54 actual activations and activates 0/640 on no-orchard exact prefixes; rejected as effective deletion
+- Travel-only safety: rejected; descriptive blocked group is stronger and arrival ignores chop time/tree health
+- Kill safety: all 54 APPLE activations survive conservative continuous attack through first harvest; non-discriminating
+- Species result: APPLE/BANANA share the same 46 no-orchard activation states; projected bank ceiling 133.15 vs 64.80; like-for-like BANANA mother rejected
+- Live repeated result: orchard score mean 23.693 vs 23.108 no-orchard; adjacent deltas +1.60,+2.03,-0.36,-0.93; corrected exact bootstrap [-0.645,+1.815]
+- Polarization: orchard adds 38 wins and 22 catastrophes over 640 games
+- Final verdict: keep current APPLE orchard; next activation candidate is a prospective opportunity-cost gate
+- Separate eligible architecture: bounded BANANA mother plus one cut/replant slot, with strict banking/liveness/leakage gates
+- Authoritative report: `chatgpt_1/orchard-activation-species-audit-final-2026-08-04.md`
+- Authoritative machine record: `chatgpt_1/orchard-activation-species-audit-final-2026-08-04.json`
+- Detailed rows: `chatgpt_1/orchard-activation-opportunities-2026-08-04.csv`
+- Safety: no source candidate, TestSession, submission, Arena mutation, sealed-data access, or raw replay duplication
 - Coordinator/integrator and sole Arena controller: `local_codex_1`
-- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
 - Arena controller: no
