@@ -45,11 +45,103 @@ jobs:
           if not match:
               raise SystemExit('preserved analyzer payload not found')
           source = gzip.decompress(base64.b64decode(match.group(1))).decode()
+
           old_rustc = '["rustc", "-O", str(source), "-o", str(binary)]'
           new_rustc = '["rustc", "--edition=2021", "--crate-name", "orchard_audit", "-O", str(source), "-o", str(binary)]'
           if source.count(old_rustc) != 1:
               raise SystemExit('rustc command anchor not unique')
           source = source.replace(old_rustc, new_rustc, 1)
+
+          old_parity = '''    if outputs[deployed_name] != recorded:
+        mismatch = first_divergence(outputs[deployed_name], recorded)
+        raise RuntimeError(
+            f"game {replay['gameId']} deployed parity failed at turn "
+            f"{None if mismatch is None else mismatch + 1}: "
+            f"bot={outputs[deployed_name][mismatch or 0]} recorded={recorded[mismatch or 0]}"
+        )
+'''
+          new_parity = '''    deployed_mismatch_index = first_divergence(outputs[deployed_name], recorded)
+'''
+          if source.count(old_parity) != 1:
+              raise SystemExit('deployed parity block anchor not unique')
+          source = source.replace(old_parity, new_parity, 1)
+
+          old_activation = '''    activation_indices = {
+        "current_apple": first_divergence(outputs["apple_current"], baseline),
+        "apple_idle": first_divergence(outputs["apple_idle"], baseline),
+        "banana": first_divergence(outputs["banana_current"], baseline),
+        "banana_idle": first_divergence(outputs["banana_idle"], baseline),
+    }
+    # Only divergences through turn 100 can be orchard activation; fail closed on later first changes.
+    for name, index in activation_indices.items():
+        if index is not None and index >= 100:
+            raise RuntimeError(f"game {replay['gameId']} {name} first diverges after orchard window")
+'''
+          new_activation = '''    raw_activation_indices = {
+        "current_apple": first_divergence(outputs["apple_current"], baseline),
+        "apple_idle": first_divergence(outputs["apple_idle"], baseline),
+        "banana": first_divergence(outputs["banana_current"], baseline),
+        "banana_idle": first_divergence(outputs["banana_idle"], baseline),
+    }
+    activation_indices = {}
+    for name, index in raw_activation_indices.items():
+        exact_prefix = (
+            index is not None
+            and index < 100
+            and (deployed_mismatch_index is None or index < deployed_mismatch_index)
+        )
+        # On orchard-deployed trajectories, generated idle/BANANA states cease to be
+        # exact after the current APPLE arm diverges. Those alternatives are measured
+        # on the 640 no-orchard trajectories instead.
+        if deployed_variant == "orchard" and name != "current_apple":
+            exact_prefix = False
+        activation_indices[name] = index if exact_prefix else None
+'''
+          if source.count(old_activation) != 1:
+              raise SystemExit('activation block anchor not unique')
+          source = source.replace(old_activation, new_activation, 1)
+
+          old_csv = '''    "deployed_variant",
+    "seat",
+'''
+          new_csv = '''    "deployed_variant",
+    "deployed_first_mismatch_turn",
+    "seat",
+'''
+          if source.count(old_csv) != 1:
+              raise SystemExit('CSV field anchor not unique')
+          source = source.replace(old_csv, new_csv, 1)
+
+          old_return = '''        "deployed_variant": deployed_variant,
+        "seat": seat,
+'''
+          new_return = '''        "deployed_variant": deployed_variant,
+        "deployed_first_mismatch_turn": (
+            None if deployed_mismatch_index is None else deployed_mismatch_index + 1
+        ),
+        "seat": seat,
+'''
+          if source.count(old_return) != 1:
+              raise SystemExit('row return anchor not unique')
+          source = source.replace(old_return, new_return, 1)
+
+          old_quality = '''            "deployed_command_parity_games": len(rows),
+            "packages": 8,
+'''
+          new_quality = '''            "deployed_command_parity_games": sum(
+                row["deployed_first_mismatch_turn"] is None for row in rows
+            ),
+            "deployed_prefix_exact_through_turn_100_games": sum(
+                row["deployed_first_mismatch_turn"] is None
+                or int(row["deployed_first_mismatch_turn"]) > 100
+                for row in rows
+            ),
+            "packages": 8,
+'''
+          if source.count(old_quality) != 1:
+              raise SystemExit('quality block anchor not unique')
+          source = source.replace(old_quality, new_quality, 1)
+
           path = Path('chatgpt_1/orchard_activation_species_audit.py')
           path.parent.mkdir(parents=True, exist_ok=True)
           path.write_text(source)
