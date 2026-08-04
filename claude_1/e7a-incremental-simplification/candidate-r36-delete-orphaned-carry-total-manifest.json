@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 55799,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs",
+    "removed_from_initial_62278": 6479,
+    "removed_this_round": 56,
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the carry_total helper, left uncalled by round 35; its body duplicates Unit::total_carried() exactly",
+  "minification": false,
+  "parent": {
+    "bytes": 55855,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r35-delete-duplicate-carrying-any.rs",
+    "sha256": "a2662e336d332db15b021a98c9e233566baa4957b7a68cec74fcf229f05470a0"
+  },
+  "round": 36,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

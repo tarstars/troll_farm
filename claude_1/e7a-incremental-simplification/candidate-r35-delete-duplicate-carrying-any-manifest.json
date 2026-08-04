@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 55855,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r35-delete-duplicate-carrying-any.rs",
+    "removed_from_initial_62278": 6423,
+    "removed_this_round": 62,
+    "sha256": "a2662e336d332db15b021a98c9e233566baa4957b7a68cec74fcf229f05470a0"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the carrying_any helper, which duplicates the existing Unit::total_carried()>0, and use that method at its single call site",
+  "minification": false,
+  "parent": {
+    "bytes": 55917,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r34-delete-unread-scores-field.rs",
+    "sha256": "34efd0aed85f4749aa001881f7afefdd0ac888b2d6a8cfbe0af1fd999dd5236f"
+  },
+  "round": 35,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

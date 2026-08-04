@@ -369,6 +369,50 @@ ROUNDS = {
             "body comparison"
         ),
     },
+    34: {
+        "field": "never-read GameState.scores field and its unused import",
+        "ops": [
+            ("pub scores:[i32;2],", "", 1),
+            ("scores:[score(&inventories[0]),score(&inventories[1])],", "", 1),
+            ("use super::rules::score;", "", 1),
+        ],
+        "residue": ["scores", "use super::rules::score;"],
+        # the shared score() helper survives for endgame()'s two calls
+        "expect_counts": {"score(&view.inventories": 2, "pub fn score(inventory:&Stock)": 1},
+        "logical_change": (
+            "delete the GameState.scores field, which is computed from the parsed "
+            "inventories on every turn and never read by any policy, together with "
+            "the protocol module's now-unused score import; the shared score helper "
+            "is retained for the endgame comparison"
+        ),
+    },
+    35: {
+        "field": "duplicate carrying_any helper",
+        "ops": [
+            ("fn carrying_any(unit:&Unit)->bool{Self::carry_total(unit)>0}", "", 1),
+            (
+                "if Self::carrying_any(unit)||unit.free_capacity()<=0{",
+                "if unit.total_carried()>0||unit.free_capacity()<=0{",
+                1,
+            ),
+        ],
+        "residue": ["carrying_any"],
+        "logical_change": (
+            "delete the carrying_any helper, which duplicates the existing "
+            "Unit::total_carried()>0, and use that method at its single call site"
+        ),
+    },
+    36: {
+        "field": "orphaned duplicate carry_total helper",
+        "ops": [
+            ("fn carry_total(unit:&Unit)->i32{unit.carry.iter().sum()}", "", 1),
+        ],
+        "residue": ["carry_total"],
+        "logical_change": (
+            "delete the carry_total helper, left uncalled by round 35; its body "
+            "duplicates Unit::total_carried() exactly"
+        ),
+    },
 }
 
 
