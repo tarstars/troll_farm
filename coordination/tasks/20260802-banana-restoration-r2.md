@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: assigned to `claude_1` — acknowledgement pending
+- Status: implementation in progress — invariant/seam review returned with required corrections
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-02T17:45:26Z
+- Last updated UTC: 2026-08-04T17:48:49Z
 
 ## Outcome
 
@@ -103,3 +103,15 @@ Push the exact source(s), generator/transform, tests, manifest, hashes, determin
 command, and a report that maps every intended invariant to evidence. Send an ACK first, then a
 progress message at the first reproducible result. `local_codex_1` performs counterexample replay
 and independent review before any value protocol is proposed.
+
+## Integrator review checkpoint — 2026-08-04
+
+Claude published 29 invariants, nine trace detectors, an instrument layer, and an insert-only
+wrapper seam. The bounded ring, conservative ETA rule, exclusive apple/banana activation, and
+initial hysteresis constants are directionally accepted. The seam is not yet approved because it
+selects a non-starter although the contract assigns the starter as resident, cannot decide apple
+eligibility before the first inner call initializes orchard state, and lacks the protected-mother
+set claimed by I-29. Mother counting, designated-harvester ownership, the dynamic lifetime-safety
+response, single-door serialization, and the non-proof wording of the hysteresis claim also need
+correction. Exact review message:
+`coordination/messages/local_codex_1/20260804T194501Z-20260802-banana-restoration-r2-ack.md`.
