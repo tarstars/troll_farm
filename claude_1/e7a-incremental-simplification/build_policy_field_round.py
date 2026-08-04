@@ -252,6 +252,123 @@ ROUNDS = {
             "the literal at both comparison reads"
         ),
     },
+    29: {
+        "field": "constant max_carry_capacity clamp local",
+        "ops": [
+            ("let max_carry_capacity=3i32.clamp(1,3);", "", 1),
+            ("1..=max_carry_capacity", "1..=3", 1),
+        ],
+        "residue": ["max_carry_capacity"],
+        "logical_change": (
+            "delete the constant local binding max_carry_capacity=3.clamp(1,3) and "
+            "inline literal 3 at its single loop-bound read"
+        ),
+    },
+    30: {
+        "field": "constant max_chop_power clamp local",
+        "ops": [
+            ("let max_chop_power=3i32.clamp(1,3);", "", 1),
+            ("1..=max_chop_power", "1..=3", 1),
+        ],
+        "residue": ["max_chop_power"],
+        "logical_change": (
+            "delete the constant local binding max_chop_power=3.clamp(1,3) and "
+            "inline literal 3 at its single loop-bound read"
+        ),
+    },
+    31: {
+        "field": "main_candidates single-valued safe_regeneration parameter",
+        "ops": [
+            (
+                "idle_regeneration:bool,safe_regeneration:bool,protected_tree:Option<Cell>,",
+                "idle_regeneration:bool,protected_tree:Option<Cell>,",
+                1,
+            ),
+            (
+                "if safe_regeneration&&Self::carried_fruit(unit).is_some(){",
+                "if Self::carried_fruit(unit).is_some(){",
+                1,
+            ),
+            ("if safe_regeneration&&carried==0&&", "if carried==0&&", 1),
+            (
+                "Self::endgame_candidates(view,unit,type_to_cut,safe_regeneration,protected_tree,)",
+                "Self::endgame_candidates(view,unit,type_to_cut,true,protected_tree,)",
+                1,
+            ),
+            (
+                "Self::main_candidates(view,unit,self.type_to_cut,false,true,None,)",
+                "Self::main_candidates(view,unit,self.type_to_cut,false,None,)",
+                1,
+            ),
+            (
+                "Self::main_candidates(view,unit,self.type_to_cut,true,true,protected_tree,)",
+                "Self::main_candidates(view,unit,self.type_to_cut,true,protected_tree,)",
+                1,
+            ),
+        ],
+        "residue": [],
+        # endgame_candidates still owns the identifier: its declaration + two body reads
+        "expect_counts": {"safe_regeneration": 3},
+        "logical_change": (
+            "delete the main_candidates safe_regeneration parameter, which round 10 "
+            "fixed to literal true at both call sites, folding its two constant-true "
+            "conjuncts and passing true at the one passthrough argument"
+        ),
+    },
+    32: {
+        "field": "endgame_candidates single-valued safe_regeneration parameter",
+        "ops": [
+            (
+                "type_to_cut:Option<PlantKind>,safe_regeneration:bool,protected_tree:Option<Cell>,",
+                "type_to_cut:Option<PlantKind>,protected_tree:Option<Cell>,",
+                1,
+            ),
+            (
+                "let can_plant_here=!safe_regeneration||view.plant_at(unit.cell).is_none();",
+                "let can_plant_here=view.plant_at(unit.cell).is_none();",
+                1,
+            ),
+            (
+                "if safe_regeneration&&view.plant_at(*cell).is_some(){continue;}",
+                "if view.plant_at(*cell).is_some(){continue;}",
+                1,
+            ),
+            (
+                "Self::endgame_candidates(view,unit,type_to_cut,true,protected_tree,)",
+                "Self::endgame_candidates(view,unit,type_to_cut,protected_tree,)",
+                1,
+            ),
+            (
+                "Self::endgame_candidates(view,unit,self.type_to_cut,true,protected_tree,)",
+                "Self::endgame_candidates(view,unit,self.type_to_cut,protected_tree,)",
+                2,
+            ),
+        ],
+        "residue": ["safe_regeneration"],
+        "logical_change": (
+            "delete the endgame_candidates safe_regeneration parameter, now literal "
+            "true at all three call sites after round 31, folding its constant-false "
+            "disjunct and constant-true conjunct"
+        ),
+    },
+    33: {
+        "field": "worker_can_use_alternate single-valued minimum_speed parameter",
+        "ops": [
+            ("geometry:&OrchardGeometry,minimum_speed:i32,", "geometry:&OrchardGeometry,", 1),
+            ("unit.stats.movement_speed>=minimum_speed", "unit.stats.movement_speed>=1", 1),
+            (
+                "Self::worker_can_use_alternate(view,starter.id,geometry,1)",
+                "Self::worker_can_use_alternate(view,starter.id,geometry)",
+                2,
+            ),
+        ],
+        "residue": ["minimum_speed"],
+        "logical_change": (
+            "delete the worker_can_use_alternate minimum_speed parameter, which "
+            "round 5 fixed to literal 1 at both call sites, inlining 1 at its single "
+            "body comparison"
+        ),
+    },
 }
 
 
@@ -282,6 +399,12 @@ def main() -> int:
     for residue in spec["residue"]:
         if residue in source:
             raise ValueError(f"round {args.round} left {residue!r} behind")
+    for token, expected in spec.get("expect_counts", {}).items():
+        count = source.count(token)
+        if count != expected:
+            raise ValueError(
+                f"round {args.round}: expected {expected} surviving {token!r}, found {count}"
+            )
 
     candidate = source.encode()
     if len(candidate) >= len(parent):

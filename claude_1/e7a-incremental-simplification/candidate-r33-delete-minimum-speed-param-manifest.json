@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56015,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r33-delete-minimum-speed-param.rs",
+    "removed_from_initial_62278": 6263,
+    "removed_this_round": 34,
+    "sha256": "0948eaec18253a09341c3264739260cdeb990c1cd54ddd0d50a57f8c78fc2bba"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the worker_can_use_alternate minimum_speed parameter, which round 5 fixed to literal 1 at both call sites, inlining 1 at its single body comparison",
+  "minification": false,
+  "parent": {
+    "bytes": 56049,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r32-delete-endgame-safe-regeneration-param.rs",
+    "sha256": "85cbc4cbdf2fbb7b2d0177e647ef7abfd790c9aa8577644b23ab23a125a79e83"
+  },
+  "round": 33,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}
