@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-08-04T11:29:00Z",
+  "accepted": true,
+  "ambiguous": false,
+  "endpoint": "TestSession/submit",
+  "http_status": 200,
+  "mutation_calls": 1,
+  "submission_id": 41089629,
+  "agent_id": 6593838,
+  "source": "local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs",
+  "source_bytes": 75634,
+  "source_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+  "platform_source_recovered_exact": true,
+  "platform_source_bytes": 75634,
+  "platform_source_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+  "automatic_retry": false,
+  "automatic_restore": false
+}

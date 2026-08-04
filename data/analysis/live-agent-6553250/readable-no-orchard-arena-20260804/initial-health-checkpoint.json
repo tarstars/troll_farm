@@ -1,0 +1,152 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-04T11:28:49.692671+00:00",
+ "result_audit_completed_at": "2026-08-04T11:28:53.608993+00:00",
+ "role": "readable-no-orchard-initial-health",
+ "agent_id": 6593838,
+ "submission_id": 41089629,
+ "arena": {
+  "agent_id": 6593838,
+  "rank": 87,
+  "total": 137,
+  "score": 18.38,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6593838,
+  "rank": 85,
+  "score": 18.6,
+  "division_index": 5
+ },
+ "battle_rows_listed": 11,
+ "matching_rows": 11,
+ "matching_finished": 10,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 10,
+ "fetch_failures": [],
+ "summary": {
+  "games": 10,
+  "wins": 6,
+  "ties": 1,
+  "losses": 3,
+  "mean_margin": 65.7,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": 0.0,
+  "negative_margin_mass": 21.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897988930,
+   "opponent": "Stephen Kondaveti",
+   "opponent_agent_id": 6588456,
+   "our_score": 161.0,
+   "opponent_score": 70.0,
+   "margin": 91.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988929,
+   "opponent": "LeRenard",
+   "opponent_agent_id": 6499915,
+   "our_score": 112.0,
+   "opponent_score": 116.0,
+   "margin": -4.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988928,
+   "opponent": "Kenshi235",
+   "opponent_agent_id": 6588454,
+   "our_score": 361.0,
+   "opponent_score": 152.0,
+   "margin": 209.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988927,
+   "opponent": "ultio",
+   "opponent_agent_id": 6479709,
+   "our_score": 192.0,
+   "opponent_score": 85.0,
+   "margin": 107.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988926,
+   "opponent": "dabino",
+   "opponent_agent_id": 6480948,
+   "our_score": 160.0,
+   "opponent_score": 136.0,
+   "margin": 24.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988925,
+   "opponent": "a76a44",
+   "opponent_agent_id": 6592324,
+   "our_score": 80.0,
+   "opponent_score": 88.0,
+   "margin": -8.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988924,
+   "opponent": "_H3R0_",
+   "opponent_agent_id": 6491567,
+   "our_score": 159.0,
+   "opponent_score": 168.0,
+   "margin": -9.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988923,
+   "opponent": "khanh-alice",
+   "opponent_agent_id": 6480947,
+   "our_score": 108.0,
+   "opponent_score": 108.0,
+   "margin": 0.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988922,
+   "opponent": "Meruem",
+   "opponent_agent_id": 6479385,
+   "our_score": 265.0,
+   "opponent_score": 81.0,
+   "margin": 184.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897988921,
+   "opponent": "delineate",
+   "opponent_agent_id": 6479768,
+   "our_score": 128.0,
+   "opponent_score": 65.0,
+   "margin": 63.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

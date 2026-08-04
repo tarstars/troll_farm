@@ -1,10 +1,10 @@
 # 20260804-readable-no-orchard-arena: submit exact readable 1,470-line source
 
-- Status: in progress — preflight complete, mutation gated on remote record verification
+- Status: complete — exact readable source live and initial health clean
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: `local_codex_1`
 - Created UTC: 2026-08-04T11:25:02Z
-- Last updated UTC: 2026-08-04T11:25:02Z
+- Last updated UTC: 2026-08-04T11:29:00Z
 
 ## Objective and authority
 
@@ -59,3 +59,15 @@ finished games, score 22.88, rank 32/137, 99W/2T/59L, 19 catastrophes, negative-
 Unrelated simplification artifacts, collector cache changes, raw games, cron, external storage,
 sealed map ranges, and all bot source files except read-only access to the exact candidate are out
 of scope. `cgauto/api_submit.py` keeps the exact orchard safety default unless separately decided.
+
+## Result
+
+One canonical `TestSession/submit` call returned HTTP 200 and unambiguous submission id
+`41089629`; new agent id is `6593838`. No retry or restore occurred. Platform source recovery is
+byte-exact at 75,634 bytes and candidate SHA `98628e98...`, proving the exact readable artifact is
+live. Initial health has ten parsed finished games plus one pending, score 18.38/rank 87 of 137,
+zero catastrophes, negative-margin mass 21, zero runtime signals, and clean identity. This is a
+cold-start health read, not a value verdict. The owner-requested source remains active.
+
+Result artifact:
+`data/analysis/live-agent-6553250/readable-no-orchard-arena-20260804/result.md`.

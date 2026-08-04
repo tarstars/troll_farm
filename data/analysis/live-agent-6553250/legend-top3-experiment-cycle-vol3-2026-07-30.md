@@ -1778,3 +1778,12 @@ runtime/identity checkpoint. Weak cold-start value alone is not a restore condit
 
 **Status: PREPARED / SOLE CONTROLLER `local_codex_1` / MUTATION GATED ON REMOTE START-RECORD
 VERIFICATION.**
+
+Start commit `cb949add` was pushed and remote-verified. One canonical submit call then returned
+HTTP 200 with unambiguous submission `41089629`; new agent is `6593838`. No retry or restore
+occurred. Read-only platform recovery is exact to the 75,634-byte readable candidate at full SHA
+`98628e98...`. Initial submission-scoped health has ten parsed finished games plus one pending,
+score 18.38/rank 87 of 137, zero catastrophes, negative mass 21, zero runtime signals, and clean
+identity. This is a cold-start runtime check, not a value verdict.
+
+**Status: COMPLETE / EXACT READABLE SOURCE ACTIVE / INITIAL HEALTH CLEAN / ARENA LOCK RELEASED.**
