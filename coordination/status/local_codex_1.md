@@ -1,6 +1,6 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T14:41:57Z
+- Updated UTC: 2026-08-04T14:44:34Z
 - State: round-36 516-task exact-equality qualification starting
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260804-r36-simplified-arena`
@@ -9,8 +9,8 @@
   live parity exact; 516-task qualification now pending
 - Write set: own task/messages/status, round-36 evaluator/results, new immutable submission artifact,
   live ledger/state/registry records required by the controller runbook
-- Last concrete progress UTC: 2026-08-04T14:41:57Z
-- Running job: frozen consumed 43-map / 516-task exact-equality panel
+- Last concrete progress UTC: 2026-08-04T14:44:34Z
+- Running job: panel restart pending after pinning the qualified live-candidate runner
 - Live identity: readable no-orchard `6593838`/`41089629`; exact source, initial rank 87/137
 - Next checkpoint: exact-equality verdict; submit once only on 0/516 and all gates green
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -26,6 +27,10 @@ CANDIDATE = (
 CANDIDATE_SHA256 = (
     "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
 )
+RUNNER = (
+    REPO / "local_codex_1/e7a-single-logical-deletion/open_panel_live_candidate_runner.rs"
+)
+RUNNER_SHA256 = "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18"
 START_SEED = 9_854_000
 MAPS = 43
 THREADS = 8
@@ -44,6 +49,10 @@ FIELD_PAIRS = (
     ("baseline_critical", "candidate_critical"),
     ("baseline_unclassified", "candidate_unclassified"),
 )
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def exact_differences(rows: list[dict]) -> list[dict]:
@@ -76,10 +85,18 @@ def main() -> int:
     if args.panel.exists() or args.output.exists():
         parser.error("output paths must not already exist")
 
+    if sha256(RUNNER) != RUNNER_SHA256:
+        raise RuntimeError("live-candidate runner hash mismatch")
     with tempfile.TemporaryDirectory(prefix="e7a-r36-development-") as directory:
-        binary, compiler = shared.compile_runner(
-            Path(directory), CANDIDATE, CANDIDATE_SHA256
-        )
+        previous_runner = shared.RUNNER
+        try:
+            shared.RUNNER = RUNNER
+            binary, compiler = shared.compile_runner(
+                Path(directory), CANDIDATE, CANDIDATE_SHA256
+            )
+        finally:
+            shared.RUNNER = previous_runner
+        compiler["live_candidate_runner_sha256"] = RUNNER_SHA256
         completed = subprocess.run(
             [str(binary), str(START_SEED), str(MAPS), str(args.panel), str(THREADS)],
             cwd=REPO,
@@ -104,6 +121,7 @@ def main() -> int:
         panel_path=args.panel,
         candidate=CANDIDATE,
         candidate_sha256=CANDIDATE_SHA256,
+        runner=RUNNER,
         evidence_boundary=(
             "already-consumed development maps; exact equality qualifies deployment "
             "validity only, not Arena strength"
