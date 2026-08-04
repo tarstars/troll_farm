@@ -27,10 +27,12 @@ CANDIDATE = (
 CANDIDATE_SHA256 = (
     "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
 )
-RUNNER = (
+RUNNER_TEMPLATE = (
     REPO / "local_codex_1/e7a-single-logical-deletion/open_panel_live_candidate_runner.rs"
 )
-RUNNER_SHA256 = "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18"
+RUNNER_TEMPLATE_SHA256 = (
+    "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18"
+)
 START_SEED = 9_854_000
 MAPS = 43
 THREADS = 8
@@ -53,6 +55,25 @@ FIELD_PAIRS = (
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def derived_runner_source() -> str:
+    """Adapt the qualified live-candidate runner to round 36's deleted score field."""
+
+    if sha256(RUNNER_TEMPLATE) != RUNNER_TEMPLATE_SHA256:
+        raise RuntimeError("live-candidate runner template hash mismatch")
+    source = RUNNER_TEMPLATE.read_text()
+    anchor = "fn candidate_view(game: &GameState, player: usize)"
+    if source.count(anchor) != 1:
+        raise RuntimeError("candidate-view runner anchor is not unique")
+    prefix, candidate_suffix = source.split(anchor, 1)
+    obsolete_initializer = (
+        "        scores: [game.scores[player], game.scores[opponent]],\n"
+    )
+    if candidate_suffix.count(obsolete_initializer) != 1:
+        raise RuntimeError("candidate score initializer is not unique")
+    candidate_suffix = candidate_suffix.replace(obsolete_initializer, "", 1)
+    return prefix + anchor + candidate_suffix
 
 
 def exact_differences(rows: list[dict]) -> list[dict]:
@@ -85,18 +106,26 @@ def main() -> int:
     if args.panel.exists() or args.output.exists():
         parser.error("output paths must not already exist")
 
-    if sha256(RUNNER) != RUNNER_SHA256:
-        raise RuntimeError("live-candidate runner hash mismatch")
     with tempfile.TemporaryDirectory(prefix="e7a-r36-development-") as directory:
+        generated_runner = Path(directory) / "r36_development_runner.rs"
+        runner_source = derived_runner_source()
+        generated_runner.write_text(runner_source)
         previous_runner = shared.RUNNER
         try:
-            shared.RUNNER = RUNNER
+            shared.RUNNER = generated_runner
             binary, compiler = shared.compile_runner(
                 Path(directory), CANDIDATE, CANDIDATE_SHA256
             )
         finally:
             shared.RUNNER = previous_runner
-        compiler["live_candidate_runner_sha256"] = RUNNER_SHA256
+        compiler.update(
+            {
+                "live_candidate_runner_template_sha256": RUNNER_TEMPLATE_SHA256,
+                "generated_round36_runner_sha256": hashlib.sha256(
+                    runner_source.encode()
+                ).hexdigest(),
+            }
+        )
         completed = subprocess.run(
             [str(binary), str(START_SEED), str(MAPS), str(args.panel), str(THREADS)],
             cwd=REPO,
@@ -121,7 +150,7 @@ def main() -> int:
         panel_path=args.panel,
         candidate=CANDIDATE,
         candidate_sha256=CANDIDATE_SHA256,
-        runner=RUNNER,
+        runner=RUNNER_TEMPLATE,
         evidence_boundary=(
             "already-consumed development maps; exact equality qualifies deployment "
             "validity only, not Arena strength"

@@ -42,10 +42,12 @@ Required verdict: `DEVELOPMENT_EXACT_EQUALITY_PASS`, 0/516 differing tasks, all 
 green. The evaluator records the first difference and exits 2 on failure.
 
 The first launch stopped before map generation because the generic half-size runner targets an
-older candidate API. The evaluator now pins the already-qualified live-candidate adapter at SHA
-`d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18`, the same adapter used
-for the round-22 516-task checkpoint. No task result or Arena state was produced by the failed
-preflight.
+older candidate API. The already-qualified round-22 live-candidate adapter is pinned at SHA
+`d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18`. Round 36 also deleted
+the unused candidate-side `scores` field after round 22, so the evaluator derives its runner by
+removing exactly that one initializer after a unique `candidate_view` anchor; the derived hash is
+recorded in the result. Both failed compile preflights occurred before any map/task execution and
+produced no Arena state.
 
 ## Conditional Arena execution
 
