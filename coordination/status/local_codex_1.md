@@ -1,21 +1,21 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-03T19:17:00Z
-- State: corrected eight-leg night cycle running; leg 1/8 exact no-orchard
+- Updated UTC: 2026-08-04T10:16:15Z
+- State: readable same-parent orchard LOC measurement claimed
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: sole controller for `20260803-orchard-ab-night-cycle`
+- Current task: `20260804-readable-orchard-loc-cost`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
-- Write set: versioned single-deletion source/build/evidence paths and own coordination artifacts
-- Last concrete progress UTC: 2026-08-03T19:16:30Z
-- Running job: `troll-farm-orchard-ab-night-20260803.service`, active maturity wait
-- Live identity: no-orchard leg 1 `6592330`/`41086822`; source SHA exact
-- Next checkpoint: immutable T+15 minute lease marker, then T+30/T+45 and terminal collection
+- Write set: `local_codex_1/readable-orchard-code-cost/`, own task/messages/status
+- Last concrete progress UTC: 2026-08-04T10:16:15Z
+- Running job: none; claim push gates implementation
+- Live identity: final night-cycle orchard `6592744`/`41087983`; exact source, terminal rank 32/137
+- Next checkpoint: exact readable round trips and line census
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; exclusive night-cycle lock reserved, no competing mutation permitted
+- Arena controller: yes; no mutation cycle in flight and this task has no Arena authority
 
 ## Latest evidence
 
