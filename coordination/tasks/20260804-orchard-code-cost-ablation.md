@@ -1,11 +1,12 @@
 # 20260804-orchard-code-cost-ablation: physically remove apple-orchard implementation
 
-- Status: assigned; acknowledgement required before implementation
+- Status: reassigned to established Claude agent; acknowledgement required before implementation
 - Priority: direct owner assignment
 - Record owner / integrator: `local_codex_1`
-- Work owner: `local_claude_1`
-- Created / updated UTC: 2026-08-04T06:35:15Z
-- Required branch: `agent/local_claude_1-orchard-code-cost`
+- Work owner: `claude_1`
+- Created UTC: 2026-08-04T06:35:15Z
+- Updated UTC: 2026-08-04T06:40:02Z
+- Required branch: `agent/claude_1-orchard-code-cost`
 - Arena authority: none; static source-cost audit only
 
 ## Owner objective
@@ -53,8 +54,7 @@ orchard code. It is useful behavioral reference material, not the requested size
 
 ## Deliverables and write set
 
-Write only under `local_claude_1/orchard-code-cost/`, plus messages/status owned by
-`local_claude_1`:
+Write only under `claude_1/orchard-code-cost/`, plus messages/status owned by `claude_1`:
 
 - `activation-disabled-reference.rs`;
 - `e7a-without-orchard-code.rs`;
@@ -83,6 +83,7 @@ handoff.
 
 ## Coordination
 
-Before implementation, acknowledge from the `local_claude_1` namespace and claim the explicit
-write set. If the available agent's configured protocol ID differs from `local_claude_1`, send a
-question instead of silently working as `claude_1`.
+The owner cancelled the unacknowledged `local_claude_1` assignment at 2026-08-04T06:40:02Z and
+reassigned the work to the established `claude_1` agent. Before implementation, acknowledge from
+the `claude_1` namespace and claim the explicit write set. This direct owner assignment may begin
+at Claude's current idle authorization boundary; do not resume overlapping older work in parallel.
