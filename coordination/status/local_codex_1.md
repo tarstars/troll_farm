@@ -1,15 +1,15 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T16:34:38Z
-- State: exporting the settled round-36 160-game full replay corpus
+- Updated UTC: 2026-08-04T16:39:43Z
+- State: publishing the validated round-36 replay corpus through Git LFS
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260804-collect-r36-games`
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
   live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, scoped replay fetcher, sanitized shared-LFS corpus, collection report
-- Last concrete progress UTC: 2026-08-04T16:34:38Z
-- Running job: fetch exact 160 replay bodies into verified `data/external/` root
+- Last concrete progress UTC: 2026-08-04T16:39:43Z
+- Running job: LFS upload, then fresh-clone selective-pull verification
 - Live identity: round-36 simplified E7a `6594200`/`41090606`; 22.81/rank 32 over 160, exact/clean
 - Next checkpoint: sanitized game-ID/frame/hash validation and fresh-clone LFS pull
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
