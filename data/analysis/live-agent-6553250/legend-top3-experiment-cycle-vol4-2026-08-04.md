@@ -31,3 +31,18 @@ replaced by positional placeholders.
 Payload commit `936cf577` uploaded successfully. A fresh smudge-disabled clone exposed the exact
 LFS pointer and then reproduced the full payload and hash through an exact-path selective pull.
 This was read-only with respect to both Arena and the collector-owned `data/raw/games/` cache.
+
+## 2026-08-04 — banana restoration R2 handoff rejected before value testing
+
+Claude's 74,725-byte candidate SHA `f29efd0e...` rebuilds exactly and independently reproduces
+its compile, empty-input, 23 detector-test, 7/7 TIER-P, and 8/8 reported TIER-C results. Those
+engineering checks are not sufficient: the candidate's own all-green lifecycle trace harvests
+two bananas, carries both, then plants at turns 58 and 61 before banking, directly falsifying
+I-9's one-seed/surplus-bank rule. The source also lacks the reviewed conversion-or-abandon branch
+for an unripe contested mother, and the handoff lacks a complete compilable readable source for
+the mandatory research/compact equality gate.
+
+Verdict for exact SHA `f29efd0e...`: **IMPLEMENTATION_INVALID**. Remaining host replay and value
+gates stop for these bytes; no Arena mutation occurred. This does not reject bounded banana
+production as an algorithm. A successor needs a new hash and non-vacuous regressions for the
+failed behaviors. Full report: `banana-restoration-r2-host-review-2026-08-04.md`.

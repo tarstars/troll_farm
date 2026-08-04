@@ -1,17 +1,17 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T17:48:49Z
-- State: banana R2 invariant/seam review published with required corrections
+- Updated UTC: 2026-08-04T18:32:07Z
+- State: banana R2 candidate `f29efd0e...` rejected as implementation-invalid
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: integrator review for `20260802-banana-restoration-r2`; replay export complete
+- Current task: `20260802-banana-restoration-r2` handoff disposition published
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
   live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, scoped replay fetcher, sanitized shared-LFS corpus, collection report
-- Last concrete progress UTC: 2026-08-04T17:48:49Z
+- Last concrete progress UTC: 2026-08-04T18:32:07Z
 - Running job: none
 - Live identity: round-36 simplified E7a `6594200`/`41090606`; 22.81/rank 32 over 160, exact/clean
-- Next checkpoint: Claude revision/ack, then host counterexample and broad-panel gates
+- Next checkpoint: Claude acknowledgement; any successor must have new hash and corrected gates
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges

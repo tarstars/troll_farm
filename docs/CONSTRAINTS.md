@@ -111,6 +111,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   live-counterexample streams, and zero-gate target oscillation, same-cell contention, lost banking,
   unbounded planting, opponent-favored fruit creation, and second-worker funding displacement before
   any score or Arena result is scientifically interpretable. [banana restoration r2, 2026-08-02]
+- **Banana R2 candidate `f29efd0e...` is implementation-invalid before value or host replay
+  testing.** Its own closed-loop lifecycle trace harvests two bananas and replants both before
+  banking, contradicting the one-seed/surplus-bank invariant. Its contested-mother source handles
+  only ready fruit and never implements the reviewed convert-or-abandon transition for unripe
+  opponent-owned fruit; its static-opponent trace cannot test capture. The handoff also lacks a
+  complete compilable readable source for research/compact equality. Do not submit, value-test,
+  or reuse these exact bytes. [banana restoration R2 host review, 2026-08-04]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns

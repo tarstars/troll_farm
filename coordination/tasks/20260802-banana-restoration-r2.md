@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: implementation in progress — invariant/seam review returned with required corrections
+- Status: `IMPLEMENTATION_INVALID` for candidate SHA `f29efd0e...`; successor requires new hash
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-04T17:48:49Z
+- Last updated UTC: 2026-08-04T18:32:07Z
 
 ## Outcome
 
@@ -115,3 +115,14 @@ set claimed by I-29. Mother counting, designated-harvester ownership, the dynami
 response, single-door serialization, and the non-proof wording of the hysteresis claim also need
 correction. Exact review message:
 `coordination/messages/local_codex_1/20260804T194501Z-20260802-banana-restoration-r2-ack.md`.
+
+## Implementation handoff verdict — 2026-08-04
+
+Claude handed off 74,725-byte candidate SHA `f29efd0e...` at commit `a787d478`. Independent host
+rebuild, compile, detector tests, and reported semantic fixtures reproduce. The candidate is still
+`IMPLEMENTATION_INVALID`: its own lifecycle trace harvests two bananas and plants both before
+banking, falsifying I-9's one-seed/surplus-bank rule; its contested-mother branch does not implement
+the reviewed conversion-or-abandon response; and the handoff lacks the complete compilable
+readable source required for research/compact equality. Remaining replay and value gates stop for
+this exact hash. Full report:
+`data/analysis/live-agent-6553250/banana-restoration-r2-host-review-2026-08-04.md`.
