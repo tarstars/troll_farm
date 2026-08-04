@@ -41,7 +41,20 @@ If the panel is exact, the candidate is behaviour-exact on 516 paired tasks plus
 command lines, which is the strongest equality evidence any candidate in this programme has
 carried into a submission.
 
-## Decisions the owner must make explicitly, because the standing bar does not cover this
+## Owner decision — recorded, not pending
+
+The owner directed this deployment on 2026-08-04 with a stated purpose: **measure the
+relationship between the solution's complexity and its ladder standing.** Under that purpose
+the zero expected rating gain is not an objection — a behaviour-exact source at 6,479 fewer
+bytes is the control for the measurement. Record the authorisation in the ledger as the basis
+for the cycle, since it overrides the §3 evidence bar rather than satisfying it.
+
+Context to carry into the ledger entry (`claude_1/r36-submission/complexity-vs-standing.md`):
+the exact same source has already matured to 25.30/rank 12 and, in the restore cycle,
+23.56/rank 32 — a 1.74-point swing from ladder variance alone. This cycle is one draw from
+that distribution.
+
+## Costs, stated for the record
 
 `docs/STATE.md` §3 authorises submitting candidates that pass frozen gates **and** whose
 expected gain exceeds the arena noise band. This candidate satisfies the first and
@@ -56,12 +69,7 @@ expected gain exceeds the arena noise band. This candidate satisfies the first a
 3. **A cycle is currently in flight** (night A/B leg 1/8, `6592330`/`41086822`, maturity clock
    active). §3 requires more than one cycle in flight be surfaced to the owner before acting.
 
-The owner has directed this deployment with those costs stated. Record that authorisation in
-the ledger as the basis for the cycle, since it overrides the evidence bar rather than
-satisfying it. If the owner prefers, the equivalent value is obtained with no ladder cost by
-adopting the candidate as the **development base** for future features and deploying it only
-when it is bundled with a change that does clear the noise band — that is the integrator's
-recommendation to put to the owner.
+These are costs, not objections; the owner has weighed them and directed the cycle.
 
 ## Execution, if authorised (docs/PROMOTION-RUNBOOK.md §6)
 
