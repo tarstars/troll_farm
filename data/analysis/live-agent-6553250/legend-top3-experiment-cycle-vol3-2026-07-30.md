@@ -1760,3 +1760,21 @@ Correction commit `9f21ef69` was remote-verified. The clean run restarted at 19:
 no-orchard agent `6592330`, submission `41086822`, with exact recovered source and one canonical
 mutation call. Start commit `1ff538c7` is remote-verified. The approximately 66-second preflight
 exposure remains excluded from all eight experimental legs.
+
+## 2026-08-04 — owner-directed exact readable no-orchard deployment
+
+The owner directed submission of the exact readable orchard-stripped artifact, not its compact
+equivalent. It is 75,634 bytes, 1,475 physical lines / 1,470 nonblank/noncomment code lines, at
+SHA-256 `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`.
+Compile, empty input, lexical exactness to the stripped compact parent, and 25/25 frozen live
+fixtures pass. This is explicitly not a strength qualification: earlier no-orchard live evidence
+was weaker, and the owner has chosen deployment after measuring the feature's code and ladder cost.
+
+Pre-mutation baseline `6592744`/`41087983` is exact orchard, score 22.88/rank 32/137 over 160
+finished games, 99W/2T/59L, 19 catastrophes, negative-margin mass 4,703, zero runtime signals,
+and clean identity. Platform recovery confirms exact orchard SHA `97bfe71e...`. The serialized
+cycle permits one canonical submission, no ambiguous retry, exact source recovery, and an initial
+runtime/identity checkpoint. Weak cold-start value alone is not a restore condition.
+
+**Status: PREPARED / SOLE CONTROLLER `local_codex_1` / MUTATION GATED ON REMOTE START-RECORD
+VERIFICATION.**

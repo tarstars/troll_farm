@@ -1,19 +1,19 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-03. This file is live state, not a record — the ledger volumes are
+Last updated: 2026-08-04. This file is live state, not a record — the ledger volumes are
 the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Night A/B leg 1/8: exact no-orchard `6592330`/`41086822`; maturity clock active.
-  Complete checkpoint: 162/162, score 23.56, rank 32/137, 93W/3T/66L;
-  identity/source/runtime clean, 18 catastrophes and negative mass 5,569.
+- Final night-cycle orchard resident `6592744`/`41087983`: exact source/runtime; 160/160,
+  score 22.88, rank 32/137, 99W/2T/59L, 19 catastrophes, negative mass 4,703.
 - Source: `cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs`
   (62,820 bytes, SHA-256 `97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595`).
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Latest exact stored read: **2026-08-03T18:04:55Z**, restore `6592131`; 162/162 games,
-  score 23.56 at rank 32/137, exact source/identity and zero runtime signals.
+- Latest exact read **2026-08-04T11:24:35Z**: 22.88/rank 32, exact identity, no signals.
+- **Arena cycle prepared:** owner directed exact readable no-orchard (75,634 bytes, 1,470 code
+  lines, SHA `98628e98...`); one call after remote verification, not a strength promotion.
 - **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
   `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
@@ -132,8 +132,8 @@ makes the goalpost move in the wrong direction.
 - **E7a ITERATIVE DELETION:** round 28 is 56,314 bytes with all delegated equality gates exact;
   round 22 passed 516 development tasks. Rounds 29–30 then one final untouched gate remain.
 - **Coordination:** `local_codex_1` integrates/controls Arena; Claude/ChatGPT contribute.
-- **Operations:** cron 05:17; H12 weekly surveillance; `local_codex_1` owns the serialized
-  `N→O` ×4 night cycle; read its runtime `state.json`; no competing Arena mutation.
+- **Operations:** cron 05:17; H12 weekly; `local_codex_1` owns the serialized Arena cycle.
+
 
 ## 5. Reading order & pointers
 

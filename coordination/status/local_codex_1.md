@@ -1,23 +1,30 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T10:25:03Z
-- State: readable orchard LOC measurement complete and verified
+- Updated UTC: 2026-08-04T11:25:02Z
+- State: exact readable no-orchard Arena submission prepared
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260804-readable-orchard-loc-cost`
+- Current task: `20260804-readable-no-orchard-arena`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
-- Write set: `local_codex_1/readable-orchard-code-cost/`, own task/messages/status
-- Last concrete progress UTC: 2026-08-04T10:25:03Z
+- Write set: Arena evidence directory, own task/messages/status, STATE and live ledger
+- Last concrete progress UTC: 2026-08-04T11:25:02Z
 - Running job: none
 - Live identity: final night-cycle orchard `6592744`/`41087983`; exact source, terminal rank 32/137
-- Next checkpoint: publish result artifacts and remote verification
+- Next checkpoint: remote-verify start record, then submit exact readable source once
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; no mutation cycle in flight and this task has no Arena authority
+- Arena controller: yes; serialized owner-directed mutation cycle prepared, not yet submitted
 
 ## Latest evidence
+
+The exact requested file is 75,634 bytes / 1,475 physical lines / 1,470 code lines at SHA-256
+`98628e98...`; compile, lexical round trip, and 25-game behavior equivalence to the stripped
+compact parent pass. Preflight resident `6592744`/`41087983` is exact orchard at 22.88/rank 32
+over 160 games with clean identity and no runtime signals. Start records must be remotely verified
+before the single mutation call.
+
 
 The owner's softer objective supersedes the rigid 50% cut. The new source deletes only the
 generic selector for three-or-more friendly trolls, an unreachable path under the preserved hard
