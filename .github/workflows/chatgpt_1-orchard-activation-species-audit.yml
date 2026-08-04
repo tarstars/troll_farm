@@ -46,7 +46,7 @@ jobs:
               raise SystemExit('preserved analyzer payload not found')
           source = gzip.decompress(base64.b64decode(match.group(1))).decode()
           old_rustc = '["rustc", "-O", str(source), "-o", str(binary)]'
-          new_rustc = '["rustc", "--edition=2021", "-O", str(source), "-o", str(binary)]'
+          new_rustc = '["rustc", "--edition=2021", "--crate-name", "orchard_audit", "-O", str(source), "-o", str(binary)]'
           if source.count(old_rustc) != 1:
               raise SystemExit('rustc command anchor not unique')
           source = source.replace(old_rustc, new_rustc, 1)
