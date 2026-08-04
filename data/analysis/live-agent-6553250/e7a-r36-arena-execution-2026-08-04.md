@@ -37,3 +37,20 @@ At 2026-08-04T14:57:50Z:
 The score endpoints were visibly asynchronous during cold start and are not a strength verdict.
 The exact source and runtime gates pass, so the owner-directed execution is complete. No restore,
 retry, or further Arena mutation will occur while this source settles.
+
+## Settled result
+
+At 2026-08-04T16:25:25Z the Arena-room and filtered-ladder endpoints agree:
+
+- score **22.81**, rank **32/137**;
+- **160/160** finished games, zero pending;
+- **93 wins, 2 ties, 65 losses**;
+- mean margin **+8.925**;
+- 21 catastrophic losses; negative-margin mass 6,381;
+- clean identity and zero runtime signals.
+
+Checkpoint:
+`data/analysis/live-agent-6553250/r36-simplified-settled-checkpoint-2026-08-04.json`, SHA-256
+`0f4765143c9a43be9dfe78fa031a63111eb5f4a29565007d1a110ad8772a189b`.
+
+This is the requested settled observation. The Arena remains unchanged.

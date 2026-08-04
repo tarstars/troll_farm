@@ -1,12 +1,12 @@
 # 20260804-r36-simplified-arena: qualify and publish round 36
 
-- Status: execution complete — exact source active, settling without further mutation
+- Status: complete — exact source active and settled read recorded
 - Priority: direct owner instruction
 - Record owner / integrator / Arena controller: `local_codex_1`
 - Candidate preparer: `claude_1`
 - Branch: `agent/local_codex_1`
 - Created UTC: 2026-08-04T14:41:57Z
-- Last updated UTC: 2026-08-04T14:58:39Z
+- Last updated UTC: 2026-08-04T16:26:42Z
 
 ## Objective
 
@@ -94,3 +94,10 @@ Initial health at 11 finished plus one pending is clean: exact agent/submission 
 one catastrophe, negative mass 375, and zero runtime signals. The Arena-room 0/rank-136 and
 filtered-ladder 17.55/rank-102 reads are asynchronously cold and not a strength verdict. Execution
 is complete; no further Arena mutation is allowed while the source settles.
+
+## Settled checkpoint
+
+At 2026-08-04T16:25:25Z both score endpoints agree: score **22.81**, rank **32/137**, with
+160/160 games complete and none pending. Submission-scoped audit: 93W/2T/65L, mean margin +8.925,
+21 catastrophes, negative-margin mass 6,381, zero runtime signals, and clean identity. Checkpoint
+SHA-256: `0f4765143c9a43be9dfe78fa031a63111eb5f4a29565007d1a110ad8772a189b`.

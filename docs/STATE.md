@@ -8,11 +8,11 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
 - Live round-36 simplified E7a `6594200`/`41090606`: exact 55,799-byte source
   `cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6...`;
-  initial 11+1, identity/runtime clean. Cold endpoints disagree (0/r136 vs 17.55/r102).
+  settled 22.81/rank 32/137 over 160, 93W/2T/65L, identity/runtime clean.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
 - Pre-mutation orchard `6592744`/`41087983`: 22.88/rank 32 over 160, exact and healthy.
-- **Arena cycle complete:** round 36 passed 0/516 equality, was accepted once and recovered exact;
-  read-only settling. Pre-mutation readable no-orchard `6593838`/`41089629` completed at
+- **Arena cycle complete:** round 36 passed 0/516 equality, was accepted once, recovered exact,
+  and settled at 22.81/rank 32. Pre-mutation readable no-orchard `6593838`/`41089629` completed at
   24.76/rank 21 over 160, 94W/2T/64L, identity/runtime clean.
 - **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
   `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
@@ -130,8 +130,8 @@ makes the goalpost move in the wrong direction.
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
   terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** restore `6592131`/`41086057` is 23.56/162; two exact mature runs median 24.41. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 ASSIGNED:** unbounded/ring publications implementation-invalid, not algorithm evidence; Claude retries stable-parent restoration. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
 - **E7a ITERATIVE DELETION:** round 36 is 55,799 bytes and passes compile/fixtures, 7,234 live
-  commands, and 0/516 development equality. Owner-directed live measurement is now active as
-  `6594200`/`41090606`; no further mutation while it settles.
+  commands, and 0/516 development equality. Owner-directed live measurement `6594200`/`41090606`
+  is 22.81/rank 32 over 160; no further mutation.
 - **Coordination:** `local_codex_1` integrates/controls Arena; Claude/ChatGPT contribute.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers

@@ -8,3 +8,13 @@ Per-experiment obligations: one entry here; a CONSTRAINTS bullet for anything cl
 §4 update. The first session ending with this file over 100 KB freezes it and opens volume 5.
 
 <!-- entries below -->
+
+## 2026-08-04 — round-36 settled standing
+
+The owner requested a settled position/game-count read for exact round-36 agent `6594200`,
+submission `41090606`. At 16:25:25Z both platform score endpoints agree: **22.81, rank 32/137**,
+with **160/160 games complete** and zero pending. The submission-scoped audit records 93W/2T/65L,
+mean margin +8.925, 21 catastrophes, negative-margin mass 6,381, zero runtime signals, and clean
+identity. Exact checkpoint SHA is `0f476514...`.
+
+This read is recorded without Arena mutation. Round 36 remains active.

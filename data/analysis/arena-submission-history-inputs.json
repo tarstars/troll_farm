@@ -795,7 +795,7 @@
       "task_id": "20260804-r36-simplified-arena",
       "protocol_id": null,
       "disposition": "active",
-      "disposition_rationale": "Round 36 passed 0/516 exact development equality and was submitted once for the owner-directed complexity-versus-standing measurement. Platform source recovery and initial runtime/identity health are exact and clean; settled standing is pending.",
+      "disposition_rationale": "Round 36 passed 0/516 exact development equality and was submitted once for the owner-directed complexity-versus-standing measurement. Platform source recovery is exact; the settled 160-game checkpoint is 22.81/rank 32 with clean identity and zero runtime signals.",
       "provenance": [
         "coordination/tasks/20260804-r36-simplified-arena.md",
         "data/analysis/live-agent-6553250/e7a-r36-development-qualification-2026-08-04.md",
@@ -1204,6 +1204,17 @@
       "observed_at_override": null,
       "observed_at_override_evidence": null,
       "is_terminal_audit": false
+    },
+    {
+      "observation_id": "obs-41090606-settled160",
+      "path": "data/analysis/live-agent-6553250/r36-simplified-settled-checkpoint-2026-08-04.json",
+      "sha256": "0f4765143c9a43be9dfe78fa031a63111eb5f4a29565007d1a110ad8772a189b",
+      "expect_agent_id": 6594200,
+      "expect_submission_id": 41090606,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": true
     }
   ],
   "curated_observations": [
