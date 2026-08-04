@@ -234,7 +234,7 @@ def compile_sources(sources: dict[str, Path], work: Path) -> dict[str, Path]:
     for name, source in sources.items():
         binary = work / name
         result = subprocess.run(
-            ["rustc", "--edition=2021", "-O", str(source), "-o", str(binary)],
+            ["rustc", "--edition=2021", "--crate-name", "orchard_audit", "-O", str(source), "-o", str(binary)],
             cwd=ROOT,
             text=True,
             stdout=subprocess.PIPE,

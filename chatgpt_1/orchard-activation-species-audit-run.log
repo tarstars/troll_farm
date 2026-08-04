@@ -1,15 +1,39 @@
+processed 40/1280 failures=23
+processed 80/1280 failures=38
+processed 120/1280 failures=55
+processed 160/1280 failures=73
+processed 200/1280 failures=89
+processed 240/1280 failures=106
+processed 280/1280 failures=125
+processed 320/1280 failures=142
+processed 360/1280 failures=161
+processed 400/1280 failures=176
+processed 440/1280 failures=198
+processed 480/1280 failures=216
+processed 520/1280 failures=233
+processed 560/1280 failures=257
+processed 600/1280 failures=272
+processed 640/1280 failures=286
+processed 680/1280 failures=304
+processed 720/1280 failures=321
+processed 760/1280 failures=341
+processed 800/1280 failures=363
+processed 840/1280 failures=381
+processed 880/1280 failures=404
+processed 920/1280 failures=422
+processed 960/1280 failures=437
+processed 1000/1280 failures=458
+processed 1040/1280 failures=479
+processed 1080/1280 failures=495
+processed 1120/1280 failures=513
+processed 1160/1280 failures=532
+processed 1200/1280 failures=548
+processed 1240/1280 failures=567
+processed 1280/1280 failures=584
 Traceback (most recent call last):
   File "/home/runner/work/troll_farm/troll_farm/chatgpt_1/orchard_activation_species_audit.py", line 1226, in <module>
     raise SystemExit(main())
                      ^^^^^^
-  File "/home/runner/work/troll_farm/troll_farm/chatgpt_1/orchard_activation_species_audit.py", line 1059, in main
-    binaries = compile_sources(sources, work)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/troll_farm/troll_farm/chatgpt_1/orchard_activation_species_audit.py", line 244, in compile_sources
-    raise RuntimeError(f"rustc failed for {name}:\n{result.stderr[-8000:]}")
-RuntimeError: rustc failed for apple_current:
-error: invalid character '.' in crate name: `candidate_agent6553250_preseed_e7a_lemon_near_tie.min`
-
-error: aborting due to 1 previous error
-
-
+  File "/home/runner/work/troll_farm/troll_farm/chatgpt_1/orchard_activation_species_audit.py", line 1079, in main
+    raise RuntimeError(f"analysis failed closed; first failures: {failures[:10]}")
+RuntimeError: analysis failed closed; first failures: [{'game_id': 897937211, 'leg': 1, 'error': "RuntimeError: game 897937211 deployed parity failed at turn 115: bot=['MOVE 0 7 3', 'MOVE 3 3 4'] recorded=['MOVE 0 7 3', 'MOVE 3 6 7']"}, {'game_id': 897937215, 'leg': 1, 'error': "RuntimeError: game 897937215 deployed parity failed at turn 71: bot=['MOVE 1 13 2', 'MOVE 3 7 6'] recorded=['MOVE 1 13 2', 'MOVE 3 9 8']"}, {'game_id': 897937216, 'leg': 1, 'error': "RuntimeError: game 897937216 deployed parity failed at turn 64: bot=['MOVE 0 8 3', 'DROP 2'] recorded=['MOVE 0 8 1', 'DROP 2']"}, {'game_id': 897937217, 'leg': 1, 'error': "RuntimeError: game 897937217 deployed parity failed at turn 74: bot=['MOVE 1 17 4', 'MOVE 3 16 5'] recorded=['MOVE 1 17 6', 'MOVE 3 16 5']"}, {'game_id': 897937218, 'leg': 1, 'error': "RuntimeError: game 897937218 deployed parity failed at turn 67: bot=['MOVE 0 6 4', 'MOVE 2 1 2'] recorded=['MOVE 0 6 4', 'MOVE 2 0 3']"}, {'game_id': 897937326, 'leg': 1, 'error': "RuntimeError: game 897937326 deployed parity failed at turn 1: bot=['MOVE 1 12 4'] recorded=['MOVE 1 12 6']"}, {'game_id': 897937277, 'leg': 1, 'error': "RuntimeError: game 897937277 deployed parity failed at turn 28: bot=['CHOP 1', 'MOVE 2 14 5'] recorded=['CHOP 1', 'MOVE 2 15 5']"}, {'game_id': 897937421, 'leg': 1, 'error': "RuntimeError: game 897937421 deployed parity failed at turn 190: bot=['CHOP 0', 'CHOP 3'] recorded=['CHOP 0', 'MOVE 3 0 4']"}, {'game_id': 897937359, 'leg': 1, 'error': "RuntimeError: game 897937359 deployed parity failed at turn 196: bot=['CHOP 1', 'CHOP 2'] recorded=['MOVE 1 9 4', 'CHOP 2']"}, {'game_id': 897937451, 'leg': 1, 'error': "RuntimeError: game 897937451 deployed parity failed at turn 59: bot=['MOVE 1 8 3', 'CHOP 3'] recorded=['MOVE 1 9 2', 'CHOP 3']"}]
