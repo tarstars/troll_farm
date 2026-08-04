@@ -1,21 +1,21 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T11:29:00Z
-- State: exact readable no-orchard source live; initial health clean
+- Updated UTC: 2026-08-04T11:35:00Z
+- State: beginner Rust/application manual claimed; implementation gated on remote claim
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: `20260804-readable-no-orchard-arena`
+- Current task: `20260804-readable-no-orchard-rust-manual`
 - Branch: `agent/local_codex_1`
 - Best current arm: iterative round 22, 56,651 bytes, SHA-256 `2943ad84...`; 6,169 bytes
   below live E7a; static/fixture/live and 516-task development gates exact
-- Write set: Arena evidence directory, own task/messages/status, STATE and live ledger
-- Last concrete progress UTC: 2026-08-04T11:29:00Z
+- Write set: exact manual Markdown/PDF, narrow build helpers, own task/messages/status
+- Last concrete progress UTC: 2026-08-04T11:35:00Z
 - Running job: none
 - Live identity: readable no-orchard `6593838`/`41089629`; exact source, initial rank 87/137
-- Next checkpoint: passive maturity only; no further Arena mutation in this task
+- Next checkpoint: push/verify claim, then publish source inventory and manual skeleton
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; owner-directed cycle complete and mutation lock released
+- Arena controller: yes; no Arena mutation authorized or needed for the manual
 
 ## Latest evidence
 
