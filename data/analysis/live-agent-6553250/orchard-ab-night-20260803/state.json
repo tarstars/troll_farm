@@ -1,8 +1,8 @@
 {
-  "current_agent_id": 6592529,
-  "current_leg": 6,
-  "current_submission_id": 41087744,
-  "current_variant": "orchard",
+  "current_agent_id": 6592612,
+  "current_leg": 7,
+  "current_submission_id": 41087830,
+  "current_variant": "no-orchard",
   "legs": [
     {
       "agent_id": 6592330,
@@ -169,6 +169,7 @@
         "total": 137
       },
       "checkpoint": "data/analysis/live-agent-6553250/orchard-ab-night-20260803/leg-06-orchard/checkpoint.json",
+      "commit": "c110176bfa0c806e040c76ccc30af54854fe1da9",
       "completed_at_utc": "2026-08-04T01:35:49Z",
       "game_count": 160,
       "leg": 6,
@@ -191,7 +192,7 @@
     }
   ],
   "maturity_seconds_per_leg": 3600,
-  "phase": "leg-complete",
+  "phase": "maturity-wait",
   "schema": "orchard-ab-night-cycle-v1",
   "sequence": [
     "no-orchard",
@@ -206,5 +207,5 @@
   "started_at_utc": "2026-08-03T19:16:14Z",
   "status": "running",
   "task_id": "20260803-orchard-ab-night-cycle",
-  "updated_at_utc": "2026-08-04T01:35:49Z"
+  "updated_at_utc": "2026-08-04T01:36:08Z"
 }
