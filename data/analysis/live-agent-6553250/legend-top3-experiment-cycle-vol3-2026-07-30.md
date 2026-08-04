@@ -1787,3 +1787,24 @@ score 18.38/rank 87 of 137, zero catastrophes, negative mass 21, zero runtime si
 identity. This is a cold-start runtime check, not a value verdict.
 
 **Status: COMPLETE / EXACT READABLE SOURCE ACTIVE / INITIAL HEALTH CLEAN / ARENA LOCK RELEASED.**
+
+## 2026-08-04 — round-36 simplified exact-equality qualification and Arena-cycle start
+
+The owner directed an exact four-step controller sequence: compare round 36 with exact E7a on the
+frozen 516-task panel; submit once only on full equality; recover and hash-check platform source
+and record identity/runtime health; otherwise stop at the first divergence.
+
+The 55,799-byte candidate at SHA `2caac7c6...` passes: 0/516 differing terminal tasks across 43
+consumed official-generator maps, both seats, and six families. Mean/lower, family/seat deltas,
+catastrophes 19/19, negative mass 4,138/4,138, training, liveness, issues, and all terminal fields
+are exact; every gate is green. Result/TSV hashes are `ec61d43a...` / `c9a8161a...`. Three runner
+compile preflights stopped before map generation while the live-candidate adapter was brought to
+round-36 API parity; they are tooling corrections, not candidate observations.
+
+Submission-history preflight reports the exact hash has never been deployed. The pre-mutation
+platform source is exact readable no-orchard SHA `98628e98...`; agent `6593838`, submission
+`41089629` is complete at 160 games, score 24.76/rank 21/137, 94W/2T/64L, 17 catastrophes,
+negative mass 4,986, zero runtime signals, and clean identity.
+
+**Status: QUALIFIED / OWNER-DIRECTED ONE-CALL MUTATION PREPARED / REMOTE START-RECORD
+VERIFICATION REQUIRED / SOLE CONTROLLER `local_codex_1`.**

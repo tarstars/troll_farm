@@ -1,12 +1,12 @@
 # 20260804-r36-simplified-arena: qualify and publish round 36
 
-- Status: in progress — 516-task exact-equality gate starting
+- Status: qualified — one-call Arena mutation gated on remote start-record verification
 - Priority: direct owner instruction
 - Record owner / integrator / Arena controller: `local_codex_1`
 - Candidate preparer: `claude_1`
 - Branch: `agent/local_codex_1`
 - Created UTC: 2026-08-04T14:41:57Z
-- Last updated UTC: 2026-08-04T14:44:34Z
+- Last updated UTC: 2026-08-04T14:53:49Z
 
 ## Objective
 
@@ -71,3 +71,15 @@ complexity value.
 
 No sealed range is opened. No formatter touches `rust/src/bin/` or `cgauto/`. The 05:17 collector
 and `data/raw/games/` remain untouched.
+
+## Qualification and pretrial result
+
+The panel completed with `DEVELOPMENT_EXACT_EQUALITY_PASS`, 0/516 differing terminal tasks, no
+first divergence, and every frozen gate green. Result and TSV SHA-256 are respectively
+`ec61d43a...` and `c9a8161a...`. The exact candidate now also exists at the immutable submission
+path with its sidecar.
+
+Submission-history preflight reports this exact hash has never been deployed. Read-only platform
+recovery confirms current source SHA `98628e98...`; current readable no-orchard
+`6593838`/`41089629` is complete at 160 games, score 24.76/rank 21/137, with clean identity and
+zero runtime signals. One canonical submission is next after remote verification of this record.

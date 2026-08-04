@@ -106,35 +106,54 @@ def main() -> int:
     if args.panel.exists() or args.output.exists():
         parser.error("output paths must not already exist")
 
-    with tempfile.TemporaryDirectory(prefix="e7a-r36-development-") as directory:
-        generated_runner = Path(directory) / "r36_development_runner.rs"
-        runner_source = derived_runner_source()
-        generated_runner.write_text(runner_source)
-        previous_runner = shared.RUNNER
-        try:
-            shared.RUNNER = generated_runner
-            binary, compiler = shared.compile_runner(
-                Path(directory), CANDIDATE, CANDIDATE_SHA256
+    runner_source = derived_runner_source()
+    runner_file = tempfile.NamedTemporaryFile(
+        mode="w",
+        prefix="r36_development_runner_",
+        suffix=".rs",
+        dir=RUNNER_TEMPLATE.parent,
+        delete=False,
+    )
+    try:
+        runner_file.write(runner_source)
+        runner_file.close()
+        generated_runner = Path(runner_file.name)
+        with tempfile.TemporaryDirectory(prefix="e7a-r36-development-") as directory:
+            previous_runner = shared.RUNNER
+            try:
+                shared.RUNNER = generated_runner
+                binary, compiler = shared.compile_runner(
+                    Path(directory), CANDIDATE, CANDIDATE_SHA256
+                )
+            finally:
+                shared.RUNNER = previous_runner
+            compiler.update(
+                {
+                    "live_candidate_runner_template_sha256": RUNNER_TEMPLATE_SHA256,
+                    "generated_round36_runner_sha256": hashlib.sha256(
+                        runner_source.encode()
+                    ).hexdigest(),
+                }
             )
-        finally:
-            shared.RUNNER = previous_runner
-        compiler.update(
-            {
-                "live_candidate_runner_template_sha256": RUNNER_TEMPLATE_SHA256,
-                "generated_round36_runner_sha256": hashlib.sha256(
-                    runner_source.encode()
-                ).hexdigest(),
-            }
-        )
-        completed = subprocess.run(
-            [str(binary), str(START_SEED), str(MAPS), str(args.panel), str(THREADS)],
-            cwd=REPO,
-            text=True,
-            capture_output=True,
-            timeout=3600,
-        )
-        if completed.returncode:
-            raise RuntimeError(f"development panel failed:\n{completed.stderr[-12000:]}")
+            completed = subprocess.run(
+                [
+                    str(binary),
+                    str(START_SEED),
+                    str(MAPS),
+                    str(args.panel),
+                    str(THREADS),
+                ],
+                cwd=REPO,
+                text=True,
+                capture_output=True,
+                timeout=3600,
+            )
+            if completed.returncode:
+                raise RuntimeError(
+                    f"development panel failed:\n{completed.stderr[-12000:]}"
+                )
+    finally:
+        Path(runner_file.name).unlink(missing_ok=True)
 
     rows, latency = shared.parse_panel(args.panel)
     expected_seeds = list(range(START_SEED, START_SEED + MAPS))

@@ -1,18 +1,18 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-04T14:44:34Z
-- State: round-36 516-task exact-equality qualification starting
+- Updated UTC: 2026-08-04T14:53:49Z
+- State: round 36 qualified; Arena start record awaiting remote verification
 - Role: coordinator (integrator) and sole Arena controller
 - Current task: `20260804-r36-simplified-arena`
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
-  live parity exact; 516-task qualification now pending
+  live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, round-36 evaluator/results, new immutable submission artifact,
   live ledger/state/registry records required by the controller runbook
-- Last concrete progress UTC: 2026-08-04T14:44:34Z
-- Running job: panel restart pending after pinning the qualified live-candidate runner
+- Last concrete progress UTC: 2026-08-04T14:53:49Z
+- Running job: none; one canonical Arena call pending remote start-record verification
 - Live identity: readable no-orchard `6593838`/`41089629`; exact source, initial rank 87/137
-- Next checkpoint: exact-equality verdict; submit once only on 0/516 and all gates green
+- Next checkpoint: remote start-record verification, then submit once and recover exact source
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
