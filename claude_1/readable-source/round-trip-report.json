@@ -1,0 +1,35 @@
+{
+  "annotated_blocks": [
+    "SecureOrchardBot",
+    "YamoOpeningPolicy",
+    "banana_factory_commands",
+    "enforce_training_deadline",
+    "focus_type",
+    "force_unique_door_clear",
+    "idle_harvest_candidates",
+    "opponent_eta_penalty",
+    "prefer_movement_ties",
+    "regeneration_commitments",
+    "require_idle_starter",
+    "require_preferred"
+  ],
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 55799,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs",
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
+  },
+  "compacted_file_byte_identical": false,
+  "difference_is_trailing_newline_only": true,
+  "readable": {
+    "bytes": 92498,
+    "lines": 1778,
+    "path": "claude_1/readable-source/e7a-r36-readable.rs",
+    "sha256": "e46e0f3028cdc886098e9482f373cc8ff80548ac48dbdb49ac12f1b6adfee617"
+  },
+  "reproduction_command": "python3 cgauto/compact_rust_source.py claude_1/readable-source/e7a-r36-readable.rs out.rs  # then append one newline to match the lineage's file convention",
+  "round_trip_identical": true,
+  "round_trip_sha256": "12620302d133101b1a3f9d508dad0a4704041eca16b9e8a8894e2d49dcadab2b",
+  "schema": "troll-farm-readable-source-v1",
+  "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"
+}
