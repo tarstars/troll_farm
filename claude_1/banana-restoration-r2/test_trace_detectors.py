@@ -359,6 +359,98 @@ class TestD8(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d8(tr)), ("PASS", 0))
 
 
+class TestD8Amended(unittest.TestCase):
+    """D-8 as amended per the integrator's narrow I-10a/D-8 ruling
+    (successor host review 2026-08-05): an own-chop of an own-planted
+    diagonal mother is exempt IFF (a) I-7 ownership had flipped to lost at
+    or before the chop-start turn (committed-harvester ETA, ties conceded)
+    AND (b) the conversion wins the strict exact growth-aware race.
+    """
+
+    # Timeline builder: resident u0 plants the DIAG mother at t1 while ON
+    # it, then per-turn (res_cell, opp_cell, plant_row_or_None, command).
+    def flip_trace(self, steps):
+        blocks = [turn_block(
+            [unit(0, 0, DIAG, carry=carry_of(banana=1)),
+             unit(9, 1, (3, 6), hp=1, cp=0)])]
+        cmds = ["PLANT 0 BANANA"]
+        for res_cell, opp_cell, plant_row, cmd in steps:
+            plants = [plant_row] if plant_row else []
+            blocks.append(turn_block(
+                [unit(0, 0, res_cell), unit(9, 1, opp_cell, hp=1, cp=0)],
+                plants=plants))
+            cmds.append(cmd)
+        return make_trace(blocks, cmds)
+
+    def test_oracle_matches_review_counterexample(self):
+        # Terminal failure 1 boundary (host review 2026-08-05): size 2,
+        # health 4, cooldown 1, chop 1 -> the tree grows after chop 1 and
+        # needs FIVE exact chops; the static arithmetic claims four.
+        self.assertEqual(td.banana_exact_chop_turns(2, 4, 1, 1), 5)
+        self.assertEqual(td.ceil_div(4, 1), 4)
+        # No growth interference: cooldown outlasts the chop sequence.
+        self.assertEqual(td.banana_exact_chop_turns(2, 4, 5, 1), 4)
+        # Growth-only prediction: cd 1 grows next turn (+1 size/health).
+        self.assertEqual(td.banana_predict_tree(2, 4, 0, 1, 1), (3, 5, 0, 6))
+
+    def test_exempt_flip_then_feasible_conversion(self):
+        # t2: resident at (1,2) (eta 2), opponent at (3,4) (eta 2): I-7 tie
+        # -> ownership flips (lost). Opponent then departs; at chop-start t4
+        # the plant is size 1 health 3 cd 3 (exact chops 3) and the opponent
+        # harvester ETA is 4: 3 < 4, strict exact race won -> exempt.
+        p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
+        tr = self.flip_trace([
+            ((1, 2), (3, 4), p(3, 5), "WAIT"),          # t2: flip (2 >= 2)
+            ((2, 2), (3, 5), p(3, 4), "MOVE 0 3 2"),    # t3: opp departing
+            (DIAG,   (3, 6), p(3, 3), "CHOP 0"),        # t4: chop-start
+            (DIAG,   (3, 6), p(2, 2), "CHOP 0"),        # t5
+            (DIAG,   (3, 6), p(1, 1), "CHOP 0"),        # t6
+            (DIAG,   (3, 6), None,    "WAIT"),          # t7: felled
+        ])
+        self.assertEqual(verdict(td.detect_d8(tr)), ("PASS", 0))
+
+    def test_flagged_discretionary_owned_chop(self):
+        # Opponent harvester stays far (eta >= 4 always): ownership never
+        # flips, so the chop of the own-planted diagonal mother is the
+        # forbidden discretionary case (I-14 unchanged while owned).
+        p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
+        tr = self.flip_trace([
+            (DIAG, (3, 6), p(3, 5), "WAIT"),
+            (DIAG, (3, 6), p(3, 4), "CHOP 0"),
+            (DIAG, (3, 6), p(2, 3), "CHOP 0"),
+            (DIAG, (3, 6), p(1, 2), "CHOP 0"),
+            (DIAG, (3, 6), None,    "WAIT"),
+        ])
+        res = td.detect_d8(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["count"], 3)
+        self.assertEqual(res["episodes"][0]["reason"], "discretionary_owned")
+        self.assertEqual(res["episodes"][0]["turn_start"], 3)
+
+    def test_flagged_flip_but_infeasible_chop(self):
+        # Ownership flips at t2 (tie at eta 2), but the opponent keeps
+        # closing: at chop-start t4 it is adjacent (eta 1) while the exact
+        # conversion needs 3 chops -> race lost -> flagged (I-10a says
+        # abandon, not convert).
+        p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
+        tr = self.flip_trace([
+            ((1, 2), (3, 4), p(3, 5), "WAIT"),          # t2: flip (2 >= 2)
+            ((2, 2), (3, 3), p(3, 4), "MOVE 0 3 2"),    # t3: opp closing
+            (DIAG,   (2, 2), p(3, 3), "CHOP 0"),        # t4: eta_opp 1
+            (DIAG,   (2, 2), p(2, 2), "CHOP 0"),        # t5
+            (DIAG,   (2, 2), p(1, 1), "CHOP 0"),        # t6
+            (DIAG,   (2, 2), None,    "WAIT"),          # t7
+        ])
+        res = td.detect_d8(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["count"], 3)
+        ep = res["episodes"][0]
+        self.assertEqual(ep["reason"], "flip_but_infeasible")
+        self.assertEqual(ep["flip_turn"], 2)
+        self.assertEqual(ep["exact_chop_turns"], 3)
+        self.assertEqual(ep["eta_opp_at_chop_start"], 1)
+
+
 class TestD9(unittest.TestCase):
     """D-9 second-worker TRAIN displacement (single-trace clause)."""
 

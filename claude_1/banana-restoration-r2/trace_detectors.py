@@ -112,6 +112,71 @@ def ceil_div(a: int, b: int) -> int:
 
 
 # ---------------------------------------------------------------------------
+# Exact banana growth arithmetic (mirrors of the candidate's own
+# MoisanBot::predict_tree / MoisanBot::chop_outcome in research-banana-r2.rs:
+# per turn, an existing cooldown ticks down; when it reaches zero a
+# size-below-4 tree grows one size, gains tree_health_params(Banana).1 = 1
+# health, and the cooldown resets to the effective plant cooldown (6 dry,
+# 4 near water); a size-4 tree ripens one fruit instead, up to 3. Banana
+# health = 2 + size. A chop is applied before the growth tick of the same
+# turn (rules order verified against the referee of make_banana_traces and
+# chop_outcome).
+# ---------------------------------------------------------------------------
+
+def banana_effective_cooldown(near_water: bool) -> int:
+    return (BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST if near_water
+            else BANANA_PLANT_COOLDOWN)
+
+
+def banana_predict_tree(size, health, fruits, cooldown, turns,
+                        near_water=False):
+    """Growth-only forward simulation of a banana tree over ``turns`` turns
+    (mirror of MoisanBot::predict_tree with no opponent chopper). Returns
+    (size, health, fruits, cooldown)."""
+    for _ in range(turns):
+        if cooldown > 0:
+            cooldown -= 1
+        if cooldown == 0 and health > 0:
+            if size < 4:
+                size += 1
+                health += BANANA_HEALTH_SLOPE
+                cooldown = banana_effective_cooldown(near_water)
+            elif fruits < 3:
+                fruits += 1
+                cooldown = banana_effective_cooldown(near_water)
+    return size, health, fruits, cooldown
+
+
+def banana_exact_chop_turns(size, health, cooldown, chop_power,
+                            near_water=False):
+    """Exact growth-aware number of chop turns needed to fell a banana tree
+    from the given state (mirror of MoisanBot::chop_outcome): each turn the
+    chop lands first, then the cooldown ticks and a size-below-4 tree that
+    reaches cooldown 0 grows (+1 size, +1 health, cooldown reset). Returns
+    the chop-turn count, or UNREACHABLE if chop_power <= 0 or the tree
+    cannot be felled within 100 turns.
+
+    Review counterexample (successor host review 2026-08-05, terminal
+    failure 1): size 2, health 4, cooldown 1, chop_power 1 needs FIVE chops
+    (the tree grows after chop 1), while the rejected candidate's static
+    ceil(health / chop_power) claims four.
+    """
+    if chop_power <= 0:
+        return UNREACHABLE
+    for turns in range(1, 101):
+        health -= chop_power
+        if health <= 0:
+            return turns
+        if cooldown > 0:
+            cooldown -= 1
+        if cooldown == 0 and size < 4:
+            size += 1
+            health += BANANA_HEALTH_SLOPE
+            cooldown = banana_effective_cooldown(near_water)
+    return UNREACHABLE
+
+
+# ---------------------------------------------------------------------------
 # Protocol mirror
 # ---------------------------------------------------------------------------
 
@@ -948,16 +1013,87 @@ def detect_d7(tr: Trace):
     return _result("D-7", episodes)
 
 
-def detect_d8(tr: Trace):
-    """D-8 Diagonal-mother chop.
+def _d8_resident_id(tr: Trace):
+    """I-7 committed harvester = the resident = the starter (min-id own unit
+    at turn 1; spec B3 ambiguity resolution)."""
+    own = tr.state(1).own_units()
+    return min(u.id for u in own) if own else None
 
-    Predicate (spec D-8 / I-14): any own chop-class command targeting a cell
-    in diag(tent) holding a live own banana (chop target = the unit's own
-    cell, A9), or any own-attributable health decrease of such a plant.
-    Threshold: 0, at any turn including endgame (strict for r2).
+
+def _d8_opp_harvester_eta(tr: Trace, t, dist):
+    """Min ETA over opponent harvest-capable units toward the mother cell at
+    turn t (I-7 opponent side: harvest-capable only; ceil(bfs/speed))."""
+    best = UNREACHABLE
+    for v in tr.state(t).opp_units():
+        if v.harvest_power <= 0:
+            continue
+        d = dist.get(v.cell)
+        if d is None:
+            continue
+        best = min(best, ceil_div(d, max(v.speed, 1)))
+    return best
+
+
+def _d8_ownership_lost_by(tr: Trace, cell, turn, alive_per_turn):
+    """True iff I-7 ownership of ``cell`` flipped to lost at some turn
+    f <= ``turn`` while the own-planted mother was alive: NOT
+    (eta_res(cell,f) < eta_opp_h(cell,f)), strict inequality, ties conceded
+    ('ties are treated as not owned', I-7). Once lost the flip is latched:
+    the asset does not silently become owned again for D-8 purposes.
+    Returns (True, f, eta_res, eta_opp) or (False, None, None, None)."""
+    rid = _d8_resident_id(tr)
+    if rid is None:
+        return False, None, None, None
+    dist = bfs_distances(set(tr.smap.walkable) | {cell}, [cell])
+    for f in range(1, turn + 1):
+        if cell not in alive_per_turn[f]:
+            continue
+        res = tr.state(f).unit(rid)
+        if res is None or res.player != 0:
+            continue
+        d = dist.get(res.cell)
+        eta_res = ceil_div(d, max(res.speed, 1)) if d is not None \
+            else UNREACHABLE
+        eta_opp = _d8_opp_harvester_eta(tr, f, dist)
+        if not (eta_res < eta_opp):
+            return True, f, eta_res, eta_opp
+    return False, None, None, None
+
+
+def detect_d8(tr: Trace):
+    """D-8 Diagonal-mother chop (amended per the integrator's narrow D-8/I-10a
+    ruling, successor host review
+    data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md
+    and ACK coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md,
+    branch origin/agent/local_codex_1).
+
+    Base predicate (spec D-8 / I-14): any own chop-class command targeting a
+    cell in diag(tent) holding a live own banana (chop target = the unit's
+    own cell, A9). Threshold: 0, at any turn including endgame.
+
+    Amendment (integrator-sanctioned, option (a) narrowly): the I-10a
+    ownership-loss conversion overrides diagonal-mother protection ONLY when
+    BOTH hold at the start of the chop sequence on that cell:
+
+      (a) ownership of the mother had actually flipped to lost at or before
+          the chop-start turn — per the I-7 committed-harvester ETA test
+          (eta of the resident vs min opponent harvest-capable ETA, strict,
+          ties conceded), latched once lost; AND
+      (b) the conversion wins the strict exact race, growth-aware: the exact
+          chop-turn count from the plant state at the chop-start turn
+          (banana_exact_chop_turns, mirroring MoisanBot::chop_outcome —
+          growth during the chop included) is strictly less than the
+          opponent harvester ETA at the chop-start turn.
+
+    While the mother remains owned, every discretionary diagonal-mother chop
+    remains forbidden (I-14). A chop after a flip that loses the exact race
+    is likewise flagged (the required response is abandon, I-10a).
+    The exemption is decided once, at the first CHOP on the cell, and covers
+    the subsequent chops of that same conversion sequence.
     """
     episodes = []
     _events, alive_per_turn = tr.own_banana_history()
+    exempt_cells = {}      # cell -> bool (decision at chop-start, latched)
     for t in range(1, tr.T + 1):
         st = tr.state(t)
         for cmd in tr.cmds(t).all:
@@ -970,6 +1106,32 @@ def detect_d8(tr: Trace):
             if c in tr.diag and c in alive_per_turn[t]:
                 p = st.plant_at(c)
                 if p is not None and p.kind == "BANANA":
+                    if c not in exempt_cells:
+                        # chop-start turn: decide the I-10a exemption
+                        lost, flip_t, eta_res, eta_opp_f = \
+                            _d8_ownership_lost_by(tr, c, t, alive_per_turn)
+                        dist = bfs_distances(set(tr.smap.walkable) | {c},
+                                             [c])
+                        eta_opp_now = _d8_opp_harvester_eta(tr, t, dist)
+                        exact_chops = banana_exact_chop_turns(
+                            p.size, p.health, p.cooldown, u.chop_power,
+                            tr.near_water(c))
+                        race_won = exact_chops < eta_opp_now
+                        exempt_cells[c] = {
+                            "exempt": lost and race_won,
+                            "flip_turn": flip_t,
+                            "eta_res_at_flip": eta_res,
+                            "eta_opp_at_flip": eta_opp_f,
+                            "chop_start": t,
+                            "exact_chop_turns": exact_chops,
+                            "eta_opp_at_chop_start": eta_opp_now,
+                            "reason": None if (lost and race_won) else (
+                                "flip_but_infeasible" if lost
+                                else "discretionary_owned"),
+                        }
+                    decision = exempt_cells[c]
+                    if decision["exempt"]:
+                        continue
                     health_drop = None
                     if t + 1 <= tr.T:
                         p1 = tr.state(t + 1).plant_at(c)
@@ -977,7 +1139,13 @@ def detect_d8(tr: Trace):
                     episodes.append({"unit": u.id, "kind": "diag_mother_chop",
                                      "turn_start": t, "turn_end": t,
                                      "cell": list(c),
-                                     "health_decreased": health_drop})
+                                     "health_decreased": health_drop,
+                                     "reason": decision["reason"],
+                                     "flip_turn": decision["flip_turn"],
+                                     "exact_chop_turns":
+                                         decision["exact_chop_turns"],
+                                     "eta_opp_at_chop_start":
+                                         decision["eta_opp_at_chop_start"]})
     return _result("D-8", episodes)
 
 

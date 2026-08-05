@@ -7,6 +7,8 @@ Two named regression checks, implemented as pure trace analyses over the
 
   R-1 "one-seed-reservation"      -> invariant I-9  (surplus rule)
   R-2 "unripe-contested-response" -> invariant I-10a (ownership-loss response)
+  R-3 "growth-aware-conversion"   -> I-10a exact-race arithmetic (round 3;
+      successor host review 2026-08-05, terminal failure 1)
 
 Both are runnable from the CLI against any candidate binary (or source, which
 is then compiled) and R-1 additionally in trace-file mode against an existing
@@ -19,6 +21,7 @@ Usage:
   regression_tests.py r1-trace --transcript F --commands F
   regression_tests.py r1-bin  (--binary F | --source F)   # runs t1 lifecycle
   regression_tests.py r2-bin  (--binary F | --source F)   # runs t3/t4 dynamic
+  regression_tests.py r3-bin  (--binary F | --source F)   # runs r3 growth
   regression_tests.py controls                            # compliant traces
   regression_tests.py all     (--binary F | --source F)   # everything above
 
@@ -305,6 +308,128 @@ def r2_convert(tr: td.Trace, mother=None, opp_id=5) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# R-3 "growth-aware-conversion" (targets I-10a exact-race arithmetic;
+# RED round 3, successor host review 2026-08-05 terminal failure 1)
+# ---------------------------------------------------------------------------
+
+# Oracle sanity: the review's exact counterexample. A size-2 banana at
+# health 4, cooldown 1, against chop power 1 needs FIVE growth-aware chops
+# (the tree grows after chop 1: +1 size, +1 health), while the rejected
+# static arithmetic ceil(health / chop_power) claims four.
+assert td.banana_exact_chop_turns(2, 4, 1, 1) == 5
+assert td.ceil_div(4, 1) == 4
+
+
+def r3_growth_aware_conversion(tr: td.Trace, mother=None, opp_id=5) -> dict:
+    """R-3 "growth-aware-conversion" — regression check for the I-10a
+    conversion-feasibility arithmetic (successor host review
+    data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md,
+    terminal failure 1).
+
+    The rejected candidate decides the ownership-loss conversion with the
+    static ``chop_turns = ceil(current_health / chop_power)`` and the
+    ripen-proxy deadline ``max(eta_opp, cooldown)``, ignoring growth during
+    the chop sequence and the opponent's actual arrival. The exact
+    transition (MoisanBot::predict_tree / chop_outcome mechanics, mirrored
+    by td.banana_exact_chop_turns / td.banana_predict_tree) can need more
+    chops — the review boundary: size 2, health 4, cooldown 1, chop 1 needs
+    5 exact chops where the static arithmetic reports 4 and accepts "4 < 5".
+
+    Scenario contract (scenario_r3_growth): I-7 ownership of the unripe
+    mother is lost at turn 1 (tie), and the exact growth-aware conversion
+    (travel + growth-aware chops) cannot complete strictly before the
+    opponent's arrival on the mother, so I-10a requires Abandoned.
+
+    FAIL iff the resident begins a chop on the mother that exact simulation
+    says cannot finish strictly before opponent arrival (the doomed chop);
+    PASS iff no such chop is started (abandon). ERROR if the scenario is
+    invalid (no ownership flip).
+    """
+    mother = mother or mbt.MOTHER_CELL
+    rid = resident_id(tr)
+    flip = ownership_flip_turn(tr, mother, opp_id)
+    if flip is None:
+        return {"check": "R-3 growth-aware-conversion", "invariant": "I-10a",
+                "verdict": "ERROR",
+                "reason": "scenario invalid: ownership never flips"}
+    flip_t, eta_res, eta_opp = flip
+    # Opponent arrival turn: first state with the opponent on the mother
+    # cell (observable in the deterministic trace), else the flip-turn ETA.
+    arrival = None
+    for t in range(1, tr.T + 1):
+        opp = tr.unit(opp_id, t)
+        if opp is not None and opp.cell == mother:
+            arrival = t
+            break
+    if arrival is None:
+        arrival = flip_t + eta_opp
+    chops = []
+    for t in range(1, tr.T + 1):
+        unit = tr.unit(rid, t)
+        cmd = tr.cmd_of(rid, t)
+        if (unit is not None and cmd is not None and cmd.verb == "CHOP"
+                and unit.cell == mother
+                and tr.state(t).plant_at(mother) is not None):
+            chops.append(t)
+    violations = []
+    analysis = None
+    if chops:
+        t0 = chops[0]
+        st = tr.state(t0)
+        plant = st.plant_at(mother)
+        unit = tr.unit(rid, t0)
+        exact = td.banana_exact_chop_turns(
+            plant.size, plant.health, plant.cooldown,
+            max(unit.chop_power, 1), tr.near_water(mother))
+        completion = t0 + exact - 1        # chop lands each turn incl. t0
+        static_chops = td.ceil_div(plant.health, max(unit.chop_power, 1))
+        # Reproduce the candidate's own deadline at the chop-start decision:
+        # max(eta_opp, ripen-proxy) with ripen-proxy = cooldown for an
+        # unripe tree (the growth-blind understatement under test).
+        dmap = dist_map_to(tr, mother)
+        opp0 = tr.unit(opp_id, t0)
+        eta_opp_t0 = travel_eta(dmap, opp0.cell, opp0.speed) \
+            if opp0 is not None else BIG
+        ripen_proxy = plant.cooldown if plant.fruits == 0 else 0
+        static_deadline = max(eta_opp_t0, ripen_proxy)
+        analysis = {
+            "chop_start_turn": t0,
+            "plant_at_chop_start": {"size": plant.size,
+                                    "health": plant.health,
+                                    "fruits": plant.fruits,
+                                    "cooldown": plant.cooldown},
+            "static_chop_turns": static_chops,
+            "static_ripen_proxy_deadline": static_deadline,
+            "exact_chop_turns": exact,
+            "exact_completion_turn": completion,
+            "opponent_arrival_turn": arrival,
+            "doomed": not (completion < arrival),
+        }
+        if not (completion < arrival):
+            violations.append({
+                "why": "doomed chop: exact growth-aware completion turn %d "
+                       "is not strictly before opponent arrival turn %d "
+                       "(static arithmetic accepted %d < %d)"
+                       % (completion, arrival, static_chops,
+                          static_deadline),
+                "chop_turns_on_mother": chops[:20],
+            })
+    return {
+        "check": "R-3 growth-aware-conversion",
+        "invariant": "I-10a",
+        "resident": rid,
+        "mother": list(mother),
+        "flip_turn": flip_t,
+        "eta_res_at_flip": eta_res,
+        "eta_opp_at_flip": eta_opp,
+        "opponent_arrival_turn": arrival,
+        "chop_analysis": analysis,
+        "verdict": "FAIL" if violations else "PASS",
+        "violations": violations,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Trace production (no writes into traces/)
 # ---------------------------------------------------------------------------
 
@@ -401,6 +526,19 @@ def control_r2_abandon():
     return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
 
 
+def control_r3():
+    """Near-miss control for R-3: same scenario_r3_growth dynamic scenario,
+    but the resident obeys I-10a at the turn-1 flip: the exact growth-aware
+    conversion (travel 5 + 4 chops = completion turn 9) cannot complete
+    strictly before the opponent's turn-6 arrival, so it abandons — retreats
+    to the far side and idles, never chopping the lost mother. Compliant
+    with I-10a, so R-3 must PASS."""
+    referee = mbt.scenario_r3_growth()
+    script = {1: "MOVE 0 11 2;WAIT", 2: "MOVE 0 11 2;WAIT",
+              3: "MOVE 0 11 2;WAIT", 4: "MOVE 0 11 2;WAIT"}
+    return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
+
+
 def control_r2_convert():
     """Near-miss control for R-2b: same t4_convert dynamic scenario; the
     resident steps onto the mother and chops it down (health 2, chop 1:
@@ -456,12 +594,21 @@ def cmd_r2_bin(binary: Path, outdir) -> bool:
     return ok
 
 
+def cmd_r3_bin(binary: Path, outdir) -> bool:
+    transcript, commands = run_binary(binary, mbt.scenario_r3_growth(), 20)
+    if outdir:
+        Path(outdir, "r3-growth-transcript.txt").write_text(transcript)
+        Path(outdir, "r3-growth-commands.txt").write_text(commands)
+    return emit(r3_growth_aware_conversion(build(transcript, commands)))
+
+
 def cmd_controls() -> bool:
     ok = True
     for label, (transcript, commands), checker in (
         ("control-r1-compliant", control_r1(), r1_one_seed_reservation),
         ("control-r2a-compliant", control_r2_abandon(), r2_abandon),
         ("control-r2b-compliant", control_r2_convert(), r2_convert),
+        ("control-r3-compliant", control_r3(), r3_growth_aware_conversion),
     ):
         report = checker(build(transcript, commands))
         report["control"] = label
@@ -472,7 +619,7 @@ def cmd_controls() -> bool:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=["r1-trace", "r1-bin", "r2-bin",
-                                         "controls", "all"])
+                                         "r3-bin", "controls", "all"])
     parser.add_argument("--transcript")
     parser.add_argument("--commands")
     parser.add_argument("--binary")
@@ -502,6 +649,8 @@ def main(argv=None) -> int:
             ok = cmd_r1_bin(binary, args.outdir) and ok
         if args.mode in ("r2-bin", "all"):
             ok = cmd_r2_bin(binary, args.outdir) and ok
+        if args.mode in ("r3-bin", "all"):
+            ok = cmd_r3_bin(binary, args.outdir) and ok
         if args.mode == "all":
             ok = cmd_controls() and ok
     return 0 if ok else 1

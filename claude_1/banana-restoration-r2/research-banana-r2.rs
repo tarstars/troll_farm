@@ -2495,6 +2495,17 @@ mod bot {
                 };
                 if worker.carry[crate::game::types::WOOD] == 0 {
                     if let Some(mother) = Self::banana_mother_cell(view) {
+                        if self.banana_target == Some((BananaTask::Chop, mother)) {
+                            self.banana_hold_age = 0;
+                            self.banana_blocked_turns = 0;
+                            self.banana_last_cell = Some(worker.cell);
+                            self.banana_last_move = worker.cell != mother;
+                            return if worker.cell == mother {
+                                format!("CHOP {}", worker.id)
+                            } else {
+                                format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
+                            };
+                        }
                         let dist = bfs_distances(&view.walkable, &[mother]);
                         let resident_eta = dist
                             .get(&worker.cell)
@@ -2516,17 +2527,25 @@ mod bot {
                                 self.banana_last_move = false;
                                 return format!("HARVEST {}", worker.id);
                             }
-                            let health = plant.map(|p| p.health).unwrap_or(0);
-                            let ripen = plant
-                                .map(|p| if p.fruits > 0 { 0 } else { p.cooldown })
-                                .unwrap_or(0);
-                            let chop_turns =
-                                MoisanBot::ceil_div(health, worker.stats.chop_power.max(1));
-                            let opp_earliest = eta_opp.max(ripen);
-                            if worker.stats.chop_power > 0
+                            let feasible = worker.stats.chop_power > 0
                                 && resident_eta < 10_000
-                                && resident_eta + chop_turns < opp_earliest
-                            {
+                                && eta_opp > 0
+                                && plant
+                                    .and_then(|p| {
+                                        let predicted =
+                                            MoisanBot::predict_tree(view, p, resident_eta)?;
+                                        let ripen =
+                                            if p.fruits > 0 { 0 } else { predicted.cooldown };
+                                        let (chop_turns, _wood) = MoisanBot::chop_outcome(
+                                            view,
+                                            p,
+                                            predicted,
+                                            worker.stats.chop_power,
+                                        )?;
+                                        Some(resident_eta + chop_turns < eta_opp.max(ripen))
+                                    })
+                                    .unwrap_or(false);
+                            if feasible {
                                 self.banana_target = Some((BananaTask::Chop, mother));
                                 self.banana_hold_age = 0;
                                 self.banana_blocked_turns = 0;
