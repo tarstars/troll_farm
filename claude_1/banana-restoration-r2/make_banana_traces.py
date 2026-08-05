@@ -374,6 +374,187 @@ DYNAMIC_SCENARIOS = (
 )
 
 
+def scenario_r3_growth():
+    # R-3 "growth-aware-conversion" (RED round 3; successor host review
+    # 2026-08-05, terminal failure 1). Unripe pre-existing mother (size 2,
+    # health 4 = 2 + size, fruits 0, cd 10). Resident (speed 1, chop 1) at
+    # (7,2), BFS distance 5; opponent harvester (speed 1, chop 0) at (6,3),
+    # BFS distance 5: I-7 ownership is lost at turn 1 (tie, eta_res 5 >=
+    # eta_opp 5, ties conceded). Exact growth-aware conversion needs travel
+    # 5 + 4 chops = completion turn 9, while the opponent ARRIVES on the
+    # mother at turn 6 -- the conversion cannot complete strictly before
+    # opponent arrival, so I-10a requires abandon. The rejected candidate's
+    # static arithmetic instead accepts (at the on-tree decision it compares
+    # ceil(health 4 / chop 1) = 4 against max(eta_opp 0, cooldown-as-ripen
+    # 5) = 5, the review's literal "4 < 5") and starts the doomed chop.
+    return DynamicOpponentReferee(
+        inventory=[0, 0, 0, 0, 0, 0],
+        plants={MOTHER_CELL: {"kind": "BANANA", "size": 2, "health": 4,
+                              "fruits": 0, "cd": 10}},
+        units={
+            0: unit_row(0, 0, (7, 2), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (6, 3), speed=1, cap=2, harvest=1, chop=0),
+        },
+        opp_targets={5: MOTHER_CELL},
+    )
+
+
+# ---------------------------------------------------------------------------
+# Round-3 additive support: t5 / t6 traces for the amended D-8 (integrator's
+# narrow I-10a/D-8 ruling, successor host review 2026-08-05). Nothing below
+# is reachable from the t1-t4 paths; their output stays byte-identical.
+# ---------------------------------------------------------------------------
+
+class WaypointOpponentReferee(DynamicOpponentReferee):
+    """DynamicOpponentReferee whose opponents follow a waypoint list: when a
+    unit stands on its current waypoint the next one becomes the target
+    (allowing pass-by geometries: approach, flip I-7 ownership, depart).
+    Movement/harvest semantics are inherited unchanged."""
+
+    def __init__(self, inventory, plants, units, opp_waypoints):
+        first = {uid: wps[0] for uid, wps in opp_waypoints.items() if wps}
+        super().__init__(inventory, plants, units, first)
+        self.opp_waypoints = {uid: list(wps)
+                              for uid, wps in opp_waypoints.items()}
+
+    def opponent_step(self):
+        for uid in sorted(self.opp_waypoints):
+            unit = self.units.get(uid)
+            wps = self.opp_waypoints[uid]
+            if unit is None or not wps:
+                continue
+            while len(wps) > 1 and unit["cell"] == wps[0]:
+                wps.pop(0)
+            self.opp_targets[uid] = wps[0]
+        super().opponent_step()
+
+
+def scenario_t5_flip_convert():
+    # t5: own-PLANT -> opponent movement -> I-7 ownership flip -> FEASIBLE
+    # exact conversion (D-8 amendment positive case). The opponent harvester
+    # transits: it approaches the mother to BFS distance 1 (turn-6 state:
+    # opponent at (2,3), resident at the (2,1) door, eta_res 1 >= eta_opp 1,
+    # tie conceded -> ownership flips), then departs toward (12,4). At the
+    # scripted chop-start (turn 12: plant size 2, health 4, cd 3) the exact
+    # growth-aware chop count is 5 (the tree grows mid-sequence) < opponent
+    # ETA 7: the strict exact race is won and the amended D-8 must exempt
+    # the conversion.
+    return WaypointOpponentReferee(
+        inventory=[0, 0, 0, 1, 0, 0],
+        plants={},
+        units={
+            0: unit_row(0, 0, (2, 1), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (7, 3), speed=1, cap=2, harvest=1, chop=0),
+        },
+        opp_waypoints={5: [(2, 3), (12, 4)]},
+    )
+
+
+T5_SCRIPT = {
+    1: "PICK 0 BANANA;WAIT",
+    2: "MOVE 0 2 2;WAIT",
+    3: "PLANT 0 BANANA;WAIT",
+    4: "MOVE 0 2 1;WAIT",
+    11: "MOVE 0 2 2;WAIT",
+    12: "CHOP 0;WAIT", 13: "CHOP 0;WAIT", 14: "CHOP 0;WAIT",
+    15: "CHOP 0;WAIT", 16: "CHOP 0;WAIT",
+    17: "MOVE 0 2 1;WAIT",
+    18: "DROP 0;WAIT",
+}
+
+
+def scenario_t6_owned_chop():
+    # t6: negative control -- discretionary chop of an OWNED own-planted
+    # diagonal mother. The opponent harvester stays far (BFS distance 13,
+    # eta 13): I-7 ownership never flips, so the scripted chops at turns
+    # 6..9 are the forbidden discretionary case and the amended D-8 must
+    # still flag them (reason discretionary_owned).
+    return Referee(
+        inventory=[0, 0, 0, 1, 0, 0],
+        plants={},
+        units={
+            0: unit_row(0, 0, (2, 1), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (13, 0), cap=2, harvest=1, chop=0),
+        },
+    )
+
+
+T6_SCRIPT = {
+    1: "PICK 0 BANANA;WAIT",
+    2: "MOVE 0 2 2;WAIT",
+    3: "PLANT 0 BANANA;WAIT",
+    6: "CHOP 0;WAIT", 7: "CHOP 0;WAIT", 8: "CHOP 0;WAIT", 9: "CHOP 0;WAIT",
+    10: "MOVE 0 2 1;WAIT",
+    11: "DROP 0;WAIT",
+}
+
+
+def run_scripted_scenario(name, referee, script, turns):
+    """Closed-loop run of a scripted per-turn policy (dict turn -> command
+    line, default WAIT) through the referee; writes the same trace triple
+    as run_scenario (transcript, commands, detectors.json). Used for the
+    synthetic t5/t6 D-8-amendment traces, which document required successor
+    behavior rather than current-candidate behavior."""
+    header = f"{len(MAP[0])} {len(MAP)}\n" + "\n".join(MAP) + "\n"
+    transcript_parts = [header]
+    command_lines = []
+    for turn in range(1, turns + 1):
+        transcript_parts.append(referee.turn_text())
+        line = script.get(turn, "WAIT")
+        command_lines.append(line)
+        referee.apply(line)
+        referee.grow()
+    transcript = "".join(transcript_parts)
+    commands = "\n".join(command_lines) + "\n"
+    TRACES.mkdir(exist_ok=True)
+    (TRACES / f"{name}-transcript.txt").write_text(transcript)
+    (TRACES / f"{name}-commands.txt").write_text(commands)
+    trace = td.build_trace(transcript, commands)
+    results = td.run_all(trace)
+    report = {
+        "scenario": name,
+        "turns": trace.T,
+        "notes": trace.notes,
+        "detectors": results,
+        "overall": "PASS" if all(r["verdict"] == "PASS" for r in results) else "FAIL",
+    }
+    (TRACES / f"{name}-detectors.json").write_text(
+        json.dumps(report, indent=1, sort_keys=True) + "\n"
+    )
+    return report
+
+
+ROUND3_SCENARIOS = (
+    ("t5_flip_convert", scenario_t5_flip_convert, T5_SCRIPT, 20),
+    ("t6_owned_chop", scenario_t6_owned_chop, T6_SCRIPT, 14),
+)
+
+
+def main_round3() -> int:
+    """`--round3` flag: emit the scripted t5/t6 D-8-amendment traces.
+
+    t5 (flip + feasible exact conversion) must be overall PASS under the
+    amended D-8; t6 (owned-mother discretionary chop) is REQUIRED to show a
+    D-8 FAIL -- it is the negative control. Exit 0 iff both behave as
+    designed.
+    """
+    ok = True
+    for name, factory, script, turns in ROUND3_SCENARIOS:
+        report = run_scripted_scenario(name, factory(), script, turns)
+        verdicts = {r["detector"]: r["verdict"] for r in report["detectors"]}
+        print(name, report["overall"], json.dumps(verdicts))
+        d8 = verdicts.get("D-8")
+        if name == "t5_flip_convert":
+            ok = ok and report["overall"] == "PASS"
+        else:
+            ok = ok and d8 == "FAIL" and all(
+                v == "PASS" for k, v in verdicts.items() if k != "D-8")
+    return 0 if ok else 1
+
+
 def main_dynamic() -> int:
     """`--dynamic` flag: emit only the dynamic-opponent scenarios t3/t4.
 
@@ -396,6 +577,8 @@ def main(argv=None) -> int:
     args = sys.argv[1:] if argv is None else list(argv)
     if args and args[0] == "--dynamic":
         return main_dynamic()
+    if args and args[0] == "--round3":
+        return main_round3()
     source = CANDIDATE.read_text()
     overall_ok = True
     with tempfile.TemporaryDirectory(prefix="banana-r2-traces-") as directory:
