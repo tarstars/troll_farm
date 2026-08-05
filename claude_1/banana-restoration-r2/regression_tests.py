@@ -17,6 +17,12 @@ Two named regression checks, implemented as pure trace analyses over the
       must begin by flip turn + 1 (round 4; round-3 host review terminal
       gap 1: the t5 evidence was scripted, the real candidate camps or
       WAITs)
+  R-5 "two-worker-full-cargo-banking" -> I-19/I-20/I-21 (+D-1): a full
+      second worker whose banking route crosses the protected banana mother
+      must still reach a door and DROP (round 5; round-4 host review
+      terminal failure 1: worker 2 with carry [0,0,0,0,0,2] oscillates
+      (8,4)<->(8,3) for 225 turns on the host panel; FAILs on current SHA
+      9f5ef833)
 
 All are runnable from the CLI against any candidate binary (or source, which
 is then compiled) and R-1 additionally in trace-file mode against an existing
@@ -33,6 +39,7 @@ Usage:
   regression_tests.py r2-bin  (--binary F | --source F)   # runs t3/t4 dynamic
   regression_tests.py r3-bin  (--binary F | --source F)   # runs r3a/r3b pair
   regression_tests.py r4-bin  (--binary F | --source F)   # runs r4 flip reach
+  regression_tests.py r5-bin  (--binary F | --source F)   # runs r5 two-worker
   regression_tests.py controls                            # control traces
   regression_tests.py all     (--binary F | --source F)   # everything above
 
@@ -658,8 +665,122 @@ def r4_flip_response_reachability(tr: td.Trace, mother=None,
 
 
 # ---------------------------------------------------------------------------
-# Trace production (no writes into traces/)
+# R-5 "two-worker-full-cargo-banking" (round 5; round-4 host review terminal
+# failure 1: MULTI_UNIT_COORDINATION -- the full second worker oscillates
+# between two cells for 225 turns instead of banking)
 # ---------------------------------------------------------------------------
+
+WOOD = 5            # carry/inventory slot of WOOD
+R5_TURNS = 40       # closed-loop scenario length
+R5_HORIZON = 30     # bounded banking horizon (route length 6 + generous slack)
+
+
+def r5_two_worker_full_cargo_banking(tr: td.Trace,
+                                     horizon: int = R5_HORIZON) -> dict:
+    """R-5 "two-worker-full-cargo-banking" — regression check for
+    I-19 / I-20 / I-21 (+ the D-1 no-progress rule), round-4 host review
+    2026-08-05, terminal failure 1.
+
+    Spec language (invariant-spec-2026-08-04.md, B7):
+
+      "I-19 (banking discipline). A committed carrier moves monotonically
+      toward a reachable door or drops ..."
+      "I-20 ... non-progress is tolerated for at most one turn of conflict
+      resolution ..."
+      "I-21 (forced banking). A worker with free_capacity == 0 carrying
+      wood must enter the banking commitment."
+
+    Host counterexample (map seed 9,854,000 seat 0 vs gold_adaptive):
+    worker 2, carry [0,0,0,0,0,2], alternates (8,4)<->(8,3) emitting
+    MOVE 2 8 3 / MOVE 2 8 4 for turns 34-258 with no DROP.
+
+    Derived trace predicate, over EVERY own unit:
+
+      (a) full-cargo alternation (FAIL): a D-1 A->B->A episode (detect_d1:
+          >= 7 alternating states / >= 6 transitions, zero progress events)
+          whose unit carries wood at free_capacity == 0 at the episode
+          start, with the carry vector unchanged across the episode and no
+          DROP issued inside it — the host defect class;
+      (b) bounded banking horizon (FAIL): a unit that becomes a full wood
+          carrier at turn t0 with t0 + horizon <= T must, within
+          ``horizon`` turns, issue a DROP standing on a door cell that
+          credits wood to the own inventory (S_{t+1} wood > S_t wood).
+
+    PASS iff no (a) episode exists and every full-wood carrier with enough
+    remaining trace banks within the horizon.
+    """
+    d1 = td.detect_d1(tr)
+    # first turn each own unit is a FULL wood carrier
+    full_since: dict[int, int] = {}
+    for t in range(1, tr.T + 1):
+        for u in tr.state(t).own_units():
+            if (u.carry[WOOD] > 0 and u.free_capacity() == 0
+                    and u.id not in full_since):
+                full_since[u.id] = t
+    violations = []
+    episodes = []
+    for ep in d1["episodes"]:
+        uid = ep["unit"]
+        u0 = tr.unit(uid, ep["turn_start"])
+        u1 = tr.unit(uid, ep["turn_end"])
+        if (u0 is None or u1 is None or u0.player != 0
+                or u0.carry[WOOD] <= 0 or u0.free_capacity() != 0
+                or u0.carry != u1.carry):
+            continue
+        drops = [t for t in range(ep["turn_start"], ep["turn_end"] + 1)
+                 if (c := tr.cmd_of(uid, t)) is not None and c.verb == "DROP"]
+        if drops:
+            continue
+        a, b = tuple(ep["cells"][0]), tuple(ep["cells"][1])
+        detail = dict(ep)
+        detail["carry"] = list(u0.carry)
+        episodes.append(detail)
+        violations.append({
+            "unit": uid,
+            "why": "full wood carrier (carry %s, free_capacity 0) exhibits "
+                   "a two-cell alternation cells (%d, %d)<->(%d, %d) over "
+                   "turns %d-%d (%d states, >= 3 A->B->A cycles) with cargo "
+                   "unchanged and no DROP - violates I-19 (no monotone door "
+                   "approach), I-20 (non-progress beyond the one-turn "
+                   "conflict tolerance) and I-21 (banking commitment never "
+                   "completes); a D-1 episode by construction"
+                   % (str(u0.carry), a[0], a[1], b[0], b[1],
+                      ep["turn_start"], ep["turn_end"],
+                      ep["turn_end"] - ep["turn_start"] + 1),
+        })
+    banked = {}
+    for uid, t0 in sorted(full_since.items()):
+        bank_turn = None
+        for t in range(t0, min(t0 + horizon, tr.T - 1) + 1):
+            u = tr.unit(uid, t)
+            c = tr.cmd_of(uid, t)
+            if (u is not None and c is not None and c.verb == "DROP"
+                    and u.cell in tr.doors
+                    and tr.state(t + 1).inventories[0][WOOD]
+                    > tr.state(t).inventories[0][WOOD]):
+                bank_turn = t
+                break
+        banked[uid] = bank_turn
+        if bank_turn is None and t0 + horizon <= tr.T:
+            violations.append({
+                "unit": uid,
+                "why": "full wood carrier since turn %d never DROPs at a "
+                       "door within the bounded banking horizon of %d turns "
+                       "- I-21 forced banking violated" % (t0, horizon),
+            })
+    return {
+        "check": "R-5 two-worker-full-cargo-banking",
+        "invariants": ["I-19", "I-20", "I-21", "D-1"],
+        "full_wood_carrier_since": {str(k): v for k, v in
+                                    sorted(full_since.items())},
+        "bank_turns": {str(k): v for k, v in sorted(banked.items())},
+        "episodes": episodes[:5],
+        "verdict": "FAIL" if violations else "PASS",
+        "violations": violations,
+    }
+
+
+
 
 def run_binary(binary: Path, referee, turns: int):
     """Closed-loop run of a compiled candidate against a referee instance.
@@ -687,6 +808,49 @@ def run_binary(binary: Path, referee, turns: int):
             referee.apply(line)
             referee.grow()
         proc.stdin.close()
+    return "".join(transcript_parts), "\n".join(command_lines) + "\n"
+
+
+def run_binary_custom(binary: Path, referee, turns: int):
+    """Closed-loop run of a compiled candidate against a CustomMapReferee:
+    identical protocol to run_binary but the static header comes from the
+    referee's own map. Writes no files; returns (transcript, commands)."""
+    header = referee.map_header()
+    transcript_parts = [header]
+    command_lines = []
+    with subprocess.Popen(
+        [str(binary)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+        text=True,
+    ) as proc:
+        proc.stdin.write(header)
+        proc.stdin.flush()
+        for _ in range(turns):
+            block = referee.turn_text()
+            transcript_parts.append(block)
+            proc.stdin.write(block)
+            proc.stdin.flush()
+            line = proc.stdout.readline()
+            if not line:
+                raise RuntimeError("candidate closed stdout early")
+            line = line.rstrip("\n")
+            command_lines.append(line)
+            referee.apply(line)
+            referee.grow()
+        proc.stdin.close()
+    return "".join(transcript_parts), "\n".join(command_lines) + "\n"
+
+
+def run_scripted_custom(referee, policy, turns: int):
+    """run_scripted on a CustomMapReferee (header from the referee's map)."""
+    header = referee.map_header()
+    transcript_parts = [header]
+    command_lines = []
+    for turn in range(1, turns + 1):
+        transcript_parts.append(referee.turn_text())
+        line = policy(turn, referee)
+        command_lines.append(line)
+        referee.apply(line)
+        referee.grow()
     return "".join(transcript_parts), "\n".join(command_lines) + "\n"
 
 
@@ -811,6 +975,38 @@ def control_r4_compliant():
     return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 26)
 
 
+def control_r5_compliant():
+    """Near-miss control for R-5: same scenario_r5_two_worker_banking
+    dynamics; the full carrier walks the shortest route to the (1,2) door
+    (transiting the mother cell (2,2) at turn 5 -- pass-through transit of
+    the protected cell is legal, only harming verbs are forbidden) and
+    DROPs at turn 6, wood credited at turn 7. Compliant with I-19/I-20/
+    I-21, so R-5 must PASS (32 turns > t0 + horizon proves the horizon
+    clause is really evaluated)."""
+    referee = mbt.scenario_r5_two_worker_banking()
+    script = {1: "WAIT;MOVE 2 1 2", 2: "WAIT;MOVE 2 1 2",
+              3: "WAIT;MOVE 2 1 2", 4: "WAIT;MOVE 2 1 2",
+              5: "WAIT;MOVE 2 1 2", 6: "WAIT;DROP 2"}
+    return run_scripted_custom(referee, lambda t, _r: script.get(t, "WAIT"),
+                               32)
+
+
+def control_r5_oscillator():
+    """FAIL-direction control for R-5 (non-vacuity): a scripted mutant
+    reproduces the host defect shape -- it approaches to (3,2) and then
+    alternates (3,2)<->(4,2) forever with its full wood cargo, never
+    DROPping. R-5 must FAIL on this trace via the full-cargo D-1
+    alternation clause."""
+    referee = mbt.scenario_r5_two_worker_banking()
+
+    def policy(turn, _referee):
+        if turn <= 3:
+            return "WAIT;MOVE 2 3 2"
+        return "WAIT;MOVE 2 4 2" if turn % 2 == 0 else "WAIT;MOVE 2 3 2"
+
+    return run_scripted_custom(referee, policy, 20)
+
+
 def control_r2_convert():
     """Near-miss control for R-2b: same t4_convert dynamic scenario; the
     resident steps onto the mother and chops it down (health 2, chop 1:
@@ -889,6 +1085,17 @@ def cmd_r4_bin(binary: Path, outdir) -> bool:
     return emit(r4_flip_response_reachability(build(transcript, commands)))
 
 
+def cmd_r5_bin(binary: Path, outdir) -> bool:
+    transcript, commands = run_binary_custom(
+        binary, mbt.scenario_r5_two_worker_banking(), R5_TURNS)
+    if outdir:
+        Path(outdir, "r5-two-worker-banking-transcript.txt").write_text(
+            transcript)
+        Path(outdir, "r5-two-worker-banking-commands.txt").write_text(
+            commands)
+    return emit(r5_two_worker_full_cargo_banking(build(transcript, commands)))
+
+
 def cmd_controls() -> bool:
     ok = True
     for label, (transcript, commands), checker, expected in (
@@ -904,6 +1111,10 @@ def cmd_controls() -> bool:
          "PASS"),
         ("control-r4-compliant", control_r4_compliant(),
          r4_flip_response_reachability, "PASS"),
+        ("control-r5-compliant", control_r5_compliant(),
+         r5_two_worker_full_cargo_banking, "PASS"),
+        ("control-r5-oscillator", control_r5_oscillator(),
+         r5_two_worker_full_cargo_banking, "FAIL"),
     ):
         report = checker(build(transcript, commands))
         report["control"] = label
@@ -916,8 +1127,8 @@ def cmd_controls() -> bool:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=["r1-trace", "r1-bin", "r2-bin",
-                                         "r3-bin", "r4-bin", "controls",
-                                         "all"])
+                                         "r3-bin", "r4-bin", "r5-bin",
+                                         "controls", "all"])
     parser.add_argument("--transcript")
     parser.add_argument("--commands")
     parser.add_argument("--binary")
@@ -951,6 +1162,8 @@ def main(argv=None) -> int:
             ok = cmd_r3_bin(binary, args.outdir) and ok
         if args.mode in ("r4-bin", "all"):
             ok = cmd_r4_bin(binary, args.outdir) and ok
+        if args.mode in ("r5-bin", "all"):
+            ok = cmd_r5_bin(binary, args.outdir) and ok
         if args.mode == "all":
             ok = cmd_controls() and ok
     return 0 if ok else 1
