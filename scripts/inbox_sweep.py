@@ -707,10 +707,12 @@ def main() -> int:
         and not is_acknowledged(m, acked_paths, legacy_latest)
     ]
 
+    v2_count = sum(1 for m in messages.values() if m.is_v2)
     print(f"agent: {args.me}")
     print(
         f"authority: {REMOTE_PREFIX}** ({len(refs)} remote refs); "
-        f"scanned {len(authoritative_paths)} authoritative messages"
+        f"scanned {len(authoritative_paths)} authoritative messages "
+        f"({len(messages) - v2_count} legacy, {v2_count} v2)"
     )
     print(f"seen-state: {seen_source}")
     if args.task or args.sender:
