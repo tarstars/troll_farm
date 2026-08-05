@@ -413,6 +413,59 @@ def test_first_run_migration_honors_legacy_watermark(repo):
 
 
 # ---------------------------------------------------------------------------
+# 9b. seen-state schema is validated strictly (integrator revision 2):
+#     schema_version must be exactly 1 and migrated_watermark string-or-null;
+#     malformed state exits 2 without marking anything.
+# ---------------------------------------------------------------------------
+
+def write_seen_state_file(repo: TransportRepo, payload: dict) -> str:
+    repo.seen_file().parent.mkdir(parents=True, exist_ok=True)
+    text = json.dumps(payload) + "\n"
+    repo.seen_file().write_text(text, encoding="utf-8")
+    return text
+
+
+def assert_malformed_seen_state(repo: TransportRepo, original: str, field: str):
+    # Even with --mark, a malformed seen-state file must exit 2, name the bad
+    # field loudly, and leave the file byte-identical (nothing marked).
+    result = repo.sweep("--me", ME, "--mark")
+    assert result.returncode == 2
+    assert "malformed seen-state file" in result.stderr
+    assert field in result.stderr
+    assert repo.seen_file().read_text(encoding="utf-8") == original
+
+
+def test_seen_state_missing_schema_version_fails(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    original = write_seen_state_file(
+        repo, {"migrated_watermark": None, "seen_message_paths": []}
+    )
+    assert_malformed_seen_state(repo, original, "schema_version")
+
+
+def test_seen_state_unsupported_schema_version_fails(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    original = write_seen_state_file(
+        repo,
+        {"schema_version": 2, "migrated_watermark": None, "seen_message_paths": []},
+    )
+    assert_malformed_seen_state(repo, original, "schema_version")
+
+
+def test_seen_state_non_string_migrated_watermark_fails(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    original = write_seen_state_file(
+        repo,
+        {
+            "schema_version": 1,
+            "migrated_watermark": 20260801,
+            "seen_message_paths": [],
+        },
+    )
+    assert_malformed_seen_state(repo, original, "migrated_watermark")
+
+
+# ---------------------------------------------------------------------------
 # 10. different bytes at one immutable path across remote refs exit 2
 # ---------------------------------------------------------------------------
 
@@ -539,6 +592,23 @@ def test_handoff_missing_commit_nonancestor_and_missing_path_each_fail(repo):
     assert "not reachable" in result.stdout
     assert "40-hex" in result.stdout
     assert "artifact path missing" in result.stdout
+
+
+def test_empty_artifact_paths_on_otherwise_valid_handoff_fails(repo):
+    # Integrator revision 1: an otherwise valid canonical handoff declaring
+    # `artifact_paths: []` is a delivery error (exit 2), never a valid handoff.
+    artifacts = {"claude_1/example/source.rs": "fn main() {}\n"}
+    artifact_commit = repo.commit(f"agent/{PEER}", artifacts)
+    handoff = publish_v2(
+        repo, PEER, "20260805T100000Z", "task-a", "handoff",
+        extra_fields=handoff_fields(f"agent/{PEER}", artifact_commit, []),
+    )
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["delivery errors"] == 1
+    assert "artifact_paths is empty" in result.stdout
+    assert handoff in result.stdout
 
 
 # ---------------------------------------------------------------------------
