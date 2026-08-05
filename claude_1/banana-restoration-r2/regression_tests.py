@@ -7,22 +7,33 @@ Two named regression checks, implemented as pure trace analyses over the
 
   R-1 "one-seed-reservation"      -> invariant I-9  (surplus rule)
   R-2 "unripe-contested-response" -> invariant I-10a (ownership-loss response)
-  R-3 "growth-aware-conversion"   -> I-10a exact-race arithmetic (round 3;
-      successor host review 2026-08-05, terminal failure 1)
+  R-3 "conversion-race-boundary"  -> I-10a CONVERSION_RACE_ORACLE boundary
+      pair (round 4; spec Revision 2026-08-05: r3a infeasible by exactly the
+      strict tie -> must abandon; r3b feasible by exactly one turn -> must
+      convert, where every voided legacy deadline says infeasible)
+  R-4 "flip-response-reachability"-> I-10a end-to-end: the CANDIDATE ITSELF
+      plants the mother, leaves it in its normal lifecycle, a real I-7 flip
+      occurs, CONVERSION_RACE_ORACLE says feasible, and the convert response
+      must begin by flip turn + 1 (round 4; round-3 host review terminal
+      gap 1: the t5 evidence was scripted, the real candidate camps or
+      WAITs)
 
-Both are runnable from the CLI against any candidate binary (or source, which
+All are runnable from the CLI against any candidate binary (or source, which
 is then compiled) and R-1 additionally in trace-file mode against an existing
-committed trace. The checks were built to FAIL on the rejected candidate
-``candidate-banana-r2.min.rs`` (SHA-256 f29efd0e...) for the reasons given in
-the host review, and to PASS on compliant synthetic control traces (see the
-``controls`` subcommand), so they are falsifiable in both directions.
+committed trace. Every check is falsifiable in both directions: R-1/R-2 were
+built to FAIL on rejected SHA f29efd0e..., R-3b/R-4 FAIL on current SHA
+2f58edef... (its voided max(eta_opp, predicted.cooldown) deadline refuses the
+oracle-feasible conversions), and the ``controls`` subcommand proves each
+verdict reachable on synthetic traces (including a doomed-chop FAIL control
+for r3a).
 
 Usage:
   regression_tests.py r1-trace --transcript F --commands F
   regression_tests.py r1-bin  (--binary F | --source F)   # runs t1 lifecycle
   regression_tests.py r2-bin  (--binary F | --source F)   # runs t3/t4 dynamic
-  regression_tests.py r3-bin  (--binary F | --source F)   # runs r3 growth
-  regression_tests.py controls                            # compliant traces
+  regression_tests.py r3-bin  (--binary F | --source F)   # runs r3a/r3b pair
+  regression_tests.py r4-bin  (--binary F | --source F)   # runs r4 flip reach
+  regression_tests.py controls                            # control traces
   regression_tests.py all     (--binary F | --source F)   # everything above
 
 Exit code 0 iff every requested check reports PASS (for ``controls``: iff the
@@ -46,6 +57,7 @@ sys.path.insert(0, str(HERE))
 import semantic_harness as sh            # noqa: E402  (compiler)
 import trace_detectors as td             # noqa: E402  (trace parser / BFS)
 import make_banana_traces as mbt         # noqa: E402  (referees + scenarios)
+import conversion_race_oracle as cro     # noqa: E402  (CONVERSION_RACE_ORACLE)
 
 BANANA = 3          # carry/inventory slot of BANANA
 BIG = 10 ** 6
@@ -93,6 +105,78 @@ def ownership_flip_turn(tr: td.Trace, mother, opp_id):
         if not (eta_res < eta_opp):
             return t, eta_res, eta_opp
     return None
+
+
+def trace_oracle(tr: td.Trace, t: int, mother):
+    """CONVERSION_RACE_ORACLE evaluated on trace state ``S_t`` (spec
+    Revision 2026-08-05): resident = the committed harvester (the starter),
+    opponents = every opponent unit with its stats at ``t``. Returns the
+    oracle dict, or None if the mother plant or the resident is absent."""
+    rid = resident_id(tr)
+    st = tr.state(t)
+    plant = st.plant_at(mother)
+    res = tr.unit(rid, t)
+    if plant is None or res is None:
+        return None
+    return cro.conversion_race_oracle(
+        decision_turn=t,
+        walkable=set(tr.smap.walkable),
+        mother_cell=mother,
+        plant=(plant.size, plant.health, plant.fruits, plant.cooldown),
+        resident_cell=res.cell,
+        resident_speed=res.speed,
+        resident_chop_power=res.chop_power,
+        opponents=[(u.cell, u.speed, u.harvest_power)
+                   for u in st.opp_units()],
+        near_water=tr.near_water(mother))
+
+
+def legacy_deadline_table(tr: td.Trace, t: int, mother, opp_id):
+    """Literal reproductions of the three VOIDED conversion deadlines (spec
+    Revision 2026-08-05) at trace turn ``t`` — reported for documentation so
+    a trace shows where the divergent definitions disagree with
+    CONVERSION_RACE_ORACLE. Never used for a verdict."""
+    rid = resident_id(tr)
+    st = tr.state(t)
+    plant = st.plant_at(mother)
+    res = tr.unit(rid, t)
+    opp = tr.unit(opp_id, t)
+    if plant is None or res is None or opp is None:
+        return None
+    dmap = dist_map_to(tr, mother)
+    eta_res = travel_eta(dmap, res.cell, res.speed)
+    eta_opp = travel_eta(dmap, opp.cell, opp.speed)
+    near_water = tr.near_water(mother)
+    predicted = td.banana_predict_tree(
+        plant.size, plant.health, plant.fruits, plant.cooldown,
+        min(eta_res, 300), near_water)
+    chops = td.banana_exact_chop_turns(
+        predicted[0], predicted[1], predicted[3],
+        max(res.chop_power, 1), near_water)
+    ripen_proxy = 0 if plant.fruits > 0 else predicted[3]
+    arrival = t + eta_res if t + eta_res <= tr.T else None
+    d8_old = None
+    if arrival is not None:
+        p_arr = tr.state(arrival).plant_at(mother)
+        opp_arr = tr.unit(opp_id, arrival)
+        if p_arr is not None and opp_arr is not None:
+            exact_at_start = td.banana_exact_chop_turns(
+                p_arr.size, p_arr.health, p_arr.cooldown,
+                max(res.chop_power, 1), near_water)
+            eta_opp_at_start = travel_eta(dmap, opp_arr.cell, opp_arr.speed)
+            d8_old = {"exact_chops_at_chop_start": exact_at_start,
+                      "eta_opp_at_chop_start": eta_opp_at_start,
+                      "accepts": exact_at_start < eta_opp_at_start}
+    return {
+        "voided_spec_old_lt_eta_opp":
+            {"lhs_eta_res_plus_chops": eta_res + chops, "rhs_eta_opp":
+             eta_opp, "accepts": eta_res + chops < eta_opp},
+        "voided_code_max_eta_opp_predicted_cooldown":
+            {"lhs_eta_res_plus_chops": eta_res + chops,
+             "rhs_deadline": max(eta_opp, ripen_proxy),
+             "accepts": eta_res + chops < max(eta_opp, ripen_proxy)},
+        "voided_d8_arrival_only": d8_old,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -241,13 +325,12 @@ def r2_convert(tr: td.Trace, mother=None, opp_id=5) -> dict:
     """R-2 variant B "unripe-contested-convert" — regression check for I-10a.
 
     Scenario contract (t4_convert): the mother is UNRIPE at the ownership
-    flip and conversion IS possible — the chop (travel eta_res plus
-    ceil(health/chop_power) chop turns) completes strictly before eta_opp,
-    the opponent's earliest possible harvest of the asset, which for an
-    unripe mother is bounded below by its ripening time max(travel, ripen).
-    I-10a then requires "convert (chop at current size)". FAIL if the
-    resident never begins the conversion: no CHOP issued while standing on
-    the mother cell at any turn of the trace.
+    flip and conversion IS possible — CONVERSION_RACE_ORACLE (spec Revision
+    2026-08-05) reports feasible: the absolute final-chop turn is strictly
+    before the opponent's absolute earliest EXECUTABLE HARVEST turn (travel
+    AND ripeness). I-10a then requires "convert (chop at current size)".
+    FAIL if the resident never begins the conversion: no CHOP issued while
+    standing on the mother cell at any turn of the trace.
     """ + R2_DOC
     mother = mother or mbt.MOTHER_CELL
     rid = resident_id(tr)
@@ -257,31 +340,18 @@ def r2_convert(tr: td.Trace, mother=None, opp_id=5) -> dict:
                 "verdict": "ERROR",
                 "reason": "scenario invalid: ownership never flips"}
     flip_t, eta_res, eta_opp = flip
-    # Conversion-feasibility report at the first not-owned turn.
+    # Conversion-feasibility report at the flip turn, via
+    # CONVERSION_RACE_ORACLE (spec Revision 2026-08-05; the former
+    # max(eta_opp, ripen-proxy) fields are void — documented change 3).
+    orc = trace_oracle(tr, flip_t, mother)
     feas = None
-    for t in range(1, tr.T + 1):
-        st = tr.state(t)
-        plant = st.plant_at(mother)
-        res = tr.unit(rid, t)
-        opp = tr.unit(opp_id, t)
-        if plant is None or res is None or opp is None:
-            continue
-        dmap = dist_map_to(tr, mother)
-        e_res = travel_eta(dmap, res.cell, res.speed)
-        e_opp = travel_eta(dmap, opp.cell, opp.speed)
-        if e_res < e_opp:
-            continue
-        chop_turns = td.ceil_div(plant.health, max(res.chop_power, 1))
-        ripen = 0 if plant.fruits > 0 else plant.cooldown
-        opp_earliest_harvest = max(e_opp, ripen)
+    if orc is not None:
         feas = {
-            "turn": t,
-            "chop_completes_by": e_res + chop_turns,
-            "opp_earliest_harvest": opp_earliest_harvest,
-            "conversion_possible":
-                e_res + chop_turns < opp_earliest_harvest,
+            "turn": flip_t,
+            "completion_turn": orc["completion_turn"],
+            "opponent_harvest_turn": orc["opponent_harvest_turn"],
+            "conversion_possible": orc["feasible"],
         }
-        break
     chops = []
     for t in range(1, tr.T + 1):
         unit = tr.unit(rid, t)
@@ -308,122 +378,280 @@ def r2_convert(tr: td.Trace, mother=None, opp_id=5) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# R-3 "growth-aware-conversion" (targets I-10a exact-race arithmetic;
-# RED round 3, successor host review 2026-08-05 terminal failure 1)
+# R-3 "conversion-race-boundary" (targets I-10a via CONVERSION_RACE_ORACLE;
+# round 4, spec Revision 2026-08-05 — supersedes the round-3
+# "growth-aware-conversion" closed-loop scenario, whose doom was defined by
+# opponent ARRIVAL only; under the unified oracle that old scenario's chop
+# was actually feasible: first fruit turn 23, completion turn 9. Documented
+# expected-value change 4.)
 # ---------------------------------------------------------------------------
 
-# Oracle sanity: the review's exact counterexample. A size-2 banana at
-# health 4, cooldown 1, against chop power 1 needs FIVE growth-aware chops
-# (the tree grows after chop 1: +1 size, +1 health), while the rejected
-# static arithmetic ceil(health / chop_power) claims four.
+# Unit-level oracle sanity (STAYS, per the round-3 review): the review's
+# exact counterexample. A size-2 banana at health 4, cooldown 1, against
+# chop power 1 needs FIVE growth-aware chops (the tree grows after chop 1:
+# +1 size, +1 health), while the rejected static arithmetic
+# ceil(health / chop_power) claims four.
 assert td.banana_exact_chop_turns(2, 4, 1, 1) == 5
 assert td.ceil_div(4, 1) == 4
+assert cro.exact_chop_turns(2, 4, 1, 1) == 5    # the oracle's own mirror
 
 
-def r3_growth_aware_conversion(tr: td.Trace, mother=None, opp_id=5) -> dict:
-    """R-3 "growth-aware-conversion" — regression check for the I-10a
-    conversion-feasibility arithmetic (successor host review
-    data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md,
-    terminal failure 1).
+def _mother_chop_turns(tr: td.Trace, mother):
+    rid = resident_id(tr)
+    return [t for t in range(1, tr.T + 1)
+            if (tr.unit(rid, t) is not None
+                and tr.cmd_of(rid, t) is not None
+                and tr.cmd_of(rid, t).verb == "CHOP"
+                and tr.unit(rid, t).cell == mother
+                and tr.state(t).plant_at(mother) is not None)]
 
-    The rejected candidate decides the ownership-loss conversion with the
-    static ``chop_turns = ceil(current_health / chop_power)`` and the
-    ripen-proxy deadline ``max(eta_opp, cooldown)``, ignoring growth during
-    the chop sequence and the opponent's actual arrival. The exact
-    transition (MoisanBot::predict_tree / chop_outcome mechanics, mirrored
-    by td.banana_exact_chop_turns / td.banana_predict_tree) can need more
-    chops — the review boundary: size 2, health 4, cooldown 1, chop 1 needs
-    5 exact chops where the static arithmetic reports 4 and accepts "4 < 5".
 
-    Scenario contract (scenario_r3_growth): I-7 ownership of the unripe
-    mother is lost at turn 1 (tie), and the exact growth-aware conversion
-    (travel + growth-aware chops) cannot complete strictly before the
-    opponent's arrival on the mother, so I-10a requires Abandoned.
+def r3a_infeasible_tie(tr: td.Trace, mother=None, opp_id=5) -> dict:
+    """R-3a "conversion-race-boundary / infeasible-by-one" — I-10a abandon
+    side of the CONVERSION_RACE_ORACLE boundary (spec Revision 2026-08-05).
 
-    FAIL iff the resident begins a chop on the mother that exact simulation
-    says cannot finish strictly before opponent arrival (the doomed chop);
-    PASS iff no such chop is started (abandon). ERROR if the scenario is
-    invalid (no ownership flip).
+    Scenario contract (scenario_r3a_boundary): I-7 ownership of the
+    near-ripe size-4 mother is lost at turn 1 (tie), and the oracle says
+    the conversion misses by exactly the strict tie:
+    completion_turn == opponent_harvest_turn. I-10a requires abandon.
+
+    FAIL iff the resident starts a chop on the mother whose chop-start
+    oracle evaluation is infeasible (the doomed chop); PASS iff no doomed
+    chop is started. ERROR if the scenario is invalid (no flip, or the
+    flip-turn oracle is not exactly at the infeasible tie).
     """
     mother = mother or mbt.MOTHER_CELL
     rid = resident_id(tr)
     flip = ownership_flip_turn(tr, mother, opp_id)
     if flip is None:
-        return {"check": "R-3 growth-aware-conversion", "invariant": "I-10a",
-                "verdict": "ERROR",
+        return {"check": "R-3a conversion-race-boundary/infeasible-tie",
+                "invariant": "I-10a", "verdict": "ERROR",
                 "reason": "scenario invalid: ownership never flips"}
     flip_t, eta_res, eta_opp = flip
-    # Opponent arrival turn: first state with the opponent on the mother
-    # cell (observable in the deterministic trace), else the flip-turn ETA.
-    arrival = None
-    for t in range(1, tr.T + 1):
-        opp = tr.unit(opp_id, t)
-        if opp is not None and opp.cell == mother:
-            arrival = t
-            break
-    if arrival is None:
-        arrival = flip_t + eta_opp
-    chops = []
-    for t in range(1, tr.T + 1):
-        unit = tr.unit(rid, t)
-        cmd = tr.cmd_of(rid, t)
-        if (unit is not None and cmd is not None and cmd.verb == "CHOP"
-                and unit.cell == mother
-                and tr.state(t).plant_at(mother) is not None):
-            chops.append(t)
+    orc = trace_oracle(tr, flip_t, mother)
+    if (orc is None or orc["feasible"]
+            or orc["completion_turn"] != orc["opponent_harvest_turn"]):
+        return {"check": "R-3a conversion-race-boundary/infeasible-tie",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: flip-turn oracle is not the "
+                          "exact infeasible tie", "oracle": orc}
+    chops = _mother_chop_turns(tr, mother)
     violations = []
     analysis = None
     if chops:
         t0 = chops[0]
-        st = tr.state(t0)
-        plant = st.plant_at(mother)
-        unit = tr.unit(rid, t0)
-        exact = td.banana_exact_chop_turns(
-            plant.size, plant.health, plant.cooldown,
-            max(unit.chop_power, 1), tr.near_water(mother))
-        completion = t0 + exact - 1        # chop lands each turn incl. t0
-        static_chops = td.ceil_div(plant.health, max(unit.chop_power, 1))
-        # Reproduce the candidate's own deadline at the chop-start decision:
-        # max(eta_opp, ripen-proxy) with ripen-proxy = cooldown for an
-        # unripe tree (the growth-blind understatement under test).
-        dmap = dist_map_to(tr, mother)
-        opp0 = tr.unit(opp_id, t0)
-        eta_opp_t0 = travel_eta(dmap, opp0.cell, opp0.speed) \
-            if opp0 is not None else BIG
-        ripen_proxy = plant.cooldown if plant.fruits == 0 else 0
-        static_deadline = max(eta_opp_t0, ripen_proxy)
-        analysis = {
-            "chop_start_turn": t0,
-            "plant_at_chop_start": {"size": plant.size,
-                                    "health": plant.health,
-                                    "fruits": plant.fruits,
-                                    "cooldown": plant.cooldown},
-            "static_chop_turns": static_chops,
-            "static_ripen_proxy_deadline": static_deadline,
-            "exact_chop_turns": exact,
-            "exact_completion_turn": completion,
-            "opponent_arrival_turn": arrival,
-            "doomed": not (completion < arrival),
-        }
-        if not (completion < arrival):
+        start_orc = trace_oracle(tr, t0, mother)
+        analysis = {"chop_start_turn": t0, "oracle_at_chop_start": start_orc}
+        if start_orc is None or not start_orc["feasible"]:
             violations.append({
-                "why": "doomed chop: exact growth-aware completion turn %d "
-                       "is not strictly before opponent arrival turn %d "
-                       "(static arithmetic accepted %d < %d)"
-                       % (completion, arrival, static_chops,
-                          static_deadline),
-                "chop_turns_on_mother": chops[:20],
-            })
+                "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start "
+                       "turn %d is infeasible (completion %s, opponent "
+                       "harvest %s) — I-10a requires abandon"
+                       % (t0,
+                          None if start_orc is None
+                          else start_orc["completion_turn"],
+                          None if start_orc is None
+                          else start_orc["opponent_harvest_turn"]),
+                "chop_turns_on_mother": chops[:20]})
     return {
-        "check": "R-3 growth-aware-conversion",
+        "check": "R-3a conversion-race-boundary/infeasible-tie",
         "invariant": "I-10a",
         "resident": rid,
         "mother": list(mother),
         "flip_turn": flip_t,
         "eta_res_at_flip": eta_res,
         "eta_opp_at_flip": eta_opp,
-        "opponent_arrival_turn": arrival,
+        "oracle_at_flip": orc,
         "chop_analysis": analysis,
+        "verdict": "FAIL" if violations else "PASS",
+        "violations": violations,
+    }
+
+
+def r3b_feasible_edge(tr: td.Trace, mother=None, opp_id=5) -> dict:
+    """R-3b "conversion-race-boundary / feasible-by-one" — I-10a convert
+    side of the CONVERSION_RACE_ORACLE boundary (spec Revision 2026-08-05).
+
+    Scenario contract (scenario_r3b_boundary): identical geometry to R-3a
+    with one health point less; the oracle says the conversion wins by
+    exactly one turn (completion_turn == opponent_harvest_turn - 1), while
+    EVERY voided legacy deadline (spec-old "< eta_opp", candidate
+    "< max(eta_opp, predicted.cooldown)", D-8-old arrival-only) answers
+    infeasible — the discriminating geometry demanded by the round-3
+    review. I-10a requires convert.
+
+    FAIL iff the resident never begins the conversion (no CHOP on the
+    mother in the whole trace). The voided-deadline table is attached for
+    documentation. ERROR if the scenario is invalid.
+    """
+    mother = mother or mbt.MOTHER_CELL
+    rid = resident_id(tr)
+    flip = ownership_flip_turn(tr, mother, opp_id)
+    if flip is None:
+        return {"check": "R-3b conversion-race-boundary/feasible-edge",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: ownership never flips"}
+    flip_t, eta_res, eta_opp = flip
+    orc = trace_oracle(tr, flip_t, mother)
+    if (orc is None or not orc["feasible"]
+            or orc["completion_turn"] != orc["opponent_harvest_turn"] - 1):
+        return {"check": "R-3b conversion-race-boundary/feasible-edge",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: flip-turn oracle is not "
+                          "feasible by exactly one turn", "oracle": orc}
+    chops = _mother_chop_turns(tr, mother)
+    return {
+        "check": "R-3b conversion-race-boundary/feasible-edge",
+        "invariant": "I-10a",
+        "resident": rid,
+        "mother": list(mother),
+        "flip_turn": flip_t,
+        "eta_res_at_flip": eta_res,
+        "eta_opp_at_flip": eta_opp,
+        "oracle_at_flip": orc,
+        "voided_legacy_deadlines_at_flip":
+            legacy_deadline_table(tr, flip_t, mother, opp_id),
+        "chop_turns_on_mother": chops[:20],
+        "verdict": "PASS" if chops else "FAIL",
+        "violations": [] if chops else [
+            {"why": "CONVERSION_RACE_ORACLE says the conversion wins by "
+                    "exactly one turn (completion %d < opponent harvest "
+                    "%d) but no CHOP on the mother was ever issued — the "
+                    "candidate's voided deadline refuses the feasible "
+                    "conversion and abandons"
+                    % (orc["completion_turn"],
+                       orc["opponent_harvest_turn"])}],
+    }
+
+
+# ---------------------------------------------------------------------------
+# R-4 "flip-response-reachability" (round 4; round-3 host review terminal
+# gap 1: t5 was scripted — the REAL candidate must plant, lose, and respond)
+# ---------------------------------------------------------------------------
+
+def r4_flip_response_reachability(tr: td.Trace, mother=None,
+                                  opp_id=5) -> dict:
+    """R-4 "flip-response-reachability" — end-to-end I-10a regression
+    (spec Revision 2026-08-05; round-3 host review terminal gap 1).
+
+    Scenario contract (scenario_r4_flip_reach): the CANDIDATE ITSELF (not a
+    script) PICKs the bootstrap seed and PLANTs the diagonal mother, later
+    leaves it during its normal lifecycle (orthogonal wood chop + bank),
+    the moving opponent harvester flips I-7 ownership of the mother, and
+    CONVERSION_RACE_ORACLE at the flip turn reports feasible.
+
+    PASS iff the oracle-prescribed convert response BEGINS within the I-10a
+    window — at the flip turn f, or at f + 1 at the latest (I-10a rev.
+    2026-08-05: f itself may legitimately be spent completing a committed
+    banking DROP) — where "begins" = the resident issues CHOP standing on
+    the mother, or a MOVE that targets the mother cell or strictly reduces
+    its BFS distance to the mother — AND at least one CHOP lands on the
+    mother later in the trace. FAIL otherwise (the observed post-flip
+    command window is reported as evidence). ERROR if the scenario is
+    invalid: the candidate never planted the mother itself, ownership never
+    flipped while the mother was alive, or the flip-turn oracle is not
+    feasible.
+    """
+    mother = mother or mbt.MOTHER_CELL
+    rid = resident_id(tr)
+    # (1) candidate-driven: the resident itself planted the mother.
+    plant_turn = None
+    for t in range(1, tr.T + 1):
+        unit = tr.unit(rid, t)
+        cmd = tr.cmd_of(rid, t)
+        if (unit is not None and cmd is not None and cmd.verb == "PLANT"
+                and cmd.args and cmd.args[0] == "BANANA"
+                and unit.cell == mother):
+            plant_turn = t
+            break
+    if plant_turn is None:
+        return {"check": "R-4 flip-response-reachability",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: the candidate never planted "
+                          "the mother itself"}
+    # (2) first I-7 ownership loss while the own-planted mother is alive.
+    dmap = dist_map_to(tr, mother)
+    flip = None
+    for t in range(plant_turn + 1, tr.T + 1):
+        if tr.state(t).plant_at(mother) is None:
+            continue
+        res = tr.unit(rid, t)
+        opp = tr.unit(opp_id, t)
+        if res is None or opp is None:
+            continue
+        eta_res = travel_eta(dmap, res.cell, res.speed)
+        eta_opp = travel_eta(dmap, opp.cell, opp.speed)
+        if not (eta_res < eta_opp):
+            flip = (t, eta_res, eta_opp)
+            break
+    if flip is None:
+        return {"check": "R-4 flip-response-reachability",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: ownership of the own-planted "
+                          "mother never flips", "plant_turn": plant_turn}
+    flip_t, eta_res, eta_opp = flip
+    # (3) the oracle must prescribe convert.
+    orc = trace_oracle(tr, flip_t, mother)
+    if orc is None or not orc["feasible"]:
+        return {"check": "R-4 flip-response-reachability",
+                "invariant": "I-10a", "verdict": "ERROR",
+                "reason": "scenario invalid: CONVERSION_RACE_ORACLE at the "
+                          "flip turn is not feasible", "oracle": orc}
+    # (4) the response window: f .. f+1.
+    def is_response(t):
+        unit = tr.unit(rid, t)
+        cmd = tr.cmd_of(rid, t)
+        if unit is None or cmd is None:
+            return False
+        if cmd.verb == "CHOP" and unit.cell == mother:
+            return True
+        if cmd.verb == "MOVE" and cmd.args:
+            if cmd.args[0] == mother:
+                return True
+            nxt = tr.unit(rid, t + 1) if t + 1 <= tr.T else None
+            if nxt is not None:
+                d_now = dmap.get(unit.cell, BIG)
+                d_nxt = dmap.get(nxt.cell, BIG)
+                return d_nxt < d_now
+        return False
+
+    window = [t for t in (flip_t, flip_t + 1) if t <= tr.T]
+    begun = [t for t in window if is_response(t)]
+    chops = _mother_chop_turns(tr, mother)
+    observed = []
+    for t in range(flip_t, min(flip_t + 10, tr.T) + 1):
+        cmd = tr.cmd_of(rid, t)
+        observed.append({"turn": t,
+                         "resident_command":
+                             cmd.raw if cmd is not None else "WAIT"})
+    violations = []
+    if not begun:
+        violations.append({
+            "why": "no convert response begun in the I-10a window [%d, %d]:"
+                   " the oracle prescribes CHOP (feasible: completion %d < "
+                   "opponent harvest %d) but the resident emits no CHOP on "
+                   "the mother and no MOVE toward it"
+                   % (flip_t, flip_t + 1, orc["completion_turn"],
+                      orc["opponent_harvest_turn"]),
+            "observed_post_flip_window": observed})
+    elif not chops:
+        violations.append({
+            "why": "response begun in the window but no CHOP ever lands on "
+                   "the mother", "observed_post_flip_window": observed})
+    return {
+        "check": "R-4 flip-response-reachability",
+        "invariant": "I-10a",
+        "resident": rid,
+        "mother": list(mother),
+        "plant_turn": plant_turn,
+        "flip_turn": flip_t,
+        "eta_res_at_flip": eta_res,
+        "eta_opp_at_flip": eta_opp,
+        "oracle_at_flip": orc,
+        "response_window": window,
+        "response_begun_turns": begun,
+        "chop_turns_on_mother": chops[:20],
+        "post_flip_commands": observed,
         "verdict": "FAIL" if violations else "PASS",
         "violations": violations,
     }
@@ -526,17 +754,61 @@ def control_r2_abandon():
     return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
 
 
-def control_r3():
-    """Near-miss control for R-3: same scenario_r3_growth dynamic scenario,
-    but the resident obeys I-10a at the turn-1 flip: the exact growth-aware
-    conversion (travel 5 + 4 chops = completion turn 9) cannot complete
-    strictly before the opponent's turn-6 arrival, so it abandons — retreats
-    to the far side and idles, never chopping the lost mother. Compliant
-    with I-10a, so R-3 must PASS."""
-    referee = mbt.scenario_r3_growth()
-    script = {1: "MOVE 0 11 2;WAIT", 2: "MOVE 0 11 2;WAIT",
-              3: "MOVE 0 11 2;WAIT", 4: "MOVE 0 11 2;WAIT"}
+def control_r3a_compliant():
+    """Near-miss control for R-3a: same scenario_r3a_boundary dynamic
+    scenario, but the resident obeys I-10a at the turn-1 flip: the oracle
+    tie (completion 7 == opponent harvest 7) means abandon — it retreats
+    and idles, never chopping the lost mother. Compliant, R-3a must PASS."""
+    referee = mbt.scenario_r3a_boundary()
+    script = {1: "MOVE 0 11 0;WAIT", 2: "MOVE 0 11 0;WAIT",
+              3: "MOVE 0 11 0;WAIT", 4: "MOVE 0 11 0;WAIT"}
     return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
+
+
+def control_r3a_doomed():
+    """FAIL-direction control for R-3a (non-vacuity): a greedy mutant walks
+    onto the tie-boundary mother and chops anyway (chop start turn 3,
+    oracle completion 3 + 5 - 1 = 7 == opponent harvest 7 -> doomed).
+    R-3a must FAIL on this trace."""
+    referee = mbt.scenario_r3a_boundary()
+    script = {1: "MOVE 0 2 2;WAIT", 2: "MOVE 0 2 2;WAIT",
+              3: "CHOP 0;WAIT", 4: "CHOP 0;WAIT", 5: "CHOP 0;WAIT",
+              6: "CHOP 0;WAIT", 7: "CHOP 0;WAIT"}
+    return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
+
+
+def control_r3b_compliant():
+    """Near-miss control for R-3b: same scenario_r3b_boundary scenario; the
+    resident converts at the feasible edge (travel turns 1-2, chops turns
+    3-6, completion turn 6 < opponent harvest turn 7, tree gone before the
+    fruit ripens), then banks the wood. Compliant, R-3b must PASS."""
+    referee = mbt.scenario_r3b_boundary()
+    script = {1: "MOVE 0 2 2;WAIT", 2: "MOVE 0 2 2;WAIT",
+              3: "CHOP 0;WAIT", 4: "CHOP 0;WAIT", 5: "CHOP 0;WAIT",
+              6: "CHOP 0;WAIT", 7: "MOVE 0 2 1;WAIT", 8: "DROP 0;WAIT"}
+    return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 20)
+
+
+def control_r4_compliant():
+    """Near-miss control for R-4: same scenario_r4_flip_reach dynamics with
+    the candidate's own turn 1-11 prefix (PICK, found the mother, chop the
+    orthogonal wood tree, bank), then the I-10a-compliant response: the
+    flip lands at turn 11 (banking DROP) and the convert response begins at
+    turn 12 (MOVE toward the mother), chops run turns 15-19 (completion 19
+    < opponent harvest 27), wood banked. Compliant, R-4 must PASS."""
+    referee = mbt.scenario_r4_flip_reach()
+    script = {1: "PICK 0 BANANA;WAIT", 2: "MOVE 0 2 2;WAIT",
+              3: "PLANT 0 BANANA;WAIT",
+              4: "MOVE 0 0 1;WAIT", 5: "MOVE 0 0 1;WAIT",
+              6: "MOVE 0 0 1;WAIT",
+              7: "CHOP 0;WAIT", 8: "CHOP 0;WAIT", 9: "CHOP 0;WAIT",
+              10: "CHOP 0;WAIT", 11: "DROP 0;WAIT",
+              12: "MOVE 0 2 2;WAIT", 13: "MOVE 0 2 2;WAIT",
+              14: "MOVE 0 2 2;WAIT",
+              15: "CHOP 0;WAIT", 16: "CHOP 0;WAIT", 17: "CHOP 0;WAIT",
+              18: "CHOP 0;WAIT", 19: "CHOP 0;WAIT",
+              20: "MOVE 0 2 1;WAIT", 21: "DROP 0;WAIT"}
+    return run_scripted(referee, lambda t, _r: script.get(t, "WAIT"), 26)
 
 
 def control_r2_convert():
@@ -595,31 +867,57 @@ def cmd_r2_bin(binary: Path, outdir) -> bool:
 
 
 def cmd_r3_bin(binary: Path, outdir) -> bool:
-    transcript, commands = run_binary(binary, mbt.scenario_r3_growth(), 20)
+    ok = True
+    for name, factory, checker in (
+        ("r3a_boundary", mbt.scenario_r3a_boundary, r3a_infeasible_tie),
+        ("r3b_boundary", mbt.scenario_r3b_boundary, r3b_feasible_edge),
+    ):
+        transcript, commands = run_binary(binary, factory(), 20)
+        if outdir:
+            Path(outdir, f"{name}-transcript.txt").write_text(transcript)
+            Path(outdir, f"{name}-commands.txt").write_text(commands)
+        ok = emit(checker(build(transcript, commands))) and ok
+    return ok
+
+
+def cmd_r4_bin(binary: Path, outdir) -> bool:
+    transcript, commands = run_binary(binary, mbt.scenario_r4_flip_reach(),
+                                      26)
     if outdir:
-        Path(outdir, "r3-growth-transcript.txt").write_text(transcript)
-        Path(outdir, "r3-growth-commands.txt").write_text(commands)
-    return emit(r3_growth_aware_conversion(build(transcript, commands)))
+        Path(outdir, "r4-flip-reach-transcript.txt").write_text(transcript)
+        Path(outdir, "r4-flip-reach-commands.txt").write_text(commands)
+    return emit(r4_flip_response_reachability(build(transcript, commands)))
 
 
 def cmd_controls() -> bool:
     ok = True
-    for label, (transcript, commands), checker in (
-        ("control-r1-compliant", control_r1(), r1_one_seed_reservation),
-        ("control-r2a-compliant", control_r2_abandon(), r2_abandon),
-        ("control-r2b-compliant", control_r2_convert(), r2_convert),
-        ("control-r3-compliant", control_r3(), r3_growth_aware_conversion),
+    for label, (transcript, commands), checker, expected in (
+        ("control-r1-compliant", control_r1(), r1_one_seed_reservation,
+         "PASS"),
+        ("control-r2a-compliant", control_r2_abandon(), r2_abandon, "PASS"),
+        ("control-r2b-compliant", control_r2_convert(), r2_convert, "PASS"),
+        ("control-r3a-compliant", control_r3a_compliant(),
+         r3a_infeasible_tie, "PASS"),
+        ("control-r3a-doomed", control_r3a_doomed(), r3a_infeasible_tie,
+         "FAIL"),
+        ("control-r3b-compliant", control_r3b_compliant(), r3b_feasible_edge,
+         "PASS"),
+        ("control-r4-compliant", control_r4_compliant(),
+         r4_flip_response_reachability, "PASS"),
     ):
         report = checker(build(transcript, commands))
         report["control"] = label
-        ok = emit(report) and ok
+        report["expected_verdict"] = expected
+        print(json.dumps(report, indent=1, sort_keys=True))
+        ok = (report.get("verdict") == expected) and ok
     return ok
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=["r1-trace", "r1-bin", "r2-bin",
-                                         "r3-bin", "controls", "all"])
+                                         "r3-bin", "r4-bin", "controls",
+                                         "all"])
     parser.add_argument("--transcript")
     parser.add_argument("--commands")
     parser.add_argument("--binary")
@@ -651,6 +949,8 @@ def main(argv=None) -> int:
             ok = cmd_r2_bin(binary, args.outdir) and ok
         if args.mode in ("r3-bin", "all"):
             ok = cmd_r3_bin(binary, args.outdir) and ok
+        if args.mode in ("r4-bin", "all"):
+            ok = cmd_r4_bin(binary, args.outdir) and ok
         if args.mode == "all":
             ok = cmd_controls() and ok
     return 0 if ok else 1
