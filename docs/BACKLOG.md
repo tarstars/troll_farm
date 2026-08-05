@@ -6,6 +6,16 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## P0 operational safety — coordination transport hardening
+
+- **PROPOSED / UNASSIGNED.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
+  a missed pushed review, a 188-message stale inbox, clock-skew-sensitive ACK matching, and an
+  inbox implementation that can silently accept failed fetches or count an unpushed working-tree
+  ACK. Replace it with remote-only authoritative state, exact-path `ack_for`, canonical handoff
+  artifact validation, exact-path seen state, corrections as new immutable messages, loud errors,
+  filters, and backward-compatible migration. Implementation-ready task:
+  `coordination/tasks/20260805-coordination-transport-hardening.md`.
+
 ## P0 operational safety — Arena submission registry
 
 - **R1 DONE / INTEGRATED — categorized submission-history registry and query tool.** The
