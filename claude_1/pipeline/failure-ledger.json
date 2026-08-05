@@ -5,7 +5,8 @@
   "reviews": {
     "r1": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
     "r2": "coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md",
-    "r3": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md"
+    "r3": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md",
+    "r4": "data/analysis/live-agent-6553250/banana-restoration-r2-round4-host-review-2026-08-05.md"
   },
   "classes": [
     {
@@ -73,6 +74,21 @@
       ],
       "detection": "mechanized",
       "pre_review_check": "red-reason"
+    },
+    {
+      "id": "MULTI_UNIT_COORDINATION",
+      "name": "Inserted per-unit logic degrades another own unit's task",
+      "description": "A wrapper/insertion that reserves, protects, or post-edits on behalf of ONE own unit alters a DIFFERENT own unit's candidate set, selection, or resolved movement so that the second unit's committed task (banking, harvesting, delivery) stalls or livelocks. Canonical instance: the round-4 host panel's terminal failure - the 9f5ef833 BananaBot's protected-mother forbidden-landing re-resolution displaces the FULL second worker's one-step banking landing every other turn, producing a 225-turn (8,4)<->(8,3) MOVE alternation with 2 wood carried and no DROP (I-19/I-20/I-21 violated; D-1 episode), margin +68 -> -93. The class is per-unit-scoped reasoning applied to a shared movement plane: single-unit gates stay green while multi-unit closed-loop behavior livelocks.",
+      "origin": [
+        {
+          "review": "data/analysis/live-agent-6553250/banana-restoration-r2-round4-host-review-2026-08-05.md",
+          "finding": 1,
+          "quote": "a full second worker carrying two wood oscillates between two cells for 225 consecutive turns instead of returning to a door and dropping its cargo"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "red-reason",
+      "gate": "claude_1/banana-restoration-r2/regression_tests.py r5-bin (R-5 two-worker-full-cargo-banking): candidate-driven closed loop, both own workers present, full wood carrier's bank route crossing the protected cell; FAIL on any >= 6-turn full-cargo two-cell alternation without DROP/cargo change (D-1 machinery + carry tracking) or on missing bounded-horizon DROP; red on 9f5ef833 (red-evidence-9f5ef833-2026-08-05.md), green side required from every successor via the R-5-vs-9f5ef833 red/green pair and the I-19/I-20/I-21 claims"
     },
     {
       "id": "INSTRUMENT_GAP",

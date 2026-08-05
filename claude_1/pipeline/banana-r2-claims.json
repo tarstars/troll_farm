@@ -63,6 +63,34 @@
     "falsifying_check": "make_banana_traces.py --round3 exits nonzero unless t6 shows the designed D-8 FAIL"
   },
   {
+    "invariant": "I-19",
+    "claim": "banking discipline: a committed full wood carrier moves monotonically toward a reachable door or drops; in the R-5 two-worker scenario (bank route crossing the protected banana mother) the carrier reaches a door and DROPs with no two-cell alternation",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (R-5 two-worker-full-cargo-banking; FAILs on current bytes 9f5ef833, red-evidence-9f5ef833-2026-08-05.md - the cited green trace is producible only by a repaired successor via `r5-bin --outdir traces`, so this claim BLOCKS pre-review until the round-4 host-review defect is fixed)"
+  },
+  {
+    "invariant": "I-20",
+    "claim": "no-progress tolerance: the full carrier's non-progress never exceeds one turn of conflict resolution; no >= 6-turn full-cargo two-cell alternation exists in the R-5 closed loop (D-1 machinery + carry tracking)",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (full-cargo alternation clause reusing trace_detectors.detect_d1; FAILs on 9f5ef833 with the 38-state (4,2)<->(3,2) episode, turns 3-40)"
+  },
+  {
+    "invariant": "I-21",
+    "claim": "forced banking: a worker with free_capacity == 0 carrying wood enters the banking commitment and completes it - DROP at a door crediting the own inventory within the R-5 bounded horizon of 30 turns",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (bounded banking-horizon clause; FAILs on 9f5ef833: full carrier since turn 1, bank_turns null)"
+  },
+  {
+    "invariant": "R-5-negative-control",
+    "claim": "regression non-vacuity: R-5 FAILs on a scripted full-cargo oscillator reproducing the host episode shape (control-r5-oscillator) and PASSes on the scripted compliant banker (control-r5-compliant)",
+    "evidence_path": "../banana-restoration-r2/red-evidence-9f5ef833-2026-08-05.md",
+    "evidence_type": "scripted-control",
+    "falsifying_check": "regression_tests.py controls (exit nonzero unless control-r5-compliant PASSes and control-r5-oscillator FAILs)"
+  },
+  {
     "invariant": "R-3a-negative-control",
     "claim": "regression non-vacuity: R-3a FAILs on a scripted doomed chop at the strict tie (control-r3a-doomed)",
     "evidence_path": "../banana-restoration-r2/red-evidence-2f58edef-2026-08-05.md",
