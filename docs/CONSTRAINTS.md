@@ -128,6 +128,14 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   forbid discretionary chops while owned. Require a growth-aware red/green boundary and a
   non-vacuous own-planted flip trace before resuming gates. [banana restoration R2 successor host
   review, 2026-08-05]
+- **Banana R2 round-3 candidate `2f58edef...` remains implementation-invalid.** It replaces static
+  chop division with exact tree transitions and passes its reported regression ladder, but the
+  own-planted flip/conversion trace is a scripted policy: the real candidate on that scenario
+  plants then waits, never exercising the response. I-10a, candidate code, and D-8 use inconsistent
+  arrival/ripening deadlines and time origins, and the candidate-level R-3 scenario does not make
+  growth-added health flip the decision. Require one exact absolute-time oracle against the
+  opponent's earliest executable HARVEST and candidate-driven own-planted flip/conversion evidence
+  before host replay or value gates. [banana restoration R2 round-3 host review, 2026-08-05]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns

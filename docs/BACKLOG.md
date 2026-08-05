@@ -8,12 +8,14 @@ may run in parallel and are claimable by any agent under
 
 ## P0 operational safety — coordination transport hardening
 
-- **PROPOSED / UNASSIGNED.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
+- **CLAIMED / REVISION REQUIRED BEFORE PHASE 2.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
   a missed pushed review, a 188-message stale inbox, clock-skew-sensitive ACK matching, and an
   inbox implementation that can silently accept failed fetches or count an unpushed working-tree
   ACK. Replace it with remote-only authoritative state, exact-path `ack_for`, canonical handoff
   artifact validation, exact-path seen state, corrections as new immutable messages, loud errors,
-  filters, and backward-compatible migration. Implementation-ready task:
+  filters, and backward-compatible migration. Claude's first implementation passes 37 tests but
+  still accepts empty handoff artifact lists and under-validates seen-state schema; bounded review
+  corrections are pending. Task:
   `coordination/tasks/20260805-coordination-transport-hardening.md`.
 
 ## P0 operational safety — Arena submission registry

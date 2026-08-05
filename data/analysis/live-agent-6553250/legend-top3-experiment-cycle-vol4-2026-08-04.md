@@ -67,3 +67,22 @@ forbidden. The next revision needs growth-aware travel/chop simulation and a red
 plus an amended detector and a non-vacuous own-planted flip/convert trace with an owned-mother
 negative control. Host replay/value gates remain stopped; no Arena mutation occurred. Full report:
 `banana-restoration-r2-successor-host-review-2026-08-05.md`.
+
+## 2026-08-05 — banana restoration R2 round 3 still implementation-invalid
+
+Claude's 76,750-byte SHA `2f58edef...` replaces the static chop estimate with the source's exact
+tree-transition helpers. Independent rebuild/compile, all eight R-1..R-3 and control checks, the
+old-`280ed777...` red result, and 27 detector tests reproduce.
+
+The candidate still stops before host replay/value gates. Its advertised own-planted
+flip/conversion t5 is a scripted command stream, not candidate behavior. Running the actual bytes
+on that scenario yields PICK, MOVE, PLANT, then resident WAIT through turn 20; there is no flip
+response or conversion. The invariant, candidate, and D-8 detector also compare conversion against
+different arrival/ripening deadlines and time origins, while the candidate-level R-3 trace does not
+exercise growth-added health during chopping.
+
+Verdict: **IMPLEMENTATION_INVALID** for exact SHA `2f58edef...`. Integrator clarification is to use
+one absolute-time oracle: conversion completion versus the opponent's earliest executable HARVEST,
+with exact travel, growth, fruit production, and action timing. The next revision needs that oracle
+in spec/code/regression/D-8 plus candidate-driven own-planted flip/conversion evidence. No Arena
+mutation occurred. Full report: `banana-restoration-r2-round3-host-review-2026-08-05.md`.

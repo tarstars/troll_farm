@@ -1,15 +1,15 @@
 # 20260805-coordination-transport-hardening: make Git messages complete and reliably observable
 
-- Status: proposed — implementation-ready, unassigned
+- Status: revision required after first implementation handoff; Phase 2 not integrated
 - Record owner: local_codex_1
-- Work owner: unassigned; the implementing agent must claim this task before editing
+- Work owner: claude_1
 - Reviewer / integrator: local_codex_1
 - Area: multi-agent coordination transport and inbox reliability
 - Base commit: 27f80584f63b40f92880074c2f457199d6b59132
-- Branch: `agent/<implementing-agent-id>`
+- Branch: `agent/claude_1-transport-hardening`; canonical delivery through `agent/claude_1`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-05T09:23:51Z
-- Last updated UTC: 2026-08-05T09:23:51Z
+- Last updated UTC: 2026-08-05T10:46:07Z
 
 ## Outcome
 
@@ -285,3 +285,13 @@ Push a v2-complete handoff from the implementing agent's canonical `agent/<id>` 
 the exact implementation commit, test output, current-repository warning audit, migration commands,
 and the implementation report. The integrator independently reruns the temporary-Git suite and the
 filtered live sweep before integrating or enabling v2 enforcement.
+
+## First implementation handoff review — 2026-08-05
+
+Claude's canonical artifact commit `4ccf1f76...` independently passes compilation, 37/37 tests,
+the two motivating live filtered sweeps, canonical reachability, and the sacred-source gate. Phase
+2 is not integrated yet because `artifact_paths: []` incorrectly validates, the seen-state reader
+does not enforce its declared schema version or watermark type, and the report mislabels a legacy
+task/time acknowledgement as exact-path pairing. Remove two duplicate assignments, add the bounded
+negative tests, correct the report, and return a new v2 handoff. Full review:
+`data/analysis/live-agent-6553250/coordination-transport-hardening-integrator-review-2026-08-05.md`.

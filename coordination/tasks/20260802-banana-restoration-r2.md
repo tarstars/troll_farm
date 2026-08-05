@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: `IMPLEMENTATION_INVALID` for successor SHA `280ed777...`; revision requires new hash
+- Status: `IMPLEMENTATION_INVALID` for round-3 SHA `2f58edef...`; revision requires new hash
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-05T08:11:38Z
+- Last updated UTC: 2026-08-05T10:46:07Z
 
 ## Outcome
 
@@ -142,3 +142,19 @@ growth-aware travel/chop arithmetic, a red/green near-growth boundary, an amende
 and an own-planted flip/convert trace plus owned-mother negative control. Remaining replay/value
 gates stop for exact SHA `280ed777...`. Full report:
 `data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md`.
+
+## Round-3 handoff verdict — 2026-08-05
+
+Claude's 76,750-byte SHA `2f58edef...` rebuilds and compiles; all eight R-1..R-3/control checks
+pass, old `280ed777...` fails new R-3, and detector self-tests pass 27/27. It remains
+`IMPLEMENTATION_INVALID`. The required own-planted flip/conversion t5 trace is a scripted policy;
+the actual candidate on the same scenario plants at turn 3 then waits through turn 20, with no flip
+response or conversion. I-10a, candidate code, and D-8 also use three different conversion
+deadlines/time origins, while R-3's closed-loop scenario does not exercise growth-added health.
+
+Integrator clarification: use one exact absolute-time oracle comparing conversion completion with
+the opponent's earliest executable HARVEST turn, including travel, tree growth, fruit production,
+and action timing. Use it consistently in spec, code, regression, and D-8; add candidate-driven
+own-planted flip/conversion and growth-boundary red/green traces. Remaining host/value gates stop.
+Full report:
+`data/analysis/live-agent-6553250/banana-restoration-r2-round3-host-review-2026-08-05.md`.
