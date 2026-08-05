@@ -22,7 +22,8 @@ Transport rules implemented here:
    `json.loads` (no PyYAML), the message must be present on canonical
    `refs/remotes/origin/agent/<from>`, ACK/correction targets must be exact
    existing message paths, and a handoff's `artifact_commit` must be a full 40-hex
-   object reachable from `origin/<artifact_ref>` containing every `artifact_path`.
+   object reachable from `origin/<artifact_ref>` containing every entry of a
+   non-empty `artifact_paths` array.
    Malformed or incomplete addressed messages appear under `delivery errors` and
    make the command exit 2.
 5. Legacy messages (no `schema_version`, or < 2) keep the old parsing rules
@@ -253,6 +254,11 @@ def parse_json_list(value: str) -> list[str]:
 # Message records and remote scanning
 # ---------------------------------------------------------------------------
 
+def sender_of(path: str) -> str:
+    """Sender namespace: the first component after `coordination/messages/`."""
+    return path[len(NAMESPACE):].split("/", 1)[0]
+
+
 class Message:
     """One immutable message as observed on a set of refs."""
 
@@ -265,7 +271,7 @@ class Message:
         self.stamp = m["stamp"] if m else ""
         self.filename_task = m["task"] if m else ""
         self.filename_kind = m["kind"] if m else ""
-        self.sender = path[len(NAMESPACE):].split("/", 1)[0]
+        self.sender = sender_of(path)
         self.fields = yaml_front_matter(body)
         self.kind = message_kind(body, self.filename_kind)
         self.task = task_of(body, self.filename_task)
@@ -422,6 +428,11 @@ def validate_v2_handoff(msg: Message, remote_ref_names: set[str]) -> list[str]:
             f"artifact_paths is not a single-line JSON array of strings: {exc}"
         ]
 
+    if not artifact_paths:
+        errors.append(
+            "handoff artifact_paths is empty; a v2 handoff must list at least "
+            "one concrete artifact path or manifest"
+        )
     if artifact_ref != f"agent/{msg.sender}":
         errors.append(
             f"artifact_ref {artifact_ref!r} is not the sender's canonical branch "
@@ -528,19 +539,33 @@ def load_seen_state(
     read as a one-time migration hint: addressed messages currently existing at or
     before the watermark are treated as seen. The legacy file is never rewritten.
 
-    Raises ValueError on a malformed seen-state file (loud, exit 2 upstream).
+    Raises ValueError on a malformed seen-state file — wrong or missing
+    `schema_version` (exactly 1 is supported), a `migrated_watermark` that is not
+    a string or null, or bad `seen_message_paths` (loud, exit 2 upstream).
     """
     state_file = seen_state_file(root, me)
     if state_file.exists():
         try:
             data = json.loads(state_file.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("seen-state is not a JSON object")
+            version = data.get("schema_version")
+            if isinstance(version, bool) or version != SEEN_STATE_SCHEMA_VERSION:
+                raise ValueError(
+                    f"schema_version {version!r} is not the supported version "
+                    f"{SEEN_STATE_SCHEMA_VERSION}"
+                )
+            migrated = data.get("migrated_watermark")
+            if migrated is not None and not isinstance(migrated, str):
+                raise ValueError(
+                    f"migrated_watermark is not a string or null: {migrated!r}"
+                )
             paths = data["seen_message_paths"]
             if not isinstance(paths, list) or not all(isinstance(p, str) for p in paths):
                 raise ValueError("seen_message_paths is not a list of strings")
         except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
             raise ValueError(f"malformed seen-state file {state_file}: {exc}") from exc
-        migrated = data.get("migrated_watermark") or ""
-        return set(paths), migrated, f"{me}/inbox-seen.json"
+        return set(paths), migrated or "", f"{me}/inbox-seen.json"
     watermark = legacy_watermark(root, me)
     if watermark:
         migrated_seen = {
@@ -652,16 +677,22 @@ def main() -> int:
             continue
         (oid, refs_for_path), = per_path[path].items()
         body = git("cat-file", "blob", oid)
-        sender = path[len(NAMESPACE):].split("/", 1)[0]
-        messages[path] = Message(path, display_ref(path, refs_for_path, sender), body)
+        messages[path] = Message(
+            path, display_ref(path, refs_for_path, sender_of(path)), body
+        )
 
     authoritative_paths = set(messages) | collided
+    # Canonical presence is derived from the single authoritative scan above —
+    # no second per-ref tree lookup.
     canonical_paths_by_agent: dict[str, set[str]] = {}
-    for ref in refs:
-        if ref.startswith(REMOTE_PREFIX + "agent/"):
-            agent = ref[len(REMOTE_PREFIX + "agent/"):]
-            if "/" not in agent:
-                canonical_paths_by_agent[agent] = set(tree_messages(ref))
+    agent_ref_prefix = REMOTE_PREFIX + "agent/"
+    for path, oids in per_path.items():
+        for refs_for_oid in oids.values():
+            for ref in refs_for_oid:
+                if ref.startswith(agent_ref_prefix):
+                    agent = ref[len(agent_ref_prefix):]
+                    if "/" not in agent:
+                        canonical_paths_by_agent.setdefault(agent, set()).add(path)
 
     my_msgs = [m for m in messages.values() if m.sender == args.me]
     acked_paths, legacy_latest, ack_warnings = collect_my_acks(
