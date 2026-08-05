@@ -422,6 +422,11 @@ def validate_v2_handoff(msg: Message, remote_ref_names: set[str]) -> list[str]:
             f"artifact_paths is not a single-line JSON array of strings: {exc}"
         ]
 
+    if artifact_ref != f"agent/{msg.sender}":
+        errors.append(
+            f"artifact_ref {artifact_ref!r} is not the sender's canonical branch "
+            f"agent/{msg.sender}; task branches cannot satisfy a v2 handoff"
+        )
     if not HEX40_RE.match(commit):
         errors.append(f"artifact_commit is not a full 40-hex object name: {commit!r}")
         return errors
