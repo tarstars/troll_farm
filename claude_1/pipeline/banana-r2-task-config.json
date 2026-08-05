@@ -164,11 +164,30 @@
         ]
       },
       "documented_defect": "r3 review finding 1 (reachable form): after a real ownership flip the 2f58edef candidate WAITs instead of beginning the oracle-feasible conversion"
+    },
+    {
+      "name": "R-5-vs-9f5ef833",
+      "check_cmd": ["python3", "regression_tests.py", "r5-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "b358124f",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-5 two-worker-full-cargo-banking\"",
+          "\"verdict\": \"FAIL\"",
+          "two-cell alternation cells \\(4, 2\\)<->\\(3, 2\\) over turns 3-40",
+          "cargo unchanged and no DROP",
+          "never DROPs at a door within the bounded banking horizon"
+        ]
+      },
+      "documented_defect": "r4 host review finding 1 (MULTI_UNIT_COORDINATION): the BananaBot protected-mother forbidden-landing re-resolution (block-i1 C5 third layer) displaces the full second worker's one-step banking landing every other turn - locally a 38-state (4,2)<->(3,2) MOVE alternation with carry [0,0,0,0,0,2] and no DROP, the host's 225-turn (8,4)<->(8,3) episode class; I-19/I-20/I-21 violated, D-1 by construction (diagnosis-r5-2026-08-05.md)"
     }
   ],
   "claims": {
     "path": "banana-r2-claims.json",
-    "critical_invariants": ["I-9", "I-10a", "I-7", "D-8"]
+    "critical_invariants": ["I-9", "I-10a", "I-7", "D-8", "I-19", "I-20", "I-21"]
   },
   "required_deliverables": [
     "../banana-restoration-r2/candidate-banana-r2.min.rs",
@@ -183,6 +202,6 @@
     "../banana-restoration-r2/red-evidence-2f58edef-2026-08-05.md"
   ],
   "checklist_answers": {
-    "INSTRUMENT_GAP": "The static-opponent gap named in r1 was closed by the dynamic-opponent referee (make_banana_traces DYNAMIC_SCENARIOS t3/t4 and the R-4 scenario, where the opponent harvester really approaches and captures). Remaining inexpressible classes: multi-unit opponent coordination and platform-engine tie-breaking order; both remain covered only by the integrator's host replay gates and are declared, not hidden."
+    "INSTRUMENT_GAP": "The static-opponent gap named in r1 was closed by the dynamic-opponent referee (make_banana_traces DYNAMIC_SCENARIOS t3/t4 and the R-4 scenario, where the opponent harvester really approaches and captures). Multi-unit OWN-side coordination - deferred to the host replay gate through round 4, which the round-4 host review rejected as a deferral (its finding 1 is exactly such a failure) - is now locally expressible: the R-5 scenario (scenario_r5_two_worker_banking, CustomMapReferee) runs both own workers closed-loop with the full carrier's bank route crossing the protected cell, and the R-5-vs-9f5ef833 pair mechanizes the MULTI_UNIT_COORDINATION ledger class. Remaining inexpressible classes: multi-unit OPPONENT coordination and platform-engine tie-breaking order; both remain covered only by the integrator's host replay gates and are declared, not hidden."
   }
 }

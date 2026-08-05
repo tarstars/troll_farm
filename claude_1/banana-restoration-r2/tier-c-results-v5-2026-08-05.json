@@ -1,0 +1,148 @@
+{
+  "candidate": {
+    "path": "candidate-banana-r2.min.rs",
+    "sha256": "47c98f5354ec89ea032c425394287ee24955c75846690d3527ee60ee2d167834"
+  },
+  "results": {
+    "c_arbitration": {
+      "detail": {
+        "byte_equal": [
+          "p_orchard_eligible",
+          "p_baseline_plain"
+        ],
+        "train": [
+          1,
+          "TRAIN 3 3 0 3"
+        ]
+      },
+      "invariants": [
+        "I-16",
+        "I-17",
+        "I-22",
+        "I-23",
+        "I-27",
+        "I-28"
+      ],
+      "status": "PASS"
+    },
+    "c_banking": {
+      "detail": {
+        "far_carrier_final": [
+          "MOVE 0 10 3"
+        ],
+        "resolution": [
+          "DROP 0",
+          "DROP 0"
+        ]
+      },
+      "invariants": [
+        "I-7",
+        "I-8",
+        "I-9",
+        "I-21"
+      ],
+      "status": "PASS"
+    },
+    "c_bootstrap_budget": {
+      "detail": {
+        "pick_banana_events": [],
+        "single_worker_byte_equal": true
+      },
+      "invariants": [
+        "I-1",
+        "I-2",
+        "I-16"
+      ],
+      "status": "PASS"
+    },
+    "c_bounded_placement": {
+      "detail": {
+        "non_ring": {
+          "(10, 0)": 0,
+          "(12, 2)": 0,
+          "(3, 0)": 0,
+          "(4, 1)": 0,
+          "(6, 2)": 0
+        },
+        "ring_controls": {
+          "(0, 2)": 30,
+          "(2, 1)": 0
+        }
+      },
+      "invariants": [
+        "I-12",
+        "I-13",
+        "I-15"
+      ],
+      "status": "PASS"
+    },
+    "c_eta_suppression": {
+      "detail": {
+        "control_plant_turns": [],
+        "threat_plants": 0
+      },
+      "invariants": [
+        "I-10",
+        "I-18",
+        "I-17"
+      ],
+      "status": "PASS"
+    },
+    "c_late_conversion": {
+      "detail": {
+        "late_chops": [
+          "CHOP 0",
+          "CHOP 0",
+          "CHOP 0",
+          "CHOP 0",
+          "CHOP 0"
+        ],
+        "mother_guard": "PASS",
+        "plant_turns_first": []
+      },
+      "invariants": [
+        "I-4",
+        "I-5",
+        "I-6",
+        "I-14",
+        "I-1"
+      ],
+      "status": "PASS"
+    },
+    "c_replant_renewable": {
+      "detail": {
+        "replant_commands": [
+          "PLANT 0 BANANA",
+          "PLANT 0 BANANA",
+          "PLANT 0 BANANA"
+        ],
+        "surplus_final": [
+          "MOVE 0 9 1"
+        ]
+      },
+      "invariants": [
+        "I-3",
+        "I-9"
+      ],
+      "status": "PASS"
+    },
+    "c_target_recovery": {
+      "detail": {
+        "onto_peer_turns": [],
+        "post_destruction": [
+          "MOVE 0 4 2",
+          "MOVE 0 4 2",
+          "MOVE 0 4 2",
+          "MOVE 0 4 2"
+        ]
+      },
+      "invariants": [
+        "I-24",
+        "I-26",
+        "I-23"
+      ],
+      "status": "PASS"
+    }
+  },
+  "schema": "troll-farm-banana-r2-tier-c-results/1"
+}

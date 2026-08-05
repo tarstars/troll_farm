@@ -29,7 +29,7 @@
   },
   {
     "invariant": "I-10a",
-    "claim": "oracle boundary and reachability: R-3a strict-tie abandon, R-3b feasible-by-one convert, and R-4 flip-response-reachability are green on the current bytes 9f5ef833 and red on 2f58edef/280ed777",
+    "claim": "oracle boundary and reachability: R-3a strict-tie abandon, R-3b feasible-by-one convert, and R-4 flip-response-reachability are green on the current bytes 47c98f53 (as on 9f5ef833) and red on 2f58edef/280ed777",
     "evidence_path": "../banana-restoration-r2/gate-results-v4-2026-08-05.md",
     "evidence_type": "candidate-driven",
     "falsifying_check": "regression_tests.py r3-bin / r4-bin (R-3b and R-4 FAIL on 2f58edef, red-evidence-2f58edef-2026-08-05.md; re-proven live by this config's red_green_pairs)"
@@ -61,6 +61,34 @@
     "evidence_path": "../banana-restoration-r2/traces/t6_owned_chop-detectors.json",
     "evidence_type": "scripted-control",
     "falsifying_check": "make_banana_traces.py --round3 exits nonzero unless t6 shows the designed D-8 FAIL"
+  },
+  {
+    "invariant": "I-19",
+    "claim": "banking discipline: a committed full wood carrier moves monotonically toward a reachable door or drops; in the R-5 two-worker scenario (bank route crossing the protected banana mother) the carrier reaches a door and DROPs with no two-cell alternation",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (R-5 two-worker-full-cargo-banking; proven FAIL on the old bytes 9f5ef833, git b358124f, red-evidence-9f5ef833-2026-08-05.md; the cited green trace was produced from the repaired bytes 47c98f53 via `r5-bin --outdir traces`, banking DROP at turn 6 - gate-results-v5-2026-08-05.md)"
+  },
+  {
+    "invariant": "I-20",
+    "claim": "no-progress tolerance: the full carrier's non-progress never exceeds one turn of conflict resolution; no >= 6-turn full-cargo two-cell alternation exists in the R-5 closed loop (D-1 machinery + carry tracking)",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (full-cargo alternation clause reusing trace_detectors.detect_d1; FAILs on the old bytes 9f5ef833 with the 38-state (4,2)<->(3,2) episode, turns 3-40; zero episodes on the repaired bytes 47c98f53)"
+  },
+  {
+    "invariant": "I-21",
+    "claim": "forced banking: a worker with free_capacity == 0 carrying wood enters the banking commitment and completes it - DROP at a door crediting the own inventory within the R-5 bounded horizon of 30 turns",
+    "evidence_path": "../banana-restoration-r2/traces/r5-two-worker-banking-commands.txt",
+    "evidence_type": "candidate-driven",
+    "falsifying_check": "regression_tests.py r5-bin (bounded banking-horizon clause; FAILs on the old bytes 9f5ef833: full carrier since turn 1, bank_turns null; on the repaired bytes 47c98f53 bank_turns {\"2\": 6})"
+  },
+  {
+    "invariant": "R-5-negative-control",
+    "claim": "regression non-vacuity: R-5 FAILs on a scripted full-cargo oscillator reproducing the host episode shape (control-r5-oscillator) and PASSes on the scripted compliant banker (control-r5-compliant)",
+    "evidence_path": "../banana-restoration-r2/red-evidence-9f5ef833-2026-08-05.md",
+    "evidence_type": "scripted-control",
+    "falsifying_check": "regression_tests.py controls (exit nonzero unless control-r5-compliant PASSes and control-r5-oscillator FAILs)"
   },
   {
     "invariant": "R-3a-negative-control",

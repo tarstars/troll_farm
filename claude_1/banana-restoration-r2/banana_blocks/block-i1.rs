@@ -825,14 +825,25 @@ impl Bot for BananaBot {
                 commands[slot] = "WAIT".to_string();
             }
         }
-        // C8: resident priority; the protected mother is landing-forbidden
-        // for non-priority movers (third protection layer).
-        let banana_forbidden: BTreeSet<Cell> = mother.into_iter().collect();
-        MoisanBot::resolve_move_conflicts_with_priority_and_forbidden(
+        // C8 (rev. round 5, R-5): resident priority in move resolution;
+        // the mother is NOT movement-forbidden. I-29's protection intent
+        // covers harming verbs (CHOP/HARVEST, second layer above; D-8),
+        // PLANT-over (illegal on an occupied plant cell; candidate-side
+        // Target::Cell exclusion via the I6 retain filter; I-13) and
+        // camping-as-a-goal (the I6 filter removes every Tree/Bank/Cell
+        // candidate equal to the protected cell, so no non-resident ever
+        // SELECTS the mother as a destination) -- standing on a plant's
+        // cell is a legal game action, so TRANSIT across the mother must
+        // stay possible. The former landing-forbidden set made the mother
+        // "transit-impossible" and livelocked full carriers whose every
+        // door route crosses it (R-5 accept/detour parity oscillation);
+        // by this stage moves are already rewritten to their one-step
+        // landing, so a movement-level veto cannot distinguish transit
+        // from destination at all and belongs at the candidate layer.
+        MoisanBot::resolve_move_conflicts_with_priority(
             view,
             &mut commands,
             &BTreeSet::from([worker_id]),
-            &banana_forbidden,
         );
         commands
     }

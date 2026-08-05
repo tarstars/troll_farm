@@ -603,6 +603,127 @@ ROUND3_SCENARIOS = (
 )
 
 
+# ---------------------------------------------------------------------------
+# Round-5 additive support: R-5 "two-worker-full-cargo-banking" reproduction
+# scenario (round-4 host review 2026-08-05, terminal failure: on map seed
+# 9,854,000 seat 0 the candidate's FULL second worker -- carry [0,0,0,0,0,2]
+# -- oscillates (8,4)<->(8,3) for 225 turns, turns 34-258, emitting
+# MOVE 2 8 3 / MOVE 2 8 4 with no DROP, instead of banking; margin +68 -> -93).
+# Nothing below is reachable from the t1-t6 paths; their output stays
+# byte-identical (the default CLI, --dynamic and --round3 never construct
+# CustomMapReferee).
+# ---------------------------------------------------------------------------
+
+# R-5 map: banana-eligible (no water -> orchard geometry None), own tent at
+# the module TENT cell (1,1) with exactly TWO walkable doors, (2,1) and
+# (1,2), and the diagonal ring cell (2,2) as the SINGLE ARTICULATION CELL of
+# the walkable graph between the east corridor (row 2) and both doors:
+# every banking route of a carrier coming from the east passes through
+# (2,2). A live diagonal banana on (2,2) is then the protected mother, so
+# the candidate's C5 third protection layer (block-i1: banana_forbidden =
+# {mother} in resolve_move_conflicts_with_priority_and_forbidden) makes the
+# carrier's one-step landing onto (2,2) forbidden -- the local reproduction
+# of the host counterexample's ring/banking interaction.
+R5_MAP = (
+    "##############",
+    "#0.###########",
+    "#............1",
+    "##############",
+    "##############",
+)
+
+
+class CustomMapReferee(Referee):
+    """Referee bound to an INSTANCE static map instead of the module-level
+    MAP/WALKABLE globals. Movement (``step_toward``) and its BFS run on the
+    instance walkable set; everything else (HARVEST/CHOP/PLANT/PICK/DROP,
+    growth) is inherited unchanged. The own tent must stay on the module
+    TENT cell (1,1) because the inherited PICK/DROP door-adjacency
+    arithmetic reads that module constant; the constructor enforces it."""
+
+    def __init__(self, map_rows, inventory, plants, units):
+        super().__init__(inventory, plants, units)
+        self.map_rows = tuple(map_rows)
+        geo = sh.parse_rows(self.map_rows)
+        if geo["shacks"].get(0) != TENT:
+            raise ValueError(
+                "CustomMapReferee requires the own tent at %r" % (TENT,))
+        self.walk = set(geo["walkable"])
+
+    def map_header(self):
+        return (f"{len(self.map_rows[0])} {len(self.map_rows)}\n"
+                + "\n".join(self.map_rows) + "\n")
+
+    def _map_neighbors(self, cell):
+        x, y = cell
+        return [n for n in ((x, y + 1), (x + 1, y), (x, y - 1), (x - 1, y))
+                if n in self.walk]
+
+    def _map_bfs(self, sources):
+        dist = {}
+        queue = deque()
+        for c in sources:
+            if c not in dist:
+                dist[c] = 0
+                queue.append(c)
+        while queue:
+            cell = queue.popleft()
+            for n in self._map_neighbors(cell):
+                if n not in dist:
+                    dist[n] = dist[cell] + 1
+                    queue.append(n)
+        return dist
+
+    def step_toward(self, current, target, speed):
+        """Same nav::next_cell mirror as Referee.step_toward, evaluated on
+        the instance walkable set."""
+        if target == current:
+            return current
+        dist = self._map_bfs([target])
+        if current not in dist:
+            return current
+        if dist[current] <= speed:
+            return target
+        cell = current
+        for _ in range(speed):
+            options = [n for n in self._map_neighbors(cell) if n in dist]
+            if not options:
+                break
+            cell = min(options, key=lambda n: (dist[n], n))
+        return cell
+
+
+def scenario_r5_two_worker_banking():
+    # R-5 "two-worker-full-cargo-banking". Both own workers present from
+    # turn 1 (mirrors the host counterexample's turn-1 training):
+    #   unit 0 -- the resident starter, on the (2,1) door (on-ring, so the
+    #            banana phase activates at turn 1: 2 workers + live ring
+    #            banana as the seed source); it has nothing to do (mother
+    #            unripe, no vacancies plantable without a seed) and WAITs;
+    #   unit 2 -- the second economy worker, cap 2 carrying 2 wood
+    #            (carry [0,0,0,0,0,2], free_capacity 0), in the east
+    #            corridor at (6,2); its ONLY task is banking, and every
+    #            route to a door crosses the protected mother cell (2,2);
+    #   unit 5 -- far opponent harvester at (12,2) (eta to the mother 10 >>
+    #            resident eta 1, so I-7 ownership never flips and the C5
+    #            protection stays engaged for the whole trace).
+    # The mother is size 4, fruits 0, cooldown 60: unripe for the whole
+    # 40-turn scenario, so the resident never gets a harvest task and the
+    # protected cell never changes.
+    return CustomMapReferee(
+        R5_MAP,
+        inventory=[0, 0, 0, 0, 0, 0],
+        plants={(2, 2): {"kind": "BANANA", "size": 4, "health": 6,
+                         "fruits": 0, "cd": 60}},
+        units={
+            0: unit_row(0, 0, (2, 1), cap=2, harvest=1, chop=1),
+            2: unit_row(2, 0, (6, 2), cap=2, harvest=0, chop=1,
+                        carry=[0, 0, 0, 0, 0, 2]),
+            5: unit_row(5, 1, (12, 2), cap=2, harvest=1, chop=0),
+        },
+    )
+
+
 def main_round3() -> int:
     """`--round3` flag: emit the scripted t5/t6 D-8-amendment traces.
 
