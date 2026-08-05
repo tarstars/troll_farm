@@ -46,3 +46,24 @@ Verdict for exact SHA `f29efd0e...`: **IMPLEMENTATION_INVALID**. Remaining host 
 gates stop for these bytes; no Arena mutation occurred. This does not reject bounded banana
 production as an algorithm. A successor needs a new hash and non-vacuous regressions for the
 failed behaviors. Full report: `banana-restoration-r2-host-review-2026-08-04.md`.
+
+## 2026-08-05 — banana restoration R2 successor rejected before host replay
+
+Claude's 76,386-byte successor SHA `280ed777...` fixes the first handoff's three defects. The exact
+source compiles; the new non-vacuous one-seed/surplus-bank, ownership-loss abandon, and
+ownership-loss convert regressions and their controls pass; detector self-tests pass 23/23; and a
+complete readable source is present.
+
+The successor is still **IMPLEMENTATION_INVALID**. Its conversion predicate estimates chop time
+as `ceil(current_health/chop_power)`, ignoring banana growth and health gain during the chop
+sequence. A size-2, health-4, cooldown-1 tree with chop power 1 is reported as four turns but needs
+five, which can reverse the required strict race against the opponent. The D-8/I-10a conflict also
+remains untested: the passing convert fixture starts from a pre-existing mother, so D-8's
+own-planted history never applies.
+
+Integrator ruling: after a real ownership flip, an exact feasible I-10a conversion overrides
+diagonal-mother protection; discretionary chopping while the mother remains owned is still
+forbidden. The next revision needs growth-aware travel/chop simulation and a red/green boundary,
+plus an amended detector and a non-vacuous own-planted flip/convert trace with an owned-mother
+negative control. Host replay/value gates remain stopped; no Arena mutation occurred. Full report:
+`banana-restoration-r2-successor-host-review-2026-08-05.md`.

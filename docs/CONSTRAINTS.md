@@ -118,6 +118,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   opponent-owned fruit; its static-opponent trace cannot test capture. The handoff also lacks a
   complete compilable readable source for research/compact equality. Do not submit, value-test,
   or reuse these exact bytes. [banana restoration R2 host review, 2026-08-04]
+- **Banana R2 successor `280ed777...` is also implementation-invalid before value or host replay
+  testing.** It repairs surplus banking, the ownership-loss state, and the readable artifact, but
+  its conversion test uses `ceil(current_health/chop_power)` and ignores health gained when a
+  banana grows during chopping. It can therefore choose conversion without completing strictly
+  before the opponent. Its passing convert trace uses a pre-existing mother and is vacuous for the
+  still exemption-free D-8 prohibition on chopping an own-planted diagonal mother. The ruled
+  contract permits exact feasible conversion only after ownership really flips; it continues to
+  forbid discretionary chops while owned. Require a growth-aware red/green boundary and a
+  non-vacuous own-planted flip trace before resuming gates. [banana restoration R2 successor host
+  review, 2026-08-05]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns

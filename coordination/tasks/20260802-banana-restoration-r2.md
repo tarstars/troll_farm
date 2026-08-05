@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: `IMPLEMENTATION_INVALID` for candidate SHA `f29efd0e...`; successor requires new hash
+- Status: `IMPLEMENTATION_INVALID` for successor SHA `280ed777...`; revision requires new hash
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-04T18:32:07Z
+- Last updated UTC: 2026-08-05T08:11:38Z
 
 ## Outcome
 
@@ -126,3 +126,19 @@ the reviewed conversion-or-abandon response; and the handoff lacks the complete 
 readable source required for research/compact equality. Remaining replay and value gates stop for
 this exact hash. Full report:
 `data/analysis/live-agent-6553250/banana-restoration-r2-host-review-2026-08-04.md`.
+
+## Successor handoff verdict — 2026-08-05
+
+Claude's 76,386-byte successor SHA `280ed777...` independently compiles and passes the new
+non-vacuous one-seed, abandon, and convert regressions plus their controls; it also supplies the
+missing complete readable source. It remains `IMPLEMENTATION_INVALID`: the conversion predicate
+uses `ceil(current_health / chop_power)` and can underestimate completion when a banana grows and
+gains health during chopping. The D-8/I-14 no-diagonal-chop rule also still contradicts I-10a on an
+own-planted mother; the passing t4 trace is pre-existing and therefore vacuous for D-8.
+
+Integrator ruling: after a real ownership flip, exact feasible I-10a conversion overrides mother
+protection; all discretionary chops while owned remain forbidden. A successor needs exact
+growth-aware travel/chop arithmetic, a red/green near-growth boundary, an amended spec/detector,
+and an own-planted flip/convert trace plus owned-mother negative control. Remaining replay/value
+gates stop for exact SHA `280ed777...`. Full report:
+`data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md`.
