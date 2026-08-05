@@ -1,0 +1,103 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   7
+  ],
+  "margin": 3,
+  "opp_inventory": [
+   3,
+   22,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 25,
+  "score": 28
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 4
+ },
+ "flags": [],
+ "map_id": "m053",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   7
+  ],
+  "margin": 3,
+  "opp_inventory": [
+   3,
+   22,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 25,
+  "score": 28
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 86028121,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 4,
+   "detector": "D-9",
+   "episodes": [
+    {
+     "kind": "banana_before_train",
+     "turn_end": 52,
+     "turn_start": 52,
+     "unit": 0,
+     "verb": "PICK"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 53,
+     "turn_start": 53,
+     "unit": 0,
+     "verb": "PLANT"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 58,
+     "turn_start": 58,
+     "unit": 0,
+     "verb": "PICK"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 59,
+     "turn_start": 59,
+     "unit": 0,
+     "verb": "PLANT"
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

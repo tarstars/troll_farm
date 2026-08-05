@@ -185,6 +185,20 @@
       "documented_defect": "r4 host review finding 1 (MULTI_UNIT_COORDINATION): the BananaBot protected-mother forbidden-landing re-resolution (block-i1 C5 third layer) displaces the full second worker's one-step banking landing every other turn - locally a 38-state (4,2)<->(3,2) MOVE alternation with carry [0,0,0,0,0,2] and no DROP, the host's 225-turn (8,4)<->(8,3) episode class; I-19/I-20/I-21 violated, D-1 by construction (diagnosis-r5-2026-08-05.md)"
     }
   ],
+  "external_checks": [
+    {
+      "name": "fuzz-panel",
+      "cmd": ["python3", "fuzz_panel.py",
+              "--config", "fuzz-panel-config.json",
+              "--report", "../banana-restoration-r2/fuzz/fuzz-report-latest.md",
+              "--json", "../banana-restoration-r2/fuzz/fuzz-report-latest.json",
+              "--save-failures", "../banana-restoration-r2/fuzz/failures"],
+      "cwd": ".",
+      "timeout": 5400,
+      "ledger_class": "UNSAMPLED_STATE_SPACE",
+      "note": "randomized closed-loop property panel (final gate); pre_review runs it after the four built-in checks; a fuzz BLOCK is a pre-review BLOCK"
+    }
+  ],
   "claims": {
     "path": "banana-r2-claims.json",
     "critical_invariants": ["I-9", "I-10a", "I-7", "D-8", "I-19", "I-20", "I-21"]

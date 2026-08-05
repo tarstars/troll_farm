@@ -119,6 +119,26 @@
       "pre_review_check": "claims-coverage"
     },
     {
+      "id": "UNSAMPLED_STATE_SPACE",
+      "name": "Green hand-constructed suites sample too little of the state space",
+      "description": "Every committed scenario suite and gate is green, yet the defect lives in a state region no hand-constructed scenario visits: five hand-built suites in a row (rounds 1-5) were green while broader host panels kept finding real defects. Canonical instance: the round-4 host review terminal failure on map seed 9,854,000 seat 0 - a 225-turn full-cargo two-cell oscillation in a choke/articulation-corridor geometry (door routes forced through single cells) that none of the committed trace maps contained; the round-5 diagnosis reproduced it only after purpose-building that geometry class (R5_MAP). Hand-picked geometries systematically miss articulation corridors, seat mirrors, adversarial opponent mixes, and long-horizon multi-unit closed-loop interactions. Detection is mechanized: the fuzz-panel gate (claude_1/pipeline/fuzz_panel.py) runs seeded randomized closed-loop games of candidate AND parent on identical generated maps across declared geometry classes (>= 20% choke corridors, both seats, mixed opponent profiles) and asserts P0-P4 on every candidate game (D-1..D-9 zero episodes, R-5 full-cargo alternation, orchard-eligible dormancy byte-equality vs parent, rolling 60-turn liveness floor).",
+      "origin": [
+        {
+          "review": "data/analysis/live-agent-6553250/banana-restoration-r2-round4-host-review-2026-08-05.md",
+          "finding": 1,
+          "quote": "a full second worker carrying two wood oscillates between two cells for 225 consecutive turns instead of returning to a door and dropping its cargo"
+        },
+        {
+          "review": "claude_1/banana-restoration-r2/diagnosis-r5-2026-08-05.md",
+          "finding": "round-4/5 pattern analysis",
+          "quote": "on map seed 9,854,000 seat 0 vs gold_adaptive, worker 2 (carry [0,0,0,0,0,2], free_capacity 0) alternates (8,4)<->(8,3) for 225 turns (t34-t258) ... the single articulation cell between the east corridor and both doors"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "fuzz-panel",
+      "gate": "claude_1/pipeline/fuzz_panel.py via the fuzz-panel external check in banana-r2-task-config.json (config claude_1/pipeline/fuzz-panel-config.json: seed list, class mix with 25% choke-corridor, opponent mix, N=120 maps x both seats, 200-turn closed-loop games); pre_review runs it last and a fuzz BLOCK is a pre-review BLOCK"
+    },
+    {
       "id": "MISSING_DELIVERABLE",
       "name": "Declared deliverable absent or non-runnable",
       "description": "A contract deliverable (readable source, manifest, oracle module, gate artifact) is missing or incomplete, so acceptance checks that depend on it are not runnable. Canonical instance: round-1's branch had readable insertion fragments but no complete compilable readable research source, blocking acceptance checks 2/3 and research-versus-compact replay equality.",

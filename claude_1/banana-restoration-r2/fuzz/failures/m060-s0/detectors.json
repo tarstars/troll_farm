@@ -1,0 +1,139 @@
+[
+ {
+  "count": 3,
+  "detector": "D-1",
+  "episodes": [
+   {
+    "cells": [
+     [
+      2,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "k": 3,
+    "turn_end": 46,
+    "turn_start": 40,
+    "unit": 0
+   },
+   {
+    "cells": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "k": 13,
+    "turn_end": 30,
+    "turn_start": 3,
+    "unit": 2
+   },
+   {
+    "cells": [
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "k": 77,
+    "turn_end": 200,
+    "turn_start": 46,
+    "unit": 2
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 3,
+  "detector": "D-6",
+  "episodes": [
+   {
+    "cell": [
+     2,
+     1
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 6,
+    "turn_end": 157,
+    "turn_start": 156,
+    "unit": null
+   },
+   {
+    "cell": [
+     2,
+     1
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 174,
+    "turn_start": 173,
+    "unit": null
+   },
+   {
+    "cell": [
+     2,
+     1
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 175,
+    "turn_start": 174,
+    "unit": null
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

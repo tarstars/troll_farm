@@ -1,0 +1,156 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   14,
+   0,
+   27
+  ],
+  "margin": 122,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 122
+ },
+ "class": "open_field",
+ "detector_counts": {
+  "D-1": 4,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "candidate_episodes": [
+    {
+     "cells": [
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "k": 3,
+     "turn_end": 71,
+     "turn_start": 65,
+     "unit": 0
+    },
+    {
+     "cells": [
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "k": 3,
+     "turn_end": 192,
+     "turn_start": 186,
+     "unit": 0
+    },
+    {
+     "cells": [
+      [
+       0,
+       1
+      ],
+      [
+       0,
+       0
+      ]
+     ],
+     "k": 3,
+     "turn_end": 55,
+     "turn_start": 49,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       4
+      ]
+     ],
+     "k": 3,
+     "turn_end": 144,
+     "turn_start": 138,
+     "unit": 2
+    }
+   ],
+   "detail": "candidate D-1 episodes (4) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only",
+   "flag": "inherited-parent-D1",
+   "parent_episodes": [
+    {
+     "cells": [
+      [
+       7,
+       4
+      ],
+      [
+       8,
+       4
+      ]
+     ],
+     "k": 78,
+     "turn_end": 200,
+     "turn_start": 44,
+     "unit": 2
+    }
+   ]
+  }
+ ],
+ "map_id": "m071",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   4
+  ],
+  "margin": 17,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 17
+ },
+ "profile": "idle",
+ "seat": 0,
+ "seed": 86028121,
+ "turns": 200,
+ "violations": []
+}

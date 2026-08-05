@@ -1,0 +1,111 @@
+[
+ {
+  "count": 2,
+  "detector": "D-1",
+  "episodes": [
+   {
+    "cells": [
+     [
+      9,
+      2
+     ],
+     [
+      8,
+      2
+     ]
+    ],
+    "k": 4,
+    "turn_end": 200,
+    "turn_start": 192,
+    "unit": 0
+   },
+   {
+    "cells": [
+     [
+      7,
+      2
+     ],
+     [
+      8,
+      2
+     ]
+    ],
+    "k": 10,
+    "turn_end": 29,
+    "turn_start": 9,
+    "unit": 2
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-6",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 3,
+  "detector": "D-7",
+  "episodes": [
+   {
+    "kind": "carried_overage",
+    "provenance": "harvest",
+    "turn_end": 200,
+    "turn_start": 187,
+    "unit": 0
+   },
+   {
+    "kind": "unbanked_at_end",
+    "provenance": "harvest",
+    "turn_end": 200,
+    "turn_start": 187,
+    "unit": 0
+   },
+   {
+    "kind": "unbanked_at_end",
+    "provenance": "harvest",
+    "turn_end": 200,
+    "turn_start": 192,
+    "unit": 0
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

@@ -1,0 +1,145 @@
+[
+ {
+  "count": 0,
+  "detector": "D-1",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 8,
+  "detector": "D-6",
+  "episodes": [
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 53,
+    "turn_start": 52,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 64,
+    "turn_start": 63,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 98,
+    "turn_start": 97,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 109,
+    "turn_start": 108,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 120,
+    "turn_start": 119,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 142,
+    "turn_start": 141,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 164,
+    "turn_start": 163,
+    "unit": null
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 187,
+    "turn_start": 186,
+    "unit": null
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

@@ -1,0 +1,249 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   4
+  ],
+  "margin": -19,
+  "opp_inventory": [
+   0,
+   24,
+   0,
+   12,
+   0,
+   0
+  ],
+  "opp_score": 36,
+  "score": 17
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 3,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 2,
+  "D-7": 0,
+  "D-8": 6,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m030",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   7
+  ],
+  "margin": 26,
+  "opp_inventory": [
+   0,
+   2,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 2,
+  "score": 28
+ },
+ "profile": "harvester",
+ "seat": 1,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 3,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       8,
+       3
+      ],
+      [
+       9,
+       3
+      ]
+     ],
+     "k": 9,
+     "turn_end": 37,
+     "turn_start": 18,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       9,
+       3
+      ],
+      [
+       10,
+       3
+      ]
+     ],
+     "k": 20,
+     "turn_end": 89,
+     "turn_start": 48,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       10,
+       3
+      ],
+      [
+       9,
+       3
+      ]
+     ],
+     "k": 51,
+     "turn_end": 200,
+     "turn_start": 98,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "count": 2,
+   "detector": "D-6",
+   "episodes": [
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 76,
+     "turn_start": 75,
+     "unit": null
+    },
+    {
+     "cell": [
+      11,
+      3
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 124,
+     "turn_start": 123,
+     "unit": null
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "count": 6,
+   "detector": "D-8",
+   "episodes": [
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "completion_turn": 94,
+     "eta_opp_at_chop_start": 4,
+     "exact_chop_turns": 6,
+     "flip_turn": 45,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 93,
+     "reason": "flip_but_infeasible",
+     "turn_end": 89,
+     "turn_start": 89,
+     "unit": 2
+    },
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "completion_turn": 94,
+     "eta_opp_at_chop_start": 4,
+     "exact_chop_turns": 6,
+     "flip_turn": 45,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 93,
+     "reason": "flip_but_infeasible",
+     "turn_end": 90,
+     "turn_start": 90,
+     "unit": 2
+    },
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "completion_turn": 94,
+     "eta_opp_at_chop_start": 4,
+     "exact_chop_turns": 6,
+     "flip_turn": 45,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 93,
+     "reason": "flip_but_infeasible",
+     "turn_end": 91,
+     "turn_start": 91,
+     "unit": 2
+    },
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "completion_turn": 94,
+     "eta_opp_at_chop_start": 4,
+     "exact_chop_turns": 6,
+     "flip_turn": 45,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 93,
+     "reason": "flip_but_infeasible",
+     "turn_end": 92,
+     "turn_start": 92,
+     "unit": 2
+    },
+    {
+     "cell": [
+      10,
+      3
+     ],
+     "completion_turn": 94,
+     "eta_opp_at_chop_start": 4,
+     "exact_chop_turns": 6,
+     "flip_turn": 45,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 93,
+     "reason": "flip_but_infeasible",
+     "turn_end": 93,
+     "turn_start": 93,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 1], free_capacity 0) exhibits a two-cell alternation cells (8, 3)<->(9, 3) over turns 18-37 (20 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+   "property": "P2",
+   "unit": 2
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "margin": 21,
+  "opp_inventory": [
+   0,
+   0,
+   3,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 3,
+  "score": 24
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 2,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m066",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "margin": 17,
+  "opp_inventory": [
+   0,
+   0,
+   3,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 3,
+  "score": 20
+ },
+ "profile": "harvester",
+ "seat": 1,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 2,
+   "detector": "D-4",
+   "episodes": [
+    {
+     "kind": "no_progress",
+     "turn_end": 3,
+     "turn_start": 1,
+     "unit": 2
+    },
+    {
+     "kind": "no_progress",
+     "turn_end": 10,
+     "turn_start": 8,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2
+  ],
+  "margin": -46,
+  "opp_inventory": [
+   25,
+   0,
+   0,
+   29,
+   0,
+   0
+  ],
+  "opp_score": 54,
+  "score": 8
+ },
+ "class": "open_field",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m023",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   9
+  ],
+  "margin": 30,
+  "opp_inventory": [
+   6,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 6,
+  "score": 36
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 86028121,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       1,
+       2
+      ],
+      [
+       0,
+       2
+      ]
+     ],
+     "k": 96,
+     "turn_end": 200,
+     "turn_start": 7,
+     "unit": 0
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": {
+    "parent_progress_turns": [
+     13,
+     15,
+     27,
+     32,
+     50,
+     57,
+     58,
+     59,
+     62,
+     63
+    ],
+    "why": "candidate makes no progress over turns 7-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 7
+   },
+   "property": "P4"
+  }
+ ]
+}

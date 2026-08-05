@@ -1,0 +1,91 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   1,
+   0,
+   17,
+   0,
+   16
+  ],
+  "margin": 82,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 82
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m021",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   7
+  ],
+  "margin": 28,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 28
+ },
+ "profile": "idle",
+ "seat": 0,
+ "seed": 49979687,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       2,
+       2
+      ],
+      [
+       2,
+       1
+      ]
+     ],
+     "k": 3,
+     "turn_end": 12,
+     "turn_start": 6,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

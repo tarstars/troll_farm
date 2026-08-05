@@ -1,0 +1,103 @@
+{
+ "attempt": 1,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "margin": 4,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 4
+ },
+ "class": "single_door_tent",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 4
+ },
+ "flags": [],
+ "map_id": "m112",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "margin": 4,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 4
+ },
+ "profile": "chopper_aggressor",
+ "seat": 0,
+ "seed": 67867967,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 4,
+   "detector": "D-9",
+   "episodes": [
+    {
+     "kind": "banana_before_train",
+     "turn_end": 41,
+     "turn_start": 41,
+     "unit": 0,
+     "verb": "PICK"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 42,
+     "turn_start": 42,
+     "unit": 0,
+     "verb": "PLANT"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 47,
+     "turn_start": 47,
+     "unit": 0,
+     "verb": "PICK"
+    },
+    {
+     "kind": "banana_before_train",
+     "turn_end": 48,
+     "turn_start": 48,
+     "unit": 0,
+     "verb": "PLANT"
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

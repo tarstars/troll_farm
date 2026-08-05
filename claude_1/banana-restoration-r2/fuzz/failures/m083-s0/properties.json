@@ -1,0 +1,130 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   1,
+   0,
+   0,
+   1,
+   0,
+   1
+  ],
+  "margin": -44,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   50,
+   0,
+   0
+  ],
+  "opp_score": 50,
+  "score": 6
+ },
+ "class": "open_field",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 15,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m083",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 86028121,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 15,
+   "detector": "D-6",
+   "episodes": [
+    {
+     "cell": [
+      0,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 46,
+     "turn_start": 45,
+     "unit": null
+    },
+    {
+     "cell": [
+      0,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 52,
+     "turn_start": 51,
+     "unit": null
+    },
+    {
+     "cell": [
+      0,
+      6
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 81,
+     "turn_start": 80,
+     "unit": null
+    },
+    {
+     "cell": [
+      1,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 6,
+     "turn_end": 86,
+     "turn_start": 85,
+     "unit": null
+    },
+    {
+     "cell": [
+      0,
+      6
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 96,
+     "turn_start": 95,
+     "unit": null
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

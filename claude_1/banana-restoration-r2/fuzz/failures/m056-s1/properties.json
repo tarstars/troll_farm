@@ -1,0 +1,128 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   16,
+   0,
+   34
+  ],
+  "margin": 53,
+  "opp_inventory": [
+   17,
+   0,
+   23,
+   59,
+   0,
+   0
+  ],
+  "opp_score": 99,
+  "score": 152
+ },
+ "class": "forest_dense",
+ "detector_counts": {
+  "D-1": 3,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m056",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   27
+  ],
+  "margin": 45,
+  "opp_inventory": [
+   11,
+   0,
+   24,
+   28,
+   0,
+   0
+  ],
+  "opp_score": 63,
+  "score": 108
+ },
+ "profile": "harvester",
+ "seat": 1,
+ "seed": 32452843,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 3,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       9,
+       1
+      ],
+      [
+       9,
+       2
+      ]
+     ],
+     "k": 3,
+     "turn_end": 105,
+     "turn_start": 99,
+     "unit": 0
+    },
+    {
+     "cells": [
+      [
+       9,
+       1
+      ],
+      [
+       9,
+       2
+      ]
+     ],
+     "k": 3,
+     "turn_end": 165,
+     "turn_start": 159,
+     "unit": 0
+    },
+    {
+     "cells": [
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "k": 6,
+     "turn_end": 29,
+     "turn_start": 17,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (5, 2)<->(6, 2) over turns 17-29 (13 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+   "property": "P2",
+   "unit": 2
+  }
+ ]
+}
