@@ -2772,12 +2772,10 @@ mod bot {
                         commands[slot] = "WAIT".to_string();
                     }
                 }
-                let banana_forbidden: BTreeSet<Cell> = mother.into_iter().collect();
-                MoisanBot::resolve_move_conflicts_with_priority_and_forbidden(
+                MoisanBot::resolve_move_conflicts_with_priority(
                     view,
                     &mut commands,
                     &BTreeSet::from([worker_id]),
-                    &banana_forbidden,
                 );
                 commands
             }
