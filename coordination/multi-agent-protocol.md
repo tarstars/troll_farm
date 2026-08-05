@@ -94,10 +94,54 @@ YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md
 ```
 
 Kinds: `claim`, `progress`, `question`, `blocker`, `policy`, `stop`, `takeover`,
-`handoff`, `ack`, `release`, `integrated`. Messages are immutable once published; here
-**published means committed and pushed to `origin`**. A correction is a new pushed message
-naming the superseded file. All kinds except `progress`, `ack`, `release` and `integrated`
-require an `ack` from the recipient's own namespace.
+`handoff`, `ack`, `release`, `integrated`, `correction`. Messages are immutable once
+published; here **published means committed and pushed to `origin`**. A correction is a
+new pushed `correction` message at a new immutable path whose `supersedes` array names the
+exact superseded message path; the superseded message stays immutable and visible. Moving
+or copying an old message between refs is not a new coordination event. All kinds except
+`progress`, `ack`, `release` and `integrated` require an `ack` from the recipient's own
+namespace (`correction` requires acknowledgement by default).
+
+**Transport schema v2** (mandatory for newly created messages once announced; task
+`20260805-coordination-transport-hardening`). Every new message starts with YAML front
+matter declaring `schema_version: 2`; list fields are single-line JSON arrays parsed with
+`json.loads` (no PyYAML):
+
+```yaml
+---
+schema_version: 2
+type: handoff
+task_id: 20260805-example
+from: claude_1
+to: local_codex_1
+cc: ["user"]
+message_id: coordination/messages/claude_1/20260805T100000Z-20260805-example-handoff.md
+requires_ack: true
+ack_for: []
+supersedes: []
+created_utc: 2026-08-05T10:00:00Z
+---
+```
+
+`message_id` must equal the repository-relative path at which the body is read, and `from`
+must equal the sender namespace in that path. `ack_for` and `supersedes` hold exact
+repository-relative immutable message paths — never task ids or timestamps. A v2 `ack` has
+a non-empty `ack_for` and covers exactly the listed paths, nothing else; an ACK may itself
+set `requires_ack: true`, in which case the response targets that ACK's exact path.
+Filename timestamps are human-readable ordering hints only.
+
+A v2 `handoff` additionally carries `artifact_ref` (the sender's canonical branch,
+`agent/<sender-id>`), `artifact_commit` (a full 40-hex object), and `artifact_paths` (a
+single-line JSON array). **Canonical publication rule:** a v2 handoff is valid only when
+`artifact_commit` is reachable from `refs/remotes/origin/<artifact_ref>`, every
+`artifact_path` exists in that commit, and the handoff message itself is present on
+canonical `refs/remotes/origin/agent/<sender-id>`. Publish artifacts first, then the
+handoff message in a later commit on the same canonical branch. Remote task branches
+remain inspectable evidence but cannot alone satisfy a v2 handoff.
+
+Legacy messages (no `schema_version`, or < 2) remain readable indefinitely; the old
+task-plus-timestamp ACK rule is fallback only for legacy messages and must never
+acknowledge a v2 message. The 689 existing immutable message paths are never rewritten.
 
 **Handoffs** — a message using `templates/handoff.md`. A statement such as "done" without
 an inspectable commit and validation evidence is not a handoff. A handoff that has not been
@@ -249,8 +293,56 @@ pushed, published, or completed anything.
 
 The remote transport went live on 2026-07-29 (`session-2026-07-01` pushed through
 `2ebb5c6`): remote agents can clone, branch as `agent/<id>`, and their messages become
-fetchable. `scripts/inbox_sweep.py --fetch` sweeps remote refs, local refs, and the working
-tree alike, but only the remote-ref result is authoritative for cross-agent coordination.
+fetchable. Since the 2026-08-05 transport hardening, `scripts/inbox_sweep.py` counts
+**only `refs/remotes/origin/**`** as authoritative for cross-agent delivery and
+acknowledgement; local branches and the working tree appear only behind
+`--include-local`, labeled diagnostic/unpublished, and never change counts or exit
+status.
+
+**Inbox sweep exit semantics:** exit 0 — healthy inbox, nothing unacknowledged; exit 1 —
+healthy inbox with unacknowledged ack-required messages in the current selection; exit 2 —
+transport/schema/delivery error (failed `--fetch` prints Git stderr and labels the inbox
+`STALE / NOT AUTHORITATIVE`; an immutable path with different bytes on two remote refs is
+an immutable-path collision; a malformed or incomplete addressed v2 message appears under
+`delivery errors`). Repeatable `--task <exact-task-id>` and `--sender <exact-agent-id>`
+filters affect display and `--mark` only, never parsing/validation.
+
+**Seen state:** newness is exact-path membership in agent-owned
+`<agent-id>/inbox-seen.json` (deterministic, atomically written by `--mark`), not a
+timestamp watermark. Marking a message seen does not acknowledge it. On the first run
+without a seen-state file, the legacy `<agent-id>/inbox-watermark.txt` is read once as a
+migration hint (existing messages at or before it count as seen); the legacy file is never
+rewritten or deleted.
+
+**Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
+agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
+
+```bash
+# claude_1
+python3 scripts/inbox_sweep.py --me claude_1 --fetch          # review; exit 2 = transport error
+python3 scripts/inbox_sweep.py --me claude_1 --fetch --mark   # writes claude_1/inbox-seen.json
+git add claude_1/inbox-seen.json
+git commit -m "claude_1: migrate inbox seen-state to inbox-seen.json"
+git push origin agent/claude_1
+
+# local_codex_1
+python3 scripts/inbox_sweep.py --me local_codex_1 --fetch
+python3 scripts/inbox_sweep.py --me local_codex_1 --fetch --mark
+git add local_codex_1/inbox-seen.json
+git commit -m "local_codex_1: migrate inbox seen-state to inbox-seen.json"
+git push origin agent/local_codex_1
+
+# chatgpt_1
+python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch
+python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch --mark
+git add chatgpt_1/inbox-seen.json
+git commit -m "chatgpt_1: migrate inbox seen-state to inbox-seen.json"
+git push origin agent/chatgpt_1
+```
+
+Do not blanket-acknowledge a backlog by timestamp: acknowledge actionable messages by
+exact path, publish a pushed legacy-backlog audit for the rest, and mark paths seen only
+after the ACK/audit commit is remotely verified (task record §Historical-backlog rollout).
 
 **Operational shorthand:** unpushed = unsent; unverified push = not yet sent; chat is an
 alert channel, not the coordination bus.
