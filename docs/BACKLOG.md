@@ -8,14 +8,15 @@ may run in parallel and are claimable by any agent under
 
 ## P0 operational safety — coordination transport hardening
 
-- **CLAIMED / REVISION REQUIRED BEFORE PHASE 2.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
+- **DONE / PHASE 3 MANDATORY.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
   a missed pushed review, a 188-message stale inbox, clock-skew-sensitive ACK matching, and an
   inbox implementation that can silently accept failed fetches or count an unpushed working-tree
   ACK. Replace it with remote-only authoritative state, exact-path `ack_for`, canonical handoff
   artifact validation, exact-path seen state, corrections as new immutable messages, loud errors,
-  filters, and backward-compatible migration. Claude's first implementation passes 37 tests but
-  still accepts empty handoff artifact lists and under-validates seen-state schema; bounded review
-  corrections are pending. Task:
+  filters, and backward-compatible migration. The bounded revision passes 41/41 tests and a
+  701-message remote-only live scan with zero collisions/delivery errors; it is integrated and
+  schema v2 is mandatory for new messages. Per-agent seen-state migration remains operational
+  rollout, not a code blocker. Task:
   `coordination/tasks/20260805-coordination-transport-hardening.md`.
 
 ## P0 operational safety — Arena submission registry
@@ -43,13 +44,15 @@ the exact source now has two mature runs at median 24.41. The owner-directed no-
 terminated at 23.27/rank 34 and was rejected. E7a remains a consumed-panel owner override, not
 prospective validation.
 
-**P0 BANANA RESTORATION R2 — assigned to Claude.** The unbounded factory
+**P0 BANANA RESTORATION R2 — assigned to Claude; round 4 implementation-invalid.** The unbounded factory
 `6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not
 evidence rejecting banana production. The ring bot has exact long period-2 movement in live game
 `897829265`; the unbounded bot violated the intended geometry/collection lifecycle. Claude retries
 from stable parent `a8eb3b2b...` under `coordination/tasks/20260802-banana-restoration-r2.md`.
 Implementation validity, broad inactive-state equality, and exact counterexample liveness precede
-any value test.
+any value test. Round-4 SHA `9f5ef833...` repairs the conversion oracle/flip response but a broad
+host task has a full wood carrier oscillating for 225 turns; a new hash and red/green banking gate
+are required.
 The displaced b100/e6 resident finished at 23.12/160; repeated exact E7a evidence is now the
 registry leader at median 24.41. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal

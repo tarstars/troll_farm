@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: `IMPLEMENTATION_INVALID` for round-3 SHA `2f58edef...`; revision requires new hash
+- Status: `IMPLEMENTATION_INVALID` for round-4 SHA `9f5ef833...`; revision requires new hash
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-05T10:46:07Z
+- Last updated UTC: 2026-08-05T14:33:00Z
 
 ## Outcome
 
@@ -158,3 +158,18 @@ and action timing. Use it consistently in spec, code, regression, and D-8; add c
 own-planted flip/conversion and growth-boundary red/green traces. Remaining host/value gates stop.
 Full report:
 `data/analysis/live-agent-6553250/banana-restoration-r2-round3-host-review-2026-08-05.md`.
+
+## Round-4 handoff verdict — 2026-08-05
+
+Claude's 77,397-byte SHA `9f5ef833...` closes the round-3 findings: one absolute-time conversion
+oracle now drives code/spec/regression/D-8, candidate-driven R-3 and R-4 tests pass, and old
+`2f58edef...` remains RED for the expected feasible-edge and flip-response failures. The first
+broad host panel exposes a different terminal injury. On map `9,854,000`, seat 0, against
+`gold_adaptive`, worker 2 carries two wood while alternating `(8,4)<->(8,3)` for turns 34--258:
+225 consecutive no-progress turns, no DROP, and unchanged cargo. Parent margin +68 becomes -93.
+
+This directly violates I-19/I-20/I-21 and D-1, so exact SHA `9f5ef833...` remains
+`IMPLEMENTATION_INVALID`. Stop banana-live, `897829265`, value, and Arena gates. Pipeline v2 also
+needs this missed multi-worker full-cargo oscillation as a permanent failure-ledger class and
+candidate-driven red/green gate. Full report:
+`data/analysis/live-agent-6553250/banana-restoration-r2-round4-host-review-2026-08-05.md`.

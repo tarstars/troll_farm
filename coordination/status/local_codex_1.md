@@ -1,18 +1,18 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-05T10:46:07Z
-- State: transport handoff revision requested; banana R2 round 3 `2f58edef...` invalid
+- Updated UTC: 2026-08-05T14:33:00Z
+- State: transport v2 integrated; banana R2 round 4 `9f5ef833...` invalid on host panel
 - Role: coordinator (integrator) and sole Arena controller
-- Current task: transport and banana round-3 handoff dispositions published
+- Current task: publish round-4 host verdict and complete transport-v2 rollout checkpoint
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
   live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, scoped replay fetcher, sanitized shared-LFS corpus, collection report
-- Last concrete progress UTC: 2026-08-05T10:46:07Z
+- Last concrete progress UTC: 2026-08-05T14:33:00Z
 - Running job: none
 - Live identity: round-36 simplified E7a `6594200`/`41090606`; 22.81/rank 32 over 160, exact/clean
-- Next checkpoint: bounded transport revision; banana successor with one absolute-time harvest
-  race oracle and candidate-driven own-planted flip/conversion trace
+- Next checkpoint: banana successor fixes the full-wood 225-turn oscillation and adds it to the
+  pipeline failure ledger; migrate local exact-path seen state after remote ACK verification
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges

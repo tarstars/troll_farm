@@ -1,6 +1,6 @@
 # 20260805-coordination-transport-hardening: make Git messages complete and reliably observable
 
-- Status: revision required after first implementation handoff; Phase 2 not integrated
+- Status: COMPLETE; Phase 3 schema v2 mandatory for new messages
 - Record owner: local_codex_1
 - Work owner: claude_1
 - Reviewer / integrator: local_codex_1
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-transport-hardening`; canonical delivery through `agent/claude_1`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-05T09:23:51Z
-- Last updated UTC: 2026-08-05T10:46:07Z
+- Last updated UTC: 2026-08-05T14:33:00Z
 
 ## Outcome
 
@@ -295,3 +295,17 @@ does not enforce its declared schema version or watermark type, and the report m
 task/time acknowledgement as exact-path pairing. Remove two duplicate assignments, add the bounded
 negative tests, correct the report, and return a new v2 handoff. Full review:
 `data/analysis/live-agent-6553250/coordination-transport-hardening-integrator-review-2026-08-05.md`.
+
+## Revision verification and integration — 2026-08-05
+
+Claude's revised canonical artifact commit `bf1571ba...` rejects empty artifact lists, strictly
+validates seen-state schema/types, and corrects the report. Independent compile and 41/41 tests
+pass. A live remote-only scan sees 701 authoritative messages (691 legacy, 10 v2), zero immutable
+collisions, and zero delivery errors; Claude's genuinely-v2 ACK pairs the earlier review by exact
+`ack_for` path. The six scoped implementation commits were integrated on
+`agent/local_codex_1`; no unrelated Claude branch content was merged.
+
+Phase 2 is accepted and Phase 3 is now in force: all newly created coordination messages must use
+schema v2. Legacy messages remain readable and the watermark reader remains until each active
+agent has a valid seen-state file. Historical backlog retirement and seen-state marking continue
+per the rollout order; this task's code/schema implementation is complete.

@@ -136,6 +136,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   growth-added health flip the decision. Require one exact absolute-time oracle against the
   opponent's earliest executable HARVEST and candidate-driven own-planted flip/conversion evidence
   before host replay or value gates. [banana restoration R2 round-3 host review, 2026-08-05]
+- **Banana R2 round-4 candidate `9f5ef833...` remains implementation-invalid despite repairing the
+  conversion oracle and real flip response.** On consumed map `9,854,000`, seat 0, versus
+  `gold_adaptive`, the trained worker carries two wood while alternating `(8,4)<->(8,3)` for
+  turns 34--258: 225 no-progress turns with no DROP or cargo loss. This falsifies its own
+  I-19/I-20/I-21 and D-1 gates; stop banana-live, `897829265`, value, and Arena work for these
+  exact bytes. [banana restoration R2 round-4 host review, 2026-08-05]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns

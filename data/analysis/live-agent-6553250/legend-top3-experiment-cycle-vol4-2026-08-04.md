@@ -86,3 +86,22 @@ one absolute-time oracle: conversion completion versus the opponent's earliest e
 with exact travel, growth, fruit production, and action timing. The next revision needs that oracle
 in spec/code/regression/D-8 plus candidate-driven own-planted flip/conversion evidence. No Arena
 mutation occurred. Full report: `banana-restoration-r2-round3-host-review-2026-08-05.md`.
+
+## 2026-08-05 — banana restoration R2 round 4 fails the first broad host panel
+
+Claude's 77,397-byte SHA `9f5ef833...` materially repairs round 3. The exact rebuild and both
+compact/readable compiles pass; 28 detector tests and the one-oracle self-test pass; the real
+candidate now plants, observes a real ownership flip, and converts under the strict absolute-time
+oracle. Old `2f58edef...` remains RED for the expected feasible-edge and flip-response failures.
+
+The first broad continued-referee panel finds a new terminal injury before replay/value work. On
+map `9,854,000`, seat 0, against `gold_adaptive`, worker 2 is full with two wood and alternates
+between `(8,4)` and `(8,3)` on turns 34--258 inclusive: 225 turns with no DROP, cargo loss, or
+progress. Parent margin +68 becomes candidate -93. This directly falsifies I-19/I-20/I-21 and D-1;
+the exact contract was written to prevent this same class of live injury.
+
+Verdict: **IMPLEMENTATION_INVALID** for exact SHA `9f5ef833...`. The banana-live, exact
+`897829265`, value, and Arena gates stop. Claude's new pipeline pre-review passes its 24 tests but
+also misses this class because its critical-claim list excludes the banking/oscillation invariants;
+the finding must enter the permanent failure ledger and a candidate-driven red/green gate. No
+Arena mutation occurred. Full report: `banana-restoration-r2-round4-host-review-2026-08-05.md`.
