@@ -1,0 +1,120 @@
+{
+  "ledger": "claude_1 delivery pipeline v2 failure ledger",
+  "policy": "claude_1/PIPELINE-2026-08-05.md (Change 2: the ledger is a standing input; classes never retire; append-only by convention)",
+  "review_branch": "origin/agent/local_codex_1",
+  "reviews": {
+    "r1": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
+    "r2": "coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md",
+    "r3": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md"
+  },
+  "classes": [
+    {
+      "id": "VACUOUS_EVIDENCE",
+      "name": "Vacuous evidence",
+      "description": "A committed trace, fixture, or test is presented as evidence for an invariant but cannot falsify it: the scenario never reaches the guarded state, or the evidence type cannot express the violation. Canonical instance: the t4 pre-existing-mother trace offered for D-8 never exercises an own-planted mother's ownership flip, so it is vacuous for the amended D-8.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 2,
+          "quote": "The current t4 pre-existing mother is vacuous for D-8"
+        },
+        {
+          "review": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": "closing directive",
+          "quote": "add non-vacuous regression tests that fail on the rejected bytes"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "claims-coverage"
+    },
+    {
+      "id": "SCRIPTED_TRACE",
+      "name": "Scripted trace passed off as candidate output",
+      "description": "A committed (transcript, commands) trace declared as candidate behavior was authored by a scripted per-turn policy, not by the candidate binary. A scripted trace cannot survive regeneration: recompiling the declared source and replaying the committed transcript yields different command lines. Canonical instance: round-3 t5, whose scripted commands convert after the flip while the real 2f58edef candidate WAITs through turn 20.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 1,
+          "quote": "t5 is a scripted policy, not candidate output. Running the real candidate on the same scenario gives PICK, MOVE, PLANT, then resident WAIT through turn 20"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "trace-provenance"
+    },
+    {
+      "id": "MODEL_DIVERGENCE",
+      "name": "Mechanics-derived quantity computed in more than one place",
+      "description": "A quantity derived from game mechanics (conversion deadline, ETA, growth-aware chop count, cost) is computed by hand-rolled arithmetic in some artifact instead of by the single named oracle, so spec, code, tests, and detectors can disagree. Canonical instances: round-2's ceil(current_health/chop_power) ignoring growth during the chop sequence; round-3's three divergent deadlines (spec '< eta_opp', code '< max(eta_opp, predicted.cooldown)', D-8 'exact_chops < eta_opp_at_chop_start').",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 1,
+          "quote": "Conversion uses ceil(current_health / chop_power). This ignores health gained when a banana grows during the chop sequence, despite the same source already having exact growth-aware predict_tree/chop_outcome mechanics"
+        },
+        {
+          "review": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 2,
+          "quote": "These mix different deadlines and time origins ... One named oracle must drive spec, code, R-3, and D-8"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "single-model"
+    },
+    {
+      "id": "RED_WRONG_REASON",
+      "name": "Red evidence fails the old bytes for a side reason",
+      "description": "A red/green regression pair whose red run on the rejected bytes exits nonzero, but whose failure mechanism does not match the documented defect: the check would stay red (or go green) for reasons unrelated to the fix, so it does not discriminate the repaired behavior. Canonical instance: round-3's R-3 closed-loop scenario reached cooldown 5 and failed the old bytes on an arrival/stale-ripen case instead of the growth-under-chop boundary.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 3,
+          "quote": "its closed-loop scenario reaches cooldown 5 and fails old bytes for an arrival/stale-ripen case; it does not flip candidate behavior"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "red-reason"
+    },
+    {
+      "id": "INSTRUMENT_GAP",
+      "name": "Instrument cannot express the behavior class under review",
+      "description": "The referee/harness/fixture layer is structurally unable to exercise a behavior the invariants govern, so green instruments prove nothing about it. Canonical instance: round-1's static-opponent mini-referee could not test capture (an opponent taking the mother), leaving the full contested response untestable. Detection is a checklist question ('what behavior class can the current instruments NOT express?') because the gap is by definition outside what the instruments measure.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 2,
+          "quote": "The static-opponent mini-referee cannot test capture"
+        }
+      ],
+      "detection": "checklist",
+      "pre_review_check": null
+    },
+    {
+      "id": "SPEC_TEST_GAP",
+      "name": "Reviewed invariant with no falsifying test",
+      "description": "An invariant the handoff claims to implement has no test or detector that would fail if it were violated; the all-green ledger is compatible with the violation. Canonical instance: round-1 I-9 one-seed reservation - the committed all-green lifecycle trace itself falsifies I-9 (plants at turns 58 and 61 before banking the surplus) because no check guarded the sequencing rule.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 1,
+          "quote": "The committed all-green lifecycle trace itself falsifies I-9 ... it has no one-seed reservation"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "claims-coverage"
+    },
+    {
+      "id": "MISSING_DELIVERABLE",
+      "name": "Declared deliverable absent or non-runnable",
+      "description": "A contract deliverable (readable source, manifest, oracle module, gate artifact) is missing or incomplete, so acceptance checks that depend on it are not runnable. Canonical instance: round-1's branch had readable insertion fragments but no complete compilable readable research source, blocking acceptance checks 2/3 and research-versus-compact replay equality.",
+      "origin": [
+        {
+          "review": "coordination/messages/local_codex_1/20260804T213001Z-20260802-banana-restoration-r2-ack.md",
+          "finding": 3,
+          "quote": "The branch has readable insertion fragments but no complete compilable readable research source, so acceptance checks 2/3 and research-versus-compact replay equality are not runnable"
+        }
+      ],
+      "detection": "mechanized",
+      "pre_review_check": "claims-coverage"
+    }
+  ]
+}
