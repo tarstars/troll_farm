@@ -1,0 +1,154 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   1,
+   16,
+   0,
+   2
+  ],
+  "margin": -8,
+  "opp_inventory": [
+   0,
+   0,
+   20,
+   13,
+   0,
+   0
+  ],
+  "opp_score": 33,
+  "score": 25
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 3,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "candidate_episodes": [
+    {
+     "cells": [
+      [
+       4,
+       2
+      ],
+      [
+       3,
+       2
+      ]
+     ],
+     "k": 12,
+     "turn_end": 29,
+     "turn_start": 4,
+     "unit": 2
+    }
+   ],
+   "detail": "candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only",
+   "flag": "inherited-parent-D1",
+   "parent_episodes": [
+    {
+     "cells": [
+      [
+       5,
+       2
+      ],
+      [
+       4,
+       2
+      ]
+     ],
+     "k": 10,
+     "turn_end": 24,
+     "turn_start": 3,
+     "unit": 2
+    }
+   ]
+  }
+ ],
+ "map_id": "m066",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "margin": 20,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 20
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 3,
+   "detector": "D-6",
+   "episodes": [
+    {
+     "cell": [
+      2,
+      2
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 41,
+     "turn_start": 40,
+     "unit": null
+    },
+    {
+     "cell": [
+      2,
+      2
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 53,
+     "turn_start": 52,
+     "unit": null
+    },
+    {
+     "cell": [
+      2,
+      2
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 65,
+     "turn_start": 64,
+     "unit": null
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 2)<->(3, 2) over turns 4-29 (26 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+   "property": "P2",
+   "unit": 2
+  }
+ ]
+}

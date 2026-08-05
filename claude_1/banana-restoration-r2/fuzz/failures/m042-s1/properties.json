@@ -1,0 +1,96 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "margin": 8,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "opp_score": 16,
+  "score": 24
+ },
+ "class": "water_diagonal",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m042",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "margin": 24,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 24
+ },
+ "profile": "chopper_aggressor",
+ "seat": 1,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       8,
+       2
+      ],
+      [
+       7,
+       2
+      ]
+     ],
+     "k": 6,
+     "turn_end": 29,
+     "turn_start": 16,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (8, 2)<->(7, 2) over turns 16-29 (14 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+   "property": "P2",
+   "unit": 2
+  }
+ ]
+}

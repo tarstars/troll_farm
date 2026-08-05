@@ -1,0 +1,169 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   6
+  ],
+  "margin": -15,
+  "opp_inventory": [
+   23,
+   0,
+   0,
+   17,
+   0,
+   0
+  ],
+  "opp_score": 40,
+  "score": 25
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 2,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 6,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m059",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "margin": -4,
+  "opp_inventory": [
+   24,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 24,
+  "score": 20
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 86028121,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 2,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     "k": 15,
+     "turn_end": 95,
+     "turn_start": 64,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     "k": 30,
+     "turn_end": 200,
+     "turn_start": 140,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "count": 6,
+   "detector": "D-6",
+   "episodes": [
+    {
+     "cell": [
+      1,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 114,
+     "turn_start": 113,
+     "unit": null
+    },
+    {
+     "cell": [
+      1,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 130,
+     "turn_start": 129,
+     "unit": null
+    },
+    {
+     "cell": [
+      1,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 146,
+     "turn_start": 145,
+     "unit": null
+    },
+    {
+     "cell": [
+      1,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 162,
+     "turn_start": 161,
+     "unit": null
+    },
+    {
+     "cell": [
+      1,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 178,
+     "turn_start": 177,
+     "unit": null
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}
