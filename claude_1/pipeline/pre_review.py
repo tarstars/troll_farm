@@ -28,6 +28,13 @@ banana-restoration-r2 rejections. Four mechanized checks:
                     ledger class must be fed by the config (or explicitly
                     waived with a reason).
 
+Additionally the config may declare "external_checks": commands run AFTER
+the four built-in checks, in declared order (so a configured fuzz-panel
+runs last). Exit 0 is CLEAR, exit 1 is a blocking finding attributed to the
+entry's declared ledger_class (an external BLOCK is a pre-review BLOCK),
+any other exit is a tool error. Ledger classes may name an external check
+as their pre_review_check (e.g. UNSAMPLED_STATE_SPACE -> fuzz-panel).
+
 CLI:
   python3 pre_review.py --config <task-config.json> --report <out.md>
                         [--json <out.json>] [--only <check> ...]
@@ -436,6 +443,9 @@ def load_ledger(ctx: Context) -> dict:
 
 def config_feeds_check(ctx: Context, check: str, class_id: str) -> bool:
     cfg = ctx.config
+    for entry in cfg.get("external_checks", []):
+        if entry.get("name") == check:
+            return True
     if check == "trace-provenance":
         return any(not t.get("scripted", False) for t in cfg.get("traces", []))
     if check == "single-model":
@@ -537,6 +547,38 @@ def run_claims_coverage(ctx: Context) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# External checks (run last; a fuzz-panel BLOCK is a pre-review BLOCK)
+# ---------------------------------------------------------------------------
+
+def run_external_check(ctx: Context, entry: dict) -> dict:
+    name = entry.get("name", "<external>")
+    findings, info = [], []
+    cmd = list(entry["cmd"])
+    cwd = ctx.resolve(entry.get("cwd", "."))
+    timeout = entry.get("timeout", ctx.config.get("timeout", DEFAULT_TIMEOUT))
+    try:
+        proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True,
+                              text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        raise ToolError(f"external check {name}: timed out after {timeout}s")
+    except OSError as exc:
+        raise ToolError(f"external check {name}: cannot run {cmd[0]}: {exc}")
+    output = (proc.stdout + proc.stderr).strip()
+    if proc.returncode == 0:
+        info.append(f"{name}: CLEAR (exit 0). {output[-400:]}")
+    elif proc.returncode == 1:
+        findings.append(finding(
+            entry.get("ledger_class", "EXTERNAL_CHECK"), name,
+            "external check reports BLOCK (exit 1); an external BLOCK is a "
+            f"pre-review BLOCK. Output tail: {output[-600:]}"))
+    else:
+        raise ToolError(
+            f"external check {name}: tool error (exit {proc.returncode}): "
+            f"{output[-600:]}")
+    return check_result(name, findings, info)
+
+
+# ---------------------------------------------------------------------------
 # Report
 # ---------------------------------------------------------------------------
 
@@ -628,14 +670,23 @@ def main(argv=None) -> int:
     parser.add_argument("--config", required=True)
     parser.add_argument("--report", required=True)
     parser.add_argument("--json", dest="json_out")
-    parser.add_argument("--only", action="append", choices=CHECK_NAMES,
-                        help="run only the named check (repeatable)")
+    parser.add_argument("--only", action="append",
+                        help="run only the named check (repeatable; built-in "
+                             "or declared external check names)")
     args = parser.parse_args(argv)
     try:
         ctx = Context(Path(args.config))
-        selected = args.only or list(CHECK_NAMES)
+        externals = ctx.config.get("external_checks", [])
+        known = set(CHECK_NAMES) | {e.get("name") for e in externals}
+        selected = args.only or sorted(known)
+        unknown = [s for s in selected if s not in known]
+        if unknown:
+            raise ToolError(f"--only names unknown check(s): {unknown}")
         results = [RUNNERS[name](ctx) for name in CHECK_NAMES
                    if name in selected]
+        # external checks always run AFTER the built-ins, in declared order
+        results += [run_external_check(ctx, e) for e in externals
+                    if e.get("name") in selected]
         verdict = ("BLOCK" if any(r["verdict"] == "BLOCK" for r in results)
                    else "CLEAR")
         write_report(Path(args.report), ctx, results, verdict)
