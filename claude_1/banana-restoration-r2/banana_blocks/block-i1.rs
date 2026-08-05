@@ -15,8 +15,17 @@
 //      `banana_protected_cell` (candidate retain-filter, same pattern as
 //      `external_protected_tree`) plus post-edit + resolver forbidden set;
 //   C6 hysteresis H=3 / eps=1.0 implemented literally per spec section (e);
-//   C7 dynamic ownership-loss response: if the mother's fruit ownership flips
-//      (opponent harvester ETA <= resident ETA), harvest immediately if ready;
+//   C7 dynamic ownership-loss response (full I-10a, GREEN 2026-08-05): when
+//      I-7 ownership of the mother flips false (committed-harvester ETA, ties
+//      conceded), the resident responds deterministically at the first such
+//      turn: harvest now iff a ripe fruit is harvestable immediately; else
+//      convert (CHOP the flipped mother) iff the chop completes strictly
+//      before the opponent's earliest harvest (max(eta_opp_h, ripen)); else
+//      the Abandoned transition — cease all investment in the asset (no
+//      PLANT, no MOVE toward the mother, reservations released, resident
+//      held idle/banking so the inner policy cannot reinvest). D-8's
+//      mother-protection is scoped to NON-flipped mothers: the convert-branch
+//      chop is the specified ownership-loss response, not a D-8 violation;
 //   C8 single-door banking serializes deterministically (resident priority in
 //      the conflict resolver, inherited id order otherwise).
 //
@@ -65,6 +74,11 @@ pub struct BananaBot {
     banana_blocked_turns: i32,
     banana_last_cell: Option<Cell>,
     banana_last_move: bool,
+    // I-10a Abandoned-after-ownership-loss (C7): while true the resident
+    // stays reserved but ceases all banana investment (banks leftovers,
+    // then idles), so neither the banana lifecycle nor the inner policy can
+    // reinvest in the lost asset.
+    banana_lost: bool,
 }
 
 impl BananaBot {
@@ -80,6 +94,7 @@ impl BananaBot {
             banana_blocked_turns: 0,
             banana_last_cell: None,
             banana_last_move: false,
+            banana_lost: false,
         }
     }
 
@@ -250,6 +265,34 @@ impl BananaBot {
         }
     }
 
+    /// Post-abandonment action (I-10a branch 3, C7): no further investment
+    /// in anything — bank leftover cargo at the nearest door (deterministic
+    /// (distance, cell) minimum; banking is not asset investment), else
+    /// WAIT. Never PLANT, never a mother-directed verb.
+    fn banana_lost_action(view: &GameState, worker: &Unit) -> String {
+        if worker.total_carried() > 0 {
+            let from_worker = bfs_distances(&view.walkable, &[worker.cell]);
+            let mut best: Option<(i32, Cell)> = None;
+            for door in ortho_neighbors(view.shacks[0]) {
+                if !view.walkable.contains(&door) {
+                    continue;
+                }
+                if door == worker.cell {
+                    return format!("DROP {}", worker.id);
+                }
+                if let Some(d) = from_worker.get(&door).copied() {
+                    if best.map(|b| (d, door) < b).unwrap_or(true) {
+                        best = Some((d, door));
+                    }
+                }
+            }
+            if let Some((_d, door)) = best {
+                return format!("MOVE {} {} {}", worker.id, door.0, door.1);
+            }
+        }
+        "WAIT".to_string()
+    }
+
     /// Resident candidate set. Every entry is (score, kind, cell, command);
     /// the list always contains WAIT, so every active mode returns a definite
     /// command (I-25, no None fallthrough). Carried wood short-circuits to
@@ -271,6 +314,14 @@ impl BananaBot {
         };
         let diag_taken = Self::banana_mother_cell(view).is_some();
         let carried = worker.carry[BANANA] > 0;
+        // I-9 one-seed reservation (GREEN 2026-08-05): replant demand has
+        // priority for AT MOST ONE carried seed; every additional carried
+        // banana is surplus and must be on a bank path (door approach, then
+        // DROP) BEFORE any further planting. While surplus is carried, no
+        // Plant candidate is offered at all — planting resumes only once the
+        // resident carries exactly the reserved seed again (a DROP at a door
+        // banks the whole cargo, so the surplus window closes at the bank).
+        let surplus = worker.carry[BANANA] > 1;
         let mut demand = false;
         for cell in Self::banana_ring(view) {
             let orth = is_adjacent(cell, tent);
@@ -308,7 +359,7 @@ impl BananaBot {
                 }
             } else if Self::banana_vacant_ok(view, worker, cell, diag_taken) {
                 demand = true;
-                if carried {
+                if carried && !surplus {
                     // Mother-founding priority (I-3 mother floor, B1): while
                     // no diagonal mother is alive, establishing one outranks
                     // any orthogonal wood-slot plant — otherwise the single
@@ -356,9 +407,11 @@ impl BananaBot {
                 }
             }
         }
-        // Surplus banking (I-8/I-9): carried cargo with no replant demand
-        // (or non-banana cargo) goes to the bank.
-        if worker.total_carried() > 0 && (!carried || !demand) {
+        // Banking (I-8/I-9): carried cargo with no replant demand (or
+        // non-banana cargo) goes to the bank, and — one-seed reservation —
+        // so does every carried banana beyond the single reserved seed,
+        // BEFORE any further planting (surplus, I-9).
+        if worker.total_carried() > 0 && (!carried || !demand || surplus) {
             Self::banana_bank(view, worker, &from_worker, 8_000, 7_000, &mut out);
         }
         out
@@ -371,42 +424,87 @@ impl BananaBot {
     ///   2. hold_age < H = 3 => keep the target unconditionally;
     ///   3. else switch only if score(best) >= score(held) + eps (eps = 1,
     ///      one travel turn in this scale); total order (score, kind, cell).
-    /// The C7 ownership-loss emergency and the I-19 wood rule act through
-    /// the candidate set (wood) or as a forced harvest override (C7).
+    /// The C7 ownership-loss response (full I-10a) and the I-19 wood rule
+    /// act before/through the candidate set: wood commitment short-circuits
+    /// to banking, and an I-7 ownership flip of the mother forces the
+    /// deterministic harvest-now / convert / abandon decision below.
     fn banana_action(&mut self, view: &GameState, worker: &Unit) -> String {
         let stalled = self.banana_last_move && self.banana_last_cell == Some(worker.cell);
         self.banana_blocked_turns = if stalled { self.banana_blocked_turns + 1 } else { 0 };
-        // C7: dynamic ownership-loss response. If the mother's fruit is
-        // contested (opponent harvester ETA <= resident ETA), harvest
-        // immediately when a fruit is ready; wood commitment (I-19) still
-        // dominates, and with no ready fruit the normal lifecycle proceeds.
+        // C7 / I-10a: dynamic ownership-loss response, a pure function of
+        // S_t, re-evaluated on every wood-free turn. Ownership (I-7) uses
+        // the committed harvester's (resident's) ETA against the minimal
+        // opponent-harvester ETA, ties conceded: the mother is LOST at the
+        // first turn with eta_res >= eta_opp_h. Then, deterministically:
+        //   1. ripe fruit harvestable immediately (resident standing on the
+        //      mother, fruit ready, capacity free) -> HARVEST now;
+        //   2. else convert iff the chop completes strictly before the
+        //      opponent's earliest possible harvest of the asset,
+        //      max(eta_opp_h, ripen) (an unripe mother cannot be harvested
+        //      before it ripens) -> CHOP the mother at current size. This
+        //      deliberate convert chop is the specified ownership-loss
+        //      response; D-8's diagonal-mother protection is scoped to
+        //      NON-flipped mothers (resolution note in the gate ledger);
+        //   3. else Abandoned: cease all investment in the asset — release
+        //      target and reservations, bank leftovers, idle (banana_lost).
+        // Wood commitment (I-19) still dominates: with wood carried the
+        // candidate set below short-circuits to bank-only verbs.
         if worker.carry[crate::game::types::WOOD] == 0 {
             if let Some(mother) = Self::banana_mother_cell(view) {
-                let fruits_ready = Self::banana_live(view, mother)
-                    .map(|plant| plant.fruits > 0)
-                    .unwrap_or(false);
                 let dist = bfs_distances(&view.walkable, &[mother]);
                 let resident_eta = dist
                     .get(&worker.cell)
                     .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
                     .unwrap_or(10_000);
-                let contested = Self::banana_opponent_eta(view, mother, false) <= resident_eta;
-                if contested
-                    && fruits_ready
-                    && worker.stats.harvest_power > 0
-                    && worker.free_capacity() > 0
-                    && resident_eta < 10_000
-                {
-                    self.banana_target = Some((BananaTask::Harvest, mother));
+                let eta_opp = Self::banana_opponent_eta(view, mother, false);
+                if resident_eta >= eta_opp {
+                    let plant = Self::banana_live(view, mother);
+                    let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
+                    if fruits_ready
+                        && worker.cell == mother
+                        && worker.stats.harvest_power > 0
+                        && worker.free_capacity() > 0
+                    {
+                        // I-10a branch 1: harvest now.
+                        self.banana_target = Some((BananaTask::Harvest, mother));
+                        self.banana_hold_age = 0;
+                        self.banana_blocked_turns = 0;
+                        self.banana_last_cell = Some(worker.cell);
+                        self.banana_last_move = false;
+                        return format!("HARVEST {}", worker.id);
+                    }
+                    let health = plant.map(|p| p.health).unwrap_or(0);
+                    let ripen = plant
+                        .map(|p| if p.fruits > 0 { 0 } else { p.cooldown })
+                        .unwrap_or(0);
+                    let chop_turns =
+                        MoisanBot::ceil_div(health, worker.stats.chop_power.max(1));
+                    let opp_earliest = eta_opp.max(ripen);
+                    if worker.stats.chop_power > 0
+                        && resident_eta < 10_000
+                        && resident_eta + chop_turns < opp_earliest
+                    {
+                        // I-10a branch 2: convert (deliberate mother chop).
+                        self.banana_target = Some((BananaTask::Chop, mother));
+                        self.banana_hold_age = 0;
+                        self.banana_blocked_turns = 0;
+                        self.banana_last_cell = Some(worker.cell);
+                        self.banana_last_move = worker.cell != mother;
+                        return if worker.cell == mother {
+                            format!("CHOP {}", worker.id)
+                        } else {
+                            format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
+                        };
+                    }
+                    // I-10a branch 3: Abandoned transition.
+                    self.banana_phase = BananaPhase::Abandoned;
+                    self.banana_lost = true;
+                    self.banana_target = None;
                     self.banana_hold_age = 0;
                     self.banana_blocked_turns = 0;
                     self.banana_last_cell = Some(worker.cell);
-                    self.banana_last_move = worker.cell != mother;
-                    return if worker.cell == mother {
-                        format!("HARVEST {}", worker.id)
-                    } else {
-                        format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
-                    };
+                    self.banana_last_move = false;
+                    return Self::banana_lost_action(view, worker);
                 }
             }
         }
@@ -541,16 +639,27 @@ impl Bot for BananaBot {
             self.banana_update_phase(view);
         }
         let active = self.banana_enabled == Some(true) && self.banana_phase == BananaPhase::Active;
+        // I-10a Abandoned hold (C7): after ownership loss the resident stays
+        // reserved — releasing it would let the inner policy reinvest in the
+        // opponent-owned asset — while every banana claim on the asset
+        // itself (protected cell, targets) is released.
+        let lost_hold = self.banana_enabled == Some(true)
+            && self.banana_lost
+            && self
+                .banana_worker
+                .map(|id| view.unit(id).is_some())
+                .unwrap_or(false);
         // R1: both seam fields are (re)written on every turn BEFORE the
         // delegated call; None on every dormant/disabled turn (check 4).
-        self.inner.inner.banana_idle_unit = if active { self.banana_worker } else { None };
+        self.inner.inner.banana_idle_unit =
+            if active || lost_hold { self.banana_worker } else { None };
         self.inner.inner.banana_protected_cell = if active {
             Self::banana_mother_cell(view)
         } else {
             None
         };
         let mut commands = self.inner.commands(view);
-        if !active {
+        if !active && !lost_hold {
             // Structural identity: no post-edit outside banana activation.
             return commands;
         }
@@ -567,11 +676,22 @@ impl Bot for BananaBot {
             .map(|unit| unit.id)
             .collect();
         unit_ids.sort_unstable();
-        let action = self.banana_action(view, worker);
+        let action = if active {
+            self.banana_action(view, worker)
+        } else {
+            Self::banana_lost_action(view, worker)
+        };
         SecureOrchardBot::replace_action(&mut commands, &unit_ids, worker_id, action);
         // C5 second layer: post-edit protection of the single mother against
         // non-resident on-cell verbs, and I-2/I-15 seed-PICK exclusivity.
-        let mother = Self::banana_mother_cell(view);
+        // Ownership loss (I-10a) releases the mother claim: no protection
+        // survives the Abandoned transition (banana_action may have set
+        // banana_lost this very turn, hence the re-check here).
+        let mother = if self.banana_lost {
+            None
+        } else {
+            Self::banana_mother_cell(view)
+        };
         for unit in view
             .units
             .iter()

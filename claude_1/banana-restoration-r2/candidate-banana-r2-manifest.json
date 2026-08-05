@@ -12,19 +12,19 @@
     "within_budget": true
   },
   "candidate": {
-    "bytes": 74725,
+    "bytes": 76386,
     "path": "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
-    "sha256": "f29efd0e9c8cd17a2151678b2b0a449baba76aa12ede283d5ef486f5a5fe6eb9"
+    "sha256": "280ed777134a7f40783d759d0d327c1e70dece80680fc246675bc0a3c9eae9e6"
   },
   "insertions": [
     {
       "anchor": "pub struct SecureOrchardBot{",
       "block": "block-i1.rs",
-      "inserted_bytes": 11554,
-      "inserted_sha256": "41454bdeb9f5a95858ea1490f1336b92d00806f1caa932ee34036d3816ed764d",
+      "inserted_bytes": 13215,
+      "inserted_sha256": "59fc6482cf86c8008382db40ae605ade95ca35532b98d6c762c02c003fb8d357",
       "mode": "before",
       "name": "I1",
-      "readable_block_bytes": 27201
+      "readable_block_bytes": 33972
     },
     {
       "anchor": "external_protected_tree:Option<Cell>,}",
