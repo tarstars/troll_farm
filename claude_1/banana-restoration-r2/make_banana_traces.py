@@ -275,7 +275,127 @@ def scenario_t2():
     )
 
 
-def main() -> int:
+# ---------------------------------------------------------------------------
+# Additive dynamic-opponent support (RED-phase regression scenarios).
+# Nothing below is reachable from the original t1/t2 path: scenario_t1/
+# scenario_t2 still build the plain static-opponent Referee and the default
+# CLI (no arguments) runs exactly the original main body, so t1/t2 output
+# stays byte-identical.
+# ---------------------------------------------------------------------------
+
+class DynamicOpponentReferee(Referee):
+    """Referee with a deterministic moving opponent harvester.
+
+    Every opponent unit listed in ``opp_targets`` (uid -> target cell) MOVEs
+    toward its target at its own movement speed each turn, using the same
+    ``step_toward`` mirror as own-side moves, and once standing on the target
+    cell harvests one ripe fruit per turn (subject to harvest power and free
+    capacity), exactly like an own-side HARVEST. The opponent acts after the
+    own-side commands of the turn are applied and before growth, so the
+    resulting states are a deterministic pure function of the command stream.
+    Existing Referee behavior paths are untouched.
+    """
+
+    def __init__(self, inventory, plants, units, opp_targets):
+        super().__init__(inventory, plants, units)
+        self.opp_targets = dict(opp_targets)
+
+    def opponent_step(self):
+        for uid in sorted(self.opp_targets):
+            unit = self.units.get(uid)
+            if unit is None or unit["player"] != 1:
+                continue
+            target = self.opp_targets[uid]
+            if unit["cell"] != target:
+                unit["cell"] = self.step_toward(
+                    unit["cell"], target, unit["speed"])
+            if unit["cell"] == target:
+                plant = self.plants.get(target)
+                free = unit["cap"] - sum(unit["carry"])
+                if (plant is not None and plant["fruits"] > 0
+                        and unit["harvest"] > 0 and free > 0):
+                    plant["fruits"] -= 1
+                    unit["carry"][ITEM[plant["kind"]]] += 1
+
+    def apply(self, command_line):
+        super().apply(command_line)
+        self.opponent_step()
+
+
+MOTHER_CELL = (2, 2)   # diagonal ring cell of the (1,1) tent on the trace map
+
+
+def scenario_t3_abandon():
+    # I-10a abandon branch. Unripe mother (size 4, health 6, fruits 0,
+    # cd 6 -> ripens around turn 7-9), resident (speed 1, chop 1) starts at
+    # (5,3), BFS distance 4 to the mother. Opponent harvester (speed 2,
+    # chop 0) starts at (11,2), distance 9, eta ceil(9/2)=5 > 4, so the
+    # mother is owned (I-7) at turn 1 and ownership is LOST a few turns
+    # later as the faster opponent closes in. At the flip the conversion
+    # (travel + 6 chops) cannot complete strictly before the opponent's
+    # earliest harvest, so I-10a requires Abandoned: no further investment.
+    return DynamicOpponentReferee(
+        inventory=[0, 0, 0, 0, 0, 0],
+        plants={MOTHER_CELL: {"kind": "BANANA", "size": 4, "health": 6,
+                              "fruits": 0, "cd": 6}},
+        units={
+            0: unit_row(0, 0, (5, 3), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (11, 2), speed=2, cap=2, harvest=1, chop=0),
+        },
+        opp_targets={5: MOTHER_CELL},
+    )
+
+
+def scenario_t4_convert():
+    # I-10a convert branch. Unripe pre-damaged mother (size 4, health 2,
+    # fruits 0, cd 30 -> stays unripe for the whole 20-turn trace), resident
+    # at the (2,1) door, distance 1, chop 1: conversion completes within
+    # ~3 turns. Opponent harvester (speed 2, chop 0) approaches from (10,2)
+    # (distance 8, eta 4) and camps on the mother; its earliest possible
+    # harvest is bounded below by the 30-turn ripening, so the chop
+    # completes strictly before eta_opp and I-10a requires CHOP (convert).
+    return DynamicOpponentReferee(
+        inventory=[0, 0, 0, 0, 0, 0],
+        plants={MOTHER_CELL: {"kind": "BANANA", "size": 4, "health": 2,
+                              "fruits": 0, "cd": 30}},
+        units={
+            0: unit_row(0, 0, (2, 1), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (10, 2), speed=2, cap=2, harvest=1, chop=0),
+        },
+        opp_targets={5: MOTHER_CELL},
+    )
+
+
+DYNAMIC_SCENARIOS = (
+    ("t3_abandon", scenario_t3_abandon, 20),
+    ("t4_convert", scenario_t4_convert, 20),
+)
+
+
+def main_dynamic() -> int:
+    """`--dynamic` flag: emit only the dynamic-opponent scenarios t3/t4.
+
+    Detector verdicts are printed as information; the exit code only
+    reflects that the traces were produced (these RED scenarios are allowed
+    to show detector failures on a rejected candidate).
+    """
+    source = CANDIDATE.read_text()
+    with tempfile.TemporaryDirectory(prefix="banana-r2-traces-") as directory:
+        binary = Path(directory) / "candidate"
+        sh.compile_text(source, binary, "banana_r2_traces")
+        for name, factory, turns in DYNAMIC_SCENARIOS:
+            report = run_scenario(name, binary, factory(), turns)
+            verdicts = {r["detector"]: r["verdict"] for r in report["detectors"]}
+            print(name, report["overall"], json.dumps(verdicts))
+    return 0
+
+
+def main(argv=None) -> int:
+    args = sys.argv[1:] if argv is None else list(argv)
+    if args and args[0] == "--dynamic":
+        return main_dynamic()
     source = CANDIDATE.read_text()
     overall_ok = True
     with tempfile.TemporaryDirectory(prefix="banana-r2-traces-") as directory:
