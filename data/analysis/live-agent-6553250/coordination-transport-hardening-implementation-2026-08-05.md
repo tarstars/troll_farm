@@ -146,9 +146,15 @@ existing paths at authoring time; two more legacy messages have since been publi
 claude_1's unacknowledged count dropped from the incident's 29 to 28 because the
 motivating review ACK
 `coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md`
-has since been explicitly acknowledged by exact path from claude_1's own namespace
-(remote commit `20c1f3b9`); per the task's rollout section that acknowledgement was not
-written by this implementation.
+has since been covered by a later ACK from claude_1's own namespace (remote commit
+`20c1f3b9`). Corrected per the integrator review: that acknowledging message
+(`coordination/messages/claude_1/20260805T110000Z-20260802-banana-restoration-r2-ack.md`)
+carries a proto-v2 `ack_for` line but no `schema_version: 2`, so this implementation
+treats it as legacy and pairs it via the legacy same-task/strictly-later-timestamp
+fallback — not via exact `ack_for` path pairing, as an earlier draft of this report
+misstated. Exact-path ACK behavior is evidenced by the test suite (and by the
+genuinely-v2 ACK in the revision appendix below), not by that live legacy message. Per
+the task's rollout section that acknowledgement was not written by this implementation.
 
 ## Migration — exact commands per agent
 
@@ -225,3 +231,84 @@ acknowledge a v2 message, and a v2 ACK acknowledges only the exact paths it list
 9. `tests/test_inbox_sweep.py` already existed (11 legacy-parser unit tests). Compatible
    tests were retained verbatim; the tests of the removed watermark writer and
    ref-agnostic dedup helper were replaced by seen-state and authority integration tests.
+
+## Revision appendix — 2026-08-05 bounded corrections per integrator review
+
+Applied per
+`data/analysis/live-agent-6553250/coordination-transport-hardening-integrator-review-2026-08-05.md`
+(REVISION_REQUIRED, three bounded gaps). Scope: `scripts/inbox_sweep.py`,
+`tests/test_inbox_sweep.py`, and this report only.
+
+1. **Empty `artifact_paths` rejected.** `validate_v2_handoff` now requires a non-empty
+   `artifact_paths` array; an otherwise valid canonical handoff declaring
+   `artifact_paths: []` is a delivery error and exits 2. New integration test:
+   `test_empty_artifact_paths_on_otherwise_valid_handoff_fails`.
+2. **Seen-state schema validated strictly.** `load_seen_state` now requires the file to
+   be a JSON object with `schema_version` exactly 1 (booleans rejected) and
+   `migrated_watermark` a string or null; violations raise the existing
+   `malformed seen-state file …` error (stderr + exit 2) before anything is marked. New
+   tests (each also passes `--mark` and asserts the file stays byte-identical):
+   `test_seen_state_missing_schema_version_fails`,
+   `test_seen_state_unsupported_schema_version_fails`,
+   `test_seen_state_non_string_migrated_watermark_fails`.
+3. **Report misstatement corrected and duplication removed.** The warning-mode audit
+   paragraph above now states that the live claude_1 ACK
+   (`…20260805T110000Z-…-r2-ack.md`) was paired via the legacy task/timestamp fallback,
+   not exact `ack_for` (it lacks `schema_version: 2`). Duplication cleanup: the review's
+   literal `self.path = path` / repository-root duplicates do not appear verbatim in the
+   reviewed artifact `4ccf1f76` (verified by grep and an AST scan for repeated
+   assignments); the two real duplicated lookups were removed instead — the
+   sender-namespace expression computed both in `Message.__init__` and again in `main()`
+   (now a shared `sender_of()` helper), and the second per-ref `tree_messages` repository
+   scan that rebuilt `canonical_paths_by_agent` (now derived from the single
+   authoritative scan).
+
+### Revision acceptance outputs (exact)
+
+`python3 -m py_compile scripts/inbox_sweep.py`: exit 0, no output.
+
+```text
+$ $HOME/.local/bin/uvx pytest -q tests/test_inbox_sweep.py
+.........................................                                [100%]
+41 passed in 6.70s
+```
+
+Live read-only sweeps (no `--mark`; `git status --porcelain` shows no watermark,
+seen-state, or message change afterwards; both exits 0):
+
+```text
+$ python3 scripts/inbox_sweep.py --me local_codex_1 --fetch --task 20260802-banana-restoration-r2
+agent: local_codex_1
+authority: refs/remotes/origin/** (50 remote refs); scanned 696 authoritative messages (691 legacy, 5 v2)
+seen-state: local_codex_1/inbox-seen.json missing; migrating legacy watermark 20260731T173500Z
+filters: task=20260802-banana-restoration-r2
+immutable-path collisions (0):
+delivery errors (0):
+new (unseen) (12):   # the 10 previously listed plus 20260805T143000Z handoff and 20260805T150000Z reviews-ack
+unacknowledged, ack required (0):
+```
+
+```text
+$ python3 scripts/inbox_sweep.py --me claude_1 --fetch --task 20260805-coordination-transport-hardening
+agent: claude_1
+authority: refs/remotes/origin/** (50 remote refs); scanned 696 authoritative messages (691 legacy, 5 v2)
+seen-state: claude_1/inbox-seen.json missing; migrating legacy watermark 20260802T062800Z
+filters: task=20260805-coordination-transport-hardening
+immutable-path collisions (0):
+delivery errors (0):
+new (unseen) (1):
+  coordination/messages/local_codex_1/20260805T143002Z-20260805-coordination-transport-hardening-ack.md   [refs/remotes/origin/agent/local_codex_1]
+unacknowledged, ack required (0):
+```
+
+**Live v2 exact-path pairing evidence.** A genuinely-v2 ACK now exists on origin:
+`coordination/messages/claude_1/20260805T150000Z-20260805-reviews-ack.md`
+(`schema_version: 2`, exact `ack_for` listing
+`…local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md` and
+`…local_codex_1/20260805T143002Z-20260805-coordination-transport-hardening-ack.md`).
+In the claude_1 sweep above, the 20260805T143002Z target is itself v2 with
+`requires_ack: true`; a legacy task/timestamp ACK can never acknowledge a v2 message, so
+its absence from `unacknowledged, ack required` (with zero invalid-ack warnings) is
+direct live evidence that the tool validated the v2 ACK and paired it through the
+exact-`ack_for` v2 path — the behavior the previous report draft could only support with
+the test suite.
