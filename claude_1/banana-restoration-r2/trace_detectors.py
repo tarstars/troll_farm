@@ -85,8 +85,12 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import os
 import sys
 from collections import deque
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import conversion_race_oracle as cro   # noqa: E402  (CONVERSION_RACE_ORACLE)
 
 # --- items / rules (game::rules, verified against family-readable-guide.rs) --
 ITEM_NAMES = ["PLUM", "LEMON", "APPLE", "BANANA", "IRON", "WOOD"]
@@ -1061,35 +1065,38 @@ def _d8_ownership_lost_by(tr: Trace, cell, turn, alive_per_turn):
 
 
 def detect_d8(tr: Trace):
-    """D-8 Diagonal-mother chop (amended per the integrator's narrow D-8/I-10a
-    ruling, successor host review
-    data/analysis/live-agent-6553250/banana-restoration-r2-successor-host-review-2026-08-05.md
-    and ACK coordination/messages/local_codex_1/20260805T083001Z-20260802-banana-restoration-r2-ack.md,
+    """D-8 Diagonal-mother chop (exemption clause re-based on
+    CONVERSION_RACE_ORACLE, spec Revision 2026-08-05; round-3 host review
+    data/analysis/live-agent-6553250/banana-restoration-r2-round3-host-review-2026-08-05.md
+    terminal gap 2 and ACK
+    coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md,
     branch origin/agent/local_codex_1).
 
     Base predicate (spec D-8 / I-14): any own chop-class command targeting a
     cell in diag(tent) holding a live own banana (chop target = the unit's
     own cell, A9). Threshold: 0, at any turn including endgame.
 
-    Amendment (integrator-sanctioned, option (a) narrowly): the I-10a
-    ownership-loss conversion overrides diagonal-mother protection ONLY when
-    BOTH hold at the start of the chop sequence on that cell:
+    Exemption (the I-10a conversion): a mother-chop sequence is exempt ONLY
+    when BOTH hold at the start of the chop sequence on that cell:
 
       (a) ownership of the mother had actually flipped to lost at or before
           the chop-start turn — per the I-7 committed-harvester ETA test
           (eta of the resident vs min opponent harvest-capable ETA, strict,
           ties conceded), latched once lost; AND
-      (b) the conversion wins the strict exact race, growth-aware: the exact
-          chop-turn count from the plant state at the chop-start turn
-          (banana_exact_chop_turns, mirroring MoisanBot::chop_outcome —
-          growth during the chop included) is strictly less than the
-          opponent harvester ETA at the chop-start turn.
+      (b) CONVERSION_RACE_ORACLE (conversion_race_oracle.py — the single
+          named oracle that also drives spec I-10a and regression R-3/R-4)
+          evaluated at the chop-start state reports feasible: the absolute
+          turn the final growth-aware chop lands is strictly earlier than
+          the opponent's absolute earliest EXECUTABLE HARVEST turn (travel
+          AND fruit ripeness; arrival alone is not loss). The former
+          arrival-only comparison exact_chops < eta_opp_at_chop_start is
+          void.
 
     While the mother remains owned, every discretionary diagonal-mother chop
-    remains forbidden (I-14). A chop after a flip that loses the exact race
-    is likewise flagged (the required response is abandon, I-10a).
-    The exemption is decided once, at the first CHOP on the cell, and covers
-    the subsequent chops of that same conversion sequence.
+    remains forbidden (I-14). A chop after a flip that the oracle calls
+    infeasible is likewise flagged (the required response is abandon,
+    I-10a). The exemption is decided once, at the first CHOP on the cell,
+    and covers the subsequent chops of that same conversion sequence.
     """
     episodes = []
     _events, alive_per_turn = tr.own_banana_history()
@@ -1107,24 +1114,33 @@ def detect_d8(tr: Trace):
                 p = st.plant_at(c)
                 if p is not None and p.kind == "BANANA":
                     if c not in exempt_cells:
-                        # chop-start turn: decide the I-10a exemption
+                        # chop-start turn: decide the I-10a exemption via
+                        # CONVERSION_RACE_ORACLE at the chop-start state
                         lost, flip_t, eta_res, eta_opp_f = \
                             _d8_ownership_lost_by(tr, c, t, alive_per_turn)
-                        dist = bfs_distances(set(tr.smap.walkable) | {c},
-                                             [c])
-                        eta_opp_now = _d8_opp_harvester_eta(tr, t, dist)
-                        exact_chops = banana_exact_chop_turns(
-                            p.size, p.health, p.cooldown, u.chop_power,
-                            tr.near_water(c))
-                        race_won = exact_chops < eta_opp_now
+                        oracle = cro.conversion_race_oracle(
+                            decision_turn=t,
+                            walkable=set(tr.smap.walkable),
+                            mother_cell=c,
+                            plant=(p.size, p.health, p.fruits, p.cooldown),
+                            resident_cell=u.cell,
+                            resident_speed=u.speed,
+                            resident_chop_power=u.chop_power,
+                            opponents=[(v.cell, v.speed, v.harvest_power)
+                                       for v in st.opp_units()],
+                            near_water=tr.near_water(c))
+                        race_won = oracle["feasible"]
                         exempt_cells[c] = {
                             "exempt": lost and race_won,
                             "flip_turn": flip_t,
                             "eta_res_at_flip": eta_res,
                             "eta_opp_at_flip": eta_opp_f,
                             "chop_start": t,
-                            "exact_chop_turns": exact_chops,
-                            "eta_opp_at_chop_start": eta_opp_now,
+                            "exact_chop_turns": oracle["exact_chop_turns"],
+                            "eta_opp_at_chop_start": oracle["eta_opp"],
+                            "completion_turn": oracle["completion_turn"],
+                            "opponent_harvest_turn":
+                                oracle["opponent_harvest_turn"],
                             "reason": None if (lost and race_won) else (
                                 "flip_but_infeasible" if lost
                                 else "discretionary_owned"),
@@ -1145,7 +1161,11 @@ def detect_d8(tr: Trace):
                                      "exact_chop_turns":
                                          decision["exact_chop_turns"],
                                      "eta_opp_at_chop_start":
-                                         decision["eta_opp_at_chop_start"]})
+                                         decision["eta_opp_at_chop_start"],
+                                     "completion_turn":
+                                         decision["completion_turn"],
+                                     "opponent_harvest_turn":
+                                         decision["opponent_harvest_turn"]})
     return _result("D-8", episodes)
 
 

@@ -360,11 +360,13 @@ class TestD8(unittest.TestCase):
 
 
 class TestD8Amended(unittest.TestCase):
-    """D-8 as amended per the integrator's narrow I-10a/D-8 ruling
-    (successor host review 2026-08-05): an own-chop of an own-planted
-    diagonal mother is exempt IFF (a) I-7 ownership had flipped to lost at
-    or before the chop-start turn (committed-harvester ETA, ties conceded)
-    AND (b) the conversion wins the strict exact growth-aware race.
+    """D-8 with the CONVERSION_RACE_ORACLE exemption (spec Revision
+    2026-08-05): an own-chop of an own-planted diagonal mother is exempt IFF
+    (a) I-7 ownership had flipped to lost at or before the chop-start turn
+    (committed-harvester ETA, ties conceded) AND (b) CONVERSION_RACE_ORACLE
+    at the chop-start state reports feasible — the absolute final-chop turn
+    is strictly before the opponent's absolute earliest EXECUTABLE HARVEST
+    turn (travel AND ripeness; arrival alone is not loss).
     """
 
     # Timeline builder: resident u0 plants the DIAG mother at t1 while ON
@@ -396,8 +398,9 @@ class TestD8Amended(unittest.TestCase):
     def test_exempt_flip_then_feasible_conversion(self):
         # t2: resident at (1,2) (eta 2), opponent at (3,4) (eta 2): I-7 tie
         # -> ownership flips (lost). Opponent then departs; at chop-start t4
-        # the plant is size 1 health 3 cd 3 (exact chops 3) and the opponent
-        # harvester ETA is 4: 3 < 4, strict exact race won -> exempt.
+        # the plant is size 1 health 3 cd 3 (exact chops 3): oracle
+        # completion_turn 4+3-1 = 6, opponent_harvest_turn max(arrival 8,
+        # first fruit 25) = 25 -> feasible, exempt.
         p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
         tr = self.flip_trace([
             ((1, 2), (3, 4), p(3, 5), "WAIT"),          # t2: flip (2 >= 2)
@@ -428,18 +431,24 @@ class TestD8Amended(unittest.TestCase):
         self.assertEqual(res["episodes"][0]["turn_start"], 3)
 
     def test_flagged_flip_but_infeasible_chop(self):
-        # Ownership flips at t2 (tie at eta 2), but the opponent keeps
-        # closing: at chop-start t4 it is adjacent (eta 1) while the exact
-        # conversion needs 3 chops -> race lost -> flagged (I-10a says
-        # abandon, not convert).
-        p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
+        # Re-based on CONVERSION_RACE_ORACLE (spec Revision 2026-08-05,
+        # documented expected-value change 1): the old scenario's doom was
+        # arrival-only (unripe size-1 mother, opponent adjacent), which the
+        # oracle correctly calls FEASIBLE (first fruit ~21 turns out).
+        # Genuinely infeasible geometry: NEAR-RIPE size-4 mother (fruits 0,
+        # cd 1 at chop-start t4 -> first executable harvest turn 5 with the
+        # opponent adjacent) while the conversion needs 3 chops ->
+        # completion_turn 6 >= opponent_harvest_turn 5 -> race lost ->
+        # flagged (I-10a says abandon, not convert).
+        p = lambda h, cd, f=0: plant("BANANA", DIAG, size=4, health=h,
+                                     fruits=f, cooldown=cd)
         tr = self.flip_trace([
-            ((1, 2), (3, 4), p(3, 5), "WAIT"),          # t2: flip (2 >= 2)
-            ((2, 2), (3, 3), p(3, 4), "MOVE 0 3 2"),    # t3: opp closing
-            (DIAG,   (2, 2), p(3, 3), "CHOP 0"),        # t4: eta_opp 1
-            (DIAG,   (2, 2), p(2, 2), "CHOP 0"),        # t5
-            (DIAG,   (2, 2), p(1, 1), "CHOP 0"),        # t6
-            (DIAG,   (2, 2), None,    "WAIT"),          # t7
+            ((1, 2), (3, 4), p(3, 3), "WAIT"),          # t2: flip (2 >= 2)
+            ((2, 2), (3, 3), p(3, 2), "MOVE 0 3 2"),    # t3: opp closing
+            (DIAG,   (3, 3), p(3, 1), "CHOP 0"),        # t4: chop-start
+            (DIAG,   (3, 3), p(2, 6, 1), "CHOP 0"),     # t5: fruit ripened
+            (DIAG,   (3, 3), p(1, 5, 1), "CHOP 0"),     # t6
+            (DIAG,   (3, 3), None,    "WAIT"),          # t7
         ])
         res = td.detect_d8(tr)
         self.assertEqual(res["verdict"], "FAIL")
@@ -449,6 +458,24 @@ class TestD8Amended(unittest.TestCase):
         self.assertEqual(ep["flip_turn"], 2)
         self.assertEqual(ep["exact_chop_turns"], 3)
         self.assertEqual(ep["eta_opp_at_chop_start"], 1)
+        self.assertEqual(ep["completion_turn"], 6)
+        self.assertEqual(ep["opponent_harvest_turn"], 5)
+
+    def test_exempt_arrival_is_not_loss(self):
+        # The discriminating direction of the unification: opponent ADJACENT
+        # at chop start (old arrival-only D-8 would flag), but the mother is
+        # young and unripe -> earliest executable harvest is the far-future
+        # first-fruit turn -> oracle feasible -> exempt.
+        p = lambda h, cd: plant("BANANA", DIAG, size=1, health=h, cooldown=cd)
+        tr = self.flip_trace([
+            ((1, 2), (3, 4), p(3, 5), "WAIT"),          # t2: flip (2 >= 2)
+            ((2, 2), (3, 3), p(3, 4), "MOVE 0 3 2"),    # t3: opp closing
+            (DIAG,   (2, 2), p(3, 3), "CHOP 0"),        # t4: eta_opp 1
+            (DIAG,   (2, 2), p(2, 2), "CHOP 0"),        # t5
+            (DIAG,   (2, 2), p(1, 1), "CHOP 0"),        # t6
+            (DIAG,   (2, 2), None,    "WAIT"),          # t7
+        ])
+        self.assertEqual(verdict(td.detect_d8(tr)), ("PASS", 0))
 
 
 class TestD9(unittest.TestCase):

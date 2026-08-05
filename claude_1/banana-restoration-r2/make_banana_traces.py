@@ -401,6 +401,76 @@ def scenario_r3_growth():
 
 
 # ---------------------------------------------------------------------------
+# Round-4 additive support: CONVERSION_RACE_ORACLE regression scenarios
+# (spec Revision 2026-08-05). Nothing below is reachable from the t1-t6
+# paths; their output stays byte-identical.
+# ---------------------------------------------------------------------------
+
+
+def scenario_r4_flip_reach():
+    # R-4 "flip-response-reachability" (round 4). The CANDIDATE ITSELF
+    # bootstraps (PICK), plants the diagonal mother at (2,2), then leaves it
+    # during its normal lifecycle: a pre-grown orthogonal wood banana at the
+    # (0,1) door (size 2, inert cooldown 40) pulls the resident away for the
+    # I-4 wood cycle (chop turns 7-10, bank DROP at turn 11). Meanwhile the
+    # opponent harvester walks in from (13,0) (distance 13) toward a camp
+    # cell adjacent to the mother: at turn 11 the resident (at (0,1), eta 3)
+    # ties the opponent (distance 3) -> I-7 ownership flips. The mother is
+    # size 2, unripe, first fruit ~16 growth turns out, so
+    # CONVERSION_RACE_ORACLE says the conversion is FEASIBLE
+    # (completion_turn 18 < opponent_harvest_turn 27) and I-10a requires the
+    # convert response to begin by turn 12 (flip turn + 1).
+    return DynamicOpponentReferee(
+        inventory=[0, 0, 0, 1, 0, 0],
+        plants={(0, 1): {"kind": "BANANA", "size": 2, "health": 4,
+                         "fruits": 0, "cd": 40}},
+        units={
+            0: unit_row(0, 0, (2, 1), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (13, 0), speed=1, cap=2, harvest=1, chop=0),
+        },
+        opp_targets={5: (2, 3)},
+    )
+
+
+def _scenario_r3_boundary(health):
+    # Shared geometry of the R-3 boundary pair (spec Revision 2026-08-05,
+    # normative examples): near-ripe size-4 mother at (2,2) (fruits 0,
+    # cd 6 -> first fruit in state 7), resident on the ring at (2,0)
+    # (BFS distance 2, chop 1), opponent harvester at (4,2) (distance 2,
+    # speed 1) walking in and camping on the mother. I-7 ownership is lost
+    # at turn 1 (tie, eta 2 vs 2).
+    return DynamicOpponentReferee(
+        inventory=[0, 0, 0, 0, 0, 0],
+        plants={MOTHER_CELL: {"kind": "BANANA", "size": 4, "health": health,
+                              "fruits": 0, "cd": 6}},
+        units={
+            0: unit_row(0, 0, (2, 0), cap=2, harvest=1, chop=1),
+            1: unit_row(1, 0, (11, 3), cap=1, harvest=0, chop=0),
+            5: unit_row(5, 1, (4, 2), speed=1, cap=2, harvest=1, chop=0),
+        },
+        opp_targets={5: MOTHER_CELL},
+    )
+
+
+def scenario_r3a_boundary():
+    # R-3a: INFEASIBLE by exactly the strict tie. Health 5 -> exact chops 5,
+    # completion_turn 1 + 2 + 5 - 1 = 7 == opponent_harvest_turn
+    # max(1 + 2, 1 + 6) = 7. I-10a requires abandon; any chop-start here is
+    # the doomed chop.
+    return _scenario_r3_boundary(5)
+
+
+def scenario_r3b_boundary():
+    # R-3b: FEASIBLE by exactly one turn. Health 4 -> exact chops 4,
+    # completion_turn 6 < opponent_harvest_turn 7. I-10a requires convert.
+    # Every voided legacy deadline (spec-old "< eta_opp", candidate
+    # "< max(eta_opp, predicted.cooldown)", D-8-old arrival-only) answers
+    # infeasible here -- the discriminating geometry of the unification.
+    return _scenario_r3_boundary(4)
+
+
+# ---------------------------------------------------------------------------
 # Round-3 additive support: t5 / t6 traces for the amended D-8 (integrator's
 # narrow I-10a/D-8 ruling, successor host review 2026-08-05). Nothing below
 # is reachable from the t1-t4 paths; their output stays byte-identical.

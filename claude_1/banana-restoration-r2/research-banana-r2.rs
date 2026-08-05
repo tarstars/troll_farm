@@ -2269,6 +2269,36 @@ mod bot {
                     .min()
                     .unwrap_or(10_000)
             }
+            fn banana_predict_growth(view: &GameState, plant: &Plant, turns: i32) -> PredictedTree {
+                let near_water = view
+                    .water
+                    .iter()
+                    .any(|water| is_adjacent(*water, plant.cell));
+                let mut size = plant.size;
+                let mut health = plant.health;
+                let mut fruits = plant.fruits;
+                let mut cooldown = plant.cooldown;
+                for _ in 0..turns {
+                    if cooldown > 0 {
+                        cooldown -= 1;
+                    }
+                    if cooldown == 0 && health > 0 {
+                        if size < 4 {
+                            size += 1;
+                            health += crate::game::rules::tree_health_params(plant.kind).1;
+                            cooldown = effective_cooldown(plant.kind, near_water);
+                        } else if fruits < 3 {
+                            fruits += 1;
+                            cooldown = effective_cooldown(plant.kind, near_water);
+                        }
+                    }
+                }
+                PredictedTree {
+                    size,
+                    health,
+                    cooldown,
+                }
+            }
             fn banana_plant_late(view: &GameState, cell: Cell, chop: i32) -> bool {
                 let near_water = view.water.iter().any(|water| is_adjacent(*water, cell));
                 let cooldown = effective_cooldown(PlantKind::Banana, near_water);
@@ -2493,9 +2523,59 @@ mod bot {
                 } else {
                     0
                 };
-                if worker.carry[crate::game::types::WOOD] == 0 {
-                    if let Some(mother) = Self::banana_mother_cell(view) {
-                        if self.banana_target == Some((BananaTask::Chop, mother)) {
+                if let Some(mother) = Self::banana_mother_cell(view) {
+                    if self.banana_target == Some((BananaTask::Chop, mother)) {
+                        self.banana_hold_age = 0;
+                        self.banana_blocked_turns = 0;
+                        self.banana_last_cell = Some(worker.cell);
+                        self.banana_last_move = worker.cell != mother;
+                        return if worker.cell == mother {
+                            format!("CHOP {}", worker.id)
+                        } else {
+                            format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
+                        };
+                    }
+                    let dist = bfs_distances(&view.walkable, &[mother]);
+                    let resident_eta = dist
+                        .get(&worker.cell)
+                        .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
+                        .unwrap_or(10_000);
+                    let eta_opp = Self::banana_opponent_eta(view, mother, false);
+                    let banking_drop_now = worker.carry[crate::game::types::WOOD] > 0
+                        && is_adjacent(worker.cell, view.shacks[0]);
+                    if resident_eta >= eta_opp && !banking_drop_now {
+                        let plant = Self::banana_live(view, mother);
+                        let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
+                        if fruits_ready
+                            && worker.cell == mother
+                            && worker.stats.harvest_power > 0
+                            && worker.free_capacity() > 0
+                        {
+                            self.banana_target = Some((BananaTask::Harvest, mother));
+                            self.banana_hold_age = 0;
+                            self.banana_blocked_turns = 0;
+                            self.banana_last_cell = Some(worker.cell);
+                            self.banana_last_move = false;
+                            return format!("HARVEST {}", worker.id);
+                        }
+                        let feasible = worker.stats.chop_power > 0
+                            && resident_eta < 10_000
+                            && plant
+                                .and_then(|p| {
+                                    let arrival =
+                                        Self::banana_predict_growth(view, p, resident_eta);
+                                    let (chop_turns, _wood) = MoisanBot::chop_outcome(
+                                        view,
+                                        p,
+                                        arrival,
+                                        worker.stats.chop_power,
+                                    )?;
+                                    let ripe = MoisanBot::ticks_until_fruit(view, p);
+                                    Some(resident_eta + chop_turns - 1 < eta_opp.max(ripe))
+                                })
+                                .unwrap_or(false);
+                        if feasible {
+                            self.banana_target = Some((BananaTask::Chop, mother));
                             self.banana_hold_age = 0;
                             self.banana_blocked_turns = 0;
                             self.banana_last_cell = Some(worker.cell);
@@ -2506,66 +2586,14 @@ mod bot {
                                 format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
                             };
                         }
-                        let dist = bfs_distances(&view.walkable, &[mother]);
-                        let resident_eta = dist
-                            .get(&worker.cell)
-                            .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
-                            .unwrap_or(10_000);
-                        let eta_opp = Self::banana_opponent_eta(view, mother, false);
-                        if resident_eta >= eta_opp {
-                            let plant = Self::banana_live(view, mother);
-                            let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
-                            if fruits_ready
-                                && worker.cell == mother
-                                && worker.stats.harvest_power > 0
-                                && worker.free_capacity() > 0
-                            {
-                                self.banana_target = Some((BananaTask::Harvest, mother));
-                                self.banana_hold_age = 0;
-                                self.banana_blocked_turns = 0;
-                                self.banana_last_cell = Some(worker.cell);
-                                self.banana_last_move = false;
-                                return format!("HARVEST {}", worker.id);
-                            }
-                            let feasible = worker.stats.chop_power > 0
-                                && resident_eta < 10_000
-                                && eta_opp > 0
-                                && plant
-                                    .and_then(|p| {
-                                        let predicted =
-                                            MoisanBot::predict_tree(view, p, resident_eta)?;
-                                        let ripen =
-                                            if p.fruits > 0 { 0 } else { predicted.cooldown };
-                                        let (chop_turns, _wood) = MoisanBot::chop_outcome(
-                                            view,
-                                            p,
-                                            predicted,
-                                            worker.stats.chop_power,
-                                        )?;
-                                        Some(resident_eta + chop_turns < eta_opp.max(ripen))
-                                    })
-                                    .unwrap_or(false);
-                            if feasible {
-                                self.banana_target = Some((BananaTask::Chop, mother));
-                                self.banana_hold_age = 0;
-                                self.banana_blocked_turns = 0;
-                                self.banana_last_cell = Some(worker.cell);
-                                self.banana_last_move = worker.cell != mother;
-                                return if worker.cell == mother {
-                                    format!("CHOP {}", worker.id)
-                                } else {
-                                    format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
-                                };
-                            }
-                            self.banana_phase = BananaPhase::Abandoned;
-                            self.banana_lost = true;
-                            self.banana_target = None;
-                            self.banana_hold_age = 0;
-                            self.banana_blocked_turns = 0;
-                            self.banana_last_cell = Some(worker.cell);
-                            self.banana_last_move = false;
-                            return Self::banana_lost_action(view, worker);
-                        }
+                        self.banana_phase = BananaPhase::Abandoned;
+                        self.banana_lost = true;
+                        self.banana_target = None;
+                        self.banana_hold_age = 0;
+                        self.banana_blocked_turns = 0;
+                        self.banana_last_cell = Some(worker.cell);
+                        self.banana_last_move = false;
+                        return Self::banana_lost_action(view, worker);
                     }
                 }
                 let candidates = self.banana_candidates(view, worker);

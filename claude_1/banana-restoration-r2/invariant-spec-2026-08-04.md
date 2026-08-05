@@ -167,13 +167,18 @@ violation), semantic test area "late conversion".
   `eta_opp_h(c,t) > min_u eta_u(c,t)` (strict, ties forbidden) **and**
   `eta_opp_x(c,t) > 2` (an opponent chopper 2 turns away kills a fresh `health = 3` sapling
   before it matters). For `Ring` cells this is normally automatic; it must still be checked.
-- **I-10a (dynamic ownership-loss response, rev. 2026-08-04, integrator item 7).** If
-  ownership of a live own banana asset is lost after plant time (I-7 flips false at some `t`
-  through opponent movement), the resident responds deterministically at the first such `t`:
-  if a ripe fruit is harvestable immediately, **harvest now**; otherwise **convert** (chop at
-  current size, orthogonal arithmetic of B2) iff the conversion completes strictly before
-  `eta_opp`, else **abandon** (no further commands invested in the asset). The choice is a pure
-  function of `S_t`, hence trace-checkable.
+- **I-10a (dynamic ownership-loss response, rev. 2026-08-04, integrator item 7; convert
+  clause re-based on CONVERSION_RACE_ORACLE, rev. 2026-08-05).** If ownership of a live own
+  banana asset is lost after plant time (I-7 flips false at some `t` through opponent
+  movement), the resident responds deterministically at the first such `t`: if a ripe fruit
+  is harvestable immediately, **harvest now**; otherwise **convert** iff
+  **CONVERSION_RACE_ORACLE** (Revision 2026-08-05 block) evaluated on `S_t` reports
+  `feasible` — i.e. the absolute conversion-completion turn is strictly earlier than the
+  opponent's absolute earliest executable HARVEST turn — else **abandon** (no further
+  commands invested in the asset). The response begins at `t` itself, or at `t + 1` at the
+  latest when the resident is completing an already-committed banking `DROP` at `t` (I-19).
+  The choice is a pure function of `S_t`, hence trace-checkable. The former "completes
+  strictly before `eta_opp`" wording is void: arrival alone is not loss.
 - **I-11 (lifetime non-forfeiture — replay-outcome gate, reclassified rev. 2026-08-04,
   integrator item 7).** No fruit on an own-planted banana is ever harvested by an opponent:
   there is no `t` with an opponent unit standing on an own-planted banana cell whose `fruits`
@@ -387,12 +392,19 @@ functions of these inputs. All thresholds are **0 episodes** unless stated.
   carried banana with age `> 12` turns and no bank/plant. Threshold: 0 lost units. Rationale:
   6 = one dry cooldown covers a final in-flight harvest; 12 = two cooldowns bounds transit
   within the ring by an order of magnitude; the factory loses every non-replanted banana.
-- **D-8 Diagonal-mother chop.** Inputs: `C_t`, plant sets, static map. Predicate: any own
-  chop-class command targeting a cell in `diag(tent)` holding a live own banana, or any
-  own-attributable health decrease of such a plant, at any turn including endgame. Threshold: 0.
-  Rationale: matches `ring-task.md` "diagonal ordinary chops: 0"; terminal-window mother
-  conversion is a value optimization deliberately excluded from this restoration (ambiguity
-  resolved strict for r2; an owner amendment would be needed to relax it).
+- **D-8 Diagonal-mother chop (exemption clause re-based on CONVERSION_RACE_ORACLE,
+  rev. 2026-08-05).** Inputs: `C_t`, plant sets, static map, both sides' unit
+  positions/stats. Predicate: any own chop-class command targeting a cell in `diag(tent)`
+  holding a live own banana, or any own-attributable health decrease of such a plant, at any
+  turn including endgame — EXCEPT the I-10a conversion: a chop sequence on a mother is exempt
+  iff, at the chop-start turn, (a) I-7 ownership of that mother had already flipped to lost
+  (committed-harvester ETA, strict, ties conceded, latched once lost) AND (b)
+  **CONVERSION_RACE_ORACLE** evaluated at the chop-start state reports `feasible`. A chop
+  while owned (`discretionary_owned`) or after a flip the oracle calls infeasible
+  (`flip_but_infeasible`) is flagged. Threshold: 0. Rationale: matches `ring-task.md`
+  "diagonal ordinary chops: 0" for discretionary chops; the exemption is exactly the I-10a
+  convert branch and uses the same named oracle — no arrival-only shortcut (the former
+  `exact_chops < eta_opp_at_chop_start` comparison is void).
 - **D-9 Second-worker TRAIN displacement.** Inputs: paired candidate-vs-parent command streams
   on identical replay inputs. Predicate: candidate `TRAIN` turn > parent `TRAIN` turn, or
   `TRAIN` absent where the parent trains, or a different stats tuple; or any
@@ -528,3 +540,99 @@ one added invariant uses the suffix form I-10a):
    reclassified as a replay-outcome gate where residual, not a universal invariant.
 8. Single-door maps → I-22 → single-reachable-door banking is serialized deterministically
    (resident first, then ascending unit id) instead of requiring distinct doors.
+
+---
+
+## Revision 2026-08-05 — CONVERSION_RACE_ORACLE (round-3 host review, terminal gap 2)
+
+Source rulings: round-3 host review
+`data/analysis/live-agent-6553250/banana-restoration-r2-round3-host-review-2026-08-05.md`
+and ACK
+`coordination/messages/local_codex_1/20260805T143001Z-20260802-banana-restoration-r2-ack.md`
+(branch `origin/agent/local_codex_1`). The three prior conversion deadlines — spec
+`< eta_opp`, candidate `< max(eta_opp, predicted.cooldown)`, amended-D-8
+`exact_chops < eta_opp_at_chop_start` — were mutually inconsistent and mixed time origins.
+They are all void. One named oracle now drives spec (I-10a), candidate code, regression R-3,
+and detector D-8.
+
+**CONVERSION_RACE_ORACLE (normative).** A deterministic pure function evaluated in ONE
+absolute time frame anchored at the decision turn `t` (the turn whose state `S_t` is acted
+on; the state at `u + 1` results from the commands of turn `u` followed by the growth tick).
+
+- *Inputs:* walkable set; mother cell `c`; mother plant state at `t`
+  (size, health, fruits, cooldown); resident cell/speed/chop power at `t`; every opponent
+  unit's cell/speed/harvest power at `t`; near-water flag of `c`.
+- *Outputs:* `feasible : bool`, `completion_turn` (absolute), `opponent_harvest_turn`
+  (absolute).
+- *Semantics:*
+  - `eta_res = ceil(bfs_dist(resident, c) / speed)`; the first CHOP lands at turn
+    `t + eta_res`.
+  - `exact_chops` = growth-aware chop count from the ARRIVAL-state tree
+    `predict_tree(plant, eta_res)` via the `chop_outcome` arithmetic (chop lands first, then
+    the cooldown ticks; a size-below-4 tree at cooldown 0 gains +1 size / +1 health and
+    resets its cooldown — `CD_wet = 4`, `CD_dry = 6`).
+  - `completion_turn = t + eta_res + exact_chops - 1`: the absolute turn on which the FINAL
+    chop lands (the tree is gone in state `completion_turn + 1`).
+  - `eta_opp` = min over opponent units with `harvest_power > 0` of
+    `ceil(bfs_dist(unit, c) / speed)` (`UNREACHABLE = 10000` if none).
+  - `first_fruit_turn = t + r`, `r = min{k >= 0 : predict_tree(plant, k).fruits > 0}` under
+    unchopped natural growth (`r = 0` if fruits are present at `t`).
+  - `opponent_harvest_turn = max(t + eta_opp, first_fruit_turn)`: HARVEST is executable only
+    when standing on `c` with `fruits > 0`, so the opponent's earliest EXECUTABLE HARVEST
+    requires both arrival and ripeness. Arrival alone is NOT loss; ripeness alone is NOT
+    loss; `predicted.cooldown` is NOT ripeness (for size-below-4 trees it is a growth
+    cooldown).
+  - `feasible iff completion_turn < opponent_harvest_turn`, STRICT: the equal-turn race is
+    contested and conceded to the opponent (consistent with I-7 tie handling; this is a spec
+    decision — the Python mini-referee's own-commands-first ordering would award the tie to
+    us, and the oracle deliberately does not rely on that ordering). Unreachable travel,
+    zero chop power, unfellable trees, or an opponent that can never execute a harvest are
+    handled by the `UNREACHABLE` sentinel (a conversion that completes is feasible against
+    an opponent that can never harvest).
+
+**Reference implementation.** `conversion_race_oracle.py` (this directory), function
+`conversion_race_oracle`; its module docstring is this text. `trace_detectors.detect_d8`
+and `regression_tests` (R-2b feasibility report, R-3, R-4) import it; the candidate
+implementation must reproduce it exactly (that reproduction is the round-4 implementation
+work, deliberately NOT part of this revision).
+
+**Boundary geometry (normative examples, used by regression R-3).** Ring map of the trace
+fixtures, mother `(2,2)`, resident at `(2,0)` (speed 1, chop 1), opponent harvester at
+`(4,2)` (speed 1), decision turn 1:
+- size 4, health 5, fruits 0, cooldown 6 → `completion_turn = 1 + 2 + 5 - 1 = 7`,
+  `opponent_harvest_turn = max(1 + 2, 1 + 6) = 7` → INFEASIBLE by exactly the strict tie;
+- size 4, health 4 (one health less) → `completion_turn = 6 < 7` → FEASIBLE by exactly one
+  turn. At this second geometry every voided legacy definition answers "infeasible"
+  (spec-old: `6 < eta_opp 2` false; candidate code: `6 < max(2, predicted.cooldown 4)`
+  false; D-8-old at chop start: `4 < eta_opp_now 0` false) while the oracle answers
+  "feasible" — the discriminating geometry demanded by the review.
+
+**Documented expected-value changes caused by this unification** (sanctioned: "adjust
+expected values only where the unified semantics legitimately changes a threshold"):
+1. `test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop` — the old
+   scenario (opponent closing on an UNRIPE size-1 mother, `eta_opp_at_chop_start = 1`) is
+   arrival-only doom; under the oracle that conversion is FEASIBLE (first fruit is ~21 turns
+   out, completion 6). The self-test scenario is re-based on a genuinely infeasible
+   near-ripe geometry (size-4 mother, fruit due before completion); the old expectation is
+   void, episode fields now carry `completion_turn` / `opponent_harvest_turn`.
+2. `traces/t6_owned_chop-detectors.json` — D-8 episodes carry the new oracle fields
+   (command/transcript bytes unchanged; the verdict FAIL `discretionary_owned` unchanged).
+3. `regression_tests.r2_convert` feasibility report — `max(eta_opp, ripen-proxy)` fields
+   replaced by the oracle's three outputs (verdict logic unchanged; t4 remains PASS).
+4. Regression R-3's closed-loop scenario `scenario_r3_growth` (tie at turn 1, opponent
+   ARRIVAL turn 6 as deadline) is superseded: its doom was arrival-only, which the oracle
+   rejects (first fruit turn 23, completion 9 → actually feasible). R-3 is re-based on the
+   two boundary geometries above (`scenario_r3a_boundary` / `scenario_r3b_boundary`); the
+   review's unit-level assert (size 2 / health 4 / cooldown 1 / chop 1 → 5 exact chops)
+   stays.
+
+**R-4 "flip-response-reachability" (new regression, candidate-driven).** The round-3 review
+showed t5 was scripted and the real candidate camps on a mother it planted and never sees a
+flip. R-4 runs the REAL candidate closed-loop on `scenario_r4_flip_reach`: the candidate
+itself PICKs, plants the diagonal mother, leaves it during its normal lifecycle (orthogonal
+wood chop + bank), a moving opponent harvester flips I-7 ownership at distance parity, and
+CONVERSION_RACE_ORACLE reports feasible. PASS iff the oracle-prescribed convert response
+(MOVE toward the mother or CHOP on it) begins within the I-10a window — the flip turn `f`,
+or `f + 1` at the latest. The current bytes (`2f58edef...`) FAIL: their voided
+`max(eta_opp, predicted.cooldown)` deadline calls the feasible conversion infeasible and
+they abandon to a terminal WAIT loop.
