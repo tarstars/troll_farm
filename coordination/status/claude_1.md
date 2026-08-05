@@ -1,17 +1,16 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-03T07:40:00Z
-- State: H3a Phase A COMPLETE and handed off — all four trigger gates and integrity pass; awaiting disposition and the Phase-B/substrate sequencing call
-- Role: contributor (former coordinator; role transferred to local_codex_1 2026-07-30 by owner directive; returned to active contributor status by owner 2026-08-01)
-- Current task: `20260802-h3a-conditioned-value-unblock` (Phase A handed off; Phase B not started pending sequencing decision)
-- Branch: agent/claude_1 (contributor transport branch; the closed registry task lives on agent/claude_1-submission-registry)
-- Worktree: /home/tarstars/prj/troll_farm-claude_1 (isolated; created 2026-08-01)
-- Head: see the pushed branch agent/claude_1-submission-registry; review target is stated in 20260802T070500Z-...-handoff-addendum.md
-- Write set: claude_1/h3a-conditioned-value-unblock-*, tests/test_h3a_conditioned_value_unblock.py, data/analysis/live-agent-6553250/h3a-conditioned-value-unblock-result-2026-08-02.md, coordination/messages/claude_1/, coordination/status/claude_1.md
-- Last concrete progress UTC: 2026-08-03T07:40:00Z
-- Evidence: required branch agent/claude_1-submission-registry at 2529fd2 (build --check byte-identical, validate clean, 38/38 tests, sacred SHA fff6669b); first published on agent/claude_1 at b5a0fd7 before I saw the branch requirement — those copies are superseded; prior task accepted as D172_GIT_LFS_PILOT_PASS
-- Running job: none
-- Latest verified result: H3a Phase A PASS - gate1 9/10, gate2 10/10, gate3 0/7, gate4 9/10 (identical under the fruit-bearing sensitivity); 22/22 semantic tests; frame//2 turn mapping pinned and cross-validated; sacred fff6669b intact. Gate 4 is a verified NECESSARY condition - candidate enumeration closes in Phase B. Phase C blocked by the locked-substrate parser/RNG failures.
-- Next checkpoint: local_codex_1 dispositions Phase A and rules whether Phase B proceeds before or after the A2-0b substrate repair
-- Blockers: none; standing fix after three §10 breaches today — a fetch immediately precedes every publish. No uv/pytest/pip on this host; battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here
+- Updated UTC: 2026-08-05T08:40:00Z
+- State: banana R2 successor handed off — awaiting integrator host gates and verdict
+- Role: contributor and hypothesis-programme organizer (coordinator/integrator/arena controller = local_codex_1)
+- Current task: 20260802-banana-restoration-r2 (register-v2 P1)
+- Branch: agent/claude_1-banana-restoration-r2; worktree /home/tarstars/prj/troll_farm-claude_1
+- Write set: claude_1/banana-restoration-r2/**, my message namespace for this task id, this status file
+- History this task: candidate f29efd0e REJECTED by host review 20260804T213001Z (I-9 absent, I-10a incomplete, no readable source) — disposition acknowledged with process-gap analysis. Red-first retry per integrator conditions: regression checks R-1/R-2 committed FAILING on the rejected bytes BEFORE any fix (611707e3), then GREEN (0ece10ec)
+- Successor candidate: candidate-banana-r2.min.rs, 76,386 bytes, SHA-256 280ed777134a7f40783d759d0d327c1e70dece80680fc246675bc0a3c9eae9e6; handoff 20260805T083000Z (requires_ack; mirrored on agent/claude_1)
+- Gate state, all independently re-verified by claude_1: build asserts + byte-exact inverse PASS, deterministic rebuild; compile 0 warnings without -Awarnings; R-1/R-2a/R-2b PASS on successor AND re-confirmed FAIL on rejected bytes (tests unchanged); controls PASS; TIER-P 7/7 byte-equal; TIER-C 8/8 (zero fixture modifications); D-1..D-9 PASS on four regenerated traces; readable research-banana-r2.rs command-stream-equal over 66 paired runs; manual trace audit by eye — 13/13 plants at carry exactly 1, abandon and convert branches verified in t3/t4
+- Open adjudication for integrator: D-8 vs convert-on-own-planted-flipped-mother (detector deliberately not modified; options in the handoff)
+- Requested from integrator: dormant-equality panel (parent lineage), banana-live replays, 897829265 period-2 gate; then IMPLEMENTATION_VALID/INVALID verdict. Value protocols remain a separate later task
+- Other open threads: H1-G4 dev panel queued with integrator (dev-endpoints-only per register v2); H2 census unassigned; r36 simplification checkpoint + untouched range pending; process note 2026-08-05 — replace-based file edits must be verified by grepping the result (a silent no-op left this file stale on this branch for a day)
+- Blockers: none. Host: rustc 1.97.1 + gcc 13.3.0, uv 0.12.1, git-lfs; no platform credentials; medium_data unmounted
 - Arena controller: no — local_codex_1 holds it; I perform no platform mutations
