@@ -15,23 +15,28 @@
 //      `banana_protected_cell` (candidate retain-filter, same pattern as
 //      `external_protected_tree`) plus post-edit + resolver forbidden set;
 //   C6 hysteresis H=3 / eps=1.0 implemented literally per spec section (e);
-//   C7 dynamic ownership-loss response (full I-10a, GREEN 2026-08-05; exact
-//      growth-aware race GREEN round 3, 2026-08-05): when I-7 ownership of
-//      the mother flips false (committed-harvester ETA, ties conceded), the
-//      resident responds deterministically at the first such turn: harvest
-//      now iff a ripe fruit is harvestable immediately; else convert (CHOP
-//      the flipped mother) iff the race is still open (opponent not yet on
-//      the mother) and the EXACT travel-plus-chop simulation
-//      (MoisanBot::predict_tree over the travel eta, then
-//      MoisanBot::chop_outcome — growth during travel and chopping
-//      included) completes strictly before the opponent's earliest harvest
-//      (max(eta_opp_h, ripen-at-chop-start)); the convert decision latches
+//   C7 dynamic ownership-loss response (full I-10a; CONVERSION_RACE_ORACLE
+//      unification, round 4, 2026-08-05): ownership of the mother (I-7,
+//      committed-harvester ETA, ties conceded) is re-evaluated on EVERY
+//      active turn — wood-cycle, camping and banking turns included — and
+//      at the first turn it flips false the resident responds
+//      deterministically, preempting its current activity: harvest now iff
+//      a ripe fruit is harvestable immediately; else convert (CHOP the
+//      flipped mother) iff CONVERSION_RACE_ORACLE reports feasible — the
+//      absolute conversion-completion turn (growth-only predict over the
+//      travel eta, then MoisanBot::chop_outcome, growth during travel and
+//      chopping included) is STRICTLY earlier than the opponent's absolute
+//      earliest EXECUTABLE HARVEST turn (arrival AND ripeness,
+//      max(t + eta_opp_h, first_fruit_turn)); the convert decision latches
 //      until the mother falls; else
 //      the Abandoned transition — cease all investment in the asset (no
 //      PLANT, no MOVE toward the mother, reservations released, resident
-//      held idle/banking so the inner policy cannot reinvest). D-8's
-//      mother-protection is scoped to NON-flipped mothers: the convert-branch
-//      chop is the specified ownership-loss response, not a D-8 violation;
+//      held idle/banking so the inner policy cannot reinvest). The single
+//      sanctioned response deferral is an already-committed banking DROP
+//      executing at the flip turn itself (I-10a/I-19: the response then
+//      begins wood-free at t + 1). D-8's mother-protection is scoped to
+//      NON-flipped mothers: the convert-branch chop is the specified
+//      ownership-loss response, not a D-8 violation;
 //   C8 single-door banking serializes deterministically (resident priority in
 //      the conflict resolver, inherited id order otherwise).
 //
@@ -196,6 +201,41 @@ impl BananaBot {
             })
             .min()
             .unwrap_or(10_000)
+    }
+
+    /// Growth-only forward simulation of a live plant over `turns` growth
+    /// ticks — the CONVERSION_RACE_ORACLE `predict_tree` mirror (spec
+    /// Revision 2026-08-05: "state(t+k) of an unchopped tree =
+    /// predict_tree(S_t.plant, k)" under NATURAL growth). Deliberately not
+    /// MoisanBot::predict_tree: the inner policy's predictor folds in an
+    /// opponent-attrition heuristic (predicted_opp_chop) that the oracle
+    /// forbids — the oracle's arrival state is pure growth.
+    fn banana_predict_growth(view: &GameState, plant: &Plant, turns: i32) -> PredictedTree {
+        let near_water = view.water.iter().any(|water| is_adjacent(*water, plant.cell));
+        let mut size = plant.size;
+        let mut health = plant.health;
+        let mut fruits = plant.fruits;
+        let mut cooldown = plant.cooldown;
+        for _ in 0..turns {
+            if cooldown > 0 {
+                cooldown -= 1;
+            }
+            if cooldown == 0 && health > 0 {
+                if size < 4 {
+                    size += 1;
+                    health += crate::game::rules::tree_health_params(plant.kind).1;
+                    cooldown = effective_cooldown(plant.kind, near_water);
+                } else if fruits < 3 {
+                    fruits += 1;
+                    cooldown = effective_cooldown(plant.kind, near_water);
+                }
+            }
+        }
+        PredictedTree {
+            size,
+            health,
+            cooldown,
+        }
     }
 
     /// I-5 late cutoff, applied to every ring plant decision (conservative:
@@ -430,49 +470,138 @@ impl BananaBot {
     ///   2. hold_age < H = 3 => keep the target unconditionally;
     ///   3. else switch only if score(best) >= score(held) + eps (eps = 1,
     ///      one travel turn in this scale); total order (score, kind, cell).
-    /// The C7 ownership-loss response (full I-10a) and the I-19 wood rule
-    /// act before/through the candidate set: wood commitment short-circuits
-    /// to banking, and an I-7 ownership flip of the mother forces the
-    /// deterministic harvest-now / convert / abandon decision below.
+    /// The C7 ownership-loss response (full I-10a) acts BEFORE the
+    /// candidate set on every active turn: an I-7 ownership flip of the
+    /// mother forces the deterministic harvest-now / convert / abandon
+    /// decision below, preempting whatever the resident was doing (sole
+    /// deferral: the committed banking DROP at the flip turn, I-19). On
+    /// flip-free turns the I-19 wood rule acts through the candidate set:
+    /// wood commitment short-circuits to banking.
     fn banana_action(&mut self, view: &GameState, worker: &Unit) -> String {
         let stalled = self.banana_last_move && self.banana_last_cell == Some(worker.cell);
         self.banana_blocked_turns = if stalled { self.banana_blocked_turns + 1 } else { 0 };
         // C7 / I-10a: dynamic ownership-loss response, a pure function of
-        // S_t, re-evaluated on every wood-free turn. Ownership (I-7) uses
-        // the committed harvester's (resident's) ETA against the minimal
-        // opponent-harvester ETA, ties conceded: the mother is LOST at the
-        // first turn with eta_res >= eta_opp_h. Then, deterministically:
+        // S_t, re-evaluated on EVERY active turn — wood-cycle, camping and
+        // banking turns included (round 4, R-4 flip-response reachability:
+        // the round-3 code ran this check on wood-free turns only, so a
+        // flip landing while wood was carried was never answered from that
+        // state). Ownership (I-7) uses the committed harvester's (the
+        // resident's) ETA against the minimal opponent-harvester ETA, ties
+        // conceded: the mother is LOST at the first turn with
+        // eta_res >= eta_opp_h. Then, deterministically:
         //   1. ripe fruit harvestable immediately (resident standing on the
         //      mother, fruit ready, capacity free) -> HARVEST now;
-        //   2. else convert iff the race is still open (no opponent
-        //      harvester already on the mother) and the EXACT growth-aware
-        //      travel-plus-chop simulation (predict_tree + chop_outcome)
-        //      completes strictly before the opponent's earliest possible
-        //      harvest of the asset, max(eta_opp_h, ripen-at-chop-start)
-        //      (an unripe mother cannot be harvested before it ripens) ->
-        //      CHOP the mother at current size, latched to completion. This
-        //      deliberate convert chop is the specified ownership-loss
-        //      response; D-8's diagonal-mother protection exempts exactly
-        //      the post-flip strict-race-winning conversion (amended D-8,
-        //      integrator ruling 2026-08-05);
+        //   2. else convert iff CONVERSION_RACE_ORACLE (spec Revision
+        //      2026-08-05) reports feasible -> CHOP the mother, latched to
+        //      completion. This deliberate convert chop is the specified
+        //      ownership-loss response; amended D-8 exempts exactly the
+        //      post-flip oracle-feasible conversion;
         //   3. else Abandoned: cease all investment in the asset — release
         //      target and reservations, bank leftovers, idle (banana_lost).
-        // Wood commitment (I-19) still dominates: with wood carried the
-        // candidate set below short-circuits to bank-only verbs.
-        if worker.carry[crate::game::types::WOOD] == 0 {
-            if let Some(mother) = Self::banana_mother_cell(view) {
-                // I-10a committed-conversion latch (GREEN round 3,
-                // 2026-08-05): the ownership-loss response is decided ONCE,
-                // at the first flip turn ("the resident responds
-                // deterministically at the first such t"). A committed
-                // conversion — banana_target == (Chop, mother) is set
-                // nowhere else: ring Chop candidates are orthogonal-only —
-                // runs to completion without re-arbitration, so the exact
-                // race won at commitment time is not spuriously re-opened
-                // when the opponent arrives mid-sequence; the mother's
-                // death invalidates the latch through
-                // banana_mother_cell = None.
-                if self.banana_target == Some((BananaTask::Chop, mother)) {
+        // The response PREEMPTS whatever the resident was doing (I-10a:
+        // "the response begins at t itself"); the single sanctioned
+        // deferral is an already-committed banking DROP executing at the
+        // flip turn (I-19): standing on a door with wood, the DROP banks
+        // the cargo this turn and the response begins wood-free at t + 1.
+        if let Some(mother) = Self::banana_mother_cell(view) {
+            // I-10a committed-conversion latch (GREEN round 3,
+            // 2026-08-05): the ownership-loss response is decided ONCE,
+            // at the first flip turn ("the resident responds
+            // deterministically at the first such t"). A committed
+            // conversion — banana_target == (Chop, mother) is set
+            // nowhere else: ring Chop candidates are orthogonal-only —
+            // runs to completion without re-arbitration, so the exact
+            // race won at commitment time is not spuriously re-opened
+            // when the opponent arrives mid-sequence; the mother's
+            // death invalidates the latch through
+            // banana_mother_cell = None.
+            if self.banana_target == Some((BananaTask::Chop, mother)) {
+                self.banana_hold_age = 0;
+                self.banana_blocked_turns = 0;
+                self.banana_last_cell = Some(worker.cell);
+                self.banana_last_move = worker.cell != mother;
+                return if worker.cell == mother {
+                    format!("CHOP {}", worker.id)
+                } else {
+                    format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
+                };
+            }
+            let dist = bfs_distances(&view.walkable, &[mother]);
+            let resident_eta = dist
+                .get(&worker.cell)
+                .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
+                .unwrap_or(10_000);
+            let eta_opp = Self::banana_opponent_eta(view, mother, false);
+            let banking_drop_now = worker.carry[crate::game::types::WOOD] > 0
+                && is_adjacent(worker.cell, view.shacks[0]);
+            if resident_eta >= eta_opp && !banking_drop_now {
+                let plant = Self::banana_live(view, mother);
+                let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
+                if fruits_ready
+                    && worker.cell == mother
+                    && worker.stats.harvest_power > 0
+                    && worker.free_capacity() > 0
+                {
+                    // I-10a branch 1: harvest now.
+                    self.banana_target = Some((BananaTask::Harvest, mother));
+                    self.banana_hold_age = 0;
+                    self.banana_blocked_turns = 0;
+                    self.banana_last_cell = Some(worker.cell);
+                    self.banana_last_move = false;
+                    return format!("HARVEST {}", worker.id);
+                }
+                // I-10a branch 2 feasibility = CONVERSION_RACE_ORACLE
+                // (spec Revision 2026-08-05; round-4 unification, host
+                // review terminal gap 2). The voided round-3 deadline
+                // max(eta_opp_h, predicted-cooldown ripen proxy) — and
+                // its arrival-only "race still open" guard — are
+                // replaced by the oracle's exact absolute arithmetic,
+                // anchored at this decision turn t:
+                //   - arrival state = growth-only predict over eta_res
+                //     (banana_predict_growth, the oracle's predict_tree
+                //     mirror);
+                //   - exact_chops from the arrival state =
+                //     MoisanBot::chop_outcome (growth during the chop
+                //     sequence included — the review boundary: size 2,
+                //     health 4, cooldown 1, chop 1 needs 5 chops);
+                //   - completion_turn = t + eta_res + exact_chops - 1,
+                //     the absolute turn the FINAL chop lands;
+                //   - opponent_harvest_turn = max(t + eta_opp_h,
+                //     first_fruit_turn): HARVEST is executable only
+                //     standing on the mother WITH fruits > 0, so arrival
+                //     alone is NOT loss and ripeness alone is NOT loss
+                //     (first-fruit wait = MoisanBot::ticks_until_fruit,
+                //     the oracle's first-fruit-delay mirror for live
+                //     bananas: 0 if ripe now, else ticks of natural
+                //     growth until the first fruit);
+                //   - feasible iff completion_turn <
+                //     opponent_harvest_turn, STRICT (the equal-turn race
+                //     is conceded, consistent with I-7 tie handling).
+                // Both sides share the anchor t, so the relative
+                // comparison below IS the oracle's absolute one:
+                // eta_res + chops - 1 < max(eta_opp, ripe).
+                // Infeasible => the Abandoned transition below (branch
+                // 3). Feasible => convert, latched above until the
+                // mother falls.
+                let feasible = worker.stats.chop_power > 0
+                    && resident_eta < 10_000
+                    && plant
+                        .and_then(|p| {
+                            let arrival =
+                                Self::banana_predict_growth(view, p, resident_eta);
+                            let (chop_turns, _wood) = MoisanBot::chop_outcome(
+                                view,
+                                p,
+                                arrival,
+                                worker.stats.chop_power,
+                            )?;
+                            let ripe = MoisanBot::ticks_until_fruit(view, p);
+                            Some(resident_eta + chop_turns - 1 < eta_opp.max(ripe))
+                        })
+                        .unwrap_or(false);
+                if feasible {
+                    // I-10a branch 2: convert (deliberate mother chop).
+                    self.banana_target = Some((BananaTask::Chop, mother));
                     self.banana_hold_age = 0;
                     self.banana_blocked_turns = 0;
                     self.banana_last_cell = Some(worker.cell);
@@ -483,96 +612,15 @@ impl BananaBot {
                         format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
                     };
                 }
-                let dist = bfs_distances(&view.walkable, &[mother]);
-                let resident_eta = dist
-                    .get(&worker.cell)
-                    .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
-                    .unwrap_or(10_000);
-                let eta_opp = Self::banana_opponent_eta(view, mother, false);
-                if resident_eta >= eta_opp {
-                    let plant = Self::banana_live(view, mother);
-                    let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
-                    if fruits_ready
-                        && worker.cell == mother
-                        && worker.stats.harvest_power > 0
-                        && worker.free_capacity() > 0
-                    {
-                        // I-10a branch 1: harvest now.
-                        self.banana_target = Some((BananaTask::Harvest, mother));
-                        self.banana_hold_age = 0;
-                        self.banana_blocked_turns = 0;
-                        self.banana_last_cell = Some(worker.cell);
-                        self.banana_last_move = false;
-                        return format!("HARVEST {}", worker.id);
-                    }
-                    // I-10a branch 2 feasibility (exact, growth-aware; GREEN
-                    // round 3, 2026-08-05, successor host review terminal
-                    // failure 1): the static ceil(health/chop_power) with
-                    // the decision-turn cooldown as ripen proxy is replaced
-                    // by the exact race arithmetic through the same growth
-                    // mechanics the source already uses elsewhere:
-                    //   - predicted plant state at chop start =
-                    //     MoisanBot::predict_tree over the resident's
-                    //     travel eta (growth during travel included);
-                    //   - exact chop duration from that state =
-                    //     MoisanBot::chop_outcome (growth during the chop
-                    //     sequence included — the review boundary: size 2,
-                    //     health 4, cooldown 1, chop 1 needs 5 chops, the
-                    //     static arithmetic claimed 4);
-                    //   - the race must still be OPEN: an opponent
-                    //     harvester already standing on the mother
-                    //     (eta_opp == 0) has arrival_turn <= decision turn,
-                    //     so no conversion can complete strictly before its
-                    //     arrival — infeasible;
-                    //   - strict race: the whole travel-plus-chop sequence
-                    //     completes strictly before the opponent's earliest
-                    //     possible harvest of the asset, max(eta_opp,
-                    //     ripen-at-chop-start), strict inequality (ties
-                    //     lose, per I-10a "strictly before").
-                    // Infeasible => the Abandoned transition below (branch
-                    // 3). Feasible => convert, latched above until the
-                    // mother falls.
-                    let feasible = worker.stats.chop_power > 0
-                        && resident_eta < 10_000
-                        && eta_opp > 0
-                        && plant
-                            .and_then(|p| {
-                                let predicted =
-                                    MoisanBot::predict_tree(view, p, resident_eta)?;
-                                let ripen =
-                                    if p.fruits > 0 { 0 } else { predicted.cooldown };
-                                let (chop_turns, _wood) = MoisanBot::chop_outcome(
-                                    view,
-                                    p,
-                                    predicted,
-                                    worker.stats.chop_power,
-                                )?;
-                                Some(resident_eta + chop_turns < eta_opp.max(ripen))
-                            })
-                            .unwrap_or(false);
-                    if feasible {
-                        // I-10a branch 2: convert (deliberate mother chop).
-                        self.banana_target = Some((BananaTask::Chop, mother));
-                        self.banana_hold_age = 0;
-                        self.banana_blocked_turns = 0;
-                        self.banana_last_cell = Some(worker.cell);
-                        self.banana_last_move = worker.cell != mother;
-                        return if worker.cell == mother {
-                            format!("CHOP {}", worker.id)
-                        } else {
-                            format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
-                        };
-                    }
-                    // I-10a branch 3: Abandoned transition.
-                    self.banana_phase = BananaPhase::Abandoned;
-                    self.banana_lost = true;
-                    self.banana_target = None;
-                    self.banana_hold_age = 0;
-                    self.banana_blocked_turns = 0;
-                    self.banana_last_cell = Some(worker.cell);
-                    self.banana_last_move = false;
-                    return Self::banana_lost_action(view, worker);
-                }
+                // I-10a branch 3: Abandoned transition.
+                self.banana_phase = BananaPhase::Abandoned;
+                self.banana_lost = true;
+                self.banana_target = None;
+                self.banana_hold_age = 0;
+                self.banana_blocked_turns = 0;
+                self.banana_last_cell = Some(worker.cell);
+                self.banana_last_move = false;
+                return Self::banana_lost_action(view, worker);
             }
         }
         let candidates = self.banana_candidates(view, worker);
