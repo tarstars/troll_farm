@@ -28,6 +28,7 @@ jobs:
           rm -rf /tmp/banana-pinned
           git worktree add --detach /tmp/banana-pinned b16f44d62caa9802253adaf255eb07b98273421b
           mkdir -p chatgpt_1/banana-solve/ci
+          rm -rf chatgpt_1/banana-solve/ci/pinned-failures-bbe54a48
           CAND="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/candidate-banana-r2.min.rs"
           PARENT="/tmp/banana-pinned/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
           CFG=/tmp/banana-pinned-cfg.json
@@ -48,10 +49,11 @@ jobs:
           PY
           OUT_JSON="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.json"
           OUT_MD="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.md"
+          FAILURES="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pinned-failures-bbe54a48"
           set +e
           (
             cd /tmp/banana-pinned/claude_1/pipeline
-            python3 fuzz_panel.py --config "$CFG" --report "$OUT_MD" --json "$OUT_JSON"
+            python3 fuzz_panel.py --config "$CFG" --report "$OUT_MD" --json "$OUT_JSON" --save-failures "$FAILURES"
           ) > chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.log 2>&1
           EXIT=$?
           set -e
@@ -95,7 +97,7 @@ jobs:
           PY
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.*
+          git add chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.* chatgpt_1/banana-solve/ci/pinned-failures-bbe54a48
           if ! git diff --cached --quiet; then
             git commit -m "ci: record bbe54a48 pinned reproduction [skip banana-ci]"
             git push
