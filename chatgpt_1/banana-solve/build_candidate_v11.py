@@ -2,7 +2,7 @@
 """Eleventh owner-directed Banana R2 build: global zero-oscillation layer.
 
 The owner explicitly requires inherited oscillations to be fixed rather than
-reclassified.  This layer therefore runs after the final inner/banana command
+reclassified. This layer therefore runs after the final inner/banana command
 selection on every turn, including dormant, disabled and completed banana
 states.
 
@@ -13,9 +13,9 @@ It enforces two production rules on the final command vector:
 * any MOVE whose referee-realized landing would continue an A-B-A-B return is
   replaced by one WAIT (or avoided while selecting a carrier landing).
 
-The one-turn repeat breaks D-1's contiguous alternating run.  For wood
+The one-turn repeat breaks D-1's contiguous alternating run. For wood
 carriers it can occur only after at least one strict progress turn, so D-4's
-consecutive-no-progress counter cannot reach two.  Wood carriers are resolved
+consecutive-no-progress counter cannot reach two. Wood carriers are resolved
 with priority after exact progress landings are selected.
 """
 from __future__ import annotations
@@ -53,6 +53,25 @@ def replace_last_once(text: str, old: str, new: str, label: str) -> str:
 def patch_i1(text: str) -> str:
     text = base_patch(text)
 
+    # v11 runs the peer post-edit in every lifecycle phase. Guard the shared
+    # banana_vacant_ok helper from a zero-chop inner unit before it reaches the
+    # late-cutoff ceil_div calculation.
+    text = replace_once(
+        text,
+        '''            let plants_banana_invalid = commands[slot].starts_with("PLANT ")
+                && commands[slot].ends_with(" BANANA")
+                && (!ring.contains(&unit.cell)
+                    || !Self::banana_vacant_ok(view, unit, unit.cell, true));
+''',
+        '''            let plants_banana_invalid = commands[slot].starts_with("PLANT ")
+                && commands[slot].ends_with(" BANANA")
+                && (!ring.contains(&unit.cell)
+                    || unit.stats.chop_power <= 0
+                    || !Self::banana_vacant_ok(view, unit, unit.cell, true));
+''',
+        "zero-chop global banana plant guard",
+    )
+
     text = replace_once(
         text,
         '''    banana_peer_history: std::collections::BTreeMap<i32, (Cell, Cell)>,
@@ -80,7 +99,7 @@ def patch_i1(text: str) -> str:
 
     # Structural identity is intentionally narrower now: the final stability
     # layer must run even when banana logic is dormant or disabled, because the
-    # owner requires inherited oscillations to be fixed too.  The inner command
+    # owner requires inherited oscillations to be fixed too. The inner command
     # vector is still unchanged unless a hard stability rule fires.
     text = replace_once(
         text,
