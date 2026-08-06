@@ -13,11 +13,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("banana_owner_v3", HERE / "build_candidate_v3.py")
-mod = importlib.util.module_from_spec(spec)
+v3 = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
-sys.modules[spec.name] = mod
-spec.loader.exec_module(mod)
-base_patch = mod.patch_i1
+sys.modules[spec.name] = v3
+spec.loader.exec_module(v3)
+base_patch = v3.patch_i1
 
 
 def replace_once(text: str, old: str, new: str, label: str) -> str:
@@ -73,5 +73,5 @@ def patch_i1(text: str) -> str:
     return text
 
 
-mod.patch_i1 = patch_i1
-raise SystemExit(mod.main())
+if __name__ == "__main__":
+    raise SystemExit(v3.main(patch_i1))
