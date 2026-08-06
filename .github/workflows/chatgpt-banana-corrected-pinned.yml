@@ -93,6 +93,9 @@ jobs:
             chatgpt_1/banana-solve/ci/corrected-pinned-failures-bbe54a48
           if ! git diff --cached --quiet; then
             git commit -m "ci: record SHA-bound corrected banana gate [skip banana-ci]"
-            git push
+            # Another validation workflow may have committed meanwhile. Rebase
+            # the evidence commit instead of losing it to a non-fast-forward race.
+            git pull --rebase origin agent/chatgpt_1-banana-solve
+            git push origin HEAD:agent/chatgpt_1-banana-solve
           fi
           exit "$VALIDATION_EXIT"
