@@ -42,7 +42,7 @@ jobs:
             echo "rustc=$(rustc --version 2>&1)"
           } >> "$OUT"
 
-          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v8.py
+          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v9.py
           run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
           run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O "$CAND" -o /tmp/banana-candidate
           echo >> "$OUT"
