@@ -1,83 +1,7 @@
-commit=7a4d5c02b39187110c15635cfb503ad880dab60e
-utc=2026-08-06T11:39:34Z
-
-== files ==
-claude_1/banana-restoration-r2/banana_blocks/block-i1.rs
-claude_1/banana-restoration-r2/banana_blocks/block-i2.rs
-claude_1/banana-restoration-r2/banana_blocks/block-i3.rs
-claude_1/banana-restoration-r2/banana_blocks/block-i4.rs
-claude_1/banana-restoration-r2/banana_blocks/block-i5.rs
-claude_1/banana-restoration-r2/banana_blocks/block-i6.rs
-claude_1/banana-restoration-r2/build_banana_candidate.py
-claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
-claude_1/banana-restoration-r2/candidate-banana-r2.min.rs
-claude_1/banana-restoration-r2/conversion_race_oracle.py
-claude_1/banana-restoration-r2/design-banana-fsm-2026-08-06.md
-claude_1/banana-restoration-r2/detector-selftest-report-2026-08-04.md
-claude_1/banana-restoration-r2/diagnosis-r5-2026-08-05.md
-claude_1/banana-restoration-r2/diagnosis-r6-2026-08-06.md
-claude_1/banana-restoration-r2/enumeration-manifest.json
-claude_1/banana-restoration-r2/enumeration_manifest.py
-claude_1/banana-restoration-r2/fable-independent-design-review-2026-08-06.md
-claude_1/banana-restoration-r2/fuzz/fuzz-report-47c98f53-2026-08-05.json
-claude_1/banana-restoration-r2/fuzz/fuzz-report-47c98f53-2026-08-05.md
-claude_1/banana-restoration-r2/fuzz/fuzz-report-eac2eb36-2026-08-06.json
-claude_1/banana-restoration-r2/fuzz/fuzz-report-eac2eb36-2026-08-06.md
-claude_1/banana-restoration-r2/fuzz/fuzz-report-latest.json
-claude_1/banana-restoration-r2/fuzz/fuzz-report-latest.md
-claude_1/banana-restoration-r2/gate-results-2026-08-04.md
-claude_1/banana-restoration-r2/gate-results-v2-2026-08-05.md
-claude_1/banana-restoration-r2/gate-results-v3-2026-08-05.md
-claude_1/banana-restoration-r2/gate-results-v4-2026-08-05.md
-claude_1/banana-restoration-r2/gate-results-v5-2026-08-05.md
-claude_1/banana-restoration-r2/gate-results-v6-2026-08-06.md
-claude_1/banana-restoration-r2/harness-report-2026-08-04.md
-claude_1/banana-restoration-r2/integration-seam-2026-08-04.md
-claude_1/banana-restoration-r2/invariant-spec-2026-08-04.md
-claude_1/banana-restoration-r2/make_banana_traces.py
-claude_1/banana-restoration-r2/red-evidence-280ed777-2026-08-05.md
-claude_1/banana-restoration-r2/red-evidence-2f58edef-2026-08-05.md
-claude_1/banana-restoration-r2/red-evidence-9f5ef833-2026-08-05.md
-claude_1/banana-restoration-r2/red-evidence-f29efd0e-2026-08-04.md
-claude_1/banana-restoration-r2/regression_tests.py
-claude_1/banana-restoration-r2/research-banana-r2.rs
-claude_1/banana-restoration-r2/semantic_harness.py
-claude_1/banana-restoration-r2/test_trace_detectors.py
-claude_1/banana-restoration-r2/tier-c-results-2026-08-04.json
-claude_1/banana-restoration-r2/tier-c-results-2026-08-05.json
-claude_1/banana-restoration-r2/tier-c-results-v3-2026-08-05.json
-claude_1/banana-restoration-r2/tier-c-results-v4-2026-08-05.json
-claude_1/banana-restoration-r2/tier-c-results-v5-2026-08-05.json
-claude_1/banana-restoration-r2/tier-c-results-v6-2026-08-06.json
-claude_1/banana-restoration-r2/tier-p-golden.json
-claude_1/banana-restoration-r2/trace_detectors.py
-claude_1/banana-restoration-r2/traces/r5-two-worker-banking-commands.txt
-claude_1/banana-restoration-r2/traces/r5-two-worker-banking-transcript.txt
-claude_1/banana-restoration-r2/traces/t1_lifecycle-commands.txt
-claude_1/banana-restoration-r2/traces/t1_lifecycle-detectors-cli.json
-claude_1/banana-restoration-r2/traces/t1_lifecycle-detectors.json
-claude_1/banana-restoration-r2/traces/t1_lifecycle-transcript.txt
-claude_1/banana-restoration-r2/traces/t2_contested-commands.txt
-claude_1/banana-restoration-r2/traces/t2_contested-detectors-cli.json
-claude_1/banana-restoration-r2/traces/t2_contested-detectors.json
-claude_1/banana-restoration-r2/traces/t2_contested-transcript.txt
-claude_1/banana-restoration-r2/traces/t3_abandon-commands.txt
-claude_1/banana-restoration-r2/traces/t3_abandon-detectors.json
-claude_1/banana-restoration-r2/traces/t3_abandon-transcript.txt
-claude_1/banana-restoration-r2/traces/t4_convert-commands.txt
-claude_1/banana-restoration-r2/traces/t4_convert-detectors.json
-claude_1/banana-restoration-r2/traces/t4_convert-transcript.txt
-claude_1/banana-restoration-r2/traces/t5_flip_convert-commands.txt
-claude_1/banana-restoration-r2/traces/t5_flip_convert-detectors.json
-claude_1/banana-restoration-r2/traces/t5_flip_convert-transcript.txt
-claude_1/banana-restoration-r2/traces/t6_owned_chop-commands.txt
-claude_1/banana-restoration-r2/traces/t6_owned_chop-detectors.json
-claude_1/banana-restoration-r2/traces/t6_owned_chop-transcript.txt
-
-== toolchain ==
-Python 3.12.3
-rustc 1.97.1 (8bab26f4f 2026-07-14)
-cargo 1.97.1 (c980f4866 2026-06-30)
+commit=ea21093557ac312a270297335b910697e21691a6
+utc=2026-08-06T11:44:05Z
+python=Python 3.12.3
+rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
 == candidate build ==
 {
@@ -92,24 +16,601 @@ cargo 1.97.1 (c980f4866 2026-06-30)
     "I6": 186
   }
 }
-build_exit=0
+candidate_build_exit=0
 
-== oracle self-test ==
+== oracle selftest ==
 conversion_race_oracle self-test: OK
-oracle_exit=0
-
-== likely test entrypoints ==
-claude_1/banana-restoration-r2/regression_tests.py
-claude_1/banana-restoration-r2/semantic_harness.py
-claude_1/banana-restoration-r2/test_trace_detectors.py
+oracle_selftest_exit=0
 
 == compile candidate ==
-error: invalid character '.' in crate name: `candidate_banana_r2.min`
-
-error: aborting due to 1 previous error
-
-compile_exit=1
+compile_candidate_exit=0
 
 == smoke empty input ==
-smoke_exit=127 stdout_bytes=0 stderr_bytes=86
-timeout: failed to run command ‘/tmp/banana-candidate’: No such file or directory
+smoke_exit=0 stdout_bytes=0 stderr_bytes=0
+
+== regression all ==
+{
+ "bank_turns": [
+  43,
+  51,
+  56,
+  61,
+  85,
+  91,
+  96,
+  101,
+  121,
+  127,
+  132,
+  137,
+  157,
+  163,
+  168,
+  173,
+  193,
+  199,
+  204,
+  209
+ ],
+ "check": "R-1 one-seed-reservation",
+ "invariant": "I-9",
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-2a unripe-contested-abandon",
+ "eta_opp_at_flip": 0,
+ "eta_res_at_flip": 0,
+ "flip_turn": 6,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "resident": 0,
+ "unripe_at_flip": true,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-2b unripe-contested-convert",
+ "chop_turns_on_mother": [
+  5,
+  6
+ ],
+ "eta_opp_at_flip": 1,
+ "eta_res_at_flip": 1,
+ "feasibility_at_flip": {
+  "completion_turn": 6,
+  "conversion_possible": true,
+  "opponent_harvest_turn": 31,
+  "turn": 4
+ },
+ "flip_turn": 4,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-3a conversion-race-boundary/infeasible-tie",
+ "chop_analysis": null,
+ "eta_opp_at_flip": 2,
+ "eta_res_at_flip": 2,
+ "flip_turn": 1,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 7,
+  "eta_opp": 2,
+  "eta_res": 2,
+  "exact_chop_turns": 5,
+  "feasible": false,
+  "first_fruit_turn": 7,
+  "opponent_harvest_turn": 7
+ },
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-3b conversion-race-boundary/feasible-edge",
+ "chop_turns_on_mother": [
+  3,
+  4,
+  5,
+  6
+ ],
+ "eta_opp_at_flip": 2,
+ "eta_res_at_flip": 2,
+ "flip_turn": 1,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 6,
+  "eta_opp": 2,
+  "eta_res": 2,
+  "exact_chop_turns": 4,
+  "feasible": true,
+  "first_fruit_turn": 7,
+  "opponent_harvest_turn": 7
+ },
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": [],
+ "voided_legacy_deadlines_at_flip": {
+  "voided_code_max_eta_opp_predicted_cooldown": {
+   "accepts": false,
+   "lhs_eta_res_plus_chops": 6,
+   "rhs_deadline": 4
+  },
+  "voided_d8_arrival_only": {
+   "accepts": false,
+   "eta_opp_at_chop_start": 0,
+   "exact_chops_at_chop_start": 4
+  },
+  "voided_spec_old_lt_eta_opp": {
+   "accepts": false,
+   "lhs_eta_res_plus_chops": 6,
+   "rhs_eta_opp": 2
+  }
+ }
+}
+{
+ "check": "R-4 flip-response-reachability",
+ "chop_turns_on_mother": [
+  15,
+  16,
+  17,
+  18,
+  19
+ ],
+ "eta_opp_at_flip": 3,
+ "eta_res_at_flip": 3,
+ "flip_turn": 11,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 18,
+  "eta_opp": 3,
+  "eta_res": 3,
+  "exact_chop_turns": 5,
+  "feasible": true,
+  "first_fruit_turn": 27,
+  "opponent_harvest_turn": 27
+ },
+ "plant_turn": 3,
+ "post_flip_commands": [
+  {
+   "resident_command": "DROP 0",
+   "turn": 11
+  },
+  {
+   "resident_command": "MOVE 0 0 2",
+   "turn": 12
+  },
+  {
+   "resident_command": "MOVE 0 1 2",
+   "turn": 13
+  },
+  {
+   "resident_command": "MOVE 0 2 2",
+   "turn": 14
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 15
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 16
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 17
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 18
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 19
+  },
+  {
+   "resident_command": "MOVE 0 2 1",
+   "turn": 20
+  },
+  {
+   "resident_command": "DROP 0",
+   "turn": 21
+  }
+ ],
+ "resident": 0,
+ "response_begun_turns": [
+  12
+ ],
+ "response_window": [
+  11,
+  12
+ ],
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "bank_turns": {
+  "2": 6
+ },
+ "check": "R-5 two-worker-full-cargo-banking",
+ "episodes": [],
+ "full_wood_carrier_since": {
+  "2": 1
+ },
+ "invariants": [
+  "I-19",
+  "I-20",
+  "I-21",
+  "D-1"
+ ],
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "bank_turns": [
+  4
+ ],
+ "check": "R-1 one-seed-reservation",
+ "control": "control-r1-compliant",
+ "expected_verdict": "PASS",
+ "invariant": "I-9",
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-2a unripe-contested-abandon",
+ "control": "control-r2a-compliant",
+ "eta_opp_at_flip": 1,
+ "eta_res_at_flip": 2,
+ "expected_verdict": "PASS",
+ "flip_turn": 5,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "resident": 0,
+ "unripe_at_flip": true,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-2b unripe-contested-convert",
+ "chop_turns_on_mother": [
+  2,
+  3
+ ],
+ "control": "control-r2b-compliant",
+ "eta_opp_at_flip": 0,
+ "eta_res_at_flip": 1,
+ "expected_verdict": "PASS",
+ "feasibility_at_flip": null,
+ "flip_turn": 5,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-3a conversion-race-boundary/infeasible-tie",
+ "chop_analysis": null,
+ "control": "control-r3a-compliant",
+ "eta_opp_at_flip": 2,
+ "eta_res_at_flip": 2,
+ "expected_verdict": "PASS",
+ "flip_turn": 1,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 7,
+  "eta_opp": 2,
+  "eta_res": 2,
+  "exact_chop_turns": 5,
+  "feasible": false,
+  "first_fruit_turn": 7,
+  "opponent_harvest_turn": 7
+ },
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "check": "R-3a conversion-race-boundary/infeasible-tie",
+ "chop_analysis": {
+  "chop_start_turn": 3,
+  "oracle_at_chop_start": {
+   "completion_turn": 7,
+   "eta_opp": 0,
+   "eta_res": 0,
+   "exact_chop_turns": 5,
+   "feasible": false,
+   "first_fruit_turn": 7,
+   "opponent_harvest_turn": 7
+  }
+ },
+ "control": "control-r3a-doomed",
+ "eta_opp_at_flip": 2,
+ "eta_res_at_flip": 2,
+ "expected_verdict": "FAIL",
+ "flip_turn": 1,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 7,
+  "eta_opp": 2,
+  "eta_res": 2,
+  "exact_chop_turns": 5,
+  "feasible": false,
+  "first_fruit_turn": 7,
+  "opponent_harvest_turn": 7
+ },
+ "resident": 0,
+ "verdict": "FAIL",
+ "violations": [
+  {
+   "chop_turns_on_mother": [
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+  }
+ ]
+}
+{
+ "check": "R-3b conversion-race-boundary/feasible-edge",
+ "chop_turns_on_mother": [
+  3,
+  4,
+  5,
+  6
+ ],
+ "control": "control-r3b-compliant",
+ "eta_opp_at_flip": 2,
+ "eta_res_at_flip": 2,
+ "expected_verdict": "PASS",
+ "flip_turn": 1,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 6,
+  "eta_opp": 2,
+  "eta_res": 2,
+  "exact_chop_turns": 4,
+  "feasible": true,
+  "first_fruit_turn": 7,
+  "opponent_harvest_turn": 7
+ },
+ "resident": 0,
+ "verdict": "PASS",
+ "violations": [],
+ "voided_legacy_deadlines_at_flip": {
+  "voided_code_max_eta_opp_predicted_cooldown": {
+   "accepts": false,
+   "lhs_eta_res_plus_chops": 6,
+   "rhs_deadline": 4
+  },
+  "voided_d8_arrival_only": {
+   "accepts": false,
+   "eta_opp_at_chop_start": 0,
+   "exact_chops_at_chop_start": 4
+  },
+  "voided_spec_old_lt_eta_opp": {
+   "accepts": false,
+   "lhs_eta_res_plus_chops": 6,
+   "rhs_eta_opp": 2
+  }
+ }
+}
+{
+ "check": "R-4 flip-response-reachability",
+ "chop_turns_on_mother": [
+  15,
+  16,
+  17,
+  18,
+  19
+ ],
+ "control": "control-r4-compliant",
+ "eta_opp_at_flip": 3,
+ "eta_res_at_flip": 3,
+ "expected_verdict": "PASS",
+ "flip_turn": 11,
+ "invariant": "I-10a",
+ "mother": [
+  2,
+  2
+ ],
+ "oracle_at_flip": {
+  "completion_turn": 18,
+  "eta_opp": 3,
+  "eta_res": 3,
+  "exact_chop_turns": 5,
+  "feasible": true,
+  "first_fruit_turn": 27,
+  "opponent_harvest_turn": 27
+ },
+ "plant_turn": 3,
+ "post_flip_commands": [
+  {
+   "resident_command": "DROP 0",
+   "turn": 11
+  },
+  {
+   "resident_command": "MOVE 0 2 2",
+   "turn": 12
+  },
+  {
+   "resident_command": "MOVE 0 2 2",
+   "turn": 13
+  },
+  {
+   "resident_command": "MOVE 0 2 2",
+   "turn": 14
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 15
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 16
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 17
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 18
+  },
+  {
+   "resident_command": "CHOP 0",
+   "turn": 19
+  },
+  {
+   "resident_command": "MOVE 0 2 1",
+   "turn": 20
+  },
+  {
+   "resident_command": "DROP 0",
+   "turn": 21
+  }
+ ],
+ "resident": 0,
+ "response_begun_turns": [
+  12
+ ],
+ "response_window": [
+  11,
+  12
+ ],
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "bank_turns": {
+  "2": 6
+ },
+ "check": "R-5 two-worker-full-cargo-banking",
+ "control": "control-r5-compliant",
+ "episodes": [],
+ "expected_verdict": "PASS",
+ "full_wood_carrier_since": {
+  "2": 1
+ },
+ "invariants": [
+  "I-19",
+  "I-20",
+  "I-21",
+  "D-1"
+ ],
+ "verdict": "PASS",
+ "violations": []
+}
+{
+ "bank_turns": {
+  "2": null
+ },
+ "check": "R-5 two-worker-full-cargo-banking",
+ "control": "control-r5-oscillator",
+ "episodes": [
+  {
+   "carry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "cells": [
+    [
+     4,
+     2
+    ],
+    [
+     3,
+     2
+    ]
+   ],
+   "k": 8,
+   "turn_end": 20,
+   "turn_start": 3,
+   "unit": 2
+  }
+ ],
+ "expected_verdict": "FAIL",
+ "full_wood_carrier_since": {
+  "2": 1
+ },
+ "invariants": [
+  "I-19",
+  "I-20",
+  "I-21",
+  "D-1"
+ ],
+ "verdict": "FAIL",
+ "violations": [
+  {
+   "unit": 2,
+   "why": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 2)<->(3, 2) over turns 3-20 (18 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction"
+  }
+ ]
+}
+regression_all_exit=0
+
+== semantic harness ==
+{"tier_p": {"p_baseline_plain": "PASS", "p_orchard_eligible": "PASS", "p_banana_inventory_dormant": "PASS", "p_wood_banking": "PASS", "p_two_worker": "PASS", "p_late_window": "PASS", "p_training": "PASS"}, "golden": "/tmp/tier-p.json", "tier_c": {"c_bootstrap_budget": "PASS", "c_bounded_placement": "PASS", "c_replant_renewable": "PASS", "c_late_conversion": "PASS", "c_banking": "PASS", "c_eta_suppression": "PASS", "c_arbitration": "PASS", "c_target_recovery": "PASS"}}
+semantic_harness_exit=0
+
+== trace detector tests ==
+............................
+----------------------------------------------------------------------
+Ran 28 tests in 0.011s
+
+OK
+trace_detector_tests_exit=0
+
+== fuzz panel ==
+fuzz_panel: BLOCK (240 games, 47 blocking, 89 flagged, 14.6 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel_exit=1
