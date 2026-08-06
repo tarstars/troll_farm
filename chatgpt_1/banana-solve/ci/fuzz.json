@@ -2623,9 +2623,9 @@
      0,
      5,
      0,
-     29
+     31
     ],
-    "margin": 121,
+    "margin": 129,
     "opp_inventory": [
      0,
      0,
@@ -2635,7 +2635,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 121
+    "score": 129
    },
    "class": "open_field",
    "detector_counts": {
@@ -3617,11 +3617,16 @@
     "D-4": 0,
     "D-5": 0,
     "D-6": 0,
-    "D-7": 0,
+    "D-7": 1,
     "D-8": 0,
     "D-9": 0
    },
-   "flags": [],
+   "flags": [
+    {
+     "detail": "1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript",
+     "flag": "terminal-consuming-command"
+    }
+   ],
    "map_id": "m024",
    "orchard_eligible": false,
    "parent": {
@@ -3721,7 +3726,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -3745,7 +3750,7 @@
    },
    "class": "orchard_eligible",
    "detector_counts": {
-    "D-1": 1,
+    "D-1": 0,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -3783,31 +3788,7 @@
    "seat": 1,
    "seed": 15485863,
    "turns": 200,
-   "violations": [
-    {
-     "count": 1,
-     "detector": "D-1",
-     "episodes": [
-      {
-       "cells": [
-        [
-         10,
-         6
-        ],
-        [
-         9,
-         6
-        ]
-       ],
-       "k": 6,
-       "turn_end": 30,
-       "turn_start": 18,
-       "unit": 0
-      }
-     ],
-     "property": "P1"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -10588,11 +10569,11 @@
      0,
      0,
      0,
-     2,
+     3,
      0,
-     35
+     34
     ],
-    "margin": 142,
+    "margin": 139,
     "opp_inventory": [
      0,
      0,
@@ -10602,7 +10583,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 142
+    "score": 139
    },
    "class": "open_field",
    "detector_counts": {
@@ -12301,7 +12282,7 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 3,
+    "D-6": 2,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
@@ -12336,7 +12317,7 @@
    "turns": 200,
    "violations": [
     {
-     "count": 3,
+     "count": 2,
      "detector": "D-6",
      "episodes": [
       {
@@ -12346,8 +12327,8 @@
        ],
        "eta_opp_x": 1,
        "kind": "opp_chop_eta",
-       "turn_end": 32,
-       "turn_start": 32,
+       "turn_end": 37,
+       "turn_start": 37,
        "unit": 2
       },
       {
@@ -12360,17 +12341,6 @@
        "turn_end": 38,
        "turn_start": 38,
        "unit": 0
-      },
-      {
-       "cell": [
-        1,
-        5
-       ],
-       "eta_opp_x": 0,
-       "kind": "opp_chop_eta",
-       "turn_end": 38,
-       "turn_start": 38,
-       "unit": 2
       }
      ],
      "property": "P1"
@@ -12664,9 +12634,9 @@
      0,
      0,
      0,
-     24
+     23
     ],
-    "margin": 96,
+    "margin": 92,
     "opp_inventory": [
      0,
      0,
@@ -12676,7 +12646,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 96
+    "score": 92
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -14256,9 +14226,9 @@
      0,
      0,
      0,
-     31
+     23
     ],
-    "margin": 124,
+    "margin": 92,
     "opp_inventory": [
      0,
      0,
@@ -14268,7 +14238,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 124
+    "score": 92
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -17934,7 +17904,7 @@
  ],
  "stats": {
   "banana_activated_games": 161,
-  "blocking_games": 7,
+  "blocking_games": 6,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -17950,13 +17920,13 @@
    "harvester": 96,
    "idle": 72
   },
-  "flagged_games": 109,
+  "flagged_games": 110,
   "games": 240,
   "maps": 120,
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 15.46
+  "wall_time_seconds": 14.48
  },
  "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
  "verdict": "BLOCK"

@@ -1,10 +1,10 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed renewable candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 037e8e12d01ae67fc5edf0e116634fbcb66bbb55b568176733b060df5aba8686)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 fbf9349f987abe16dc48bc484ba85d7c6183df02df973bdaa93f18596e9c78b8)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 15.5 s
+- wall time: 14.5 s
 
 ## Verdict: BLOCK
 
@@ -16,8 +16,8 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 7 |
-| flagged_games | 109 |
+| blocking_games | 6 |
+| flagged_games | 110 |
 
 | class | games |
 |---|---|
@@ -37,10 +37,6 @@
 | idle | 72 |
 
 ## Blocking violations
-
-### m025 seat 1 (orchard_eligible, chopper_aggressor, seed 15485863)
-
-- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[10, 6], [9, 6]], "k": 6, "turn_end": 30, "turn_start": 18, "unit": 0}]}
 
 ### m032 seat 1 (forest_sparse, chopper_aggressor, seed 32452843)
 
@@ -64,7 +60,7 @@
 
 ### m082 seat 0 (water_diagonal, chopper_aggressor, seed 67867967)
 
-- **P1**: {"count": 3, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 1, "kind": "opp_chop_eta", "turn_end": 32, "turn_start": 32, "unit": 2}, {"cell": [0, 4], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 0}, {"cell": [1, 5], "eta_opp_x": 0, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 2}]}
+- **P1**: {"count": 2, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 1, "kind": "opp_chop_eta", "turn_end": 37, "turn_start": 37, "unit": 2}, {"cell": [0, 4], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 0}]}
 
 ## Report-tier flags (non-blocking)
 
@@ -89,6 +85,7 @@
 - m021 seat 1 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m022 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m024 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
+- m024 seat 1 [terminal-consuming-command]: 1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript
 - m029 seat 0 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m029 seat 1 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m033 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)

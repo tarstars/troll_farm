@@ -1,26 +1,9 @@
 [
  {
-  "count": 1,
+  "count": 0,
   "detector": "D-1",
-  "episodes": [
-   {
-    "cells": [
-     [
-      10,
-      6
-     ],
-     [
-      9,
-      6
-     ]
-    ],
-    "k": 6,
-    "turn_end": 30,
-    "turn_start": 18,
-    "unit": 0
-   }
-  ],
-  "verdict": "FAIL"
+  "episodes": [],
+  "verdict": "PASS"
  },
  {
   "count": 0,
@@ -53,10 +36,18 @@
   "verdict": "PASS"
  },
  {
-  "count": 0,
+  "count": 1,
   "detector": "D-7",
-  "episodes": [],
-  "verdict": "PASS"
+  "episodes": [
+   {
+    "kind": "unbanked_at_end",
+    "provenance": "bank_pick",
+    "turn_end": 200,
+    "turn_start": 200,
+    "unit": 0
+   }
+  ],
+  "verdict": "FAIL"
  },
  {
   "count": 0,

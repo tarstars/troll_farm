@@ -1091,29 +1091,43 @@ impl Bot for BananaBot {
         // Break a resident two-cell return before it becomes a sustained
         // A-B-A-B loop.  The task/target latch is deliberately left intact:
         // one stationary turn forces the existing blocked/progress accounting
-        // to re-evaluate rather than manufacturing a new target.
-        if let Some(worker_id) = self.banana_worker {
-            if let Some(worker) = view.unit(worker_id) {
-                let (older, previous) = self
-                    .banana_peer_history
-                    .get(&worker_id)
-                    .copied()
-                    .unwrap_or((worker.cell, worker.cell));
-                let returns_to_a = older == worker.cell && previous != worker.cell;
-                let move_returns_to_b = wrapper_action
-                    .as_ref()
-                    .filter(|action| returns_to_a && action.starts_with("MOVE "))
-                    .map(|action| {
-                        let parts: Vec<&str> = action.split_whitespace().collect();
-                        parts.len() == 4
-                            && parts[2].parse::<i32>().ok() == Some(previous.0)
-                            && parts[3].parse::<i32>().ok() == Some(previous.1)
-                    })
-                    .unwrap_or(false);
-                self.banana_peer_history
-                    .insert(worker_id, (previous, worker.cell));
-                if move_returns_to_b {
-                    wrapper_action = Some("WAIT".to_string());
+        // to re-evaluate rather than manufacturing a new target.  When the
+        // wrapper emits no action, the post-edit peer path below owns this
+        // history update so the resident is not recorded twice in one turn.
+        if wrapper_action.is_some() {
+            if let Some(worker_id) = self.banana_worker {
+                if let Some(worker) = view.unit(worker_id) {
+                    let (older, previous) = self
+                        .banana_peer_history
+                        .get(&worker_id)
+                        .copied()
+                        .unwrap_or((worker.cell, worker.cell));
+                    let returns_to_a = older == worker.cell && previous != worker.cell;
+                    let move_returns_to_b = wrapper_action
+                        .as_ref()
+                        .filter(|action| returns_to_a && action.starts_with("MOVE "))
+                        .map(|action| {
+                            let parts: Vec<&str> = action.split_whitespace().collect();
+                            if parts.len() == 4 {
+                                match (parts[2].parse::<i32>(), parts[3].parse::<i32>()) {
+                                    (Ok(x), Ok(y)) => next_cell(
+                                        &view.walkable,
+                                        worker.cell,
+                                        (x, y),
+                                        worker.stats.movement_speed,
+                                    ) == previous,
+                                    _ => false,
+                                }
+                            } else {
+                                false
+                            }
+                        })
+                        .unwrap_or(false);
+                    self.banana_peer_history
+                        .insert(worker_id, (previous, worker.cell));
+                    if move_returns_to_b {
+                        wrapper_action = Some("WAIT".to_string());
+                    }
                 }
             }
         }
@@ -1190,12 +1204,13 @@ impl Bot for BananaBot {
                 && commands[slot].starts_with("PICK ")
                 && commands[slot].ends_with(" BANANA");
             // The inner economy may know about bananas, but while this
-            // feature is active/lost it may not expand their footprint beyond
-            // the bounded ring.  Repeated plant-grow-cut cycles on a ring cell
-            // remain legal; only spatial escape is vetoed.
-            let plants_banana_outside_ring = commands[slot].starts_with("PLANT ")
+            // feature is active/lost every banana PLANT must satisfy the same
+            // bounded, late-cutoff, occupancy, and opponent-safety predicate
+            // as the resident's own candidate generator.
+            let plants_banana_invalid = commands[slot].starts_with("PLANT ")
                 && commands[slot].ends_with(" BANANA")
-                && !ring.contains(&unit.cell);
+                && (!ring.contains(&unit.cell)
+                    || !Self::banana_vacant_ok(view, unit, unit.cell, true));
 
             let (older, previous) = self
                 .banana_peer_history
@@ -1205,16 +1220,26 @@ impl Bot for BananaBot {
             let returns_to_a = older == unit.cell && previous != unit.cell;
             let move_returns_to_b = if returns_to_a && commands[slot].starts_with("MOVE ") {
                 let parts: Vec<&str> = commands[slot].split_whitespace().collect();
-                parts.len() == 4
-                    && parts[2].parse::<i32>().ok() == Some(previous.0)
-                    && parts[3].parse::<i32>().ok() == Some(previous.1)
+                if parts.len() == 4 {
+                    match (parts[2].parse::<i32>(), parts[3].parse::<i32>()) {
+                        (Ok(x), Ok(y)) => next_cell(
+                            &view.walkable,
+                            unit.cell,
+                            (x, y),
+                            unit.stats.movement_speed,
+                        ) == previous,
+                        _ => false,
+                    }
+                } else {
+                    false
+                }
             } else {
                 false
             };
             self.banana_peer_history
                 .insert(unit.id, (previous, unit.cell));
 
-            if harms_mother || steals_seed || plants_banana_outside_ring || move_returns_to_b {
+            if harms_mother || steals_seed || plants_banana_invalid || move_returns_to_b {
                 commands[slot] = "WAIT".to_string();
                 peer_move_rewritten |= move_returns_to_b;
             }

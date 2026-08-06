@@ -12,19 +12,19 @@
     "within_budget": true
   },
   "candidate": {
-    "bytes": 83857,
+    "bytes": 84091,
     "path": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/candidate-banana-r2.min.rs",
-    "sha256": "037e8e12d01ae67fc5edf0e116634fbcb66bbb55b568176733b060df5aba8686"
+    "sha256": "fbf9349f987abe16dc48bc484ba85d7c6183df02df973bdaa93f18596e9c78b8"
   },
   "insertions": [
     {
       "anchor": "pub struct SecureOrchardBot{",
       "block": "block-i1.rs",
-      "inserted_bytes": 20686,
-      "inserted_sha256": "bc6bf7edf5fcfd4f5e589f27b0f8fb2fe0eb54f6f3a7125e82d0d5c96c847bbc",
+      "inserted_bytes": 20920,
+      "inserted_sha256": "13127eae0b3b16b7e3aee7cb8088292f1772520be6dd054db19bd537241b8f04",
       "mode": "before",
       "name": "I1",
-      "readable_block_bytes": 63368
+      "readable_block_bytes": 64533
     },
     {
       "anchor": "external_protected_tree:Option<Cell>,}",

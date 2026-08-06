@@ -30,7 +30,7 @@
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 3,
+  "D-6": 2,
   "D-7": 0,
   "D-8": 0,
   "D-9": 0
@@ -65,7 +65,7 @@
  "turns": 200,
  "violations": [
   {
-   "count": 3,
+   "count": 2,
    "detector": "D-6",
    "episodes": [
     {
@@ -75,8 +75,8 @@
      ],
      "eta_opp_x": 1,
      "kind": "opp_chop_eta",
-     "turn_end": 32,
-     "turn_start": 32,
+     "turn_end": 37,
+     "turn_start": 37,
      "unit": 2
     },
     {
@@ -89,17 +89,6 @@
      "turn_end": 38,
      "turn_start": 38,
      "unit": 0
-    },
-    {
-     "cell": [
-      1,
-      5
-     ],
-     "eta_opp_x": 0,
-     "kind": "opp_chop_eta",
-     "turn_end": 38,
-     "turn_start": 38,
-     "unit": 2
     }
    ],
    "property": "P1"
