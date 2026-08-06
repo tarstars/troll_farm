@@ -504,6 +504,10 @@ Outputs (absolute turns anchored at `t`):
   powers are NEVER summed. A second chopper advances destruction only by arriving earlier or
   handing a higher single power — never by simultaneous co-located power. (Prior draft summed
   arrived powers — an unreachable over-count; review R2.1.)
+  RC-1 (Fable review 2026-08-06): the "opponent always keeps its strongest-arrived chopper on
+  the cell" schedule is the worst case *for us* (maximal enemy destruction). It is therefore a
+  safe over-approximation of the threat for a survival gate — pessimistic where a real opponent
+  mis-plays — never an under-estimate. This is deliberate for a safety oracle, not a bug.
 - `asset_lost_turn = min(opp_harvest_turn, opp_destroy_turn)` — absolute turn the asset is
   FIRST destroyed-or-farmed-out.
 - `feasible_convert = completion_turn < asset_lost_turn` (STRICT) — drives EV5/EV6/EV7.
@@ -1113,16 +1117,25 @@ this section is the index, not a diff log.
 - **R5 — close the enumeration gate.** (a) B.4/S9 bound the post-loss veto to the latched
   lineage, finite, lapsing at EV16 (the global rest-of-game PICK veto is withdrawn). (b) New
   EV19/EV20 → T7c/T8d (A.4a) give S7/S8 production exits for impossible commitments (A-18).
-  (c) D.2 is now the FROZEN EXACT ENUMERATION MANIFEST: axes + value sets, exact count
-  **1588** (L-CORE 1544 + L-ELIG 4 + L-SOLO 16 + L-LONG 8 + L-FIX 16), the degenerate
-  collapse enumerated (not "≈2.9k"), and a coverage proof obligation mapping every event
-  class, transition edge, and R1 collision C1-C6 to a named config — the gate fails if any is
-  unwitnessed. This manifest's later execution is the primary functional gate.
+  (c) D.2 is now the FROZEN EXACT ENUMERATION MANIFEST: axes + value sets, materialized by
+  `enumeration_manifest.py` into `enumeration-manifest.json` with a stable id + content hash
+  per row. Actual generated count (revision 2026-08-06b, F8): **1594** (1588 base + ST6/ST7 +
+  4 historical-red rows); the degenerate collapse is enumerated by the generator, not
+  described. The coverage proof is computed, mapping every event class, transition edge, and
+  R1 collision C1-C6 to a named row id — the gate fails if any is unwitnessed. This manifest's
+  later execution is the primary functional gate.
+  RC-2 (Fable review 2026-08-06): the coverage "70 targets, none uncovered" is exactly as
+  strong as the target set's completeness. The 70 targets = |EV1-20| + |33 T-ids| + |C1-C6| +
+  |ST1-7| + |4 reds| is asserted to be the complete behaviour set of this design; the manifest
+  proves every listed target is witnessed, not that the list is exhaustive of all possible
+  behaviour (that remains the enumeration tier's standing limit, stated honestly).
 
-§C rewritten with an honest coverage class per defect: **13 impossible-by-construction, 3
-assertion/infra-caught (DEF-03, DEF-05, DEF-11), 1 enumeration-witnessed (DEF-08)**. The
-review's open items DEF-11 (now correctly attributed, not overclaimed as prevented), DEF-14
-and DEF-17 (now closed by R2's single oracle) are resolved.
+§C carries an honest coverage class per defect. Actual PRIMARY-class tally (revision
+2026-08-06b, F10, verified by cell count): **8 impossible-by-construction, 6
+assertion/infra-caught, 3 enumeration-witnessed** (17 total). The livelock defects DEF-09/10
+are demoted IBC→AC (an enforced runtime decision verified by A-4 + enumeration, not a
+structural impossibility); DEF-14/DEF-17 are EW via the single oracle; DEF-08 is genuine EW.
+The earlier "13/3/1" figure was the pre-F8/pre-F10 revision-a count and is superseded here.
 
 ---
 
