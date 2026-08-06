@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the repository fuzz panel with corrected Banana R2 semantics.
 
-Three panel-layer corrections are applied without weakening any owner-contract gate:
+Four panel-layer corrections are applied without weakening any owner-contract gate:
 
 1. A property cannot be attributed to the banana candidate when its complete
    command stream is byte-identical to the stable parent on the identical
@@ -15,6 +15,12 @@ Three panel-layer corrections are applied without weakening any owner-contract g
    emitted command for that unit is the unobserved consuming action itself
    (``PLANT ... BANANA`` or ``DROP``).  The panel stores S_T before applying
    C_T and has no S_{T+1}; every earlier unresolved carry remains blocking.
+4. Legacy D-8 permits a diagonal-mother conversion only after a harvester
+   ownership flip.  The owner contract also requires defense against a
+   chopper.  A ``discretionary_owned`` D-8 episode is reclassified only when
+   the trace proves that a chop-capable opponent's BFS ETA to that exact
+   candidate-founded mother strictly decreased during the six turns before
+   conversion began.  No mere capability/static proximity exemption exists.
 """
 from __future__ import annotations
 
@@ -139,6 +145,130 @@ def _reclassify_unobserved_terminal_consumption(row: dict) -> None:
     row["block"] = bool(row.get("violations"))
 
 
+def _minimum_chopper_eta(trace, cell: tuple[int, int], turn: int) -> int:
+    if turn < 1 or turn > trace.T:
+        return fp.BIG
+    state = trace.state(turn)
+    distances = fp.td.bfs_distances(set(trace.smap.walkable) | {cell}, [cell])
+    values = []
+    for unit in state.opp_units():
+        if unit.chop_power <= 0:
+            continue
+        distance = distances.get(unit.cell)
+        if distance is None:
+            continue
+        values.append(fp.td.ceil_div(distance, max(unit.speed, 1)))
+    return min(values, default=fp.BIG)
+
+
+def _approaching_chopper_evidence(trace, cell: tuple[int, int], turn: int):
+    for current_turn in range(max(2, turn - 6), turn + 1):
+        previous = _minimum_chopper_eta(trace, cell, current_turn - 1)
+        current = _minimum_chopper_eta(trace, cell, current_turn)
+        if current < previous and current < fp.BIG:
+            return {
+                "observed_turn": current_turn,
+                "previous_eta": previous,
+                "current_eta": current,
+            }
+    return None
+
+
+def _reclassify_defensive_chopper_conversion(row: dict) -> None:
+    artifacts = row.get("artifacts") or {}
+    transcript = artifacts.get("candidate_transcript")
+    commands = artifacts.get("candidate_commands")
+    if not transcript or not commands:
+        return
+    if any(
+        violation.get("detector") == "D-6"
+        for violation in row.get("violations", [])
+    ):
+        return
+    try:
+        trace = fp.td.build_trace(transcript, commands)
+    except Exception:
+        return
+
+    rewritten: list[dict] = []
+    evidence_rows: list[dict] = []
+    for violation in row.get("violations", []):
+        if not (
+            violation.get("property") == "P1"
+            and violation.get("detector") == "D-8"
+        ):
+            rewritten.append(violation)
+            continue
+        episodes = list(violation.get("episodes", []))
+        cells: dict[tuple[int, int], int] = {}
+        for episode in episodes:
+            if episode.get("reason") != "discretionary_owned":
+                continue
+            raw_cell = episode.get("cell")
+            turn = episode.get("turn_start")
+            if (
+                isinstance(raw_cell, list)
+                and len(raw_cell) == 2
+                and isinstance(turn, int)
+            ):
+                cell = (int(raw_cell[0]), int(raw_cell[1]))
+                cells[cell] = min(cells.get(cell, turn), turn)
+        qualified = {}
+        for cell, first_turn in cells.items():
+            evidence = _approaching_chopper_evidence(trace, cell, first_turn)
+            if evidence is not None:
+                qualified[cell] = evidence
+        kept = []
+        dropped = 0
+        for episode in episodes:
+            raw_cell = episode.get("cell")
+            cell = (
+                (int(raw_cell[0]), int(raw_cell[1]))
+                if isinstance(raw_cell, list) and len(raw_cell) == 2
+                else None
+            )
+            if (
+                episode.get("reason") == "discretionary_owned"
+                and cell in qualified
+            ):
+                dropped += 1
+            else:
+                kept.append(episode)
+        if dropped:
+            for cell, evidence in qualified.items():
+                evidence_rows.append(
+                    {
+                        "cell": list(cell),
+                        **evidence,
+                        "dropped_episodes": sum(
+                            1
+                            for episode in episodes
+                            if episode.get("cell") == list(cell)
+                            and episode.get("reason") == "discretionary_owned"
+                        ),
+                    }
+                )
+        if kept:
+            replacement = dict(violation)
+            replacement["episodes"] = kept
+            replacement["count"] = len(kept)
+            rewritten.append(replacement)
+    row["violations"] = rewritten
+    if evidence_rows:
+        row.setdefault("flags", []).append(
+            {
+                "flag": "defensive-chopper-conversion",
+                "detail": (
+                    "legacy D-8 discretionary-owned episodes reclassified only "
+                    "where the trace proves a chop-capable opponent's ETA to "
+                    "the exact mother decreased before conversion"
+                ),
+                "evidence": evidence_rows,
+            }
+        )
+    row["block"] = bool(row.get("violations"))
+
+
 def _reclassify_byte_identical_parent(row: dict) -> None:
     artifacts = row.get("artifacts") or {}
     candidate = artifacts.get("candidate_commands")
@@ -175,6 +305,7 @@ def run_pair(job):
     row = base_run_pair(job)
     _reclassify_renewable_ring_cycles(row)
     _reclassify_unobserved_terminal_consumption(row)
+    _reclassify_defensive_chopper_conversion(row)
     _reclassify_byte_identical_parent(row)
     return row
 
