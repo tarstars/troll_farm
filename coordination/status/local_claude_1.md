@@ -12,5 +12,5 @@
 - Running job: none
 - Latest verified result: filtered inbox sweep for transfer task clean except the 3 transfer messages (acked in this commit series); unfiltered sweep audited in local_claude_1/inbox-backlog-audit-2026-08-06.md
 - Next checkpoint: collect claude_1 ACK for transfer policy; receive Banana R2 revised design-only review request; chatgpt_1 review-queue activation
-- Blockers: none
+- Blockers: seen-state `--mark` is blocked by the standing chatgpt_1 delivery error (transfer ack on non-canonical branch); the published backlog audit is the interim seen record until chatgpt_1 republishes and marking succeeds
 - Arena controller: yes — no mutation cycle in flight, no qualified candidate; Arena stays unchanged
