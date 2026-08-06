@@ -3726,7 +3726,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -3734,19 +3734,19 @@
      0,
      0,
      0,
-     1
+     4
     ],
-    "margin": -12,
+    "margin": 16,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     4
+     0
     ],
-    "opp_score": 16,
-    "score": 4
+    "opp_score": 0,
+    "score": 16
    },
    "class": "orchard_eligible",
    "detector_counts": {
@@ -3757,7 +3757,7 @@
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
-    "D-8": 0,
+    "D-8": 3,
     "D-9": 0
    },
    "flags": [],
@@ -3788,7 +3788,66 @@
    "seat": 1,
    "seed": 15485863,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 3,
+     "detector": "D-8",
+     "episodes": [
+      {
+       "cell": [
+        12,
+        6
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 5,
+       "turn_start": 5,
+       "unit": 0
+      },
+      {
+       "cell": [
+        12,
+        6
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 6,
+       "turn_start": 6,
+       "unit": 0
+      },
+      {
+       "cell": [
+        12,
+        6
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 7,
+       "turn_start": 7,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -5273,10 +5332,10 @@
     ],
     "margin": 10,
     "opp_inventory": [
-     1,
+     2,
      0,
      0,
-     17,
+     16,
      0,
      0
     ],
@@ -5290,7 +5349,7 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 11,
+    "D-6": 10,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
@@ -5325,7 +5384,7 @@
    "turns": 200,
    "violations": [
     {
-     "count": 11,
+     "count": 10,
      "detector": "D-6",
      "episodes": [
       {
@@ -5335,8 +5394,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 38,
-       "turn_start": 37,
+       "turn_end": 69,
+       "turn_start": 68,
        "unit": null
       },
       {
@@ -5346,8 +5405,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 66,
-       "turn_start": 65,
+       "turn_end": 70,
+       "turn_start": 69,
        "unit": null
       },
       {
@@ -5357,8 +5416,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 67,
-       "turn_start": 66,
+       "turn_end": 98,
+       "turn_start": 97,
        "unit": null
       },
       {
@@ -5368,8 +5427,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 95,
-       "turn_start": 94,
+       "turn_end": 99,
+       "turn_start": 98,
        "unit": null
       },
       {
@@ -5379,8 +5438,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 96,
-       "turn_start": 95,
+       "turn_end": 127,
+       "turn_start": 126,
        "unit": null
       }
      ],
@@ -7208,27 +7267,27 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
      0,
-     2,
-     18,
      0,
-     17
+     0,
+     0,
+     7
     ],
-    "margin": 46,
+    "margin": 14,
     "opp_inventory": [
-     20,
+     7,
      0,
-     22,
+     7,
      0,
      0,
      0
     ],
-    "opp_score": 42,
-    "score": 88
+    "opp_score": 14,
+    "score": 28
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -7239,7 +7298,7 @@
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
-    "D-8": 0,
+    "D-8": 3,
     "D-9": 0
    },
    "flags": [],
@@ -7270,12 +7329,71 @@
    "seat": 0,
    "seed": 15485863,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 3,
+     "detector": "D-8",
+     "episodes": [
+      {
+       "cell": [
+        0,
+        7
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 5,
+       "turn_start": 5,
+       "unit": 0
+      },
+      {
+       "cell": [
+        0,
+        7
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 6,
+       "turn_start": 6,
+       "unit": 0
+      },
+      {
+       "cell": [
+        0,
+        7
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 7,
+       "turn_start": 7,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -7283,9 +7401,9 @@
      0,
      0,
      0,
-     7
+     6
     ],
-    "margin": 22,
+    "margin": 18,
     "opp_inventory": [
      0,
      0,
@@ -7295,7 +7413,7 @@
      0
     ],
     "opp_score": 6,
-    "score": 28
+    "score": 24
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -7306,7 +7424,7 @@
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
-    "D-8": 0,
+    "D-8": 3,
     "D-9": 0
    },
    "flags": [],
@@ -7337,7 +7455,66 @@
    "seat": 1,
    "seed": 15485863,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 3,
+     "detector": "D-8",
+     "episodes": [
+      {
+       "cell": [
+        10,
+        1
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 5,
+       "turn_start": 5,
+       "unit": 0
+      },
+      {
+       "cell": [
+        10,
+        1
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 6,
+       "turn_start": 6,
+       "unit": 0
+      },
+      {
+       "cell": [
+        10,
+        1
+       ],
+       "completion_turn": 7,
+       "eta_opp_at_chop_start": 11,
+       "exact_chop_turns": 3,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 27,
+       "reason": "discretionary_owned",
+       "turn_end": 7,
+       "turn_start": 7,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -12261,7 +12438,7 @@
      0,
      0,
      0,
-     5
+     2
     ],
     "margin": -4,
     "opp_inventory": [
@@ -12270,10 +12447,10 @@
      0,
      0,
      0,
-     6
+     3
     ],
-    "opp_score": 24,
-    "score": 20
+    "opp_score": 12,
+    "score": 8
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -12282,9 +12459,9 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 2,
+    "D-6": 0,
     "D-7": 0,
-    "D-8": 0,
+    "D-8": 4,
     "D-9": 0
    },
    "flags": [],
@@ -12317,33 +12494,91 @@
    "turns": 200,
    "violations": [
     {
-     "count": 2,
-     "detector": "D-6",
+     "count": 4,
+     "detector": "D-8",
      "episodes": [
       {
        "cell": [
-        1,
+        0,
         5
        ],
-       "eta_opp_x": 1,
-       "kind": "opp_chop_eta",
-       "turn_end": 37,
-       "turn_start": 37,
-       "unit": 2
+       "completion_turn": 8,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 4,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 5,
+       "turn_start": 5,
+       "unit": 0
       },
       {
        "cell": [
         0,
-        4
+        5
        ],
-       "eta_opp_x": 2,
-       "kind": "opp_chop_eta",
-       "turn_end": 38,
-       "turn_start": 38,
+       "completion_turn": 8,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 4,
+       "flip_turn": null,
+       "health_decreased": false,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 6,
+       "turn_start": 6,
+       "unit": 0
+      },
+      {
+       "cell": [
+        0,
+        5
+       ],
+       "completion_turn": 8,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 4,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 7,
+       "turn_start": 7,
+       "unit": 0
+      },
+      {
+       "cell": [
+        0,
+        5
+       ],
+       "completion_turn": 8,
+       "eta_opp_at_chop_start": 10000,
+       "exact_chop_turns": 4,
+       "flip_turn": null,
+       "health_decreased": true,
+       "kind": "diag_mother_chop",
+       "opponent_harvest_turn": 10005,
+       "reason": "discretionary_owned",
+       "turn_end": 8,
+       "turn_start": 8,
        "unit": 0
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": {
+      "parent_progress_turns": [
+       13,
+       14
+      ],
+      "why": "candidate makes no progress over turns 11-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+      "window_end": 199,
+      "window_start": 11
+     },
+     "property": "P4"
     }
    ]
   },
@@ -17904,7 +18139,7 @@
  ],
  "stats": {
   "banana_activated_games": 161,
-  "blocking_games": 6,
+  "blocking_games": 9,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -17926,7 +18161,7 @@
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 14.48
+  "wall_time_seconds": 11.41
  },
  "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
  "verdict": "BLOCK"

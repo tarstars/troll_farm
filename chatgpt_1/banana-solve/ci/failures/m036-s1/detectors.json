@@ -30,7 +30,7 @@
   "verdict": "PASS"
  },
  {
-  "count": 11,
+  "count": 10,
   "detector": "D-6",
   "episodes": [
    {
@@ -40,8 +40,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 38,
-    "turn_start": 37,
+    "turn_end": 69,
+    "turn_start": 68,
     "unit": null
    },
    {
@@ -51,8 +51,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 66,
-    "turn_start": 65,
+    "turn_end": 70,
+    "turn_start": 69,
     "unit": null
    },
    {
@@ -62,8 +62,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 67,
-    "turn_start": 66,
+    "turn_end": 98,
+    "turn_start": 97,
     "unit": null
    },
    {
@@ -73,8 +73,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 95,
-    "turn_start": 94,
+    "turn_end": 99,
+    "turn_start": 98,
     "unit": null
    },
    {
@@ -84,8 +84,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 96,
-    "turn_start": 95,
+    "turn_end": 127,
+    "turn_start": 126,
     "unit": null
    },
    {
@@ -95,8 +95,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 124,
-    "turn_start": 123,
+    "turn_end": 128,
+    "turn_start": 127,
     "unit": null
    },
    {
@@ -106,8 +106,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 125,
-    "turn_start": 124,
+    "turn_end": 156,
+    "turn_start": 155,
     "unit": null
    },
    {
@@ -117,8 +117,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 153,
-    "turn_start": 152,
+    "turn_end": 157,
+    "turn_start": 156,
     "unit": null
    },
    {
@@ -128,8 +128,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 154,
-    "turn_start": 153,
+    "turn_end": 185,
+    "turn_start": 184,
     "unit": null
    },
    {
@@ -139,19 +139,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 182,
-    "turn_start": 181,
-    "unit": null
-   },
-   {
-    "cell": [
-     11,
-     7
-    ],
-    "kind": "opp_harvested_ours",
-    "opp_unit": 5,
-    "turn_end": 183,
-    "turn_start": 182,
+    "turn_end": 186,
+    "turn_start": 185,
     "unit": null
    }
   ],

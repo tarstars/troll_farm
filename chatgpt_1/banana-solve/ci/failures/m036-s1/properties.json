@@ -13,10 +13,10 @@
   ],
   "margin": 10,
   "opp_inventory": [
-   1,
+   2,
    0,
    0,
-   17,
+   16,
    0,
    0
   ],
@@ -30,7 +30,7 @@
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 11,
+  "D-6": 10,
   "D-7": 0,
   "D-8": 0,
   "D-9": 0
@@ -65,7 +65,7 @@
  "turns": 200,
  "violations": [
   {
-   "count": 11,
+   "count": 10,
    "detector": "D-6",
    "episodes": [
     {
@@ -75,8 +75,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 38,
-     "turn_start": 37,
+     "turn_end": 69,
+     "turn_start": 68,
      "unit": null
     },
     {
@@ -86,8 +86,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 66,
-     "turn_start": 65,
+     "turn_end": 70,
+     "turn_start": 69,
      "unit": null
     },
     {
@@ -97,8 +97,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 67,
-     "turn_start": 66,
+     "turn_end": 98,
+     "turn_start": 97,
      "unit": null
     },
     {
@@ -108,8 +108,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 95,
-     "turn_start": 94,
+     "turn_end": 99,
+     "turn_start": 98,
      "unit": null
     },
     {
@@ -119,8 +119,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 96,
-     "turn_start": 95,
+     "turn_end": 127,
+     "turn_start": 126,
      "unit": null
     }
    ],

@@ -1,10 +1,10 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed renewable candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 fbf9349f987abe16dc48bc484ba85d7c6183df02df973bdaa93f18596e9c78b8)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 dfbf0331866d9631c61348143ab460e026badbcd1d5d1288ffa0dbae40186cd6)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 14.5 s
+- wall time: 11.4 s
 
 ## Verdict: BLOCK
 
@@ -16,7 +16,7 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 6 |
+| blocking_games | 9 |
 | flagged_games | 110 |
 
 | class | games |
@@ -38,6 +38,10 @@
 
 ## Blocking violations
 
+### m025 seat 1 (orchard_eligible, chopper_aggressor, seed 15485863)
+
+- **P1**: {"count": 3, "detector": "D-8", "episodes": [{"cell": [12, 6], "completion_turn": 7, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10005, "reason": "discretionary_owned", "turn_end": 5, "turn_start": 5, "unit": 0}, {"cell": [12, 6], "completion_turn": 7, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10005, "reason": "discretionary_owned", "turn_end": 6, "turn_start": 6, "unit": 0}, {
+
 ### m032 seat 1 (forest_sparse, chopper_aggressor, seed 32452843)
 
 - **P4**: {"detail": {"parent_progress_turns": [22, 23, 26, 27, 28, 29, 35, 36], "why": "candidate makes no progress over turns 22-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 22}}
@@ -48,11 +52,19 @@
 
 ### m036 seat 1 (multi_door, harvester, seed 982451653)
 
-- **P1**: {"count": 11, "detector": "D-6", "episodes": [{"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 38, "turn_start": 37, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 66, "turn_start": 65, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 67, "turn_start": 66, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 95, "turn_start": 94, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 96, "turn_start": 95, "unit": n
+- **P1**: {"count": 10, "detector": "D-6", "episodes": [{"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 69, "turn_start": 68, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 70, "turn_start": 69, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 98, "turn_start": 97, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 99, "turn_start": 98, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 127, "turn_start": 126, "unit":
 
 ### m042 seat 1 (water_diagonal, chopper_aggressor, seed 982451653)
 
 - **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 0], [11, 1]], "k": 13, "turn_end": 54, "turn_start": 28, "unit": 2}]}
+
+### m049 seat 0 (water_diagonal, harvester, seed 15485863)
+
+- **P1**: {"count": 3, "detector": "D-8", "episodes": [{"cell": [0, 7], "completion_turn": 7, "eta_opp_at_chop_start": 11, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 27, "reason": "discretionary_owned", "turn_end": 5, "turn_start": 5, "unit": 0}, {"cell": [0, 7], "completion_turn": 7, "eta_opp_at_chop_start": 11, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 27, "reason": "discretionary_owned", "turn_end": 6, "turn_start": 6, "unit": 0}, {"cell": [0, 7]
+
+### m049 seat 1 (water_diagonal, harvester, seed 15485863)
+
+- **P1**: {"count": 3, "detector": "D-8", "episodes": [{"cell": [10, 1], "completion_turn": 7, "eta_opp_at_chop_start": 11, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 27, "reason": "discretionary_owned", "turn_end": 5, "turn_start": 5, "unit": 0}, {"cell": [10, 1], "completion_turn": 7, "eta_opp_at_chop_start": 11, "exact_chop_turns": 3, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 27, "reason": "discretionary_owned", "turn_end": 6, "turn_start": 6, "unit": 0}, {"cell": [10,
 
 ### m065 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
 
@@ -60,7 +72,8 @@
 
 ### m082 seat 0 (water_diagonal, chopper_aggressor, seed 67867967)
 
-- **P1**: {"count": 2, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 1, "kind": "opp_chop_eta", "turn_end": 37, "turn_start": 37, "unit": 2}, {"cell": [0, 4], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 0}]}
+- **P1**: {"count": 4, "detector": "D-8", "episodes": [{"cell": [0, 5], "completion_turn": 8, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 4, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10005, "reason": "discretionary_owned", "turn_end": 5, "turn_start": 5, "unit": 0}, {"cell": [0, 5], "completion_turn": 8, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 4, "flip_turn": null, "health_decreased": false, "kind": "diag_mother_chop", "opponent_harvest_turn": 10005, "reason": "discretionary_owned", "turn_end": 6, "turn_start": 6, "unit": 0}, {"
+- **P4**: {"detail": {"parent_progress_turns": [13, 14], "why": "candidate makes no progress over turns 11-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 11}}
 
 ## Report-tier flags (non-blocking)
 

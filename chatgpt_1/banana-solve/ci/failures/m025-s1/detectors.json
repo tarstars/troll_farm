@@ -42,17 +42,17 @@
   "verdict": "PASS"
  },
  {
-  "count": 4,
+  "count": 3,
   "detector": "D-8",
   "episodes": [
    {
     "cell": [
-     0,
-     5
+     12,
+     6
     ],
-    "completion_turn": 8,
+    "completion_turn": 7,
     "eta_opp_at_chop_start": 10000,
-    "exact_chop_turns": 4,
+    "exact_chop_turns": 3,
     "flip_turn": null,
     "health_decreased": true,
     "kind": "diag_mother_chop",
@@ -64,14 +64,14 @@
    },
    {
     "cell": [
-     0,
-     5
+     12,
+     6
     ],
-    "completion_turn": 8,
+    "completion_turn": 7,
     "eta_opp_at_chop_start": 10000,
-    "exact_chop_turns": 4,
+    "exact_chop_turns": 3,
     "flip_turn": null,
-    "health_decreased": false,
+    "health_decreased": true,
     "kind": "diag_mother_chop",
     "opponent_harvest_turn": 10005,
     "reason": "discretionary_owned",
@@ -81,12 +81,12 @@
    },
    {
     "cell": [
-     0,
-     5
+     12,
+     6
     ],
-    "completion_turn": 8,
+    "completion_turn": 7,
     "eta_opp_at_chop_start": 10000,
-    "exact_chop_turns": 4,
+    "exact_chop_turns": 3,
     "flip_turn": null,
     "health_decreased": true,
     "kind": "diag_mother_chop",
@@ -94,23 +94,6 @@
     "reason": "discretionary_owned",
     "turn_end": 7,
     "turn_start": 7,
-    "unit": 0
-   },
-   {
-    "cell": [
-     0,
-     5
-    ],
-    "completion_turn": 8,
-    "eta_opp_at_chop_start": 10000,
-    "exact_chop_turns": 4,
-    "flip_turn": null,
-    "health_decreased": true,
-    "kind": "diag_mother_chop",
-    "opponent_harvest_turn": 10005,
-    "reason": "discretionary_owned",
-    "turn_end": 8,
-    "turn_start": 8,
     "unit": 0
    }
   ],
