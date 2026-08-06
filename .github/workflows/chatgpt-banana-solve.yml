@@ -67,7 +67,7 @@ jobs:
           if [ "$smoke" -ne 0 ] || [ -s /tmp/banana.stderr ]; then FAILED=1; fi
 
           run_gate "trace detector tests" python3 -m unittest discover -s claude_1/banana-restoration-r2 -p test_trace_detectors.py
-          run_gate "owner contract" python3 chatgpt_1/banana-solve/owner_contract_final.py --candidate "$CAND" --output chatgpt_1/banana-solve/ci/owner-contract
+          run_gate "owner contract" python3 chatgpt_1/banana-solve/owner_contract_final_adapter.py --candidate "$CAND" --output chatgpt_1/banana-solve/ci/owner-contract
           run_gate "regression adapter" python3 chatgpt_1/banana-solve/regression_adapter.py --candidate "$CAND" --parent "$PARENT" --owner-results chatgpt_1/banana-solve/ci/owner-contract/owner-contract-results.json --output chatgpt_1/banana-solve/ci/regression-adapted.json
           run_gate "semantic adapter" python3 chatgpt_1/banana-solve/semantic_adapter.py --candidate "$CAND" --parent "$PARENT" --owner-results chatgpt_1/banana-solve/ci/owner-contract/owner-contract-results.json --tier-c-output chatgpt_1/banana-solve/ci/tier-c.json --output chatgpt_1/banana-solve/ci/semantic-adapted.json
 
