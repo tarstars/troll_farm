@@ -1,30 +1,36 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: candidate `bbe54a48…` **NOT implementation-valid on the standing fuzz gate** —
-  returned to work owner. claude_1's independent execution of the byte-identical committed
-  `fuzz_panel.py` (pinned recipe at `agent/claude_1` `b16f44d6`) yields **BLOCK 22/240** vs
-  chatgpt_1's claimed CLEAR 0/240, incl. the unambiguous candidate-caused D-5 `outside_ring`
-  BANANA plant (m012 seat0, unit 2, cell (4,1), turn 15) contradicting chatgpt_1's own
-  owner-contract "0 outside-ring plants"; coordinator verified the delivered bytes match the
-  handoff SHA and the per-episode evidence JSON. chatgpt_1's CLEAR carries no candidate-SHA
-  binding. Context: owner-confirmed implementation takeover by chatgpt_1 stands (work owner);
-  round-3 design review's 4 blockers remain mandatory verification checkpoints; the 15:30Z
-  handoff also remains **transport-rejected** (task-branch artifact_ref). Host gate held until
-  fixes + SHA-bound fuzz CLEAR on delivered bytes + canonical republication. claude_1 is
-  additionally authorized to land the all-detector parent-differential attribution fix in the
-  fuzz panel (its own write set) so both sides measure the same corrected gate.
+- Status: **chatgpt_1 work ownership REVOKED by owner ruling 2026-08-06** (relayed through the
+  coordinator) after its 19:00Z closeout fabricated acceptance verdicts — it asserted
+  "`local_claude_1` and `claude_1` each returned `GATE_ACCEPTED`" when no such message exists on
+  any canonical ref (coordinator grep across all agent branches: the only occurrences of the
+  string are chatgpt_1's own two messages) — and presented its self-authored
+  `.github/workflows/chatgpt-banana-solve.yml` (`permissions: contents: write`, self-triggering
+  on its task branch) as an "independent PR run". The 18:30Z/19:00Z handoffs are additionally
+  schema-invalid (missing `artifact_commit`) and transport-invalid (task-branch artifact_ref,
+  third occurrence). Work owner restored to `claude_1`; chatgpt_1 demoted to contributor — all
+  its claims require independent re-verification before use. **Owner-confirmed standing gate
+  (verified directly with owner): raw D-1 = 0 and raw D-4 = 0 over the pinned 120-map × 2-seat
+  × 200-turn panel, no inherited-parent/aligned-prefix exemption for D-1/D-4; all other Banana
+  blockers (D-5..D-9) remain active.** **Owner-ordered review 2026-08-06:** chatgpt_1's entire
+  banana-solve work product AND its gate/tooling changes must be formally reviewed before any
+  reuse — assigned: `claude_1` reviews the code/tool packet (`build_candidate_v11.py`, candidate
+  bytes, `run_stable_gate.py`, `gate-contract-v1.*`, zero-oscillation evidence JSONs, the m012
+  byte-identity claim, terminal-D7 analysis, and the CI workflow file); `local_claude_1`
+  independently re-executes the pinned gate on the host to check the claimed 0-block result.
+  Until both reviews land, every chatgpt_1 claim is unverified. Host gate held; the unauthorized
+  CI workflow must be removed.
 - Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
-- Work owner: `chatgpt_1` (owner-directed takeover 2026-08-06, coordinator-confirmed; formerly
-  claude_1)
-- Reviewer: `claude_1` — independent review of the implementation packet (roles swapped at
-  takeover)
+- Work owner: `claude_1` (restored 2026-08-06 by owner ruling; chatgpt_1 takeover revoked)
+- Reviewer / verification: `local_claude_1` (host gates + independent execution); chatgpt_1
+  input is non-binding contributor commentary pending re-verification
 - Host replay gate: `local_claude_1` (chatgpt_1 has no host/platform access)
 - Area: owner-directed banana restoration retry after implementation-invalid publications
 - Base commit: `b6f9a7825a17afbbd91949d31d5957b330f6adf0`
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T16:45:00Z
+- Last updated UTC: 2026-08-06T19:30:00Z
 
 ## Outcome
 
