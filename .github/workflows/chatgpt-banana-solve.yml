@@ -12,11 +12,11 @@ jobs:
   validate:
     if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[skip banana-ci]')
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Build and run final banana gates
         shell: bash
         run: |
@@ -31,7 +31,8 @@ jobs:
             chatgpt_1/banana-solve/ci/failures \
             chatgpt_1/banana-solve/ci/owner-contract \
             chatgpt_1/banana-solve/ci/regression-adapted.json \
-            chatgpt_1/banana-solve/ci/semantic-adapted.json
+            chatgpt_1/banana-solve/ci/semantic-adapted.json \
+            chatgpt_1/banana-solve/ci/corrected-pinned-failures-bbe54a48
 
           run_gate() {
             local name="$1"; shift
@@ -52,8 +53,8 @@ jobs:
           } >> "$OUT"
 
           # The strict private-founding arm is the only implementation that
-          # already cleared the full fuzz panel. Later relaxed arms are retained
-          # as research history but are not promotion candidates.
+          # cleared both candidate-driven lifecycle gates and the paired panel.
+          # Later relaxed arms remain research history, not promotion candidates.
           run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v4.py
           run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
           run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O "$CAND" -o /tmp/banana-candidate
@@ -96,10 +97,45 @@ jobs:
               --save-failures ../../chatgpt_1/banana-solve/ci/failures
           '
 
+          # Re-run the reviewer-pinned b16f44d6 map generator and detector set
+          # on the exact delivered bytes. Classification changes only:
+          # all detectors are parent/aligned-prefix differential, and terminal
+          # D-7 uses the actual post-C_T referee state. The result JSON is bound
+          # to full candidate, parent, panel, config, detector and oracle SHAs.
+          git fetch origin agent/claude_1
+          rm -rf /tmp/banana-standing-gate
+          git worktree add --detach /tmp/banana-standing-gate b16f44d62caa9802253adaf255eb07b98273421b >> "$OUT" 2>&1
+          PINNED_CFG="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/corrected-pinned-bbe54a48-config.json"
+          cp /tmp/banana-standing-gate/claude_1/pipeline/fuzz-panel-config.json "$PINNED_CFG"
+          python3 - "$PINNED_CFG" "$GITHUB_WORKSPACE/$CAND" \
+            /tmp/banana-standing-gate/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs <<'PY'
+          import hashlib, json, pathlib, sys
+          cfg_path, candidate, parent = map(pathlib.Path, sys.argv[1:])
+          candidate_sha = hashlib.sha256(candidate.read_bytes()).hexdigest()
+          parent_sha = hashlib.sha256(parent.read_bytes()).hexdigest()
+          assert candidate_sha == 'bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951', candidate_sha
+          assert parent_sha == 'a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55', parent_sha
+          cfg = json.loads(cfg_path.read_text())
+          cfg['candidate']['source'] = str(candidate)
+          cfg['candidate']['sha256'] = candidate_sha
+          cfg['parent']['source'] = str(parent)
+          cfg['parent']['sha256'] = parent_sha
+          cfg_path.write_text(json.dumps(cfg, indent=2, sort_keys=True) + '\n')
+          PY
+          run_gate "corrected pinned standing gate" \
+            python3 chatgpt_1/banana-solve/run_corrected_pinned.py \
+              --panel-file /tmp/banana-standing-gate/claude_1/pipeline/fuzz_panel.py \
+              --config "$PINNED_CFG" \
+              --report chatgpt_1/banana-solve/ci/corrected-pinned-bbe54a48.md \
+              --json chatgpt_1/banana-solve/ci/corrected-pinned-bbe54a48.json \
+              --save-failures chatgpt_1/banana-solve/ci/corrected-pinned-failures-bbe54a48
+
           python3 - <<'PY' >> "$OUT" 2>&1
           import hashlib, json
           from pathlib import Path
           candidate = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
+          corrected = json.loads(Path('chatgpt_1/banana-solve/ci/corrected-pinned-bbe54a48.json').read_text())
+          corrected_stats = corrected.get('stats', corrected)
           summary = {
               'candidate_bytes': candidate.stat().st_size,
               'candidate_sha256': hashlib.sha256(candidate.read_bytes()).hexdigest(),
@@ -107,7 +143,13 @@ jobs:
               'regression_adapter': json.loads(Path('chatgpt_1/banana-solve/ci/regression-adapted.json').read_text()).get('verdict'),
               'semantic_adapter': json.loads(Path('chatgpt_1/banana-solve/ci/semantic-adapted.json').read_text()).get('verdict'),
               'fuzz_verdict': json.loads(Path('chatgpt_1/banana-solve/ci/fuzz.json').read_text()).get('verdict'),
+              'corrected_pinned_verdict': corrected.get('verdict'),
+              'corrected_pinned_blocking_games': corrected_stats.get('blocking_games'),
+              'corrected_pinned_sha_binding': corrected.get('sha_binding'),
           }
+          Path('chatgpt_1/banana-solve/ci/corrected-pinned-bbe54a48-summary.json').write_text(
+              json.dumps(summary, indent=2, sort_keys=True) + '\n'
+          )
           print('\n== final summary ==')
           print(json.dumps(summary, indent=2, sort_keys=True))
           PY
@@ -122,6 +164,7 @@ jobs:
             chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
           if ! git diff --cached --quiet; then
             git commit -m "ci: record final banana validation [skip banana-ci]"
-            git push
+            git pull --rebase origin agent/chatgpt_1-banana-solve
+            git push origin HEAD:agent/chatgpt_1-banana-solve
           fi
           exit "$FAILED"
