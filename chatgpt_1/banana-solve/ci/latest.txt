@@ -1,0 +1,115 @@
+commit=7a4d5c02b39187110c15635cfb503ad880dab60e
+utc=2026-08-06T11:39:34Z
+
+== files ==
+claude_1/banana-restoration-r2/banana_blocks/block-i1.rs
+claude_1/banana-restoration-r2/banana_blocks/block-i2.rs
+claude_1/banana-restoration-r2/banana_blocks/block-i3.rs
+claude_1/banana-restoration-r2/banana_blocks/block-i4.rs
+claude_1/banana-restoration-r2/banana_blocks/block-i5.rs
+claude_1/banana-restoration-r2/banana_blocks/block-i6.rs
+claude_1/banana-restoration-r2/build_banana_candidate.py
+claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
+claude_1/banana-restoration-r2/candidate-banana-r2.min.rs
+claude_1/banana-restoration-r2/conversion_race_oracle.py
+claude_1/banana-restoration-r2/design-banana-fsm-2026-08-06.md
+claude_1/banana-restoration-r2/detector-selftest-report-2026-08-04.md
+claude_1/banana-restoration-r2/diagnosis-r5-2026-08-05.md
+claude_1/banana-restoration-r2/diagnosis-r6-2026-08-06.md
+claude_1/banana-restoration-r2/enumeration-manifest.json
+claude_1/banana-restoration-r2/enumeration_manifest.py
+claude_1/banana-restoration-r2/fable-independent-design-review-2026-08-06.md
+claude_1/banana-restoration-r2/fuzz/fuzz-report-47c98f53-2026-08-05.json
+claude_1/banana-restoration-r2/fuzz/fuzz-report-47c98f53-2026-08-05.md
+claude_1/banana-restoration-r2/fuzz/fuzz-report-eac2eb36-2026-08-06.json
+claude_1/banana-restoration-r2/fuzz/fuzz-report-eac2eb36-2026-08-06.md
+claude_1/banana-restoration-r2/fuzz/fuzz-report-latest.json
+claude_1/banana-restoration-r2/fuzz/fuzz-report-latest.md
+claude_1/banana-restoration-r2/gate-results-2026-08-04.md
+claude_1/banana-restoration-r2/gate-results-v2-2026-08-05.md
+claude_1/banana-restoration-r2/gate-results-v3-2026-08-05.md
+claude_1/banana-restoration-r2/gate-results-v4-2026-08-05.md
+claude_1/banana-restoration-r2/gate-results-v5-2026-08-05.md
+claude_1/banana-restoration-r2/gate-results-v6-2026-08-06.md
+claude_1/banana-restoration-r2/harness-report-2026-08-04.md
+claude_1/banana-restoration-r2/integration-seam-2026-08-04.md
+claude_1/banana-restoration-r2/invariant-spec-2026-08-04.md
+claude_1/banana-restoration-r2/make_banana_traces.py
+claude_1/banana-restoration-r2/red-evidence-280ed777-2026-08-05.md
+claude_1/banana-restoration-r2/red-evidence-2f58edef-2026-08-05.md
+claude_1/banana-restoration-r2/red-evidence-9f5ef833-2026-08-05.md
+claude_1/banana-restoration-r2/red-evidence-f29efd0e-2026-08-04.md
+claude_1/banana-restoration-r2/regression_tests.py
+claude_1/banana-restoration-r2/research-banana-r2.rs
+claude_1/banana-restoration-r2/semantic_harness.py
+claude_1/banana-restoration-r2/test_trace_detectors.py
+claude_1/banana-restoration-r2/tier-c-results-2026-08-04.json
+claude_1/banana-restoration-r2/tier-c-results-2026-08-05.json
+claude_1/banana-restoration-r2/tier-c-results-v3-2026-08-05.json
+claude_1/banana-restoration-r2/tier-c-results-v4-2026-08-05.json
+claude_1/banana-restoration-r2/tier-c-results-v5-2026-08-05.json
+claude_1/banana-restoration-r2/tier-c-results-v6-2026-08-06.json
+claude_1/banana-restoration-r2/tier-p-golden.json
+claude_1/banana-restoration-r2/trace_detectors.py
+claude_1/banana-restoration-r2/traces/r5-two-worker-banking-commands.txt
+claude_1/banana-restoration-r2/traces/r5-two-worker-banking-transcript.txt
+claude_1/banana-restoration-r2/traces/t1_lifecycle-commands.txt
+claude_1/banana-restoration-r2/traces/t1_lifecycle-detectors-cli.json
+claude_1/banana-restoration-r2/traces/t1_lifecycle-detectors.json
+claude_1/banana-restoration-r2/traces/t1_lifecycle-transcript.txt
+claude_1/banana-restoration-r2/traces/t2_contested-commands.txt
+claude_1/banana-restoration-r2/traces/t2_contested-detectors-cli.json
+claude_1/banana-restoration-r2/traces/t2_contested-detectors.json
+claude_1/banana-restoration-r2/traces/t2_contested-transcript.txt
+claude_1/banana-restoration-r2/traces/t3_abandon-commands.txt
+claude_1/banana-restoration-r2/traces/t3_abandon-detectors.json
+claude_1/banana-restoration-r2/traces/t3_abandon-transcript.txt
+claude_1/banana-restoration-r2/traces/t4_convert-commands.txt
+claude_1/banana-restoration-r2/traces/t4_convert-detectors.json
+claude_1/banana-restoration-r2/traces/t4_convert-transcript.txt
+claude_1/banana-restoration-r2/traces/t5_flip_convert-commands.txt
+claude_1/banana-restoration-r2/traces/t5_flip_convert-detectors.json
+claude_1/banana-restoration-r2/traces/t5_flip_convert-transcript.txt
+claude_1/banana-restoration-r2/traces/t6_owned_chop-commands.txt
+claude_1/banana-restoration-r2/traces/t6_owned_chop-detectors.json
+claude_1/banana-restoration-r2/traces/t6_owned_chop-transcript.txt
+
+== toolchain ==
+Python 3.12.3
+rustc 1.97.1 (8bab26f4f 2026-07-14)
+cargo 1.97.1 (c980f4866 2026-06-30)
+
+== candidate build ==
+{
+  "candidate_bytes": 80934,
+  "candidate_sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b",
+  "insertion_bytes": {
+    "I1": 17763,
+    "I2": 64,
+    "I3": 49,
+    "I4": 80,
+    "I5": 67,
+    "I6": 186
+  }
+}
+build_exit=0
+
+== oracle self-test ==
+conversion_race_oracle self-test: OK
+oracle_exit=0
+
+== likely test entrypoints ==
+claude_1/banana-restoration-r2/regression_tests.py
+claude_1/banana-restoration-r2/semantic_harness.py
+claude_1/banana-restoration-r2/test_trace_detectors.py
+
+== compile candidate ==
+error: invalid character '.' in crate name: `candidate_banana_r2.min`
+
+error: aborting due to 1 previous error
+
+compile_exit=1
+
+== smoke empty input ==
+smoke_exit=127 stdout_bytes=0 stderr_bytes=86
+timeout: failed to run command ‘/tmp/banana-candidate’: No such file or directory
