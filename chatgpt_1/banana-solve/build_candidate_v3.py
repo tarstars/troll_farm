@@ -5,6 +5,9 @@ Adds two production safeguards to the conservative v1 arm:
 * prevent any inner-controlled banana PLANT outside the bounded home ring;
 * stop an attributable peer A-B-A bounce before it can become a sustained
   three-cycle D-1 episode, then re-run same-player move resolution.
+
+The module exposes ``main(patcher=...)`` so later refinement layers can compose
+this exact patch without executing the build at import time.
 """
 from __future__ import annotations
 
@@ -14,11 +17,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("banana_owner_v1", HERE / "build_candidate.py")
-mod = importlib.util.module_from_spec(spec)
+builder = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
-sys.modules[spec.name] = mod
-spec.loader.exec_module(mod)
-base_patch = mod.patch_i1
+sys.modules[spec.name] = builder
+spec.loader.exec_module(builder)
+base_patch = builder.patch_i1
 
 
 def replace_once(text: str, old: str, new: str, label: str) -> str:
@@ -155,5 +158,10 @@ def patch_i1(text: str) -> str:
     return text
 
 
-mod.patch_i1 = patch_i1
-raise SystemExit(mod.main())
+def main(patcher=patch_i1) -> int:
+    builder.patch_i1 = patcher
+    return builder.main()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
