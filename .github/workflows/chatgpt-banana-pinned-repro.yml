@@ -6,6 +6,7 @@ on:
       - agent/chatgpt_1-banana-solve
     paths:
       - .github/workflows/chatgpt-banana-pinned-repro.yml
+      - chatgpt_1/banana-solve/analyze_pinned_attribution.py
       - chatgpt_1/banana-solve/PINNED-REPRO-TRIGGER
 
 permissions:
@@ -95,9 +96,19 @@ jobs:
           target.write_text(json.dumps(evidence, indent=2, sort_keys=True) + '\n')
           print(json.dumps(evidence, indent=2, sort_keys=True))
           PY
+          python3 chatgpt_1/banana-solve/analyze_pinned_attribution.py \
+            --trace-detectors /tmp/banana-pinned/claude_1/banana-restoration-r2/trace_detectors.py \
+            --result "$OUT_JSON" \
+            --failures "$FAILURES" \
+            --output chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48-attribution.json \
+            > chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48-attribution.log
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.* chatgpt_1/banana-solve/ci/pinned-failures-bbe54a48
+          git add \
+            chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.* \
+            chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48-inputs.json \
+            chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48-attribution.json \
+            chatgpt_1/banana-solve/ci/pinned-failures-bbe54a48
           if ! git diff --cached --quiet; then
             git commit -m "ci: record bbe54a48 pinned reproduction [skip banana-ci]"
             git push
