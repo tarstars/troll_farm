@@ -2,7 +2,8 @@
 """Third owner-directed Banana R2 build.
 
 Adds two production safeguards to the conservative v1 arm:
-* prevent any inner-controlled banana PLANT outside the bounded home ring;
+* prevent any inner-controlled banana PLANT that violates the bounded/safe
+  ring predicate (outside-ring, late, occupied, or opponent-unsafe);
 * stop an attributable peer A-B-A bounce before it can become a sustained
   three-cycle D-1 episode, then re-run same-player move resolution.
 
@@ -92,12 +93,13 @@ def patch_i1(text: str) -> str:
                 && commands[slot].starts_with("PICK ")
                 && commands[slot].ends_with(" BANANA");
             // The inner economy may know about bananas, but while this
-            // feature is active/lost it may not expand their footprint beyond
-            // the bounded ring.  Repeated plant-grow-cut cycles on a ring cell
-            // remain legal; only spatial escape is vetoed.
-            let plants_banana_outside_ring = commands[slot].starts_with("PLANT ")
+            // feature is active/lost every banana PLANT must satisfy the same
+            // bounded, late-cutoff, occupancy, and opponent-safety predicate
+            // as the resident's own candidate generator.
+            let plants_banana_invalid = commands[slot].starts_with("PLANT ")
                 && commands[slot].ends_with(" BANANA")
-                && !ring.contains(&unit.cell);
+                && (!ring.contains(&unit.cell)
+                    || !Self::banana_vacant_ok(view, unit, unit.cell, true));
 
             let (older, previous) = self
                 .banana_peer_history
@@ -107,16 +109,26 @@ def patch_i1(text: str) -> str:
             let returns_to_a = older == unit.cell && previous != unit.cell;
             let move_returns_to_b = if returns_to_a && commands[slot].starts_with("MOVE ") {
                 let parts: Vec<&str> = commands[slot].split_whitespace().collect();
-                parts.len() == 4
-                    && parts[2].parse::<i32>().ok() == Some(previous.0)
-                    && parts[3].parse::<i32>().ok() == Some(previous.1)
+                if parts.len() == 4 {
+                    match (parts[2].parse::<i32>(), parts[3].parse::<i32>()) {
+                        (Ok(x), Ok(y)) => next_cell(
+                            &view.walkable,
+                            unit.cell,
+                            (x, y),
+                            unit.stats.movement_speed,
+                        ) == previous,
+                        _ => false,
+                    }
+                } else {
+                    false
+                }
             } else {
                 false
             };
             self.banana_peer_history
                 .insert(unit.id, (previous, unit.cell));
 
-            if harms_mother || steals_seed || plants_banana_outside_ring || move_returns_to_b {
+            if harms_mother || steals_seed || plants_banana_invalid || move_returns_to_b {
                 commands[slot] = "WAIT".to_string();
                 peer_move_rewritten |= move_returns_to_b;
             }
