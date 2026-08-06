@@ -636,3 +636,41 @@ CONVERSION_RACE_ORACLE reports feasible. PASS iff the oracle-prescribed convert 
 or `f + 1` at the latest. The current bytes (`2f58edef...`) FAIL: their voided
 `max(eta_opp, predicted.cooldown)` deadline calls the feasible conversion infeasible and
 they abandon to a terminal WAIT loop.
+
+---
+
+## Revision 2026-08-06 — abandonment releases the resident to the inner economy (round-6 GREEN, orchestrator ruling 3)
+
+Source: `diagnosis-r6-2026-08-06.md` (ROOT C(ii) "inverted claim release" and ROOT D
+"reservation without work") and the round-6 orchestrator rulings. The round-5 bytes
+implemented I-10a's "cease all investment" by holding the resident reserved-and-idle forever
+after ownership loss while simultaneously releasing the protected-cell claim. The fuzz panel
+showed this is exactly inverted: the idled worker produced the P4 liveness stalls (24 games)
+and the released cell claim let the inner policy reinvest in the lost asset (the candidate
+D-8 `flip_but_infeasible` episodes and their D-1 tails). Corrected reading, normative:
+
+- **I-10a (Abandoned transition, amended).** "Cease all investment in the asset" binds the
+  ASSET, not the worker: after the Abandoned transition no own unit directs any further
+  investment at the lost mother (no `PLANT` on it, no `MOVE` targeting it, no
+  `HARVEST`/`CHOP` on it). The **protected-cell claim persists while the lost plant lives**
+  (the `banana_protected_cell` seam plus the second-layer post-edit keep every own unit off
+  the asset) and lapses when the plant dies. The **worker reservation does not persist**:
+  the resident is held only to bank the leftover cargo it carried at the loss (I-19/I-20/I-21
+  govern that banking) and is then released to the inner economy permanently. Ordinary
+  economy actions by the released resident are sanctioned; liveness per I-19/I-20/I-21
+  applies to it exactly as to any other worker. One asset-class exception stands: banked
+  BANANA stock remains under the I-2/I-15 exclusivity (no own unit bank-`PICK`s a banana
+  after the loss) — an inner-economy banana `PICK` can only become an unmanaged replant,
+  which I-12/I-13 (D-5) and I-10/I-11 (D-6) forbid the wrapper to enable. I-29's reservation language is scoped accordingly: the
+  reservations the wrapper still owns after abandonment are the persistent protected cell
+  and nothing else.
+- **Active-phase reservation (F-D2 note).** The same principle bounds the Active phase: the
+  wrapper reserves the resident only while its own candidate generator offers productive
+  work; after 3 consecutive Idle choices the reservation is released until the first turn a
+  non-Idle candidate exists (the resident remains the designated banana worker throughout,
+  per I-22/I-23 arbitration).
+- **R-2a consequence.** R-2a's predicate is amended exactly this far: post-flip violations
+  are mother-directed investment only — `MOVE` targeting the lost mother, `PLANT` on the
+  mother cell, `HARVEST`/`CHOP` while standing on it. A bare `PLANT` elsewhere or any other
+  economy action by the released resident is NOT a violation. No other test, detector, or
+  check changes under this revision.
