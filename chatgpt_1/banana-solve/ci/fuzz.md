@@ -1,12 +1,12 @@
-# fuzz panel report - 20260802-banana-restoration-r2 owner-directed conservative candidate
+# fuzz panel report - 20260802-banana-restoration-r2 owner-directed renewable candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 2ada1da49e32a8edf1490bebd65c12c6587486f0080b1201254d50c3b5bc47f2)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 037e8e12d01ae67fc5edf0e116634fbcb66bbb55b568176733b060df5aba8686)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 16.0 s
+- wall time: 15.5 s
 
-## Verdict: CLEAR
+## Verdict: BLOCK
 
 ## Coverage
 
@@ -16,8 +16,8 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 0 |
-| flagged_games | 110 |
+| blocking_games | 7 |
+| flagged_games | 109 |
 
 | class | games |
 |---|---|
@@ -35,6 +35,36 @@
 | chopper_aggressor | 72 |
 | harvester | 96 |
 | idle | 72 |
+
+## Blocking violations
+
+### m025 seat 1 (orchard_eligible, chopper_aggressor, seed 15485863)
+
+- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[10, 6], [9, 6]], "k": 6, "turn_end": 30, "turn_start": 18, "unit": 0}]}
+
+### m032 seat 1 (forest_sparse, chopper_aggressor, seed 32452843)
+
+- **P4**: {"detail": {"parent_progress_turns": [22, 23, 26, 27, 28, 29, 35, 36], "why": "candidate makes no progress over turns 22-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 22}}
+
+### m035 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
+
+- **P4**: {"detail": {"parent_progress_turns": [17], "why": "candidate makes no progress over turns 17-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 17}}
+
+### m036 seat 1 (multi_door, harvester, seed 982451653)
+
+- **P1**: {"count": 11, "detector": "D-6", "episodes": [{"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 38, "turn_start": 37, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 66, "turn_start": 65, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 67, "turn_start": 66, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 95, "turn_start": 94, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 96, "turn_start": 95, "unit": n
+
+### m042 seat 1 (water_diagonal, chopper_aggressor, seed 982451653)
+
+- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 0], [11, 1]], "k": 13, "turn_end": 54, "turn_start": 28, "unit": 2}]}
+
+### m065 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
+
+- **P4**: {"detail": {"parent_progress_turns": [27, 28, 31, 32], "why": "candidate makes no progress over turns 26-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 26}}
+
+### m082 seat 0 (water_diagonal, chopper_aggressor, seed 67867967)
+
+- **P1**: {"count": 3, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 1, "kind": "opp_chop_eta", "turn_end": 32, "turn_start": 32, "unit": 2}, {"cell": [0, 4], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 0}, {"cell": [1, 5], "eta_opp_x": 0, "kind": "opp_chop_eta", "turn_end": 38, "turn_start": 38, "unit": 2}]}
 
 ## Report-tier flags (non-blocking)
 
@@ -96,7 +126,6 @@
 - m062 seat 0 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m062 seat 1 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m064 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
-- m065 seat 1 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m066 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m066 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m067 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
@@ -163,4 +192,4 @@
 
 ---
 
-**VERDICT: CLEAR**
+**VERDICT: BLOCK**

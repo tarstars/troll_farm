@@ -1,0 +1,74 @@
+{
+ "detectors": [
+  {
+   "count": 0,
+   "detector": "D-1",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-2",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-3",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-4",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 1,
+   "detector": "D-5",
+   "episodes": [
+    {
+     "cell": [
+      2,
+      1
+     ],
+     "kind": "orth_cutoff",
+     "t_late": 282,
+     "turn_end": 293,
+     "turn_start": 293,
+     "unit": 0
+    }
+   ],
+   "verdict": "FAIL"
+  },
+  {
+   "count": 0,
+   "detector": "D-6",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-7",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-8",
+   "episodes": [],
+   "verdict": "PASS"
+  },
+  {
+   "count": 0,
+   "detector": "D-9",
+   "episodes": [],
+   "verdict": "PASS"
+  }
+ ],
+ "notes": [],
+ "overall": "FAIL",
+ "scenario": "owner_lifecycle",
+ "turns": 300
+}

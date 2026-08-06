@@ -328,8 +328,12 @@ impl BananaBot {
         // exact conservative fresh-plant-to-first-fruit horizon (creation tick
         // included); ties are unsafe because cross-player co-location and
         // last-fruit duplication are legal.
-        let first_fruit = resident_eta + 4 * cooldown + 2;
-        eta_h > first_fruit && eta_x > first_fruit
+        // Two full cooldown periods are the bounded response window:
+        // a far opponent cannot reach the fresh mother before the resident
+        // can observe a lost race and convert/abandon it, while the canonical
+        // eta-13 lifecycle remains available (dry threshold = 12).
+        let response_window = 2 * cooldown;
+        eta_h > response_window && eta_x > response_window
     }
 
 

@@ -30,10 +30,44 @@
   "verdict": "PASS"
  },
  {
-  "count": 0,
+  "count": 3,
   "detector": "D-6",
-  "episodes": [],
-  "verdict": "PASS"
+  "episodes": [
+   {
+    "cell": [
+     1,
+     5
+    ],
+    "eta_opp_x": 1,
+    "kind": "opp_chop_eta",
+    "turn_end": 32,
+    "turn_start": 32,
+    "unit": 2
+   },
+   {
+    "cell": [
+     0,
+     4
+    ],
+    "eta_opp_x": 2,
+    "kind": "opp_chop_eta",
+    "turn_end": 38,
+    "turn_start": 38,
+    "unit": 0
+   },
+   {
+    "cell": [
+     1,
+     5
+    ],
+    "eta_opp_x": 0,
+    "kind": "opp_chop_eta",
+    "turn_end": 38,
+    "turn_start": 38,
+    "unit": 2
+   }
+  ],
+  "verdict": "FAIL"
  },
  {
   "count": 0,

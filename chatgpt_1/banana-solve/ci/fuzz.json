@@ -3721,7 +3721,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -3729,23 +3729,23 @@
      0,
      0,
      0,
-     3
+     1
     ],
-    "margin": 4,
+    "margin": -12,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     2
+     4
     ],
-    "opp_score": 8,
-    "score": 12
+    "opp_score": 16,
+    "score": 4
    },
    "class": "orchard_eligible",
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -3783,7 +3783,31 @@
    "seat": 1,
    "seed": 15485863,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         10,
+         6
+        ],
+        [
+         9,
+         6
+        ]
+       ],
+       "k": 6,
+       "turn_end": 30,
+       "turn_start": 18,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -4669,7 +4693,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -4677,19 +4701,19 @@
      0,
      0,
      0,
-     4
+     2
     ],
-    "margin": 8,
+    "margin": -8,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     2
+     4
     ],
-    "opp_score": 8,
-    "score": 16
+    "opp_score": 16,
+    "score": 8
    },
    "class": "forest_sparse",
    "detector_counts": {
@@ -4731,7 +4755,26 @@
    "seat": 1,
    "seed": 32452843,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "parent_progress_turns": [
+       22,
+       23,
+       26,
+       27,
+       28,
+       29,
+       35,
+       36
+      ],
+      "why": "candidate makes no progress over turns 22-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+      "window_end": 199,
+      "window_start": 22
+     },
+     "property": "P4"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -5091,7 +5134,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -5099,9 +5142,9 @@
      0,
      0,
      0,
-     3
+     4
     ],
-    "margin": -8,
+    "margin": -4,
     "opp_inventory": [
      0,
      0,
@@ -5111,7 +5154,7 @@
      5
     ],
     "opp_score": 20,
-    "score": 12
+    "score": 16
    },
    "class": "orchard_eligible",
    "detector_counts": {
@@ -5153,7 +5196,19 @@
    "seat": 1,
    "seed": 86028121,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "parent_progress_turns": [
+       17
+      ],
+      "why": "candidate makes no progress over turns 17-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+      "window_end": 199,
+      "window_start": 17
+     },
+     "property": "P4"
+    }
+   ]
   },
   {
    "attempt": 1,
@@ -5225,7 +5280,7 @@
   {
    "attempt": 1,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -5233,19 +5288,19 @@
      0,
      0,
      0,
-     8
+     7
     ],
-    "margin": 32,
+    "margin": 10,
     "opp_inventory": [
+     1,
      0,
      0,
-     0,
-     0,
+     17,
      0,
      0
     ],
-    "opp_score": 0,
-    "score": 32
+    "opp_score": 18,
+    "score": 28
    },
    "class": "multi_door",
    "detector_counts": {
@@ -5254,7 +5309,7 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 0,
+    "D-6": 11,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
@@ -5287,7 +5342,70 @@
    "seat": 1,
    "seed": 982451653,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 11,
+     "detector": "D-6",
+     "episodes": [
+      {
+       "cell": [
+        11,
+        7
+       ],
+       "kind": "opp_harvested_ours",
+       "opp_unit": 5,
+       "turn_end": 38,
+       "turn_start": 37,
+       "unit": null
+      },
+      {
+       "cell": [
+        11,
+        7
+       ],
+       "kind": "opp_harvested_ours",
+       "opp_unit": 5,
+       "turn_end": 66,
+       "turn_start": 65,
+       "unit": null
+      },
+      {
+       "cell": [
+        11,
+        7
+       ],
+       "kind": "opp_harvested_ours",
+       "opp_unit": 5,
+       "turn_end": 67,
+       "turn_start": 66,
+       "unit": null
+      },
+      {
+       "cell": [
+        11,
+        7
+       ],
+       "kind": "opp_harvested_ours",
+       "opp_unit": 5,
+       "turn_end": 95,
+       "turn_start": 94,
+       "unit": null
+      },
+      {
+       "cell": [
+        11,
+        7
+       ],
+       "kind": "opp_harvested_ours",
+       "opp_unit": 5,
+       "turn_end": 96,
+       "turn_start": 95,
+       "unit": null
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -6077,19 +6195,19 @@
      0,
      0,
      0,
-     3
+     5
     ],
-    "margin": -4,
+    "margin": 12,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     4
+     2
     ],
-    "opp_score": 16,
-    "score": 12
+    "opp_score": 8,
+    "score": 20
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -6136,7 +6254,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -6144,23 +6262,23 @@
      0,
      0,
      0,
-     6
+     5
     ],
-    "margin": 24,
+    "margin": 12,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     0
+     2
     ],
-    "opp_score": 0,
-    "score": 24
+    "opp_score": 8,
+    "score": 20
    },
    "class": "water_diagonal",
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -6198,7 +6316,31 @@
    "seat": 1,
    "seed": 982451653,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         11,
+         0
+        ],
+        [
+         11,
+         1
+        ]
+       ],
+       "k": 13,
+       "turn_end": 54,
+       "turn_start": 28,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -7090,22 +7232,22 @@
     "inventory": [
      0,
      0,
+     2,
+     18,
      0,
-     0,
-     0,
-     7
+     17
     ],
-    "margin": 16,
+    "margin": 46,
     "opp_inventory": [
-     6,
+     20,
      0,
-     6,
+     22,
      0,
      0,
      0
     ],
-    "opp_score": 12,
-    "score": 28
+    "opp_score": 42,
+    "score": 88
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -7160,19 +7302,19 @@
      0,
      0,
      0,
-     6
+     7
     ],
-    "margin": 20,
+    "margin": 22,
     "opp_inventory": [
      0,
      0,
-     4,
+     6,
      0,
      0,
      0
     ],
-    "opp_score": 4,
-    "score": 24
+    "opp_score": 6,
+    "score": 28
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -9525,7 +9667,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -9533,23 +9675,23 @@
      0,
      0,
      0,
-     2
+     3
     ],
-    "margin": -4,
+    "margin": 12,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     3
+     0
     ],
-    "opp_score": 12,
-    "score": 8
+    "opp_score": 0,
+    "score": 12
    },
    "class": "orchard_eligible",
    "detector_counts": {
-    "D-1": 1,
+    "D-1": 0,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -9559,48 +9701,7 @@
     "D-8": 0,
     "D-9": 0
    },
-   "flags": [
-    {
-     "candidate_episodes": [
-      {
-       "cells": [
-        [
-         8,
-         1
-        ],
-        [
-         9,
-         1
-        ]
-       ],
-       "k": 5,
-       "turn_end": 20,
-       "turn_start": 9,
-       "unit": 2
-      }
-     ],
-     "detail": "candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only",
-     "flag": "inherited-parent-D1",
-     "parent_episodes": [
-      {
-       "cells": [
-        [
-         8,
-         1
-        ],
-        [
-         9,
-         1
-        ]
-       ],
-       "k": 5,
-       "turn_end": 20,
-       "turn_start": 9,
-       "unit": 2
-      }
-     ]
-    }
-   ],
+   "flags": [],
    "map_id": "m065",
    "orchard_eligible": false,
    "parent": {
@@ -9628,7 +9729,22 @@
    "seat": 1,
    "seed": 86028121,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "parent_progress_turns": [
+       27,
+       28,
+       31,
+       32
+      ],
+      "why": "candidate makes no progress over turns 26-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+      "window_end": 199,
+      "window_start": 26
+     },
+     "property": "P4"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -12156,7 +12272,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -12164,19 +12280,19 @@
      0,
      0,
      0,
-     1
+     5
     ],
-    "margin": -8,
+    "margin": -4,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     3
+     6
     ],
-    "opp_score": 12,
-    "score": 4
+    "opp_score": 24,
+    "score": 20
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -12185,7 +12301,7 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 0,
+    "D-6": 3,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
@@ -12218,7 +12334,48 @@
    "seat": 0,
    "seed": 67867967,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 3,
+     "detector": "D-6",
+     "episodes": [
+      {
+       "cell": [
+        1,
+        5
+       ],
+       "eta_opp_x": 1,
+       "kind": "opp_chop_eta",
+       "turn_end": 32,
+       "turn_start": 32,
+       "unit": 2
+      },
+      {
+       "cell": [
+        0,
+        4
+       ],
+       "eta_opp_x": 2,
+       "kind": "opp_chop_eta",
+       "turn_end": 38,
+       "turn_start": 38,
+       "unit": 0
+      },
+      {
+       "cell": [
+        1,
+        5
+       ],
+       "eta_opp_x": 0,
+       "kind": "opp_chop_eta",
+       "turn_end": 38,
+       "turn_start": 38,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -12231,19 +12388,19 @@
      0,
      0,
      0,
-     1
+     3
     ],
-    "margin": -8,
+    "margin": 12,
     "opp_inventory": [
      0,
      0,
      0,
      0,
      0,
-     3
+     0
     ],
-    "opp_score": 12,
-    "score": 4
+    "opp_score": 0,
+    "score": 12
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -17777,7 +17934,7 @@
  ],
  "stats": {
   "banana_activated_games": 161,
-  "blocking_games": 0,
+  "blocking_games": 7,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -17793,14 +17950,14 @@
    "harvester": 96,
    "idle": 72
   },
-  "flagged_games": 110,
+  "flagged_games": 109,
   "games": 240,
   "maps": 120,
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 16.03
+  "wall_time_seconds": 15.46
  },
- "task": "20260802-banana-restoration-r2 owner-directed conservative candidate",
- "verdict": "CLEAR"
+ "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
+ "verdict": "BLOCK"
 }

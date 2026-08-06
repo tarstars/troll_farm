@@ -1,0 +1,4 @@
+{
+  "error": "owner_lifecycle: detector failure(s): [{\"count\": 1, \"detector\": \"D-5\", \"episodes\": [{\"cell\": [2, 1], \"kind\": \"orth_cutoff\", \"t_late\": 282, \"turn_end\": 293, \"turn_start\": 293, \"unit\": 0}], \"verdict\": \"FAIL\"}]",
+  "verdict": "FAIL"
+}

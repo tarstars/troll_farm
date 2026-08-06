@@ -9,7 +9,7 @@
    0,
    0,
    0,
-   3
+   5
   ],
   "margin": 12,
   "opp_inventory": [
@@ -18,14 +18,14 @@
    0,
    0,
    0,
-   0
+   2
   ],
-  "opp_score": 0,
-  "score": 12
+  "opp_score": 8,
+  "score": 20
  },
- "class": "orchard_eligible",
+ "class": "water_diagonal",
  "detector_counts": {
-  "D-1": 0,
+  "D-1": 1,
   "D-2": 0,
   "D-3": 0,
   "D-4": 0,
@@ -36,7 +36,7 @@
   "D-9": 0
  },
  "flags": [],
- "map_id": "m065",
+ "map_id": "m042",
  "orchard_eligible": false,
  "parent": {
   "inventory": [
@@ -45,38 +45,47 @@
    0,
    0,
    0,
-   2
+   6
   ],
-  "margin": -4,
+  "margin": 24,
   "opp_inventory": [
    0,
    0,
    0,
    0,
    0,
-   3
+   0
   ],
-  "opp_score": 12,
-  "score": 8
+  "opp_score": 0,
+  "score": 24
  },
  "profile": "chopper_aggressor",
  "seat": 1,
- "seed": 86028121,
+ "seed": 982451653,
  "turns": 200,
  "violations": [
   {
-   "detail": {
-    "parent_progress_turns": [
-     27,
-     28,
-     31,
-     32
-    ],
-    "why": "candidate makes no progress over turns 26-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
-    "window_end": 199,
-    "window_start": 26
-   },
-   "property": "P4"
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       11,
+       0
+      ],
+      [
+       11,
+       1
+      ]
+     ],
+     "k": 13,
+     "turn_end": 54,
+     "turn_start": 28,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
   }
  ]
 }
