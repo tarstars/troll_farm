@@ -1,10 +1,10 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed conservative candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 1712638010e35975b5e68d8f645d1c0eebc328a9e581bed43997510ba7a69cbb)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 15.6 s
+- wall time: 15.5 s
 
 ## Verdict: BLOCK
 
@@ -16,8 +16,8 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 24 |
-| flagged_games | 101 |
+| blocking_games | 32 |
+| flagged_games | 100 |
 
 | class | games |
 |---|---|
@@ -74,6 +74,23 @@
 
 - **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[9, 3], [8, 3]], "k": 3, "turn_end": 143, "turn_start": 137, "unit": 2}]}
 
+### m025 seat 1 (orchard_eligible, chopper_aggressor, seed 15485863)
+
+- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[10, 6], [9, 6]], "k": 12, "turn_end": 53, "turn_start": 28, "unit": 0}]}
+- **P1**: {"count": 5, "detector": "D-8", "episodes": [{"cell": [12, 6], "completion_turn": 20, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 5, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10016, "reason": "discretionary_owned", "turn_end": 16, "turn_start": 16, "unit": 0}, {"cell": [12, 6], "completion_turn": 20, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 5, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10016, "reason": "discretionary_owned", "turn_end": 17, "turn_start": 17, "unit":
+
+### m032 seat 1 (forest_sparse, chopper_aggressor, seed 32452843)
+
+- **P4**: {"detail": {"parent_progress_turns": [22, 23, 26, 27, 28, 29, 35, 36], "why": "candidate makes no progress over turns 22-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 22}}
+
+### m035 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
+
+- **P4**: {"detail": {"parent_progress_turns": [17], "why": "candidate makes no progress over turns 17-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 17}}
+
+### m036 seat 1 (multi_door, harvester, seed 982451653)
+
+- **P1**: {"count": 6, "detector": "D-8", "episodes": [{"cell": [11, 7], "completion_turn": 25, "eta_opp_at_chop_start": 13, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": false, "kind": "diag_mother_chop", "opponent_harvest_turn": 33, "reason": "discretionary_owned", "turn_end": 20, "turn_start": 20, "unit": 0}, {"cell": [11, 7], "completion_turn": 25, "eta_opp_at_chop_start": 13, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 33, "reason": "discretionary_owned", "turn_end": 37, "turn_start": 37, "unit": 0}, {"cell
+
 ### m038 seat 0 (open_field, chopper_aggressor, seed 32452843)
 
 - **P1**: {"count": 1, "detector": "D-6", "episodes": [{"cell": [0, 4], "eta_opp_x": 1, "kind": "opp_chop_eta", "turn_end": 44, "turn_start": 44, "unit": 0}]}
@@ -82,9 +99,17 @@
 
 - **P1**: {"count": 2, "detector": "D-6", "episodes": [{"cell": [8, 2], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 37, "turn_start": 37, "unit": 0}, {"cell": [8, 2], "eta_opp_x": 0, "kind": "opp_chop_eta", "turn_end": 42, "turn_start": 42, "unit": 0}]}
 
+### m042 seat 1 (water_diagonal, chopper_aggressor, seed 982451653)
+
+- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 0], [11, 1]], "k": 13, "turn_end": 54, "turn_start": 28, "unit": 2}]}
+
 ### m048 seat 0 (forest_sparse, chopper_aggressor, seed 982451653)
 
 - **P1**: {"count": 1, "detector": "D-6", "episodes": [{"cell": [1, 2], "eta_opp_x": 0, "kind": "opp_chop_eta", "turn_end": 26, "turn_start": 26, "unit": 0}]}
+
+### m049 seat 0 (water_diagonal, harvester, seed 15485863)
+
+- **P1**: {"count": 6, "detector": "D-8", "episodes": [{"cell": [0, 7], "completion_turn": 24, "eta_opp_at_chop_start": 14, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 33, "reason": "discretionary_owned", "turn_end": 19, "turn_start": 19, "unit": 0}, {"cell": [0, 7], "completion_turn": 24, "eta_opp_at_chop_start": 14, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": false, "kind": "diag_mother_chop", "opponent_harvest_turn": 33, "reason": "discretionary_owned", "turn_end": 20, "turn_start": 20, "unit": 0}, {"cell":
 
 ### m061 seat 0 (choke_corridor, idle, seed 15485863)
 
@@ -93,6 +118,10 @@
 ### m064 seat 0 (single_door_tent, idle, seed 67867967)
 
 - **P1**: {"count": 1, "detector": "D-4", "episodes": [{"kind": "no_progress", "turn_end": 11, "turn_start": 9, "unit": 2}]}
+
+### m065 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
+
+- **P4**: {"detail": {"parent_progress_turns": [27, 28, 31, 32], "why": "candidate makes no progress over turns 26-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 26}}
 
 ### m066 seat 0 (choke_corridor, harvester, seed 982451653)
 
@@ -117,6 +146,11 @@
 ### m075 seat 0 (multi_door, chopper_aggressor, seed 49979687)
 
 - **P1**: {"count": 1, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 0, "kind": "opp_chop_eta", "turn_end": 35, "turn_start": 35, "unit": 0}]}
+
+### m082 seat 0 (water_diagonal, chopper_aggressor, seed 67867967)
+
+- **P1**: {"count": 1, "detector": "D-6", "episodes": [{"cell": [1, 5], "eta_opp_x": 2, "kind": "opp_chop_eta", "turn_end": 37, "turn_start": 37, "unit": 2}]}
+- **P1**: {"count": 3, "detector": "D-8", "episodes": [{"cell": [0, 5], "completion_turn": 34, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10029, "reason": "discretionary_owned", "turn_end": 29, "turn_start": 29, "unit": 0}, {"cell": [0, 5], "completion_turn": 34, "eta_opp_at_chop_start": 10000, "exact_chop_turns": 6, "flip_turn": null, "health_decreased": true, "kind": "diag_mother_chop", "opponent_harvest_turn": 10029, "reason": "discretionary_owned", "turn_end": 32, "turn_start": 32, "unit": 0
 
 ### m084 seat 0 (single_door_tent, idle, seed 982451653)
 
@@ -183,7 +217,6 @@
 - m061 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m062 seat 0 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m062 seat 1 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
-- m065 seat 1 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m066 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m067 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m067 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
