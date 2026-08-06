@@ -271,6 +271,104 @@ class TestProperties(unittest.TestCase):
                          [])
 
 
+class _FakeUnit:
+    def __init__(self, uid, carry):
+        self.id = uid
+        self.carry = carry
+
+
+class _FakeState:
+    def __init__(self, inv, units):
+        self.inventories = inv
+        self._units = units
+
+    def own_units(self):
+        return self._units
+
+
+class _StallTrace:
+    """A trace whose own inventory and own-unit cargo never change, i.e. no
+    P4 progress event on any transition (used to synthesize a full-game
+    stall window without compiling a bot)."""
+
+    def __init__(self, T):
+        self.T = T
+
+    def state(self, t):
+        return _FakeState([[0, 0, 0, 0, 0, 0]],
+                          [_FakeUnit(0, (0, 0, 0, 0, 0, 0))])
+
+
+class TestRawGate(unittest.TestCase):
+    """Owner ruling 2026-08-06: the gate is RAW/ABSOLUTE. Every detector
+    D-1..D-9 episode blocks, inherited-from-parent or not; P4 liveness has no
+    parent exemption. These tests pin the raw semantics (they FAIL against
+    the pre-repair parent-differential / inherited-report-only code)."""
+
+    _PASS = {"verdict": "PASS", "count": 0, "episodes": []}
+
+    def _passes(self, *names):
+        return [dict(self._PASS, detector=n) for n in names]
+
+    def test_p1_d9_blocks_even_when_parent_reproduces_it(self):
+        # A D-9 episode the PARENT reproduces byte-for-byte on the identical
+        # map. Old code: gate_d9_parent_differential drops it (report-only).
+        # Raw: it blocks.
+        ep = {"unit": 0, "turn": 5, "kind": "BANANA", "command": "HARVEST"}
+        d9_fail = {"detector": "D-9", "verdict": "FAIL", "count": 1,
+                   "episodes": [ep]}
+        results = self._passes("D-1", "D-2", "D-3", "D-4", "D-5", "D-6",
+                               "D-7", "D-8") + [d9_fail]
+        orig_run_all, orig_d9 = fp.td.run_all, fp.td.detect_d9
+        fp.td.run_all = lambda tr, pc=None: [dict(r) for r in results]
+        fp.td.detect_d9 = lambda tr, pc=None: {
+            "detector": "D-9", "verdict": "FAIL", "count": 1,
+            "episodes": [ep]}       # parent reproduces the identical episode
+        try:
+            _, viol, inherited, dropped = fp.eval_p1(None, None, None, False)
+        finally:
+            fp.td.run_all, fp.td.detect_d9 = orig_run_all, orig_d9
+        self.assertTrue(
+            any(v["detector"] == "D-9" for v in viol),
+            "D-9 must block under raw even when the parent reproduces the "
+            "identical episode (no parent-differential exemption)")
+        self.assertEqual(dropped, 0, "no D-9 episode may be dropped under raw")
+
+    def test_p1_d1_blocks_when_parent_also_oscillates(self):
+        # A candidate D-1 episode on a map where the parent ALSO fails D-1.
+        # Old code: downgraded to a report-tier inherited-parent-D1 flag.
+        # Raw: it blocks.
+        ep = {"unit": 0, "turn_start": 2, "turn_end": 10, "k": 4,
+              "cells": [[1, 1], [2, 1]]}
+        d1_fail = {"detector": "D-1", "verdict": "FAIL", "count": 1,
+                   "episodes": [ep]}
+        results = [d1_fail] + self._passes("D-2", "D-3", "D-4", "D-5", "D-6",
+                                           "D-7", "D-8", "D-9")
+        orig_run_all = fp.td.run_all
+        fp.td.run_all = lambda tr, pc=None: [dict(r) for r in results]
+        try:
+            _, viol, inherited, _ = fp.eval_p1(None, None, None, True)
+        finally:
+            fp.td.run_all = orig_run_all
+        self.assertTrue(
+            any(v["detector"] == "D-1" for v in viol),
+            "D-1 must block under raw even when the parent also fails D-1 "
+            "(no inherited-report-only downgrade)")
+        self.assertEqual(inherited, [],
+                         "no inherited-report-only downgrade exists under raw")
+
+    def test_p4_blocks_when_parent_also_stalls(self):
+        # A full-game candidate stall that the parent reproduces (parent also
+        # makes no progress in the window). Old code: exempted as an
+        # inherited WAIT-equilibrium. Raw: it blocks.
+        viol = fp.eval_p4(_StallTrace(T=10), _StallTrace(T=10), window=6)
+        self.assertTrue(
+            viol, "P4 must block a stall window even when the parent stalls "
+                  "identically in the same window (raw liveness, no parent "
+                  "exemption)")
+        self.assertEqual(viol[0]["window_start"], 1)
+
+
 class TestExitCodes(unittest.TestCase):
     def run_panel(self, candidate_src: Path, parent_src: Path, tmp: Path,
                   **cfg_overrides) -> tuple[int, dict | None]:
@@ -321,6 +419,30 @@ class TestExitCodes(unittest.TestCase):
                     "%s-s%d" % (g["map_id"], g["seat"]))
                 self.assertTrue((d / "candidate-commands.txt").exists())
                 self.assertTrue((d / "properties.json").exists())
+
+    def test_exit_1_raw_gate_blocks_oscillator_vs_itself(self):
+        # RAW gate acceptance proof: the planted oscillator run against
+        # ITSELF as parent. Under the old mixed rules D-1 was downgraded to
+        # an inherited-parent-D1 flag and the all-stall window was exempted
+        # as an inherited WAIT-equilibrium -> CLEAR. Under raw both block.
+        osc = compiled_bot("oscbot", OSCILLATOR_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            code, payload = self.run_panel(osc, osc, Path(tmp))
+            self.assertEqual(
+                code, fp.EXIT_BLOCK,
+                "raw gate must block a candidate D-1/P4 even when the parent "
+                "oscillates identically")
+            blocked = [g for g in payload["games"] if g["block"]]
+            self.assertTrue(blocked)
+            dets = {v.get("detector") for g in blocked for v in g["violations"]}
+            props = {v["property"] for g in blocked for v in g["violations"]}
+            self.assertIn("D-1", dets, "D-1 must block raw")
+            self.assertIn("P4", props, "P4 stall must block raw")
+            flags = {f["flag"] for g in payload["games"] for f in g["flags"]}
+            self.assertNotIn("inherited-parent-D1", flags,
+                             "the inherited-report-only downgrade is removed")
+            self.assertNotIn("inherited-parent-D9", flags,
+                             "the parent-differential D-9 downgrade is removed")
 
     def test_exit_2_on_missing_config(self):
         with tempfile.TemporaryDirectory() as tmp:
