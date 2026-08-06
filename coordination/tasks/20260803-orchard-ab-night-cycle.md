@@ -1,13 +1,13 @@
 # 20260803-orchard-ab-night-cycle: four repeated orchard/no-orchard live cycles
 
-- Status: running; clean leg 1/8 no-orchard maturity window
+- Status: complete — eight clean 160-game legs published; controller inactive
 - Priority: direct owner assignment
 - Owner / Arena controller: local_codex_1
 - Created UTC: 2026-08-03T19:07:37Z
-- Last updated UTC: 2026-08-03T19:17:00Z
+- Last updated UTC: 2026-08-04T03:42:32Z
 - Branch: `agent/local_codex_1`
 - Runtime state: `data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`
-- Systemd unit: `troll-farm-orchard-ab-night-20260803.service`
+- Systemd unit: inactive/absent after completion
 
 ## Owner directive and design
 
@@ -53,6 +53,17 @@ All six focused controller/export tests pass after the correction.
 The corrected controller restarted at 19:16:14Z. Clean leg 1 is exact no-orchard agent `6592330`,
 submission `41086822`; the recovered platform source is byte-exact. Start commit `1ff538c7` is
 remote-verified and the one-hour maturity clock is active.
+
+## Completion
+
+All eight clean legs completed with 160 finished, identity-clean games and one sanitized LFS
+package per leg. The sequence ended with exact orchard agent/submission `6592744`/`41087983` at
+22.88/rank 32/137. Orchard-minus-no-orchard paired score deltas were +1.60, +2.03, −0.36, and
+−0.93 (mean +0.585, median +0.620). Opponent queues were not paired game-for-game, so the result
+is repeated live evidence rather than a clean causal estimate. Canonical result:
+`data/analysis/live-agent-6553250/orchard-ab-night-20260803/result.md`; controller state is
+`status=complete`, `phase=complete`. Commit `af4efe90` records completion. The old running header
+was stale and is corrected here; do not restart the service.
 
 ## Per-leg protocol
 

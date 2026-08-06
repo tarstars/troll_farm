@@ -1,6 +1,6 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-05. This file is live state, not a record — the ledger volumes are
+Last updated: 2026-08-06. This file is live state, not a record — the ledger volumes are
 the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
@@ -64,7 +64,7 @@ makes the goalpost move in the wrong direction.
     cycle starts and again when it terminates; (v) every submission id and terminal
     response is logged to the ledger.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
+    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
     the judgment even though it no longer binds the permission.
 - Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
   trial costs days of standing.
@@ -77,7 +77,7 @@ makes the goalpost move in the wrong direction.
   (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
 - **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
-  **Coordinator (integrator) = `local_codex_1` from 2026-07-30** (owner reassignment); arena controller follows the coordinator by protocol default unless the owner directs otherwise. `claude_1` is again an active contributor but not controller; `chatgpt_1` is a contributor. Handover: `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. Hazards (§7) bind every agent: the dev copy
+  **Coordinator (integrator) = `local_claude_1` from 2026-08-06** (owner reassignment); arena controller follows the coordinator by protocol default. `local_codex_1` is the outgoing coordinator and no longer a controller; `claude_1` and `chatgpt_1` are contributors. Handover: `coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Hazards (§7) bind every agent: the dev copy
   `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
   (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
   (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
@@ -129,15 +129,11 @@ makes the goalpost move in the wrong direction.
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
   terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** restore `6592131`/`41086057` is 23.56/162; two exact mature runs median 24.41. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 through 9f5e INVALID:** the oracle/real flip are repaired, but a full wood carrier oscillates for 225 turns on the first broad host panel; no value test. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
-- **BANANA R2 CURRENT (supersedes the inline `through 9f5e` marker above):** round-5
-  `47c98f53` was withdrawn after 141/240 fuzz blocks, including a second carrier-livelock
-  mechanism; round-6 `eac2eb36` is not a handoff. The FSM skeleton is directionally accepted,
-  but simultaneous-event priority, exact harvester/chopper survival timing, aligned-prefix
-  attribution, and enforced carrier precedence remain open. No value or Arena test.
+- **BANANA R2 CURRENT (supersedes inline `through 9f5e`):** `47c98f53` withdrawn at 141/240 fuzz blocks; `eac2eb36` is not a handoff. FSM event priority, exact asset-survival timing, attribution, and carrier precedence remain open; no value/Arena test.
 - **E7a ITERATIVE DELETION:** round 36 is 55,799 bytes and passes compile/fixtures, 7,234 live
   commands, and 0/516 development equality. Owner-directed live measurement `6594200`/`41090606`
   is 22.81/rank 32 over 160; no further mutation.
-- **Coordination:** `local_codex_1` integrates/controls Arena; Claude/ChatGPT contribute.
+- **Coordination:** `local_claude_1` integrates/controls Arena; `local_codex_1`, Claude, and ChatGPT contribute. Incoming operational ACK is pending; Arena stays unchanged during the gap.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers
 

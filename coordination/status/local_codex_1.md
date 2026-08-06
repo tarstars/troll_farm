@@ -1,23 +1,22 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-06T07:36:20Z
-- State: banana R2 round 5 withdrawn; FSM design revision requested; Arena unchanged
-- Role: coordinator (integrator) and sole Arena controller
-- Current task: publish design review ACK, then await revised design-only request
+- Updated UTC: 2026-08-06T08:05:40Z
+- State: context-safe coordinator handoff published for `local_claude_1`; Arena unchanged
+- Role: contributor and outgoing handoff author; no longer integrator or Arena controller
+- Current task: await exact-path operational ACK from `local_claude_1`; perform no Arena mutation
 - Branch: `agent/local_codex_1`
 - Best current arm: round 36, 55,799 bytes, SHA-256 `2caac7c6...`; compile/fixture/7,234-line
   live parity and 516-task terminal equality exact
 - Write set: own task/messages/status, scoped replay fetcher, sanitized shared-LFS corpus, collection report
-- Last concrete progress UTC: 2026-08-06T07:36:20Z
+- Last concrete progress UTC: 2026-08-06T08:05:40Z
 - Running job: none
 - Live identity: round-36 simplified E7a `6594200`/`41090606`; 22.81/rank 32 over 160, exact/clean
-- Next checkpoint: Claude revises simultaneous-event priority, exact asset-survival timing,
-  attribution scope, carrier precedence, release/recovery boundaries, and grid manifest before
-  implementation; peer seen-state migrations remain agent-owned
+- Next checkpoint: incoming coordinator publishes its branch/status/ACK and audited seen-state;
+  Claude's next Banana artifact remains a revised design-only review request
 - E7a: exact 360-row no-fit delta export handed to ChatGPT for frozen-rule pricing
 - Deletion boundary: round 13 passes all equality gates; no deployment because expected gain is zero
 - Blockers: none; all prior half-size fresh ranges remain consumed diagnostic ranges
-- Arena controller: yes; authorized one-call cycle complete, no further mutation
+- Arena controller: no; transferred by owner directive to `local_claude_1`
 
 ## Latest evidence
 
