@@ -1,14 +1,14 @@
-commit=ea21093557ac312a270297335b910697e21691a6
-utc=2026-08-06T11:44:05Z
+commit=cb280ecef995d299a3ed9dd9ff65a06a0b32fbac
+utc=2026-08-06T11:49:03Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
 == candidate build ==
 {
-  "candidate_bytes": 80934,
-  "candidate_sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b",
+  "candidate_bytes": 82046,
+  "candidate_sha256": "46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af",
   "insertion_bytes": {
-    "I1": 17763,
+    "I1": 18875,
     "I2": 64,
     "I3": 49,
     "I4": 80,
@@ -31,26 +31,8 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
 == regression all ==
 {
  "bank_turns": [
-  43,
-  51,
-  56,
-  61,
-  85,
-  91,
-  96,
-  101,
-  121,
-  127,
-  132,
-  137,
-  157,
-  163,
-  168,
-  173,
-  193,
-  199,
-  204,
-  209
+  6,
+  12
  ],
  "check": "R-1 one-seed-reservation",
  "invariant": "I-9",
@@ -70,24 +52,45 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
  ],
  "resident": 0,
  "unripe_at_flip": true,
- "verdict": "PASS",
- "violations": []
+ "verdict": "FAIL",
+ "violations": [
+  {
+   "command": "CHOP 0",
+   "turn": 6,
+   "why": "CHOP on the lost mother"
+  },
+  {
+   "command": "CHOP 0",
+   "turn": 7,
+   "why": "CHOP on the lost mother"
+  },
+  {
+   "command": "CHOP 0",
+   "turn": 8,
+   "why": "CHOP on the lost mother"
+  },
+  {
+   "command": "CHOP 0",
+   "turn": 9,
+   "why": "CHOP on the lost mother"
+  },
+  {
+   "command": "CHOP 0",
+   "turn": 10,
+   "why": "CHOP on the lost mother"
+  }
+ ]
 }
 {
  "check": "R-2b unripe-contested-convert",
  "chop_turns_on_mother": [
-  5,
-  6
+  2,
+  3
  ],
- "eta_opp_at_flip": 1,
+ "eta_opp_at_flip": 0,
  "eta_res_at_flip": 1,
- "feasibility_at_flip": {
-  "completion_turn": 6,
-  "conversion_possible": true,
-  "opponent_harvest_turn": 31,
-  "turn": 4
- },
- "flip_turn": 4,
+ "feasibility_at_flip": null,
+ "flip_turn": 5,
  "invariant": "I-10a",
  "mother": [
   2,
@@ -99,7 +102,18 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
 }
 {
  "check": "R-3a conversion-race-boundary/infeasible-tie",
- "chop_analysis": null,
+ "chop_analysis": {
+  "chop_start_turn": 3,
+  "oracle_at_chop_start": {
+   "completion_turn": 7,
+   "eta_opp": 0,
+   "eta_res": 0,
+   "exact_chop_turns": 5,
+   "feasible": false,
+   "first_fruit_turn": 7,
+   "opponent_harvest_turn": 7
+  }
+ },
  "eta_opp_at_flip": 2,
  "eta_res_at_flip": 2,
  "flip_turn": 1,
@@ -118,8 +132,19 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
   "opponent_harvest_turn": 7
  },
  "resident": 0,
- "verdict": "PASS",
- "violations": []
+ "verdict": "FAIL",
+ "violations": [
+  {
+   "chop_turns_on_mother": [
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+  }
+ ]
 }
 {
  "check": "R-3b conversion-race-boundary/feasible-edge",
@@ -169,95 +194,19 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
 }
 {
  "check": "R-4 flip-response-reachability",
- "chop_turns_on_mother": [
-  15,
-  16,
-  17,
-  18,
-  19
- ],
- "eta_opp_at_flip": 3,
- "eta_res_at_flip": 3,
- "flip_turn": 11,
  "invariant": "I-10a",
- "mother": [
-  2,
-  2
- ],
- "oracle_at_flip": {
-  "completion_turn": 18,
-  "eta_opp": 3,
-  "eta_res": 3,
-  "exact_chop_turns": 5,
-  "feasible": true,
-  "first_fruit_turn": 27,
-  "opponent_harvest_turn": 27
- },
- "plant_turn": 3,
- "post_flip_commands": [
-  {
-   "resident_command": "DROP 0",
-   "turn": 11
-  },
-  {
-   "resident_command": "MOVE 0 0 2",
-   "turn": 12
-  },
-  {
-   "resident_command": "MOVE 0 1 2",
-   "turn": 13
-  },
-  {
-   "resident_command": "MOVE 0 2 2",
-   "turn": 14
-  },
-  {
-   "resident_command": "CHOP 0",
-   "turn": 15
-  },
-  {
-   "resident_command": "CHOP 0",
-   "turn": 16
-  },
-  {
-   "resident_command": "CHOP 0",
-   "turn": 17
-  },
-  {
-   "resident_command": "CHOP 0",
-   "turn": 18
-  },
-  {
-   "resident_command": "CHOP 0",
-   "turn": 19
-  },
-  {
-   "resident_command": "MOVE 0 2 1",
-   "turn": 20
-  },
-  {
-   "resident_command": "DROP 0",
-   "turn": 21
-  }
- ],
- "resident": 0,
- "response_begun_turns": [
-  12
- ],
- "response_window": [
-  11,
-  12
- ],
- "verdict": "PASS",
- "violations": []
+ "reason": "scenario invalid: the candidate never planted the mother itself",
+ "verdict": "ERROR"
 }
 {
  "bank_turns": {
-  "2": 6
+  "0": 9,
+  "2": 10
  },
  "check": "R-5 two-worker-full-cargo-banking",
  "episodes": [],
  "full_wood_carrier_since": {
+  "0": 8,
   "2": 1
  },
  "invariants": [
@@ -597,20 +546,20 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
   }
  ]
 }
-regression_all_exit=0
+regression_all_exit=1
 
 == semantic harness ==
-{"tier_p": {"p_baseline_plain": "PASS", "p_orchard_eligible": "PASS", "p_banana_inventory_dormant": "PASS", "p_wood_banking": "PASS", "p_two_worker": "PASS", "p_late_window": "PASS", "p_training": "PASS"}, "golden": "/tmp/tier-p.json", "tier_c": {"c_bootstrap_budget": "PASS", "c_bounded_placement": "PASS", "c_replant_renewable": "PASS", "c_late_conversion": "PASS", "c_banking": "PASS", "c_eta_suppression": "PASS", "c_arbitration": "PASS", "c_target_recovery": "PASS"}}
-semantic_harness_exit=0
+{"tier_p": {"p_baseline_plain": "PASS", "p_orchard_eligible": "PASS", "p_banana_inventory_dormant": "PASS", "p_wood_banking": "PASS", "p_two_worker": "PASS", "p_late_window": "PASS", "p_training": "PASS"}, "golden": "/tmp/tier-p.json", "tier_c": {"c_bootstrap_budget": "PASS", "c_bounded_placement": "PASS", "c_replant_renewable": "FAIL", "c_late_conversion": "PASS", "c_banking": "PASS", "c_eta_suppression": "PASS", "c_arbitration": "PASS", "c_target_recovery": "PASS"}}
+semantic_harness_exit=1
 
 == trace detector tests ==
 ............................
 ----------------------------------------------------------------------
-Ran 28 tests in 0.011s
+Ran 28 tests in 0.012s
 
 OK
 trace_detector_tests_exit=0
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 47 blocking, 89 flagged, 14.6 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
-fuzz_panel_exit=1
+fuzz_panel: tool/config error: candidate source missing: /home/runner/work/troll_farm/troll_farm/chatgpt_1/chatgpt_1/banana-solve/candidate-banana-r2.min.rs
+fuzz_panel_exit=2

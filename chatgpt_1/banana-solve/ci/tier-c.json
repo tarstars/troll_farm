@@ -1,7 +1,7 @@
 {
   "candidate": {
-    "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
-    "sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b"
+    "path": "chatgpt_1/banana-solve/candidate-banana-r2.min.rs",
+    "sha256": "46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af"
   },
   "results": {
     "c_arbitration": {
@@ -110,21 +110,12 @@
       "status": "PASS"
     },
     "c_replant_renewable": {
-      "detail": {
-        "replant_commands": [
-          "PLANT 0 BANANA",
-          "PLANT 0 BANANA",
-          "PLANT 0 BANANA"
-        ],
-        "surplus_final": [
-          "MOVE 0 9 1"
-        ]
-      },
+      "error": "no PLANT BANANA within CD_dry=6 probe turns on a ring vacancy",
       "invariants": [
         "I-3",
         "I-9"
       ],
-      "status": "PASS"
+      "status": "FAIL"
     },
     "c_target_recovery": {
       "detail": {
