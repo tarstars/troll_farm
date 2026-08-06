@@ -1,0 +1,102 @@
+name: chatgpt banana pinned repro
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-banana-solve
+    paths:
+      - .github/workflows/chatgpt-banana-pinned-repro.yml
+      - chatgpt_1/banana-solve/PINNED-REPRO-TRIGGER
+
+permissions:
+  contents: write
+
+jobs:
+  reproduce:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run exact b16f44d6 standing gate
+        shell: bash
+        run: |
+          set -u
+          git fetch origin agent/claude_1
+          rm -rf /tmp/banana-pinned
+          git worktree add --detach /tmp/banana-pinned b16f44d62caa9802253adaf255eb07b98273421b
+          mkdir -p chatgpt_1/banana-solve/ci
+          CAND="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/candidate-banana-r2.min.rs"
+          PARENT="/tmp/banana-pinned/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+          CFG=/tmp/banana-pinned-cfg.json
+          cp /tmp/banana-pinned/claude_1/pipeline/fuzz-panel-config.json "$CFG"
+          python3 - "$CFG" "$CAND" "$PARENT" <<'PY'
+          import hashlib, json, pathlib, sys
+          cfg_path, candidate, parent = map(pathlib.Path, sys.argv[1:])
+          cfg = json.loads(cfg_path.read_text())
+          candidate_sha = hashlib.sha256(candidate.read_bytes()).hexdigest()
+          parent_sha = hashlib.sha256(parent.read_bytes()).hexdigest()
+          assert candidate_sha == 'bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951'
+          assert parent_sha == 'a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55'
+          cfg['candidate']['source'] = str(candidate)
+          cfg['candidate']['sha256'] = candidate_sha
+          cfg['parent']['source'] = str(parent)
+          cfg['parent']['sha256'] = parent_sha
+          cfg_path.write_text(json.dumps(cfg, indent=2, sort_keys=True) + '\n')
+          PY
+          OUT_JSON="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.json"
+          OUT_MD="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.md"
+          set +e
+          (
+            cd /tmp/banana-pinned/claude_1/pipeline
+            python3 fuzz_panel.py --config "$CFG" --report "$OUT_MD" --json "$OUT_JSON"
+          ) > chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.log 2>&1
+          EXIT=$?
+          set -e
+          python3 - "$CFG" "$OUT_JSON" "$EXIT" <<'PY'
+          import hashlib, json, pathlib, sys
+          cfg_path = pathlib.Path(sys.argv[1])
+          out_path = pathlib.Path(sys.argv[2])
+          exit_code = int(sys.argv[3])
+          root = pathlib.Path('/tmp/banana-pinned')
+          workspace = pathlib.Path.cwd()
+          paths = {
+              'fuzz_panel.py': root / 'claude_1/pipeline/fuzz_panel.py',
+              'fuzz-panel-config.original.json': root / 'claude_1/pipeline/fuzz-panel-config.json',
+              'trace_detectors.py': root / 'claude_1/banana-restoration-r2/trace_detectors.py',
+              'conversion_race_oracle.py': root / 'claude_1/banana-restoration-r2/conversion_race_oracle.py',
+              'candidate': workspace / 'chatgpt_1/banana-solve/candidate-banana-r2.min.rs',
+              'parent': root / 'cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs',
+              'effective-config': cfg_path,
+              'result-json': out_path,
+          }
+          evidence = {
+              'recipe_commit': 'b16f44d62caa9802253adaf255eb07b98273421b',
+              'exit_code': exit_code,
+              'inputs': {},
+          }
+          for name, path in paths.items():
+              data = path.read_bytes()
+              evidence['inputs'][name] = {
+                  'path': str(path),
+                  'bytes': len(data),
+                  'sha256': hashlib.sha256(data).hexdigest(),
+              }
+          result = json.loads(out_path.read_text())
+          evidence['verdict'] = result.get('verdict')
+          evidence['blocking_games'] = result.get('blocking_games')
+          evidence['banana_activated_games'] = result.get('banana_activated_games')
+          evidence['orchard_inertness_checks_passed'] = result.get('orchard_inertness_checks_passed')
+          target = workspace / 'chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48-inputs.json'
+          target.write_text(json.dumps(evidence, indent=2, sort_keys=True) + '\n')
+          print(json.dumps(evidence, indent=2, sort_keys=True))
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.*
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record bbe54a48 pinned reproduction [skip banana-ci]"
+            git push
+          fi
