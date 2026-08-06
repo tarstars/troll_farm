@@ -1,5 +1,5 @@
-commit=a49fa275a8edb7c893f91f3af0ed46a3d0b712cb
-utc=2026-08-06T12:51:01Z
+commit=515c128680d79eab716f8d468bb1e6f3e0c44547
+utc=2026-08-06T12:54:24Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
@@ -31,7 +31,7 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
 == trace detector tests ==
 ............................
 ----------------------------------------------------------------------
-Ran 28 tests in 0.012s
+Ran 28 tests in 0.011s
 
 OK
 trace_detector_tests_exit=0
@@ -1680,7 +1680,7 @@ regression_adapter_exit=1
 semantic_adapter_exit=1
 
 == fuzz panel ==
-fuzz_panel: CLEAR (240 games, 0 blocking, 111 flagged, 15.3 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: CLEAR (240 games, 0 blocking, 111 flagged, 15.1 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=0
 
 == final summary ==
