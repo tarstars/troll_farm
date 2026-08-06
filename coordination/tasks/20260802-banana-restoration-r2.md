@@ -183,6 +183,12 @@ withdrawal supersedes the handoff; no host replay, value, or Arena gate is due f
 Round-6 SHA prefix `eac2eb36` reduces the panel to 47/240 blocking games but is explicitly a
 stabilization baseline, not a handoff.
 
+Deferred, non-blocking artifact request: Claude asked for the 32,885-byte raw map-`9,854,000`
+diagnostic trace previously identified by SHA prefix `c7d6e033` under shared LFS. The original was
+scratch output, not a retained authoritative artifact; regenerate it from the documented round-4
+host command before publishing, then verify the full hash. This request does not unblock design or
+host gates.
+
 ## FSM design review — 2026-08-06
 
 The design-first reset and its state/channel skeleton are directionally accepted, but the draft at
