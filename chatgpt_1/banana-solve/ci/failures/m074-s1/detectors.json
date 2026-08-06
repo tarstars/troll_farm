@@ -1,0 +1,185 @@
+[
+ {
+  "count": 0,
+  "detector": "D-1",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 11,
+  "detector": "D-5",
+  "episodes": [
+   {
+    "cell": [
+     11,
+     3
+    ],
+    "kind": "outside_ring",
+    "turn_end": 111,
+    "turn_start": 111,
+    "unit": 0
+   },
+   {
+    "cell": [
+     11,
+     2
+    ],
+    "kind": "outside_ring",
+    "turn_end": 156,
+    "turn_start": 156,
+    "unit": 0
+   },
+   {
+    "cell": [
+     11,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 156,
+    "turn_start": 156,
+    "unit": 0
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 166,
+    "turn_start": 166,
+    "unit": 2
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 172,
+    "turn_start": 172,
+    "unit": 2
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 178,
+    "turn_start": 178,
+    "unit": 2
+   },
+   {
+    "cell": [
+     13,
+     4
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 180,
+    "turn_start": 180,
+    "unit": 0
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 184,
+    "turn_start": 184,
+    "unit": 2
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 190,
+    "turn_start": 190,
+    "unit": 2
+   },
+   {
+    "cell": [
+     13,
+     4
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 196,
+    "turn_start": 196,
+    "unit": 0
+   },
+   {
+    "cell": [
+     13,
+     2
+    ],
+    "cumulative": 6,
+    "kind": "cumulative_over_ring",
+    "ring_size": 5,
+    "turn_end": 196,
+    "turn_start": 196,
+    "unit": 2
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-6",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

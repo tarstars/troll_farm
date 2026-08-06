@@ -1,0 +1,144 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": -8,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "opp_score": 24,
+  "score": 16
+ },
+ "class": "water_diagonal",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 1,
+  "D-7": 0,
+  "D-8": 3,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m082",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "margin": -8,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   3
+  ],
+  "opp_score": 12,
+  "score": 4
+ },
+ "profile": "chopper_aggressor",
+ "seat": 0,
+ "seed": 67867967,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-6",
+   "episodes": [
+    {
+     "cell": [
+      1,
+      5
+     ],
+     "eta_opp_x": 2,
+     "kind": "opp_chop_eta",
+     "turn_end": 37,
+     "turn_start": 37,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "count": 3,
+   "detector": "D-8",
+   "episodes": [
+    {
+     "cell": [
+      0,
+      5
+     ],
+     "completion_turn": 34,
+     "eta_opp_at_chop_start": 10000,
+     "exact_chop_turns": 6,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 10029,
+     "reason": "discretionary_owned",
+     "turn_end": 29,
+     "turn_start": 29,
+     "unit": 0
+    },
+    {
+     "cell": [
+      0,
+      5
+     ],
+     "completion_turn": 34,
+     "eta_opp_at_chop_start": 10000,
+     "exact_chop_turns": 6,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 10029,
+     "reason": "discretionary_owned",
+     "turn_end": 32,
+     "turn_start": 32,
+     "unit": 0
+    },
+    {
+     "cell": [
+      0,
+      5
+     ],
+     "completion_turn": 34,
+     "eta_opp_at_chop_start": 10000,
+     "exact_chop_turns": 6,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 10029,
+     "reason": "discretionary_owned",
+     "turn_end": 33,
+     "turn_start": 33,
+     "unit": 0
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

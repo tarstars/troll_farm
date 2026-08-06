@@ -1,0 +1,131 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   3,
+   0,
+   32
+  ],
+  "margin": 131,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 131
+ },
+ "class": "orchard_eligible",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 11,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m074",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "profile": "idle",
+ "seat": 1,
+ "seed": 32452843,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 11,
+   "detector": "D-5",
+   "episodes": [
+    {
+     "cell": [
+      11,
+      3
+     ],
+     "kind": "outside_ring",
+     "turn_end": 111,
+     "turn_start": 111,
+     "unit": 0
+    },
+    {
+     "cell": [
+      11,
+      2
+     ],
+     "kind": "outside_ring",
+     "turn_end": 156,
+     "turn_start": 156,
+     "unit": 0
+    },
+    {
+     "cell": [
+      11,
+      2
+     ],
+     "cumulative": 6,
+     "kind": "cumulative_over_ring",
+     "ring_size": 5,
+     "turn_end": 156,
+     "turn_start": 156,
+     "unit": 0
+    },
+    {
+     "cell": [
+      13,
+      2
+     ],
+     "cumulative": 6,
+     "kind": "cumulative_over_ring",
+     "ring_size": 5,
+     "turn_end": 166,
+     "turn_start": 166,
+     "unit": 2
+    },
+    {
+     "cell": [
+      13,
+      2
+     ],
+     "cumulative": 6,
+     "kind": "cumulative_over_ring",
+     "ring_size": 5,
+     "turn_end": 172,
+     "turn_start": 172,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

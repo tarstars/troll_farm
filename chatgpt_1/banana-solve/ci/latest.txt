@@ -1,5 +1,5 @@
-commit=bcdb16efb37887e55d3fe7883a9e984e8b8e5987
-utc=2026-08-06T11:53:37Z
+commit=2b674ac3085c61c30a4aadfe9904fe077d09fcd2
+utc=2026-08-06T11:55:24Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
@@ -579,5 +579,5 @@ OK
 trace_detector_tests_exit=0
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 32 blocking, 100 flagged, 15.5 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: BLOCK (240 games, 12 blocking, 109 flagged, 14.7 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=1
