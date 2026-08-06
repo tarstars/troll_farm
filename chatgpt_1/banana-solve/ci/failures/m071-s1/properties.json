@@ -1,7 +1,7 @@
 {
  "attempt": 0,
  "banana_active": true,
- "block": true,
+ "block": false,
  "candidate": {
   "inventory": [
    0,
@@ -35,7 +35,12 @@
   "D-8": 0,
   "D-9": 0
  },
- "flags": [],
+ "flags": [
+  {
+   "detail": "1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript",
+   "flag": "terminal-consuming-command"
+  }
+ ],
  "map_id": "m071",
  "orchard_eligible": false,
  "parent": {
@@ -63,20 +68,5 @@
  "seat": 1,
  "seed": 86028121,
  "turns": 200,
- "violations": [
-  {
-   "count": 1,
-   "detector": "D-7",
-   "episodes": [
-    {
-     "kind": "unbanked_at_end",
-     "provenance": "bank_pick",
-     "turn_end": 200,
-     "turn_start": 200,
-     "unit": 2
-    }
-   ],
-   "property": "P1"
-  }
- ]
+ "violations": []
 }

@@ -4,7 +4,7 @@
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 14.7 s
+- wall time: 15.2 s
 
 ## Verdict: BLOCK
 
@@ -16,8 +16,8 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 2 |
-| flagged_games | 109 |
+| blocking_games | 1 |
+| flagged_games | 110 |
 
 | class | games |
 |---|---|
@@ -41,10 +41,6 @@
 ### m024 seat 1 (single_door_tent, idle, seed 982451653)
 
 - **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 2], [11, 3]], "k": 3, "turn_end": 169, "turn_start": 163, "unit": 0}]}
-
-### m071 seat 1 (open_field, idle, seed 86028121)
-
-- **P1**: {"count": 1, "detector": "D-7", "episodes": [{"kind": "unbanked_at_end", "provenance": "bank_pick", "turn_end": 200, "turn_start": 200, "unit": 2}]}
 
 ## Report-tier flags (non-blocking)
 
@@ -116,6 +112,7 @@
 - m070 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m070 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m070 seat 1 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
+- m071 seat 1 [terminal-consuming-command]: 1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript
 - m072 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m072 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m073 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
