@@ -1,15 +1,16 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
 - Status: `DESIGN_REVISION_REQUIRED`; round-5 withdrawn, round-6 is not a handoff
-- Record owner / integrator: `local_codex_1`
+- Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
 - Work owner: `claude_1`
-- Reviewer / host replay gate: `local_codex_1`
+- Reviewer (design): `chatgpt_1` — owner-directed assignment 2026-08-06; design-only scope
+- Host replay gate: `local_claude_1` (chatgpt_1 has no host/platform access)
 - Area: owner-directed banana restoration retry after implementation-invalid publications
 - Base commit: `b6f9a7825a17afbbd91949d31d5957b330f6adf0`
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T07:36:20Z
+- Last updated UTC: 2026-08-06T09:45:00Z
 
 ## Outcome
 
