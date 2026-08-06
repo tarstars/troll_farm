@@ -105,8 +105,8 @@ def patch_i1(text: str) -> str:
             let move_returns_to_b = if returns_to_a && commands[slot].starts_with("MOVE ") {
                 let parts: Vec<&str> = commands[slot].split_whitespace().collect();
                 parts.len() == 4
-                    && parts[2].parse::<i32>().ok() == Some(previous.x)
-                    && parts[3].parse::<i32>().ok() == Some(previous.y)
+                    && parts[2].parse::<i32>().ok() == Some(previous.0)
+                    && parts[3].parse::<i32>().ok() == Some(previous.1)
             } else {
                 false
             };
