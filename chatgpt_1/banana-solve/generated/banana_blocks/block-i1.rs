@@ -124,6 +124,12 @@ pub struct BananaBot {
     // observable approach; a static far opponent is not treated as movement.
     banana_prev_h_eta: Option<i32>,
     banana_prev_x_eta: Option<i32>,
+    // Pre-founding observation of the nearest opponent to any eligible
+    // diagonal mother cell.  The seed is not spent until both ETAs have been
+    // non-decreasing for three consecutive observations.
+    banana_probe_h_eta: Option<i32>,
+    banana_probe_x_eta: Option<i32>,
+    banana_probe_stable: i32,
 }
 
 impl BananaBot {
@@ -147,6 +153,9 @@ impl BananaBot {
             banana_peer_history: std::collections::BTreeMap::new(),
             banana_prev_h_eta: None,
             banana_prev_x_eta: None,
+            banana_probe_h_eta: None,
+            banana_probe_x_eta: None,
+            banana_probe_stable: 0,
         }
     }
 
@@ -620,6 +629,63 @@ impl BananaBot {
             self.banana_last_cell = Some(worker.cell);
             return None;
         }
+        // Observational founding gate.  Before the one bootstrap seed is
+        // withdrawn, watch every eligible diagonal cell for three turns.  A
+        // moving threat resets the counter; during the probe the resident is
+        // fully released to the inner economy and no banana reservation is
+        // written.  Current-state safety is still rechecked by
+        // banana_vacant_ok on the actual PLANT turn.
+        if self.banana_mother.is_none()
+            && !self.banana_bootstrap_used
+            && !Self::banana_ring(view)
+                .into_iter()
+                .any(|cell| Self::banana_live(view, cell).is_some())
+        {
+            let tent = view.shacks[0];
+            let mut h_eta = 10_000;
+            let mut x_eta = 10_000;
+            let mut has_diag = false;
+            for cell in Self::banana_ring(view) {
+                if is_adjacent(cell, tent) {
+                    continue;
+                }
+                if Self::banana_vacant_ok(view, worker, cell, false) {
+                    has_diag = true;
+                    h_eta = h_eta.min(Self::banana_opponent_eta(
+                        view,
+                        cell,
+                        false,
+                    ));
+                    x_eta = x_eta.min(Self::banana_opponent_eta(
+                        view,
+                        cell,
+                        true,
+                    ));
+                }
+            }
+            let stable = has_diag
+                && self
+                    .banana_probe_h_eta
+                    .map(|previous| h_eta >= previous)
+                    .unwrap_or(false)
+                && self
+                    .banana_probe_x_eta
+                    .map(|previous| x_eta >= previous)
+                    .unwrap_or(false);
+            self.banana_probe_h_eta = Some(h_eta);
+            self.banana_probe_x_eta = Some(x_eta);
+            self.banana_probe_stable = if stable {
+                self.banana_probe_stable + 1
+            } else {
+                0
+            };
+            if self.banana_probe_stable < 3 {
+                self.banana_last_move = false;
+                self.banana_last_cell = Some(worker.cell);
+                return None;
+            }
+        }
+
         // F-B3 (rev. 2026-08-06): a post-MOVE turn is blocked when the BFS
         // distance to the held target did not drop below the best distance
         // achieved while holding it — a two-cell resolver bounce changes
@@ -1003,6 +1069,9 @@ impl BananaBot {
             self.banana_mother = Some(chosen.2);
             self.banana_prev_h_eta = None;
             self.banana_prev_x_eta = None;
+            self.banana_probe_h_eta = None;
+            self.banana_probe_x_eta = None;
+            self.banana_probe_stable = 0;
         }
         if chosen.1 == BananaTask::Idle {
             self.banana_idle_streak += 1;

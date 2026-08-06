@@ -1,17 +1,17 @@
 {
  "attempt": 0,
- "banana_active": true,
+ "banana_active": false,
  "block": true,
  "candidate": {
   "inventory": [
    0,
    0,
    0,
+   1,
    0,
-   0,
-   3
+   2
   ],
-  "margin": 12,
+  "margin": 9,
   "opp_inventory": [
    0,
    0,
@@ -21,7 +21,7 @@
    0
   ],
   "opp_score": 0,
-  "score": 12
+  "score": 9
  },
  "class": "orchard_eligible",
  "detector_counts": {
@@ -67,14 +67,13 @@
   {
    "detail": {
     "parent_progress_turns": [
-     27,
      28,
      31,
      32
     ],
-    "why": "candidate makes no progress over turns 26-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "why": "candidate makes no progress over turns 28-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
     "window_end": 199,
-    "window_start": 26
+    "window_start": 28
    },
    "property": "P4"
   }

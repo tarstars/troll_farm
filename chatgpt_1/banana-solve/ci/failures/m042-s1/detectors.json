@@ -1,26 +1,9 @@
 [
  {
-  "count": 1,
+  "count": 0,
   "detector": "D-1",
-  "episodes": [
-   {
-    "cells": [
-     [
-      11,
-      0
-     ],
-     [
-      11,
-      1
-     ]
-    ],
-    "k": 13,
-    "turn_end": 54,
-    "turn_start": 28,
-    "unit": 2
-   }
-  ],
-  "verdict": "FAIL"
+  "episodes": [],
+  "verdict": "PASS"
  },
  {
   "count": 0,
@@ -35,10 +18,17 @@
   "verdict": "PASS"
  },
  {
-  "count": 0,
+  "count": 1,
   "detector": "D-4",
-  "episodes": [],
-  "verdict": "PASS"
+  "episodes": [
+   {
+    "kind": "no_progress",
+    "turn_end": 16,
+    "turn_start": 14,
+    "unit": 0
+   }
+  ],
+  "verdict": "FAIL"
  },
  {
   "count": 0,
