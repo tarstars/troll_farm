@@ -1,0 +1,125 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   0
+  ],
+  "margin": 1,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 1
+ },
+ "class": "orchard_eligible",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 58,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "detail": "full wood carrier since turn 24 never DROPs at a door within the bounded banking horizon of 30 turns - I-21 forced banking violated",
+   "flag": "r5-horizon",
+   "unit": 2
+  }
+ ],
+ "map_id": "m074",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "profile": "idle",
+ "seat": 1,
+ "seed": 32452843,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 58,
+   "detector": "D-4",
+   "episodes": [
+    {
+     "kind": "no_progress",
+     "turn_end": 29,
+     "turn_start": 27,
+     "unit": 2
+    },
+    {
+     "kind": "no_progress",
+     "turn_end": 32,
+     "turn_start": 30,
+     "unit": 2
+    },
+    {
+     "kind": "no_progress",
+     "turn_end": 35,
+     "turn_start": 33,
+     "unit": 2
+    },
+    {
+     "kind": "no_progress",
+     "turn_end": 38,
+     "turn_start": 36,
+     "unit": 2
+    },
+    {
+     "kind": "no_progress",
+     "turn_end": 41,
+     "turn_start": 39,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": {
+    "parent_progress_turns": [
+     24,
+     25,
+     28,
+     29
+    ],
+    "why": "candidate makes no progress over turns 24-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 24
+   },
+   "property": "P4"
+  }
+ ]
+}

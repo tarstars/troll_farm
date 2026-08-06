@@ -1087,11 +1087,11 @@
      0,
      0,
      1,
-     19,
+     11,
      0,
-     21
+     24
     ],
-    "margin": 104,
+    "margin": 108,
     "opp_inventory": [
      0,
      0,
@@ -1101,7 +1101,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 104
+    "score": 108
    },
    "class": "forest_dense",
    "detector_counts": {
@@ -1156,9 +1156,9 @@
      1,
      12,
      0,
-     28
+     27
     ],
-    "margin": 125,
+    "margin": 121,
     "opp_inventory": [
      0,
      0,
@@ -1168,7 +1168,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 125
+    "score": 121
    },
    "class": "forest_dense",
    "detector_counts": {
@@ -2556,9 +2556,9 @@
      0,
      0,
      0,
-     15
+     19
     ],
-    "margin": 60,
+    "margin": 76,
     "opp_inventory": [
      0,
      0,
@@ -2568,7 +2568,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 60
+    "score": 76
    },
    "class": "open_field",
    "detector_counts": {
@@ -2621,11 +2621,11 @@
      0,
      0,
      0,
+     1,
      0,
-     0,
-     3
+     40
     ],
-    "margin": 12,
+    "margin": 161,
     "opp_inventory": [
      0,
      0,
@@ -2635,7 +2635,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 12
+    "score": 161
    },
    "class": "open_field",
    "detector_counts": {
@@ -3593,11 +3593,11 @@
      0,
      1,
      0,
-     2,
+     10,
      0,
-     37
+     30
     ],
-    "margin": 151,
+    "margin": 131,
     "opp_inventory": [
      0,
      0,
@@ -3607,7 +3607,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 151
+    "score": 131
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -5410,19 +5410,19 @@
      0,
      0,
      0,
-     7
+     23
     ],
-    "margin": 10,
+    "margin": 77,
     "opp_inventory": [
-     3,
+     8,
      0,
      0,
-     15,
+     7,
      0,
      0
     ],
-    "opp_score": 18,
-    "score": 28
+    "opp_score": 15,
+    "score": 92
    },
    "class": "multi_door",
    "detector_counts": {
@@ -5431,7 +5431,7 @@
     "D-3": 0,
     "D-4": 0,
     "D-5": 0,
-    "D-6": 10,
+    "D-6": 6,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
@@ -5466,7 +5466,7 @@
    "turns": 200,
    "violations": [
     {
-     "count": 10,
+     "count": 6,
      "detector": "D-6",
      "episodes": [
       {
@@ -5476,8 +5476,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 59,
-       "turn_start": 58,
+       "turn_end": 135,
+       "turn_start": 134,
        "unit": null
       },
       {
@@ -5487,8 +5487,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 60,
-       "turn_start": 59,
+       "turn_end": 136,
+       "turn_start": 135,
        "unit": null
       },
       {
@@ -5498,8 +5498,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 88,
-       "turn_start": 87,
+       "turn_end": 164,
+       "turn_start": 163,
        "unit": null
       },
       {
@@ -5509,8 +5509,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 89,
-       "turn_start": 88,
+       "turn_end": 165,
+       "turn_start": 164,
        "unit": null
       },
       {
@@ -5520,8 +5520,8 @@
        ],
        "kind": "opp_harvested_ours",
        "opp_unit": 5,
-       "turn_end": 117,
-       "turn_start": 116,
+       "turn_end": 193,
+       "turn_start": 192,
        "unit": null
       }
      ],
@@ -7418,14 +7418,14 @@
    "block": false,
    "candidate": {
     "inventory": [
+     1,
      0,
      0,
+     7,
      0,
-     0,
-     0,
-     16
+     17
     ],
-    "margin": 36,
+    "margin": 48,
     "opp_inventory": [
      20,
      0,
@@ -7435,7 +7435,7 @@
      0
     ],
     "opp_score": 28,
-    "score": 64
+    "score": 76
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -7445,11 +7445,16 @@
     "D-4": 0,
     "D-5": 0,
     "D-6": 0,
-    "D-7": 0,
+    "D-7": 1,
     "D-8": 0,
     "D-9": 0
    },
-   "flags": [],
+   "flags": [
+    {
+     "detail": "1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript",
+     "flag": "terminal-consuming-command"
+    }
+   ],
    "map_id": "m049",
    "orchard_eligible": false,
    "parent": {
@@ -10794,11 +10799,11 @@
      0,
      0,
      0,
-     8,
+     14,
      0,
-     32
+     30
     ],
-    "margin": 136,
+    "margin": 134,
     "opp_inventory": [
      0,
      0,
@@ -10808,7 +10813,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 136
+    "score": 134
    },
    "class": "open_field",
    "detector_counts": {
@@ -10861,11 +10866,11 @@
      0,
      0,
      0,
+     7,
      0,
-     0,
-     23
+     30
     ],
-    "margin": 92,
+    "margin": 127,
     "opp_inventory": [
      0,
      0,
@@ -10875,7 +10880,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 92
+    "score": 127
    },
    "class": "open_field",
    "detector_counts": {
@@ -11308,17 +11313,17 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
      0,
      0,
-     2,
+     1,
      0,
-     31
+     0
     ],
-    "margin": 126,
+    "margin": 1,
     "opp_inventory": [
      0,
      0,
@@ -11328,21 +11333,27 @@
      0
     ],
     "opp_score": 0,
-    "score": 126
+    "score": 1
    },
    "class": "orchard_eligible",
    "detector_counts": {
     "D-1": 0,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 0,
+    "D-4": 58,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
     "D-8": 0,
     "D-9": 0
    },
-   "flags": [],
+   "flags": [
+    {
+     "detail": "full wood carrier since turn 24 never DROPs at a door within the bounded banking horizon of 30 turns - I-21 forced banking violated",
+     "flag": "r5-horizon",
+     "unit": 2
+    }
+   ],
    "map_id": "m074",
    "orchard_eligible": false,
    "parent": {
@@ -11370,7 +11381,59 @@
    "seat": 1,
    "seed": 32452843,
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 58,
+     "detector": "D-4",
+     "episodes": [
+      {
+       "kind": "no_progress",
+       "turn_end": 29,
+       "turn_start": 27,
+       "unit": 2
+      },
+      {
+       "kind": "no_progress",
+       "turn_end": 32,
+       "turn_start": 30,
+       "unit": 2
+      },
+      {
+       "kind": "no_progress",
+       "turn_end": 35,
+       "turn_start": 33,
+       "unit": 2
+      },
+      {
+       "kind": "no_progress",
+       "turn_end": 38,
+       "turn_start": 36,
+       "unit": 2
+      },
+      {
+       "kind": "no_progress",
+       "turn_end": 41,
+       "turn_start": 39,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
+    {
+     "detail": {
+      "parent_progress_turns": [
+       24,
+       25,
+       28,
+       29
+      ],
+      "why": "candidate makes no progress over turns 24-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+      "window_end": 199,
+      "window_start": 24
+     },
+     "property": "P4"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -12957,11 +13020,11 @@
      0,
      0,
      0,
+     1,
      0,
-     0,
-     3
+     33
     ],
-    "margin": 12,
+    "margin": 133,
     "opp_inventory": [
      0,
      0,
@@ -12971,7 +13034,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 12
+    "score": 133
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -14551,9 +14614,9 @@
      0,
      0,
      0,
-     6
+     10
     ],
-    "margin": 24,
+    "margin": 40,
     "opp_inventory": [
      0,
      0,
@@ -14563,7 +14626,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 24
+    "score": 40
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -14978,11 +15041,11 @@
      0,
      0,
      0,
+     2,
      0,
-     0,
-     37
+     36
     ],
-    "margin": 148,
+    "margin": 146,
     "opp_inventory": [
      0,
      0,
@@ -14992,7 +15055,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 148
+    "score": 146
    },
    "class": "water_diagonal",
    "detector_counts": {
@@ -17427,11 +17490,11 @@
      0,
      0,
      0,
+     2,
      0,
-     0,
-     5
+     37
     ],
-    "margin": 20,
+    "margin": 150,
     "opp_inventory": [
      0,
      0,
@@ -17441,7 +17504,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 20
+    "score": 150
    },
    "class": "orchard_eligible",
    "detector_counts": {
@@ -18229,7 +18292,7 @@
  ],
  "stats": {
   "banana_activated_games": 158,
-  "blocking_games": 10,
+  "blocking_games": 11,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -18245,13 +18308,13 @@
    "harvester": 96,
    "idle": 72
   },
-  "flagged_games": 108,
+  "flagged_games": 110,
   "games": 240,
   "maps": 120,
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 15.45
+  "wall_time_seconds": 15.41
  },
  "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
  "verdict": "BLOCK"

@@ -1074,6 +1074,25 @@ impl BananaBot {
             self.banana_probe_stable = 0;
         }
         if chosen.1 == BananaTask::Idle {
+            // A live exact mother is not starvation.  Its next productive
+            // action is time-gated by growth; keep the resident within ETA 0
+            // rather than releasing it to a distant inner task.  This makes a
+            // later ETA decrease observable while conversion is still
+            // feasible and prevents opponent farming after a long idle gap.
+            if let Some(mother) = self.banana_mother_cell(view) {
+                self.banana_idle_streak = 0;
+                self.banana_target = Some((BananaTask::Harvest, mother));
+                self.banana_hold_age = 0;
+                self.banana_blocked_turns = 0;
+                self.banana_last_cell = Some(worker.cell);
+                self.banana_last_move = worker.cell != mother;
+                self.banana_best_dist = None;
+                return Some(if worker.cell == mother {
+                    "WAIT".to_string()
+                } else {
+                    format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
+                });
+            }
             self.banana_idle_streak += 1;
             // F-B1 idle-yield (rev. 2026-08-06): an Idle resident camping
             // the mother is a permanent `reserved` obstacle in the C8

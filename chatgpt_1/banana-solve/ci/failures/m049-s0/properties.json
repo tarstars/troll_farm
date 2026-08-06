@@ -1,0 +1,72 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   1,
+   0,
+   0,
+   7,
+   0,
+   17
+  ],
+  "margin": 48,
+  "opp_inventory": [
+   20,
+   0,
+   7,
+   1,
+   0,
+   0
+  ],
+  "opp_score": 28,
+  "score": 76
+ },
+ "class": "water_diagonal",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 1,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "detail": "1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript",
+   "flag": "terminal-consuming-command"
+  }
+ ],
+ "map_id": "m049",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   7
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   6,
+   0,
+   6,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 12,
+  "score": 28
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 15485863,
+ "turns": 200,
+ "violations": []
+}

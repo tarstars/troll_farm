@@ -1,14 +1,14 @@
-commit=20c3d5f8585fb1db34a24ae73abc1b5700854531
-utc=2026-08-06T12:32:13Z
+commit=ac2dc4237fd53a88f5f95b10e825323f4df83a04
+utc=2026-08-06T12:36:56Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
 == candidate build ==
 {
-  "candidate_bytes": 87261,
-  "candidate_sha256": "320b7c21375e6d85b7764d5ff54e3360302dd58d69bcad7904fd44253c969206",
+  "candidate_bytes": 87666,
+  "candidate_sha256": "66471322f08aecc4e88858f74c516a2f958e4eebf9672d9db2ec3064f70396ef",
   "insertion_bytes": {
-    "I1": 24090,
+    "I1": 24495,
     "I2": 64,
     "I3": 49,
     "I4": 80,
@@ -35,22 +35,22 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
   54,
   59,
   64,
-  88,
-  94,
-  99,
-  104,
-  124,
-  130,
-  135,
-  140,
-  160,
-  166,
-  171,
-  176,
-  196,
-  202,
-  207,
-  212
+  82,
+  90,
+  95,
+  100,
+  118,
+  126,
+  131,
+  136,
+  154,
+  162,
+  167,
+  172,
+  190,
+  198,
+  203,
+  208
  ],
  "check": "R-1 one-seed-reservation",
  "invariant": "I-9",
@@ -586,5 +586,5 @@ trace_detector_tests_exit=0
 owner_contract_exit=1
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 10 blocking, 108 flagged, 15.4 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: BLOCK (240 games, 11 blocking, 110 flagged, 15.4 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=1

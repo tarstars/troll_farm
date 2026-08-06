@@ -1,6 +1,6 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed renewable candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 320b7c21375e6d85b7764d5ff54e3360302dd58d69bcad7904fd44253c969206)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 66471322f08aecc4e88858f74c516a2f958e4eebf9672d9db2ec3064f70396ef)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
@@ -16,8 +16,8 @@
 | banana_activated_games | 158 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 10 |
-| flagged_games | 108 |
+| blocking_games | 11 |
+| flagged_games | 110 |
 
 | class | games |
 |---|---|
@@ -52,7 +52,7 @@
 
 ### m036 seat 1 (multi_door, harvester, seed 982451653)
 
-- **P1**: {"count": 10, "detector": "D-6", "episodes": [{"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 59, "turn_start": 58, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 60, "turn_start": 59, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 88, "turn_start": 87, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 89, "turn_start": 88, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 117, "turn_start": 116, "unit":
+- **P1**: {"count": 6, "detector": "D-6", "episodes": [{"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 135, "turn_start": 134, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 136, "turn_start": 135, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 164, "turn_start": 163, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 165, "turn_start": 164, "unit": null}, {"cell": [11, 7], "kind": "opp_harvested_ours", "opp_unit": 5, "turn_end": 193, "turn_start": 192, 
 
 ### m042 seat 0 (water_diagonal, chopper_aggressor, seed 982451653)
 
@@ -69,6 +69,11 @@
 ### m065 seat 1 (orchard_eligible, chopper_aggressor, seed 86028121)
 
 - **P4**: {"detail": {"parent_progress_turns": [28, 31, 32], "why": "candidate makes no progress over turns 28-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 28}}
+
+### m074 seat 1 (orchard_eligible, idle, seed 32452843)
+
+- **P1**: {"count": 58, "detector": "D-4", "episodes": [{"kind": "no_progress", "turn_end": 29, "turn_start": 27, "unit": 2}, {"kind": "no_progress", "turn_end": 32, "turn_start": 30, "unit": 2}, {"kind": "no_progress", "turn_end": 35, "turn_start": 33, "unit": 2}, {"kind": "no_progress", "turn_end": 38, "turn_start": 36, "unit": 2}, {"kind": "no_progress", "turn_end": 41, "turn_start": 39, "unit": 2}]}
+- **P4**: {"detail": {"parent_progress_turns": [24, 25, 28, 29], "why": "candidate makes no progress over turns 24-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)", "window_end": 199, "window_start": 24}}
 
 ### m082 seat 0 (water_diagonal, chopper_aggressor, seed 67867967)
 
@@ -122,6 +127,7 @@
 - m048 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m048 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m048 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
+- m049 seat 0 [terminal-consuming-command]: 1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript
 - m050 seat 1 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m051 seat 0 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m051 seat 1 [inherited-parent-D9]: 4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
@@ -150,6 +156,7 @@
 - m072 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m072 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m073 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
+- m074 seat 1 [r5-horizon]: full wood carrier since turn 24 never DROPs at a door within the bounded banking horizon of 30 turns - I-21 forced banking violated
 - m075 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m075 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
 - m075 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
