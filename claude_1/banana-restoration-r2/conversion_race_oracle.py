@@ -224,16 +224,33 @@ def conversion_race_oracle(*, decision_turn, walkable, mother_cell, plant,
 
 
 def _opp_destroy_turn(plant, choppers, near_water=False):
-    """Growth-aware earliest CHOP-out turn of the mother by opponents.
+    """Growth-aware earliest reachable CHOP-out turn of the mother (review F3).
 
-    ``choppers`` : list of (eta, chop_power) — the turn (from the decision
-    turn) each chop-capable opponent can first land a chop on the cell, and
-    its chop power. Multiple choppers aggregate: from the earliest arrival the
-    combined power of every arrived chopper lands each turn, then the growth
-    tick applies (a size-below-4 tree at cooldown 0 regrows +1 size/+1 health).
+    ``choppers`` : list of (eta, chop_power) — the turn (from the decision turn)
+    each chop-capable opponent can first STAND on the mother cell, and its chop
+    power.
+
+    EXACT REFEREE MECHANICS (F3, was an over-count). A CHOP executes only when
+    the unit stands ON the tree cell (referee: ``plant.cell == unit.cell`` gates
+    CHOP), and the referee's per-player movement-conflict resolution reserves a
+    distinct landing cell for every own unit — two units of the SAME opponent
+    can never end the turn on the one tree cell. Therefore AT MOST ONE of an
+    opponent's choppers can apply CHOP to the tree on any turn; simultaneous
+    same-player chopper powers on one cell are physically unreachable and are
+    NEVER summed. The prior version summed every arrived chopper's power, which
+    was a non-exact conservative lower bound the review rejected.
+
+    Correct model: from the earliest arrival, exactly ONE chop lands each turn,
+    applying the MAXIMUM chop_power among the choppers that have arrived by that
+    turn (the best reachable single chopper; a stronger chopper arriving later
+    raises the per-turn power by hand-off, but never adds to a co-located one).
+    Then the growth tick applies (a size-below-4 tree at cooldown 0 regrows
+    +1 size / +1 health). A second chopper advances destruction ONLY by
+    arriving earlier (moving the first-arrival turn) or by handing a higher
+    single power to the cell — never by power summation.
+
     Returns the turn index k (from the decision turn) on which the killing chop
-    lands, or UNREACHABLE. Defender-conservative: assumes arrived choppers can
-    apply combined power (earliest possible destruction)."""
+    lands, or UNREACHABLE."""
     powered = [(eta, cp) for (eta, cp) in choppers
                if cp > 0 and eta < UNREACHABLE]
     if not powered:
@@ -247,7 +264,9 @@ def _opp_destroy_turn(plant, choppers, near_water=False):
                                                   cooldown, first, near_water)
     for step in range(0, _FRUIT_HORIZON):
         k = first + step
-        power = sum(cp for eta, cp in powered if eta <= k)
+        arrived = [cp for eta, cp in powered if eta <= k]
+        # at most one chopper occupies the tree cell -> best single power
+        power = max(arrived) if arrived else 0
         health -= power
         if health <= 0:
             return k
@@ -268,9 +287,11 @@ def asset_survival_oracle(*, decision_turn, walkable, mother_cell, plant,
 
     CONVERSION_RACE_ORACLE compares our conversion completion against the
     opponent's earliest HARVEST only. This oracle additionally models opponent
-    CHOP-out (destruction) with exact travel + growth + action timing, and
-    aggregates multiple choppers, so a chopper-only or mixed opponent no longer
-    reads as "no threat". ``opponents`` is an iterable of
+    CHOP-out (destruction) with exact travel + growth + action timing, under the
+    F3-correct single-chopper-per-turn schedule (at most one opponent unit can
+    stand on and CHOP the tree cell per turn; powers are never summed), so a
+    chopper-only or mixed opponent no longer reads as "no threat".
+    ``opponents`` is an iterable of
     (cell, movement_speed, harvest_power, chop_power). With chop_power == 0 for
     every opponent, every output below reproduces CONVERSION_RACE_ORACLE
     exactly (the harvest-only special case; asserted in the self-test).
@@ -283,25 +304,23 @@ def asset_survival_oracle(*, decision_turn, walkable, mother_cell, plant,
       - opp_harvest_turn      : opponent's earliest executable HARVEST (arrival
                                 AND ripeness), over harvest-capable opponents.
       - opp_destroy_turn      : opponent's earliest CHOP-out of the asset,
-                                growth-aware, multi-chopper aggregated.
+                                growth-aware, single reachable chopper per turn
+                                (max arrived power; F3, never summed).
       - asset_lost_turn       : min(opp_harvest_turn, opp_destroy_turn) — the
                                 absolute turn the asset is FIRST
                                 destroyed-or-farmed-out.
       - feasible_convert      : completion_turn < asset_lost_turn (STRICT).
                                 Drives EV5/EV6/EV7 (convert vs secure/abandon).
-      - feasible_found        : founding guard — we STRICTLY win the ownership
-                                ETA race to the mother (eta_res < eta_opp_h,
-                                ties conceded per I-7) AND the asset is not
-                                chopped out before our first harvest
-                                (our_harvest_turn < opp_destroy_turn). The
-                                ripeness-gated harvest turn ties both sides at
-                                first fruit, so ownership is decided on arrival
-                                ETA, not on the harvest turn.
+
+    Founding is NOT decided here — it needs the post-PLANT time anchor and the
+    exact executable-HARVEST safety of ``founding_safety_oracle`` (review F4);
+    arrival-ETA order was unsafe (an opponent arriving after us but by first
+    ripeness still farms the first fruit, and a last-fruit HARVEST tie duplicates
+    to both players). See ``founding_safety_oracle``.
 
     Strict-tie: a turn-equal race (our action and the asset's loss on the same
-    turn, or an equal ownership ETA) is CONTESTED and conceded to the opponent
-    (feasible_* False), consistent with I-7 / CONVERSION_RACE_ORACLE tie
-    handling.
+    turn) is CONTESTED and conceded to the opponent (feasible_convert False),
+    consistent with I-7 / CONVERSION_RACE_ORACLE tie handling.
     """
     t = decision_turn
     size, health, fruits, cooldown = plant
@@ -350,8 +369,6 @@ def asset_survival_oracle(*, decision_turn, walkable, mother_cell, plant,
     asset_lost_turn = min(opp_harvest_turn, opp_destroy_turn)
     feasible_convert = (completion_turn < t + UNREACHABLE
                         and completion_turn < asset_lost_turn)
-    feasible_found = (eta_res < eta_opp_h
-                      and our_harvest_turn < opp_destroy_turn)
     return {
         "our_harvest_turn": our_harvest_turn,
         "completion_turn": completion_turn,
@@ -359,10 +376,66 @@ def asset_survival_oracle(*, decision_turn, walkable, mother_cell, plant,
         "opp_destroy_turn": opp_destroy_turn,
         "asset_lost_turn": asset_lost_turn,
         "feasible_convert": feasible_convert,
-        "feasible_found": feasible_found,
         "eta_res": eta_res,
         "eta_opp_h": eta_opp_h,
         "exact_chop_turns": chops,
+    }
+
+
+def founding_safety_oracle(*, plant_turn, walkable, ring_cell, sapling,
+                           resident_speed, resident_chop_power, opponents,
+                           near_water=False):
+    """FOUNDING SAFETY (review F4) — exact opponent HARVEST-safety of a new
+    mother, anchored on a concrete post-PLANT referee transition.
+
+    POST-PLANT TIME ANCHOR (frozen). At decision turn ``plant_turn`` = t the
+    resident stands on the ring cell ``ring_cell`` and emits ``PLANT BANANA``.
+    PLANT resolves during turn t's action phase; the new sapling is created on
+    ``ring_cell`` and receives the creation-turn growth tick, so it FIRST exists
+    in state S_{t+1}. This oracle is therefore anchored at turn ``t+1``:
+
+      - ``sapling`` is the sapling descriptor (size, health, fruits, cooldown)
+        AS IT EXISTS AT t+1 (i.e. the referee's fresh PLANT result WITH the
+        creation-turn tick already applied). The caller supplies the referee's
+        exact post-tick sapling; no pre-tick / hypothetical proxy is used.
+      - the resident is ON ``ring_cell`` at t+1 (it just planted there), so its
+        harvest ETA to the fruit cell is 0 and our_harvest_turn is pure
+        ripeness.
+
+    EXACT SAFETY (replaces the old ``eta_res < eta_opp_h`` arrival-order test).
+    Founding is safe iff, in the t+1 frame, we can execute the FIRST HARVEST on
+    the fruit cell strictly before any opponent can, AND the asset is not
+    chopped out before our first harvest:
+
+        feasible_found = our_harvest_turn < opp_harvest_turn  (STRICT)
+                     and our_harvest_turn < opp_destroy_turn  (STRICT)
+
+    STRICTNESS is load-bearing. Cross-player co-location is legal and arriving
+    first does NOT reserve/body-block the cell, so an opponent that reaches the
+    cell by first ripeness harvests the first fruit even though we arrived
+    earlier; and a SIMULTANEOUS last-fruit HARVEST duplicates one banana to BOTH
+    players. An equal executable-harvest turn is therefore UNSAFE (conceded),
+    not a win. ``our_harvest_turn`` and ``opp_harvest_turn`` are exact executable
+    HARVEST turns (arrival AND ripeness on the same fruit cell), computed on the
+    post-PLANT growth timeline of ``sapling``; ``opp_destroy_turn`` uses the
+    F3-correct single-chopper-per-turn destruction model.
+
+    Returns the anchored turns plus ``feasible_found`` and ``anchor_turn`` (t+1).
+    """
+    anchor = plant_turn + 1
+    aso = asset_survival_oracle(
+        decision_turn=anchor, walkable=walkable, mother_cell=ring_cell,
+        plant=sapling, resident_cell=ring_cell, resident_speed=resident_speed,
+        resident_chop_power=resident_chop_power, opponents=opponents,
+        near_water=near_water)
+    feasible_found = (aso["our_harvest_turn"] < aso["opp_harvest_turn"]
+                      and aso["our_harvest_turn"] < aso["opp_destroy_turn"])
+    return {
+        "anchor_turn": anchor,
+        "our_harvest_turn": aso["our_harvest_turn"],
+        "opp_harvest_turn": aso["opp_harvest_turn"],
+        "opp_destroy_turn": aso["opp_destroy_turn"],
+        "feasible_found": feasible_found,
     }
 
 
@@ -463,14 +536,43 @@ def _self_test():
         resident_chop_power=1, opponents=[((5, 2), 1, 0, 1)])
     assert st4["opp_destroy_turn"] == 8 and st4["feasible_convert"] is True
 
-    # ST5 multi-chopper advances destruction: adding a second chopper to the
-    # ST4-feasible config kills at turn 5 < completion 7 -> now infeasible.
+    # ST5 (F3-corrected) earlier-arriving chopper advances destruction WITHOUT
+    # power summation. A lone far chopper (eta 8) kills at turn 12 > completion
+    # 7 -> feasible. Adding an earlier chopper (eta 2) moves the first-arrival
+    # turn earlier so destruction lands at turn 7 == completion -> conceded
+    # infeasible. The advance is from earlier ARRIVAL, never from summed power.
+    st5_far = asset_survival_oracle(
+        decision_turn=1, walkable=walk, mother_cell=(2, 2),
+        plant=(4, 5, 0, 6), resident_cell=(2, 0), resident_speed=1,
+        resident_chop_power=1, opponents=[((9, 2), 1, 0, 1)])
+    assert st5_far["opp_destroy_turn"] == 12
+    assert st5_far["feasible_convert"] is True
     st5 = asset_survival_oracle(
         decision_turn=1, walkable=walk, mother_cell=(2, 2),
         plant=(4, 5, 0, 6), resident_cell=(2, 0), resident_speed=1,
         resident_chop_power=1,
-        opponents=[((5, 2), 1, 0, 1), ((4, 2), 1, 0, 1)])
-    assert st5["opp_destroy_turn"] == 5 and st5["feasible_convert"] is False
+        opponents=[((9, 2), 1, 0, 1), ((4, 2), 1, 0, 1)])
+    assert st5["opp_destroy_turn"] == 7 and st5["feasible_convert"] is False
+
+    # F3 no-summation invariant: two same-player choppers co-arriving on the
+    # tree cell CANNOT both chop it (movement conflict forbids co-location), so
+    # their destroy turn equals that of ONE chopper of the same power/arrival.
+    one_ch = asset_survival_oracle(
+        decision_turn=1, walkable=walk, mother_cell=(2, 2),
+        plant=(4, 5, 0, 6), resident_cell=(2, 0), resident_speed=1,
+        resident_chop_power=1, opponents=[((4, 2), 1, 0, 1)])
+    two_ch = asset_survival_oracle(
+        decision_turn=1, walkable=walk, mother_cell=(2, 2),
+        plant=(4, 5, 0, 6), resident_cell=(2, 0), resident_speed=1,
+        resident_chop_power=1,
+        opponents=[((4, 2), 1, 0, 1), ((4, 0), 1, 0, 1)])
+    assert one_ch["opp_destroy_turn"] == two_ch["opp_destroy_turn"] == 7
+
+    # ST7 growth-crossing: a low-size mother regrows between chops, so the
+    # growth-aware chop-out (5 turns) is NOT the static ceil(health/chop) proxy
+    # (4). The banned static proxy is provably wrong (DEF-04/DEF-17).
+    assert exact_chop_turns(2, 4, 1, 1) == 5          # growth-aware
+    assert -(-4 // 1) == 4                             # static proxy (WRONG)
 
     # ST6 min(harvest,destroy): a late farm-out must not mask an early kill.
     st6 = asset_survival_oracle(
@@ -481,21 +583,43 @@ def _self_test():
     assert st6["asset_lost_turn"] == min(st6["opp_harvest_turn"],
                                          st6["opp_destroy_turn"])
 
-    # Founding guard (feasible_found): we win the ownership ETA race to a
-    # fresh mother (resident 3 away, opponent 10 away) and no chopper threat.
-    fnd = asset_survival_oracle(
-        decision_turn=11, walkable=walk, mother_cell=(2, 2),
-        plant=(2, 4, 0, 4), resident_cell=(0, 1), resident_speed=1,
-        resident_chop_power=1, opponents=[((12, 2), 1, 1, 0)])
-    assert fnd["eta_res"] == 3 and fnd["eta_opp_h"] == 10
-    assert fnd["feasible_found"] is True
-    # Equal ownership ETA is conceded (opponent equally close -> no founding).
-    fnd2 = asset_survival_oracle(
-        decision_turn=11, walkable=walk, mother_cell=(2, 2),
-        plant=(2, 4, 0, 4), resident_cell=(0, 1), resident_speed=1,
-        resident_chop_power=1, opponents=[((3, 0), 1, 1, 0)])
-    assert fnd2["eta_res"] == fnd2["eta_opp_h"] == 3
-    assert fnd2["feasible_found"] is False
+    # ---- FOUNDING SAFETY (design R2/F4): exact executable-HARVEST safety on
+    # the frozen post-PLANT anchor, NOT arrival-order. Resident PLANTs on the
+    # ring cell at t=10; the sapling appears at t+1=11 (creation-turn tick
+    # applied) and ripens 3 turns later (turn 14). Resident is on-cell, so our
+    # first HARVEST is at ripeness turn 14.
+    sapling = (4, 6, 0, 3)
+
+    # Safe: opponent harvester cannot reach the fruit cell until well after
+    # ripeness (opp first HARVEST 24 > our 14) and no chopper.
+    f_safe = founding_safety_oracle(
+        plant_turn=10, walkable=walk, ring_cell=(2, 2), sapling=sapling,
+        resident_speed=1, resident_chop_power=1,
+        opponents=[((13, 4), 1, 1, 0)])
+    assert f_safe["anchor_turn"] == 11
+    assert f_safe["our_harvest_turn"] == 14 and f_safe["opp_harvest_turn"] == 24
+    assert f_safe["feasible_found"] is True
+
+    # UNSAFE by last-fruit duplication (the F4 counterexample): an opponent
+    # that arrives BEFORE ripeness (eta 2, arrives turn 13) shares the fruit
+    # cell at the common ripeness turn 14, so opp_harvest == our_harvest == 14.
+    # Arrival-order would (wrongly) call this founded; executable-harvest safety
+    # concedes the tie -> NOT safe.
+    f_tie = founding_safety_oracle(
+        plant_turn=10, walkable=walk, ring_cell=(2, 2), sapling=sapling,
+        resident_speed=1, resident_chop_power=1,
+        opponents=[((4, 2), 1, 1, 0)])
+    assert f_tie["our_harvest_turn"] == f_tie["opp_harvest_turn"] == 14
+    assert f_tie["feasible_found"] is False
+
+    # UNSAFE by chop-out: an adjacent strong chopper fells the sapling at turn
+    # 13, before our first harvest at 14.
+    f_chop = founding_safety_oracle(
+        plant_turn=10, walkable=walk, ring_cell=(2, 2), sapling=sapling,
+        resident_speed=1, resident_chop_power=1,
+        opponents=[((3, 2), 1, 0, 3)])
+    assert f_chop["opp_destroy_turn"] == 13 and f_chop["our_harvest_turn"] == 14
+    assert f_chop["feasible_found"] is False
 
     print("conversion_race_oracle self-test: OK")
 
