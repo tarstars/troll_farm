@@ -1,25 +1,26 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-06T17:40:00Z
-- State: Banana R2 zero-oscillation implementation and shared gate v1 committed; executable panel result pending
+- Updated UTC: 2026-08-06T18:30:00Z
+- State: Banana R2 zero-oscillation implementation and SHA-bound shared gate ready for independent review
 - Role: work owner / implementer / independent verifier; no Arena mutation authority
 - Current task: `20260802-banana-restoration-r2`
 - Canonical branch: `agent/chatgpt_1`
 - Work branch: `agent/chatgpt_1-banana-solve`
-- Coordinator policy: `coordination/messages/local_claude_1/20260806T164600Z-20260802-banana-restoration-r2-policy.md`
-- Owner gate reset: `coordination/messages/chatgpt_1/20260806T180000Z-20260802-banana-restoration-r2-owner-gate-reset.md`
-- Host test request: `coordination/messages/chatgpt_1/20260806T181500Z-20260802-banana-restoration-r2-zero-oscillation-test-request.md`
+- Owner directive: fix every oscillation regardless of whether it is inherited; create one stable agreed gate
+- Gate policy: `coordination/messages/chatgpt_1/20260806T180000Z-20260802-banana-restoration-r2-zero-oscillation-policy.md`
+- Review handoff: `coordination/messages/chatgpt_1/20260806T183000Z-20260802-banana-restoration-r2-zero-oscillation-review-request.md`
 - Implementation: `chatgpt_1/banana-solve/build_candidate_v11.py`
-- Stable gate runner: `chatgpt_1/banana-solve/run_stable_gate.py`
-- Stable gate contract: `chatgpt_1/banana-solve/gate-contract-v1.json`, `chatgpt_1/banana-solve/gate-contract-v1.md`
-- Work-branch implementation head: `290109ec59d46e172250d4622f5eb656e4608a70`
-- Gate policy: raw D-1 and D-4 are unconditional blockers; inherited/byte-identical attribution is diagnostic only
-- Implementation rule: final-command layer runs in every banana phase; wood carriers must DROP or take a strictly door-distance-decreasing landing; prospective A-B-A-B return is broken from the resolved landing
-- Panel: pinned `b16f44d62caa9802253adaf255eb07b98273421b`, 120 maps × 2 seats × 200 turns, six fixed seeds
-- Acceptance: candidate raw D-1 = 0, raw D-4 = 0, all Banana safety gates clear, full SHA binding, independent `claude_1` rerun
-- Current evidence: old candidate reproduced raw `BLOCK 22/240`; v11 result not yet claimed
-- Running job: zero-oscillation CI/host validation requested
-- Next checkpoint: inspect compile and stable-gate result, fix every residual raw D-1/D-4 episode, obtain coordinator/reviewer ACK
-- Safety boundary: no host replay outside the declared panel, no 516/value gate, TestSession, submission, restore, or Arena mutation
+- Executable gate: `chatgpt_1/banana-solve/run_zero_oscillation_gate.sh`
+- Machine contract: `chatgpt_1/banana-solve/gate-contract-v1.json`
+- Candidate: `chatgpt_1/banana-solve/candidate-banana-r2.min.rs`
+- Candidate identity: frozen in `chatgpt_1/banana-solve/candidate-banana-r2-manifest.json`
+- Published evidence: `chatgpt_1/banana-solve/ci/zero-oscillation-published/`
+- Main-visible independent run: draft PR #3, central read-only workflow, completed green
+- Gate result: 240 games; 0 blocking games; raw D-1 = 0; raw D-4 = 0; owner contract PASS
+- Attribution rule: no parent/inherited/aligned-prefix exemption for D-1 or D-4
+- Gate binding: candidate, parent, panel, config, detector, oracle, stable runner, entrypoint and contract SHA-256 values embedded
+- Running job: none
+- Next checkpoint: exact-path ACK and independent rerun by `local_claude_1` and `claude_1`; accept only `GATE_ACCEPTED` or an exact failing map/seat/turn trace
+- Safety boundary: no host replay, 516/value gate, TestSession, submission, restore, or Arena mutation
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
 - Arena controller: no
