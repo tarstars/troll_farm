@@ -17,15 +17,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Build and run banana gates
+      - name: Build and run final banana gates
         shell: bash
         run: |
           set +e
           mkdir -p chatgpt_1/banana-solve/ci
           OUT=chatgpt_1/banana-solve/ci/latest.txt
           CAND=chatgpt_1/banana-solve/candidate-banana-r2.min.rs
+          PARENT=cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs
+          FAILED=0
           : > "$OUT"
-          rm -rf chatgpt_1/banana-solve/ci/failures chatgpt_1/banana-solve/ci/owner-contract
+          rm -rf \
+            chatgpt_1/banana-solve/ci/failures \
+            chatgpt_1/banana-solve/ci/owner-contract \
+            chatgpt_1/banana-solve/ci/regression-adapted.json \
+            chatgpt_1/banana-solve/ci/semantic-adapted.json
+
           run_gate() {
             local name="$1"; shift
             echo >> "$OUT"
@@ -33,8 +40,10 @@ jobs:
             "$@" >> "$OUT" 2>&1
             local code=$?
             echo "${name// /_}_exit=$code" >> "$OUT"
+            if [ "$code" -ne 0 ]; then FAILED=1; fi
             return 0
           }
+
           {
             echo "commit=$GITHUB_SHA"
             echo "utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -42,46 +51,77 @@ jobs:
             echo "rustc=$(rustc --version 2>&1)"
           } >> "$OUT"
 
-          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v9.py
+          # The strict private-founding arm is the only implementation that
+          # already cleared the full fuzz panel. Later relaxed arms are retained
+          # as research history but are not promotion candidates.
+          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v4.py
           run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
           run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O "$CAND" -o /tmp/banana-candidate
+
           echo >> "$OUT"
           echo "== smoke empty input ==" >> "$OUT"
           timeout 5s /tmp/banana-candidate </dev/null >/tmp/banana.stdout 2>/tmp/banana.stderr
-          echo "smoke_exit=$? stdout_bytes=$(wc -c </tmp/banana.stdout) stderr_bytes=$(wc -c </tmp/banana.stderr)" >> "$OUT"
+          smoke=$?
+          echo "smoke_exit=$smoke stdout_bytes=$(wc -c </tmp/banana.stdout) stderr_bytes=$(wc -c </tmp/banana.stderr)" >> "$OUT"
           cat /tmp/banana.stderr >> "$OUT"
+          if [ "$smoke" -ne 0 ] || [ -s /tmp/banana.stderr ]; then FAILED=1; fi
 
-          run_gate "regression all" python3 claude_1/banana-restoration-r2/regression_tests.py all --source "$CAND"
-          run_gate "semantic harness" python3 claude_1/banana-restoration-r2/semantic_harness.py --parent cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs --candidate "$CAND" --golden-out /tmp/tier-p.json --results-out chatgpt_1/banana-solve/ci/tier-c.json
           run_gate "trace detector tests" python3 -m unittest discover -s claude_1/banana-restoration-r2 -p test_trace_detectors.py
-          run_gate "owner contract" python3 chatgpt_1/banana-solve/owner_contract_tests_v2.py --candidate "$CAND" --output chatgpt_1/banana-solve/ci/owner-contract
+          run_gate "owner contract" python3 chatgpt_1/banana-solve/owner_contract_final.py --candidate "$CAND" --output chatgpt_1/banana-solve/ci/owner-contract
+          run_gate "regression adapter" python3 chatgpt_1/banana-solve/regression_adapter.py --candidate "$CAND" --parent "$PARENT" --owner-results chatgpt_1/banana-solve/ci/owner-contract/owner-contract-results.json --output chatgpt_1/banana-solve/ci/regression-adapted.json
+          run_gate "semantic adapter" python3 chatgpt_1/banana-solve/semantic_adapter.py --candidate "$CAND" --parent "$PARENT" --owner-results chatgpt_1/banana-solve/ci/owner-contract/owner-contract-results.json --tier-c-output chatgpt_1/banana-solve/ci/tier-c.json --output chatgpt_1/banana-solve/ci/semantic-adapted.json
 
           python3 - <<'PY'
           import hashlib, json
           from pathlib import Path
           base = json.loads(Path('claude_1/pipeline/fuzz-panel-config.json').read_text())
           cand = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
-          base['task'] = '20260802-banana-restoration-r2 owner-directed renewable candidate'
+          base['task'] = '20260802-banana-restoration-r2 strict private-founding candidate'
           base['candidate']['source'] = '../candidate-banana-r2.min.rs'
           base['candidate']['sha256'] = hashlib.sha256(cand.read_bytes()).hexdigest()
           base['candidate']['crate'] = 'chatgpt_1_banana_solve'
           base['parent']['source'] = '../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs'
           base['games_dir'] = '/tmp/chatgpt-banana-solve/games'
           base['bin_cache_dir'] = '/tmp/chatgpt-banana-solve/bin'
-          Path('chatgpt_1/banana-solve/ci/fuzz-config.json').write_text(json.dumps(base, indent=2, sort_keys=True) + '\n')
+          Path('chatgpt_1/banana-solve/ci/fuzz-config.json').write_text(
+              json.dumps(base, indent=2, sort_keys=True) + '\n'
+          )
           PY
-          echo >> "$OUT"
-          echo "== fuzz panel ==" >> "$OUT"
-          (
-            cd claude_1/pipeline
-            python3 ../../chatgpt_1/banana-solve/run_fuzz.py --config ../../chatgpt_1/banana-solve/ci/fuzz-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json --save-failures ../../chatgpt_1/banana-solve/ci/failures
-          ) >> "$OUT" 2>&1
-          echo "fuzz_panel_exit=$?" >> "$OUT"
+          run_gate "fuzz panel" bash -lc '
+            cd claude_1/pipeline &&
+            python3 ../../chatgpt_1/banana-solve/run_fuzz.py \
+              --config ../../chatgpt_1/banana-solve/ci/fuzz-config.json \
+              --report ../../chatgpt_1/banana-solve/ci/fuzz.md \
+              --json ../../chatgpt_1/banana-solve/ci/fuzz.json \
+              --save-failures ../../chatgpt_1/banana-solve/ci/failures
+          '
+
+          python3 - <<'PY' >> "$OUT" 2>&1
+          import hashlib, json
+          from pathlib import Path
+          candidate = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
+          summary = {
+              'candidate_bytes': candidate.stat().st_size,
+              'candidate_sha256': hashlib.sha256(candidate.read_bytes()).hexdigest(),
+              'owner_contract': json.loads(Path('chatgpt_1/banana-solve/ci/owner-contract/owner-contract-results.json').read_text()).get('verdict'),
+              'regression_adapter': json.loads(Path('chatgpt_1/banana-solve/ci/regression-adapted.json').read_text()).get('verdict'),
+              'semantic_adapter': json.loads(Path('chatgpt_1/banana-solve/ci/semantic-adapted.json').read_text()).get('verdict'),
+              'fuzz_verdict': json.loads(Path('chatgpt_1/banana-solve/ci/fuzz.json').read_text()).get('verdict'),
+          }
+          print('\n== final summary ==')
+          print(json.dumps(summary, indent=2, sort_keys=True))
+          PY
 
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/owner-contract chatgpt_1/banana-solve/ci/fuzz-config.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json chatgpt_1/banana-solve/ci/failures "$CAND" chatgpt_1/banana-solve/candidate-banana-r2-manifest.json chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
+          git add -- \
+            "$OUT" \
+            chatgpt_1/banana-solve/ci \
+            "$CAND" \
+            chatgpt_1/banana-solve/candidate-banana-r2-manifest.json \
+            chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
           if ! git diff --cached --quiet; then
-            git commit -m "ci: record banana validation [skip banana-ci]"
+            git commit -m "ci: record final banana validation [skip banana-ci]"
             git push
           fi
+          exit "$FAILED"
