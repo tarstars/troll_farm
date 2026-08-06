@@ -17,6 +17,15 @@ game:
       must report zero episodes.  A D-1 episode is downgraded to a
       report-tier "inherited-parent-D1" flag when the PARENT trace on the
       identical map also fails D-1 (known family defect, report only).
+      D-9 episodes are parent-differential (round-6 ROOT-A ruling,
+      2026-08-06, diagnosis-r6 family (a)): an episode counts against the
+      candidate only if it is ABSENT from the parent's own run on the
+      identical map/opponent — the panel already produces that baseline.
+      Episodes the parent reproduces identically (byte-equal funding-phase
+      behavior, the I-18 compliant default) are downgraded to a
+      report-tier "inherited-parent-D9" flag.  This is a PANEL-layer gate
+      only: trace_detectors.detect_d9 is unmodified (the base-detector
+      question goes to the integrator).
   P2  R-5 class: no full-cargo two-cell alternation >= 6 turns without a
       cargo change (regression_tests.r5_two_worker_full_cargo_banking
       alternation clause).  The R-5 bounded-banking-horizon clause is
@@ -702,17 +711,43 @@ def stall_windows(prog: set, T: int, window: int) -> list:
     return runs
 
 
-def eval_p1(tr_c, parent_cmds, parent_d1_failed: bool):
+def gate_d9_parent_differential(result, tr_p, parent_cmds):
+    """ROOT-A panel-layer gate (orchestrator ruling, round 6, 2026-08-06):
+    a D-9 episode counts against the candidate only if it is absent from
+    the parent's run on the identical map/opponent.  The parent baseline is
+    detect_d9 over the parent's own trace/commands (its TRAIN-parity
+    clauses are trivially self-consistent, so the baseline episodes are
+    exactly the parent's own pre-TRAIN banana-attributable commands).
+    Returns (gated_result, dropped_count).  detect_d9 itself is unmodified."""
+    parent_res = td.detect_d9(tr_p, parent_cmds)
+    parent_keys = {json.dumps(e, sort_keys=True)
+                   for e in parent_res["episodes"]}
+    kept = [e for e in result["episodes"]
+            if json.dumps(e, sort_keys=True) not in parent_keys]
+    gated = dict(result)
+    gated["episodes"] = kept
+    gated["count"] = len(kept)
+    gated["verdict"] = "FAIL" if kept else "PASS"
+    return gated, len(result["episodes"]) - len(kept)
+
+
+def eval_p1(tr_c, tr_p, parent_cmds, parent_d1_failed: bool):
     results = td.run_all(tr_c, parent_cmds)
     violations, inherited = [], []
+    d9_dropped = 0
     for r in results:
         if r["verdict"] != "FAIL":
             continue
         if r["detector"] == "D-1" and parent_d1_failed:
             inherited.append(r)
-        else:
-            violations.append(r)
-    return results, violations, inherited
+            continue
+        if r["detector"] == "D-9":
+            r, dropped = gate_d9_parent_differential(r, tr_p, parent_cmds)
+            d9_dropped += dropped
+            if r["verdict"] != "FAIL":
+                continue
+        violations.append(r)
+    return results, violations, inherited, d9_dropped
 
 
 def eval_p2(tr_c):
@@ -792,8 +827,8 @@ def run_pair(job):
     parent_cmds = td.CommandParser().parse(c_p)
     parent_d1 = td.detect_d1(tr_p)
 
-    detectors, p1_viol, inherited = eval_p1(
-        tr_c, parent_cmds, parent_d1["verdict"] == "FAIL")
+    detectors, p1_viol, inherited, d9_dropped = eval_p1(
+        tr_c, tr_p, parent_cmds, parent_d1["verdict"] == "FAIL")
     _, p2_alt, p2_horizon = eval_p2(tr_c)
     p3_viol = eval_p3(spec["orchard_eligible"], c_c, c_p)
     p4_viol = eval_p4(tr_c, tr_p, job["liveness_window"])
@@ -823,6 +858,14 @@ def run_pair(job):
                                                parent_d1["count"]),
             "candidate_episodes": r["episodes"][:5],
             "parent_episodes": parent_d1["episodes"][:5]})
+    if d9_dropped:
+        row["flags"].append({
+            "flag": "inherited-parent-D9",
+            "detail": "%d D-9 episode(s) reproduced identically by the "
+                      "parent on the identical map/opponent - inherited "
+                      "funding-phase behavior (I-18 byte-equal default), "
+                      "report only (ROOT-A panel-layer gate, round-6 "
+                      "ruling 2026-08-06)" % d9_dropped})
     for v in p2_horizon:
         row["flags"].append({"flag": "r5-horizon", "detail": v["why"],
                              "unit": v["unit"]})
