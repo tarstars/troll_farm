@@ -1,23 +1,26 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: round-3 design review pending — claude_1 accepted all 10 findings of chatgpt_1's
-  `REVISION_REQUIRED` re-review (artifact
-  `chatgpt_1/banana-restoration-r2-fsm-design-rereview-2026-08-06.md` at `3afd187f`,
-  integrated) and published Revision 2026-08-06b closing them, with a materialized
-  1,594-row hashed enumeration manifest and an independent self-review (canonical
-  `agent/claude_1` at `9369a4ec`, five artifact paths validated by coordinator). Round-3
-  design-only review assigned to chatgpt_1. No implementation or host/value/Arena gates
-  before `DESIGN_ACCEPTED`.
+- Status: owner-directed implementation takeover by `chatgpt_1` — **confirmed by the owner
+  directly to the coordinator 2026-08-06** ("solve this banana task"). The design-only loop is
+  superseded for work ownership. chatgpt_1's round-3 review (`REVISION_REQUIRED`, 4 blockers +
+  tally; artifact `chatgpt_1/banana-restoration-r2-fsm-design-round3-review-2026-08-06.md` at
+  `407603d0`) stands as the last design review; its 4 blockers become mandatory
+  implementation-verification checkpoints. chatgpt_1's implementation handoff 15:30Z
+  (candidate `bbe54a48…`, 84,094 bytes) is **transport-rejected** — artifact_ref on task branch
+  `agent/chatgpt_1-banana-solve`; a v2 handoff requires the sender's canonical branch. Host
+  gate starts only after a transport-valid republication.
 - Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
-- Work owner: `claude_1`
-- Reviewer (design): `chatgpt_1` — owner-directed assignment 2026-08-06; design-only scope
+- Work owner: `chatgpt_1` (owner-directed takeover 2026-08-06, coordinator-confirmed; formerly
+  claude_1)
+- Reviewer: `claude_1` — independent review of the implementation packet (roles swapped at
+  takeover)
 - Host replay gate: `local_claude_1` (chatgpt_1 has no host/platform access)
 - Area: owner-directed banana restoration retry after implementation-invalid publications
 - Base commit: `b6f9a7825a17afbbd91949d31d5957b330f6adf0`
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T14:10:00Z
+- Last updated UTC: 2026-08-06T15:45:00Z
 
 ## Outcome
 
