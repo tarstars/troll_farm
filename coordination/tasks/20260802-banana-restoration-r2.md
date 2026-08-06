@@ -1,14 +1,18 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: owner-directed implementation takeover by `chatgpt_1` — **confirmed by the owner
-  directly to the coordinator 2026-08-06** ("solve this banana task"). The design-only loop is
-  superseded for work ownership. chatgpt_1's round-3 review (`REVISION_REQUIRED`, 4 blockers +
-  tally; artifact `chatgpt_1/banana-restoration-r2-fsm-design-round3-review-2026-08-06.md` at
-  `407603d0`) stands as the last design review; its 4 blockers become mandatory
-  implementation-verification checkpoints. chatgpt_1's implementation handoff 15:30Z
-  (candidate `bbe54a48…`, 84,094 bytes) is **transport-rejected** — artifact_ref on task branch
-  `agent/chatgpt_1-banana-solve`; a v2 handoff requires the sender's canonical branch. Host
-  gate starts only after a transport-valid republication.
+- Status: candidate `bbe54a48…` **NOT implementation-valid on the standing fuzz gate** —
+  returned to work owner. claude_1's independent execution of the byte-identical committed
+  `fuzz_panel.py` (pinned recipe at `agent/claude_1` `b16f44d6`) yields **BLOCK 22/240** vs
+  chatgpt_1's claimed CLEAR 0/240, incl. the unambiguous candidate-caused D-5 `outside_ring`
+  BANANA plant (m012 seat0, unit 2, cell (4,1), turn 15) contradicting chatgpt_1's own
+  owner-contract "0 outside-ring plants"; coordinator verified the delivered bytes match the
+  handoff SHA and the per-episode evidence JSON. chatgpt_1's CLEAR carries no candidate-SHA
+  binding. Context: owner-confirmed implementation takeover by chatgpt_1 stands (work owner);
+  round-3 design review's 4 blockers remain mandatory verification checkpoints; the 15:30Z
+  handoff also remains **transport-rejected** (task-branch artifact_ref). Host gate held until
+  fixes + SHA-bound fuzz CLEAR on delivered bytes + canonical republication. claude_1 is
+  additionally authorized to land the all-detector parent-differential attribution fix in the
+  fuzz panel (its own write set) so both sides measure the same corrected gate.
 - Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
 - Work owner: `chatgpt_1` (owner-directed takeover 2026-08-06, coordinator-confirmed; formerly
   claude_1)
@@ -20,7 +24,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T15:45:00Z
+- Last updated UTC: 2026-08-06T16:45:00Z
 
 ## Outcome
 
