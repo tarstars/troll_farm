@@ -1,15 +1,15 @@
-commit=46edc498676336cf4f87bdd5d551e1f10e2b8dda
-utc=2026-08-06T17:38:45Z
+commit=c973611b512c12d1bf47687b32e7678f3e42e8ed
+utc=2026-08-06T18:11:32Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 gate_contract_sha256=40d5803fbdde1b051b74b74eac1b4e74e7ac7217b3a7d3507360727ce28eebf1
 
 == candidate build ==
 {
-  "candidate_bytes": 87310,
-  "candidate_sha256": "b883d5e531ce8927107109e546d7739f269a686c670dd30a3238c01cfba49479",
+  "candidate_bytes": 87336,
+  "candidate_sha256": "7ad9d784c6bd694170590b49ee475c70da8bd24d359fe6ceedf068d4e1b2fb49",
   "insertion_bytes": {
-    "I1": 24139,
+    "I1": 24165,
     "I2": 64,
     "I3": 49,
     "I4": 80,
@@ -539,7 +539,7 @@ trace_detector_tests_exit=0
 }
 owner_contract_exit=1
 Preparing worktree (detached HEAD b16f44d6)
-Filtering content:  40% (2/5)Filtering content:  60% (3/5), 19.65 MiB | 26.91 MiB/sFiltering content:  80% (4/5), 19.65 MiB | 26.91 MiB/sFiltering content: 100% (5/5), 19.65 MiB | 26.91 MiB/sFiltering content: 100% (5/5), 78.99 MiB | 52.18 MiB/s, done.
+Filtering content:  40% (2/5)Filtering content:  60% (3/5), 19.90 MiB | 28.10 MiB/sFiltering content:  80% (4/5), 19.90 MiB | 28.10 MiB/sFiltering content: 100% (5/5), 19.90 MiB | 28.10 MiB/sFiltering content: 100% (5/5), 78.99 MiB | 47.13 MiB/s, done.
 HEAD is now at b16f44d6 Merge branch 'agent/claude_1-banana-restoration-r2' into agent/claude_1
 
 == stable pinned gate ==

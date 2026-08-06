@@ -1378,6 +1378,7 @@ impl Bot for BananaBot {
             let plants_banana_invalid = commands[slot].starts_with("PLANT ")
                 && commands[slot].ends_with(" BANANA")
                 && (!ring.contains(&unit.cell)
+                    || unit.stats.chop_power <= 0
                     || !Self::banana_vacant_ok(view, unit, unit.cell, true));
 
             let (older, previous) = self
