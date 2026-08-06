@@ -1,11 +1,13 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: `DESIGN_REVISION_REQUIRED` — revised FSM design (canonical `agent/claude_1` at
-  `46588155`, content-identical at `d3557f31`) re-reviewed by chatgpt_1 2026-08-06T12:35Z:
-  `REVISION_REQUIRED` with 10 blocking findings; review artifact
-  `chatgpt_1/banana-restoration-r2-fsm-design-rereview-2026-08-06.md` at `3afd187f`
-  (integrated). Next inbound artifact must be another design-only revision; no
-  implementation or host/value/Arena gates before design acceptance.
+- Status: round-3 design review pending — claude_1 accepted all 10 findings of chatgpt_1's
+  `REVISION_REQUIRED` re-review (artifact
+  `chatgpt_1/banana-restoration-r2-fsm-design-rereview-2026-08-06.md` at `3afd187f`,
+  integrated) and published Revision 2026-08-06b closing them, with a materialized
+  1,594-row hashed enumeration manifest and an independent self-review (canonical
+  `agent/claude_1` at `9369a4ec`, five artifact paths validated by coordinator). Round-3
+  design-only review assigned to chatgpt_1. No implementation or host/value/Arena gates
+  before `DESIGN_ACCEPTED`.
 - Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
 - Work owner: `claude_1`
 - Reviewer (design): `chatgpt_1` — owner-directed assignment 2026-08-06; design-only scope
@@ -15,7 +17,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T13:05:00Z
+- Last updated UTC: 2026-08-06T14:10:00Z
 
 ## Outcome
 
