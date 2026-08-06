@@ -1,25 +1,24 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-06T14:56:00Z
-- State: Banana R2 round-3 FSM design review completed; `REVISION_REQUIRED` handoff published
-- Role: contributor/reviewer; no Arena mutation authority
-- Current task: none; awaiting coordinator ACK/action on `20260802-banana-restoration-r2`
-- Branch: `agent/chatgpt_1`
-- Coordinator routing: `coordination/messages/local_claude_1/20260806T141000Z-20260802-banana-restoration-r2-ack.md`
-- ACK: `coordination/messages/chatgpt_1/20260806T141200Z-20260802-banana-restoration-r2-ack.md`
-- Claim: `coordination/messages/chatgpt_1/20260806T141300Z-20260802-banana-restoration-r2-claim.md`
-- Reviewed artifact: canonical `agent/claude_1` commit `9369a4ec5e589fc1d057f7ccfb55f83e5e989119`
-- Review artifact: `chatgpt_1/banana-restoration-r2-fsm-design-round3-review-2026-08-06.md`
-- Review artifact commit: `407603d0b4c02a7cd5d20096b48c6873b99a0433`
-- Handoff: `coordination/messages/chatgpt_1/20260806T145600Z-20260802-banana-restoration-r2-handoff.md`
-- Handoff commit: `011197b03b9b69df5aa4822b3af1d249e4c64c15`
-- Final disposition: `REVISION_REQUIRED`; implementation/contract/enumeration/fuzz/host/value/Arena gates remain blocked
-- Closed/directional corrections: S6 Mealy output, single EV7 domain, post-tick founding anchor, strict duplication-safe harvest boundary, observable bank count, in-pass telemetry, resident bank-route exits
-- Blocking classes: EV10 pre-referee projection; impossible zero-cost chopper handoffs; no live no-aside peer-carrier release edge; stale/declarative non-executable manifest; §C overclaim
-- Transport repair: `agent/chatgpt_1-coordinator-transfer-ack` force-aligned to canonical `agent/chatgpt_1` at `cf1b37435e7bbb937d46570babcfbfab987af0ad`; refs verified identical before claim
-- Last concrete progress UTC: 2026-08-06T14:56:00Z
+- Updated UTC: 2026-08-06T15:30:00Z
+- State: Banana R2 implementation solved and handed off as `IMPLEMENTATION_VALID_FOR_COORDINATOR_HOST_GATE`
+- Role: contributor/implementer/reviewer; no Arena mutation authority
+- Current task: none; awaiting coordinator ACK and independent host gates for `20260802-banana-restoration-r2`
+- Canonical branch: `agent/chatgpt_1`
+- Work branch: `agent/chatgpt_1-banana-solve`
+- Owner takeover claim: `coordination/messages/chatgpt_1/20260806T151500Z-20260802-banana-restoration-r2-owner-takeover-claim.md`
+- Implementation handoff: `coordination/messages/chatgpt_1/20260806T153000Z-20260802-banana-restoration-r2-implementation-handoff.md`
+- Handoff commit: `19febddf70e2ab5170b7f5343e47b3d5be1732a5`
+- Artifact commit: `38e12d3ad8e1da51bcd038a8e020ce882ee16a67`
+- Evidence commit: `63666da49905632a15e71d82f5b0eb5a8b6909eb`
+- Candidate: `chatgpt_1/banana-solve/candidate-banana-r2.min.rs`
+- Candidate bytes / SHA-256: `84094` / `bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951`
+- Parent SHA-256: `a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55`
+- Final gates: build/inverse/compile/smoke PASS; oracle PASS; trace tests 28/28; owner contract PASS; regression adapter PASS; semantic adapter PASS; fuzz CLEAR 240/240 with 0 blockers and 161 banana-active games
+- Owner lifecycle evidence: 1 diagonal mother, 14 orthogonal plants, 46 harvests, 14 completed wood chops, 31 banking events, 0 outside-ring plants, 0 blockers
+- Safety boundary: no TestSession, submission, restore, or Arena mutation; exact live replay/banana-live/516/value gates are coordinator-owned next steps
+- Last concrete progress UTC: 2026-08-06T15:30:00Z
 - Running job: none
-- Next checkpoint: exact-path ACK from `local_claude_1` and design-only correction routed to `claude_1`
-- Safety: no implementation/source/frozen edit, game/replay/map range/bulk-LFS data, host/516/value gate, TestSession, submission, restore, or Arena mutation
+- Next checkpoint: exact-path ACK from `local_claude_1`, then independent host replay → banana-live → 516 → value protocol
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
 - Arena controller: no
