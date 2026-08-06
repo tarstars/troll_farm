@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""Fourth owner-directed Banana R2 build.
+
+Extends v3's peer safeguards to the resident itself: a wrapper MOVE that would
+complete the next A-B-A-B return is replaced by one WAIT, breaking a sustained
+two-cell loop while preserving the existing commitment state for the next turn.
+"""
+from __future__ import annotations
+
+import importlib.util
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+spec = importlib.util.spec_from_file_location("banana_owner_v3", HERE / "build_candidate_v3.py")
+mod = importlib.util.module_from_spec(spec)
+assert spec.loader is not None
+sys.modules[spec.name] = mod
+spec.loader.exec_module(mod)
+base_patch = mod.patch_i1
+
+
+def replace_once(text: str, old: str, new: str, label: str) -> str:
+    count = text.count(old)
+    if count != 1:
+        raise AssertionError(f"{label}: expected one match, found {count}")
+    return text.replace(old, new, 1)
+
+
+def patch_i1(text: str) -> str:
+    text = base_patch(text)
+    text = replace_once(
+        text,
+        "        let wrapper_action: Option<String> = match self\n",
+        "        let mut wrapper_action: Option<String> = match self\n",
+        "mutable wrapper action",
+    )
+
+    marker = '''        // F-C2 persistent claim (rev. 2026-08-06): the protected-cell
+'''
+    resident_guard = '''        // Break a resident two-cell return before it becomes a sustained
+        // A-B-A-B loop.  The task/target latch is deliberately left intact:
+        // one stationary turn forces the existing blocked/progress accounting
+        // to re-evaluate rather than manufacturing a new target.
+        if let Some(worker_id) = self.banana_worker {
+            if let Some(worker) = view.unit(worker_id) {
+                let (older, previous) = self
+                    .banana_peer_history
+                    .get(&worker_id)
+                    .copied()
+                    .unwrap_or((worker.cell, worker.cell));
+                let returns_to_a = older == worker.cell && previous != worker.cell;
+                let move_returns_to_b = wrapper_action
+                    .as_ref()
+                    .filter(|action| returns_to_a && action.starts_with("MOVE "))
+                    .map(|action| {
+                        let parts: Vec<&str> = action.split_whitespace().collect();
+                        parts.len() == 4
+                            && parts[2].parse::<i32>().ok() == Some(previous.0)
+                            && parts[3].parse::<i32>().ok() == Some(previous.1)
+                    })
+                    .unwrap_or(false);
+                self.banana_peer_history
+                    .insert(worker_id, (previous, worker.cell));
+                if move_returns_to_b {
+                    wrapper_action = Some("WAIT".to_string());
+                }
+            }
+        }
+
+'''
+    text = replace_once(text, marker, resident_guard + marker, "resident bounce guard")
+    return text
+
+
+mod.patch_i1 = patch_i1
+raise SystemExit(mod.main())
