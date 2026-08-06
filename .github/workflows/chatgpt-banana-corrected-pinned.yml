@@ -24,7 +24,7 @@ jobs:
       - name: Run SHA-bound corrected b16f44d6 gate
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           git fetch origin agent/claude_1
           rm -rf /tmp/banana-corrected-pinned
           git worktree add --detach /tmp/banana-corrected-pinned b16f44d62caa9802253adaf255eb07b98273421b
@@ -60,26 +60,30 @@ jobs:
             --json "$OUT_JSON" \
             --save-failures "$FAILURES" \
             > "$OUT_LOG" 2>&1
-          EXIT=$?
+          PANEL_EXIT=$?
           set -e
-          python3 - "$OUT_JSON" "$EXIT" <<'PY'
+          VALIDATION_EXIT=0
+          python3 - "$OUT_JSON" "$PANEL_EXIT" <<'PY' || VALIDATION_EXIT=$?
           import json, pathlib, sys
           out = pathlib.Path(sys.argv[1])
           exit_code = int(sys.argv[2])
-          result = json.loads(out.read_text())
-          stats = result.get('stats', result)
-          summary = {
-              'exit_code': exit_code,
-              'verdict': result.get('verdict'),
-              'blocking_games': stats.get('blocking_games'),
-              'banana_activated_games': stats.get('banana_activated_games'),
-              'orchard_inertness_checks_passed': stats.get('orchard_inertness_checks_passed'),
-              'sha_binding': result.get('sha_binding'),
-          }
+          summary = {'exit_code': exit_code}
+          if out.exists():
+              result = json.loads(out.read_text())
+              stats = result.get('stats', result)
+              summary.update({
+                  'verdict': result.get('verdict'),
+                  'blocking_games': stats.get('blocking_games'),
+                  'banana_activated_games': stats.get('banana_activated_games'),
+                  'orchard_inertness_checks_passed': stats.get('orchard_inertness_checks_passed'),
+                  'sha_binding': result.get('sha_binding'),
+              })
+          else:
+              summary.update({'verdict': 'TOOL_ERROR', 'blocking_games': None})
           target = out.with_name('corrected-pinned-bbe54a48-summary.json')
           target.write_text(json.dumps(summary, indent=2, sort_keys=True) + '\n')
           print(json.dumps(summary, indent=2, sort_keys=True))
-          if exit_code != 0 or summary['verdict'] != 'CLEAR' or summary['blocking_games'] != 0:
+          if exit_code != 0 or summary.get('verdict') != 'CLEAR' or summary.get('blocking_games') != 0:
               raise SystemExit(1)
           PY
           git config user.name github-actions[bot]
@@ -91,3 +95,4 @@ jobs:
             git commit -m "ci: record SHA-bound corrected banana gate [skip banana-ci]"
             git push
           fi
+          exit "$VALIDATION_EXIT"
