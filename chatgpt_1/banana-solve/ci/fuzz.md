@@ -1,10 +1,10 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed conservative candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 5fb00f217ec17a1e42fe52d8d113e23f3c6b3e267d96186c33ae0658d5a593d5)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 15.2 s
+- wall time: 14.7 s
 
 ## Verdict: BLOCK
 
@@ -16,8 +16,8 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 4 |
-| flagged_games | 110 |
+| blocking_games | 2 |
+| flagged_games | 109 |
 
 | class | games |
 |---|---|
@@ -38,21 +38,13 @@
 
 ## Blocking violations
 
-### m017 seat 0 (open_field, idle, seed 86028121)
-
-- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[1, 3], [0, 3]], "k": 3, "turn_end": 129, "turn_start": 123, "unit": 2}]}
-
-### m017 seat 1 (open_field, idle, seed 86028121)
-
-- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 4], [10, 4]], "k": 3, "turn_end": 129, "turn_start": 123, "unit": 2}]}
-
 ### m024 seat 1 (single_door_tent, idle, seed 982451653)
 
-- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[9, 3], [8, 3]], "k": 3, "turn_end": 143, "turn_start": 137, "unit": 2}]}
+- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 2], [11, 3]], "k": 3, "turn_end": 169, "turn_start": 163, "unit": 0}]}
 
-### m074 seat 1 (orchard_eligible, idle, seed 32452843)
+### m071 seat 1 (open_field, idle, seed 86028121)
 
-- **P1**: {"count": 11, "detector": "D-5", "episodes": [{"cell": [11, 3], "kind": "outside_ring", "turn_end": 111, "turn_start": 111, "unit": 0}, {"cell": [11, 2], "kind": "outside_ring", "turn_end": 156, "turn_start": 156, "unit": 0}, {"cell": [11, 2], "cumulative": 6, "kind": "cumulative_over_ring", "ring_size": 5, "turn_end": 156, "turn_start": 156, "unit": 0}, {"cell": [13, 2], "cumulative": 6, "kind": "cumulative_over_ring", "ring_size": 5, "turn_end": 166, "turn_start": 166, "unit": 2}, {"cell": [13, 2], "cumulative": 6, "kind": "cumulative_over_ring", "ring_size": 5, "turn_end": 172, "turn_start"
+- **P1**: {"count": 1, "detector": "D-7", "episodes": [{"kind": "unbanked_at_end", "provenance": "bank_pick", "turn_end": 200, "turn_start": 200, "unit": 2}]}
 
 ## Report-tier flags (non-blocking)
 
@@ -138,7 +130,6 @@
 - m081 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m081 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m084 seat 0 [byte-identical-parent-property]: 1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable
-- m084 seat 1 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m085 seat 0 [inherited-parent-D1]: candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only
 - m085 seat 0 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)
 - m085 seat 1 [inherited-parent-D9]: 2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)

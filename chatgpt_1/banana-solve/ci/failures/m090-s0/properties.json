@@ -1,0 +1,147 @@
+{
+ "attempt": 2,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "margin": 0,
+  "opp_inventory": [
+   0,
+   20,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 20,
+  "score": 20
+ },
+ "class": "choke_corridor",
+ "detector_counts": {
+  "D-1": 2,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "candidate_episodes": [
+    {
+     "cells": [
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ]
+     ],
+     "k": 3,
+     "turn_end": 9,
+     "turn_start": 2,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       3,
+       5
+      ],
+      [
+       4,
+       5
+      ]
+     ],
+     "k": 86,
+     "turn_end": 189,
+     "turn_start": 17,
+     "unit": 2
+    }
+   ],
+   "detail": "candidate D-1 episodes (2) on a map where the parent also fails D-1 (2 episodes) - known family defect, report only",
+   "flag": "inherited-parent-D1",
+   "parent_episodes": [
+    {
+     "cells": [
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ]
+     ],
+     "k": 3,
+     "turn_end": 9,
+     "turn_start": 2,
+     "unit": 2
+    },
+    {
+     "cells": [
+      [
+       3,
+       5
+      ],
+      [
+       4,
+       5
+      ]
+     ],
+     "k": 86,
+     "turn_end": 189,
+     "turn_start": 17,
+     "unit": 2
+    }
+   ]
+  },
+  {
+   "detail": "1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable",
+   "flag": "byte-identical-parent-property",
+   "properties": [
+    "P2"
+   ]
+  }
+ ],
+ "map_id": "m090",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "margin": 0,
+  "opp_inventory": [
+   0,
+   20,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 20,
+  "score": 20
+ },
+ "profile": "harvester",
+ "seat": 0,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": []
+}

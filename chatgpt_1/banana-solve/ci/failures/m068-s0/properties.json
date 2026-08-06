@@ -1,0 +1,75 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   12
+  ],
+  "margin": 0,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   12
+  ],
+  "opp_score": 48,
+  "score": 48
+ },
+ "class": "forest_dense",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 1,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "detail": "1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable",
+   "flag": "byte-identical-parent-property",
+   "properties": [
+    "P1"
+   ]
+  }
+ ],
+ "map_id": "m068",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   12
+  ],
+  "margin": 0,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   12
+  ],
+  "opp_score": 48,
+  "score": 48
+ },
+ "profile": "chopper_aggressor",
+ "seat": 0,
+ "seed": 32452843,
+ "turns": 200,
+ "violations": []
+}

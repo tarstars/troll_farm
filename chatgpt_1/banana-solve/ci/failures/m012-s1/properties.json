@@ -1,0 +1,115 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2
+  ],
+  "margin": -12,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "opp_score": 20,
+  "score": 8
+ },
+ "class": "single_door_tent",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 1,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [
+  {
+   "candidate_episodes": [
+    {
+     "cells": [
+      [
+       12,
+       2
+      ],
+      [
+       13,
+       2
+      ]
+     ],
+     "k": 4,
+     "turn_end": 20,
+     "turn_start": 12,
+     "unit": 0
+    }
+   ],
+   "detail": "candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only",
+   "flag": "inherited-parent-D1",
+   "parent_episodes": [
+    {
+     "cells": [
+      [
+       12,
+       2
+      ],
+      [
+       13,
+       2
+      ]
+     ],
+     "k": 4,
+     "turn_end": 20,
+     "turn_start": 12,
+     "unit": 0
+    }
+   ]
+  },
+  {
+   "detail": "1 property violation(s) occurred on a complete candidate command stream byte-identical to the stable parent; inherited behavior is report-tier, not banana-attributable",
+   "flag": "byte-identical-parent-property",
+   "properties": [
+    "P1"
+   ]
+  }
+ ],
+ "map_id": "m012",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2
+  ],
+  "margin": -12,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   5
+  ],
+  "opp_score": 20,
+  "score": 8
+ },
+ "profile": "chopper_aggressor",
+ "seat": 1,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": []
+}
