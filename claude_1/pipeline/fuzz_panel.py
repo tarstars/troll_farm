@@ -710,6 +710,39 @@ def stall_windows(prog: set, T: int, window: int) -> list:
     return runs
 
 
+def work_remaining(tr, t) -> bool:
+    """ABSOLUTE terminal-state test on the referee world state S_t: True iff
+    the world still offers the own player a resource action.
+
+    Work remains when (a) any own unit still carries something (it can be
+    banked at the tent, or planted), or (b) some plant is still standing on a
+    cell an own unit can walk to (it can be harvested when it fruits, or
+    chopped for wood).  Nothing else can change the own inventory or an own
+    unit's cargo through a resource action: PLANT needs a carried fruit and
+    HARVEST/CHOP need a reachable plant.  Purely a function of the world state
+    the referee reports (static map + plants + own units) — no parent
+    reference, no command-pattern heuristic."""
+    st = tr.state(t)
+    own = st.own_units()
+    if any(sum(u.carry) for u in own):
+        return True
+    if not st.plants:
+        return False
+    reach = td.bfs_distances(tr.smap.walkable, sorted(u.cell for u in own))
+    return any(p.cell in reach for p in st.plants)
+
+
+def live_horizon(tr) -> int:
+    """First turn of the maximal terminal suffix of the game — the turn from
+    which `work_remaining` is False for the whole rest of the game (tr.T + 1
+    when the world never runs out).  Turns from here on cannot produce
+    progress, so they carry no liveness obligation."""
+    t = tr.T
+    while t >= 1 and not work_remaining(tr, t):
+        t -= 1
+    return t + 1
+
+
 def eval_p1(tr_c, tr_p, parent_cmds, parent_d1_failed: bool):
     """RAW detector gate (owner ruling 2026-08-06): every FAIL among
     D-1..D-9 blocks the candidate, inherited-from-parent or not, on every
@@ -753,22 +786,41 @@ def eval_p3(orchard_eligible: bool, commands_c: str, commands_p: str):
 
 
 def eval_p4(tr_c, tr_p, window: int):
-    """RAW liveness (owner ruling 2026-08-06): the candidate must make
-    progress (own inventory or own-unit cargo change) in every rolling
-    window; EVERY stall window blocks.  The former 'unless the parent also
-    makes no progress in the same window' exemption is REMOVED -- it was the
-    property's ONLY exemption and it was purely parent-based (no absolute
-    all-WAIT terminal state was ever recognised), so nothing parent-free
-    survives.  tr_p is accepted for signature/diagnostic parity but is NOT
-    consulted for blocking."""
+    """RAW liveness (owner ruling 2026-08-06) with an ABSOLUTE terminal-state
+    calibration.  The candidate must make progress (own inventory or own-unit
+    cargo change) in every rolling window; every stall window blocks and
+    there is NO parent-relative/inherited/aligned-prefix exemption of any
+    kind (the former 'unless the parent also makes no progress in the same
+    window' clause stays REMOVED; tr_p is accepted for signature/diagnostic
+    parity only and is never consulted).
+
+    Calibration (2026-08-06, repair #2): a stall is a liveness failure only
+    over turns in which the referee's own world state still offers a resource
+    action -- see `work_remaining` / `live_horizon`.  Each stall window is
+    trimmed to that live prefix and blocks only if the trimmed part is still
+    >= `window` turns.  Rationale: a stall that begins after the world is
+    exhausted for the rest of the game (no plant reachable by an own unit and
+    no cargo left to bank) is explained by the game being over, not by the
+    bot being stuck; a stall while work remains -- mid-game or running to the
+    sim horizon -- still blocks."""
     pc = progress_turns(tr_c)
+    windows = stall_windows(pc, tr_c.T, window)
+    if not windows:
+        return []
+    horizon = live_horizon(tr_c)
     violations = []
-    for (a, b) in stall_windows(pc, tr_c.T, window):
+    for (a, b) in windows:
+        live_end = min(b, horizon - 1)
+        if live_end - a + 1 < window:
+            continue
         violations.append({
-            "window_start": a, "window_end": b,
+            "window_start": a, "window_end": b, "live_end": live_end,
+            "terminal_from": horizon,
             "why": "candidate makes no own-inventory/own-cargo progress over "
-                   "turns %d-%d (>= %d turns) [RAW liveness: every stall "
-                   "window blocks, no parent exemption]" % (a, b, window)})
+                   "turns %d-%d while work remains through turn %d (>= %d "
+                   "live turns) [RAW liveness: every stall window over a "
+                   "non-terminal world blocks]"
+                   % (a, b, live_end, window)})
     return violations
 
 
