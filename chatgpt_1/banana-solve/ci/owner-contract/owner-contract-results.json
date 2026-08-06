@@ -1,4 +1,4 @@
 {
-  "error": "owner_dynamic_response: candidate never founded mother",
+  "error": "owner_funding_prefix: detector failure(s): [{\"count\": 2, \"detector\": \"D-9\", \"episodes\": [{\"kind\": \"banana_before_train\", \"turn_end\": 35, \"turn_start\": 35, \"unit\": 0, \"verb\": \"PICK\"}, {\"kind\": \"banana_before_train\", \"turn_end\": 36, \"turn_start\": 36, \"unit\": 0, \"verb\": \"PLANT\"}], \"verdict\": \"FAIL\"}]",
   "verdict": "FAIL"
 }

@@ -1,5 +1,5 @@
-commit=bb54e0d41d602ea727cc88291f09adff886d54d0
-utc=2026-08-06T12:24:53Z
+commit=0dcaa0f3979cd30526da5e9d313ae62e1d0610fe
+utc=2026-08-06T12:27:56Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
@@ -573,18 +573,18 @@ semantic_harness_exit=1
 == trace detector tests ==
 ............................
 ----------------------------------------------------------------------
-Ran 28 tests in 0.009s
+Ran 28 tests in 0.012s
 
 OK
 trace_detector_tests_exit=0
 
 == owner contract ==
 {
-  "error": "owner_dynamic_response: candidate never founded mother",
+  "error": "owner_funding_prefix: detector failure(s): [{\"count\": 2, \"detector\": \"D-9\", \"episodes\": [{\"kind\": \"banana_before_train\", \"turn_end\": 35, \"turn_start\": 35, \"unit\": 0, \"verb\": \"PICK\"}, {\"kind\": \"banana_before_train\", \"turn_end\": 36, \"turn_start\": 36, \"unit\": 0, \"verb\": \"PLANT\"}], \"verdict\": \"FAIL\"}]",
   "verdict": "FAIL"
 }
 owner_contract_exit=1
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 9 blocking, 110 flagged, 11.4 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: BLOCK (240 games, 9 blocking, 110 flagged, 15.3 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=1
