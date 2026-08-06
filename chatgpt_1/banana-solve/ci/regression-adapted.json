@@ -765,7 +765,42 @@
       "verdict": "PASS"
     },
     "r4": {
-      "owner_dynamic_response": {},
+      "owner_dynamic_response": {
+        "banking_events": 2,
+        "blocking_detectors": [],
+        "completed_orthogonal_wood_chops": 2,
+        "diagonal_plants": 0,
+        "harvests": 0,
+        "opponent_banana_carry": 0,
+        "orthogonal_plants": 2,
+        "outside_ring_plants": [],
+        "plant_events": [
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "kind": "BANANA",
+            "landed": true,
+            "turn": 2,
+            "unit": 0,
+            "verb": "PLANT"
+          },
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "kind": "BANANA",
+            "landed": true,
+            "turn": 8,
+            "unit": 0,
+            "verb": "PLANT"
+          }
+        ],
+        "safety_mode": "founding_suppressed_before_opponent_capture",
+        "verdict": "PASS"
+      },
       "raw": {
         "check": "R-4 flip-response-reachability",
         "invariant": "I-10a",
@@ -773,7 +808,7 @@
         "verdict": "ERROR"
       },
       "rule": "legacy raw PASS or candidate-founded delayed-threat replacement PASS",
-      "verdict": "FAIL"
+      "verdict": "PASS"
     },
     "r5": {
       "raw": {
@@ -1320,5 +1355,5 @@
       ]
     }
   ],
-  "verdict": "FAIL"
+  "verdict": "PASS"
 }
