@@ -116,6 +116,10 @@ pub struct BananaBot {
     // Never recomputed from arbitrary live bananas: an opponent plant cannot
     // migrate the claim or ownership response.
     banana_mother: Option<Cell>,
+    // Last two observed cells of every inner-controlled peer.  This is used
+    // only after banana activation to stop a candidate-attributable A-B-A
+    // return before it becomes a sustained oscillation.
+    banana_peer_history: std::collections::BTreeMap<i32, (Cell, Cell)>,
 }
 
 impl BananaBot {
@@ -136,6 +140,7 @@ impl BananaBot {
             banana_best_dist: None,
             banana_lost_banking: false,
             banana_mother: None,
+            banana_peer_history: std::collections::BTreeMap::new(),
         }
     }
 
@@ -1132,6 +1137,8 @@ impl Bot for BananaBot {
         // the round-5 lost-hold also prevented; every other economy verb
         // of a released resident is sanctioned by spec Revision
         // 2026-08-06).
+        let mut peer_move_rewritten = false;
+        let ring = Self::banana_ring(view);
         for unit in view
             .units
             .iter()
@@ -1148,8 +1155,34 @@ impl Bot for BananaBot {
                 && !self.banana_bootstrap_used
                 && commands[slot].starts_with("PICK ")
                 && commands[slot].ends_with(" BANANA");
-            if harms_mother || steals_seed {
+            // The inner economy may know about bananas, but while this
+            // feature is active/lost it may not expand their footprint beyond
+            // the bounded ring.  Repeated plant-grow-cut cycles on a ring cell
+            // remain legal; only spatial escape is vetoed.
+            let plants_banana_outside_ring = commands[slot].starts_with("PLANT ")
+                && commands[slot].ends_with(" BANANA")
+                && !ring.contains(&unit.cell);
+
+            let (older, previous) = self
+                .banana_peer_history
+                .get(&unit.id)
+                .copied()
+                .unwrap_or((unit.cell, unit.cell));
+            let returns_to_a = older == unit.cell && previous != unit.cell;
+            let move_returns_to_b = if returns_to_a && commands[slot].starts_with("MOVE ") {
+                let parts: Vec<&str> = commands[slot].split_whitespace().collect();
+                parts.len() == 4
+                    && parts[2].parse::<i32>().ok() == Some(previous.x)
+                    && parts[3].parse::<i32>().ok() == Some(previous.y)
+            } else {
+                false
+            };
+            self.banana_peer_history
+                .insert(unit.id, (previous, unit.cell));
+
+            if harms_mother || steals_seed || plants_banana_outside_ring || move_returns_to_b {
                 commands[slot] = "WAIT".to_string();
+                peer_move_rewritten |= move_returns_to_b;
             }
         }
         // C8 (rev. round 5, R-5): resident priority in move resolution;
@@ -1172,11 +1205,26 @@ impl Bot for BananaBot {
         // inner's accepted landings); the second-layer vetoes above only
         // turn stationary verbs into WAIT, which cannot create a movement
         // conflict. Released turns keep the inner's own resolution.
-        if let Some(worker_id) = wrapper_worker {
+        if wrapper_worker.is_some() || peer_move_rewritten {
+            // If a peer MOVE was changed to WAIT, its current cell becomes
+            // stationary and the old landing assignment is no longer valid.
+            // Re-resolve once. Loaded wood carriers outrank the resident;
+            // otherwise retain the normal resident preference.
+            let mut priority = BTreeSet::new();
+            for unit in view.units.iter().filter(|unit| {
+                unit.player == 0 && unit.carry[crate::game::types::WOOD] > 0
+            }) {
+                priority.insert(unit.id);
+            }
+            if priority.is_empty() {
+                if let Some(worker_id) = wrapper_worker {
+                    priority.insert(worker_id);
+                }
+            }
             MoisanBot::resolve_move_conflicts_with_priority(
                 view,
                 &mut commands,
-                &BTreeSet::from([worker_id]),
+                &priority,
             );
         }
         commands
