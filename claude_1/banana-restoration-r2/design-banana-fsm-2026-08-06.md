@@ -65,20 +65,40 @@ Format per state: **entry** / **evaluation order** (what is checked first each t
 **interventions** (channels this state may touch) / **exits** (guarded transitions, T-ids)
 / **liveness** (obligation + horizon).
 
-Global evaluation order (every enabled turn; this order is normative — DEF-06 arose from
-flip evaluation being reachable only from some activities, ACK3 item 1):
+**Atomic per-turn procedure (R1a, review §R1).** A turn is a single atomic evaluation:
+all event predicates are observed, exactly one transition is selected by the A.6 priority
+order, and state/channels/commands are computed in this fixed step order. No step reads a
+value another step will still change; the emitted command stream and next `S_{t+1}` are a
+pure function of (`S_t`, persisted FSM fields). This order is normative — DEF-06 arose from
+flip evaluation being reachable only from some activities (ACK3 item 1).
 
-1. Arbitration (once, S0 only) — CH6.
-2. Phase update (activation / death / completion) — pure view read.
-3. Resident decision, in order: (a) blocked/bounce bookkeeping (F-B3); (b) Converting
-   latch check; (c) **ownership + asset-threat evaluation** (EV4-EV7) — evaluated on
-   EVERY active turn, all activities included, before any candidate work; (d) contest
-   branches; (e) candidate set + commitment rule (SPEC §e); (f) idle-yield / starvation
-   release.
-4. Channel writes CH1/CH2 as a pure function of the resulting state (§B).
-5. Delegate to inner policy.
-6. Post-edits: CH3 (resident) then CH4 (non-resident vetoes).
-7. CH5 re-resolution iff CH3 rewrote a command.
+0. **Event observation.** Compute the predicate value of EV1-EV20 from the fixed
+   observation source of each event (A.6 table: pre-action `S_t`, inferred `S_{t-1}->S_t`,
+   or command-produced-at-`t`). Predicates are read here and frozen for the turn.
+1. **Transition selection.** Among events true this turn whose transition in the current
+   state's A.4 row is not `∅`/`U`, select the single highest-priority one (A.6 total
+   order). That transition fixes the post-turn state.
+2. Arbitration (once, S0 only) — CH6.
+3. Phase update (activation / death / completion) — pure view read.
+4. Resident decision, in order: (a) blocked/bounce bookkeeping (F-B3); (b) Converting
+   latch check; (c) **ownership + asset-threat evaluation** (EV4-EV7 via ASSET_SURVIVAL_
+   ORACLE, A.7) — evaluated on EVERY active turn, all activities included, before any
+   candidate work; (d) contest branches; (e) candidate set + commitment rule (SPEC §e);
+   (f) carrier-yield arbitration (R4, §B.1) then idle-yield / starvation release.
+5. Channel writes CH1/CH2 as a pure function of the resulting state (§B).
+6. Delegate to inner policy.
+7. Post-edits: CH3 (resident) then CH4 (non-resident vetoes).
+8. CH5 re-resolution iff CH3 rewrote a command.
+9. **Channel-touch telemetry** (R3, §D.1): emit one record per edited/vetoed slot.
+
+**Mealy declaration (R1, review §R1 last ¶).** This is explicitly a Mealy machine. S6
+(HarvestNow), the S3 blocked-hold WAIT, and the S4 idle-yield aside are **transient output
+modes**, not persisted states: each is produced within the atomic turn from
+(persisted fields + `S_t`) and is never reconstructed from persisted fields alone on a
+later turn. The persisted fields are exactly those in A.5.1; the runtime decoder maps
+(persisted fields + `S_t`) to a state each turn and A-0 (§B.7) asserts the decode is
+single-valued. A transient mode carries no obligation into `S_{t+1}` beyond its persisted
+fields.
 
 **S0 Unarbitrated.**
 Entry: construction. Evaluation: run the read-only orchard-eligibility replica
@@ -102,11 +122,13 @@ Liveness: none for the wrapper; funding-phase byte-equality with parent (I-17/I-
 Entry: T2b; from S4/S5 on productive-candidate reappearance (EV15); from S6 after
 harvest; task switches internal to S3 go through the commitment rule (SPEC §e: clause-1
 invalidation, H=3 hold, eps=1 upgrade).
-Evaluation order: global order; within 3e, wood cargo short-circuits to Bank-only
+Evaluation order: global order; within 4e, wood cargo short-circuits to Bank-only
 candidates (I-21, I1:442-445); surplus banana suppresses Plant candidates (I-9,
-I1:461, 499); founding guard for a diagonal Plant uses horizon margins
-(`eta_opp_h > first_fruit_delay`, `eta_opp_x > 2*CD + ceil(health(2)/chop)`, F-C1,
-I1:342-358); orthogonal slots keep instant margins; Bank candidates skip occupied doors
+I1:461, 499); **founding guard for a diagonal Plant is ASSET_SURVIVAL_ORACLE (A.7)
+`feasible_found` evaluated on the just-planted state** — no proxy ETA inequalities (R2
+replaces the old `eta_opp_h > first_fruit_delay ∧ eta_opp_x > 2*CD + ceil(health(2)/chop)`
+of F-C1, which was a second approximate deadline); orthogonal wood slots keep instant
+margins; Bank candidates skip occupied doors
 while a free one exists (F-B2, I1:378-390); I-5 late cutoff blocks all planting (EV18 is
 a guard, not a transition — planting candidates vanish, other tasks continue).
 Interventions: CH1 = Some(resident); CH2 = Some(latched mother) iff a founded mother
@@ -155,16 +177,21 @@ S7/S8/S9; flip cleared (opponent left) → S3/S4; fruit gone + flip persists →
 Single-turn state by construction. Liveness: exactly one HARVEST lands this turn.
 
 **S7 Converting.**
-Entry: EV5 — flip latched and ORACLE `feasible` (strict:
-`completion_turn < opponent_harvest_turn`, both absolute, anchored at the decision turn;
-ORACLE:160-223). Decision latched: no re-arbitration mid-sequence (opponent arrival
-mid-chop does not reopen the won race; I1:614-638). Evaluation: latch check (3b) first.
-Interventions: CH1 = Some; CH2 = Some(latched mother); CH3 = `MOVE`-to-mother / `CHOP`;
-CH4; CH5. Exits: T7a EV8 mother destroyed (our final chop or opponent) → phase update:
-ring/stock live → S3/S4, else → S10 via EV17; T7b EV9 → S10. No other exit — the latch
-is broken only by the mother's death. Liveness: the final chop lands on or before the
-ORACLE's predicted `completion_turn` (runtime-assertable, A-12); distance-to-mother
-strictly decreases while traveling.
+Entry: EV5 — flip latched and ASSET_SURVIVAL_ORACLE (A.7) `feasible_convert` (strict:
+`completion_turn < asset_lost_turn`, absolute, anchored at the decision turn); or EV7 →
+oracle-feasible attack response. Decision latched against re-OPTIMIZATION: a mere opponent
+arrival on an already-won race does not reopen it (I1:614-638; I-10a "decided once").
+Evaluation: latch check (4b) first, then the R6 infeasibility re-check (EV19). Interventions:
+CH1 = Some; CH2 = Some(latched mother); CH3 = `MOVE`-to-mother / `CHOP`; CH4; CH5. Exits:
+T7a EV8 mother destroyed (our final chop or opponent) → phase update: ring/stock live →
+S3/S4, else → S10 via EV17; T7b EV9 → S10; **T7c EV19 conversion became IMPOSSIBLE (mother
+unreachable / cell occupied by a working peer / a new deadline `asset_lost_turn <=
+completion_turn` caused by a PATH loss, re-run each turn from `S_t`) → safe abandon: S8 if
+`total_carried > 0` else S9** (R6: every commitment has an infeasibility exit; this is
+distinct from re-optimization — a still-reachable, still-winnable race is never abandoned).
+Liveness: while EV19 does not hold, the final chop lands on or before `completion_turn`
+(A-12) and distance-to-mother strictly decreases while traveling; EV19 firing is bounded
+(one BFS/oracle probe per turn) and terminates the state, so S7 cannot loop.
 
 **S8 LostBanking.**
 Entry: EV6 (oracle-infeasible flip) with `total_carried > 0` at the loss turn; the one
@@ -173,18 +200,27 @@ response begins wood-free at t+1 (SPEC I-10a; I1:645-647). Evaluation: bank-only
 (`banana_lost_action`, I1:409-431 — nearest-door (distance, cell) minimum).
 Interventions: CH1 = Some (held ONLY for the leftover cargo); CH2 = Some(latched lost
 cell) while the lost plant lives; CH3 = MOVE-to-door/DROP; CH4 (incl. banana-PICK
-exclusivity); CH5. Exits: T8a cargo = 0 (DROP landed or cargo lost) → S9 immediately,
-same turn (I1:1038-1043); T8b EV9 → S9 (worker gone; claim persists); T8c EV16 lost
-plant died → claim lapses, state remains until T8a. Liveness: I-19/I-20/I-21 verbatim on
-the leftover cargo — strict door progress, DROP within `door_dist(loss) + 2`.
+exclusivity, scoped per R5 — B.4); CH5. Exits: T8a cargo = 0 (DROP landed or cargo lost) →
+S9 immediately, same turn (I1:1038-1043); T8b EV9 → S9 (worker gone; claim persists);
+T8c EV16 lost plant died → claim lapses, state remains until T8a; **T8d EV20 no door
+BFS-reachable while cargo > 0 → I-19 terminator: the worker is handed back to the inner
+economy (CH1 = None) carrying its cargo, ownership explicitly transfers to the inner policy
+(the wrapper discards neither the cargo nor the worker), and the lost-cell claim persists
+under EV16; state becomes S9** (R6: no silent cargo discard, no loop). Liveness:
+I-19/I-20/I-21 verbatim on the leftover cargo — strict door progress, DROP within
+`door_dist(loss) + 2`; if that horizon is unreachable, T8d fires (bounded), so S8 cannot
+loop.
 
 **S9 LostReleased.**
 Entry: T8a; or EV6 with nothing carried (released at the flip turn itself, SPEC Rev
 2026-08-06). Evaluation: claim maintenance only. Interventions: CH2 = Some(latched lost
-cell) while that plant lives, then None (EV16); CH4 (mother vetoes while claim live +
-banana-PICK exclusivity for the rest of the game); CH1 = None; no CH3/CH5. Exits: none
-(absorbing; `banana_lost` latched blocks re-activation). Liveness: none for the wrapper;
-non-interference obligations of §B are the state's whole contract.
+cell) while that plant lives, then None (EV16); CH4 (mother vetoes and the lineage-scoped
+banana-PICK exclusivity while the claim is live — both FINITE, lapsing at EV16, R5); CH1 =
+None; no CH3/CH5. S9 is inner-controlled passthrough EXCEPT the finite CH2/CH4 claim; it is
+therefore NOT byte-equal to the parent while the claim lives (R5: do not call it structural
+identity where a channel still writes). Exits: none (absorbing; `banana_lost` latched blocks
+re-activation). Liveness: none for the wrapper; the finite non-interference obligations of
+§B are the state's whole contract.
 
 **S10 AbandonedBenign.**
 Entry: T2a deadline; EV9 resident death; EV17 completion/impossibility. Evaluation:
@@ -201,7 +237,7 @@ none. Interventions: none; CH1/CH2 None; structural identity (I1:1067-1071). Exi
 | EV4 | ownership flip (`eta_res >= eta_opp_h`, ties conceded, I-7) ∧ ripe fruit harvestable immediately |
 | EV5 | ownership flip ∧ ¬EV4 ∧ ORACLE feasible |
 | EV6 | ownership flip ∧ ¬EV4 ∧ ORACLE infeasible |
-| EV7 | asset-under-attack: opponent chopper at `eta_opp_x <= 1` of the live mother, or mother health decreased without an own chop (design-new; R6 family d2) |
+| EV7 | asset-under-attack (ASSET_SURVIVAL_ORACLE, A.7): `opp_destroy_turn < our next service turn` for the live mother — the growth-aware chop-out timeline, not a threshold; the `S_{t-1}->S_t` health-drop is the corroborating inferred arm (design-new; R6 family d2, revised R2) |
 | EV8 | mother destroyed (own final chop, opponent chop, any cause) |
 | EV9 | resident died (`view.unit(id)` = None) |
 | EV10 | wood acquired with full capacity → forced Bank commitment (I-21) |
@@ -213,6 +249,8 @@ none. Interventions: none; CH1/CH2 None; structural identity (I1:1067-1071). Exi
 | EV16 | lost/latched plant died (claim lapse) |
 | EV17 | feature complete/impossible: nothing carried ∧ no live ring banana ∧ no usable banked seed |
 | EV18 | I-5 late cutoff reached for a cell (guard: Plant candidates vanish) |
+| EV19 | committed conversion infeasible (S7): re-run of ASSET_SURVIVAL_ORACLE from `S_t` shows the latched conversion can no longer complete before `asset_lost_turn` due to a PATH/target loss (unreachable mother, cell occupied by a working peer) — NOT a mere opponent arrival on an already-won race (R5/R6 review §R6) |
+| EV20 | committed bank route unreachable (S8): no door is BFS-reachable from the resident while cargo > 0 (I-19 "no door reachable" terminator; R5/R6 review §R6) |
 
 Environment conditions (not events — they parameterize guards and channel obligations):
 ownership-flip sub-classification ripe/unripe × feasible/infeasible is EV4/EV5/EV6;
@@ -244,6 +282,21 @@ reached by a named transition.
 | S9 | U2 | ∅6 | ∅7 | ∅20 | ∅20 | ∅20 | ∅20 | T16' | ∅24 | ∅12 | ∅12 | ∅12 | ∅12 | ∅12 | ∅23 | EV16→claim None | ∅24 | ∅7 |
 | S10 | U2 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 | ∅25 |
 
+**A.4a — impossible-commitment columns EV19, EV20 (R6, added by R2/R5 revision).** These two
+events are live in exactly one commitment state each; every other cell is `U` (the event's
+precondition — an S7 conversion latch resp. an S8 bank commitment — does not exist in that
+state):
+
+| state | EV19 (conversion impossible) | EV20 (bank unreachable) |
+|---|---|---|
+| S7 | T7c → S8(cargo>0)/S9 | U (no bank commitment in S7) |
+| S8 | U (no conversion latch in S8) | T8d → S9 (worker to inner, cargo kept) |
+| all other states | U | U |
+
+With EV19/EV20 every commitment state now has a production exit for success, invalidation,
+death, AND infeasibility — the review §R6 obligation. Debug-build panics on "impossible
+commitment with no transition" are therefore unreachable.
+
 ### A.5 Completeness argument
 
 1. **Rows are exhaustive**: A.1's 11 states partition the wrapper's reachable
@@ -252,14 +305,15 @@ reached by a named transition.
    every combination not named is excluded by construction (e.g. `banana_lost` with phase
    ≠ Abandoned is unreachable: the loss transition sets both, I1:737-738; the
    contract-harness assertion A-1 checks the exclusion at runtime).
-2. **Columns are exhaustive over the rejection history**: EV1-EV18 cover every event any
+2. **Columns are exhaustive over the rejection history**: EV1-EV20 cover every event any
    diagnosis or ACK exposed — ownership flip in all four ripe×feasible quadrants
    (EV4/5/6; ACK2 item 2, ACK3 item 2), mother destroyed (EV8), worker died (EV9,
    SEAM R5), opponent adjacent as both harvester-camp (inside EV4-6 via I-7) and
-   chopper-attack (EV7; R6 d2), second worker not trained (¬EV2 dwell; ACK gate D-9),
-   orchard-eligible map (EV1), choke/articulation and single-door geometry (environment
-   parameters of N1/N3 + C8 serialization; R5, R6 b1/b2), starvation (EV14; R6 d),
-   bounce-blocked (EV13; R6 b2).
+   chopper-attack (EV7 via ASSET_SURVIVAL_ORACLE; R6 d2), second worker not trained (¬EV2
+   dwell; ACK gate D-9), orchard-eligible map (EV1), choke/articulation and single-door
+   geometry (environment parameters of N1/N3 + C8 serialization; R5, R6 b1/b2), starvation
+   (EV14; R6 d), bounce-blocked (EV13; R6 b2), and impossible commitments (EV19/EV20;
+   review §R6). Co-occurrence is resolved by the A.6 total priority order.
 3. **Every cell is filled**: each (state × event) pair is a `T-x` (defined in A.2), a `∅`
    (self-loop: the state's per-turn function is total and the event does not change the
    guard outcome — footnotes below), or a `U` (unreachable — footnotes below). A total
@@ -279,7 +333,7 @@ reached by a named transition.
    mother death is EV8. ∅10 Idle has no cargo commitment / no held route (idle-yield
    aside is not a commitment). ∅11 released resident has no wrapper target. ∅12
    inner-owned concern. ∅13 streak already ≥ 3; release persists. ∅14 EV7 with a ripe
-   on-cell fruit: harvest-now dominates (order 3c evaluates EV4 first). U15 S6 lasts one
+   on-cell fruit: harvest-now dominates (order 4c evaluates EV4 first). U15 S6 lasts one
    turn and emits HARVEST (no MOVE/cargo events attributable to it). U16 harvesting a
    live mother contradicts EV17's "no live ring banana". ∅17 latch: the convert decision
    is not re-opened (SPEC I-10a "decided once"; ACK2 item 2). U18/∅18 conversion runs
@@ -292,6 +346,147 @@ reached by a named transition.
    inside `banana_lost_action`). ∅23 `banana_lost` blocks re-activation permanently. ∅24
    S9 is absorbing; worker death changes nothing the wrapper still does. T16' in S9: EV8
    on the latched plant IS EV16. ∅25 S10 absorbing identity.
+
+### A.6 Concurrent-event priority (total order) — R1 (review §R1)
+
+EV1-EV20 are predicates that can be simultaneously true on one `S_t`. Filling A.4 does not
+by itself define behavior when two columns are true. This section closes that.
+
+**Observation source (which frame each predicate is read from):**
+
+| source | events |
+|---|---|
+| pre-action `S_t` (view + latched fields, before delegation) | EV1, EV2, EV3, EV4, EV5, EV6, EV7(chopper-ETA arm), EV12, EV13, EV14, EV15, EV17, EV18, EV19 |
+| inferred `S_{t-1}->S_t` (fact that landed since last turn) | EV7(health-drop arm), EV8, EV9, EV11, EV16, EV20 |
+| command-produced at `t` (result of the command we/inner emit this turn) | EV10 |
+
+**Total priority order (rank 1 = highest; the step-1 selector picks the highest-ranked
+event whose transition is live — not `∅`/`U` — in the current state's A.4 row):**
+
+| rank | event | class | why it dominates |
+|---|---|---|---|
+| 1 | EV9 resident died | roster terminality | a dead slot cannot act; nothing below is meaningful |
+| 2 | EV8 tracked mother destroyed | asset terminality | commitment termination precedes any new commitment (I-10a "decided once") |
+| 3 | EV16 lost plant died | asset terminality | closes the claim/veto before re-entry logic runs |
+| 4 | EV17 feature complete/impossible | lifecycle terminality | absorbing → S10 |
+| 5 | EV3 activation deadline | lifecycle terminality | past deadline never activates |
+| 6 | EV4 flip ∧ ripe-on-cell | immediate value securing | grab realized value now (dominates speculative convert) |
+| 7 | EV19 commitment infeasible (S7 path/deadline lost) | loss-response | abandon a provably-dead conversion before persisting it |
+| 8 | EV20 bank route unreachable (S8) | loss-response | terminate an impossible bank without discarding cargo silently |
+| 9 | EV7 asset-under-attack | loss-response | a loss event dominates opportunity; feeds the A.7 oracle jointly with any flip |
+| 10 | EV6 flip, oracle-infeasible | loss securing | secure carried value / abandon (dominates convert) |
+| 11 | EV5 flip, oracle-feasible | opportunity | convert only when nothing above fired |
+| 12 | EV11 cargo banked/lost | commitment terminator | ends a bank commitment before EV10 opens a new one |
+| 13 | EV10 full cargo → forced Bank | new commitment | after any terminator |
+| 14 | EV12 target invalidated | replan | a blocked path to an invalid target is moot |
+| 15 | EV13 blocked-2 threshold | replan | recompute after invalidation is handled |
+| 16 | EV15 productive re-entry | release exit | re-employ before deciding to release |
+| 17 | EV14 3rd idle → release | release | lowest active opportunity event |
+| 18 | EV2 activation predicate | dormant→active | only when no terminal/deadline event fired |
+| 19 | EV18 late-cutoff plant guard | guard (no transition) | vanishes Plant candidates only |
+| 20 | EV1 arbitration (turn-1 only) | S0-exclusive | S0 resolves before any other event is reachable (U1 row) |
+
+Justification: ranks 1-5 are loss/terminality facts (roster, asset, lifecycle); ranks
+6-13 are value-securing and commitment events, with immediate securing (EV4) above threat
+response (EV7-EV10) above speculative conversion (EV5) — exactly the review's "immediate
+value securing dominates speculative conversion" and "commitment termination precedes a new
+commitment". Ranks 14-20 are replan/opportunity/setup. Loss and liveness always dominate
+opportunity.
+
+Step 1 selects one **state transition**. Terminal asset/roster facts additionally drive
+channel closure in the SAME atomic turn: EV8/EV16/EV9 null the latched CH2/CH1 in step 5
+regardless of the selected transition (A-1/A-6 enforce it), so no channel outlives the fact
+that voids it.
+
+**Worked collision resolutions (the review's listed cases + the S8 case):**
+
+- **C1 EV9 + EV8 + EV17** (resident dies as our final chop kills the mother on a completing
+  feature): rank 1 EV9 selected → S10 (T3e/T7b). Mother-destroyed and completion are moot
+  once the slot is gone.
+- **C2 flip (EV5/EV6) + EV7 attack**: if EV4 also holds (ripe on-cell) rank 6 wins → S6.
+  Else rank 9 EV7 selected → T3d, resolved by ASSET_SURVIVAL_ORACLE (A.7) computed with
+  BOTH threats: `asset_lost_turn = min(opp_harvest_turn, opp_destroy_turn)`. The earlier of
+  harvest-out and chop-out sets the deadline; convert (S7) iff `completion_turn <
+  asset_lost_turn` strictly, else S8/S9.
+- **C3 EV8 + EV10** (our final chop both kills the mother and yields the wood that fills the
+  carrier): rank 2 EV8 selected → T7a; the acquired wood is banked via the resulting
+  S3(Bank). EV10's forced-bank is subsumed (footnote ∅18).
+- **C4 EV11 + EV16** (the leftover DROP lands the same turn the lost plant dies): rank 3
+  EV16 selected as the transition → T8c, claim lapses to `None` this turn; the DROP still
+  executes (S8 CH3), cargo→0, and T8a fires next turn to S9. Claim closed immediately,
+  cargo banked without loss.
+- **C5 EV2 + EV3** (activation predicate true on the deadline turn): rank 5 EV3 selected →
+  S10. Never activate past the deadline.
+- **C6 EV12 + EV13** (held target invalidates on the turn the block counter trips): rank 14
+  EV12 selected → T3g recompute; the blocked path to an already-invalid target is discarded.
+
+Compound-event fixtures C1-C6 are mandatory manifest configurations (§D.2, L-FIX); none is
+a prose-only cell.
+
+### A.7 ASSET_SURVIVAL_ORACLE (named oracle) — R2 (review §R2)
+
+The single growth-aware, absolute-time oracle that governs EV4-EV7 and founding. It
+**generalizes** CONVERSION_RACE_ORACLE (which compares our conversion only against opponent
+HARVEST): it additionally models opponent CHOP-out with exact travel/growth/action timing
+and aggregates multiple choppers. With no chop-capable opponent it reproduces
+CONVERSION_RACE_ORACLE byte-for-byte (asserted in `conversion_race_oracle.py` self-test).
+It replaces (i) EV7's old threshold `eta_opp_x <= 1 ∨ health-decrease`, and (ii) the S3
+founding guard's proxy ETA inequalities. No second deadline expression is permitted anywhere
+(DEF-04/DEF-07/DEF-14/DEF-17).
+
+Name/impl: `asset_survival_oracle` in `conversion_race_oracle.py`.
+
+Inputs (all from `S_t`, decision turn `t`): walkable set; mother cell `c`; mother plant
+state (size, health, fruits, cooldown); near-water flag; resident (cell, speed, chop_power);
+every opponent unit as (cell, speed, harvest_power, chop_power) — harvesters AND choppers,
+same call.
+
+Outputs (absolute turns anchored at `t`):
+
+- `our_harvest_turn` — earliest turn we can execute a value-securing HARVEST on `c`
+  (our arrival ∧ ripeness).
+- `completion_turn` — turn our FINAL defensive/conversion chop lands (identical to
+  CONVERSION_RACE_ORACLE).
+- `opp_harvest_turn` — opponent's earliest executable HARVEST (arrival ∧ ripeness), over
+  harvest-capable opponents (farm-out).
+- `opp_destroy_turn` — opponent's earliest CHOP-out of the asset, growth-aware,
+  multi-chopper aggregated (defender-conservative: arrived choppers apply combined power).
+- `asset_lost_turn = min(opp_harvest_turn, opp_destroy_turn)` — absolute turn the asset is
+  FIRST destroyed-or-farmed-out.
+- `feasible_convert = completion_turn < asset_lost_turn` (STRICT) — drives EV5/EV6/EV7.
+- `feasible_found = eta_res < eta_opp_h ∧ our_harvest_turn < opp_destroy_turn` (STRICT) —
+  drives the founding guard. Ownership at first fruit is decided on arrival ETA (both sides'
+  harvest turn ties at ripeness), so founding requires strictly winning the ETA race and the
+  asset surviving choppers to our harvest.
+
+Semantics: EV4-EV7 are a mutually exclusive classification of these outputs, evaluated in
+step 4c every active turn:
+
+- EV4 = flip ∧ ripe fruit harvestable on-cell this turn (`our_harvest_turn == t`).
+- EV5 = flip ∧ ¬EV4 ∧ `feasible_convert`.
+- EV6 = flip ∧ ¬EV4 ∧ ¬`feasible_convert`.
+- EV7 = ¬flip ∧ `opp_destroy_turn` < our next service turn (the asset dies before we would
+  next act) — routes to the same convert/abandon classification via `feasible_convert`.
+
+**Strict tie (referee ruling):** `completion_turn == asset_lost_turn`, or an equal ownership
+ETA `eta_res == eta_opp_h`, is CONTESTED and conceded to the opponent (feasible_* False),
+consistent with I-7 / CONVERSION_RACE_ORACLE.
+
+**Strict-tie fixtures (the boundary cases the D.2 grid MUST contain; ST1-ST5 are asserted in
+the oracle self-test):**
+
+- ST1 harvest tie: `completion_turn == opp_harvest_turn` (legacy r3a) → infeasible.
+- ST2 harvest feasible-by-one: `completion_turn == opp_harvest_turn - 1` (r3b) → feasible.
+- ST3 chop tie: a single chopper's kill turn `== completion_turn` → infeasible (conceded).
+- ST4 chop feasible-by-one: chopper kill `== completion_turn + 1` → feasible.
+- ST5 multi-chopper advance: adding a second chopper pulls `opp_destroy_turn` earlier,
+  crossing a tie a single chopper would not reach → an ST4-feasible config becomes
+  infeasible.
+- ST6 min(harvest,destroy): one unit that both harvests and chops; classification uses the
+  earlier of the two (a late farm-out must not mask an early kill).
+- ST7 growth-crossing: a fresh low-health mother where ETA-2 is already terminal — the
+  growth-aware `opp_destroy_turn` is earlier than a static `ceil(health/chop)` proxy claims
+  (the review's DEF-04/DEF-17 point).
 
 ---
 
@@ -312,22 +507,41 @@ value its current state does not license.
    unit from inner planning; its cell becomes a *stationary obstacle* in every
    conflict-resolution pass.
 3. NON-INTERFERENCE obligations:
-   - **N1 (carrier-progress)**: the reservation must never make the reserved unit a
-     persistent stationary obstacle on a loaded teammate's committed bank route — no
-     reservation may remove the last progress-making candidate of a full carrier for
-     ≥ 2 consecutive turns (generalizes R5 §H3 and R6 ROOT B: articulation cells and
-     occupied-door detours are two geometries of the same violation). Discharged by:
-     idle-yield (S4), starvation release (S5), loss release (S9), and the S3 rule that a
-     working resident is moving toward completion.
+   - **N1 (carrier-progress) — ENFORCED ARBITRATION RULE (R4, review §R4).** N1 is a
+     production decision rule, not merely an assertion. Unconditional resident priority is
+     REPLACED by the carrier-yield rule below; A-4 becomes the post-hoc check that the rule
+     held. The rule is evaluated in step 4f, jointly over CH1+CH2+CH3+CH5 (not per channel):
+
+     Inputs, each turn, for every own unit `u` with `free_capacity(u)==0 ∧ carry[WOOD]>0`
+     on a committed bank route: (i) `P(u)` = its progress-making landings this turn = ortho
+     neighbors of `u` that strictly reduce `door_dist(u)`; (ii) `Blocked(u)` = cells of
+     `P(u)` removed by any banana channel effect this turn — the reservation/idle cell
+     (CH1, the resident's own cell), the claimed cell (CH2), the resident's post-edit
+     landing (CH3), and cells reserved by CH5's priority resolution.
+     Decision (output = which yields): if `P(u) ≠ ∅ ∧ P(u) \ Blocked(u) == ∅` — a banana
+     effect removes `u`'s LAST progress landing — then the banana effect YIELDS for this
+     turn: the resident's reservation is dropped and it takes the idle-yield aside (S4) or
+     is not written (CH1=None), and CH5 does not reserve / drops resident priority on that
+     cell, so `u`'s landing is free. Otherwise (`u` retains another progress landing) the
+     resident keeps priority. If the resident cannot legally yield (no free aside that keeps
+     every nearby carrier's door reachable), the FSM enters the bounded blocked-hold
+     wait/replan path (S3/S4 blocked-hold, ≤ its own liveness horizon) rather than deadlock.
+     This makes N1 TRUE by construction (generalizes R5 §H3 and R6 ROOT B: articulation
+     cells and occupied-door detours are two geometries of the one violation).
    - **N5 (funding)**: CH1 is None until EV2 — no reservation can displace TRAIN
      (I-17/I-18; D-9).
 4. Runtime-assertable contract:
    - A-1: `banana_lost ⇒ phase == Abandoned`; `idle_streak >= 3 ⇒ CH1 == None`;
      `CH1 == Some(w) ⇒ state ∈ {S3,S4,S6,S7,S8} ∧ w == starter_id`.
-   - A-4 (N1 check): for every own unit `u` with `free_capacity(u)==0 ∧ carry[WOOD]>0`:
-     `door_dist(u,t) < min door_dist(u,t') over the last 2 turns`, OR a DROP/cargo-loss
-     occurred, OR `u` was displaced ≤ 1 turn (I-20 tolerance). Violation ⇒ panic with
-     the reserved unit's cell and the carrier's route.
+   - A-4 (N1 check — verifies the R4 rule held, does not implement it): for every own unit
+     `u` with `free_capacity(u)==0 ∧ carry[WOOD]>0`: `door_dist(u,t) < min door_dist(u,t')
+     over the last 2 turns`, OR a DROP/cargo-loss occurred, OR `u` was displaced ≤ 1 turn
+     (I-20 tolerance). Violation ⇒ panic. For exact attribution (review §R4), the panic
+     witness records `P(u)`, `Blocked(u)`, and a same-state channel-bypass counterfactual
+     (the carrier's landing recomputed with every banana channel effect removed): an
+     inherited inner-carrier stall on a genuinely divergent state where the counterfactual
+     is identical is report-tier; only a stall the counterfactual clears (a banana channel
+     removed `u`'s last progress option) is a blocking N1 violation and names the channel.
    - A-5: `state ∈ {S5,S9} ⇒` the resident's emitted command equals the inner's
      un-edited command for that slot.
 
@@ -381,11 +595,18 @@ value its current state does not license.
 
 ### B.4 CH4 — non-resident veto post-edit (I1:1089-1118)
 
-1. WRITER states: any state with CH2 = Some (mother veto), plus every S3-S9 state for the
-   banana-PICK exclusivity veto. Legal action: substitute `WAIT` — never any other verb —
-   and only for: (a) `CHOP`/`HARVEST` by a unit standing ON the claimed cell;
-   (b) `PICK … BANANA` at the bank (I-2/I-15 exclusivity, held while active and for the
-   rest of the game after loss — SPEC Rev 2026-08-06).
+1. WRITER states: any state with CH2 = Some (mother veto), plus S3-S9 for the banana-PICK
+   exclusivity veto. Legal action: substitute `WAIT` — never any other verb — and only for:
+   (a) `CHOP`/`HARVEST` by a unit standing ON the claimed cell;
+   (b) `PICK … BANANA` at the bank, **scoped (R5, review §R5): the veto covers ONLY a PICK
+   whose target banana belongs to the latched lineage (the founded mother's banked fruit /
+   the exact lost-plant stock), and it is FINITE — it lapses at EV16 (the latched plant
+   dies).** The former "for the rest of the game, every bank `PICK … BANANA`" global veto is
+   withdrawn: it was not passthrough and suppressed unrelated inner economy after the lost
+   mother died. Unrelated bananas (opponent-planted, or inner-economy crops of a different
+   lineage) are never vetoed. A truly global replant-suppression policy, if ever wanted,
+   must be modeled as a separate persistent policy STATE with its own necessity/liveness/
+   parity/value gates (not done here — the bounded scope suffices for I-2/I-15).
 2. Inner touchpoints: post-selection command stream; second layer behind the I6 filter.
 3. NON-INTERFERENCE:
    - **N4 (move-neutrality)**: CH4 never rewrites a `MOVE` (preserves N2); turning a
@@ -406,10 +627,14 @@ value its current state does not license.
 2. Inner touchpoints: `resolve_move_conflicts_with_priority` re-parses already
    landing-rewritten moves; every stationary own unit's cell is `reserved`; detour
    tie-break is `(dist, cell)`-lexicographic (R6 b mechanism step 3).
-3. NON-INTERFERENCE: N1 is the binding obligation — the re-resolution may displace a
-   carrier at most 1 consecutive turn (I-20 tolerance); the single-door serialization is
-   deterministic (resident first, then ascending id — I-22 rev item 8); CH5 must never
-   run on released/dormant turns (the inner's own resolution stands).
+3. NON-INTERFERENCE: N1 is the binding obligation, ENFORCED by the R4 carrier-yield rule
+   (B.1.3): before CH5 reserves the resident's cell / applies resident priority, the rule
+   checks whether that reservation removes a full carrier's last progress landing and, if
+   so, drops resident priority for the turn so CH5 cannot manufacture the parity cycle. The
+   re-resolution may otherwise displace a carrier at most 1 consecutive turn (I-20
+   tolerance); single-door serialization is deterministic (resident first, then ascending
+   id — I-22 rev item 8); CH5 never runs on released/dormant turns (the inner's own
+   resolution stands).
 4. Runtime-assertable contract:
    - A-12a: CH5 invoked ⇔ CH3 rewrote this turn; forbidden-set argument is empty.
    - A-4 (shared with CH1) is the post-hoc detector of any CH5-induced parity cycle.
@@ -430,50 +655,66 @@ value its current state does not license.
 
 ### B.7 Additional cross-channel assertions
 
+- A-0 (Mealy decode, R1): the runtime decode of (persisted fields + `S_t`) to a state is
+  single-valued each turn; transient modes (S6, blocked-hold, idle-yield aside) are
+  produced within the turn, never decoded from persisted fields alone next turn.
 - A-12 (oracle-completion): in S7, `current_turn <= committed completion_turn`; the
   mother's final chop lands at `<= completion_turn` (catches any drift between the
-  candidate's inline race arithmetic and ORACLE — the DEF-07 class).
+  candidate's inline race arithmetic and ASSET_SURVIVAL_ORACLE — the DEF-07 class). The
+  committed deadline is `asset_lost_turn` from A.7; no other deadline expression exists.
 - A-14 (D-8 scope): any own chop-class command targeting a live own diagonal banana ⇒
-  state == S7 (entered via EV5). Discretionary owned-mother chop panics (ACK2 item 2).
+  state == S7 (entered via EV5 or EV7). Discretionary owned-mother chop panics (ACK2 item 2).
 - A-15 (one-seed): resident carries ≥ 2 bananas ⇒ emitted verb ∈ {MOVE-to-door, DROP}
   and no Plant candidate was offered (I-9; ACK1 item 1).
 - A-16 (bootstrap): total feature-attributable bank `PICK … BANANA` count ≤ 1 per game
   (I-2).
 - A-17 (plant geometry): every own `PLANT BANANA` cell ∈ Ring, count caps per I-12/I-13,
-  founding guard of S3 held at plant time (D-5/D-6 decision side).
+  ASSET_SURVIVAL_ORACLE `feasible_found` held at plant time (R2; D-5/D-6 decision side).
+- A-18 (impossible-commitment exit, R6): no turn ends in S7 with the mother unreachable
+  and cargo-free, nor in S8 with no BFS-reachable door and cargo > 0 — such a turn must
+  have taken T7c/T8d. Panic on a stuck commitment (the delivery-build loop is thus
+  unreachable).
 
 ---
 
 ## C. Retrospective validation (acceptance test of this design)
 
-Defect registry: every terminal defect from the five rounds (ACK1-3, R5, R6), each mapped
-to the design element that makes it impossible or assertion-caught. Any unmapped defect
-would mean the design is incomplete; there are none.
+Defect registry: every terminal defect from the five rounds (ACK1-3, R5, R6). Per the
+review's ack, this table is now HONEST about the guarantee class, not an overclaim of 17/17
+structural coverage. Each defect is classified **IBC** (impossible-by-construction: the
+design's structure makes the behavior unrepresentable), **AC** (assertion/infra-caught: a
+runtime contract or host gate catches it — verification, not structural prevention), or
+**EW** (enumeration-witnessed: the manifest guarantees a config exercises the fix). The
+PRIMARY class drives the tally; secondary guarantees are listed in the element column.
 
-| # | defect (citation) | design element that kills/catches it |
-|---|---|---|
-| DEF-01 | No one-seed reservation: 2 harvested bananas both replanted before banking (ACK1 item 1) | S3 surplus guard (Plant candidates suppressed while `carry[BANANA] > 1`) + assertion A-15 |
-| DEF-02 | I-10a unimplemented: unripe contested mother fell through to normal investment; no convert/abandon (ACK1 item 2) | EV4/EV5/EV6 are total over the flip quadrants and evaluated in every active state (table rows S3-S5 have no `∅` in those columns); no-implicit-passthrough rule A.5.4 |
-| DEF-03 | No compilable readable research source; checks 2/3 unrunnable (ACK1 item 3) | D.4 host-gate precondition 1 (readable+compact pair is a build artifact gate, not good will) |
-| DEF-04 | Static `ceil(health/chop)` ignored growth during the chop sequence (ACK2 item 1) | EV5 guard is ORACLE by name (growth-aware `exact_chop_turns`, ORACLE:124-141); assertion A-12 catches any regression at the first divergent conversion |
-| DEF-05 | D-8 exemption scope unclear; vacuous pre-existing-mother trace (ACK2 item 2) | A-14: own diagonal chop ⇔ S7, entered only via EV5 after a real flip; D.2 grid must reach S7 from a candidate-driven own-plant (grid class G-f) |
-| DEF-06 | Flip response unreachable: real candidate camps on mother, scripted t5 masked it (ACK3 item 1) | Evaluation-order rule (3c before candidates, all states) + S4 dwell bound (EV14 ≤ 3) + D.2 requirement that EV4-6 fire from S4 in-grid |
-| DEF-07 | Three inconsistent conversion deadlines / mixed time origins (ACK3 item 2) | Single-oracle rule: EV5/EV6/A-12/A-14 all name ORACLE; the design forbids any second deadline expression (B.7 A-12 asserts agreement per conversion) |
-| DEF-08 | R-3 boundary not candidate-reachable (ACK3 item 3) | D.2: ORACLE boundary geometries r3a/r3b are mandatory grid points reachable closed-loop (grid class G-f) |
-| DEF-09 | Mother in CH5 forbidden set ⇒ transit-impossible ⇒ 225-turn carrier livelock (R5 §H3; host round-4 review) | CH5 contract: forbidden set EMPTY always (B.5.1) + N2 transit-neutrality (B.2.3) + A-4 |
-| DEF-10 | R5 v2: forbidden-landing + door-occupancy *jointly* suffice; fix removed only one conjunct (R5 geometry log; recurred as R6 ROOT B) | N1 is stated over the conjunction (any channel-induced stationarity on the carrier's last progress route, B.1.3); A-4 is geometry-agnostic |
-| DEF-11 | Detector attribution gap: 74 D-9 + inherited D-4/D-6 flagged on byte-identical parent behavior (R6 ROOT A) | D.1/D.3: attribution rule "banana-attributable = diverges from the parent's aligned slot" is part of the harness definition, not detector discretion |
-| DEF-12 | Stationary Idle resident camping mother = reserved obstacle ⇒ carrier parity livelock (R6 ROOT B, b1) | S4 idle-yield rule + N1 + A-4; S4 dwell bound EV14 |
-| DEF-13 | `banana_bank` targeted occupied doors; bounce-blind blocked counter ⇒ resident k=96 bounce (R6 b2) | S3(Bank) occupied-door guard (F-B2) + EV13 bounce-inclusive definition (F-B3) + liveness obligation of S3(Bank) |
-| DEF-14 | Instant plant margins certified only the planting turn; opponent farmed the mother every regrowth (R6 ROOT C(i)) | S3(Plant) founding guard: diagonal mother requires `eta_opp_h > first_fruit_delay` ∧ `eta_opp_x > conversion horizon` (F-C1); A-17 |
-| DEF-15 | Inverted claim release: post-loss cell claim dropped, worker kept; inner reinvested in lost asset (R6 ROOT C(ii); candidate D-8/D-1 tails) | CH2 legal-value table: claim persists in S8/S9 while the lost plant lives (latched); CH1 = None in S9; A-6/A-1 |
-| DEF-16 | Lost-hold froze the resident to game end; P4 stalls (R6 ROOT D, d1) | S8 exit T8a is immediate on cargo = 0, S9 is CH1=None; S8 liveness = I-19/20/21 with horizon; A-1 |
-| DEF-17 | Chopper-blind flip: harvester-only ETA ⇒ resident spectated while choppers killed the mother (R6 d2) | EV7 asset-under-attack event (design-new, transition T3d in S3/S4/S5) + S4 dwell bound as liveness backstop; grid class G-d makes it reachable |
+| # | defect (citation) | class | design element that kills/catches it |
+|---|---|---|---|
+| DEF-01 | 2 harvested bananas both replanted before banking (ACK1 1) | IBC | S3 surplus guard suppresses Plant candidates while `carry[BANANA]>1`; +AC A-15 |
+| DEF-02 | I-10a unimplemented; no convert/abandon (ACK1 2) | IBC | EV4/5/6 total over the flip quadrants, evaluated every active turn (no `∅`); no-passthrough A.5.4 |
+| DEF-03 | No compilable readable research source (ACK1 3) | AC | verification-infra: D.4 host-gate 1 (readable+compact build artifact). Design does not "prevent" it; the gate catches it |
+| DEF-04 | Static `ceil(health/chop)` ignored growth (ACK2 1) | IBC | only ASSET_SURVIVAL_ORACLE (A.7, growth-aware) may express a deadline; a static one is forbidden; +AC A-12 |
+| DEF-05 | D-8 exemption scope vacuous trace (ACK2 2) | AC | A-14 (own diagonal chop ⇔ S7 via a real EV5/EV7); +EW L-FIX reaches S7 from a candidate-driven plant |
+| DEF-06 | Flip response unreachable; scripted t5 masked it (ACK3 1) | IBC | atomic step-4c evaluates EV4-6 before candidates in ALL states (camping cannot hide a flip); +EW EV4-6 fire from S4 in-grid |
+| DEF-07 | Three inconsistent conversion deadlines (ACK3 2) | IBC | single-oracle rule: ONE deadline expression (`asset_lost_turn`); F-C1's second proxy deadline is REMOVED by R2; +AC A-12 |
+| DEF-08 | R-3 boundary not candidate-reachable (ACK3 3) | EW | honest: closed by an enumeration obligation — ST1/ST2 (and ST3-ST5) are mandatory L-FIX grid points, gate fails if absent |
+| DEF-09 | Mother in CH5 forbidden set ⇒225-turn livelock (R5 §H3) | IBC | CH5 forbidden set EMPTY always + N2 transit-neutrality + R4 carrier-yield rule; +AC A-4 |
+| DEF-10 | forbidden-landing + door-occupancy jointly (R5; R6 ROOT B) | IBC | R4 carrier-yield rule is defined over the conjunction (last-progress-landing), not one conjunct; +AC A-4 |
+| DEF-11 | 74 D-9 + inherited D-4/D-6 flagged on byte-identical parent (R6 ROOT A) | AC | verification-infra: NOT structurally prevented — R3 correctly ATTRIBUTES it. Aligned-prefix + channel telemetry (D.1.2/D.1.4) makes inherited parent behavior report-tier |
+| DEF-12 | Idle resident camping mother ⇒ parity livelock (R6 b1) | IBC | R4 carrier-yield rule + S4 idle-yield; +AC A-4; +EW L-CORE full-wood on T2/T3 |
+| DEF-13 | `banana_bank` occupied doors + bounce-blind counter (R6 b2) | IBC | F-B2 occupied-door filter + EV13 bounce-inclusive; +AC S3(Bank) liveness/A-4 |
+| DEF-14 | Instant plant margin farmed every regrowth (R6 ROOT C(i)) | IBC | R2 founding guard is ASSET_SURVIVAL_ORACLE `feasible_found` — the approximate F-C1 second deadline is GONE (was the review's open item); +AC A-17; +EW ST fixtures |
+| DEF-15 | Inverted claim release; inner reinvested in lost asset (R6 C(ii)) | IBC | CH2 latched persistence in S8/S9 while the lost plant lives + R5 bounded lineage veto; CH1=None in S9; +AC A-6/A-1 |
+| DEF-16 | Lost-hold froze the resident to game end (R6 ROOT D, d1) | IBC | S8 T8a immediate on cargo=0, S9 CH1=None, +T8d infeasibility exit; +AC A-1/A-18; +EW EV16/re-entry fixtures |
+| DEF-17 | Chopper-blind flip; resident spectated a chopper kill (R6 d2) | IBC | choppers are now IN the model: ASSET_SURVIVAL_ORACLE `opp_destroy_turn` + EV7 oracle-driven (was the review's open item); +EW L-CORE chopper + ST5 |
 
-Coverage: 17/17 defects mapped. Three (DEF-03, DEF-08, DEF-11) are
-verification-infrastructure defects and map to section D by design — the maturity pyramid
-is part of the deliverable precisely because those rounds were lost to test gaps, not
-wrapper gaps.
+Corrected coverage tally (honest, per review ack): **13 impossible-by-construction**
+(DEF-01/02/04/06/07/09/10/12/13/14/15/16/17), **3 assertion/infra-caught** (DEF-03, DEF-05,
+DEF-11), **1 enumeration-witnessed** (DEF-08). Overclaim removed: DEF-11 is NOT structurally
+prevented — the parent behavior is real; R3 attribution makes it report-tier. DEF-03 is a
+build-artifact obligation, not a wrapper property. DEF-08 is a test obligation the manifest
+must discharge. DEF-14 and DEF-17, flagged OPEN by the review (F-C1 had reintroduced a second
+approximate chopper deadline), are closed structurally by R2's single oracle — no second
+deadline survives.
 
 ---
 
@@ -482,62 +723,110 @@ wrapper gaps.
 ### D.1 Contract harness (foundation)
 
 1. A probe build (family probe pattern — SEAM R8's activation probe) compiled with a
-   `banana_contracts` cfg: after step 7 of every turn, evaluate assertions A-1 … A-17
-   against (FSM state, channel values, `S_t`, emitted commands, paired parent stream
-   where available). Violation ⇒ `eprintln!` full witness (turn, state, channel values,
-   both command streams) then `panic!`.
-2. Attribution rule baked in (DEF-11): a command is banana-attributable iff it differs
-   from the stable parent's aligned slot on the identical input stream; A-8's
-   byte-equality check supplies the pairing.
+   `banana_contracts` cfg: after step 9 of every turn, evaluate assertions A-0 … A-18
+   against (FSM state, channel values, `S_t`, emitted commands, channel-touch telemetry,
+   and the paired parent stream on the aligned prefix only — R3). Violation ⇒ `eprintln!`
+   full witness (turn, state, channel values, both command streams) then `panic!`.
+2. **Attribution rule (R3, review §R3) — aligned prefix ONLY, then channel telemetry.**
+   Parent-command divergence certifies banana-attribution **only up to the first turn where
+   the candidate and stable-parent command streams differ** (the aligned prefix). Both
+   executions are closed-loop; once they diverge they are DIFFERENT games and per-turn
+   command comparison is invalid (a later difference can be a downstream state consequence,
+   and an equality can hide an active channel that happened to pick the same verb). So:
+   - **On the aligned prefix** (including the pre-TRAIN funding phase and the TRAIN turn):
+     the D-9 direct contract — (i) all six channels inert before EV2/second-worker
+     existence, (ii) wrapper output == its own unedited inner output on that exact input,
+     (iii) candidate == stable parent byte-for-byte incl. the stats tuple. The FIRST
+     pre-TRAIN divergence is a D-9 FAILURE and ends the aligned-prefix proof.
+   - **After the first divergence**: a command is banana-attributable iff the channel-touch
+     telemetry (D.1.4) names it — CH1..CH5 explicitly recording which channel edited which
+     worker's command that turn. Raw command-vs-parent comparison is no longer used. A
+     teacher-forced shadow parent on the candidate's states may be logged diagnostically but
+     is NOT a causal label.
+   - Rewording (R3): "structural identity" in A-2/A-3/A-5/A-8 after a divergent history means
+     "no wrapper edit to the CURRENT inner result" (the telemetry shows zero channel touches
+     that turn) — NOT byte-equality to a separately evolved parent game. A-8's byte-equality
+     is asserted only on the aligned prefix / dormant turns.
 3. Contracts are compiled OUT of the delivery build (cfg-gated; delivery stderr must stay
    empty — SEAM R2/R8). The probe build's bytes are never the submission bytes.
+4. **Channel-touch telemetry (R3).** The contract build emits, each turn, one record per
+   edited or vetoed slot: `(turn, unit_id, channel ∈ {CH1,CH2,CH3,CH4,CH5}, fsm_state,
+   pre_edit_inner_verb, post_edit_verb, target_cell)`. An empty record set for a turn is the
+   machine-checkable witness of "no wrapper edit this turn" (the post-divergence identity
+   claim). The telemetry is the sole attribution source after divergence, feeds A-4's
+   channel-naming (B.1), and is the definition the fuzz panel (D.3) uses so inherited parent
+   behavior on a diverged state is report-tier, never blocking (DEF-11).
 
-### D.2 Exhaustive small-scope enumeration (primary functional evidence)
+### D.2 FROZEN EXACT ENUMERATION MANIFEST (primary functional gate) — R5 (review §R7)
 
-Bounded grid, enumerated completely, all A.4 transitions + all A-contracts checked on
-every configuration, closed-loop candidate-driven (DEF-06/DEF-08: scripted traces are
-inadmissible as primary evidence).
+This is the FROZEN manifest whose later execution is the primary functional gate. It is
+**bounded exhaustive over this frozen lattice**, NOT exhaustive over the game state space.
+Every configuration runs the real candidate binary closed-loop under the D.1 probe (scripted
+traces inadmissible as primary evidence — DEF-06/DEF-08); every A.4 transition and every
+A-contract is checked on each; oracle decisions are cross-checked against ASSET_SURVIVAL_
+ORACLE (Python) per turn. Each config has a stable ID `<sublattice>-<axis tuple>` and a
+seed/map hash committed with the manifest.
 
-Parameter lattice (proposal):
+Axes and value sets (frozen):
+- `template` ∈ {T1 open ring/4 doors, T2 corridor articulation-mother (R5_MAP), T3 single
+  reachable door (I-22), T4 two doors one parkable (R6 b2), T5 orchard-eligible (must yield
+  S1), T6 solo-worker (¬EV2 whole game)}.
+- `water` ∈ {dry, wet} (CD 6 vs 4).
+- `profile` ∈ {harvester, chopper, mixed, idle}.
+- `oppETA` ∈ {1, 3, 6, 12} (instant-loss, pre-first-fruit, r3a/r3b band, never-flips).
+- `oppCount` ∈ {1, 2}.
+- `worker` ∈ {absent, empty, full-wood, train@8}.
+- `stock` ∈ {0, 1}.
+- `cap` ∈ {80 default, 120 long-run}.
 
-1. Map templates (6): T1 open ring (8 ring cells, 4 doors); T2 corridor with the
-   diagonal mother as articulation cell (R5 `R5_MAP` class); T3 single reachable door
-   (I-22 serialization); T4 two doors, one occupiable by a parked unit (R6 b2 class);
-   T5 orchard-eligible map (water-adjacent door, `enemy_distance >= 11` — must yield S1);
-   T6 solo-worker map (¬EV2 for the whole game). Dimensions ≤ 14×5 as in the trace
-   fixtures.
-2. Water at the mother candidate: {none, adjacent} (2) — CD 6 vs 4 (SPEC §0).
-3. Opponent profile: {harvester, chopper, mixed, idle} (4) — chopper reaches EV7,
-   harvester reaches EV4-6, idle reaches pure-lifecycle paths.
-4. Opponent start ETA to the mother candidate: {1, 3, 6, 12} (4) — spans instant-loss,
-   pre-first-fruit, the ORACLE r3a/r3b strict-tie band, and never-flips.
-5. Opponent count: {1, 2} (2).
-6. Second own worker: {absent, present-empty, present-full-wood, trained-at-turn-8} (4)
-   — full-wood exercises N1/A-4 on every geometry.
-7. Banked banana stock: {0, 1} (2) — bootstrap path on/off.
-8. Turn cap: 80 (covers plant → first fruit → one conversion race at CD 6 with slack;
-   activation deadline paths tested by template T6 + cap).
+Exact configuration count (degenerate collapses stated explicitly, no fuzzy "≈"):
 
-Size: 6 × 2 × 4 × 4 × 2 × 4 × 2 = **3072 configurations** (target band 2k-10k). Each
-runs the real candidate binary closed-loop under the D.1 probe; oracle outputs
-cross-checked against ORACLE (Python) per conversion decision.
+| sub-lattice | axes (fixed / varied) | arithmetic | configs |
+|---|---|---|---|
+| **L-CORE** playable maps | template{T1..T4}×water×profile×oppETA×oppCount×stock, worker∈{empty,full,train@8} | 4·2·4·4·2·3·2 | 1536 |
+| **L-CORE dormant controls** | worker=absent collapses (¬EV2 ⇒ dormant identity, only template×water observable): 1 canonical control per (template,water) | 4·2 | 8 |
+| **L-ELIG** T5 forced-S1 | T5×water×{worker absent,present} (proves eligibility overrides worker/opponent) | 1·2·2 | 4 |
+| **L-SOLO** T6 ¬EV2 | T6×water(dry)×profile×oppETA{1,12}×oppCount{1}×stock | 1·1·4·2·1·2 | 16 |
+| **L-LONG** cap-120 | T6×4 profiles cap120 (EV3 deadline) + T1×2 water×2 profile late-activate@92 (EV18) | 4 + 4 | 8 |
+| **L-FIX** dedicated deterministic fixtures | ST1..ST5 (5) + C1..C6 (6) + EV9/EV15/EV16/EV19/EV20 (5) | 5+6+5 | 16 |
+| **TOTAL** | | 1536+8+4+16+8+16 | **1588** |
 
-Event-class reachability argument (each A.3 event class reachable in-grid):
-EV1 ← T5 (eligible) vs T1-T4,T6 (ineligible). EV2/¬EV2 ← worker configs, T6.
-EV3 ← T6 with cap? no — EV3 needs turn > 100: add a single dedicated long-run
-sub-panel (T6 × 4 profiles, cap 120, 24 configs) to reach it; included in the count
-above as replacement of dead combinations (T5 × water is fixed ⇒ 3072 nominal minus
-degenerate cells ≈ 2.9k live). EV4 ← harvester ETA 1 with ripe fruit (water-adjacent,
-cap 80 reaches first fruit at ~16-20). EV5/EV6 ← harvester ETA 3/6 at the r3a/r3b band
-(grid class G-f: both boundary geometries appear verbatim as T1 instances).
-EV7 ← chopper profiles (G-d). EV8 ← chopper kills + own conversions. EV9 ← mixed
-profile with combat-capable opponent adjacent to the resident (template T2 places the
-resident exposed). EV10/EV11 ← full-wood second worker + resident wood cycle.
-EV12 ← peer occupancy in T4. EV13 ← T2/T4 blockade geometries. EV14/EV15 ← idle
-opponent + no-stock configs (candidate generator starves during growth).
-EV16 ← chopper kills the lost plant post-EV6. EV17 ← stock 0 + mother destroyed.
-EV18 ← the cap-120 sub-panel with late activation. Single-door contention ← T3;
-articulation ← T2 (both are N1/A-4 stress classes, per DEF-09/10/12/13).
+`cap` = 80 for L-CORE/ELIG/SOLO, 120 for L-LONG, per-fixture (≤120) for L-FIX. The old
+nominal 3072 (with an unenumerated "minus degenerate ≈2.9k") is withdrawn: L-CORE's
+worker=absent block IS the exact degenerate set, collapsed to 8 named controls.
+
+**Coverage proof obligation (the gate FAILS if any row is unwitnessed).** Every event class,
+every transition edge, and every R1 compound-event case must be reached by ≥1 named config:
+
+| target | reached by (sub-lattice · axis combo) |
+|---|---|
+| EV1 / ¬EV1 | L-ELIG (T5 eligible → S1) vs L-CORE (T1..T4 ineligible) |
+| EV2 / ¬EV2 | L-CORE worker∈{empty,train@8} vs L-CORE dormant controls + L-SOLO |
+| EV3 | L-LONG T6 cap120 (turn>100 with ¬EV2) |
+| EV4 | L-CORE profile=harvester, oppETA=1, wet (ripe on-cell flip) |
+| EV5 / EV6 | L-FIX ST2 (feasible) / ST1 (infeasible); also L-CORE harvester oppETA∈{3,6} |
+| EV7 | L-CORE profile=chopper + L-FIX ST3/ST4/ST5 |
+| EV8 | L-CORE chopper kill + own conversion completion |
+| EV9 | L-FIX EV9 fixture (combat opponent adjacent to resident on T2) |
+| EV10 / EV11 | L-CORE worker=full-wood resident wood cycle |
+| EV12 | L-CORE T4 peer occupancy |
+| EV13 | L-CORE T2/T4 blockade geometries |
+| EV14 / EV15 | L-CORE profile=idle, stock=0 (starve) → EV14; L-FIX EV15 fixture (productive re-entry) |
+| EV16 | L-FIX EV16 fixture (chopper kills lost plant post-EV6) |
+| EV17 | L-CORE stock=0 + mother destroyed |
+| EV18 | L-LONG T1 late-activate@92 |
+| EV19 | L-FIX EV19 fixture (mother made unreachable mid-conversion) |
+| EV20 | L-FIX EV20 fixture (all doors made unreachable while carrying) |
+| N1/A-4 stress | L-CORE worker=full-wood on T2 (articulation) and T3 (single-door) |
+| C1..C6 (R1 collisions) | L-FIX C1..C6 fixtures (one deterministic config each) |
+| ST1..ST7 strict-tie | L-FIX ST1..ST5 (ST6/ST7 realized as oracle self-test + one grid witness each) |
+| all A.4 edges + T7c/T8d | the union above; the runner asserts every T-id fired at least once |
+
+Dedicated deterministic fixtures (L-FIX) exist precisely so we do NOT assume a mixed/idle
+opponent will happen to kill the resident (EV9) or that an idle profile will traverse
+release→re-entry (EV15) or that a chopper will land on the lost plant (EV16) — each is
+constructed, not hoped for. Historical red witnesses (`fuzz/failures/…`, the R5/R6 GREEN
+lists) are ALSO manifest rows: the gate fails if any is absent or regresses.
 
 ### D.3 Fuzz panel (defense-in-depth, demoted from primary)
 
@@ -561,7 +850,7 @@ seeds; the R5/R6 GREEN-witness lists are the promotion gate.
 
 | gap | as-built (snapshot cite) | disposition |
 |---|---|---|
-| GAP-1 | No EV7: flip trigger counts harvesters only (`banana_opponent_eta(…, false)`, I1:644); chopper attack on the mother is invisible (R6 d2; F-D3 was deferred) | **(i) refactor needed** — add the EV7 predicate (chopper ETA ≤ 1 ∨ un-attributed mother health drop) feeding the same oracle-generalized convert/abandon branch. Without it, table cells S3-S5 × EV7 are open and D.2 class G-d fails by construction. Largest deviation |
+| GAP-1 | No EV7 / chopper-blind flip; harvester-only ETA (`banana_opponent_eta(…, false)`, I1:644); AND F-C1 reintroduced a second approximate chopper deadline (R6 d2) | **(i) refactor needed — R2** — replace both EV7's threshold and the F-C1 founding proxy with ASSET_SURVIVAL_ORACLE (A.7): choppers enter the model via `opp_destroy_turn`, EV7 becomes oracle-driven, founding uses `feasible_found`. One oracle, no second deadline. Largest deviation |
 | GAP-2 | Claim is recomputed per turn as `min` over live diagonal bananas (`banana_mother_cell`, I1:200-207, read again at I1:1056-1060) — post-loss it can migrate to a different (even opponent-planted) diagonal banana; pre-loss it is `f(view)`, not `f(state)` | **(i) refactor needed** — latch the founded/lost mother cell in wrapper state; CH2 = latched cell while its plant lives (CI-0, A-6). Small, mechanical |
 | GAP-3 | S6/S7 are implicit (branch + `banana_target == (Chop, mother)` encoding), not named states | **(ii) ratify** — the encoding is deterministic and single-writer (ring Chop candidates are orthogonal-only, so the latch is unambiguous); A.1 provides the mapping; D.1 asserts the state decode |
 | GAP-4 | I-16's "or training permanently infeasible" arm omitted (R6 family a: strictly stricter, never earlier) | **(ii) ratify** + spec revision note: solo-worker banana play was never validated; stricter activation is the safe default |
@@ -572,7 +861,62 @@ seeds; the R5/R6 GREEN-witness lists are the promotion gate.
 | GAP-9 | HarvestNow requires standing on the mother (adjacent-with-ripe-fruit flip goes to the oracle branch) | **(ii) ratify** — matches SPEC I-10a "harvestable immediately"; the oracle correctly prices the adjacent case |
 | GAP-10 | Evaluation order and channel legality existed only as comments scattered through I1 | **(ii) ratified by this document** — A.2's global order is the normative statement; D.1 makes it checkable |
 
-Minimal path to design-conformance: (1) GAP-2 latch (small, isolated); (2) GAP-1 EV7
-branch (medium — one new predicate + reuse of the existing branch bodies); (3) D.1
-contract harness as a probe build; (4) D.2 grid runner reusing `make_banana_traces.py`
-machinery. No other as-built change is required; everything else is ratified above.
+Additional gaps opened by the 2026-08-06 review revision:
+
+| gap | as-built (snapshot cite) | disposition |
+|---|---|---|
+| GAP-11 | No concurrent-event priority; A.4 cells assume one event fires (I1 branch order is incidental) | **(i) refactor needed — R1** — implement the A.6 total order as the step-1 selector; add A-0 decode assertion |
+| GAP-12 | Attribution used raw candidate-vs-parent slot comparison past divergence (I1 detector assumptions) | **(i) refactor needed — R3** — aligned-prefix proof only, then channel-touch telemetry (D.1.4); emit the telemetry record from the probe build |
+| GAP-13 | Post-loss veto is global (every bank `PICK … BANANA`, rest of game, I1:1089-1118) | **(i) refactor needed — R5** — scope the veto to the latched lineage and lapse it at EV16 (finite) |
+| GAP-14 | S7/S8 lack impossible-commitment exits (only mother/resident death, I1:614-638/409-431) | **(i) refactor needed — R6** — add EV19/EV20 → T7c/T8d; A-18 asserts no stuck commitment |
+| GAP-15 | N1 was assertion-only (A-4), not enforced; unconditional resident priority (I1:843-847) | **(i) refactor needed — R4** — carrier-yield rule in step 4f (B.1.3); A-4 becomes the check |
+
+Minimal path to design-conformance: (1) GAP-2 latch (small, isolated); (2) GAP-1/R2
+ASSET_SURVIVAL_ORACLE (replaces EV7 threshold + F-C1 proxy with the extended
+`asset_survival_oracle`); (3) GAP-11/R1 priority selector + GAP-15/R4 carrier-yield rule;
+(4) GAP-13/R5 veto scope + GAP-14/R6 impossible-commitment exits; (5) D.1 contract harness +
+GAP-12/R3 telemetry as a probe build; (6) D.2 frozen manifest runner (1588 configs) reusing
+`make_banana_traces.py`. Everything else is ratified above.
+
+---
+
+## Revision 2026-08-06 (design review 20260806T073620Z)
+
+Reviewer `local_codex_1` accepted the direction and skeleton and required five structural
+corrections to make the design a total implementation contract. Each is resolved in place;
+this section is the index, not a diff log.
+
+- **R1 — atomic turn model + concurrent-event priority.** A.2 now defines the single atomic
+  per-turn procedure (steps 0-9) with a per-event observation source. New **A.6** gives the
+  TOTAL priority order over EV1-EV20 (rank 1 EV9 → rank 20 EV1), justified by loss/liveness
+  dominating opportunity, with worked collision resolutions C1-C6 (the review's listed
+  collisions). The Mealy declaration (A.2, A-0) fixes S6/blocked-hold/idle-yield as transient
+  output modes, not persisted states.
+- **R2 — one exact asset-survival oracle.** New **A.7** ASSET_SURVIVAL_ORACLE, implemented as
+  `asset_survival_oracle` in `conversion_race_oracle.py` (extends the existing oracle; the
+  harvest-only case reproduces CONVERSION_RACE_ORACLE exactly). It replaces EV7's threshold
+  AND the F-C1 founding proxy — one growth-aware absolute-time deadline (`asset_lost_turn` =
+  min of farm-out and multi-chopper chop-out), strict completion-before-opponent-action.
+  Strict-tie fixtures ST1-ST7 defined; ST1-ST5 + founding + harvest-equivalence asserted in
+  the oracle self-test (green).
+- **R3 — attribution only on aligned prefix.** D.1.2 restricts parent-divergence attribution
+  to the aligned prefix (first divergence ends it); beyond divergence, attribution uses the
+  explicit channel-touch telemetry specified in D.1.4. A-2/A-3/A-5/A-8 reworded: identity =
+  "no wrapper edit to the current inner result", not equality to a separately evolved parent.
+- **R4 — enforce carrier-progress.** B.1.3 makes N1 a production DECISION rule (the
+  carrier-yield rule, step 4f, over CH1+CH2+CH3+CH5 jointly): a banana effect that removes a
+  full carrier's last progress landing YIELDS. A-4 is now the post-hoc check (with channel
+  attribution), not the mechanism.
+- **R5 — close the enumeration gate.** (a) B.4/S9 bound the post-loss veto to the latched
+  lineage, finite, lapsing at EV16 (the global rest-of-game PICK veto is withdrawn). (b) New
+  EV19/EV20 → T7c/T8d (A.4a) give S7/S8 production exits for impossible commitments (A-18).
+  (c) D.2 is now the FROZEN EXACT ENUMERATION MANIFEST: axes + value sets, exact count
+  **1588** (L-CORE 1544 + L-ELIG 4 + L-SOLO 16 + L-LONG 8 + L-FIX 16), the degenerate
+  collapse enumerated (not "≈2.9k"), and a coverage proof obligation mapping every event
+  class, transition edge, and R1 collision C1-C6 to a named config — the gate fails if any is
+  unwitnessed. This manifest's later execution is the primary functional gate.
+
+§C rewritten with an honest coverage class per defect: **13 impossible-by-construction, 3
+assertion/infra-caught (DEF-03, DEF-05, DEF-11), 1 enumeration-witnessed (DEF-08)**. The
+review's open items DEF-11 (now correctly attributed, not overclaimed as prevented), DEF-14
+and DEF-17 (now closed by R2's single oracle) are resolved.
