@@ -230,35 +230,6 @@ impl BananaBot {
             .unwrap_or(10_000)
     }
 
-    /// Earliest conservative opponent chop-out deadline, in turns from S_t.
-    /// Same-player choppers cannot share the tree cell, so powers are never
-    /// summed: each possible chopper is simulated alone and the earliest legal
-    /// single-unit schedule wins.
-    fn banana_opponent_chop_deadline(view: &GameState, cell: Cell) -> i32 {
-        let Some(plant) = Self::banana_live(view, cell) else {
-            return 10_000;
-        };
-        let dist = bfs_distances(&view.walkable, &[cell]);
-        view.units
-            .iter()
-            .filter(|unit| unit.player == 1 && unit.stats.chop_power > 0)
-            .filter_map(|unit| {
-                let eta = dist
-                    .get(&unit.cell)
-                    .map(|d| MoisanBot::ceil_div(*d, unit.stats.movement_speed))?;
-                let arrival = Self::banana_predict_growth(view, plant, eta);
-                let (turns, _wood) = MoisanBot::chop_outcome(
-                    view,
-                    plant,
-                    arrival,
-                    unit.stats.chop_power,
-                )?;
-                Some(eta + turns - 1)
-            })
-            .min()
-            .unwrap_or(10_000)
-    }
-
     /// Growth-only forward simulation of a live plant over `turns` growth
     /// ticks — the CONVERSION_RACE_ORACLE `predict_tree` mirror (spec
     /// Revision 2026-08-05: "state(t+k) of an unchopped tree =
@@ -352,8 +323,8 @@ impl BananaBot {
         // exact conservative fresh-plant-to-first-fruit horizon (creation tick
         // included); ties are unsafe because cross-player co-location and
         // last-fruit duplication are legal.
-        let response_lead = 2 * cooldown;
-        eta_h > response_lead && eta_x > response_lead
+        let first_fruit = resident_eta + 4 * cooldown + 2;
+        eta_h > first_fruit && eta_x > first_fruit
     }
 
 
@@ -704,36 +675,13 @@ impl BananaBot {
                 .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
                 .unwrap_or(10_000);
             let eta_opp = Self::banana_opponent_eta(view, mother, false);
-            let chop_deadline = Self::banana_opponent_chop_deadline(view, mother);
-            let plant = Self::banana_live(view, mother);
-            let conversion = worker.stats.chop_power.checked_sub(0).and_then(|_| {
-                let p = plant?;
-                if worker.stats.chop_power <= 0 || resident_eta >= 10_000 {
-                    return None;
-                }
-                let arrival = Self::banana_predict_growth(view, p, resident_eta);
-                let (turns, _wood) = MoisanBot::chop_outcome(
-                    view, p, arrival, worker.stats.chop_power
-                )?;
-                Some(resident_eta + turns - 1)
-            });
-            let harvest_deadline = plant
-                .map(|p| eta_opp.max(MoisanBot::ticks_until_fruit(view, p)))
-                .unwrap_or(10_000);
-            let loss_deadline = harvest_deadline.min(chop_deadline);
-            // Do not wait for a geometric ownership tie.  Begin the response
-            // while a still-feasible conversion has only a three-turn reserve;
-            // this prevents the late-farm and chopper-spectator families.
-            let threatened = conversion
-                .map(|completion| loss_deadline <= completion + 3)
-                .unwrap_or(true);
             let banking_drop_now = worker.carry[crate::game::types::WOOD] > 0
                 && is_adjacent(worker.cell, view.shacks[0]);
-            if (resident_eta >= eta_opp || threatened) && !banking_drop_now {
+            if resident_eta >= eta_opp && !banking_drop_now {
+                let plant = Self::banana_live(view, mother);
                 let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
                 if fruits_ready
                     && worker.cell == mother
-                    && eta_opp > 0
                     && worker.stats.harvest_power > 0
                     && worker.free_capacity() > 0
                 {
@@ -780,9 +728,22 @@ impl BananaBot {
                 // Infeasible => the Abandoned transition below (branch
                 // 3). Feasible => convert, latched above until the
                 // mother falls.
-                let feasible = conversion
-                    .map(|completion| completion < loss_deadline)
-                    .unwrap_or(false);
+                let feasible = worker.stats.chop_power > 0
+                    && resident_eta < 10_000
+                    && plant
+                        .and_then(|p| {
+                            let arrival =
+                                Self::banana_predict_growth(view, p, resident_eta);
+                            let (chop_turns, _wood) = MoisanBot::chop_outcome(
+                                view,
+                                p,
+                                arrival,
+                                worker.stats.chop_power,
+                            )?;
+                            let ripe = MoisanBot::ticks_until_fruit(view, p);
+                            Some(resident_eta + chop_turns - 1 < eta_opp.max(ripe))
+                        })
+                        .unwrap_or(false);
                 if feasible {
                     // I-10a branch 2: convert (deliberate mother chop).
                     self.banana_target = Some((BananaTask::Chop, mother));

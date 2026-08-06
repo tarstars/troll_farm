@@ -1,14 +1,14 @@
-commit=2b674ac3085c61c30a4aadfe9904fe077d09fcd2
-utc=2026-08-06T11:55:24Z
+commit=6f4e4ec95d5eb5a801fe91760aa54d5f118952a5
+utc=2026-08-06T11:56:33Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
 == candidate build ==
 {
-  "candidate_bytes": 82968,
-  "candidate_sha256": "1712638010e35975b5e68d8f645d1c0eebc328a9e581bed43997510ba7a69cbb",
+  "candidate_bytes": 82046,
+  "candidate_sha256": "46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af",
   "insertion_bytes": {
-    "I1": 19797,
+    "I1": 18875,
     "I2": 64,
     "I3": 49,
     "I4": 80,
@@ -31,26 +31,8 @@ smoke_exit=0 stdout_bytes=0 stderr_bytes=0
 == regression all ==
 {
  "bank_turns": [
-  43,
-  51,
-  56,
-  61,
-  85,
-  91,
-  96,
-  101,
-  121,
-  127,
-  132,
-  137,
-  157,
-  163,
-  168,
-  173,
-  193,
-  199,
-  204,
-  209
+  6,
+  12
  ],
  "check": "R-1 one-seed-reservation",
  "invariant": "I-9",
@@ -573,11 +555,11 @@ semantic_harness_exit=1
 == trace detector tests ==
 ............................
 ----------------------------------------------------------------------
-Ran 28 tests in 0.012s
+Ran 28 tests in 0.010s
 
 OK
 trace_detector_tests_exit=0
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 12 blocking, 109 flagged, 14.7 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: BLOCK (240 games, 4 blocking, 110 flagged, 15.6 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=1
