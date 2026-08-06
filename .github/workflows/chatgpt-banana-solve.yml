@@ -9,57 +9,61 @@ permissions:
   contents: write
 
 jobs:
-  discover-and-baseline:
+  validate:
     if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[skip banana-ci]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Baseline discovery and validation
+      - name: Build and run banana gates
         shell: bash
         run: |
           set +e
           mkdir -p chatgpt_1/banana-solve/ci
           OUT=chatgpt_1/banana-solve/ci/latest.txt
           : > "$OUT"
+          run_gate() {
+            local name="$1"; shift
+            echo >> "$OUT"
+            echo "== $name ==" >> "$OUT"
+            "$@" >> "$OUT" 2>&1
+            local code=$?
+            echo "${name// /_}_exit=$code" >> "$OUT"
+            return 0
+          }
           {
             echo "commit=$GITHUB_SHA"
             echo "utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            echo
-            echo "== files =="
-            find claude_1/banana-restoration-r2 -maxdepth 3 -type f -printf '%p\n' | sort
-            echo
-            echo "== toolchain =="
-            python3 --version
-            rustc --version
-            cargo --version
-            echo
-            echo "== candidate build =="
-          } >> "$OUT" 2>&1
-          python3 claude_1/banana-restoration-r2/build_banana_candidate.py >> "$OUT" 2>&1
-          echo "build_exit=$?" >> "$OUT"
-          echo >> "$OUT"
-          echo "== oracle self-test ==" >> "$OUT"
-          python3 claude_1/banana-restoration-r2/conversion_race_oracle.py >> "$OUT" 2>&1
-          echo "oracle_exit=$?" >> "$OUT"
-          echo >> "$OUT"
-          echo "== likely test entrypoints ==" >> "$OUT"
-          find claude_1/banana-restoration-r2 -maxdepth 3 -type f \( -name '*test*.py' -o -name '*gate*.py' -o -name '*harness*.py' -o -name '*fuzz*.py' \) -printf '%p\n' | sort >> "$OUT"
-          echo >> "$OUT"
-          echo "== compile candidate ==" >> "$OUT"
-          rustc --edition=2021 -O claude_1/banana-restoration-r2/candidate-banana-r2.min.rs -o /tmp/banana-candidate >> "$OUT" 2>&1
-          echo "compile_exit=$?" >> "$OUT"
+            echo "python=$(python3 --version 2>&1)"
+            echo "rustc=$(rustc --version 2>&1)"
+          } >> "$OUT"
+
+          run_gate "candidate build" python3 claude_1/banana-restoration-r2/build_banana_candidate.py
+          run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
+          run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O claude_1/banana-restoration-r2/candidate-banana-r2.min.rs -o /tmp/banana-candidate
           echo >> "$OUT"
           echo "== smoke empty input ==" >> "$OUT"
           timeout 5s /tmp/banana-candidate </dev/null >/tmp/banana.stdout 2>/tmp/banana.stderr
           echo "smoke_exit=$? stdout_bytes=$(wc -c </tmp/banana.stdout) stderr_bytes=$(wc -c </tmp/banana.stderr)" >> "$OUT"
           cat /tmp/banana.stderr >> "$OUT"
+
+          run_gate "regression all" python3 claude_1/banana-restoration-r2/regression_tests.py all --source claude_1/banana-restoration-r2/candidate-banana-r2.min.rs
+          run_gate "semantic harness" python3 claude_1/banana-restoration-r2/semantic_harness.py --parent cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs --candidate claude_1/banana-restoration-r2/candidate-banana-r2.min.rs --golden-out /tmp/tier-p.json --results-out chatgpt_1/banana-solve/ci/tier-c.json
+          run_gate "trace detector tests" python3 -m unittest discover -s claude_1/banana-restoration-r2 -p test_trace_detectors.py
+          echo >> "$OUT"
+          echo "== fuzz panel ==" >> "$OUT"
+          (
+            cd claude_1/pipeline
+            python3 fuzz_panel.py --config fuzz-panel-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json
+          ) >> "$OUT" 2>&1
+          echo "fuzz_panel_exit=$?" >> "$OUT"
+
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -- "$OUT" claude_1/banana-restoration-r2/candidate-banana-r2.min.rs claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
+          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json claude_1/banana-restoration-r2/candidate-banana-r2.min.rs claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
           if ! git diff --cached --quiet; then
-            git commit -m "ci: record banana baseline [skip banana-ci]"
+            git commit -m "ci: record banana validation [skip banana-ci]"
             git push
           fi
