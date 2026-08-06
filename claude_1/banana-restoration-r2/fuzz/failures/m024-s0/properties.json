@@ -1,0 +1,111 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   1,
+   0,
+   1,
+   0,
+   6
+  ],
+  "margin": 26,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 26
+ },
+ "class": "single_door_tent",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m024",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   9
+  ],
+  "margin": 36,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 36
+ },
+ "profile": "idle",
+ "seat": 0,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       7,
+       0
+      ],
+      [
+       8,
+       0
+      ]
+     ],
+     "k": 73,
+     "turn_end": 200,
+     "turn_start": 54,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  },
+  {
+   "detail": {
+    "parent_progress_turns": [
+     45,
+     46,
+     49,
+     50,
+     51,
+     52,
+     55,
+     56,
+     69,
+     70
+    ],
+    "why": "candidate makes no progress over turns 44-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 44
+   },
+   "property": "P4"
+  }
+ ]
+}

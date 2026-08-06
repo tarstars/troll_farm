@@ -1,0 +1,82 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   17,
+   0,
+   17
+  ],
+  "margin": 85,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 85
+ },
+ "class": "orchard_eligible",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 1,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m074",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "profile": "idle",
+ "seat": 1,
+ "seed": 32452843,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-7",
+   "episodes": [
+    {
+     "kind": "unbanked_at_end",
+     "provenance": "harvest",
+     "turn_end": 200,
+     "turn_start": 194,
+     "unit": 0
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}
