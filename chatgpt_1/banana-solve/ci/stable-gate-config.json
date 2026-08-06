@@ -1,0 +1,47 @@
+{
+  "bin_cache_dir": "/tmp/chatgpt-banana-stable/bin",
+  "candidate": {
+    "crate": "chatgpt_1_banana_r2_zero_oscillation",
+    "sha256": "b883d5e531ce8927107109e546d7739f269a686c670dd30a3238c01cfba49479",
+    "source": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/candidate-banana-r2.min.rs"
+  },
+  "class_mix": {
+    "choke_corridor": 0.25,
+    "forest_dense": 0.08,
+    "forest_sparse": 0.07,
+    "multi_door": 0.1,
+    "open_field": 0.15,
+    "orchard_eligible": 0.1,
+    "single_door_tent": 0.1,
+    "water_diagonal": 0.15
+  },
+  "games_dir": "/tmp/chatgpt-banana-stable/games",
+  "liveness_window": 60,
+  "maps": 120,
+  "margin_collapse_threshold": 100,
+  "max_generation_attempts": 64,
+  "notes": [
+    "P1/D-9 is parent-differential at the PANEL layer (round-6 ROOT-A ruling, 2026-08-06, diagnosis-r6-2026-08-06.md family (a)): a D-9 episode blocks only if absent from the parent's run on the identical map/opponent; episodes the parent reproduces identically are report-tier 'inherited-parent-D9' flags. trace_detectors.detect_d9 is unmodified - the base-detector question goes to the integrator."
+  ],
+  "opponent_mix": {
+    "chopper_aggressor": 0.3,
+    "harvester": 0.4,
+    "idle": 0.3
+  },
+  "parent": {
+    "crate": "banana_r2_fuzz_parent",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "source": "/tmp/banana-standing-gate/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+  },
+  "processes": 8,
+  "seeds": [
+    982451653,
+    15485863,
+    32452843,
+    49979687,
+    67867967,
+    86028121
+  ],
+  "task": "20260802-banana-restoration-r2 stable zero-oscillation gate",
+  "turns": 200
+}

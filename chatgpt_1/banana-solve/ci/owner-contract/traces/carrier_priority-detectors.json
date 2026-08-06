@@ -19,10 +19,17 @@
       "verdict": "PASS"
     },
     {
-      "count": 0,
+      "count": 1,
       "detector": "D-4",
-      "episodes": [],
-      "verdict": "PASS"
+      "episodes": [
+        {
+          "kind": "no_progress",
+          "turn_end": 6,
+          "turn_start": 4,
+          "unit": 2
+        }
+      ],
+      "verdict": "FAIL"
     },
     {
       "count": 0,

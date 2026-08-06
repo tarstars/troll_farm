@@ -1,19 +1,30 @@
 {
   "raw_exit": 1,
   "raw_stderr": "",
-  "raw_stdout": "{\n  \"scenarios\": {\n    \"carrier_priority\": {\n      \"blocking_detectors\": [],\n      \"first_banana_turn\": 1,\n      \"peer_drop_turns\": [\n        7,\n        57,\n        69,\n        84\n      ],\n      \"verdict\": \"FAIL\"\n    },\n    \"delayed_threat\": {\n      \"banking_events\": 2,\n      \"blocking_detectors\": [],\n      \"completed_orthogonal_wood_chops\": 2,\n      \"diagonal_plants\": 0,\n      \"harvests\": 0,\n      \"opponent_banana_carry\": 0,\n      \"orthogonal_plants\": 2,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 2,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 8,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        }\n      ],\n      \"verdict\": \"FAIL\"\n    },\n    \"funding_prefix\": {\n      \"banana_before_train\": [],\n      \"train_turn\": 1,\n      \"verdict\": \"PASS\"\n    },\n    \"safe_lifecycle\": {\n      \"banking_events\": 31,\n      \"blocking_detectors\": [],\n      \"completed_orthogonal_wood_chops\": 14,\n      \"diagonal_plants\": 1,\n      \"final_inventory\": [\n        0,\n        0,\n        0,\n        31,\n        0,\n        28\n      ],\n      \"harvests\": 46,\n      \"orthogonal_plants\": 14,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [\n        {\n          \"cell\": [\n            2,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 3,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 29,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 37,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 69,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 73,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 105,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 109,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 141,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 145,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 177,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 181,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 213,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 217,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 249,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 253,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        }\n      ],\n      \"verdict\": \"PASS\"\n    },\n    \"unsafe_nearby\": {\n      \"banking_events\": 2,\n      \"completed_orthogonal_wood_chops\": 2,\n      \"diagonal_plants\": 0,\n      \"harvests\": 0,\n      \"orthogonal_plants\": 2,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 2,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 8,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        }\n      ],\n      \"verdict\": \"PASS\"\n    }\n  },\n  \"verdict\": \"FAIL\"\n}\n",
+  "raw_stdout": "{\n  \"scenarios\": {\n    \"carrier_priority\": {\n      \"blocking_detectors\": [\n        {\n          \"count\": 1,\n          \"detector\": \"D-4\",\n          \"episodes\": [\n            {\n              \"kind\": \"no_progress\",\n              \"turn_end\": 6,\n              \"turn_start\": 4,\n              \"unit\": 2\n            }\n          ],\n          \"verdict\": \"FAIL\"\n        }\n      ],\n      \"first_banana_turn\": 1,\n      \"peer_drop_turns\": [\n        9\n      ],\n      \"verdict\": \"FAIL\"\n    },\n    \"delayed_threat\": {\n      \"banking_events\": 2,\n      \"blocking_detectors\": [],\n      \"completed_orthogonal_wood_chops\": 2,\n      \"diagonal_plants\": 0,\n      \"harvests\": 0,\n      \"opponent_banana_carry\": 0,\n      \"orthogonal_plants\": 2,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 2,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 8,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        }\n      ],\n      \"verdict\": \"FAIL\"\n    },\n    \"funding_prefix\": {\n      \"banana_before_train\": [],\n      \"train_turn\": 1,\n      \"verdict\": \"PASS\"\n    },\n    \"safe_lifecycle\": {\n      \"banking_events\": 31,\n      \"blocking_detectors\": [],\n      \"completed_orthogonal_wood_chops\": 14,\n      \"diagonal_plants\": 1,\n      \"final_inventory\": [\n        0,\n        0,\n        0,\n        31,\n        0,\n        28\n      ],\n      \"harvests\": 46,\n      \"orthogonal_plants\": 14,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [\n        {\n          \"cell\": [\n            2,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 3,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 29,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 37,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 69,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 73,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 105,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 109,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 141,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 145,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 177,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 181,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 213,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 217,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            2,\n            1\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 249,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        },\n        {\n          \"cell\": [\n            1,\n            2\n          ],\n          \"kind\": \"BANANA\",\n          \"landed\": true,\n          \"turn\": 253,\n          \"unit\": 0,\n          \"verb\": \"PLANT\"\n        }\n      ],\n      \"verdict\": \"PASS\"\n    },\n    \"unsafe_nearby\": {\n      \"banking_events\": 0,\n      \"completed_orthogonal_wood_chops\": 0,\n      \"diagonal_plants\": 0,\n      \"harvests\": 0,\n      \"orthogonal_plants\": 0,\n      \"outside_ring_plants\": [],\n      \"plant_events\": [],\n      \"verdict\": \"FAIL\"\n    }\n  },\n  \"verdict\": \"FAIL\"\n}\n",
   "scenarios": {
     "carrier_priority": {
-      "blocking_detectors": [],
+      "blocking_detectors": [
+        {
+          "count": 1,
+          "detector": "D-4",
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 6,
+              "turn_start": 4,
+              "unit": 2
+            }
+          ],
+          "verdict": "FAIL"
+        }
+      ],
       "contract": "peer carrying wood reaches DROP/cargo loss without attributable oscillation, contention, or banking stall; unrelated work is allowed",
       "first_banana_turn": 1,
       "peer_drop_turns": [
-        7,
-        57,
-        69,
-        84
+        9
       ],
-      "verdict": "PASS"
+      "verdict": "FAIL"
     },
     "delayed_threat": {
       "banking_events": 2,
@@ -464,38 +475,15 @@
       "verdict": "PASS"
     },
     "unsafe_nearby": {
-      "banking_events": 2,
-      "completed_orthogonal_wood_chops": 2,
+      "banking_events": 0,
+      "completed_orthogonal_wood_chops": 0,
       "diagonal_plants": 0,
       "harvests": 0,
-      "orthogonal_plants": 2,
+      "orthogonal_plants": 0,
       "outside_ring_plants": [],
-      "plant_events": [
-        {
-          "cell": [
-            2,
-            1
-          ],
-          "kind": "BANANA",
-          "landed": true,
-          "turn": 2,
-          "unit": 0,
-          "verb": "PLANT"
-        },
-        {
-          "cell": [
-            2,
-            1
-          ],
-          "kind": "BANANA",
-          "landed": true,
-          "turn": 8,
-          "unit": 0,
-          "verb": "PLANT"
-        }
-      ],
-      "verdict": "PASS"
+      "plant_events": [],
+      "verdict": "FAIL"
     }
   },
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

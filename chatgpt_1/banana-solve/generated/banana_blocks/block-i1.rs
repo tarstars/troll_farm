@@ -120,6 +120,9 @@ pub struct BananaBot {
     // only after banana activation to stop a candidate-attributable A-B-A
     // return before it becomes a sustained oscillation.
     banana_peer_history: std::collections::BTreeMap<i32, (Cell, Cell)>,
+    // Global final-command history. Unlike banana_peer_history this is live
+    // in every phase and is the hard D-1/D-4 gate mechanism.
+    stability_history: std::collections::BTreeMap<i32, (Cell, Cell)>,
 }
 
 impl BananaBot {
@@ -141,6 +144,7 @@ impl BananaBot {
             banana_lost_banking: false,
             banana_mother: None,
             banana_peer_history: std::collections::BTreeMap::new(),
+            stability_history: std::collections::BTreeMap::new(),
         }
     }
 
@@ -1035,6 +1039,176 @@ impl BananaBot {
             }
         }
     }
+    /// Referee-realized MOVE landing for one final command.
+    fn stability_landing(view: &GameState, unit: &Unit, command: &str) -> Option<Cell> {
+        let fields: Vec<&str> = command.split_whitespace().collect();
+        if fields.len() != 4 || !fields[0].eq_ignore_ascii_case("MOVE") {
+            return None;
+        }
+        let id: i32 = fields[1].parse().ok()?;
+        if id != unit.id {
+            return None;
+        }
+        let target = (fields[2].parse().ok()?, fields[3].parse().ok()?);
+        Some(next_cell(
+            &view.walkable,
+            unit.cell,
+            target,
+            unit.stats.movement_speed,
+        ))
+    }
+
+    /// Final hard stability layer. It is intentionally independent of banana
+    /// activation and therefore repairs inherited parent oscillations too.
+    fn stability_finalize(&mut self, view: &GameState, commands: &mut Vec<String>) {
+        let mut unit_ids: Vec<i32> = view
+            .units
+            .iter()
+            .filter(|unit| unit.player == 0)
+            .map(|unit| unit.id)
+            .collect();
+        unit_ids.sort_unstable();
+
+        let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+            .into_iter()
+            .filter(|cell| view.walkable.contains(cell))
+            .collect();
+        let door_set: BTreeSet<Cell> = doors.iter().copied().collect();
+        let door_dist = bfs_distances(&view.walkable, &doors);
+
+        // A carrier landing may never use the current cell of a non-carrier.
+        // This makes the exact progress assignment independent of whether a
+        // later oscillation veto turns that non-carrier's MOVE into WAIT.
+        let non_carrier_cells: BTreeSet<Cell> = view
+            .units
+            .iter()
+            .filter(|unit| {
+                unit.player == 0 && unit.carry[crate::game::types::WOOD] == 0
+            })
+            .map(|unit| unit.cell)
+            .collect();
+
+        let mut carriers: Vec<&Unit> = view
+            .units
+            .iter()
+            .filter(|unit| {
+                unit.player == 0 && unit.carry[crate::game::types::WOOD] > 0
+            })
+            .collect();
+        carriers.sort_by_key(|unit| {
+            (
+                door_dist.get(&unit.cell).copied().unwrap_or(10_000),
+                unit.id,
+            )
+        });
+
+        let mut carrier_landings = BTreeSet::new();
+        let mut priority = BTreeSet::new();
+        for unit in carriers {
+            priority.insert(unit.id);
+            let Some(slot) = SecureOrchardBot::unit_action_slot(
+                commands,
+                &unit_ids,
+                unit.id,
+            ) else {
+                continue;
+            };
+            if door_set.contains(&unit.cell) {
+                commands[slot] = format!("DROP {}", unit.id);
+                continue;
+            }
+            let Some(current_distance) = door_dist.get(&unit.cell).copied() else {
+                // No reachable bank route: do not manufacture a target.
+                commands[slot] = "WAIT".to_string();
+                continue;
+            };
+            let from = bfs_distances(&view.walkable, &[unit.cell]);
+            let (older, previous) = self
+                .stability_history
+                .get(&unit.id)
+                .copied()
+                .unwrap_or((unit.cell, unit.cell));
+            let returning = older == unit.cell && previous != unit.cell;
+
+            let mut options: Vec<(i32, i32, Cell)> = from
+                .iter()
+                .filter_map(|(cell, steps)| {
+                    let next_distance = door_dist.get(cell).copied()?;
+                    if *steps <= unit.stats.movement_speed
+                        && next_distance < current_distance
+                        && !non_carrier_cells.contains(cell)
+                        && !carrier_landings.contains(cell)
+                    {
+                        Some((next_distance, *steps, *cell))
+                    } else {
+                        None
+                    }
+                })
+                .collect();
+            options.sort_unstable();
+
+            let selected = options
+                .iter()
+                .find(|(_, _, cell)| !returning || *cell != previous)
+                .copied();
+            if let Some((_distance, _steps, landing)) = selected {
+                carrier_landings.insert(landing);
+                commands[slot] = format!(
+                    "MOVE {} {} {}",
+                    unit.id,
+                    landing.0,
+                    landing.1,
+                );
+            } else {
+                // A single stationary turn is allowed. The history update
+                // below makes the next turn non-returning, so this cannot
+                // create two consecutive D-4 no-progress transitions.
+                commands[slot] = "WAIT".to_string();
+            }
+        }
+
+        if !priority.is_empty() {
+            MoisanBot::resolve_move_conflicts_with_priority(
+                view,
+                commands,
+                &priority,
+            );
+        }
+
+        // Inspect the actually resolved landing. One repeated cell is enough
+        // to break the contiguous A-B-A-B sequence long before D-1's k>=3
+        // threshold. Carrier targets were selected away from non-carrier
+        // current cells, so converting a non-carrier MOVE to WAIT cannot block
+        // a carrier's exact landing.
+        for unit in view.units.iter().filter(|unit| unit.player == 0) {
+            let Some(slot) = SecureOrchardBot::unit_action_slot(
+                commands,
+                &unit_ids,
+                unit.id,
+            ) else {
+                continue;
+            };
+            let (older, previous) = self
+                .stability_history
+                .get(&unit.id)
+                .copied()
+                .unwrap_or((unit.cell, unit.cell));
+            let returning = older == unit.cell && previous != unit.cell;
+            let lands_on_previous = Self::stability_landing(
+                view,
+                unit,
+                &commands[slot],
+            ) == Some(previous);
+            if returning && lands_on_previous {
+                commands[slot] = "WAIT".to_string();
+            }
+            self.stability_history
+                .insert(unit.id, (previous, unit.cell));
+        }
+        self.stability_history
+            .retain(|id, _| view.unit(*id).is_some());
+    }
+
 }
 
 impl Bot for BananaBot {
@@ -1149,11 +1323,9 @@ impl Bot for BananaBot {
         self.inner.inner.banana_protected_cell = claim;
         let mut commands = self.inner.commands(view);
         let lost = self.banana_enabled == Some(true) && self.banana_lost;
-        if wrapper_action.is_none() && claim.is_none() && !active && !lost {
-            // Structural identity: no post-edit outside banana activation
-            // (dormant/disabled/never-lost-abandoned turns).
-            return commands;
-        }
+        // No early return here: the global stability layer below is
+        // active in every lifecycle phase. Dormant commands remain byte-equal
+        // unless an actual D-1/D-4 prevention rule fires.
         let mut unit_ids: Vec<i32> = view
             .units
             .iter()
@@ -1282,6 +1454,7 @@ impl Bot for BananaBot {
                 &priority,
             );
         }
+        self.stability_finalize(view, &mut commands);
         commands
     }
 }
