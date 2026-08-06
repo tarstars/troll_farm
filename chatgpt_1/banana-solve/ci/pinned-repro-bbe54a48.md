@@ -4,7 +4,7 @@
 - parent: `/tmp/banana-pinned/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 18.3 s
+- wall time: 16.4 s
 
 ## Verdict: BLOCK
 
