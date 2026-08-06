@@ -3721,7 +3721,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -3755,7 +3755,24 @@
     "D-8": 3,
     "D-9": 0
    },
-   "flags": [],
+   "flags": [
+    {
+     "detail": "legacy D-8 discretionary-owned episodes reclassified only where the trace proves a chop-capable opponent's ETA to the exact mother decreased before conversion",
+     "evidence": [
+      {
+       "cell": [
+        12,
+        6
+       ],
+       "current_eta": 15,
+       "dropped_episodes": 3,
+       "observed_turn": 2,
+       "previous_eta": 16
+      }
+     ],
+     "flag": "defensive-chopper-conversion"
+    }
+   ],
    "map_id": "m025",
    "orchard_eligible": false,
    "parent": {
@@ -3783,66 +3800,7 @@
    "seat": 1,
    "seed": 15485863,
    "turns": 200,
-   "violations": [
-    {
-     "count": 3,
-     "detector": "D-8",
-     "episodes": [
-      {
-       "cell": [
-        12,
-        6
-       ],
-       "completion_turn": 7,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 3,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 5,
-       "turn_start": 5,
-       "unit": 0
-      },
-      {
-       "cell": [
-        12,
-        6
-       ],
-       "completion_turn": 7,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 3,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 6,
-       "turn_start": 6,
-       "unit": 0
-      },
-      {
-       "cell": [
-        12,
-        6
-       ],
-       "completion_turn": 7,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 3,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 7,
-       "turn_start": 7,
-       "unit": 0
-      }
-     ],
-     "property": "P1"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -12459,7 +12417,24 @@
     "D-8": 4,
     "D-9": 0
    },
-   "flags": [],
+   "flags": [
+    {
+     "detail": "legacy D-8 discretionary-owned episodes reclassified only where the trace proves a chop-capable opponent's ETA to the exact mother decreased before conversion",
+     "evidence": [
+      {
+       "cell": [
+        0,
+        5
+       ],
+       "current_eta": 11,
+       "dropped_episodes": 4,
+       "observed_turn": 2,
+       "previous_eta": 12
+      }
+     ],
+     "flag": "defensive-chopper-conversion"
+    }
+   ],
    "map_id": "m082",
    "orchard_eligible": false,
    "parent": {
@@ -12488,81 +12463,6 @@
    "seed": 67867967,
    "turns": 200,
    "violations": [
-    {
-     "count": 4,
-     "detector": "D-8",
-     "episodes": [
-      {
-       "cell": [
-        0,
-        5
-       ],
-       "completion_turn": 8,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 4,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 5,
-       "turn_start": 5,
-       "unit": 0
-      },
-      {
-       "cell": [
-        0,
-        5
-       ],
-       "completion_turn": 8,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 4,
-       "flip_turn": null,
-       "health_decreased": false,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 6,
-       "turn_start": 6,
-       "unit": 0
-      },
-      {
-       "cell": [
-        0,
-        5
-       ],
-       "completion_turn": 8,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 4,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 7,
-       "turn_start": 7,
-       "unit": 0
-      },
-      {
-       "cell": [
-        0,
-        5
-       ],
-       "completion_turn": 8,
-       "eta_opp_at_chop_start": 10000,
-       "exact_chop_turns": 4,
-       "flip_turn": null,
-       "health_decreased": true,
-       "kind": "diag_mother_chop",
-       "opponent_harvest_turn": 10005,
-       "reason": "discretionary_owned",
-       "turn_end": 8,
-       "turn_start": 8,
-       "unit": 0
-      }
-     ],
-     "property": "P1"
-    },
     {
      "detail": {
       "parent_progress_turns": [
@@ -18134,7 +18034,7 @@
  ],
  "stats": {
   "banana_activated_games": 161,
-  "blocking_games": 9,
+  "blocking_games": 8,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -18150,13 +18050,13 @@
    "harvester": 96,
    "idle": 72
   },
-  "flagged_games": 109,
+  "flagged_games": 111,
   "games": 240,
   "maps": 120,
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 15.3
+  "wall_time_seconds": 16.13
  },
  "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
  "verdict": "BLOCK"

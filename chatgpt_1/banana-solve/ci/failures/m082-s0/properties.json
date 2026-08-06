@@ -35,7 +35,24 @@
   "D-8": 4,
   "D-9": 0
  },
- "flags": [],
+ "flags": [
+  {
+   "detail": "legacy D-8 discretionary-owned episodes reclassified only where the trace proves a chop-capable opponent's ETA to the exact mother decreased before conversion",
+   "evidence": [
+    {
+     "cell": [
+      0,
+      5
+     ],
+     "current_eta": 11,
+     "dropped_episodes": 4,
+     "observed_turn": 2,
+     "previous_eta": 12
+    }
+   ],
+   "flag": "defensive-chopper-conversion"
+  }
+ ],
  "map_id": "m082",
  "orchard_eligible": false,
  "parent": {
@@ -64,81 +81,6 @@
  "seed": 67867967,
  "turns": 200,
  "violations": [
-  {
-   "count": 4,
-   "detector": "D-8",
-   "episodes": [
-    {
-     "cell": [
-      0,
-      5
-     ],
-     "completion_turn": 8,
-     "eta_opp_at_chop_start": 10000,
-     "exact_chop_turns": 4,
-     "flip_turn": null,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 10005,
-     "reason": "discretionary_owned",
-     "turn_end": 5,
-     "turn_start": 5,
-     "unit": 0
-    },
-    {
-     "cell": [
-      0,
-      5
-     ],
-     "completion_turn": 8,
-     "eta_opp_at_chop_start": 10000,
-     "exact_chop_turns": 4,
-     "flip_turn": null,
-     "health_decreased": false,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 10005,
-     "reason": "discretionary_owned",
-     "turn_end": 6,
-     "turn_start": 6,
-     "unit": 0
-    },
-    {
-     "cell": [
-      0,
-      5
-     ],
-     "completion_turn": 8,
-     "eta_opp_at_chop_start": 10000,
-     "exact_chop_turns": 4,
-     "flip_turn": null,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 10005,
-     "reason": "discretionary_owned",
-     "turn_end": 7,
-     "turn_start": 7,
-     "unit": 0
-    },
-    {
-     "cell": [
-      0,
-      5
-     ],
-     "completion_turn": 8,
-     "eta_opp_at_chop_start": 10000,
-     "exact_chop_turns": 4,
-     "flip_turn": null,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 10005,
-     "reason": "discretionary_owned",
-     "turn_end": 8,
-     "turn_start": 8,
-     "unit": 0
-    }
-   ],
-   "property": "P1"
-  },
   {
    "detail": {
     "parent_progress_turns": [

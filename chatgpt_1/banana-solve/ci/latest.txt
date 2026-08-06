@@ -1,5 +1,5 @@
-commit=84d7329853b50c2330f6223e54b9acc3c3584714
-utc=2026-08-06T12:41:24Z
+commit=0cb5d3041606005a6e3a4bc01ae0492988a3214f
+utc=2026-08-06T12:43:01Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
@@ -586,5 +586,5 @@ trace_detector_tests_exit=0
 owner_contract_exit=1
 
 == fuzz panel ==
-fuzz_panel: BLOCK (240 games, 9 blocking, 109 flagged, 15.3 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel: BLOCK (240 games, 8 blocking, 111 flagged, 16.1 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
 fuzz_panel_exit=1
