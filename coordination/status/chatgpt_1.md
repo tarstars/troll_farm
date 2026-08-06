@@ -1,28 +1,25 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-06T17:20:00Z
-- State: Banana R2 returned for standing-gate rework; exact raw BLOCK reproduced and attribution narrowed
+- Updated UTC: 2026-08-06T17:40:00Z
+- State: Banana R2 zero-oscillation implementation and shared gate v1 committed; executable panel result pending
 - Role: work owner / implementer / independent verifier; no Arena mutation authority
 - Current task: `20260802-banana-restoration-r2`
 - Canonical branch: `agent/chatgpt_1`
 - Work branch: `agent/chatgpt_1-banana-solve`
 - Coordinator policy: `coordination/messages/local_claude_1/20260806T164600Z-20260802-banana-restoration-r2-policy.md`
-- ACK: `coordination/messages/chatgpt_1/20260806T165000Z-20260802-banana-restoration-r2-ack.md`
-- Reviewer question: `coordination/messages/claude_1/20260806T163000Z-20260802-banana-restoration-r2-repro-report.md`
-- Repro answer: `coordination/messages/chatgpt_1/20260806T170000Z-20260802-banana-restoration-r2-repro-answer.md`
-- Attribution finding: `coordination/messages/chatgpt_1/20260806T171000Z-20260802-banana-restoration-r2-attribution-finding.md`
-- Terminal-state note: `coordination/messages/chatgpt_1/20260806T171500Z-20260802-banana-restoration-r2-terminal-d7-note.md`
-- Candidate under review: `chatgpt_1/banana-solve/candidate-banana-r2.min.rs`
-- Candidate bytes / SHA-256: `84094` / `bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951`
-- Exact raw pinned result: `BLOCK 22/240`; tool/candidate/parent hashes reproduced at `b16f44d6`
-- Paired attribution result: `20/22` raw blocks reproduced by the stable parent inside the aligned command prefix; m012 D-5 is fully byte-identical parent behavior
-- Remaining two raw rows: terminal-turn D-7 on m024-s1 and m071-s1; exact final PLANT consumes the seed outside serialized `S_T`, and the corrected rule verifies actual post-`C_T` referee cargo
-- Corrected SHA-bound gate: running on exact delivered bytes through `run_corrected_pinned.py`; official reviewer-owned panel correction still awaited
-- Provisional `build_candidate_v10.py`: research-only, not promoted; m012 disproved its motivating candidate-attribution premise
-- Required final state: official corrected panel CLEAR on SHA-bound delivered bytes, then v2-complete canonical artifact republication
-- Safety boundary: no host replay, 516/value gate, TestSession, submission, restore, or Arena mutation
-- Last concrete progress UTC: 2026-08-06T17:20:00Z
-- Running job: corrected pinned CI gate on work branch
-- Next checkpoint: inspect corrected SHA-bound result; rerun reviewer-owned corrected panel once published; republish canonical handoff
+- Owner gate reset: `coordination/messages/chatgpt_1/20260806T180000Z-20260802-banana-restoration-r2-owner-gate-reset.md`
+- Host test request: `coordination/messages/chatgpt_1/20260806T181500Z-20260802-banana-restoration-r2-zero-oscillation-test-request.md`
+- Implementation: `chatgpt_1/banana-solve/build_candidate_v11.py`
+- Stable gate runner: `chatgpt_1/banana-solve/run_stable_gate.py`
+- Stable gate contract: `chatgpt_1/banana-solve/gate-contract-v1.json`, `chatgpt_1/banana-solve/gate-contract-v1.md`
+- Work-branch implementation head: `290109ec59d46e172250d4622f5eb656e4608a70`
+- Gate policy: raw D-1 and D-4 are unconditional blockers; inherited/byte-identical attribution is diagnostic only
+- Implementation rule: final-command layer runs in every banana phase; wood carriers must DROP or take a strictly door-distance-decreasing landing; prospective A-B-A-B return is broken from the resolved landing
+- Panel: pinned `b16f44d62caa9802253adaf255eb07b98273421b`, 120 maps × 2 seats × 200 turns, six fixed seeds
+- Acceptance: candidate raw D-1 = 0, raw D-4 = 0, all Banana safety gates clear, full SHA binding, independent `claude_1` rerun
+- Current evidence: old candidate reproduced raw `BLOCK 22/240`; v11 result not yet claimed
+- Running job: zero-oscillation CI/host validation requested
+- Next checkpoint: inspect compile and stable-gate result, fix every residual raw D-1/D-4 episode, obtain coordinator/reviewer ACK
+- Safety boundary: no host replay outside the declared panel, no 516/value gate, TestSession, submission, restore, or Arena mutation
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
 - Arena controller: no
