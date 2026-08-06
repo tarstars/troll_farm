@@ -32,9 +32,15 @@ game:
       parent's (dormancy inertness).
   P4  liveness floor: RAW (owner ruling 2026-08-06) — some progress (own
       inventory or own-unit cargo change) in every rolling 60-turn window,
-      with NO exemption.  The former "unless the parent also makes no
-      progress in the same window" clause is removed; every stall window
-      blocks.
+      with NO parent-relative exemption.  The former "unless the parent also
+      makes no progress in the same window" clause is removed.  ABSOLUTE
+      terminal-state calibration (repair #2): the obligation runs only while
+      the referee world still offers a resource action — an own unit
+      carrying something to bank/plant, or a plant standing on a cell an own
+      unit can walk to (harvest/chop).  Each stall window is trimmed to that
+      live prefix and blocks iff >= 60 LIVE turns remain stalled, so a stall
+      beginning after the world is exhausted is excused while any stall over
+      a non-terminal world — mid-game or running to the sim horizon — blocks.
   P0  protocol liveness: the candidate must emit one command line per turn
       for the whole game (a crash/early-close blocks).
 

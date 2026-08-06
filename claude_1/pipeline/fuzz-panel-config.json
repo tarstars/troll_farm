@@ -1,7 +1,8 @@
 {
   "task": "20260802-banana-restoration-r2 fuzz panel (candidate eac2eb36 vs parent a8eb3b2b)",
   "notes": [
-    "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified."
+    "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified.",
+    "P4 ABSOLUTE terminal-state calibration (gate repair #2, 2026-08-06): a stall window blocks only over the turns in which the referee world state still offers the own player a resource action -- i.e. some own unit still carries something to bank/plant, or some plant still stands on a cell an own unit can walk to (harvest/chop) -- so a stall that begins after the world is exhausted for the rest of the game is excused while any stall of >= liveness_window LIVE turns, mid-game or running to the sim horizon, still blocks. The predicate reads only the candidate's own transcript (static map + plants + own units): no parent reference, no all-WAIT command heuristic."
   ],
   "candidate": {
     "source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
