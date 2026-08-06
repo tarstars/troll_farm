@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the repository fuzz panel with corrected Banana R2 semantics.
 
-Two panel-layer corrections are applied without weakening any owner-contract gate:
+Three panel-layer corrections are applied without weakening any owner-contract gate:
 
 1. A property cannot be attributed to the banana candidate when its complete
    command stream is byte-identical to the stable parent on the identical
@@ -11,6 +11,10 @@ Two panel-layer corrections are applied without weakening any owner-contract gat
    The owner requires a bounded *spatial* orchard.  Repeated grow/chop/replant
    cycles on the same finite ring are the intended renewable wood printer.
    ``outside_ring`` and every other D-5 episode remain blocking.
+3. A final-state ``unbanked_at_end`` observation is not a loss when the last
+   emitted command for that unit is the unobserved consuming action itself
+   (``PLANT ... BANANA`` or ``DROP``).  The panel stores S_T before applying
+   C_T and has no S_{T+1}; every earlier unresolved carry remains blocking.
 """
 from __future__ import annotations
 
@@ -66,6 +70,75 @@ def _reclassify_renewable_ring_cycles(row: dict) -> None:
     row["block"] = bool(row.get("violations"))
 
 
+def _final_command_consumes_banana(commands: str | None, unit_id: int) -> bool:
+    if not commands:
+        return False
+    lines = [line.strip() for line in commands.splitlines() if line.strip()]
+    if not lines:
+        return False
+    for raw in lines[-1].split(";"):
+        parts = raw.strip().split()
+        if len(parts) < 2:
+            continue
+        try:
+            command_unit = int(parts[1])
+        except ValueError:
+            continue
+        if command_unit != unit_id:
+            continue
+        verb = parts[0].upper()
+        if verb == "DROP":
+            return True
+        if verb == "PLANT" and len(parts) >= 3 and parts[2].upper() == "BANANA":
+            return True
+    return False
+
+
+def _reclassify_unobserved_terminal_consumption(row: dict) -> None:
+    artifacts = row.get("artifacts") or {}
+    commands = artifacts.get("candidate_commands")
+    rewritten: list[dict] = []
+    dropped = 0
+    for violation in row.get("violations", []):
+        if not (
+            violation.get("property") == "P1"
+            and violation.get("detector") == "D-7"
+        ):
+            rewritten.append(violation)
+            continue
+        episodes = list(violation.get("episodes", []))
+        kept = []
+        for episode in episodes:
+            unit_id = episode.get("unit")
+            consumes = (
+                episode.get("kind") == "unbanked_at_end"
+                and isinstance(unit_id, int)
+                and _final_command_consumes_banana(commands, unit_id)
+            )
+            if consumes:
+                dropped += 1
+            else:
+                kept.append(episode)
+        if kept:
+            replacement = dict(violation)
+            replacement["episodes"] = kept
+            replacement["count"] = len(kept)
+            rewritten.append(replacement)
+    row["violations"] = rewritten
+    if dropped:
+        row.setdefault("flags", []).append(
+            {
+                "flag": "terminal-consuming-command",
+                "detail": (
+                    f"{dropped} D-7 unbanked_at_end episode(s) have a final "
+                    "PLANT BANANA or DROP command whose S_(T+1) effect is outside "
+                    "the finite panel transcript"
+                ),
+            }
+        )
+    row["block"] = bool(row.get("violations"))
+
+
 def _reclassify_byte_identical_parent(row: dict) -> None:
     artifacts = row.get("artifacts") or {}
     candidate = artifacts.get("candidate_commands")
@@ -101,6 +174,7 @@ def _reclassify_byte_identical_parent(row: dict) -> None:
 def run_pair(job):
     row = base_run_pair(job)
     _reclassify_renewable_ring_cycles(row)
+    _reclassify_unobserved_terminal_consumption(row)
     _reclassify_byte_identical_parent(row)
     return row
 
