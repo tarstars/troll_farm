@@ -1,0 +1,102 @@
+name: banana zero oscillation review gate
+
+on:
+  pull_request:
+    branches:
+      - agent/chatgpt_1-banana-solve
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Build candidate and run stable gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/ci/pr-gate"
+          CAND="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/candidate-banana-r2.min.rs"
+          CONTRACT="$GITHUB_WORKSPACE/chatgpt_1/banana-solve/gate-contract-v1.json"
+          mkdir -p "$ROOT"
+
+          python3 chatgpt_1/banana-solve/build_candidate_v11.py \
+            | tee "$ROOT/build.txt"
+          rustc --crate-name banana_candidate --edition=2021 -O \
+            "$CAND" -o /tmp/banana-candidate
+          timeout 5s /tmp/banana-candidate </dev/null \
+            >"$ROOT/smoke.stdout" 2>"$ROOT/smoke.stderr"
+          test ! -s "$ROOT/smoke.stdout"
+          test ! -s "$ROOT/smoke.stderr"
+
+          python3 -m unittest discover \
+            -s claude_1/banana-restoration-r2 \
+            -p test_trace_detectors.py \
+            | tee "$ROOT/trace-tests.txt"
+          python3 chatgpt_1/banana-solve/owner_contract_final_adapter.py \
+            --candidate "$CAND" \
+            --output "$ROOT/owner-contract" \
+            | tee "$ROOT/owner-contract.txt"
+
+          git fetch origin agent/claude_1
+          rm -rf /tmp/banana-standing-gate
+          git worktree add --detach /tmp/banana-standing-gate \
+            b16f44d62caa9802253adaf255eb07b98273421b
+          cp /tmp/banana-standing-gate/claude_1/pipeline/fuzz-panel-config.json \
+            "$ROOT/config.json"
+
+          python3 - "$ROOT/config.json" "$CAND" \
+            /tmp/banana-standing-gate/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs <<'PY'
+          import hashlib, json, pathlib, sys
+          cfg_path, candidate, parent = map(pathlib.Path, sys.argv[1:])
+          candidate_sha = hashlib.sha256(candidate.read_bytes()).hexdigest()
+          parent_sha = hashlib.sha256(parent.read_bytes()).hexdigest()
+          assert parent_sha == 'a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55'
+          cfg = json.loads(cfg_path.read_text())
+          cfg['task'] = '20260802-banana-restoration-r2 stable zero-oscillation review gate'
+          cfg['candidate']['source'] = str(candidate)
+          cfg['candidate']['sha256'] = candidate_sha
+          cfg['candidate']['crate'] = 'chatgpt_1_banana_r2_zero_oscillation_review'
+          cfg['parent']['source'] = str(parent)
+          cfg['parent']['sha256'] = parent_sha
+          cfg['games_dir'] = '/tmp/chatgpt-banana-review/games'
+          cfg['bin_cache_dir'] = '/tmp/chatgpt-banana-review/bin'
+          cfg_path.write_text(json.dumps(cfg, indent=2, sort_keys=True) + '\n')
+          PY
+
+          python3 chatgpt_1/banana-solve/run_stable_gate.py \
+            --panel-file /tmp/banana-standing-gate/claude_1/pipeline/fuzz_panel.py \
+            --gate-contract "$CONTRACT" \
+            --config "$ROOT/config.json" \
+            --report "$ROOT/stable-gate.md" \
+            --json "$ROOT/stable-gate.json" \
+            --save-failures "$ROOT/failures" \
+            | tee "$ROOT/stable-gate.stdout"
+
+          python3 - "$ROOT/stable-gate.json" <<'PY'
+          import json, pathlib, sys
+          result = json.loads(pathlib.Path(sys.argv[1]).read_text())
+          print(json.dumps({
+              'verdict': result.get('verdict'),
+              'hard_stability_summary': result.get('hard_stability_summary'),
+              'sha_binding': result.get('sha_binding'),
+          }, indent=2, sort_keys=True))
+          assert result.get('verdict') == 'CLEAR'
+          assert result['hard_stability_summary']['D-1_episodes'] == 0
+          assert result['hard_stability_summary']['D-4_episodes'] == 0
+          PY
+
+      - name: Upload raw gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: banana-zero-oscillation-gate
+          path: chatgpt_1/banana-solve/ci/pr-gate
+          if-no-files-found: warn
